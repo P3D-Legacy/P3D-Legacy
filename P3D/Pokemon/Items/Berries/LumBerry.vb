@@ -16,6 +16,8 @@ Namespace Items.Berries
 
             Me.Type = Element.Types.Flying
             Me.Power = 80
+            Me.JuiceColor = "green"
+            Me.JuiceGroup = 2
         End Sub
         Public Overrides Sub Use()
             Dim selScreen = New PartyScreen(Core.CurrentScreen, Me, AddressOf Me.UseOnPokemon, "Use " & Me.Name, True) With {.Mode = Screens.UI.ISelectionScreen.ScreenMode.Selection, .CanExit = True}

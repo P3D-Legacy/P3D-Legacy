@@ -16,6 +16,8 @@ Namespace Items.Berries
 
             Me.Type = Element.Types.Bug
             Me.Power = 80
+            Me.JuiceColor = "red"
+            Me.JuiceGroup = 3
         End Sub
 
     End Class

@@ -34,6 +34,9 @@
         Public Type As Element.Types
         Public Power As Integer = 80
 
+        Public JuiceColor As String = "red"
+        Public JuiceGroup As Integer = 1
+
         Public Overrides ReadOnly Property PokeDollarPrice As Integer = 100
         Public Overrides ReadOnly Property FlingDamage As Integer = 10
         Public Overrides ReadOnly Property ItemType As ItemTypes = ItemTypes.Plants

@@ -16,6 +16,8 @@ Namespace Items.Berries
 
             Me.Type = Element.Types.Dragon
             Me.Power = 100
+            Me.JuiceColor = "yellow"
+            Me.JuiceGroup = 3
         End Sub
 
     End Class

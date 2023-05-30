@@ -16,6 +16,8 @@ Namespace Items.Berries
 
             Me.Type = Element.Types.Ice
             Me.Power = 100
+            Me.JuiceColor = "purple"
+            Me.JuiceGroup = 3
         End Sub
 
     End Class

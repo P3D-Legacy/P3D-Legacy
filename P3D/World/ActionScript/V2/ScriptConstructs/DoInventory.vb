@@ -40,6 +40,25 @@
                         Return item.ID
                     End If
                     Return 0
+                Case "juicecolor"
+                    Dim ItemID As String = argument.GetSplit(0)
+                    If Item.GetItemByID(ItemID).PluralName.ToLower.EndsWith("berries") Then
+                        Dim b As Items.Berry = CType(Item.GetItemByID(ItemID), Items.Berry)
+
+                        Return b.JuiceColor
+                    End If
+
+                    Return "black"
+                Case "juicegroup"
+                    Dim ItemID As String = argument.GetSplit(0)
+                    If Item.GetItemByID(ItemID).PluralName.ToLower.EndsWith("berries") Then
+                        Dim b As Items.Berry = CType(Item.GetItemByID(ItemID), Items.Berry)
+
+                        Return b.JuiceGroup
+                    End If
+
+                    Return 0
+
             End Select
             Return DEFAULTNULL
         End Function

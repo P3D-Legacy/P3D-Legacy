@@ -16,6 +16,8 @@ Namespace Items.Berries
 
             Me.Type = Element.Types.Grass
             Me.Power = 80
+            Me.JuiceColor = "green"
+            Me.JuiceGroup = 1
         End Sub
 
         Public Overrides Sub Use()
