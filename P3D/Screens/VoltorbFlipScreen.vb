@@ -1055,9 +1055,15 @@ TryAgain:
                     Next
                 Next
 
-                If Controls.Accept = True AndAlso TextBox.Showing = False Then
-                    If ReadyAmount = CInt(GridSize * GridSize) Then
-                        SoundManager.PlaySound("select")
+                If Controls.Accept = True AndAlso ReadyAmount = CInt(GridSize * GridSize) AndAlso TextBox.Showing = False Then
+                    SoundManager.PlaySound("select")
+                    If Delay = 0 Then
+                        Delay = 5
+                    End If
+                    If Delay > 3 Then
+                        If CurrentLevel > PreviousLevel Then
+                            TextBox.Show(Localization.GetString("VoltorbFlip_NewLevel_Higher1", "Advanced to Game Lv.") & " " & CurrentLevel & Localization.GetString("VoltorbFlip_NewLevel_Higher2", "!"))
+                        End If
                         GameState = States.FlipWon
                     End If
                 End If
@@ -1065,7 +1071,6 @@ TryAgain:
 
             'Revealed a Voltorb
             If GameState = States.GameLost Then
-
                 CurrentCoins = 0
 
                 'Flip all Tiles to reveal contents
@@ -1079,15 +1084,21 @@ TryAgain:
                     Next
                 Next
 
-                If ReadyAmount = CInt(GridSize * GridSize) Then
-                    If Controls.Accept = True AndAlso TextBox.Showing = False Then
-                        PreviousLevel = CurrentLevel
-                        If CurrentFlips < CurrentLevel Then
-                            CurrentLevel = Math.Max(1, CurrentFlips)
-                        Else
-                            CurrentLevel = 1
+                If Controls.Accept = True AndAlso ReadyAmount = CInt(GridSize * GridSize) AndAlso TextBox.Showing = False Then
+                    PreviousLevel = CurrentLevel
+                    If CurrentFlips < CurrentLevel Then
+                        CurrentLevel = Math.Max(1, CurrentFlips)
+                    Else
+                        CurrentLevel = 1
+                    End If
+                    SoundManager.PlaySound("select")
+                    If Delay = 0 Then
+                        Delay = 5
+                    End If
+                    If Delay > 3 Then
+                        If CurrentLevel < PreviousLevel Then
+                            TextBox.Show(Localization.GetString("VoltorbFlip_NewLevel_Lower1", "Dropped to Game Lv.") & " " & CurrentLevel & Localization.GetString("VoltorbFlip_NewLevel_Lower2", "!"))
                         End If
-                        SoundManager.PlaySound("select")
                         GameState = States.FlipLost
                     End If
                 End If
@@ -1111,7 +1122,7 @@ TryAgain:
             End If
 
             'Drop Level, reset Tiles
-            If GameState = States.FlipLost Then
+            If GameState = States.FlipLost AndAlso TextBox.Showing = False Then
                 Dim ReadyAmount As Integer = 0
                 For _row = 0 To GridSize - 1
                     For _column = 0 To GridSize - 1
@@ -1205,17 +1216,8 @@ TryAgain:
                         TotalFlips = 0
                         ConsecutiveWins = 0
                     End If
-                    If CurrentLevel < PreviousLevel Then
-                        TextBox.Show(Localization.GetString("VoltorbFlip_NewLevel_Lower1", "Dropped to Game Lv.") & " " & CurrentLevel & Localization.GetString("VoltorbFlip_NewLevel_Lower2", "!"))
-                    End If
 
-                    If CurrentLevel = PreviousLevel Then
-                        TextBox.Show(Localization.GetString("VoltorbFlip_NewLevel_Same1", "Ready to play Game Lv.") & " " & CurrentLevel & Localization.GetString("VoltorbFlip_NewLevel_Same2", "!"))
-                    End If
-
-                    If CurrentLevel > PreviousLevel Then
-                        TextBox.Show(Localization.GetString("VoltorbFlip_NewLevel_Higher1", "Advanced to Game Lv.") & " " & CurrentLevel & Localization.GetString("VoltorbFlip_NewLevel_Higher2", "!"))
-                    End If
+                    TextBox.Show(Localization.GetString("VoltorbFlip_NewLevel_Ready1", "Ready to play Game Lv.") & " " & CurrentLevel & Localization.GetString("VoltorbFlip_NewLevel_Ready2", "!"))
                 Else
                     Delay = 15
                     GameState = States.Game

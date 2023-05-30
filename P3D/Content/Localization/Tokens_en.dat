@@ -440,10 +440,10 @@ VoltorbFlip_MaxCoins,Your Coin Case can't fit~any more Coin(s)!
 
 VoltorbFlip_NewLevel_Lower1,Dropped to Game Lv.
 VoltorbFlip_NewLevel_Lower2,!
-VoltorbFlip_NewLevel_Same1,Ready to play Game Lv.
-VoltorbFlip_NewLevel_Same2,!
 VoltorbFlip_NewLevel_Higher1,Advanced to Game Lv.
 VoltorbFlip_NewLevel_Higher2,!
+VoltorbFlip_NewLevel_Ready1,Ready to play Game Lv.
+VoltorbFlip_NewLevel_Ready2,!
 
 VoltorbFlip_QuitGame_1,<player.name> received~
 VoltorbFlip_QuitGame_2,Coin(s)!
