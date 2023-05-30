@@ -429,6 +429,7 @@ VoltorbFlip_BeforeNewLevel_GameInfo_Question,Which set of info?
 VoltorbFlip_BeforeNewLevel_GameInfo_Answer_HowToPlay,How to Play
 VoltorbFlip_BeforeNewLevel_GameInfo_Answer_Hint,Hint!
 VoltorbFlip_BeforeNewLevel_GameInfo_Answer_AboutMemos,About Memos
+VoltorbFlip_BeforeNewLevel_GameInfo_Back
 
 VoltorbFlip_GameWon_1,Game clear!~You've found all of the~hidden x2 and x3 cards.*<player.name> received~
 VoltorbFlip_GameWon_2,Coin(s)!
