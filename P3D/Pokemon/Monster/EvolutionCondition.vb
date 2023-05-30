@@ -117,8 +117,10 @@ Public Class EvolutionCondition
     Public Shared Function GetEvolutionCondition(ByVal p As Pokemon, ByVal trigger As EvolutionTrigger, ByVal arg As String) As EvolutionCondition
         If trigger = EvolutionTrigger.LevelUp Or trigger = EvolutionTrigger.Trading Then
             If Not p.Item Is Nothing Then
-                If p.Item.ID = 112 Then
-                    Return Nothing
+                If p.Item.IsGameModeItem = False Then
+                    If p.Item.ID = 112 Then
+                        Return Nothing
+                    End If
                 End If
             End If
         End If
@@ -165,10 +167,18 @@ Public Class EvolutionCondition
                             If p.Item Is Nothing Then
                                 canEvolve = False
                             Else
-                                If p.Item.ID <> CInt(c.Argument) Then
-                                    canEvolve = False
-                                    'ElseIf c.Trigger = EvolutionTrigger.Trading Then
-                                    'REMOVE HELD ITEM CHECK
+                                If p.Item.IsGameModeItem = True Then
+                                    If p.Item.gmID <> c.Argument Then
+                                        canEvolve = False
+                                        'ElseIf c.Trigger = EvolutionTrigger.Trading Then
+                                        'REMOVE HELD ITEM CHECK
+                                    End If
+                                Else
+                                    If p.Item.ID <> CInt(c.Argument) Then
+                                        canEvolve = False
+                                        'ElseIf c.Trigger = EvolutionTrigger.Trading Then
+                                        'REMOVE HELD ITEM CHECK
+                                    End If
                                 End If
                             End If
                         Case ConditionTypes.InParty
@@ -194,8 +204,14 @@ Public Class EvolutionCondition
                                 canEvolve = False
                             End If
                         Case ConditionTypes.Item
-                            If CInt(arg) <> CInt(c.Argument) Then
-                                canEvolve = False
+                            If p.Item.IsGameModeItem = True Then
+                                If arg <> c.Argument Then
+                                    canEvolve = False
+                                End If
+                            Else
+                                If CInt(arg) <> CInt(c.Argument) Then
+                                    canEvolve = False
+                                End If
                             End If
                         Case ConditionTypes.Level
                             If p.Level < CInt(c.Argument) Then

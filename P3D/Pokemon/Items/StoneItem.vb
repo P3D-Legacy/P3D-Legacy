@@ -12,7 +12,7 @@ Namespace Items
             AddHandler selScreen.SelectedObject, AddressOf UseItemhandler
 
             Core.SetScreen(selScreen)
-            CType(CurrentScreen, PartyScreen).EvolutionItemID = Me.ID
+            CType(CurrentScreen, PartyScreen).EvolutionItemID = Me.ID.ToString
         End Sub
 
         Public Overrides Function UseOnPokemon(ByVal PokeIndex As Integer) As Boolean

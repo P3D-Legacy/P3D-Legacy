@@ -119,24 +119,12 @@ Public Class GameModeItemLoader
                         Case "healhpamount"
                             item.gmHealHPAmount = CInt(value)
                         Case "curestatuseffects"
-                            Dim StatusEffectList As New List(Of Pokemon.StatusProblems)
+                            Dim StatusEffectList As New List(Of String)
                             Dim valueSplit As String() = value.Split(",")
                             For i = 0 To valueSplit.Count - 1
                                 Select Case valueSplit(i).ToLower
-                                    Case "brn"
-                                        StatusEffectList.Add(Pokemon.StatusProblems.Burn)
-                                    Case "frz"
-                                        StatusEffectList.Add(Pokemon.StatusProblems.Freeze)
-                                    Case "prz"
-                                        StatusEffectList.Add(Pokemon.StatusProblems.Paralyzed)
-                                    Case "psn"
-                                        StatusEffectList.Add(Pokemon.StatusProblems.Poison)
-                                    Case "bpsn"
-                                        StatusEffectList.Add(Pokemon.StatusProblems.BadPoison)
-                                    Case "slp"
-                                        StatusEffectList.Add(Pokemon.StatusProblems.Sleep)
-                                    Case "fnt"
-                                        StatusEffectList.Add(Pokemon.StatusProblems.Fainted)
+                                    Case "brn", "frz", "prz", "psn", "bpsn", "slp", "fnt", "cfs", "allwithoutfnt", "all"
+                                        StatusEffectList.Add(valueSplit(i))
                                 End Select
                             Next
                             If item.gmCureStatusEffects Is Nothing Then
