@@ -41,7 +41,11 @@ Public Class GameModeItem
     ''' </summary>
     Public Overrides ReadOnly Property PluralName As String
         Get
-            Return gmPluralName
+            If Localization.TokenExists("item_pluralname_" & gmID) = True Then
+                Return Localization.GetString("item_pluralname_" & gmID)
+            Else
+                Return gmPluralName
+            End If
         End Get
     End Property
 
