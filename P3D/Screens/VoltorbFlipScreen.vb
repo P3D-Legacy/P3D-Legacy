@@ -201,15 +201,15 @@ Namespace VoltorbFlip
             End If
             CurrentCoinsText3 &= CurrentCoins.ToString & "]"
 
-            SpriteBatch.DrawString(FontManager.MainFont, CurrentCoinsText1, New Vector2(CInt(GameOrigin.X + 232 + 20 - FontManager.MainFont.MeasureString(CurrentCoinsText1).X / 2), CInt(GameOrigin.Y + 80 + 4 - FontManager.MainFont.MeasureString(CurrentCoinsText2).Y / 2 - FontManager.MainFont.MeasureString(CurrentCoinsText1).Y)), Fontcolor)
-            SpriteBatch.DrawString(FontManager.MainFont, CurrentCoinsText2, New Vector2(CInt(GameOrigin.X + 232 + 20 - FontManager.MainFont.MeasureString(CurrentCoinsText2).X / 2), CInt(GameOrigin.Y + 80 + 4 - FontManager.MainFont.MeasureString(CurrentCoinsText2).Y / 2)), Fontcolor)
-            SpriteBatch.DrawString(FontManager.MainFont, CurrentCoinsText3, New Vector2(CInt(GameOrigin.X + 232 + 20 - FontManager.MainFont.MeasureString(CurrentCoinsText3).X / 2), CInt(GameOrigin.Y + 80 + 4 + FontManager.MainFont.MeasureString(CurrentCoinsText2).Y / 2)), Fontcolor)
+            SpriteBatch.DrawString(FontManager.MainFont, CurrentCoinsText1, New Vector2(CInt(GameOrigin.X + 232 + 24 - FontManager.MainFont.MeasureString(CurrentCoinsText1).X / 2), CInt(GameOrigin.Y + 80 + 4 - FontManager.MainFont.MeasureString(CurrentCoinsText2).Y / 2 - FontManager.MainFont.MeasureString(CurrentCoinsText1).Y)), Fontcolor)
+            SpriteBatch.DrawString(FontManager.MainFont, CurrentCoinsText2, New Vector2(CInt(GameOrigin.X + 232 + 24 - FontManager.MainFont.MeasureString(CurrentCoinsText2).X / 2), CInt(GameOrigin.Y + 80 + 4 - FontManager.MainFont.MeasureString(CurrentCoinsText2).Y / 2)), Fontcolor)
+            SpriteBatch.DrawString(FontManager.MainFont, CurrentCoinsText3, New Vector2(CInt(GameOrigin.X + 232 + 24 - FontManager.MainFont.MeasureString(CurrentCoinsText3).X / 2), CInt(GameOrigin.Y + 80 + 4 + FontManager.MainFont.MeasureString(CurrentCoinsText2).Y / 2)), Fontcolor)
 
             'Total Coins
             Canvas.DrawImageBorder(TextureManager.GetTexture("Textures\VoltorbFlip\HUD"), 2, New Rectangle(CInt(GameOrigin.X + 336 + 32), CInt(GameOrigin.Y + 32), 192, 96), mainBackgroundColor, False)
 
-            Dim TotalCoinsText1 As String = Localization.GetString("VoltorbFlip_TotalCoins_Line1", "Total Coins")
-            Dim TotalCoinsText2 As String = Localization.GetString("VoltorbFlip_TotalCoins_Line2", "earned")
+            Dim TotalCoinsText1 As String = Localization.GetString("VoltorbFlip_TotalCoins_Line1", "<player.name>'s")
+            Dim TotalCoinsText2 As String = Localization.GetString("VoltorbFlip_TotalCoins_Line2", "earned Coins")
             Dim TotalCoinsText3 As String = ""
 
             TotalCoinsText3 &= "["
@@ -227,9 +227,9 @@ Namespace VoltorbFlip
             End If
             TotalCoinsText3 &= CInt(TotalCoins + Core.Player.Coins).ToString & "]"
 
-            SpriteBatch.DrawString(FontManager.MainFont, TotalCoinsText1, New Vector2(CInt(GameOrigin.X + 440 + 28 - FontManager.MainFont.MeasureString(TotalCoinsText1).X / 2), CInt(GameOrigin.Y + 80 + 4 - FontManager.MainFont.MeasureString(TotalCoinsText2).Y / 2 - FontManager.MainFont.MeasureString(TotalCoinsText1).Y)), Fontcolor)
-            SpriteBatch.DrawString(FontManager.MainFont, TotalCoinsText2, New Vector2(CInt(GameOrigin.X + 440 + 28 - FontManager.MainFont.MeasureString(TotalCoinsText2).X / 2), CInt(GameOrigin.Y + 80 + 4 - FontManager.MainFont.MeasureString(TotalCoinsText2).Y / 2)), Fontcolor)
-            SpriteBatch.DrawString(FontManager.MainFont, TotalCoinsText3, New Vector2(CInt(GameOrigin.X + 440 + 28 - FontManager.MainFont.MeasureString(TotalCoinsText3).X / 2), CInt(GameOrigin.Y + 80 + 4 + FontManager.MainFont.MeasureString(TotalCoinsText2).Y / 2)), Fontcolor)
+            SpriteBatch.DrawString(FontManager.MainFont, TotalCoinsText1, New Vector2(CInt(GameOrigin.X + 440 + 32 - FontManager.MainFont.MeasureString(TotalCoinsText1).X / 2), CInt(GameOrigin.Y + 80 + 4 - FontManager.MainFont.MeasureString(TotalCoinsText2).Y / 2 - FontManager.MainFont.MeasureString(TotalCoinsText1).Y)), Fontcolor)
+            SpriteBatch.DrawString(FontManager.MainFont, TotalCoinsText2, New Vector2(CInt(GameOrigin.X + 440 + 32 - FontManager.MainFont.MeasureString(TotalCoinsText2).X / 2), CInt(GameOrigin.Y + 80 + 4 - FontManager.MainFont.MeasureString(TotalCoinsText2).Y / 2)), Fontcolor)
+            SpriteBatch.DrawString(FontManager.MainFont, TotalCoinsText3, New Vector2(CInt(GameOrigin.X + 440 + 32 - FontManager.MainFont.MeasureString(TotalCoinsText3).X / 2), CInt(GameOrigin.Y + 80 + 4 + FontManager.MainFont.MeasureString(TotalCoinsText2).Y / 2)), Fontcolor)
 
 
         End Sub

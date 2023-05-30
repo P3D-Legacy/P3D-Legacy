@@ -405,8 +405,8 @@ Voltorb Flip:
 VoltorbFlip_LV.,LV.
 VoltorbFlip_CurrentCoins_Line1,Coins found
 VoltorbFlip_CurrentCoins_Line2,in this LV.
-VoltorbFlip_TotalCoins_Line1,Total Coins
-VoltorbFlip_TotalCoins_Line2,earned
+VoltorbFlip_TotalCoins_Line1,<player.name>'s
+VoltorbFlip_TotalCoins_Line2,earned Coins
 
 VoltorbFlip_MemoButton_Open_Line1,Open
 VoltorbFlip_MemoButton_Open_Line2,Memos
