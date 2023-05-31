@@ -149,6 +149,10 @@ Public Class GameModeItemLoader
                             End If
                         Case "script"
                             item.gmScriptPath = value
+                        Case "istm"
+                            item.gmIsTM = CBool(value)
+                        Case "teachmove"
+                            item.gmTeachMove = BattleSystem.Attack.GetAttackByID(CInt(value))
                     End Select
                 End If
             Next
@@ -165,6 +169,24 @@ Public Class GameModeItemLoader
                 item.gmCanBeTraded = False
                 item.gmCanBeUsed = False
                 item.gmCanBeUsedInBattle = False
+            End If
+            If item.gmIsTM = True AndAlso item.gmTeachMove IsNot Nothing AndAlso item.gmDescription = "" Then
+                Dim AttackName As String = item.gmTeachMove.Name
+                item.gmDescription = "Teaches """ & AttackName & """ to a Pokémon."
+                item.gmItemType = ItemTypes.Machines
+                item.gmCanBeHeld = False
+                item.gmCanBeTossed = True
+                item.gmCanBeTraded = True
+                item.gmCanBeUsed = True
+                item.gmCanBeUsedInBattle = False
+                If item.gmName.StartsWith("TM ") Then
+                    item.gmSortValue = CInt(item.gmName.Remove(0, 3)) + 190
+                ElseIf item.gmName.StartsWith("TM") Then
+                    item.gmSortValue = CInt(item.gmName.Remove(0, 2)) + 190
+                End If
+                item.gmTextureSource = "Items\ItemSheet"
+                item.SetTeachMoveTextureRectangle()
+
             End If
             LoadedItems.Add(item) 'Add the item.
         Else

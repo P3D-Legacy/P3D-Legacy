@@ -22,13 +22,24 @@ Public Class GameModeItem
     Public gmCanBeUsedInBattle As Boolean = True
     Public gmCanBeTossed As Boolean = True
     Public gmBattleSelectPokemon As Boolean = True
+
+    Public gmSortValue As Integer = 0
+
     'Medicine Item
     Public gmIsHealingItem As Boolean = False
     Public gmHealHPAmount As Integer = 0
     Public gmCureStatusEffects As List(Of String)
+
     'Evolution Item
     Public gmIsEvolutionItem As Boolean = False
     Public gmEvolutionPokemon As List(Of Integer)
+
+    'TechMachine Item
+    Public gmIsTM As Boolean = False
+    Public gmTeachMove As BattleSystem.Attack
+    Public gmCanTeachAlways As Boolean = False
+    Public gmCanTeachWhenFullyEvolved As Boolean = False
+    Public gmCanTeachWhenGender As Boolean = False
 
     'Mega Stone Item
     Public gmMegaPokemonNumber As Integer
@@ -97,7 +108,11 @@ Public Class GameModeItem
     ''' <summary>
     ''' A value that can be used to sort items in the bag after. Lower values make items appear closer to the top.
     ''' </summary>
-    Public Overrides ReadOnly Property SortValue As Integer = 0
+    Public Overrides ReadOnly Property SortValue As Integer
+        Get
+            Return gmSortValue
+        End Get
+    End Property
 
 
     ''' <summary>
@@ -182,12 +197,64 @@ Public Class GameModeItem
         End Get
     End Property
 
+    Public Sub SetTeachMoveTextureRectangle()
+        Dim r As New Rectangle(144, 168, 24, 24)
+
+        Select Case gmTeachMove.Type.Type
+            Case Element.Types.Blank, Element.Types.Normal
+                r = New Rectangle(144, 168, 24, 24)
+            Case Element.Types.Bug
+                r = New Rectangle(24, 192, 24, 24)
+            Case Element.Types.Dark
+                r = New Rectangle(384, 168, 24, 24)
+            Case Element.Types.Dragon
+                r = New Rectangle(408, 168, 24, 24)
+            Case Element.Types.Electric
+                r = New Rectangle(288, 168, 24, 24)
+            Case Element.Types.Fairy
+                r = New Rectangle(72, 264, 24, 24)
+            Case Element.Types.Fighting
+                r = New Rectangle(168, 168, 24, 24)
+            Case Element.Types.Fire
+                r = New Rectangle(360, 168, 24, 24)
+            Case Element.Types.Flying
+                r = New Rectangle(0, 192, 24, 24)
+            Case Element.Types.Ghost
+                r = New Rectangle(480, 168, 24, 24)
+            Case Element.Types.Grass
+                r = New Rectangle(336, 168, 24, 24)
+            Case Element.Types.Ground
+                r = New Rectangle(456, 168, 24, 24)
+            Case Element.Types.Ice
+                r = New Rectangle(312, 168, 24, 24)
+            Case Element.Types.Poison
+                r = New Rectangle(264, 168, 24, 24)
+            Case Element.Types.Psychic
+                r = New Rectangle(216, 168, 24, 24)
+            Case Element.Types.Rock
+                r = New Rectangle(240, 168, 24, 24)
+            Case Element.Types.Steel
+                r = New Rectangle(432, 168, 24, 24)
+            Case Element.Types.Water
+                r = New Rectangle(192, 168, 24, 24)
+        End Select
+
+        gmTextureRectangle = r
+    End Sub
 
     ''' <summary>
     ''' The item gets used from the bag.
     ''' </summary>
     Public Overrides Sub Use()
         If gmScriptPath = "" Then
+            If gmIsTM = True And gmTeachMove IsNot Nothing Then
+                SoundManager.PlaySound("PC\LogOn", False)
+                Dim selScreen = New PartyScreen(Core.CurrentScreen, Me, AddressOf Me.UseOnPokemon, "Use " & Me.Name, True) With {.Mode = Screens.UI.ISelectionScreen.ScreenMode.Selection, .CanExit = True}
+                AddHandler selScreen.SelectedObject, AddressOf UseItemhandler
+
+                Core.SetScreen(selScreen)
+                CType(CurrentScreen, PartyScreen).SetupLearnAttack(gmTeachMove, 1, Me)
+            End If
             If gmIsHealingItem = True Then
                 If CBool(GameModeManager.GetGameRuleValue("CanUseHealItems", "1")) = False Then
                     Screen.TextBox.Show("Cannot use heal items.", {}, False, False)
@@ -233,11 +300,40 @@ Public Class GameModeItem
             Throw New ArgumentOutOfRangeException("PokeIndex", PokeIndex, "The index for a Pokémon in a player's party can only be between 0 and 5.")
         End If
 
-        Dim Pokemon As Pokemon = Core.Player.Pokemons(PokeIndex)
+        Dim p As Pokemon = Core.Player.Pokemons(PokeIndex)
 
-        If Pokemon.Status = P3D.Pokemon.StatusProblems.Fainted AndAlso (gmCureStatusEffects Is Nothing OrElse gmCureStatusEffects.Count = 0 OrElse gmCureStatusEffects.Contains("fnt") = False) Then
+        If gmIsTM = True AndAlso gmTeachMove IsNot Nothing Then
+
+            Dim a As BattleSystem.Attack = gmTeachMove
+            Dim t As String = CanTeach(p)
+
+            If t = "" Then
+                If p.Attacks.Count = 4 Then
+                    SetScreen(New LearnAttackScreen(CurrentScreen, p, a, gmID))
+
+                    Return True
+                Else
+                    If CBool(GameModeManager.GetGameRuleValue("SingleUseTM", "0")) = True Then
+                        Core.Player.Inventory.RemoveItem(gmID.ToString, 1)
+                    End If
+                    p.Attacks.Add(BattleSystem.Attack.GetAttackByID(a.ID))
+
+                    SoundManager.PlaySound("success_small", False)
+                    Screen.TextBox.Show(p.GetDisplayName() & " learned~" & a.Name & "!", {}, False, False)
+                    PlayerStatistics.Track("TMs/HMs used", 1)
+
+                    Return True
+                End If
+            Else
+                Screen.TextBox.Show(t, {}, False, False)
+
+                Return False
+            End If
+        End If
+
+        If p.Status = P3D.Pokemon.StatusProblems.Fainted AndAlso (gmCureStatusEffects Is Nothing OrElse gmCureStatusEffects.Count = 0 OrElse gmCureStatusEffects.Contains("fnt") = False) Then
             Screen.TextBox.reDelay = 0.0F
-            Screen.TextBox.Show(Pokemon.GetDisplayName() & "~is fainted!", {})
+            Screen.TextBox.Show(p.GetDisplayName() & "~is fainted!", {})
             Return False
         Else
             Dim healsuccess As Boolean = False
@@ -262,23 +358,23 @@ Public Class GameModeItem
                             success1 = True
                         End If
                     End If
-                    If Pokemon.Status <> Pokemon.StatusProblems.Fainted AndAlso Pokemon.Status <> Pokemon.StatusProblems.None Or Pokemon.HasVolatileStatus(Pokemon.VolatileStatus.Confusion) = True Then
-                        If Pokemon.HasVolatileStatus(Pokemon.VolatileStatus.Confusion) = True Then
-                            Pokemon.RemoveVolatileStatus(Pokemon.VolatileStatus.Confusion)
+                    If p.Status <> Pokemon.StatusProblems.Fainted AndAlso p.Status <> Pokemon.StatusProblems.None Or p.HasVolatileStatus(Pokemon.VolatileStatus.Confusion) = True Then
+                        If p.HasVolatileStatus(Pokemon.VolatileStatus.Confusion) = True Then
+                            p.RemoveVolatileStatus(Pokemon.VolatileStatus.Confusion)
                         End If
-                        Pokemon.Status = Pokemon.StatusProblems.None
+                        p.Status = Pokemon.StatusProblems.None
                         success2 = True
                     End If
 
                     Dim t As String = ""
                     If success1 = True AndAlso success2 = False Then
-                        t &= "Healed " & Pokemon.GetDisplayName() & "!"
+                        t &= "Healed " & p.GetDisplayName() & "!"
                     End If
                     If success1 = False AndAlso success2 = True Then
-                        t &= "Cured " & Pokemon.GetDisplayName() & "!"
+                        t &= "Cured " & p.GetDisplayName() & "!"
                     End If
                     If success1 = True AndAlso success2 = True Then
-                        t &= "Healed and cured~" & Pokemon.GetDisplayName() & "!"
+                        t &= "Healed and cured~" & p.GetDisplayName() & "!"
                     End If
 
                     If success1 = True Or success2 = True Then
@@ -292,7 +388,7 @@ Public Class GameModeItem
 
                         Return True
                     Else
-                        Screen.TextBox.Show("Cannot use" & Me.gmName & "~on " & Pokemon.GetDisplayName() & ".", {}, False, False)
+                        Screen.TextBox.Show("Cannot use" & Me.gmName & "~on " & p.GetDisplayName() & ".", {}, False, False)
                         Return False
                     End If
                 ElseIf gmCureStatusEffects.Contains("all") Then
@@ -303,23 +399,23 @@ Public Class GameModeItem
                             success1 = True
                         End If
                     End If
-                    If Pokemon.Status <> Pokemon.StatusProblems.None Or Pokemon.HasVolatileStatus(Pokemon.VolatileStatus.Confusion) = True Then
-                        If Pokemon.HasVolatileStatus(Pokemon.VolatileStatus.Confusion) = True Then
-                            Pokemon.RemoveVolatileStatus(Pokemon.VolatileStatus.Confusion)
+                    If p.Status <> Pokemon.StatusProblems.None Or p.HasVolatileStatus(Pokemon.VolatileStatus.Confusion) = True Then
+                        If p.HasVolatileStatus(Pokemon.VolatileStatus.Confusion) = True Then
+                            p.RemoveVolatileStatus(Pokemon.VolatileStatus.Confusion)
                         End If
-                        Pokemon.Status = Pokemon.StatusProblems.None
+                        p.Status = Pokemon.StatusProblems.None
                         success2 = True
                     End If
 
                     Dim t As String = ""
                     If success1 = True AndAlso success2 = False Then
-                        t &= "Healed " & Pokemon.GetDisplayName() & "!"
+                        t &= "Healed " & p.GetDisplayName() & "!"
                     End If
                     If success1 = False AndAlso success2 = True Then
-                        t &= "Cured " & Pokemon.GetDisplayName() & "!"
+                        t &= "Cured " & p.GetDisplayName() & "!"
                     End If
                     If success1 = True AndAlso success2 = True Then
-                        t &= "Healed and cured~" & Pokemon.GetDisplayName() & "!"
+                        t &= "Healed and cured~" & p.GetDisplayName() & "!"
                     End If
 
                     If success1 = True Or success2 = True Then
@@ -333,7 +429,7 @@ Public Class GameModeItem
 
                         Return True
                     Else
-                        Screen.TextBox.Show("Cannot use" & Me.gmName & "~on " & Pokemon.GetDisplayName() & ".", {}, False, False)
+                        Screen.TextBox.Show("Cannot use" & Me.gmName & "~on " & p.GetDisplayName() & ".", {}, False, False)
                         Return False
                     End If
                 Else
@@ -398,13 +494,13 @@ Public Class GameModeItem
                         End If
                         Dim t As String = ""
                         If healsuccess = True AndAlso success = False Then
-                            t &= "Healed " & Pokemon.GetDisplayName() & "!"
+                            t &= "Healed " & p.GetDisplayName() & "!"
                         End If
                         If healsuccess = False AndAlso success = True Then
-                            t &= "Cured " & Pokemon.GetDisplayName() & "!"
+                            t &= "Cured " & p.GetDisplayName() & "!"
                         End If
                         If healsuccess = True AndAlso success = True Then
-                            t &= "Healed and cured~" & Pokemon.GetDisplayName() & "!"
+                            t &= "Healed and cured~" & p.GetDisplayName() & "!"
                         End If
 
                         If healsuccess = True Or success = True Then
@@ -418,7 +514,7 @@ Public Class GameModeItem
 
                             Return True
                         Else
-                            Screen.TextBox.Show("Cannot use" & Me.gmName & "~on " & Pokemon.GetDisplayName() & ".", {}, False, False)
+                            Screen.TextBox.Show("Cannot use" & Me.gmName & "~on " & p.GetDisplayName() & ".", {}, False, False)
                             Return False
                         End If
                     End If
@@ -430,6 +526,52 @@ Public Class GameModeItem
         End If
 
         Return False
+    End Function
+
+    Public Function CanTeach(ByVal p As Pokemon) As String
+        If p.IsEgg() = True Then
+            Return "Egg cannot learn~" & gmTeachMove.Name & "!"
+        End If
+
+        For Each knowAttack As BattleSystem.Attack In p.Attacks
+            If knowAttack.ID = gmTeachMove.ID Then
+                Return p.GetDisplayName() & " already~knows " & gmTeachMove.Name & "."
+            End If
+        Next
+
+        If p.Machines.Contains(gmTeachMove.ID) = True Then
+            Return ""
+        End If
+
+        For Each learnAttack As BattleSystem.Attack In p.AttackLearns.Values
+            If learnAttack.ID = gmTeachMove.ID Then
+                Return ""
+            End If
+        Next
+
+        If gmCanTeachAlways = True Then
+            If p.Machines.Count > 0 Then
+                Return ""
+            End If
+        End If
+
+        If gmCanTeachWhenFullyEvolved = True Then
+            If p.IsFullyEvolved() = True And p.Machines.Count > 0 Then
+                Return ""
+            End If
+        End If
+
+        If gmCanTeachWhenGender = True Then
+            If p.Gender <> Pokemon.Genders.Genderless And p.Machines.Count > 0 Then
+                Return ""
+            End If
+        End If
+
+        If p.CanLearnAllMachines = True Then
+            Return ""
+        End If
+
+        Return p.GetDisplayName() & " cannot learn~" & gmTeachMove.Name & "!"
     End Function
 
     Public Function UseEvolutionItem(ByVal PokeIndex As Integer) As Boolean
