@@ -13,12 +13,12 @@
     Dim AttackPos As Single = 320.0F
 
     Dim canForget As Boolean = True
-    Dim MachineItemID As String = CInt(-1).ToString
+    Dim MachineItemID As String = "-1"
 
     Dim currentCharIndex As Integer = 0
 
     Public Sub New(ByVal currentScreen As Screen, ByVal Pokemon As Pokemon, ByVal newAttack As BattleSystem.Attack)
-        Me.New(currentScreen, Pokemon, newAttack, CInt(-1).ToString)
+        Me.New(currentScreen, Pokemon, newAttack, "-1")
     End Sub
 
     Public Sub New(ByVal currentScreen As Screen, ByVal Pokemon As Pokemon, ByVal newAttack As BattleSystem.Attack, ByVal MachineItemID As String)
@@ -261,7 +261,7 @@
                 Pokemon.Attacks.RemoveAt(AttackIndex)
                 Pokemon.Attacks.Insert(AttackIndex, newAttack)
 
-                If Me.MachineItemID <> CInt(-1).ToString Then
+                If Me.MachineItemID <> "-1" Then
                     PlayerStatistics.Track("TMs/HMs used", 1)
                     If CBool(GameModeManager.GetGameRuleValue("SingleUseTM", "0")) = True Then
                         Dim TechMachine As Item = Item.GetItemByID(Me.MachineItemID)

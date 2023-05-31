@@ -75,7 +75,7 @@ Public Class PartyScreen
     Public LearnType As Integer = 0
     Dim moveLearnArg As Object = Nothing
 
-    Public EvolutionItemID As String = CInt(-1).ToString
+    Public EvolutionItemID As String = "-1"
     'Stuff related to blurred PreScreens
     Private _preScreenTexture As RenderTarget2D
     Private _preScreenTarget As RenderTarget2D
@@ -376,7 +376,7 @@ Public Class PartyScreen
 
             'Able/unable display (when using an Evolution Item)
             Dim ItemLabel As String = ""
-            If EvolutionItemID <> CInt(-1).ToString Then
+            If EvolutionItemID <> "-1" Then
                 ItemLabel = "Unable!"
                 If p.IsEgg() = False And p.CanEvolve(EvolutionCondition.EvolutionTrigger.ItemUse, EvolutionItemID.ToString()) = True Then
                     ItemLabel = "Able!"

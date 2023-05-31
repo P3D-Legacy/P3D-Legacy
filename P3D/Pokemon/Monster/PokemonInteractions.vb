@@ -23,11 +23,11 @@
     End Enum
 
     Public Shared Function GetScriptString(ByVal p As Pokemon, ByVal cPosition As Vector3, ByVal facing As Integer) As String
-        If PickupItemID > CInt(-1).ToString Then
+        If PickupItemID > "-1" Then
             If PickupIndividualValue = p.IndividualValue Then
                 Return GenerateItemReaction(p, cPosition, facing)
             Else
-                PickupItemID = CInt(-1).ToString
+                PickupItemID = "-1"
                 PickupIndividualValue = ""
             End If
         End If
@@ -139,7 +139,7 @@
         End If
         s &= ":end"
 
-        PickupItemID = CInt(-1).ToString
+        PickupItemID = "-1"
         PickupIndividualValue = ""
 
         Return s
@@ -873,7 +873,7 @@
     End Class
 
     Shared PickupIndividualValue As String = "" 'This value holds the individual value of the Pokémon that picked up the item.
-    Shared PickupItemID As String = CInt(-1).ToString 'This is the Item ID of the item that the Pokémon picked up. -1 means no item got picked up.
+    Shared PickupItemID As String = "-1" 'This is the Item ID of the item that the Pokémon picked up. -1 means no item got picked up.
 
     Public Shared Sub CheckForRandomPickup()
         'Checks if the first Pokémon in the party is following the player:
@@ -883,7 +883,7 @@
                 If Core.Player.GetWalkPokemon().Status = Pokemon.StatusProblems.None Then
                     'If the player switched the Pokémon, reset the item ID.
                     If PickupIndividualValue <> Core.Player.GetWalkPokemon().IndividualValue Then
-                        PickupItemID = CInt(-1).ToString
+                        PickupItemID = "-1"
                     End If
 
                     'Check if an item should be generated:
@@ -1053,7 +1053,7 @@
                 End If
             Else
                 'Reset the system if no Pokémon:
-                PickupItemID = CInt(-1).ToString
+                PickupItemID = "-1"
                 PickupIndividualValue = ""
             End If
         End If
