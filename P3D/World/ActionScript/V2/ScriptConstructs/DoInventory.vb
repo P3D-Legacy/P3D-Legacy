@@ -59,6 +59,8 @@
 
                     Return 0
 
+                Case "selected"
+                    Return NewInventoryScreen.SelectedItem
             End Select
             Return DEFAULTNULL
         End Function

@@ -126,12 +126,17 @@ Public Class NewInventoryScreen
     Private _messageDelay As Single = 0F
     Private _messageText As String = ""
 
+    Public Shared SelectedItem As String = "-1"
+    Private DoReturnItem As Boolean = False
+
     'experiment
     Public Delegate Sub DoStuff(ByVal ItemID As Integer)
     Dim ReturnItem As DoStuff
-    Dim AllowedPages() As Integer
 
-    Public Sub New(ByVal currentScreen As Screen, ByVal AllowedPages As Integer(), ByVal StartPageIndex As Integer, ByVal DoStuff As DoStuff)
+    Dim AllowedPages() As Integer
+    Dim AllowedItems As List(Of String)
+
+    Public Sub New(ByVal currentScreen As Screen, ByVal AllowedPages As Integer(), ByVal StartPageIndex As Integer, ByVal DoStuff As DoStuff, Optional ByVal AllowedItems As List(Of String) = Nothing, Optional ByVal DoReturnItem As Boolean = False)
 
         _preScreenTarget = New RenderTarget2D(GraphicsDevice, windowSize.Width, windowSize.Height)
         _blur = New Resources.Blur.BlurHandler(windowSize.Width, windowSize.Height)
@@ -141,7 +146,9 @@ Public Class NewInventoryScreen
         _itemindex = Player.Temp.BagItemIndex
 
         Me.AllowedPages = AllowedPages
+        Me.AllowedItems = AllowedItems
         ReturnItem = DoStuff
+        Me.DoReturnItem = DoReturnItem
 
         'JSON Stuff
         '_translation = New Globalization.Classes.LOCAL_InventoryScreen()
@@ -185,12 +192,17 @@ Public Class NewInventoryScreen
         LoadItems()
     End Sub
 
-    Public Sub New(ByVal currentScreen As Screen, ByVal AllowedPages() As Integer, ByVal DoStuff As DoStuff)
-        Me.New(currentScreen, AllowedPages, Player.Temp.BagIndex, DoStuff)
+    Public Sub ReturnSelectedItem(ByVal ItemID As String)
+        SelectedItem = ItemID
+        _closing = True
     End Sub
 
-    Public Sub New(ByVal currentScreen As Screen)
-        Me.New(currentScreen, {}, Player.Temp.BagIndex, Nothing)
+    Public Sub New(ByVal currentScreen As Screen, ByVal AllowedPages() As Integer, ByVal DoStuff As DoStuff, Optional ByVal AllowedItems As List(Of String) = Nothing, Optional ByVal DoReturnItem As Boolean = False)
+        Me.New(currentScreen, AllowedPages, Player.Temp.BagIndex, DoStuff, AllowedItems, DoReturnItem)
+    End Sub
+
+    Public Sub New(ByVal currentScreen As Screen, Optional ByVal AllowedItems As List(Of String) = Nothing, Optional ByVal DoReturnItem As Boolean = False)
+        Me.New(currentScreen, {}, Player.Temp.BagIndex, Nothing, AllowedItems, DoReturnItem)
     End Sub
 
     Public Overrides Sub Draw()
@@ -284,17 +296,17 @@ Public Class NewInventoryScreen
             End If
         Next
 
-        Dim TabDesriptionWidth As Integer = 176
+        Dim TabDescriptionWidth As Integer = 176
         Dim TbgColor As New Color(128, 128, 128)
         If _closing Then
             TbgColor = New Color(TbgColor.R, TbgColor.G, TbgColor.B, CInt(CInt(TbgColor.A) * _interfaceFade))
         End If
-        For x = 0 To TabDesriptionWidth Step 16
+        For x = 0 To TabDescriptionWidth Step 16
             For y = 0 To 32 Step 16
                 SpriteBatch.Draw(_menuTexture, New Rectangle(halfWidth - 400 + x + 384, halfHeight - 200 + y, 16, 16), New Rectangle(0, 0, 4, 4), TbgColor)
             Next
         Next
-        Canvas.DrawGradient(Core.SpriteBatch, New Rectangle(halfWidth - 400 + 384 + TabDesriptionWidth + 16, halfHeight - 200, 800 - (384 + TabDesriptionWidth), 48), New Color(0, 0, 0, CInt(TbgColor.A * 0.5)), New Color(0, 0, 0, CInt(TbgColor.A * 0.00)), True, -1)
+        Canvas.DrawGradient(Core.SpriteBatch, New Rectangle(halfWidth - 400 + 384 + TabDescriptionWidth + 16, halfHeight - 200, 800 - (384 + TabDescriptionWidth), 48), New Color(0, 0, 0, CInt(TbgColor.A * 0.5)), New Color(0, 0, 0, CInt(TbgColor.A * 0.00)), True, -1)
         Dim TabName As String = ""
         Select Case _tabIndex
             Case 0 : TabName = Localization.GetString("item_category_Standard", "Standard")
@@ -311,7 +323,7 @@ Public Class NewInventoryScreen
             gColor = New Color(gColor.R, gColor.G, gColor.B, CInt(CInt(gColor.A) * _interfaceFade))
         End If
         Dim fontWidth As Integer = CInt(FontManager.ChatFont.MeasureString(TabName).X)
-        SpriteBatch.DrawString(FontManager.ChatFont, TabName, New Vector2(halfWidth - 400 + 384 + CInt((TabDesriptionWidth - fontWidth) * 0.5), halfHeight - 200 + 12), gColor)
+        SpriteBatch.DrawString(FontManager.ChatFont, TabName, New Vector2(halfWidth - 400 + 384 + CInt((TabDescriptionWidth - fontWidth) * 0.5), halfHeight - 200 + 12), gColor)
     End Sub
 
     ''' <summary>
@@ -769,13 +781,18 @@ Public Class NewInventoryScreen
             LoadItems()
         End If
         If _tabInControl Then
-            If Controls.Dismiss() And CanExit Then
-                SoundManager.PlaySound("select")
-                _closing = True
-            End If
-            If Controls.Accept() And _items.Length > 0 Then
-                SoundManager.PlaySound("select")
+            If AllowedPages.Count = 1 Then
                 _tabInControl = False
+            Else
+                If Controls.Dismiss() And CanExit Then
+                    SoundManager.PlaySound("select")
+                    SelectedItem = "-1"
+                    _closing = True
+                End If
+                If Controls.Accept() And _items.Length > 0 Then
+                    SoundManager.PlaySound("select")
+                    _tabInControl = False
+                End If
             End If
         End If
     End Sub
@@ -833,26 +850,39 @@ Public Class NewInventoryScreen
         If Controls.Accept() AndAlso _items.Length > 0 Then
             Dim cItem As Item = Item.GetItemByID(_items(ItemIndex + PageIndex * 10).ItemID)
             SoundManager.PlaySound("select")
-            If Me.PreScreen.Identification = Screen.Identifications.BattleScreen Then
-                If cItem.CanBeUsedInBattle = True Then
+            If DoReturnItem = True Then
+                If cItem.IsGameModeItem = True Then
+                    ReturnSelectedItem(cItem.gmID)
+                Else
+                    ReturnSelectedItem(cItem.ID.ToString)
+                End If
+
+            Else
+                If Me.PreScreen.Identification = Screen.Identifications.BattleScreen Then
+                    If cItem.CanBeUsedInBattle = True Then
+                        _infoItemOptionSelection = 0
+                        _isInfoShowing = True
+                        SetInfoSettings()
+                        SetItemOptions()
+                    Else
+                        TextBox.Show("This item can't~be used in Battle.")
+                    End If
+                Else
                     _infoItemOptionSelection = 0
                     _isInfoShowing = True
                     SetInfoSettings()
                     SetItemOptions()
-                Else
-                    TextBox.Show("This item can't~be used in Battle.")
                 End If
-            Else
-                _infoItemOptionSelection = 0
-                _isInfoShowing = True
-                SetInfoSettings()
-                SetItemOptions()
-            End If
 
+            End If
         End If
         If Controls.Dismiss() Then
-            SoundManager.PlaySound("select")
-            _tabInControl = True
+            If AllowedPages.Count > 1 Then
+                SoundManager.PlaySound("select")
+                _tabInControl = True
+            Else
+                _closing = True
+            End If
         End If
     End Sub
 
@@ -1042,7 +1072,7 @@ Public Class NewInventoryScreen
     ''' Reloads the temporary item list.
     ''' </summary>
     Public Sub LoadItems()
-        _items = Core.Player.Inventory.Where(Function(x) Item.GetItemByID(x.ItemID).ItemType = _visibleItemTypes(_tabIndex)).ToArray()
+        _items = Core.Player.Inventory.Where(Function(x) Item.GetItemByID(x.ItemID).ItemType = _visibleItemTypes(_tabIndex)).Where(Function(x) IsItemVisible(x.ItemID) = True).ToArray()
         If _tabIndex = 4 Then 'TM/HM
             _items = (From i In _items Order By Item.GetItemByID(i.ItemID).SortValue Ascending).ToArray()
         Else
@@ -1200,6 +1230,17 @@ Public Class NewInventoryScreen
     Private _mode As ISelectionScreen.ScreenMode = ISelectionScreen.ScreenMode.Default
     Private _canExit As Boolean = True
     Private _visibleItemTypes As Items.ItemTypes()
+    Private Function IsItemVisible(ItemID As String) As Boolean
+        If AllowedItems Is Nothing OrElse AllowedItems.Contains("-1") Then
+            Return True
+        Else
+            If AllowedItems.Contains(ItemID) Then
+                Return True
+            Else
+                Return False
+            End If
+        End If
+    End Function
 
     Public Event SelectedObject(params() As Object) Implements ISelectionScreen.SelectedObject
 
