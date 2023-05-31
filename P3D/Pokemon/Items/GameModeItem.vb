@@ -11,6 +11,7 @@ Public Class GameModeItem
     Public gmPrice As Integer = 0
     Public gmBattlePointsPrice As Integer = 1
     Public gmItemType As ItemTypes = ItemTypes.Standard
+    Public gmScriptPath As String = ""
 
     Public gmCatchMultiplier As Single = 1.0F
     Public gmMaxStack As Integer = 999
@@ -186,27 +187,39 @@ Public Class GameModeItem
     ''' The item gets used from the bag.
     ''' </summary>
     Public Overrides Sub Use()
+        If gmScriptPath = "" Then
+            If gmIsHealingItem = True Then
+                If CBool(GameModeManager.GetGameRuleValue("CanUseHealItems", "1")) = False Then
+                    Screen.TextBox.Show("Cannot use heal items.", {}, False, False)
+                    Exit Sub
+                End If
+                Dim selScreen = New PartyScreen(Core.CurrentScreen, Me, AddressOf Me.UseOnPokemon, "Use " & Me.Name, True) With {.Mode = Screens.UI.ISelectionScreen.ScreenMode.Selection, .CanExit = True}
+                AddHandler selScreen.SelectedObject, AddressOf UseItemhandler
 
-        If gmIsHealingItem = True Then
-            If CBool(GameModeManager.GetGameRuleValue("CanUseHealItems", "1")) = False Then
-                Screen.TextBox.Show("Cannot use heal items.", {}, False, False)
+                Core.SetScreen(selScreen)
+            ElseIf gmCureStatusEffects IsNot Nothing AndAlso gmCureStatusEffects.Count > 0 Then
+                Dim selScreen = New PartyScreen(Core.CurrentScreen, Me, AddressOf Me.UseOnPokemon, "Use " & Me.Name, True) With {.Mode = Screens.UI.ISelectionScreen.ScreenMode.Selection, .CanExit = True}
+                AddHandler selScreen.SelectedObject, AddressOf UseItemhandler
+
+                Core.SetScreen(selScreen)
+            ElseIf gmIsEvolutionItem = True AndAlso gmEvolutionPokemon IsNot Nothing AndAlso gmEvolutionPokemon.Count > 0 Then
+                Dim selScreen = New PartyScreen(Core.CurrentScreen, Me, AddressOf Me.UseOnPokemon, "Use " & Me.Name, True) With {.Mode = Screens.UI.ISelectionScreen.ScreenMode.Selection, .CanExit = True}
+                AddHandler selScreen.SelectedObject, AddressOf UseItemhandler
+
+                Core.SetScreen(selScreen)
+                CType(CurrentScreen, PartyScreen).EvolutionItemID = Me.gmID
+            End If
+        Else
+            Dim s As Screen = Core.CurrentScreen
+            While Not s.PreScreen Is Nothing And s.Identification <> Screen.Identifications.OverworldScreen
+                s = s.PreScreen
+            End While
+
+            If s.Identification = Screen.Identifications.OverworldScreen Then
+                Core.SetScreen(s)
+                CType(Core.CurrentScreen, OverworldScreen).ActionScript.StartScript(gmScriptPath, 0, True, False)
                 Exit Sub
             End If
-            Dim selScreen = New PartyScreen(Core.CurrentScreen, Me, AddressOf Me.UseOnPokemon, "Use " & Me.Name, True) With {.Mode = Screens.UI.ISelectionScreen.ScreenMode.Selection, .CanExit = True}
-            AddHandler selScreen.SelectedObject, AddressOf UseItemhandler
-
-            Core.SetScreen(selScreen)
-        ElseIf gmCureStatusEffects IsNot Nothing AndAlso gmCureStatusEffects.Count > 0 Then
-            Dim selScreen = New PartyScreen(Core.CurrentScreen, Me, AddressOf Me.UseOnPokemon, "Use " & Me.Name, True) With {.Mode = Screens.UI.ISelectionScreen.ScreenMode.Selection, .CanExit = True}
-            AddHandler selScreen.SelectedObject, AddressOf UseItemhandler
-
-            Core.SetScreen(selScreen)
-        ElseIf gmIsEvolutionItem = True AndAlso gmEvolutionPokemon IsNot Nothing AndAlso gmEvolutionPokemon.Count > 0 Then
-            Dim selScreen = New PartyScreen(Core.CurrentScreen, Me, AddressOf Me.UseOnPokemon, "Use " & Me.Name, True) With {.Mode = Screens.UI.ISelectionScreen.ScreenMode.Selection, .CanExit = True}
-            AddHandler selScreen.SelectedObject, AddressOf UseItemhandler
-
-            Core.SetScreen(selScreen)
-            CType(CurrentScreen, PartyScreen).EvolutionItemID = Me.gmID
         End If
     End Sub
 

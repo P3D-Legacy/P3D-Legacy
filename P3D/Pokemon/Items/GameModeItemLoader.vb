@@ -147,6 +147,8 @@ Public Class GameModeItemLoader
                             Else
                                 item.gmEvolutionPokemon.AddRange(PokemonList)
                             End If
+                        Case "script"
+                            item.gmScriptPath = value
                     End Select
                 End If
             Next
