@@ -804,6 +804,8 @@
                 MoveAsync = False
                 If Not isDancing Then
                     Me.Position = New Vector3(CInt(Me.Position.X), CSng(Me.Position.Y), CInt(Me.Position.Z))
+                Else
+                    isDancing = False
                 End If
                 Moved = 0.0F
                 MoveY = 0.0F
