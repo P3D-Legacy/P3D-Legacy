@@ -77,7 +77,7 @@
                         End If
 
                         Dim catchTrainer As String = Core.Player.Name
-                        If commas > 5 And argument.GetSplit(6) <> "<playername>" Then
+                        If commas > 5 And argument.GetSplit(6) <> "<playername>" And argument.GetSplit(6) <> "<player.name>" Then
                             catchTrainer = argument.GetSplit(6)
                         End If
 
@@ -780,7 +780,7 @@
                         End If
 
                         Dim catchTrainer As String = Core.Player.Name
-                        If commas > 5 And argument.GetSplit(6) <> "<playername>" Then
+                        If commas > 5 And argument.GetSplit(6) <> "<playername>" And argument.GetSplit(6) <> "<player.name>" Then
                             catchTrainer = argument.GetSplit(6)
                         End If
 
