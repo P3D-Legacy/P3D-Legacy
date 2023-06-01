@@ -202,7 +202,7 @@ Public Class NewInventoryScreen
     End Sub
 
     Public Sub New(ByVal currentScreen As Screen, Optional ByVal AllowedItems As List(Of String) = Nothing, Optional ByVal DoReturnItem As Boolean = False)
-        Me.New(currentScreen, {}, Player.Temp.BagIndex, Nothing, AllowedItems, DoReturnItem)
+        Me.New(currentScreen, {0, 1, 2, 3, 4, 5, 6, 7}, Player.Temp.BagIndex, Nothing, AllowedItems, DoReturnItem)
     End Sub
 
     Public Overrides Sub Draw()
@@ -415,7 +415,12 @@ Public Class NewInventoryScreen
                         End If
 
                         If _tabIndex = 4 Then
-                            Dim AttackName As String = CType(cItem, Items.TechMachine).Attack.Name
+                            Dim AttackName As String
+                            If cItem.IsGameModeItem = False Then
+                                AttackName = CType(cItem, Items.TechMachine).Attack.Name
+                            Else
+                                AttackName = CType(cItem, GameModeItem).gmTeachMove.Name
+                            End If
                             Dim TMfontWidth As Integer = CInt(FontManager.MiniFont.MeasureString(AttackName).X)
                             itemBatch.DrawString(FontManager.MiniFont, AttackName, itemLoc + New Vector2(48 - TMfontWidth / 2.0F, 51 + 16), New Color(255, 255, 255, itemPanelAlpha))
                         End If
@@ -484,21 +489,38 @@ Public Class NewInventoryScreen
 
         Select Case cItem.ItemType
             Case Items.ItemTypes.Machines
-                Dim techMachine = CType(cItem, Items.TechMachine)
 
-                itemTitle = techMachine.Attack.Name
+                If cItem.IsGameModeItem = True Then
+                    itemTitle = CType(cItem, GameModeItem).gmTeachMove.Name
 
-                If techMachine.IsTM Then
-                    'JSON stuff
-                    'itemSubTitle = _translation.TECH_MACHINE_TITLE(cItem.ItemType.ToString())
-                    itemSubTitle = "Technical Machine"
+                    If CType(cItem, GameModeItem).gmIsTM Then
+                        'JSON stuff
+                        'itemSubTitle = _translation.TECH_MACHINE_TITLE(cItem.ItemType.ToString())
+                        itemSubTitle = "Technical Machine"
+                    Else
+                        'JSON stuff
+                        'itemSubTitle = _translation.HIDDEN_MACHINE_TITLE(cItem.ItemType.ToString())
+                        itemSubTitle = "Hidden Machine"
+                    End If
+
+                    itemDescription &= Environment.NewLine & CType(cItem, GameModeItem).gmTeachMove.Description
                 Else
-                    'JSON stuff
-                    'itemSubTitle = _translation.HIDDEN_MACHINE_TITLE(cItem.ItemType.ToString())
-                    itemSubTitle = "Hidden Machine"
-                End If
+                    Dim techMachine = CType(cItem, Items.TechMachine)
 
-                itemDescription &= Environment.NewLine & techMachine.Attack.Description
+                    itemTitle = techMachine.Attack.Name
+
+                    If techMachine.IsTM Then
+                        'JSON stuff
+                        'itemSubTitle = _translation.TECH_MACHINE_TITLE(cItem.ItemType.ToString())
+                        itemSubTitle = "Technical Machine"
+                    Else
+                        'JSON stuff
+                        'itemSubTitle = _translation.HIDDEN_MACHINE_TITLE(cItem.ItemType.ToString())
+                        itemSubTitle = "Hidden Machine"
+                    End If
+
+                    itemDescription &= Environment.NewLine & techMachine.Attack.Description
+                End If
             Case Items.ItemTypes.Standard
                 'JSON stuff
                 'itemSubTitle = _translation.STANDARD_ITEM_TITLE(cItem.ItemType.ToString())

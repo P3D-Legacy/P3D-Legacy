@@ -266,8 +266,15 @@
                     If CBool(GameModeManager.GetGameRuleValue("SingleUseTM", "0")) = True Then
                         Dim TechMachine As Item = Item.GetItemByID(Me.MachineItemID)
                         If TechMachine.ItemType = Items.ItemTypes.Machines Then
-                            If CType(TechMachine, Items.TechMachine).IsTM = True Then
-                                Core.Player.Inventory.RemoveItem(Me.MachineItemID, 1)
+                            If TechMachine.IsGameModeItem = True Then
+                                If CType(TechMachine, GameModeItem).gmIsTM = True Then
+                                    Core.Player.Inventory.RemoveItem(Me.MachineItemID, 1)
+                                End If
+                            Else
+
+                                If CType(TechMachine, Items.TechMachine).IsTM = True Then
+                                    Core.Player.Inventory.RemoveItem(Me.MachineItemID, 1)
+                                End If
                             End If
                         End If
                     End If

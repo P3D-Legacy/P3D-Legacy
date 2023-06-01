@@ -391,8 +391,14 @@ Public Class PartyScreen
                 AttackLabel = "Unable!"
                 Select Case LearnType
                     Case 1 ' Technical/Hidden Machine
-                        If CType(moveLearnArg, Items.TechMachine).CanTeach(p) = "" Then
-                            AttackLabel = "Able!"
+                        If CType(moveLearnArg, Item).IsGameModeItem = True Then
+                            If CType(moveLearnArg, GameModeItem).CanTeach(p) = "" Then
+                                AttackLabel = "Able!"
+                            End If
+                        Else
+                            If CType(moveLearnArg, Items.TechMachine).CanTeach(p) = "" Then
+                                AttackLabel = "Able!"
+                            End If
                         End If
                 End Select
             End If

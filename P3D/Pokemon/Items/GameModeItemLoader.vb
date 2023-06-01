@@ -57,14 +57,6 @@ Public Class GameModeItemLoader
                     Select Case key.ToLower()
                         Case "id"
                             item.gmID = "gm" & CInt(value).ToString
-                            Dim itemX As Integer = CInt(value)
-                            Dim itemY As Integer = 0
-                            Dim sheetWidth As Integer = CInt(TextureManager.GetTexture(item.gmTextureSource).Width / 24)
-                            While itemX > sheetWidth - 1
-                                itemX -= sheetWidth
-                                itemY += 1
-                            End While
-                            item.gmTextureRectangle = New Rectangle(CInt(itemX * 24), CInt(itemY * 24), 24, 24)
                             setID = True
                         Case "name"
                             item.gmName = value
@@ -92,6 +84,16 @@ Public Class GameModeItemLoader
                                 Case "battleitems", "7"
                                     item.gmItemType = ItemTypes.BattleItems
                             End Select
+                        Case "textureindex"
+                            Dim itemX As Integer = CInt(value)
+                            Dim itemY As Integer = 0
+                            Dim sheetWidth As Integer = CInt(TextureManager.GetTexture(item.gmTextureSource).Width / 24)
+
+                            While itemX > sheetWidth - 1
+                                itemX -= sheetWidth
+                                itemY += 1
+                            End While
+                            item.gmTextureRectangle = New Rectangle(CInt(itemX * 24), CInt(itemY * 24), 24, 24)
                         Case "canbeused"
                             item.gmCanBeUsed = CBool(value)
                         Case "canbeusedinbattle"
@@ -136,7 +138,7 @@ Public Class GameModeItemLoader
                             item.gmIsEvolutionItem = CBool(value)
                         Case "evolutionpokemon"
                             Dim PokemonList As New List(Of Integer)
-                            Dim valueSplit As String() = value.Split(",")
+                            Dim valueSplit As String() = value.Split(CChar(","))
                             For i = 0 To valueSplit.Count - 1
                                 If Pokemon.PokemonDataExists(CInt(valueSplit(i))) Then
                                     PokemonList.Add(CInt(valueSplit(i)))
@@ -187,6 +189,17 @@ Public Class GameModeItemLoader
                 item.gmTextureSource = "Items\ItemSheet"
                 item.SetTeachMoveTextureRectangle()
 
+            End If
+            If item.gmTextureRectangle = Nothing Then
+                Dim itemX As Integer = CInt(item.gmID.Remove(0, 2))
+                Dim itemY As Integer = 0
+                Dim sheetWidth As Integer = CInt(TextureManager.GetTexture(item.gmTextureSource).Width / 24)
+
+                While itemX > sheetWidth - 1
+                    itemX -= sheetWidth
+                    itemY += 1
+                End While
+                item.gmTextureRectangle = New Rectangle(CInt(itemX * 24), CInt(itemY * 24), 24, 24)
             End If
             LoadedItems.Add(item) 'Add the item.
         Else
