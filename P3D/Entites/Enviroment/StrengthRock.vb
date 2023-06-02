@@ -123,6 +123,13 @@
     End Function
 
     Public Overrides Sub UpdateEntity()
+        If Me.BaseModel Is BaseModel.getModelbyID(3) Then
+            If Me.Rotation.Y <> Screen.Camera.Yaw Then
+                Me.Rotation.Y = Screen.Camera.Yaw
+                CreatedWorld = False
+            End If
+        End If
+
         MyBase.UpdateEntity()
     End Sub
 
