@@ -58,7 +58,11 @@
 
                         Dim catchMethod As String = "random reason"
                         If commas > 1 Then
-                            catchMethod = argument.GetSplit(2)
+                            Dim catchMethodLocalization As String = argument.GetSplit(2)
+                            If argument.GetSplit(2).StartsWith("<system.token(") AndAlso argument.GetSplit(2).EndsWith(")>") Then
+                                catchMethodLocalization = Localization.GetString(catchMethodLocalization.Remove(0, "<system.token(".Length).Remove(argument.GetSplit(2).Length - 2, 2))
+                            End If
+                            catchMethod = catchMethodLocalization
                         End If
 
                         Dim catchBall As Item = Item.GetItemByID(1.ToString)
@@ -68,7 +72,11 @@
 
                         Dim catchLocation As String = Screen.Level.MapName
                         If commas > 3 Then
-                            catchLocation = argument.GetSplit(4)
+                            Dim catchLocationLocalization As String = argument.GetSplit(4)
+                            If argument.GetSplit(4).StartsWith("<system.token(") AndAlso argument.GetSplit(4).EndsWith(")>") Then
+                                catchLocationLocalization = Localization.GetString(catchLocationLocalization.Remove(0, "<system.token(".Length).Remove(argument.GetSplit(2).Length - 2, 2))
+                            End If
+                            catchLocation = catchLocationLocalization
                         End If
 
                         Dim isEgg As Boolean = False
@@ -584,17 +592,25 @@
                     End If
                 Case "setcatchmethod"
                     Dim Index As Integer = int(argument.GetSplit(0, ","))
-                    Dim method As String = argument.GetSplit(1, ",")
+                    Dim methodLocalization As String = argument.GetSplit(1, ",")
+
+                    If argument.GetSplit(1, ",").StartsWith("<system.token(") AndAlso argument.GetSplit(1, ",").EndsWith(")>") Then
+                        methodLocalization = Localization.GetString(methodLocalization.Remove(0, "<system.token(".Length).Remove(argument.GetSplit(2).Length - 2, 2))
+                    End If
 
                     If Core.Player.Pokemons.Count - 1 >= Index Then
-                        Core.Player.Pokemons(Index).CatchMethod = method
+                        Core.Player.Pokemons(Index).CatchMethod = methodLocalization
                     End If
                 Case "setcatchplace", "setcatchlocation"
                     Dim Index As Integer = int(argument.GetSplit(0, ","))
-                    Dim place As String = argument.GetSplit(1, ",")
+                    Dim placeLocalization As String = argument.GetSplit(1, ",")
+
+                    If argument.GetSplit(1, ",").StartsWith("<system.token(") AndAlso argument.GetSplit(1, ",").EndsWith(")>") Then
+                        placeLocalization = Localization.GetString(placeLocalization.Remove(0, "<system.token(".Length).Remove(argument.GetSplit(2).Length - 2, 2))
+                    End If
 
                     If Core.Player.Pokemons.Count - 1 >= Index Then
-                        Core.Player.Pokemons(Index).CatchLocation = place
+                        Core.Player.Pokemons(Index).CatchLocation = placeLocalization
                     End If
                 Case "newroaming"
                     ' PokémonID,Level,regionID,startLevelFile,MusicLoop,[Shiny]
@@ -761,7 +777,11 @@
 
                         Dim catchMethod As String = "random reason"
                         If commas > 1 Then
-                            catchMethod = argument.GetSplit(2)
+                            Dim catchMethodLocalization As String = argument.GetSplit(2)
+                            If argument.GetSplit(2).StartsWith("<system.token(") AndAlso argument.GetSplit(2).EndsWith(")>") Then
+                                catchMethodLocalization = Localization.GetString(catchMethodLocalization.Remove(0, "<system.token(".Length).Remove(argument.GetSplit(2).Length - 2, 2))
+                            End If
+                            catchMethod = catchMethodLocalization
                         End If
 
                         Dim catchBall As Item = Item.GetItemByID(1.ToString)
@@ -771,7 +791,11 @@
 
                         Dim catchLocation As String = Screen.Level.MapName
                         If commas > 3 Then
-                            catchLocation = argument.GetSplit(4)
+                            Dim catchLocationLocalization As String = argument.GetSplit(4)
+                            If argument.GetSplit(4).StartsWith("<system.token(") AndAlso argument.GetSplit(4).EndsWith(")>") Then
+                                catchLocationLocalization = Localization.GetString(catchLocationLocalization.Remove(0, "<system.token(".Length).Remove(argument.GetSplit(2).Length - 2, 2))
+                            End If
+                            catchLocation = catchLocationLocalization
                         End If
 
                         Dim isEgg As Boolean = False
