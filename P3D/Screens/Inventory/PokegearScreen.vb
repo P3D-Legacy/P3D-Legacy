@@ -1210,6 +1210,9 @@
                         End If
                     Case 2
                         If sameServer = True Then
+                            Dim chat As New ChatScreen(CurrentScreen)
+                            chat.EnterPMChat(UserName)
+                            Core.SetScreen(chat)
 
                         End If
                     Case 3

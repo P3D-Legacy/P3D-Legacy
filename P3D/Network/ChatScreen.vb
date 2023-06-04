@@ -974,7 +974,7 @@ Public Class ChatScreen
     ''' <summary>
     ''' Enters a new PM chat.
     ''' </summary>
-    Private Sub EnterPMChat(ByVal newPMChatName As String)
+    Public Sub EnterPMChat(ByVal newPMChatName As String)
         If PMChats.Keys.Contains(newPMChatName) = False Then
             PMChats.Add(newPMChatName, False)
         End If
