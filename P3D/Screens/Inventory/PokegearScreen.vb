@@ -1175,7 +1175,7 @@
 
             Cursors(1) = Cursors(1).Clamp(0, 4)
 
-            If Controls.Accept(False, True, True) = True Then
+            If Controls.Accept(True, True, True) = True Then
                 Dim sameServer As Boolean = False
                 Dim sameConnection As Boolean = False
 
