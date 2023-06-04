@@ -1025,10 +1025,10 @@ Public Class NewInventoryScreen
             Dim reItem As Item = Nothing
             If Not Pokemon.Item Is Nothing Then
                 Dim ReItemID As String
-                If cItem.IsGameModeItem = True Then
-                    ReItemID = cItem.gmID
+                If Pokemon.Item.IsGameModeItem = True Then
+                    ReItemID = Pokemon.Item.gmID
                 Else
-                    ReItemID = cItem.ID.ToString
+                    ReItemID = Pokemon.Item.ID.ToString
                 End If
                 reItem = Pokemon.Item
                 Core.Player.Inventory.AddItem(ReItemID, 1)
