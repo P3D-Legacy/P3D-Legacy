@@ -74,7 +74,7 @@
                         If commas > 3 Then
                             Dim catchLocationLocalization As String = argument.GetSplit(4)
                             If argument.GetSplit(4).StartsWith("<system.token(") AndAlso argument.GetSplit(4).EndsWith(")>") Then
-                                catchLocationLocalization = Localization.GetString(catchLocationLocalization.Remove(0, "<system.token(".Length).Remove(argument.GetSplit(2).Length - 2, 2))
+                                catchLocationLocalization = Localization.GetString(catchLocationLocalization.Remove(0, "<system.token(".Length).Remove(argument.GetSplit(4).Length - 2, 2))
                             End If
                             catchLocation = catchLocationLocalization
                         End If
@@ -793,7 +793,7 @@
                         If commas > 3 Then
                             Dim catchLocationLocalization As String = argument.GetSplit(4)
                             If argument.GetSplit(4).StartsWith("<system.token(") AndAlso argument.GetSplit(4).EndsWith(")>") Then
-                                catchLocationLocalization = Localization.GetString(catchLocationLocalization.Remove(0, "<system.token(".Length).Remove(argument.GetSplit(2).Length - 2, 2))
+                                catchLocationLocalization = Localization.GetString(catchLocationLocalization.Remove(0, "<system.token(".Length).Remove(argument.GetSplit(4).Length - 2, 2))
                             End If
                             catchLocation = catchLocationLocalization
                         End If
