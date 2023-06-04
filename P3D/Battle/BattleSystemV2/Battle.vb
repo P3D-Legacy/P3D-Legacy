@@ -1269,7 +1269,7 @@
                     'Frozen animation
                     ChangeCameraAngle(1, own, BattleScreen)
                     If Core.Player.ShowBattleAnimations <> 0 AndAlso BattleScreen.IsPVPBattle = False Then
-                        Dim FrozenAnimation As AnimationQueryObject = New AnimationQueryObject(Nothing, Not own)
+                        Dim FrozenAnimation As AnimationQueryObject = New AnimationQueryObject(pNPC, Not own)
 
                         FrozenAnimation.AnimationPlaySound("Battle\Effects\Frozen", 0, 0)
                         Dim maxAmount As Integer = 8
@@ -1289,7 +1289,7 @@
                             Dim Position As New Vector3(xPos, -0.25, zPos)
                             Dim Scale As New Vector3(0.25F)
                             Dim startDelay As Double = 5.0 * Random.NextDouble()
-                            Dim SnowflakeEntity = FrozenAnimation.SpawnEntity(pNPC.Position + Position, Texture, Scale, 1.0F, CSng(startDelay))
+                            Dim SnowflakeEntity = FrozenAnimation.SpawnEntity(Position, Texture, Scale, 1.0F, CSng(startDelay))
 
                             FrozenAnimation.AnimationFade(SnowflakeEntity, True, 0.02, False, 0.0F, CSng(startDelay), 0.0)
                             Threading.Interlocked.Increment(currentAmount)
@@ -3078,7 +3078,7 @@
                             ChangeCameraAngle(1, own, BattleScreen)
                             'Frozen animation
                             If Core.Player.ShowBattleAnimations <> 0 AndAlso BattleScreen.IsPVPBattle = False Then
-                                Dim FrozenAnimation As AnimationQueryObject = New AnimationQueryObject(Nothing, Not own)
+                                Dim FrozenAnimation As AnimationQueryObject = New AnimationQueryObject(pNPC, Not own)
 
                                 FrozenAnimation.AnimationPlaySound("Battle\Effects\Frozen", 0, 0)
                                 Dim maxAmount As Integer = 8
@@ -3098,7 +3098,7 @@
                                     Dim Position As New Vector3(xPos, -0.25, zPos)
                                     Dim Scale As New Vector3(0.25F)
                                     Dim startDelay As Double = 5.0 * Random.NextDouble()
-                                    Dim SnowflakeEntity = FrozenAnimation.SpawnEntity(pNPC.Position + Position, Texture, Scale, 1.0F, CSng(startDelay))
+                                    Dim SnowflakeEntity = FrozenAnimation.SpawnEntity(Position, Texture, Scale, 1.0F, CSng(startDelay))
 
                                     FrozenAnimation.AnimationFade(SnowflakeEntity, True, 0.02, False, 0.0F, CSng(startDelay), 0.0)
                                     Threading.Interlocked.Increment(currentAmount)
