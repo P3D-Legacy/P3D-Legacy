@@ -348,6 +348,12 @@
             If GameController.RELEASEVERSION = _oppGameVersion Then
                 _startNow = True
             Else
+                Core.ServersManager.ServerConnection.SendPackage(New Servers.Package(Servers.Package.PackageTypes.BattleQuit, Core.ServersManager.ID, Servers.Package.ProtocolTypes.TCP, PartnerNetworkID.ToString()))
+                Dim s As Screen = CurrentScreen
+                While s.Identification <> Identifications.OverworldScreen
+                    s = s.PreScreen
+                End While
+                Core.SetScreen(s)
                 TextBox.Show("Game versions don't match.")
             End If
         Else
