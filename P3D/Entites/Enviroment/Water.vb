@@ -212,8 +212,9 @@
 
     Private Sub ChangeTexture()
         If Core.GameOptions.GraphicStyle = 1 Then
-            If WaterTexturesTemp.Count = 0 OrElse Water.WaterTexturesTemp.ContainsKey("_0") = False Then
+            If WaterTexturesTemp.Count = 0 OrElse Water.WaterTexturesTemp.ContainsKey("_0") = False OrElse Water.WaterTexturesTemp.ContainsKey(AdditionalValue & "_0") = False Then
                 ClearAnimationResources()
+                AddDefaultWaterAnimationResources()
                 CreateWaterTextureTemp()
             End If
 
