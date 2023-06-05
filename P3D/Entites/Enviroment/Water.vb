@@ -2,7 +2,8 @@
 
     Inherits Entity
 
-    Shared WaterTexturesTemp As New Dictionary(Of String, Texture2D)
+    Public Shared WaterTexturesTemp As New Dictionary(Of String, Texture2D)
+    Shared SetWaterTextures As Boolean = True
     Dim waterTextureName As String = ""
 
     Dim WaterAnimation As Animation
@@ -22,6 +23,20 @@
         WaterTexturesTemp.Clear()
     End Sub
 
+    Public Shared Sub AddDefaultWaterAnimationResources()
+        Water.WaterTexturesTemp.Add("_0", TextureManager.GetTexture("Routes", New Rectangle(0, 220, 20, 20)))
+        Water.WaterTexturesTemp.Add("_1", TextureManager.GetTexture("Routes", New Rectangle(20, 220, 20, 20)))
+        Water.WaterTexturesTemp.Add("_2", TextureManager.GetTexture("Routes", New Rectangle(40, 220, 20, 20)))
+        Water.WaterTexturesTemp.Add("_3", TextureManager.GetTexture("Routes", New Rectangle(60, 220, 20, 20)))
+        Water.WaterTexturesTemp.Add("_4", TextureManager.GetTexture("Routes", New Rectangle(80, 220, 20, 20)))
+        Water.WaterTexturesTemp.Add("_5", TextureManager.GetTexture("Routes", New Rectangle(100, 220, 20, 20)))
+        Water.WaterTexturesTemp.Add("_6", TextureManager.GetTexture("Routes", New Rectangle(120, 220, 20, 20)))
+        Water.WaterTexturesTemp.Add("_7", TextureManager.GetTexture("Routes", New Rectangle(140, 220, 20, 20)))
+        Water.WaterTexturesTemp.Add("_8", TextureManager.GetTexture("Routes", New Rectangle(160, 220, 20, 20)))
+        Water.WaterTexturesTemp.Add("_9", TextureManager.GetTexture("Routes", New Rectangle(180, 220, 20, 20)))
+        Water.WaterTexturesTemp.Add("_10", TextureManager.GetTexture("Routes", New Rectangle(200, 220, 20, 20)))
+        Water.WaterTexturesTemp.Add("_11", TextureManager.GetTexture("Routes", New Rectangle(220, 220, 20, 20)))
+    End Sub
     Private Sub CreateWaterTextureTemp()
         If Core.GameOptions.GraphicStyle = 1 Then
             Dim textureData As List(Of String) = Me.AdditionalValue.Split(CChar(",")).ToList()

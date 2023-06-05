@@ -1444,6 +1444,11 @@ Public Class NewMainMenuScreen
                         If _gameModeExists Then
                             GameModeManager.SetGameModePointer(_gameMode)
                             Localization.ReloadGameModeTokens()
+                            Water.ClearAnimationResources()
+                            Waterfall.ClearAnimationResources()
+                            Water.AddDefaultWaterAnimationResources()
+                            Waterfall.AddDefaultWaterAnimationResources()
+
                             World.IsMainMenu = False
                             If _isGameJolt Then
                                 Core.Player.IsGameJoltSave = True

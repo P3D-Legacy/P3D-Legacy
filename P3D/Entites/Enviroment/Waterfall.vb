@@ -15,7 +15,20 @@
         WaterfallTexturesTemp.Clear()
         WaterTexturesTemp.Clear()
     End Sub
-
+    Public Shared Sub AddDefaultWaterAnimationResources()
+        Waterfall.WaterTexturesTemp.Add("_0", TextureManager.GetTexture("Routes", New Rectangle(0, 220, 20, 20)))
+        Waterfall.WaterTexturesTemp.Add("_1", TextureManager.GetTexture("Routes", New Rectangle(20, 220, 20, 20)))
+        Waterfall.WaterTexturesTemp.Add("_2", TextureManager.GetTexture("Routes", New Rectangle(40, 220, 20, 20)))
+        Waterfall.WaterTexturesTemp.Add("_3", TextureManager.GetTexture("Routes", New Rectangle(60, 220, 20, 20)))
+        Waterfall.WaterTexturesTemp.Add("_4", TextureManager.GetTexture("Routes", New Rectangle(80, 220, 20, 20)))
+        Waterfall.WaterTexturesTemp.Add("_5", TextureManager.GetTexture("Routes", New Rectangle(100, 220, 20, 20)))
+        Waterfall.WaterTexturesTemp.Add("_6", TextureManager.GetTexture("Routes", New Rectangle(120, 220, 20, 20)))
+        Waterfall.WaterTexturesTemp.Add("_7", TextureManager.GetTexture("Routes", New Rectangle(140, 220, 20, 20)))
+        Waterfall.WaterTexturesTemp.Add("_8", TextureManager.GetTexture("Routes", New Rectangle(160, 220, 20, 20)))
+        Waterfall.WaterTexturesTemp.Add("_9", TextureManager.GetTexture("Routes", New Rectangle(180, 220, 20, 20)))
+        Waterfall.WaterTexturesTemp.Add("_10", TextureManager.GetTexture("Routes", New Rectangle(200, 220, 20, 20)))
+        Waterfall.WaterTexturesTemp.Add("_11", TextureManager.GetTexture("Routes", New Rectangle(220, 220, 20, 20)))
+    End Sub
     Public Overrides Sub Initialize()
         MyBase.Initialize()
 
