@@ -186,6 +186,11 @@ Public Class GameModeItemLoader
                 ElseIf item.gmName.StartsWith("TM") Then
                     item.gmSortValue = CInt(item.gmName.Remove(0, 2)) + 190
                 End If
+                If item.gmName.StartsWith("HM ") Then
+                    item.gmSortValue = -100000 + CInt(item.gmName.Remove(0, 3))
+                ElseIf item.gmName.StartsWith("HM") Then
+                    item.gmSortValue = -100000 + CInt(item.gmName.Remove(0, 2))
+                End If
                 item.gmTextureSource = "Items\ItemSheet"
                 item.SetTeachMoveTextureRectangle()
 

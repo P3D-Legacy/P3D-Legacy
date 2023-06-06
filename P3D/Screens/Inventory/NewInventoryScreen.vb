@@ -494,13 +494,15 @@ Public Class NewInventoryScreen
                     itemTitle = CType(cItem, GameModeItem).gmTeachMove.Name
 
                     If CType(cItem, GameModeItem).gmIsTM Then
-                        'JSON stuff
-                        'itemSubTitle = _translation.TECH_MACHINE_TITLE(cItem.ItemType.ToString())
-                        itemSubTitle = "Technical Machine"
-                    Else
-                        'JSON stuff
-                        'itemSubTitle = _translation.HIDDEN_MACHINE_TITLE(cItem.ItemType.ToString())
-                        itemSubTitle = "Hidden Machine"
+                        If CType(cItem, GameModeItem).OriginalName.StartsWith("HM") Then
+                            'JSON stuff
+                            'itemSubTitle = _translation.HIDDEN_MACHINE_TITLE(cItem.ItemType.ToString())
+                            itemSubTitle = "Hidden Machine"
+                        Else
+                            'JSON stuff
+                            'itemSubTitle = _translation.TECH_MACHINE_TITLE(cItem.ItemType.ToString())
+                            itemSubTitle = "Technical Machine"
+                        End If
                     End If
 
                     itemDescription &= Environment.NewLine & CType(cItem, GameModeItem).gmTeachMove.Description
