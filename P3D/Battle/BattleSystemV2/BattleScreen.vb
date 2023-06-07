@@ -1035,7 +1035,7 @@ nextIndexForeground:
             End If
 
             Lighting.UpdateLighting(Screen.Effect)
-            If IsCurrentScreen() = True Then
+            If IsCurrentScreen() = True OrElse CurrentScreen.Identification = Identifications.ChatScreen Then
                 Camera.Update()
 
                 Level.Update()
