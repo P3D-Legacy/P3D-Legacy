@@ -35,7 +35,11 @@
 
         ConstructMenu()
 
-        _menuIndex = Player.Temp.MenuIndex
+        If Screen.Level.SaveOnly = False Then
+            _menuIndex = Player.Temp.MenuIndex
+        Else
+            _menuIndex = 0
+        End If
         SetCursorPosition(_menuIndex)
         _cursorPosition = _cursorDestPosition
 
