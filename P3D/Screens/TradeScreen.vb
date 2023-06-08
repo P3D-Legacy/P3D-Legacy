@@ -127,6 +127,7 @@ Public Class TradeScreen
     Private CanBuyItems As Boolean = True
     Private CanSellItems As Boolean = True
     Private Currency As Currencies = Currencies.Pokédollar
+    Private ShopIdentifier As String = ""
 
     Dim texture As Texture2D
     Dim TileOffset As Integer = 0
@@ -137,7 +138,7 @@ Public Class TradeScreen
     ''' </summary>
     ''' <param name="currentScreen">The screen that is the current active screen.</param>
     ''' <param name="storeString">The string defining what the store sells. Format: {ItemID|Amount|Price}</param>
-    Public Sub New(ByVal currentScreen As Screen, ByVal storeString As String, ByVal canBuy As Boolean, ByVal canSell As Boolean, ByVal currencyIndicator As String)
+    Public Sub New(ByVal currentScreen As Screen, ByVal storeString As String, ByVal canBuy As Boolean, ByVal canSell As Boolean, ByVal currencyIndicator As String, ByVal shopIdentifier As String)
         Me.PreScreen = currentScreen
 
         Dim itemArr = storeString.Split({"}"}, StringSplitOptions.RemoveEmptyEntries)
@@ -149,7 +150,25 @@ Public Class TradeScreen
 
             Dim itemData = lItem.Split(CChar("|"))
 
-            Me.TradeItems.Add(New TradeItem(itemData(0), ScriptConversion.ToInteger(itemData(1)), ScriptConversion.ToInteger(itemData(2)), Me.Currency))
+            If shopIdentifier <> "" Then
+                Me.ShopIdentifier = shopIdentifier
+                If ActionScript.IsRegistered(Me.ShopIdentifier & "_" & itemData(0)) = True Then
+                    If ScriptConversion.ToInteger(itemData(1)) <> -1 Then
+                        Dim registerContent() As Object = ActionScript.GetRegisterValue(shopIdentifier & "_" & itemData(0))
+
+                        If CInt(registerContent(0)) < ScriptConversion.ToInteger(itemData(1)) Then
+                            Dim ResultAmount As Integer = ScriptConversion.ToInteger(itemData(1))
+                            If CInt(registerContent(0)) > 0 Then
+                                ResultAmount = ScriptConversion.ToInteger(itemData(1)) - CInt(registerContent(0))
+                            End If
+                            Me.TradeItems.Add(New TradeItem(itemData(0), ResultAmount, ScriptConversion.ToInteger(itemData(2)), Me.Currency))
+                        End If
+                    End If
+                End If
+            Else
+                Me.TradeItems.Add(New TradeItem(itemData(0), ScriptConversion.ToInteger(itemData(1)), ScriptConversion.ToInteger(itemData(2)), Me.Currency))
+            End If
+
         Next
 
         Me.texture = TextureManager.GetTexture("GUI\Menus\General")
@@ -648,6 +667,15 @@ Public Class TradeScreen
             If tradeItem.Amount > -1 Then
                 For i = 0 To Me.TradeItems.Count - 1
                     If Me.TradeItems(i).ItemID = tradeItem.ItemID And tradeItem.Amount = Me.TradeItems(i).Amount Then
+                        If ShopIdentifier <> "" Then
+                            If ActionScript.IsRegistered(Me.ShopIdentifier & "_" & tradeItem.ItemID) = False Then
+                                ActionScript.RegisterID(Me.ShopIdentifier & "_" & tradeItem.ItemID, "int", "0")
+                            End If
+
+                            Dim registerContent() As Object = ActionScript.GetRegisterValue(ShopIdentifier & "_" & tradeItem.ItemID)
+                            ActionScript.ChangeRegister(Me.ShopIdentifier & "_" & tradeItem.ItemID, CStr(CInt(registerContent(0)) + BuyItemsAmount))
+                        End If
+
                         Dim t As TradeItem = Me.TradeItems(i)
                         t.Amount -= Me.BuyItemsAmount
 
