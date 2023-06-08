@@ -624,7 +624,7 @@
                     currencyIndicator = Value.GetSplit(3)
                 End If
 
-                Core.SetScreen(New TransitionScreen(Core.CurrentScreen, New TradeScreen(Core.CurrentScreen, storeData, canBuy, canSell, currencyIndicator), Color.Black, False))
+                Core.SetScreen(New TransitionScreen(Core.CurrentScreen, New TradeScreen(Core.CurrentScreen, storeData, canBuy, canSell, currencyIndicator, ""), Color.Black, False))
             Case Me.Value.ToLower().StartsWith("getpokemon(")
                 Me.Value = Me.Value.Remove(0, Me.Value.IndexOf("(") + 1)
                 Me.Value = Me.Value.Remove(Me.Value.Length - 1, 1)
