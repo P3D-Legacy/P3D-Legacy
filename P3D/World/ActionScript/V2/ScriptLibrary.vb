@@ -310,7 +310,8 @@ Namespace ScriptVersion2
             r(New ScriptCommand("screen", "trade", {New ScriptArgument("tradeItems", ScriptArgument.ArgumentTypes.ItemCollection),
                                                 New ScriptArgument("canBuy", ScriptArgument.ArgumentTypes.Bool),
                                                 New ScriptArgument("canSell", ScriptArgument.ArgumentTypes.Bool),
-                                                New ScriptArgument("Currency", ScriptArgument.ArgumentTypes.Str, {"P", "BP"}, True, "P")}.ToList(), "Opens a new trade screen with the given items in stock. Item collection: {itemID|amount|price}{...}..., amount and price are default for -1", ","))
+                                                New ScriptArgument("Currency", ScriptArgument.ArgumentTypes.Str, {"P", "BP", "C"}, True, "P"),
+                                                New ScriptArgument("shopIdentifier", ScriptArgument.ArgumentTypes.Str, {}, True, "")}.ToList(), "Opens a new trade screen with the given items in stock. tradeItems: {itemID|amount|price}{...}..., amount and price are default for -1. Currency defaults to ""P"" and shopIdentifier is optional.", ","))
             r(New ScriptCommand("screen", "townmap", {New ScriptArgument("regionList", ScriptArgument.ArgumentTypes.StrArr)}.ToList(), "Opens the map screen with the given regions."))
             r(New ScriptCommand("screen", "donation", "Opens the donation screen."))
             r(New ScriptCommand("screen", "blackout", "Opens the blackout screen and warps the player back to the last restplace."))
