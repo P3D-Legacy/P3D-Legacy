@@ -129,11 +129,6 @@ main_menu_options_controls,Controls
 main_menu_options_contentpacks_line1,Content
 main_menu_options_contentpacks_line2,Packs
 
-DeleteScreen:
-delete_menu_delete_confirm,Do you really want to delete the save
-delete_menu_delete,Delete
-delete_menu_cancel,Cancel
-
 GameModeMenu:
 gamemode_menu_select1,Select a GameMode
 gamemode_menu_select2,to start the new game with.
@@ -165,19 +160,15 @@ option_screen_game_viewbobbing_description,Turns camera shaking on or off.
 
 option_screen_graphics,Graphics
 option_screen_graphics_fov,Field of View
-option_screen_graphics_fov_description,The field of view. The higher the value is,~the more you can see.~Warning: Too large value can cause lags in larger maps.
 option_screen_graphics_renderdistance,Render Distance
-option_screen_graphics_renderdistance_description,The render distance determines,~how far you can see.~By turning this down, you can improve your FPS.
 option_screen_graphics_renderdistance_tiny,Tiny
 option_screen_graphics_renderdistance_short,Short
 option_screen_graphics_renderdistance_normal,Normal
 option_screen_graphics_renderdistance_far,Far
 option_screen_graphics_renderdistance_extreme,Extreme
 option_screen_graphics_offset_mapquality,Offset Map Quality
-option_screen_graphics_offset_mapquality_description,Sets the quality of the offset maps.~The details and update frequency of offset maps increase with this value.~Set this value to 0 to prevent the game from loading offset maps.
 option_screen_graphics_offset_mapquality_off,Off
 option_screen_graphics_graphics,Graphics
-option_screen_graphics_graphics_description,Affects if some objects are rendered~or not. By turning this down, you can improve your FPS.~This settings is for all save states.
 option_screen_graphics_graphics_fancy,Fancy
 option_screen_graphics_graphics_fast,Fast
 option_screen_graphics_multisampling,Multi Sampling
@@ -185,17 +176,14 @@ option_screen_graphics_multisampling,Multi Sampling
 option_screen_battle,Battle
 option_screen_battle_3dmodels,3D Models
 option_screen_battle_animations,Animations
-option_screen_battle_animations_description,Determines if the game shows battle animations.
 option_screen_battle_battlestyle,Battle Style
 option_screen_battle_battlestyle_shift,Shift
 option_screen_battle_battlestyle_set,Set
-option_screen_battle_style_description,Battle Style~Set: You are not asked to switch out your Pokémon~Shift: You can switch out your Pokémon after defeating an opponent.
 
 option_screen_controls,Controls
 option_screen_controls_xboxgamepad,Xbox Gamepad
 option_screen_controls_resetkeybindings,Reset Key Bindings
 option_screen_controls_cameraspeed,Camera Speed
-option_screen_controls_cameraspeed_description,The camera speed sets the speed on which the~mouse can rotate the view.
 option_screen_controls_cameraspeed_slow,...Slow...
 option_screen_controls_cameraspeed_medium,Standard
 option_screen_controls_cameraspeed_fast,Super fast!
@@ -203,9 +191,7 @@ option_screen_controls_cameraspeed_fastest,SPEED OF LIGHT!
 
 option_screen_audio,Audio
 option_screen_audio_volume_music,Music Volume
-option_screen_audio_volume_music_description,The volume of the background music.
 option_screen_audio_volume_sfx,SoundFX Volume
-option_screen_audio_volume_music_description,The volume of the sound effects and jingles.
 option_screen_audio_muted,Muted
 
 option_screen_contentpacks_up,Move Up
@@ -221,11 +207,8 @@ option_screen_contentpacks_content,Content
 option_screen_contentpacks_description,Description
 
 option_screen_resetoptions,Reset options
-option_screen_resetoptions_description,Resets all options.
 option_screen_save_options,Save options
-option_screen_save_options_description,Save the options and close the menu.
 option_screen_close,Close.
-option_screen_close_menu_description,Close the menu and do not save~the changes.
 ---
 Pausescreen:
 pause_menu_title,Game menu
@@ -241,16 +224,10 @@ IngameMenu:
 game_menu_pokedex,Pokédex
 game_menu_party,Pokémon
 game_menu_bag,Bag
-game_menu_trainer_card,<playername>
+game_menu_trainer_card,<player.name>
 game_menu_save,Save
 game_menu_options,Options
 game_menu_exit,Exit Menu
----
-InventoryScreen:
-inventory_menu_bag,Bag
-inventory_menu_backadvice,PRESS E TO GO BACK
-inventory_menu_items,Items
-inventory_menu_description,Description
 ---
 NewGameScreen:
 new_game_intro_1,Hello!~Sorry to keep~you waiting!*Welcome to the world~of Pokémon!*My name is Oak.~People call me~Pokémon Prof.*This world is inhabited~by creatures that~we call
@@ -264,9 +241,7 @@ new_game_intro_same_name_1,Hey we got the~same names.*My name is also~
 new_game_intro_same_name_2,!
 new_game_intro_name_1,Right! So your name is~
 new_game_intro_name_2,!
-new_game_your_name,What's your name?
 new_game_select_skin,Select your appearance
-new_game_name_too_short,This name is too short
 ---
 MapScreen:
 map_screen_cities,Cities
@@ -274,83 +249,18 @@ map_screen_routes,Routes
 map_screen_places,Places
 map_screen_roaming,Roaming Pokes
 ---
-PokedexScreen:
-pokedex_screen_seen,Seen
-pokedex_screen_obtained,Obtained
-pokedex_screen_rare,Rare
-pokedex_screen_backadvice,PRESS E TO GO BACK
----
-PokemonScreen:
-pokemon_screen_choose_a_pokemon,Choose a Pokémon
-pokemon_screen_backadvice,Press the E key to go back.
-pokemon_screen_item_give,Give
-pokemon_screen_item_take,Take
-pokemon_screen_item_back,Back
-pokemon_screen_doesnt_hold_item,~doesn't hold an item.
-pokemon_screen_take_item_1,Took 
-pokemon_screen_take_item_2, from~
-pokemon_screen_take_item_3,~and put it into the~
-pokemon_screen_take_item_4, pocket!
-pokemon_screen_give_item_1,Gave 
-pokemon_screen_give_item_2, to~
-pokemon_screen_give_item_3,
-pokemon_screen_give_item_4,~and put 
-pokemon_screen_give_item_5,~back to the inventory.
-pokemon_screen_summary,Summary
-pokemon_screen_switch,Switch
-pokemon_screen_item,Item
-pokemon_screen_back,Back
-pokemon_screen_EMPTY,EMPTY
----
-Pokemon Status Screen:
-All pages:
-poke_status_screen_nature,Nature
-poke_status_screen_backadvice,PRESS E TO GO BACK
-poke_status_screen_closeadvice,PRESS E TO CLOSE
-poke_status_screen_number,# 
-Page 1:
-poke_status_screen_all_exp,All Exp
-poke_status_screen_nxt_lv,Nxt Lv.
-poke_status_screen_stats_page,Stats page
-Page 2:
-poke_status_screen_OT,OT
-poke_status_screen_Item,Item
-poke_status_screen_no_item,no item
-poke_status_screen_ability,Ability
-poke_status_screen_details_page,Details page
-Page 3:
-poke_status_screen_power,Power
-poke_status_screen_accuracy,Accuracy
-poke_status_screen_moves_page,Moves page
----
 Trainer Card Screen:
-trainer_screen_trainer_card,Trainer Card
-trainer_screen_name,Name
-trainer_screen_points,Points
-trainer_screen_money,Money
-trainer_screen_pokedex,Pokédex
-trainer_screen_time,Time
 trainer_screen_collected_badges,Collected badges
 trainer_screen_badge, Badge
-trainer_screen_backadvice,PRESS E TO GO BACK
 trainer_screen_empty_badge,???
 ---
 Save Screen:
-save_screen_title,Do you want to save the game?
 save_screen_name,Name
 save_screen_badges,Badges
 save_screen_money,Money
 save_screen_time,Time
 save_screen_yes,Yes
 save_screen_no,No
-save_screen_success,Saved the game.
----
-Item Detail Screen:
-item_detail_screen_use,Use
-item_detail_screen_give,Give
-item_detail_screen_trash,Trash
-item_detail_screen_back,Back
-item_detail_screen_give_item,Give 
 ---
 Apricorn Screen:
 apricorn_screen_apricorns,Apricorns
@@ -363,36 +273,9 @@ apricorn_screen_take,Take
 apricorn_screen_ready,I am ready producing Pokéballs. Here's the result of my work:
 apricorn_screen_obtain, obtained
 ---
-Daycare Screen:
-daycare_screen_daycare,Daycare
-daycare_screen_money, / Money: 
-daycare_screen_deposit,Deposit
-daycare_screen_grown,Grown: 
-daycare_screen_lv, / Lv. 
-daycare_screen_costs, / Costs:
-daycare_screen_pokedollar, PokéDollar
-daycare_screen_withdraw,Withdraw
-daycare_screen_backadvice,PRESS E TO GO BACK
-daycare_screen_pokemon_choose_header,Deposit Pokémon
-Egg,Egg
----
-Network Screen:
-network_screen_isonline,You are in a co-op game already! Please close the connection~to open a new game or connect again!~~~Press E to go back!
-network_screen_header,Co-Op Gameplay
-network_screen_main_header,You can either join a game or host a~new one to play together with a friend.
-network_screen_main_join,Join
-network_screen_main_host,Host
-network_screen_main_close,Close
-network_screen_join_header,Join a game:~Enter the IP address of the hosted game.
-network_screen_join_cancel,Cancel
-network_screen_join_join,Join
-network_screen_host_header,Host a game:~You are about to open your~game for other players in your network.
-network_screen_host_cancel,Cancel
-network_screen_host_host,Host
----
 Donation screen:
 donation_screen_donators,Donators
-donation_screen_backadvice,Press E to close
+donation_screen_backadvice,Press [<system.button(OpenMenu)>] to close
 ---
 Blackout Screen:
 black_out_screen_line1,You have run out of Pokémon!
@@ -466,62 +349,28 @@ VoltorbFlip_Tutorial_AboutMemos_Image,Select "Open Memo" to open the Memo Window
 Battle:
 ---
 main:
-battle_main_trainer_sent_out_1, sent out~
-battle_main_trainer_sent_out_2,.
-battle_main_trainer_sent_out_3,is about to send out
-battle_main_trainer_sent_out_4,! Do you want to switch your Pokémon?
-battle_main_trainer_sent_out_5,Yes
-battle_main_trainer_sent_out_6,No
+battle_main_trainer_about_to_send_out_1,is about to send out
+battle_main_trainer_about_to_send_out_2,! Do you want to switch your Pokémon?
 battle_main_choose_pokemon,Choose Pokémon
-battle_main_wild_appear_1,A wild 
-battle_main_wild_appear_2,~appeared!
-battle_main_trainer_intro_1, and~
-battle_main_trainer_intro_2, want~to battle!
-battle_main_trainer_intro_3, wants~to battle!
-battle_main_intro_1,GO! 
-battle_main_intro_2,!
-battle_main_trainer_defeat_1,~was defeated!
-battle_main_trainer_defeat_2, and~
-battle_main_trainer_defeat_3,~were defeated!
-battle_main_trainer_defeat_4, got 
-battle_main_trainer_defeat_5,~PokéDollars for winning!
 battle_main_cannot_switch,Cannot switch out.
 ---
-attackTurn:
-battle_attack_poison_damage,~was hurt by poison!
-battle_attack_curse_damage,~is afflicted by the curse!
-battle_attack_fire_damage,~was hurt by its burn!
-battle_attack_trainer_item_1, used a~
-battle_attack_trainer_item_2,!
-battle_attack_asleep, is fast~asleep.
-battle_attack_woke_up, woke up!
-battle_attack_paralyzed, is paralyzed!~It can't move!
-battle_attack_frozen_free, is no~longer frozen!
-battle_attack_frozen, is frozen~solid!
-battle_attack_flinched, flinched!
-battle_attack_no_longer_confused, is no~longer confused!
-battle_attack_confused, is~confused.
-battle_attack_hit_self_confusion, hits itself~in confusion!
-battle_attack_no_PP_left, has~no PP left!*
-battle_attack_used, used 
----
 Badges:
-badge_Boulder,Boulder
-badge_Cascade,Cascade
-badge_Thunder,Thunder
-badge_Rainbow,Rainbow
-badge_Soul,Soul
-badge_Marsh,Marsh
-badge_Volcano,Volcano
-badge_Earth,Earth
-badge_Zephyr,Zephyr
-badge_Hive,Hive
-badge_Plain,Plain
-badge_Fog,Fog
-badge_Storm,Storm
-badge_Mineral,Mineral
-badge_Glacier,Glacier
-badge_Rising,Rising
+badge_1,Boulder
+badge_2,Cascade
+badge_3,Thunder
+badge_4,Rainbow
+badge_5,Soul
+badge_6,Marsh
+badge_7,Volcano
+badge_8,Earth
+badge_9,Zephyr
+badge_10,Hive
+badge_11,Plain
+badge_12,Fog
+badge_13,Storm
+badge_14,Mineral
+badge_15,Glacier
+badge_16,Rising
 ---
 Regions:
 Johto,Johto
@@ -753,21 +602,7 @@ game_message_free_camera_off,Free camera mode off
 game_message_audio_on,Audio on
 game_message_audio_off,Audio off
 game_message_continue_autosave,Continued save state:
----
-Online:
-game_message_close_connection,You closed the co-op game.
-game_message_disconncet,You disconnected from the host.
-game_message_cannot_connect_client_1,Cannot connect to host (
-game_message_cannot_connect_client_2,)!
-game_message_client_connect_1,You joined the game (
-game_message_client_connect_2,)!
-game_message_client_host_closed_1,The host (
-game_message_client_host_closed_2,) closed the connection.
-game_message_client_outdated_newer_version,You have an outdated or newer version of the game.
-game_message_host_session_started,You (host) started a Co-Op session.
-game_message_host_outdated_newer_version,The client has an outdated or newer version of the game!
-game_message_host_client_accept,A client joined the game!
-game_message_host_client_disconnect,The client disconnected! The Co-Op session has been closed.
+game_message_debug_texture_list_clear,Texture list have cleared
 ---
 Pokemon:
 pokemon_name_Bulbasaur,Bulbasaur

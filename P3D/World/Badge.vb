@@ -110,7 +110,11 @@ Public Class Badge
     Public Shared Function GetBadgeName(ByVal ID As Integer) As String
         For Each b As BadgeDeclaration In Badges
             If b.ID = ID Then
-                Return b.Name
+                If Localization.TokenExists("badge_" & b.ID.ToString) = True Then
+                    Return Localization.GetString("badge_" & b.ID.ToString, b.Name)
+                Else
+                    Return b.Name
+                End If
             End If
         Next
         Return "Plain"
