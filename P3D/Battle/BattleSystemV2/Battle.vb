@@ -8093,7 +8093,7 @@
                     End If
                 End If
 
-                If Core.Player.BattleStyle = 1 Then
+                If Core.Player.BattleStyle = 1 AndAlso BattleScreen.IsPVPBattle = False Then
                     BattleScreen.HasSwitchedOwn = False
                     StartRound(BattleScreen)
                 End If
