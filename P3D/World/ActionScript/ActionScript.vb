@@ -101,6 +101,9 @@ nextScript:
     ''' <param name="InputType">Type of information; 0: Script path, 1: Text, 2: Direct input.</param>
     Public Sub StartScript(ByVal Input As String, ByVal InputType As Integer, Optional ByVal CheckDelay As Boolean = True, Optional ByVal ResetInsight As Boolean = True)
         Screen.Level.OwnPlayer.Opacity = 1
+        If Core.Player.IsRunning = True OrElse Screen.Level.Riding = True Then
+            Screen.Camera.Speed = 0.04F
+        End If
         ScriptLevelIndex += 1
 
         TempSpin = False

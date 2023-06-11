@@ -445,9 +445,9 @@ Public Class OverworldCamera
                 Speed = 0.04F
             ElseIf Core.Player.IsRunning() = True Then
                 Speed = 0.06F
-                Else
-                    Speed = 0.04F
-                End If
+            Else
+                Speed = 0.04F
+            End If
         End If
         Screen.Level.OverworldPokemon.MoveSpeed = Speed
     End Sub
