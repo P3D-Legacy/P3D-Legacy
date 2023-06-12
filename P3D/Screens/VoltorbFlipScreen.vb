@@ -1056,8 +1056,8 @@ TryAgain:
                 Next
 
                 If Controls.Accept = True AndAlso ReadyAmount = CInt(GridSize * GridSize) AndAlso TextBox.Showing = False Then
-                    SoundManager.PlaySound("select")
                     If Delay = 0 Then
+                        SoundManager.PlaySound("select")
                         Delay = 5
                     End If
                     If Delay > 3 Then
@@ -1088,11 +1088,9 @@ TryAgain:
                     PreviousLevel = CurrentLevel
                     If CurrentFlips < CurrentLevel Then
                         CurrentLevel = Math.Max(1, CurrentFlips)
-                    Else
-                        CurrentLevel = 1
                     End If
-                    SoundManager.PlaySound("select")
                     If Delay = 0 Then
+                        SoundManager.PlaySound("select")
                         Delay = 5
                     End If
                     If Delay > 3 Then
@@ -1274,14 +1272,27 @@ TryAgain:
             SoundManager.PlaySound("VoltorbFlip\QuitGame", True)
             TextBox.Show(Localization.GetString("VoltorbFlip_QuitGame_1", "<player.name> received~") & CurrentCoins.ToString & " " & Localization.GetString("VoltorbFlip_QuitGame_2", "Coin(s)!"))
 
-            If GameState = States.QuitQuestion Then
-                TotalCoins += CurrentCoins
-                CurrentFlips = 0
-
-                CurrentCoins = 0
+            If CurrentFlips < CurrentLevel Then
+                CurrentLevel = Math.Max(1, CurrentFlips)
             End If
-            ChooseBox.readyForResult = False
-            GameState = States.NewLevelQuestion
+
+            If Delay = 0 Then
+                If GameState = States.QuitQuestion Then
+                    TotalCoins += CurrentCoins
+                    CurrentFlips = 0
+
+                    CurrentCoins = 0
+                End If
+                Delay = 5
+            End If
+            If Delay > 3 Then
+                If CurrentLevel < PreviousLevel Then
+                    TextBox.Show(Localization.GetString("VoltorbFlip_NewLevel_Lower1", "Dropped to Game Lv.") & " " & CurrentLevel & Localization.GetString("VoltorbFlip_NewLevel_Lower2", "!"))
+                End If
+
+                ChooseBox.readyForResult = False
+                GameState = States.NewLevelQuestion
+            End If
         End Sub
     End Class
 
