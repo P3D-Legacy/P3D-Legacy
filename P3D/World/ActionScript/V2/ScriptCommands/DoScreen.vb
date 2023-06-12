@@ -289,6 +289,8 @@
                                 Core.SetScreen(New VoltorbFlip.VoltorbFlipScreen(CurrentScreen))
                             End If
                             If CurrentScreen.Identification = Screen.Identifications.OverworldScreen Then
+                                VoltorbFlip.VoltorbFlipScreen.CurrentLevel = 1
+                                VoltorbFlip.VoltorbFlipScreen.PreviousLevel = 1
                                 If VoltorbFlip.VoltorbFlipScreen.TotalCoins > 0 Then
                                     Screen.TextBox.Show(Localization.GetString("VoltorbFlip_AfterGame_Won1", "You've won") & " " & VoltorbFlip.VoltorbFlipScreen.TotalCoins & " " & Localization.GetString("VoltorbFlip_AfterGame_Won2", "Coins!"))
                                     Core.Player.Coins += VoltorbFlip.VoltorbFlipScreen.TotalCoins
