@@ -37,12 +37,12 @@
 
                 Select Case name.ToLower()
                     Case "volume"
-                        MusicManager.MasterVolume = CSng(CDbl(value) / 100)
-                        SoundManager.Volume = CSng(CDbl(value) / 100)
+                        MusicManager.MasterVolume = CSng(CInt(value) / 100)
+                        SoundManager.Volume = CSng(CInt(value) / 100)
                     Case "music"
-                        MusicManager.MasterVolume = CSng(CDbl(value) / 100)
+                        MusicManager.MasterVolume = CSng(CInt(value) / 100)
                     Case "sound"
-                        SoundManager.Volume = CSng(CDbl(value) / 100)
+                        SoundManager.Volume = CSng(CInt(value) / 100)
                     Case "muted"
                         SoundManager.Muted = CBool(value)
                         MusicManager.Muted = CBool(value)

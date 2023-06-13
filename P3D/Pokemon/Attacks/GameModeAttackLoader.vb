@@ -178,6 +178,8 @@
                                 move.UseOppDefense = CBool(value)
                             Case "useoppevasion"
                                 move.UseOppEvasion = CBool(value)
+                            Case "deductpp"
+                                move.gmDeductPP = CBool(value)
                         End Select
                     End If
                 Next

@@ -1059,10 +1059,10 @@
 #Region "UseItem"
 
         Private Shared Sub SelectedItemHandler(ByVal params As Object())
-            SelectedItem(CInt(params(0)))
+            SelectedItem(CStr(params(0)))
         End Sub
 
-        Private Shared Sub SelectedItem(ByVal itemID As Integer)
+        Private Shared Sub SelectedItem(ByVal itemID As String)
             Dim Item As Item = Item.GetItemByID(itemID.ToString)
 
             If Item.CanBeUsedInBattle = True Then
@@ -1103,9 +1103,9 @@
             End If
         End Sub
 
-        Shared TempItemID As Integer = -1
+        Shared TempItemID As String = "-1"
 
-        Private Shared Sub UseItemhandler(ByVal params As Object())
+        Private Shared Sub UseItemHandler(ByVal params As Object())
             UseItem(CInt(params(0)))
         End Sub
 

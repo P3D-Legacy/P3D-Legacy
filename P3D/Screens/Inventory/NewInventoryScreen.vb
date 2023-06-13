@@ -984,7 +984,11 @@ Public Class NewInventoryScreen
                 Case INFO_ITEM_OPTION_TOSS
                     TossItem(cItem)
                 Case INFO_ITEM_OPTION_SELECT
-                    FireSelectionEvent(cItem.ID)
+                    If cItem.IsGameModeItem = True Then
+                        FireSelectionEvent(cItem.gmID)
+                    Else
+                        FireSelectionEvent(cItem.ID.ToString)
+                    End If
                     CloseInfoScreen()
                     _closing = True
             End Select
@@ -1268,7 +1272,7 @@ Public Class NewInventoryScreen
 
     Public Event SelectedObject(params() As Object) Implements ISelectionScreen.SelectedObject
 
-    Private Sub FireSelectionEvent(ByVal itemId As Integer)
+    Private Sub FireSelectionEvent(ByVal itemId As String)
         RaiseEvent SelectedObject(New Object() {itemId})
     End Sub
 

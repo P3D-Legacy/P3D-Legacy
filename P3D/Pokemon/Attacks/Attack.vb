@@ -170,6 +170,7 @@
 
         Public GameModeFunction As String = "" 'A GameMode can specify a pre defined function for a move.
         Public IsGameModeMove As Boolean = False
+        Public gmDeductPP As Boolean = True
 
         Private _power As Integer = 40
         Private _accuracy As Integer = 100
@@ -186,6 +187,8 @@
         Public TimesToAttack As Integer = 1
         Public EffectChances As New List(Of Integer)
         '#End
+
+
 
         '#SpecialDefinitions
         'Damage and effect types
@@ -2057,7 +2060,11 @@
         ''' <param name="Own">If the own Pokémon used the move.</param>
         ''' <param name="BattleScreen">Reference to the BattleScreen.</param>
         Public Overridable Function DeductPP(ByVal own As Boolean, ByVal BattleScreen As BattleScreen) As Boolean
-            Return True
+            If Me.IsGameModeMove = True Then
+                Return gmDeductPP
+            Else
+                Return True
+            End If
         End Function
 
         ''' <summary>

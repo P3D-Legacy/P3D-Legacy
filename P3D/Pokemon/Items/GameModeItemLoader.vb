@@ -120,7 +120,7 @@ Public Class GameModeItemLoader
                             item.gmIsHealingItem = CBool(value)
                         Case "healhpamount"
                             item.gmHealHPAmount = CInt(value)
-                        Case "curestatuseffects"
+                        Case "curestatus"
                             Dim StatusEffectList As New List(Of String)
                             Dim valueSplit As String() = value.Split(",")
                             For i = 0 To valueSplit.Count - 1
