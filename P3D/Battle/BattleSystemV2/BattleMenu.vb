@@ -1112,7 +1112,7 @@
         Private Shared Sub UseItem(ByVal PokeIndex As Integer)
             Dim Pokemon As Pokemon = Core.Player.Pokemons(PokeIndex)
 
-            Dim Item As Item = Item.GetItemByID(TempItemID.ToString)
+            Dim Item As Item = Item.GetItemByID(TempItemID)
 
             If Item.UseOnPokemon(PokeIndex) = True Then
                 TempBattleScreen.BattleQuery.Clear()
