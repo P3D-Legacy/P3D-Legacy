@@ -327,7 +327,7 @@
             End If
             Dim skinRectangle As New Rectangle(0, CInt(skinFrameSize.Height * 2), CInt(skinFrameSize.Width), CInt(skinFrameSize.Height))
             skinTexture = TextureManager.GetTexture(skinTexture2D, skinRectangle)
-            Core.SetScreen(New InputScreen(Core.CurrentScreen, skinNames(SkinIndex), InputScreen.InputModes.Name, skinNames(SkinIndex), 14, New List(Of Texture2D)({skinTexture}), AddressOf Me.ConfirmInput))
+            Core.SetScreen(New InputScreen(Core.CurrentScreen, skinNames(SkinIndex), InputScreen.InputModes.Name, skinNames(SkinIndex), 20, New List(Of Texture2D)({skinTexture}), AddressOf Me.ConfirmInput))
         End Sub
 
         Private Sub ConfirmInput(ByVal input As String)

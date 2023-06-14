@@ -9,6 +9,7 @@ Public Class NameObjectScreen
     Private _pokemon As Pokemon ' Temporarly stores the Pokémon to rename.
     Private _currentText As String = "" ' The current Text in the textbox.
     Private _mainTexture As Texture2D ' The temporary texture. Loads "GUI\Menus\Menu".
+    Private _maxLength As Integer = 20
 
     Private _index As Integer = 0 ' The button index (0 or 1).
     Private _askedRename As Boolean = False ' If the question to rename is answered or not.
@@ -43,6 +44,7 @@ Public Class NameObjectScreen
         Me._pokemon = Pokemon
         Me._defaultName = Pokemon.GetDisplayName()
         Me._renamePokemon = True
+        Me._maxLength = 12
 
         ' Load texture:
         Me._mainTexture = TextureManager.GetTexture("GUI\Menus\Menu")
@@ -71,6 +73,7 @@ Public Class NameObjectScreen
         Me.CanBePaused = True
         Me.CanChat = False
         Me.CanMuteAudio = False
+        Me._maxLength = 20
 
         Screen.PokemonImageView.Show(Texture)
     End Sub
@@ -148,7 +151,7 @@ Public Class NameObjectScreen
         Canvas.DrawRectangle(New Rectangle(CInt(TextboxPosition().X), CInt(TextboxPosition().Y), 320, 24), Color.White)
 
         Dim t As String = Me._currentText
-        If t.Length < 20 Then
+        If t.Length < Me._maxLength Then
             t &= "_"
         End If
         Core.SpriteBatch.DrawString(FontManager.InGameFont, t, TextboxPosition(), Color.Black)
@@ -196,7 +199,11 @@ Public Class NameObjectScreen
                     _delay = 0.0F
                 End If
             Else
-                KeyBindings.GetNameInput(Me._currentText, 20)
+                If _pokemon IsNot Nothing Then
+                    KeyBindings.GetNameInput(Me._currentText, 12)
+                Else
+                    KeyBindings.GetNameInput(Me._currentText, 20)
+                End If
 
                 Me._currentText = Me.ReplaceInvalidChars(Me._currentText)
 
@@ -265,9 +272,9 @@ Public Class NameObjectScreen
             Me._askedRename = True
             If ControllerHandler.IsConnected() = True Then
                 If _pokemon IsNot Nothing Then
-                    Core.SetScreen(New InputScreen(Me, Me._defaultName, InputScreen.InputModes.Pokemon, Me._defaultName, 14, New List(Of Texture2D), AddressOf Me.GetControllerInput))
+                    Core.SetScreen(New InputScreen(Me, Me._defaultName, InputScreen.InputModes.Pokemon, Me._defaultName, 12, New List(Of Texture2D), AddressOf Me.GetControllerInput))
                 Else
-                    Core.SetScreen(New InputScreen(Me, Me._defaultName, InputScreen.InputModes.Name, Me._defaultName, 14, New List(Of Texture2D), AddressOf Me.GetControllerInput))
+                    Core.SetScreen(New InputScreen(Me, Me._defaultName, InputScreen.InputModes.Name, Me._defaultName, 20, New List(Of Texture2D), AddressOf Me.GetControllerInput))
                 End If
             End If
         End If
