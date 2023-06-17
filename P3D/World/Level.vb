@@ -1060,22 +1060,28 @@ Public Class Level
             Me._routeSign.Setup(MapName)
 
             ' Play the correct music track:
-            If IsRadioOn = True AndAlso GameJolt.PokegearScreen.StationCanPlay(Me.SelectedRadioStation) = True Then
-                MusicManager.Play(SelectedRadioStation.Music, True)
-            Else
-                IsRadioOn = False
-                If Me.Surfing = True Then
-                    MusicManager.Play("surf", True)
+            If MusicManager.ForceMusic = "" Then
+                If IsRadioOn = True AndAlso GameJolt.PokegearScreen.StationCanPlay(Me.SelectedRadioStation) = True Then
+                    MusicManager.Play(SelectedRadioStation.Music, True)
                 Else
-                    If Me.Riding = True Then
-                        MusicManager.Play("ride", True)
+                    IsRadioOn = False
+                    If Me.Surfing = True Then
+                        MusicManager.Play("surf", True)
                     Else
-                        If MusicManager.GetSong(MusicLoop) IsNot Nothing Then
-                            MusicManager.Play(MusicLoop, True)
+                        If Me.Riding = True Then
+                            MusicManager.Play("ride", True)
                         Else
-                            MusicManager.Play("silence")
+                            If MusicManager.GetSong(MusicLoop) IsNot Nothing Then
+                                MusicManager.Play(MusicLoop, True)
+                            Else
+                                MusicManager.Play("silence")
+                            End If
                         End If
                     End If
+                End If
+            Else
+                If MusicManager._currentSongName <> MusicManager.ForceMusic Then
+                    MusicManager.Play(MusicManager.ForceMusic, True)
                 End If
             End If
 

@@ -99,6 +99,8 @@ Public Class MusicManager
     Private Shared _lastVolume As Single = 1.0F
     Private Shared _muted As Boolean = False
     Private Shared _paused As Boolean = False
+
+    Public Shared ForceMusic As String = ""
     Public Shared ReadOnly Property IsLooping As Boolean
         Get
             If Playlist IsNot Nothing AndAlso Playlist.Count <= 1 Then
