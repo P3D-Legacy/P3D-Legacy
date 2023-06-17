@@ -750,6 +750,9 @@ Namespace ScriptVersion2
             r(New ScriptCommand("pokemon", "setev", {New ScriptArgument("pokemonIndex", ScriptArgument.ArgumentTypes.Int),
                                                        New ScriptArgument("evStat", ScriptArgument.ArgumentTypes.Str, {"hp", "atk", "attack", "def", "defense", "spatk", "specialattack", "spattack", "spdef", "specialdefense", "spdefense", "speed"}),
                                                        New ScriptArgument("evValue", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Sets the value of the Effort Value stat of a Pokémon in the player's party."))
+            r(New ScriptCommand("pokemon", "addev", {New ScriptArgument("pokemonIndex", ScriptArgument.ArgumentTypes.Int),
+                                                       New ScriptArgument("evStat", ScriptArgument.ArgumentTypes.Str, {"hp", "atk", "attack", "def", "defense", "spatk", "specialattack", "spattack", "spdef", "specialdefense", "spdefense", "speed"}),
+                                                       New ScriptArgument("evValue", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Adds the evValue argument to the Effort Value stat of a Pokémon in the player's party and makes sure it's legal."))
             r(New ScriptCommand("pokemon", "setiv", {New ScriptArgument("pokemonIndex", ScriptArgument.ArgumentTypes.Int),
                                                        New ScriptArgument("ivStat", ScriptArgument.ArgumentTypes.Str, {"hp", "atk", "attack", "def", "defense", "spatk", "specialattack", "spattack", "spdef", "specialdefense", "spdefense", "speed"}),
                                                        New ScriptArgument("ivValue", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Sets the value of the Individual Value stat of a Pokémon in the player's party."))

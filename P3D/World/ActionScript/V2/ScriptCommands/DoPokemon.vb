@@ -437,6 +437,52 @@
                     If Core.Player.Pokemons.Count - 1 >= Index Then
                         Core.Player.Pokemons(Index).Ability = Ability.GetAbilityByID(abilityID)
                     End If
+                Case "addev"
+                    Dim Index As Integer = int(argument.GetSplit(0, ","))
+                    Dim ev As String = argument.GetSplit(1, ",")
+                    Dim evValue As Integer = int(argument.GetSplit(2, ","))
+
+                    If Core.Player.Pokemons.Count - 1 >= Index Then
+                        With Core.Player.Pokemons(Index)
+                            Dim TotalEV As Integer = .EVHP + .EVAttack + .EVDefense + .EVSpAttack + .EVSpDefense + .EVSpeed
+                            If TotalEV + evValue > 510 Then
+                                evValue = 510 - TotalEV
+                            End If
+
+                            Select Case ev.ToLower()
+                                Case "hp"
+                                    If .EVHP + evValue > 255 Then
+                                        evValue = 255 - .EVHP
+                                    End If
+                                    .EVHP = evValue
+                                Case "atk", "attack"
+                                    If .EVAttack + evValue > 255 Then
+                                        evValue = 255 - .EVAttack
+                                    End If
+                                    .EVAttack = evValue
+                                Case "def", "defense"
+                                    If .EVDefense + evValue > 255 Then
+                                        evValue = 255 - .EVDefense
+                                    End If
+                                    .EVDefense = evValue
+                                Case "spatk", "specialattack", "spattack"
+                                    If .EVSpAttack + evValue > 255 Then
+                                        evValue = 255 - .EVSpAttack
+                                    End If
+                                    .EVSpAttack = evValue
+                                Case "spdef", "specialdefense", "spdefense"
+                                    If .EVSpDefense + evValue > 255 Then
+                                        evValue = 255 - .EVSpDefense
+                                    End If
+                                    .EVSpDefense = evValue
+                                Case "speed"
+                                    If .EVSpeed + evValue > 255 Then
+                                        evValue = 255 - .EVSpeed
+                                    End If
+                                    .EVSpeed = evValue
+                            End Select
+                        End With
+                    End If
                 Case "setev"
                     Dim Index As Integer = int(argument.GetSplit(0, ","))
                     Dim ev As String = argument.GetSplit(1, ",")
