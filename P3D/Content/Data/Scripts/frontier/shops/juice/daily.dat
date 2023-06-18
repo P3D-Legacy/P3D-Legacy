@@ -1,0 +1,118 @@
+version=2
+:if:<register.registered(dailyjuicecalc)>=false
+	@register.registertime(dailyjuicecalc,1,day)
+	@storage.set(integer,juicecount,0)
+	:while:6><storage.get(integer,juicecount)>
+		@register.unregister(juicetype<storage.get(integer,juicecount)>,str)
+		@register.unregister(juiceval<storage.get(integer,juicecount)>,int)
+		@register.unregister(juicedesc<storage.get(integer,juicecount)>,int)
+		@register.unregister(solddailyjuice<storage.get(integer,juicecount)>)
+		
+		@storage.set(integer,berry1,<system.random(2000,2066)>)
+		@storage.set(integer,berry2,<system.random(2000,2066)>)
+		@storage.set(string,drink,fail)
+		@storage.set(integer,value,-1)
+		@script.start(frontier\shops\juice\calc)
+		
+		@register.register(juicetype<storage.get(integer,juicecount)>,str,<storage.get(string,drink)>)
+		@register.register(juiceval<storage.get(integer,juicecount)>,int,<storage.get(integer,value)>)
+		
+		:select:<storage.get(string,drink)>
+			:when:fail
+				@text.show(something went wrong please try again later)
+				:endscript
+			:when:purple
+				@register.register(juicedesc<storage.get(integer,juicecount)>,str,Purple Juice    <storage.get(integer,value)>/4 BP)
+				@register.register(juicecost<storage.get(integer,juicecount)>,int,<storage.get(integer,value)>/4)
+			:when:red
+				@register.register(juicedesc<storage.get(integer,juicecount)>,str,Red Juice    <storage.get(integer,value)>/4 BP)
+				@register.register(juicecost<storage.get(integer,juicecount)>,int,<storage.get(integer,value)>/4)
+			:when:yellow
+				@register.register(juicedesc<storage.get(integer,juicecount)>,str,Yellow Juice    <storage.get(integer,value)>/4 BP)
+				@register.register(juicecost<storage.get(integer,juicecount)>,int,<storage.get(integer,value)>/4)
+			:when:blue
+				@register.register(juicedesc<storage.get(integer,juicecount)>,str,Blue Juice    <storage.get(integer,value)>/4 BP)
+				@register.register(juicecost<storage.get(integer,juicecount)>,int,<storage.get(integer,value)>/4)
+			:when:green
+				@register.register(juicedesc<storage.get(integer,juicecount)>,str,Green Juice    <storage.get(integer,value)>/4 BP)
+				@register.register(juicecost<storage.get(integer,juicecount)>,int,<storage.get(integer,value)>/4)
+			:when:pink
+				@register.register(juicedesc<storage.get(integer,juicecount)>,str,Pink Juice    <storage.get(integer,value)>/4 BP)
+				@register.register(juicecost<storage.get(integer,juicecount)>,int,<storage.get(integer,value)>/4)
+			:when:shake
+				@register.register(juicedesc<storage.get(integer,juicecount)>,str,Colorful Shake    <storage.get(integer,value)>/6 BP)
+				@register.register(juicecost<storage.get(integer,juicecount)>,int,<storage.get(integer,value)>/6)
+			:when:soda
+				:select:<storage.get(integer,value)>
+					:when:1;2;3
+						@register.register(juicedesc<storage.get(integer,juicecount)>,str,Rare Soda    10*<storage.get(integer,value)> BP)
+						@register.register(juicecost<storage.get(integer,juicecount)>,int,(1+<storage.get(integer,value)>)*10)
+					:when:4;5
+						@register.register(juicedesc<storage.get(integer,juicecount)>,str,Ultra Rare Soda    10*<storage.get(integer,value)> BP)
+						@register.register(juicecost<storage.get(integer,juicecount)>,int,(1+<storage.get(integer,value)>)*10)
+				:endwhen
+			:when:soup
+				@register.register(juicedesc<storage.get(integer,juicecount)>,str,Perilous Soup    20 BP)
+				@register.register(juicecost<storage.get(integer,juicecount)>,int,20)
+		:endwhen
+		
+		@storage.set(integer,juicecount,<storage.get(integer,juicecount)>+1)
+	:endwhile
+:endif
+
+@storage.set(string,drink,fail)
+@storage.set(integer,value,-1)
+	
+@storage.set(integer,juicecount,0)
+@storage.set(string,juiceselect,)
+:while:6><storage.get(integer,juicecount)>
+	:if:<register.registered(solddailyjuice<storage.get(integer,juicecount)>)>=false
+		@storage.set(string,juiceselect,<storage.get(string,juiceselect)><register.value(juicedesc<storage.get(integer,juicecount)>)>,)
+	:endif
+	@storage.set(integer,juicecount,<storage.get(integer,juicecount)>+1)
+:endwhile
+@storage.set(string,juiceselect,<storage.get(string,juiceselect)>Exit)
+
+@text.show(Welcome to the Juice Shoppe!*Please take a look at our daily specials!)
+@options.show(<storage.get(string,juiceselect)>)
+	:when:Exit
+		@text.show(Come again soon!)
+			:endscript
+	:when:<register.value(juicedesc0)>
+		@storage.set(string,drink,<register.value(juicetype0)>)
+		@storage.set(integer,value,<register.value(juiceval0)>)
+		@storage.set(integer,select,0)
+	:when:<register.value(juicedesc1)>
+		@storage.set(string,drink,<register.value(juicetype1)>)
+		@storage.set(integer,value,<register.value(juiceval1)>)
+		@storage.set(integer,select,1)
+	:when:<register.value(juicedesc2)>
+		@storage.set(string,drink,<register.value(juicetype2)>)
+		@storage.set(integer,value,<register.value(juiceval2)>)
+		@storage.set(integer,select,2)
+	:when:<register.value(juicedesc3)>
+		@storage.set(string,drink,<register.value(juicetype3)>)
+		@storage.set(integer,value,<register.value(juiceval3)>)
+		@storage.set(integer,select,3)
+	:when:<register.value(juicedesc4)>
+		@storage.set(string,drink,<register.value(juicetype4)>)
+		@storage.set(integer,value,<register.value(juiceval4)>)
+		@storage.set(integer,select,4)
+	:when:<register.value(juicedesc5)>
+		@storage.set(string,drink,<register.value(juicetype5)>)
+		@storage.set(integer,value,<register.value(juiceval5)>)
+		@storage.set(integer,select,5)
+:endwhen		
+	
+@text.show(Which Pokemon is this drink for?)
+@pokemon.select
+:if:<pokemon.selected>=-1
+	@text.show(Come again soon!)
+	:end
+:endif
+
+@script.start(frontier\shops\juice\give)
+@player.addbp(-<storage.get(integer,cost)>)
+@register.register(solddailyjuice<storage.get(integer,select)>)
+
+:end	

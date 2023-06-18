@@ -1,0 +1,44 @@
+version=2
+:if:<inventory.juicecolor(<storage.get(int,berry1)>)>=<inventory.juicecolor(<storage.get(int,berry2)>)>
+	@storage.set(string,drink,<inventory.juicecolor(<storage.get(int,berry1)>)>)
+	@storage.set(integer,value,(<inventory.juicegroup(<storage.get(int,berry1)>)>+<inventory.juicegroup(<storage.get(int,berry2)>)>)*4)
+	:if:<storage.get(int,berry1)>=<storage.get(int,berry2)>
+		@storage.set(integer,value,<inventory.juicegroup(<storage.get(int,berry1)>)>*4)
+	:endif
+:else
+	@storage.set(string,drink,shake)
+	@storage.set(integer,value,(<inventory.juicegroup(<storage.get(int,berry1)>)>+<inventory.juicegroup(<storage.get(int,berry2)>)>)*6)
+
+	:select:<storage.get(int,berry1)>
+		:when:2057
+			:if:<storage.get(int,berry2)>=2058
+				@storage.set(string,drink,soda)
+				@storage.set(integer,value,<system.random(1,3)>)
+			:endif
+		:when:2058
+			:if:<storage.get(int,berry2)>=2057
+				@storage.set(string,drink,soda)
+				@storage.set(integer,value,<system.random(1,3)>)
+			:endif
+		:when:2059
+			:if:<storage.get(int,berry2)>=2064
+				@storage.set(string,drink,soda)
+				@storage.set(integer,value,<system.random(4,5)>)
+			:endif
+		:when:2064
+			:if:<storage.get(int,berry2)>=2059
+				@storage.set(string,drink,soda)
+				@storage.set(integer,value,<system.random(4,5)>)
+			:endif
+		:when:2065
+			:if:<storage.get(int,berry2)>=2066
+				@storage.set(string,drink,soup)
+				@storage.set(integer,value,0)
+			:endif
+		:when:2066
+			:if:<storage.get(int,berry2)>=2065
+				@storage.set(string,drink,soup)
+				@storage.set(integer,value,0)
+			:endif
+	:endwhen
+:endif
