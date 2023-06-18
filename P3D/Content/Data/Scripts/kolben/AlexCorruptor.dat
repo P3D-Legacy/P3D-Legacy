@@ -4,14 +4,7 @@ version=2
 @Text.Show(AlexCorruptor: What a mess,~I need to do even more~polishing on my conversion...)
 @Sound.Play(Emote_Exclamation)
 @Entity.ShowMessageBulb(1|5|0.75|3)
-:select:<player.facing>
-	:when:1
-		@NPC.Turn(8,3)
-	:when:3
-		@NPC.Turn(8,1)
-	:when:2
-		@NPC.Turn(8,0)
-:endwhen
+@NPC.Turn(8,<player.facing>+2)
 @Text.Show(AlexCorruptor: Well, hello~there, <player.name>,~it seems you managed to~catch me in thoughts about~my conversion.*To be honest, doing those~is never easy, so those~things take a while to do...~Especially due to the fact~that i need to maintain~only 4 channels, as per~Game Boy's standards.*I am also specialised in~map optimisations as my~other hobby, whether in~this game or not.*I don't have much to say,~really, i am usually shy and~prefer to be quiet around~people, sorry...)
 @Entity.ShowMessageBulb(0|5|0.75|3)
 @Sound.Play(Emote_Exclamation)
