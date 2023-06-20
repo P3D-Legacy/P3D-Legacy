@@ -71,6 +71,35 @@
             End If
         End Sub
 
+        Public Overrides Sub InternalOpponentPokemonMoveAnimation(ByVal BattleScreen As BattleScreen, ByVal BattleFlip As Boolean, ByVal CurrentPokemon As Pokemon, ByVal CurrentEntity As NPC)
+            Dim MoveAnimation As AnimationQueryObject = New AnimationQueryObject(CurrentEntity, BattleFlip)
+            MoveAnimation.AnimationPlaySound("Battle\Attacks\Ice\IcePunch_Crystals", 0, 0)
+            Dim maxAmount As Integer = 10
+            Dim currentAmount As Integer = 0
+            While currentAmount <= maxAmount
+                Dim Texture As Texture2D = TextureManager.GetTexture("Textures\Battle\Ice\IcePunch_Crystals", New Rectangle(0, 0, 16, 16), "")
+                Dim xPos = CSng(Random.Next(-4, 4) / 8)
+                Dim zPos = CSng(Random.Next(-4, 4) / 8)
+
+                Dim Position As New Vector3(xPos, -0.25, zPos)
+                Dim Destination As New Vector3(xPos - xPos * 2, 0, zPos - zPos * 2)
+                Dim Scale As New Vector3(0.25F)
+                Dim startDelay As Double = 5.0 * Random.NextDouble()
+                Dim IceEntity = MoveAnimation.SpawnEntity(Position, Texture, Scale, 1.0F, CSng(startDelay))
+                MoveAnimation.AnimationMove(IceEntity, False, Destination.X, Destination.Y, Destination.Z, 0.0125F, False, True, CSng(startDelay), 0.0F)
+                MoveAnimation.AnimationChangeTexture(IceEntity, False, TextureManager.GetTexture("Textures\Battle\Ice\IcePunch_Crystals", New Rectangle(16, 0, 16, 16), ""), CSng(startDelay + 0.5), 0)
+                MoveAnimation.AnimationChangeTexture(IceEntity, False, TextureManager.GetTexture("Textures\Battle\Ice\IcePunch_Crystals", New Rectangle(0, 0, 16, 16), ""), CSng(startDelay + 1), 0)
+                MoveAnimation.AnimationChangeTexture(IceEntity, False, TextureManager.GetTexture("Textures\Battle\Ice\IcePunch_Crystals", New Rectangle(16, 0, 16, 16), ""), CSng(startDelay + 1.5), 0)
+                MoveAnimation.AnimationRotate(IceEntity, True, 0, 0, 0.125, 0, 0, 3, CSng(startDelay), 0, False, False, True, False)
+
+                Threading.Interlocked.Increment(currentAmount)
+            End While
+            Dim FistEntity = MoveAnimation.SpawnEntity(New Vector3(0, -0.2, 0), TextureManager.GetTexture("Textures\Battle\Ice\IcePunch_Fist"), New Vector3(0.5F), 1, 5, 3)
+            MoveAnimation.AnimationPlaySound("Battle\Attacks\Ice\IcePunch_Fist", 5, 0)
+            MoveAnimation.AnimationFade(FistEntity, True, 1.0F, False, 0.0F, 8, 0)
+
+            BattleScreen.BattleQuery.Add(MoveAnimation)
+        End Sub
     End Class
 
 End Namespace
