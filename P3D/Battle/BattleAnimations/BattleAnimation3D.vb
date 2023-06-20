@@ -32,6 +32,7 @@
     Private StartDelayFraction As Single
     Private EndDelayWhole As Single
     Private EndDelayFraction As Single
+    Private hasStartedEndDelay As Boolean = False
 
     Public Sub New(ByVal Position As Vector3, ByVal Texture As Texture2D, ByVal Scale As Vector3, ByVal startDelay As Single, ByVal endDelay As Single, Optional SpawnedEntity As Boolean = False)
         MyBase.New(Position.X, Position.Y, Position.Z, "BattleAnimation", {Texture}, {0, 0}, False, 0, Scale, BaseModel.BillModel, 0, "", New Vector3(1.0F))
@@ -48,16 +49,21 @@
     End Sub
 
     Public Overrides Sub Update()
+
         If Started = False Then
             Me.startDelay = Date.Now + New TimeSpan(0, 0, 0, CInt(StartDelayWhole), CInt(StartDelayFraction * 1000))
-            Me.endDelay = Date.Now + New TimeSpan(0, 0, 0, CInt(EndDelayWhole), CInt(EndDelayFraction * 1000))
+            hasStartedEndDelay = False
             Started = True
         End If
         If CanRemove = False Then
             If Ready = True Then
+                If hasStartedEndDelay = False Then
+                    Me.endDelay = Date.Now + New TimeSpan(0, 0, 0, CInt(EndDelayWhole), CInt(EndDelayFraction * 1000))
+                    hasStartedEndDelay = True
+                End If
                 If Date.Now >= endDelay Then
-                    CanRemove = True
                     DoRemoveEntity()
+                    CanRemove = True
                 End If
             Else
                 If Date.Now >= startDelay Then
