@@ -306,6 +306,9 @@
         If JoinServerScreen.Online = True Then
             Core.ServersManager.ServerConnection.Disconnect()
         End If
+
+        World.setDaytime = Nothing
+        World.setSeason = Nothing
         Chat.ClearChat()
         ScriptStorage.Clear()
         GameModeManager.SetGameModePointer("Kolben")
