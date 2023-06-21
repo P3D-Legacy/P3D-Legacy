@@ -84,9 +84,11 @@
             End If
 
             If p.Item Is Nothing Then
-                Dim ItemID As String = op.Item.ID.ToString
-                If op.Item.IsGameModeItem = True Then
-                    ItemID = op.Item.gmID
+                Dim ItemID As String
+                If p.Item.IsGameModeItem = True Then
+                    ItemID = p.Item.gmID
+                Else
+                    ItemID = p.Item.ID.ToString
                 End If
 
                 op.OriginalItem = Item.GetItemByID(ItemID)

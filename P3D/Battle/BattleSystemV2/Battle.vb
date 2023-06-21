@@ -2484,9 +2484,11 @@
                                                     canSteal = False
                                                 End If
                                                 If canSteal Then
-                                                    Dim ItemID As String = p.Item.ID.ToString
+                                                    Dim ItemID As String
                                                     If p.Item.IsGameModeItem = True Then
                                                         ItemID = p.Item.gmID
+                                                    Else
+                                                        ItemID = p.Item.ID.ToString()
                                                     End If
                                                     p.OriginalItem = Item.GetItemByID(ItemID)
                                                     p.OriginalItem.AdditionalData = p.Item.AdditionalData
@@ -2668,7 +2670,12 @@
                                 If Core.Random.Next(0, 2) = 0 AndAlso moveUsed.MakesContact = True AndAlso op.Item Is Nothing AndAlso op.HP > 0 Then
                                     ChangeCameraAngle(2, own, BattleScreen)
                                     BattleScreen.BattleQuery.Add(New TextQueryObject(p.GetDisplayName() & "'s Sticky Barb was passed over to " & op.GetDisplayName() & "."))
-                                    op.Item = Item.GetItemByID(p.Item.ID.ToString)
+                                    If p.Item.IsGameModeItem = True Then
+                                        op.Item = Item.GetItemByID(p.Item.gmID.ToString)
+                                    Else
+                                        op.Item = Item.GetItemByID(p.Item.ID.ToString)
+                                    End If
+
                                     p.Item = Nothing
                                 End If 'CODELINE OF EVIL
                             End If

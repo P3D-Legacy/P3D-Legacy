@@ -1845,7 +1845,12 @@ Public Class Pokemon
 
         Dim SaveItemID As String = "0"
         If Not Me.Item Is Nothing Then
-            SaveItemID = Me.Item.ID.ToString()
+            If Me.Item.IsGameModeItem = True Then
+                SaveItemID = Me.Item.gmID.ToString()
+            Else
+                SaveItemID = Me.Item.ID.ToString()
+            End If
+
         End If
 
         Dim ItemData As String = ""

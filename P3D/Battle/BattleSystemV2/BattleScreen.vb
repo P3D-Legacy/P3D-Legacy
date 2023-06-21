@@ -1250,7 +1250,12 @@ nextIndex:
                     End If
                     If IsRemoteBattle = True Then
                         If p.OriginalItem IsNot Nothing Then
-                            p.Item = P3D.Item.GetItemByID(p.OriginalItem.ID.ToString)
+                            If p.OriginalItem.IsGameModeItem = True Then
+                                p.Item = P3D.Item.GetItemByID(p.OriginalItem.gmID)
+                            Else
+                                p.Item = P3D.Item.GetItemByID(p.OriginalItem.ID.ToString)
+                            End If
+
                             p.Item.AdditionalData = p.OriginalItem.AdditionalData
                             Screen.TextBox.Show(Core.Player.Name & " received~" & p.OriginalItem.Name & "and gave it back to~" & p.GetDisplayName)
                             p.OriginalItem = Nothing
@@ -1258,12 +1263,22 @@ nextIndex:
                     Else
                         If Not p.OriginalItem Is Nothing Then
                             If p.Item Is Nothing Then
-                                p.Item = P3D.Item.GetItemByID(p.OriginalItem.ID.ToString)
+                                If p.OriginalItem.IsGameModeItem = True Then
+                                    p.Item = P3D.Item.GetItemByID(p.OriginalItem.gmID.ToString)
+                                Else
+                                    p.Item = P3D.Item.GetItemByID(p.OriginalItem.ID.ToString)
+                                End If
+
                                 p.Item.AdditionalData = p.OriginalItem.AdditionalData
                                 Screen.TextBox.Show(Core.Player.Name & " found~" & p.OriginalItem.Name & "*and gave it back to~" & p.GetDisplayName)
                                 p.OriginalItem = Nothing
                             Else
-                                Core.Player.Inventory.AddItem(p.OriginalItem.ID.ToString, 1)
+                                If p.OriginalItem.IsGameModeItem = True Then
+                                    Core.Player.Inventory.AddItem(p.OriginalItem.gmID, 1)
+                                Else
+                                    Core.Player.Inventory.AddItem(p.OriginalItem.ID.ToString, 1)
+                                End If
+
                                 SoundManager.PlaySound("item_found", True)
                                 Screen.TextBox.Show(Core.Player.Name & " found~" & p.OriginalItem.Name & "!*" & Core.Player.Inventory.GetMessageReceive(p.OriginalItem, 1))
                                 p.OriginalItem = Nothing
@@ -1313,7 +1328,11 @@ nextIndex:
                 For Each p As Pokemon In Core.Player.Pokemons
                     If IsRemoteBattle = True Then
                         If p.OriginalItem IsNot Nothing Then
-                            p.Item = P3D.Item.GetItemByID(p.OriginalItem.ID.ToString)
+                            If p.OriginalItem.IsGameModeItem = True Then
+                                p.Item = P3D.Item.GetItemByID(p.OriginalItem.gmID.ToString)
+                            Else
+                                p.Item = P3D.Item.GetItemByID(p.OriginalItem.ID.ToString)
+                            End If
                             p.Item.AdditionalData = p.OriginalItem.AdditionalData
                             Screen.TextBox.Show(Core.Player.Name & " received~" & p.OriginalItem.Name & "and gave it back to~" & p.GetDisplayName)
                         End If
@@ -1321,6 +1340,11 @@ nextIndex:
                         If Not p.OriginalItem Is Nothing Then
                             If p.Item IsNot Nothing Then
                                 Core.Player.Inventory.AddItem(p.OriginalItem.ID.ToString, 1)
+                                If p.OriginalItem.IsGameModeItem = True Then
+                                    Core.Player.Inventory.AddItem(p.OriginalItem.gmID, 1)
+                                Else
+                                    Core.Player.Inventory.AddItem(p.OriginalItem.ID.ToString, 1)
+                                End If
                                 SoundManager.PlaySound("item_found", True)
                                 Screen.TextBox.Show(Core.Player.Name & " found~" & p.OriginalItem.Name & "!*" & Core.Player.Inventory.GetMessageReceive(p.OriginalItem, 1))
                                 p.OriginalItem = Nothing

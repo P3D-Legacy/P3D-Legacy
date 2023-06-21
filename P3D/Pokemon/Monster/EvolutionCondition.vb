@@ -174,20 +174,11 @@ Public Class EvolutionCondition
                                         'REMOVE HELD ITEM CHECK
                                     End If
                                 Else
-                                    If Item.GetItemByID(c.Argument).IsGameModeItem Then
-                                        If p.Item.ID.ToString <> c.Argument Then
-                                            canEvolve = False
-                                            'ElseIf c.Trigger = EvolutionTrigger.Trading Then
-                                            'REMOVE HELD ITEM CHECK
-                                        End If
-                                    Else
-                                        If p.Item.ID <> CInt(c.Argument) Then
-                                            canEvolve = False
-                                            'ElseIf c.Trigger = EvolutionTrigger.Trading Then
-                                            'REMOVE HELD ITEM CHECK
-                                        End If
+                                    If p.Item.ID.ToString <> c.Argument Then
+                                        canEvolve = False
+                                        'ElseIf c.Trigger = EvolutionTrigger.Trading Then
+                                        'REMOVE HELD ITEM CHECK
                                     End If
-
                                 End If
                             End If
                         Case ConditionTypes.InParty
