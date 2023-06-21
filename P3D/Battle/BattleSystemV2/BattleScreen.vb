@@ -878,38 +878,24 @@
 #End Region
 
         Public Overrides Sub Draw()
-            SkyDome.Draw(45.0F)
 
             Dim ForegroundEntities As New List(Of Entity)
-            For Each e As Entity In Level.Entities
-                If e Is OwnPokemonNPC Then
-                    ForegroundEntities.Add(e)
-                End If
-                If e Is OppPokemonNPC Then
-                    ForegroundEntities.Add(e)
-                End If
-                If e Is OwnTrainerNPC Then
-                    ForegroundEntities.Add(e)
-                End If
-                If e Is OppTrainerNPC Then
-                    ForegroundEntities.Add(e)
-                End If
-            Next
+
+            If OwnPokemonNPC IsNot Nothing Then
+                ForegroundEntities.Add(OwnPokemonNPC)
+            End If
+            If OppPokemonNPC IsNot Nothing Then
+                ForegroundEntities.Add(OppPokemonNPC)
+            End If
+            If OwnTrainerNPC IsNot Nothing Then
+                ForegroundEntities.Add(OwnTrainerNPC)
+            End If
+            If OppTrainerNPC IsNot Nothing Then
+                ForegroundEntities.Add(OppTrainerNPC)
+            End If
+
             If ForegroundEntities.Count > 0 Then
                 ForegroundEntities = (From f In ForegroundEntities Order By f.CameraDistance Descending).ToList()
-            End If
-            Level.Draw()
-
-            World.DrawWeather(Screen.Level.World.CurrentMapWeather)
-
-            If HasToWaitPVP() = True Then
-                Canvas.DrawRectangle(New Rectangle(0, CInt(Core.windowSize.Height / 2 - 60), CInt(Core.windowSize.Width), 120), New Color(0, 0, 0, 150))
-                Dim t As String = "Waiting for the other player  "
-                Core.SpriteBatch.DrawString(FontManager.MainFont, t.Remove(t.Length - 2, 2) & LoadingDots.Dots, New Vector2(CSng(Core.windowSize.Width / 2 - FontManager.MainFont.MeasureString(t).X / 2), CSng(Core.windowSize.Height / 2 - FontManager.MainFont.MeasureString(t).Y / 2)), Color.White)
-            Else
-                If BattleMenu.Visible = True Then
-                    BattleMenu.Draw(Me)
-                End If
             End If
 
             Dim ForegroundAnimationList As New List(Of AnimationQueryObject)
@@ -964,14 +950,36 @@ nextIndexBackground:
 
                 cQuery.Reverse()
 
+                Dim BackgroundTarget As New RenderTarget2D(Core.GraphicsDevice, Core.windowSize.Width, Core.windowSize.Height, False, SurfaceFormat.Color, DepthFormat.Depth24Stencil8)
+                Core.GraphicsDevice.SetRenderTarget(BackgroundTarget)
+                GraphicsDevice.Clear(Microsoft.Xna.Framework.Color.Transparent)
+
                 For Each cQueryObject As QueryObject In cQuery
                     cQueryObject.Draw(Me)
                 Next
 
+                Core.GraphicsDevice.SetRenderTarget(Nothing)
+
+                Dim NPCTarget As New RenderTarget2D(Core.GraphicsDevice, Core.windowSize.Width, Core.windowSize.Height, False, SurfaceFormat.Color, DepthFormat.Depth24Stencil8)
+                Core.GraphicsDevice.SetRenderTarget(NPCTarget)
+                GraphicsDevice.Clear(Microsoft.Xna.Framework.Color.Transparent)
                 For i = 0 To ForegroundEntities.Count - 1
                     ForegroundEntities(i).Render()
                     DebugDisplay.MaxVertices += ForegroundEntities(i).VertexCount
                 Next
+
+                Core.GraphicsDevice.SetRenderTarget(Nothing)
+                SkyDome.Draw(45.0F)
+                Level.Draw()
+
+                World.DrawWeather(Screen.Level.World.CurrentMapWeather)
+                Core.SpriteBatch.Draw(BackgroundTarget, windowSize, Color.White)
+                Core.SpriteBatch.Draw(NPCTarget, windowSize, Color.White)
+            Else
+                SkyDome.Draw(45.0F)
+                Level.Draw()
+
+                World.DrawWeather(Screen.Level.World.CurrentMapWeather)
             End If
             If ForegroundAnimationList.Count > 0 Then
                 Dim cIndex As Integer = 0
@@ -994,6 +1002,16 @@ nextIndexForeground:
                 Next
             End If
             'Core.SpriteBatch.DrawString(FontManager.MiniFont, "Battle system not final!", New Vector2(0, Core.windowSize.Height - 20), Color.White)
+
+            If HasToWaitPVP() = True Then
+                Canvas.DrawRectangle(New Rectangle(0, CInt(Core.windowSize.Height / 2 - 60), CInt(Core.windowSize.Width), 120), New Color(0, 0, 0, 150))
+                Dim t As String = "Waiting for the other player  "
+                Core.SpriteBatch.DrawString(FontManager.MainFont, t.Remove(t.Length - 2, 2) & LoadingDots.Dots, New Vector2(CSng(Core.windowSize.Width / 2 - FontManager.MainFont.MeasureString(t).X / 2), CSng(Core.windowSize.Height / 2 - FontManager.MainFont.MeasureString(t).Y / 2)), Color.White)
+            Else
+                If BattleMenu.Visible = True Then
+                    BattleMenu.Draw(Me)
+                End If
+            End If
 
             TextBox.Draw()
 
@@ -1340,7 +1358,6 @@ nextIndex:
                     Else
                         If Not p.OriginalItem Is Nothing Then
                             If p.Item IsNot Nothing Then
-                                Core.Player.Inventory.AddItem(p.OriginalItem.ID.ToString, 1)
                                 If p.OriginalItem.IsGameModeItem = True Then
                                     Core.Player.Inventory.AddItem(p.OriginalItem.gmID, 1)
                                 Else
