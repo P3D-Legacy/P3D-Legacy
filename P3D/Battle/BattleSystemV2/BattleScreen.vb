@@ -872,6 +872,7 @@
 
             Level.Load("battle\" & levelfile)
             Level.MapName = SavedOverworld.Level.MapName
+            Level.DayTime = World.GetTime + 1
         End Sub
 
 #End Region
