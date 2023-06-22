@@ -710,6 +710,66 @@
                     Else
                         Logger.Log(Logger.LogTypes.Message, "ScriptCommander.vb: The Pokémon is not able to evolve with the given conditions.")
                     End If
+                Case "levelup"
+                    Dim args() As String = argument.Split(CChar(","))
+                    Dim p As Pokemon = Core.Player.Pokemons(int(args(0)))
+                    Dim amount As Integer = 1
+
+                    If args.Count > 1 Then
+                        amount = CInt(args(1))
+                    End If
+                    Dim originalLevel As Integer = p.Level
+
+                    Dim AttackLearnList As New List(Of BattleSystem.Attack)
+
+                    If originalLevel < CInt(GameModeManager.GetGameRuleValue("MaxLevel", "100")) AndAlso p.IsEgg() = False Then
+                        If originalLevel + amount > CInt(GameModeManager.GetGameRuleValue("MaxLevel", "100")) Then
+                            amount = CInt(GameModeManager.GetGameRuleValue("MaxLevel", "100")) - originalLevel
+                        End If
+
+                        p.Level += amount
+                        For i = 0 To amount - 1
+                            If p.AttackLearns.ContainsKey(originalLevel + i) = True AndAlso p.KnowsMove(p.AttackLearns(originalLevel + i)) = False Then
+                                AttackLearnList.Add(p.AttackLearns(originalLevel + i))
+                            End If
+                        Next
+                        Dim s As String = "version=2" & Environment.NewLine
+
+                        If amount > 0 Then
+                            s &= "@text.show(" & p.GetDisplayName() & " reached~level " & p.Level & "!)" & Environment.NewLine
+                        End If
+
+                        Dim currentMaxHP As Integer = p.MaxHP
+
+                        p.CalculateStats()
+
+                        'Heals the Pokémon by the HP difference.
+                        Dim HPDifference As Integer = p.MaxHP - currentMaxHP
+                        If HPDifference > 0 Then
+                            p.Heal(HPDifference)
+                        End If
+
+                        If p.CanEvolve(EvolutionCondition.EvolutionTrigger.LevelUp, "") = True Then
+                            s &= "@pokemon.evolve(" & int(args(0)) & ")" & Environment.NewLine
+                        End If
+
+                        If AttackLearnList.Count > 0 Then
+                            For i = 0 To AttackLearnList.Count - 1
+                                If p.Attacks.Count < 4 Then
+                                    s &= "@text.show(" & p.GetDisplayName() & " learned " & AttackLearnList(i).Name & "!)" & Environment.NewLine
+                                    p.Attacks.Add(AttackLearnList(i))
+                                    PlayerStatistics.Track("Moves learned", 1)
+                                Else
+                                    s &= "@pokemon.learnattack(" & int(args(0)) & "," & AttackLearnList(i).ID & ")" & Environment.NewLine
+                                End If
+                            Next
+                        End If
+                        s &= ":end"
+
+                        If CurrentScreen.Identification = Screen.Identifications.OverworldScreen Then
+                            CType(CurrentScreen, OverworldScreen).ActionScript.StartScript(s, 2, False)
+                        End If
+                    End If
                 Case "reload"
                     Dim PokemonIndex As Integer = int(argument)
                     If Core.Player.Pokemons.Count - 1 >= PokemonIndex Then
