@@ -87,21 +87,26 @@
                         FadeProgress = FadeSteps.Duration
                         Me.BackgroundOpacity = Me.AfterFadeInOpacity
                     End If
+                Else
+                    FadeProgress = FadeSteps.Duration
+                    Me.BackgroundOpacity = Me.AfterFadeInOpacity
                 End If
             Case FadeSteps.Duration
                 If Date.Now >= DurationDate Then
                     FadeProgress = FadeSteps.FadeOut
                 End If
             Case FadeSteps.FadeOut
-                If 0 < Me.BackgroundOpacity Then
+                If Me.BackgroundOpacity > 0.0F Then
                     Me.BackgroundOpacity -= Me.FadeOutSpeed
-                    If Me.BackgroundOpacity <= 0 Then
-                        Me.BackgroundOpacity = 0
+                    If Me.BackgroundOpacity <= 0.0F Then
+                        Me.BackgroundOpacity = 0.0F
+                        Me.Ready = True
                     End If
-                End If
-                If Me.BackgroundOpacity = 0 Then
+                Else
+                    Me.BackgroundOpacity = 0.0F
                     Me.Ready = True
                 End If
+
         End Select
 
     End Sub
