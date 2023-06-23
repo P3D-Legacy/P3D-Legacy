@@ -163,7 +163,6 @@
 				MoveEntity = Entity
 			End If
 
-
 			If Not BattleFlipped = Nothing Then
 				If BattleFlipped = True Then
 					DestinationX *= -1.0F
