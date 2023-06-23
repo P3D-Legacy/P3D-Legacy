@@ -61,6 +61,29 @@
             End If
         End Sub
 
+        Public Overrides Sub InternalUserPokemonMoveAnimation(ByVal BattleScreen As BattleScreen, ByVal BattleFlip As Boolean, ByVal CurrentPokemon As Pokemon, ByVal CurrentEntity As NPC)
+            Dim MoveAnimation = New AnimationQueryObject(CurrentEntity, BattleFlip)
+
+            Dim RayEntity = MoveAnimation.SpawnEntity(New Vector3(0), TextureManager.GetTexture("Textures\Battle\Ghost\ConfuseRay", New Rectangle(0, 0, 16, 16), ""), New Vector3(0.5F), 1.0F)
+            MoveAnimation.AnimationMove(RayEntity, True, 2.0, 0.0, 0.0, 0.025, False, False, 0.0, 0.0,,,, 0.0125)
+            MoveAnimation.AnimationMove(RayEntity, False, 0.0, 0.2, 0.0, 0.025, False, False, 0.5, 0.0,,,, 0.0125)
+            MoveAnimation.AnimationMove(RayEntity, False, 0.0, -0.2, 0.0, 0.025, False, False, 1.5, 0.0,,,, 0.0125)
+            MoveAnimation.AnimationMove(RayEntity, False, 0.0, 0.2, 0.0, 0.025, False, False, 2.5, 0.0,,,, 0.0125)
+            MoveAnimation.AnimationMove(RayEntity, False, 0.0, -0.2, 0.0, 0.025, False, False, 3.5, 0.0,,,, 0.0125)
+            MoveAnimation.AnimationMove(RayEntity, False, 0.0, 0, 0.0, 0.025, False, False, 4, 0.0,,,, 0.0125)
+
+            MoveAnimation.AnimationChangeTexture(RayEntity, False, TextureManager.GetTexture("Textures\Battle\Ghost\ConfuseRay", New Rectangle(16, 0, 16, 16), ""), 0.5, 0)
+            MoveAnimation.AnimationChangeTexture(RayEntity, False, TextureManager.GetTexture("Textures\Battle\Ghost\ConfuseRay", New Rectangle(0, 0, 16, 16), ""), 1.0, 0)
+            MoveAnimation.AnimationChangeTexture(RayEntity, False, TextureManager.GetTexture("Textures\Battle\Ghost\ConfuseRay", New Rectangle(16, 0, 16, 16), ""), 1.5, 0)
+            MoveAnimation.AnimationChangeTexture(RayEntity, False, TextureManager.GetTexture("Textures\Battle\Ghost\ConfuseRay", New Rectangle(0, 0, 16, 16), ""), 2.0, 0)
+            MoveAnimation.AnimationChangeTexture(RayEntity, False, TextureManager.GetTexture("Textures\Battle\Ghost\ConfuseRay", New Rectangle(16, 0, 16, 16), ""), 2.5, 0)
+            MoveAnimation.AnimationChangeTexture(RayEntity, False, TextureManager.GetTexture("Textures\Battle\Ghost\ConfuseRay", New Rectangle(0, 0, 16, 16), ""), 3, 0)
+            MoveAnimation.AnimationChangeTexture(RayEntity, False, TextureManager.GetTexture("Textures\Battle\Ghost\ConfuseRay", New Rectangle(16, 0, 16, 16), ""), 3.5, 0)
+            MoveAnimation.AnimationChangeTexture(RayEntity, False, TextureManager.GetTexture("Textures\Battle\Ghost\ConfuseRay", New Rectangle(0, 0, 16, 16), ""), 4, 0)
+
+            BattleScreen.BattleQuery.Add(MoveAnimation)
+        End Sub
+
     End Class
 
 End Namespace
