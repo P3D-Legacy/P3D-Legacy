@@ -26,7 +26,7 @@
         FadeOut
     End Enum
 
-    Public Sub New(ByVal Texture As Texture2D, ByVal startDelay As Single, ByVal endDelay As Single, ByVal Duration As Single, Optional ByVal AfterFadeInOpacity As Single = 1.0F, Optional ByVal FadeInSpeed As Single = 0.125F, Optional ByVal FadeOutSpeed As Single = 0.125F, Optional ByVal DoTile As Boolean = False, Optional ByVal AnimationWidth As Integer = -1, Optional ByVal AnimationLength As Integer = 1, Optional ByVal AnimationSpeed As Integer = 2, Optional TextureScale As Integer = 4)
+    Public Sub New(ByVal Texture As Texture2D, ByVal startDelay As Single, ByVal endDelay As Single, ByVal Duration As Single, Optional ByVal AfterFadeInOpacity As Single = 1.0F, Optional ByVal FadeInSpeed As Single = 0.125F, Optional ByVal FadeOutSpeed As Single = 0.125F, Optional ByVal DoTile As Boolean = False, Optional ByVal AnimationLength As Integer = 1, Optional ByVal AnimationSpeed As Integer = 2, Optional TextureScale As Integer = 4)
         MyBase.New(New Vector3(0.0F), TextureManager.DefaultTexture, New Vector3(1.0F), startDelay, endDelay)
         Me.Texture = Texture
         Me.Duration = Duration
@@ -34,14 +34,14 @@
         Me.FadeInSpeed = FadeInSpeed
         Me.FadeOutSpeed = FadeOutSpeed
         Me.DoTile = DoTile
-        Me.AnimationWidth = AnimationWidth
+        Me.AnimationWidth = CInt(Texture.Width / AnimationLength)
         Me.AnimationLength = AnimationLength
         DurationWhole = CSng(Math.Truncate(CDbl(Duration)))
         DurationFraction = CSng((Duration - DurationWhole) * 1000)
         Me.TextureScale = TextureScale
 
         If Me.AnimationWidth <> -1 OrElse Me.AnimationWidth <> Nothing Then
-            BackgroundAnimation = New Animation(Me.Texture, 1, CInt(Me.Texture.Width / Me.AnimationWidth), Me.AnimationWidth, Me.Texture.Height, AnimationSpeed * 24, 0, 0)
+            BackgroundAnimation = New Animation(Me.Texture, 1, AnimationLength, Me.AnimationWidth, Me.Texture.Height, AnimationSpeed * 24, 0, 0)
             CurrentRectangle = BackgroundAnimation.TextureRectangle
         Else
             Me.AnimationWidth = Texture.Width

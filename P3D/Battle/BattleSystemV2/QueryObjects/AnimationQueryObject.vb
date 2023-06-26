@@ -194,6 +194,12 @@
 				MoveEntity = Entity
 			End If
 
+			If Not BattleFlipped = Nothing Then
+				If BattleFlipped = True Then
+					Distance.Z *= -1.0F
+				End If
+			End If
+
 			Dim DurationWhole = CSng(Math.Truncate(CDbl(Duration)))
 			Dim DurationFraction = CSng((Duration - DurationWhole) * 1000)
 			Dim DurationTime As TimeSpan = New TimeSpan(0, 0, 0, CInt(DurationWhole), CInt(DurationFraction))
@@ -287,8 +293,8 @@
 			AnimationSequence.Add(baSound)
 		End Sub
 
-		Public Sub AnimationBackground(ByVal Texture As Texture2D, ByVal startDelay As Single, ByVal endDelay As Single, ByVal Duration As Single, Optional ByVal AfterFadeInOpacity As Single = 1.0F, Optional ByVal FadeInSpeed As Single = 0.125F, Optional ByVal FadeOutSpeed As Single = 0.125F, Optional ByVal DoTile As Boolean = False, Optional ByVal AnimationWidth As Integer = -1, Optional ByVal AnimationLength As Integer = 1, Optional ByVal AnimationSpeed As Integer = 4, Optional ByVal Scale As Integer = 4)
-			Dim baBackground As BABackground = New BABackground(Texture, startDelay, endDelay, Duration, AfterFadeInOpacity, FadeInSpeed, FadeOutSpeed, DoTile, AnimationWidth, AnimationLength, AnimationSpeed, Scale)
+		Public Sub AnimationBackground(ByVal Texture As Texture2D, ByVal startDelay As Single, ByVal endDelay As Single, ByVal Duration As Single, Optional ByVal AfterFadeInOpacity As Single = 1.0F, Optional ByVal FadeInSpeed As Single = 0.125F, Optional ByVal FadeOutSpeed As Single = 0.125F, Optional ByVal DoTile As Boolean = False, Optional ByVal AnimationLength As Integer = 1, Optional ByVal AnimationSpeed As Integer = 4, Optional ByVal Scale As Integer = 4)
+			Dim baBackground As BABackground = New BABackground(Texture, startDelay, endDelay, Duration, AfterFadeInOpacity, FadeInSpeed, FadeOutSpeed, DoTile, AnimationLength, AnimationSpeed, Scale)
 			AnimationSequence.Add(baBackground)
 		End Sub
 
