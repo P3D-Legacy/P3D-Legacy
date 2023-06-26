@@ -5,7 +5,7 @@ Namespace Items.KeyItems
 
         Inherits KeyItem
 
-        Public Overrides ReadOnly Property Description As String = "The ticket required for flying on the sea plane. It has a drawing of xxxx on it. "
+        Public Overrides ReadOnly Property Description As String = "The ticket required for flying on the sea plane. It has a drawing of a sea plane on it. "
 
         Public Sub New()
             _textureRectangle = New Rectangle(432, 408, 24, 24)
