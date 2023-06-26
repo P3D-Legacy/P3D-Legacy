@@ -65,7 +65,7 @@
                             catchMethod = catchMethodLocalization
                         End If
 
-                        Dim catchBall As Item = Item.GetItemByID(1.ToString)
+                        Dim catchBall As Item = Item.GetItemByID(5.ToString)
                         If commas > 2 Then
                             catchBall = Item.GetItemByID(argument.GetSplit(3))
                         End If
@@ -510,12 +510,12 @@
                     Dim Index As Integer = int(argument.GetSplit(0, ","))
                     If Core.Player.Pokemons.Count - 1 >= Index Then
                         With Core.Player.Pokemons(Index)
-                            .EVHP = Clamp(int(argument.GetSplit(1, ",")), 0, 252)
-                            .EVAttack = Clamp(int(argument.GetSplit(2, ",")), 0, 252)
-                            .EVDefense = Clamp(int(argument.GetSplit(3, ",")), 0, 252)
-                            .EVSpAttack = Clamp(int(argument.GetSplit(4, ",")), 0, 252)
-                            .EVSpDefense = Clamp(int(argument.GetSplit(5, ",")), 0, 252)
-                            .EVSpeed = Clamp(int(argument.GetSplit(6, ",")), 0, 252)
+                            .EVHP = Clamp(int(argument.GetSplit(1, ",")), 0, 255)
+                            .EVAttack = Clamp(int(argument.GetSplit(2, ",")), 0, 255)
+                            .EVDefense = Clamp(int(argument.GetSplit(3, ",")), 0, 255)
+                            .EVSpAttack = Clamp(int(argument.GetSplit(4, ",")), 0, 255)
+                            .EVSpDefense = Clamp(int(argument.GetSplit(5, ",")), 0, 255)
+                            .EVSpeed = Clamp(int(argument.GetSplit(6, ",")), 0, 255)
                         End With
                     End If
                 Case "setiv"
@@ -890,7 +890,7 @@
                             catchMethod = catchMethodLocalization
                         End If
 
-                        Dim catchBall As Item = Item.GetItemByID(1.ToString)
+                        Dim catchBall As Item = Item.GetItemByID(5.ToString)
                         If commas > 2 Then
                             catchBall = Item.GetItemByID(argument.GetSplit(3))
                         End If
