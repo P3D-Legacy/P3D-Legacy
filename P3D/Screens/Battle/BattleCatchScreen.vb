@@ -157,13 +157,13 @@ nextIndex:
 
                                 PokemonScale = BattleScreen.OppPokemonNPC.Scale
                                 'Ball is thrown
-                                Dim CatchAnimation = New BattleSystem.AnimationQueryObject(Nothing, False, Nothing)
+                                Dim CatchAnimation = New BattleSystem.AnimationQueryObject(Nothing, False)
                                 CatchAnimation.AnimationPlaySound("Battle\Pokeball\Throw", 0, 0)
 
                                 Dim BallPosition As Vector3 = New Vector3(BattleScreen.OppPokemonNPC.Position.X - 3, BattleScreen.OppPokemonNPC.Position.Y + 0.15F, BattleScreen.OppPokemonNPC.Position.Z)
                                 Dim BallEntity As Entity = CatchAnimation.SpawnEntity(BallPosition, Ball.Texture, New Vector3(0.3F), 1.0F, 0, 0)
 
-                                CatchAnimation.AnimationMove(BallEntity, False, 3, 0.1F, 0, 0.075, False, False, 0F, 0F,,,, 0.025)
+                                CatchAnimation.AnimationMove(BallEntity, False, 3, 0.1F, 0, 0.075, False, False, 0F, 0F,,, 0.025)
                                 CatchAnimation.AnimationRotate(BallEntity, False, 0, 0, -0.5, 0, 0, -6 * MathHelper.Pi, 0, 0, False, False, True, False)
                                 CatchAnimation.AnimationRotate(BallEntity, False, 0, 0, 6 * MathHelper.Pi, 0, 0, 0, 4, 0, False, False, True, False)
 
@@ -206,7 +206,7 @@ nextIndex:
                                         Dim StarPosition As Vector3 = New Vector3(BattleScreen.OppPokemonNPC.Position.X + 0.05F, BattleScreen.OppPokemonNPC.Position.Y, BattleScreen.OppPokemonNPC.Position.Z)
                                         Dim StarDestination As Vector3 = New Vector3(0.05F, 0.65F, 0 - ((1 - i) * 0.4F))
                                         Dim StarEntity As Entity = CatchAnimation.SpawnEntity(StarPosition, TextureManager.GetTexture("Textures\Battle\BallCatchStar"), New Vector3(0.35F), 1.0F, 12 + Shakes.Count * 10)
-                                        CatchAnimation.AnimationMove(StarEntity, True, StarDestination.X, StarDestination.Y, StarDestination.Z, 0.01F, False, False, 12 + Shakes.Count * 10, 0.0F,,, 3, 0.015F)
+                                        CatchAnimation.AnimationMove(StarEntity, True, StarDestination.X, StarDestination.Y, StarDestination.Z, 0.01F, False, False, 12 + Shakes.Count * 10, 0.0F,,, 0.015F)
                                         CatchAnimation.AnimationPlaySound("Battle\Pokeball\Catch", 12 + Shakes.Count * 10, 4)
                                         CatchAnimation.AnimationFade(BallEntity, True, 0.01F, False, 0.0F, 12 + Shakes.Count * 10 + 3, 2)
                                     Next

@@ -101,12 +101,12 @@
 		Select Case MovementCurve
 			Case Curves.EaseIn
 				If EasedIn = False Then
-					If InterpolationSpeed < MoveSpeed OrElse InterpolationYSpeed < MoveYSpeed Then
-						If InterpolationSpeed < MoveSpeed Then
-							InterpolationSpeed += MoveSpeed / 10
+					If InterpolationSpeed < MoveSpeed - 0.05F OrElse InterpolationYSpeed < MoveYSpeed - 0.05F Then
+						If InterpolationSpeed < MoveSpeed - 0.05F Then
+							InterpolationSpeed = MathHelper.Lerp(InterpolationSpeed, MoveSpeed, 0.9F)
 						End If
-						If InterpolationYSpeed < MoveYSpeed Then
-							InterpolationYSpeed += MoveYSpeed / 10
+						If InterpolationYSpeed < MoveYSpeed - 0.05F Then
+							InterpolationYSpeed = MathHelper.Lerp(InterpolationYSpeed, MoveYSpeed, 0.9F)
 						End If
 					Else
 						InterpolationSpeed = MoveSpeed
@@ -116,12 +116,12 @@
 				End If
 			Case Curves.EaseOut
 				If EasedOut = False Then
-					If InterpolationSpeed > 0 OrElse InterpolationYSpeed > 0 Then
-						If InterpolationSpeed > 0 Then
-							InterpolationSpeed -= MoveSpeed / 10
+					If InterpolationSpeed > 0.05F OrElse InterpolationYSpeed > 0.05F Then
+						If InterpolationSpeed > 0.05F Then
+							InterpolationSpeed = MathHelper.Lerp(InterpolationSpeed, 0.0F, 0.9F)
 						End If
-						If InterpolationYSpeed > 0 Then
-							InterpolationYSpeed -= MoveYSpeed / 10
+						If InterpolationYSpeed > 0.05F Then
+							InterpolationYSpeed = MathHelper.Lerp(InterpolationYSpeed, 0.0F, 0.9F)
 						End If
 					Else
 						InterpolationYSpeed = 0
@@ -131,12 +131,12 @@
 				End If
 			Case Curves.EaseInAndOut
 				If EasedIn = False Then
-					If InterpolationSpeed < MoveSpeed OrElse InterpolationYSpeed < MoveYSpeed Then
-						If InterpolationSpeed < MoveSpeed Then
-							InterpolationSpeed += MoveSpeed / 10
+					If InterpolationSpeed < MoveSpeed - 0.05F OrElse InterpolationYSpeed < MoveYSpeed - 0.05F Then
+						If InterpolationSpeed < MoveSpeed - 0.05F Then
+							InterpolationSpeed = MathHelper.Lerp(InterpolationSpeed, MoveSpeed, 0.9F)
 						End If
-						If InterpolationYSpeed < MoveYSpeed Then
-							InterpolationYSpeed += MoveYSpeed / 10
+						If InterpolationYSpeed < MoveYSpeed - 0.05F Then
+							InterpolationYSpeed = MathHelper.Lerp(InterpolationYSpeed, MoveYSpeed, 0.9F)
 						End If
 					Else
 						InterpolationSpeed = MoveSpeed
@@ -145,12 +145,12 @@
 					End If
 				Else
 					If EasedOut = False Then
-						If InterpolationSpeed > 0 OrElse InterpolationYSpeed > 0 Then
-							If InterpolationSpeed > 0 Then
-								InterpolationSpeed -= MoveSpeed / 10
+						If InterpolationSpeed > 0.05F OrElse InterpolationYSpeed > 0.05F Then
+							If InterpolationSpeed > 0.05F Then
+								InterpolationSpeed = MathHelper.Lerp(InterpolationSpeed, 0.0F, 0.9F)
 							End If
-							If InterpolationYSpeed > 0 Then
-								InterpolationYSpeed -= MoveYSpeed / 10
+							If InterpolationYSpeed > 0.05F Then
+								InterpolationYSpeed = MathHelper.Lerp(InterpolationYSpeed, 0.0F, 0.9F)
 							End If
 						Else
 							InterpolationYSpeed = 0
@@ -161,114 +161,63 @@
 				End If
 		End Select
 
-		If MovementCurve = Curves.Linear Then
-			If MoveDistance.X > 0.05F Then
-				If StartPosition.X < Me.Destination.X Then
-					TargetEntity.Position.X += Me.MoveSpeed
+		If MoveDistance.X > 0.05F Then
+			If StartPosition.X < Me.Destination.X Then
+				TargetEntity.Position.X += Me.InterpolationSpeed
 
-					If TargetEntity.Position.X >= Me.Destination.X + 0.05 Then
-						TargetEntity.Position.X = Me.Destination.X
-					End If
-				ElseIf StartPosition.X > Me.Destination.X Then
-					TargetEntity.Position.X -= Me.MoveSpeed
-
-					If TargetEntity.Position.X <= Me.Destination.X + 0.05 Then
-						TargetEntity.Position.X = Me.Destination.X
-					End If
+				If TargetEntity.Position.X >= Me.Destination.X + 0.05 Then
+					TargetEntity.Position.X = Me.Destination.X
 				End If
-				MoveDistance.X -= Me.MoveSpeed
-			Else
-				ReadyAxis.X = 1.0F
-			End If
+			ElseIf StartPosition.X > Me.Destination.X Then
+				TargetEntity.Position.X -= Me.InterpolationSpeed
 
-			If MoveDistance.Y > 0.05F Then
-				If StartPosition.Y < Me.Destination.Y + DestinationOffset.Y Then
-					TargetEntity.Position.Y += Me.MoveYSpeed
-
-					If TargetEntity.Position.Y >= Me.Destination.Y + DestinationOffset.Y - 0.05 Then
-						TargetEntity.Position.Y = Me.Destination.Y + DestinationOffset.Y
-					End If
-				ElseIf StartPosition.Y > Me.Destination.Y + DestinationOffset.Y Then
-					TargetEntity.Position.Y -= Me.MoveYSpeed
-
-					If TargetEntity.Position.Y <= Me.Destination.Y + DestinationOffset.Y + 0.05 Then
-						TargetEntity.Position.Y = Me.Destination.Y + DestinationOffset.Y
-					End If
+				If TargetEntity.Position.X <= Me.Destination.X + 0.05 Then
+					TargetEntity.Position.X = Me.Destination.X
 				End If
-				MoveDistance.Y -= Me.MoveYSpeed
-			Else
-				ReadyAxis.Y = 1.0F
 			End If
-
-			If MoveDistance.Z > 0.05F Then
-				If StartPosition.Z < Me.Destination.Z Then
-					TargetEntity.Position.Z += Me.MoveSpeed
-
-					If TargetEntity.Position.Z >= Me.Destination.Z - 0.05 Then
-						TargetEntity.Position.Z = Me.Destination.Z
-					End If
-				ElseIf StartPosition.Z > Me.Destination.Z Then
-					TargetEntity.Position.Z -= Me.MoveSpeed
-
-					If TargetEntity.Position.Z <= Me.Destination.Z + 0.05 Then
-						TargetEntity.Position.Z = Me.Destination.Z
-					End If
-				End If
-				MoveDistance.Z -= Me.MoveYSpeed
-			Else
-				ReadyAxis.Z = 1.0F
-			End If
+			MoveDistance.X -= Me.InterpolationSpeed
 		Else
-			If MoveDistance.X > 0.05F Then
-				If StartPosition.X < Me.Destination.X Then
-					TargetEntity.Position.X = MathHelper.Lerp(TargetEntity.Position.X, Me.Destination.X, Me.InterpolationSpeed)
-					If TargetEntity.Position.X > Me.Destination.X - 0.05 Then
-						TargetEntity.Position.X = Me.Destination.X
-					End If
-				ElseIf StartPosition.X > Me.Destination.X Then
-					TargetEntity.Position.X = MathHelper.Lerp(TargetEntity.Position.X, Me.Destination.X, Me.InterpolationSpeed)
-					If TargetEntity.Position.X < Me.Destination.X + 0.05 Then
-						TargetEntity.Position.X = Me.Destination.X
-					End If
-				End If
-				MoveDistance.X = MathHelper.Lerp(MoveDistance.X, 0.0F, Me.InterpolationSpeed)
-			Else
-				ReadyAxis.X = 1.0F
-			End If
-
-			If MoveDistance.Y > 0.05F Then
-				If StartPosition.Y < Me.Destination.Y + DestinationOffset.Y Then
-					TargetEntity.Position.Y = MathHelper.Lerp(TargetEntity.Position.Y, Me.Destination.Y + DestinationOffset.Y, Me.InterpolationSpeed)
-					If TargetEntity.Position.Y > Me.Destination.Y + DestinationOffset.Y - 0.05 Then
-						TargetEntity.Position.Y = Me.Destination.Y + DestinationOffset.Y
-					End If
-				ElseIf StartPosition.Y > Me.Destination.Y + DestinationOffset.Y Then
-					TargetEntity.Position.Y = MathHelper.Lerp(TargetEntity.Position.Y, Me.Destination.Y + DestinationOffset.Y, Me.InterpolationSpeed)
-					If TargetEntity.Position.Y < Me.Destination.Y + DestinationOffset.Y + 0.05 Then
-						TargetEntity.Position.Y = Me.Destination.Y + DestinationOffset.Y
-					End If
-				End If
-				MoveDistance.Y = MathHelper.Lerp(MoveDistance.Y, 0.0F, Me.InterpolationSpeed)
-			Else
-				ReadyAxis.Y = 1.0F
-			End If
-			If MoveDistance.Z > 0.05F Then
-				If StartPosition.Z < Me.Destination.Z Then
-					TargetEntity.Position.Z = MathHelper.Lerp(TargetEntity.Position.Z, Me.Destination.Z, Me.InterpolationSpeed)
-					If TargetEntity.Position.Z > Me.Destination.Z - 0.05 Then
-						TargetEntity.Position.Z = Me.Destination.Z
-					End If
-				ElseIf StartPosition.Z > Me.Destination.Z Then
-					TargetEntity.Position.Z = MathHelper.Lerp(TargetEntity.Position.Z, Me.Destination.Z, Me.InterpolationSpeed)
-					If TargetEntity.Position.Z < Me.Destination.Z + 0.05 Then
-						TargetEntity.Position.Z = Me.Destination.Z
-					End If
-				End If
-			Else
-				ReadyAxis.Z = 1.0F
-			End If
-
+			ReadyAxis.X = 1.0F
 		End If
+
+		If MoveDistance.Y > 0.05F Then
+			If StartPosition.Y < Me.Destination.Y + DestinationOffset.Y Then
+				TargetEntity.Position.Y += Me.MoveYSpeed
+
+				If TargetEntity.Position.Y >= Me.Destination.Y + DestinationOffset.Y - 0.05 Then
+					TargetEntity.Position.Y = Me.Destination.Y + DestinationOffset.Y
+				End If
+			ElseIf StartPosition.Y > Me.Destination.Y + DestinationOffset.Y Then
+				TargetEntity.Position.Y -= Me.MoveYSpeed
+
+				If TargetEntity.Position.Y <= Me.Destination.Y + DestinationOffset.Y + 0.05 Then
+					TargetEntity.Position.Y = Me.Destination.Y + DestinationOffset.Y
+				End If
+			End If
+			MoveDistance.Y -= Me.MoveYSpeed
+		Else
+			ReadyAxis.Y = 1.0F
+		End If
+
+		If MoveDistance.Z > 0.05F Then
+			If StartPosition.Z < Me.Destination.Z Then
+				TargetEntity.Position.Z += Me.InterpolationSpeed
+
+				If TargetEntity.Position.Z >= Me.Destination.Z - 0.05 Then
+					TargetEntity.Position.Z = Me.Destination.Z
+				End If
+			ElseIf StartPosition.Z > Me.Destination.Z Then
+				TargetEntity.Position.Z -= Me.InterpolationSpeed
+
+				If TargetEntity.Position.Z <= Me.Destination.Z + 0.05 Then
+					TargetEntity.Position.Z = Me.Destination.Z
+				End If
+			End If
+			MoveDistance.Z -= Me.MoveYSpeed
+		Else
+			ReadyAxis.Z = 1.0F
+		End If
+
 		If ReadyAxis.X = 1.0F AndAlso ReadyAxis.Y = 1.0F AndAlso ReadyAxis.Z = 1.0F Then
 			Me.Ready = True
 		End If

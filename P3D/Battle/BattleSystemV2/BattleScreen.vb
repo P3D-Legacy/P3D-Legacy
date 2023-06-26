@@ -442,7 +442,7 @@
                 BallThrowOpp.AnimationPlaySound("Battle\Pokeball\Throw", 0, 0)
                 BallThrowOpp.AnimationSetPosition(Nothing, False, 15, CSng(0.5 + OppEntityOffsetY), 13, 0, 0)
                 Dim BallThrowEntity As Entity = BallThrowOpp.SpawnEntity(New Vector3(2, -0.15, 0), Me.OppPokemon.CatchBall.Texture, New Vector3(0.3F), 1.0F)
-                BallThrowOpp.AnimationMove(BallThrowEntity, True, 0, CSng(0.35 + OppAnimationOffsetY), 0, 0.1, False, True, 0F, 0.5F,, 0.3,, 0.025F)
+                BallThrowOpp.AnimationMove(BallThrowEntity, True, 0, CSng(0.35 + OppAnimationOffsetY), 0, 0.1, False, True, 0F, 0.5F,, 0.3, 0.025F)
 
                 ' Ball Opens
                 BallThrowOpp.AnimationPlaySound("Battle\Pokeball\Open", 3, 0)
@@ -493,7 +493,7 @@
                 BallThrowOwn.AnimationMove(Nothing, False, 0, 0.5, 0, 0.5, False, False, 2, 0,,, 3)
 
                 Dim BallThrowEntity As Entity = BallThrowOwn.SpawnEntity(New Vector3(-2, -0.15, 0), Me.OwnPokemon.CatchBall.Texture, New Vector3(0.3F), 1.0F)
-                BallThrowOwn.AnimationMove(BallThrowEntity, True, 0, CSng(0.35 + OwnAnimationOffsetY), 0, 0.1, False, True, 0F, 0.5F,, 0.3,, 0.025F)
+                BallThrowOwn.AnimationMove(BallThrowEntity, True, 0, CSng(0.35 + OwnAnimationOffsetY), 0, 0.1, False, True, 0F, 0.5F,, 0.3, 0.025F)
 
                 ' Ball Opens
                 BallThrowOwn.AnimationPlaySound("Battle\Pokeball\Open", 3, 0)

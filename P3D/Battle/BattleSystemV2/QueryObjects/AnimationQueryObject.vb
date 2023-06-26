@@ -153,7 +153,7 @@
 
 		End Sub
 
-		Public Sub AnimationMove(ByVal Entity As Entity, ByVal RemoveEntityAfter As Boolean, ByVal DestinationX As Single, ByVal DestinationY As Single, ByVal DestinationZ As Single, ByVal Speed As Single, ByVal SpinX As Boolean, ByVal SpinZ As Boolean, ByVal startDelay As Single, ByVal endDelay As Single, Optional ByVal SpinXSpeed As Single = 0.1F, Optional ByVal SpinZSpeed As Single = 0.1F, Optional MovementCurve As Integer = 3, Optional MoveYSpeed As Single = 0.0F)
+		Public Sub AnimationMove(ByVal Entity As Entity, ByVal RemoveEntityAfter As Boolean, ByVal DestinationX As Single, ByVal DestinationY As Single, ByVal DestinationZ As Single, ByVal Speed As Single, ByVal SpinX As Boolean, ByVal SpinZ As Boolean, ByVal startDelay As Single, ByVal endDelay As Single, Optional ByVal SpinXSpeed As Single = 0.1F, Optional ByVal SpinZSpeed As Single = 0.1F, Optional MoveYSpeed As Single = 0.0F, Optional MovementCurve As Integer = 3)
 			Dim MoveEntity As Entity
 			Dim Destination As Vector3
 
@@ -173,14 +173,32 @@
 					End If
 				End If
 			End If
+
 			If CurrentEntity Is Nothing Then
 				Destination = MoveEntity.Position + New Vector3(DestinationX, DestinationY, DestinationZ)
 			Else
 				Destination = CurrentEntity.Position + New Vector3(DestinationX, DestinationY, DestinationZ)
 			End If
 
+
 			Dim baEntityMove As BAEntityMove = New BAEntityMove(MoveEntity, RemoveEntityAfter, Destination, Speed, SpinX, SpinZ, startDelay, endDelay, SpinXSpeed, SpinZSpeed, MovementCurve, MoveYSpeed)
 			AnimationSequence.Add(baEntityMove)
+
+		End Sub
+		Public Sub AnimationOscillateMove(ByRef Entity As Entity, ByVal RemoveEntityAfter As Boolean, ByVal Distance As Vector3, ByVal Speed As Single, ByVal BothWays As Boolean, ByVal Duration As Single, ByVal startDelay As Single, ByVal endDelay As Single, Optional MovementCurve As Integer = 0)
+			Dim MoveEntity As Entity
+
+			If Entity Is Nothing Then
+				MoveEntity = CurrentEntity
+			Else
+				MoveEntity = Entity
+			End If
+
+			Dim DurationWhole = CSng(Math.Truncate(CDbl(Duration)))
+			Dim DurationFraction = CSng((Duration - DurationWhole) * 1000)
+			Dim DurationTime As TimeSpan = New TimeSpan(0, 0, 0, CInt(DurationWhole), CInt(DurationFraction))
+			Dim baEntityOscillateMove As BAEntityOscillateMove = New BAEntityOscillateMove(MoveEntity, RemoveEntityAfter, Distance, Speed, BothWays, DurationTime, startDelay, endDelay, MovementCurve)
+			AnimationSequence.Add(baEntityOscillateMove)
 
 		End Sub
 

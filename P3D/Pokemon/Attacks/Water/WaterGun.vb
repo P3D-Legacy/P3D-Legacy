@@ -55,14 +55,14 @@
         Public Overrides Sub InternalUserPokemonMoveAnimation(ByVal BattleScreen As BattleScreen, ByVal BattleFlip As Boolean, ByVal CurrentPokemon As Pokemon, ByVal CurrentEntity As NPC)
             Dim MoveAnimation = New AnimationQueryObject(CurrentEntity, BattleFlip)
             Dim WaterEntity = MoveAnimation.SpawnEntity(New Vector3(0), TextureManager.GetTexture("Textures\Battle\Water\WaterGun", New Rectangle(0, 0, 16, 16), ""), New Vector3(0.5F), 0.75F)
-            MoveAnimation.AnimationMove(WaterEntity, True, 2, 0.5, 0, 0.075, False, False, 0, 0,,,, 0.05)
+            MoveAnimation.AnimationMove(WaterEntity, True, 2, 0.5, 0, 0.075, False, False, 0, 0,,, 0.05)
             MoveAnimation.AnimationPlaySound("Battle\Attacks\Water\Watergun_Start", 0, 0)
             BattleScreen.BattleQuery.Add(MoveAnimation)
         End Sub
         Public Overrides Sub InternalOpponentPokemonMoveAnimation(ByVal BattleScreen As BattleScreen, ByVal BattleFlip As Boolean, ByVal CurrentPokemon As Pokemon, ByVal CurrentEntity As NPC)
             Dim MoveAnimation = New AnimationQueryObject(CurrentEntity, BattleFlip)
             Dim WaterEntity = MoveAnimation.SpawnEntity(New Vector3(-2, 1, 0), TextureManager.GetTexture("Textures\Battle\Water\WaterGun", New Rectangle(0, 0, 16, 16), ""), New Vector3(0.5F), 0.5F)
-            MoveAnimation.AnimationMove(WaterEntity, True, 0, 0, 0, 0.075, False, False, 0, 0,,,, 0.035)
+            MoveAnimation.AnimationMove(WaterEntity, True, 0, 0, 0, 0.075, False, False, 0, 0,,, 0.035)
 
             MoveAnimation.AnimationPlaySound("Battle\Attacks\Water\Watergun_Hit", 3, 0)
             Dim HitEntity = MoveAnimation.SpawnEntity(New Vector3(0, -0.2, 0), TextureManager.GetTexture("Textures\Battle\Water\WaterGun", New Rectangle(0, 16, 16, 16), ""), New Vector3(0.5F), 0.5F, 3, 1)

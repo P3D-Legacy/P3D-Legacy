@@ -17945,6 +17945,12 @@
     <Content Include="Content\Sounds\Battle\Attacks\Flying\Gust.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\Sounds\Battle\Attacks\Ghost\ConfuseRay_End.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Sounds\Battle\Attacks\Ghost\ConfuseRay_Start.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\Sounds\Battle\Attacks\Grass\Absorb.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -28377,6 +28383,7 @@
     <Compile Include="Battle\BattleAnimations\BAEntityColor.vb" />
     <Compile Include="Battle\BattleAnimations\BABackground.vb" />
     <Compile Include="Battle\BattleAnimations\BAEntityFaceRotate.vb" />
+    <Compile Include="Battle\BattleAnimations\BAEntityOscillateMove.vb" />
     <Compile Include="Battle\BattleAnimations\BAEntitySetPosition.vb" />
     <Compile Include="Battle\BattleAnimations\BAEntityRotate.vb" />
     <Compile Include="Battle\BattleAnimations\BAEntityMove.vb" />

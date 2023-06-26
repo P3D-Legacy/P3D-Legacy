@@ -268,7 +268,7 @@
 
                 BallThrow.AnimationPlaySound("Battle\Pokeball\Throw", 0, 0)
                 Dim BallThrowEntity = BallThrow.SpawnEntity(New Vector3(2, -0.15, 0), BattleScreen.OppPokemon.CatchBall.Texture, New Vector3(0.3F), 1.0F)
-                BallThrow.AnimationMove(BallThrowEntity, True, 0, 0.35, 0, 0.1, False, True, 0F, 0.5F,, 0.3,, 0.025F)
+                BallThrow.AnimationMove(BallThrowEntity, True, 0, 0.35, 0, 0.1, False, True, 0F, 0.5F,, 0.3, 0.025F)
 
                 ' Ball opens
                 BallThrow.AnimationPlaySound("Battle\Pokeball\Open", 3, 0)
