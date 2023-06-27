@@ -264,7 +264,7 @@
             Dim BallThrow As AnimationQueryObject = New AnimationQueryObject(BattleScreen.OppPokemonNPC, False)
             If Core.Player.ShowBattleAnimations <> 0 AndAlso BattleScreen.IsPVPBattle = False Then
                 ' Ball is thrown
-                BallThrow.AnimationMove(Nothing, False, 0, 0.5, 0, 0.5, False, False, 0, 0,,, 3)
+                BallThrow.AnimationMove(Nothing, False, 0, 0.5, 0, 0.5, False, False, 0, 0,,,, 3)
 
                 BallThrow.AnimationPlaySound("Battle\Pokeball\Throw", 0, 0)
                 Dim BallThrowEntity = BallThrow.SpawnEntity(New Vector3(2, -0.15, 0), BattleScreen.OppPokemon.CatchBall.Texture, New Vector3(0.3F), 1.0F)
@@ -293,7 +293,7 @@
                 BallThrow.AnimationFade(Nothing, False, 1, True, 1, 3, 0)
                 BallThrow.AnimationPlaySound(CStr(BattleScreen.OppPokemon.Number), 4, 0,, True)
                 '  Pokémon falls down
-                BallThrow.AnimationMove(Nothing, False, 0, 0, 0, 0.05F, False, False, 5, 0)
+                BallThrow.AnimationMove(Nothing, False, 0, -0.5F, 0, 0.05F, False, False, 5, 0)
             Else
                 ' Pokemon appears
                 BallThrow.AnimationFade(Nothing, False, 1, True, 1, 0, 0)

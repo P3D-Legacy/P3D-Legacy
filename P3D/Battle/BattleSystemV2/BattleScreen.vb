@@ -472,7 +472,7 @@
             '  Pokémon falls down
             If Core.Player.ShowBattleAnimations <> 0 AndAlso IsPVPBattle = False Then
                 '  Pokémon falls down
-                BallThrowOpp.AnimationMove(Nothing, False, 0, 0, 0, 0.05F, False, False, 4, 0,,, 3)
+                BallThrowOpp.AnimationMove(Nothing, False, 0, -0.5F, 0, 0.05F, False, False, 4, 0,,,, 3)
             End If
 
             Dim q2 As CameraQueryObject = New CameraQueryObject(New Vector3(14, 0, 15), New Vector3(13, 0, 15), 0.05F, 0.05F, MathHelper.PiOver2, -0.8F, 0.0F, 0.0F, 0.05F, 0.05F)
@@ -490,7 +490,7 @@
                 Dim BallThrowOwn As AnimationQueryObject = New AnimationQueryObject(Me.OwnPokemonNPC, False)
 
                 BallThrowOwn.AnimationPlaySound("Battle\Pokeball\Throw", 0, 0)
-                BallThrowOwn.AnimationMove(Nothing, False, 0, 0.5, 0, 0.5, False, False, 2, 0,,, 3)
+                BallThrowOwn.AnimationMove(Nothing, False, 0, 0.5, 0, 0.5, False, False, 2, 0,,,, 3)
 
                 Dim BallThrowEntity As Entity = BallThrowOwn.SpawnEntity(New Vector3(-2, -0.15, 0), Me.OwnPokemon.CatchBall.Texture, New Vector3(0.3F), 1.0F)
                 BallThrowOwn.AnimationMove(BallThrowEntity, True, 0, CSng(0.35 + OwnAnimationOffsetY), 0, 0.1, False, True, 0F, 0.5F,, 0.3, 0.025F)
@@ -519,7 +519,7 @@
                 BallThrowOwn.AnimationPlaySound(CStr(Me.OwnPokemon.Number), 4, 0,, True)
 
                 '  Pokémon falls down
-                BallThrowOwn.AnimationMove(Nothing, False, 0, 0, 0, 0.05F, False, False, 5, 0,,, 3)
+                BallThrowOwn.AnimationMove(Nothing, False, 0, -0.5F, 0, 0.05F, False, False, 5, 0,,,, 3)
                 Me.BattleQuery.Add(BallThrowOwn)
             End If
 
