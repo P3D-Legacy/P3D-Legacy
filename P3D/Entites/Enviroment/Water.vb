@@ -141,7 +141,7 @@
 
     Private Sub Surf()
         If Screen.Camera.Turning = False Then
-            If Screen.Level.Surfing = False Then
+            If Screen.Level.Surfing = False AndAlso CType(CurrentScreen, OverworldScreen).ActionScript.IsReady = True Then
                 If Badge.CanUseHMMove(Badge.HMMoves.Surf) = True Or GameController.IS_DEBUG_ACTIVE = True Or Core.Player.SandBoxMode = True Then
                     If Screen.ChooseBox.Showing = False Then
                         Dim canSurf As Boolean = False
