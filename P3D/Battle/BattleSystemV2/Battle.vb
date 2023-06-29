@@ -5455,9 +5455,8 @@
 
                         BattleScreen.BattleQuery.AddRange({cq1, cq2})
 
-                        If BattleScreen.OppFaint = False Then
-                            StartRound(BattleScreen)
-                        End If
+                        StartRound(BattleScreen)
+
                         BattleScreen.ClearMainMenuTime = True
                         BattleScreen.ClearMoveMenuTime = True
                     Case 1 'Own round
@@ -7406,6 +7405,9 @@
                 End With
 
                 .OwnPokemon.Ability.SwitchOut(.OwnPokemon)
+                If Core.Player.ShowBattleAnimations = 0 OrElse BattleScreen.IsPVPBattle = True Then
+                    BattleScreen.AddToQuery(InsertIndex, New ToggleEntityQueryObject(True, ToggleEntityQueryObject.BattleEntities.OwnPokemon, 2, -1, -1, -1, -1))
+                End If
 
                 If Core.Player.CountFightablePokemon > 0 Then
                     If BattleScreen.OwnFaint Then
@@ -7484,16 +7486,16 @@
                     Loop While SmokeReturned <= 38
                 End If
 
-                ' Pokemon disappears
-                BallReturn.AnimationFade(Nothing, False, 1, False, 0, 1, 0)
                 If Core.Player.ShowBattleAnimations <> 0 AndAlso BattleScreen.IsPVPBattle = False Then
-
+                    ' Pokemon disappears
+                    BallReturn.AnimationFade(Nothing, False, 1, False, 0, 1, 0)
                     ' Ball returns
                     BallReturn.AnimationPlaySound("Battle\Pokeball\Throw", 1, 0)
                     Dim BallReturnEntity As Entity = BallReturn.SpawnEntity(New Vector3(0, 0 + PositionOffsetY, 0), BattleScreen.OwnPokemon.CatchBall.Texture, New Vector3(0.3F), 1.0F)
                     BallReturn.AnimationMove(BallReturnEntity, True, -2, 0 + PositionOffsetY, 0, 0.1, False, True, 1, 0,, 0.3)
+                    BattleScreen.AddToQuery(InsertIndex, BallReturn)
                 End If
-                BattleScreen.AddToQuery(InsertIndex, BallReturn)
+
 
                 Dim index As Integer = NewPokemonIndex
                 If index <= -1 Then
@@ -7524,6 +7526,12 @@
                     BattleScreen.AddToQuery(InsertIndex, New ToggleEntityQueryObject(True, ToggleEntityQueryObject.BattleEntities.OwnPokemon, PokemonForms.GetOverworldSpriteName(BattleScreen.OwnPokemon), 0, 1, -1, -1))
                 Else
                     BattleScreen.AddToQuery(InsertIndex, New ToggleEntityQueryObject(True, ownModel, 1, 0, -1, -1))
+                End If
+
+                If Core.Player.ShowBattleAnimations = 0 OrElse BattleScreen.IsPVPBattle = True Then
+                    ' Pokemon appears
+                    BattleScreen.AddToQuery(InsertIndex, New ToggleEntityQueryObject(True, ToggleEntityQueryObject.BattleEntities.OwnPokemon, 1, -1, -1, -1, -1))
+                    BattleScreen.BattleQuery.Add(New PlaySoundQueryObject(BattleScreen.OwnPokemon.Number.ToString(), True))
                 End If
 
                 BattleScreen.AddToQuery(InsertIndex, New TextQueryObject("Go, " & BattleScreen.OwnPokemon.GetDisplayName() & "!"))
@@ -7563,13 +7571,10 @@
                     BallThrow.AnimationPlaySound(CStr(BattleScreen.OwnPokemon.Number), 4, 0,, True)
                     '  Pokémon falls down
                     BallThrow.AnimationMove(Nothing, False, 0, -0.5F + PositionOffsetY, 0, 0.05F, False, False, 5, 0,,,, 3)
-                Else
-                    ' Pokemon appears
-                    BallThrow.AnimationFade(Nothing, False, 1, True, 1, 0, 0)
-                    BallThrow.AnimationPlaySound(CStr(BattleScreen.OwnPokemon.Number), 0, 0,, True)
-                End If
 
-                BattleScreen.AddToQuery(InsertIndex, BallThrow)
+
+                    BattleScreen.AddToQuery(InsertIndex, BallThrow)
+                End If
             End If
 
             With BattleScreen
@@ -7955,7 +7960,7 @@
                 Dim oppModel As String = BattleScreen.GetModelName(False)
                 'Switch BattleStyle
                 If BattleScreen.FieldEffects.OwnDigCounter = 0 AndAlso BattleScreen.FieldEffects.OwnFlyCounter = 0 AndAlso BattleScreen.FieldEffects.OwnDiveCounter = 0 Then
-                    If Core.Player.BattleStyle <> 1 And OppStep.StepType <> RoundConst.StepTypes.Switch And BattleScreen.IsPVPBattle = False Then
+                    If Core.Player.BattleStyle <> 1 AndAlso OppStep.StepType <> RoundConst.StepTypes.Switch AndAlso BattleScreen.IsPVPBattle = False Then
                         BattleScreen.BattleQuery.Add(New SwitchPokemonQueryObject(BattleScreen, BattleScreen.OppPokemon))
                         BattleScreen.Battle.ChangeCameraAngle(1, False, BattleScreen)
                     End If
@@ -7967,6 +7972,9 @@
                 End If
 
                 BattleScreen.BattleQuery.Add(New ToggleEntityQueryObject(True, ToggleEntityQueryObject.BattleEntities.OppPokemon, 1, -1, -1, -1, -1))
+                If Core.Player.ShowBattleAnimations = 0 OrElse BattleScreen.IsPVPBattle = True Then
+                    BattleScreen.BattleQuery.Add(New PlaySoundQueryObject(BattleScreen.OppPokemon.Number.ToString(), True))
+                End If
                 BattleScreen.BattleQuery.Add(New TextQueryObject(BattleScreen.Trainer.Name & ": ""Go, " & BattleScreen.OppPokemon.GetDisplayName() & "!"""))
 
                 Dim BallThrow As AnimationQueryObject = New AnimationQueryObject(BattleScreen.OppPokemonNPC, False)
@@ -8004,12 +8012,9 @@
                     BallThrow.AnimationPlaySound(CStr(BattleScreen.OppPokemon.Number), 4, 0,, True)
                     '  Pokémon falls down
                     BallThrow.AnimationMove(Nothing, False, 0, -0.5F, 0, 0.05F, False, False, 5, 0)
-                Else
-                    ' Pokemon appears
-                    BallThrow.AnimationFade(Nothing, False, 1, True, 1, 0, 0)
-                    BallThrow.AnimationPlaySound(CStr(BattleScreen.OppPokemon.Number), 0, 0,, True)
+                    BattleScreen.BattleQuery.Add(BallThrow)
                 End If
-                BattleScreen.BattleQuery.Add(BallThrow)
+
                 Dim cq1 As ScreenFadeQueryObject = New ScreenFadeQueryObject(ScreenFadeQueryObject.FadeTypes.Vertical, Color.Black, True, 16)
                 Dim cq2 As ScreenFadeQueryObject = New ScreenFadeQueryObject(ScreenFadeQueryObject.FadeTypes.Vertical, Color.Black, False, 16)
                 cq2.PassThis = True
@@ -8100,7 +8105,7 @@
                     End If
                 End If
 
-                If Core.Player.BattleStyle = 1 AndAlso BattleScreen.IsPVPBattle = False Then
+                If Core.Player.BattleStyle = 1 OrElse BattleScreen.IsPVPBattle = True Then
                     BattleScreen.HasSwitchedOwn = False
                     StartRound(BattleScreen)
                 End If
