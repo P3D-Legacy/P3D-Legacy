@@ -1277,7 +1277,7 @@ TryAgain:
             End If
 
             If Delay = 0 Then
-                If GameState = States.QuitQuestion Then
+                If GameState = States.QuitQuestion OrElse GameState = States.GameWon Then
                     TotalCoins += CurrentCoins
                     CurrentFlips = 0
 
@@ -1286,12 +1286,19 @@ TryAgain:
                 Delay = 5
             End If
             If Delay > 3 Then
-                If CurrentLevel < PreviousLevel Then
-                    TextBox.Show(Localization.GetString("VoltorbFlip_NewLevel_Lower1", "Dropped to Game Lv.") & " " & CurrentLevel & Localization.GetString("VoltorbFlip_NewLevel_Lower2", "!"))
+                If Core.Player.Coins + TotalCoins > 50000 Then
+                    If CurrentLevel < PreviousLevel Then
+                        TextBox.Show(Localization.GetString("VoltorbFlip_NewLevel_Lower1", "Dropped to Game Lv.") & " " & CurrentLevel & Localization.GetString("VoltorbFlip_NewLevel_Lower2", "!"))
+                    End If
+                    GameState = States.Closing
+                    ChooseBox.readyForResult = False
+                Else
+                    If CurrentLevel < PreviousLevel Then
+                        TextBox.Show(Localization.GetString("VoltorbFlip_NewLevel_Lower1", "Dropped to Game Lv.") & " " & CurrentLevel & Localization.GetString("VoltorbFlip_NewLevel_Lower2", "!"))
+                    End If
+                    ChooseBox.readyForResult = False
+                    GameState = States.NewLevelQuestion
                 End If
-
-                ChooseBox.readyForResult = False
-                GameState = States.NewLevelQuestion
             End If
         End Sub
     End Class

@@ -303,6 +303,10 @@
                 Case "addcoins"
                     Dim coins As Integer = int(argument)
 
+                    If Core.Player.Coins + coins > 50000 Then
+                        coins = 50000 - Core.Player.Coins
+                    End If
+
                     Core.Player.Coins += coins
 
                     If coins > 0 Then
