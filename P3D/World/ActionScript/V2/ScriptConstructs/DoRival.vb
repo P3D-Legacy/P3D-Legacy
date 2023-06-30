@@ -13,6 +13,8 @@
             Select Case command.ToLower()
                 Case "name"
                     Return Core.Player.RivalName
+                Case "skin"
+                    Return Core.Player.RivalSkin
             End Select
 
             Return DEFAULTNULL

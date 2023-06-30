@@ -494,6 +494,7 @@ Namespace ScriptVersion2
                                                New ScriptArgument("facing", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Warps the player to a new location on a new map and changes the facing afterwards. To get relative coordinates, enter a ""~""."))
             r(New ScriptCommand("player", "stopmovement", "Stops the player movement."))
             r(New ScriptCommand("player", "addmoney", {New ScriptArgument("amount", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Adds the given amount to the player's money."))
+            r(New ScriptCommand("player", "addcoins", {New ScriptArgument("amount", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Adds the given amount to the player's coins."))
             r(New ScriptCommand("player", "setspeed", {New ScriptArgument("speed", ScriptArgument.ArgumentTypes.Sng)}.ToList(), "Sets the speed of the player. The default is ""1""."))
             r(New ScriptCommand("player", "resetspeed", "Resets the walking speed of the player to the default speed, which is ""1""."))
             r(New ScriptCommand("player", "setmovement", {New ScriptArgument("x", ScriptArgument.ArgumentTypes.Int),
@@ -523,8 +524,9 @@ Namespace ScriptVersion2
             r(New ScriptCommand("player", "facing", "int", "Returns the direction the player is facing.", ",", True))
             r(New ScriptCommand("player", "compass", "str", "Returns ""north"", ""east"", ""south"" or ""east"" depending on the direction the player is facing.", ",", True))
             r(New ScriptCommand("player", "money", "int", "Returns the player's money.", ",", True))
+            r(New ScriptCommand("player", "coins", "int", "Returns the player's coins.", ",", True))
             r(New ScriptCommand("player", "name", "str", "Returns the player's name", ",", True))
-            r(New ScriptCommand("player", "gender", "int", "Returns the player's gender (0=male, 1=female)", ",", True))
+            r(New ScriptCommand("player", "gender", "str", "Returns the player's gender (Male, Female, Other)", ",", True))
             r(New ScriptCommand("player", "bp", "int", "Returns the amount of Battle Points the player owns.", ",", True))
             r(New ScriptCommand("player", "badges", "int", "Returns the amount of Badges the player owns", ",", True))
             r(New ScriptCommand("player", "thirdperson", "bool", "Returns if the game is currently played in third person.", ",", True))
@@ -632,6 +634,7 @@ Namespace ScriptVersion2
         Private Shared Sub DoRival()
             ' Constructs:
             r(New ScriptCommand("rival", "name", "str", "Returns the rival's name", "", True))
+            r(New ScriptCommand("rival", "skin", "str", "Returns the rival's skin", "", True))
         End Sub
 
         Private Shared Sub DoDaycare()
