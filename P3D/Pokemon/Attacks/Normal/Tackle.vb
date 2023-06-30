@@ -54,8 +54,8 @@
 
         Public Overrides Sub InternalUserPokemonMoveAnimation(ByVal BattleScreen As BattleScreen, ByVal BattleFlip As Boolean, ByVal CurrentPokemon As Pokemon, ByVal CurrentEntity As NPC)
             Dim MoveAnimation As AnimationQueryObject = New AnimationQueryObject(CurrentEntity, BattleFlip)
-            MoveAnimation.AnimationMove(Nothing, False, -0.5F, 0, 0, 0.3F, False, False, 0, 0,,, 2)
-            MoveAnimation.AnimationMove(Nothing, False, 0, 0, 0, 0.3F, False, False, 1.5, 0,,, 2)
+            MoveAnimation.AnimationMove(Nothing, False, -0.5F, 0, 0, 0.035F, False, False, 0, 0)
+            MoveAnimation.AnimationMove(Nothing, False, 0.5F, 0, 0, 0.06F, False, False, 1.25, 0)
             BattleScreen.BattleQuery.Add(MoveAnimation)
         End Sub
 

@@ -145,17 +145,31 @@
 					End If
 				Else
 					If EasedOut = False Then
-						If InterpolationSpeed > 0.05F OrElse InterpolationYSpeed > 0.05F Then
-							If InterpolationSpeed > 0.05F Then
-								InterpolationSpeed = MathHelper.Lerp(InterpolationSpeed, 0.0F, 0.9F)
-							End If
-							If InterpolationYSpeed > 0.05F Then
-								InterpolationYSpeed = MathHelper.Lerp(InterpolationYSpeed, 0.0F, 0.9F)
+						If MoveDistance.X <= 0.05F AndAlso MoveDistance.Y <= 0.05F AndAlso MoveDistance.Z <= 0.05F Then
+							If InterpolationSpeed > 0.05F OrElse InterpolationYSpeed > 0.05F Then
+								If InterpolationSpeed > 0.05F Then
+									InterpolationSpeed = MathHelper.Lerp(InterpolationSpeed, 0.0F, 0.9F)
+								End If
+								If InterpolationYSpeed > 0.05F Then
+									InterpolationYSpeed = MathHelper.Lerp(InterpolationYSpeed, 0.0F, 0.9F)
+								End If
+							Else
+								InterpolationYSpeed = 0
+								InterpolationSpeed = 0
+								EasedOut = True
 							End If
 						Else
-							InterpolationYSpeed = 0
-							InterpolationSpeed = 0
-							EasedOut = True
+							If InterpolationSpeed > 0.05F + MoveSpeed / 10 * 3 OrElse InterpolationYSpeed > 0.05F + MoveYSpeed / 10 * 3 Then
+								If InterpolationSpeed > 0.05F + MoveSpeed / 10 * 3 Then
+									InterpolationSpeed = MathHelper.Lerp(InterpolationSpeed, 0.0F, 0.9F)
+								End If
+								If InterpolationYSpeed > 0.05F + MoveYSpeed / 10 * 3 Then
+									InterpolationYSpeed = MathHelper.Lerp(InterpolationYSpeed, 0.0F, 0.9F)
+								End If
+							Else
+								InterpolationYSpeed = MoveSpeed / 10 * 3
+								InterpolationSpeed = MoveSpeed / 10 * 3
+							End If
 						End If
 					End If
 				End If
