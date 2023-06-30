@@ -55,7 +55,7 @@
             Dim MoveAnimation As AnimationQueryObject = New AnimationQueryObject(CurrentEntity, BattleFlip)
             MoveAnimation.AnimationPlaySound("Battle\Attacks\Grass\VineWhip_Start", 0.5, 2.5)
             MoveAnimation.AnimationMove(Nothing, False, 0, 0, -0.1, 0.025, False, False, 0, 0.5)
-            MoveAnimation.AnimationMove(Nothing, False, 0, 0, 0, 0.025, False, False, 0.75, 0)
+            MoveAnimation.AnimationMove(Nothing, False, 0, 0, 0.1, 0.025, False, False, 0.75, 0)
             BattleScreen.BattleQuery.Add(MoveAnimation)
         End Sub
 

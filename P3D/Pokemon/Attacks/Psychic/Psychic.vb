@@ -77,10 +77,10 @@
             MoveAnimation.AnimationBackground(TextureManager.GetTexture("Textures\Battle\Psychic\PsychicBackground"), 0, 0, 1.5F, 0.6F, 0.075F, 0.075F, True, 11, 2, 6)
 
             MoveAnimation.AnimationMove(Nothing, False, 0, 0, -0.1, 0.025, False, False, 1, 0.5)
-            MoveAnimation.AnimationMove(Nothing, False, 0, 0, 0.1, 0.025, False, False, 1.75, 0.5)
-            MoveAnimation.AnimationMove(Nothing, False, 0, 0, -0.1, 0.025, False, False, 2.75, 0.5)
-            MoveAnimation.AnimationMove(Nothing, False, 0, 0, 0.1, 0.025, False, False, 3.75, 0.5)
-            MoveAnimation.AnimationMove(Nothing, False, 0, 0, 0, 0.025, False, False, 4.5, 0.5)
+            MoveAnimation.AnimationMove(Nothing, False, 0, 0, 0.2, 0.025, False, False, 1.75, 0.5)
+            MoveAnimation.AnimationMove(Nothing, False, 0, 0, -0.2, 0.025, False, False, 2.75, 0.5)
+            MoveAnimation.AnimationMove(Nothing, False, 0, 0, 0.2, 0.025, False, False, 3.75, 0.5)
+            MoveAnimation.AnimationMove(Nothing, False, 0, 0, -0.1, 0.025, False, False, 4.5, 0.5)
 
             BattleScreen.BattleQuery.Add(MoveAnimation)
         End Sub
