@@ -609,6 +609,7 @@ Public Class GameMode
         gameRules.Add(New GameRule("SavingDisabled", "0"))
         gameRules.Add(New GameRule("SingleUseTM", "0"))
         gameRules.Add(New GameRule("CanForgetHM", "0"))
+        gameRules.Add(New GameRule("CoinCaseCap", "0"))
 
         gameMode._gameRules = gameRules
 

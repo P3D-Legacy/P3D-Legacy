@@ -303,8 +303,8 @@
                 Case "addcoins"
                     Dim coins As Integer = int(argument)
 
-                    If Core.Player.Coins + coins > 50000 Then
-                        coins = 50000 - Core.Player.Coins
+                    If CInt(GameModeManager.GetGameRuleValue("CoinCaseCap", "0")) > 0 AndAlso Core.Player.Coins + coins > CInt(GameModeManager.GetGameRuleValue("CoinCaseCap", "0")) Then
+                        coins = CInt(GameModeManager.GetGameRuleValue("CoinCaseCap", "0")) - Core.Player.Coins
                     End If
 
                     Core.Player.Coins += coins

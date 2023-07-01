@@ -1034,8 +1034,8 @@ TryAgain:
 
             'Completed the level
             If GameState = States.GameWon Then
-                If Core.Player.Coins + TotalCoins > 50000 Then
-                    TotalCoins = 50000 - Core.Player.Coins
+                If CInt(GameModeManager.GetGameRuleValue("CoinCaseCap", "0")) > 0 AndAlso Core.Player.Coins + TotalCoins > CInt(GameModeManager.GetGameRuleValue("CoinCaseCap", "0")) Then
+                    TotalCoins = CInt(GameModeManager.GetGameRuleValue("CoinCaseCap", "0")) - Core.Player.Coins
                     CurrentCoins = 0
                     TextBox.Show(Localization.GetString("VoltorbFlip_MaxCoins", "Your Coin Case can't fit~any more Coin(s)!"))
                     Quit()
@@ -1286,7 +1286,7 @@ TryAgain:
                 Delay = 5
             End If
             If Delay > 3 Then
-                If Core.Player.Coins + TotalCoins > 50000 Then
+                If CInt(GameModeManager.GetGameRuleValue("CoinCaseCap", "0")) > 0 AndAlso Core.Player.Coins + TotalCoins > CInt(GameModeManager.GetGameRuleValue("CoinCaseCap", "0")) Then
                     If CurrentLevel < PreviousLevel Then
                         TextBox.Show(Localization.GetString("VoltorbFlip_NewLevel_Lower1", "Dropped to Game Lv.") & " " & CurrentLevel & Localization.GetString("VoltorbFlip_NewLevel_Lower2", "!"))
                     End If

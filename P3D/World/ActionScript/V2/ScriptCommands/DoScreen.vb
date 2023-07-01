@@ -284,7 +284,10 @@
                     CanContinue = False
                 Case "voltorbflip"
                     If Core.Player.Inventory.GetItemAmount(54.ToString) > 0 Then
-                        If Core.Player.Coins < 50000 Then
+                        If CInt(GameModeManager.GetGameRuleValue("CoinCaseCap", "0")) > 0 AndAlso Core.Player.Coins > CInt(GameModeManager.GetGameRuleValue("CoinCaseCap", "0")) Then
+                            Screen.TextBox.Show(Localization.GetString("VoltorbFlip_BeforeGame_FullCoinCase", "Your Coin Case is already full!"))
+                            IsReady = True
+                        Else
                             If VoltorbFlip.VoltorbFlipScreen.TotalCoins = -1 Then
                                 Core.SetScreen(New VoltorbFlip.VoltorbFlipScreen(CurrentScreen))
                             End If
@@ -303,10 +306,6 @@
                                     IsReady = True
                                 End If
                             End If
-
-                        Else
-                            Screen.TextBox.Show(Localization.GetString("VoltorbFlip_BeforeGame_FullCoinCase", "Your Coin Case is already full!"))
-                            IsReady = True
                         End If
                     Else
                         Screen.TextBox.Show(Localization.GetString("VoltorbFlip_BeforeGame_NoCoinCase", "You don't have a Coin Case!~Come back when you have one!"))
