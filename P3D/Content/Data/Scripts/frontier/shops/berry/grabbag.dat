@@ -1,0 +1,29 @@
+version=2
+@text.show(Want to get a berry grab bag?)
+@options.SetCancelIndex(3)
+@options.show(Standard Bag 5 BP,Special Bag 10 BP,Info,Exit)
+	:when:Standard Bag 5 BP
+		@storage.set(integer,berryloop,0)
+		:while:15><storage.get(integer,berryloop)>
+			@storage.set(integer,berrytogive,<system.random(2000,2067)>)
+			@item.give(<storage.get(integer,berrytogive)>,1)
+			@item.messagegive(<storage.get(integer,berrytogive)>,1)
+			@storage.set(integer,berryloop,<storage.get(integer,berryloop)>+1)
+		:endwhile
+	:when:Special Bag 10 BP
+		@storage.set(integer,berryloop,0)
+		:while:10><storage.get(integer,berryloop)>
+			@storage.set(integer,berrytogive,<system.random(2029,2067)>)
+			:if:2035><storage.get(integer,berrytogive)>
+				@storage.set(integer,berrytogive,<storage.get(integer,berrytogive)>-9)
+			:endif
+			@item.give(<storage.get(integer,berrytogive)>,1)
+			@item.messagegive(<storage.get(integer,berrytogive)>,1)
+			@storage.set(integer,berryloop,<storage.get(integer,berryloop)>+1)
+		:endwhile
+	:when:Info
+		@text.show(If you choose the standard bag you will get 15 berries chosen completely at random.*If you choose the special bag you will get 10 of the best berries.)
+	:when:Exit
+		:endscript
+:endwhen
+@script.start(frontier\shops\berrybag)
