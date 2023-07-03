@@ -18,6 +18,8 @@
 {52|alola|Alolan ||_alola|Regional,9,0|_alola|_alola|||}
 {52|galar|Galarian ||_galar|Regional,0,2|_galar|_galar|||}
 {53|alola|Alolan ||_alola|Regional,10,0|_alola|_alola|||}
+{58|hisui|Hisuian ||_hisui|Regional,0,4|_hisui|_hisui|||}
+{59|hisui|Hisuian ||_hisui|Regional,1,4|_hisui|_hisui|||}
 {65|mega|Mega ||_mega|Megas,4,0|_mega|_mega|||}
 {74|alola|Alolan ||_alola|Regional,11,0|_alola|_alola|||}
 {75|alola|Alolan ||_alola|Regional,12,0|_alola|_alola|||}
@@ -31,6 +33,8 @@
 {88|alola|Alolan ||_alola|Regional,14,0|_alola|_alola|||}
 {89|alola|Alolan ||_alola|Regional,15,0|_alola|_alola|||}
 {94|mega|Mega ||_mega|Megas,5,0|_mega|_mega|||}
+{100|hisui|Hisuian ||_hisui|Regional,2,4|_hisui|_hisui|||}
+{101|hisui|Hisuian ||_hisui|Regional,3,4|_hisui|_hisui|||}
 {103|alola|Alolan ||_alola|Regional,0,1|_alola|_alola|||}
 {105|alola|Alolan ||_alola|Regional,1,1|_alola|_alola|||}
 {110|galar|Galarian ||_galar|Regional,6,2|_galar|_galar|||}
@@ -44,6 +48,7 @@
 {146|galar|Galarian ||_galar|Regional,10,2|_galar|_galar|||}
 {150|mega_x|Mega | X|_mega_x|Megas,10,0|_mega_x|_mega_x|||}
 {150|mega_y|Mega | Y|_mega_y|Megas,11,0|_mega_y|_mega_y|||}
+{157|hisui|Hisuian ||_hisui|Regional,4,4|_hisui|_hisui|||}
 {172|spiky-eared|||_spiky-eared|OtherForms,0,2|_spiky-eared|_spiky-eared|||}
 {181|mega|Mega ||_mega|Megas,12,0|_mega|_mega|||}
 {199|galar|Galarian ||_galar|Regional,11,2|_galar|_galar|||}
@@ -77,8 +82,10 @@
 {201|26||||Unown,10,1|_question|-question|||}
 {201|27||||Unown,11,1|_exclamation|-exclamation|||}
 {208|mega|Mega ||_mega|Megas,15,1|_mega|_mega|||}
+{211|hisui|Hisuian ||_hisui|Regional,5,4|_hisui|_hisui|||}
 {212|mega|Mega ||_mega|Megas,13,0|_mega|_mega|||}
 {214|mega|Mega ||_mega|Megas,14,0|_mega|_mega|||}
+{215|hisui|Hisuian ||_hisui|Regional,6,4|_hisui|_hisui|||}
 {222|galar|Galarian ||_galar|Regional,12,2|_galar|_galar|||}
 {229|mega|Mega ||_mega|Megas,15,0|_mega|_mega|||}
 {248|mega|Mega ||_mega|Megas,0,1|_mega|_mega|||}
@@ -150,13 +157,17 @@
 {493|Item;281||||Arceus,12,0|_rock|_rock|||rock}
 {493|Item;282||||Arceus,7,0|_poison|_poison|||poison}
 {493|Item;283||||Arceus,3,0|_electric|_electric|||electric}
+{503|hisui|Hisuian ||_hisui|Regional,7,4|_hisui|_hisui|||}
 {531|mega|Mega ||_mega|Megas,14,2|_mega|_mega|||}
+{549|hisui|Hisuian ||_hisui|Regional,8,4|_hisui|_hisui|||}
 {550||||||_white|_white||Random;white;blue|}
 {550|white|||||_white|_white|||}
 {550|blue|||_blue|OtherForms,0,5|_blue|_blue|||}
 {554|galar|Galarian ||_galar|Regional,15,2|_galar|_galar|||}
 {555|galar|Galarian ||_galar|Regional,0,3|_galar|_galar|||}
 {562|galar|Galarian ||_galar|Regional,1,3|_galar|_galar|||}
+{570|hisui|Hisuian ||_hisui|Regional,9,4|_hisui|_hisui|||}
+{571|hisui|Hisuian ||_hisui|Regional,10,4|_hisui|_hisui|||}
 {585|Season;0||||OtherForms,5,5|_wi|_wi||Season;0|}
 {585|Season;1|||||_sp|_sp||Season;1|}
 {585|Season;2||||OtherForms,3,5|_su|_su||Season;2|}
@@ -169,6 +180,8 @@
 {592|Gender;1||||Gender,1,0|_f|_f||Gender;1|}
 {593|Gender;0|||||_m|_m||Gender;0|}
 {593|Gender;1||||Gender,2,0|_f|_f||Gender;1|}
+{618|galar|Galarian ||_galar|Regional,2,3|_galar|_galar|||}
+{628|hisui|Hisuian ||_hisui|Regional,11,4|_hisui|_hisui|||}
 {641|therian|||_therian|OtherForms,9,5|_therian|_therian|||}
 {642|therian|||_therian|OtherForms,10,5|_therian|_therian|||}
 {645|therian|||_therian|OtherForms,11,5|_therian|_therian|||}
@@ -217,5 +230,9 @@
 {671|orange||||OtherForms,11,7|_orange|_orange|||}
 {671|white||||OtherForms,12,7|_white|_white|||}
 {681|blade|||_blade|OtherForms,6,8|_blade|_blade|||}
-{720|unbound|||_unbound|OtherForms,0,9|_unbound|_unbound|||}
+{705|hisui|Hisuian ||_hisui|Regional,12,4|_hisui|_hisui|||}
+{706|hisui|Hisuian ||_hisui|Regional,13,4|_hisui|_hisui|||}
+{713|hisui|Hisuian ||_hisui|Regional,14,4|_hisui|_hisui|||}
 {719|mega|Mega ||_mega|Megas,15,2|_mega|_mega|||}
+{720|unbound|||_unbound|OtherForms,0,9|_unbound|_unbound|||}
+{724|hisui|Hisuian ||_hisui|Regional,15,4|_hisui|_hisui|||}

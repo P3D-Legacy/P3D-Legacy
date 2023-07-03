@@ -6286,7 +6286,7 @@ Public Class PokemonForms
         Inherits PokemonForm
 
         Public Sub New()
-            MyBase.New(52159)
+            MyBase.New(215)
         End Sub
 
         Public Overrides Function GetSheetName(P As Pokemon) As String
