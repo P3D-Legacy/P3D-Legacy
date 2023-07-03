@@ -3710,7 +3710,7 @@ Public Class PokemonForms
             Select Case P.AdditionalData.ToLower()
                 Case "blue"
                     Return New Vector2(0, 5)
-                Case "White"
+                Case "white"
                     Return New Vector2(15, 4)
                 Case Else
                     Return MyBase.GetMenuImagePosition(P)
