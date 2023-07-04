@@ -1,0 +1,13 @@
+version=2
+@text.show(These items can help power up your training!)
+
+@options.show(Buy,Cancel)
+	:when:Buy
+		@screen.trade({581|-1|40}{582|-1|40}{583|-1|40}{584|-1|40}{585|-1|40}{586|-1|40}{587|-1|40},1,0,bp)
+		@text.show(Thank you.)
+		:end
+	:when:Cancel
+		@text.show(Come back to train with power!)
+		:end
+:endwhen
+:end

@@ -1,0 +1,13 @@
+version=2
+@text.show(These items will heal or protect your precios Pokémon.)
+
+@options.show(Buy,Cancel)
+	:when:Buy
+		@screen.trade({119|-1|20}{146|-1|20},1,0,bp)
+		@text.show(Thank you.)
+		:end
+	:when:Cancel
+		@text.show(We hope to see you~again!)
+		:end
+:endwhen
+:end

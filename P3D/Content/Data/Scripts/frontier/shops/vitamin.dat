@@ -1,0 +1,13 @@
+version=2
+@text.show(I have the best medicines you can get to enhance your Pokemon's battle prowess!)
+
+@options.show(Buy,Cancel)
+	:when:Buy
+		@screen.trade({26|-1|10}{27|-1|10}{28|-1|10}{31|-1|10}{25|-1|10}{29|-1|10}{32|-1|25}{62|-1|10}{502|-1|20},1,0,bp)
+		@text.show(Thank you.)
+		:end
+	:when:Cancel
+		@text.show(Come back for all of your medicinal needs!)
+		:end
+:endwhen
+:end

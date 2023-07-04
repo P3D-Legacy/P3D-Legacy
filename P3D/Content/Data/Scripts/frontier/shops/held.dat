@@ -1,0 +1,13 @@
+version=2
+@text.show()
+
+@options.show(Yes,No)
+	:when:Yes
+		@screen.trade({298|-1|20}{591|-1|20}{30|-1|10}{73|-1|20}{140|-1|10}{171|-1|10}{74|-1|10},1,0,bp)
+		@text.show(Thank you.)
+		:end
+	:when:No
+		@text.show()
+		:end
+:endwhen
+:end

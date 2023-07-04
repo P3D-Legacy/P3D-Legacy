@@ -1,0 +1,13 @@
+version=2
+@text.show(I stock the best comumable items availbe!*Buy some so I don't eat them all!)
+
+@options.show(Buy,Cancel)
+	:when:Buy
+		@screen.trade({589|-1|15}{588|-1|15}{594|-1|15}{595|-1|15},1,0,bp)
+		@text.show(Thank you.)
+		:end
+	:when:Cancel
+		@text.show(buurrrrp*Someone better buy~some before I eat them all.)
+		:end
+:endwhen
+:end

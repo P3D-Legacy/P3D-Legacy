@@ -1,0 +1,13 @@
+version=2
+@text.show(Fill out your movesets with these useful attacks.)
+
+@options.show(Buy,Cancel)
+	:when:Buy
+		@screen.trade({387|1|30}{388|1|45}{389|1|45}{395|1|30}{402|1|40}{416|1|45}{418|1|30}{439|1|45}{441|1|30}{479|1|45},1,0,bp,bftms)
+		@text.show(Thank you.)
+		:end
+	:when:Cancel
+		@text.show(We hope to see you~again!)
+		:end
+:endwhen
+:end

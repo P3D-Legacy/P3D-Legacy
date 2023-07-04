@@ -1,0 +1,13 @@
+version=2
+@text.show(These items should help awaken the potential of your pokemon.)
+
+@options.show(Buy,Cancel)
+	:when:Buy
+		@screen.trade({162|-1|15}{167|-1|15}{151|-1|15}{185|-1|15}{120|-1|15}{82|-1|15}{100|-1|15}{143|-1|15}{179|-1|15}{83|-1|15}{141|-1|15}{184|-1|15}{183|-1|15}{84|-1|15}{172|-1|15}{503|-1|15}{504|-1|15},1,0,bp)
+		@text.show(Thank you.)
+		:end
+	:when:Cancel
+		@text.show(Have a blessed day.)
+		:end
+:endwhen
+:end
