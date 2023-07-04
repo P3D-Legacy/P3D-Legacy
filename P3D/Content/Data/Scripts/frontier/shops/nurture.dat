@@ -1,0 +1,13 @@
+version=2
+@text.show(Master both nature and nurture with these items!*Do you want to buy~anything?)
+
+@options.show(Yes,No)
+	:when:Yes
+		@screen.trade({677|-1|40}{112|-1|40}{126|-1|40}{148|-1|40},1,0,bp)
+		@text.show(Thank you.)
+		:end
+	:when:No
+		@text.show(Raise you pokemon with love and care!)
+		:end
+:endwhen
+:end
