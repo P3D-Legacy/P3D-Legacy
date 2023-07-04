@@ -1,5 +1,7 @@
-# {DexNumber|InPartyFormTriggers|FormNamePrefix|FormNameSuffix|DataFileSuffix|MenuIconFile,X_Coordinate,Y_Coordinate|FrontBackSpriteFileSuffix|OverworldSpriteFileSuffix|CrySuffix|WildFormTriggers|TypeChange}
-# "InPartyFormTriggers" & "WildFormTriggers" can take an array of the following value types (separated by commas): Random;String1;String2 (etc.) / Random;MinValue-MaxValue / Gender;GenderID / Season;SeasonID / Environment;EnvironmentTypeID / Item;ItemID
+# {DexNumber|InPartyFormTriggers|FormNamePrefix|FormNameSuffix|DataFileSuffix|MenuIconFile,X_Coordinate,Y_Coordinate|FrontBackSpriteFileSuffix|OverworldSpriteFileSuffix|CryFileSuffix|WildFormTriggers|TypeChange}
+# "InPartyFormTriggers" can take one or an array of the following value types (separated by commas): Gender;GenderID / Season;SeasonID / Environment;EnvironmentType1;EnvironmentType2 (etc.) / Item;ItemID
+# "WildFormTriggers" can take one or an array of the following value types (separated by commas): Random;String1;String2 (etc.) / Random;MinValue-MaxValue / Gender;GenderID / Season;SeasonID / Environment;EnvironmentType1;EnvironmentType2 (etc.)
+# "InPartyFormTriggers" can also take the AdditionalValue that would trigger this form if found on a Pokémon
 {3|mega|Mega ||_mega|Megas,0,0|_mega|_mega|||}
 {6|mega_x|Mega | X|_mega_x|Megas,1,0|_mega_x|_mega_x|||}
 {6|mega_y|Mega | Y|_mega_y|Megas,2,0|_mega_y|_mega_y|||}
