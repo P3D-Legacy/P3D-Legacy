@@ -249,13 +249,13 @@
 /processorParam:TextureFormat=Compressed
 /build:Models/Environment/Test_floor/Test_floor.obj
 
-#begin Models/Pokemon/Snorlax/Normal.fbx
+#begin Models/Pokemon/143/Normal.fbx
 /importer:FbxImporter
 /processor:ModelProcessor
 /processorParam:ColorKeyColor=0,0,0,0
 /processorParam:ColorKeyEnabled=True
 /processorParam:DefaultEffect=BasicEffect
-/processorParam:GenerateMipmaps=False
+/processorParam:GenerateMipmaps=True
 /processorParam:GenerateTangentFrames=False
 /processorParam:PremultiplyTextureAlpha=True
 /processorParam:PremultiplyVertexColors=True
@@ -266,15 +266,15 @@
 /processorParam:Scale=1
 /processorParam:SwapWindingOrder=False
 /processorParam:TextureFormat=Color
-/build:Models/Pokemon/Snorlax/Normal.fbx
+/build:Models/Pokemon/143/Normal.fbx
 
-#begin Models/Pokemon/Snorlax/Shiny.fbx
+#begin Models/Pokemon/143/Shiny.fbx
 /importer:FbxImporter
 /processor:ModelProcessor
 /processorParam:ColorKeyColor=0,0,0,0
 /processorParam:ColorKeyEnabled=True
 /processorParam:DefaultEffect=BasicEffect
-/processorParam:GenerateMipmaps=False
+/processorParam:GenerateMipmaps=True
 /processorParam:GenerateTangentFrames=False
 /processorParam:PremultiplyTextureAlpha=True
 /processorParam:PremultiplyVertexColors=True
@@ -285,7 +285,31 @@
 /processorParam:Scale=1
 /processorParam:SwapWindingOrder=False
 /processorParam:TextureFormat=Color
-/build:Models/Pokemon/Snorlax/Shiny.fbx
+/build:Models/Pokemon/143/Shiny.fbx
+
+#begin Models/Pokemon/143/Snorlax_Normal.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Models/Pokemon/143/Snorlax_Normal.png
+
+#begin Models/Pokemon/143/Snorlax_Shiny.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Models/Pokemon/143/Snorlax_Shiny.png
 
 #begin Models/SeaPlane/SeaPlane.fbx
 /importer:FbxImporter

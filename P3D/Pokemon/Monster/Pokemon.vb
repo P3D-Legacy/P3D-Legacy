@@ -209,7 +209,7 @@ Public Class Pokemon
         End Set
     End Property
 
-    Private Property Name() As String
+    Public Property Name() As String
         Get
             Return Me._name
         End Get
@@ -556,8 +556,70 @@ Public Class Pokemon
 
 #End Region
 
-    Public Type1 As Element
-    Public Type2 As Element
+    Public Property Type1 As Element
+        Get
+            Dim TypeAddition As String = PokemonForms.GetTypeAdditionFromItem(Me)
+            Select Case TypeAddition.ToLower
+                Case "type;normal"
+                    Return New Element(Element.Types.Normal)
+                Case "type;fighting"
+                    Return New Element(Element.Types.Fighting)
+                Case "type;flying"
+                    Return New Element(Element.Types.Flying)
+                Case "type;poison"
+                    Return New Element(Element.Types.Poison)
+                Case "type;ground"
+                    Return New Element(Element.Types.Ground)
+                Case "type;rock"
+                    Return New Element(Element.Types.Rock)
+                Case "type;bug"
+                    Return New Element(Element.Types.Bug)
+                Case "type;ghost"
+                    Return New Element(Element.Types.Ghost)
+                Case "type;steel"
+                    Return New Element(Element.Types.Steel)
+                Case "type;fire"
+                    Return New Element(Element.Types.Fire)
+                Case "type;water"
+                    Return New Element(Element.Types.Water)
+                Case "type;grass"
+                    Return New Element(Element.Types.Grass)
+                Case "type;electric"
+                    Return New Element(Element.Types.Electric)
+                Case "type;psychic"
+                    Return New Element(Element.Types.Psychic)
+                Case "type;ice"
+                    Return New Element(Element.Types.Ice)
+                Case "type;dragon"
+                    Return New Element(Element.Types.Dragon)
+                Case "type;dark"
+                    Return New Element(Element.Types.Dark)
+                Case "type;fairy"
+                    Return New Element(Element.Types.Fairy)
+                Case "type;shadow"
+                    Return New Element(Element.Types.Shadow)
+                Case Else
+                    Return _type1
+            End Select
+        End Get
+        Set(value As Element)
+            _type1 = value
+        End Set
+    End Property
+    Public Property Type2 As Element
+        Get
+            If PokemonForms.GetTypeAdditionFromItem(Me) <> "" Then
+                Return New Element(Element.Types.Blank)
+            Else
+                Return _type2
+            End If
+        End Get
+        Set(value As Element)
+            _type2 = value
+        End Set
+    End Property
+    Private _type1 As Element
+    Private _type2 As Element
     Public StartItems As New Dictionary(Of Item, Integer)
     Public AttackLearns As New Dictionary(Of Integer, BattleSystem.Attack)
     Public EggMoves As New List(Of Integer)
@@ -1213,7 +1275,7 @@ Public Class Pokemon
     ''' <summary>
     ''' Empties the cached textures.
     ''' </summary>
-    Private Sub ClearTextures()
+    Public Sub ClearTextures()
         Textures.Clear()
         Textures.AddRange({Nothing, Nothing, Nothing, Nothing, Nothing, Nothing, Nothing, Nothing, Nothing, Nothing})
         RaiseEvent TexturesCleared(Me, New EventArgs())
@@ -1305,7 +1367,6 @@ Public Class Pokemon
     ''' Loads definition data from the data files and empties the temp textures.
     ''' </summary>
     Public Sub ReloadDefinitions()
-
         Me.LoadDefinitions(Me.Number, Me.AdditionalData)
         Me.ClearTextures()
     End Sub
@@ -2246,7 +2307,11 @@ Public Class Pokemon
     ''' </summary>
     Public Property OriginalName As String
         Get
-            Return Me.Name
+            If PokemonForms.GetFormName(Me) <> "" Then
+                Return PokemonForms.GetFormName(Me)
+            Else
+                Return Me.Name
+            End If
         End Get
         Set(value As String)
             Me.Name = value
@@ -2514,10 +2579,8 @@ Public Class Pokemon
     ''' 9=shiny overworld
     ''' 10=normal,front,animation</param>
     Private Function GetTexture(ByVal index As Integer) As Texture2D
-        Dim TextureNumberSuffix As String = ""
-        If Me.AnimationName.Contains("_") Then
-            TextureNumberSuffix = AnimationName.Remove(0, OriginalName.Length)
-        End If
+        Dim TextureNumberSuffix As String = PokemonForms.GetFrontBackSpriteFileSuffix(Me)
+
         If Textures(index) Is Nothing Then
             Select Case index
                 Case 0
@@ -2864,7 +2927,7 @@ Public Class Pokemon
             Pitch = -1.0F
         End If
 
-        SoundManager.PlayPokemonCry(Me.Number, Pitch, 0F)
+        SoundManager.PlayPokemonCry(Me.Number, Pitch, 0F, PokemonForms.GetCrySuffix(Me))
     End Sub
 
     ''' <summary>

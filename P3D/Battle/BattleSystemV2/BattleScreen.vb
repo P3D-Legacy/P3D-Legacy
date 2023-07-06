@@ -200,6 +200,14 @@
                 Core.Player.Pokemons.Add(p1)
             End If
 
+            For i = 0 To Core.Player.Pokemons.Count - 1
+                Dim FormData As String = PokemonForms.GetFormDataInParty(Core.Player.Pokemons(i))
+                If FormData <> "" AndAlso PokemonForms.GetTypeAdditionFromItem(Core.Player.Pokemons(i)) = "" Then
+                    Core.Player.Pokemons(i).LoadDefinitions(Core.Player.Pokemons(i).Number, FormData)
+                    Core.Player.Pokemons(i).ClearTextures()
+                End If
+            Next
+
             Dim meIndex As Integer = 0
             For i = 0 To Core.Player.Pokemons.Count - 1
                 If Core.Player.Pokemons(i).IsEgg() = False And Core.Player.Pokemons(i).HP > 0 And Core.Player.Pokemons(i).Status <> Pokemon.StatusProblems.Fainted Then
@@ -327,6 +335,14 @@
                 p1.Generate(15, True)
                 Core.Player.Pokemons.Add(p1)
             End If
+
+            For i = 0 To Core.Player.Pokemons.Count - 1
+                Dim FormData As String = PokemonForms.GetFormDataInParty(Core.Player.Pokemons(i))
+                If FormData <> "" AndAlso PokemonForms.GetTypeAdditionFromItem(Core.Player.Pokemons(i)) = "" Then
+                    Core.Player.Pokemons(i).LoadDefinitions(Core.Player.Pokemons(i).Number, FormData)
+                    Core.Player.Pokemons(i).ClearTextures()
+                End If
+            Next
 
             Dim meIndex As Integer = 0
             For i = 0 To Core.Player.Pokemons.Count - 1
@@ -573,6 +589,14 @@
                 Core.Player.Pokemons.Add(p1)
             End If
 
+            For i = 0 To Core.Player.Pokemons.Count - 1
+                Dim FormData As String = PokemonForms.GetFormDataInParty(Core.Player.Pokemons(i))
+                If FormData <> "" AndAlso PokemonForms.GetTypeAdditionFromItem(Core.Player.Pokemons(i)) = "" Then
+                    Core.Player.Pokemons(i).LoadDefinitions(Core.Player.Pokemons(i).Number, FormData)
+                    Core.Player.Pokemons(i).ClearTextures()
+                End If
+            Next
+
             Dim meIndex As Integer = 0
             For i = 0 To Core.Player.Pokemons.Count - 1
                 If Core.Player.Pokemons(i).IsEgg() = False And Core.Player.Pokemons(i).HP > 0 And Core.Player.Pokemons(i).Status <> Pokemon.StatusProblems.Fainted Then
@@ -685,6 +709,14 @@
                 p1.Generate(15, True)
                 Core.Player.Pokemons.Add(p1)
             End If
+
+            For i = 0 To Core.Player.Pokemons.Count - 1
+                Dim FormData As String = PokemonForms.GetFormDataInParty(Core.Player.Pokemons(i))
+                If FormData <> "" AndAlso PokemonForms.GetTypeAdditionFromItem(Core.Player.Pokemons(i)) = "" Then
+                    Core.Player.Pokemons(i).LoadDefinitions(Core.Player.Pokemons(i).Number, FormData)
+                    Core.Player.Pokemons(i).ClearTextures()
+                End If
+            Next
 
             Dim meIndex As Integer = 0
             For i = 0 To Core.Player.Pokemons.Count - 1

@@ -53,7 +53,12 @@
                             End If
                         Next
 
-                        Dim PokemonID As Integer = int(argument.GetSplit(0))
+                        Dim PokemonID As String = argument.GetSplit(0)
+                        Dim PokemonAddition As String = "xXx"
+                        If PokemonID.Contains("_") Then
+                            PokemonAddition = argument.GetSplit(0).GetSplit(1, "_")
+                            PokemonID = argument.GetSplit(0, "_")
+                        End If
                         Dim Level As Integer = int(argument.GetSplit(1))
 
                         Dim catchMethod As String = "random reason"
@@ -102,8 +107,8 @@
                             isShiny = CBool(argument.GetSplit(8))
                         End If
 
-                        Dim Pokemon As Pokemon = Pokemon.GetPokemonByID(PokemonID)
-                        Pokemon.Generate(Level, True)
+                        Dim Pokemon As Pokemon = Pokemon.GetPokemonByID(int(PokemonID), PokemonAddition)
+                        Pokemon.Generate(Level, True, PokemonAddition)
 
                         Pokemon.CatchTrainerName = catchTrainer
                         Pokemon.OT = Core.Player.OT
@@ -878,7 +883,12 @@
                             End If
                         Next
 
-                        Dim PokemonID As Integer = int(argument.GetSplit(0))
+                        Dim PokemonID As String = argument.GetSplit(0)
+                        Dim PokemonAddition As String = ""
+                        If PokemonID.Contains("_") Then
+                            PokemonAddition = argument.GetSplit(1, "_")
+                            PokemonID = argument.GetSplit(0, "_")
+                        End If
                         Dim Level As Integer = int(argument.GetSplit(1))
 
                         Dim catchMethod As String = "random reason"
@@ -927,7 +937,7 @@
                             isShiny = CBool(argument.GetSplit(8))
                         End If
 
-                        Dim Pokemon As Pokemon = Pokemon.GetPokemonByID(PokemonID)
+                        Dim Pokemon As Pokemon = Pokemon.GetPokemonByID(int(PokemonID), PokemonAddition)
                         Pokemon.Generate(Level, True)
 
                         Pokemon.CatchTrainerName = catchTrainer

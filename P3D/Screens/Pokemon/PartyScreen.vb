@@ -156,10 +156,24 @@ Public Class PartyScreen
                 Next
             Else
                 For Each p As Pokemon In Core.Player.Pokemons
+                    Dim FormData As String = PokemonForms.GetFormDataInParty(p)
+                    If FormData <> "" AndAlso PokemonForms.GetTypeAdditionFromItem(p) = "" Then
+                        p.LoadDefinitions(p.Number, FormData)
+                        p.ClearTextures()
+                    End If
                     Me.PokemonList.Add(Pokemon.GetPokemonByData(p.GetSaveData()))
                 Next
             End If
         Else
+            For Each p As Pokemon In Core.Player.Pokemons
+                Dim FormData As String = PokemonForms.GetFormDataInParty(p)
+                If FormData <> "" Then
+                    If FormData <> "" AndAlso PokemonForms.GetTypeAdditionFromItem(p) = "" Then
+                        p.LoadDefinitions(p.Number, FormData)
+                        p.ClearTextures()
+                    End If
+                End If
+            Next
             Me.PokemonList = Core.Player.Pokemons
         End If
     End Sub
