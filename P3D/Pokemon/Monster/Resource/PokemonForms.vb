@@ -154,8 +154,10 @@ Public Class PokemonForms
     Public Shared Function GetInitialAdditionalData(ByVal P As Pokemon) As String
         If _pokemonList.Count > 0 Then
             For Each listP In _pokemonList
-                If listP.IsNumber(P.Number) = True AndAlso listP.ValueMatch(P.AdditionalData) Then
-                    Return listP.GetInitialAdditionalData(P)
+                If listP.IsNumber(P.Number) = True Then
+                    If listP.GetSeasonFormMatch(True) = "match" OrElse listP.GetGenderFormMatch(P, True) = "match" OrElse (listP.GetSeasonFormMatch(True) = "" AndAlso listP.GetGenderFormMatch(P, True) = "" AndAlso listP.ValueMatch(P.AdditionalData)) Then
+                        Return listP.GetInitialAdditionalData(P)
+                    End If
                 End If
             Next
         End If
@@ -165,8 +167,20 @@ Public Class PokemonForms
     Public Shared Function GetFormDataInParty(ByVal P As Pokemon) As String
         If _pokemonList.Count > 0 Then
             For Each listP In _pokemonList
-                If listP.IsNumber(P.Number) = True AndAlso listP.ValueMatch(P.AdditionalData) Then
-                    Return listP.GetFormDataInParty(P)
+                If listP.IsNumber(P.Number) = True Then
+                    If listP.GetSeasonFormMatch() = "match" OrElse listP.GetGenderFormMatch(P) = "match" OrElse (listP.GetSeasonFormMatch() = "" AndAlso listP.GetGenderFormMatch(P) = "" AndAlso listP.ValueMatch(P.AdditionalData)) Then
+                        Return listP.GetFormDataInParty(P)
+                    End If
+                End If
+            Next
+        End If
+        Return ""
+    End Function
+    Public Shared Function GetGenderFormMatch(ByVal P As Pokemon) As String
+        If _pokemonList.Count > 0 Then
+            For Each listP In _pokemonList
+                If listP.IsNumber(P.Number) = True AndAlso listP.GetGenderFormMatch(P) = "match" Then
+                    Return listP.GetGenderFormMatch(P)
                 End If
             Next
         End If
@@ -182,17 +196,6 @@ Public Class PokemonForms
         End If
         Return ""
     End Function
-    Public Shared Function GetSeasonFormMatch(ByVal P As Pokemon) As String
-        If _pokemonList.Count > 0 Then
-            For Each listP In _pokemonList
-                If listP.IsNumber(P.Number) = True AndAlso listP.GetSeasonFormMatch() <> "nomatch" Then
-                    Return listP.GetSeasonFormMatch()
-                End If
-            Next
-        End If
-        Return ""
-    End Function
-
 
     ''' <summary>
     ''' Returns the Animation Name of the Pokémon, the path to its Sprite/Model files.
@@ -203,7 +206,7 @@ Public Class PokemonForms
                 If listP.IsNumber(P.Number) = True Then
                     Dim TypeAddition As String = GetTypeAdditionFromItem(P)
 
-                    If GetTypeAdditionFromItem(P) <> "" OrElse listP.GetSeasonFormMatch() = "match" OrElse (listP.GetSeasonFormMatch() = "" AndAlso listP.TypeChange = Element.Types.Blank AndAlso listP.ValueMatch(P.AdditionalData) = True) Then
+                    If GetTypeAdditionFromItem(P) <> "" OrElse listP.GetSeasonFormMatch() = "match" OrElse listP.GetGenderFormMatch(P) = "match" OrElse (listP.GetSeasonFormMatch() = "" AndAlso listP.GetGenderFormMatch(P) = "" AndAlso listP.TypeChange = Element.Types.Blank AndAlso listP.ValueMatch(P.AdditionalData) = True) Then
                         Return listP.GetAnimationName(P).ToLower
                     End If
                 End If
@@ -220,7 +223,7 @@ Public Class PokemonForms
         If _pokemonList.Count > 0 Then
             For Each listP In _pokemonList
                 If listP.IsNumber(P.Number) = True Then
-                    If listP.GetSeasonFormMatch() = "match" OrElse (listP.GetSeasonFormMatch() = "" AndAlso listP.ValueMatch(P.AdditionalData)) Then
+                    If listP.GetSeasonFormMatch() = "match" OrElse listP.GetGenderFormMatch(P) = "match" OrElse (listP.GetSeasonFormMatch() = "" AndAlso listP.GetGenderFormMatch(P) = "" AndAlso listP.ValueMatch(P.AdditionalData)) Then
                         Return listP.GetCrySuffix(P)
                     End If
                 End If
@@ -236,7 +239,7 @@ Public Class PokemonForms
         If _pokemonList.Count > 0 Then
             For Each listP In _pokemonList
                 If listP.IsNumber(P.Number) = True Then
-                    If listP.GetSeasonFormMatch() = "match" OrElse (listP.GetSeasonFormMatch() = "" AndAlso listP.ValueMatch(P.AdditionalData)) Then
+                    If listP.GetSeasonFormMatch() = "match" OrElse listP.GetGenderFormMatch(P) = "match" OrElse (listP.GetSeasonFormMatch() = "" AndAlso listP.GetGenderFormMatch(P) = "" AndAlso listP.ValueMatch(P.AdditionalData)) Then
                         Return listP.GetFormName(P)
                     End If
                 End If
@@ -248,7 +251,7 @@ Public Class PokemonForms
         If _pokemonList.Count > 0 Then
             For Each listP In _pokemonList
                 If listP.IsNumber(P.Number) = True Then
-                    If GetTypeAdditionFromItem(P) <> "" OrElse listP.GetSeasonFormMatch() = "match" OrElse (listP.GetSeasonFormMatch() = "" AndAlso listP.TypeChange = Element.Types.Blank AndAlso listP.ValueMatch(P.AdditionalData) = True) Then
+                    If GetTypeAdditionFromItem(P) <> "" OrElse listP.GetSeasonFormMatch() = "match" OrElse listP.GetGenderFormMatch(P) = "match" OrElse (listP.GetSeasonFormMatch() = "" AndAlso listP.GetGenderFormMatch(P) = "" AndAlso listP.TypeChange = Element.Types.Blank AndAlso listP.ValueMatch(P.AdditionalData) = True) Then
                         Return listP.GetFrontBackSpriteFileSuffix(P)
                     End If
                 End If
@@ -264,7 +267,7 @@ Public Class PokemonForms
         If _pokemonList.Count > 0 Then
             For Each listP In _pokemonList
                 If listP.IsNumber(P.Number) = True Then
-                    If GetTypeAdditionFromItem(P) <> "" OrElse listP.GetSeasonFormMatch() = "match" OrElse (listP.GetSeasonFormMatch() = "" AndAlso listP.TypeChange = Element.Types.Blank AndAlso listP.ValueMatch(P.AdditionalData) = True) Then
+                    If GetTypeAdditionFromItem(P) <> "" OrElse listP.GetSeasonFormMatch() = "match" OrElse listP.GetGenderFormMatch(P) = "match" OrElse (listP.GetSeasonFormMatch() = "" AndAlso listP.GetGenderFormMatch(P) = "" AndAlso listP.TypeChange = Element.Types.Blank AndAlso listP.ValueMatch(P.AdditionalData) = True) Then
                         Return listP.GetSheetName(P)
                     End If
                 End If
@@ -299,7 +302,7 @@ Public Class PokemonForms
         If _pokemonList.Count > 0 Then
             For Each listP In _pokemonList
                 If listP.IsNumber(P.Number) = True Then
-                    If GetTypeAdditionFromItem(P) <> "" OrElse listP.GetSeasonFormMatch() = "match" OrElse (listP.GetSeasonFormMatch() = "" AndAlso listP.TypeChange = Element.Types.Blank AndAlso listP.ValueMatch(P.AdditionalData) = True) Then
+                    If GetTypeAdditionFromItem(P) <> "" OrElse listP.GetSeasonFormMatch() = "match" OrElse listP.GetGenderFormMatch(P) = "match" OrElse (listP.GetSeasonFormMatch() = "" AndAlso listP.GetGenderFormMatch(P) = "" AndAlso listP.TypeChange = Element.Types.Blank AndAlso listP.ValueMatch(P.AdditionalData) = True) Then
                         Return listP.GetMenuImagePosition(P)
                     End If
                 End If
@@ -362,7 +365,7 @@ Public Class PokemonForms
             For Each listP In _pokemonList
 
                 If listP.IsNumber(P.Number) = True Then
-                    If GetTypeAdditionFromItem(P) <> "" OrElse listP.GetSeasonFormMatch() = "match" OrElse (listP.GetSeasonFormMatch() = "" AndAlso listP.TypeChange = Element.Types.Blank AndAlso listP.ValueMatch(P.AdditionalData) = True) Then
+                    If GetTypeAdditionFromItem(P) <> "" OrElse listP.GetSeasonFormMatch() = "match" OrElse listP.GetGenderFormMatch(P) = "match" OrElse (listP.GetSeasonFormMatch() = "" AndAlso listP.GetGenderFormMatch(P) = "" AndAlso listP.TypeChange = Element.Types.Blank AndAlso listP.ValueMatch(P.AdditionalData) = True) Then
                         Return listP.GetOverworldAddition(P)
                     End If
                 End If
@@ -456,8 +459,12 @@ Public Class PokemonForms
                                 Return CStr(trigger(Core.Random.Next(randomMin, randomMax)))
                             End If
                         ElseIf trigger(0).ToLower = "gender" Then
-                            If P.Gender = CType(CInt(trigger(1)), Pokemon.Genders) Then
-                                Return AdditionalValue
+                            If GetGenderFormMatch(P, True) = "match" Then
+                                If TypeChange <> Element.Types.Blank Then
+                                    Return TypeChange.ToString
+                                Else
+                                    Return AdditionalValue
+                                End If
                             End If
                         ElseIf trigger(0).ToLower = "season" Then
                             If GetSeasonFormMatch(true) = "match" Then
@@ -488,7 +495,7 @@ Public Class PokemonForms
                     If InPartyFormTriggers(i).Contains(";") Then
                         Dim trigger() As String = InPartyFormTriggers(i).Split(";")
                         If trigger(0).ToLower = "gender" Then
-                            If P.Gender = CType(CInt(trigger(1)), Pokemon.Genders) Then
+                            If GetGenderFormMatch(P) = "match" Then
                                 If TypeChange <> Element.Types.Blank Then
                                     Return TypeChange.ToString
                                 Else
@@ -587,6 +594,36 @@ Public Class PokemonForms
                         Dim trigger() As String = WildFormTriggers(i).Split(";")
                         If trigger(0).ToLower = "season" Then
                             If World.CurrentSeason = CType(CInt(trigger(1)), World.Seasons) Then
+                                Return "match"
+                            Else
+                                Return "nomatch"
+                            End If
+                        End If
+                    Next
+                End If
+            End If
+            Return ""
+        End Function
+        Public Function GetGenderFormMatch(ByVal P As Pokemon, Optional ByVal initial As Boolean = False) As String
+            If initial = False Then
+                If InPartyFormTriggers.Count > 0 Then
+                    For i = 0 To InPartyFormTriggers.Count - 1
+                        Dim trigger() As String = InPartyFormTriggers(i).Split(";")
+                        If trigger(0).ToLower = "gender" Then
+                            If P.Gender = CType(CInt(trigger(1)), Pokemon.Genders) Then
+                                Return "match"
+                            Else
+                                Return "nomatch"
+                            End If
+                        End If
+                    Next
+                End If
+            Else
+                If WildFormTriggers.Count > 0 Then
+                    For i = 0 To WildFormTriggers.Count - 1
+                        Dim trigger() As String = WildFormTriggers(i).Split(";")
+                        If trigger(0).ToLower = "gender" Then
+                            If P.Gender = CType(CInt(trigger(1)), Pokemon.Genders) Then
                                 Return "match"
                             Else
                                 Return "nomatch"

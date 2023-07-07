@@ -161,6 +161,9 @@ Public Class PartyScreen
                         p.LoadDefinitions(p.Number, FormData)
                         p.ClearTextures()
                     End If
+                    If PokemonForms.GetGenderFormMatch(p) = "match" Then
+                        p.ClearTextures()
+                    End If
                     Me.PokemonList.Add(Pokemon.GetPokemonByData(p.GetSaveData()))
                 Next
             End If
@@ -172,6 +175,9 @@ Public Class PartyScreen
                         p.LoadDefinitions(p.Number, FormData)
                         p.ClearTextures()
                     End If
+                End If
+                If PokemonForms.GetGenderFormMatch(p) = "match" Then
+                    p.ClearTextures()
                 End If
             Next
             Me.PokemonList = Core.Player.Pokemons
