@@ -182,6 +182,16 @@ Public Class PokemonForms
         End If
         Return ""
     End Function
+    Public Shared Function GetSeasonFormMatch(ByVal P As Pokemon) As String
+        If _pokemonList.Count > 0 Then
+            For Each listP In _pokemonList
+                If listP.IsNumber(P.Number) = True AndAlso listP.GetSeasonFormMatch() <> "nomatch" Then
+                    Return listP.GetSeasonFormMatch()
+                End If
+            Next
+        End If
+        Return ""
+    End Function
 
 
     ''' <summary>
@@ -193,7 +203,7 @@ Public Class PokemonForms
                 If listP.IsNumber(P.Number) = True Then
                     Dim TypeAddition As String = GetTypeAdditionFromItem(P)
 
-                    If GetTypeAdditionFromItem(P) <> "" OrElse (listP.TypeChange = Element.Types.Blank AndAlso listP.ValueMatch(P.AdditionalData) = True) Then
+                    If GetTypeAdditionFromItem(P) <> "" OrElse listP.GetSeasonFormMatch() = "match" OrElse (listP.GetSeasonFormMatch() = "" AndAlso listP.TypeChange = Element.Types.Blank AndAlso listP.ValueMatch(P.AdditionalData) = True) Then
                         Return listP.GetAnimationName(P).ToLower
                     End If
                 End If
@@ -209,8 +219,10 @@ Public Class PokemonForms
     Public Shared Function GetCrySuffix(ByVal P As Pokemon) As String
         If _pokemonList.Count > 0 Then
             For Each listP In _pokemonList
-                If listP.IsNumber(P.Number) = True AndAlso listP.ValueMatch(P.AdditionalData) Then
-                    Return listP.GetCrySuffix(P)
+                If listP.IsNumber(P.Number) = True Then
+                    If listP.GetSeasonFormMatch() = "match" OrElse (listP.GetSeasonFormMatch() = "" AndAlso listP.ValueMatch(P.AdditionalData)) Then
+                        Return listP.GetCrySuffix(P)
+                    End If
                 End If
             Next
         End If
@@ -223,8 +235,10 @@ Public Class PokemonForms
     Public Shared Function GetFormName(ByVal P As Pokemon) As String
         If _pokemonList.Count > 0 Then
             For Each listP In _pokemonList
-                If listP.IsNumber(P.Number) = True AndAlso listP.ValueMatch(P.AdditionalData) Then
-                    Return listP.GetFormName(P)
+                If listP.IsNumber(P.Number) = True Then
+                    If listP.GetSeasonFormMatch() = "match" OrElse (listP.GetSeasonFormMatch() = "" AndAlso listP.ValueMatch(P.AdditionalData)) Then
+                        Return listP.GetFormName(P)
+                    End If
                 End If
             Next
         End If
@@ -234,7 +248,7 @@ Public Class PokemonForms
         If _pokemonList.Count > 0 Then
             For Each listP In _pokemonList
                 If listP.IsNumber(P.Number) = True Then
-                    If GetTypeAdditionFromItem(P) <> "" OrElse (listP.TypeChange = Element.Types.Blank AndAlso listP.ValueMatch(P.AdditionalData) = True) Then
+                    If GetTypeAdditionFromItem(P) <> "" OrElse listP.GetSeasonFormMatch() = "match" OrElse (listP.GetSeasonFormMatch() = "" AndAlso listP.TypeChange = Element.Types.Blank AndAlso listP.ValueMatch(P.AdditionalData) = True) Then
                         Return listP.GetFrontBackSpriteFileSuffix(P)
                     End If
                 End If
@@ -250,7 +264,7 @@ Public Class PokemonForms
         If _pokemonList.Count > 0 Then
             For Each listP In _pokemonList
                 If listP.IsNumber(P.Number) = True Then
-                    If GetTypeAdditionFromItem(P) <> "" OrElse (listP.TypeChange = Element.Types.Blank AndAlso listP.ValueMatch(P.AdditionalData) = True) Then
+                    If GetTypeAdditionFromItem(P) <> "" OrElse listP.GetSeasonFormMatch() = "match" OrElse (listP.GetSeasonFormMatch() = "" AndAlso listP.TypeChange = Element.Types.Blank AndAlso listP.ValueMatch(P.AdditionalData) = True) Then
                         Return listP.GetSheetName(P)
                     End If
                 End If
@@ -285,7 +299,7 @@ Public Class PokemonForms
         If _pokemonList.Count > 0 Then
             For Each listP In _pokemonList
                 If listP.IsNumber(P.Number) = True Then
-                    If GetTypeAdditionFromItem(P) <> "" OrElse (listP.TypeChange = Element.Types.Blank AndAlso listP.ValueMatch(P.AdditionalData) = True) Then
+                    If GetTypeAdditionFromItem(P) <> "" OrElse listP.GetSeasonFormMatch() = "match" OrElse (listP.GetSeasonFormMatch() = "" AndAlso listP.TypeChange = Element.Types.Blank AndAlso listP.ValueMatch(P.AdditionalData) = True) Then
                         Return listP.GetMenuImagePosition(P)
                     End If
                 End If
@@ -348,7 +362,7 @@ Public Class PokemonForms
             For Each listP In _pokemonList
 
                 If listP.IsNumber(P.Number) = True Then
-                    If GetTypeAdditionFromItem(P) <> "" OrElse (listP.TypeChange = Element.Types.Blank AndAlso listP.ValueMatch(P.AdditionalData) = True) Then
+                    If GetTypeAdditionFromItem(P) <> "" OrElse listP.GetSeasonFormMatch() = "match" OrElse (listP.GetSeasonFormMatch() = "" AndAlso listP.TypeChange = Element.Types.Blank AndAlso listP.ValueMatch(P.AdditionalData) = True) Then
                         Return listP.GetOverworldAddition(P)
                     End If
                 End If
@@ -446,8 +460,12 @@ Public Class PokemonForms
                                 Return AdditionalValue
                             End If
                         ElseIf trigger(0).ToLower = "season" Then
-                            If World.CurrentSeason = CType(CInt(trigger(1)), World.Seasons) Then
-                                Return AdditionalValue
+                            If GetSeasonFormMatch(true) = "match" Then
+                                If TypeChange <> Element.Types.Blank Then
+                                    Return TypeChange.ToString
+                                Else
+                                    Return AdditionalValue
+                                End If
                             End If
                         ElseIf trigger(0).ToLower = "environment" Then
                             Dim environmentlist As New List(Of World.EnvironmentTypes)
@@ -478,7 +496,7 @@ Public Class PokemonForms
                                 End If
                             End If
                         ElseIf trigger(0).ToLower = "season" Then
-                            If World.CurrentSeason = CType(CInt(trigger(1)), World.Seasons) Then
+                            If GetSeasonFormMatch() = "match" Then
                                 If TypeChange <> Element.Types.Blank Then
                                     Return TypeChange.ToString
                                 Else
@@ -543,11 +561,39 @@ Public Class PokemonForms
                                     End If
                                 End If
                             End If
-                        ElseIf trigger(1) = "-1" Then
-                            Return CStr("default")
                         End If
                     End If
                 Next
+            End If
+            Return ""
+        End Function
+        Public Function GetSeasonFormMatch(Optional ByVal initial As Boolean = False) As String
+            If initial = False Then
+                If InPartyFormTriggers.Count > 0 Then
+                    For i = 0 To InPartyFormTriggers.Count - 1
+                        Dim trigger() As String = InPartyFormTriggers(i).Split(";")
+                        If trigger(0).ToLower = "season" Then
+                            If World.CurrentSeason = CType(CInt(trigger(1)), World.Seasons) Then
+                                Return "match"
+                            Else
+                                Return "nomatch"
+                            End If
+                        End If
+                    Next
+                End If
+            Else
+                If WildFormTriggers.Count > 0 Then
+                    For i = 0 To WildFormTriggers.Count - 1
+                        Dim trigger() As String = WildFormTriggers(i).Split(";")
+                        If trigger(0).ToLower = "season" Then
+                            If World.CurrentSeason = CType(CInt(trigger(1)), World.Seasons) Then
+                                Return "match"
+                            Else
+                                Return "nomatch"
+                            End If
+                        End If
+                    Next
+                End If
             End If
             Return ""
         End Function
