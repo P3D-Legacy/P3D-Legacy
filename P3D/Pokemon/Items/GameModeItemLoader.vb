@@ -45,12 +45,14 @@ Public Class GameModeItemLoader
 
         Dim setID As Boolean = False 'Controls if the item sets its ID.
         Dim setName As Boolean = False 'Controls if the item sets its ID.
+        Dim nonCommentLines As Integer = 0
 
         Try
             'Go through lines of the file and set the properties depending on the content.
             'Lines starting with # are comments.
             For Each l As String In content
                 If l.Contains("|") = True And l.StartsWith("#") = False Then
+                    nonCommentLines += 1
                     key = l.Remove(l.IndexOf("|"))
                     value = l.Remove(0, l.IndexOf("|") + 1)
 
@@ -163,52 +165,56 @@ Public Class GameModeItemLoader
             Logger.Log(Logger.LogTypes.ErrorMessage, "GameModeItemLoader.vb: Error loading GameMode Item from file """ & file & """: " & ex.Message & "; Last Key/Value pair successfully loaded: " & key & "|" & value)
         End Try
 
-        If setID = True AndAlso setName = True Then
-            If item.gmIsMegaStone = True AndAlso item.gmMegaPokemonNumber <> Nothing AndAlso item.gmDescription = "" Then
-                Dim MegaPokemonName As String = Pokemon.GetPokemonByID(item.gmMegaPokemonNumber, item.AdditionalData).GetName
-                item.gmDescription = "One variety of the mysterious Mega Stones. Have " & MegaPokemonName & " hold it, and this stone will enable it to Mega Evolve during battle."
-                item.gmCanBeTossed = False
-                item.gmCanBeTraded = False
-                item.gmCanBeUsed = False
-                item.gmCanBeUsedInBattle = False
-            End If
-            If item.gmIsTM = True AndAlso item.gmTeachMove IsNot Nothing AndAlso item.gmDescription = "" Then
-                Dim AttackName As String = item.gmTeachMove.Name
-                item.gmDescription = "Teaches """ & AttackName & """ to a Pokémon."
-                item.gmItemType = ItemTypes.Machines
-                item.gmCanBeHeld = False
-                item.gmCanBeTossed = True
-                item.gmCanBeTraded = True
-                item.gmCanBeUsed = True
-                item.gmCanBeUsedInBattle = False
-                If item.gmName.StartsWith("TM ") Then
-                    item.gmSortValue = CInt(item.gmName.Remove(0, 3)) + 190
-                ElseIf item.gmName.StartsWith("TM") Then
-                    item.gmSortValue = CInt(item.gmName.Remove(0, 2)) + 190
+        If nonCommentLines > 0 Then
+            If setID = True AndAlso setName = True Then
+                If item.gmIsMegaStone = True AndAlso item.gmMegaPokemonNumber <> Nothing AndAlso item.gmDescription = "" Then
+                    Dim MegaPokemonName As String = Pokemon.GetPokemonByID(item.gmMegaPokemonNumber, item.AdditionalData).GetName
+                    item.gmDescription = "One variety of the mysterious Mega Stones. Have " & MegaPokemonName & " hold it, and this stone will enable it to Mega Evolve during battle."
+                    item.gmCanBeTossed = False
+                    item.gmCanBeTraded = False
+                    item.gmCanBeUsed = False
+                    item.gmCanBeUsedInBattle = False
                 End If
-                If item.gmName.StartsWith("HM ") Then
-                    item.gmSortValue = -100000 + CInt(item.gmName.Remove(0, 3))
-                ElseIf item.gmName.StartsWith("HM") Then
-                    item.gmSortValue = -100000 + CInt(item.gmName.Remove(0, 2))
+                If item.gmIsTM = True AndAlso item.gmTeachMove IsNot Nothing AndAlso item.gmDescription = "" Then
+                    Dim AttackName As String = item.gmTeachMove.Name
+                    item.gmDescription = "Teaches """ & AttackName & """ to a Pokémon."
+                    item.gmItemType = ItemTypes.Machines
+                    item.gmCanBeHeld = False
+                    item.gmCanBeTossed = True
+                    item.gmCanBeTraded = True
+                    item.gmCanBeUsed = True
+                    item.gmCanBeUsedInBattle = False
+                    If item.gmName.StartsWith("TM ") Then
+                        item.gmSortValue = CInt(item.gmName.Remove(0, 3)) + 190
+                    ElseIf item.gmName.StartsWith("TM") Then
+                        item.gmSortValue = CInt(item.gmName.Remove(0, 2)) + 190
+                    End If
+                    If item.gmName.StartsWith("HM ") Then
+                        item.gmSortValue = -100000 + CInt(item.gmName.Remove(0, 3))
+                    ElseIf item.gmName.StartsWith("HM") Then
+                        item.gmSortValue = -100000 + CInt(item.gmName.Remove(0, 2))
+                    End If
+                    item.gmTextureSource = "Items\ItemSheet"
+                    item.SetTeachMoveTextureRectangle()
+
                 End If
-                item.gmTextureSource = "Items\ItemSheet"
-                item.SetTeachMoveTextureRectangle()
+                If item.gmTextureRectangle = Nothing Then
+                    Dim itemX As Integer = CInt(item.gmID.Remove(0, 2))
+                    Dim itemY As Integer = 0
+                    Dim sheetWidth As Integer = CInt(TextureManager.GetTexture(item.gmTextureSource).Width / 24)
 
+                    While itemX > sheetWidth - 1
+                        itemX -= sheetWidth
+                        itemY += 1
+                    End While
+                    item.gmTextureRectangle = New Rectangle(CInt(itemX * 24), CInt(itemY * 24), 24, 24)
+                End If
+                LoadedItems.Add(item) 'Add the item.
+            Else
+                Logger.Log(Logger.LogTypes.ErrorMessage, "GameModeItemLoader.vb: User defined Items must set their ID through the ""ID"" property and their Name through the ""Name"" property, however the item loaded from """ & file & """ has no ID or Name set so it will be ignored.")
             End If
-            If item.gmTextureRectangle = Nothing Then
-                Dim itemX As Integer = CInt(item.gmID.Remove(0, 2))
-                Dim itemY As Integer = 0
-                Dim sheetWidth As Integer = CInt(TextureManager.GetTexture(item.gmTextureSource).Width / 24)
-
-                While itemX > sheetWidth - 1
-                    itemX -= sheetWidth
-                    itemY += 1
-                End While
-                item.gmTextureRectangle = New Rectangle(CInt(itemX * 24), CInt(itemY * 24), 24, 24)
-            End If
-            LoadedItems.Add(item) 'Add the item.
         Else
-            Logger.Log(Logger.LogTypes.ErrorMessage, "GameModeItemLoader.vb: User defined Items must set their ID through the ""ID"" property and their Name through the ""Name"" property, however the item loaded from """ & file & """ has no ID or Name set so it will be ignored.")
+            Debug.Print("GameModeItemLoader.vb: The item loaded from """ & file & """ has no valid lines so it will be ignored.")
         End If
     End Sub
 

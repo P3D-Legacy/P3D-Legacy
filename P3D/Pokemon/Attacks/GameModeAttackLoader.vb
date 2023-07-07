@@ -45,12 +45,14 @@
             Dim value As String = ""
 
             Dim setID As Boolean = False 'Controls if the move sets its ID.
+            Dim nonCommentLines As Integer = 0
 
             Try
                 'Go through lines of the file and set the properties depending on the content.
                 'Lines starting with # are comments.
                 For Each l As String In content
                     If l.Contains("|") = True And l.StartsWith("#") = False Then
+                        nonCommentLines += 1
                         key = l.Remove(l.IndexOf("|"))
                         value = l.Remove(0, l.IndexOf("|") + 1)
 
@@ -188,19 +190,23 @@
                 Logger.Log(Logger.LogTypes.ErrorMessage, "GameModeAttackLoader.vb: Error loading GameMode move from file """ & file & """: " & ex.Message & "; Last Key/Value pair successfully loaded: " & key & "|" & value)
             End Try
 
-            If setID = True Then
-                If move.ID >= 1000 Then
-                    Dim testMove As Attack = Attack.GetAttackByID(move.ID)
-                    If testMove.IsDefaultMove = True Then
-                        LoadedMoves.Add(move) 'Add the move.
+            If nonCommentLines > 0 Then
+                If setID = True Then
+                    If move.ID >= 1000 Then
+                        Dim testMove As Attack = Attack.GetAttackByID(move.ID)
+                        If testMove.IsDefaultMove = True Then
+                            LoadedMoves.Add(move) 'Add the move.
+                        Else
+                            Logger.Log(Logger.LogTypes.ErrorMessage, "GameModeAttackLoader.vb: User defined moves are not allowed to have an ID of an already existing move or an ID below 1000. The ID for the move loaded from """ & file & """ has the ID " & move.ID.ToString() & ", which is the ID of an already existing move (" & testMove.Name & ").")
+                        End If
                     Else
-                        Logger.Log(Logger.LogTypes.ErrorMessage, "GameModeAttackLoader.vb: User defined moves are not allowed to have an ID of an already existing move or an ID below 1000. The ID for the move loaded from """ & file & """ has the ID " & move.ID.ToString() & ", which is the ID of an already existing move (" & testMove.Name & ").")
+                        Logger.Log(Logger.LogTypes.ErrorMessage, "GameModeAttackLoader.vb: User defined moves are not allowed to have an ID of an already existing move or an ID below 1000. The ID for the move loaded from """ & file & """ has the ID " & move.ID.ToString() & ", which is smaller than 1000.")
                     End If
                 Else
-                    Logger.Log(Logger.LogTypes.ErrorMessage, "GameModeAttackLoader.vb: User defined moves are not allowed to have an ID of an already existing move or an ID below 1000. The ID for the move loaded from """ & file & """ has the ID " & move.ID.ToString() & ", which is smaller than 1000.")
+                    Logger.Log(Logger.LogTypes.ErrorMessage, "GameModeAttackLoader.vb: User defined moves must set their ID through the ""ID"" property, however the move loaded from """ & file & """ has no ID set so it will be ignored.")
                 End If
             Else
-                Logger.Log(Logger.LogTypes.ErrorMessage, "GameModeAttackLoader.vb: User defined moves must set their ID through the ""ID"" property, however the move loaded from """ & file & """ has no ID set so it will be ignored.")
+                Debug.Print("GameModeAttackLoader.vb: The move loaded from """ & file & """ has no valid lines so it will be ignored.")
             End If
         End Sub
 
