@@ -2280,10 +2280,19 @@ Public Class Pokemon
             Return "Egg"
         Else
             If Me.NickName = "" Then
-                If Localization.TokenExists("pokemon_name_" & Me.Name) = True Then
-                    Return Localization.GetString("pokemon_name_" & Me.Name)
+                If PokemonForms.GetFormName(Me) <> "" Then
+                    Dim FormName As String = PokemonForms.GetFormName(Me)
+                    If Localization.TokenExists("pokemon_name_" & FormName) = True Then
+                        Return Localization.GetString("pokemon_name_" & FormName)
+                    Else
+                        Return FormName
+                    End If
                 Else
-                    Return Me.Name
+                    If Localization.TokenExists("pokemon_name_" & Me.Name) = True Then
+                        Return Localization.GetString("pokemon_name_" & Me.Name)
+                    Else
+                        Return Me.Name
+                    End If
                 End If
             Else
                 Return Me.NickName
@@ -2295,10 +2304,19 @@ Public Class Pokemon
     ''' Returns the properly translated name of a Pokémon if defined in the language files.
     ''' </summary>
     Public Function GetName() As String
-        If Localization.TokenExists("pokemon_name_" & Me.Name) = True Then
-            Return Localization.GetString("pokemon_name_" & Me.Name)
+        If PokemonForms.GetFormName(Me) <> "" Then
+            Dim FormName As String = PokemonForms.GetFormName(Me)
+            If Localization.TokenExists("pokemon_name_" & FormName) = True Then
+                Return Localization.GetString("pokemon_name_" & FormName)
+            Else
+                Return FormName
+            End If
         Else
-            Return Me.Name
+            If Localization.TokenExists("pokemon_name_" & Me.Name) = True Then
+                Return Localization.GetString("pokemon_name_" & Me.Name)
+            Else
+                Return Me.Name
+            End If
         End If
     End Function
 
