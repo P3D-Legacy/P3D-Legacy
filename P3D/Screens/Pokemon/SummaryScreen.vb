@@ -294,8 +294,16 @@
             'Get dex no:
             For Each pokedex In Core.Player.Pokedexes
                 If pokedex.IsActivated = True Then
-                    If pokedex.HasPokemon(GetPokemon().Number, True) Then
-                        pokedexNo = pokedex.GetPlace(GetPokemon().Number).ToString()
+                    Dim dexID As String = PokemonForms.GetPokemonDataFileName(GetPokemon().Number, GetPokemon().AdditionalData)
+                    If dexID.Contains("_") = False Then
+                        If PokemonForms.GetAdditionalDataForms(GetPokemon().Number) IsNot Nothing AndAlso PokemonForms.GetAdditionalDataForms(GetPokemon().Number).Contains(GetPokemon().AdditionalData) Then
+                            dexID = GetPokemon().Number & ";" & GetPokemon().AdditionalData
+                        Else
+                            dexID = GetPokemon().Number.ToString
+                        End If
+                    End If
+                    If pokedex.HasPokemon(dexID, True) Then
+                        pokedexNo = pokedex.GetPlace(dexID).ToString()
                     End If
                 End If
             Next

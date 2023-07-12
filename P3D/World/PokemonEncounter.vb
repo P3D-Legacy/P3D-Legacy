@@ -166,7 +166,15 @@ Public Class PokemonEncounter
                         End If
 
                         ' Register the wild Pokémon as Seen in the Pokédex:
-                        Core.Player.PokedexData = Pokedex.ChangeEntry(Core.Player.PokedexData, Pokemon.Number, 1)
+                        Dim dexID As String = PokemonForms.GetPokemonDataFileName(Pokemon.Number, Pokemon.AdditionalData)
+                        If dexID.Contains("_") = False Then
+                            If PokemonForms.GetAdditionalDataForms(Pokemon.Number) IsNot Nothing AndAlso PokemonForms.GetAdditionalDataForms(Pokemon.Number).Contains(Pokemon.AdditionalData) Then
+                                dexID = Pokemon.Number & ";" & Pokemon.AdditionalData
+                            Else
+                                dexID = Pokemon.Number.ToString
+                            End If
+                        End If
+                        Core.Player.PokedexData = Pokedex.ChangeEntry(Core.Player.PokedexData, dexID, 1)
 
                         ' Determine wild Pokémon intro type. If it's a Roaming Pokémon battle, set to 12:
                         Dim introType As Integer = Core.Random.Next(0, 10)

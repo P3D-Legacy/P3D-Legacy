@@ -220,7 +220,15 @@
             End If
 
             If DrawCaught = True Then
-                If Pokedex.GetEntryType(Core.Player.PokedexData, p.Number) > 1 Then
+                Dim dexID As String = PokemonForms.GetPokemonDataFileName(p.Number, p.AdditionalData)
+                If dexID.Contains("_") = False Then
+                    If PokemonForms.GetAdditionalDataForms(p.Number) IsNot Nothing AndAlso PokemonForms.GetAdditionalDataForms(p.Number).Contains(p.AdditionalData) Then
+                        dexID = p.Number & ";" & p.AdditionalData
+                    Else
+                        dexID = p.Number.ToString
+                    End If
+                End If
+                If Pokedex.GetEntryType(Core.Player.PokedexData, dexID) > 1 Then
                     Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Battle\Interface"), New Rectangle(CInt(pos.X) + caughtX, CInt(pos.Y) + 22, 20, 20), New Rectangle(0, 46, 10, 10), New Color(255, 255, 255, _moveMenuAlpha))
                 End If
             End If

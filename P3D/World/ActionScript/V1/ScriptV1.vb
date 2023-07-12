@@ -688,7 +688,16 @@
                     pokedexType = 3
                 End If
 
-                Core.Player.PokedexData = Pokedex.ChangeEntry(Core.Player.PokedexData, Pokemon.Number, pokedexType)
+                Dim dexID As String = PokemonForms.GetPokemonDataFileName(Pokemon.Number, Pokemon.AdditionalData)
+                If dexID.Contains("_") = False Then
+                    If PokemonForms.GetAdditionalDataForms(Pokemon.Number) IsNot Nothing AndAlso PokemonForms.GetAdditionalDataForms(Pokemon.Number).Contains(Pokemon.AdditionalData) Then
+                        dexID = Pokemon.Number & ";" & Pokemon.AdditionalData
+                    Else
+                        dexID = Pokemon.Number.ToString
+                    End If
+                End If
+
+                Core.Player.PokedexData = Pokedex.ChangeEntry(Core.Player.PokedexData, dexID, pokedexType)
             Case Me.Value.ToLower().StartsWith("townmap,")
                 Dim startRegion As String = Me.Value.GetSplit(1)
                 Core.SetScreen(New TransitionScreen(Core.CurrentScreen, New MapScreen(Core.CurrentScreen, startRegion, {"view"}), Color.Black, False))
@@ -701,7 +710,16 @@
                     If p.IsShiny = True Then
                         i = 3
                     End If
-                    Core.Player.PokedexData = Pokedex.ChangeEntry(Core.Player.PokedexData, p.Number, i)
+                    Dim dexID As String = PokemonForms.GetPokemonDataFileName(p.Number, p.AdditionalData)
+                    If dexID.Contains("_") = False Then
+                        If PokemonForms.GetAdditionalDataForms(p.Number) IsNot Nothing AndAlso PokemonForms.GetAdditionalDataForms(p.Number).Contains(p.AdditionalData) Then
+                            dexID = p.Number & ";" & p.AdditionalData
+                        Else
+                            dexID = p.Number.ToString
+                        End If
+                    End If
+
+                    Core.Player.PokedexData = Pokedex.ChangeEntry(Core.Player.PokedexData, dexID, i)
                 Next
             Case Me.Value.ToLower() = "receivepokegear"
                 Core.Player.HasPokegear = True
@@ -1006,7 +1024,15 @@
                 Dim p As Pokemon = Pokemon.GetPokemonByID(ID)
                 p.Generate(Level, True)
 
-                Core.Player.PokedexData = Pokedex.ChangeEntry(Core.Player.PokedexData, p.Number, 1)
+                Dim dexID As String = PokemonForms.GetPokemonDataFileName(p.Number, p.AdditionalData)
+                If dexID.Contains("_") = False Then
+                    If PokemonForms.GetAdditionalDataForms(p.Number) IsNot Nothing AndAlso PokemonForms.GetAdditionalDataForms(p.Number).Contains(p.AdditionalData) Then
+                        dexID = p.Number & ";" & p.AdditionalData
+                    Else
+                        dexID = p.Number.ToString
+                    End If
+                End If
+                Core.Player.PokedexData = Pokedex.ChangeEntry(Core.Player.PokedexData, dexID, 1)
 
                 Dim b As New BattleSystem.BattleScreen(p, Core.CurrentScreen, 0)
                 Core.SetScreen(New BattleIntroScreen(Core.CurrentScreen, b, Core.Random.Next(0, 10)))
@@ -1127,7 +1153,16 @@
                     pokedexType = 3
                 End If
 
-                Core.Player.PokedexData = Pokedex.ChangeEntry(Core.Player.PokedexData, Pokemon.Number, pokedexType)
+                Dim dexID As String = PokemonForms.GetPokemonDataFileName(Pokemon.Number, Pokemon.AdditionalData)
+                If dexID.Contains("_") = False Then
+                    If PokemonForms.GetAdditionalDataForms(Pokemon.Number) IsNot Nothing AndAlso PokemonForms.GetAdditionalDataForms(Pokemon.Number).Contains(Pokemon.AdditionalData) Then
+                        dexID = Pokemon.Number & ";" & Pokemon.AdditionalData
+                    Else
+                        dexID = Pokemon.Number.ToString
+                    End If
+                End If
+
+                Core.Player.PokedexData = Pokedex.ChangeEntry(Core.Player.PokedexData, dexID, pokedexType)
             Case "setadditionalvalue"
                 Dim Index As Integer = CInt(argument.GetSplit(0, ","))
                 Dim AdditionalValue As String = argument.GetSplit(1, ",")

@@ -357,10 +357,19 @@
                     D.Pokemon.Friendship = D.Pokemon.BaseFriendship
                     Core.Player.Pokemons.Add(D.Pokemon)
 
+                    Dim dexID As String = PokemonForms.GetPokemonDataFileName(D.Pokemon.Number, D.Pokemon.AdditionalData)
+                    If dexID.Contains("_") = False Then
+                        If PokemonForms.GetAdditionalDataForms(D.Pokemon.Number) IsNot Nothing AndAlso PokemonForms.GetAdditionalDataForms(D.Pokemon.Number).Contains(D.Pokemon.AdditionalData) Then
+                            dexID = D.Pokemon.Number & ";" & D.Pokemon.AdditionalData
+                        Else
+                            dexID = D.Pokemon.Number.ToString
+                        End If
+                    End If
+
                     If D.Pokemon.IsShiny = True Then
-                        Core.Player.PokedexData = Pokedex.ChangeEntry(Core.Player.PokedexData, D.Pokemon.Number, 3)
+                        Core.Player.PokedexData = Pokedex.ChangeEntry(Core.Player.PokedexData, dexID, 3)
                     Else
-                        Core.Player.PokedexData = Pokedex.ChangeEntry(Core.Player.PokedexData, D.Pokemon.Number, 2)
+                        Core.Player.PokedexData = Pokedex.ChangeEntry(Core.Player.PokedexData, dexID, 2)
                     End If
 
                     Dim v As Integer = P.TradeValue - D.Pokemon.TradeValue

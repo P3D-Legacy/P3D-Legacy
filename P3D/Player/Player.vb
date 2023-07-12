@@ -725,11 +725,20 @@
                 If Line.StartsWith("{") = True And Line.EndsWith("}") = True Then
                     Dim p As Pokemon = Pokemon.GetPokemonByData(Line)
 
+                    Dim dexID As String = PokemonForms.GetPokemonDataFileName(p.Number, p.AdditionalData)
+                    If dexID.Contains("_") = False Then
+                        If PokemonForms.GetAdditionalDataForms(p.Number) IsNot Nothing AndAlso PokemonForms.GetAdditionalDataForms(p.Number).Contains(p.AdditionalData) Then
+                            dexID = p.Number & ";" & p.AdditionalData
+                        Else
+                            dexID = p.Number.ToString
+                        End If
+                    End If
+
                     If p.IsEgg() = False Then
                         If p.IsShiny = True Then
-                            PokedexData = Pokedex.ChangeEntry(PokedexData, p.Number, 3)
+                            PokedexData = Pokedex.ChangeEntry(PokedexData, dexID, 3)
                         Else
-                            PokedexData = Pokedex.ChangeEntry(PokedexData, p.Number, 2)
+                            PokedexData = Pokedex.ChangeEntry(PokedexData, dexID, 2)
                         End If
                     End If
 

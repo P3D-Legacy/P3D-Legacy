@@ -7,7 +7,7 @@ Public Class PokemonForms
     Public Shared Sub Initialize()
         _pokemonList.Clear()
 
-        If GameModeManager.ActiveGameMode.IsDefaultGamemode = False AndAlso GameModeManager.ContentFileExists(GameController.GamePath & GameModeManager.ActiveGameMode.ContentPath & "\" & PATH) = True Then
+        If GameModeManager.ActiveGameMode.IsDefaultGamemode = False AndAlso File.Exists(GameController.GamePath & GameModeManager.ActiveGameMode.ContentPath & PATH) = True Then
             LoadForm(GameController.GamePath & GameModeManager.ActiveGameMode.ContentPath & PATH)
         Else
             LoadForm(GameController.GamePath & GameMode.DefaultContentPath & PATH)
@@ -176,6 +176,7 @@ Public Class PokemonForms
         End If
         Return ""
     End Function
+
     Public Shared Function GetGenderFormMatch(ByVal P As Pokemon) As String
         If _pokemonList.Count > 0 Then
             For Each listP In _pokemonList
@@ -398,7 +399,7 @@ Public Class PokemonForms
 
         If _pokemonList.Count > 0 Then
             For Each listP In _pokemonList
-                If listP.IsNumber(Number) = True Then
+                If listP.IsNumber(Number) = True AndAlso listP.ValueMatch(AdditionalData) = True Then
                     Addition = listP.GetDataFileAddition(AdditionalData)
                 End If
             Next
@@ -413,6 +414,75 @@ Public Class PokemonForms
         End If
 
         Return FileName
+    End Function
+
+    Public Shared Function GetPokemonDataFileName(ByVal Number As Integer, ByVal AdditionalData As String, Optional ByVal AlsoCheckNonDataForms As Boolean = False) As String
+        Dim FileName As String = Number.ToString()
+        Dim FilePath As String = GameModeManager.GetPokemonDataFilePath(FileName & ".dat")
+
+        Dim Addition As String = ""
+
+        If _pokemonList.Count > 0 Then
+            For Each listP In _pokemonList
+                If listP.IsNumber(Number) = True AndAlso listP.ValueMatch(AdditionalData) = True Then
+                    Addition = listP.GetDataFileAddition(AdditionalData)
+                End If
+            Next
+        End If
+        If Addition <> "" Then
+            FilePath = FilePath.Remove(FilePath.Length - 4, 4) & Addition & ".dat"
+            FileName &= Addition
+        End If
+
+        If System.IO.File.Exists(FilePath) = False Then
+            If System.IO.File.Exists(GameModeManager.GetPokemonDataFilePath(Number.ToString) & ".dat") = False Then
+                FileName = "10"
+            Else
+                FileName = Number.ToString
+            End If
+        End If
+
+        If Addition = "" AndAlso AdditionalData <> "" AndAlso AlsoCheckNonDataForms = True Then
+            If PokemonForms.GetAdditionalDataForms(Number) IsNot Nothing AndAlso PokemonForms.GetAdditionalDataForms(Number).Contains(AdditionalData) Then
+                FileName = Number.ToString & ";" & AdditionalData
+            End If
+        End If
+
+        Return FileName
+    End Function
+
+    Public Shared Function GetAdditionalDataForms(ByVal Number As Integer) As List(Of String)
+        Dim Forms As New List(Of String)
+
+        If _pokemonList.Count > 0 Then
+            For Each listP In _pokemonList
+                If listP.IsNumber(Number) = True AndAlso listP.AdditionalValue <> "" AndAlso listP.DataFileSuffix = "" Then
+                    Forms.Add(listP.AdditionalValue)
+                End If
+            Next
+        End If
+
+        If Forms.Count > 0 Then
+            Return Forms
+        End If
+
+        Return Nothing
+
+    End Function
+
+    Public Shared Function GetAdditionalValueFromDataFile(ByVal DataFile As String) As String
+
+        Dim CompareNumber As Integer = CInt(DataFile.GetSplit(0, "_"))
+        Dim CompareSuffix As String = DataFile.Remove(0, DataFile.IndexOf("_"))
+        If _pokemonList.Count > 0 Then
+            For Each listP In _pokemonList
+                If listP.IsNumber(CompareNumber) = True AndAlso CompareSuffix = listP.DataFileSuffix Then
+                    Return listP.AdditionalValue
+                End If
+            Next
+        End If
+
+        Return ""
     End Function
 
     Public Shared Function GetDefaultOverworldSpriteAddition(ByVal Number As Integer) As String

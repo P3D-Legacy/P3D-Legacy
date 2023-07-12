@@ -137,7 +137,15 @@
                 End If
 
                 If InboxList(Selected).Pokemon.IsEgg() = False Then
-                    Core.Player.PokedexData = Pokedex.ChangeEntry(Core.Player.PokedexData, InboxList(Selected).Pokemon.Number, pokedexType)
+                    Dim dexID As String = PokemonForms.GetPokemonDataFileName(InboxList(Selected).Pokemon.Number, InboxList(Selected).Pokemon.AdditionalData)
+                    If dexID.Contains("_") = False Then
+                        If PokemonForms.GetAdditionalDataForms(InboxList(Selected).Pokemon.Number) IsNot Nothing AndAlso PokemonForms.GetAdditionalDataForms(InboxList(Selected).Pokemon.Number).Contains(InboxList(Selected).Pokemon.AdditionalData) Then
+                            dexID = InboxList(Selected).Pokemon.Number & ";" & InboxList(Selected).Pokemon.AdditionalData
+                        Else
+                            dexID = InboxList(Selected).Pokemon.Number.ToString
+                        End If
+                    End If
+                    Core.Player.PokedexData = Pokedex.ChangeEntry(Core.Player.PokedexData, dexID, pokedexType)
                 End If
 
                 Core.Player.SaveGame(False)

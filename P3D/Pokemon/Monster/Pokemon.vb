@@ -281,11 +281,11 @@ Public Class Pokemon
         End Set
     End Property
 
-    Public Property Devolution() As Integer
+    Public Property Devolution() As String
         Get
             Return Me._devolution
         End Get
-        Set(value As Integer)
+        Set(value As String)
             Me._devolution = value
         End Set
     End Property
@@ -317,11 +317,11 @@ Public Class Pokemon
         End Set
     End Property
 
-    Public Property EggPokemon() As Integer
+    Public Property EggPokemon() As String
         Get
             Return Me._eggPokemon
         End Get
-        Set(value As Integer)
+        Set(value As String)
             Me._eggPokemon = value
         End Set
     End Property
@@ -644,11 +644,11 @@ Public Class Pokemon
     Private _baseEggSteps As Integer
     Private _isMale As Decimal
     Private _isGenderLess As Boolean
-    Private _devolution As Integer = 0
+    Private _devolution As String = "0"
     Private _canLearnAllMachines As Boolean = False
     Private _canSwim As Boolean
     Private _canFly As Boolean
-    Private _eggPokemon As Integer = 0
+    Private _eggPokemon As String = "0"
     Private _tradeValue As Integer = 10
     Private _canBreed As Boolean = True
 
@@ -1299,18 +1299,22 @@ Public Class Pokemon
         Return GetPokemonByID(Number, "")
     End Function
 
-    Public Shared Function GetPokemonByID(ByVal Number As Integer, ByVal AdditionalData As String) As Pokemon
+    Public Shared Function GetPokemonByID(ByVal Number As Integer, ByVal AdditionalData As String, Optional ByVal PreventFormGeneration As Boolean = False) As Pokemon
         Dim p As New Pokemon()
         p.LoadDefinitions(Number, AdditionalData)
-        p.AdditionalData = AdditionalData
+        If PreventFormGeneration = False Then
+            p.AdditionalData = AdditionalData
+        Else
+            p._additionalData = AdditionalData
+        End If
         Return p
     End Function
 
     ''' <summary>
     ''' Checks if a requested Pokémon data file exists.
     ''' </summary>
-    Public Shared Function PokemonDataExists(ByVal Number As Integer) As Boolean
-        Return System.IO.File.Exists(GameModeManager.GetPokemonDataFilePath(Number.ToString() & ".dat"))
+    Public Shared Function PokemonDataExists(ByVal DataID As String) As Boolean
+        Return System.IO.File.Exists(GameModeManager.GetPokemonDataFilePath(DataID & ".dat"))
     End Function
 
     ''' <summary>
@@ -1427,7 +1431,7 @@ Public Class Pokemon
                 Case "isgenderless"
                     Me.IsGenderless = CBool(Value)
                 Case "devolution"
-                    Me.Devolution = CInt(Value)
+                    Me.Devolution = Value
                 Case "ability1", "ability"
                     If Value <> "Nothing" Then
                         Me.NewAbilities.Add(Ability.GetAbilityByID(CInt(Value)))
@@ -1483,7 +1487,7 @@ Public Class Pokemon
                         End If
                     End If
                 Case "eggpokemon"
-                    Me.EggPokemon = CInt(Value)
+                    Me.EggPokemon = Value
                 Case "regionalforms"
                     Me.RegionalForms = Value
                 Case "canbreed"
@@ -1575,8 +1579,8 @@ Public Class Pokemon
             End Select
         Next
 
-        If Me.EggPokemon = 0 Then
-            Me.EggPokemon = Me.Number
+        If Me.EggPokemon = "" Then
+            Me.EggPokemon = Me.Number.ToString
         End If
 
         Dim pAttacks As New SortedDictionary(Of Integer, BattleSystem.Attack)
@@ -1588,12 +1592,12 @@ Public Class Pokemon
             AttackLearns.Add(pAttacks.Keys(i), pAttacks.Values(i))
         Next
 
-        If Me.Devolution = 0 Then
-            If Me.EggPokemon > 0 And Me.EggPokemon <> Me.Number Then
-                If Me.Number - Me.EggPokemon = 2 Then
-                    Me.Devolution = Me.Number - 1
-                ElseIf Me.Number - Me.EggPokemon = 1 Then
-                    Me.Devolution = Me.EggPokemon
+        If Me.Devolution = "0" Then
+            If CInt(Me.EggPokemon.GetSplit(0, "_")) > 0 And CInt(Me.EggPokemon.GetSplit(0, "_")) <> Me.Number Then
+                If Me.Number - CInt(Me.EggPokemon.GetSplit(0, "_")) = 2 Then
+                    Me.Devolution = CStr(Me.Number - 1)
+                ElseIf Me.Number - CInt(Me.EggPokemon.GetSplit(0, "_")) = 1 Then
+                    Me.Devolution = CStr(Me.EggPokemon)
                 End If
             End If
         End If

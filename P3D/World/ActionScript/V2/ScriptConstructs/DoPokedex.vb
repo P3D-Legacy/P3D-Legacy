@@ -24,47 +24,81 @@
                     Dim dexIndex As Integer = int(argument)
                     Return Core.Player.Pokedexes(dexIndex).Seen
                 Case "getheight"
-                    Dim number As Integer = int(argument)
-                    If Pokemon.PokemonDataExists(number) Then
-                        Return Pokemon.GetPokemonByID(number).PokedexEntry.Height
+                    Dim id As Integer = CInt(argument.GetSplit(0, "_"))
+                    Dim ad As String = ""
+                    If PokemonForms.GetAdditionalValueFromDataFile(argument) <> "" Then
+                        ad = PokemonForms.GetAdditionalValueFromDataFile(argument)
+                    End If
+
+                    If Pokemon.PokemonDataExists(argument) Then
+                        Return Pokemon.GetPokemonByID(id, ad).PokedexEntry.Height
                     End If
                 Case "getweight"
-                    Dim number As Integer = int(argument)
-                    If Pokemon.PokemonDataExists(number) Then
-                        Return Pokemon.GetPokemonByID(number).PokedexEntry.Weight
+                    Dim id As Integer = CInt(argument.GetSplit(0, "_"))
+                    Dim ad As String = ""
+                    If PokemonForms.GetAdditionalValueFromDataFile(argument) <> "" Then
+                        ad = PokemonForms.GetAdditionalValueFromDataFile(argument)
+                    End If
+
+                    If Pokemon.PokemonDataExists(argument) Then
+                        Return Pokemon.GetPokemonByID(id, ad).PokedexEntry.Weight
                     End If
                 Case "getentry"
-                    Dim number As Integer = int(argument)
-                    If Pokemon.PokemonDataExists(number) Then
-                        Return Pokemon.GetPokemonByID(number).PokedexEntry.Text
+                    Dim id As Integer = CInt(argument.GetSplit(0, "_"))
+                    Dim ad As String = ""
+                    If PokemonForms.GetAdditionalValueFromDataFile(argument) <> "" Then
+                        ad = PokemonForms.GetAdditionalValueFromDataFile(argument)
+                    End If
+
+                    If Pokemon.PokemonDataExists(argument) Then
+                        Return Pokemon.GetPokemonByID(id, ad).PokedexEntry.Text
                     End If
                 Case "getcolor"
-                    Dim number As Integer = int(argument)
-                    If Pokemon.PokemonDataExists(number) Then
-                        Return Pokemon.GetPokemonByID(number).PokedexEntry.Color.ToString()
+                    Dim id As Integer = CInt(argument.GetSplit(0, "_"))
+                    Dim ad As String = ""
+                    If PokemonForms.GetAdditionalValueFromDataFile(argument) <> "" Then
+                        ad = PokemonForms.GetAdditionalValueFromDataFile(argument)
+                    End If
+
+                    If Pokemon.PokemonDataExists(argument) Then
+                        Return Pokemon.GetPokemonByID(id, ad).PokedexEntry.Color.ToString()
                     End If
                 Case "getspecies"
-                    Dim number As Integer = int(argument)
-                    If Pokemon.PokemonDataExists(number) Then
-                        Return Pokemon.GetPokemonByID(number).PokedexEntry.Species
+                    Dim id As Integer = CInt(argument.GetSplit(0, "_"))
+                    Dim ad As String = ""
+                    If PokemonForms.GetAdditionalValueFromDataFile(argument) <> "" Then
+                        ad = PokemonForms.GetAdditionalValueFromDataFile(argument)
+                    End If
+
+                    If Pokemon.PokemonDataExists(argument) Then
+                        Return Pokemon.GetPokemonByID(id, ad).PokedexEntry.Species
                     End If
                 Case "getname"
-                    Dim number As Integer = int(argument)
-                    If Pokemon.PokemonDataExists(number) Then
-                        Return Pokemon.GetPokemonByID(number).GetName()
+                    Dim id As Integer = CInt(argument.GetSplit(0, "_"))
+                    Dim ad As String = ""
+                    If PokemonForms.GetAdditionalValueFromDataFile(argument) <> "" Then
+                        ad = PokemonForms.GetAdditionalValueFromDataFile(argument)
+                    End If
+
+                    If Pokemon.PokemonDataExists(argument) Then
+                        Return Pokemon.GetPokemonByID(id, ad).GetName()
                     End If
                 Case "getability"
-                    Dim number As Integer = int(argument.GetSplit(0))
-                    If Pokemon.PokemonDataExists(number) Then
+                    Dim id As Integer = CInt(argument.GetSplit(0, "_"))
+                    Dim ad As String = ""
+                    If PokemonForms.GetAdditionalValueFromDataFile(argument) <> "" Then
+                        ad = PokemonForms.GetAdditionalValueFromDataFile(argument)
+                    End If
+                    If Pokemon.PokemonDataExists(argument) Then
                         Select Case argument.GetSplit(1)
                             Case "0"
-                                Return Pokemon.GetPokemonByID(number).NewAbilities(Core.Random.Next(0, Pokemon.GetPokemonByID(number).NewAbilities.Count)).ID
+                                Return Pokemon.GetPokemonByID(id, ad).NewAbilities(Core.Random.Next(0, Pokemon.GetPokemonByID(id, ad).NewAbilities.Count)).ID
                             Case "1"
-                                Return Pokemon.GetPokemonByID(number).NewAbilities(0).ID
+                                Return Pokemon.GetPokemonByID(id, ad).NewAbilities(0).ID
                             Case "2"
-                                Return Pokemon.GetPokemonByID(number).NewAbilities(Pokemon.GetPokemonByID(number).NewAbilities.Count - 1).ID
+                                Return Pokemon.GetPokemonByID(id, ad).NewAbilities(Pokemon.GetPokemonByID(id, ad).NewAbilities.Count - 1).ID
                             Case "3"
-                                Return Pokemon.GetPokemonByID(number).HiddenAbility.ID
+                                Return Pokemon.GetPokemonByID(id, ad).HiddenAbility.ID
 
                         End Select
                     End If

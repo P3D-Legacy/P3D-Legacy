@@ -169,7 +169,16 @@
                             End If
                         End If
 
-                        Core.Player.PokedexData = Pokedex.ChangeEntry(Core.Player.PokedexData, p.Number, 1)
+                        Dim dexID As String = PokemonForms.GetPokemonDataFileName(p.Number, p.AdditionalData)
+                        If dexID.Contains("_") = False Then
+                            If PokemonForms.GetAdditionalDataForms(p.Number) IsNot Nothing AndAlso PokemonForms.GetAdditionalDataForms(p.Number).Contains(p.AdditionalData) Then
+                                dexID = p.Number & ";" & p.AdditionalData
+                            Else
+                                dexID = p.Number.ToString
+                            End If
+                        End If
+
+                        Core.Player.PokedexData = Pokedex.ChangeEntry(Core.Player.PokedexData, dexID, 1)
                         Dim b As New BattleSystem.BattleScreen(p, Core.CurrentScreen, method)
                         Core.SetScreen(New BattleIntroScreen(Core.CurrentScreen, b, introType, musicLoop))
 

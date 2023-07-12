@@ -43,7 +43,16 @@
                         End If
 
                         If p.IsEgg() = False Then
-                            Core.Player.PokedexData = Pokedex.ChangeEntry(Core.Player.PokedexData, p.Number, pokedexType)
+                            Dim dexID As String = PokemonForms.GetPokemonDataFileName(p.Number, p.AdditionalData)
+                            If dexID.Contains("_") = False Then
+                                If PokemonForms.GetAdditionalDataForms(p.Number) IsNot Nothing AndAlso PokemonForms.GetAdditionalDataForms(p.Number).Contains(p.AdditionalData) Then
+                                    dexID = p.Number & ";" & p.AdditionalData
+                                Else
+                                    dexID = p.Number.ToString
+                                End If
+                            End If
+
+                            Core.Player.PokedexData = Pokedex.ChangeEntry(Core.Player.PokedexData, dexID, pokedexType)
                         End If
                     Else
                         Dim commas As Integer = 0
@@ -138,7 +147,16 @@
                         End If
 
                         If Pokemon.IsEgg() = False Then
-                            Core.Player.PokedexData = Pokedex.ChangeEntry(Core.Player.PokedexData, Pokemon.Number, pokedexType)
+                            Dim dexID As String = PokemonForms.GetPokemonDataFileName(Pokemon.Number, Pokemon.AdditionalData)
+                            If dexID.Contains("_") = False Then
+                                If PokemonForms.GetAdditionalDataForms(Pokemon.Number) IsNot Nothing AndAlso PokemonForms.GetAdditionalDataForms(Pokemon.Number).Contains(Pokemon.AdditionalData) Then
+                                    dexID = Pokemon.Number & ";" & Pokemon.AdditionalData
+                                Else
+                                    dexID = Pokemon.Number.ToString
+                                End If
+                            End If
+
+                            Core.Player.PokedexData = Pokedex.ChangeEntry(Core.Player.PokedexData, dexID, pokedexType)
                         End If
                     End If
                 Case "setadditionalvalue", "setadditionaldata"
@@ -873,7 +891,15 @@
                         End If
 
                         If p.IsEgg() = False Then
-                            Core.Player.PokedexData = Pokedex.ChangeEntry(Core.Player.PokedexData, p.Number, pokedexType)
+                            Dim dexID As String = PokemonForms.GetPokemonDataFileName(p.Number, p.AdditionalData)
+                            If dexID.Contains("_") = False Then
+                                If PokemonForms.GetAdditionalDataForms(p.Number) IsNot Nothing AndAlso PokemonForms.GetAdditionalDataForms(p.Number).Contains(p.AdditionalData) Then
+                                    dexID = p.Number & ";" & p.AdditionalData
+                                Else
+                                    dexID = p.Number.ToString
+                                End If
+                            End If
+                            Core.Player.PokedexData = Pokedex.ChangeEntry(Core.Player.PokedexData, dexID, pokedexType)
                         End If
                     Else
                         Dim commas As Integer = 0
@@ -968,7 +994,16 @@
                         End If
 
                         If Pokemon.IsEgg() = False Then
-                            Core.Player.PokedexData = Pokedex.ChangeEntry(Core.Player.PokedexData, Pokemon.Number, pokedexType)
+                            Dim dexID As String = PokemonForms.GetPokemonDataFileName(Pokemon.Number, Pokemon.AdditionalData)
+                            If dexID.Contains("_") = False Then
+                                If PokemonForms.GetAdditionalDataForms(Pokemon.Number) IsNot Nothing AndAlso PokemonForms.GetAdditionalDataForms(Pokemon.Number).Contains(Pokemon.AdditionalData) Then
+                                    dexID = Pokemon.Number & ";" & Pokemon.AdditionalData
+                                Else
+                                    dexID = Pokemon.Number.ToString
+                                End If
+                            End If
+
+                            Core.Player.PokedexData = Pokedex.ChangeEntry(Core.Player.PokedexData, dexID, pokedexType)
                         End If
                     End If
                 Case "addsteps"

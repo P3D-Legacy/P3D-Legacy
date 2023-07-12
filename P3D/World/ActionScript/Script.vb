@@ -301,7 +301,16 @@
                 pokedexType = 3
             End If
 
-            Core.Player.PokedexData = Pokedex.ChangeEntry(Core.Player.PokedexData, oppPokemon.Number, pokedexType)
+            Dim dexID As String = PokemonForms.GetPokemonDataFileName(oppPokemon.Number, oppPokemon.AdditionalData)
+            If dexID.Contains("_") = False Then
+                If PokemonForms.GetAdditionalDataForms(oppPokemon.Number) IsNot Nothing AndAlso PokemonForms.GetAdditionalDataForms(oppPokemon.Number).Contains(oppPokemon.AdditionalData) Then
+                    dexID = oppPokemon.Number & ";" & oppPokemon.AdditionalData
+                Else
+                    dexID = oppPokemon.Number.ToString
+                End If
+            End If
+
+            Core.Player.PokedexData = Pokedex.ChangeEntry(Core.Player.PokedexData, dexID, pokedexType)
 
             If register <> "" Then
                 ActionScript.RegisterID(register)

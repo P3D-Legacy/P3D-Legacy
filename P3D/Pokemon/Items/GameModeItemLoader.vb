@@ -142,7 +142,7 @@ Public Class GameModeItemLoader
                             Dim PokemonList As New List(Of Integer)
                             Dim valueSplit As String() = value.Split(CChar(","))
                             For i = 0 To valueSplit.Count - 1
-                                If Pokemon.PokemonDataExists(CInt(valueSplit(i))) Then
+                                If Pokemon.PokemonDataExists(valueSplit(i)) Then
                                     PokemonList.Add(CInt(valueSplit(i)))
                                 End If
                             Next

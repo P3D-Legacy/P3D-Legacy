@@ -105,7 +105,7 @@ nextIndex:
     End Sub
 
     Private Sub SetCamera()
-        Camera.Position = New Vector3(BattleScreen.OppPokemonNPC.Position.X - 2.5F, BattleScreen.OppPokemonNPC.Position.Y + 0.25F, BattleScreen.OppPokemonNPC.Position.Z + 0.5F) - BattleScreen.BattleMapOffset
+        Camera.Position = New Vector3(BattleScreen.OppPokemonNPC.Position.X - 2.5F, BattleScreen.OppPokemonNPC.Position.Y + 0.25F, BattleScreen.OppPokemonNPC.Position.Z + 0.5F) - BattleSystem.BattleScreen.BattleMapOffset
         Camera.Pitch = -0.25F
         Camera.Yaw = MathHelper.Pi * 1.5F + 0.25F
     End Sub
@@ -287,18 +287,27 @@ nextIndex:
 
         Dim s As String = "Gotcha!~" & p.GetName() & " was caught!"
 
+        Dim dexID As String = PokemonForms.GetPokemonDataFileName(p.Number, p.AdditionalData)
+        If dexID.Contains("_") = False Then
+            If PokemonForms.GetAdditionalDataForms(p.Number) IsNot Nothing AndAlso PokemonForms.GetAdditionalDataForms(p.Number).Contains(p.AdditionalData) Then
+                dexID = p.Number & ";" & p.AdditionalData
+            Else
+                dexID = p.Number.ToString
+            End If
+        End If
+
         If Core.Player.HasPokedex = True Then
-            If Pokedex.GetEntryType(Core.Player.PokedexData, p.Number) < 2 Then
+            If Pokedex.GetEntryType(Core.Player.PokedexData, dexID) < 2 Then
                 s &= "*" & p.GetName() & "'s data was~added to the Pokédex."
                 showPokedexEntry = True
             End If
         End If
 
         If p.IsShiny = True Then
-            Core.Player.PokedexData = Pokedex.ChangeEntry(Core.Player.PokedexData, p.Number, 3)
+            Core.Player.PokedexData = Pokedex.ChangeEntry(Core.Player.PokedexData, dexID, 3)
         Else
-            If Pokedex.GetEntryType(Core.Player.PokedexData, p.Number) < 3 Then
-                Core.Player.PokedexData = Pokedex.ChangeEntry(Core.Player.PokedexData, p.Number, 2)
+            If Pokedex.GetEntryType(Core.Player.PokedexData, dexID) < 3 Then
+                Core.Player.PokedexData = Pokedex.ChangeEntry(Core.Player.PokedexData, dexID, 2)
             End If
         End If
 
@@ -352,7 +361,15 @@ nextIndex:
 
         Select Case Ball.Name.ToLower()
             Case "repeat ball"
-                If Pokedex.GetEntryType(Core.Player.PokedexData, cp.Number) > 1 Then
+                Dim dexID As String = PokemonForms.GetPokemonDataFileName(cp.Number, cp.AdditionalData)
+                If dexID.Contains("_") = False Then
+                    If PokemonForms.GetAdditionalDataForms(cp.Number) IsNot Nothing AndAlso PokemonForms.GetAdditionalDataForms(cp.Number).Contains(cp.AdditionalData) Then
+                        dexID = cp.Number & ";" & cp.AdditionalData
+                    Else
+                        dexID = cp.Number.ToString
+                    End If
+                End If
+                If Pokedex.GetEntryType(Core.Player.PokedexData, dexID) > 1 Then
                     BallRate = 2.5F
                 End If
             Case "nest ball"

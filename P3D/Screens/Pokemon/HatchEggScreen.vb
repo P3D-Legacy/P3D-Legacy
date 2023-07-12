@@ -28,10 +28,20 @@
 
         Me.CanRename = CanRename
         Me.Message = Message
+
+        Dim dexID As String = PokemonForms.GetPokemonDataFileName(cPokemon.Number, cPokemon.AdditionalData)
+        If dexID.Contains("_") = False Then
+            If PokemonForms.GetAdditionalDataForms(cPokemon.Number) IsNot Nothing AndAlso PokemonForms.GetAdditionalDataForms(cPokemon.Number).Contains(cPokemon.AdditionalData) Then
+                dexID = cPokemon.Number & ";" & cPokemon.AdditionalData
+            Else
+                dexID = cPokemon.Number.ToString
+            End If
+        End If
+
         If cPokemon.IsShiny = True Then
-            Core.Player.PokedexData = Pokedex.ChangeEntry(Core.Player.PokedexData, cPokemon.Number, 3)
+            Core.Player.PokedexData = Pokedex.ChangeEntry(Core.Player.PokedexData, dexID, 3)
         Else
-            Core.Player.PokedexData = Pokedex.ChangeEntry(Core.Player.PokedexData, cPokemon.Number, 2)
+            Core.Player.PokedexData = Pokedex.ChangeEntry(Core.Player.PokedexData, dexID, 2)
         End If
 
         Me.Pokemons.Remove(cPokemon)

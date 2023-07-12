@@ -242,7 +242,17 @@
                         If evolvedPokemon.IsShiny = True Then
                             type = 3
                         End If
-                        Core.Player.PokedexData = Pokedex.ChangeEntry(Core.Player.PokedexData, evolvedPokemon.Number, type)
+
+                        Dim dexID As String = PokemonForms.GetPokemonDataFileName(evolvedPokemon.Number, evolvedPokemon.AdditionalData)
+                        If dexID.Contains("_") = False Then
+                            If PokemonForms.GetAdditionalDataForms(evolvedPokemon.Number) IsNot Nothing AndAlso PokemonForms.GetAdditionalDataForms(evolvedPokemon.Number).Contains(evolvedPokemon.AdditionalData) Then
+                                dexID = evolvedPokemon.Number & ";" & evolvedPokemon.AdditionalData
+                            Else
+                                dexID = evolvedPokemon.Number.ToString
+                            End If
+                        End If
+
+                        Core.Player.PokedexData = Pokedex.ChangeEntry(Core.Player.PokedexData, dexID, type)
 
                         evolvedPokemon.PlayCry()
                         SoundManager.PlaySound("success", True)

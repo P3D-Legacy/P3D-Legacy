@@ -556,8 +556,17 @@
                 InsertCasualCameramove()
             Next
 
-            If Pokedex.GetEntryType(Core.Player.PokedexData, OppPokemon.Number) = 0 Then
-                Core.Player.PokedexData = Pokedex.ChangeEntry(Core.Player.PokedexData, OppPokemon.Number, 1)
+            Dim dexID As String = PokemonForms.GetPokemonDataFileName(OppPokemon.Number, OppPokemon.AdditionalData)
+            If dexID.Contains("_") = False Then
+                If PokemonForms.GetAdditionalDataForms(OppPokemon.Number) IsNot Nothing AndAlso PokemonForms.GetAdditionalDataForms(OppPokemon.Number).Contains(OppPokemon.AdditionalData) Then
+                    dexID = OppPokemon.Number & ";" & OppPokemon.AdditionalData
+                Else
+                    dexID = OppPokemon.Number.ToString
+                End If
+            End If
+
+            If Pokedex.GetEntryType(Core.Player.PokedexData, dexID) = 0 Then
+                Core.Player.PokedexData = Pokedex.ChangeEntry(Core.Player.PokedexData, dexID, 1)
             End If
 
             Me.BattleMode = BattleModes.Standard
@@ -1461,8 +1470,17 @@ nextIndex:
             OppPokemonIndex = i
             OppPokemon = Trainer.Pokemons(i)
 
-            If Pokedex.GetEntryType(Core.Player.PokedexData, OppPokemon.Number) = 0 Then
-                Core.Player.PokedexData = Pokedex.ChangeEntry(Core.Player.PokedexData, OppPokemon.Number, 1)
+            Dim dexID As String = PokemonForms.GetPokemonDataFileName(OppPokemon.Number, OppPokemon.AdditionalData)
+            If dexID.Contains("_") = False Then
+                If PokemonForms.GetAdditionalDataForms(OppPokemon.Number) IsNot Nothing AndAlso PokemonForms.GetAdditionalDataForms(OppPokemon.Number).Contains(OppPokemon.AdditionalData) Then
+                    dexID = OppPokemon.Number & ";" & OppPokemon.AdditionalData
+                Else
+                    dexID = OppPokemon.Number.ToString
+                End If
+            End If
+
+            If Pokedex.GetEntryType(Core.Player.PokedexData, dexID) = 0 Then
+                Core.Player.PokedexData = Pokedex.ChangeEntry(Core.Player.PokedexData, dexID, 1)
             End If
             NextPokemonIndex = -1
         End Sub

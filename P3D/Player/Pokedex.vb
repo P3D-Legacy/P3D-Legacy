@@ -6,7 +6,8 @@
     '3 = shiny + caught + seen
 
     Public Shared AutoDetect As Boolean = True
-    Public Const POKEMONCOUNT As Integer = 893
+    Public Shared PokemonCount As Integer = 893
+    Public Shared PokemonIDs As New List(Of String)
 
 #Region "PlayerData"
 
@@ -71,18 +72,11 @@
         Return counts
     End Function
 
-    Public Shared Function GetEntryType(ByVal Data As String, ByVal ID As Integer) As Integer
+    Public Shared Function GetEntryType(ByVal Data As String, ByVal ID As String) As Integer
         Dim pData() As String = Data.Split(CChar(Environment.NewLine))
 
-        If pData.Count >= ID Then
-            If pData(ID - 1).Contains(ID.ToString() & "|") = True Then
-                Dim Entry As String = pData(ID - 1)
-                Return CInt(Entry.Remove(Entry.Length - 1, 1).Remove(0, Entry.IndexOf("|") + 1))
-            End If
-        End If
-
         For Each Entry As String In pData
-            If Entry.Contains(ID.ToString() & "|") = True Then
+            If Entry.Contains(ID & "|") = True Then
                 Return CInt(Entry.Remove(Entry.Length - 1, 1).Remove(0, Entry.IndexOf("|") + 1))
             End If
         Next
@@ -90,32 +84,88 @@
         Return 0
     End Function
 
-    Public Shared Function ChangeEntry(ByVal Data As String, ByVal ID As Integer, ByVal Type As Integer) As String
+    Public Shared Function ChangeEntry(ByVal Data As String, ByVal ID As String, ByVal Type As Integer) As String
         If Type = 0 Or AutoDetect = True Then
             If Data.Contains("{" & ID & "|") = True Then
+                Dim cOriginalEntry As String = ""
+                If ID.Contains(";") Then
+                    cOriginalEntry = GetEntryType(Data, ID.GetSplit(0, ";")).ToString
+                End If
+
                 Dim cEntry As Integer = GetEntryType(Data, ID)
+                Dim cData As String = Data
+                If cOriginalEntry <> "" Then
+                    If CInt(cOriginalEntry) < Type Then
+                        If Data.Contains("{" & ID.GetSplit(0, ";") & "|") = True Then
+                            cData = Data.Replace("{" & ID.GetSplit(0, ";") & "|" & cEntry & "}", "{" & ID.GetSplit(0, ";") & "|" & Type & "}")
+                        Else
+                            cData &= Environment.NewLine & "{" & ID.GetSplit(0, ";") & "|" & Type & "}"
+                        End If
+                    End If
+                End If
+
                 If cEntry < Type Then
-                    Return Data.Replace("{" & ID & "|" & cEntry & "}", "{" & ID & "|" & Type & "}")
+                    Return cData.Replace("{" & ID & "|" & cEntry & "}", "{" & ID & "|" & Type & "}")
                 Else
-                    Return Data
+                    Return cData
                 End If
             Else
-                If Data <> "" Then
-                    Data &= Environment.NewLine
+                Dim cData As String = Data
+                If cData <> "" Then
+                    cData &= Environment.NewLine
                 End If
-                Data &= "{" & ID & "|" & Type & "}"
-                Return Data
+                If ID.Contains(";") Then
+                    If cData.Contains("{" & ID.GetSplit(0, ";") & "|") = False Then
+                        cData &= "{" & ID.GetSplit(0, ";") & "|" & Type & "}" & Environment.NewLine
+                    End If
+                End If
+                cData &= "{" & ID & "|" & Type & "}"
+                Return cData
             End If
-        End If
+            End If
         Return Data
     End Function
 
     Public Shared Function NewPokedex() As String
         Dim Data As String = ""
+        Dim IDs As New List(Of String)
+        For Each file As String In System.IO.Directory.GetFiles(GameController.GamePath & "\" & GameModeManager.ActiveGameMode.ContentPath & "Pokemon\Data\", "*.dat")
+            Dim id As String = file.Remove(file.Length - 4, 4).Remove(0, CStr(GameController.GamePath & "\" & GameModeManager.ActiveGameMode.ContentPath & "Pokemon\Data\").Length)
+            If id.Contains("_") Then
+                While id.GetSplit(0, "_").Length < 3
+                    id = 0 & id
+                End While
+            End If
+            IDs.Add(id)
+        Next
 
-        For i = 1 To POKEMONCOUNT
-            Data &= "{" & i & "|0}"
-            If i <> POKEMONCOUNT Then
+        For Each id As String In IDs
+            If id.Contains("_") = False Then
+                Dim baseID As String = id.GetSplit(0, "_")
+                While baseID.StartsWith("0")
+                    baseID = baseID.Remove(0, 1)
+                End While
+
+                Dim AdditionalDataForms As List(Of String) = PokemonForms.GetAdditionalDataForms(CInt(baseID))
+                If AdditionalDataForms IsNot Nothing Then
+                    For i = 0 To AdditionalDataForms.Count
+                        IDs.Add(id & ";" & AdditionalDataForms(i))
+                    Next
+                End If
+            End If
+        Next
+
+        PokemonCount = IDs.Count
+        PokemonIDs = (From id In IDs Order By CInt(id.GetSplit(0, "_"))).ToList()
+
+        For i = 0 To PokemonCount - 1
+            Dim entry As String = PokemonIDs(i)
+            While entry.StartsWith("0")
+                entry = entry.Remove(0, 1)
+            End While
+
+            Data &= "{" & entry & "|0}"
+            If i <> PokemonCount - 1 Then
                 Data &= Environment.NewLine
             End If
         Next
@@ -155,10 +205,19 @@
     End Sub
 
     Public Shared Function RegisterPokemon(ByVal Data As String, ByVal Pokemon As Pokemon) As String
+        Dim dexID As String = PokemonForms.GetPokemonDataFileName(Pokemon.Number, Pokemon.AdditionalData)
+        If dexID.Contains("_") = False Then
+            If PokemonForms.GetAdditionalDataForms(Pokemon.Number) IsNot Nothing AndAlso PokemonForms.GetAdditionalDataForms(Pokemon.Number).Contains(Pokemon.AdditionalData) Then
+                dexID = Pokemon.Number & ";" & Pokemon.AdditionalData
+            Else
+                dexID = Pokemon.Number.ToString
+            End If
+        End If
+
         If Pokemon.IsShiny = True Then
-            Return ChangeEntry(Data, Pokemon.Number, 3)
+            Return ChangeEntry(Data, dexID, 3)
         Else
-            Return ChangeEntry(Data, Pokemon.Number, 2)
+            Return ChangeEntry(Data, dexID, 2)
         End If
     End Function
 
@@ -167,10 +226,10 @@
 #Region "PokedexHandler"
 
     'The Pokedex screen changes the PokemonList array to add Pokémon not in the array, so this will get used to count things when focussing on the Pokémon in this dex.
-    Private _originalPokemonList As New Dictionary(Of Integer, Integer)
+    Private _originalPokemonList As New Dictionary(Of Integer, String)
 
     'Fields:
-    Public PokemonList As New Dictionary(Of Integer, Integer)
+    Public PokemonList As New Dictionary(Of Integer, String)
     Public Name As String = ""
     Public Activation As String = ""
     Public OriginalCount As Integer = 0
@@ -189,20 +248,20 @@
         For Each l As String In pokemonData
             l = l.Replace("[MAX]", POKEMONCOUNT.ToString())
 
-            If l.Contains("-") = True Then
+            If l.Contains("-") = True AndAlso l.Contains("_") = False Then
                 Dim range() As String = l.Split(CChar("-"))
                 Dim min As Integer = CInt(range(0))
                 Dim max As Integer = CInt(range(1))
 
                 For j = min To max
-                    PokemonList.Add(Place, j)
-                    _originalPokemonList.Add(Place, j)
+                    PokemonList.Add(Place, j.ToString)
+                    _originalPokemonList.Add(Place, j.ToString)
 
                     Place += 1
                 Next
             Else
-                PokemonList.Add(Place, CInt(l))
-                _originalPokemonList.Add(Place, CInt(l))
+                PokemonList.Add(Place, l)
+                _originalPokemonList.Add(Place, l)
 
                 Place += 1
             End If
@@ -215,9 +274,9 @@
         Me.OriginalCount = Me.PokemonList.Count
     End Sub
 
-    Dim TempPlaces As New Dictionary(Of Integer, Integer)
+    Dim TempPlaces As New Dictionary(Of String, Integer)
 
-    Public Function GetPlace(ByVal PokemonNumber As Integer) As Integer
+    Public Function GetPlace(ByVal PokemonNumber As String) As Integer
         If TempPlaces.ContainsKey(PokemonNumber) = True Then
             Return TempPlaces(PokemonNumber)
         End If
@@ -234,11 +293,11 @@
         Return -1
     End Function
 
-    Public Function GetPokemonNumber(ByVal Place As Integer) As Integer
+    Public Function GetPokemonNumber(ByVal Place As Integer) As String
         If PokemonList.ContainsKey(Place) = True Then
             Return PokemonList(Place)
         End If
-        Return -1
+        Return "-1"
     End Function
 
     Public ReadOnly Property IsActivated() As Boolean
@@ -257,7 +316,7 @@
     Public ReadOnly Property Obtained() As Integer
         Get
             Dim o As Integer = 0
-            For Each v As Integer In _originalPokemonList.Values
+            For Each v As String In _originalPokemonList.Values
                 If GetEntryType(Core.Player.PokedexData, v) > 1 Then
                     o += 1
                 End If
@@ -269,7 +328,7 @@
     Public ReadOnly Property Seen() As Integer
         Get
             Dim o As Integer = 0
-            For Each v As Integer In _originalPokemonList.Values
+            For Each v As String In _originalPokemonList.Values
                 If GetEntryType(Core.Player.PokedexData, v) = 1 Then
                     o += 1
                 End If
@@ -284,7 +343,7 @@
         End Get
     End Property
 
-    Public ReadOnly Property HasPokemon(ByVal pokemonNumber As Integer, ByVal originalList As Boolean) As Boolean
+    Public ReadOnly Property HasPokemon(ByVal pokemonNumber As String, ByVal originalList As Boolean) As Boolean
         Get
             If originalList = True Then
                 Return _originalPokemonList.ContainsValue(pokemonNumber)

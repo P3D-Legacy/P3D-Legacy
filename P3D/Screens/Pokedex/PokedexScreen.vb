@@ -30,7 +30,7 @@
         Dim eevee() As Integer = {134, 135, 136, 196, 197, 470, 471, 700}
         Dim hasEevee As Boolean = True
         For Each e As Integer In eevee
-            If Pokedex.GetEntryType(Core.Player.PokedexData, e) < 2 Then
+            If Pokedex.GetEntryType(Core.Player.PokedexData, e.ToString) < 2 Then
                 hasEevee = False
                 Exit For
             End If
@@ -398,34 +398,58 @@ Public Class PokedexScreen
             End If
         Next
 
-        Dim pokeSearchList As New List(Of Integer)
+        Dim pokeSearchList As New List(Of String)
 
         If CHabitat Is Nothing Then
             ' Add any external Pokémon if specified to do so:
             If Profile.Pokedex.IncludeExternalPokemon = True Then
-                For i = 1 To Pokedex.POKEMONCOUNT
-                    If Me.Profile.Pokedex.HasPokemon(i, False) = False Then
-                        If Pokedex.GetEntryType(Core.Player.PokedexData, i) > 0 Then
-                            Profile.Pokedex.PokemonList.Add(Profile.Pokedex.PokemonList.Count + 1, i)
+                For i = 0 To Pokedex.PokemonCount - 1
+                    If Me.Profile.Pokedex.HasPokemon(Pokedex.PokemonIDs(i), False) = False Then
+                        If Pokedex.GetEntryType(Core.Player.PokedexData, Pokedex.PokemonIDs(i)) > 0 Then
+                            Profile.Pokedex.PokemonList.Add(Profile.Pokedex.PokemonList.Count + 1, Pokedex.PokemonIDs(i))
                         End If
                     End If
                 Next
             End If
-            For Each i As Integer In Profile.Pokedex.PokemonList.Values
+            For Each i As String In Profile.Pokedex.PokemonList.Values
                 pokeSearchList.Add(i)
             Next
         Else
-            For Each i As Integer In CHabitat.PokemonList
+            For Each i As String In CHabitat.PokemonList
                 pokeSearchList.Add(i)
             Next
         End If
 
         For i = 0 To pokeSearchList.Count - 1
-            If Pokemon.PokemonDataExists(pokeSearchList(i)) = True Then
-                Dim p As Pokemon = Pokemon.GetPokemonByID(pokeSearchList(i))
-                If Pokedex.GetEntryType(Core.Player.PokedexData, p.Number) >= neededEntryType Then
+            If Pokemon.PokemonDataExists(pokeSearchList(i).GetSplit(0, "_")) = True OrElse Pokemon.PokemonDataExists(pokeSearchList(i).GetSplit(0, ";")) = True Then
 
-                    Dim valid As Boolean = True
+                Dim pID As Integer
+                Dim pAD As String = ""
+
+                If pokeSearchList(i).Contains(";") Then
+                    pID = CInt(pokeSearchList(i).GetSplit(0, ";"))
+                    pAD = pokeSearchList(i).GetSplit(1, ";")
+                ElseIf pokeSearchList(i).Contains("_") Then
+                    Dim additionalValue As String = PokemonForms.GetAdditionalValueFromDataFile(pokeSearchList(i))
+                    pID = CInt(pokeSearchList(i).GetSplit(0, "_"))
+                    If additionalValue <> "" Then
+                        pAD = additionalValue
+                    End If
+                Else
+                    pID = CInt(pokeSearchList(i))
+                End If
+
+                Dim p As Pokemon
+                If pAD <> "" Then
+                    p = Pokemon.GetPokemonByID(pID, pAD)
+                Else
+                    p = Pokemon.GetPokemonByID(pID, pAD, True)
+                End If
+
+
+                If Pokedex.GetEntryType(Core.Player.PokedexData, pokeSearchList(i)) >= neededEntryType Then
+
+                   Dim valid As Boolean = True
                     For Each F As Filter In Me.Filters
                         Select Case F.FilterType
                             Case FilterType.Name
@@ -447,7 +471,10 @@ Public Class PokedexScreen
                     Next
 
                     If valid = True Then
-                        Me.PokemonList.Add(p)
+
+                        If Profile.Pokedex.GetPlace(pokeSearchList(i)) <> -1 Then
+                            Me.PokemonList.Add(p)
+                        End If
                     End If
                 End If
             End If
@@ -457,15 +484,15 @@ Public Class PokedexScreen
             Case OrderType.Numeric
                 If CHabitat Is Nothing Then
                     If Me.ReverseOrder = True Then
-                        Me.PokemonList = (From p As Pokemon In Me.PokemonList Order By Profile.Pokedex.GetPlace(p.Number) Descending).ToList()
+                        Me.PokemonList = (From p As Pokemon In Me.PokemonList Order By Profile.Pokedex.GetPlace(PokemonForms.GetPokemonDataFileName(p.Number, p.AdditionalData, True)) Descending).ToList()
                     Else
-                        Me.PokemonList = (From p As Pokemon In Me.PokemonList Order By Profile.Pokedex.GetPlace(p.Number) Ascending).ToList()
+                        Me.PokemonList = (From p As Pokemon In Me.PokemonList Order By Profile.Pokedex.GetPlace(PokemonForms.GetPokemonDataFileName(p.Number, p.AdditionalData, True)) Ascending).ToList()
                     End If
                 Else
                     If Me.ReverseOrder = True Then
-                        Me.PokemonList = (From p As Pokemon In Me.PokemonList Order By p.Number Descending).ToList()
+                        Me.PokemonList = (From p As Pokemon In Me.PokemonList Order By PokemonForms.GetPokemonDataFileName(p.Number, p.AdditionalData, True) Descending).ToList()
                     Else
-                        Me.PokemonList = (From p As Pokemon In Me.PokemonList Order By p.Number Ascending).ToList()
+                        Me.PokemonList = (From p As Pokemon In Me.PokemonList Order By PokemonForms.GetPokemonDataFileName(p.Number, p.AdditionalData, True) Ascending).ToList()
                     End If
                 End If
             Case OrderType.Alphabetically
@@ -525,7 +552,16 @@ Public Class PokedexScreen
                     Dim id As Integer = (y + Scroll) * 6 + x
 
                     If id <= Me.PokemonList.Count - 1 Then
-                        If Not CHabitat Is Nothing OrElse Me.Profile.Pokedex.OriginalCount >= Profile.Pokedex.GetPlace(Me.PokemonList(id).Number) Then
+                        Dim dexID As String = PokemonForms.GetPokemonDataFileName(Me.PokemonList(id).Number, Me.PokemonList(id).AdditionalData)
+                        If dexID.Contains("_") = False Then
+                            If PokemonForms.GetAdditionalDataForms(Me.PokemonList(id).Number) IsNot Nothing AndAlso PokemonForms.GetAdditionalDataForms(Me.PokemonList(id).Number).Contains(Me.PokemonList(id).AdditionalData) Then
+                                dexID = Me.PokemonList(id).Number & ";" & Me.PokemonList(id).AdditionalData
+                            Else
+                                dexID = Me.PokemonList(id).Number.ToString
+                            End If
+                        End If
+
+                        If Not CHabitat Is Nothing OrElse Me.Profile.Pokedex.OriginalCount >= Profile.Pokedex.GetPlace(dexID) Then
                             Canvas.DrawRectangle(New Rectangle(50 + x * 100, 140 + y * 100, 64, 92), New Color(42, 167, 198, 150))
                         Else
                             Canvas.DrawBorder(3, New Rectangle(50 + x * 100, 140 + y * 100, 64, 92), New Color(42, 167, 198, 150))
@@ -536,7 +572,7 @@ Public Class PokedexScreen
 
                         If TempPokemonStorage.ContainsKey(id + 1) = False Then
                             TempPokemonStorage.Add(id + 1, Me.PokemonList(id))
-                            TempPokemonDexType.Add(id + 1, Pokedex.GetEntryType(Core.Player.PokedexData, Me.PokemonList(id).Number))
+                            TempPokemonDexType.Add(id + 1, Pokedex.GetEntryType(Core.Player.PokedexData, dexID))
                         End If
                         p = TempPokemonStorage(id + 1)
                         entryType = TempPokemonDexType(id + 1)
@@ -556,8 +592,9 @@ Public Class PokedexScreen
                         End If
 
                         Dim no As String = "000"
+
                         If CHabitat Is Nothing Then
-                            no = Profile.Pokedex.GetPlace(p.Number).ToString()
+                            no = Profile.Pokedex.GetPlace(dexID).ToString()
                         Else
                             no = p.Number.ToString()
                         End If
@@ -626,7 +663,16 @@ Public Class PokedexScreen
     End Function
 
     Private Sub DrawPokemonPreview(ByVal p As Pokemon)
-        Dim entryType As Integer = Pokedex.GetEntryType(Core.Player.PokedexData, p.Number)
+        Dim dexID As String = PokemonForms.GetPokemonDataFileName(p.Number, p.AdditionalData)
+        If dexID.Contains("_") = False Then
+            If PokemonForms.GetAdditionalDataForms(p.Number) IsNot Nothing AndAlso PokemonForms.GetAdditionalDataForms(p.Number).Contains(p.AdditionalData) Then
+                dexID = p.Number & ";" & p.AdditionalData
+            Else
+                dexID = p.Number.ToString
+            End If
+        End If
+
+        Dim entryType As Integer = Pokedex.GetEntryType(Core.Player.PokedexData, dexID)
 
         For i = 0 To 4
             Canvas.DrawGradient(New Rectangle(650, 300 + i * 40, 50, 2), New Color(255, 255, 255, 10), New Color(255, 255, 255, 255), True, -1)
@@ -636,7 +682,7 @@ Public Class PokedexScreen
 
         Dim no As String = "000"
         If CHabitat Is Nothing Then
-            no = Profile.Pokedex.GetPlace(p.Number).ToString()
+            no = Profile.Pokedex.GetPlace(dexID).ToString()
         Else
             no = p.Number.ToString()
         End If
@@ -660,7 +706,7 @@ Public Class PokedexScreen
             If Not CHabitat Is Nothing Then
                 Dim encounterTypes As New List(Of Integer)
                 For Each ec As PokedexScreen.Habitat.EncounterPokemon In CHabitat.ObtainTypeList
-                    If ec.PokemonID = p.Number Then
+                    If ec.PokemonID = PokemonForms.GetPokemonDataFileName(p.Number, p.AdditionalData) Then
                         If encounterTypes.Contains(ec.EncounterType) = False Then
                             encounterTypes.Add(ec.EncounterType)
                         End If
@@ -1059,7 +1105,7 @@ Public Class PokedexScreen
         End Enum
 
         Public Structure EncounterPokemon
-            Public PokemonID As Integer
+            Public PokemonID As String
             Public EncounterType As Integer
             Public Daytimes() As Integer
         End Structure
@@ -1070,7 +1116,7 @@ Public Class PokedexScreen
         Public Name As String = ""
         Public HabitatType As HabitatTypes = HabitatTypes.Grassland
 
-        Public PokemonList As New List(Of Integer)
+        Public PokemonList As New List(Of String)
         Public ObtainTypeList As New List(Of EncounterPokemon)
 
         Public PokemonCaught As Integer = 0
@@ -1108,10 +1154,10 @@ Public Class PokedexScreen
                 ElseIf line.StartsWith("{") = True And line.EndsWith("}") = True Then
                     Dim pokemonData() As String = line.Remove(line.Length - 1, 1).Remove(0, 1).Split(CChar("|"))
 
-                    If Me.PokemonList.Contains(CInt(pokemonData(1))) = False Then
-                        Me.PokemonList.Add(CInt(pokemonData(1)))
+                    If Me.PokemonList.Contains(pokemonData(1)) = False Then
+                        Me.PokemonList.Add(pokemonData(1))
 
-                        Dim entryType As Integer = Pokedex.GetEntryType(Core.Player.PokedexData, CInt(pokemonData(1)))
+                        Dim entryType As Integer = Pokedex.GetEntryType(Core.Player.PokedexData, pokemonData(1))
 
                         If entryType > 0 Then
                             Me.PokemonSeen += 1
@@ -1136,7 +1182,7 @@ Public Class PokedexScreen
                         End If
                     Next
 
-                    Me.ObtainTypeList.Add(New EncounterPokemon With {.PokemonID = CInt(pokemonData(1)), .EncounterType = CInt(pokemonData(0)), .Daytimes = dayTimes.ToArray()})
+                    Me.ObtainTypeList.Add(New EncounterPokemon With {.PokemonID = pokemonData(1), .EncounterType = CInt(pokemonData(0)), .Daytimes = dayTimes.ToArray()})
                 End If
             Next
 
@@ -1206,10 +1252,10 @@ Public Class PokedexScreen
                 If line.StartsWith("{") = True And line.EndsWith("}") = True Then
                     Dim pokemonData() As String = line.Remove(line.Length - 1, 1).Remove(0, 1).Split(CChar("|"))
 
-                    If Me.PokemonList.Contains(CInt(pokemonData(1))) = False Then
-                        Me.PokemonList.Add(CInt(pokemonData(1)))
+                    If Me.PokemonList.Contains(pokemonData(1)) = False Then
+                        Me.PokemonList.Add(pokemonData(1))
 
-                        Dim entryType As Integer = Pokedex.GetEntryType(Core.Player.PokedexData, CInt(pokemonData(1)))
+                        Dim entryType As Integer = Pokedex.GetEntryType(Core.Player.PokedexData, pokemonData(1))
 
                         If entryType > 0 Then
                             Me.PokemonSeen += 1
@@ -1219,12 +1265,12 @@ Public Class PokedexScreen
                         End If
                     End If
 
-                    Me.ObtainTypeList.Add(New EncounterPokemon With {.PokemonID = CInt(pokemonData(1)), .EncounterType = CInt(pokemonData(0))})
+                    Me.ObtainTypeList.Add(New EncounterPokemon With {.PokemonID = pokemonData(1), .EncounterType = CInt(pokemonData(0))})
                 End If
             Next
         End Sub
 
-        Public Function HasPokemon(ByVal pokemonNumber As Integer) As Boolean
+        Public Function HasPokemon(ByVal pokemonNumber As String) As Boolean
             Return Me.PokemonList.Contains(pokemonNumber)
         End Function
 
@@ -1255,29 +1301,33 @@ Public Class PokedexViewScreen
     Class EvolutionLinePokemon
 
         Public Level As Integer = 0
-        Public PokemonID As Integer = 0
+        Public PokemonID As String = "0"
+        Public PokemonAD As String = ""
         Public Evolutions As New List(Of EvolutionLinePokemon)
         Public Devolution As EvolutionLinePokemon = Nothing
         Public Pokemon As Pokemon = Nothing
 
-        Public Sub New(ByVal Level As Integer, ByVal pokemonID As Integer, ByVal vS As PokedexViewScreen, ByVal fromEvolution As Integer)
+        Public Sub New(ByVal Level As Integer, ByVal pokemonID As String, ByVal vS As PokedexViewScreen, ByVal fromEvolution As String)
             Me.Level = Level
             Me.PokemonID = pokemonID
-            Me.Pokemon = Pokemon.GetPokemonByID(Me.PokemonID)
+            If pokemonID.Contains("_") Then
+                Me.PokemonAD = PokemonForms.GetAdditionalValueFromDataFile(pokemonID)
+            End If
+            Me.Pokemon = Pokemon.GetPokemonByID(CInt(Me.PokemonID.GetSplit(0, "_")), Me.PokemonAD)
 
             If Me.Pokemon.EvolutionConditions.Count > 0 Then
-                Dim evolutions As New List(Of Integer)
+                Dim evolutions As New List(Of String)
                 For Each ev As EvolutionCondition In Me.Pokemon.EvolutionConditions
-                    If evolutions.Contains(CInt(ev.Evolution.Split(CChar("_"))(0))) = False And fromEvolution <> CInt(ev.Evolution.Split(CChar("_"))(0)) Then
-                        evolutions.Add(CInt(ev.Evolution.Split(CChar("_"))(0)))
+                    If evolutions.Contains(ev.Evolution) = False And fromEvolution <> ev.Evolution Then
+                        evolutions.Add(ev.Evolution)
                     End If
                 Next
 
-                For Each ev As Integer In evolutions
+                For Each ev As String In evolutions
                     If vS.maximumLevel < Me.Level + 1 Then
                         vS.maximumLevel = Me.Level + 1
                     End If
-                    Me.Evolutions.Add(New EvolutionLinePokemon(Me.Level + 1, ev, vS, -1))
+                    Me.Evolutions.Add(New EvolutionLinePokemon(Me.Level + 1, ev, vS, ""))
                 Next
             End If
         End Sub
@@ -1301,7 +1351,17 @@ Public Class PokedexViewScreen
         Me._transitionOut = transitionOut
 
         Me.Pokemon = Pokemon
-        Me.EntryType = Pokedex.GetEntryType(Core.Player.PokedexData, Me.Pokemon.Number)
+
+        Dim dexID As String = PokemonForms.GetPokemonDataFileName(Me.Pokemon.Number, Me.Pokemon.AdditionalData)
+        If dexID.Contains("_") = False Then
+            If PokemonForms.GetAdditionalDataForms(Me.Pokemon.Number) IsNot Nothing AndAlso PokemonForms.GetAdditionalDataForms(Me.Pokemon.Number).Contains(Me.Pokemon.AdditionalData) Then
+                dexID = Me.Pokemon.Number & ";" & Me.Pokemon.AdditionalData
+            Else
+                dexID = Me.Pokemon.Number.ToString
+            End If
+        End If
+
+        Me.EntryType = Pokedex.GetEntryType(Core.Player.PokedexData, dexID)
 
         Me.GetYOffset()
         Me.FillEvolutionLine()
@@ -1309,20 +1369,37 @@ Public Class PokedexViewScreen
     End Sub
 
     Private Sub FillEvolutionLine()
-        Dim p As New EvolutionLinePokemon(0, Me.Pokemon.Number, Me, -1)
+        Dim evoID As String = Me.Pokemon.Number.ToString
+        If Me.Pokemon.AdditionalData <> "" Then
+            evoID = PokemonForms.GetPokemonDataFileName(Me.Pokemon.Number, Me.Pokemon.AdditionalData)
+        End If
+        Dim p As New EvolutionLinePokemon(0, evoID, Me, "")
 
-        If p.Pokemon.Devolution > 0 Then
-            Dim devP As Pokemon = P3D.Pokemon.GetPokemonByID(p.Pokemon.Devolution)
+        If CInt(p.Pokemon.Devolution.GetSplit(0, "_")) > 0 Then
+            Dim devoID As String = p.Pokemon.Devolution
+            Dim devoAD As String = ""
+            If devoID.Contains("_") Then
+                devoAD = PokemonForms.GetAdditionalValueFromDataFile(p.Pokemon.Devolution)
+            End If
+
+            Dim devP As Pokemon = P3D.Pokemon.GetPokemonByID(CInt(devoID.GetSplit(0, "_")), devoAD)
             Dim devR As EvolutionLinePokemon = Nothing
             Dim level As Integer = -1
-            p.Devolution = New EvolutionLinePokemon(level, devP.Number, Me, p.Pokemon.Number)
+            p.Devolution = New EvolutionLinePokemon(level, devoID, Me, evoID)
             Logger.Debug("Add devolution level 1: " & devP.Number)
+
             devR = p.Devolution
 
-            While devR.Pokemon.Devolution > 0
-                devP = P3D.Pokemon.GetPokemonByID(devR.Pokemon.Devolution)
+            While CInt(devR.Pokemon.Devolution.GetSplit(0, "_")) > 0
+                devoID = devR.Pokemon.Devolution
+                devoAD = ""
+                If devR.Pokemon.AdditionalData <> "" Then
+                    devoAD = PokemonForms.GetAdditionalValueFromDataFile(devR.Pokemon.Devolution)
+                End If
+
+                devP = P3D.Pokemon.GetPokemonByID(CInt(devoID.GetSplit(0, "_")), devoAD)
                 level -= 1
-                devR.Devolution = New EvolutionLinePokemon(level, devP.Number, Me, devR.Pokemon.Number)
+                devR.Devolution = New EvolutionLinePokemon(level, devoID, Me, PokemonForms.GetPokemonDataFileName(devR.Pokemon.Number, devR.Pokemon.AdditionalData))
                 devR = devR.Devolution
                 Logger.Debug("Add devolution level " & (level * -1) & ": " & devP.Number)
             End While
@@ -1357,7 +1434,7 @@ Public Class PokedexViewScreen
 
         For i = 0 To Me.HabitatList.Count - 1
             If i <= Me.HabitatList.Count - 1 Then
-                If Me.HabitatList(i).HasPokemon(Me.Pokemon.Number) = False Then
+                If Me.HabitatList(i).HasPokemon(PokemonForms.GetPokemonDataFileName(Me.Pokemon.Number, Me.Pokemon.AdditionalData)) = False Then
                     Me.HabitatList.RemoveAt(i)
                     i -= 1
                 End If
@@ -1512,7 +1589,7 @@ Public Class PokedexViewScreen
 
                     Dim encounterTypes As New List(Of Integer)
                     For j = 0 To HabitatList(i).ObtainTypeList.Count - 1
-                        If HabitatList(i).ObtainTypeList(j).PokemonID = Me.Pokemon.Number And encounterTypes.Contains(HabitatList(i).ObtainTypeList(j).EncounterType) = False Then
+                        If HabitatList(i).ObtainTypeList(j).PokemonID = PokemonForms.GetPokemonDataFileName(Me.Pokemon.Number, Me.Pokemon.AdditionalData) And encounterTypes.Contains(HabitatList(i).ObtainTypeList(j).EncounterType) = False Then
                             encounterTypes.Add(HabitatList(i).ObtainTypeList(j).EncounterType)
                         End If
                     Next
@@ -1580,17 +1657,21 @@ Public Class PokedexViewScreen
             Next
 
             Dim levelDraws As New Dictionary(Of Integer, Integer)
-            Dim PokemonDraws As New Dictionary(Of Integer, Integer)
+            Dim PokemonDraws As New Dictionary(Of String, Integer)
 
             For i = 0 To connections.Count - 1
                 Dim c As String = connections(i).Split(CChar("|"))(1)
 
                 Dim mv As Vector2 = Core.GetMiddlePosition(New Size(CInt(64 * scale), CInt(64 * scale)))
 
-                Dim p1 As Integer = CInt(c.Remove(c.IndexOf("-")))
+                Dim p1 As String = c.Remove(c.IndexOf("-"))
                 Dim level1 As Integer = CInt(connections(i).Split(CChar("|"))(0).Split(CChar("_"))(0))
                 Dim level1Count As Integer = levels(level1)
-                Dim pokemon1 As Pokemon = Pokemon.GetPokemonByID(p1)
+                Dim p1ad As String = ""
+                If p1.Contains("_") = True Then
+                    p1ad = PokemonForms.GetAdditionalValueFromDataFile(p1)
+                End If
+                Dim pokemon1 As Pokemon = Pokemon.GetPokemonByID(CInt(p1.GetSplit(0, "_")), p1ad, True)
 
                 If levelDraws.ContainsKey(level1) = False Then
                     levelDraws.Add(level1, 0)
@@ -1603,10 +1684,14 @@ Public Class PokedexViewScreen
 
                 Dim level1Offset As Integer = CInt(GetOffset(level1Count, PokemonDraws(p1)) * (64 * scale))
 
-                Dim p2 As Integer = CInt(c.Remove(0, c.IndexOf("-") + 1))
+                Dim p2 As String = c.Remove(0, c.IndexOf("-") + 1)
                 Dim level2 As Integer = CInt(connections(i).Split(CChar("|"))(0).Split(CChar("_"))(1))
                 Dim level2Count As Integer = levels(level2)
-                Dim pokemon2 As Pokemon = Pokemon.GetPokemonByID(p2)
+                Dim p2ad As String = ""
+                If p2.Contains("_") = True Then
+                    p2ad = PokemonForms.GetAdditionalValueFromDataFile(p2)
+                End If
+                Dim pokemon2 As Pokemon = Pokemon.GetPokemonByID(CInt(p2.GetSplit(0, "_")), p2ad, True)
 
                 If levelDraws.ContainsKey(level2) = False Then
                     levelDraws.Add(level2, 0)
@@ -1621,7 +1706,25 @@ Public Class PokedexViewScreen
 
                 Canvas.DrawLine(Color.Black, New Vector2(mv.X + (level1 * (128 * scale)) + (scale * 32), mv.Y + (scale * 32) + level1Offset), New Vector2(mv.X + (level2 * (128 * scale)) + (scale * 32), mv.Y + (scale * 32) + level2Offset), 2)
 
-                If Pokedex.GetEntryType(Core.Player.PokedexData, pokemon1.Number) = 0 Then
+                Dim dexID1 As String = PokemonForms.GetPokemonDataFileName(pokemon1.Number, pokemon1.AdditionalData)
+                If dexID1.Contains("_") = False Then
+                    If PokemonForms.GetAdditionalDataForms(pokemon1.Number) IsNot Nothing AndAlso PokemonForms.GetAdditionalDataForms(pokemon1.Number).Contains(pokemon1.AdditionalData) Then
+                        dexID1 = pokemon1.Number & ";" & pokemon1.AdditionalData
+                    Else
+                        dexID1 = pokemon1.Number.ToString
+                    End If
+                End If
+
+                Dim dexID2 As String = PokemonForms.GetPokemonDataFileName(pokemon2.Number, pokemon2.AdditionalData)
+                If dexID2.Contains("_") = False Then
+                    If PokemonForms.GetAdditionalDataForms(pokemon2.Number) IsNot Nothing AndAlso PokemonForms.GetAdditionalDataForms(pokemon2.Number).Contains(pokemon2.AdditionalData) Then
+                        dexID2 = pokemon2.Number & ";" & pokemon2.AdditionalData
+                    Else
+                        dexID2 = pokemon2.Number.ToString
+                    End If
+                End If
+
+                If Pokedex.GetEntryType(Core.Player.PokedexData, dexID1) = 0 Then
                     Dim pokeTexture = pokemon1.GetMenuTexture()
                     Dim pokeTextureScale As Vector2 = New Vector2(CSng(32 / pokeTexture.Width * 2), CSng(32 / pokeTexture.Height * 2))
                     Core.SpriteBatch.Draw(pokeTexture, New Rectangle(CInt(mv.X + (level1 * CInt(128 * scale))), CInt(mv.Y + level1Offset), CInt(pokeTexture.Width * pokeTextureScale.X * scale), CInt(pokeTexture.Height * pokeTextureScale.Y * scale)), Color.Black)
@@ -1631,7 +1734,7 @@ Public Class PokedexViewScreen
                     Core.SpriteBatch.Draw(pokeTexture, New Rectangle(CInt(mv.X + (level1 * (128 * scale))), CInt(mv.Y + level1Offset), CInt(pokeTexture.Width * pokeTextureScale.X * scale), CInt(pokeTexture.Height * pokeTextureScale.Y * scale)), Color.White)
                     Core.SpriteBatch.DrawString(FontManager.MainFont, pokemon1.GetName(), New Vector2(CInt(mv.X + (level1 * (128 * scale)) + CInt(pokeTexture.Width * pokeTextureScale.X / 2 * scale) - (FontManager.MainFont.MeasureString(pokemon1.GetName()).X / 2 * CSng(scale / 2))), CInt(mv.Y + level1Offset + (72 * scale))), Color.Black, 0.0F, Vector2.Zero, CInt(scale / 2), SpriteEffects.None, 0.0F)
                 End If
-                If Pokedex.GetEntryType(Core.Player.PokedexData, pokemon2.Number) = 0 Then
+                If Pokedex.GetEntryType(Core.Player.PokedexData, dexID2) = 0 Then
                     Dim pokeTexture = pokemon2.GetMenuTexture()
                     Dim pokeTextureScale As Vector2 = New Vector2(CSng(32 / pokeTexture.Width * 2), CSng(32 / pokeTexture.Height * 2))
                     Core.SpriteBatch.Draw(pokeTexture, New Rectangle(CInt(mv.X + (level2 * CInt(128 * scale))), CInt(mv.Y + level2Offset), CInt(pokeTexture.Width * pokeTextureScale.X * scale), CInt(pokeTexture.Height * pokeTextureScale.X * scale)), Color.Black)

@@ -1766,20 +1766,31 @@
                     Case "[pokedexentry]"
                         Dim triedIDs As New List(Of Integer)
                         Dim chosenID As Integer = -1
+                        Dim chosenAD As String = ""
 
-                        While chosenID = -1 And triedIDs.Count < Pokedex.POKEMONCOUNT
-                            Dim ID As Integer = Core.Random.Next(1, Pokedex.POKEMONCOUNT + 1)
+                        While chosenID = -1 And triedIDs.Count < Pokedex.PokemonCount
+                            Dim ID As Integer = Core.Random.Next(1, Pokedex.PokemonCount + 1)
                             If triedIDs.Contains(ID) = False Then
-                                If Pokedex.GetEntryType(Core.Player.PokedexData, ID) < 2 Then
+                                If Pokedex.GetEntryType(Core.Player.PokedexData, Pokedex.PokemonIDs(ID)) < 2 Then
                                     triedIDs.Add(ID)
                                 Else
-                                    chosenID = ID
+                                    If Pokedex.PokemonIDs(ID).Contains("_") Then
+                                        chosenID = CInt(Pokedex.PokemonIDs(ID).GetSplit(0, "_"))
+                                        chosenAD = PokemonForms.GetAdditionalValueFromDataFile(Pokedex.PokemonIDs(ID))
+                                    ElseIf Pokedex.PokemonIDs(ID).Contains(";") Then
+                                        chosenID = CInt(Pokedex.PokemonIDs(ID).GetSplit(0, ";"))
+                                        chosenAD = Pokedex.PokemonIDs(ID).GetSplit(1, ";")
+                                    Else
+                                        chosenID = ID
+                                    End If
+
                                 End If
                             End If
                         End While
 
                         If chosenID > -1 Then
-                            Dim p As Pokemon = Pokemon.GetPokemonByID(chosenID)
+
+                            Dim p As Pokemon = Pokemon.GetPokemonByID(chosenID, chosenAD)
 
                             output = "Welcome to the Pokédex Show! Today, we are going to look at the entry of " & p.GetName() & "! Its entry reads:~""" & p.PokedexEntry.Text & """~Wow, that is interesting! Also, " & p.GetName() & " is " & p.PokedexEntry.Height & "m high and weights " & p.PokedexEntry.Weight & "kg.~Isn't that amazing?~" & p.GetName() & " is part of the " & p.PokedexEntry.Species & " species.~That's all the information we have. Tune in next time!"
                         End If
