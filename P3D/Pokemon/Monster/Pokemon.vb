@@ -632,6 +632,7 @@ Public Class Pokemon
     Public Cry As SoundEffect
     Public WildItems As New Dictionary(Of Integer, String)
     Public RegionalForms As String = ""
+    Public DexForms As New List(Of String)
 
     Private _name As String
     Private _number As Integer
@@ -1490,6 +1491,17 @@ Public Class Pokemon
                     Me.EggPokemon = Value
                 Case "regionalforms"
                     Me.RegionalForms = Value
+                Case "dexforms"
+                    If Value <> "" Then
+                        If Value.Contains(",") = True Then
+                            Dim FormValue() As String = Value.Split(CChar(","))
+                            For i = 0 To FormValue.Length - 1
+                                Me.DexForms.Add(FormValue(i))
+                            Next
+                        Else
+                            Me.DexForms.Add(Value)
+                        End If
+                    End If
                 Case "canbreed"
                     Me.CanBreed = CBool(Value)
                 Case "basehp"

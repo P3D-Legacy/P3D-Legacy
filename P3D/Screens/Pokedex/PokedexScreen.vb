@@ -403,13 +403,15 @@ Public Class PokedexScreen
         If CHabitat Is Nothing Then
             ' Add any external Pokémon if specified to do so:
             If Profile.Pokedex.IncludeExternalPokemon = True Then
-                For i = 0 To Pokedex.PokemonCount - 1
-                    If Me.Profile.Pokedex.HasPokemon(Pokedex.PokemonIDs(i), False) = False Then
-                        If Pokedex.GetEntryType(Core.Player.PokedexData, Pokedex.PokemonIDs(i)) > 0 Then
-                            Profile.Pokedex.PokemonList.Add(Profile.Pokedex.PokemonList.Count + 1, Pokedex.PokemonIDs(i))
+                If Pokedex.PokemonMaxCount > 0 Then
+                    For i = 1 To Pokedex.PokemonMaxCount
+                        If Me.Profile.Pokedex.HasPokemon(i.ToString, False) = False Then
+                            If Pokedex.GetEntryType(Core.Player.PokedexData, i.ToString) > 0 Then
+                                Profile.Pokedex.PokemonList.Add(Profile.Pokedex.PokemonList.Count + 1, i.ToString)
+                            End If
                         End If
-                    End If
-                Next
+                    Next
+                End If
             End If
             For Each i As String In Profile.Pokedex.PokemonList.Values
                 pokeSearchList.Add(i)
@@ -1312,6 +1314,9 @@ Public Class PokedexViewScreen
             Me.PokemonID = pokemonID
             If pokemonID.Contains("_") Then
                 Me.PokemonAD = PokemonForms.GetAdditionalValueFromDataFile(pokemonID)
+            ElseIf pokemonID.Contains(";") Then
+                Me.PokemonID = pokemonID.GetSplit(0, ";")
+                Me.PokemonAD = pokemonID.GetSplit(1, ";")
             End If
             Me.Pokemon = Pokemon.GetPokemonByID(CInt(Me.PokemonID.GetSplit(0, "_")), Me.PokemonAD)
 
@@ -1328,6 +1333,17 @@ Public Class PokedexViewScreen
                         vS.maximumLevel = Me.Level + 1
                     End If
                     Me.Evolutions.Add(New EvolutionLinePokemon(Me.Level + 1, ev, vS, ""))
+                Next
+            End If
+
+            If Me.Pokemon.DexForms.Count > 0 Then
+                For Each form As String In Me.Pokemon.DexForms
+                    If form <> "" Then
+                        If vS.maximumLevel < Me.Level + 1 Then
+                            vS.maximumLevel = Me.Level + 1
+                        End If
+                        Me.Evolutions.Add(New EvolutionLinePokemon(Me.Level + 1, CStr(Me.Pokemon.Number & "_" & form), vS, ""))
+                    End If
                 Next
             End If
         End Sub
@@ -1732,7 +1748,8 @@ Public Class PokedexViewScreen
                     Dim pokeTexture = pokemon1.GetMenuTexture()
                     Dim pokeTextureScale As Vector2 = New Vector2(CSng(32 / pokeTexture.Width * 2), CSng(32 / pokeTexture.Height * 2))
                     Core.SpriteBatch.Draw(pokeTexture, New Rectangle(CInt(mv.X + (level1 * (128 * scale))), CInt(mv.Y + level1Offset), CInt(pokeTexture.Width * pokeTextureScale.X * scale), CInt(pokeTexture.Height * pokeTextureScale.Y * scale)), Color.White)
-                    Core.SpriteBatch.DrawString(FontManager.MainFont, pokemon1.GetName(), New Vector2(CInt(mv.X + (level1 * (128 * scale)) + CInt(pokeTexture.Width * pokeTextureScale.X / 2 * scale) - (FontManager.MainFont.MeasureString(pokemon1.GetName()).X / 2 * CSng(scale / 2))), CInt(mv.Y + level1Offset + (72 * scale))), Color.Black, 0.0F, Vector2.Zero, CInt(scale / 2), SpriteEffects.None, 0.0F)
+                    Core.SpriteBatch.DrawString(FontManager.MainFont, pokemon1.GetName(), New Vector2(CInt(mv.X + (level1 * (128 * scale)) + CInt(pokeTexture.Width * pokeTextureScale.X / 2 * scale) - (FontManager.MainFont.MeasureString(pokemon1.GetName()).X / 2 * CSng(scale / 2)) + 2), CInt(mv.Y + level1Offset + (64 * scale)) + 2), Color.Black, 0.0F, Vector2.Zero, CInt(scale / 2), SpriteEffects.None, 0.0F)
+                    Core.SpriteBatch.DrawString(FontManager.MainFont, pokemon1.GetName(), New Vector2(CInt(mv.X + (level1 * (128 * scale)) + CInt(pokeTexture.Width * pokeTextureScale.X / 2 * scale) - (FontManager.MainFont.MeasureString(pokemon1.GetName()).X / 2 * CSng(scale / 2))), CInt(mv.Y + level1Offset + (64 * scale))), Color.White, 0.0F, Vector2.Zero, CInt(scale / 2), SpriteEffects.None, 0.0F)
                 End If
                 If Pokedex.GetEntryType(Core.Player.PokedexData, dexID2) = 0 Then
                     Dim pokeTexture = pokemon2.GetMenuTexture()
@@ -1742,7 +1759,8 @@ Public Class PokedexViewScreen
                     Dim pokeTexture = pokemon2.GetMenuTexture()
                     Dim pokeTextureScale As Vector2 = New Vector2(CSng(32 / pokeTexture.Width * 2), CSng(32 / pokeTexture.Height * 2))
                     Core.SpriteBatch.Draw(pokeTexture, New Rectangle(CInt(mv.X + (level2 * CInt(128 * scale))), CInt(mv.Y + level2Offset), CInt(pokeTexture.Width * pokeTextureScale.X * scale), CInt(pokeTexture.Height * pokeTextureScale.Y * scale)), Color.White)
-                    Core.SpriteBatch.DrawString(FontManager.MainFont, pokemon2.GetName(), New Vector2(CInt(mv.X + (level2 * (128 * scale)) + (32 * scale) - (FontManager.MainFont.MeasureString(pokemon2.GetName()).X / 2 * CSng(scale / 2))), CInt(mv.Y + level2Offset + (72 * scale))), Color.Black, 0.0F, Vector2.Zero, CInt(scale / 2), SpriteEffects.None, 0.0F)
+                    Core.SpriteBatch.DrawString(FontManager.MainFont, pokemon2.GetName(), New Vector2(CInt(mv.X + (level2 * (128 * scale)) + (32 * scale) - (FontManager.MainFont.MeasureString(pokemon2.GetName()).X / 2 * CSng(scale / 2)) + 2), CInt(mv.Y + level2Offset + (64 * scale)) + 2), Color.Black, 0.0F, Vector2.Zero, CInt(scale / 2), SpriteEffects.None, 0.0F)
+                    Core.SpriteBatch.DrawString(FontManager.MainFont, pokemon2.GetName(), New Vector2(CInt(mv.X + (level2 * (128 * scale)) + (32 * scale) - (FontManager.MainFont.MeasureString(pokemon2.GetName()).X / 2 * CSng(scale / 2))), CInt(mv.Y + level2Offset + (64 * scale))), Color.White, 0.0F, Vector2.Zero, CInt(scale / 2), SpriteEffects.None, 0.0F)
                 End If
             Next
         End If

@@ -6,6 +6,7 @@
     '3 = shiny + caught + seen
 
     Public Shared AutoDetect As Boolean = True
+    Public Shared PokemonMaxCount As Integer = 893
     Public Shared PokemonCount As Integer = 893
     Public Shared PokemonIDs As New List(Of String)
 
@@ -92,14 +93,20 @@
                     cOriginalEntry = GetEntryType(Data, ID.GetSplit(0, ";")).ToString
                 End If
 
+                If ID.Contains("_") Then
+                    If Pokemon.GetPokemonByID(CInt(ID.GetSplit(0, "_"))).DexForms.Contains(ID.GetSplit(1, "_")) Then
+                        cOriginalEntry = GetEntryType(Data, ID.GetSplit(0, "_")).ToString
+                    End If
+                End If
+
                 Dim cEntry As Integer = GetEntryType(Data, ID)
                 Dim cData As String = Data
                 If cOriginalEntry <> "" Then
                     If CInt(cOriginalEntry) < Type Then
-                        If Data.Contains("{" & ID.GetSplit(0, ";") & "|") = True Then
-                            cData = Data.Replace("{" & ID.GetSplit(0, ";") & "|" & cEntry & "}", "{" & ID.GetSplit(0, ";") & "|" & Type & "}")
+                        If Data.Contains("{" & ID.GetSplit(0, ";").GetSplit(0, "_") & "|") = True Then
+                            cData = Data.Replace("{" & ID.GetSplit(0, ";").GetSplit(0, "_") & "|" & cEntry & "}", "{" & ID.GetSplit(0, ";").GetSplit(0, "_") & "|" & Type & "}")
                         Else
-                            cData &= Environment.NewLine & "{" & ID.GetSplit(0, ";") & "|" & Type & "}"
+                            cData &= Environment.NewLine & "{" & ID.GetSplit(0, ";").GetSplit(0, "_") & "|" & Type & "}"
                         End If
                     End If
                 End If
@@ -114,6 +121,15 @@
                 If cData <> "" Then
                     cData &= Environment.NewLine
                 End If
+
+                If ID.Contains("_") Then
+                    If Pokemon.GetPokemonByID(CInt(ID.GetSplit(0, "_"))).DexForms.Contains(ID.GetSplit(1, "_")) Then
+                        If cData.Contains("{" & ID.GetSplit(0, "_") & "|") = False Then
+                            cData &= "{" & ID.GetSplit(0, "_") & "|" & Type & "}" & Environment.NewLine
+                        End If
+                    End If
+                End If
+
                 If ID.Contains(";") Then
                     If cData.Contains("{" & ID.GetSplit(0, ";") & "|") = False Then
                         cData &= "{" & ID.GetSplit(0, ";") & "|" & Type & "}" & Environment.NewLine
@@ -236,6 +252,7 @@
     Public IncludeExternalPokemon As Boolean = False 'for the pokedex screen, if true, this pokedex view will include all Pokémon seen/caught at the end.
 
     Public Sub New(ByVal input As String)
+
         Dim data() As String = input.Split(CChar("|"))
 
         Me.Name = data(0)
@@ -246,7 +263,7 @@
         Dim Place As Integer = 1
 
         For Each l As String In pokemonData
-            l = l.Replace("[MAX]", POKEMONCOUNT.ToString())
+            l = l.Replace("[MAX]", PokemonMaxCount.ToString())
 
             If l.Contains("-") = True AndAlso l.Contains("_") = False Then
                 Dim range() As String = l.Split(CChar("-"))
