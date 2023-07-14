@@ -1496,11 +1496,13 @@ Public Class Pokemon
                         If Value.Contains(",") = True Then
                             Dim FormValue() As String = Value.Split(CChar(","))
                             For i = 0 To FormValue.Length - 1
-                                Me.DexForms.Add(FormValue(i))
+                                Me.DexForms.Add(FormValue(i).ToLower)
                             Next
                         Else
-                            Me.DexForms.Add(Value)
+                            Me.DexForms.Add(Value.ToLower)
                         End If
+                    Else
+                        Me.DexForms.Add(" ".ToLower)
                     End If
                 Case "canbreed"
                     Me.CanBreed = CBool(Value)

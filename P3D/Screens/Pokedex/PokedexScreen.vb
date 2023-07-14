@@ -1294,7 +1294,7 @@ Public Class PokedexViewScreen
     Dim yOffset As Integer = 0
     Dim FrontView As Boolean = True
 
-    Dim EvolutionLine As EvolutionLinePokemon = Nothing
+    Dim EvolutionLines As new List(Of EvolutionLinePokemon)
     Dim minimumLevel As Integer = 0
     Dim maximumLevel As Integer = 0
 
@@ -1306,6 +1306,7 @@ Public Class PokedexViewScreen
         Public PokemonID As String = "0"
         Public PokemonAD As String = ""
         Public Evolutions As New List(Of EvolutionLinePokemon)
+        Public Forms As New List(Of EvolutionLinePokemon)
         Public Devolution As EvolutionLinePokemon = Nothing
         Public Pokemon As Pokemon = Nothing
 
@@ -1338,12 +1339,39 @@ Public Class PokedexViewScreen
 
             If Me.Pokemon.DexForms.Count > 0 Then
                 For Each form As String In Me.Pokemon.DexForms
-                    If form <> "" Then
-                        If vS.maximumLevel < Me.Level + 1 Then
-                            vS.maximumLevel = Me.Level + 1
-                        End If
-                        Me.Evolutions.Add(New EvolutionLinePokemon(Me.Level + 1, CStr(Me.Pokemon.Number & "_" & form), vS, ""))
+
+                    Dim formAD As String = ""
+                    If form <> " " Then
+                        formAD = PokemonForms.GetAdditionalValueFromDataFile(Me.PokemonID.GetSplit(0, "_") & "_" & form)
                     End If
+
+                    Dim formpokemon As Pokemon = Pokemon.GetPokemonByID(CInt(Me.PokemonID.GetSplit(0, "_")), formAD)
+                    If formpokemon.EvolutionConditions.Count > 0 Then
+                        Dim evolutions As New List(Of String)
+                        For Each ev As EvolutionCondition In formpokemon.EvolutionConditions
+                            If evolutions.Contains(ev.Evolution) = False And fromEvolution <> ev.Evolution Then
+                                evolutions.Add(ev.Evolution)
+                            End If
+                        Next
+
+                        For Each ev As String In evolutions
+                            If vS.maximumLevel < Me.Level + 1 Then
+                                vS.maximumLevel = Me.Level + 1
+                            End If
+                            Me.Evolutions.Add(New EvolutionLinePokemon(Me.Level + 1, ev, vS, ""))
+                        Next
+                    End If
+
+                    If vS.maximumLevel < Me.Level + 1 Then
+                        vS.maximumLevel = Me.Level + 1
+                    End If
+                    Dim formID As String = Me.Pokemon.Number.ToString
+                    If form <> " " Then
+                        formID &= "_" & form
+                    End If
+
+                    Me.Forms.Add(New EvolutionLinePokemon(Me.Level + 1, formID, vS, ""))
+
                 Next
             End If
         End Sub
@@ -1386,9 +1414,6 @@ Public Class PokedexViewScreen
 
     Private Sub FillEvolutionLine()
         Dim evoID As String = Me.Pokemon.Number.ToString
-        If Me.Pokemon.AdditionalData <> "" Then
-            evoID = PokemonForms.GetPokemonDataFileName(Me.Pokemon.Number, Me.Pokemon.AdditionalData)
-        End If
         Dim p As New EvolutionLinePokemon(0, evoID, Me, "")
 
         If CInt(p.Pokemon.Devolution.GetSplit(0, "_")) > 0 Then
@@ -1425,7 +1450,50 @@ Public Class PokedexViewScreen
 
         Logger.Debug("Minimum level: " & minimumLevel & "; maximum level: " & maximumLevel)
 
-        Me.EvolutionLine = p
+        Me.EvolutionLines.Add(p)
+        If p.Forms.Count > 0 Then
+            For Each formp As EvolutionLinePokemon In p.Forms
+                Dim formEvoID As String = formp.Pokemon.Number.ToString
+                If formp.Pokemon.AdditionalData <> "" Then
+                    formEvoID = PokemonForms.GetPokemonDataFileName(formp.Pokemon.Number, formp.Pokemon.AdditionalData)
+                End If
+                If CInt(formp.Pokemon.Devolution.GetSplit(0, "_")) > 0 Then
+                    Dim devoID As String = formp.Pokemon.Devolution
+                    Dim devoAD As String = ""
+                    If devoID.Contains("_") Then
+                        devoAD = PokemonForms.GetAdditionalValueFromDataFile(formp.Pokemon.Devolution)
+                    End If
+
+                    Dim devP As Pokemon = P3D.Pokemon.GetPokemonByID(CInt(devoID.GetSplit(0, "_")), devoAD)
+                    Dim devR As EvolutionLinePokemon = Nothing
+                    Dim level As Integer = -1
+                    formp.Devolution = New EvolutionLinePokemon(level, devoID, Me, evoID)
+                    Logger.Debug("Add devolution level 1: " & devP.Number)
+
+                    devR = formp.Devolution
+
+                    While CInt(devR.Pokemon.Devolution.GetSplit(0, "_")) > 0
+                        devoID = devR.Pokemon.Devolution
+                        devoAD = ""
+                        If devR.Pokemon.AdditionalData <> "" Then
+                            devoAD = PokemonForms.GetAdditionalValueFromDataFile(devR.Pokemon.Devolution)
+                        End If
+
+                        devP = P3D.Pokemon.GetPokemonByID(CInt(devoID.GetSplit(0, "_")), devoAD)
+                        level -= 1
+                        devR.Devolution = New EvolutionLinePokemon(level, devoID, Me, PokemonForms.GetPokemonDataFileName(devR.Pokemon.Number, devR.Pokemon.AdditionalData))
+                        devR = devR.Devolution
+                        Logger.Debug("Add devolution level " & (level * -1) & ": " & devP.Number)
+                    End While
+
+                    If minimumLevel > level Then
+                        minimumLevel = level
+                    End If
+                End If
+                Me.EvolutionLines.Add(formp)
+            Next
+        End If
+        Logger.Debug("Minimum level: " & minimumLevel & "; maximum level: " & maximumLevel)
     End Sub
 
     Private Sub FillHabitats()
@@ -1630,7 +1698,7 @@ Public Class PokedexViewScreen
     Dim scale As Single = 2.0F
 
     Private Sub DrawPage3()
-        If EvolutionLine.Devolution Is Nothing And EvolutionLine.Evolutions.Count = 0 Then
+        If EvolutionLines.Count = 0 OrElse EvolutionLines.Count = 1 AndAlso EvolutionLines(0).Devolution Is Nothing AndAlso EvolutionLines(0).Evolutions.Count = 0 AndAlso EvolutionLines(0).Forms.Count = 0 Then
             Canvas.DrawGradient(New Rectangle(CInt(Core.windowSize.Width / 2) - 282, CInt(Core.windowSize.Height / 2 - 45), 80, 90), New Color(84, 198, 216), New Color(42, 167, 198, 150), True, -1)
             Canvas.DrawRectangle(New Rectangle(CInt(Core.windowSize.Width / 2) - 202, CInt(Core.windowSize.Height / 2 - 45), 404, 90), New Color(42, 167, 198, 150))
             Canvas.DrawGradient(New Rectangle(CInt(Core.windowSize.Width / 2) + 202, CInt(Core.windowSize.Height / 2 - 45), 80, 90), New Color(42, 167, 198, 150), New Color(84, 198, 216), True, -1)
@@ -1641,35 +1709,46 @@ Public Class PokedexViewScreen
             Dim levels As New Dictionary(Of Integer, Integer)
 
             For i = minimumLevel To maximumLevel
-                levels.Add(i, 1)
+                levels.Add(i, 0)
             Next
 
-            If Not EvolutionLine.Devolution Is Nothing Then
-                connections.Add("-1_0|" & EvolutionLine.Devolution.PokemonID.ToString() & "-" & EvolutionLine.PokemonID.ToString())
-                levels(-1) += 1
+            For i = 0 To EvolutionLines.Count - 1
+                If Not EvolutionLines(i).Devolution Is Nothing Then
+                    connections.Add("-1_0|" & EvolutionLines(i).Devolution.PokemonID.ToString() & "-" & EvolutionLines(i).PokemonID.ToString())
+                    levels(-1) += 1
 
-                For Each evolution As EvolutionLinePokemon In EvolutionLine.Devolution.Evolutions
-                    connections.Add("-1_0|" & EvolutionLine.Devolution.PokemonID.ToString() & "-" & evolution.PokemonID.ToString())
-                    levels(0) += 1
+                    For Each evolution As EvolutionLinePokemon In EvolutionLines(i).Devolution.Evolutions
+                        connections.Add("-1_0|" & EvolutionLines(i).Devolution.PokemonID.ToString() & "-" & evolution.PokemonID.ToString())
+                        levels(0) += 1
+                        For Each eevolution As EvolutionLinePokemon In evolution.Evolutions
+                            connections.Add("0_1|" & evolution.PokemonID.ToString() & "-" & eevolution.PokemonID.ToString())
+                            levels(1) += 1
+                        Next
+                    Next
+
+                    If Not EvolutionLines(i).Devolution.Devolution Is Nothing Then
+                        connections.Add("-2_-1|" & EvolutionLines(i).Devolution.Devolution.PokemonID.ToString() & "-" & EvolutionLines(i).Devolution.PokemonID.ToString())
+                        levels(-2) += 1
+                    End If
+                Else
+                    If i > 0 AndAlso levels(1) = i + 1 Then
+                        levels(0) += 1
+                        levels(1) -= 2
+                    End If
+                End If
+
+                For Each evolution As EvolutionLinePokemon In EvolutionLines(i).Evolutions
+                    connections.Add("0_1|" & EvolutionLines(i).PokemonID.ToString() & "-" & evolution.PokemonID.ToString())
+                    levels(1) += 1
                     For Each eevolution As EvolutionLinePokemon In evolution.Evolutions
-                        connections.Add("0_1|" & evolution.PokemonID.ToString() & "-" & eevolution.PokemonID.ToString())
-                        levels(1) += 1
+                        connections.Add("1_2|" & evolution.PokemonID.ToString() & "-" & eevolution.PokemonID.ToString())
+                        levels(2) += 1
                     Next
                 Next
-
-                If Not EvolutionLine.Devolution.Devolution Is Nothing Then
-                    connections.Add("-2_-1|" & EvolutionLine.Devolution.Devolution.PokemonID.ToString() & "-" & EvolutionLine.Devolution.PokemonID.ToString())
-                    levels(-2) += 1
+                If EvolutionLines(i).Evolutions.Count = 0 AndAlso EvolutionLines(i).Devolution Is Nothing Then
+                    connections.Add("0_0|" & EvolutionLines(i).PokemonID.ToString() & "-" & EvolutionLines(i).PokemonID.ToString())
+                    levels(0) += 1
                 End If
-            End If
-
-            For Each evolution As EvolutionLinePokemon In EvolutionLine.Evolutions
-                connections.Add("0_1|" & EvolutionLine.PokemonID.ToString() & "-" & evolution.PokemonID.ToString())
-                levels(1) += 1
-                For Each eevolution As EvolutionLinePokemon In evolution.Evolutions
-                    connections.Add("1_2|" & evolution.PokemonID.ToString() & "-" & eevolution.PokemonID.ToString())
-                    levels(2) += 1
-                Next
             Next
 
             Dim levelDraws As New Dictionary(Of Integer, Integer)
@@ -1681,7 +1760,7 @@ Public Class PokedexViewScreen
                 Dim mv As Vector2 = Core.GetMiddlePosition(New Size(CInt(64 * scale), CInt(64 * scale)))
 
                 Dim p1 As String = c.Remove(c.IndexOf("-"))
-                Dim level1 As Integer = CInt(connections(i).Split(CChar("|"))(0).Split(CChar("_"))(0))
+                Dim level1 As Integer = CInt(connections(i).GetSplit(0, "|").GetSplit(0, "_"))
                 Dim level1Count As Integer = levels(level1)
                 Dim p1ad As String = ""
                 If p1.Contains("_") = True Then
@@ -1701,7 +1780,7 @@ Public Class PokedexViewScreen
                 Dim level1Offset As Integer = CInt(GetOffset(level1Count, PokemonDraws(p1)) * (64 * scale))
 
                 Dim p2 As String = c.Remove(0, c.IndexOf("-") + 1)
-                Dim level2 As Integer = CInt(connections(i).Split(CChar("|"))(0).Split(CChar("_"))(1))
+                Dim level2 As Integer = CInt(connections(i).GetSplit(0, "|").Split(CChar("_"))(1))
                 Dim level2Count As Integer = levels(level2)
                 Dim p2ad As String = ""
                 If p2.Contains("_") = True Then
@@ -1720,7 +1799,11 @@ Public Class PokedexViewScreen
 
                 Dim level2Offset As Integer = CInt(GetOffset(level2Count, PokemonDraws(p2)) * (64 * scale))
 
-                Canvas.DrawLine(Color.Black, New Vector2(mv.X + (level1 * (128 * scale)) + (scale * 32), mv.Y + (scale * 32) + level1Offset), New Vector2(mv.X + (level2 * (128 * scale)) + (scale * 32), mv.Y + (scale * 32) + level2Offset), 2)
+                If level1 <> level2 Then
+                    If pokemon2.Devolution = PokemonForms.GetPokemonDataFileName(pokemon1.Number, pokemon1.AdditionalData) Then
+                        Canvas.DrawLine(Color.Black, New Vector2(mv.X + (level1 * (128 * scale)) + (scale * 32), mv.Y + (scale * 32) + level1Offset), New Vector2(mv.X + (level2 * (128 * scale)) + (scale * 32), mv.Y + (scale * 32) + level2Offset), 2)
+                    End If
+                End If
 
                 Dim dexID1 As String = PokemonForms.GetPokemonDataFileName(pokemon1.Number, pokemon1.AdditionalData)
                 If dexID1.Contains("_") = False Then
