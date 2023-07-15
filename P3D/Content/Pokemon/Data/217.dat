@@ -52,3 +52,6 @@ Move|49,173
 Move|58,37
 Move|67,359
 TradeValue|25
+EvolutionCondition|901,item,654,item
+EvolutionCondition|901,daytime,0,item
+EvolutionCondition|901,location,Mt. Moon,item

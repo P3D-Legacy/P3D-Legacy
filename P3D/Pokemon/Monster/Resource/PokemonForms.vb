@@ -291,8 +291,10 @@ Public Class PokemonForms
                 Return "Gen6"
             Case 722 To 809
                 Return "Gen7"
-            Case Else
+            Case 810 To 905
                 Return "Gen8"
+            Case Else
+                Return "Gen9"
         End Select
     End Function
 
