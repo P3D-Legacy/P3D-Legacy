@@ -1340,12 +1340,21 @@ Public Class PokedexViewScreen
             If Me.Pokemon.DexForms.Count > 0 Then
                 For Each form As String In Me.Pokemon.DexForms
 
-                    Dim formAD As String = ""
+                    Dim formID As String = Me.Pokemon.Number.ToString
                     If form <> " " Then
+                        If StringHelper.IsNumeric(form) = False Then
+                            formID &= "_" & form
+                        Else
+                            formID = form
+                        End If
+                    End If
+
+                    Dim formAD As String = ""
+                    If form <> " " AndAlso StringHelper.IsNumeric(form) = False Then
                         formAD = PokemonForms.GetAdditionalValueFromDataFile(Me.PokemonID.GetSplit(0, "_") & "_" & form)
                     End If
 
-                    Dim formpokemon As Pokemon = Pokemon.GetPokemonByID(CInt(Me.PokemonID.GetSplit(0, "_")), formAD)
+                    Dim formpokemon As Pokemon = Pokemon.GetPokemonByID(CInt(Me.PokemonID.GetSplit(0, "_")), formAD, True)
                     If formpokemon.EvolutionConditions.Count > 0 Then
                         Dim evolutions As New List(Of String)
                         For Each ev As EvolutionCondition In formpokemon.EvolutionConditions
@@ -1365,10 +1374,7 @@ Public Class PokedexViewScreen
                     If vS.maximumLevel < Me.Level + 1 Then
                         vS.maximumLevel = Me.Level + 1
                     End If
-                    Dim formID As String = Me.Pokemon.Number.ToString
-                    If form <> " " Then
-                        formID &= "_" & form
-                    End If
+
 
                     Me.Forms.Add(New EvolutionLinePokemon(Me.Level + 1, formID, vS, ""))
 
@@ -1707,9 +1713,11 @@ Public Class PokedexViewScreen
         Else
             Dim connections As New List(Of String)
             Dim levels As New Dictionary(Of Integer, Integer)
+            Dim levelsOffset As New Dictionary(Of Integer, Integer)
 
             For i = minimumLevel To maximumLevel
                 levels.Add(i, 0)
+                levelsOffset.Add(i, 0)
             Next
 
             For i = 0 To EvolutionLines.Count - 1
@@ -1730,11 +1738,8 @@ Public Class PokedexViewScreen
                         connections.Add("-2_-1|" & EvolutionLines(i).Devolution.Devolution.PokemonID.ToString() & "-" & EvolutionLines(i).Devolution.PokemonID.ToString())
                         levels(-2) += 1
                     End If
-                Else
-                    If i > 0 AndAlso levels(1) = i + 1 Then
-                        levels(0) += 1
-                        levels(1) -= 2
-                    End If
+                ElseIf EvolutionLines(i).Evolutions.Count > 0 Then
+                    levels(0) += 1
                 End If
 
                 For Each evolution As EvolutionLinePokemon In EvolutionLines(i).Evolutions
@@ -1749,6 +1754,7 @@ Public Class PokedexViewScreen
                     connections.Add("0_0|" & EvolutionLines(i).PokemonID.ToString() & "-" & EvolutionLines(i).PokemonID.ToString())
                     levels(0) += 1
                 End If
+
             Next
 
             Dim levelDraws As New Dictionary(Of Integer, Integer)

@@ -446,8 +446,11 @@
             If File.Exists(GameModeManager.GetContentFilePath("Data\BerryData.dat")) Then
                 Dim Berries() As String = System.IO.File.ReadAllLines(GameModeManager.GetContentFilePath("Data\BerryData.dat"))
 
-                For Each line In Berries
-                    s &= line
+                For i = 0 To Berries.Count - 1
+                    s &= Berries(i)
+                    If i < Berries.Count - 1 Then
+                        s &= Environment.NewLine
+                    End If
                 Next
             Else
                 s = "{route29.dat|13,0,5|6|2|0|2012,9,21,4,0,0|1}" & Environment.NewLine &
