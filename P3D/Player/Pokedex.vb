@@ -155,6 +155,7 @@
             IDs.Add(id)
         Next
 
+        Dim formIDs As New List(Of String)
         For Each id As String In IDs
             If id.Contains("_") = False Then
                 Dim baseID As String = id.GetSplit(0, "_")
@@ -164,15 +165,16 @@
 
                 Dim AdditionalDataForms As List(Of String) = PokemonForms.GetAdditionalDataForms(CInt(baseID))
                 If AdditionalDataForms IsNot Nothing Then
-                    For i = 0 To AdditionalDataForms.Count
-                        IDs.Add(id & ";" & AdditionalDataForms(i))
+                    For i = 0 To AdditionalDataForms.Count - 1
+                        formIDs.Add(baseID & ";" & AdditionalDataForms(i))
                     Next
                 End If
             End If
         Next
+        IDs.AddRange(formIDs)
 
         PokemonCount = IDs.Count
-        PokemonIDs = (From id In IDs Order By CInt(id.GetSplit(0, "_"))).ToList()
+        PokemonIDs = (From id In IDs Order By CInt(id.GetSplit(0, "_").GetSplit(0, ";"))).ToList()
 
         For i = 0 To PokemonCount - 1
             Dim entry As String = PokemonIDs(i)
