@@ -2,8 +2,8 @@ Name|Zigzagoon
 Number|263
 ExperienceType|1
 BaseExperience|48
-Type1|Normal
-Type2|
+Type1|Dark
+Type2|Normal
 CatchRate|255
 BaseFriendship|70
 EggGroup1|Field
@@ -37,10 +37,10 @@ CanSwim|0
 Pokedex|It gets interested in everything which is why it zigs and zags. It is good at finding items.\TinyRaccoon Pokémon\17.5\0.4\0,148,0
 Scale|0.7
 Move|1,33
-Move|1,45
+Move|1,43
 Move|3,28
-Move|6,39
-Move|9,343
+Move|6,122
+Move|9,555
 Move|12,29
 Move|14,608
 Move|16,316
@@ -48,11 +48,10 @@ Move|18,42
 Move|20,300
 Move|22,156
 Move|24,36
-Move|27,374
-Move|30,175
-Move|33,187
+Move|27,184
+Move|30,68
+Move|33,269
 Move|36,38
 TradeValue|5
 Item|5,2006
-EvolutionCondition|264,Level,20,Level
-DexForms|Galar
+EvolutionCondition|264_galar,Level,20,Level

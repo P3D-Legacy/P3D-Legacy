@@ -30567,6 +30567,15 @@
     <Content Include="Content\Pokemon\Data\80_galar.dat">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\Pokemon\Data\263_galar.dat">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Pokemon\Data\264_galar.dat">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Pokemon\Data\862.dat">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="LICENSE" />
     <None Include="meta">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
