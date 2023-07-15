@@ -74,7 +74,7 @@
                         If BattleScreen.Trainer.CountUseablePokemon > 1 Then
                             Dim i As Integer = Core.Random.Next(0, BattleScreen.Trainer.Pokemons.count)
                             While BattleScreen.Trainer.Pokemons(i).Status = Pokemon.StatusProblems.Fainted OrElse BattleScreen.OppPokemonIndex = i OrElse BattleScreen.Trainer.Pokemons(i).HP <= 0
-                                i = Core.Random.Next(0, BattleScreen.Trainer.Pokemons.Count - 1)
+                                i = Core.Random.Next(0, BattleScreen.Trainer.Pokemons.Count)
                             End While
                             BattleScreen.Battle.SwitchOutOpp(BattleScreen, i, "")
                         Else
@@ -84,7 +84,7 @@
                         If Core.Player.CountFightablePokemon > 1 Then
                             Dim i As Integer = Core.Random.Next(0, Core.Player.Pokemons.Count)
                             While Core.Player.Pokemons(i).Status = Pokemon.StatusProblems.Fainted OrElse BattleScreen.OwnPokemonIndex = i OrElse Core.Player.Pokemons(i).HP <= 0
-                                i = Core.Random.Next(0, Core.Player.Pokemons.Count - 1)
+                                i = Core.Random.Next(0, Core.Player.Pokemons.Count)
                             End While
                             BattleScreen.Battle.SwitchOutOwn(BattleScreen, i, -1)
                         Else
@@ -98,7 +98,11 @@
                         BattleScreen.BattleQuery.Add(New EndBattleQueryObject(False))
                     Else
                         If Core.Player.CountFightablePokemon > 1 Then
-                            BattleScreen.Battle.SwitchOutOwn(BattleScreen, -1, -1)
+                            Dim i As Integer = Core.Random.Next(0, Core.Player.Pokemons.Count)
+                            While Core.Player.Pokemons(i).Status = Pokemon.StatusProblems.Fainted OrElse BattleScreen.OwnPokemonIndex = i OrElse Core.Player.Pokemons(i).HP <= 0
+                                i = Core.Random.Next(0, Core.Player.Pokemons.Count)
+                            End While
+                            BattleScreen.Battle.SwitchOutOwn(BattleScreen, i, -1)
                         Else
                             BattleScreen.BattleQuery.Add(New TextQueryObject(Me.Name & " failed!"))
                         End If
