@@ -1173,7 +1173,14 @@
         Public Function CanFlyTo(ByVal flag() As Object) As Boolean
             If flag(0).ToString().ToLower() = "fly" Then
                 If FlyToPosition <> Nothing And FlyToFile <> "" Then
-                    If Core.Player.VisitedMaps.Split(CChar(",")).Contains(FlyToFile) = True Or GameController.IS_DEBUG_ACTIVE = True Or Core.Player.SandBoxMode = True Then
+                    Dim flytomap As Boolean = False
+                    For Each map In ContainFiles
+                        If Core.Player.VisitedMaps.Split(CChar(",")).Contains(map) = True Then
+                            flytomap = True
+                            Exit For
+                        End If
+                    Next
+                    If flytomap = True Or GameController.IS_DEBUG_ACTIVE = True Or Core.Player.SandBoxMode = True Then
                         Return True
                     End If
                 End If
