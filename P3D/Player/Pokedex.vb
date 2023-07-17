@@ -6,8 +6,8 @@
     '3 = shiny + caught + seen
 
     Public Shared AutoDetect As Boolean = True
-    Public Shared PokemonMaxCount As Integer = 893
-    Public Shared PokemonCount As Integer = 893
+    Public Shared PokemonMaxCount As Integer = 1010
+    Public Shared PokemonCount As Integer = 1010
     Public Shared PokemonIDs As New List(Of String)
 
 #Region "PlayerData"
