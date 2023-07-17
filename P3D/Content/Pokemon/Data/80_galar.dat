@@ -55,3 +55,7 @@ Move|41,244
 Move|46,240
 Move|51,505
 TradeValue|30
+EvolutionLine|79\0\-2,80\1\-3
+EvolutionLine|79\0\-2,199\1\-1
+EvolutionLine|79_galar\0\2,80_galar\1\1
+EvolutionLine|79_galar\0\2,199_galar\1\3

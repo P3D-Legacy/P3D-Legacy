@@ -43,4 +43,7 @@ Move|13,86
 Move|18,417
 TradeValue|50
 Item|50,2006
+DexForms|spiky-eared
 EvolutionCondition|25,friendship,220,Level
+EvolutionLine|172\-1\0,25\0\0,26\1\0
+EvolutionLine|25\0\0,26_alola\1\1

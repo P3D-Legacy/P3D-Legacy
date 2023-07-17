@@ -633,6 +633,7 @@ Public Class Pokemon
     Public WildItems As New Dictionary(Of Integer, String)
     Public RegionalForms As String = ""
     Public DexForms As New List(Of String)
+    Public EvolutionLines As New List(Of String)
 
     Private _name As String
     Private _number As Integer
@@ -1504,6 +1505,8 @@ Public Class Pokemon
                     Else
                         Me.DexForms.Add(" ".ToLower)
                     End If
+                Case "evolutionline"
+                    Me.EvolutionLines.Add(Value.ToLower)
                 Case "canbreed"
                     Me.CanBreed = CBool(Value)
                 Case "basehp"

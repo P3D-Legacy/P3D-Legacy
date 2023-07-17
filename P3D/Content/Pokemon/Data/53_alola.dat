@@ -58,3 +58,6 @@ Move|65,364
 Move|69,399
 Item|5,73
 TradeValue|25
+EvolutionLine|52\0\-1,53\1\-1
+EvolutionLine|52_alola\0\0,53_alola\1\0
+EvolutionLine|52_galar\0\1,863\1\1

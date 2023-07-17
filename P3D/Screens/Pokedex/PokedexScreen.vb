@@ -316,969 +316,969 @@ Public Class PokedexScreen
 
     Public Shared TileOffset As Integer = 0
 
-    Public Enum OrderType
-        Numeric
-        Weigth
-        Height
-        Alphabetically
-    End Enum
-
-    Public Enum FilterType
-        Type1
-        Type2
-        Name
-    End Enum
-
-    Structure Filter
-        Public FilterType As FilterType
-        Public FilterValue As String
-    End Structure
-
-    Dim texture As Texture2D
-
-    Public ReverseOrder As Boolean = False
-    Public Order As OrderType = OrderType.Numeric
-
-    Public Filters As New List(Of Filter)
-    Public Profile As PokedexSelectScreen.PokedexProfile
-    Public CHabitat As Habitat = Nothing
-
-    Dim Scroll As Integer = 0
-    Dim Cursor As New Vector2(0)
-
-    Shared TempPokemonStorage As New Dictionary(Of Integer, Pokemon)
-    Shared TempPokemonDexType As New Dictionary(Of Integer, Integer)
-
-    Dim PokemonList As New List(Of Pokemon)
-    Dim menu As SelectMenu
-
-    Public Sub New(ByVal currentScreen As Screen, ByVal Profile As PokedexSelectScreen.PokedexProfile, ByVal Habitat As Habitat)
-        Me.Identification = Identifications.PokedexScreen
-        Me.PreScreen = currentScreen
-
-        Me.texture = TextureManager.GetTexture("GUI\Menus\General")
-        Me.Profile = Profile
-        Me.CHabitat = Habitat
-
-        Me.MouseVisible = True
-        Me.CanMuteAudio = True
-        Me.CanBePaused = True
-
-        TempPokemonStorage.Clear()
-        TempPokemonDexType.Clear()
-
-        SetList()
-
-        Me.menu = New SelectMenu({""}.ToList(), 0, Nothing, 0)
-        Me.menu.Visible = False
-    End Sub
-
-    Private Sub SetList()
-        PokemonList.Clear()
-        TempPokemonStorage.Clear()
-        TempPokemonDexType.Clear()
-
-        Dim neededEntryType As Integer = 0
-        Select Case Me.Order
-            Case OrderType.Alphabetically
-                neededEntryType = 1
-            Case OrderType.Height, OrderType.Weigth
-                neededEntryType = 2
-        End Select
-
-        For Each f As Filter In Me.Filters
-            Dim thisType As Integer = 0
-            If f.FilterType = FilterType.Name Then
-                thisType = 1
-            Else
-                thisType = 2
-            End If
-            If thisType > neededEntryType Then
-                neededEntryType = thisType
-            End If
-        Next
-
-        Dim pokeSearchList As New List(Of String)
-
-        If CHabitat Is Nothing Then
-            ' Add any external Pokémon if specified to do so:
-            If Profile.Pokedex.IncludeExternalPokemon = True Then
-                If Pokedex.PokemonMaxCount > 0 Then
-                    For i = 1 To Pokedex.PokemonMaxCount
-                        If Me.Profile.Pokedex.HasPokemon(i.ToString, False) = False Then
-                            If Pokedex.GetEntryType(Core.Player.PokedexData, i.ToString) > 0 Then
-                                Profile.Pokedex.PokemonList.Add(Profile.Pokedex.PokemonList.Count + 1, i.ToString)
-                            End If
-                        End If
-                    Next
-                End If
-            End If
-            For Each i As String In Profile.Pokedex.PokemonList.Values
-                pokeSearchList.Add(i)
-            Next
-        Else
-            For Each i As String In CHabitat.PokemonList
-                pokeSearchList.Add(i)
-            Next
-        End If
-
-        For i = 0 To pokeSearchList.Count - 1
-            If Pokemon.PokemonDataExists(pokeSearchList(i).GetSplit(0, "_")) = True OrElse Pokemon.PokemonDataExists(pokeSearchList(i).GetSplit(0, ";")) = True Then
-
-                Dim pID As Integer
-                Dim pAD As String = ""
-
-                If pokeSearchList(i).Contains(";") Then
-                    pID = CInt(pokeSearchList(i).GetSplit(0, ";"))
-                    pAD = pokeSearchList(i).GetSplit(1, ";")
-                ElseIf pokeSearchList(i).Contains("_") Then
-                    Dim additionalValue As String = PokemonForms.GetAdditionalValueFromDataFile(pokeSearchList(i))
-                    pID = CInt(pokeSearchList(i).GetSplit(0, "_"))
-                    If additionalValue <> "" Then
-                        pAD = additionalValue
-                    End If
-                Else
-                    pID = CInt(pokeSearchList(i))
-                End If
-
-                Dim p As Pokemon
-                If pAD <> "" Then
-                    p = Pokemon.GetPokemonByID(pID, pAD)
-                Else
-                    p = Pokemon.GetPokemonByID(pID, pAD, True)
-                End If
-
-
-                If Pokedex.GetEntryType(Core.Player.PokedexData, pokeSearchList(i)) >= neededEntryType Then
-
-                   Dim valid As Boolean = True
-                    For Each F As Filter In Me.Filters
-                        Select Case F.FilterType
-                            Case FilterType.Name
-                                If p.GetName().ToUpper().StartsWith(F.FilterValue.ToUpper()) = False Then
-                                    valid = False
-                                    Exit For
-                                End If
-                            Case FilterType.Type1
-                                If p.Type1.Type <> New Element(F.FilterValue).Type Then
-                                    valid = False
-                                    Exit For
-                                End If
-                            Case FilterType.Type2
-                                If p.Type2.Type <> New Element(F.FilterValue).Type Then
-                                    valid = False
-                                    Exit For
-                                End If
-                        End Select
-                    Next
-
-                    If valid = True Then
-
-                        If Profile.Pokedex.GetPlace(pokeSearchList(i)) <> -1 Then
-                            Me.PokemonList.Add(p)
-                        End If
-                    End If
-                End If
-            End If
-        Next
-
-        Select Case Me.Order
-            Case OrderType.Numeric
-                If CHabitat Is Nothing Then
-                    If Me.ReverseOrder = True Then
-                        Me.PokemonList = (From p As Pokemon In Me.PokemonList Order By Profile.Pokedex.GetPlace(PokemonForms.GetPokemonDataFileName(p.Number, p.AdditionalData, True)) Descending).ToList()
-                    Else
-                        Me.PokemonList = (From p As Pokemon In Me.PokemonList Order By Profile.Pokedex.GetPlace(PokemonForms.GetPokemonDataFileName(p.Number, p.AdditionalData, True)) Ascending).ToList()
-                    End If
-                Else
-                    If Me.ReverseOrder = True Then
-                        Me.PokemonList = (From p As Pokemon In Me.PokemonList Order By PokemonForms.GetPokemonDataFileName(p.Number, p.AdditionalData, True) Descending).ToList()
-                    Else
-                        Me.PokemonList = (From p As Pokemon In Me.PokemonList Order By PokemonForms.GetPokemonDataFileName(p.Number, p.AdditionalData, True) Ascending).ToList()
-                    End If
-                End If
-            Case OrderType.Alphabetically
-                If Me.ReverseOrder = True Then
-                    Me.PokemonList = (From p As Pokemon In Me.PokemonList Order By p.GetName() Descending).ToList()
-                Else
-                    Me.PokemonList = (From p As Pokemon In Me.PokemonList Order By p.GetName() Ascending).ToList()
-                End If
-            Case OrderType.Weigth
-                If Me.ReverseOrder = True Then
-                    Me.PokemonList = (From p As Pokemon In Me.PokemonList Order By p.PokedexEntry.Weight Descending).ToList()
-                Else
-                    Me.PokemonList = (From p As Pokemon In Me.PokemonList Order By p.PokedexEntry.Weight Ascending).ToList()
-                End If
-            Case OrderType.Height
-                If Me.ReverseOrder = True Then
-                    Me.PokemonList = (From p As Pokemon In Me.PokemonList Order By p.PokedexEntry.Height Descending).ToList()
-                Else
-                    Me.PokemonList = (From p As Pokemon In Me.PokemonList Order By p.PokedexEntry.Height Ascending).ToList()
-                End If
-        End Select
-
-        Me.ClampCursor()
-    End Sub
-
-    Public Overrides Sub Draw()
-        Canvas.DrawRectangle(Core.windowSize, New Color(84, 198, 216))
-
-        For y = -64 To Core.windowSize.Height Step 64
-            Core.SpriteBatch.Draw(Me.texture, New Rectangle(Core.windowSize.Width - 128, y + TileOffset, 128, 64), New Rectangle(48, 0, 16, 16), Color.White)
-        Next
-
-        Canvas.DrawGradient(New Rectangle(0, 0, CInt(Core.windowSize.Width), 200), New Color(42, 167, 198), New Color(42, 167, 198, 0), False, -1)
-        Canvas.DrawGradient(New Rectangle(0, CInt(Core.windowSize.Height - 200), CInt(Core.windowSize.Width), 200), New Color(42, 167, 198, 0), New Color(42, 167, 198), False, -1)
-
-        Canvas.DrawRectangle(New Rectangle(50, 30, 564, 90), New Color(42, 167, 198, 150))
-
-        If CHabitat Is Nothing Then
-            Core.SpriteBatch.DrawString(FontManager.MainFont, Profile.Pokedex.Name, New Vector2(60, 55), Color.White, 0.0F, Vector2.Zero, 1.5F, SpriteEffects.None, 0.0F)
-            Core.SpriteBatch.DrawString(FontManager.MainFont, "Seen: " & Environment.NewLine & Environment.NewLine & "Obtained: ", New Vector2(420, 45), Color.White)
-            Core.SpriteBatch.DrawString(FontManager.MainFont, Profile.Seen + Profile.Obtained & Environment.NewLine & Environment.NewLine & Profile.Obtained, New Vector2(540, 45), Color.Black)
-        Else
-            Core.SpriteBatch.DrawString(FontManager.MainFont, CHabitat.Name, New Vector2(60, 80), Color.White, 0.0F, Vector2.Zero, 1.5F, SpriteEffects.None, 0.0F)
-            Core.SpriteBatch.Draw(CHabitat.Texture, New Rectangle(60, 32, 64, 48), Color.White)
-            Core.SpriteBatch.DrawString(FontManager.MainFont, "Available: " & Environment.NewLine & Environment.NewLine & "Obtained: ", New Vector2(420, 45), Color.White)
-            Core.SpriteBatch.DrawString(FontManager.MainFont, CHabitat.PokemonList.Count & Environment.NewLine & Environment.NewLine & CHabitat.PokemonCaught, New Vector2(540, 45), Color.Black)
-
-            Dim progressTexture As Texture2D = Me.CHabitat.ProgressTexture
-            If Not progressTexture Is Nothing Then
-                Core.SpriteBatch.Draw(progressTexture, New Rectangle(134, 46, 20, 20), Color.White)
-            End If
-        End If
-
-        If PokemonList.Count > 0 Then
-            For x = 0 To 5
-                For y = 0 To 4
-                    Dim id As Integer = (y + Scroll) * 6 + x
-
-                    If id <= Me.PokemonList.Count - 1 Then
-                        Dim dexID As String = PokemonForms.GetPokemonDataFileName(Me.PokemonList(id).Number, Me.PokemonList(id).AdditionalData)
-                        If dexID.Contains("_") = False Then
-                            If PokemonForms.GetAdditionalDataForms(Me.PokemonList(id).Number) IsNot Nothing AndAlso PokemonForms.GetAdditionalDataForms(Me.PokemonList(id).Number).Contains(Me.PokemonList(id).AdditionalData) Then
-                                dexID = Me.PokemonList(id).Number & ";" & Me.PokemonList(id).AdditionalData
-                            Else
-                                dexID = Me.PokemonList(id).Number.ToString
-                            End If
-                        End If
-
-                        If Not CHabitat Is Nothing OrElse Me.Profile.Pokedex.OriginalCount >= Profile.Pokedex.GetPlace(dexID) Then
-                            Canvas.DrawRectangle(New Rectangle(50 + x * 100, 140 + y * 100, 64, 92), New Color(42, 167, 198, 150))
-                        Else
-                            Canvas.DrawBorder(3, New Rectangle(50 + x * 100, 140 + y * 100, 64, 92), New Color(42, 167, 198, 150))
-                        End If
-
-                        Dim p As Pokemon = Nothing
-                        Dim entryType As Integer = 0
-
-                        If TempPokemonStorage.ContainsKey(id + 1) = False Then
-                            TempPokemonStorage.Add(id + 1, Me.PokemonList(id))
-                            TempPokemonDexType.Add(id + 1, Pokedex.GetEntryType(Core.Player.PokedexData, dexID))
-                        End If
-                        p = TempPokemonStorage(id + 1)
-                        entryType = TempPokemonDexType(id + 1)
-
-                        If Cursor = New Vector2(x, y) Then
-                            DrawPokemonPreview(p)
-                        End If
-
-                        Dim c As Color = Color.Gray
-                        If entryType > 0 Then
-                            If entryType > 1 Then
-                                c = Color.White
-                            End If
-                            Dim pokeTexture = p.GetMenuTexture()
-                            Dim pokeTextureScale As Vector2 = New Vector2(CSng(32 / pokeTexture.Width * 2), CSng(32 / pokeTexture.Height * 2))
-                            Core.SpriteBatch.Draw(pokeTexture, New Rectangle(50 + x * 100, 140 + y * 100, CInt(pokeTexture.Width * pokeTextureScale.X), CInt(pokeTexture.Height * pokeTextureScale.Y)), c)
-                        End If
-
-                        Dim no As String = "000"
-
-                        If CHabitat Is Nothing Then
-                            no = Profile.Pokedex.GetPlace(dexID).ToString()
-                        Else
-                            no = p.Number.ToString()
-                        End If
-                        While no.Length < 3
-                            no = "0" & no
-                        End While
-                        Core.SpriteBatch.DrawString(FontManager.MainFont, no, New Vector2(50 + x * 100 + CInt(32 - FontManager.MainFont.MeasureString(no).X / 2), 206 + y * 100), Color.White)
-                    End If
-                Next
-            Next
-        Else
-            Canvas.DrawGradient(New Rectangle(50, 300, 80, 90), New Color(84, 198, 216), New Color(42, 167, 198, 150), True, -1)
-            Canvas.DrawRectangle(New Rectangle(130, 300, 404, 90), New Color(42, 167, 198, 150))
-            Canvas.DrawGradient(New Rectangle(534, 300, 80, 90), New Color(42, 167, 198, 150), New Color(84, 198, 216), True, -1)
-
-            Core.SpriteBatch.DrawString(FontManager.MainFont, "No search results.", New Vector2(50 + CInt(564 / 2) - CInt(FontManager.MainFont.MeasureString("No search results.").X / 2), 330), Color.White)
-        End If
-
-        Canvas.DrawRectangle(New Rectangle(670, 30, 480, 90), New Color(42, 167, 198, 150))
-        Dim orderText As String = "Numeric"
-        Select Case Me.Order
-            Case OrderType.Alphabetically
-                orderText = "A-Z"
-            Case OrderType.Height
-                orderText = "Height"
-            Case OrderType.Weigth
-                orderText = "Weight"
-        End Select
-        Dim filterText As String = "None"
-        If Filters.Count > 0 Then
-            filterText = ""
+        Public Enum OrderType
+            Numeric
+            Weigth
+            Height
+            Alphabetically
+        End Enum
+    
+        Public Enum FilterType
+            Type1
+            Type2
+            Name
+        End Enum
+    
+        Structure Filter
+            Public FilterType As FilterType
+            Public FilterValue As String
+        End Structure
+    
+        Dim texture As Texture2D
+    
+        Public ReverseOrder As Boolean = False
+        Public Order As OrderType = OrderType.Numeric
+    
+        Public Filters As New List(Of Filter)
+        Public Profile As PokedexSelectScreen.PokedexProfile
+        Public CHabitat As Habitat = Nothing
+    
+        Dim Scroll As Integer = 0
+        Dim Cursor As New Vector2(0)
+    
+        Shared TempPokemonStorage As New Dictionary(Of Integer, Pokemon)
+        Shared TempPokemonDexType As New Dictionary(Of Integer, Integer)
+    
+        Dim PokemonList As New List(Of Pokemon)
+        Dim menu As SelectMenu
+    
+        Public Sub New(ByVal currentScreen As Screen, ByVal Profile As PokedexSelectScreen.PokedexProfile, ByVal Habitat As Habitat)
+            Me.Identification = Identifications.PokedexScreen
+            Me.PreScreen = currentScreen
+    
+            Me.texture = TextureManager.GetTexture("GUI\Menus\General")
+            Me.Profile = Profile
+            Me.CHabitat = Habitat
+    
+            Me.MouseVisible = True
+            Me.CanMuteAudio = True
+            Me.CanBePaused = True
+    
+            TempPokemonStorage.Clear()
+            TempPokemonDexType.Clear()
+    
+            SetList()
+    
+            Me.menu = New SelectMenu({""}.ToList(), 0, Nothing, 0)
+            Me.menu.Visible = False
+        End Sub
+    
+        Private Sub SetList()
+            PokemonList.Clear()
+            TempPokemonStorage.Clear()
+            TempPokemonDexType.Clear()
+    
+            Dim neededEntryType As Integer = 0
+            Select Case Me.Order
+                Case OrderType.Alphabetically
+                    neededEntryType = 1
+                Case OrderType.Height, OrderType.Weigth
+                    neededEntryType = 2
+            End Select
+    
             For Each f As Filter In Me.Filters
-                If filterText <> "" Then
-                    filterText &= ", "
+                Dim thisType As Integer = 0
+                If f.FilterType = FilterType.Name Then
+                    thisType = 1
+                Else
+                    thisType = 2
                 End If
-                Select Case f.FilterType
-                    Case FilterType.Name
-                        filterText &= "Name"
-                    Case FilterType.Type1
-                        filterText &= "Type 1"
-                    Case FilterType.Type2
-                        filterText &= "Type 2"
-                End Select
+                If thisType > neededEntryType Then
+                    neededEntryType = thisType
+                End If
             Next
-        End If
-        Core.SpriteBatch.DrawString(FontManager.MainFont, "Order:" & Environment.NewLine & "Filter:" & Environment.NewLine & "Press " & KeyBindings.SpecialKey.ToString & " on the keyboard to search.", New Vector2(685, 45), Color.White)
-        Core.SpriteBatch.DrawString(FontManager.MainFont, orderText & Environment.NewLine & filterText, New Vector2(790, 45), Color.Black)
-
-        If menu.Visible = True Then
-            menu.Draw()
-        Else
-            If PokemonList.Count > 0 Then
-                DrawCursor()
-            End If
-        End If
-    End Sub
-
-    Private Function GetPlace(ByVal PokemonNumber As Integer) As Integer
-        For i = 0 To PokemonList.Count - 1
-            If PokemonList(i).Number = PokemonNumber Then
-                Return i + 1
-            End If
-        Next
-
-        Return -1
-    End Function
-
-    Private Sub DrawPokemonPreview(ByVal p As Pokemon)
-        Dim dexID As String = PokemonForms.GetPokemonDataFileName(p.Number, p.AdditionalData)
-        If dexID.Contains("_") = False Then
-            If PokemonForms.GetAdditionalDataForms(p.Number) IsNot Nothing AndAlso PokemonForms.GetAdditionalDataForms(p.Number).Contains(p.AdditionalData) Then
-                dexID = p.Number & ";" & p.AdditionalData
-            Else
-                dexID = p.Number.ToString
-            End If
-        End If
-
-        Dim entryType As Integer = Pokedex.GetEntryType(Core.Player.PokedexData, dexID)
-
-        For i = 0 To 4
-            Canvas.DrawGradient(New Rectangle(650, 300 + i * 40, 50, 2), New Color(255, 255, 255, 10), New Color(255, 255, 255, 255), True, -1)
-            Canvas.DrawRectangle(New Rectangle(700, 300 + i * 40, 350, 2), Color.White)
-            Canvas.DrawGradient(New Rectangle(1050, 300 + i * 40, 50, 2), New Color(255, 255, 255, 255), New Color(255, 255, 255, 10), True, -1)
-        Next
-
-        Dim no As String = "000"
-        If CHabitat Is Nothing Then
-            no = Profile.Pokedex.GetPlace(dexID).ToString()
-        Else
-            no = p.Number.ToString()
-        End If
-        While no.Length < 3
-            no = "0" & no
-        End While
-
-        If entryType = 0 Then
-            Core.SpriteBatch.DrawString(FontManager.MainFont, "???" & Environment.NewLine & Environment.NewLine & "No. " & no, New Vector2(864, 200), Color.White)
-        Else
-            Core.SpriteBatch.DrawString(FontManager.MainFont, p.GetName() & Environment.NewLine & Environment.NewLine & "No. " & no, New Vector2(864, 200), Color.White)
-            Core.SpriteBatch.Draw(p.GetTexture(True), New Rectangle(CInt(680 - p.GetTexture(True).Width / 4), CInt(140 - p.GetTexture(True).Height / 4), MathHelper.Min(CInt(p.GetTexture(True).Width * 2), 256), MathHelper.Min(CInt(p.GetTexture(True).Height * 2), 256)), Color.White)
-
-            Core.SpriteBatch.DrawString(FontManager.MainFont, "SPECIES", New Vector2(680, 310), Color.Black)
-            Core.SpriteBatch.DrawString(FontManager.MainFont, "TYPE", New Vector2(680, 350), Color.Black)
-            Core.SpriteBatch.DrawString(FontManager.MainFont, "HEIGHT", New Vector2(680, 390), Color.Black)
-            Core.SpriteBatch.DrawString(FontManager.MainFont, "WEIGHT", New Vector2(680, 430), Color.Black)
-
-            Canvas.DrawRectangle(New Rectangle(670, 480, 480, 152), New Color(42, 167, 198, 150))
-
-            If Not CHabitat Is Nothing Then
-                Dim encounterTypes As New List(Of Integer)
-                For Each ec As PokedexScreen.Habitat.EncounterPokemon In CHabitat.ObtainTypeList
-                    If ec.PokemonID = PokemonForms.GetPokemonDataFileName(p.Number, p.AdditionalData) Then
-                        If encounterTypes.Contains(ec.EncounterType) = False Then
-                            encounterTypes.Add(ec.EncounterType)
-                        End If
-                    End If
-                Next
-                For i = 0 To encounterTypes.Count - 1
-                    Dim encounterType As Integer = encounterTypes(i)
-                    Core.SpriteBatch.Draw(PokedexScreen.Habitat.GetEncounterTypeImage(encounterType), New Rectangle(824 + i * 32, 266, 32, 32), Color.White)
-                Next
-            End If
-
-            If entryType > 1 Then
-                Core.SpriteBatch.DrawString(FontManager.MainFont, p.PokedexEntry.Species, New Vector2(850, 310), Color.Black)
-                Core.SpriteBatch.DrawString(FontManager.MainFont, "", New Vector2(850, 350), Color.Black)
-                Core.SpriteBatch.DrawString(FontManager.MainFont, p.PokedexEntry.Height & " m", New Vector2(850, 390), Color.Black)
-                Core.SpriteBatch.DrawString(FontManager.MainFont, p.PokedexEntry.Weight & " kg", New Vector2(850, 430), Color.Black)
-
-                Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\Types"), New Rectangle(850, 356, 48, 16), p.Type1.GetElementImage(), Color.White)
-                If p.Type2.Type <> Element.Types.Blank Then
-                    Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\Types"), New Rectangle(900, 356, 48, 16), p.Type2.GetElementImage(), Color.White)
-                End If
-
-                Core.SpriteBatch.DrawString(FontManager.MainFont, p.PokedexEntry.Text.CropStringToWidth(FontManager.MainFont, 448), New Vector2(688, 490), Color.Black)
-
-                Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokedexhabitat", New Rectangle(160, 160, 10, 10), ""), New Rectangle(992, 242, 20, 20), Color.White)
-            Else
-                Core.SpriteBatch.DrawString(FontManager.MainFont, "??? Pokémon", New Vector2(850, 310), Color.Black)
-                Core.SpriteBatch.DrawString(FontManager.MainFont, "???", New Vector2(850, 350), Color.Black)
-                Core.SpriteBatch.DrawString(FontManager.MainFont, "??? m", New Vector2(850, 390), Color.Black)
-                Core.SpriteBatch.DrawString(FontManager.MainFont, "??? kg", New Vector2(850, 430), Color.Black)
-
-                Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokedexhabitat", New Rectangle(160, 170, 10, 10), ""), New Rectangle(992, 242, 20, 20), Color.White)
-            End If
-        End If
-    End Sub
-
-    Private Sub DrawCursor()
-        Dim cPosition As Vector2 = New Vector2(50 + Me.Cursor.X * 100 + 42, 140 + Me.Cursor.Y * 100 - 42)
-
-        Dim t As Texture2D = TextureManager.GetTexture("GUI\Menus\General", New Rectangle(0, 0, 16, 16), "")
-        Core.SpriteBatch.Draw(t, New Rectangle(CInt(cPosition.X), CInt(cPosition.Y), 64, 64), Color.White)
-    End Sub
-
-    Public Overrides Sub Update()
-        If menu.Visible = True Then
-            menu.Update()
-        Else
-            If Controls.Left(True, True, False, True, True, True) = True Then
-                Me.Cursor.X -= 1
-            End If
-            If Controls.Right(True, True, False, True, True, True) = True Then
-                Me.Cursor.X += 1
-            End If
-            If Controls.Up(True, True, True, True, True, True) = True Then
-                Me.Cursor.Y -= 1
-                If Controls.ShiftDown() = True Then
-                    Me.Cursor.Y -= 4
-                End If
-            End If
-            If Controls.Down(True, True, True, True, True, True) = True Then
-                Me.Cursor.Y += 1
-                If Controls.ShiftDown() = True Then
-                    Me.Cursor.Y += 4
-                End If
-            End If
-
-            If Cursor.X > 5 Then
-                Cursor.X = 0
-                Cursor.Y += 1
-            End If
-            If Cursor.X < 0 Then
-                Cursor.X = 5
-                Cursor.Y -= 1
-            End If
-
-            While Cursor.Y < 0
-                Me.Cursor.Y += 1
-                Me.Scroll -= 1
-            End While
-            While Cursor.Y > 4
-                Me.Cursor.Y -= 1
-                Me.Scroll += 1
-            End While
-
-            If Controls.Accept(True, False, False) = True Then
-                For i = 0 To 29
-                    Dim x As Integer = i
-                    Dim y As Integer = 0
-                    While x > 5
-                        x -= 6
-                        y += 1
-                    End While
-
-                    If New Rectangle(50 + x * 100, 140 + y * 100, 64, 92).Contains(MouseHandler.MousePosition) = True Then
-                        If Cursor.X + Cursor.Y * 6 = i Then
-                            If TempPokemonDexType(CInt((Cursor.Y + Scroll) * 6 + Cursor.X + 1)) > 0 Then
-                                SoundManager.PlaySound("select")
-                                Core.SetScreen(New PokedexViewScreen(Me, TempPokemonStorage(CInt((Cursor.Y + Scroll) * 6 + Cursor.X + 1)), False))
+    
+            Dim pokeSearchList As New List(Of String)
+    
+            If CHabitat Is Nothing Then
+                ' Add any external Pokémon if specified to do so:
+                If Profile.Pokedex.IncludeExternalPokemon = True Then
+                    If Pokedex.PokemonMaxCount > 0 Then
+                        For i = 1 To Pokedex.PokemonMaxCount
+                            If Me.Profile.Pokedex.HasPokemon(i.ToString, False) = False Then
+                                If Pokedex.GetEntryType(Core.Player.PokedexData, i.ToString) > 0 Then
+                                    Profile.Pokedex.PokemonList.Add(Profile.Pokedex.PokemonList.Count + 1, i.ToString)
+                                End If
                             End If
-                        Else
-                            Cursor.X = x
-                            Cursor.Y = y
-                        End If
+                        Next
                     End If
+                End If
+                For Each i As String In Profile.Pokedex.PokemonList.Values
+                    pokeSearchList.Add(i)
+                Next
+            Else
+                For Each i As String In CHabitat.PokemonList
+                    pokeSearchList.Add(i)
                 Next
             End If
-
-            ClampCursor()
-
-            If Controls.Accept(False, True, True) = True Then
-                If TempPokemonDexType(CInt((Cursor.Y + Scroll) * 6 + Cursor.X + 1)) > 0 Then
-                    SoundManager.PlaySound("select")
-                    Core.SetScreen(New PokedexViewScreen(Me, TempPokemonStorage(CInt((Cursor.Y + Scroll) * 6 + Cursor.X + 1)), False))
+    
+            For i = 0 To pokeSearchList.Count - 1
+                If Pokemon.PokemonDataExists(pokeSearchList(i).GetSplit(0, "_")) = True OrElse Pokemon.PokemonDataExists(pokeSearchList(i).GetSplit(0, ";")) = True Then
+    
+                    Dim pID As Integer
+                    Dim pAD As String = ""
+    
+                    If pokeSearchList(i).Contains(";") Then
+                        pID = CInt(pokeSearchList(i).GetSplit(0, ";"))
+                        pAD = pokeSearchList(i).GetSplit(1, ";")
+                    ElseIf pokeSearchList(i).Contains("_") Then
+                        Dim additionalValue As String = PokemonForms.GetAdditionalValueFromDataFile(pokeSearchList(i))
+                        pID = CInt(pokeSearchList(i).GetSplit(0, "_"))
+                        If additionalValue <> "" Then
+                            pAD = additionalValue
+                        End If
+                    Else
+                        pID = CInt(pokeSearchList(i))
+                    End If
+    
+                    Dim p As Pokemon
+                    If pAD <> "" Then
+                        p = Pokemon.GetPokemonByID(pID, pAD)
+                    Else
+                        p = Pokemon.GetPokemonByID(pID, pAD, True)
+                    End If
+    
+    
+                    If Pokedex.GetEntryType(Core.Player.PokedexData, pokeSearchList(i)) >= neededEntryType Then
+    
+                       Dim valid As Boolean = True
+                        For Each F As Filter In Me.Filters
+                            Select Case F.FilterType
+                                Case FilterType.Name
+                                    If p.GetName().ToUpper().StartsWith(F.FilterValue.ToUpper()) = False Then
+                                        valid = False
+                                        Exit For
+                                    End If
+                                Case FilterType.Type1
+                                    If p.Type1.Type <> New Element(F.FilterValue).Type Then
+                                        valid = False
+                                        Exit For
+                                    End If
+                                Case FilterType.Type2
+                                    If p.Type2.Type <> New Element(F.FilterValue).Type Then
+                                        valid = False
+                                        Exit For
+                                    End If
+                            End Select
+                        Next
+    
+                        If valid = True Then
+    
+                            If Profile.Pokedex.GetPlace(pokeSearchList(i)) <> -1 Then
+                                Me.PokemonList.Add(p)
+                            End If
+                        End If
+                    End If
+                End If
+            Next
+    
+            Select Case Me.Order
+                Case OrderType.Numeric
+                    If CHabitat Is Nothing Then
+                        If Me.ReverseOrder = True Then
+                            Me.PokemonList = (From p As Pokemon In Me.PokemonList Order By Profile.Pokedex.GetPlace(PokemonForms.GetPokemonDataFileName(p.Number, p.AdditionalData, True)) Descending).ToList()
+                        Else
+                            Me.PokemonList = (From p As Pokemon In Me.PokemonList Order By Profile.Pokedex.GetPlace(PokemonForms.GetPokemonDataFileName(p.Number, p.AdditionalData, True)) Ascending).ToList()
+                        End If
+                    Else
+                        If Me.ReverseOrder = True Then
+                            Me.PokemonList = (From p As Pokemon In Me.PokemonList Order By PokemonForms.GetPokemonDataFileName(p.Number, p.AdditionalData, True) Descending).ToList()
+                        Else
+                            Me.PokemonList = (From p As Pokemon In Me.PokemonList Order By PokemonForms.GetPokemonDataFileName(p.Number, p.AdditionalData, True) Ascending).ToList()
+                        End If
+                    End If
+                Case OrderType.Alphabetically
+                    If Me.ReverseOrder = True Then
+                        Me.PokemonList = (From p As Pokemon In Me.PokemonList Order By p.GetName() Descending).ToList()
+                    Else
+                        Me.PokemonList = (From p As Pokemon In Me.PokemonList Order By p.GetName() Ascending).ToList()
+                    End If
+                Case OrderType.Weigth
+                    If Me.ReverseOrder = True Then
+                        Me.PokemonList = (From p As Pokemon In Me.PokemonList Order By p.PokedexEntry.Weight Descending).ToList()
+                    Else
+                        Me.PokemonList = (From p As Pokemon In Me.PokemonList Order By p.PokedexEntry.Weight Ascending).ToList()
+                    End If
+                Case OrderType.Height
+                    If Me.ReverseOrder = True Then
+                        Me.PokemonList = (From p As Pokemon In Me.PokemonList Order By p.PokedexEntry.Height Descending).ToList()
+                    Else
+                        Me.PokemonList = (From p As Pokemon In Me.PokemonList Order By p.PokedexEntry.Height Ascending).ToList()
+                    End If
+            End Select
+    
+            Me.ClampCursor()
+        End Sub
+    
+        Public Overrides Sub Draw()
+            Canvas.DrawRectangle(Core.windowSize, New Color(84, 198, 216))
+    
+            For y = -64 To Core.windowSize.Height Step 64
+                Core.SpriteBatch.Draw(Me.texture, New Rectangle(Core.windowSize.Width - 128, y + TileOffset, 128, 64), New Rectangle(48, 0, 16, 16), Color.White)
+            Next
+    
+            Canvas.DrawGradient(New Rectangle(0, 0, CInt(Core.windowSize.Width), 200), New Color(42, 167, 198), New Color(42, 167, 198, 0), False, -1)
+            Canvas.DrawGradient(New Rectangle(0, CInt(Core.windowSize.Height - 200), CInt(Core.windowSize.Width), 200), New Color(42, 167, 198, 0), New Color(42, 167, 198), False, -1)
+    
+            Canvas.DrawRectangle(New Rectangle(50, 30, 564, 90), New Color(42, 167, 198, 150))
+    
+            If CHabitat Is Nothing Then
+                Core.SpriteBatch.DrawString(FontManager.MainFont, Profile.Pokedex.Name, New Vector2(60, 55), Color.White, 0.0F, Vector2.Zero, 1.5F, SpriteEffects.None, 0.0F)
+                Core.SpriteBatch.DrawString(FontManager.MainFont, "Seen: " & Environment.NewLine & Environment.NewLine & "Obtained: ", New Vector2(420, 45), Color.White)
+                Core.SpriteBatch.DrawString(FontManager.MainFont, Profile.Seen + Profile.Obtained & Environment.NewLine & Environment.NewLine & Profile.Obtained, New Vector2(540, 45), Color.Black)
+            Else
+                Core.SpriteBatch.DrawString(FontManager.MainFont, CHabitat.Name, New Vector2(60, 80), Color.White, 0.0F, Vector2.Zero, 1.5F, SpriteEffects.None, 0.0F)
+                Core.SpriteBatch.Draw(CHabitat.Texture, New Rectangle(60, 32, 64, 48), Color.White)
+                Core.SpriteBatch.DrawString(FontManager.MainFont, "Available: " & Environment.NewLine & Environment.NewLine & "Obtained: ", New Vector2(420, 45), Color.White)
+                Core.SpriteBatch.DrawString(FontManager.MainFont, CHabitat.PokemonList.Count & Environment.NewLine & Environment.NewLine & CHabitat.PokemonCaught, New Vector2(540, 45), Color.Black)
+    
+                Dim progressTexture As Texture2D = Me.CHabitat.ProgressTexture
+                If Not progressTexture Is Nothing Then
+                    Core.SpriteBatch.Draw(progressTexture, New Rectangle(134, 46, 20, 20), Color.White)
                 End If
             End If
-
-            If KeyBoardHandler.KeyPressed(KeyBindings.SpecialKey) = True Or ControllerHandler.ButtonPressed(Buttons.Y) = True Then
-                Me.menu = New SelectMenu({"Order", "Filter", "Reset", "Back"}.ToList(), 0, AddressOf SelectMenu1, 3)
+    
+            If PokemonList.Count > 0 Then
+                For x = 0 To 5
+                    For y = 0 To 4
+                        Dim id As Integer = (y + Scroll) * 6 + x
+    
+                        If id <= Me.PokemonList.Count - 1 Then
+                            Dim dexID As String = PokemonForms.GetPokemonDataFileName(Me.PokemonList(id).Number, Me.PokemonList(id).AdditionalData)
+                            If dexID.Contains("_") = False Then
+                                If PokemonForms.GetAdditionalDataForms(Me.PokemonList(id).Number) IsNot Nothing AndAlso PokemonForms.GetAdditionalDataForms(Me.PokemonList(id).Number).Contains(Me.PokemonList(id).AdditionalData) Then
+                                    dexID = Me.PokemonList(id).Number & ";" & Me.PokemonList(id).AdditionalData
+                                Else
+                                    dexID = Me.PokemonList(id).Number.ToString
+                                End If
+                            End If
+    
+                            If Not CHabitat Is Nothing OrElse Me.Profile.Pokedex.OriginalCount >= Profile.Pokedex.GetPlace(dexID) Then
+                                Canvas.DrawRectangle(New Rectangle(50 + x * 100, 140 + y * 100, 64, 92), New Color(42, 167, 198, 150))
+                            Else
+                                Canvas.DrawBorder(3, New Rectangle(50 + x * 100, 140 + y * 100, 64, 92), New Color(42, 167, 198, 150))
+                            End If
+    
+                            Dim p As Pokemon = Nothing
+                            Dim entryType As Integer = 0
+    
+                            If TempPokemonStorage.ContainsKey(id + 1) = False Then
+                                TempPokemonStorage.Add(id + 1, Me.PokemonList(id))
+                                TempPokemonDexType.Add(id + 1, Pokedex.GetEntryType(Core.Player.PokedexData, dexID))
+                            End If
+                            p = TempPokemonStorage(id + 1)
+                            entryType = TempPokemonDexType(id + 1)
+    
+                            If Cursor = New Vector2(x, y) Then
+                                DrawPokemonPreview(p)
+                            End If
+    
+                            Dim c As Color = Color.Gray
+                            If entryType > 0 Then
+                                If entryType > 1 Then
+                                    c = Color.White
+                                End If
+                                Dim pokeTexture = p.GetMenuTexture()
+                                Dim pokeTextureScale As Vector2 = New Vector2(CSng(32 / pokeTexture.Width * 2), CSng(32 / pokeTexture.Height * 2))
+                                Core.SpriteBatch.Draw(pokeTexture, New Rectangle(50 + x * 100, 140 + y * 100, CInt(pokeTexture.Width * pokeTextureScale.X), CInt(pokeTexture.Height * pokeTextureScale.Y)), c)
+                            End If
+    
+                            Dim no As String = "000"
+    
+                            If CHabitat Is Nothing Then
+                                no = Profile.Pokedex.GetPlace(dexID).ToString()
+                            Else
+                                no = p.Number.ToString()
+                            End If
+                            While no.Length < 3
+                                no = "0" & no
+                            End While
+                            Core.SpriteBatch.DrawString(FontManager.MainFont, no, New Vector2(50 + x * 100 + CInt(32 - FontManager.MainFont.MeasureString(no).X / 2), 206 + y * 100), Color.White)
+                        End If
+                    Next
+                Next
+            Else
+                Canvas.DrawGradient(New Rectangle(50, 300, 80, 90), New Color(84, 198, 216), New Color(42, 167, 198, 150), True, -1)
+                Canvas.DrawRectangle(New Rectangle(130, 300, 404, 90), New Color(42, 167, 198, 150))
+                Canvas.DrawGradient(New Rectangle(534, 300, 80, 90), New Color(42, 167, 198, 150), New Color(84, 198, 216), True, -1)
+    
+                Core.SpriteBatch.DrawString(FontManager.MainFont, "No search results.", New Vector2(50 + CInt(564 / 2) - CInt(FontManager.MainFont.MeasureString("No search results.").X / 2), 330), Color.White)
             End If
-
-            If Controls.Dismiss(True, True, True) = True Then
-                If Me.Filters.Count > 0 Or Me.Order <> OrderType.Numeric Or Me.ReverseOrder = True Then
-                    SoundManager.PlaySound("select")
+    
+            Canvas.DrawRectangle(New Rectangle(670, 30, 480, 90), New Color(42, 167, 198, 150))
+            Dim orderText As String = "Numeric"
+            Select Case Me.Order
+                Case OrderType.Alphabetically
+                    orderText = "A-Z"
+                Case OrderType.Height
+                    orderText = "Height"
+                Case OrderType.Weigth
+                    orderText = "Weight"
+            End Select
+            Dim filterText As String = "None"
+            If Filters.Count > 0 Then
+                filterText = ""
+                For Each f As Filter In Me.Filters
+                    If filterText <> "" Then
+                        filterText &= ", "
+                    End If
+                    Select Case f.FilterType
+                        Case FilterType.Name
+                            filterText &= "Name"
+                        Case FilterType.Type1
+                            filterText &= "Type 1"
+                        Case FilterType.Type2
+                            filterText &= "Type 2"
+                    End Select
+                Next
+            End If
+            Core.SpriteBatch.DrawString(FontManager.MainFont, "Order:" & Environment.NewLine & "Filter:" & Environment.NewLine & "Press " & KeyBindings.SpecialKey.ToString & " on the keyboard to search.", New Vector2(685, 45), Color.White)
+            Core.SpriteBatch.DrawString(FontManager.MainFont, orderText & Environment.NewLine & filterText, New Vector2(790, 45), Color.Black)
+    
+            If menu.Visible = True Then
+                menu.Draw()
+            Else
+                If PokemonList.Count > 0 Then
+                    DrawCursor()
+                End If
+            End If
+        End Sub
+    
+        Private Function GetPlace(ByVal PokemonNumber As Integer) As Integer
+            For i = 0 To PokemonList.Count - 1
+                If PokemonList(i).Number = PokemonNumber Then
+                    Return i + 1
+                End If
+            Next
+    
+            Return -1
+        End Function
+    
+        Private Sub DrawPokemonPreview(ByVal p As Pokemon)
+            Dim dexID As String = PokemonForms.GetPokemonDataFileName(p.Number, p.AdditionalData)
+            If dexID.Contains("_") = False Then
+                If PokemonForms.GetAdditionalDataForms(p.Number) IsNot Nothing AndAlso PokemonForms.GetAdditionalDataForms(p.Number).Contains(p.AdditionalData) Then
+                    dexID = p.Number & ";" & p.AdditionalData
+                Else
+                    dexID = p.Number.ToString
+                End If
+            End If
+    
+            Dim entryType As Integer = Pokedex.GetEntryType(Core.Player.PokedexData, dexID)
+    
+            For i = 0 To 4
+                Canvas.DrawGradient(New Rectangle(650, 300 + i * 40, 50, 2), New Color(255, 255, 255, 10), New Color(255, 255, 255, 255), True, -1)
+                Canvas.DrawRectangle(New Rectangle(700, 300 + i * 40, 350, 2), Color.White)
+                Canvas.DrawGradient(New Rectangle(1050, 300 + i * 40, 50, 2), New Color(255, 255, 255, 255), New Color(255, 255, 255, 10), True, -1)
+            Next
+    
+            Dim no As String = "000"
+            If CHabitat Is Nothing Then
+                no = Profile.Pokedex.GetPlace(dexID).ToString()
+            Else
+                no = p.Number.ToString()
+            End If
+            While no.Length < 3
+                no = "0" & no
+            End While
+    
+            If entryType = 0 Then
+                Core.SpriteBatch.DrawString(FontManager.MainFont, "???" & Environment.NewLine & Environment.NewLine & "No. " & no, New Vector2(864, 200), Color.White)
+            Else
+                Core.SpriteBatch.DrawString(FontManager.MainFont, p.GetName() & Environment.NewLine & Environment.NewLine & "No. " & no, New Vector2(864, 200), Color.White)
+                Core.SpriteBatch.Draw(p.GetTexture(True), New Rectangle(CInt(680 - p.GetTexture(True).Width / 4), CInt(140 - p.GetTexture(True).Height / 4), MathHelper.Min(CInt(p.GetTexture(True).Width * 2), 256), MathHelper.Min(CInt(p.GetTexture(True).Height * 2), 256)), Color.White)
+    
+                Core.SpriteBatch.DrawString(FontManager.MainFont, "SPECIES", New Vector2(680, 310), Color.Black)
+                Core.SpriteBatch.DrawString(FontManager.MainFont, "TYPE", New Vector2(680, 350), Color.Black)
+                Core.SpriteBatch.DrawString(FontManager.MainFont, "HEIGHT", New Vector2(680, 390), Color.Black)
+                Core.SpriteBatch.DrawString(FontManager.MainFont, "WEIGHT", New Vector2(680, 430), Color.Black)
+    
+                Canvas.DrawRectangle(New Rectangle(670, 480, 480, 152), New Color(42, 167, 198, 150))
+    
+                If Not CHabitat Is Nothing Then
+                    Dim encounterTypes As New List(Of Integer)
+                    For Each ec As PokedexScreen.Habitat.EncounterPokemon In CHabitat.ObtainTypeList
+                        If ec.PokemonID = PokemonForms.GetPokemonDataFileName(p.Number, p.AdditionalData) Then
+                            If encounterTypes.Contains(ec.EncounterType) = False Then
+                                encounterTypes.Add(ec.EncounterType)
+                            End If
+                        End If
+                    Next
+                    For i = 0 To encounterTypes.Count - 1
+                        Dim encounterType As Integer = encounterTypes(i)
+                        Core.SpriteBatch.Draw(PokedexScreen.Habitat.GetEncounterTypeImage(encounterType), New Rectangle(824 + i * 32, 266, 32, 32), Color.White)
+                    Next
+                End If
+    
+                If entryType > 1 Then
+                    Core.SpriteBatch.DrawString(FontManager.MainFont, p.PokedexEntry.Species, New Vector2(850, 310), Color.Black)
+                    Core.SpriteBatch.DrawString(FontManager.MainFont, "", New Vector2(850, 350), Color.Black)
+                    Core.SpriteBatch.DrawString(FontManager.MainFont, p.PokedexEntry.Height & " m", New Vector2(850, 390), Color.Black)
+                    Core.SpriteBatch.DrawString(FontManager.MainFont, p.PokedexEntry.Weight & " kg", New Vector2(850, 430), Color.Black)
+    
+                    Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\Types"), New Rectangle(850, 356, 48, 16), p.Type1.GetElementImage(), Color.White)
+                    If p.Type2.Type <> Element.Types.Blank Then
+                        Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\Types"), New Rectangle(900, 356, 48, 16), p.Type2.GetElementImage(), Color.White)
+                    End If
+    
+                    Core.SpriteBatch.DrawString(FontManager.MainFont, p.PokedexEntry.Text.CropStringToWidth(FontManager.MainFont, 448), New Vector2(688, 490), Color.Black)
+    
+                    Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokedexhabitat", New Rectangle(160, 160, 10, 10), ""), New Rectangle(992, 242, 20, 20), Color.White)
+                Else
+                    Core.SpriteBatch.DrawString(FontManager.MainFont, "??? Pokémon", New Vector2(850, 310), Color.Black)
+                    Core.SpriteBatch.DrawString(FontManager.MainFont, "???", New Vector2(850, 350), Color.Black)
+                    Core.SpriteBatch.DrawString(FontManager.MainFont, "??? m", New Vector2(850, 390), Color.Black)
+                    Core.SpriteBatch.DrawString(FontManager.MainFont, "??? kg", New Vector2(850, 430), Color.Black)
+    
+                    Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokedexhabitat", New Rectangle(160, 170, 10, 10), ""), New Rectangle(992, 242, 20, 20), Color.White)
+                End If
+            End If
+        End Sub
+    
+        Private Sub DrawCursor()
+            Dim cPosition As Vector2 = New Vector2(50 + Me.Cursor.X * 100 + 42, 140 + Me.Cursor.Y * 100 - 42)
+    
+            Dim t As Texture2D = TextureManager.GetTexture("GUI\Menus\General", New Rectangle(0, 0, 16, 16), "")
+            Core.SpriteBatch.Draw(t, New Rectangle(CInt(cPosition.X), CInt(cPosition.Y), 64, 64), Color.White)
+        End Sub
+    
+        Public Overrides Sub Update()
+            If menu.Visible = True Then
+                menu.Update()
+            Else
+                If Controls.Left(True, True, False, True, True, True) = True Then
+                    Me.Cursor.X -= 1
+                End If
+                If Controls.Right(True, True, False, True, True, True) = True Then
+                    Me.Cursor.X += 1
+                End If
+                If Controls.Up(True, True, True, True, True, True) = True Then
+                    Me.Cursor.Y -= 1
+                    If Controls.ShiftDown() = True Then
+                        Me.Cursor.Y -= 4
+                    End If
+                End If
+                If Controls.Down(True, True, True, True, True, True) = True Then
+                    Me.Cursor.Y += 1
+                    If Controls.ShiftDown() = True Then
+                        Me.Cursor.Y += 4
+                    End If
+                End If
+    
+                If Cursor.X > 5 Then
+                    Cursor.X = 0
+                    Cursor.Y += 1
+                End If
+                If Cursor.X < 0 Then
+                    Cursor.X = 5
+                    Cursor.Y -= 1
+                End If
+    
+                While Cursor.Y < 0
+                    Me.Cursor.Y += 1
+                    Me.Scroll -= 1
+                End While
+                While Cursor.Y > 4
+                    Me.Cursor.Y -= 1
+                    Me.Scroll += 1
+                End While
+    
+                If Controls.Accept(True, False, False) = True Then
+                    For i = 0 To 29
+                        Dim x As Integer = i
+                        Dim y As Integer = 0
+                        While x > 5
+                            x -= 6
+                            y += 1
+                        End While
+    
+                        If New Rectangle(50 + x * 100, 140 + y * 100, 64, 92).Contains(MouseHandler.MousePosition) = True Then
+                            If Cursor.X + Cursor.Y * 6 = i Then
+                                If TempPokemonDexType(CInt((Cursor.Y + Scroll) * 6 + Cursor.X + 1)) > 0 Then
+                                    SoundManager.PlaySound("select")
+                                    Core.SetScreen(New PokedexViewScreen(Me, TempPokemonStorage(CInt((Cursor.Y + Scroll) * 6 + Cursor.X + 1)), False))
+                                End If
+                            Else
+                                Cursor.X = x
+                                Cursor.Y = y
+                            End If
+                        End If
+                    Next
+                End If
+    
+                ClampCursor()
+    
+                If Controls.Accept(False, True, True) = True Then
+                    If TempPokemonDexType(CInt((Cursor.Y + Scroll) * 6 + Cursor.X + 1)) > 0 Then
+                        SoundManager.PlaySound("select")
+                        Core.SetScreen(New PokedexViewScreen(Me, TempPokemonStorage(CInt((Cursor.Y + Scroll) * 6 + Cursor.X + 1)), False))
+                    End If
+                End If
+    
+                If KeyBoardHandler.KeyPressed(KeyBindings.SpecialKey) = True Or ControllerHandler.ButtonPressed(Buttons.Y) = True Then
+                    Me.menu = New SelectMenu({"Order", "Filter", "Reset", "Back"}.ToList(), 0, AddressOf SelectMenu1, 3)
+                End If
+    
+                If Controls.Dismiss(True, True, True) = True Then
+                    If Me.Filters.Count > 0 Or Me.Order <> OrderType.Numeric Or Me.ReverseOrder = True Then
+                        SoundManager.PlaySound("select")
+                        Me.Filters.Clear()
+                        Me.ReverseOrder = False
+                        Me.Order = OrderType.Numeric
+                        Me.SetList()
+                    Else
+                        SoundManager.PlaySound("select")
+                        Core.SetScreen(Me.PreScreen)
+                    End If
+                End If
+            End If
+    
+            TileOffset += 1
+            If TileOffset >= 64 Then
+                TileOffset = 0
+            End If
+        End Sub
+    
+        Private Sub ClampCursor()
+            Dim linesCount As Integer = CInt(Math.Ceiling(Me.PokemonList.Count / 6))
+    
+            If linesCount < 6 Then
+                Me.Scroll = 0
+            Else
+                Me.Scroll = Me.Scroll.Clamp(0, linesCount - 5)
+            End If
+    
+            Dim maxY As Integer = linesCount - Scroll - 1
+            Me.Cursor.Y = Me.Cursor.Y.Clamp(0, maxY)
+    
+            If Me.Cursor.Y = maxY Then
+                Dim maxX As Integer = Me.PokemonList.Count
+                While maxX > 6
+                    maxX -= 6
+                End While
+                Me.Cursor.X = Me.Cursor.X.Clamp(0, maxX - 1)
+            End If
+        End Sub
+    
+        Public Overrides Sub ChangeTo()
+            TempPokemonDexType.Clear()
+            TempPokemonStorage.Clear()
+        End Sub
+    
+    #Region "Menus"
+    
+        Private Sub SelectMenu1(ByVal s As SelectMenu)
+            Select Case s.SelectedItem.ToLower()
+                Case "order"
+                    Me.menu = New SelectMenu({"Type", "Reverse: " & Me.ReverseOrder.ToString(), "Back"}.ToList(), 0, AddressOf SelectMenuOrder, 2)
+                Case "filter"
+                    Me.menu = New SelectMenu({"Name", "Type1", "Type2", "Clear", "Back"}.ToList(), 0, AddressOf SelectMenuFilter, 4)
+                Case "reset"
                     Me.Filters.Clear()
                     Me.ReverseOrder = False
                     Me.Order = OrderType.Numeric
                     Me.SetList()
-                Else
-                    SoundManager.PlaySound("select")
-                    Core.SetScreen(Me.PreScreen)
-                End If
-            End If
-        End If
-
-        TileOffset += 1
-        If TileOffset >= 64 Then
-            TileOffset = 0
-        End If
-    End Sub
-
-    Private Sub ClampCursor()
-        Dim linesCount As Integer = CInt(Math.Ceiling(Me.PokemonList.Count / 6))
-
-        If linesCount < 6 Then
-            Me.Scroll = 0
-        Else
-            Me.Scroll = Me.Scroll.Clamp(0, linesCount - 5)
-        End If
-
-        Dim maxY As Integer = linesCount - Scroll - 1
-        Me.Cursor.Y = Me.Cursor.Y.Clamp(0, maxY)
-
-        If Me.Cursor.Y = maxY Then
-            Dim maxX As Integer = Me.PokemonList.Count
-            While maxX > 6
-                maxX -= 6
-            End While
-            Me.Cursor.X = Me.Cursor.X.Clamp(0, maxX - 1)
-        End If
-    End Sub
-
-    Public Overrides Sub ChangeTo()
-        TempPokemonDexType.Clear()
-        TempPokemonStorage.Clear()
-    End Sub
-
-#Region "Menus"
-
-    Private Sub SelectMenu1(ByVal s As SelectMenu)
-        Select Case s.SelectedItem.ToLower()
-            Case "order"
-                Me.menu = New SelectMenu({"Type", "Reverse: " & Me.ReverseOrder.ToString(), "Back"}.ToList(), 0, AddressOf SelectMenuOrder, 2)
-            Case "filter"
+            End Select
+        End Sub
+    
+        Private Sub SelectMenuFilter(ByVal s As SelectMenu)
+            Select Case s.SelectedItem.ToLower()
+                Case "name"
+                    Me.menu = New SelectMenu({"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "Back"}.ToList(), 0, AddressOf SelectMenuNameFilter, -1)
+                Case "type1"
+                    Me.menu = New SelectMenu({"Normal", "Fire", "Fighting", "Water", "Flying", "Grass", "Poison", "Electric", "Ground", "Psychic", "Rock", "Ice", "Bug", "Dragon", "Ghost", "Dark", "Steel", "Fairy", "Blank", "Back"}.ToList(), 0, AddressOf SelectMenuType1Filter, -1)
+                Case "type2"
+                    Me.menu = New SelectMenu({"Normal", "Fire", "Fighting", "Water", "Flying", "Grass", "Poison", "Electric", "Ground", "Psychic", "Rock", "Ice", "Bug", "Dragon", "Ghost", "Dark", "Steel", "Fairy", "Blank", "Back"}.ToList(), 0, AddressOf SelectMenuType2Filter, -1)
+                Case "clear"
+                    Me.Filters.Clear()
+                    Me.SetList()
+                Case "back"
+                    Me.menu = New SelectMenu({"Order", "Filter", "Reset", "Back"}.ToList(), 0, AddressOf SelectMenu1, 3)
+            End Select
+        End Sub
+    
+        Private Sub SelectMenuType1Filter(ByVal s As SelectMenu)
+            If s.SelectedItem <> "Back" Then
+                For i = 0 To Filters.Count - 1
+                    If Filters(i).FilterType = FilterType.Type1 Then
+                        Filters.RemoveAt(i)
+                        Exit For
+                    End If
+                Next
+    
+                Filters.Add(New Filter With {.FilterType = FilterType.Type1, .FilterValue = s.SelectedItem})
+                SetList()
+            Else
                 Me.menu = New SelectMenu({"Name", "Type1", "Type2", "Clear", "Back"}.ToList(), 0, AddressOf SelectMenuFilter, 4)
-            Case "reset"
-                Me.Filters.Clear()
-                Me.ReverseOrder = False
-                Me.Order = OrderType.Numeric
-                Me.SetList()
-        End Select
-    End Sub
-
-    Private Sub SelectMenuFilter(ByVal s As SelectMenu)
-        Select Case s.SelectedItem.ToLower()
-            Case "name"
-                Me.menu = New SelectMenu({"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "Back"}.ToList(), 0, AddressOf SelectMenuNameFilter, -1)
-            Case "type1"
-                Me.menu = New SelectMenu({"Normal", "Fire", "Fighting", "Water", "Flying", "Grass", "Poison", "Electric", "Ground", "Psychic", "Rock", "Ice", "Bug", "Dragon", "Ghost", "Dark", "Steel", "Fairy", "Blank", "Back"}.ToList(), 0, AddressOf SelectMenuType1Filter, -1)
-            Case "type2"
-                Me.menu = New SelectMenu({"Normal", "Fire", "Fighting", "Water", "Flying", "Grass", "Poison", "Electric", "Ground", "Psychic", "Rock", "Ice", "Bug", "Dragon", "Ghost", "Dark", "Steel", "Fairy", "Blank", "Back"}.ToList(), 0, AddressOf SelectMenuType2Filter, -1)
-            Case "clear"
-                Me.Filters.Clear()
-                Me.SetList()
-            Case "back"
-                Me.menu = New SelectMenu({"Order", "Filter", "Reset", "Back"}.ToList(), 0, AddressOf SelectMenu1, 3)
-        End Select
-    End Sub
-
-    Private Sub SelectMenuType1Filter(ByVal s As SelectMenu)
-        If s.SelectedItem <> "Back" Then
-            For i = 0 To Filters.Count - 1
-                If Filters(i).FilterType = FilterType.Type1 Then
-                    Filters.RemoveAt(i)
-                    Exit For
-                End If
-            Next
-
-            Filters.Add(New Filter With {.FilterType = FilterType.Type1, .FilterValue = s.SelectedItem})
-            SetList()
-        Else
-            Me.menu = New SelectMenu({"Name", "Type1", "Type2", "Clear", "Back"}.ToList(), 0, AddressOf SelectMenuFilter, 4)
-        End If
-    End Sub
-
-    Private Sub SelectMenuType2Filter(ByVal s As SelectMenu)
-        If s.SelectedItem <> "Back" Then
-            For i = 0 To Filters.Count - 1
-                If Filters(i).FilterType = FilterType.Type2 Then
-                    Filters.RemoveAt(i)
-                    Exit For
-                End If
-            Next
-
-            Filters.Add(New Filter With {.FilterType = FilterType.Type2, .FilterValue = s.SelectedItem})
-            SetList()
-        Else
-            Me.menu = New SelectMenu({"Name", "Type1", "Type2", "Clear", "Back"}.ToList(), 0, AddressOf SelectMenuFilter, 4)
-        End If
-    End Sub
-
-    Private Sub SelectMenuNameFilter(ByVal s As SelectMenu)
-        If s.SelectedItem <> "Back" Then
-            For i = 0 To Filters.Count - 1
-                If Filters(i).FilterType = FilterType.Name Then
-                    Filters.RemoveAt(i)
-                    Exit For
-                End If
-            Next
-
-            Filters.Add(New Filter With {.FilterType = FilterType.Name, .FilterValue = s.SelectedItem})
-            SetList()
-        Else
-            Me.menu = New SelectMenu({"Name", "Type1", "Type2", "Clear", "Back"}.ToList(), 0, AddressOf SelectMenuFilter, 4)
-        End If
-    End Sub
-
-    Private Sub SelectMenuOrder(ByVal s As SelectMenu)
-        Select Case s.SelectedItem.ToLower()
-            Case "type"
-                Me.menu = New SelectMenu({"Numeric", "A-Z", "Weight", "Height", "Back"}.ToList(), 0, AddressOf SelectMenuOrderType, 4)
-            Case "reverse: " & Me.ReverseOrder.ToString().ToLower()
-                Me.ReverseOrder = Not Me.ReverseOrder
-                Me.menu = New SelectMenu({"Type", "Reverse: " & Me.ReverseOrder.ToString(), "Back"}.ToList(), 0, AddressOf SelectMenuOrder, 2)
-                Me.SetList()
-            Case "back"
-                Me.menu = New SelectMenu({"Order", "Filter", "Reset", "Back"}.ToList(), 0, AddressOf SelectMenu1, 3)
-        End Select
-    End Sub
-
-    Private Sub SelectMenuOrderType(ByVal s As SelectMenu)
-        Select Case s.SelectedItem.ToLower()
-            Case "numeric"
-                Me.Order = OrderType.Numeric
-                Me.SetList()
-            Case "a-z"
-                Me.Order = OrderType.Alphabetically
-                Me.SetList()
-            Case "weight"
-                Me.Order = OrderType.Weigth
-                Me.SetList()
-            Case "height"
-                Me.Order = OrderType.Height
-                Me.SetList()
-            Case "back"
-                Me.menu = New SelectMenu({"Type", "Reverse: " & Me.ReverseOrder.ToString(), "Back"}.ToList(), 0, AddressOf SelectMenuOrder, 2)
-        End Select
-    End Sub
-
-#End Region
-
-    Private Class SelectMenu
-
-        Dim Items As New List(Of String)
-        Dim Index As Integer = 0
-        Public Delegate Sub ClickEvent(ByVal s As SelectMenu)
-        Dim ClickHandler As ClickEvent = Nothing
-        Dim BackIndex As Integer = 0
-        Public Visible As Boolean = True
-        Public Scroll As Integer = 0
-
-        Dim t1 As Texture2D
-        Dim t2 As Texture2D
-
-        Public Sub New(ByVal Items As List(Of String), ByVal Index As Integer, ByVal ClickHandle As ClickEvent, ByVal BackIndex As Integer)
-            Me.Items = Items
-            Me.Index = Index
-            Me.ClickHandler = ClickHandle
-            Me.BackIndex = BackIndex
-            If Me.BackIndex < 0 Then
-                Me.BackIndex = Me.Items.Count + Me.BackIndex
             End If
-            Me.Visible = True
-
-            t1 = TextureManager.GetTexture("GUI\Menus\General", New Rectangle(16, 16, 16, 16), "")
-            t2 = TextureManager.GetTexture("GUI\Menus\General", New Rectangle(32, 16, 16, 16), "")
         End Sub
-
-        Public Sub Update()
-            If Visible = True Then
-                If Controls.Up(True, True, True, True, True, True) = True Then
-                    Me.Index -= 1
-                End If
-                If Controls.Down(True, True, True, True, True, True) = True Then
-                    Me.Index += 1
-                End If
-                Me.Index = Me.Index.Clamp(0, Me.Items.Count - 1)
-
-                For i = Scroll To Me.Scroll + 8
-                    If i <= Me.Items.Count - 1 Then
-                        If Controls.Accept(True, False, False) = True And i = Me.Index And New Rectangle(Core.windowSize.Width - 270, 66 * ((i + 1) - Scroll), 256, 64).Contains(MouseHandler.MousePosition) = True Or
-                            Controls.Accept(False, True, True) = True And i = Me.Index Or Controls.Dismiss(True, True, True) = True And Me.BackIndex = Me.Index Then
-
-                            If Not ClickHandler Is Nothing Then
-                                ClickHandler(Me)
-                                SoundManager.PlaySound("select")
-                            End If
-                            Me.Visible = False
-                        End If
-                        If Controls.Dismiss(True, True, True) = True Then
-                            Me.Index = Me.BackIndex
-                            If Not ClickHandler Is Nothing Then
-                                ClickHandler(Me)
-                                SoundManager.PlaySound("select")
-                            End If
-                            Me.Visible = False
-                        End If
-                        If New Rectangle(Core.windowSize.Width - 270, 66 * ((i + 1) - Scroll), 256, 64).Contains(MouseHandler.MousePosition) = True And Controls.Accept(True, False, False) = True Then
-                            Me.Index = i
-                        End If
+    
+        Private Sub SelectMenuType2Filter(ByVal s As SelectMenu)
+            If s.SelectedItem <> "Back" Then
+                For i = 0 To Filters.Count - 1
+                    If Filters(i).FilterType = FilterType.Type2 Then
+                        Filters.RemoveAt(i)
+                        Exit For
                     End If
                 Next
-
-                If Index - Scroll > 8 Then
-                    Scroll = Index - 8
-                End If
-                If Index - Scroll < 0 Then
-                    Scroll = Index
-                End If
+    
+                Filters.Add(New Filter With {.FilterType = FilterType.Type2, .FilterValue = s.SelectedItem})
+                SetList()
+            Else
+                Me.menu = New SelectMenu({"Name", "Type1", "Type2", "Clear", "Back"}.ToList(), 0, AddressOf SelectMenuFilter, 4)
             End If
         End Sub
-
-        Public Sub Draw()
-            If Visible = True Then
-                For i = Scroll To Me.Scroll + 8
-                    If i <= Me.Items.Count - 1 Then
-                        Dim Text As String = Items(i)
-
-                        Dim startPos As New Vector2(Core.windowSize.Width - 270, 66 * ((i + 1) - Scroll))
-
-                        Core.SpriteBatch.Draw(t1, New Rectangle(CInt(startPos.X), CInt(startPos.Y), 64, 64), Color.White)
-                        Core.SpriteBatch.Draw(t2, New Rectangle(CInt(startPos.X + 64), CInt(startPos.Y), 64, 64), Color.White)
-                        Core.SpriteBatch.Draw(t2, New Rectangle(CInt(startPos.X + 128), CInt(startPos.Y), 64, 64), Color.White)
-                        Core.SpriteBatch.Draw(t1, New Rectangle(CInt(startPos.X + 192), CInt(startPos.Y), 64, 64), Nothing, Color.White, 0.0F, New Vector2(0), SpriteEffects.FlipHorizontally, 0.0F)
-
-                        Core.SpriteBatch.DrawString(FontManager.MainFont, Text, New Vector2(startPos.X + 128 - (FontManager.MainFont.MeasureString(Text).X * 1.4F) / 2, startPos.Y + 15), Color.Black, 0.0F, Vector2.Zero, 1.4F, SpriteEffects.None, 0.0F)
-
-                        If Me.Index = i Then
-                            Dim cPosition As Vector2 = New Vector2(startPos.X + 128, startPos.Y - 40)
-                            Dim t As Texture2D = TextureManager.GetTexture("GUI\Menus\General", New Rectangle(0, 0, 16, 16), "")
-                            Core.SpriteBatch.Draw(t, New Rectangle(CInt(cPosition.X), CInt(cPosition.Y), 64, 64), Color.White)
-                        End If
+    
+        Private Sub SelectMenuNameFilter(ByVal s As SelectMenu)
+            If s.SelectedItem <> "Back" Then
+                For i = 0 To Filters.Count - 1
+                    If Filters(i).FilterType = FilterType.Name Then
+                        Filters.RemoveAt(i)
+                        Exit For
                     End If
                 Next
+    
+                Filters.Add(New Filter With {.FilterType = FilterType.Name, .FilterValue = s.SelectedItem})
+                SetList()
+            Else
+                Me.menu = New SelectMenu({"Name", "Type1", "Type2", "Clear", "Back"}.ToList(), 0, AddressOf SelectMenuFilter, 4)
             End If
         End Sub
-
-        Public ReadOnly Property SelectedItem() As String
-            Get
-                Return Items(Me.Index)
-            End Get
-        End Property
-
-    End Class
-
-    Public Class Habitat
-
-        Public Enum HabitatTypes As Integer
-            Grassland = 0
-            Forest = 1
-            WatersEdge = 2
-            Sea = 3
-            Cave = 4
-            Mountain = 5
-            RoughTerrain = 6
-            City = 7
-        End Enum
-
-        Public Structure EncounterPokemon
-            Public PokemonID As String
-            Public EncounterType As Integer
-            Public Daytimes() As Integer
-        End Structure
-
-        Dim MergeData() As String = {} ' Temporary data storage if needs to merge.
-
-        Public File As String = ""
-        Public Name As String = ""
-        Public HabitatType As HabitatTypes = HabitatTypes.Grassland
-
-        Public PokemonList As New List(Of String)
-        Public ObtainTypeList As New List(Of EncounterPokemon)
-
-        Public PokemonCaught As Integer = 0
-        Public PokemonSeen As Integer = 0
-
-        Public Sub New(ByVal file As String)
-            Security.FileValidation.CheckFileValid(file, False, "PokedexScreen.vb")
-            Dim data() As String = System.IO.File.ReadAllLines(file)
-            Me.MergeData = data
-            Me.File = file
-
-            For Each line As String In data
-                If line.ToLower().StartsWith("name=") = True Then
-                    Me.Name = line.Remove(0, 5)
-                ElseIf line.ToLower().StartsWith("type=") = True Then
-                    Dim arg As String = line.Remove(0, 5)
-                    Select Case arg.ToLower()
-                        Case "grassland"
-                            Me.HabitatType = HabitatTypes.Grassland
-                        Case "forest"
-                            Me.HabitatType = HabitatTypes.Forest
-                        Case "watersedge"
-                            Me.HabitatType = HabitatTypes.WatersEdge
-                        Case "sea"
-                            Me.HabitatType = HabitatTypes.Sea
-                        Case "cave"
-                            Me.HabitatType = HabitatTypes.Cave
-                        Case "mountain"
-                            Me.HabitatType = HabitatTypes.Mountain
-                        Case "roughterrain"
-                            Me.HabitatType = HabitatTypes.RoughTerrain
-                        Case "city"
-                            Me.HabitatType = HabitatTypes.City
-                    End Select
-                ElseIf line.StartsWith("{") = True And line.EndsWith("}") = True Then
-                    Dim pokemonData() As String = line.Remove(line.Length - 1, 1).Remove(0, 1).Split(CChar("|"))
-
-                    If Me.PokemonList.Contains(pokemonData(1)) = False Then
-                        Me.PokemonList.Add(pokemonData(1))
-
-                        Dim entryType As Integer = Pokedex.GetEntryType(Core.Player.PokedexData, pokemonData(1))
-
-                        If entryType > 0 Then
-                            Me.PokemonSeen += 1
-                        End If
-                        If entryType > 1 Then
-                            Me.PokemonCaught += 1
-                        End If
+    
+        Private Sub SelectMenuOrder(ByVal s As SelectMenu)
+            Select Case s.SelectedItem.ToLower()
+                Case "type"
+                    Me.menu = New SelectMenu({"Numeric", "A-Z", "Weight", "Height", "Back"}.ToList(), 0, AddressOf SelectMenuOrderType, 4)
+                Case "reverse: " & Me.ReverseOrder.ToString().ToLower()
+                    Me.ReverseOrder = Not Me.ReverseOrder
+                    Me.menu = New SelectMenu({"Type", "Reverse: " & Me.ReverseOrder.ToString(), "Back"}.ToList(), 0, AddressOf SelectMenuOrder, 2)
+                    Me.SetList()
+                Case "back"
+                    Me.menu = New SelectMenu({"Order", "Filter", "Reset", "Back"}.ToList(), 0, AddressOf SelectMenu1, 3)
+            End Select
+        End Sub
+    
+        Private Sub SelectMenuOrderType(ByVal s As SelectMenu)
+            Select Case s.SelectedItem.ToLower()
+                Case "numeric"
+                    Me.Order = OrderType.Numeric
+                    Me.SetList()
+                Case "a-z"
+                    Me.Order = OrderType.Alphabetically
+                    Me.SetList()
+                Case "weight"
+                    Me.Order = OrderType.Weigth
+                    Me.SetList()
+                Case "height"
+                    Me.Order = OrderType.Height
+                    Me.SetList()
+                Case "back"
+                    Me.menu = New SelectMenu({"Type", "Reverse: " & Me.ReverseOrder.ToString(), "Back"}.ToList(), 0, AddressOf SelectMenuOrder, 2)
+            End Select
+        End Sub
+    
+    #End Region
+    
+        Private Class SelectMenu
+    
+            Dim Items As New List(Of String)
+            Dim Index As Integer = 0
+            Public Delegate Sub ClickEvent(ByVal s As SelectMenu)
+            Dim ClickHandler As ClickEvent = Nothing
+            Dim BackIndex As Integer = 0
+            Public Visible As Boolean = True
+            Public Scroll As Integer = 0
+    
+            Dim t1 As Texture2D
+            Dim t2 As Texture2D
+    
+            Public Sub New(ByVal Items As List(Of String), ByVal Index As Integer, ByVal ClickHandle As ClickEvent, ByVal BackIndex As Integer)
+                Me.Items = Items
+                Me.Index = Index
+                Me.ClickHandler = ClickHandle
+                Me.BackIndex = BackIndex
+                If Me.BackIndex < 0 Then
+                    Me.BackIndex = Me.Items.Count + Me.BackIndex
+                End If
+                Me.Visible = True
+    
+                t1 = TextureManager.GetTexture("GUI\Menus\General", New Rectangle(16, 16, 16, 16), "")
+                t2 = TextureManager.GetTexture("GUI\Menus\General", New Rectangle(32, 16, 16, 16), "")
+            End Sub
+    
+            Public Sub Update()
+                If Visible = True Then
+                    If Controls.Up(True, True, True, True, True, True) = True Then
+                        Me.Index -= 1
                     End If
-
-                    Dim daytimesData As List(Of String) = pokemonData(3).Split(CChar(",")).ToList()
-                    Dim dayTimes As New List(Of Integer)
-
-                    For Each s As String In daytimesData
-                        If StringHelper.IsNumeric(s) = True Then
-                            Dim i As Integer = CInt(s)
-                            If i > 0 Then
-                                dayTimes.Add(i)
-                            Else
-                                dayTimes.Clear()
-                                Exit For
+                    If Controls.Down(True, True, True, True, True, True) = True Then
+                        Me.Index += 1
+                    End If
+                    Me.Index = Me.Index.Clamp(0, Me.Items.Count - 1)
+    
+                    For i = Scroll To Me.Scroll + 8
+                        If i <= Me.Items.Count - 1 Then
+                            If Controls.Accept(True, False, False) = True And i = Me.Index And New Rectangle(Core.windowSize.Width - 270, 66 * ((i + 1) - Scroll), 256, 64).Contains(MouseHandler.MousePosition) = True Or
+                                Controls.Accept(False, True, True) = True And i = Me.Index Or Controls.Dismiss(True, True, True) = True And Me.BackIndex = Me.Index Then
+    
+                                If Not ClickHandler Is Nothing Then
+                                    ClickHandler(Me)
+                                    SoundManager.PlaySound("select")
+                                End If
+                                Me.Visible = False
+                            End If
+                            If Controls.Dismiss(True, True, True) = True Then
+                                Me.Index = Me.BackIndex
+                                If Not ClickHandler Is Nothing Then
+                                    ClickHandler(Me)
+                                    SoundManager.PlaySound("select")
+                                End If
+                                Me.Visible = False
+                            End If
+                            If New Rectangle(Core.windowSize.Width - 270, 66 * ((i + 1) - Scroll), 256, 64).Contains(MouseHandler.MousePosition) = True And Controls.Accept(True, False, False) = True Then
+                                Me.Index = i
                             End If
                         End If
                     Next
-
-                    Me.ObtainTypeList.Add(New EncounterPokemon With {.PokemonID = pokemonData(1), .EncounterType = CInt(pokemonData(0)), .Daytimes = dayTimes.ToArray()})
-                End If
-            Next
-
-            If Me.Name = "" Then
-                Me.Name = System.IO.Path.GetFileNameWithoutExtension(file)
-                Me.Name = Me.Name(0).ToString().ToUpper() & Me.Name.Remove(0, 1)
-            End If
-        End Sub
-
-        Public ReadOnly Property Texture() As Texture2D
-            Get
-                Dim x As Integer = CInt(Me.HabitatType)
-                Dim y As Integer = 0
-                While x > 1
-                    x -= 2
-                    y += 1
-                End While
-                Return TextureManager.GetTexture("GUI\Menus\pokedexhabitat", New Rectangle(x * 64, y * 48, 64, 48), "")
-            End Get
-        End Property
-
-        Public Shared Function GetEncounterTypeImage(ByVal encounterType As Integer) As Texture2D
-            Dim x As Integer = 0
-            Dim y As Integer = 4
-
-            Select Case encounterType
-                Case 0
-                    x = 0
-                    y = 3
-                Case 1
-                    x = 0
-                    y = 4
-                Case 2
-                    x = 1
-                    y = 0
-                Case 3
-                    x = 0
-                    y = 0
-                Case 31
-                    x = 0
-                    y = 1
-                Case 32
-                    x = 0
-                    y = 2
-            End Select
-
-            Return TextureManager.GetTexture("GUI\Menus\pokedexhabitat", New Rectangle(128 + x * 32, y * 32, 32, 32), "")
-        End Function
-
-        Public ReadOnly Property ProgressTexture() As Texture2D
-            Get
-                If Me.PokemonCaught >= Me.PokemonList.Count Then
-                    Return TextureManager.GetTexture("GUI\Menus\pokedexhabitat", New Rectangle(160, 160, 10, 10), "")
-                Else
-                    If Me.PokemonSeen >= Me.PokemonList.Count Then
-                        Return TextureManager.GetTexture("GUI\Menus\pokedexhabitat", New Rectangle(160, 170, 10, 10), "")
+    
+                    If Index - Scroll > 8 Then
+                        Scroll = Index - 8
+                    End If
+                    If Index - Scroll < 0 Then
+                        Scroll = Index
                     End If
                 End If
-                Return Nothing
-            End Get
-        End Property
-
-        Public Sub Merge(ByVal h As Habitat)
-            Dim data() As String = h.MergeData
-
-            For Each line As String In data
-                If line.StartsWith("{") = True And line.EndsWith("}") = True Then
-                    Dim pokemonData() As String = line.Remove(line.Length - 1, 1).Remove(0, 1).Split(CChar("|"))
-
-                    If Me.PokemonList.Contains(pokemonData(1)) = False Then
-                        Me.PokemonList.Add(pokemonData(1))
-
-                        Dim entryType As Integer = Pokedex.GetEntryType(Core.Player.PokedexData, pokemonData(1))
-
-                        If entryType > 0 Then
-                            Me.PokemonSeen += 1
+            End Sub
+    
+            Public Sub Draw()
+                If Visible = True Then
+                    For i = Scroll To Me.Scroll + 8
+                        If i <= Me.Items.Count - 1 Then
+                            Dim Text As String = Items(i)
+    
+                            Dim startPos As New Vector2(Core.windowSize.Width - 270, 66 * ((i + 1) - Scroll))
+    
+                            Core.SpriteBatch.Draw(t1, New Rectangle(CInt(startPos.X), CInt(startPos.Y), 64, 64), Color.White)
+                            Core.SpriteBatch.Draw(t2, New Rectangle(CInt(startPos.X + 64), CInt(startPos.Y), 64, 64), Color.White)
+                            Core.SpriteBatch.Draw(t2, New Rectangle(CInt(startPos.X + 128), CInt(startPos.Y), 64, 64), Color.White)
+                            Core.SpriteBatch.Draw(t1, New Rectangle(CInt(startPos.X + 192), CInt(startPos.Y), 64, 64), Nothing, Color.White, 0.0F, New Vector2(0), SpriteEffects.FlipHorizontally, 0.0F)
+    
+                            Core.SpriteBatch.DrawString(FontManager.MainFont, Text, New Vector2(startPos.X + 128 - (FontManager.MainFont.MeasureString(Text).X * 1.4F) / 2, startPos.Y + 15), Color.Black, 0.0F, Vector2.Zero, 1.4F, SpriteEffects.None, 0.0F)
+    
+                            If Me.Index = i Then
+                                Dim cPosition As Vector2 = New Vector2(startPos.X + 128, startPos.Y - 40)
+                                Dim t As Texture2D = TextureManager.GetTexture("GUI\Menus\General", New Rectangle(0, 0, 16, 16), "")
+                                Core.SpriteBatch.Draw(t, New Rectangle(CInt(cPosition.X), CInt(cPosition.Y), 64, 64), Color.White)
+                            End If
                         End If
-                        If entryType > 1 Then
-                            Me.PokemonCaught += 1
+                    Next
+                End If
+            End Sub
+    
+            Public ReadOnly Property SelectedItem() As String
+                Get
+                    Return Items(Me.Index)
+                End Get
+            End Property
+    
+        End Class
+    
+        Public Class Habitat
+    
+            Public Enum HabitatTypes As Integer
+                Grassland = 0
+                Forest = 1
+                WatersEdge = 2
+                Sea = 3
+                Cave = 4
+                Mountain = 5
+                RoughTerrain = 6
+                City = 7
+            End Enum
+    
+            Public Structure EncounterPokemon
+                Public PokemonID As String
+                Public EncounterType As Integer
+                Public Daytimes() As Integer
+            End Structure
+    
+            Dim MergeData() As String = {} ' Temporary data storage if needs to merge.
+    
+            Public File As String = ""
+            Public Name As String = ""
+            Public HabitatType As HabitatTypes = HabitatTypes.Grassland
+    
+            Public PokemonList As New List(Of String)
+            Public ObtainTypeList As New List(Of EncounterPokemon)
+    
+            Public PokemonCaught As Integer = 0
+            Public PokemonSeen As Integer = 0
+    
+            Public Sub New(ByVal file As String)
+                Security.FileValidation.CheckFileValid(file, False, "PokedexScreen.vb")
+                Dim data() As String = System.IO.File.ReadAllLines(file)
+                Me.MergeData = data
+                Me.File = file
+    
+                For Each line As String In data
+                    If line.ToLower().StartsWith("name=") = True Then
+                        Me.Name = line.Remove(0, 5)
+                    ElseIf line.ToLower().StartsWith("type=") = True Then
+                        Dim arg As String = line.Remove(0, 5)
+                        Select Case arg.ToLower()
+                            Case "grassland"
+                                Me.HabitatType = HabitatTypes.Grassland
+                            Case "forest"
+                                Me.HabitatType = HabitatTypes.Forest
+                            Case "watersedge"
+                                Me.HabitatType = HabitatTypes.WatersEdge
+                            Case "sea"
+                                Me.HabitatType = HabitatTypes.Sea
+                            Case "cave"
+                                Me.HabitatType = HabitatTypes.Cave
+                            Case "mountain"
+                                Me.HabitatType = HabitatTypes.Mountain
+                            Case "roughterrain"
+                                Me.HabitatType = HabitatTypes.RoughTerrain
+                            Case "city"
+                                Me.HabitatType = HabitatTypes.City
+                        End Select
+                    ElseIf line.StartsWith("{") = True And line.EndsWith("}") = True Then
+                        Dim pokemonData() As String = line.Remove(line.Length - 1, 1).Remove(0, 1).Split(CChar("|"))
+    
+                        If Me.PokemonList.Contains(pokemonData(1)) = False Then
+                            Me.PokemonList.Add(pokemonData(1))
+    
+                            Dim entryType As Integer = Pokedex.GetEntryType(Core.Player.PokedexData, pokemonData(1))
+    
+                            If entryType > 0 Then
+                                Me.PokemonSeen += 1
+                            End If
+                            If entryType > 1 Then
+                                Me.PokemonCaught += 1
+                            End If
+                        End If
+    
+                        Dim daytimesData As List(Of String) = pokemonData(3).Split(CChar(",")).ToList()
+                        Dim dayTimes As New List(Of Integer)
+    
+                        For Each s As String In daytimesData
+                            If StringHelper.IsNumeric(s) = True Then
+                                Dim i As Integer = CInt(s)
+                                If i > 0 Then
+                                    dayTimes.Add(i)
+                                Else
+                                    dayTimes.Clear()
+                                    Exit For
+                                End If
+                            End If
+                        Next
+    
+                        Me.ObtainTypeList.Add(New EncounterPokemon With {.PokemonID = pokemonData(1), .EncounterType = CInt(pokemonData(0)), .Daytimes = dayTimes.ToArray()})
+                    End If
+                Next
+    
+                If Me.Name = "" Then
+                    Me.Name = System.IO.Path.GetFileNameWithoutExtension(file)
+                    Me.Name = Me.Name(0).ToString().ToUpper() & Me.Name.Remove(0, 1)
+                End If
+            End Sub
+    
+            Public ReadOnly Property Texture() As Texture2D
+                Get
+                    Dim x As Integer = CInt(Me.HabitatType)
+                    Dim y As Integer = 0
+                    While x > 1
+                        x -= 2
+                        y += 1
+                    End While
+                    Return TextureManager.GetTexture("GUI\Menus\pokedexhabitat", New Rectangle(x * 64, y * 48, 64, 48), "")
+                End Get
+            End Property
+    
+            Public Shared Function GetEncounterTypeImage(ByVal encounterType As Integer) As Texture2D
+                Dim x As Integer = 0
+                Dim y As Integer = 4
+    
+                Select Case encounterType
+                    Case 0
+                        x = 0
+                        y = 3
+                    Case 1
+                        x = 0
+                        y = 4
+                    Case 2
+                        x = 1
+                        y = 0
+                    Case 3
+                        x = 0
+                        y = 0
+                    Case 31
+                        x = 0
+                        y = 1
+                    Case 32
+                        x = 0
+                        y = 2
+                End Select
+    
+                Return TextureManager.GetTexture("GUI\Menus\pokedexhabitat", New Rectangle(128 + x * 32, y * 32, 32, 32), "")
+            End Function
+    
+            Public ReadOnly Property ProgressTexture() As Texture2D
+                Get
+                    If Me.PokemonCaught >= Me.PokemonList.Count Then
+                        Return TextureManager.GetTexture("GUI\Menus\pokedexhabitat", New Rectangle(160, 160, 10, 10), "")
+                    Else
+                        If Me.PokemonSeen >= Me.PokemonList.Count Then
+                            Return TextureManager.GetTexture("GUI\Menus\pokedexhabitat", New Rectangle(160, 170, 10, 10), "")
                         End If
                     End If
-
-                    Me.ObtainTypeList.Add(New EncounterPokemon With {.PokemonID = pokemonData(1), .EncounterType = CInt(pokemonData(0))})
-                End If
-            Next
-        End Sub
-
-        Public Function HasPokemon(ByVal pokemonNumber As String) As Boolean
-            Return Me.PokemonList.Contains(pokemonNumber)
-        End Function
-
+                    Return Nothing
+                End Get
+            End Property
+    
+            Public Sub Merge(ByVal h As Habitat)
+                Dim data() As String = h.MergeData
+    
+                For Each line As String In data
+                    If line.StartsWith("{") = True And line.EndsWith("}") = True Then
+                        Dim pokemonData() As String = line.Remove(line.Length - 1, 1).Remove(0, 1).Split(CChar("|"))
+    
+                        If Me.PokemonList.Contains(pokemonData(1)) = False Then
+                            Me.PokemonList.Add(pokemonData(1))
+    
+                            Dim entryType As Integer = Pokedex.GetEntryType(Core.Player.PokedexData, pokemonData(1))
+    
+                            If entryType > 0 Then
+                                Me.PokemonSeen += 1
+                            End If
+                            If entryType > 1 Then
+                                Me.PokemonCaught += 1
+                            End If
+                        End If
+    
+                        Me.ObtainTypeList.Add(New EncounterPokemon With {.PokemonID = pokemonData(1), .EncounterType = CInt(pokemonData(0))})
+                    End If
+                Next
+            End Sub
+    
+            Public Function HasPokemon(ByVal pokemonNumber As String) As Boolean
+                Return Me.PokemonList.Contains(pokemonNumber)
+            End Function
+    
+        End Class
+    
     End Class
-
-End Class
 
 Public Class PokedexViewScreen
 
@@ -1294,90 +1294,36 @@ Public Class PokedexViewScreen
     Dim yOffset As Integer = 0
     Dim FrontView As Boolean = True
 
-    Dim EvolutionLines As new List(Of EvolutionLinePokemon)
-    Dim minimumLevel As Integer = 0
-    Dim maximumLevel As Integer = 0
+    Dim EvolutionLineConnections As New List(Of PokemonEvolutionLine)
+
+    Dim GridMinimum As New Vector2(0, 0)
+    Dim GridMaximum As New Vector2(0, 0)
 
     Dim HabitatList As New List(Of PokedexScreen.Habitat)
 
-    Class EvolutionLinePokemon
+    Class PokemonEvolutionLine
 
-        Public Level As Integer = 0
-        Public PokemonID As String = "0"
-        Public PokemonAD As String = ""
-        Public Evolutions As New List(Of EvolutionLinePokemon)
-        Public Forms As New List(Of EvolutionLinePokemon)
-        Public Devolution As EvolutionLinePokemon = Nothing
-        Public Pokemon As Pokemon = Nothing
+        Public ConnectionList As New List(Of Tuple(Of Integer, Integer, Pokemon))
 
-        Public Sub New(ByVal Level As Integer, ByVal pokemonID As String, ByVal vS As PokedexViewScreen, ByVal fromEvolution As String)
-            Me.Level = Level
-            Me.PokemonID = pokemonID
-            If pokemonID.Contains("_") Then
-                Me.PokemonAD = PokemonForms.GetAdditionalValueFromDataFile(pokemonID)
-            ElseIf pokemonID.Contains(";") Then
-                Me.PokemonID = pokemonID.GetSplit(0, ";")
-                Me.PokemonAD = pokemonID.GetSplit(1, ";")
-            End If
-            Me.Pokemon = Pokemon.GetPokemonByID(CInt(Me.PokemonID.GetSplit(0, "_")), Me.PokemonAD)
+        Public Sub New(ByVal GridPositions As List(Of Vector2), ByVal PokemonIDs As List(Of String))
+            If GridPositions.Count = PokemonIDs.Count Then
+                For i = 0 To PokemonIDs.Count - 1
+                    Dim DexID As Integer
+                    Dim DexAD As String = ""
 
-            If Me.Pokemon.EvolutionConditions.Count > 0 Then
-                Dim evolutions As New List(Of String)
-                For Each ev As EvolutionCondition In Me.Pokemon.EvolutionConditions
-                    If evolutions.Contains(ev.Evolution) = False And fromEvolution <> ev.Evolution Then
-                        evolutions.Add(ev.Evolution)
-                    End If
-                Next
-
-                For Each ev As String In evolutions
-                    If vS.maximumLevel < Me.Level + 1 Then
-                        vS.maximumLevel = Me.Level + 1
-                    End If
-                    Me.Evolutions.Add(New EvolutionLinePokemon(Me.Level + 1, ev, vS, ""))
-                Next
-            End If
-
-            If Me.Pokemon.DexForms.Count > 0 Then
-                For Each form As String In Me.Pokemon.DexForms
-
-                    Dim formID As String = Me.Pokemon.Number.ToString
-                    If form <> " " Then
-                        If StringHelper.IsNumeric(form) = False Then
-                            formID &= "_" & form
-                        Else
-                            formID = form
-                        End If
+                    If PokemonIDs(i).Contains("_") Then
+                        DexID = CInt(PokemonIDs(i).GetSplit(0, "_"))
+                        DexAD = PokemonForms.GetAdditionalValueFromDataFile(PokemonIDs(i))
+                    ElseIf PokemonIDs(i).Contains(";") Then
+                        DexID = CInt(PokemonIDs(i).GetSplit(0, ";"))
+                        DexAD = PokemonIDs(i).GetSplit(1, ";")
+                    Else
+                        DexID = CInt(PokemonIDs(i))
                     End If
 
-                    Dim formAD As String = ""
-                    If form <> " " AndAlso StringHelper.IsNumeric(form) = False Then
-                        formAD = PokemonForms.GetAdditionalValueFromDataFile(Me.PokemonID.GetSplit(0, "_") & "_" & form)
-                    End If
-
-                    Dim formpokemon As Pokemon = Pokemon.GetPokemonByID(CInt(Me.PokemonID.GetSplit(0, "_")), formAD, True)
-                    If formpokemon.EvolutionConditions.Count > 0 Then
-                        Dim evolutions As New List(Of String)
-                        For Each ev As EvolutionCondition In formpokemon.EvolutionConditions
-                            If evolutions.Contains(ev.Evolution) = False And fromEvolution <> ev.Evolution Then
-                                evolutions.Add(ev.Evolution)
-                            End If
-                        Next
-
-                        For Each ev As String In evolutions
-                            If vS.maximumLevel < Me.Level + 1 Then
-                                vS.maximumLevel = Me.Level + 1
-                            End If
-                            Me.Evolutions.Add(New EvolutionLinePokemon(Me.Level + 1, ev, vS, ""))
-                        Next
-                    End If
-
-                    If vS.maximumLevel < Me.Level + 1 Then
-                        vS.maximumLevel = Me.Level + 1
-                    End If
-
-
-                    Me.Forms.Add(New EvolutionLinePokemon(Me.Level + 1, formID, vS, ""))
-
+                    Dim p As Pokemon = Pokemon.GetPokemonByID(DexID, DexAD)
+                    Dim entry As New Tuple(Of Integer, Integer, Pokemon)(CInt(GridPositions(i).X), CInt(GridPositions(i).Y), p)
+                    ConnectionList.Add(entry)
                 Next
             End If
         End Sub
@@ -1414,92 +1360,131 @@ Public Class PokedexViewScreen
         Me.EntryType = Pokedex.GetEntryType(Core.Player.PokedexData, dexID)
 
         Me.GetYOffset()
-        Me.FillEvolutionLine()
+        Me.FillEvolutionGrid()
         Me.FillHabitats()
     End Sub
 
-    Private Sub FillEvolutionLine()
-        Dim evoID As String = Me.Pokemon.Number.ToString
-        Dim p As New EvolutionLinePokemon(0, evoID, Me, "")
+    Private Sub FillEvolutionGrid()
+        If Me.Pokemon.EvolutionLines.Count > 0 Then
+            For e = 0 To Me.Pokemon.EvolutionLines.Count - 1
+                Dim GridPositions As New List(Of Vector2)
+                Dim PokemonIDs As New List(Of String)
+                Dim DataEntries As String() = Me.Pokemon.EvolutionLines(e).Split(",")
+                For i = 0 To DataEntries.Count - 1
+                    PokemonIDs.Add(DataEntries(i).GetSplit(0, "\"))
+                    Dim Position As New Vector2(CInt(DataEntries(i).GetSplit(1, "\")))
+                    If DataEntries(i).Split("\").Count > 2 Then
+                        Position.Y = CInt(DataEntries(i).GetSplit(2, "\"))
+                    End If
 
-        If CInt(p.Pokemon.Devolution.GetSplit(0, "_")) > 0 Then
-            Dim devoID As String = p.Pokemon.Devolution
-            Dim devoAD As String = ""
-            If devoID.Contains("_") Then
-                devoAD = PokemonForms.GetAdditionalValueFromDataFile(p.Pokemon.Devolution)
+                    If GridMinimum.X > Position.X Then
+                        GridMinimum.X = Position.X
+                    End If
+                    If GridMinimum.Y > Position.Y Then
+                        GridMinimum.Y = Position.Y
+                    End If
+
+                    If GridMaximum.X < Position.X Then
+                        GridMaximum.X = Position.X
+                    End If
+                    If GridMaximum.Y < Position.Y Then
+                        GridMaximum.Y = Position.Y
+                    End If
+
+                    GridPositions.Add(Position)
+                Next
+                Dim evoline As New PokemonEvolutionLine(GridPositions, PokemonIDs)
+                EvolutionLineConnections.Add(evoline)
+            Next
+        Else
+            Dim GridPositions As New List(Of Vector2)
+            Dim PokemonIDs As New List(Of String)
+
+            If Me.Pokemon.Devolution <> "0" Then
+                Dim DevoID As Integer = CInt(Me.Pokemon.Devolution.GetSplit(0, "_").GetSplit(0, ";"))
+                Dim DevoAD As String = ""
+
+                If Me.Pokemon.Devolution.Contains("_") Then
+                    DevoAD = PokemonForms.GetAdditionalValueFromDataFile(Me.Pokemon.Devolution)
+                ElseIf Me.Pokemon.Devolution.Contains(";") Then
+                    DevoAD = Me.Pokemon.Devolution.GetSplit(1, ";")
+                End If
+
+                Dim DevoP As Pokemon = Pokemon.GetPokemonByID(DevoID, DevoAD, True)
+
+                If DevoP.Devolution <> "0" Then
+                    PokemonIDs.Add(DevoP.Devolution)
+                End If
+                PokemonIDs.Add(Me.Pokemon.Devolution)
             End If
 
-            Dim devP As Pokemon = P3D.Pokemon.GetPokemonByID(CInt(devoID.GetSplit(0, "_")), devoAD)
-            Dim devR As EvolutionLinePokemon = Nothing
-            Dim level As Integer = -1
-            p.Devolution = New EvolutionLinePokemon(level, devoID, Me, evoID)
-            Logger.Debug("Add devolution level 1: " & devP.Number)
+            Dim DexData As String = PokemonForms.GetPokemonDataFileName(Me.Pokemon.Number, Me.Pokemon.AdditionalData, True)
 
-            devR = p.Devolution
+            PokemonIDs.Add(DexData)
 
-            While CInt(devR.Pokemon.Devolution.GetSplit(0, "_")) > 0
-                devoID = devR.Pokemon.Devolution
-                devoAD = ""
-                If devR.Pokemon.AdditionalData <> "" Then
-                    devoAD = PokemonForms.GetAdditionalValueFromDataFile(devR.Pokemon.Devolution)
+            If Me.Pokemon.EvolutionConditions.Count > 0 Then
+                PokemonIDs.Add(Me.Pokemon.EvolutionConditions(0).Evolution)
+
+                Dim EvoID As Integer = CInt(Me.Pokemon.EvolutionConditions(0).Evolution.GetSplit(0, "_").GetSplit(0, ";"))
+                Dim EvoAD As String = ""
+
+                If Me.Pokemon.EvolutionConditions(0).Evolution.Contains("_") Then
+                    EvoAD = PokemonForms.GetAdditionalValueFromDataFile(Me.Pokemon.EvolutionConditions(0).Evolution)
+                ElseIf Me.Pokemon.EvolutionConditions(0).Evolution.Contains(";") Then
+                    EvoAD = Me.Pokemon.EvolutionConditions(0).Evolution.GetSplit(1, ";")
                 End If
 
-                devP = P3D.Pokemon.GetPokemonByID(CInt(devoID.GetSplit(0, "_")), devoAD)
-                level -= 1
-                devR.Devolution = New EvolutionLinePokemon(level, devoID, Me, PokemonForms.GetPokemonDataFileName(devR.Pokemon.Number, devR.Pokemon.AdditionalData))
-                devR = devR.Devolution
-                Logger.Debug("Add devolution level " & (level * -1) & ": " & devP.Number)
-            End While
+                Dim EvoP As Pokemon = Pokemon.GetPokemonByID(EvoID, EvoAD, True)
 
-            minimumLevel = level
+                If EvoP.EvolutionConditions.Count > 0 Then
+                    PokemonIDs.Add(EvoP.EvolutionConditions(0).Evolution)
+                End If
+            End If
+
+            Select Case PokemonIDs.Count
+                Case 1
+                    GridMinimum = New Vector2(0)
+                    GridMaximum = New Vector2(0)
+
+                    GridPositions.Add(New Vector2(0, 0))
+                Case 2
+                    GridMinimum = New Vector2(0)
+                    GridMaximum = New Vector2(2, 0)
+
+                    GridPositions.Add(New Vector2(0, 0))
+                    GridPositions.Add(New Vector2(2, 0))
+                Case 3
+                    GridMinimum = New Vector2(-2, 0)
+                    GridMaximum = New Vector2(2, 0)
+
+                    GridPositions.Add(New Vector2(-2, 0))
+                    GridPositions.Add(New Vector2(0, 0))
+                    GridPositions.Add(New Vector2(2, 0))
+                Case 4
+                    GridMinimum = New Vector2(-2, 0)
+                    GridMaximum = New Vector2(4, 0)
+
+                    GridPositions.Add(New Vector2(-2, 0))
+                    GridPositions.Add(New Vector2(0, 0))
+                    GridPositions.Add(New Vector2(2, 0))
+                    GridPositions.Add(New Vector2(4, 0))
+                Case 5
+                    GridMinimum = New Vector2(-4, 0)
+                    GridMaximum = New Vector2(4, 0)
+
+                    GridPositions.Add(New Vector2(-4, 0))
+                    GridPositions.Add(New Vector2(-2, 0))
+                    GridPositions.Add(New Vector2(0, 0))
+                    GridPositions.Add(New Vector2(2, 0))
+                    GridPositions.Add(New Vector2(4, 0))
+            End Select
+
+            Dim evoline As New PokemonEvolutionLine(GridPositions, PokemonIDs)
+            EvolutionLineConnections.Add(evoline)
+
         End If
 
-        Logger.Debug("Minimum level: " & minimumLevel & "; maximum level: " & maximumLevel)
-
-        Me.EvolutionLines.Add(p)
-        If p.Forms.Count > 0 Then
-            For Each formp As EvolutionLinePokemon In p.Forms
-                Dim formEvoID As String = formp.Pokemon.Number.ToString
-                If formp.Pokemon.AdditionalData <> "" Then
-                    formEvoID = PokemonForms.GetPokemonDataFileName(formp.Pokemon.Number, formp.Pokemon.AdditionalData)
-                End If
-                If CInt(formp.Pokemon.Devolution.GetSplit(0, "_")) > 0 Then
-                    Dim devoID As String = formp.Pokemon.Devolution
-                    Dim devoAD As String = ""
-                    If devoID.Contains("_") Then
-                        devoAD = PokemonForms.GetAdditionalValueFromDataFile(formp.Pokemon.Devolution)
-                    End If
-
-                    Dim devP As Pokemon = P3D.Pokemon.GetPokemonByID(CInt(devoID.GetSplit(0, "_")), devoAD)
-                    Dim devR As EvolutionLinePokemon = Nothing
-                    Dim level As Integer = -1
-                    formp.Devolution = New EvolutionLinePokemon(level, devoID, Me, evoID)
-                    Logger.Debug("Add devolution level 1: " & devP.Number)
-
-                    devR = formp.Devolution
-
-                    While CInt(devR.Pokemon.Devolution.GetSplit(0, "_")) > 0
-                        devoID = devR.Pokemon.Devolution
-                        devoAD = ""
-                        If devR.Pokemon.AdditionalData <> "" Then
-                            devoAD = PokemonForms.GetAdditionalValueFromDataFile(devR.Pokemon.Devolution)
-                        End If
-
-                        devP = P3D.Pokemon.GetPokemonByID(CInt(devoID.GetSplit(0, "_")), devoAD)
-                        level -= 1
-                        devR.Devolution = New EvolutionLinePokemon(level, devoID, Me, PokemonForms.GetPokemonDataFileName(devR.Pokemon.Number, devR.Pokemon.AdditionalData))
-                        devR = devR.Devolution
-                        Logger.Debug("Add devolution level " & (level * -1) & ": " & devP.Number)
-                    End While
-
-                    If minimumLevel > level Then
-                        minimumLevel = level
-                    End If
-                End If
-                Me.EvolutionLines.Add(formp)
-            Next
-        End If
-        Logger.Debug("Minimum level: " & minimumLevel & "; maximum level: " & maximumLevel)
+        Logger.Debug("Minimum level: " & GridMinimum.X & "x," & GridMinimum.Y & "y; Maximum level: " & GridMaximum.X & "x," & GridMaximum.Y & "y")
     End Sub
 
     Private Sub FillHabitats()
@@ -1704,177 +1689,84 @@ Public Class PokedexViewScreen
     Dim scale As Single = 2.0F
 
     Private Sub DrawPage3()
-        If EvolutionLines.Count = 0 OrElse EvolutionLines.Count = 1 AndAlso EvolutionLines(0).Devolution Is Nothing AndAlso EvolutionLines(0).Evolutions.Count = 0 AndAlso EvolutionLines(0).Forms.Count = 0 Then
+        If EvolutionLineConnections Is Nothing OrElse EvolutionLineConnections.Count = 0 OrElse EvolutionLineConnections(0).ConnectionList.Count <= 1 Then
             Canvas.DrawGradient(New Rectangle(CInt(Core.windowSize.Width / 2) - 282, CInt(Core.windowSize.Height / 2 - 45), 80, 90), New Color(84, 198, 216), New Color(42, 167, 198, 150), True, -1)
             Canvas.DrawRectangle(New Rectangle(CInt(Core.windowSize.Width / 2) - 202, CInt(Core.windowSize.Height / 2 - 45), 404, 90), New Color(42, 167, 198, 150))
             Canvas.DrawGradient(New Rectangle(CInt(Core.windowSize.Width / 2) + 202, CInt(Core.windowSize.Height / 2 - 45), 80, 90), New Color(42, 167, 198, 150), New Color(84, 198, 216), True, -1)
 
             Core.SpriteBatch.DrawString(FontManager.MainFont, Pokemon.GetName() & " doesn't evolve.", New Vector2(CInt(Core.windowSize.Width / 2) - CInt(FontManager.MainFont.MeasureString(Pokemon.GetName() & " doesn't evolve.").X / 2), CInt(Core.windowSize.Height / 2 - 15)), Color.White)
         Else
-            Dim connections As New List(Of String)
-            Dim levels As New Dictionary(Of Integer, Integer)
-            Dim levelsOffset As New Dictionary(Of Integer, Integer)
+            Dim connectionLines As New List(Of String)
+            Dim centerVector As Vector2 = Core.GetMiddlePosition(New Size(CInt(64 * scale), CInt(64 * scale)))
 
-            For i = minimumLevel To maximumLevel
-                levels.Add(i, 0)
-                levelsOffset.Add(i, 0)
+            For e = 0 To EvolutionLineConnections.Count - 1
+                For l = 0 To EvolutionLineConnections(e).ConnectionList.Count - 1
+                    If EvolutionLineConnections(e).ConnectionList.Count > 1 AndAlso l > 0 Then
+                        connectionLines.Add(CStr(EvolutionLineConnections(e).ConnectionList(l - 1).Item1 & "_" & EvolutionLineConnections(e).ConnectionList(l - 1).Item2 & "," & EvolutionLineConnections(e).ConnectionList(l).Item1 & "_" & EvolutionLineConnections(e).ConnectionList(l).Item2))
+                    End If
+                Next
             Next
 
-            For i = 0 To EvolutionLines.Count - 1
-                If Not EvolutionLines(i).Devolution Is Nothing Then
-                    connections.Add("-1_0|" & EvolutionLines(i).Devolution.PokemonID.ToString() & "-" & EvolutionLines(i).PokemonID.ToString())
-                    levels(-1) += 1
+            For i = 0 To connectionLines.Count - 1
+                Dim LineStart As New Vector2(CInt(connectionLines(i).GetSplit(0, ",").GetSplit(0, "_")), CInt(connectionLines(i).GetSplit(0, ",").GetSplit(1, "_")))
+                Dim LineEnd As New Vector2(CInt(connectionLines(i).GetSplit(1, ",").GetSplit(0, "_")), CInt(connectionLines(i).GetSplit(1, ",").GetSplit(1, "_")))
 
-                    For Each evolution As EvolutionLinePokemon In EvolutionLines(i).Devolution.Evolutions
-                        connections.Add("-1_0|" & EvolutionLines(i).Devolution.PokemonID.ToString() & "-" & evolution.PokemonID.ToString())
-                        levels(0) += 1
-                        For Each eevolution As EvolutionLinePokemon In evolution.Evolutions
-                            connections.Add("0_1|" & evolution.PokemonID.ToString() & "-" & eevolution.PokemonID.ToString())
-                            levels(1) += 1
+                Canvas.DrawLine(Color.Black, New Vector2(centerVector.X + (LineStart.X * (64 * scale)) + (scale * 32), centerVector.Y + (scale * 32) + (LineStart.Y * (32 * scale))), New Vector2(centerVector.X + (LineEnd.X * (64 * scale)) + (scale * 32), centerVector.Y + (scale * 32) + (LineEnd.Y * (32 * scale))), 2)
+            Next
+
+            For x = CInt(GridMinimum.X) To CInt(GridMaximum.X)
+                For y = CInt(GridMinimum.Y) To CInt(GridMaximum.Y)
+                    Dim pokemon As Pokemon = Nothing
+                    Dim position As Vector2 = New Vector2(0)
+                    For c = 0 To EvolutionLineConnections.Count - 1
+                        For i = 0 To EvolutionLineConnections(c).ConnectionList.Count - 1
+                            If EvolutionLineConnections(c).ConnectionList(i).Item1 = x AndAlso EvolutionLineConnections(c).ConnectionList(i).Item2 = y Then
+                                position = New Vector2(EvolutionLineConnections(c).ConnectionList(i).Item1, EvolutionLineConnections(c).ConnectionList(i).Item2)
+                                pokemon = EvolutionLineConnections(c).ConnectionList(i).Item3
+                            End If
                         Next
                     Next
+                    If pokemon IsNot Nothing Then
+                        Dim dexID As String = PokemonForms.GetPokemonDataFileName(pokemon.Number, pokemon.AdditionalData, True)
+                        Dim pokeTexture = pokemon.GetMenuTexture()
+                        Dim pokeTextureScale As Vector2 = New Vector2(CSng(32 / pokeTexture.Width * 2), CSng(32 / pokeTexture.Height * 2))
 
-                    If Not EvolutionLines(i).Devolution.Devolution Is Nothing Then
-                        connections.Add("-2_-1|" & EvolutionLines(i).Devolution.Devolution.PokemonID.ToString() & "-" & EvolutionLines(i).Devolution.PokemonID.ToString())
-                        levels(-2) += 1
+                        If Pokedex.GetEntryType(Core.Player.PokedexData, dexID) = 0 Then
+                            Core.SpriteBatch.Draw(pokeTexture, New Rectangle(CInt(centerVector.X + (position.X * CInt(64 * scale))), CInt(centerVector.Y + (position.Y * (32 * scale))), CInt(pokeTexture.Width * pokeTextureScale.X * scale), CInt(pokeTexture.Height * pokeTextureScale.Y * scale)), Color.Black)
+                        Else
+                            Core.SpriteBatch.Draw(pokeTexture, New Rectangle(CInt(centerVector.X + (position.X * CInt(64 * scale))), CInt(centerVector.Y + (position.Y * (32 * scale))), CInt(pokeTexture.Width * pokeTextureScale.X * scale), CInt(pokeTexture.Height * pokeTextureScale.Y * scale)), Color.White)
+                        End If
                     End If
-                ElseIf EvolutionLines(i).Evolutions.Count > 0 Then
-                    levels(0) += 1
-                End If
-
-                For Each evolution As EvolutionLinePokemon In EvolutionLines(i).Evolutions
-                    connections.Add("0_1|" & EvolutionLines(i).PokemonID.ToString() & "-" & evolution.PokemonID.ToString())
-                    levels(1) += 1
-                    For Each eevolution As EvolutionLinePokemon In evolution.Evolutions
-                        connections.Add("1_2|" & evolution.PokemonID.ToString() & "-" & eevolution.PokemonID.ToString())
-                        levels(2) += 1
-                    Next
                 Next
-                If EvolutionLines(i).Evolutions.Count = 0 AndAlso EvolutionLines(i).Devolution Is Nothing Then
-                    connections.Add("0_0|" & EvolutionLines(i).PokemonID.ToString() & "-" & EvolutionLines(i).PokemonID.ToString())
-                    levels(0) += 1
-                End If
-
             Next
 
-            Dim levelDraws As New Dictionary(Of Integer, Integer)
-            Dim PokemonDraws As New Dictionary(Of String, Integer)
+            For x = CInt(GridMinimum.X) To CInt(GridMaximum.X)
+                For y = CInt(GridMinimum.Y) To CInt(GridMaximum.Y)
+                    Dim pokemon As Pokemon = Nothing
+                    Dim position As Vector2 = New Vector2(0)
+                    For c = 0 To EvolutionLineConnections.Count - 1
+                        For i = 0 To EvolutionLineConnections(c).ConnectionList.Count - 1
+                            If EvolutionLineConnections(c).ConnectionList(i).Item1 = x AndAlso EvolutionLineConnections(c).ConnectionList(i).Item2 = y Then
+                                position = New Vector2(EvolutionLineConnections(c).ConnectionList(i).Item1, EvolutionLineConnections(c).ConnectionList(i).Item2)
+                                pokemon = EvolutionLineConnections(c).ConnectionList(i).Item3
+                            End If
+                        Next
+                    Next
+                    If pokemon IsNot Nothing Then
+                        Dim dexID As String = PokemonForms.GetPokemonDataFileName(pokemon.Number, pokemon.AdditionalData, True)
+                        Dim pokeTexture = pokemon.GetMenuTexture()
+                        Dim pokeTextureScale As Vector2 = New Vector2(CSng(32 / pokeTexture.Width * 2), CSng(32 / pokeTexture.Height * 2))
 
-            For i = 0 To connections.Count - 1
-                Dim c As String = connections(i).Split(CChar("|"))(1)
-
-                Dim mv As Vector2 = Core.GetMiddlePosition(New Size(CInt(64 * scale), CInt(64 * scale)))
-
-                Dim p1 As String = c.Remove(c.IndexOf("-"))
-                Dim level1 As Integer = CInt(connections(i).GetSplit(0, "|").GetSplit(0, "_"))
-                Dim level1Count As Integer = levels(level1)
-                Dim p1ad As String = ""
-                If p1.Contains("_") = True Then
-                    p1ad = PokemonForms.GetAdditionalValueFromDataFile(p1)
-                End If
-                Dim pokemon1 As Pokemon = Pokemon.GetPokemonByID(CInt(p1.GetSplit(0, "_")), p1ad, True)
-
-                If levelDraws.ContainsKey(level1) = False Then
-                    levelDraws.Add(level1, 0)
-                End If
-
-                If PokemonDraws.ContainsKey(p1) = False Then
-                    levelDraws(level1) += 1
-                    PokemonDraws.Add(p1, levelDraws(level1))
-                End If
-
-                Dim level1Offset As Integer = CInt(GetOffset(level1Count, PokemonDraws(p1)) * (64 * scale))
-
-                Dim p2 As String = c.Remove(0, c.IndexOf("-") + 1)
-                Dim level2 As Integer = CInt(connections(i).GetSplit(0, "|").Split(CChar("_"))(1))
-                Dim level2Count As Integer = levels(level2)
-                Dim p2ad As String = ""
-                If p2.Contains("_") = True Then
-                    p2ad = PokemonForms.GetAdditionalValueFromDataFile(p2)
-                End If
-                Dim pokemon2 As Pokemon = Pokemon.GetPokemonByID(CInt(p2.GetSplit(0, "_")), p2ad, True)
-
-                If levelDraws.ContainsKey(level2) = False Then
-                    levelDraws.Add(level2, 0)
-                End If
-
-                If PokemonDraws.ContainsKey(p2) = False Then
-                    levelDraws(level2) += 1
-                    PokemonDraws.Add(p2, levelDraws(level2))
-                End If
-
-                Dim level2Offset As Integer = CInt(GetOffset(level2Count, PokemonDraws(p2)) * (64 * scale))
-
-                If level1 <> level2 Then
-                    If pokemon2.Devolution = PokemonForms.GetPokemonDataFileName(pokemon1.Number, pokemon1.AdditionalData) Then
-                        Canvas.DrawLine(Color.Black, New Vector2(mv.X + (level1 * (128 * scale)) + (scale * 32), mv.Y + (scale * 32) + level1Offset), New Vector2(mv.X + (level2 * (128 * scale)) + (scale * 32), mv.Y + (scale * 32) + level2Offset), 2)
+                        If Pokedex.GetEntryType(Core.Player.PokedexData, dexID) <> 0 Then
+                            Core.SpriteBatch.DrawString(FontManager.MainFont, pokemon.GetName(), New Vector2(CInt(centerVector.X + (position.X * (64 * scale)) + CInt(pokeTexture.Width * pokeTextureScale.X / 2 * scale) - (FontManager.MainFont.MeasureString(pokemon.GetName()).X / 2 * CSng(scale / 2)) + 2), CInt(centerVector.Y + position.Y * (32 * scale) + (64 * scale)) + 2), Color.Black, 0.0F, Vector2.Zero, CInt(scale / 2), SpriteEffects.None, 0.0F)
+                            Core.SpriteBatch.DrawString(FontManager.MainFont, pokemon.GetName(), New Vector2(CInt(centerVector.X + (position.X * (64 * scale)) + CInt(pokeTexture.Width * pokeTextureScale.X / 2 * scale) - (FontManager.MainFont.MeasureString(pokemon.GetName()).X / 2 * CSng(scale / 2))), CInt(centerVector.Y + position.Y * (32 * scale) + (64 * scale))), Color.White, 0.0F, Vector2.Zero, CInt(scale / 2), SpriteEffects.None, 0.0F)
+                        End If
                     End If
-                End If
-
-                Dim dexID1 As String = PokemonForms.GetPokemonDataFileName(pokemon1.Number, pokemon1.AdditionalData)
-                If dexID1.Contains("_") = False Then
-                    If PokemonForms.GetAdditionalDataForms(pokemon1.Number) IsNot Nothing AndAlso PokemonForms.GetAdditionalDataForms(pokemon1.Number).Contains(pokemon1.AdditionalData) Then
-                        dexID1 = pokemon1.Number & ";" & pokemon1.AdditionalData
-                    Else
-                        dexID1 = pokemon1.Number.ToString
-                    End If
-                End If
-
-                Dim dexID2 As String = PokemonForms.GetPokemonDataFileName(pokemon2.Number, pokemon2.AdditionalData)
-                If dexID2.Contains("_") = False Then
-                    If PokemonForms.GetAdditionalDataForms(pokemon2.Number) IsNot Nothing AndAlso PokemonForms.GetAdditionalDataForms(pokemon2.Number).Contains(pokemon2.AdditionalData) Then
-                        dexID2 = pokemon2.Number & ";" & pokemon2.AdditionalData
-                    Else
-                        dexID2 = pokemon2.Number.ToString
-                    End If
-                End If
-
-                If Pokedex.GetEntryType(Core.Player.PokedexData, dexID1) = 0 Then
-                    Dim pokeTexture = pokemon1.GetMenuTexture()
-                    Dim pokeTextureScale As Vector2 = New Vector2(CSng(32 / pokeTexture.Width * 2), CSng(32 / pokeTexture.Height * 2))
-                    Core.SpriteBatch.Draw(pokeTexture, New Rectangle(CInt(mv.X + (level1 * CInt(128 * scale))), CInt(mv.Y + level1Offset), CInt(pokeTexture.Width * pokeTextureScale.X * scale), CInt(pokeTexture.Height * pokeTextureScale.Y * scale)), Color.Black)
-                Else
-                    Dim pokeTexture = pokemon1.GetMenuTexture()
-                    Dim pokeTextureScale As Vector2 = New Vector2(CSng(32 / pokeTexture.Width * 2), CSng(32 / pokeTexture.Height * 2))
-                    Core.SpriteBatch.Draw(pokeTexture, New Rectangle(CInt(mv.X + (level1 * (128 * scale))), CInt(mv.Y + level1Offset), CInt(pokeTexture.Width * pokeTextureScale.X * scale), CInt(pokeTexture.Height * pokeTextureScale.Y * scale)), Color.White)
-                    Core.SpriteBatch.DrawString(FontManager.MainFont, pokemon1.GetName(), New Vector2(CInt(mv.X + (level1 * (128 * scale)) + CInt(pokeTexture.Width * pokeTextureScale.X / 2 * scale) - (FontManager.MainFont.MeasureString(pokemon1.GetName()).X / 2 * CSng(scale / 2)) + 2), CInt(mv.Y + level1Offset + (64 * scale)) + 2), Color.Black, 0.0F, Vector2.Zero, CInt(scale / 2), SpriteEffects.None, 0.0F)
-                    Core.SpriteBatch.DrawString(FontManager.MainFont, pokemon1.GetName(), New Vector2(CInt(mv.X + (level1 * (128 * scale)) + CInt(pokeTexture.Width * pokeTextureScale.X / 2 * scale) - (FontManager.MainFont.MeasureString(pokemon1.GetName()).X / 2 * CSng(scale / 2))), CInt(mv.Y + level1Offset + (64 * scale))), Color.White, 0.0F, Vector2.Zero, CInt(scale / 2), SpriteEffects.None, 0.0F)
-                End If
-                If Pokedex.GetEntryType(Core.Player.PokedexData, dexID2) = 0 Then
-                    Dim pokeTexture = pokemon2.GetMenuTexture()
-                    Dim pokeTextureScale As Vector2 = New Vector2(CSng(32 / pokeTexture.Width * 2), CSng(32 / pokeTexture.Height * 2))
-                    Core.SpriteBatch.Draw(pokeTexture, New Rectangle(CInt(mv.X + (level2 * CInt(128 * scale))), CInt(mv.Y + level2Offset), CInt(pokeTexture.Width * pokeTextureScale.X * scale), CInt(pokeTexture.Height * pokeTextureScale.X * scale)), Color.Black)
-                Else
-                    Dim pokeTexture = pokemon2.GetMenuTexture()
-                    Dim pokeTextureScale As Vector2 = New Vector2(CSng(32 / pokeTexture.Width * 2), CSng(32 / pokeTexture.Height * 2))
-                    Core.SpriteBatch.Draw(pokeTexture, New Rectangle(CInt(mv.X + (level2 * CInt(128 * scale))), CInt(mv.Y + level2Offset), CInt(pokeTexture.Width * pokeTextureScale.X * scale), CInt(pokeTexture.Height * pokeTextureScale.Y * scale)), Color.White)
-                    Core.SpriteBatch.DrawString(FontManager.MainFont, pokemon2.GetName(), New Vector2(CInt(mv.X + (level2 * (128 * scale)) + (32 * scale) - (FontManager.MainFont.MeasureString(pokemon2.GetName()).X / 2 * CSng(scale / 2)) + 2), CInt(mv.Y + level2Offset + (64 * scale)) + 2), Color.Black, 0.0F, Vector2.Zero, CInt(scale / 2), SpriteEffects.None, 0.0F)
-                    Core.SpriteBatch.DrawString(FontManager.MainFont, pokemon2.GetName(), New Vector2(CInt(mv.X + (level2 * (128 * scale)) + (32 * scale) - (FontManager.MainFont.MeasureString(pokemon2.GetName()).X / 2 * CSng(scale / 2))), CInt(mv.Y + level2Offset + (64 * scale))), Color.White, 0.0F, Vector2.Zero, CInt(scale / 2), SpriteEffects.None, 0.0F)
-                End If
+                Next
             Next
+
         End If
     End Sub
-
-    Private Function GetOffset(ByVal count As Integer, ByVal c As Integer) As Double
-        If count = 0 Then
-            Return 0
-        End If
-        If count Mod 2 = 1 Then
-            ' count = 7, c = 7
-            Dim middle As Integer = CInt(Math.Ceiling(count / 2))
-            ' middle = 4
-            Dim stat As Integer = c - middle
-            ' stat = 3
-            Return stat
-        Else
-            ' count = 4, c = 1 
-            Dim middle As Double = count / 2
-            ' middle = 2
-            Dim stat As Double = c - middle - 0.5D
-            ' stat = -1.5
-            Return stat
-        End If
-    End Function
 
     Public Overrides Sub Update()
         If Controls.Dismiss(True, True, True) = True Then

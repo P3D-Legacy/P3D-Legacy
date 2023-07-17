@@ -56,3 +56,7 @@ TradeValue|15
 Item|5,142
 EvolutionCondition|80_galar,Level,37,Level
 EvolutionCondition|199_galar,holditem,82,trade
+EvolutionLine|79\0\-1,80\1\-3
+EvolutionLine|79\0\-1,199\1\-1
+EvolutionLine|79_galar\0\1,80_galar\1\1
+EvolutionLine|79_galar\0\1,199_galar\1\3
