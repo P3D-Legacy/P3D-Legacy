@@ -121,7 +121,7 @@ Public Class PartyScreen
 
 
 
-        If _index >= PokemonList.Count - 1 Then
+        If _index > PokemonList.Count - 1 Then
             _index = 0
         End If
         _cursorDest = GetBoxPosition(_index)
