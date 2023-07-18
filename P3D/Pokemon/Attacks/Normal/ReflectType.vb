@@ -67,7 +67,7 @@
             p.OriginalType2 = New Element(p.Type2.Type)
             p.Type1 = New Element(op.Type1.Type)
             p.Type2 = New Element(op.Type2.Type)
-            BattleScreen.BattleQuery.Add(New TextQueryObject(p.GetDisplayName() & "'s type changed to match " & op.OriginalName & "'s!"))
+            BattleScreen.BattleQuery.Add(New TextQueryObject(p.GetDisplayName() & "'s type changed to match " & op.GetDisplayName & "'s!"))
         End Sub
 
     End Class

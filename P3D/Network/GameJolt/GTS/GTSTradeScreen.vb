@@ -132,9 +132,9 @@
                 'Pokemon image/data:
                 Core.SpriteBatch.Draw(P.GetTexture(True), New Rectangle(100 + OwnX, 164, MathHelper.Min(CInt(P.GetTexture(True).Width * 2), 256), MathHelper.Min(CInt(P.GetTexture(True).Height * 2), 256)), Color.White)
 
-                If P.GetDisplayName() <> P.OriginalName Then
+                If P.GetDisplayName() <> P.GetName Then
                     Core.SpriteBatch.DrawString(FontManager.MainFont, P.GetDisplayName(), New Vector2(230 + OwnX, 190), Color.Black)
-                    Core.SpriteBatch.DrawString(FontManager.MainFont, "/" & P.OriginalName, New Vector2(240 + OwnX, 220), Color.Black)
+                    Core.SpriteBatch.DrawString(FontManager.MainFont, "/" & P.GetName, New Vector2(240 + OwnX, 220), Color.Black)
                 Else
                     Core.SpriteBatch.DrawString(FontManager.MainFont, P.GetDisplayName(), New Vector2(230 + OwnX, 205), Color.Black)
                 End If
@@ -189,9 +189,9 @@
                 'Pokemon image/data:
                 Core.SpriteBatch.Draw(D.Pokemon.GetTexture(True), New Rectangle(100 + OppX, 164, MathHelper.Min(CInt(D.Pokemon.GetTexture(True).Width * 2), 256), MathHelper.Min(CInt(D.Pokemon.GetTexture(True).Height * 2), 256)), Color.White)
 
-                If D.Pokemon.GetDisplayName() <> D.Pokemon.OriginalName Then
+                If D.Pokemon.GetDisplayName() <> D.Pokemon.GetName Then
                     Core.SpriteBatch.DrawString(FontManager.MainFont, D.Pokemon.GetDisplayName(), New Vector2(230 + OppX, 190), Color.Black)
-                    Core.SpriteBatch.DrawString(FontManager.MainFont, "/" & D.Pokemon.OriginalName, New Vector2(240 + OppX, 220), Color.Black)
+                    Core.SpriteBatch.DrawString(FontManager.MainFont, "/" & D.Pokemon.GetName, New Vector2(240 + OppX, 220), Color.Black)
                 Else
                     Core.SpriteBatch.DrawString(FontManager.MainFont, D.Pokemon.GetDisplayName(), New Vector2(230 + OppX, 205), Color.Black)
                 End If

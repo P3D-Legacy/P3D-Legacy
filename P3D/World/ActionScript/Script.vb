@@ -319,7 +319,7 @@
             Core.Player.AddPoints(10, "Traded with NPC.")
 
             SoundManager.PlaySound("success_small")
-            Screen.TextBox.Show(message1 & "*" & Core.Player.Name & " traded~" & oppPokemon.OriginalName & " for~" & ownPokemon.OriginalName & "!", {}, False, False)
+            Screen.TextBox.Show(message1 & "*" & Core.Player.Name & " traded~" & oppPokemon.GetName & " for~" & ownPokemon.GetName & "!", {}, False, False)
         Else
             Screen.TextBox.Show(message2, {}, False, False)
         End If

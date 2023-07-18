@@ -1347,7 +1347,7 @@ Public Class StorageSystemScreen
                         itemString = p.Item.Name
                     End If
 
-                    Dim nameString As String = p.GetDisplayName() & "/" & p.OriginalName
+                    Dim nameString As String = p.GetDisplayName() & "/" & p.GetName
                     If p.NickName = "" Then
                         nameString = p.GetDisplayName()
                     End If

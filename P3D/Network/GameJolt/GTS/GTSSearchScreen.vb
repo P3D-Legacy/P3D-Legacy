@@ -157,9 +157,9 @@
                         'Pokemon image/data:
                         Core.SpriteBatch.Draw(D.Pokemon.GetTexture(True), New Rectangle(500, 164, MathHelper.Min(CInt(D.Pokemon.GetTexture(True).Width * 2), 256), MathHelper.Min(CInt(D.Pokemon.GetTexture(True).Height * 2), 256)), Color.White)
 
-                        If D.Pokemon.GetDisplayName() <> D.Pokemon.OriginalName Then
+                        If D.Pokemon.GetDisplayName() <> D.Pokemon.GetName Then
                             Core.SpriteBatch.DrawString(FontManager.MainFont, D.Pokemon.GetDisplayName(), New Vector2(630, 190), Color.Black)
-                            Core.SpriteBatch.DrawString(FontManager.MainFont, "/" & D.Pokemon.OriginalName, New Vector2(640, 220), Color.Black)
+                            Core.SpriteBatch.DrawString(FontManager.MainFont, "/" & D.Pokemon.GetName, New Vector2(640, 220), Color.Black)
                         Else
                             Core.SpriteBatch.DrawString(FontManager.MainFont, D.Pokemon.GetDisplayName(), New Vector2(630, 205), Color.Black)
                         End If
@@ -183,9 +183,9 @@
 
                         Core.SpriteBatch.Draw(p.GetTexture(True), New Rectangle(800, 164, MathHelper.Min(CInt(p.GetTexture(True).Width * 2), 256), MathHelper.Min(CInt(p.GetTexture(True).Height * 2), 256)), Color.White)
 
-                        If D.Pokemon.GetDisplayName() <> p.OriginalName Then
+                        If D.Pokemon.GetDisplayName() <> p.GetName Then
                             Core.SpriteBatch.DrawString(FontManager.MainFont, p.GetDisplayName(), New Vector2(930, 190), Color.Black)
-                            Core.SpriteBatch.DrawString(FontManager.MainFont, "/" & p.OriginalName, New Vector2(940, 220), Color.Black)
+                            Core.SpriteBatch.DrawString(FontManager.MainFont, "/" & p.GetName, New Vector2(940, 220), Color.Black)
                         Else
                             Core.SpriteBatch.DrawString(FontManager.MainFont, p.GetDisplayName(), New Vector2(930, 205), Color.Black)
                         End If
@@ -614,7 +614,7 @@
                 For Each file As String In d
                     Dim fileName As String = System.IO.Path.GetFileNameWithoutExtension(file)
                     If StringHelper.IsNumeric(fileName) = True Then
-                        If CInt(fileName) > 0 And CInt(fileName) <= Pokedex.POKEMONCOUNT Then
+                        If CInt(fileName) > 0 And CInt(fileName) <= Pokedex.PokemonMaxCount Then
                             If GTSMainScreen.GTSPokemon.Contains(CInt(fileName)) = True Then
                                 fileList.Add(CInt(fileName))
                             End If
@@ -627,7 +627,7 @@
                     If index <= fileList.Count - 1 Then
                         Dim fileName As Integer = fileList(index)
                         Dim p As Pokemon = Pokemon.GetPokemonByID(fileName)
-                        CurrentPokemon.Add(p.Number, p.OriginalName)
+                        CurrentPokemon.Add(p.Number, p.GetName)
                         SpriteList.Add(p.GetMenuTexture())
                         index += 1
                     Else

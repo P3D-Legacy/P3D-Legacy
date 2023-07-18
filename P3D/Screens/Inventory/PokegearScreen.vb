@@ -1768,8 +1768,8 @@
                         Dim chosenID As Integer = -1
                         Dim chosenAD As String = ""
 
-                        While chosenID = -1 And triedIDs.Count < Pokedex.PokemonCount
-                            Dim ID As Integer = Core.Random.Next(1, Pokedex.PokemonCount + 1)
+                        While chosenID = -1 And triedIDs.Count < Pokedex.PokemonMaxCount
+                            Dim ID As Integer = Core.Random.Next(1, Pokedex.PokemonMaxCount + 1)
                             If triedIDs.Contains(ID) = False Then
                                 If Pokedex.GetEntryType(Core.Player.PokedexData, Pokedex.PokemonIDs(ID)) < 2 Then
                                     triedIDs.Add(ID)

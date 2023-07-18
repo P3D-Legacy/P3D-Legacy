@@ -455,7 +455,7 @@ Public Class PokedexScreen
                     For Each F As Filter In Me.Filters
                         Select Case F.FilterType
                             Case FilterType.Name
-                                If p.GetName().ToUpper().StartsWith(F.FilterValue.ToUpper()) = False Then
+                                If p.GetName(True).ToUpper().StartsWith(F.FilterValue.ToUpper()) = False Then
                                     valid = False
                                     Exit For
                                 End If
@@ -502,9 +502,9 @@ Public Class PokedexScreen
                 End If
             Case OrderType.Alphabetically
                 If Me.ReverseOrder = True Then
-                    Me.PokemonList = (From p As Pokemon In Me.PokemonList Order By p.GetName() Descending).ToList()
+                    Me.PokemonList = (From p As Pokemon In Me.PokemonList Order By p.GetName(True) Descending).ToList()
                 Else
-                    Me.PokemonList = (From p As Pokemon In Me.PokemonList Order By p.GetName() Ascending).ToList()
+                    Me.PokemonList = (From p As Pokemon In Me.PokemonList Order By p.GetName(True) Ascending).ToList()
                 End If
             Case OrderType.Weigth
                 If Me.ReverseOrder = True Then
@@ -698,7 +698,7 @@ Public Class PokedexScreen
         If entryType = 0 Then
             Core.SpriteBatch.DrawString(FontManager.MainFont, "???" & Environment.NewLine & Environment.NewLine & "No. " & no, New Vector2(864, 200), Color.White)
         Else
-            Core.SpriteBatch.DrawString(FontManager.MainFont, p.GetName() & Environment.NewLine & Environment.NewLine & "No. " & no, New Vector2(864, 200), Color.White)
+            Core.SpriteBatch.DrawString(FontManager.MainFont, p.GetName(True) & Environment.NewLine & Environment.NewLine & "No. " & no, New Vector2(864, 200), Color.White)
             Core.SpriteBatch.Draw(p.GetTexture(True), New Rectangle(CInt(680 - p.GetTexture(True).Width / 4), CInt(140 - p.GetTexture(True).Height / 4), MathHelper.Min(CInt(p.GetTexture(True).Width * 2), 256), MathHelper.Min(CInt(p.GetTexture(True).Height * 2), 256)), Color.White)
 
             Core.SpriteBatch.DrawString(FontManager.MainFont, "SPECIES", New Vector2(680, 310), Color.Black)
@@ -1366,6 +1366,7 @@ Public Class PokedexViewScreen
     End Sub
 
     Private Sub LoadPokemonData(ByVal newDexIndex As Integer, Optional ByVal newPokemon As Pokemon = Nothing, Optional playCry As Boolean = False)
+        Dim oldCry As String = PokemonForms.GetCrySuffix(Me.Pokemon)
         If newPokemon IsNot Nothing Then
             EvolutionLineConnections.Clear()
             Me.Pokemon = newPokemon
@@ -1395,7 +1396,7 @@ Public Class PokedexViewScreen
         Me.FillHabitats()
         Me.FillEvolutionGrid()
 
-        If playCry = True Then
+        If playCry = True AndAlso oldCry <> PokemonForms.GetCrySuffix(Me.Pokemon) Then
             Dim crySuffix As String = PokemonForms.GetCrySuffix(Me.Pokemon)
             SoundManager.PlayPokemonCry(Pokemon.Number, crySuffix)
         End If
@@ -1620,7 +1621,7 @@ Public Class PokedexViewScreen
         Dim pokeTexture = Pokemon.GetMenuTexture()
         Dim pokeTextureScale As Vector2 = New Vector2(CSng(32 / pokeTexture.Width * 2), CSng(32 / pokeTexture.Height * 2))
         Core.SpriteBatch.Draw(pokeTexture, New Rectangle(28, 20, CInt(pokeTexture.Width * pokeTextureScale.X), CInt(pokeTexture.Height * pokeTextureScale.Y)), Color.White)
-        Core.SpriteBatch.DrawString(FontManager.MainFont, Pokemon.GetName(), New Vector2(100, 36), Color.Black, 0.0F, Vector2.Zero, 1.0F, SpriteEffects.None, 0.0F)
+        Core.SpriteBatch.DrawString(FontManager.MainFont, Pokemon.GetName(True), New Vector2(100, 36), Color.Black, 0.0F, Vector2.Zero, 1.0F, SpriteEffects.None, 0.0F)
 
         If EntryType = 1 Then
             Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokedexhabitat", New Rectangle(160, 170, 10, 10), ""), New Rectangle(64 * 6 + 40, 42, 20, 20), Color.White)
@@ -1635,6 +1636,10 @@ Public Class PokedexViewScreen
             If Me.Page = 1 Or Me.Page = 2 Then
                 Core.SpriteBatch.Draw(Me.texture, New Rectangle(6, CInt(Core.windowSize.Height / 2 - 32), 64, 64), New Rectangle(0, 16, 16, 16), Color.White)
             End If
+        End If
+
+        If Me.Forms.Count > 1 Then
+            Core.SpriteBatch.DrawString(FontManager.MainFont, "Press [Shift] to switch forms", New Vector2(960, 36), Color.Black, 0.0F, Vector2.Zero, 1.0F, SpriteEffects.None, 0.0F)
         End If
 
         Select Case Me.Page
@@ -1673,9 +1678,9 @@ Public Class PokedexViewScreen
 
             If mLineLength = 100 Then
                 If EntryType > 1 Then
-                    Core.SpriteBatch.DrawString(FontManager.MainFont, Pokemon.PokedexEntry.Height & " m", New Vector2(mV.X + 250, mV.Y - 152), Color.Black)
-                    Core.SpriteBatch.DrawString(FontManager.MainFont, Pokemon.PokedexEntry.Weight & " kg", New Vector2(mV.X + 250, mV.Y + 128), Color.Black)
-                    Core.SpriteBatch.DrawString(FontManager.MainFont, Pokemon.PokedexEntry.Species, New Vector2(mV.X - 248 - FontManager.MainFont.MeasureString(Pokemon.PokedexEntry.Species).X, mV.Y - 152), Color.Black)
+                    Core.SpriteBatch.DrawString(FontManager.MainFont, Pokemon.PokedexEntry.Height & " m", New Vector2(CInt(mV.X + 250), CInt(mV.Y - 152)), Color.Black)
+                    Core.SpriteBatch.DrawString(FontManager.MainFont, Pokemon.PokedexEntry.Weight & " kg", New Vector2(CInt(mV.X + 250), CInt(mV.Y + 128)), Color.Black)
+                    Core.SpriteBatch.DrawString(FontManager.MainFont, Pokemon.PokedexEntry.Species, New Vector2(CInt(mV.X - 248 - FontManager.MainFont.MeasureString(Pokemon.PokedexEntry.Species).X), CInt(mV.Y - 152)), Color.Black)
                     If Pokemon.Type2.Type <> Element.Types.Blank Then
                         Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\Types"), New Rectangle(CInt(mV.X - 450), CInt(mV.Y + 123), 96, 32), Pokemon.Type1.GetElementImage(), Color.White)
                         Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\Types"), New Rectangle(CInt(mV.X - 350), CInt(mV.Y + 123), 96, 32), Pokemon.Type2.GetElementImage(), Color.White)
@@ -1687,10 +1692,10 @@ Public Class PokedexViewScreen
                     Core.SpriteBatch.DrawString(FontManager.MainFont, Pokemon.PokedexEntry.Text.CropStringToWidth(FontManager.MainFont, 720), New Vector2(CInt(mV.X - FontManager.MainFont.MeasureString(Pokemon.PokedexEntry.Text.CropStringToWidth(FontManager.MainFont, 720)).X / 2), CInt(mV.Y + 192)), Color.Black)
 
                 Else
-                    Core.SpriteBatch.DrawString(FontManager.MainFont, "??? m", New Vector2(mV.X + 250, mV.Y - 152), Color.Black)
-                    Core.SpriteBatch.DrawString(FontManager.MainFont, "??? kg", New Vector2(mV.X + 250, mV.Y + 128), Color.Black)
-                    Core.SpriteBatch.DrawString(FontManager.MainFont, "??? Pokémon", New Vector2(mV.X - 248 - FontManager.MainFont.MeasureString("??? Pokémon").X, mV.Y - 152), Color.Black)
-                    Core.SpriteBatch.DrawString(FontManager.MainFont, "???", New Vector2(mV.X - 248 - FontManager.MainFont.MeasureString("???").X, mV.Y + 128), Color.Black)
+                    Core.SpriteBatch.DrawString(FontManager.MainFont, "??? m", New Vector2(CInt(mV.X + 250), CInt(mV.Y - 152)), Color.Black)
+                    Core.SpriteBatch.DrawString(FontManager.MainFont, "??? kg", New Vector2(CInt(mV.X + 250), CInt(mV.Y + 128)), Color.Black)
+                    Core.SpriteBatch.DrawString(FontManager.MainFont, "??? Pokémon", New Vector2(CInt(mV.X - 248 - FontManager.MainFont.MeasureString("??? Pokémon").X), CInt(mV.Y - 152)), Color.Black)
+                    Core.SpriteBatch.DrawString(FontManager.MainFont, "???", New Vector2(CInt(mV.X - 248 - FontManager.MainFont.MeasureString("???").X), CInt(mV.Y + 128)), Color.Black)
                 End If
             End If
         End If
@@ -1750,7 +1755,7 @@ Public Class PokedexViewScreen
             Canvas.DrawRectangle(New Rectangle(CInt(Core.windowSize.Width / 2) - 202, CInt(Core.windowSize.Height / 2 - 45), 404, 90), New Color(42, 167, 198, 150))
             Canvas.DrawGradient(New Rectangle(CInt(Core.windowSize.Width / 2) + 202, CInt(Core.windowSize.Height / 2 - 45), 80, 90), New Color(42, 167, 198, 150), New Color(84, 198, 216), True, -1)
 
-            Core.SpriteBatch.DrawString(FontManager.MainFont, Pokemon.GetName() & " doesn't evolve.", New Vector2(CInt(Core.windowSize.Width / 2) - CInt(FontManager.MainFont.MeasureString(Pokemon.GetName() & " doesn't evolve.").X / 2), CInt(Core.windowSize.Height / 2 - 15)), Color.White)
+            Core.SpriteBatch.DrawString(FontManager.MainFont, Pokemon.GetName(True) & " doesn't evolve.", New Vector2(CInt(Core.windowSize.Width / 2) - CInt(FontManager.MainFont.MeasureString(Pokemon.GetName(True) & " doesn't evolve.").X / 2), CInt(Core.windowSize.Height / 2 - 15)), Color.White)
         Else
             Dim connectionLines As New List(Of String)
             Dim centerVector As Vector2 = Core.GetMiddlePosition(New Size(CInt(64 * scale), CInt(64 * scale)))
@@ -1817,8 +1822,8 @@ Public Class PokedexViewScreen
                         Dim pokeTextureScale As Vector2 = New Vector2(CSng(32 / pokeTexture.Width * 2), CSng(32 / pokeTexture.Height * 2))
 
                         If Pokedex.GetEntryType(Core.Player.PokedexData, dexID) <> 0 Then
-                            Core.SpriteBatch.DrawString(FontManager.MainFont, pokemon.GetName(), New Vector2(CInt(centerVector.X + (position.X * (64 * scale)) + CInt(pokeTexture.Width * pokeTextureScale.X / 2 * scale) - (FontManager.MainFont.MeasureString(pokemon.GetName()).X / 2 * CSng(scale / 2)) + 2), CInt(centerVector.Y + position.Y * (48 * scale) + (64 * scale)) + 2), Color.Black, 0.0F, Vector2.Zero, CInt(scale / 2), SpriteEffects.None, 0.0F)
-                            Core.SpriteBatch.DrawString(FontManager.MainFont, pokemon.GetName(), New Vector2(CInt(centerVector.X + (position.X * (64 * scale)) + CInt(pokeTexture.Width * pokeTextureScale.X / 2 * scale) - (FontManager.MainFont.MeasureString(pokemon.GetName()).X / 2 * CSng(scale / 2))), CInt(centerVector.Y + position.Y * (48 * scale) + (64 * scale))), Color.White, 0.0F, Vector2.Zero, CInt(scale / 2), SpriteEffects.None, 0.0F)
+                            Core.SpriteBatch.DrawString(FontManager.MainFont, pokemon.GetName(True), New Vector2(CInt(centerVector.X + (position.X * (64 * scale)) + CInt(pokeTexture.Width * pokeTextureScale.X / 2 * scale) - (FontManager.MainFont.MeasureString(pokemon.GetName(True)).X / 2 * CSng(scale / 2)) + 2), CInt(centerVector.Y + position.Y * (48 * scale) + (64 * scale)) + 2), Color.Black, 0.0F, Vector2.Zero, CInt(scale / 2), SpriteEffects.None, 0.0F)
+                            Core.SpriteBatch.DrawString(FontManager.MainFont, pokemon.GetName(True), New Vector2(CInt(centerVector.X + (position.X * (64 * scale)) + CInt(pokeTexture.Width * pokeTextureScale.X / 2 * scale) - (FontManager.MainFont.MeasureString(pokemon.GetName(True)).X / 2 * CSng(scale / 2))), CInt(centerVector.Y + position.Y * (48 * scale) + (64 * scale))), Color.White, 0.0F, Vector2.Zero, CInt(scale / 2), SpriteEffects.None, 0.0F)
                         End If
                     End If
                 Next

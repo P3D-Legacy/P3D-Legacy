@@ -569,7 +569,7 @@
                     BattleScreen.BattleQuery.Add(New PlaySoundQueryObject("Battle\Effects\MegaEvolution", False))
                 End If
                 BattleScreen.BattleQuery.Add(New ToggleEntityQueryObject(own, ToggleEntityQueryObject.BattleEntities.OwnPokemon, PokemonForms.GetOverworldSpriteName(p), 0, 1, -1, -1))
-                BattleScreen.BattleQuery.Add(New TextQueryObject(_base & " has Mega Evolved!"))
+                BattleScreen.BattleQuery.Add(New TextQueryObject(_base & " has Mega Evolved into " & p.GetName(True)))
                 TriggerAbilityEffect(BattleScreen, own)
             End If
         End Sub
@@ -5099,7 +5099,7 @@
 
                                 'Apply new image to sprite:
                                 BattleScreen.BattleQuery.Add(New ToggleEntityQueryObject(own, ToggleEntityQueryObject.BattleEntities.OwnPokemon, PokemonForms.GetOverworldSpriteName(p), 0, 1, -1, -1))
-                                BattleScreen.BattleQuery.Add(New TextQueryObject(p.GetDisplayName() & " transformed into " & op.OriginalName & "!"))
+                                BattleScreen.BattleQuery.Add(New TextQueryObject(p.GetDisplayName() & " transformed into " & op.GetName & "!"))
                             Else
                                 'Fails
                                 BattleScreen.BattleQuery.Add(New TextQueryObject("imposter failed!"))

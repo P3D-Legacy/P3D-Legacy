@@ -67,7 +67,7 @@ Namespace Items.KeyItems
                         "@Level.Update" & Environment.NewLine &
                         "@pokemon.cry(" & PokemonID & ")" & Environment.NewLine &
                         "@level.wait(50)" & Environment.NewLine &
-                        "@text.show(The wild " & p.OriginalName & "~attacked!)" & Environment.NewLine &
+                        "@text.show(The wild " & p.GetName & "~attacked!)" & Environment.NewLine &
                         "@npc.remove(1337)" & Environment.NewLine &
                         "@battle.setvar(divebattle,true)" & Environment.NewLine &
                         "@battle.wild(" & p.GetSaveData() & ")" & Environment.NewLine &
