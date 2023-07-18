@@ -2187,7 +2187,7 @@ Public Class StorageSystemFilterScreen
                 Dim l As List(Of Pokemon) = Me._storageSystemScreen.GetPokemonList(True, False)
 
                 For Each p As Pokemon In l
-                    If p.GetName(0).ToString().ToUpper() = chosenLetter And pokemonList.Contains(p.GetName()) = False Then
+                    If p.GetName().ToString().ToUpper() = chosenLetter And pokemonList.Contains(p.GetName()) = False Then
                         pokemonList.Add(p.GetName)
                     End If
                 Next
