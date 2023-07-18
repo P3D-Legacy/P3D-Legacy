@@ -1366,7 +1366,10 @@ Public Class PokedexViewScreen
     End Sub
 
     Private Sub LoadPokemonData(ByVal newDexIndex As Integer, Optional ByVal newPokemon As Pokemon = Nothing, Optional playCry As Boolean = False)
-        Dim oldCry As String = PokemonForms.GetCrySuffix(Me.Pokemon)
+        Dim oldCry As String = ""
+        If Me.Pokemon IsNot Nothing Then
+            PokemonForms.GetCrySuffix(Me.Pokemon)
+        End If
         If newPokemon IsNot Nothing Then
             EvolutionLineConnections.Clear()
             Me.Pokemon = newPokemon
@@ -1639,7 +1642,7 @@ Public Class PokedexViewScreen
         End If
 
         If Me.Forms.Count > 1 Then
-            Core.SpriteBatch.DrawString(FontManager.MainFont, "Press [Shift] to switch forms", New Vector2(960, 36), Color.Black, 0.0F, Vector2.Zero, 1.0F, SpriteEffects.None, 0.0F)
+            Core.SpriteBatch.DrawString(FontManager.MainFont, "Press [Shift] to switch forms", New Vector2(CInt(windowSize.Width - FontManager.MainFont.MeasureString("Press [Shift] to switch forms").X - 128), 36), Color.White, 0.0F, Vector2.Zero, 1.0F, SpriteEffects.None, 0.0F)
         End If
 
         Select Case Me.Page
