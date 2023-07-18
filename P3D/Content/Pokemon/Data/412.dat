@@ -43,3 +43,7 @@ EvolutionCondition|413,level,20,level
 EvolutionCondition|413,gender,1,level
 EvolutionCondition|414,level,20,level
 EvolutionCondition|414,gender,0,level
+EvolutionLine|412\0\0,413\1\-2
+EvolutionLine|412\0\0,413_sandy\2\-1
+EvolutionLine|412\0\0,413_trash\2\1
+EvolutionLine|412\0\0,414\1\2

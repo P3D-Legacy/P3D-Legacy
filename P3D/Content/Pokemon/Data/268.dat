@@ -38,3 +38,5 @@ Move|1,106
 Move|7,106
 TradeValue|10
 EvolutionCondition|269,Level,10,Level
+EvolutionLine|265\-2\-1,266\0\-2,267\2\-2
+EvolutionLine|265\-2\-1,268\0\0,269\2\0

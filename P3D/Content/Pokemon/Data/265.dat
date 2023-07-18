@@ -41,3 +41,5 @@ Move|15,450
 TradeValue|5
 EvolutionCondition|266,Level,7,Level
 EvolutionCondition|268,Level,7,Level
+EvolutionLine|265\0\0,266\2\-1,267\4\-1
+EvolutionLine|265\0\0,268\2\1,269\4\1

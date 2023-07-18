@@ -45,3 +45,5 @@ Item|5,111
 Item|50,110
 EvolutionCondition|367,holditem,167,trade
 EvolutionCondition|368,holditem,162,trade
+EvolutionLine|366\0\0,367\2\-1
+EvolutionLine|366\0\0,368\2\1

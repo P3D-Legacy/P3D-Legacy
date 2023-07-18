@@ -56,3 +56,5 @@ Move|61,364
 TradeValue|80
 EvolutionCondition|212,holditem,143,trade
 EvolutionCondition|900,item,653,item
+EvolutionLine|123\0\0,212\2\-1
+EvolutionLine|123\0\0,900\2\1

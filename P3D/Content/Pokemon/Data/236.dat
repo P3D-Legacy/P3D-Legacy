@@ -46,3 +46,6 @@ EvolutionCondition|107,defatk,0,level
 EvolutionCondition|107,level,20,level
 EvolutionCondition|237,defequalsatk,0,level
 EvolutionCondition|237,level,20,level
+EvolutionLine|236\0\0,106\1\-2
+EvolutionLine|236\0\0,107\2\0
+EvolutionLine|236\0\0,237\1\2

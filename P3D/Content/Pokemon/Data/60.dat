@@ -50,3 +50,5 @@ Move|38,56
 Move|41,426
 TradeValue|10
 EvolutionCondition|61,Level,25,Level
+EvolutionLine|60\0\0,61\2\0,62\4\-1
+EvolutionLine|61\2\0,186\4\1

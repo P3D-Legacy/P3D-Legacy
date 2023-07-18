@@ -48,3 +48,5 @@ Move|41,80
 Move|45,580
 EvolutionCondition|44,Level,21,Level
 TradeValue|15
+EvolutionLine|43\0\0,44\2\0,45\4\-1
+EvolutionLine|44\2\0,182\4\1

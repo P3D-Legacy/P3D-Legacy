@@ -57,3 +57,5 @@ TradeValue|25
 EvolutionCondition|282,level,30,level
 EvolutionCondition|475,gender,0,item
 EvolutionCondition|475,item,137,item
+EvolutionLine|280\-2\0,281\0\0,282\2\-1
+EvolutionLine|281\0\0,475\2\1

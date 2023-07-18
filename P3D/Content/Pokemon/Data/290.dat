@@ -47,3 +47,5 @@ Move|38,232
 Move|45,91
 TradeValue|25
 EvolutionCondition|291,level,20,level
+EvolutionLine|290\0\0,291\2\-1
+EvolutionLine|290\0\0,292\2\1

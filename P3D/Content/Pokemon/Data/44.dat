@@ -52,3 +52,5 @@ Move|56,580
 EvolutionCondition|45,item,34,item
 EvolutionCondition|182,item,169,item
 TradeValue|25
+EvolutionLine|43\-2\0,44\0\0,45\2\-1
+EvolutionLine|44\0\0,182\2\1

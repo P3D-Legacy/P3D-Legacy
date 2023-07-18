@@ -52,3 +52,5 @@ Item|5,2050
 EvolutionCondition|362,level,42,level
 EvolutionCondition|478,item,137,item
 EvolutionCondition|478,gender,1,item
+EvolutionLine|361\0\0,362\2\-1
+EvolutionLine|361\0\0,478\2\1
