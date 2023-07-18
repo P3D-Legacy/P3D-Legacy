@@ -49,3 +49,9 @@ Move|29,466
 Move|43,486
 Move|50,506
 TradeValue|55
+EvolutionLine|479\1\1
+EvolutionLine|479_fan\0\0
+EvolutionLine|479_frost\2\0
+EvolutionLine|479_heat\0\2
+EvolutionLine|479_mow\2\2
+EvolutionLine|479_wash\1\3

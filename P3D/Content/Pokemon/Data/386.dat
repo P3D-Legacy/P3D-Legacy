@@ -51,6 +51,6 @@ Move|97,63
 TradeValue|120
 DexForms|attack,defense,speed
 EvolutionLine|386\0\0
-EvolutionLine|386_attack\1\-1
-EvolutionLine|386_defense\1\0
-EvolutionLine|386_speed\1\1
+EvolutionLine|386_attack\1\-2
+EvolutionLine|386_defense\2\0
+EvolutionLine|386_speed\1\2
