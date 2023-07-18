@@ -280,7 +280,14 @@
                                 Else
                                     Selected = i + ScrollIndex
                                     SoundManager.PlaySound("select")
-                                    TempPokemon = Pokemon.GetPokemonByID(CInt(SearchResults(Selected).RequestID))
+                                    Dim dexID As Integer = CInt(SearchResults(Selected).RequestID.GetSplit(0, "_").GetSplit(0, ";"))
+                                    Dim dexAD As String = ""
+                                    If SearchResults(Selected).RequestID.Contains(";") = True Then
+                                        dexAD = SearchResults(Selected).RequestID.GetSplit(1, ";")
+                                    ElseIf SearchResults(Selected).RequestID.Contains("_") Then
+                                        dexAD = PokemonForms.GetAdditionalValueFromDataFile(SearchResults(Selected).RequestID)
+                                    End If
+                                    TempPokemon = Pokemon.GetPokemonByID(dexID, dexAD, True)
                                     Emblem = New Emblem(SearchResults(Selected).FromUserID, 0)
                                 End If
                             End If
@@ -609,15 +616,14 @@
                 Dim index As Integer = Page * 20
                 Dim noMorePokemon As Boolean = False
 
-                Dim fileList As New List(Of Integer)
+                Dim fileList As New List(Of String)
                 Dim d As List(Of String) = System.IO.Directory.GetFiles(GameController.GamePath & "\Content\Pokemon\Data\").ToList()
                 For Each file As String In d
                     Dim fileName As String = System.IO.Path.GetFileNameWithoutExtension(file)
-                    If StringHelper.IsNumeric(fileName) = True Then
-                        If CInt(fileName) > 0 And CInt(fileName) <= Pokedex.PokemonMaxCount Then
-                            If GTSMainScreen.GTSPokemon.Contains(CInt(fileName)) = True Then
-                                fileList.Add(CInt(fileName))
-                            End If
+                    Dim fileNumber As Integer = CInt(fileName.GetSplit(0, "_").GetSplit(0, ";"))
+                    If CInt(fileNumber) > 0 And CInt(fileNumber) <= Pokedex.PokemonMaxCount Then
+                        If GTSMainScreen.GTSPokemon.Contains(fileName) = True Then
+                            fileList.Add(fileName)
                         End If
                     End If
                 Next
@@ -625,8 +631,17 @@
 
                 While CurrentPokemon.Count < 20 And noMorePokemon = False
                     If index <= fileList.Count - 1 Then
-                        Dim fileName As Integer = fileList(index)
-                        Dim p As Pokemon = Pokemon.GetPokemonByID(fileName)
+                        Dim fileName As String = fileList(index)
+
+                        Dim dexID As Integer = CInt(fileName.GetSplit(0, "_").GetSplit(0, ";"))
+                        Dim dexAD As String = ""
+                        If fileName.Contains(";") = True Then
+                            dexAD = fileName.GetSplit(1, ";")
+                        ElseIf fileName.Contains("_") Then
+                            dexAD = PokemonForms.GetAdditionalValueFromDataFile(fileName)
+                        End If
+
+                        Dim p As Pokemon = Pokemon.GetPokemonByID(dexID, dexAD, True)
                         CurrentPokemon.Add(p.Number, p.GetName)
                         SpriteList.Add(p.GetMenuTexture())
                         index += 1

@@ -5,7 +5,7 @@
         Inherits Screen
 
         Public Shared GTSVersion As String = "1.X"
-        Public Shared GTSPokemon As New List(Of Integer)
+        Public Shared GTSPokemon As New List(Of String)
         Shared LoadedVersionData As Boolean = False
         Public Shared Furrs As New List(Of Furr)
 
@@ -86,13 +86,13 @@
                     Dim endPokemon As Integer = CInt(p.Substring(p.IndexOf("-") + 1))
 
                     For i = startPokemon To endPokemon
-                        If GTSPokemon.Contains(CInt(i)) = False Then
-                            GTSPokemon.Add(CInt(i))
+                        If GTSPokemon.Contains(CInt(i).ToString) = False Then
+                            GTSPokemon.Add(CInt(i).ToString)
                         End If
                     Next
                 Else
-                    If GTSPokemon.Contains(CInt(p)) = False Then
-                        GTSPokemon.Add(CInt(p))
+                    If GTSPokemon.Contains(p) = False Then
+                        GTSPokemon.Add(p)
                     End If
                 End If
             Next

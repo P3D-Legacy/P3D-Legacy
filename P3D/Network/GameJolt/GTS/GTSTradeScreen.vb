@@ -122,7 +122,14 @@
                 P = Core.Player.Pokemons(Me.PokeIndex)
             Else
                 If TempPokemon Is Nothing Then
-                    TempPokemon = Pokemon.GetPokemonByID(CInt(D.RequestID))
+                    Dim dexID As Integer = CInt(D.RequestID.GetSplit(0, "_").GetSplit(0, ";"))
+                    Dim dexAD As String = ""
+                    If D.RequestID.Contains(";") = True Then
+                        dexAD = D.RequestID.GetSplit(1, ";")
+                    ElseIf D.RequestID.Contains("_") Then
+                        dexAD = PokemonForms.GetAdditionalValueFromDataFile(D.RequestID)
+                    End If
+                    TempPokemon = Pokemon.GetPokemonByID(dexID, dexAD, True)
                 End If
 
                 P = TempPokemon
@@ -273,8 +280,8 @@
         Private Function MeetsCondition() As Boolean
             If PokeIndex > -1 Then
                 Dim P As Pokemon = Core.Player.Pokemons(PokeIndex)
-
-                If P.Number = CInt(D.RequestID) And P.IsEgg() = False And P.HasHMMove() = False Then
+                Dim dexID As String = PokemonForms.GetPokemonDataFileName(P.Number, P.AdditionalData)
+                If dexID = D.RequestID And P.IsEgg() = False And P.HasHMMove() = False Then
                     If D.RequestGender <> "" Then
                         Select Case D.RequestGender
                             Case "Male"

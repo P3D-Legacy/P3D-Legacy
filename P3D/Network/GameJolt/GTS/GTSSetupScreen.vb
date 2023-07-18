@@ -247,7 +247,14 @@
                                         Else
                                             Selected = i + ScrollIndex
                                             SoundManager.PlaySound("select")
-                                            TempPokemon = Pokemon.GetPokemonByID(CInt(SetupList(Selected).RequestID))
+                                            Dim dexID As Integer = CInt(SetupList(Selected).RequestID.GetSplit(0, "_").GetSplit(0, ";"))
+                                            Dim dexAD As String = ""
+                                            If SetupList(Selected).RequestID.Contains(";") = True Then
+                                                dexAD = SetupList(Selected).RequestID.GetSplit(1, ";")
+                                            ElseIf SetupList(Selected).RequestID.Contains("_") Then
+                                                dexAD = PokemonForms.GetAdditionalValueFromDataFile(SetupList(Selected).RequestID)
+                                            End If
+                                            TempPokemon = Pokemon.GetPokemonByID(dexID, dexAD, True)
                                             If SetupList(Selected).SecurityArea = GTSDataItem.SecurityCode.Private Then
                                                 Emblem = New Emblem(SetupList(Selected).ToUserID, 0)
                                             End If
@@ -390,7 +397,14 @@
                     Me.D = D
                     NewTrade = False
                     If D.RequestID <> "" Then
-                        TempPokemon = Pokemon.GetPokemonByID(CInt(D.RequestID))
+                        Dim dexID As Integer = CInt(D.RequestID.GetSplit(0, "_").GetSplit(0, ";"))
+                        Dim dexAD As String = ""
+                        If D.RequestID.Contains(";") = True Then
+                            dexAD = D.RequestID.GetSplit(1, ";")
+                        ElseIf D.RequestID.Contains("_") Then
+                            dexAD = PokemonForms.GetAdditionalValueFromDataFile(D.RequestID)
+                        End If
+                        TempPokemon = Pokemon.GetPokemonByID(dexID, dexAD, True)
 
                         If D.SecurityArea = GTSDataItem.SecurityCode.Global Then
                             Dim v As Integer = TempPokemon.TradeValue - D.Pokemon.TradeValue
@@ -470,7 +484,14 @@
                 Core.SpriteBatch.DrawString(FontManager.MainFont, "Request:", New Vector2(420, 140), Color.Black)
 
                 If StringHelper.IsNumeric(D.RequestID) = True Then
-                    DrawFilter(New Vector2(420, 200), 4, "Pokémon:", Pokemon.GetPokemonByID(CInt(D.RequestID)).GetDisplayName() & " (" & D.RequestID & ")")
+                    Dim dexID As Integer = CInt(D.RequestID.GetSplit(0, "_").GetSplit(0, ";"))
+                    Dim dexAD As String = ""
+                    If D.RequestID.Contains(";") = True Then
+                        dexAD = D.RequestID.GetSplit(1, ";")
+                    ElseIf D.RequestID.Contains("_") Then
+                        dexAD = PokemonForms.GetAdditionalValueFromDataFile(D.RequestID)
+                    End If
+                    DrawFilter(New Vector2(420, 200), 4, "Pokémon:", Pokemon.GetPokemonByID(dexID, dexAD, True).GetDisplayName() & " (" & D.RequestID & ")")
                 Else
                     DrawFilter(New Vector2(420, 200), 4, "Pokémon:", "")
                 End If
@@ -492,7 +513,14 @@
                 If StringHelper.IsNumeric(D.RequestID) = True Then
                     If CInt(D.RequestID) > 0 Then
                         If TempPokemon Is Nothing OrElse TempPokemon.Number <> CInt(D.RequestID) Then
-                            TempPokemon = Pokemon.GetPokemonByID(CInt(D.RequestID))
+                            Dim dexID As Integer = CInt(D.RequestID.GetSplit(0, "_").GetSplit(0, ";"))
+                            Dim dexAD As String = ""
+                            If D.RequestID.Contains(";") = True Then
+                                dexAD = D.RequestID.GetSplit(1, ";")
+                            ElseIf D.RequestID.Contains("_") Then
+                                dexAD = PokemonForms.GetAdditionalValueFromDataFile(D.RequestID)
+                            End If
+                            TempPokemon = Pokemon.GetPokemonByID(dexID, dexAD, True)
                         End If
                         Dim p As Pokemon = TempPokemon
 
@@ -883,14 +911,15 @@
                     Dim index As Integer = Page * 20
                     Dim noMorePokemon As Boolean = False
 
-                    Dim fileList As New List(Of Integer)
+                    Dim fileList As New List(Of String)
                     Dim d As List(Of String) = System.IO.Directory.GetFiles(GameController.GamePath & "\Content\Pokemon\Data\").ToList()
                     For Each file As String In d
                         Dim fileName As String = System.IO.Path.GetFileNameWithoutExtension(file)
                         If StringHelper.IsNumeric(fileName) = True Then
-                            If CInt(fileName) > 0 And CInt(fileName) <= Pokedex.PokemonMaxCount Then
-                                If GTSMainScreen.GTSPokemon.Contains(CInt(fileName)) = True Then
-                                    fileList.Add(CInt(fileName))
+                            Dim fileNumber As Integer = CInt(fileName.GetSplit(0, "_").GetSplit(0, ";"))
+                            If CInt(fileNumber) > 0 And CInt(fileNumber) <= Pokedex.PokemonMaxCount Then
+                                If GTSMainScreen.GTSPokemon.Contains(fileName) = True Then
+                                    fileList.Add(fileName)
                                 End If
                             End If
                         End If
@@ -899,8 +928,17 @@
 
                     While CurrentPokemon.Count < 20 And noMorePokemon = False
                         If index <= fileList.Count - 1 Then
-                            Dim fileName As Integer = fileList(index)
-                            Dim p As Pokemon = Pokemon.GetPokemonByID(fileName)
+                            Dim fileName As String = fileList(index)
+
+                            Dim dexID As Integer = CInt(fileName.GetSplit(0, "_").GetSplit(0, ";"))
+                            Dim dexAD As String = ""
+                            If fileName.Contains(";") = True Then
+                                dexAD = fileName.GetSplit(1, ";")
+                            ElseIf fileName.Contains("_") Then
+                                dexAD = PokemonForms.GetAdditionalValueFromDataFile(fileName)
+                            End If
+
+                            Dim p As Pokemon = Pokemon.GetPokemonByID(dexID, dexAD, True)
                             CurrentPokemon.Add(p.Number, p.GetName)
                             SpriteList.Add(p.GetMenuTexture())
                             index += 1
