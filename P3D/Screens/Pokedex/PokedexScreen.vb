@@ -1374,6 +1374,7 @@ Public Class PokedexViewScreen
             Me.Pokemon = PokedexScreen.TempPokemonStorage(newDexIndex)
             Me.DexIndex = newDexIndex
             Me.Forms.Clear()
+            Me.EvolutionLineConnections.Clear()
             Me.Forms.Add(Me.Pokemon.Number.ToString)
             Me.FormIndex = 0
         End If
@@ -1851,7 +1852,7 @@ Public Class PokedexViewScreen
             End If
         End If
 
-        If Controls.ShiftPressed = True Then
+        If Controls.ShiftPressed = True Or ControllerHandler.ButtonPressed(Buttons.Back) Then
             Me.FormIndex += 1
             If Me.FormIndex > Me.Forms.Count - 1 Then
                 Me.FormIndex = 0
