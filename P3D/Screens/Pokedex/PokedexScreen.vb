@@ -1487,42 +1487,47 @@ Public Class PokedexViewScreen
                 End If
             End If
 
+            Dim CenterIndex As Integer = 0
+            For i = 0 To PokemonIDs.Count - 1
+                If CInt(PokemonIDs(i).GetSplit(0, "_").GetSplit(0, ";")) = Me.Pokemon.Number Then
+                    CenterIndex = i
+                End If
+            Next
             Select Case PokemonIDs.Count
                 Case 1
-                    GridMinimum = New Vector2(0)
-                    GridMaximum = New Vector2(0)
+                    GridMinimum = New Vector2(CenterIndex)
+                    GridMaximum = New Vector2(CenterIndex)
 
-                    GridPositions.Add(New Vector2(0, 0))
+                    GridPositions.Add(New Vector2(CenterIndex, 0))
                 Case 2
-                    GridMinimum = New Vector2(0)
-                    GridMaximum = New Vector2(2, 0)
-
-                    GridPositions.Add(New Vector2(0, 0))
-                    GridPositions.Add(New Vector2(2, 0))
+                    GridMinimum = New Vector2(0 - 2 * CenterIndex, 0)
+                    GridMaximum = New Vector2(2 - 2 * CenterIndex, 0)
+                    GridPositions.Add(New Vector2(0 - 2 * CenterIndex, 0))
+                    GridPositions.Add(New Vector2(2 - 2 * CenterIndex, 0))
                 Case 3
-                    GridMinimum = New Vector2(-2, 0)
-                    GridMaximum = New Vector2(2, 0)
+                    GridMinimum = New Vector2(0 - 2 * CenterIndex, 0)
+                    GridMaximum = New Vector2(4 - 2 * CenterIndex, 0)
 
-                    GridPositions.Add(New Vector2(-2, 0))
-                    GridPositions.Add(New Vector2(0, 0))
-                    GridPositions.Add(New Vector2(2, 0))
+                    GridPositions.Add(New Vector2(0 - 2 * CenterIndex, 0))
+                    GridPositions.Add(New Vector2(2 - 2 * CenterIndex, 0))
+                    GridPositions.Add(New Vector2(4 - 2 * CenterIndex, 0))
                 Case 4
-                    GridMinimum = New Vector2(-2, 0)
-                    GridMaximum = New Vector2(4, 0)
+                    GridMinimum = New Vector2(0 - 2 * CenterIndex, 0)
+                    GridMaximum = New Vector2(6 - 2 * CenterIndex, 0)
 
-                    GridPositions.Add(New Vector2(-2, 0))
-                    GridPositions.Add(New Vector2(0, 0))
-                    GridPositions.Add(New Vector2(2, 0))
-                    GridPositions.Add(New Vector2(4, 0))
+                    GridPositions.Add(New Vector2(0 - 2 * CenterIndex, 0))
+                    GridPositions.Add(New Vector2(2 - 2 * CenterIndex, 0))
+                    GridPositions.Add(New Vector2(4 - 2 * CenterIndex, 0))
+                    GridPositions.Add(New Vector2(6 - 2 * CenterIndex, 0))
                 Case 5
-                    GridMinimum = New Vector2(-4, 0)
-                    GridMaximum = New Vector2(4, 0)
+                    GridMinimum = New Vector2(0 - 2 * CenterIndex, 0)
+                    GridMaximum = New Vector2(8 - 2 * CenterIndex, 0)
 
-                    GridPositions.Add(New Vector2(-4, 0))
-                    GridPositions.Add(New Vector2(-2, 0))
-                    GridPositions.Add(New Vector2(0, 0))
-                    GridPositions.Add(New Vector2(2, 0))
-                    GridPositions.Add(New Vector2(4, 0))
+                    GridPositions.Add(New Vector2(0 - 2 * CenterIndex, 0))
+                    GridPositions.Add(New Vector2(2 - 2 * CenterIndex, 0))
+                    GridPositions.Add(New Vector2(4 - 2 * CenterIndex, 0))
+                    GridPositions.Add(New Vector2(6 - 2 * CenterIndex, 0))
+                    GridPositions.Add(New Vector2(8 - 2 * CenterIndex, 0))
             End Select
 
             Dim evoline As New PokemonEvolutionLine(GridPositions, PokemonIDs)
@@ -1678,7 +1683,8 @@ Public Class PokedexViewScreen
                         Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\Types"), New Rectangle(CInt(mV.X - 350), CInt(mV.Y + 123), 96, 32), Pokemon.Type1.GetElementImage(), Color.White)
                     End If
 
-                    Core.SpriteBatch.DrawString(FontManager.MainFont, Pokemon.PokedexEntry.Text.CropStringToWidth(FontManager.MainFont, 720), New Vector2(mV.X - FontManager.MainFont.MeasureString(Pokemon.PokedexEntry.Text.CropStringToWidth(FontManager.MainFont, 720)).X / 2, windowSize.Height - 128), Color.Black)
+                    Canvas.DrawRectangle(New Rectangle(CInt(mV.X - FontManager.MainFont.MeasureString(Pokemon.PokedexEntry.Text.CropStringToWidth(FontManager.MainFont, 720)).X / 2 - 16), CInt(mV.Y + 192 - 16), CInt(FontManager.MainFont.MeasureString(Pokemon.PokedexEntry.Text.CropStringToWidth(FontManager.MainFont, 720)).X + 32), CInt(FontManager.MainFont.MeasureString(Pokemon.PokedexEntry.Text.CropStringToWidth(FontManager.MainFont, 720)).Y + 32)), New Color(42, 167, 198, 150))
+                    Core.SpriteBatch.DrawString(FontManager.MainFont, Pokemon.PokedexEntry.Text.CropStringToWidth(FontManager.MainFont, 720), New Vector2(CInt(mV.X - FontManager.MainFont.MeasureString(Pokemon.PokedexEntry.Text.CropStringToWidth(FontManager.MainFont, 720)).X / 2), CInt(mV.Y + 192)), Color.Black)
 
                 Else
                     Core.SpriteBatch.DrawString(FontManager.MainFont, "??? m", New Vector2(mV.X + 250, mV.Y - 152), Color.Black)
