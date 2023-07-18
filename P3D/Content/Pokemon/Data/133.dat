@@ -64,3 +64,11 @@ EvolutionCondition|470,location,Ilex Forest,level
 EvolutionCondition|471,location,Ice Path,level
 EvolutionCondition|700,inpartytype,fairy,level
 EvolutionCondition|700,friendship,220,level
+EvolutionLine|133\0\0,134\-2\-2
+EvolutionLine|133\0\0,135\0\-2
+EvolutionLine|133\0\0,136\2\-2
+EvolutionLine|133\0\0,196\-2\0
+EvolutionLine|133\0\0,197\2\0
+EvolutionLine|133\0\0,470\-2\2
+EvolutionLine|133\0\0,471\2\2
+EvolutionLine|133\0\0,700\0\2

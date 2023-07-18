@@ -55,3 +55,5 @@ EvolutionCondition|103_alola,region,sevii islands,item
 EvolutionCondition|103_alola,item,34,item
 EvolutionCondition|103,region,-sevii islands,item
 EvolutionCondition|103,item,34,item
+EvolutionLine|102\0\0,103\2\-1
+EvolutionLine|102\0\0,103_alola\2\1

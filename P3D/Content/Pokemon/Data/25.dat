@@ -57,5 +57,5 @@ EvolutionCondition|26_alola,item,23,item
 Item|5,163
 Item|50,2006
 TradeValue|20
-EvolutionLine|172\-1\0,25\0\0,26\1\0
-EvolutionLine|25\0\0,26_alola\1\1
+EvolutionLine|172\-2\0,25\0\0,26\2\-1
+EvolutionLine|25\0\0,26_alola\2\1

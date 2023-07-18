@@ -62,5 +62,5 @@ Item|5,2009
 Item|50,2006
 EvolutionCondition|862,Level,35,Level
 EvolutionCondition|862,daytime,0;3,level
-EvolutionLine|263\-1\0,264\0\0
-EvolutionLine|263_galar\-1\1,264_galar\0\1,862\1\1
+EvolutionLine|263\-2\-2,264\0\-2
+EvolutionLine|263_galar\-2\0,264_galar\0\0,862\2\0

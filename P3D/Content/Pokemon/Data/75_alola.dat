@@ -56,3 +56,5 @@ Move|54,444
 Item|5,595
 EvolutionCondition|76_alola,trade,0,trade
 TradeValue|25
+EvolutionLine|74\-2\-2,75\0\-2,76\2\-2
+EvolutionLine|74_alola\-2\0,75_alola\0\0,76_alola\2\0

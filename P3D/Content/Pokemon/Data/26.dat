@@ -42,5 +42,5 @@ Move|1,98
 Item|50,2006
 TradeValue|40
 DexForms|Alola
-EvolutionLine|172\-1\0,25\0\0,26\1\0
-EvolutionLine|25\0\0,26_alola\1\1
+EvolutionLine|172\-4\1,25\-2\1,26\0\0
+EvolutionLine|25\-2\1,26_alola\0\2

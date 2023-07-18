@@ -57,3 +57,5 @@ Move|50,517
 EvolutionCondition|38,item,22,item
 Item|100,2003
 TradeValue|15
+EvolutionLine|37\0\0,38\2\0
+EvolutionLine|37_alola\0\2,38_alola\2\2

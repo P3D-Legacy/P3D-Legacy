@@ -55,3 +55,5 @@ Move|48,262
 TradeValue|15
 Item|5,36
 EvolutionCondition|89,Level,38,Level
+EvolutionLine|88\0\0,89\2\0
+EvolutionLine|88_alola\0\2,89_alola\2\2

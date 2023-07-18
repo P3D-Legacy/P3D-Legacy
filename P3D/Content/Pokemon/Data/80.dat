@@ -58,7 +58,7 @@ Move|68,505
 TradeValue|30
 Item|5,82
 DexForms|Galar
-EvolutionLine|79\0\-2,80\1\-3
-EvolutionLine|79\0\-2,199\1\-1
-EvolutionLine|79_galar\0\2,80_galar\1\1
-EvolutionLine|79_galar\0\2,199_galar\1\3
+EvolutionLine|79\-2\2,80\0\0
+EvolutionLine|79\-2\2,199\0\2
+EvolutionLine|79_galar\-2\4,80_galar\0\4
+EvolutionLine|79_galar\-2\4,199_galar\0\6

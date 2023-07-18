@@ -51,5 +51,5 @@ EvolutionCondition|20_alola,Level,20,Level
 EvolutionCondition|20_alola,daytime,0;3,level
 Item|5,2002
 TradeValue|10
-EvolutionLine|19\0\0,20\1\0
-EvolutionLine|19_alola\0\1,20_alola\1\1
+EvolutionLine|19\0\-2,20\2\-2
+EvolutionLine|19_alola\0\0,20_alola\2\0
