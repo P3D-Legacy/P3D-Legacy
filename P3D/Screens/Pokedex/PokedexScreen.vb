@@ -349,7 +349,7 @@ Public Class PokedexScreen
     Public Shared TempPokemonStorage As New Dictionary(Of Integer, Pokemon)
     Shared TempPokemonDexType As New Dictionary(Of Integer, Integer)
 
-    Dim PokemonList As New List(Of Pokemon)
+    Public PokemonList As New List(Of Pokemon)
     Dim menu As SelectMenu
 
     Public Sub New(ByVal currentScreen As Screen, ByVal Profile As PokedexSelectScreen.PokedexProfile, ByVal Habitat As Habitat)
@@ -811,7 +811,7 @@ Public Class PokedexScreen
                             If TempPokemonDexType(dexIndex) > 0 Then
                                 SoundManager.PlaySound("select")
 
-                                Core.SetScreen(New PokedexViewScreen(Me, TempPokemonStorage(dexIndex), False, dexIndex))
+                                Core.SetScreen(New PokedexViewScreen(Me, TempPokemonStorage(dexIndex), False, dexIndex - 1))
                             End If
                         Else
                             Cursor.X = x
@@ -827,7 +827,7 @@ Public Class PokedexScreen
                 Dim dexIndex As Integer = CInt((Cursor.Y + Scroll) * 6 + Cursor.X + 1)
                 If TempPokemonDexType(dexIndex) > 0 Then
                     SoundManager.PlaySound("select")
-                    Core.SetScreen(New PokedexViewScreen(Me, TempPokemonStorage(dexIndex), False, dexIndex))
+                    Core.SetScreen(New PokedexViewScreen(Me, TempPokemonStorage(dexIndex), False, dexIndex - 1))
                 End If
             End If
 
@@ -1367,20 +1367,26 @@ Public Class PokedexViewScreen
 
     Private Sub LoadPokemonData(ByVal newDexIndex As Integer, Optional ByVal newPokemon As Pokemon = Nothing, Optional playCry As Boolean = False)
         Dim oldCry As String = ""
+        Dim oldNumber As Integer = -1
         If Me.Pokemon IsNot Nothing Then
-            PokemonForms.GetCrySuffix(Me.Pokemon)
+            oldNumber = Me.Pokemon.Number
+            oldCry = PokemonForms.GetCrySuffix(Me.Pokemon)
         End If
         If newPokemon IsNot Nothing Then
             EvolutionLineConnections.Clear()
             Me.Pokemon = newPokemon
         End If
-        If newDexIndex <> -1 AndAlso newDexIndex <> Me.DexIndex Then
-            Me.Pokemon = PokedexScreen.TempPokemonStorage(newDexIndex)
-            Me.DexIndex = newDexIndex
-            Me.Forms.Clear()
-            Me.EvolutionLineConnections.Clear()
-            Me.Forms.Add(Me.Pokemon.Number.ToString)
-            Me.FormIndex = 0
+        If Me.PreScreen.Identification = Identifications.PokedexScreen Then
+            Dim PDexScreen As PokedexScreen = CType(Me.PreScreen, PokedexScreen)
+            If newDexIndex <> -1 AndAlso newDexIndex <> Me.DexIndex Then
+                Me.Pokemon = PDexScreen.PokemonList(newDexIndex)
+                Me.DexIndex = newDexIndex
+                Me.Forms.Clear()
+                Me.EvolutionLineConnections.Clear()
+                Me.Forms.Add(Me.Pokemon.Number.ToString)
+                Me.FormIndex = 0
+            End If
+
         End If
 
 
@@ -1399,7 +1405,7 @@ Public Class PokedexViewScreen
         Me.FillHabitats()
         Me.FillEvolutionGrid()
 
-        If playCry = True AndAlso oldCry <> PokemonForms.GetCrySuffix(Me.Pokemon) Then
+        If playCry = True AndAlso oldNumber <> Me.Pokemon.Number OrElse oldCry <> PokemonForms.GetCrySuffix(Me.Pokemon) Then
             Dim crySuffix As String = PokemonForms.GetCrySuffix(Me.Pokemon)
             SoundManager.PlayPokemonCry(Pokemon.Number, crySuffix)
         End If
@@ -1846,22 +1852,46 @@ Public Class PokedexViewScreen
             End If
         End If
 
-        If DexIndex > -1 Then
-            If Me.DexIndex > PokedexScreen.TempPokemonStorage.Keys(0) Then
-                If Controls.Up(True, True, False, True, True, True) = True Then
-                    vLineLength = 1
-                    mLineLength = 1
-                    fadeMainImage = 0
-                    LoadPokemonData(Me.DexIndex - 1, Nothing, True)
+        If DexIndex > -1 AndAlso Me.PreScreen.Identification = Identifications.PokedexScreen Then
+            If Controls.Up(True, True, False, True, True, True) = True Then
+                Dim PDexScreen As PokedexScreen = CType(Me.PreScreen, PokedexScreen)
+                If Me.DexIndex > 0 Then
+                    Dim index As Integer = Me.DexIndex - 1
+                    While Pokedex.GetEntryType(Core.Player.PokedexData, PokemonForms.GetPokemonDataFileName(PDexScreen.PokemonList(index).Number, PDexScreen.PokemonList(index).AdditionalData, True)) = 0
+                        If index > 0 Then
+                            index -= 1
+                        Else
+                            Exit While
+                        End If
+                    End While
+                    If Pokedex.GetEntryType(Core.Player.PokedexData, PokemonForms.GetPokemonDataFileName(PDexScreen.PokemonList(index).Number, PDexScreen.PokemonList(index).AdditionalData, True)) > 0 Then
+                        vLineLength = 1
+                        mLineLength = 1
+                        fadeMainImage = 0
+                        LoadPokemonData(index, Nothing, True)
+                    End If
+                    End If
                 End If
-            End If
 
-            If Me.DexIndex < PokedexScreen.TempPokemonStorage.Keys(PokedexScreen.TempPokemonStorage.Count - 1) Then
-                If Controls.Down(True, True, False, True, True, True) = True Then
-                    vLineLength = 1
-                    mLineLength = 1
-                    fadeMainImage = 0
-                    LoadPokemonData(Me.DexIndex + 1, Nothing, True)
+            If Controls.Down(True, True, False, True, True, True) = True Then
+                Dim PDexScreen As PokedexScreen = CType(Me.PreScreen, PokedexScreen)
+                If Me.DexIndex < PDexScreen.PokemonList.count - 1 Then
+                    Dim index As Integer = Me.DexIndex + 1
+
+                    While Pokedex.GetEntryType(Core.Player.PokedexData, PokemonForms.GetPokemonDataFileName(PDexScreen.PokemonList(index).Number, PDexScreen.PokemonList(index).AdditionalData, True)) = 0
+                        If index < PDexScreen.PokemonList.Count - 1 Then
+                            index += 1
+                        Else
+                            Exit While
+                        End If
+                    End While
+
+                    If Pokedex.GetEntryType(Core.Player.PokedexData, PokemonForms.GetPokemonDataFileName(PDexScreen.PokemonList(index).Number, PDexScreen.PokemonList(index).AdditionalData, True)) > 0 Then
+                        vLineLength = 1
+                        mLineLength = 1
+                        fadeMainImage = 0
+                        LoadPokemonData(index, Nothing, True)
+                    End If
                 End If
             End If
         End If
