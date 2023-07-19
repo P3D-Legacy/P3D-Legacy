@@ -50,6 +50,6 @@ Move|89,354
 Move|97,245
 TradeValue|120
 EvolutionLine|386\-1\-1
-EvolutionLine|386_attack\0\-4
-EvolutionLine|386_defense\1\-2
+EvolutionLine|386_attack\0\-2
+EvolutionLine|386_defense\1\-1
 EvolutionLine|386_speed\0\0
