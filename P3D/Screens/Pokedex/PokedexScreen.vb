@@ -1870,8 +1870,8 @@ Public Class PokedexViewScreen
                         fadeMainImage = 0
                         LoadPokemonData(index, Nothing, True)
                     End If
-                    End If
                 End If
+            End If
 
             If Controls.Down(True, True, False, True, True, True) = True Then
                 Dim PDexScreen As PokedexScreen = CType(Me.PreScreen, PokedexScreen)
@@ -1913,11 +1913,7 @@ Public Class PokedexViewScreen
 
                 Dim newPokemon As Pokemon = Pokemon.GetPokemonByID(PokeID, PokeAD, True)
 
-                Dim playCry As Boolean = False
-                If Page = 0 Then
-                    playCry = True
-                End If
-                LoadPokemonData(-1, newPokemon, playCry)
+                LoadPokemonData(-1, newPokemon, True)
 
             End If
         End If
@@ -1940,8 +1936,8 @@ Public Class PokedexViewScreen
                     End If
                 End If
                 If Me.Page = 1 Or Me.Page = 2 Then
-                    SoundManager.PlaySound("select")
                     If New Rectangle(6, CInt(Core.windowSize.Height / 2 - 32), 64, 64).Contains(MouseHandler.MousePosition) = True Then
+                        SoundManager.PlaySound("select")
                         Me.Page -= 1
                     End If
                 End If
@@ -2054,6 +2050,67 @@ Public Class PokedexViewScreen
     End Sub
 
     Private Sub UpdatePage3()
+
+        If Controls.Accept(True, False, False) = True Then
+            Dim centerVector As Vector2 = Core.GetMiddlePosition(New Size(CInt(64 * scale), CInt(64 * scale)))
+
+            Dim pokemon As Pokemon = Nothing
+            Dim position As Vector2 = New Vector2(0)
+            Dim mPosition As Vector2 = MouseHandler.MousePosition.ToVector2
+            For c = 0 To EvolutionLineConnections.Count - 1
+                For i = 0 To EvolutionLineConnections(c).ConnectionList.Count - 1
+                    Dim rect As New Rectangle(CInt(centerVector.X + (EvolutionLineConnections(c).ConnectionList(i).Item1 * CInt(64 * scale))), CInt(centerVector.Y + (EvolutionLineConnections(c).ConnectionList(i).Item2 * (48 * scale))), CInt(EvolutionLineConnections(c).ConnectionList(i).Item3.GetMenuTexture().Width * CSng(32 / EvolutionLineConnections(c).ConnectionList(i).Item3.GetMenuTexture().Width * 2) * scale), CInt(EvolutionLineConnections(c).ConnectionList(i).Item3.GetMenuTexture().Height * CSng(32 / EvolutionLineConnections(c).ConnectionList(i).Item3.GetMenuTexture().Height * 2) * scale))
+                    If rect.Contains(mPosition) Then
+                        pokemon = EvolutionLineConnections(c).ConnectionList(i).Item3
+                    End If
+                Next
+            Next
+            If pokemon IsNot Nothing Then
+                Dim dexID As String = PokemonForms.GetPokemonDataFileName(pokemon.Number, pokemon.AdditionalData, True)
+
+                Dim fIndex As Integer = -1
+
+                For f = 0 To Me.Forms.Count - 1
+                    If Me.Forms(f) = dexID Then
+                        If Pokedex.GetEntryType(Core.Player.PokedexData, dexID) > 0 Then
+                            fIndex = f
+                        End If
+                    End If
+                Next
+
+                If fIndex <> -1 AndAlso Me.Forms(fIndex) IsNot "" Then
+                    Me.FormIndex = fIndex
+                    Dim PokeID As Integer = CInt(Me.Forms(Me.FormIndex).GetSplit(0, "_").GetSplit(0, ";"))
+                    Dim PokeAD As String = ""
+
+                    If Me.Forms(Me.FormIndex).Contains("_") Then
+                        PokeAD = PokemonForms.GetAdditionalValueFromDataFile(Me.Forms(Me.FormIndex))
+                    ElseIf Me.Forms(Me.FormIndex).Contains(";") Then
+                        PokeAD = Me.Forms(Me.FormIndex).GetSplit(1, ";")
+                    End If
+
+                    Dim newPokemon As Pokemon = Pokemon.GetPokemonByID(PokeID, PokeAD, True)
+
+                    LoadPokemonData(-1, newPokemon, True)
+
+                ElseIf Me.DexIndex > -1 Then
+                    Dim PDexScreen As PokedexScreen = CType(Me.PreScreen, PokedexScreen)
+                    Dim index As Integer = DexIndex
+                    For i = 0 To PDexScreen.PokemonList.Count - 1
+                        If PDexScreen.PokemonList(i).Number = pokemon.Number AndAlso PDexScreen.PokemonList(i).AdditionalData = pokemon.AdditionalData Then
+                            index = i
+                        End If
+                    Next
+                    If Pokedex.GetEntryType(Core.Player.PokedexData, PokemonForms.GetPokemonDataFileName(PDexScreen.PokemonList(index).Number, PDexScreen.PokemonList(index).AdditionalData, True)) > 0 Then
+                        vLineLength = 1
+                        mLineLength = 1
+                        fadeMainImage = 0
+                        LoadPokemonData(index, Nothing, True)
+                    End If
+                End If
+            End If
+        End If
+
         If Controls.Up(True, False, True, False, False, False) = True Or KeyBoardHandler.KeyPressed(Keys.OemPlus) = True Then
             Me.scale += 0.5F
         End If
