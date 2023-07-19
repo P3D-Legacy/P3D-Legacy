@@ -1753,7 +1753,7 @@ Public Class PokedexViewScreen
     Dim scale As Single = 2.0F
 
     Private Sub DrawPage3()
-        If EvolutionLineConnections Is Nothing OrElse EvolutionLineConnections.Count = 0 OrElse EvolutionLineConnections(0).ConnectionList.Count <= 1 Then
+        If EvolutionLineConnections Is Nothing OrElse EvolutionLineConnections.Count = 0 OrElse EvolutionLineConnections.Count = 1 And EvolutionLineConnections(0).ConnectionList.Count <= 1 Then
             Canvas.DrawGradient(New Rectangle(CInt(Core.windowSize.Width / 2) - 282, CInt(Core.windowSize.Height / 2 - 45), 80, 90), New Color(84, 198, 216), New Color(42, 167, 198, 150), True, -1)
             Canvas.DrawRectangle(New Rectangle(CInt(Core.windowSize.Width / 2) - 202, CInt(Core.windowSize.Height / 2 - 45), 404, 90), New Color(42, 167, 198, 150))
             Canvas.DrawGradient(New Rectangle(CInt(Core.windowSize.Width / 2) + 202, CInt(Core.windowSize.Height / 2 - 45), 80, 90), New Color(42, 167, 198, 150), New Color(84, 198, 216), True, -1)
