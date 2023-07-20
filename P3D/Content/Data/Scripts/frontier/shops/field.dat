@@ -1,0 +1,13 @@
+version=2
+@text.show(With these items you can work your field to exactly how you want it!*Do you want to buy~anything?)
+
+@options.show(Yes,No)
+	:when:Yes
+		@screen.trade({293|-1|25}{294|-1|25}{295|-1|25}{296|-1|25}{297|-1|25}{596|-1|25}{597|-1|25}{598|-1|25}{599|-1|25}{600|-1|25},1,0,bp)
+		@text.show(Thank you.)
+		:end
+	:when:No
+		@text.show(Have a nice day.)
+		:end
+:endwhen
+:end
