@@ -599,10 +599,10 @@ Pike Building
 {"Entity"{ENT[{"ID"{int[14]}}{"Scale"{sngArr[2,2,2]}}{"EntityID"{str[WallBlock]}}{"Position"{sngArr[33,3.49,28.5]}}{"TexturePath"{str[BarkTown]}}{"Textures"{recArr[[64,0,16,16]]}}{"TextureIndex"{intArr[0,0]}}{"Collision"{bool[0]}}{"ModelID"{int[1]}}{"Action"{int[0]}}{"AdditionalValue"{str[]}}{"ModelPath"{str[Models\BattlePike\BattlePike]}}{"Rotation"{int[1]}}]}}
 
 NPCs:
-{"NPC"{NPC[{"Position"{sngArr[61,3,32]}}{"TextureID"{str[darkfire]}}{"ID"{int[99]}}{"Name"{str[GymGuy]}}{"Action"{int[0]}}{"AdditionalValue"{str[Soon...]}}{"Rotation"{int[3]}}{"Movement"{str[Still]}}{"MoveRectangles"{recArr[]}}]}}
-{"NPC"{NPC[{"Position"{sngArr[61,3,31]}}{"TextureID"{str[[POKEMON|S]6]}}{"ID"{int[98]}}{"Name"{str[GymGuy]}}{"Action"{int[0]}}{"AdditionalValue"{str[Char!]}}{"Rotation"{int[2]}}{"Movement"{str[Still]}}{"MoveRectangles"{recArr[]}}]}}
-{"NPC"{NPC[{"Position"{sngArr[62,3,33]}}{"TextureID"{str[84]}}{"ID"{int[97]}}{"Name"{str[GymGuy]}}{"Action"{int[0]}}{"AdditionalValue"{str[The Battle Dome building~is still being designed,~the designer here has run~into some issues with making~it happen because...~well...*my colleague here~describes it best...]}}{"Rotation"{int[0]}}{"Movement"{str[Still]}}{"MoveRectangles"{recArr[]}}]}}
-{"NPC"{NPC[{"Position"{sngArr[63,3,34]}}{"TextureID"{str[84]}}{"ID"{int[96]}}{"Name"{str[GymGuy]}}{"Action"{int[0]}}{"AdditionalValue"{str[All these squares make a circle.~All these squares make a circle.~All these squares make a circle.~All these squares make a circle.~All these squares make a circle.]}}{"Rotation"{int[0]}}{"Movement"{str[turning]}}{"MoveRectangles"{recArr[]}}]}}
+Shops:
+{"NPC"{NPC[{"Position"{sngArr[29,4,28]}}{"TextureID"{str[29]}}{"ID"{int[10]}}{"Name"{str[GymGuy]}}{"Action"{int[1]}}{"AdditionalValue"{str[frontier\shops\juice\choice]}}{"Rotation"{int[1]}}{"Movement"{str[Still]}}{"MoveRectangles"{recArr[]}}]}}
+{"NPC"{NPC[{"Position"{sngArr[29,4,30]}}{"TextureID"{str[13]}}{"ID"{int[11]}}{"Name"{str[GymGuy]}}{"Action"{int[1]}}{"AdditionalValue"{str[frontier\shops\juice\held]}}{"Rotation"{int[1]}}{"Movement"{str[Still]}}{"MoveRectangles"{recArr[]}}]}}
+{"NPC"{NPC[{"Position"{sngArr[37,4,29]}}{"TextureID"{str[67]}}{"ID"{int[12]}}{"Name"{str[GymGuy]}}{"Action"{int[1]}}{"AdditionalValue"{str[frontier\shops\berry\protect]}}{"Rotation"{int[3]}}{"Movement"{str[Still]}}{"MoveRectangles"{recArr[]}}]}}
 
 Warps:
 Pike:
