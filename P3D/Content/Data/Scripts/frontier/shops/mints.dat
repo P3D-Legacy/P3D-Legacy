@@ -1,0 +1,15 @@
+version=2
+@text.show(I am working hard on~cultivating a new line~of special herbs!*Come check in later when~I am ready to bring them~to market!)
+:end
+@text.show(I have lots of pretty gem!*Do you want to buy some?)
+
+@options.show(Yes,No)
+	:when:Yes
+		@screen.trade({630|-1|20}{631|-1|20}{632|-1|20}{633|-1|20}{634|-1|20}{635|-1|20}{636|-1|20}{637|-1|20}{638|-1|20}{639|-1|20}{640|-1|20}{641|-1|20}{642|-1|20}{643|-1|20}{644|-1|20}{645|-1|20}{646|-1|20}{647|-1|20},1,0,bp)
+		@text.show(Thank you.)
+		:end
+	:when:No
+		@text.show(I guess gems aren't your style.)
+		:end
+:endwhen
+:end
