@@ -1,5 +1,5 @@
 version=2
-@text.show(I have lots of pretty gem!*Do you want to buy some?)
+@text.show(I have lots of pretty gems!*Do you want to buy some?)
 
 @options.show(Yes,No)
 	:when:Yes
@@ -7,7 +7,7 @@ version=2
 		@text.show(Thank you.)
 		:end
 	:when:No
-		@text.show(I guess gems aren't your style.)
+		@text.show(I guess gems aren't~your style.)
 		:end
 :endwhen
 :end

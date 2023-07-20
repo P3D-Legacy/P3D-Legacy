@@ -1,5 +1,5 @@
 version=2
-@text.show(With these items you can work your field to exactly how you want it!*Do you want to buy~anything?)
+@text.show(With these items you can~work your field to exactly~how you want it!*Do you want to buy anything?)
 
 @options.show(Yes,No)
 	:when:Yes

@@ -1,5 +1,5 @@
 version=2
-@text.show(Want to get a berry grab bag?)
+@text.show(Want to get a berry~grab bag?)
 @options.SetCancelIndex(3)
 @options.show(Standard Bag 5 BP,Special Bag 10 BP,Info,Exit)
 	:when:Standard Bag 5 BP
@@ -22,7 +22,7 @@ version=2
 			@storage.set(integer,berryloop,<storage.get(integer,berryloop)>+1)
 		:endwhile
 	:when:Info
-		@text.show(If you choose the standard bag you will get 15 berries chosen completely at random.*If you choose the special bag you will get 10 of the best berries.)
+		@text.show(If you choose the standard~bag you will get 15 berries~chosen completely at random.*If you choose the special~bag you will get 10 of~the best berries.)
 	:when:Exit
 		:endscript
 :endwhen

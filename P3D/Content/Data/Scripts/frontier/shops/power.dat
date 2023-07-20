@@ -1,5 +1,5 @@
 version=2
-@text.show(These items can help power up your training!)
+@text.show(These items can help power~up your training!)
 
 @options.show(Buy,Cancel)
 	:when:Buy
@@ -7,7 +7,7 @@ version=2
 		@text.show(Thank you.)
 		:end
 	:when:Cancel
-		@text.show(Come back to train with power!)
+		@text.show(Come back to train~with power!)
 		:end
 :endwhen
 :end

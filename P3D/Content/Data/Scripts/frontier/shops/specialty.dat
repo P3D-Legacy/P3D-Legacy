@@ -1,13 +1,14 @@
 version=2
-@text.show(I have the newest breakthroughs in optimizing any Pokemon for battle!*Do you want to buy~anything?)
+@text.show(I have the newest~breakthroughs in optimizing~any Pokemon for battle!*Do you want to buy~anything?)
 
 @options.show(Yes,No)
 	:when:Yes
 		@screen.trade({187|-1|150},1,0,bp)
+		@text.show(Research is ongoing for more~items to come in the future.)
 		@text.show(Thank you.)
 		:end
 	:when:No
-		@text.show(You will struggle to find these items anywhere else!)
+		@text.show(You will struggle to find~these items anywhere else!)
 		:end
 :endwhen
 :end

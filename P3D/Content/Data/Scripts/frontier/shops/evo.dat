@@ -1,5 +1,5 @@
 version=2
-@text.show(These items should help awaken the potential of your pokemon.)
+@text.show(These items should help~awaken the potential~of your Pokémon.)
 
 @options.show(Buy,Cancel)
 	:when:Buy

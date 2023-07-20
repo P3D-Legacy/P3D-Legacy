@@ -1,9 +1,10 @@
 version=2
-@text.show(These items offer great power but only at a price.*Do you think you can master them?)
+@text.show(These items offer great~power but only at a price.*Do you think you~can master them?)
 
 @options.show(Yes,No)
 	:when:Yes
 		@screen.trade({578|-1|25}{579|-1|25}{580|-1|25}{577|-1|25}{506|-1|25}{505|-1|25},1,0,bp)
+		@text.show(I forsee some other items~being added in stock~in the near future,~come back to learn more.)
 		@text.show(Thank you.)
 		:end
 	:when:No

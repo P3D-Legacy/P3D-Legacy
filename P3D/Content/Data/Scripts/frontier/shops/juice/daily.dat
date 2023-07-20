@@ -73,7 +73,7 @@ version=2
 :endwhile
 @storage.set(string,juiceselect,<storage.get(string,juiceselect)>Exit)
 
-@text.show(Welcome to the Juice Shoppe!*Please take a look at our daily specials!)
+@text.show(Welcome to the Juice Shoppe!*Please take a look~at our daily specials!)
 @options.show(<storage.get(string,juiceselect)>)
 	:when:Exit
 		@text.show(Come again soon!)
@@ -104,7 +104,7 @@ version=2
 		@storage.set(integer,select,5)
 :endwhen		
 	
-@text.show(Which Pokemon is this drink for?)
+@text.show(Which Pokemon is this~drink for?)
 @pokemon.select
 :if:<pokemon.selected>=-1
 	@text.show(Come again soon!)

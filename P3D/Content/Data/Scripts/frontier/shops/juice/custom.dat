@@ -1,12 +1,12 @@
 version=2
-@text.show(Welcome to the Juice Shoppe!*I can help you make your own custom drinks free of charge!*All you have to do is provide the berries!*Would you like to begin?)
+@text.show(Welcome to the Juice Shoppe!*I can help you make your own~custom drinks free of charge!*All you have to do is~provide the berries!*Would you like to begin?)
 @Options.show(Yes,No)
 	:when:No
 	@text.show(Come again soon!)
 		:end
 :endwhen
 
-@text.show(Please select your first berry.)
+@text.show(Please select your~first berry.)
 @item.select(plants,2000-2066)
 :if:<item.selected>=-1
 	@text.show(Come again soon!)
@@ -14,7 +14,7 @@ version=2
 :endif
 @storage.set(integer,berry1,<item.selected>)
 
-@text.show(Please select your second berry.)
+@text.show(Please select your~second berry.)
 @item.select(plants,2000-2066)
 :if:<item.selected>=-1
 	@text.show(Come again soon!)

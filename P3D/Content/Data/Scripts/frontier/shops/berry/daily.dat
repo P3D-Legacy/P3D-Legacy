@@ -91,6 +91,6 @@ version=2
 		@storage.set(integer,berryloop2,<storage.get(integer,berryloop2)>+1)
 	:endwhile		
 :endif
-@text.show(Welcome to the berry shop, take a look at today's harvest.)
+@text.show(Welcome to the berry shop,~take a look at today's~harvest.)
 @screen.trade({<register.value(bfberryshop0)>|10|1}{<register.value(bfberryshop1)>|10|1}{<register.value(bfberryshop2)>|10|1}{<register.value(bfberryshop3)>|10|1}{<register.value(bfberryshop4)>|10|1}{<register.value(bfberryshop5)>|10|1}{<register.value(bfberryshop6)>|10|1},1,0,bp,bfberries)
 :end	

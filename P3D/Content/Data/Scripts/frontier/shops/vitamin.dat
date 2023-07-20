@@ -1,5 +1,5 @@
 version=2
-@text.show(I have the best medicines you can get to enhance your Pokemon's battle prowess!)
+@text.show(I have the best medicines~you can get to enhance your~Pokémon's battle prowess!)
 
 @options.show(Buy,Cancel)
 	:when:Buy
@@ -7,7 +7,7 @@ version=2
 		@text.show(Thank you.)
 		:end
 	:when:Cancel
-		@text.show(Come back for all of your medicinal needs!)
+		@text.show(Come back for all of your~medicinal needs!)
 		:end
 :endwhen
 :end

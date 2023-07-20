@@ -1,5 +1,5 @@
 version=2
-@text.show(I stock the best comumable items availbe!*Buy some so I don't eat them all!)
+@text.show(I stock the best consumable~items available!*Buy some so I don't~eat them all!)
 
 @options.show(Buy,Cancel)
 	:when:Buy
@@ -7,7 +7,7 @@ version=2
 		@text.show(Thank you.)
 		:end
 	:when:Cancel
-		@text.show(buurrrrp*Someone better buy~some before I eat them all.)
+		@text.show(buurrrrp*Someone better buy some`before I eat them all.)
 		:end
 :endwhen
 :end

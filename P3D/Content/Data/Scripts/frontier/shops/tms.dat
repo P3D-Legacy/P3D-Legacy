@@ -1,5 +1,5 @@
 version=2
-@text.show(Fill out your movesets with these useful attacks.)
+@text.show(Fill out your movesets with~these useful attacks.)
 
 @options.show(Buy,Cancel)
 	:when:Buy
@@ -7,7 +7,7 @@ version=2
 		@text.show(Thank you.)
 		:end
 	:when:Cancel
-		@text.show(We hope to see you~again!)
+		@text.show(We hope to see you again!)
 		:end
 :endwhen
 :end
