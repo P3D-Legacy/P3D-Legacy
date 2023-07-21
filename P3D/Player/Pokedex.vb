@@ -407,6 +407,10 @@
                                         EntryType = 1
                                     End If
                                 End If
+                            Else
+                                If 1 > EntryType Then
+                                    EntryType = 1
+                                End If
                             End If
                         End If
                     End If
@@ -426,6 +430,10 @@
                                     If 1 > EntryType Then
                                         EntryType = 1
                                     End If
+                                End If
+                            Else
+                                If 1 > EntryType Then
+                                    EntryType = 1
                                 End If
                             End If
                         End If
