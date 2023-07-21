@@ -418,7 +418,11 @@ Public Class Pokemon
 
     Public Property CatchLocation() As String
         Get
-            Return Me._catchLocation
+            If _catchLocation.StartsWith("<system.token(") AndAlso _catchLocation.EndsWith(")>") Then
+                Return Localization.GetString(_catchLocation.Remove(_catchLocation.Length - 2, 2).Remove(0, "<system.token(".Length))
+            Else
+                Return Me._catchLocation
+            End If
         End Get
         Set(value As String)
             Me._catchLocation = value
@@ -427,7 +431,11 @@ Public Class Pokemon
 
     Public Property CatchTrainerName() As String
         Get
-            Return Me._catchTrainerName
+            If _catchTrainerName.StartsWith("<system.token(") AndAlso _catchTrainerName.EndsWith(")>") Then
+                Return Localization.GetString(_catchTrainerName.Remove(_catchTrainerName.Length - 2, 2).Remove(0, "<system.token(".Length))
+            Else
+                Return Me._catchTrainerName
+            End If
         End Get
         Set(value As String)
             Me._catchTrainerName = value
@@ -436,7 +444,11 @@ Public Class Pokemon
 
     Public Property CatchMethod() As String
         Get
-            Return Me._catchMethod
+            If _catchMethod.StartsWith("<system.token(") AndAlso _catchMethod.EndsWith(")>") Then
+                Return Localization.GetString(_catchMethod.Remove(_catchMethod.Length - 2, 2).Remove(0, "<system.token(".Length))
+            Else
+                Return Me._catchMethod
+            End If
         End Get
         Set(value As String)
             Me._catchMethod = value

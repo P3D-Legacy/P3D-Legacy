@@ -273,18 +273,8 @@
             oppPokemon.Item = Item.GetItemByID(itemID)
         End If
 
-        Dim catchLocationLocalization As String = Script.SaveNPCTrade(10)
-        If Script.SaveNPCTrade(10).StartsWith("<system.token(") AndAlso Script.SaveNPCTrade(10).EndsWith(")>") Then
-            catchLocationLocalization = Localization.GetString(catchLocationLocalization.Remove(0, "<system.token(".Length).Remove(Script.SaveNPCTrade(10).Length - 2, 2))
-        End If
-
-        Dim catchMethodLocalization As String = Script.SaveNPCTrade(11)
-        If Script.SaveNPCTrade(11).StartsWith("<system.token(") AndAlso Script.SaveNPCTrade(11).EndsWith(")>") Then
-            catchMethodLocalization = Localization.GetString(catchMethodLocalization.Remove(0, "<system.token(".Length).Remove(Script.SaveNPCTrade(11).Length - 2, 2))
-        End If
-
-        oppPokemon.CatchLocation = catchLocationLocalization
-        oppPokemon.CatchMethod = catchMethodLocalization
+        oppPokemon.CatchLocation = Script.SaveNPCTrade(10)
+        oppPokemon.CatchMethod = Script.SaveNPCTrade(11)
         oppPokemon.NickName = Script.SaveNPCTrade(12)
 
         Dim message1 As String = Script.SaveNPCTrade(13)
