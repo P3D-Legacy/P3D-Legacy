@@ -287,14 +287,7 @@ nextIndex:
 
         Dim s As String = "Gotcha!~" & p.GetName() & " was caught!"
 
-        Dim dexID As String = PokemonForms.GetPokemonDataFileName(p.Number, p.AdditionalData)
-        If dexID.Contains("_") = False Then
-            If PokemonForms.GetAdditionalDataForms(p.Number) IsNot Nothing AndAlso PokemonForms.GetAdditionalDataForms(p.Number).Contains(p.AdditionalData) Then
-                dexID = p.Number & ";" & p.AdditionalData
-            Else
-                dexID = p.Number.ToString
-            End If
-        End If
+        Dim dexID As String = PokemonForms.GetPokemonDataFileName(p.Number, p.AdditionalData, True)
 
         If Core.Player.HasPokedex = True Then
             If Pokedex.GetEntryType(Core.Player.PokedexData, dexID) < 2 Then

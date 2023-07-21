@@ -103,10 +103,8 @@
                 Dim cData As String = Data
                 If cOriginalEntry <> "" Then
                     If CInt(cOriginalEntry) < Type Then
-                        If Data.Contains("{" & ID.GetSplit(0, ";").GetSplit(0, "_") & "|") = True Then
-                            cData = Data.Replace("{" & ID.GetSplit(0, ";").GetSplit(0, "_") & "|" & cEntry & "}", "{" & ID.GetSplit(0, ";").GetSplit(0, "_") & "|" & Type & "}")
-                        Else
-                            cData &= Environment.NewLine & "{" & ID.GetSplit(0, ";").GetSplit(0, "_") & "|" & Type & "}"
+                        If Data.Contains("{" & ID.GetSplit(0, ";").GetSplit(0, "_") & "|") = False Then
+                            cData &= Environment.NewLine & "{" & ID.GetSplit(0, ";").GetSplit(0, "_") & "|" & 0 & "}"
                         End If
                     End If
                 End If
@@ -125,20 +123,20 @@
                 If ID.Contains("_") Then
                     If Pokemon.GetPokemonByID(CInt(ID.GetSplit(0, "_"))).DexForms.Contains(ID.GetSplit(1, "_")) Then
                         If cData.Contains("{" & ID.GetSplit(0, "_") & "|") = False Then
-                            cData &= "{" & ID.GetSplit(0, "_") & "|" & Type & "}" & Environment.NewLine
+                            cData &= "{" & ID.GetSplit(0, "_") & "|" & 0 & "}" & Environment.NewLine
                         End If
                     End If
                 End If
 
                 If ID.Contains(";") Then
                     If cData.Contains("{" & ID.GetSplit(0, ";") & "|") = False Then
-                        cData &= "{" & ID.GetSplit(0, ";") & "|" & Type & "}" & Environment.NewLine
+                        cData &= "{" & ID.GetSplit(0, ";") & "|" & 0 & "}" & Environment.NewLine
                     End If
                 End If
                 cData &= "{" & ID & "|" & Type & "}"
                 Return cData
             End If
-            End If
+        End If
         Return Data
     End Function
 
@@ -338,6 +336,21 @@
             For Each v As String In _originalPokemonList.Values
                 If GetEntryType(Core.Player.PokedexData, v) > 1 Then
                     o += 1
+                Else
+                    If v.Contains("_") = False AndAlso v.Contains(";") = False Then
+                        Dim Forms As List(Of String) = PokemonForms.GetCountForms(CInt(v))
+                        Dim addCount As Boolean = False
+                        If Forms IsNot Nothing Then
+                            For f = 0 To Forms.Count - 1
+                                If GetEntryType(Core.Player.PokedexData, Forms(f)) > 1 Then
+                                    addCount = True
+                                End If
+                            Next
+                        End If
+                        If addCount = True Then
+                            o += 1
+                        End If
+                    End If
                 End If
             Next
             Return o
@@ -350,11 +363,79 @@
             For Each v As String In _originalPokemonList.Values
                 If GetEntryType(Core.Player.PokedexData, v) = 1 Then
                     o += 1
+                Else
+                    If v.Contains("_") = False AndAlso v.Contains(";") = False Then
+                        Dim Forms As List(Of String) = PokemonForms.GetCountForms(CInt(v))
+                        Dim addCount As Boolean = False
+                        If Forms IsNot Nothing Then
+                            For f = 0 To Forms.Count - 1
+                                If GetEntryType(Core.Player.PokedexData, Forms(f)) = 1 Then
+                                    addCount = True
+                                End If
+                            Next
+                            If addCount = True Then
+                                o += 1
+                            End If
+                        End If
+                    End If
                 End If
             Next
             Return o
         End Get
     End Property
+
+    Public Shared Function HasAnyForm(ID As Integer) As Integer
+        If GetEntryType(Core.Player.PokedexData, ID.ToString) > 0 Then
+            Return GetEntryType(Core.Player.PokedexData, ID.ToString)
+        Else
+            Dim p As Pokemon = Pokemon.GetPokemonByID(ID, "", True)
+            Dim EntryType As Integer = 0
+            If p.DexForms.Count > 0 AndAlso p.DexForms(0) <> " " Then
+                For i = 0 To p.DexForms.Count - 1
+                    Dim pAD As String = PokemonForms.GetAdditionalValueFromDataFile(CStr(p.Number & "_" & p.DexForms(i)))
+
+                    If pAD <> "" Then
+                        If GetEntryType(Core.Player.PokedexData, CStr(p.Number & "_" & p.DexForms(i))) > 0 Then
+                            Dim Forms As List(Of String) = PokemonForms.GetCountForms(CInt(p.Number))
+                            If Forms IsNot Nothing Then
+                                If Forms.Contains(CStr(p.Number & "_" & p.DexForms(i))) = True Then
+                                    If GetEntryType(Core.Player.PokedexData, CStr(p.Number & "_" & p.DexForms(i))) > EntryType Then
+                                        EntryType = GetEntryType(Core.Player.PokedexData, CStr(p.Number & "_" & p.DexForms(i)))
+                                    End If
+                                Else
+                                    If 1 > EntryType Then
+                                        EntryType = 1
+                                    End If
+                                End If
+                            End If
+                        End If
+                    End If
+                Next
+            Else
+                Dim ADlist As List(Of String) = PokemonForms.GetAdditionalDataForms(p.Number)
+                If ADlist IsNot Nothing AndAlso ADlist.Count > 0 Then
+                    For i = 0 To ADlist.Count - 1
+                        If GetEntryType(Core.Player.PokedexData, CStr(p.Number & ";" & ADlist(i))) > 0 Then
+                            Dim Forms As List(Of String) = PokemonForms.GetCountForms(CInt(p.Number))
+                            If Forms IsNot Nothing Then
+                                If Forms.Contains(CStr(p.Number & ";" & ADlist(i))) = True Then
+                                    If GetEntryType(Core.Player.PokedexData, CStr(p.Number & ";" & ADlist(i))) > EntryType Then
+                                        EntryType = GetEntryType(Core.Player.PokedexData, CStr(p.Number & ";" & ADlist(i)))
+                                    End If
+                                Else
+                                    If 1 > EntryType Then
+                                        EntryType = 1
+                                    End If
+                                End If
+                            End If
+                        End If
+                    Next
+                End If
+            End If
+            Return EntryType
+        End If
+
+    End Function
 
     Public ReadOnly Property Count() As Integer
         Get

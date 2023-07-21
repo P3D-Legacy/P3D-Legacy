@@ -12,9 +12,18 @@
 
             Select Case command.ToLower()
                 Case "cry"
-                    Dim PokemonID As Integer = int(argument)
+                    Dim PokemonID As String = argument.GetSplit(0)
+                    Dim PokemonAddition As String = "xXx"
+                    If PokemonID.Contains("_") Then
+                        PokemonAddition = PokemonForms.GetAdditionalValueFromDataFile(argument.GetSplit(0))
+                        PokemonID = argument.GetSplit(0).GetSplit(0, "_")
+                    End If
+                    If PokemonID.Contains(";") Then
+                        PokemonAddition = argument.GetSplit(0).GetSplit(1, ";")
+                        PokemonID = argument.GetSplit(0).GetSplit(0, ";")
+                    End If
 
-                    Dim p As Pokemon = Pokemon.GetPokemonByID(PokemonID)
+                    Dim p As Pokemon = Pokemon.GetPokemonByID(CInt(PokemonID), PokemonAddition, True)
                     p.PlayCry()
                 Case "remove"
                     Dim index As Integer = int(argument)
@@ -43,14 +52,7 @@
                         End If
 
                         If p.IsEgg() = False Then
-                            Dim dexID As String = PokemonForms.GetPokemonDataFileName(p.Number, p.AdditionalData)
-                            If dexID.Contains("_") = False Then
-                                If PokemonForms.GetAdditionalDataForms(p.Number) IsNot Nothing AndAlso PokemonForms.GetAdditionalDataForms(p.Number).Contains(p.AdditionalData) Then
-                                    dexID = p.Number & ";" & p.AdditionalData
-                                Else
-                                    dexID = p.Number.ToString
-                                End If
-                            End If
+                            Dim dexID As String = PokemonForms.GetPokemonDataFileName(p.Number, p.AdditionalData, True)
 
                             Core.Player.PokedexData = Pokedex.ChangeEntry(Core.Player.PokedexData, dexID, pokedexType)
                         End If
@@ -65,8 +67,12 @@
                         Dim PokemonID As String = argument.GetSplit(0)
                         Dim PokemonAddition As String = "xXx"
                         If PokemonID.Contains("_") Then
-                            PokemonAddition = argument.GetSplit(0).GetSplit(1, "_")
-                            PokemonID = argument.GetSplit(0, "_")
+                            PokemonAddition = PokemonForms.GetAdditionalValueFromDataFile(argument.GetSplit(0))
+                            PokemonID = argument.GetSplit(0).GetSplit(0, "_")
+                        End If
+                        If PokemonID.Contains(";") Then
+                            PokemonAddition = argument.GetSplit(0).GetSplit(1, ";")
+                            PokemonID = argument.GetSplit(0).GetSplit(0, ";")
                         End If
                         Dim Level As Integer = int(argument.GetSplit(1))
 
@@ -147,14 +153,7 @@
                         End If
 
                         If Pokemon.IsEgg() = False Then
-                            Dim dexID As String = PokemonForms.GetPokemonDataFileName(Pokemon.Number, Pokemon.AdditionalData)
-                            If dexID.Contains("_") = False Then
-                                If PokemonForms.GetAdditionalDataForms(Pokemon.Number) IsNot Nothing AndAlso PokemonForms.GetAdditionalDataForms(Pokemon.Number).Contains(Pokemon.AdditionalData) Then
-                                    dexID = Pokemon.Number & ";" & Pokemon.AdditionalData
-                                Else
-                                    dexID = Pokemon.Number.ToString
-                                End If
-                            End If
+                            Dim dexID As String = PokemonForms.GetPokemonDataFileName(Pokemon.Number, Pokemon.AdditionalData, True)
 
                             Core.Player.PokedexData = Pokedex.ChangeEntry(Core.Player.PokedexData, dexID, pokedexType)
                         End If
@@ -891,14 +890,7 @@
                         End If
 
                         If p.IsEgg() = False Then
-                            Dim dexID As String = PokemonForms.GetPokemonDataFileName(p.Number, p.AdditionalData)
-                            If dexID.Contains("_") = False Then
-                                If PokemonForms.GetAdditionalDataForms(p.Number) IsNot Nothing AndAlso PokemonForms.GetAdditionalDataForms(p.Number).Contains(p.AdditionalData) Then
-                                    dexID = p.Number & ";" & p.AdditionalData
-                                Else
-                                    dexID = p.Number.ToString
-                                End If
-                            End If
+                            Dim dexID As String = PokemonForms.GetPokemonDataFileName(p.Number, p.AdditionalData, True)
                             Core.Player.PokedexData = Pokedex.ChangeEntry(Core.Player.PokedexData, dexID, pokedexType)
                         End If
                     Else
@@ -910,10 +902,14 @@
                         Next
 
                         Dim PokemonID As String = argument.GetSplit(0)
-                        Dim PokemonAddition As String = ""
+                        Dim PokemonAddition As String = "xXx"
                         If PokemonID.Contains("_") Then
-                            PokemonAddition = argument.GetSplit(1, "_")
-                            PokemonID = argument.GetSplit(0, "_")
+                            PokemonAddition = PokemonForms.GetAdditionalValueFromDataFile(argument.GetSplit(0))
+                            PokemonID = argument.GetSplit(0).GetSplit(0, "_")
+                        End If
+                        If PokemonID.Contains(";") Then
+                            PokemonAddition = argument.GetSplit(0).GetSplit(1, ";")
+                            PokemonID = argument.GetSplit(0).GetSplit(0, ";")
                         End If
                         Dim Level As Integer = int(argument.GetSplit(1))
 

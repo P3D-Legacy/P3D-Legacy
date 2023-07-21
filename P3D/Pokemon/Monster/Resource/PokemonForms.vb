@@ -122,6 +122,11 @@ Public Class PokemonForms
                                                                         Case Else
                                                                             form.TypeChange = Element.Types.Blank
                                                                     End Select
+                                                                    If arguments.Count >= 13 Then
+                                                                        If arguments(12) <> "" Then
+                                                                            form.IncludeBaseFormInDexCount = CBool(arguments(12))
+                                                                        End If
+                                                                    End If
                                                                 End If
                                                             End If
                                                         End If
@@ -487,6 +492,30 @@ Public Class PokemonForms
         Return ""
     End Function
 
+    Public Shared Function GetCountForms(ByVal Number As Integer) As List(Of String)
+        Dim Forms As New List(Of String)
+
+        If _pokemonList.Count > 0 Then
+            For Each listP In _pokemonList
+                If listP.IsNumber(Number) = True AndAlso listP.IncludeBaseFormInDexCount = True Then
+                    If listP.DataFileSuffix = "" Then
+                        Forms.Add(Number.ToString & ";" & listP.AdditionalValue)
+                    Else
+                        Forms.Add(Number.ToString & listP.DataFileSuffix)
+                    End If
+
+                End If
+            Next
+        End If
+
+        If Forms.Count > 0 Then
+            Return Forms
+        End If
+
+        Return Nothing
+
+    End Function
+
     Public Shared Function GetDefaultOverworldSpriteAddition(ByVal Number As Integer) As String
         Return ""
     End Function
@@ -510,6 +539,7 @@ Public Class PokemonForms
         Public CryFileSuffix As String = ""
         Public WildFormTriggers As New List(Of String)
         Public TypeChange As Element.Types = Element.Types.Blank
+        Public IncludeBaseFormInDexCount As Boolean = False
 
         Public Overridable Function GetInitialAdditionalData(ByVal P As Pokemon) As String
             If WildFormTriggers.Count > 0 Then

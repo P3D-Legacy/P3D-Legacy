@@ -557,14 +557,7 @@ Public Class PokedexScreen
                     Dim id As Integer = (y + Scroll) * 6 + x
 
                     If id <= Me.PokemonList.Count - 1 Then
-                        Dim dexID As String = PokemonForms.GetPokemonDataFileName(Me.PokemonList(id).Number, Me.PokemonList(id).AdditionalData)
-                        If dexID.Contains("_") = False Then
-                            If PokemonForms.GetAdditionalDataForms(Me.PokemonList(id).Number) IsNot Nothing AndAlso PokemonForms.GetAdditionalDataForms(Me.PokemonList(id).Number).Contains(Me.PokemonList(id).AdditionalData) Then
-                                dexID = Me.PokemonList(id).Number & ";" & Me.PokemonList(id).AdditionalData
-                            Else
-                                dexID = Me.PokemonList(id).Number.ToString
-                            End If
-                        End If
+                        Dim dexID As String = PokemonForms.GetPokemonDataFileName(Me.PokemonList(id).Number, Me.PokemonList(id).AdditionalData, True)
 
                         If Not CHabitat Is Nothing OrElse Me.Profile.Pokedex.OriginalCount >= Profile.Pokedex.GetPlace(dexID) Then
                             Canvas.DrawRectangle(New Rectangle(50 + x * 100, 140 + y * 100, 64, 92), New Color(42, 167, 198, 150))
@@ -584,6 +577,13 @@ Public Class PokedexScreen
 
                         If Cursor = New Vector2(x, y) Then
                             DrawPokemonPreview(p)
+                        End If
+
+                        If entryType = 0 Then
+                            Dim formEntry As Integer = Pokedex.HasAnyForm(Me.PokemonList(id).Number)
+                            If formEntry > 0 Then
+                                entryType = formEntry
+                            End If
                         End If
 
                         Dim c As Color = Color.Gray
@@ -668,16 +668,16 @@ Public Class PokedexScreen
     End Function
 
     Private Sub DrawPokemonPreview(ByVal p As Pokemon)
-        Dim dexID As String = PokemonForms.GetPokemonDataFileName(p.Number, p.AdditionalData)
-        If dexID.Contains("_") = False Then
-            If PokemonForms.GetAdditionalDataForms(p.Number) IsNot Nothing AndAlso PokemonForms.GetAdditionalDataForms(p.Number).Contains(p.AdditionalData) Then
-                dexID = p.Number & ";" & p.AdditionalData
-            Else
-                dexID = p.Number.ToString
+        Dim dexID As String = PokemonForms.GetPokemonDataFileName(p.Number, p.AdditionalData, True)
+        
+        Dim entryType As Integer = Pokedex.GetEntryType(Core.Player.PokedexData, dexID)
+
+        If entryType = 0 Then
+            Dim formEntry As Integer = Pokedex.HasAnyForm(p.Number)
+            If formEntry > 0 Then
+                entryType = formEntry
             End If
         End If
-
-        Dim entryType As Integer = Pokedex.GetEntryType(Core.Player.PokedexData, dexID)
 
         For i = 0 To 4
             Canvas.DrawGradient(New Rectangle(650, 300 + i * 40, 50, 2), New Color(255, 255, 255, 10), New Color(255, 255, 255, 255), True, -1)
@@ -812,6 +812,13 @@ Public Class PokedexScreen
                                 SoundManager.PlaySound("select")
 
                                 Core.SetScreen(New PokedexViewScreen(Me, TempPokemonStorage(dexIndex), False, dexIndex - 1))
+                            Else
+                                Dim formEntry As Integer = Pokedex.HasAnyForm(TempPokemonStorage(dexIndex).Number)
+                                If formEntry > 0 Then
+                                    SoundManager.PlaySound("select")
+
+                                    Core.SetScreen(New PokedexViewScreen(Me, TempPokemonStorage(dexIndex), False, dexIndex - 1))
+                                End If
                             End If
                         Else
                             Cursor.X = x
@@ -1366,12 +1373,7 @@ Public Class PokedexViewScreen
     End Sub
 
     Private Sub LoadPokemonData(ByVal newDexIndex As Integer, Optional ByVal newPokemon As Pokemon = Nothing, Optional playCry As Boolean = False)
-        Dim oldCry As String = ""
-        Dim oldNumber As Integer = -1
-        If Me.Pokemon IsNot Nothing Then
-            oldNumber = Me.Pokemon.Number
-            oldCry = PokemonForms.GetCrySuffix(Me.Pokemon)
-        End If
+
         If newPokemon IsNot Nothing Then
             EvolutionLineConnections.Clear()
             Me.Pokemon = newPokemon
@@ -1401,11 +1403,18 @@ Public Class PokedexViewScreen
 
         Me.EntryType = Pokedex.GetEntryType(Core.Player.PokedexData, dexID)
 
+        If Me.EntryType = 0 Then
+            Dim formEntry As Integer = Pokedex.HasAnyForm(Me.Pokemon.Number)
+            If formEntry > 0 Then
+                Me.EntryType = formEntry
+            End If
+        End If
+
         Me.GetYOffset()
         Me.FillHabitats()
         Me.FillEvolutionGrid()
 
-        If playCry = True AndAlso oldNumber <> Me.Pokemon.Number OrElse oldCry <> PokemonForms.GetCrySuffix(Me.Pokemon) Then
+        If playCry = True Then
             Dim crySuffix As String = PokemonForms.GetCrySuffix(Me.Pokemon)
             SoundManager.PlayPokemonCry(Pokemon.Number, crySuffix)
         End If
@@ -1857,18 +1866,33 @@ Public Class PokedexViewScreen
                 Dim PDexScreen As PokedexScreen = CType(Me.PreScreen, PokedexScreen)
                 If Me.DexIndex > 0 Then
                     Dim index As Integer = Me.DexIndex - 1
-                    While Pokedex.GetEntryType(Core.Player.PokedexData, PokemonForms.GetPokemonDataFileName(PDexScreen.PokemonList(index).Number, PDexScreen.PokemonList(index).AdditionalData, True)) = 0
-                        If index > 0 Then
-                            index -= 1
-                        Else
-                            Exit While
+
+                    Dim pokeID As String = ""
+
+                    If Pokedex.GetEntryType(Core.Player.PokedexData, PokemonForms.GetPokemonDataFileName(PDexScreen.PokemonList(index).Number, PDexScreen.PokemonList(index).AdditionalData, True)) = 0 Then
+                        pokeID = PokemonForms.GetPokemonDataFileName(PDexScreen.PokemonList(index).Number, PDexScreen.PokemonList(index).AdditionalData, True)
+                        While Pokedex.GetEntryType(Core.Player.PokedexData, pokeID) = 0
+                            Dim formEntry As Integer = Pokedex.HasAnyForm(PDexScreen.PokemonList(index).Number)
+                            If formEntry > 0 Then
+                                pokeID = PDexScreen.PokemonList(index).Number.ToString
+                                Exit While
+                            Else
+                                If index > 0 Then
+                                    index -= 1
+                                    pokeID = PokemonForms.GetPokemonDataFileName(PDexScreen.PokemonList(index).Number, PDexScreen.PokemonList(index).AdditionalData, True)
+                                Else
+                                    Exit While
+                                End If
+                            End If
+                        End While
+                    End If
+                    If pokeID <> "" Then
+                        If Pokedex.GetEntryType(Core.Player.PokedexData, pokeID) > 0 OrElse Pokedex.HasAnyForm(PDexScreen.PokemonList(index).Number) > 0 Then
+                            vLineLength = 1
+                            mLineLength = 1
+                            fadeMainImage = 0
+                            LoadPokemonData(index, Nothing, True)
                         End If
-                    End While
-                    If Pokedex.GetEntryType(Core.Player.PokedexData, PokemonForms.GetPokemonDataFileName(PDexScreen.PokemonList(index).Number, PDexScreen.PokemonList(index).AdditionalData, True)) > 0 Then
-                        vLineLength = 1
-                        mLineLength = 1
-                        fadeMainImage = 0
-                        LoadPokemonData(index, Nothing, True)
                     End If
                 End If
             End If
@@ -1878,29 +1902,58 @@ Public Class PokedexViewScreen
                 If Me.DexIndex < PDexScreen.PokemonList.count - 1 Then
                     Dim index As Integer = Me.DexIndex + 1
 
-                    While Pokedex.GetEntryType(Core.Player.PokedexData, PokemonForms.GetPokemonDataFileName(PDexScreen.PokemonList(index).Number, PDexScreen.PokemonList(index).AdditionalData, True)) = 0
-                        If index < PDexScreen.PokemonList.Count - 1 Then
-                            index += 1
-                        Else
+                    Dim pokeID As String = PokemonForms.GetPokemonDataFileName(PDexScreen.PokemonList(index).Number, PDexScreen.PokemonList(index).AdditionalData, True)
+
+                    While Pokedex.GetEntryType(Core.Player.PokedexData, pokeID) = 0
+                        Dim formEntry As Integer = Pokedex.HasAnyForm(PDexScreen.PokemonList(index).Number)
+                        If formEntry > 0 Then
+                            pokeID = PDexScreen.PokemonList(index).Number.ToString
                             Exit While
+                        Else
+                            If index < PDexScreen.PokemonList.Count - 1 Then
+                                index += 1
+                                pokeID = PokemonForms.GetPokemonDataFileName(PDexScreen.PokemonList(index).Number, PDexScreen.PokemonList(index).AdditionalData, True)
+                            Else
+                                Exit While
+                            End If
                         End If
                     End While
 
-                    If Pokedex.GetEntryType(Core.Player.PokedexData, PokemonForms.GetPokemonDataFileName(PDexScreen.PokemonList(index).Number, PDexScreen.PokemonList(index).AdditionalData, True)) > 0 Then
-                        vLineLength = 1
-                        mLineLength = 1
-                        fadeMainImage = 0
-                        LoadPokemonData(index, Nothing, True)
+                    If pokeID <> "" Then
+                        If Pokedex.GetEntryType(Core.Player.PokedexData, pokeID) > 0 OrElse Pokedex.HasAnyForm(PDexScreen.PokemonList(index).Number) > 0 Then
+                            vLineLength = 1
+                            mLineLength = 1
+                            fadeMainImage = 0
+                            LoadPokemonData(index, Nothing, True)
+                        End If
                     End If
                 End If
             End If
         End If
 
         If Controls.ShiftPressed = True Or ControllerHandler.ButtonPressed(Buttons.Back) Then
+            Dim OriginalFormIndex As Integer = Me.FormIndex
             Me.FormIndex += 1
+
             If Me.FormIndex > Me.Forms.Count - 1 Then
                 Me.FormIndex = 0
             End If
+
+            Dim formID As String = Me.Forms(Me.FormIndex)
+            If formID <> "" AndAlso Pokedex.GetEntryType(Core.Player.PokedexData, formID) = 0 Then
+                While Pokedex.GetEntryType(Core.Player.PokedexData, formID) = 0
+                    Me.FormIndex += 1
+
+                    If Me.FormIndex > Me.Forms.Count - 1 Then
+                        Me.FormIndex = 0
+                    End If
+                    formID = Me.Forms(Me.FormIndex)
+                    If FormIndex = OriginalFormIndex Then
+                        Exit While
+                    End If
+                End While
+            End If
+
             If Me.Forms(Me.FormIndex) IsNot "" Then
                 Dim PokeID As Integer = CInt(Me.Forms(Me.FormIndex).GetSplit(0, "_").GetSplit(0, ";"))
                 Dim PokeAD As String = ""
@@ -2068,29 +2121,53 @@ Public Class PokedexViewScreen
             If pokemon IsNot Nothing Then
                 Dim dexID As String = PokemonForms.GetPokemonDataFileName(pokemon.Number, pokemon.AdditionalData, True)
 
+                Dim TempForms As New List(Of String)
+
+                If pokemon.Number <> Me.Pokemon.Number Then
+                    TempForms.Add(pokemon.Number.ToString)
+                    If pokemon.EvolutionLines.Count > 0 Then
+                        For e = 0 To pokemon.EvolutionLines.Count - 1
+                            Dim PokemonIDs As New List(Of String)
+                            Dim DataEntries As String() = pokemon.EvolutionLines(e).Split(",")
+                            For i = 0 To DataEntries.Count - 1
+                                PokemonIDs.Add(DataEntries(i).GetSplit(0, "\"))
+                            Next
+                            For Each f As String In PokemonIDs
+                                If CInt(f.GetSplit(0, "_").GetSplit(0, ";")) = pokemon.Number Then
+                                    If Me.Forms.Contains(f) = False Then
+                                        TempForms.Add(f)
+                                    End If
+                                End If
+                            Next
+                        Next
+                    Else
+                        TempForms.AddRange(Me.Forms)
+                    End If
+                End If
                 Dim fIndex As Integer = -1
 
-                For f = 0 To Me.Forms.Count - 1
-                    If Me.Forms(f) = dexID Then
+                For f = 0 To TempForms.Count - 1
+                    If TempForms(f) = dexID Then
                         If Pokedex.GetEntryType(Core.Player.PokedexData, dexID) > 0 Then
                             fIndex = f
                         End If
                     End If
                 Next
 
-                If fIndex <> -1 AndAlso Me.Forms(fIndex) IsNot "" Then
+                If fIndex <> -1 AndAlso TempForms(fIndex) IsNot "" Then
                     Me.FormIndex = fIndex
-                    Dim PokeID As Integer = CInt(Me.Forms(Me.FormIndex).GetSplit(0, "_").GetSplit(0, ";"))
+                    Dim PokeID As Integer = CInt(TempForms(Me.FormIndex).GetSplit(0, "_").GetSplit(0, ";"))
                     Dim PokeAD As String = ""
 
-                    If Me.Forms(Me.FormIndex).Contains("_") Then
-                        PokeAD = PokemonForms.GetAdditionalValueFromDataFile(Me.Forms(Me.FormIndex))
-                    ElseIf Me.Forms(Me.FormIndex).Contains(";") Then
-                        PokeAD = Me.Forms(Me.FormIndex).GetSplit(1, ";")
+                    If TempForms(Me.FormIndex).Contains("_") Then
+                        PokeAD = PokemonForms.GetAdditionalValueFromDataFile(TempForms(Me.FormIndex))
+                    ElseIf TempForms(Me.FormIndex).Contains(";") Then
+                        PokeAD = TempForms(Me.FormIndex).GetSplit(1, ";")
                     End If
 
                     Dim newPokemon As Pokemon = Pokemon.GetPokemonByID(PokeID, PokeAD, True)
 
+                    Me.Forms = TempForms
                     LoadPokemonData(-1, newPokemon, True)
 
                 ElseIf Me.DexIndex > -1 Then
