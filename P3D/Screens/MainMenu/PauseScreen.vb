@@ -323,12 +323,12 @@
     End Sub
 
     Public Overrides Sub ChangeTo()
-        MusicManager.MasterVolume /= 4
+        MusicManager.PauseVolume = 0.25F
         MusicManager.UpdateVolume()
     End Sub
 
     Public Overrides Sub ChangeFrom()
-        MusicManager.MasterVolume *= 4
+        MusicManager.PauseVolume = 1.0F
         MusicManager.UpdateVolume()
     End Sub
 End Class

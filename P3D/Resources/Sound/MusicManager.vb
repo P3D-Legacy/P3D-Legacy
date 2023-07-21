@@ -142,6 +142,7 @@ Public Class MusicManager
     Public Shared audioFileWMA As MediaFoundationReader
     Public Shared _stream As WaveChannel32
 
+    Public Shared Property PauseVolume As Single = 1.0F
     Public Shared Property MasterVolume As Single = 1.0F
     Public Shared ReadOnly Property CurrentSong As SongContainer
         Get
@@ -300,15 +301,15 @@ Public Class MusicManager
                 'End If
             End If
         End If
-        If Core.GameInstance.IsActive AndAlso _lastVolume <> (Volume * MasterVolume) Then
+        If Core.GameInstance.IsActive AndAlso _lastVolume <> (Volume * PauseVolume * MasterVolume) Then
             UpdateVolume()
         End If
     End Sub
 
     Public Shared Sub UpdateVolume()
-        _lastVolume = Volume * MasterVolume
+        _lastVolume = Volume * PauseVolume * MasterVolume
         If Not _stream Is Nothing Then
-            _stream.Volume = Volume * MasterVolume
+            _stream.Volume = Volume * PauseVolume * MasterVolume
         End If
     End Sub
 
@@ -703,8 +704,8 @@ Public Class MusicManager
             {
                 {"welcome", "RouteMusic1"},
                 {"battle", "johto_wild"},
-                {"batleintro", "battle_intro"},
-                {"johto_battle_intro", "battle_intro"},
+                {"batleintro", "johto_wild_intro"},
+                {"johto_battle_intro", "johto_wild_intro"},
                 {"darkcave", "dark_cave"},
                 {"showmearound", "show_me_around"},
                 {"sprouttower", "sprout_tower"},
