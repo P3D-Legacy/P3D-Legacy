@@ -579,10 +579,18 @@ Public Class PokedexScreen
                             DrawPokemonPreview(p)
                         End If
 
-                        If entryType = 0 Then
-                            Dim formEntry As Integer = Pokedex.HasAnyForm(Me.PokemonList(id).Number)
-                            If formEntry > 0 Then
-                                entryType = formEntry
+                        Dim drawBlack As Boolean = False
+                        If dexID.Contains(";") = False Then
+                            If entryType = 0 Then
+                                Dim formEntry As Integer = Pokedex.HasAnyForm(Me.PokemonList(id).Number)
+                                If formEntry > 0 Then
+                                    entryType = formEntry
+                                    Dim pForms As List(Of String) = PokemonForms.GetAdditionalDataForms(Me.PokemonList(id).Number)
+                                    If pForms Is Nothing Then
+                                        drawBlack = True
+                                    End If
+
+                                End If
                             End If
                         End If
 
@@ -590,6 +598,9 @@ Public Class PokedexScreen
                         If entryType > 0 Then
                             If entryType > 1 Then
                                 c = Color.White
+                            End If
+                            If drawBlack = True Then
+                                c = Color.Black
                             End If
                             Dim pokeTexture = p.GetMenuTexture()
                             Dim pokeTextureScale As Vector2 = New Vector2(CSng(32 / pokeTexture.Width * 2), CSng(32 / pokeTexture.Height * 2))
@@ -671,11 +682,18 @@ Public Class PokedexScreen
         Dim dexID As String = PokemonForms.GetPokemonDataFileName(p.Number, p.AdditionalData, True)
         
         Dim entryType As Integer = Pokedex.GetEntryType(Core.Player.PokedexData, dexID)
+        Dim textureColor As Color = Color.White
 
-        If entryType = 0 Then
-            Dim formEntry As Integer = Pokedex.HasAnyForm(p.Number)
-            If formEntry > 0 Then
-                entryType = formEntry
+        If dexID.Contains("_") = False AndAlso dexID.Contains(";") = False Then
+            If entryType = 0 Then
+                Dim formEntry As Integer = Pokedex.HasAnyForm(p.Number)
+                If formEntry > 0 Then
+                    entryType = formEntry
+                    Dim pForms As List(Of String) = PokemonForms.GetAdditionalDataForms(p.Number)
+                    If pForms Is Nothing Then
+                        textureColor = Color.Black
+                    End If
+                End If
             End If
         End If
 
@@ -699,7 +717,7 @@ Public Class PokedexScreen
             Core.SpriteBatch.DrawString(FontManager.MainFont, "???" & Environment.NewLine & Environment.NewLine & "No. " & no, New Vector2(864, 200), Color.White)
         Else
             Core.SpriteBatch.DrawString(FontManager.MainFont, p.GetName(True) & Environment.NewLine & Environment.NewLine & "No. " & no, New Vector2(864, 200), Color.White)
-            Core.SpriteBatch.Draw(p.GetTexture(True), New Rectangle(CInt(680 - p.GetTexture(True).Width / 4), CInt(140 - p.GetTexture(True).Height / 4), MathHelper.Min(CInt(p.GetTexture(True).Width * 2), 256), MathHelper.Min(CInt(p.GetTexture(True).Height * 2), 256)), Color.White)
+            Core.SpriteBatch.Draw(p.GetTexture(True), New Rectangle(CInt(680 - p.GetTexture(True).Width / 4), CInt(140 - p.GetTexture(True).Height / 4), MathHelper.Min(CInt(p.GetTexture(True).Width * 2), 256), MathHelper.Min(CInt(p.GetTexture(True).Height * 2), 256)), textureColor)
 
             Core.SpriteBatch.DrawString(FontManager.MainFont, "SPECIES", New Vector2(680, 310), Color.Black)
             Core.SpriteBatch.DrawString(FontManager.MainFont, "TYPE", New Vector2(680, 350), Color.Black)
@@ -1403,10 +1421,12 @@ Public Class PokedexViewScreen
 
         Me.EntryType = Pokedex.GetEntryType(Core.Player.PokedexData, dexID)
 
-        If Me.EntryType = 0 Then
-            Dim formEntry As Integer = Pokedex.HasAnyForm(Me.Pokemon.Number)
-            If formEntry > 0 Then
-                Me.EntryType = formEntry
+        If dexID.Contains("_") = False AndAlso dexID.Contains(";") = False Then
+            If EntryType = 0 Then
+                Dim formEntry As Integer = Pokedex.HasAnyForm(Me.Pokemon.Number)
+                If formEntry > 0 Then
+                    Me.EntryType = formEntry
+                End If
             End If
         End If
 
@@ -1638,8 +1658,16 @@ Public Class PokedexViewScreen
 
         Dim pokeTexture = Pokemon.GetMenuTexture()
         Dim pokeTextureScale As Vector2 = New Vector2(CSng(32 / pokeTexture.Width * 2), CSng(32 / pokeTexture.Height * 2))
-        Core.SpriteBatch.Draw(pokeTexture, New Rectangle(28, 20, CInt(pokeTexture.Width * pokeTextureScale.X), CInt(pokeTexture.Height * pokeTextureScale.Y)), Color.White)
-        Core.SpriteBatch.DrawString(FontManager.MainFont, Pokemon.GetName(True), New Vector2(100, 36), Color.Black, 0.0F, Vector2.Zero, 1.0F, SpriteEffects.None, 0.0F)
+
+        If EntryType > 0 Then
+            Core.SpriteBatch.Draw(pokeTexture, New Rectangle(28, 20, CInt(pokeTexture.Width * pokeTextureScale.X), CInt(pokeTexture.Height * pokeTextureScale.Y)), Color.White)
+
+            Core.SpriteBatch.DrawString(FontManager.MainFont, Pokemon.GetName(True), New Vector2(100, 36), Color.Black, 0.0F, Vector2.Zero, 1.0F, SpriteEffects.None, 0.0F)
+        Else
+            Core.SpriteBatch.Draw(pokeTexture, New Rectangle(28, 20, CInt(pokeTexture.Width * pokeTextureScale.X), CInt(pokeTexture.Height * pokeTextureScale.Y)), Color.Black)
+
+            Core.SpriteBatch.DrawString(FontManager.MainFont, "???", New Vector2(100, 36), Color.Black, 0.0F, Vector2.Zero, 1.0F, SpriteEffects.None, 0.0F)
+        End If
 
         If EntryType = 1 Then
             Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokedexhabitat", New Rectangle(160, 170, 10, 10), ""), New Rectangle(64 * 6 + 40, 42, 20, 20), Color.White)
@@ -1657,7 +1685,15 @@ Public Class PokedexViewScreen
         End If
 
         If Me.Forms.Count > 1 Then
-            Core.SpriteBatch.DrawString(FontManager.MainFont, "Press [Shift] to switch forms", New Vector2(CInt(windowSize.Width - FontManager.MainFont.MeasureString("Press [Shift] to switch forms").X - 128), 36), Color.White, 0.0F, Vector2.Zero, 1.0F, SpriteEffects.None, 0.0F)
+            Dim CanSwitchCount As Integer = 0
+            For i = 0 To Me.Forms.Count - 1
+                If Pokedex.GetEntryType(Core.Player.PokedexData, Me.Forms(i)) > 0 Then
+                    CanSwitchCount += 1
+                End If
+            Next
+            If CanSwitchCount > 1 Then
+                Core.SpriteBatch.DrawString(FontManager.MainFont, "Press [Shift] to switch forms", New Vector2(CInt(windowSize.Width - FontManager.MainFont.MeasureString("Press [Shift] to switch forms").X - 128), 36), Color.White, 0.0F, Vector2.Zero, 1.0F, SpriteEffects.None, 0.0F)
+            End If
         End If
 
         Select Case Me.Page
@@ -1677,7 +1713,14 @@ Public Class PokedexViewScreen
 
     Private Sub DrawPage1()
         Dim v As Vector2 = Core.GetMiddlePosition(New Size(MathHelper.Min(Pokemon.GetTexture(True).Width * 4, 512), MathHelper.Min(Pokemon.GetTexture(True).Height * 4, 512)))
-        Core.SpriteBatch.Draw(Pokemon.GetTexture(Me.FrontView), New Rectangle(CInt(v.X), CInt(v.Y) - yOffset * 2 + 32, MathHelper.Min(Pokemon.GetTexture(True).Width * 4, 512), MathHelper.Min(Pokemon.GetTexture(True).Height * 4, 512)), New Color(255, 255, 255, fadeMainImage))
+
+        Dim textureColor As Color = Color.White
+        Dim pForms As List(Of String) = PokemonForms.GetAdditionalDataForms(Pokemon.Number)
+        If EntryType = 0 AndAlso pForms Is Nothing Then
+            textureColor = New Color(0, 0, 0, 0)
+        End If
+
+        Core.SpriteBatch.Draw(Pokemon.GetTexture(Me.FrontView), New Rectangle(CInt(v.X), CInt(v.Y) - yOffset * 2 + 32, MathHelper.Min(Pokemon.GetTexture(True).Width * 4, 512), MathHelper.Min(Pokemon.GetTexture(True).Height * 4, 512)), New Color(textureColor.R, textureColor.G, textureColor.B, textureColor.A))
 
         If fadeMainImage = 255 Then
             Dim mV As Vector2 = Core.GetMiddlePosition(New Size(0, 0))
@@ -2141,6 +2184,10 @@ Public Class PokedexViewScreen
                             Next
                         Next
                     Else
+                        TempForms.AddRange(Me.Forms)
+                    End If
+                Else
+                    If Me.Forms.Count > 0 Then
                         TempForms.AddRange(Me.Forms)
                     End If
                 End If
