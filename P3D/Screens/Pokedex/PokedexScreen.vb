@@ -586,10 +586,11 @@ Public Class PokedexScreen
                                 If formEntry > 0 Then
                                     entryType = formEntry
                                     Dim pForms As List(Of String) = PokemonForms.GetAdditionalDataForms(Me.PokemonList(id).Number)
-                                    If pForms Is Nothing Then
-                                        drawBlack = True
+                                    If dexID.Contains("_") = True Then
+                                        If pForms Is Nothing Then
+                                            drawBlack = True
+                                        End If
                                     End If
-
                                 End If
                             End If
                         End If
@@ -682,7 +683,6 @@ Public Class PokedexScreen
         Dim dexID As String = PokemonForms.GetPokemonDataFileName(p.Number, p.AdditionalData, True)
         
         Dim entryType As Integer = Pokedex.GetEntryType(Core.Player.PokedexData, dexID)
-        Dim textureColor As Color = Color.White
 
         If dexID.Contains("_") = False AndAlso dexID.Contains(";") = False Then
             If entryType = 0 Then
@@ -690,9 +690,6 @@ Public Class PokedexScreen
                 If formEntry > 0 Then
                     entryType = formEntry
                     Dim pForms As List(Of String) = PokemonForms.GetAdditionalDataForms(p.Number)
-                    If pForms Is Nothing Then
-                        textureColor = Color.Black
-                    End If
                 End If
             End If
         End If
@@ -717,7 +714,7 @@ Public Class PokedexScreen
             Core.SpriteBatch.DrawString(FontManager.MainFont, "???" & Environment.NewLine & Environment.NewLine & "No. " & no, New Vector2(864, 200), Color.White)
         Else
             Core.SpriteBatch.DrawString(FontManager.MainFont, p.GetName(True) & Environment.NewLine & Environment.NewLine & "No. " & no, New Vector2(864, 200), Color.White)
-            Core.SpriteBatch.Draw(p.GetTexture(True), New Rectangle(CInt(680 - p.GetTexture(True).Width / 4), CInt(140 - p.GetTexture(True).Height / 4), MathHelper.Min(CInt(p.GetTexture(True).Width * 2), 256), MathHelper.Min(CInt(p.GetTexture(True).Height * 2), 256)), textureColor)
+            Core.SpriteBatch.Draw(p.GetTexture(True), New Rectangle(CInt(680 - p.GetTexture(True).Width / 4), CInt(140 - p.GetTexture(True).Height / 4), MathHelper.Min(CInt(p.GetTexture(True).Width * 2), 256), MathHelper.Min(CInt(p.GetTexture(True).Height * 2), 256)), Color.White)
 
             Core.SpriteBatch.DrawString(FontManager.MainFont, "SPECIES", New Vector2(680, 310), Color.Black)
             Core.SpriteBatch.DrawString(FontManager.MainFont, "TYPE", New Vector2(680, 350), Color.Black)
