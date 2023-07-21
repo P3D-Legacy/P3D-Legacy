@@ -1688,7 +1688,7 @@ Public Class PokedexViewScreen
                     CanSwitchCount += 1
                 End If
             Next
-            If CanSwitchCount > 1 Then
+            If CanSwitchCount > 1 OrElse CanSwitchCount = 1 AndAlso Pokedex.GetEntryType(Core.Player.PokedexData, PokemonForms.GetPokemonDataFileName(Me.Pokemon.Number, Me.Pokemon.AdditionalData, True)) = 0 Then
                 Core.SpriteBatch.DrawString(FontManager.MainFont, "Press [Shift] to switch forms", New Vector2(CInt(windowSize.Width - FontManager.MainFont.MeasureString("Press [Shift] to switch forms").X - 128), 36), Color.White, 0.0F, Vector2.Zero, 1.0F, SpriteEffects.None, 0.0F)
             End If
         End If
@@ -2006,7 +2006,11 @@ Public Class PokedexViewScreen
 
                 Dim newPokemon As Pokemon = Pokemon.GetPokemonByID(PokeID, PokeAD, True)
 
-                LoadPokemonData(-1, newPokemon, True)
+                Dim playCry As Boolean = True
+                If FormIndex = OriginalFormIndex Then
+                    playCry = False
+                End If
+                LoadPokemonData(-1, newPokemon, playCry)
 
             End If
         End If
