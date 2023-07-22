@@ -253,6 +253,17 @@ Public Class OverworldCamera
 
             If OS.ActionScript.IsReady = True Then
                 If (KeyBoardHandler.KeyPressed(KeyBindings.CameraLockKey) = True Or ControllerHandler.ButtonPressed(Buttons.RightStick)) = True And _moved = 0.0F And YawLocked = False Then
+                    Select Case GetFacingDirection()
+                        Case 0
+                            Yaw = 0
+                        Case 1
+                            Yaw = MathHelper.Pi * 0.5
+                        Case 2
+                            Yaw = MathHelper.Pi
+                        Case 3
+                            Yaw = MathHelper.Pi * 1.5
+                    End Select
+
                     _freeCameraMode = Not _freeCameraMode
 
                     If _freeCameraMode = False Then
