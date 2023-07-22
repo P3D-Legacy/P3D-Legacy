@@ -38,7 +38,7 @@ Public Class TextureManager
                         End Try
                     End Using
                 Else
-                    Logger.Log(Logger.LogTypes.ErrorMessage, "Textures.vb: Texture """ & GameController.GamePath & "\" & cContent.RootDirectory & "\" & Name & """ was not found!")
+                    Logger.Log(Logger.LogTypes.ErrorMessage, "TextureManager.vb: Texture """ & GameController.GamePath & "\" & cContent.RootDirectory & "\" & Name & """ was not found!")
                     Return DefaultTexture
                 End If
             Else
@@ -104,7 +104,7 @@ Public Class TextureManager
                             End Try
                         End Using
                     Else
-                        Logger.Log(Logger.LogTypes.ErrorMessage, "Textures.vb: Texture """ & GameController.GamePath & "\" & cContent.RootDirectory & "\" & Name & """ was not found!")
+                        Logger.Log(Logger.LogTypes.ErrorMessage, "TextureManager.vb: Texture """ & GameController.GamePath & "\" & cContent.RootDirectory & "\" & Name & """ was not found!")
                         Return DefaultTexture
                     End If
                 Else
@@ -156,7 +156,7 @@ Public Class TextureManager
 
             Dim tRectangle As New Rectangle(0, 0, Texture.Width, Texture.Height)
             If tRectangle.Contains(Rectangle) = False Then
-                Logger.Log(Logger.LogTypes.ErrorMessage, "Textures.vb: The rectangle for a texture was out of bounds!")
+                Logger.Log(Logger.LogTypes.ErrorMessage, "TextureManager.vb: The rectangle for a texture was out of bounds!")
                 Return DefaultTexture
             End If
 
