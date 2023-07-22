@@ -130,11 +130,12 @@
             Next
 
             If canSurf = True Then
+                Screen.Level.PokemonEncounter.TryEncounterWildPokemon(Me.Position, Spawner.EncounterMethods.Surfing, "")
+
                 If CType(Screen.Camera, OverworldCamera)._debugWalk = False Then
                     Screen.Camera.Move(1)
                 End If
 
-                Screen.Level.PokemonEncounter.TryEncounterWildPokemon(Me.Position, Spawner.EncounterMethods.Surfing, "")
             End If
         End If
     End Sub
