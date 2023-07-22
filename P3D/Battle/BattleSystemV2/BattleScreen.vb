@@ -1353,6 +1353,7 @@ nextIndex:
                 Next
 
                 If hasLevelUp = False Then
+                    MusicManager.Stop()
                     MusicManager.Play(SavedOverworld.Level.MusicLoop)
                     Core.SetScreen(New TransitionScreen(Me, SavedOverworld.OverworldScreen, New Color(255, 255, 255), False, AddressOf ChangeSavedScreen))
                 Else
@@ -1370,6 +1371,7 @@ nextIndex:
                     Next
 
                     If EvolvePokeList.Count = 0 Then
+                        MusicManager.Stop()
                         MusicManager.Play(SavedOverworld.Level.MusicLoop)
                         Core.SetScreen(New TransitionScreen(Me, SavedOverworld.OverworldScreen, New Color(255, 255, 255), False, AddressOf ChangeSavedScreen))
                     Else
