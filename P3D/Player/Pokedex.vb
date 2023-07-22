@@ -85,8 +85,8 @@
         Return 0
     End Function
 
-    Public Shared Function ChangeEntry(ByVal Data As String, ByVal ID As String, ByVal Type As Integer) As String
-        If Type = 0 Or AutoDetect = True Then
+    Public Shared Function ChangeEntry(ByVal Data As String, ByVal ID As String, ByVal Type As Integer, Optional ForceChange As Boolean = False) As String
+        If ForceChange = True OrElse Type = 0 Or AutoDetect = True Then
             If Data.Contains("{" & ID & "|") = True Then
                 Dim cOriginalEntry As String = ""
                 If ID.Contains(";") Then
@@ -109,7 +109,7 @@
                     End If
                 End If
 
-                If cEntry < Type Then
+                If ForceChange = True OrElse cEntry < Type Then
                     Return cData.Replace("{" & ID & "|" & cEntry & "}", "{" & ID & "|" & Type & "}")
                 Else
                     Return cData

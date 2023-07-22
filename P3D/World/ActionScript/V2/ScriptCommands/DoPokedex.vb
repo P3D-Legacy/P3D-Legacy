@@ -13,6 +13,12 @@
             Select Case command.ToLower()
                 Case "setautodetect"
                     Pokedex.AutoDetect = ScriptConversion.ToBoolean(argument)
+                Case "changeentry"
+                    Dim ForceChange As Boolean = False
+                    If argument.Split(",").Count > 2 Then
+                        ForceChange = CBool(argument.GetSplit(2, ","))
+                    End If
+                    Pokedex.ChangeEntry(Core.Player.PokedexData, argument.GetSplit(0, ","), CInt(argument.GetSplit(1, ",")), ForceChange)
                 Case Else
                     Logger.Log(Logger.LogTypes.Warning, "ScriptCommander.vb: (@pokedex." & command & ") Command not found.")
             End Select
