@@ -172,85 +172,89 @@ Public Class StorageSystemScreen
 #Region "Update"
 
     Public Overrides Sub Update()
+        TextBox.Update()
+
         If ControllerHandler.ButtonPressed(Buttons.Y) = True Or KeyBoardHandler.KeyPressed(KeyBindings.SpecialKey) = True Then
             Core.SetScreen(New StorageSystemFilterScreen(Me))
         End If
 
-        If MenuVisible = True Then
-            For i = 0 To Me.MenuEntries.Count - 1
-                If i <= Me.MenuEntries.Count - 1 Then
-                    Dim m As MenuEntry = Me.MenuEntries(i)
+        If TextBox.Showing = False Then
+            If MenuVisible = True Then
+                For i = 0 To Me.MenuEntries.Count - 1
+                    If i <= Me.MenuEntries.Count - 1 Then
+                        Dim m As MenuEntry = Me.MenuEntries(i)
 
-                    m.Update(Me)
+                        m.Update(Me)
+                    End If
+                Next
+
+                If Controls.Up(True, True) = True Then
+                    Me.MenuCursor -= 1
                 End If
-            Next
-
-            If Controls.Up(True, True) = True Then
-                Me.MenuCursor -= 1
-            End If
-            If Controls.Down(True, True) = True Then
-                Me.MenuCursor += 1
-            End If
-
-            Dim maxIndex As Integer = 0
-            Dim minIndex As Integer = 100
-
-            For Each e As MenuEntry In Me.MenuEntries
-                If e.Index < minIndex Then
-                    minIndex = e.Index
+                If Controls.Down(True, True) = True Then
+                    Me.MenuCursor += 1
                 End If
-                If e.Index > maxIndex Then
-                    maxIndex = e.Index
-                End If
-            Next
 
-            If Me.MenuCursor > maxIndex Then
-                Me.MenuCursor = minIndex
-            ElseIf Me.MenuCursor < minIndex Then
-                Me.MenuCursor = maxIndex
-            End If
-        Else
-            TurnModel()
-            If CursorMoving = True Then
-                MoveCursor()
+                Dim maxIndex As Integer = 0
+                Dim minIndex As Integer = 100
+
+                For Each e As MenuEntry In Me.MenuEntries
+                    If e.Index < minIndex Then
+                        minIndex = e.Index
+                    End If
+                    If e.Index > maxIndex Then
+                        maxIndex = e.Index
+                    End If
+                Next
+
+                If Me.MenuCursor > maxIndex Then
+                    Me.MenuCursor = minIndex
+                ElseIf Me.MenuCursor < minIndex Then
+                    Me.MenuCursor = maxIndex
+                End If
             Else
-                If ControllerHandler.ButtonPressed(Buttons.RightShoulder) = True Or Controls.Right(True, False, True, False, False, False) = True Then
-                    Me.CurrentBox += 1
-                    If CurrentBox > Me.Boxes.Count - 1 Then
-                        CurrentBox = 0
+                TurnModel()
+                If CursorMoving = True Then
+                    MoveCursor()
+                Else
+                    If ControllerHandler.ButtonPressed(Buttons.RightShoulder) = True Or Controls.Right(True, False, True, False, False, False) = True Then
+                        Me.CurrentBox += 1
+                        If CurrentBox > Me.Boxes.Count - 1 Then
+                            CurrentBox = 0
+                        End If
                     End If
-                End If
-                If ControllerHandler.ButtonPressed(Buttons.LeftShoulder) = True Or Controls.Left(True, False, True, False, False, False) = True Then
-                    Me.CurrentBox -= 1
-                    If CurrentBox < 0 Then
-                        CurrentBox = Me.Boxes.Count - 1
+                    If ControllerHandler.ButtonPressed(Buttons.LeftShoulder) = True Or Controls.Left(True, False, True, False, False, False) = True Then
+                        Me.CurrentBox -= 1
+                        If CurrentBox < 0 Then
+                            CurrentBox = Me.Boxes.Count - 1
+                        End If
                     End If
-                End If
 
-                PressNumberButtons()
+                    PressNumberButtons()
 
-                If GetRelativeMousePosition() <> New Vector2(-1) AndAlso GetRelativeMousePosition() = CursorPosition AndAlso Controls.Accept(True, False, False) = True Then
-                    SoundManager.PlaySound("select")
-                    ChooseObject()
-                End If
+                    If GetRelativeMousePosition() <> New Vector2(-1) AndAlso GetRelativeMousePosition() = CursorPosition AndAlso Controls.Accept(True, False, False) = True Then
+                        SoundManager.PlaySound("select")
+                        ChooseObject()
+                    End If
 
-                ControlCursor()
+                    ControlCursor()
 
-                If Controls.Accept(False, True, True) = True Then
-                    SoundManager.PlaySound("select")
-                    ChooseObject()
-                End If
+                    If Controls.Accept(False, True, True) = True Then
+                        SoundManager.PlaySound("select")
+                        ChooseObject()
+                    End If
 
-                If Controls.Dismiss(True, True, True) = True Then
-                    SoundManager.PlaySound("select")
-                    CloseScreen()
+                    If Controls.Dismiss(True, True, True) = True Then
+                        SoundManager.PlaySound("select")
+                        CloseScreen()
+                    End If
                 End If
             End If
-        End If
 
-        StorageSystemScreen.TileOffset += 1
-        If StorageSystemScreen.TileOffset >= 64 Then
-            StorageSystemScreen.TileOffset = 0
+            StorageSystemScreen.TileOffset += 1
+            If StorageSystemScreen.TileOffset >= 64 Then
+                StorageSystemScreen.TileOffset = 0
+            End If
         End If
     End Sub
 
@@ -1068,8 +1072,42 @@ Public Class StorageSystemScreen
     Private Sub ConfirmRelease()
         Dim id As Integer = CInt(CursorPosition.X) + CInt((CursorPosition.Y - 1) * 6)
         If CursorPosition.X = 6 Then
+            If Core.Player.Pokemons(CInt(CursorPosition.Y)).Item.IsMail And Core.Player.Pokemons(CInt(CursorPosition.Y)).Item.AdditionalData <> "" Then
+                Screen.TextBox.Show("The Mail was taken to your~inbox on your PC.")
+
+                Core.Player.Mails.Add(Items.MailItem.GetMailDataFromString(Core.Player.Pokemons(CInt(CursorPosition.Y)).Item.AdditionalData))
+
+                Core.Player.Pokemons(CInt(CursorPosition.Y)).Item = Nothing
+            Else
+                Screen.TextBox.Show("Taken " & Core.Player.Pokemons(CInt(CursorPosition.Y)).Item.Name & "~from " & Core.Player.Pokemons(CInt(CursorPosition.Y)).GetDisplayName() & ".")
+                Dim ItemID As String
+                If Core.Player.Pokemons(CInt(CursorPosition.Y)).Item.IsGameModeItem Then
+                    ItemID = Core.Player.Pokemons(CInt(CursorPosition.Y)).Item.gmID
+                Else
+                    ItemID = Core.Player.Pokemons(CInt(CursorPosition.Y)).Item.ID.ToString
+                End If
+                Core.Player.Inventory.AddItem(ItemID, 1)
+                Core.Player.Pokemons(CInt(CursorPosition.Y)).Item = Nothing
+            End If
             Core.Player.Pokemons.RemoveAt(CInt(CursorPosition.Y))
         Else
+            If GetBox(CurrentBox).Pokemon(id).GetPokemon.Item.IsMail And GetBox(CurrentBox).Pokemon(id).GetPokemon.Item.AdditionalData <> "" Then
+                Screen.TextBox.Show("The Mail was taken to your~inbox on your PC.")
+
+                Core.Player.Mails.Add(Items.MailItem.GetMailDataFromString(GetBox(CurrentBox).Pokemon(id).GetPokemon.Item.AdditionalData))
+
+                GetBox(CurrentBox).Pokemon(id).GetPokemon.Item = Nothing
+            Else
+                Screen.TextBox.Show("Taken " & GetBox(CurrentBox).Pokemon(id).GetPokemon.Item.Name & "~from " & GetBox(CurrentBox).Pokemon(id).GetPokemon.GetDisplayName() & ".")
+                Dim ItemID As String
+                If GetBox(CurrentBox).Pokemon(id).GetPokemon.Item.IsGameModeItem Then
+                    ItemID = GetBox(CurrentBox).Pokemon(id).GetPokemon.Item.gmID
+                Else
+                    ItemID = GetBox(CurrentBox).Pokemon(id).GetPokemon.Item.ID.ToString
+                End If
+                Core.Player.Inventory.AddItem(ItemID, 1)
+                GetBox(CurrentBox).Pokemon(id).GetPokemon.Item = Nothing
+            End If
             GetBox(CurrentBox).Pokemon.Remove(id)
         End If
     End Sub
@@ -1102,6 +1140,7 @@ Public Class StorageSystemScreen
         Else
             DrawMenuEntries()
         End If
+        TextBox.Draw()
 
     End Sub
 
@@ -1191,6 +1230,9 @@ Public Class StorageSystemScreen
                         Dim pokeTexture = box.Pokemon(id).GetPokemon().GetMenuTexture()
                         Dim pokeTextureScale As Vector2 = New Vector2(CSng(32 / pokeTexture.Width) * 2, CSng(32 / pokeTexture.Height) * 2)
                         Core.SpriteBatch.Draw(pokeTexture, New Rectangle(50 + x * 100, 200 + y * 84, CInt(pokeTexture.Width * pokeTextureScale.X), CInt(pokeTexture.Height * pokeTextureScale.Y)), c)
+                        If Not box.Pokemon(id).GetPokemon().Item Is Nothing And box.Pokemon(id).GetPokemon().IsEgg() = False Then
+                            Core.SpriteBatch.Draw(box.Pokemon(id).GetPokemon().Item.Texture, New Rectangle(CInt(50 + x * 100 + 32), CInt(200 + y * 84 + 32), 24, 24), Color.White)
+                        End If
                     End If
                 Next
             Else
@@ -1225,6 +1267,9 @@ Public Class StorageSystemScreen
                             Dim pokeTexture = box.Pokemon(id).GetPokemon().GetMenuTexture()
                             Dim pokeTextureScale As Vector2 = New Vector2(CSng(32 / pokeTexture.Width) * 2, CSng(32 / pokeTexture.Height) * 2)
                             Core.SpriteBatch.Draw(pokeTexture, New Rectangle(50 + x * 100, 200 + y * 84, CInt(pokeTexture.Width * pokeTextureScale.X), CInt(pokeTexture.Height * pokeTextureScale.Y)), c)
+                            If Not box.Pokemon(id).GetPokemon().Item Is Nothing And box.Pokemon(id).GetPokemon().IsEgg() = False Then
+                                Core.SpriteBatch.Draw(box.Pokemon(id).GetPokemon().Item.Texture, New Rectangle(CInt(50 + x * 100 + 32), CInt(200 + y * 84 + 32), 24, 24), Color.White)
+                            End If
                         End If
                     Next
                 Next
