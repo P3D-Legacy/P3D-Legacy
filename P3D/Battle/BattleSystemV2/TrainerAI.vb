@@ -832,7 +832,30 @@ Namespace BattleSystem
                 Return ProduceOppStep(m, chosenAttackMove)
             End If
 
-            'catch crash: return random move:
+            'if no attacking moves, return random move:
+            If BattleScreen.Trainer.AILevel >= 0 Then
+                Dim AvailableAttacks As List(Of Integer) = New List(Of Integer)
+                For i = 0 To m.Count - 1
+                    AvailableAttacks.Add(i)
+                Next
+                Dim OppAttackChoice As Integer = Core.Random.Next(0, AvailableAttacks.Count)
+                Dim Ready As Boolean = False
+                While Ready = False
+                    If m(OppAttackChoice) Is BattleScreen.FieldEffects.OppTormentMove OrElse m(OppAttackChoice).Disabled > 0 OrElse BattleScreen.FieldEffects.OppTaunt > 0 AndAlso BattleScreen.OppPokemon.Attacks(OppAttackChoice).Category = Attack.Categories.Status Then
+                        AvailableAttacks.Remove(OppAttackChoice)
+                        If AvailableAttacks.Count > 0 Then
+                            OppAttackChoice = AvailableAttacks(Core.Random.Next(0, AvailableAttacks.Count))
+                        Else
+                            Return New RoundConst() With {.StepType = RoundConst.StepTypes.Move, .Argument = Attack.GetAttackByID(165)}
+                        End If
+                    Else
+                        Ready = True
+                    End If
+                End While
+                Return ProduceOppStep(m, OppAttackChoice)
+            End If
+
+            'catch crash: return struggle
             Return New RoundConst() With {.StepType = RoundConst.StepTypes.Move, .Argument = Attack.GetAttackByID(165)}
         End Function
 
