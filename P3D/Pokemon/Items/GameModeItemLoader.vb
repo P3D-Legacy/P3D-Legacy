@@ -168,7 +168,7 @@ Public Class GameModeItemLoader
         If nonCommentLines > 0 Then
             If setID = True AndAlso setName = True Then
                 If item.gmIsMegaStone = True AndAlso item.gmMegaPokemonNumber <> Nothing AndAlso item.gmDescription = "" Then
-                    Dim MegaPokemonName As String = Pokemon.GetPokemonByID(item.gmMegaPokemonNumber, item.AdditionalData).GetName
+                    Dim MegaPokemonName As String = Pokemon.GetPokemonByID(item.gmMegaPokemonNumber).GetName
                     item.gmDescription = "One variety of the mysterious Mega Stones. Have " & MegaPokemonName & " hold it, and this stone will enable it to Mega Evolve during battle."
                     item.gmCanBeTossed = False
                     item.gmCanBeTraded = False
