@@ -852,9 +852,28 @@ Public Class StorageSystemScreen
                         End Select
 
                         Dim e1 As New MenuEntry(4, "Summary", False, AddressOf SummaryPokemon)
-                        Dim e2 As New MenuEntry(5, "Release", False, AddressOf ReleasePokemon)
-                        Dim e3 As New MenuEntry(6, "Cancel", True, Nothing)
-                        SetupMenu({e, e1, e2, e3}, p.GetDisplayName() & " is selected.")
+
+                        Dim eMail As MenuEntry = Nothing
+                        If CursorPosition.X = 6 Then
+                            If Core.Player.Pokemons(CInt(CursorPosition.Y)).Item IsNot Nothing Then
+                                eMail = New MenuEntry(5, "Take Item", False, AddressOf TakeItemPokemon)
+                            End If
+                        Else
+                            If GetBox(CurrentBox).Pokemon(id).GetPokemon().Item IsNot Nothing Then
+                                eMail = New MenuEntry(5, "Take Item", False, AddressOf TakeItemPokemon)
+                            End If
+                        End If
+
+                        If eMail IsNot Nothing Then
+                            Dim e2 As New MenuEntry(6, "Release", False, AddressOf ReleasePokemon)
+                            Dim e3 As New MenuEntry(7, "Cancel", True, Nothing)
+                            SetupMenu({e, e1, eMail, e2, e3}, p.GetDisplayName() & " is selected.")
+                        Else
+                            Dim e2 As New MenuEntry(5, "Release", False, AddressOf ReleasePokemon)
+                            Dim e3 As New MenuEntry(6, "Cancel", True, Nothing)
+                            SetupMenu({e, e1, e2, e3}, p.GetDisplayName() & " is selected.")
+                        End If
+
                     End If
                 Else
                     PickupPokemon()
@@ -1025,6 +1044,51 @@ Public Class StorageSystemScreen
         End If
     End Sub
 
+    Private Sub TakeItemPokemon()
+        Dim id As Integer = CInt(CursorPosition.X) + CInt((CursorPosition.Y - 1) * 6)
+        If CursorPosition.X = 6 Then
+            If Core.Player.Pokemons(CInt(CursorPosition.Y)).Item IsNot Nothing Then
+                If Core.Player.Pokemons(CInt(CursorPosition.Y)).Item.IsMail And Core.Player.Pokemons(CInt(CursorPosition.Y)).Item.AdditionalData <> "" Then
+                    Screen.TextBox.Show("The Mail was taken to your~inbox on your PC.")
+
+                    Core.Player.Mails.Add(Items.MailItem.GetMailDataFromString(Core.Player.Pokemons(CInt(CursorPosition.Y)).Item.AdditionalData))
+
+                    Core.Player.Pokemons(CInt(CursorPosition.Y)).Item = Nothing
+                Else
+                    Screen.TextBox.Show("Taken " & Core.Player.Pokemons(CInt(CursorPosition.Y)).Item.Name & "~from " & Core.Player.Pokemons(CInt(CursorPosition.Y)).GetDisplayName() & ".")
+                    Dim ItemID As String
+                    If Core.Player.Pokemons(CInt(CursorPosition.Y)).Item.IsGameModeItem Then
+                        ItemID = Core.Player.Pokemons(CInt(CursorPosition.Y)).Item.gmID
+                    Else
+                        ItemID = Core.Player.Pokemons(CInt(CursorPosition.Y)).Item.ID.ToString
+                    End If
+                    Core.Player.Inventory.AddItem(ItemID, 1)
+                    Core.Player.Pokemons(CInt(CursorPosition.Y)).Item = Nothing
+                End If
+            End If
+        Else
+            If GetBox(CurrentBox).Pokemon(id).GetPokemon.Item IsNot Nothing Then
+                If GetBox(CurrentBox).Pokemon(id).GetPokemon.Item.IsMail And GetBox(CurrentBox).Pokemon(id).GetPokemon.Item.AdditionalData <> "" Then
+                    Screen.TextBox.Show("The Mail was taken to your~inbox on your PC.")
+
+                    Core.Player.Mails.Add(Items.MailItem.GetMailDataFromString(GetBox(CurrentBox).Pokemon(id).GetPokemon.Item.AdditionalData))
+
+                    GetBox(CurrentBox).Pokemon(id).GetPokemon.Item = Nothing
+                Else
+                    Screen.TextBox.Show("Taken " & GetBox(CurrentBox).Pokemon(id).GetPokemon.Item.Name & "~from " & GetBox(CurrentBox).Pokemon(id).GetPokemon.GetDisplayName() & ".")
+                    Dim ItemID As String
+                    If GetBox(CurrentBox).Pokemon(id).GetPokemon.Item.IsGameModeItem Then
+                        ItemID = GetBox(CurrentBox).Pokemon(id).GetPokemon.Item.gmID
+                    Else
+                        ItemID = GetBox(CurrentBox).Pokemon(id).GetPokemon.Item.ID.ToString
+                    End If
+                    Core.Player.Inventory.AddItem(ItemID, 1)
+                    GetBox(CurrentBox).Pokemon(id).GetPokemon.Item = Nothing
+                End If
+            End If
+        End If
+    End Sub
+
     Private Sub ReleasePokemon()
         Dim hasPokemon As Boolean = False
 
@@ -1072,42 +1136,50 @@ Public Class StorageSystemScreen
     Private Sub ConfirmRelease()
         Dim id As Integer = CInt(CursorPosition.X) + CInt((CursorPosition.Y - 1) * 6)
         If CursorPosition.X = 6 Then
-            If Core.Player.Pokemons(CInt(CursorPosition.Y)).Item.IsMail And Core.Player.Pokemons(CInt(CursorPosition.Y)).Item.AdditionalData <> "" Then
-                Screen.TextBox.Show("The Mail was taken to your~inbox on your PC.")
+            If Core.Player.Pokemons(CInt(CursorPosition.Y)).Item IsNot Nothing Then
+                If Core.Player.Pokemons(CInt(CursorPosition.Y)).Item.IsMail And Core.Player.Pokemons(CInt(CursorPosition.Y)).Item.AdditionalData <> "" Then
+                    Screen.TextBox.Show("The Mail was taken to your~inbox on your PC.")
 
-                Core.Player.Mails.Add(Items.MailItem.GetMailDataFromString(Core.Player.Pokemons(CInt(CursorPosition.Y)).Item.AdditionalData))
+                    Core.Player.Mails.Add(Items.MailItem.GetMailDataFromString(Core.Player.Pokemons(CInt(CursorPosition.Y)).Item.AdditionalData))
 
-                Core.Player.Pokemons(CInt(CursorPosition.Y)).Item = Nothing
-            Else
-                Screen.TextBox.Show("Taken " & Core.Player.Pokemons(CInt(CursorPosition.Y)).Item.Name & "~from " & Core.Player.Pokemons(CInt(CursorPosition.Y)).GetDisplayName() & ".")
-                Dim ItemID As String
-                If Core.Player.Pokemons(CInt(CursorPosition.Y)).Item.IsGameModeItem Then
-                    ItemID = Core.Player.Pokemons(CInt(CursorPosition.Y)).Item.gmID
+                    Core.Player.Pokemons(CInt(CursorPosition.Y)).Item = Nothing
                 Else
-                    ItemID = Core.Player.Pokemons(CInt(CursorPosition.Y)).Item.ID.ToString
+                    Screen.TextBox.Show("Taken " & Core.Player.Pokemons(CInt(CursorPosition.Y)).Item.Name & "~from " & Core.Player.Pokemons(CInt(CursorPosition.Y)).GetDisplayName() & ".")
+                    Dim ItemID As String
+                    If Core.Player.Pokemons(CInt(CursorPosition.Y)).Item.IsGameModeItem Then
+                        ItemID = Core.Player.Pokemons(CInt(CursorPosition.Y)).Item.gmID
+                    Else
+                        ItemID = Core.Player.Pokemons(CInt(CursorPosition.Y)).Item.ID.ToString
+                    End If
+                    Core.Player.Inventory.AddItem(ItemID, 1)
+                    Core.Player.Pokemons(CInt(CursorPosition.Y)).Item = Nothing
                 End If
-                Core.Player.Inventory.AddItem(ItemID, 1)
-                Core.Player.Pokemons(CInt(CursorPosition.Y)).Item = Nothing
             End If
+            Screen.TextBox.Show("Goodbye, " & Core.Player.Pokemons(CInt(CursorPosition.Y)).GetDisplayName() & "!")
+
             Core.Player.Pokemons.RemoveAt(CInt(CursorPosition.Y))
         Else
-            If GetBox(CurrentBox).Pokemon(id).GetPokemon.Item.IsMail And GetBox(CurrentBox).Pokemon(id).GetPokemon.Item.AdditionalData <> "" Then
-                Screen.TextBox.Show("The Mail was taken to your~inbox on your PC.")
+            If GetBox(CurrentBox).Pokemon(id).GetPokemon.Item IsNot Nothing Then
+                If GetBox(CurrentBox).Pokemon(id).GetPokemon.Item.IsMail And GetBox(CurrentBox).Pokemon(id).GetPokemon.Item.AdditionalData <> "" Then
+                    Screen.TextBox.Show("The Mail was taken to your~inbox on your PC.")
 
-                Core.Player.Mails.Add(Items.MailItem.GetMailDataFromString(GetBox(CurrentBox).Pokemon(id).GetPokemon.Item.AdditionalData))
+                    Core.Player.Mails.Add(Items.MailItem.GetMailDataFromString(GetBox(CurrentBox).Pokemon(id).GetPokemon.Item.AdditionalData))
 
-                GetBox(CurrentBox).Pokemon(id).GetPokemon.Item = Nothing
-            Else
-                Screen.TextBox.Show("Taken " & GetBox(CurrentBox).Pokemon(id).GetPokemon.Item.Name & "~from " & GetBox(CurrentBox).Pokemon(id).GetPokemon.GetDisplayName() & ".")
-                Dim ItemID As String
-                If GetBox(CurrentBox).Pokemon(id).GetPokemon.Item.IsGameModeItem Then
-                    ItemID = GetBox(CurrentBox).Pokemon(id).GetPokemon.Item.gmID
+                    GetBox(CurrentBox).Pokemon(id).GetPokemon.Item = Nothing
                 Else
-                    ItemID = GetBox(CurrentBox).Pokemon(id).GetPokemon.Item.ID.ToString
+                    Screen.TextBox.Show("Taken " & GetBox(CurrentBox).Pokemon(id).GetPokemon.Item.Name & "~from " & GetBox(CurrentBox).Pokemon(id).GetPokemon.GetDisplayName() & ".")
+                    Dim ItemID As String
+                    If GetBox(CurrentBox).Pokemon(id).GetPokemon.Item.IsGameModeItem Then
+                        ItemID = GetBox(CurrentBox).Pokemon(id).GetPokemon.Item.gmID
+                    Else
+                        ItemID = GetBox(CurrentBox).Pokemon(id).GetPokemon.Item.ID.ToString
+                    End If
+                    Core.Player.Inventory.AddItem(ItemID, 1)
+                    GetBox(CurrentBox).Pokemon(id).GetPokemon.Item = Nothing
                 End If
-                Core.Player.Inventory.AddItem(ItemID, 1)
-                GetBox(CurrentBox).Pokemon(id).GetPokemon.Item = Nothing
             End If
+
+            Screen.TextBox.Show("Goodbye, " & GetBox(CurrentBox).Pokemon(id).GetPokemon.GetDisplayName() & "!")
             GetBox(CurrentBox).Pokemon.Remove(id)
         End If
     End Sub
