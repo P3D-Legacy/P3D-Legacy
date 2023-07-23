@@ -182,7 +182,7 @@ Public Class NotificationPopup
         End If
 
         Dim InteractText As String = "[" & Localization.GetString("game_notification_dismiss") & "]"
-        If Me._scriptFile <> "" Then
+        If Me._scriptFile <> "" OrElse _waitForInput = True Then
             InteractText = "[" & Localization.GetString("game_notification_accept") & "]"
         End If
         Dim InteractOffset As Vector2 = New Vector2(CInt(Core.windowSize.Width - FrameSizeBack / 3 * _scale - FontManager.InGameFont.MeasureString(InteractText).X * _scale / 2), CInt(Me._positionY + _size.Height * (FrameSizeBack / 3) * _scale + 5))
