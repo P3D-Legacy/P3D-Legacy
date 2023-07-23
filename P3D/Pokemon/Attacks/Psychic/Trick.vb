@@ -93,10 +93,10 @@ Namespace BattleSystem.Moves.Psychic
             If Not op.Item Is Nothing AndAlso op.Item.OriginalName.ToLower().EndsWith(" memory") = True AndAlso op.Number = 773 Then
                 CanSwitchItems = False
             End If
-            If Not p.Item Is Nothing AndAlso p.Item.OriginalName.ToLower().EndsWith(" mail") = True Then
+            If Not p.Item Is Nothing AndAlso p.Item.IsMail = True Then
                 CanSwitchItems = False
             End If
-            If Not op.Item Is Nothing AndAlso op.Item.OriginalName.ToLower().EndsWith(" mail") = True Then
+            If Not op.Item Is Nothing AndAlso op.Item.IsMail = True Then
                 CanSwitchItems = False
             End If
             If (p.Item IsNot Nothing AndAlso p.Item.IsMegaStone) OrElse (op.Item IsNot Nothing AndAlso op.Item.IsMegaStone) Then

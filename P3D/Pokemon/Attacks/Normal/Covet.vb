@@ -82,7 +82,7 @@ Namespace BattleSystem.Moves.Normal
             If op.Item.OriginalName.ToLower().EndsWith(" drive") = True AndAlso op.Number = 649 Then
                 Exit Sub
             End If
-            If op.Item.OriginalName.ToLower().EndsWith(" mail") = True Then
+            If op.Item.IsMail = True Then
                 Exit Sub
             End If
 
