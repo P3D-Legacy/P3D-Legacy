@@ -1,5 +1,5 @@
 {"Level"{LEV[{"Name"{str[Goldenrod City]}}{"MusicLoop"{str[Goldenrod]}}]}}
-{"Actions"{LEV[{"CanTeleport"{bool[1]}}{"CanDig"{bool[0]}}{"CanFly"{bool[1]}}{"EnvironmentType"{int[0]}}{"Weather"{int[0]}}{"Lighting"{int[0]}}]}}
+{"Actions"{LEV[{"CanTeleport"{bool[1]}}{"CanDig"{bool[0]}}{"CanFly"{bool[1]}}{"EnvironmentType"{int[0]}}{"MapScript"{str[goldenrod\mapscript]}}{"Weather"{int[0]}}{"Lighting"{int[0]}}]}}
 
 Brick:
 {"Floor"{ENT[{"Size"{intArr[4,36]}}{"Position"{intArr[18,0,0]}}{"TexturePath"{str[Goldenrod]}}{"Texture"{rec[0,0,16,16]}}]}}
@@ -649,6 +649,7 @@ Signs:
 
 NPCs:
 {"NPC"{NPC[{"Position"{sngArr[25,6,25]}}{"TextureID"{str[49]}}{"ID"{int[0]}}{"Name"{str[random]}}{"Action"{int[0]}}{"AdditionalValue"{str[Do you listen to~Lucky Channel?*If you want to~win, trade Pokémon*with as many people as~possible to get~different ID numbers.]}}{"Rotation"{int[1]}}{"Movement"{str[Still]}}{"MoveRectangles"{recArr[]}}]}}
+{"NPC"{NPC[{"Position"{sngArr[23,5,24]}}{"TextureID"{str[12]}}{"ID"{int[20]}}{"Name"{str[bargain]}}{"Action"{int[1]}}{"AdditionalValue"{str[marts\goldenrodbargain]}}{"Rotation"{int[3]}}{"Movement"{str[Still]}}{"MoveRectangles"{recArr[]}}]}}
 
 {"NPC"{NPC[{"Position"{sngArr[20,0,26]}}{"TextureID"{str[10]}}{"ID"{int[1]}}{"Name"{str[random]}}{"Action"{int[0]}}{"AdditionalValue"{str[The Radio Tower in~Goldenrod City is~a landmark.*They're running a~promotional campaign right now.*They'll modify~your Pokégear,*so it can also~serve as a radio.]}}{"Rotation"{int[1]}}{"Movement"{str[Walk]}}{"MoveRectangles"{recArr[[18,26,4,2]]}}]}}
 {"NPC"{NPC[{"Position"{sngArr[19,0,16]}}{"TextureID"{str[14]}}{"ID"{int[2]}}{"Name"{str[random]}}{"Action"{int[0]}}{"AdditionalValue"{str[E-he-he-he...*I got in trouble~for playing in the*basement of the~Dept. Store.]}}{"Rotation"{int[2]}}{"Movement"{str[Looking]}}{"MoveRectangles"{recArr[]}}]}}
