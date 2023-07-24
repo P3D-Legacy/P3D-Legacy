@@ -19,19 +19,41 @@
     End Sub
 
     Public Overrides Sub Draw()
-        Canvas.DrawRectangle(Core.windowSize, Color.White)
 
-        Core.SpriteBatch.DrawString(FontManager.MainFont, "Mailbox", New Vector2(42, 28), Color.Black)
-        Canvas.DrawImageBorder(TextureManager.GetTexture("GUI\Menus\Menu", New Rectangle(0, 0, 48, 48), ""), 2, New Rectangle(32, 64, 320, 576))
+        Dim backSize As New Size(windowSize.Width, windowSize.Height)
+        Dim origSize As New Size(380, 210)
+        Dim aspectRatio As Single = CSng(origSize.Width / origSize.Height)
 
-        Canvas.DrawImageBorder(TextureManager.GetTexture("GUI\Menus\Menu", New Rectangle(0, 0, 48, 48), ""), 2, New Rectangle(400, 64, 672, 576))
+        backSize.Width = CInt(windowSize.Width * aspectRatio)
+        backSize.Height = CInt(backSize.Width / aspectRatio)
+
+        If backSize.Width > backSize.Height Then
+            backSize.Width = windowSize.Width
+            backSize.Height = CInt(windowSize.Width / aspectRatio)
+        Else
+            backSize.Height = windowSize.Height
+            backSize.Width = CInt(windowSize.Height / aspectRatio)
+        End If
+        If backSize.Height < windowSize.Height Then
+            backSize.Height = windowSize.Height
+            backSize.Width = CInt(windowSize.Height / origSize.Height * origSize.Width)
+        End If
+
+        Dim background As Texture2D = TextureManager.GetTexture("GUI\Menus\MailMenuBackground")
+
+        Core.SpriteBatch.Draw(background, New Rectangle(0, 0, backSize.Width, backSize.Height), Color.White)
+        Canvas.DrawRectangle(New Rectangle(32, 16, 240, 48), Color.White)
+
+        Core.SpriteBatch.DrawString(FontManager.MainFont, "Mailbox", New Vector2(48, 24), Color.Black)
+        Canvas.DrawRectangle(New Rectangle(32, 64, 352, 592), New Color(255, 255, 255, 224))
+        Canvas.DrawRectangle(New Rectangle(400, 64, 704, 592), New Color(255, 255, 255, 224))
 
         For i = scrollIndex To scrollIndex + 8
             If i = 0 Then
-                DrawMail(Nothing, New Vector2(46, 82 + (i - scrollIndex) * 64), i)
+                DrawMail(Nothing, New Vector2(42, 78 + (i - scrollIndex) * 64), i)
             Else
                 If i <= Core.Player.Mails.Count Then
-                    DrawMail(Core.Player.Mails(i - 1), New Vector2(46, 82 + (i - scrollIndex) * 64), i)
+                    DrawMail(Core.Player.Mails(i - 1), New Vector2(42, 78 + (i - scrollIndex) * 64), i)
                 End If
             End If
         Next
@@ -63,7 +85,7 @@
                 End If
             End If
 
-            Canvas.DrawImageBorder(TextureManager.GetTexture("GUI\Menus\Menu", New Rectangle(x, y, 48, 48), ""), 1, New Rectangle(CInt(P.X), CInt(P.Y), 288, 32))
+            Canvas.DrawImageBorder(TextureManager.GetTexture("GUI\Menus\Menu", New Rectangle(x, y, 48, 48), ""), 2, New Rectangle(CInt(P.X), CInt(P.Y), 288, 32))
             Core.SpriteBatch.DrawString(FontManager.MainFont, "Write new mail.", New Vector2(CInt(P.X) + 13, CInt(P.Y) + 14), Color.Black)
         Else
             Dim item As Item = Item.GetItemByID(mail.MailID.ToString)
@@ -79,7 +101,7 @@
                 End If
             End If
 
-            Canvas.DrawImageBorder(TextureManager.GetTexture("GUI\Menus\Menu", New Rectangle(x, y, 48, 48), ""), 1, New Rectangle(CInt(P.X), CInt(P.Y), 288, 32))
+            Canvas.DrawImageBorder(TextureManager.GetTexture("GUI\Menus\Menu", New Rectangle(x, y, 48, 48), ""), 2, New Rectangle(CInt(P.X), CInt(P.Y), 288, 32))
             Core.SpriteBatch.Draw(item.Texture, New Rectangle(CInt(P.X), CInt(P.Y), 48, 48), Color.White)
 
             Core.SpriteBatch.DrawString(FontManager.MainFont, mail.MailHeader, New Vector2(CInt(P.X) + 52, CInt(P.Y) + 14), Color.Black)
