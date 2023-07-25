@@ -8,6 +8,7 @@ Namespace Items.Medicine
         Public Overrides ReadOnly Property IsHealingItem As Boolean = True
         Public Overrides ReadOnly Property Description As String = "A terribly bitter medicinal herb. It revives a fainted Pokémon and fully restores its maximum HP."
         Public Overrides ReadOnly Property PokeDollarPrice As Integer = 2800
+        Public Overrides ReadOnly Property ItemType As ItemTypes = ItemTypes.Medicine
 
         Public Sub New()
             _textureRectangle = New Rectangle(72, 120, 24, 24)
