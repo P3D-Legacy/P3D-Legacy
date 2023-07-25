@@ -11033,7 +11033,7 @@
     <Content Include="Content\GUI\Menus\InterfaceColors.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\GUI\Menus\MailMenuBackground.png">
+    <Content Include="Content\GUI\Menus\MailboxBackground.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\GUI\PokemonMenu\Alcremie.png">

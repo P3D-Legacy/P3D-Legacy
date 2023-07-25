@@ -207,7 +207,7 @@
 
                     CanContinue = False
                 Case "mailsystem"
-                    Core.SetScreen(New TransitionScreen(Core.CurrentScreen, New MailSystemScreen(Core.CurrentScreen), Color.White, False))
+                    Core.SetScreen(New TransitionScreen(Core.CurrentScreen, New MailSystemScreen(Core.CurrentScreen), Color.Black, False))
 
                     IsReady = True
 
