@@ -86,7 +86,7 @@
                 If p.Item.OriginalName.ToLower().EndsWith(" drive") = True AndAlso p.Number = 649 Then
                     b = True
                 End If
-                If p.Item.OriginalName.ToLower().EndsWith(" mail") = True Then
+                If p.Item.IsMail = True Then
                     b = True
                 End If
             Else

@@ -246,6 +246,24 @@
                         data = Core.Player.Pokemons(index).Item.AdditionalData
                     End If
                     Return data
+                Case "mailsendername"
+                    Dim index As Integer = int(argument)
+                    Dim name As String = ""
+                    If Not Core.Player.Pokemons(index).Item Is Nothing Then
+                        If Core.Player.Pokemons(index).Item.IsMail Then
+                            name = Core.Player.Pokemons(index).Item.AdditionalData.GetSplit(1, "\,")
+                        End If
+                    End If
+                    Return name
+                Case "mailsenderot"
+                    Dim index As Integer = int(argument)
+                    Dim ot As String = ""
+                    If Not Core.Player.Pokemons(index).Item Is Nothing Then
+                        If Core.Player.Pokemons(index).Item.IsMail Then
+                            ot = Core.Player.Pokemons(index).Item.AdditionalData.GetSplit(6, "\,")
+                        End If
+                    End If
+                    Return ot
                 Case "counthalloffame"
                     Return HallOfFameScreen.GetHallOfFameCount()
                 Case "learnedtutormove"

@@ -7,10 +7,10 @@ version=2
 	
 	:if:<register.registered(pokemongot)>=true
 		@storage.set(int,canind,2)
-		@storage.set(str,computer_options,<storage.get(str,billspcname)>,Inbox)
+		@storage.set(str,computer_options,<storage.get(str,billspcname)>,Mailbox)
 	:else
 		@storage.set(int,canind,1)
-		@storage.set(str,computer_options,Inbox)
+		@storage.set(str,computer_options,Mailbox)
 	:endif
 
 	:if:<player.haspokedex>=true
@@ -43,7 +43,7 @@ version=2
 			@sound.play(PC\LogOn)
 			@screen.mysteryevent
 			@script.start(computer_choose)
-		:when:Inbox
+		:when:Mailbox
 			@sound.play(PC\LogOn)
 			@screen.mailsystem
 			@script.start(computer_choose)
