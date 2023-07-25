@@ -46,9 +46,10 @@
         Dim background As Texture2D = TextureManager.GetTexture("GUI\Menus\MailboxBackground")
 
         Core.SpriteBatch.Draw(background, New Rectangle(0, 0, backSize.Width, backSize.Height), Color.White)
-        Canvas.DrawRectangle(New Rectangle(32, 16, 240, 48), Color.White)
+        Canvas.DrawRectangle(New Rectangle(32, 16, 240, 48), New Color(255, 255, 255, 224))
+        Canvas.DrawRectangle(New Rectangle(48, 64 - 2, 208, 2), Color.DarkGray)
 
-        Core.SpriteBatch.DrawString(FontManager.MainFont, "Mailbox", New Vector2(48, 24), Color.Black)
+        Core.SpriteBatch.DrawString(FontManager.MainFont, "Mailbox", New Vector2(56, 24), Color.Black)
         Canvas.DrawRectangle(New Rectangle(32, 64, 352, 624), New Color(255, 255, 255, 224))
         Canvas.DrawRectangle(New Rectangle(400, 64, 704, 624), New Color(255, 255, 255, 224))
 
