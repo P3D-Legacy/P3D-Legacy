@@ -117,10 +117,10 @@
 {386|attack||||_attack|OtherForms,5,3|_attack|_attack||||1}
 {386|defense||||_defense|OtherForms,6,3|_defense|_defense||||1}
 {386|speed||||_speed|OtherForms,7,3|_speed|_speed||||1}
-{412|plant||||||_plant|_plant||environment;0;5||1}
+{412|plant|||||||||environment;0;5||1}
 {412|sandy|||||OtherForms,0,4|_sandy|_sandy||environment;2;3||1}
 {412|trash|||||OtherForms,1,4|_trash|_trash||environment;1||1}
-{413|plant||||||_plant|_plant||environment;0;5||1}
+{413|plant|||||||||environment;0;5||1}
 {413|sandy||||_sandy|OtherForms,2,4|_sandy|_sandy||environment;2;3||1}
 {413|trash||||_trash|OtherForms,3,4|_trash|_trash||environment;1||1}
 {422|||||||_w|_w||Random;west;east||}
