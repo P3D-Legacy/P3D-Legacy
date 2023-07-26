@@ -79,6 +79,9 @@
                                                                       sng(ScaleList(3).Replace("~", CStr(ent.Position.Z)).Replace(".", GameController.DecSeparator)))
 
                                 ent.Scale = newScale
+                                If ent.ModelPath <> "" Then
+                                    ent.Scale *= ModelManager.MODELSCALE
+                                End If
                                 ent.CreatedWorld = False
                             Case "remove"
                                 ent.CanBeRemoved = True
