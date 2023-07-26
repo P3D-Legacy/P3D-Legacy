@@ -2,15 +2,15 @@ version=2
 
 	:if:<phone.callflag>=calling
 	:then
-		@Text.Show([POKE]gear:~Calling..............)
+		@Text.Show(Pokégear:~Calling..............)
 		@Text.show(Hello?~Oh, hello <player.name>!)
 		:if:<daycare.hasegg(2)>=true
 		:then
-			@text.show(We were raising your~[POKE]mon, and my goodness,~we were surprised!*Your [POKE]mon was holding~an Egg!*We don't know how it~got there, but your~[POKE]mon had it.*If you want to have it~visit us on Four Island.)
+			@text.show(We were raising your~Pokémon, and my goodness,~we were surprised!*Your Pokémon was holding~an Egg!*We don't know how it~got there, but your~Pokémon had it.*If you want to have it~visit us on Four Island.)
 		:else
 			:select:<daycare.countpokemon(2)>
 			:when:0
-				@text.show(We take care of the~precious [POKE]mon of~other trainers.*If you'd like us to~raise your [POKE]mon,~visit us on Four Island.)
+				@text.show(We take care of the~precious Pokémon of~other trainers.*If you'd like us to~raise your Pokémon,~visit us on Four Island.)
 			:when:1
 				@text.show(Glad you called!~Your <daycare.pokemonname(2,0)> is~doing just fine!)
 			:when:2
@@ -22,7 +22,7 @@ version=2
 				:when:20
 					@storage.set(string,breed_text,The two don't seem~to like each other.)
 				:when:0
-					@storage.set(string,breed_text,The two prefer to play~with other [POKE]mon than~each other.)
+					@storage.set(string,breed_text,The two prefer to play~with other Pokémon than~each other.)
 				:endwhen
 				@text.show(Glad you called!*Your <daycare.pokemonname(2,0)> and~your <daycare.pokemonname(2,1)> are~doing just fine.*<storage.get(string,breed_text)>)
 		
@@ -30,8 +30,11 @@ version=2
 			:endwhen
 		:endif
 	:else
-		@Text.Show([POKE]gear: Day-Care Man~Receiving call.......)
-		@text.show(We were raising your~[POKE]mon, and my goodness,~we were surprised!*Your [POKE]mon was holding~an Egg!*We don't know how it~got there, but your~[POKE]mon had it.*If you want to have it~visit us on Four Island.)
+		:if:<phone.callflag>=receiving
+			@text.notification(Day-Care Man*Receiving call.......,500,5,5,phone,phone\012)
+		:else
+			@text.show(Hello <player.name>!*We were raising your~Pokémon, and my goodness,~we were surprised!*Your Pokémon was holding~an Egg!*We don't know how it~got there, but your~Pokémon had it.*If you want to have it~visit us on Route 34.)
+		:endif
 	:endif
 
 :end
