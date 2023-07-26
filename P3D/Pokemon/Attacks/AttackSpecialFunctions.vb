@@ -32,6 +32,16 @@
                     Dim Success As Boolean = False
                     For t = 0 To Triggers.Count - 1
                         Select Case Triggers(t).ToLower()
+                            Case "confuse"
+                                If Target = True Then
+                                    If BattleScreen.OppPokemon.HasVolatileStatus(Pokemon.VolatileStatus.Confusion) = True Then
+                                        Success = True
+                                    End If
+                                Else
+                                    If BattleScreen.OwnPokemon.HasVolatileStatus(Pokemon.VolatileStatus.Confusion) = True Then
+                                        Success = True
+                                    End If
+                                End If
                             Case "burn"
                                 If Target = True Then
                                     If BattleScreen.OppPokemon.Status = Pokemon.StatusProblems.Burn Then
@@ -99,6 +109,16 @@
                                     End If
                                 Else
                                     If BattleScreen.OwnPokemon.Status = Pokemon.StatusProblems.Sleep Then
+                                        Success = True
+                                    End If
+                                End If
+                            Case "noconfuse"
+                                If Target = True Then
+                                    If BattleScreen.OppPokemon.HasVolatileStatus(Pokemon.VolatileStatus.Confusion) = False Then
+                                        Success = True
+                                    End If
+                                Else
+                                    If BattleScreen.OwnPokemon.HasVolatileStatus(Pokemon.VolatileStatus.Confusion) = False Then
                                         Success = True
                                     End If
                                 End If
@@ -356,22 +376,27 @@
                             Freeze(Move, own, BattleScreen, CInt(fSub))
                         Case "sleep"
                             Sleep(Move, own, BattleScreen, CInt(fSub))
+                        Case "confuse"
+                            Confuse(Move, own, BattleScreen, CInt(fSub))
                     End Select
                 End If
             Next
         End Sub
 
         Private Shared Function GetEffectChanceResult(ByVal move As Attack, ByVal chance As Integer) As Boolean
-            If move.Category = Attack.Categories.Special Then
-                Return True
-            Else
-                Return Core.Random.Next(0, 100) <= chance
-            End If
+            Return Core.Random.Next(0, 100) <= chance
         End Function
 
         Private Shared Sub Paralyze(ByVal Move As Attack, ByVal own As Boolean, ByVal BattleScreen As BattleScreen, Chance As Integer)
             If GetEffectChanceResult(Move, Chance) = True Then
                 If BattleScreen.Battle.InflictParalysis(Not own, own, BattleScreen, "", "move:" & Move.Name.ToLower()) = False Then
+                    If Move.Category = Attack.Categories.Status Then BattleScreen.BattleQuery.Add(New TextQueryObject(Move.Name & " failed!"))
+                End If
+            End If
+        End Sub
+        Private Shared Sub Confuse(ByVal Move As Attack, ByVal own As Boolean, ByVal BattleScreen As BattleScreen, Chance As Integer)
+            If GetEffectChanceResult(Move, Chance) = True Then
+                If BattleScreen.Battle.InflictConfusion(Not own, own, BattleScreen, "", "move:" & Move.Name.ToLower()) = False Then
                     If Move.Category = Attack.Categories.Status Then BattleScreen.BattleQuery.Add(New TextQueryObject(Move.Name & " failed!"))
                 End If
             End If
