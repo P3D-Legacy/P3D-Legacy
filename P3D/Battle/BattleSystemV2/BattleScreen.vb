@@ -851,6 +851,7 @@
 
             If Me.IsPVPBattle = True Then
                 levelfile = "pvp.dat"
+                BattleMapOffset = New Vector3(0F)
             Else
                 If SavedOverworld.Level.BattleMapData <> "" Then
                     Select Case battleMapData.Length
@@ -1426,6 +1427,7 @@ nextIndex:
                 ResetVars()
                 Core.SetScreen(New TransitionScreen(Me, New BlackOutScreen(Me), Color.Black, False))
             End If
+            BattleMapOffset = New Vector3(0)
             OwnLeadIndex = 0
             OppLeadIndex = 0
         End Sub
