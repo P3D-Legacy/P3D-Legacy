@@ -1,5 +1,5 @@
 {"Level"{LEV[{"Name"{str[Battle Frontier]}}{"MusicLoop"{str[frontier]}}{"CurrentRegion"{str[battle frontier,johto,kanto]}}]}}
-{"Actions"{LEV[{"CanTeleport"{bool[0]}}{"RideType"{int[1]}}{"CanDig"{bool[0]}}{"CanFly"{bool[0]}}{"MapScript"{str[frontier\gate\intro]}}{"EnviromentType"{int[1]}}{"Weather"{int[1]}}]}}
+{"Actions"{LEV[{"CanTeleport"{bool[0]}}{"RideType"{int[1]}}{"CanDig"{bool[0]}}{"CanFly"{bool[0]}}{"MapScript"{str[frontier\gate\intro]}}{"EnvironmentType"{int[1]}}{"Weather"{int[1]}}]}}
 
 Floor:
 {"Floor"{ENT[{"Size"{intArr[9,5]}}{"Position"{intArr[0,4,0]}}{"TexturePath"{str[frontier]}}{"Texture"{rec[0,0,16,16]}}]}}

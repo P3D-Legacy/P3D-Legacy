@@ -1,5 +1,5 @@
 {"Level"{LEV[{"Name"{str[Battle Frontier]}}{"MusicLoop"{str[frontier]}}{"CurrentRegion"{str[battle frontier,johto,kanto]}}]}}
-{"Actions"{LEV[{"CanTeleport"{bool[1]}}{"CanDig"{bool[0]}}{"CanFly"{bool[1]}}{"EnviromentType"{int[1]}}{"Lightning"{int[0]}}{"Weather"{int[1]}}]}}
+{"Actions"{LEV[{"CanTeleport"{bool[1]}}{"CanDig"{bool[0]}}{"CanFly"{bool[1]}}{"EnvironmentType"{int[0]}}{"Lighting"{int[0]}}{"Weather"{int[1]}}]}}
 
 Grass:
 {"Floor"{ENT[{"Size"{intArr[3,25]}}{"SeasonTexture"{str[Grass]}}{"Position"{intArr[28,4,17]}}{"TexturePath"{str[frontier]}}{"Texture"{rec[16,0,16,16]}}]}}
