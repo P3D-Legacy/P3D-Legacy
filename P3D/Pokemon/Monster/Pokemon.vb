@@ -2757,12 +2757,12 @@ Public Class Pokemon
     ''' Returns the display texture of this Pokémon.
     ''' </summary>
     ''' <param name="FrontView">If this Pokémon should be viewed from the front.</param>
-    Public Function GetTexture(ByVal FrontView As Boolean) As Texture2D
+    Public Function GetTexture(ByVal FrontView As Boolean, Optional forceShiny As Boolean = False) As Texture2D
         If FrontView = True Then
             If Me.IsEgg() = True Then
                 Return GetTexture(6)
             Else
-                If IsShiny = True Then
+                If IsShiny = True OrElse forceShiny = True Then
                     Return GetTexture(2)
                 Else
                     Return GetTexture(0)
@@ -2772,7 +2772,7 @@ Public Class Pokemon
             If Me.IsEgg() = True Then
                 Return GetTexture(7)
             Else
-                If IsShiny = True Then
+                If IsShiny = True OrElse forceShiny = True Then
                     Return GetTexture(3)
                 Else
                     Return GetTexture(1)

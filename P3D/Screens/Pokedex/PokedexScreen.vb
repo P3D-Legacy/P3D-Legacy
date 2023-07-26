@@ -752,6 +752,10 @@ Public Class PokedexScreen
                 Core.SpriteBatch.DrawString(FontManager.MainFont, p.PokedexEntry.Text.CropStringToWidth(FontManager.MainFont, 448), New Vector2(688, 490), Color.Black)
 
                 Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokedexhabitat", New Rectangle(160, 160, 10, 10), ""), New Rectangle(992, 242, 20, 20), Color.White)
+
+                If entryType > 2 Then
+                    SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\PokemonInfo"), New Rectangle(1033, 243, 18, 18), New Rectangle(16, 0, 9, 9), Color.White)
+                End If
             Else
                 Core.SpriteBatch.DrawString(FontManager.MainFont, "??? Pokémon", New Vector2(850, 310), Color.Black)
                 Core.SpriteBatch.DrawString(FontManager.MainFont, "???", New Vector2(850, 350), Color.Black)
@@ -1324,6 +1328,7 @@ Public Class PokedexViewScreen
 
     Dim yOffset As Integer = 0
     Dim FrontView As Boolean = True
+    Dim ShinyView As Boolean = False
 
     Dim EvolutionLineConnections As New List(Of PokemonEvolutionLine)
 
@@ -1606,7 +1611,7 @@ Public Class PokedexViewScreen
     End Sub
 
     Private Sub GetYOffset()
-        Dim t As Texture2D = Pokemon.GetTexture(FrontView)
+        Dim t As Texture2D = Pokemon.GetTexture(FrontView, ShinyView)
         Me.yOffset = -1
 
         Dim cArr(t.Width * t.Height - 1) As Color
@@ -1670,6 +1675,9 @@ Public Class PokedexViewScreen
             Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokedexhabitat", New Rectangle(160, 170, 10, 10), ""), New Rectangle(64 * 6 + 40, 42, 20, 20), Color.White)
         ElseIf EntryType > 1 Then
             Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokedexhabitat", New Rectangle(160, 160, 10, 10), ""), New Rectangle(64 * 6 + 40, 42, 20, 20), Color.White)
+            If EntryType > 2 Then
+                SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\PokemonInfo"), New Rectangle(64 * 6 - 1, 42, 18, 18), New Rectangle(16, 0, 9, 9), Color.White)
+            End If
         End If
 
         If Me.mLineLength = 100 Then
@@ -1709,7 +1717,7 @@ Public Class PokedexViewScreen
     Dim playedCry As Boolean = False
 
     Private Sub DrawPage1()
-        Dim v As Vector2 = Core.GetMiddlePosition(New Size(MathHelper.Min(Pokemon.GetTexture(True).Width * 4, 512), MathHelper.Min(Pokemon.GetTexture(True).Height * 4, 512)))
+        Dim v As Vector2 = Core.GetMiddlePosition(New Size(MathHelper.Min(Pokemon.GetTexture(Me.FrontView, ShinyView).Width * 4, 512), MathHelper.Min(Pokemon.GetTexture(Me.FrontView, ShinyView).Height * 4, 512)))
 
         Dim textureColor As Color = Color.White
         Dim pForms As List(Of String) = PokemonForms.GetAdditionalDataForms(Pokemon.Number)
@@ -1717,7 +1725,7 @@ Public Class PokedexViewScreen
             textureColor = New Color(0, 0, 0, 0)
         End If
 
-        Core.SpriteBatch.Draw(Pokemon.GetTexture(Me.FrontView), New Rectangle(CInt(v.X), CInt(v.Y) - yOffset * 2 + 32, MathHelper.Min(Pokemon.GetTexture(True).Width * 4, 512), MathHelper.Min(Pokemon.GetTexture(True).Height * 4, 512)), New Color(textureColor.R, textureColor.G, textureColor.B, textureColor.A))
+        Core.SpriteBatch.Draw(Pokemon.GetTexture(Me.FrontView, ShinyView), New Rectangle(CInt(v.X), CInt(v.Y) - yOffset * 2 + 32, MathHelper.Min(Pokemon.GetTexture(Me.FrontView, ShinyView).Width * 4, 512), MathHelper.Min(Pokemon.GetTexture(Me.FrontView, ShinyView).Height * 4, 512)), New Color(textureColor.R, textureColor.G, textureColor.B, textureColor.A))
 
         If fadeMainImage = 255 Then
             Dim mV As Vector2 = Core.GetMiddlePosition(New Size(0, 0))
@@ -2093,7 +2101,17 @@ Public Class PokedexViewScreen
     Private Sub UpdatePage1()
         If Controls.Accept(True, True, True) = True Then
             SoundManager.PlaySound("select")
-            Me.FrontView = Not Me.FrontView
+
+            If EntryType > 2 Then
+                If Me.FrontView = False Then
+                    Me.ShinyView = Not Me.ShinyView
+                End If
+                Me.FrontView = Not Me.FrontView
+            Else
+                Me.FrontView = Not Me.FrontView
+            End If
+
+
             Me.GetYOffset()
         End If
     End Sub
