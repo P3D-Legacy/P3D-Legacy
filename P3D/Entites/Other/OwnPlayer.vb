@@ -85,13 +85,18 @@
 
     Private Sub Move()
         If (Screen.Camera.IsMoving() = True And Me.DoAnimation = True) OrElse (Screen.Level.OwnPlayer IsNot Nothing AndAlso Screen.Level.OwnPlayer.isDancing) Then
-            Me.AnimationDelay -= 0.13F
-            If AnimationDelay <= 0.0F Then
-                AnimationDelay = GetAnimationDelay()
-                AnimationX += 1
-                If AnimationX > 4 Then
-                    AnimationX = 1
+            If CurrentScreen.Identification <> Screen.Identifications.PauseScreen Then
+                Me.AnimationDelay -= 0.13F
+                If AnimationDelay <= 0.0F Then
+                    AnimationDelay = GetAnimationDelay()
+                    AnimationX += 1
+                    If AnimationX > 4 Then
+                        AnimationX = 1
+                    End If
                 End If
+            Else
+                AnimationX = 1
+                ChangeTexture()
             End If
         Else
             AnimationX = 1
