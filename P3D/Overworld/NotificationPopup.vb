@@ -22,13 +22,14 @@ Public Class NotificationPopup
     Public _waitForInput As Boolean = False
     Public _interacted As Boolean = False
     Public _scriptFile As String = ""
+    Public _forceAccept As Boolean = False
 
     Public IsReady As Boolean = False
 
     ''' <summary>
     ''' Sets the values of the NotificationPopup and displays it on the screen.
     ''' </summary>
-    Public Sub Setup(Text As String, Optional Delay As Integer = 500, Optional BackgroundIndex As Integer = 0, Optional IconIndex As Integer = 0, Optional SoundEffect As String = "", Optional ScriptFile As String = "")
+    Public Sub Setup(Text As String, Optional Delay As Integer = 500, Optional BackgroundIndex As Integer = 0, Optional IconIndex As Integer = 0, Optional SoundEffect As String = "", Optional ScriptFile As String = "", Optional ForceAccept As Boolean = False)
         _text = Text
 
         If Delay <> -1 Then
@@ -81,6 +82,8 @@ Public Class NotificationPopup
         _scriptFile = ScriptFile
 
         _soundEffect = SoundEffect
+
+        _forceAccept = ForceAccept
     End Sub
 
     ''' <summary>
@@ -122,7 +125,7 @@ Public Class NotificationPopup
                 End If
             Else
                 Dim BackY As Integer = CInt(0 - _size.Height * (FrameSizeBack / 3) * _scale - (FrameSizeBack / 3 * _scale) - 5)
-                If Me._interacted = True Then
+                If Me._interacted = True OrElse _forceAccept = True Then
                     If Me._positionY > BackY Then
                         Me._positionY -= CInt(1.5 * (FrameSizeBack / 3 * _scale) / _size.Height)
                         If Me._positionY <= BackY Then

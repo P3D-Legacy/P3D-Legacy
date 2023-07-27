@@ -229,14 +229,17 @@ Public Class OverworldCamera
             If CurrentScreen.Identification = Screen.Identifications.OverworldScreen Then
                 Dim OS As OverworldScreen = CType(CurrentScreen, OverworldScreen)
 
-                If _freeCameraMode = True And OS.ActionScript.IsReady = True Then
-                    If YawLocked = False Then
-                        Yaw += -RotationSpeed * 0.75F * dx
+                If OS.NotificationPopupList.Count = 0 OrElse OS.NotificationPopupList(0)._forceAccept = False Then
+                    If _freeCameraMode = True And OS.ActionScript.IsReady = True Then
+                        If YawLocked = False Then
+                            Yaw += -RotationSpeed * 0.75F * dx
+                        End If
+                    End If
+                    If OS.ActionScript.IsReady = True Then
+                        Pitch += -RotationSpeed * dy
                     End If
                 End If
             End If
-
-            Pitch += -RotationSpeed * dy
             'text = " (Moving)"
         End If
         'Dim interval As TimeSpan
@@ -334,10 +337,14 @@ Public Class OverworldCamera
         If _isFixed = False Then
             If PreventMovement = False AndAlso KeyBoardHandler.KeyPressed(KeyBindings.PerspectiveSwitchKey) = True Or ControllerHandler.ButtonPressed(Buttons.LeftShoulder) = True Then
                 Dim actionscriptReady As Boolean = True
+                Dim forcedNotification As Boolean = False
                 If CurrentScreen.Identification = Screen.Identifications.OverworldScreen Then
                     actionscriptReady = CType(CurrentScreen, OverworldScreen).ActionScript.IsReady
+                    If CType(CurrentScreen, OverworldScreen).NotificationPopupList.Count > 0 AndAlso CType(CurrentScreen, OverworldScreen).NotificationPopupList(0)._forceAccept = True Then
+                        forcedNotification = True
+                    End If
                 End If
-                If actionscriptReady = True And _canToggleThirdPerson Then
+                If actionscriptReady = True And _canToggleThirdPerson AndAlso forcedNotification = False Then
                     SetThirdPerson(Not _thirdPerson, True)
                 End If
             End If
@@ -656,13 +663,17 @@ Public Class OverworldCamera
         End If
 
         Dim isActionscriptReady As Boolean = False
+        Dim forcedNotification As Boolean = False
         Dim OS As OverworldScreen = Nothing
         If CurrentScreen.Identification = Screen.Identifications.OverworldScreen Then
             OS = CType(CurrentScreen, OverworldScreen)
             isActionscriptReady = OS.ActionScript.IsReady
+            If OS.NotificationPopupList.Count > 0 AndAlso OS.NotificationPopupList(0)._forceAccept = True Then
+                forcedNotification = True
+            End If
         End If
 
-        If isActionscriptReady = True AndAlso ScriptBlock.TriggeredScriptBlock = False AndAlso Screen.Level.CanMove() = True AndAlso PreventMovement = False Then
+        If isActionscriptReady = True AndAlso ScriptBlock.TriggeredScriptBlock = False AndAlso Screen.Level.CanMove() = True AndAlso PreventMovement = False AndAlso forcedNotification = False Then
             If _thirdPerson = False And _cameraFocusType = CameraFocusTypes.Player Then
                 FirstPersonMovement()
             Else

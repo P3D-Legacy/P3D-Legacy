@@ -26,8 +26,10 @@
                             _NotificationPopup.Setup(args(0), int(args(1)), int(args(2)), int(args(3)))
                         Case 5
                             _NotificationPopup.Setup(args(0), int(args(1)), int(args(2)), int(args(3)), args(4))
-                        Case 6, 7
+                        Case 6
                             _NotificationPopup.Setup(args(0), int(args(1)), int(args(2)), int(args(3)), args(4), args(5))
+                        Case 7
+                            _NotificationPopup.Setup(args(0), int(args(1)), int(args(2)), int(args(3)), args(4), args(5), CBool(args(6)))
                     End Select
                     If args.Length = 7 AndAlso CBool(args(6)) = True Then
                         CType(CurrentScreen, OverworldScreen).NotificationPopupList.Insert(0, _NotificationPopup)
