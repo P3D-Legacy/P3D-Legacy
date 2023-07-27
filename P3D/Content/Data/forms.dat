@@ -86,7 +86,8 @@
 {211|hisui||Hisuian ||_hisui|Regional,5,4|_hisui|_hisui||||}
 {212|mega||Mega ||_mega|Megas,13,0|_mega|_mega||||}
 {214|mega||Mega ||_mega|Megas,14,0|_mega|_mega||||}
-{215|hisui||Hisuian ||_hisui|Regional,6,4|_hisui|_hisui||||}
+{215|hisui|Gender;0|Hisuian ||_hisui|Regional,6,4|_hisui|_hisui||||}
+{215|hisui|Gender;1|Hisuian ||_hisui|Regional,6,4|_hisui-f|_hisui||||}
 {222|galar||Galarian ||_galar|Regional,12,2|_galar|_galar||||}
 {229|mega||Mega ||_mega|Megas,15,0|_mega|_mega||||}
 {248|mega||Mega ||_mega|Megas,0,1|_mega|_mega||||}
@@ -161,8 +162,8 @@
 {503|hisui||Hisuian ||_hisui|Regional,7,4|_hisui|_hisui||||}
 {531|mega||Mega ||_mega|Megas,14,2|_mega|_mega||||}
 {549|hisui||Hisuian ||_hisui|Regional,8,4|_hisui|_hisui||||}
-{550|||||||_white|_white||Random;white;blue||}
-{550|white||||||_white|_white||||1}
+{550||||||||||Random;red;blue||}
+{550|red|||||||||||1}
 {550|blue||||_blue|OtherForms,0,5|_blue|_blue||||1}
 {554|galar||Galarian ||_galar|Regional,15,2|_galar|_galar||||}
 {555|galar||Galarian ||_galar|Regional,0,3|_galar|_galar||||}
