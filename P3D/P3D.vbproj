@@ -13643,9 +13643,6 @@
     <Content Include="Content\Pokemon\Overworld\Normal\549_hisui.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Pokemon\Overworld\Normal\550_white.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="Content\Pokemon\Overworld\Normal\554_galar.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -14028,9 +14025,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Pokemon\Overworld\Shiny\549_hisui.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\Pokemon\Overworld\Shiny\550_white.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Pokemon\Overworld\Shiny\555_galar-zen.png">
