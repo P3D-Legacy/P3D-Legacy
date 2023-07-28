@@ -3,6 +3,7 @@
 	Inherits BattleAnimation3D
 
 	Public StartPosition As Vector3
+	Public ReturnToStart As Vector3
 	Public TargetEntity As Entity
 	Public HalfDistance As New Vector3(0.0F)
 	Public DestinationDistance As New Vector3(0.0F)
@@ -21,7 +22,7 @@
 		Smooth
 	End Enum
 
-	Public Sub New(ByRef Entity As Entity, ByVal RemoveEntityAfter As Boolean, ByVal Distance As Vector3, ByVal Speed As Single, ByVal BothWays As Boolean, ByVal Duration As TimeSpan, ByVal startDelay As Single, ByVal endDelay As Single, Optional MovementCurve As Integer = 0)
+	Public Sub New(ByRef Entity As Entity, ByVal RemoveEntityAfter As Boolean, ByVal Distance As Vector3, ByVal Speed As Single, ByVal BothWays As Boolean, ByVal Duration As TimeSpan, ByVal startDelay As Single, ByVal endDelay As Single, Optional MovementCurve As Integer = 0, Optional ReturnToStart As Vector3 = Nothing)
 		MyBase.New(New Vector3(0.0F), TextureManager.DefaultTexture, New Vector3(1.0F), startDelay, endDelay)
 		Me.RemoveEntityAfter = RemoveEntityAfter
 		Me.HalfDistance = Distance
@@ -39,6 +40,9 @@
 			Case Curves.Smooth
 				InterpolationSpeed = New Vector3(0.0F)
 		End Select
+		If ReturnToStart <> Nothing Then
+			Me.ReturnToStart = ReturnToStart
+		End If
 		Me.AnimationType = AnimationTypes.Move
 	End Sub
 
@@ -122,9 +126,19 @@
 				If CurrentDistance.X >= DestinationDistance.X Then
 					CurrentDistance.X = DestinationDistance.X
 				End If
-			Else
+			ElseIf DestinationDistance.x < 0.0F Then
 				If CurrentDistance.X <= DestinationDistance.X Then
 					CurrentDistance.X = DestinationDistance.X
+				End If
+			Else
+				If CurrentDistance.X > DestinationDistance.X Then
+					If CurrentDistance.X - InterpolationSpeed.X <= DestinationDistance.X Then
+						CurrentDistance.X = DestinationDistance.X
+					End If
+				Else
+					If CurrentDistance.X + InterpolationSpeed.X >= DestinationDistance.X Then
+						CurrentDistance.X = DestinationDistance.X
+					End If
 				End If
 			End If
 		Else
@@ -144,7 +158,17 @@
 				End If
 				InterpolationDirection = True
 			Else
-				ReadyAxis.X = 1.0F
+				If ReturnToStart.X = 0.0F Then
+					ReadyAxis.X = 1.0F
+				Else
+					If DestinationDistance.X <> 0.0F Then
+						DestinationDistance.X = 0.0F
+						InterpolationDirection = True
+					End If
+					If CurrentDistance.X = 0.0F Then
+						ReadyAxis.X = 1.0F
+					End If
+				End If
 			End If
 		End If
 
@@ -163,9 +187,19 @@
 				If CurrentDistance.Y >= DestinationDistance.Y Then
 					CurrentDistance.Y = DestinationDistance.Y
 				End If
-			Else
+			ElseIf DestinationDistance.Y < 0.0F Then
 				If CurrentDistance.Y <= DestinationDistance.Y Then
 					CurrentDistance.Y = DestinationDistance.Y
+				End If
+			Else
+				If CurrentDistance.Y > DestinationDistance.Y Then
+					If CurrentDistance.Y - InterpolationSpeed.Y <= DestinationDistance.Y Then
+						CurrentDistance.Y = DestinationDistance.Y
+					End If
+				Else
+					If CurrentDistance.Y + InterpolationSpeed.Y >= DestinationDistance.Y Then
+						CurrentDistance.Y = DestinationDistance.Y
+					End If
 				End If
 			End If
 		Else
@@ -185,7 +219,17 @@
 				End If
 				InterpolationDirection = True
 			Else
-				ReadyAxis.Y = 1.0F
+				If ReturnToStart.Y = 0.0F Then
+					ReadyAxis.Y = 1.0F
+				Else
+					If DestinationDistance.Y <> 0.0F Then
+						DestinationDistance.Y = 0.0F
+						InterpolationDirection = True
+					End If
+					If CurrentDistance.Y = 0.0F Then
+						ReadyAxis.Y = 1.0F
+					End If
+				End If
 			End If
 		End If
 
@@ -204,9 +248,19 @@
 				If CurrentDistance.Z >= DestinationDistance.Z Then
 					CurrentDistance.Z = DestinationDistance.Z
 				End If
-			Else
+			ElseIf DestinationDistance.z < 0.0F Then
 				If CurrentDistance.Z <= DestinationDistance.Z Then
 					CurrentDistance.Z = DestinationDistance.Z
+				End If
+			Else
+				If CurrentDistance.Z > DestinationDistance.Z Then
+					If CurrentDistance.Z - InterpolationSpeed.Z <= DestinationDistance.Z Then
+						CurrentDistance.Z = DestinationDistance.Z
+					End If
+				Else
+					If CurrentDistance.Z + InterpolationSpeed.Z >= DestinationDistance.Z Then
+						CurrentDistance.Z = DestinationDistance.Z
+					End If
 				End If
 			End If
 		Else
@@ -226,7 +280,17 @@
 				End If
 				InterpolationDirection = True
 			Else
-				ReadyAxis.Z = 1.0F
+				If ReturnToStart.Z = 0.0F Then
+					ReadyAxis.Z = 1.0F
+				Else
+					If DestinationDistance.Z <> 0.0F Then
+						DestinationDistance.Z = 0.0F
+						InterpolationDirection = True
+					End If
+					If CurrentDistance.Z = 0.0F Then
+						ReadyAxis.Z = 1.0F
+					End If
+				End If
 			End If
 		End If
 

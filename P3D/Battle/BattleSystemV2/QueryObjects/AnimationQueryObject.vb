@@ -9,6 +9,7 @@
 		Public AnimationSequence As List(Of BattleAnimation3D)
 		Public SpawnedEntities As List(Of Entity)
 		Public CurrentEntity As Entity
+		Public StartPosition As New Vector3(0)
 		Public DrawBeforeEntities As Boolean
 
 		Public Overrides ReadOnly Property IsReady As Boolean
@@ -25,6 +26,7 @@
 			Me.BattleFlipped = BattleFlipped
 			If entity IsNot Nothing Then
 				Me.CurrentEntity = entity
+				Me.StartPosition = entity.Position
 			End If
 			AnimationSequenceBegin()
 		End Sub
@@ -185,8 +187,9 @@
 			AnimationSequence.Add(baEntityMove)
 
 		End Sub
-		Public Sub AnimationOscillateMove(ByRef Entity As Entity, ByVal RemoveEntityAfter As Boolean, ByVal Distance As Vector3, ByVal Speed As Single, ByVal BothWays As Boolean, ByVal Duration As Single, ByVal startDelay As Single, ByVal endDelay As Single, Optional MovementCurve As Integer = 0)
+		Public Sub AnimationOscillateMove(ByRef Entity As Entity, ByVal RemoveEntityAfter As Boolean, ByVal Distance As Vector3, ByVal Speed As Single, ByVal BothWays As Boolean, ByVal Duration As Single, ByVal startDelay As Single, ByVal endDelay As Single, Optional MovementCurve As Integer = 0, Optional ReturnToStart As Vector3 = Nothing)
 			Dim MoveEntity As Entity
+			Dim ReturnPosition As New Vector3(0)
 
 			If Entity Is Nothing Then
 				MoveEntity = CurrentEntity
@@ -203,7 +206,7 @@
 			Dim DurationWhole = CSng(Math.Truncate(CDbl(Duration)))
 			Dim DurationFraction = CSng((Duration - DurationWhole) * 1000)
 			Dim DurationTime As TimeSpan = New TimeSpan(0, 0, 0, CInt(DurationWhole), CInt(DurationFraction))
-			Dim baEntityOscillateMove As BAEntityOscillateMove = New BAEntityOscillateMove(MoveEntity, RemoveEntityAfter, Distance, Speed, BothWays, DurationTime, startDelay, endDelay, MovementCurve)
+			Dim baEntityOscillateMove As BAEntityOscillateMove = New BAEntityOscillateMove(MoveEntity, RemoveEntityAfter, Distance, Speed, BothWays, DurationTime, startDelay, endDelay, MovementCurve, ReturnToStart)
 			AnimationSequence.Add(baEntityOscillateMove)
 
 		End Sub
