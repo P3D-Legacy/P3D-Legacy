@@ -1574,20 +1574,61 @@
 
             Me.InitializedFrontier = True
 
-            If ActionScript.IsRegistered("gold ability") = True Then
-                Me.FrontierList.Add(New FrontierSymbol() With {.Name = "Gold Ability", .Description = "You defeated the Frontier Brain of" & Environment.NewLine & "Battle Tower a second time and you've" & Environment.NewLine & "your real strength when it comes to battles.", .Texture = TextureManager.GetTexture("GUI\Badges", New Rectangle(50, 200, 50, 50), "")})
-            Else
-                If ActionScript.IsRegistered("silver ability") = True Then
-                    Me.FrontierList.Add(New FrontierSymbol() With {.Name = "Silver Ability", .Description = "You defeated the Frontier Brain of" & Environment.NewLine & "Battle Tower and showed him how" & Environment.NewLine & "you and your Pokémon really are.", .Texture = TextureManager.GetTexture("GUI\Badges", New Rectangle(0, 200, 50, 50), "")})
+            Dim file As String = GameModeManager.GetContentFilePath("Data\badges.dat")
+            Security.FileValidation.CheckFileValid(file, False, "Badge.vb")
+            Dim data() As String = System.IO.File.ReadAllLines(file)
+            For Each line As String In data
+                If line.Contains("|") = True AndAlso StringHelper.IsNumeric(line.GetSplit(0, "|")) = False Then
+
+                    Dim hasGold As Boolean = False
+                    Dim hasSilver As Boolean = False
+                    If line.GetSplit(0, "|").EndsWith("_gold") Then
+                        If ActionScript.IsRegistered(line.GetSplit(0, "|")) = True Then
+                            hasGold = True
+                        End If
+                    End If
+                    If line.GetSplit(0, "|").EndsWith("_silver") Then
+                        If ActionScript.IsRegistered(line.GetSplit(0, "|")) = True Then
+                            If ActionScript.IsRegistered(CStr(line.GetSplit(0, "|").Remove(line.GetSplit(0, "|").Length - "_silver".Length, "_silver".Length) & "_gold")) = False Then
+                                hasSilver = True
+                            End If
+                        End If
+                    End If
+                    If hasSilver = True OrElse hasGold = True Then
+                        Dim emblemName As String = ""
+                        Dim emblemDescription As String = ""
+                        Dim emblemTexture As Texture2D = Nothing
+                        Dim lineData As String() = line.Split("|")
+                        For i = 1 To lineData.Count - 1
+                            If lineData(i).ToLower.StartsWith("name=") Then
+                                emblemName = Localization.GetString(line.GetSplit(0, "|") & "_name", lineData(i).Remove(0, "name=".Length))
+                            End If
+                            If lineData(i).ToLower.StartsWith("description=") Then
+                                emblemDescription = Localization.GetString(line.GetSplit(0, "|") & "_description", lineData(i).Remove(0, "description=".Length))
+                            End If
+                            If lineData(i).ToLower.StartsWith("texture=") Then
+                                Dim texturedata As String() = lineData(i).Remove(0, "texture=".Length).Split(",")
+                                emblemTexture = TextureManager.GetTexture(texturedata(0), New Rectangle(CInt(texturedata(1)), CInt(texturedata(2)), CInt(texturedata(3)), CInt(texturedata(4))), "")
+                            End If
+                        Next
+                        If emblemName = "" Then
+                            If Localization.TokenExists(line.GetSplit(0, "|") & "_name") = True Then
+                                emblemName = Localization.GetString(line.GetSplit(0, "|") & "_name")
+                            End If
+                        End If
+                        If emblemDescription = "" Then
+                            If Localization.TokenExists(line.GetSplit(0, "|") & "_description") = True Then
+                                emblemDescription = Localization.GetString(line.GetSplit(0, "|") & "_description")
+                            End If
+                        End If
+                        If emblemTexture IsNot Nothing Then
+                            Me.FrontierList.Add(New FrontierSymbol() With {.Name = emblemName.Replace("~", Environment.NewLine), .Description = emblemDescription.Replace("~", Environment.NewLine), .Texture = emblemTexture})
+                        End If
+
+                    End If
                 End If
-            End If
-            If ActionScript.IsRegistered("gold knowledge") = True Then
-                Me.FrontierList.Add(New FrontierSymbol() With {.Name = "Gold Knowledge", .Description = "This Emblem displays how great you can" & Environment.NewLine & "interact with Pokémon and how well" & Environment.NewLine & "you can adapt your strategy to a new situation.", .Texture = TextureManager.GetTexture("GUI\Badges", New Rectangle(150, 200, 50, 50), "")})
-            Else
-                If ActionScript.IsRegistered("silver knowledge") = True Then
-                    Me.FrontierList.Add(New FrontierSymbol() With {.Name = "Silver Knowledge", .Description = "Only few trainers achieved this emblem" & Environment.NewLine & "which shows what strength lies" & Environment.NewLine & "inside them.", .Texture = TextureManager.GetTexture("GUI\Badges", New Rectangle(100, 200, 50, 50), "")})
-                End If
-            End If
+            Next
+
         End Sub
 
 #End Region

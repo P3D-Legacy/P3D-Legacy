@@ -15,3 +15,9 @@
 14|Mineral|Texture=GUI\Badges,250,50,50,50|Region=Johto
 15|Glacier|HM=Whirlpool|Texture=GUI\Badges,300,50,50,50|Region=Johto
 16|Rising|level=100|HM=Waterfall|Texture=GUI\Badges,350,50,50,50|Region=Johto
+
+frontier_1_silver|name=Silver Ability|description=You defeated the Frontier Brain of~Battle Tower and showed him how~you and your Pokémon really are.|Texture=GUI\Badges,0,200,50,50
+frontier_1_gold|name=Gold Ability|description=You defeated the Frontier Brain of~Battle Tower a second time and you've shown~your real strength when it comes to battles.|Texture=GUI\Badges,50,200,50,50
+
+frontier_2_silver|name=Silver Knowledge|description=Only few trainers achieved this emblem~which shows what strength lies~inside them.|Texture=GUI\Badges,100,200,50,50
+frontier_2_gold|name=Gold Knowledge|description=This Emblem displays how great you can~interact with Pokémon and how well~you can adapt your strategy to a new situation.|Texture=GUI\Badges,150,200,50,50

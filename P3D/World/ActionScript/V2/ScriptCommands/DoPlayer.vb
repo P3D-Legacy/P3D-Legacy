@@ -288,6 +288,17 @@
                     End If
 
                     IsReady = True
+                Case "addfrontieremblem"
+                    If argument.Split(",").Count = 1 Then
+                        ActionScript.RegisterID("frontier_" & argument & "_gold")
+                    Else
+                        If CBool(argument.GetSplit(1, ",")) = False Then
+                            ActionScript.RegisterID("frontier_" & argument.GetSplit(0, ",") & "_silver")
+                        Else
+                            ActionScript.RegisterID("frontier_" & argument.GetSplit(0, ",") & "_gold")
+                        End If
+                    End If
+                    IsReady = True
                 Case "achieveemblem"
                     GameJolt.Emblem.AchieveEmblem(argument)
 

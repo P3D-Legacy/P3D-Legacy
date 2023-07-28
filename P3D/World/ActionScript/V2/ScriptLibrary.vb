@@ -504,6 +504,7 @@ Namespace ScriptVersion2
             r(New ScriptCommand("player", "getbadge", {New ScriptArgument("badgeID", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Adds the given Badge to the player's Badges and displays a message."))
             r(New ScriptCommand("player", "removebadge", {New ScriptArgument("badgeID", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Removes the given Badge from the player's Badges."))
             r(New ScriptCommand("player", "addbadge", {New ScriptArgument("badgeID", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Adds the given Badge from the player's Badges."))
+            r(New ScriptCommand("player", "addfrontieremblem", {New ScriptArgument("frontierEmblemID", ScriptArgument.ArgumentTypes.Str), New ScriptArgument("SilverOrGold", ScriptArgument.ArgumentTypes.Bool, True, "1")}.ToList(), "Adds a frontier emblem (silver or gold) to the player's emblems. 0 = silver, 1 = gold"))
             r(New ScriptCommand("player", "achieveemblem", {New ScriptArgument("emblemName", ScriptArgument.ArgumentTypes.Str)}.ToList(), "Makes the player achieve an emblem (GameJolt only)."))
             r(New ScriptCommand("player", "addbp", {New ScriptArgument("amount", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Adds the given amount to the player's Battle Points."))
             r(New ScriptCommand("player", "showrod", {New ScriptArgument("rodID", ScriptArgument.ArgumentTypes.Int, {"0-2"})}.ToList(), "Displays a Fishing Rod on the screen."))
@@ -516,6 +517,7 @@ Namespace ScriptVersion2
             ' Constructs:
             r(New ScriptCommand("player", "position", "sngarr", {New ScriptArgument("coordinate", ScriptArgument.ArgumentTypes.StrArr, {"x", "y", "z"}, True, "")}.ToList(), "Returns the position of the player. The normal coordinate combination is ""X,Y,Z"".", ",", True))
             r(New ScriptCommand("player", "hasbadge", "bool", {New ScriptArgument("badgeID", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Returns if the player owns a specific Badge.", ",", True))
+            r(New ScriptCommand("player", "hasfrontieremblem", "bool", {New ScriptArgument("frontierEmblemID", ScriptArgument.ArgumentTypes.Str), New ScriptArgument("SilverOrGold", ScriptArgument.ArgumentTypes.Bool, True, "")}.ToList(), "Returns if the player owns a specific frontier emblem. Without the second argument, returns true if the player owns either silver or gold.", ",", True))
             r(New ScriptCommand("player", "skin", "str", "Returns the current skin the player wears.", ",", True))
             r(New ScriptCommand("player", "velocity", "sng", "Returns the player's velocity (steps until the player movement ends).", ",", True))
             r(New ScriptCommand("player", "speed", "sng", "Returns the player's movement speed (divided by 0.04F).", ",", True))

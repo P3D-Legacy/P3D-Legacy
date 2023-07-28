@@ -44,6 +44,34 @@
                     Else
                         Return "false"
                     End If
+                Case "hasfrontieremblem"
+                    Dim ID As String = ""
+                    Dim CheckType As Boolean = Nothing
+                    If argument.Split(",").Count > 0 AndAlso argument <> "" Then
+                        If argument.Split(",").Count = 1 Then
+                            ID = argument
+                        Else
+                            ID = argument.GetSplit(0, ",")
+                            CheckType = CBool(argument.GetSplit(1, ","))
+                        End If
+                    End If
+                    If CheckType <> Nothing Then
+                        If CheckType = False Then
+                            Return ReturnBoolean(ActionScript.IsRegistered("frontier_" & ID & "_silver"))
+                        Else
+                            Return ReturnBoolean(ActionScript.IsRegistered("frontier_" & ID & "_gold"))
+                        End If
+                    Else
+                        If ActionScript.IsRegistered("frontier_" & ID & "_gold") = True Then
+                            Return "true"
+                        Else
+                            If ActionScript.IsRegistered("frontier_" & ID & "_silver") = True Then
+                                Return "true"
+                            Else
+                                Return "false"
+                            End If
+                        End If
+                    End If
                 Case "skin"
                     Return Core.Player.Skin
                 Case "velocity"

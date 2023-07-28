@@ -95,7 +95,7 @@ Public Class Badge
         Security.FileValidation.CheckFileValid(file, False, "Badge.vb")
         Dim data() As String = System.IO.File.ReadAllLines(file)
         For Each line As String In data
-            If line.Contains("|") = True Then
+            If line.Contains("|") = True AndAlso StringHelper.IsNumeric(line.GetSplit(0, "|")) = True Then
                 Badges.Add(New BadgeDeclaration(line))
             End If
         Next
