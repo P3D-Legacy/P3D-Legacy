@@ -1524,10 +1524,12 @@
             Dim startPos As Vector2 = GetStartPosition()
 
             Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokegear"), New Rectangle(CInt(startPos.X + 40), CInt(startPos.Y + 46), 16, 32), New Rectangle(96, 112, 8, 16), Color.White)
-            Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokegear"), New Rectangle(CInt(startPos.X + 40 + 16), CInt(startPos.Y + 46), 192, 32), New Rectangle(102, 112, 4, 16), Color.White)
-            Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokegear"), New Rectangle(CInt(startPos.X + 40 + 16 + 192), CInt(startPos.Y + 46), 16, 32), New Rectangle(104, 112, 8, 16), Color.White)
+            Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokegear"), New Rectangle(CInt(startPos.X + 40 + 16), CInt(startPos.Y + 46), 224, 32), New Rectangle(102, 112, 4, 16), Color.White)
+            Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokegear"), New Rectangle(CInt(startPos.X + 40 + 16 + 224), CInt(startPos.Y + 46), 16, 32), New Rectangle(104, 112, 8, 16), Color.White)
 
             Core.SpriteBatch.DrawString(FontManager.MainFont, "Frontier Emblems", New Vector2(CInt(startPos.X + 48), CInt(startPos.Y + 48)), Color.Black)
+
+            Core.SpriteBatch.DrawString(FontManager.MainFont, "Current BP: " & Core.Player.BP.ToString, New Vector2(CInt(startPos.X + 320), CInt(startPos.Y + 48)), Color.Black)
 
             If FrontierList.Count > 0 Then
                 For x = 0 To FrontierList.Count - 1
