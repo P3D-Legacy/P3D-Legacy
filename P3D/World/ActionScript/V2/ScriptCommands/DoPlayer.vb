@@ -299,6 +299,18 @@
                         End If
                     End If
                     IsReady = True
+                Case "removefrontieremblem"
+                    If argument.Split(",").Count = 1 Then
+                        ActionScript.UnregisterID("frontier_" & argument & "_gold")
+                        ActionScript.UnregisterID("frontier_" & argument & "_silver")
+                    Else
+                        If CBool(argument.GetSplit(1, ",")) = False Then
+                            ActionScript.UnregisterID("frontier_" & argument.GetSplit(0, ",") & "_silver")
+                        Else
+                            ActionScript.UnregisterID("frontier_" & argument.GetSplit(0, ",") & "_gold")
+                        End If
+                    End If
+                    IsReady = True
                 Case "achieveemblem"
                     GameJolt.Emblem.AchieveEmblem(argument)
 
