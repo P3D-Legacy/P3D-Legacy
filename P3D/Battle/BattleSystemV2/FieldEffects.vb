@@ -42,6 +42,7 @@
         Public OwnYawn As Integer = 0 'Yawn move counter
         Public OwnPerishSongCount As Integer = 0 'Perishsong move counter
         Public OwnConfusionTurns As Integer = 0 'Turns until confusion runs out
+        Public TempOwnConfusionTurns As Integer = 0 'For the functionality of Berserk Gene
         Public OwnTorment As Integer = 0 'Torment move counter
         Public OwnTormentMove As Attack = Nothing 'Torment move
         Public OwnMetronomeItemCount As Integer = 0 'The counter for the item Metronome
@@ -181,6 +182,7 @@
         Public OppFutureSightID As Integer = 0
         Public OppPerishSongCount As Integer = 0
         Public OppConfusionTurns As Integer = 0
+        Public TempOppConfusionTurns As Integer = 0
         Public OppTorment As Integer = 0
         Public OppTormentMove As Attack = Nothing
         Public OppMetronomeItemCount As Integer = 0

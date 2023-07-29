@@ -3608,7 +3608,7 @@
             End If
         End Function
 
-        Public Function InflictConfusion(ByVal own As Boolean, ByVal from As Boolean, ByVal BattleScreen As BattleScreen, ByVal message As String, ByVal cause As String) As Boolean
+        Public Function InflictConfusion(ByVal own As Boolean, ByVal from As Boolean, ByVal BattleScreen As BattleScreen, ByVal message As String, ByVal cause As String, Optional setConfusionTurns As Integer = -1) As Boolean
             Dim p As Pokemon = BattleScreen.OwnPokemon
             Dim pNPC As NPC = BattleScreen.OwnPokemonNPC
             Dim op As Pokemon = BattleScreen.OppPokemon
@@ -3625,9 +3625,22 @@
             End If
 
             If p.HasVolatileStatus(Pokemon.VolatileStatus.Confusion) = True Then
-                Me.ChangeCameraAngle(1, own, BattleScreen)
-                BattleScreen.BattleQuery.Add(New TextQueryObject(p.GetDisplayName() & " is already confused!"))
-                Return False
+                Dim success As Boolean = False
+                If own = True Then
+                    If BattleScreen.FieldEffects.OwnConfusionTurns < setConfusionTurns Then
+                        success = True
+                    End If
+                Else
+                    If BattleScreen.FieldEffects.OppConfusionTurns < setConfusionTurns Then
+                        success = True
+                    End If
+                End If
+
+                If success = False Then
+                    Me.ChangeCameraAngle(1, own, BattleScreen)
+                    BattleScreen.BattleQuery.Add(New TextQueryObject(p.GetDisplayName() & " is already confused!"))
+                    Return False
+                End If
             End If
 
             If BattleScreen.FieldEffects.MistyTerrain > 0 And BattleScreen.FieldEffects.IsGrounded(own, BattleScreen) = True Then
@@ -3636,6 +3649,9 @@
             End If
 
             Dim confusionTurns As Integer = Core.Random.Next(1, 5)
+            If setConfusionTurns <> -1 Then
+                confusionTurns = setConfusionTurns
+            End If
             Dim substitute As Integer = BattleScreen.FieldEffects.OwnSubstitute
             If own = False Then
                 substitute = BattleScreen.FieldEffects.OppSubstitute
@@ -3692,7 +3708,9 @@
                 Else
                     BattleScreen.BattleQuery.Add(New PlaySoundQueryObject("Battle\Effects\Confused", False))
                 End If
-                p.AddVolatileStatus(Pokemon.VolatileStatus.Confusion)
+                If p.HasVolatileStatus(Pokemon.VolatileStatus.Confusion) = False Then
+                    p.AddVolatileStatus(Pokemon.VolatileStatus.Confusion)
+                End If
                 Select Case message
                     Case "" 'Print default message only
                         BattleScreen.BattleQuery.Add(New TextQueryObject(p.GetDisplayName() & " is confused!"))
@@ -5151,14 +5169,27 @@
                                     End If
                                 End If
                             Case "berserk gene"
-                                If p.StatAttack <> 6 OrElse p.StatSpAttack <> 6 Then
-                                    If p.HP < CInt(Math.Floor(p.MaxHP / 3)) Then
-                                        If RemoveHeldItem(own, own, BattleScreen, "-1", "") = True Then
-                                            InflictConfusion(own, own, BattleScreen, p.GetDisplayName() & " went berserk due to the Berserk Gene!", "item:berserkgene")
-                                            RaiseStat(own, own, BattleScreen, "Attack", 2, "", "item:berserkgene")
-                                            RaiseStat(own, own, BattleScreen, "Special Attack", 2, "", "item:berserkgene")
+                                If RemoveHeldItem(own, own, BattleScreen, "-1", "") = True Then
+                                    If p.HasVolatileStatus(Pokemon.VolatileStatus.Confusion) = False Then
+                                        If own = True Then
+                                            If BattleScreen.OwnPokemonIndex > 0 AndAlso BattleScreen.FieldEffects.TempOwnConfusionTurns > 0 Then
+                                                InflictConfusion(own, own, BattleScreen, p.GetDisplayName() & " went berserk due to the Berserk Gene!", "item:berserkgene", BattleScreen.FieldEffects.TempOwnConfusionTurns)
+                                            Else
+                                                InflictConfusion(own, own, BattleScreen, p.GetDisplayName() & " went berserk due to the Berserk Gene!", "item:berserkgene", 256)
+                                            End If
+                                        Else
+                                            If BattleScreen.OppPokemonIndex > 0 AndAlso BattleScreen.FieldEffects.TempOppConfusionTurns > 0 Then
+                                                InflictConfusion(own, own, BattleScreen, p.GetDisplayName() & " went berserk due to the Berserk Gene!", "item:berserkgene", BattleScreen.FieldEffects.TempOppConfusionTurns)
+                                            Else
+                                                InflictConfusion(own, own, BattleScreen, p.GetDisplayName() & " went berserk due to the Berserk Gene!", "item:berserkgene", 256)
+                                            End If
                                         End If
+                                    Else
+                                        BattleScreen.BattleQuery.Add(New TextQueryObject(p.GetDisplayName() & " went berserk due to the Berserk Gene!"))
                                     End If
+                                    BattleScreen.FieldEffects.TempOppConfusionTurns = 0
+                                    RaiseStat(own, own, BattleScreen, "Attack", 2, "", "item:berserkgene")
+                                    RaiseStat(own, own, BattleScreen, "Special Attack", 2, "", "item:berserkgene")
                                 End If
                         End Select
                     End If
@@ -7271,6 +7302,9 @@
         Dim HasSwitchedInOpp As Boolean = False
         Public Sub SwitchOutOwn(ByVal BattleScreen As BattleScreen, ByVal SwitchInIndex As Integer, ByVal InsertIndex As Integer, Optional ByVal message As String = "")
             With BattleScreen
+                If .FieldEffects.OwnConfusionTurns > 0 Then
+                    .FieldEffects.TempOwnConfusionTurns = .FieldEffects.OwnConfusionTurns
+                End If
                 'Natural cure cures status problems
                 If .OwnPokemon.Ability.Name.ToLower() = "natural cure" Then
                     ChangeCameraAngle(1, True, BattleScreen)
