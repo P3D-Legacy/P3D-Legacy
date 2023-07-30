@@ -115,7 +115,7 @@
                         End If
 
                         Dim isShiny As Boolean = False
-                        If Core.Random.Next(0, P3D.Pokemon.MasterShinyRate) = 0 Then
+                        If Core.Random.Next(0, P3D.Pokemon.MasterShinyRate + 1) = 0 Then
                             isShiny = True
                         End If
                         If commas > 7 Then
@@ -952,7 +952,7 @@
                         End If
 
                         Dim isShiny As Boolean = False
-                        If Core.Random.Next(0, P3D.Pokemon.MasterShinyRate) = 0 Then
+                        If Core.Random.Next(0, P3D.Pokemon.MasterShinyRate + 1) = 0 Then
                             isShiny = True
                         End If
                         If commas > 7 Then
@@ -960,7 +960,7 @@
                         End If
 
                         Dim Pokemon As Pokemon = Pokemon.GetPokemonByID(int(PokemonID), PokemonAddition)
-                        Pokemon.Generate(Level, True)
+                        Pokemon.Generate(Level, True, PokemonAddition)
 
                         Pokemon.CatchTrainerName = catchTrainer
                         Pokemon.OT = Core.Player.OT
