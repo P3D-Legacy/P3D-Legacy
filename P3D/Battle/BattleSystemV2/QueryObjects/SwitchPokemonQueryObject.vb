@@ -89,7 +89,7 @@
             If rec.Contains(MouseHandler.MousePosition) = False Then
                 If Controls.Accept(True, True, True) = True Then
                     If _chooseIndex = 0 Then
-                        Dim selScreen = New PartyScreen(Core.CurrentScreen, Item.GetItemByID(5.ToString), AddressOf ChoosePokemon, Localization.GetString("battle_main_choose_pokemon"), False) With {.Mode = Screens.UI.ISelectionScreen.ScreenMode.Selection, .CanExit = True}
+                        Dim selScreen = New PartyScreen(Core.CurrentScreen, Item.GetItemByID(5.ToString), AddressOf ChoosePokemon, Localization.GetString("battle_choose_pokemon"), False) With {.Mode = Screens.UI.ISelectionScreen.ScreenMode.Selection, .CanExit = True}
                         AddHandler selScreen.SelectedObject, AddressOf ChoosePokemonHandler
                         SoundManager.PlaySound("select")
                         Core.SetScreen(selScreen)
@@ -109,7 +109,7 @@
             Else
                 If Controls.Accept(False, True, True) = True Then
                     If _chooseIndex = 0 Then
-                        Dim selScreen = New PartyScreen(Core.CurrentScreen, Item.GetItemByID(5.ToString), AddressOf ChoosePokemon, Localization.GetString("battle_main_choose_pokemon"), False) With {.Mode = Screens.UI.ISelectionScreen.ScreenMode.Selection, .CanExit = True}
+                        Dim selScreen = New PartyScreen(Core.CurrentScreen, Item.GetItemByID(5.ToString), AddressOf ChoosePokemon, Localization.GetString("battle_choose_pokemon"), False) With {.Mode = Screens.UI.ISelectionScreen.ScreenMode.Selection, .CanExit = True}
                         AddHandler selScreen.SelectedObject, AddressOf ChoosePokemonHandler
                         SoundManager.PlaySound("select")
                         Core.SetScreen(selScreen)
@@ -129,7 +129,7 @@
                 If Controls.Accept(True, False, False) Then
                     If New Rectangle(Core.windowSize.Width - 213, Core.windowSize.Height - 438, 80, 50).Contains(MouseHandler.MousePosition) Then
                         _chooseIndex = 0
-                        Dim selScreen = New PartyScreen(Core.CurrentScreen, Item.GetItemByID(5.ToString), AddressOf ChoosePokemon, Localization.GetString("battle_main_choose_pokemon"), False) With {.Mode = Screens.UI.ISelectionScreen.ScreenMode.Selection, .CanExit = True}
+                        Dim selScreen = New PartyScreen(Core.CurrentScreen, Item.GetItemByID(5.ToString), AddressOf ChoosePokemon, Localization.GetString("battle_choose_pokemon"), False) With {.Mode = Screens.UI.ISelectionScreen.ScreenMode.Selection, .CanExit = True}
                         AddHandler selScreen.SelectedObject, AddressOf ChoosePokemonHandler
                         SoundManager.PlaySound("select")
                         Core.SetScreen(selScreen)
@@ -148,7 +148,7 @@
                         _ready = True
                     End If
                 End If
-                End If
+            End If
             If Controls.Dismiss(True, True, True) = True Then
                 SoundManager.PlaySound("select")
                 TempScreen.BattleQuery.Clear()
@@ -189,12 +189,12 @@
         Private Sub ChoosePokemon(ByVal PokeIndex As Integer)
             Dim Pokemon As Pokemon = Core.Player.Pokemons(PokeIndex)
             If PokeIndex = TempScreen.OwnPokemonIndex Then
-                Screen.TextBox.Show(Pokemon.GetDisplayName() & " is already~in battle!", {}, True, False)
+                Screen.TextBox.Show(Pokemon.GetDisplayName() & " " & Localization.GetString("battle_switch_already_in_battle", "is already~in battle!"), {}, True, False)
             Else
                 If Pokemon.IsEgg() = False Then
                     If Pokemon.Status <> P3D.Pokemon.StatusProblems.Fainted Then
                         If BattleCalculation.CanSwitch(TempScreen, True) = False Then
-                            Screen.TextBox.Show(Localization.GetString("battle_main_cannot_switch", "Cannot switch out."), {}, True, False)
+                            Screen.TextBox.Show(Localization.GetString("battle_cannot_switch", "Cannot switch out."), {}, True, False)
                         Else
                             Dim TempQuery = TempScreen.BattleQuery.ToArray
                             If TempScreen.OwnPokemonIndex <> PokeIndex Then
@@ -229,10 +229,10 @@
                             End If
                         End If
                     Else
-                        Screen.TextBox.Show(Pokemon.GetDisplayName() & " is fainted!", {}, True, False)
+                        Screen.TextBox.Show(Pokemon.GetDisplayName() & " " & Localization.GetString("battle_switch_fainted", "is fainted!"), {}, True, False)
                     End If
                 Else
-                    Screen.TextBox.Show("Cannot switch in~the egg!", {}, True, False)
+                    Screen.TextBox.Show(Localization.GetString("battle_switch_egg", "Cannot switch in~the egg!"), {}, True, False)
                 End If
             End If
         End Sub
@@ -243,7 +243,7 @@
             MyBase.New(QueryTypes.SwitchPokemon)
 
             Me.TempScreen = BattleScreen
-            TransformText(BattleScreen.Trainer.Name & " " & Localization.GetString("battle_main_trainer_about_to_send_out_1") & " " & NewPokemon.GetDisplayName() & Localization.GetString("battle_main_trainer_about_to_send_out_2"))
+            TransformText(BattleScreen.Trainer.Name & " " & Localization.GetString("battle_trainer_about_to_send_out_1") & " " & NewPokemon.GetDisplayName() & Localization.GetString("battle_trainer_about_to_send_out_2"))
         End Sub
 
         Dim delay As Single = 2.0F

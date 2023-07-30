@@ -29,10 +29,10 @@
             End If
         Next
 
-        Dim text As String = "This tree looks like it~can be Cut down!"
+        Dim text As String = Localization.GetString("fieldmove_cut_1", "This tree looks like it~can be Cut down!")
 
         If pName <> "" And Badge.CanUseHMMove(Badge.HMMoves.Cut) = True Or Core.Player.SandBoxMode = True Or GameController.IS_DEBUG_ACTIVE = True Then
-            text &= "~Do you want to~use Cut?%Yes|No%"
+            text &= Localization.GetString("fieldmove_cut_2", "*Do you want to use Cut?") & "%" & Localization.GetString("global_yes", "Yes") & "|" & Localization.GetString("global_no", "No") & "%"
         End If
 
         Screen.TextBox.Show(text, {Me})
@@ -41,7 +41,7 @@
 
     Public Overrides Sub ResultFunction(Result As Integer)
         If Result = 0 Then
-            Dim pName As String = ""
+            Dim pName As String = "MissignNo."
 
             For Each p As Pokemon In Core.Player.Pokemons
                 If p.IsEgg() = False Then
@@ -58,13 +58,13 @@
                 End If
             Next
 
-            Dim Text As String = pName & " used~Cut!"
+            Dim Text As String = pName & " " & Localization.GetString("fieldmove_cut_used", "used~Cut!")
             Me.CanBeRemoved = True
 
             Dim s As String =
                 "version=2" & Environment.NewLine &
                 "@text.show(" & Text & ")" & Environment.NewLine &
-                "@sound.play(destroy,0)" & Environment.NewLine &
+                "@sound.play(FieldMove_Cut,0)" & Environment.NewLine &
                 ":end"
 
             PlayerStatistics.Track("Cut used", 1)

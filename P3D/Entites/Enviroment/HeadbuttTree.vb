@@ -31,7 +31,7 @@
             Next
 
             If pName <> "" And Core.Player.Badges.Contains(10) Then
-                Dim text As String = "This tree could have~a Pokémon in it.*Do you want to~use Headbutt?%Yes|No%"
+                Dim text As String = Localization.GetString("fieldmove_headbutt_question", "This tree could have~a Pokémon in it.*Do you want to~use Headbutt?") & "%" & Localization.GetString("global_yes", "Yes") & "|" & Localization.GetString("global_no", "No") & "%"
                 Screen.TextBox.Show(text, {Me})
                 SoundManager.PlaySound("select")
             End If
@@ -58,7 +58,7 @@
             Dim spawnedPokemon As Pokemon = Spawner.GetPokemon(Screen.Level.LevelFile, Spawner.EncounterMethods.Headbutt, False)
             If spawnedPokemon Is Nothing Then
                 Dim s As String = "version=2" & Environment.NewLine &
-                    "@text.show(" & pName & " used~Headbutt!)" & Environment.NewLine &
+                    "@text.show(" & pName & " " & Localization.GetString("fieldmove_headbutt_used", "used~Headbutt!") & ")" & Environment.NewLine &
                     "@sound.play(destroy,0)" & Environment.NewLine &
                     "@level.wait(20)" & Environment.NewLine &
                     "@text.show(Nothing happened...)" & Environment.NewLine &
@@ -66,7 +66,7 @@
                 CType(Core.CurrentScreen, OverworldScreen).ActionScript.StartScript(s, 2)
             Else
                 Dim s As String = "version=2" & Environment.NewLine &
-                    "@text.show(" & pName & " used~Headbutt!)" & Environment.NewLine &
+                    "@text.show(" & pName & " " & Localization.GetString("fieldmove_headbutt_used", "used~Headbutt!") & ")" & Environment.NewLine &
                     "@sound.play(destroy,0)" & Environment.NewLine &
                     "@level.wait(20)" & Environment.NewLine &
                     "@text.show(A wild Pokémon~appeared!)" & Environment.NewLine &

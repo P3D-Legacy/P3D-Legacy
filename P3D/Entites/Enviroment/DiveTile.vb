@@ -27,23 +27,23 @@
     Private Sub StartDive()
         If diveUp = 0 Then
             'Down
-            Dim t As String = "The water seems to be~really deep at this point."
+            Dim t As String = Localization.GetString("fieldmove_dive_down_1", "The water seems to be~really deep at this point.")
             Dim d As String = GetDivePokemon()
 
             If d <> "" And Badge.CanUseHMMove(Badge.HMMoves.Dive) = True Or Core.Player.SandBoxMode = True Or GameController.IS_DEBUG_ACTIVE = True Then
-                t &= "*Do you want to~use Dive?%Yes|No%"
+                t &= Localization.GetString("fieldmove_dive_down_2", "*Do you want to~use Dive?") & "%" & Localization.GetString("global_yes", "Yes") & "|" & Localization.GetString("global_no", "No") & "%"
             End If
             Screen.TextBox.Show(t, {Me})
             SoundManager.PlaySound("select")
         ElseIf diveUp = 1 Then
             'Up
-            Dim t As String = "Light shines down from~the surface.*Do you want to~use Dive?%Yes|No%"
+            Dim t As String = Localization.GetString("fieldmove_dive_up_type1", "Light shines down from~the surface.*Do you want to~use Dive?") & "%" & Localization.GetString("global_yes", "Yes") & "|" & Localization.GetString("global_no", "No") & "%"
 
             Screen.TextBox.Show(t, {Me})
             SoundManager.PlaySound("select")
         ElseIf diveUp = 2 Then
             'Up
-            Dim t As String = "The boat's shadow is cast~upon the ocean floor.*Do you want to~use Dive?%Yes|No%"
+            Dim t As String = Localization.GetString("fieldmove_dive_up_type2", "The boat's shadow is cast~upon the ocean floor.*Do you want to~use Dive?") & "%" & Localization.GetString("global_yes", "Yes") & "|" & Localization.GetString("global_no", "No") & "%"
 
             Screen.TextBox.Show(t, {Me})
             SoundManager.PlaySound("select")
@@ -55,7 +55,7 @@
             If diveUp = 0 Then
                 'Down
                 Dim s As String = "version=2" & Environment.NewLine &
-                    "@text.show(" & GetDivePokemon() & "~used Dive!)" & Environment.NewLine &
+                    "@text.show(" & GetDivePokemon() & " " & Localization.GetString("fieldmove_dive_used", "used~Dive!") & ")" & Environment.NewLine &
                     "@screen.fadeout" & Environment.NewLine &
                     "@player.warp(" & Me.AdditionalValue & ")" & Environment.NewLine &
                     "@level.update" & Environment.NewLine &
@@ -69,7 +69,7 @@
             ElseIf diveUp = 1 Then
                 'Up
                 Dim s As String = "version=2" & Environment.NewLine &
-                    "@text.show(" & GetDivePokemon() & "~used Dive!)" & Environment.NewLine &
+                    "@text.show(" & GetDivePokemon() & " " & Localization.GetString("fieldmove_dive_used", "used~Dive!") & ")" & Environment.NewLine &
                     "@player.setmovement(0,0.5,0)" & Environment.NewLine &
                     "@player.move(8)" & Environment.NewLine &
                     "@player.resetmovement" & Environment.NewLine &
@@ -83,7 +83,7 @@
             ElseIf diveUp = 2 Then
                 'Up
                 Dim s As String = "version=2" & Environment.NewLine &
-                    "@text.show(" & GetDivePokemon() & "~used Dive!)" & Environment.NewLine &
+                    "@text.show(" & GetDivePokemon() & " " & Localization.GetString("fieldmove_dive_used", "used~Dive!") & ")" & Environment.NewLine &
                     "@player.setmovement(0,0.5,0)" & Environment.NewLine &
                     "@player.move(6)" & Environment.NewLine &
                     "@player.resetmovement" & Environment.NewLine &

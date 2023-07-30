@@ -21,10 +21,10 @@
                 End If
             Next
 
-            Dim text As String = "This rock looks like~it can be broken!"
+            Dim text As String = Localization.GetString("fieldmove_rocksmash_1", "This rock looks like~it can be broken!")
 
             If pName <> "" Or GameController.IS_DEBUG_ACTIVE = True Or Core.Player.SandBoxMode = True Then
-                text &= "~Do you want to~use Rock Smash?%Yes|No%"
+                text &= Localization.GetString("fieldmove_rocksmash_2", "*Do you want to~use Rock Smash?") & "%" & Localization.GetString("global_yes", "Yes") & "|" & Localization.GetString("global_no", "No") & "%"
             End If
 
             Screen.TextBox.Show(text, {Me})
@@ -56,14 +56,14 @@
                 spawnedPokemon = Spawner.GetPokemon(Screen.Level.LevelFile, Spawner.EncounterMethods.RockSmash, False)
                 If spawnedPokemon Is Nothing Then
                     Dim s As String = "version=2" & Environment.NewLine &
-                        "@text.show(" & pName & " used~Rock Smash!)" & Environment.NewLine &
-                        "@sound.play(destroy)" & Environment.NewLine &
+                        "@text.show(" & pName & " " & Localization.GetString("fieldmove_rocksmash_used", "used~Rock Smash!") & ")" & Environment.NewLine &
+                        "@sound.play(FieldMove_RockSmash)" & Environment.NewLine &
                         ":end"
                     CType(Core.CurrentScreen, OverworldScreen).ActionScript.StartScript(s, 2)
                 Else
                     Dim s As String = "version=2" & Environment.NewLine &
-                        "@text.show(" & pName & " used~Rock Smash!)" & Environment.NewLine &
-                        "@sound.play(destroy)" & Environment.NewLine &
+                        "@text.show(" & pName & " " & Localization.GetString("fieldmove_rocksmash_used", "used~Rock Smash!") & ")" & Environment.NewLine &
+                        "@sound.play(FieldMove_RockSmash)" & Environment.NewLine &
                         "@level.update" & Environment.NewLine &
                         "@text.show(A wild Pokémon~appeared!)" & Environment.NewLine &
                         "@battle.wild(" & spawnedPokemon.GetSaveData() & ")" & Environment.NewLine &
@@ -74,8 +74,8 @@
                 If Core.Random.Next(0, 100) < 20 Then
                     Dim ItemID As Integer = GetItemID()
                     Dim s As String = "version=2" & Environment.NewLine &
-                        "@text.show(" & pName & " used~Rock Smash!)" & Environment.NewLine &
-                        "@sound.play(destroy)" & Environment.NewLine &
+                        "@text.show(" & pName & " " & Localization.GetString("fieldmove_rocksmash_used", "used~Rock Smash!") & ")" & Environment.NewLine &
+                        "@sound.play(FieldMove_RockSmash)" & Environment.NewLine &
                         "@level.update" & Environment.NewLine &
                         "@item.give(" & ItemID & ",1)" & Environment.NewLine &
                         "@item.messagegive(" & ItemID & ",1)" & Environment.NewLine &
@@ -83,8 +83,8 @@
                     CType(Core.CurrentScreen, OverworldScreen).ActionScript.StartScript(s, 2)
                 Else
                     Dim s As String = "version=2" & Environment.NewLine &
-                        "@text.show(" & pName & " used~Rock Smash!)" & Environment.NewLine &
-                        "@sound.play(destroy)" & Environment.NewLine &
+                        "@text.show(" & pName & " " & Localization.GetString("fieldmove_rocksmash_used", "used~Rock Smash!") & ")" & Environment.NewLine &
+                        "@sound.play(FieldMove_RockSmash)" & Environment.NewLine &
                         ":end"
                     CType(Core.CurrentScreen, OverworldScreen).ActionScript.StartScript(s, 2)
                 End If

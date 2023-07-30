@@ -94,6 +94,37 @@ Special_Defense,Special Defense
 Sp_Defense,Sp. Defense
 Speed,Speed
 ---
+FieldMoves:
+
+fieldmove_cut_1,This tree looks like it~can be Cut down!
+fieldmove_cut_2,*Do you want to use Cut?
+fieldmove_cut_used,used~Cut!
+
+fieldmove_rocksmash_1,This rock looks like~it can be broken!
+fieldmove_rocksmash_2,*Do you want to~use Rock Smash?
+fieldmove_rocksmash_used,used~Rock Smash!
+
+fieldmove_strength_1,A Pokémon may be able~to move this.
+fieldmove_strength_2,*Do you want to use Strength?
+fieldmove_strength_used,used~Strength!
+
+fieldmove_surf_type0,Do you want to Surf?
+fieldmove_surf_type1,The water looks still~and deep.~Do you want to Surf?
+fieldmove_surf_type2,This lake is~calm and shallow~Do you want to Surf?
+fieldmove_surf_used,used~Surf!
+
+fieldmove_dive_down_1,The water seems to be~really deep at this point.
+fieldmove_dive_down_2,*Do you want to~use Dive?
+fieldmove_dive_up_type1,Light shines down from~the surface.*Do you want to~use Dive?
+fieldmove_dive_up_type2,The boat's shadow is cast~upon the ocean floor.*Do you want to~use Dive?
+fieldmove_dive_used,used~Dive!
+
+fieldmove_headbutt_question,This tree could have~a Pokémon in it.*Do you want to~use Headbutt?
+fieldmove_headbutt_used,used~Headbutt!
+
+fieldmove_waterfall_used,used~Waterfall.
+
+---
 GameInteractions:
 game_interaction_interact,Interact
 game_interaction_gamemenu,Game Menu
@@ -346,13 +377,15 @@ VoltorbFlip_Tutorial_HowToPlay_Image2,If you select "Quit", you'll keep those 18
 VoltorbFlip_Tutorial_HowToPlay_Image3,But if you find Voltorb, you'll lose all your Coins!
 VoltorbFlip_Tutorial_Hint_Image,By looking at the numbers on the sides of the cards, you can see the hidden number and Voltorb totals.
 VoltorbFlip_Tutorial_AboutMemos_Image,Select "Open Memo" to open the Memo Window. Select the cards and press [<system.button(enter1)>] to add and [<system.button(back1)>] to remove marks.
+----
 Battle:
----
-main:
-battle_main_trainer_about_to_send_out_1,is about to send out
-battle_main_trainer_about_to_send_out_2,! Do you want to switch your Pokémon?
-battle_main_choose_pokemon,Choose Pokémon
-battle_main_cannot_switch,Cannot switch out.
+battle_trainer_about_to_send_out_1,is about to send out
+battle_trainer_about_to_send_out_2,! Do you want to switch your Pokémon?
+battle_choose_pokemon,Choose Pokémon
+battle_switch_already_in_battle,is already~in battle!
+battle_switch_fainted,is fainted!
+battle_switch_egg,Cannot switch in~the egg!
+battle_cannot_switch,Cannot switch out.
 ---
 Badges:
 badge_1,Boulder

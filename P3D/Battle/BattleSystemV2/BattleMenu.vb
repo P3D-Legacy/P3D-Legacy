@@ -1023,15 +1023,15 @@
 
             If PokeIndex = TempBattleScreen.OwnPokemonIndex Then
                 If Pokemon.Status <> P3D.Pokemon.StatusProblems.Fainted Then
-                    Screen.TextBox.Show(Pokemon.GetDisplayName() & " is already~in battle!", {}, True, False)
+                    Screen.TextBox.Show(Pokemon.GetDisplayName() & " " & Localization.GetString("battle_switch_already_in_battle", "is already~in battle!"), {}, True, False)
                 Else
-                    Screen.TextBox.Show(Pokemon.GetDisplayName() & " is fainted!", {}, True, False)
+                    Screen.TextBox.Show(Pokemon.GetDisplayName() & " " & Localization.GetString("battle_switch_fainted", "is fainted!"), {}, True, False)
                 End If
             Else
                 If Pokemon.IsEgg() = False Then
                     If Pokemon.Status <> P3D.Pokemon.StatusProblems.Fainted Then
                         If BattleCalculation.CanSwitch(TempBattleScreen, True) = False Then
-                            Screen.TextBox.Show(Localization.GetString("battle_main_cannot_switch", "Cannot switch out."), {}, True, False)
+                            Screen.TextBox.Show(Localization.GetString("battle_cannot_switch", "Cannot switch out."), {}, True, False)
                         Else
                             If TempBattleScreen.IsRemoteBattle = True And TempBattleScreen.IsHost = False Then
                                 TempBattleScreen.OppFaint = False
@@ -1048,10 +1048,10 @@
                             End If
                         End If
                     Else
-                        Screen.TextBox.Show(Pokemon.GetDisplayName() & " is fainted!", {}, True, False)
+                        Screen.TextBox.Show(Pokemon.GetDisplayName() & " " & Localization.GetString("battle_switch_fainted", "is fainted!"), {}, True, False)
                     End If
                 Else
-                    Screen.TextBox.Show("Cannot switch in~the egg!", {}, True, False)
+                    Screen.TextBox.Show(Localization.GetString("battle_switch_egg", "Cannot switch in~the egg!"), {}, True, False)
                 End If
             End If
         End Sub

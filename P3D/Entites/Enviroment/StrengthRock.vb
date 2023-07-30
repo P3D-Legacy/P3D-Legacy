@@ -31,12 +31,12 @@
                 End If
             Next
 
-            Dim text As String = "A Pokémon may be~able to move this."
+            Dim text As String = Localization.GetString("fieldmove_strength_1", "A Pokémon may be able~to move this.")
 
             If pName <> "" And Badge.CanUseHMMove(Badge.HMMoves.Strength) = True Or GameController.IS_DEBUG_ACTIVE = True Or Core.Player.SandBoxMode = True Then
-                text &= "~Do you want to~use Strength?%Yes|No%"
+                text &= Localization.GetString("fieldmove_strength_2", "*Do you want to use Strength?") & "%" & Localization.GetString("global_yes", "Yes") & "|" & Localization.GetString("global_no", "No") & "%"
             End If
-
+            ChooseBox.CancelIndex = 1
             Screen.TextBox.Show(text, {Me})
             SoundManager.PlaySound("select")
         End If
@@ -72,7 +72,7 @@
             Screen.Level.UsedStrength = True
 
             SoundManager.PlayPokemonCry(pNumber)
-            Screen.TextBox.Show(pName & " used~Strength!", {}, True, False)
+            Screen.TextBox.Show(pName & " " & Localization.GetString("fieldmove_strength_used", "used~Strength!"), {}, True, False)
             PlayerStatistics.Track("Strength used", 1)
         End If
     End Sub
@@ -88,7 +88,7 @@
                 CType(Screen.Camera, OverworldCamera).IsPushingStrengthRock = True
                 Me.Moved = 1
                 Me.FaceDirection = Screen.Camera.GetPlayerFacingDirection()
-                SoundManager.PlaySound("destroy", False)
+                SoundManager.PlaySound("FieldMove_Strength", False)
             End If
         End If
 

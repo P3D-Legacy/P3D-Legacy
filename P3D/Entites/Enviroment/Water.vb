@@ -169,7 +169,7 @@
                         End If
 
                         If canSurf = True Then
-                            Dim message As String = "Do you want to Surf?%Yes|No%"
+                            Dim message As String = Localization.GetString("fieldmove_surf_type0", "Do you want to Surf?") & "%" & Localization.GetString("global_yes", "Yes") & "|" & Localization.GetString("global_no", "No") & "%"
                             Dim waterType As String = ""
                             If Me.AdditionalValue.CountSeperators(",") >= 6 Then
                                 waterType = Me.AdditionalValue.GetSplit(5)
@@ -178,11 +178,11 @@
                             End If
                             Select Case waterType.ToLower()
                                 Case "0", ""
-                                    message = "Do you want to Surf?%Yes|No%"
+                                    message = Localization.GetString("fieldmove_surf_type0", "Do you want to Surf?") & "%" & Localization.GetString("global_yes", "Yes") & "|" & Localization.GetString("global_no", "No") & "%"
                                 Case "1", "sea", "water"
-                                    message = "The water looks still~and deep.~Do you want to Surf?%Yes|No%"
+                                    message = Localization.GetString("fieldmove_surf_type1", "The water looks still~and deep.~Do you want to Surf?") & "%" & Localization.GetString("global_yes", "Yes") & "|" & Localization.GetString("global_no", "No") & "%"
                                 Case "2", "lake", "pond"
-                                    message = "This lake is~calm and shallow~Do you want to Surf?%Yes|No%"
+                                    message = Localization.GetString("fieldmove_surf_type2", "This lake is~calm and shallow~Do you want to Surf?") & "%" & Localization.GetString("global_yes", "Yes") & "|" & Localization.GetString("global_no", "No") & "%"
                             End Select
 
                             Screen.TextBox.Show(message, {Me}, True, True)
@@ -262,7 +262,7 @@
 
     Public Overrides Sub ResultFunction(ByVal Result As Integer)
         If Result = 0 Then
-            Screen.TextBox.Show(Core.Player.Pokemons(Core.Player.SurfPokemon).GetDisplayName() & " used~Surf!", {Me})
+            Screen.TextBox.Show(Core.Player.Pokemons(Core.Player.SurfPokemon).GetDisplayName() & " " & Localization.GetString("fieldmove_surf_used", "used~Surf!"), {Me})
             Screen.Level.Surfing = True
             Screen.Camera.Move(1)
             PlayerStatistics.Track("Surf used", 1)

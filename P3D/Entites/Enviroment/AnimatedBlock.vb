@@ -152,7 +152,7 @@
                         End If
 
                         If canSurf = True Then
-                            Dim message As String = "Do you want to Surf?%Yes|No%"
+                            Dim message As String = Localization.GetString("fieldmove_surf_type0", "Do you want to Surf?") & "%" & Localization.GetString("global_yes", "Yes") & "|" & Localization.GetString("global_no", "No") & "%"
                             SoundManager.PlaySound("select")
                             Screen.TextBox.Show(message, {Me}, True, True)
                         End If
@@ -204,7 +204,7 @@
 
     Public Overrides Sub ResultFunction(ByVal Result As Integer)
         If Result = 0 Then
-            Screen.TextBox.Show(Core.Player.Pokemons(Core.Player.SurfPokemon).GetDisplayName() & " used~Surf!", {Me})
+            Screen.TextBox.Show(Core.Player.Pokemons(Core.Player.SurfPokemon).GetDisplayName() & " " & Localization.GetString("fieldmove_surf_used", "used~Surf!"), {Me})
             Screen.Level.Surfing = True
             Screen.Camera.Move(1)
             PlayerStatistics.Track("Surf used", 1)

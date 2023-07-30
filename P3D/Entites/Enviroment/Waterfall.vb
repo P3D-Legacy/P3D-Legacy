@@ -305,7 +305,7 @@
                 "@player.stopmovement" & Environment.NewLine &
                 "@pokemon.cry(" & pNumber & ")" & Environment.NewLine &
                 "@sound.play(select)" & Environment.NewLine &
-                "@text.show(" & pName & " used~Waterfall.)" & Environment.NewLine &
+                "@text.show(" & pName & " " & Localization.GetString("fieldmove_waterfall_used", "used~Waterfall!") & ")" & Environment.NewLine &
                 "@player.setmovement(0,1,0)" & Environment.NewLine &
                 "@player.move(" & Steps & ")" & Environment.NewLine &
                 "@player.resetmovement" & Environment.NewLine &
