@@ -231,16 +231,18 @@
         Next
 
         If Trainer.DoubleTrainer = True Then
+            Core.SpriteBatch.Draw(t3, New Rectangle(Core.windowSize.Width - 540, CInt(Core.windowSize.Height / 2 - 96 - (MathHelper.Min(t3.Height * 10, 256) / 2)), MathHelper.Min(t3.Width * 10, 256), MathHelper.Min(t3.Height * 10, 256)), Color.White)
+            Core.SpriteBatch.Draw(t4, New Rectangle(Core.windowSize.Width - 280, CInt(Core.windowSize.Height / 2 - 96 - (MathHelper.Min(t4.Height * 10, 256) / 2)), MathHelper.Min(t4.Width * 10, 256), MathHelper.Min(t4.Height * 10, 256)), Color.White)
+
             Dim t As String = ReplaceIntroName(Trainer.TrainerType) & " " & ReplaceIntroName(Trainer.Name) & " & " & ReplaceIntroName(Trainer.TrainerType2) & " " & ReplaceIntroName(Trainer.Name2)
             Core.SpriteBatch.DrawString(FontManager.InGameFont, t, New Vector2(Core.windowSize.Width - FontManager.InGameFont.MeasureString(t).X - 50, CInt(Core.windowSize.Height / 2 + 20)), Color.White)
 
-            Core.SpriteBatch.Draw(t3, New Rectangle(Core.windowSize.Width - 540, CInt(Core.windowSize.Height / 2 - 96 - (MathHelper.Min(t3.Height * 10, 256) / 2)), MathHelper.Min(t3.Width * 10, 256), MathHelper.Min(t3.Height * 10, 256)), Color.White)
-            Core.SpriteBatch.Draw(t4, New Rectangle(Core.windowSize.Width - 280, CInt(Core.windowSize.Height / 2 - 96 - (MathHelper.Min(t4.Height * 10, 256) / 2)), MathHelper.Min(t4.Width * 10, 256), MathHelper.Min(t4.Height * 10, 256)), Color.White)
         Else
+            Core.SpriteBatch.Draw(t3, New Rectangle(Core.windowSize.Width - 310, CInt(Core.windowSize.Height / 2 - 97 - (MathHelper.Min(t3.Height * 10, 256) / 2)), MathHelper.Min(t3.Width * 10, 256), MathHelper.Min(t3.Height * 10, 256)), Color.White)
+
             Dim t As String = ReplaceIntroName(Trainer.TrainerType) & " " & ReplaceIntroName(Trainer.Name)
             Core.SpriteBatch.DrawString(FontManager.InGameFont, t, New Vector2(Core.windowSize.Width - FontManager.InGameFont.MeasureString(t).X - 50, CInt(Core.windowSize.Height / 2 + 20)), Color.White)
 
-            Core.SpriteBatch.Draw(t3, New Rectangle(Core.windowSize.Width - 310, CInt(Core.windowSize.Height / 2 - 97 - (MathHelper.Min(t3.Height * 10, 256) / 2)), MathHelper.Min(t3.Width * 10, 256), MathHelper.Min(t3.Height * 10, 256)), Color.White)
         End If
         Core.SpriteBatch.Draw(t2, New Rectangle(420 - CInt(CInt(1.29 * value) / 3), CInt(Core.windowSize.Height / 2 - 20) - CInt(CInt(1 * value) / 3), CInt(1.12 * CInt(value / 1.5F)), 1 * CInt(value / 1.5F)), Color.White)
     End Sub
