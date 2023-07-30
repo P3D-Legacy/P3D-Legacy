@@ -318,6 +318,7 @@
         TextureManager.TextureList.Clear()
         TextureManager.TextureRectList.Clear()
         Whirlpool.LoadedWaterTemp = False
+        Core.Player.RunToggled = False
         Core.SetScreen(New PressStartScreen())
         Core.Player.loadedSave = False
     End Sub
