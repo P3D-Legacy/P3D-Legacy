@@ -1,0 +1,4 @@
+version=2
+@text.show(Hello, this is~Professor Oak!*Oh, you don't have to~say anything!*I know better than~anyone else how hard~you're working!*I thought I should~get you a present or~something in appreciation...*Well, I picked something~up, but I completely forgot~to give it to you!*Ha ha ha ha!*Oh you don't have to~wonder about it at all.*I know it's something~that will be very helpful~to you.*You should just come here~and pick it up.*I'll be waiting for~you at my laboratory~in Pallet Town!)
+@register.register(beatbluecomevisit)
+:end

@@ -1,0 +1,4 @@
+version=2
+@text.show(Hello, <player.name>?*I have something here for you.*Could you swing by my lab?*See you later!)
+@register.register(Elm_Post_e4_call)
+:end
