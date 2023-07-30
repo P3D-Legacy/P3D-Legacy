@@ -122,7 +122,7 @@ Public Class OverworldScreen
         Me.MouseVisible = False
 
         'Set up 3D environment variables (Effect, Camera, SkyDome and Level):
-        Effect = New BasicEffect(Core.GraphicsDevice)
+        Effect = New BasicEffectWithAlphaTest(Core.GraphicsDevice)
         Effect.FogEnabled = True
 
         Camera = New OverworldCamera()

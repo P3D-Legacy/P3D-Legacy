@@ -153,7 +153,7 @@
             Screen.ImageView.Showing = False
             Screen.ChooseBox.Showing = False
 
-            Effect = New BasicEffect(Core.GraphicsDevice)
+            Effect = New BasicEffectWithAlphaTest(Core.GraphicsDevice)
             Effect.FogEnabled = True
             SkyDome = New SkyDome()
             Camera = New BattleCamera()

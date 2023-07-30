@@ -32,7 +32,7 @@
             PokemonForms.Initialize()
 
             'Set up 3D environment variables (Effect, Camera, SkyDome and Level):
-            Effect = New BasicEffect(GraphicsDevice)
+            Effect = New BasicEffectWithAlphaTest(GraphicsDevice)
             Effect.FogEnabled = True
 
             'Reset Construct:

@@ -87,7 +87,65 @@ Public Class Lighting
     ''' <param name="refEffect">A reference to the BasicEffect that should receive the lighting update.</param>
     ''' <param name="ForceLighting">Checks, if the lighting update on the effect should be forced.</param>
     Public Shared Sub UpdateLighting(ByRef refEffect As BasicEffect, Optional ByVal ForceLighting As Boolean = False)
-        If Core.GameOptions.LightingEnabled = True Or ForceLighting = True Then ' Only update the lighting if either the currently loaded level instance allows this, or it's getting forced.
+        If Core.GameOptions.LightingEnabled = True OrElse ForceLighting = True Then ' Only update the lighting if either the currently loaded level instance allows this, or it's getting forced.
+            ' Set default parameters:
+            refEffect.LightingEnabled = True ' Enable lighting (gets disabled later, if not used)
+            refEffect.PreferPerPixelLighting = True ' Yes. Please.
+            refEffect.SpecularPower = 2000.0F
+
+            ' LightType results:
+            ' 0 = Night
+            ' 1 = Morning
+            ' 2 = Day
+            ' 3 = Evening
+            ' Anything higher than 3 = No Lighting
+
+            Select Case GetLightingType()
+
+                Case 0 ' Night
+                    refEffect.AmbientLightColor = GetEnvironmentColor(1)
+
+                    refEffect.DirectionalLight0.DiffuseColor = GetEnvironmentColor(0)
+                    refEffect.DirectionalLight0.Direction = Vector3.Normalize(New Vector3(1.0F, 1.0F, -1.0F))
+                    refEffect.DirectionalLight0.SpecularColor = New Vector3(0.0F)
+                    refEffect.DirectionalLight0.Enabled = True
+                Case 1 ' Morning
+                    refEffect.AmbientLightColor = GetEnvironmentColor(1)
+
+                    refEffect.DirectionalLight0.DiffuseColor = GetEnvironmentColor(0)
+                    refEffect.DirectionalLight0.Direction = Vector3.Normalize(New Vector3(-1.0F, 0.0F, 1.0F))
+                    refEffect.DirectionalLight0.SpecularColor = New Vector3(0.0F)
+                    refEffect.DirectionalLight0.Enabled = True
+                Case 2 ' Day
+                    refEffect.AmbientLightColor = GetEnvironmentColor(1)
+
+                    refEffect.DirectionalLight0.DiffuseColor = GetEnvironmentColor(0)
+                    refEffect.DirectionalLight0.Direction = Vector3.Normalize(New Vector3(-1.0F, 0.0F, 1.0F))
+                    refEffect.DirectionalLight0.SpecularColor = New Vector3(0.0F)
+                    refEffect.DirectionalLight0.Enabled = True
+                Case 3 ' Evening
+                    refEffect.AmbientLightColor = GetEnvironmentColor(1)
+
+                    refEffect.DirectionalLight0.DiffuseColor = GetEnvironmentColor(0)
+                    refEffect.DirectionalLight0.Direction = Vector3.Normalize(New Vector3(1.0F, 1.0F, -1.0F))
+                    refEffect.DirectionalLight0.SpecularColor = New Vector3(0.0F)
+                    refEffect.DirectionalLight0.Enabled = True
+                Case Else  'Disable lighting on the effect
+                    refEffect.LightingEnabled = False
+            End Select
+        Else
+            ' Disable lighting if the effect isn't supposed to have light.
+            refEffect.LightingEnabled = False
+        End If
+    End Sub
+    
+    ''' <summary>
+    ''' Updates the lighting values of a BasicEffect instance.
+    ''' </summary>
+    ''' <param name="refEffect">A reference to the BasicEffect that should receive the lighting update.</param>
+    ''' <param name="ForceLighting">Checks, if the lighting update on the effect should be forced.</param>
+    Public Shared Sub UpdateLighting(ByRef refEffect As BasicEffectWithAlphaTest, Optional ByVal ForceLighting As Boolean = False)
+        If Core.GameOptions.LightingEnabled = True OrElse ForceLighting = True Then ' Only update the lighting if either the currently loaded level instance allows this, or it's getting forced.
             ' Set default parameters:
             refEffect.LightingEnabled = True ' Enable lighting (gets disabled later, if not used)
             refEffect.PreferPerPixelLighting = True ' Yes. Please.
