@@ -30,7 +30,7 @@
                 End If
             Next
 
-            If pName <> "" And Core.Player.Badges.Contains(10) Then
+            If pName <> "" Or Core.Player.SandBoxMode = True Or GameController.IS_DEBUG_ACTIVE = True Then
                 Dim text As String = Localization.GetString("fieldmove_headbutt_question", "This tree could have~a Pokémon in it.*Do you want to~use Headbutt?") & "%" & Localization.GetString("global_yes", "Yes") & "|" & Localization.GetString("global_no", "No") & "%"
                 Screen.TextBox.Show(text, {Me})
                 SoundManager.PlaySound("select")
