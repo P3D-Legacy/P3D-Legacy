@@ -10997,6 +10997,9 @@
     <Content Include="Content\Data\smashrockitems.dat">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\Effects\BasicEffectWithAlphaTest.mgfxdx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\GUI\GamePad\xboxControllerBack.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -32602,6 +32605,8 @@
     <Compile Include="Resources\Models\Steps\InsideStepModel.vb" />
     <Compile Include="Resources\Models\Steps\OutsideStepModel.vb" />
     <Compile Include="Resources\Models\Steps\StepModel.vb" />
+    <Compile Include="Resources\Shader\BasicEffectWithAlphaTest.vb" />
+    <Compile Include="Resources\Shader\EffectHelpers.vb" />
     <Compile Include="Resources\Sound\MusicManager.vb" />
     <Compile Include="Resources\Sound\SoundContainer.vb" />
     <Compile Include="Resources\Sound\SongContainer.vb" />

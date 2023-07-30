@@ -16,7 +16,7 @@
 
         Me.SecretBase = New SecretBase()
 
-        Effect = New BasicEffect(Core.GraphicsDevice)
+        Effect = New BasicEffectWithAlphaTest(Core.GraphicsDevice)
 
         Camera = New SecretBaseCamera()
         Level = New Level()
