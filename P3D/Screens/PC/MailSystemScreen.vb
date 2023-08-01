@@ -51,6 +51,7 @@
             Me.TakenFromParty = True
             Me.index = 1
             Me.TempNewMail = Items.MailItem.GetMailDataFromString(PartyMailItem.AdditionalData)
+            Me.TempNewMail.MailRead = True
         End If
     End Sub
 
