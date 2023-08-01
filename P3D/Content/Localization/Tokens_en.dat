@@ -343,7 +343,7 @@ VoltorbFlip_BeforeNewLevel_GameInfo_Question,Which set of info?
 VoltorbFlip_BeforeNewLevel_GameInfo_Answer_HowToPlay,How to Play
 VoltorbFlip_BeforeNewLevel_GameInfo_Answer_Hint,Hint!
 VoltorbFlip_BeforeNewLevel_GameInfo_Answer_AboutMemos,About Memos
-VoltorbFlip_BeforeNewLevel_GameInfo_Back
+VoltorbFlip_BeforeNewLevel_GameInfo_Back,Back
 
 VoltorbFlip_GameWon_1,Game clear!~You've found all of the~hidden x2 and x3 cards.*<player.name> received~
 VoltorbFlip_GameWon_2,Coin(s)!
@@ -366,7 +366,6 @@ VoltorbFlip_AfterGame_Won1,You've won
 VoltorbFlip_AfterGame_Won2,Coin(s)!
 VoltorbFlip_AfterGame_Lost,Too bad, you didn't win~any Coins!*Better luck next time!
 
-VoltorbFlip_BeforeGame_FullCoinCase,Your Coin Case is already full!
 VoltorbFlip_BeforeGame_NoCoinCase,You don't have a Coin Case!~Come back when you have one!
 
 VoltorbFlip_Tutorial_HowToPlay_Message,Voltorb Flip is a game in which~you flip over cards to find~numbers hidden beneath them.*The cards are hiding the~numbers 1 through 3...~and Voltorb as well.*The first number you flip over~will give you that many Coins.*From then on, the next number~you find will multiply the~total amount of Coins you've~collected by that number.*If it's a 2, your total will~be multiplied by "x2".*If it's a 3, your total will~be multiplied by "x3".*But if you flip over a~Voltorb, it's game over.*When that happens, you'll lose~all the Coins you've collected~in the current level.*If you select "Quit", you'll~withdraw from the level.*If you get to a difficult~spot, you might want to end~the game early.*Once you've found all the~hidden 2 and 3 cards,~you've cleared the game.*Once you've flipped over~all these cards, then you'll~advance to the next level.*As you move up in levels,~you will be able to receive~more Coins. Do your best!
@@ -530,6 +529,7 @@ Places_Kolben Tower,Kolben Tower
 Places_Faraway Island,Faraway Island
 Places_Underwater Cave,Underwater Cave
 Places_Embedded Tower,Embedded Tower
+Places_Liberty Garden,Liberty Garden
 
 Routes:
 Places_Route 1,Route 1
@@ -2261,7 +2261,7 @@ item_name_676,Water Memory
 
 Item Use Text:
 Key Items:
-item_use_54,Your coins:~
+item_use_54,Your Coins:~
 -------------------
 Move Names:
 move_name_1,Pound
