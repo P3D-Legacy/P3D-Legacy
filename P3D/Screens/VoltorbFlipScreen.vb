@@ -1038,7 +1038,6 @@ TryAgain:
                     TotalCoins = CInt(GameModeManager.GetGameRuleValue("CoinCaseCap", "0")) - Core.Player.Coins
                     CurrentCoins = 0
                     TextBox.Show(Localization.GetString("VoltorbFlip_MaxCoins", "Your Coin Case can't fit~any more Coin(s)!"))
-                    Quit()
                 Else
                     TotalCoins += CurrentCoins
                     CurrentCoins = 0
