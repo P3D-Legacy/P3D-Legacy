@@ -922,6 +922,7 @@ TryAgain:
                     Dim QuitButtonRectangle As New Rectangle(CInt(GameOrigin.X + 424), CInt(GameOrigin.Y + 448), 128, 56)
                     If Controls.Accept(True, False, False) AndAlso MouseHandler.IsInRectangle(QuitButtonRectangle) AndAlso GameState = States.Game AndAlso Delay = 0 Then
                         TextBox.Show(QuitQuestionText)
+                        ChooseBox.CancelIndex = 1
                         SoundManager.PlaySound("select")
                         GameState = States.QuitQuestion
                     End If
@@ -931,6 +932,7 @@ TryAgain:
                         If ChooseBox.readyForResult = True Then
                             If ChooseBox.result = 0 Then
                                 Quit()
+                                ChooseBox.CancelIndex = -1
                                 ChooseBox.readyForResult = False
                             Else
                                 Delay = 15
@@ -1143,6 +1145,7 @@ TryAgain:
                     Case 0 'Main Menu
                         If Delay = 0 AndAlso TextBox.Showing = False AndAlso ChooseBox.Showing = False Then
                             TextBox.Show(Localization.GetString("VoltorbFlip_BeforeNewLevel_Main_Question_1", "Play Voltorb Flip Lv.") & " " & CurrentLevel.ToString & Localization.GetString("VoltorbFlip_BeforeNewLevel_Main_Question_2", "?") & "%" & Localization.GetString("VoltorbFlip_BeforeNewLevel_Main_Answer_Play", "Play") & "|" & Localization.GetString("VoltorbFlip_BeforeNewLevel_Main_Answer_GameInfo", "Game Info") & "|" & Localization.GetString("VoltorbFlip_BeforeNewLevel_Main_Answer_Quit", "Quit") & "%")
+                            ChooseBox.CancelIndex = 2
                             Delay = 5
                         End If
                         If ChooseBox.readyForResult = True Then
@@ -1150,29 +1153,37 @@ TryAgain:
                                 Case 0
                                     GameState = States.NewLevel
                                     ChooseBox.readyForResult = False
+                                    ChooseBox.CancelIndex = -1
                                 Case 1
                                     NewLevelMenuIndex = 1
                                     ChooseBox.readyForResult = False
+                                    ChooseBox.CancelIndex = -1
                                 Case 2
                                     GameState = States.Closing
                                     ChooseBox.readyForResult = False
+                                    ChooseBox.CancelIndex = -1
                             End Select
                         End If
                     Case 1 'Info Menu
                         If Delay = 0 AndAlso TextBox.Showing = False AndAlso ChooseBox.Showing = False Then
                             TextBox.Show(Localization.GetString("VoltorbFlip_BeforeNewLevel_GameInfo_Question", "Which set of info?") & "%" & Localization.GetString("VoltorbFlip_BeforeNewLevel_GameInfo_Answer_HowToPlay", "How to Play") & "|" & Localization.GetString("VoltorbFlip_BeforeNewLevel_GameInfo_Answer_Hint", "Hint!") & "|" & Localization.GetString("VoltorbFlip_BeforeNewLevel_GameInfo_Answer_AboutMemos", "About Memos") & "|" & Localization.GetString("VoltorbFlip_BeforeNewLevel_GameInfo_Back", "Back") & "%")
+                            ChooseBox.CancelIndex = 3
                             Delay = 5
                         End If
                         If ChooseBox.readyForResult = True Then
                             Select Case ChooseBox.result
                                 Case 0
                                     NewLevelMenuIndex = 2
+                                    ChooseBox.CancelIndex = -1
                                 Case 1
                                     NewLevelMenuIndex = 3
+                                    ChooseBox.CancelIndex = -1
                                 Case 2
                                     NewLevelMenuIndex = 4
+                                    ChooseBox.CancelIndex = -1
                                 Case 3
                                     NewLevelMenuIndex = 0
+                                    ChooseBox.CancelIndex = -1
                             End Select
                         End If
                     Case 2 'How to Play
