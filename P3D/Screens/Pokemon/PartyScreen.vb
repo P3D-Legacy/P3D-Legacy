@@ -783,10 +783,9 @@ Public Class PartyScreen
                 Dim p As Pokemon = PokemonList(_index)
 
                 If p.Item.IsMail And p.Item.AdditionalData <> "" Then
-                    ShowMessage("The Mail was taken to your inbox on your PC.")
 
-                    Core.Player.Mails.Add(Items.MailItem.GetMailDataFromString(p.Item.AdditionalData))
-
+                    Core.SetScreen(New TransitionScreen(Core.CurrentScreen, New MailSystemScreen(Core.CurrentScreen, CType(p.Item, Items.MailItem)), Color.Black, False))
+                    
                     p.Item = Nothing
                 Else
                     ShowMessage("Taken " & p.Item.Name & " from " & p.GetDisplayName() & ".")

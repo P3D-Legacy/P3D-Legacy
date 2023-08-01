@@ -12,6 +12,8 @@
     Dim MenuHeader As String = ""
     Dim message As String = ""
     Dim UsedFromInventory As Boolean = False
+    Dim TakenFromParty As Boolean = False
+    Dim ReadyToExit As Boolean = False
 
     Public Sub New(ByVal currentScreen As Screen)
         Me.PreScreen = currentScreen
@@ -23,7 +25,7 @@
         Me.CanChat = False
     End Sub
 
-    Public Sub New(ByVal currentScreen As Screen, Optional MailItemID As String = "")
+    Public Sub New(ByVal currentScreen As Screen, InventoryMailItemID As String)
         Me.PreScreen = currentScreen
         Me.Identification = Identifications.MailSystemScreen
 
@@ -31,10 +33,24 @@
         Me.CanBePaused = True
         Me.CanMuteAudio = False
         Me.CanChat = False
-        If MailItemID <> "" Then
+        If InventoryMailItemID <> "" Then
             Me.UsedFromInventory = True
             Me.index = 0
-            ChosenMail(MailItemID)
+            ChosenMail(InventoryMailItemID)
+        End If
+    End Sub
+    Public Sub New(ByVal currentScreen As Screen, PartyMailItem As Items.MailItem)
+        Me.PreScreen = currentScreen
+        Me.Identification = Identifications.MailSystemScreen
+
+        Me.MouseVisible = True
+        Me.CanBePaused = True
+        Me.CanMuteAudio = False
+        Me.CanChat = False
+        If PartyMailItem IsNot Nothing Then
+            Me.TakenFromParty = True
+            Me.index = 1
+            Me.TempNewMail = Items.MailItem.GetMailDataFromString(PartyMailItem.AdditionalData)
         End If
     End Sub
 
@@ -70,7 +86,9 @@
         Canvas.DrawRectangle(New Rectangle(400, 64, 704, 624), New Color(255, 255, 255, 224))
 
         If UsedFromInventory = True Then
-            DrawMail(Nothing, New Vector2(42, 78), scrollIndex)
+            DrawMail(Nothing, New Vector2(42, 78), 0)
+        ElseIf TakenFromParty = True Then
+            DrawMail(TempNewMail, New Vector2(42, 78), 1)
         Else
             For i = scrollIndex To scrollIndex + 8
                 If i = 0 Then
@@ -84,7 +102,9 @@
 
         End If
 
-        Canvas.DrawScrollBar(New Vector2(368, 86), Core.Player.Mails.Count + 1, 9, scrollIndex, New Size(6, 560), False, Color.LightGray, Color.Black)
+        If UsedFromInventory = False AndAlso TakenFromParty = False Then
+            Canvas.DrawScrollBar(New Vector2(368, 86), Core.Player.Mails.Count + 1, 9, scrollIndex, New Size(6, 560), False, Color.LightGray, Color.Black)
+        End If
 
         If Me.index <> -1 Then
             DrawCurrentMail()
@@ -228,7 +248,12 @@
             End If
             Core.SpriteBatch.DrawString(FontManager.MainFont, "Cancel", New Vector2(CInt(734 - FontManager.MainFont.MeasureString("Cancel").X / 2), yPlus + CInt(348 - FontManager.MainFont.MeasureString("Cancel").Y / 2)), Color.Black)
         Else
-            Dim mail As Items.MailItem.MailData = Core.Player.Mails(index - 1)
+            Dim mail As Items.MailItem.MailData
+            If TakenFromParty = True Then
+                mail = TempNewMail
+            Else
+                mail = Core.Player.Mails(index - 1)
+            End If
             Dim item As Item = Item.GetItemByID(mail.MailID.ToString)
 
             Core.SpriteBatch.Draw(item.Texture, New Rectangle(420, 84, 48, 48), Color.White)
@@ -277,18 +302,24 @@
                 Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\General", New Rectangle(32, 16, 16, 16), ""), New Rectangle(640 + 64, yPlus + 320, 64, 64), Color.White)
                 Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\General", New Rectangle(16, 16, 16, 16), ""), New Rectangle(640 + 128, yPlus + 320, 64, 64), Nothing, Color.White, 0.0F, New Vector2(0), SpriteEffects.FlipHorizontally, 0.0F)
             End If
-            Core.SpriteBatch.DrawString(FontManager.MainFont, "Delete", New Vector2(CInt(734 - FontManager.MainFont.MeasureString("Delete").X / 2), yPlus + CInt(348 - FontManager.MainFont.MeasureString("Delete").Y / 2)), Color.Black)
-
-            If EditMailIndex = 2 Then
-                Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\General", New Rectangle(80, 72, 16, 16), ""), New Rectangle(840, yPlus + 320, 64, 64), Color.White)
-                Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\General", New Rectangle(96, 72, 16, 16), ""), New Rectangle(840 + 64, yPlus + 320, 64, 64), Color.White)
-                Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\General", New Rectangle(80, 72, 16, 16), ""), New Rectangle(840 + 128, yPlus + 320, 64, 64), Nothing, Color.White, 0.0F, New Vector2(0), SpriteEffects.FlipHorizontally, 0.0F)
+            If TakenFromParty = True Then
+                Core.SpriteBatch.DrawString(FontManager.MainFont, "To PC", New Vector2(CInt(734 - FontManager.MainFont.MeasureString("To PC").X / 2), yPlus + CInt(348 - FontManager.MainFont.MeasureString("To PC").Y / 2)), Color.Black)
             Else
-                Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\General", New Rectangle(16, 16, 16, 16), ""), New Rectangle(840, yPlus + 320, 64, 64), Color.White)
-                Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\General", New Rectangle(32, 16, 16, 16), ""), New Rectangle(840 + 64, yPlus + 320, 64, 64), Color.White)
-                Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\General", New Rectangle(16, 16, 16, 16), ""), New Rectangle(840 + 128, yPlus + 320, 64, 64), Nothing, Color.White, 0.0F, New Vector2(0), SpriteEffects.FlipHorizontally, 0.0F)
+                Core.SpriteBatch.DrawString(FontManager.MainFont, "Delete", New Vector2(CInt(734 - FontManager.MainFont.MeasureString("Delete").X / 2), yPlus + CInt(348 - FontManager.MainFont.MeasureString("Delete").Y / 2)), Color.Black)
             End If
-            Core.SpriteBatch.DrawString(FontManager.MainFont, "Cancel", New Vector2(CInt(934 - FontManager.MainFont.MeasureString("Cancel").X / 2), yPlus + CInt(348 - FontManager.MainFont.MeasureString("Cancel").Y / 2)), Color.Black)
+
+            If TakenFromParty = False Then
+                If EditMailIndex = 2 Then
+                    Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\General", New Rectangle(80, 72, 16, 16), ""), New Rectangle(840, yPlus + 320, 64, 64), Color.White)
+                    Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\General", New Rectangle(96, 72, 16, 16), ""), New Rectangle(840 + 64, yPlus + 320, 64, 64), Color.White)
+                    Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\General", New Rectangle(80, 72, 16, 16), ""), New Rectangle(840 + 128, yPlus + 320, 64, 64), Nothing, Color.White, 0.0F, New Vector2(0), SpriteEffects.FlipHorizontally, 0.0F)
+                Else
+                    Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\General", New Rectangle(16, 16, 16, 16), ""), New Rectangle(840, yPlus + 320, 64, 64), Color.White)
+                    Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\General", New Rectangle(32, 16, 16, 16), ""), New Rectangle(840 + 64, yPlus + 320, 64, 64), Color.White)
+                    Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\General", New Rectangle(16, 16, 16, 16), ""), New Rectangle(840 + 128, yPlus + 320, 64, 64), Nothing, Color.White, 0.0F, New Vector2(0), SpriteEffects.FlipHorizontally, 0.0F)
+                End If
+                Core.SpriteBatch.DrawString(FontManager.MainFont, "Cancel", New Vector2(CInt(934 - FontManager.MainFont.MeasureString("Cancel").X / 2), yPlus + CInt(348 - FontManager.MainFont.MeasureString("Cancel").Y / 2)), Color.Black)
+            End If
         End If
     End Sub
 
@@ -296,6 +327,9 @@
         If message <> "" Then
             If Controls.Accept(True, True, True) = True Or Controls.Dismiss(True, True, True) = True Then
                 message = ""
+                If ReadyToExit = True Then
+                    Core.SetScreen(New TransitionScreen(Me, Me.PreScreen, Color.Black, False))
+                End If
             End If
 
             Exit Sub
@@ -353,47 +387,70 @@
                             EditMailIndex += 1
                         End If
 
-                        EditMailIndex = EditMailIndex.Clamp(0, 2)
+                        If TakenFromParty = True Then
+                            EditMailIndex = EditMailIndex.Clamp(0, 1)
+                        Else
+                            EditMailIndex = EditMailIndex.Clamp(0, 2)
+                        End If
+
 
                         If Controls.Accept(False, True, True) = True Then
 
                             Select Case EditMailIndex
                                 Case 0
-                                    Me.TempNewMail = Core.Player.Mails(Me.index - 1)
+                                    If TakenFromParty = False Then
+                                        Me.TempNewMail = Core.Player.Mails(Me.index - 1)
+                                    End If
                                     SoundManager.PlaySound("select")
                                     Dim selScreen = New PartyScreen(Me, Item.GetItemByID(TempNewMail.MailID.ToString), AddressOf Me.ChosenPokemon, "Give mail to:", True) With {.Mode = Screens.UI.ISelectionScreen.ScreenMode.Selection, .CanExit = True}
                                     AddHandler selScreen.SelectedObject, AddressOf ChosenPokemonHandler
 
                                     Core.SetScreen(selScreen)
                                 Case 1
-                                    Dim e1 As New MenuEntry(3, "Yes", False, AddressOf DeleteMail)
-                                    Dim e2 As New MenuEntry(4, "No", True, Nothing)
-                                    SetupMenu({e1, e2}, "Delete this mail?")
+                                    If TakenFromParty = True Then
+                                        Dim e1 As New MenuEntry(3, "Yes", False, AddressOf SendMailToPC)
+                                        Dim e2 As New MenuEntry(4, "No", True, Nothing)
+                                        SetupMenu({e1, e2}, "Send this mail to PC?")
+                                    Else
+                                        Dim e1 As New MenuEntry(3, "Yes", False, AddressOf DeleteMail)
+                                        Dim e2 As New MenuEntry(4, "No", True, Nothing)
+                                        SetupMenu({e1, e2}, "Delete this mail?")
+                                    End If
 
                                 Case 2
-                                    Me.index = -1
-                                    EditMailIndex = 0
+                                    If TakenFromParty = False Then
+                                        Me.index = -1
+                                        EditMailIndex = 0
+                                    End If
                             End Select
                         End If
 
-                        Dim text As String = Core.Player.Mails(index - 1).MailText.CropStringToWidth(FontManager.MainFont, 600)
+                        Dim text As String = ""
+                        If TakenFromParty = False Then
+                            text = Core.Player.Mails(index - 1).MailText.CropStringToWidth(FontManager.MainFont, 600)
+                        Else
+                            text = TempNewMail.MailText.CropStringToWidth(FontManager.MainFont, 600)
+                        End If
                         Dim yPlus As Integer = CInt(FontManager.MainFont.MeasureString(text).Y)
 
                         If Controls.Accept(True, False, False) = True Then
                             Dim MailIndex As Integer = -1
-                            For i = 0 To 8
-                                If i < Core.Player.Mails.Count + 1 Then
-                                    If New Rectangle(46, 82 + 64 * i + 2 * (i - scrollIndex), 288, 64).Contains(MouseHandler.MousePosition) Then
-                                        MailIndex = scrollIndex + i
-                                        Exit For
+                            If TakenFromParty = False Then
+                                For i = 0 To 8
+                                    If i < Core.Player.Mails.Count + 1 Then
+                                        If New Rectangle(46, 82 + 64 * i + 2 * (i - scrollIndex), 288, 64).Contains(MouseHandler.MousePosition) Then
+                                            MailIndex = scrollIndex + i
+                                            Exit For
+                                        End If
+                                    Else
+                                        If New Rectangle(46, 82 + 64 * i + 2 * (i - scrollIndex), 288, 64).Contains(MouseHandler.MousePosition) Then
+                                            EditMailIndex = 1
+                                            Exit For
+                                        End If
                                     End If
-                                Else
-                                    If New Rectangle(46, 82 + 64 * i + 2 * (i - scrollIndex), 288, 64).Contains(MouseHandler.MousePosition) Then
-                                        EditMailIndex = 1
-                                        Exit For
-                                    End If
-                                End If
-                            Next
+                                Next
+                            End If
+
                             If MailIndex <> -1 Then
                                 selectIndex = MailIndex
                                 If Me.selectIndex = 0 Then
@@ -420,7 +477,9 @@
 
                                 If New Rectangle(440, yPlus + 320, 192, 64).Contains(MouseHandler.MousePosition) Then
                                     EditMailIndex = 0
-                                    Me.TempNewMail = Core.Player.Mails(Me.index - 1)
+                                    If TakenFromParty = False Then
+                                        Me.TempNewMail = Core.Player.Mails(Me.index - 1)
+                                    End If
                                     SoundManager.PlaySound("select")
                                     Dim selScreen = New PartyScreen(Me, Item.GetItemByID(TempNewMail.MailID.ToString), AddressOf Me.ChosenPokemon, "Give mail to:", True) With {.Mode = Screens.UI.ISelectionScreen.ScreenMode.Selection, .CanExit = True}
                                     AddHandler selScreen.SelectedObject, AddressOf ChosenPokemonHandler
@@ -428,21 +487,37 @@
                                     Core.SetScreen(selScreen)
                                 End If
                                 If New Rectangle(640, yPlus + 320, 192, 64).Contains(MouseHandler.MousePosition) Then
+                                    SoundManager.PlaySound("select")
                                     EditMailIndex = 1
-                                    Dim e1 As New MenuEntry(3, "Yes", False, AddressOf DeleteMail)
-                                    Dim e2 As New MenuEntry(4, "No", True, Nothing)
-                                    SetupMenu({e1, e2}, "Delete this mail?")
+                                    If TakenFromParty = True Then
+                                        Dim e1 As New MenuEntry(3, "Yes", False, AddressOf SendMailToPC)
+                                        Dim e2 As New MenuEntry(4, "No", True, Nothing)
+                                        SetupMenu({e1, e2}, "Send this mail to PC?")
+                                    Else
+                                        Dim e1 As New MenuEntry(3, "Yes", False, AddressOf DeleteMail)
+                                        Dim e2 As New MenuEntry(4, "No", True, Nothing)
+                                        SetupMenu({e1, e2}, "Delete this mail?")
+                                    End If
                                 End If
-                                If New Rectangle(840, yPlus + 320, 192, 64).Contains(MouseHandler.MousePosition) Then
-                                    Me.index = -1
-                                    EditMailIndex = 0
+                                If TakenFromParty = False Then
+                                    If New Rectangle(840, yPlus + 320, 192, 64).Contains(MouseHandler.MousePosition) Then
+                                        SoundManager.PlaySound("select")
+                                        Me.index = -1
+                                        EditMailIndex = 0
+                                    End If
                                 End If
                             End If
                         End If
 
                         If Controls.Dismiss(True, True, True) = True Then
-                            SoundManager.PlaySound("select")
-                            Me.index = -1
+                            If TakenFromParty = True Then
+                                Dim e1 As New MenuEntry(3, "Yes", False, AddressOf SendMailToPC)
+                                Dim e2 As New MenuEntry(4, "No", True, Nothing)
+                                SetupMenu({e1, e2}, "Send this mail to PC?")
+                            Else
+                                SoundManager.PlaySound("select")
+                                Me.index = -1
+                            End If
 
                         End If
                     Else
@@ -720,12 +795,17 @@
 
         If index = 0 Then
             Core.Player.Inventory.RemoveItem(TempNewMail.MailID.ToString, 1)
+            Me.index = -1
         Else
-            Core.Player.Mails.RemoveAt(Me.index - 1)
-            selectIndex -= 1
-            selectIndex = selectIndex.Clamp(0, Core.Player.Mails.Count)
+            If TakenFromParty = False Then
+                Core.Player.Mails.RemoveAt(Me.index - 1)
+                selectIndex -= 1
+                selectIndex = selectIndex.Clamp(0, Core.Player.Mails.Count)
+                Me.index = -1
+            Else
+                ReadyToExit = True
+            End If
         End If
-        Me.index = -1
 
         Me.message = text
     End Sub
@@ -780,6 +860,11 @@
         EditMailIndex = 0
         selectIndex -= 1
         selectIndex = selectIndex.Clamp(0, Core.Player.Mails.Count)
+    End Sub
+    Private Sub SendMailToPC()
+        Me.message = "The Mail was taken to your inbox on your PC."
+        Core.Player.Mails.Add(TempNewMail)
+        ReadyToExit = True
     End Sub
 
     Private Sub SetupMenu(ByVal entries() As MenuEntry, ByVal header As String)
