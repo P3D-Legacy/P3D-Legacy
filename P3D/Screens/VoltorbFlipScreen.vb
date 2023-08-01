@@ -175,7 +175,7 @@ Namespace VoltorbFlip
             End If
 
             'Level
-            Dim LevelText As String = Localization.GetString("VoltorbFlip_LV.", "LV.") & CurrentLevel.ToString
+            Dim LevelText As String = Localization.GetString("VoltorbFlip_LV.", "LV.") & " " & CurrentLevel.ToString
             Canvas.DrawImageBorder(TextureManager.GetTexture("Textures\VoltorbFlip\HUD"), 2, New Rectangle(CInt(GameOrigin.X + 32), CInt(GameOrigin.Y + 32), 96, 96), mainBackgroundColor, False)
             SpriteBatch.DrawString(FontManager.MainFont, LevelText, New Vector2(CInt(GameOrigin.X + 80 + 4 - FontManager.MainFont.MeasureString(LevelText).X / 2), CInt(GameOrigin.Y + 80 + 4 - FontManager.MainFont.MeasureString(LevelText).Y / 2)), Fontcolor)
 
