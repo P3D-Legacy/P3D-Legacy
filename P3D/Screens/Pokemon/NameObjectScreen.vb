@@ -115,8 +115,8 @@ Public Class NameObjectScreen
                 End If
             End If
 
-            Core.SpriteBatch.DrawString(FontManager.InGameFont, "Rename " & Me._defaultName & genderString & "?", New Vector2(CInt(Core.windowSize.Width / 2) - CInt(FontManager.InGameFont.MeasureString("Rename " & Me._defaultName & genderString & "?").X / 2) + 2, 96 + 2), Color.Black)
-            Core.SpriteBatch.DrawString(FontManager.InGameFont, "Rename " & Me._defaultName & genderString & "?", New Vector2(CInt(Core.windowSize.Width / 2) - CInt(FontManager.InGameFont.MeasureString("Rename " & Me._defaultName & genderString & "?").X / 2), 96), Color.White)
+            Core.SpriteBatch.DrawString(FontManager.InGameFont, "Rename " & Me._defaultName & genderString & "?", New Vector2(CInt(Core.windowSize.Width / 2) - CInt(FontManager.InGameFont.MeasureString("Rename " & Me._defaultName & genderString & "?").X / 2) + 16 + 2, 96 + 2), Color.Black)
+            Core.SpriteBatch.DrawString(FontManager.InGameFont, "Rename " & Me._defaultName & genderString & "?", New Vector2(CInt(Core.windowSize.Width / 2) - CInt(FontManager.InGameFont.MeasureString("Rename " & Me._defaultName & genderString & "?").X / 2) + 16, 96), Color.White)
 
             ChooseBox.Showing = False
         Else
@@ -131,8 +131,8 @@ Public Class NameObjectScreen
                     End If
                 End If
 
-                Core.SpriteBatch.DrawString(FontManager.InGameFont, "Enter name for " & Me._defaultName & genderString & ":", New Vector2(CInt(Core.windowSize.Width / 2) - CInt(FontManager.InGameFont.MeasureString("Enter name for " & Me._defaultName & genderString & ":").X / 2) + 2, 96 + 2), Color.Black)
-                Core.SpriteBatch.DrawString(FontManager.InGameFont, "Enter name for " & Me._defaultName & genderString & ":", New Vector2(CInt(Core.windowSize.Width / 2) - CInt(FontManager.InGameFont.MeasureString("Enter name for " & Me._defaultName & genderString & ":").X / 2), 96), Color.White)
+                Core.SpriteBatch.DrawString(FontManager.InGameFont, "Enter name for " & Me._defaultName & genderString & ":", New Vector2(CInt(Core.windowSize.Width / 2) - CInt(FontManager.InGameFont.MeasureString("Enter name for " & Me._defaultName & genderString & ":").X / 2) + 16 + 2, 96 + 2), Color.Black)
+                Core.SpriteBatch.DrawString(FontManager.InGameFont, "Enter name for " & Me._defaultName & genderString & ":", New Vector2(CInt(Core.windowSize.Width / 2) - CInt(FontManager.InGameFont.MeasureString("Enter name for " & Me._defaultName & genderString & ":").X / 2) + 16, 96), Color.White)
 
                 Canvas.DrawRectangle(New Rectangle(CInt(TextboxPosition().X) - 4, CInt(TextboxPosition().Y) - 4, 320 + 8, 32), New Color(101, 142, 255))
                 DrawTextBox()
@@ -144,7 +144,7 @@ Public Class NameObjectScreen
     End Sub
 
     Private Function TextboxPosition() As Vector2
-        Return New Vector2(CInt(Core.windowSize.Width / 2) - 160, 140)
+        Return New Vector2(CInt(Core.windowSize.Width / 2) - 160 + 16, 140)
     End Function
 
     Private Sub DrawTextBox()
