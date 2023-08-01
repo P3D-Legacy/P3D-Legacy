@@ -503,27 +503,31 @@
         Return CanBreed(l, multiplier)
     End Function
 
-    Private Shared Function GetEggPokemonID(ByVal Pokemon As Dictionary(Of Integer, Pokemon)) As Integer
+    Private Shared Function GetEggPokemonID(ByVal Pokemon As Dictionary(Of Integer, Pokemon)) As String
         If Pokemon.Count = 2 Then
             Dim p1 As Pokemon = Pokemon.Values(0)
             Dim p2 As Pokemon = Pokemon.Values(1)
 
             If p1.EggGroup1 = P3D.Pokemon.EggGroups.Ditto Or p1.EggGroup2 = P3D.Pokemon.EggGroups.Ditto Then
-                Return p2.Number
+                Dim dexID As String = PokemonForms.GetPokemonDataFileName(p2.Number, p2.AdditionalData)
+                Return dexID
             End If
             If p2.EggGroup1 = P3D.Pokemon.EggGroups.Ditto Or p2.EggGroup2 = P3D.Pokemon.EggGroups.Ditto Then
-                Return p1.Number
+                Dim dexID As String = PokemonForms.GetPokemonDataFileName(p1.Number, p1.AdditionalData)
+                Return dexID
             End If
 
             If p1.Gender = P3D.Pokemon.Genders.Female Then
-                Return p1.Number
+                Dim dexID As String = PokemonForms.GetPokemonDataFileName(p1.Number, p1.AdditionalData)
+                Return dexID
             End If
             If p2.Gender = P3D.Pokemon.Genders.Female Then
-                Return p2.Number
+                Dim dexID As String = PokemonForms.GetPokemonDataFileName(p2.Number, p2.AdditionalData)
+                Return dexID
             End If
         End If
 
-        Return 0
+        Return 0.ToString
     End Function
 
     Private Shared Function GetEggPokeballID(ByVal Pokemon As List(Of Pokemon)) As String
@@ -635,9 +639,14 @@
                 If breedChance > 0 Then
                     Logger.Debug("Breed chance: " & breedChance)
                     If Core.Random.Next(0, 100) < breedChance Then
-                        Dim parentID As Integer = GetEggPokemonID(Pokemon)
+                        Dim DexID As String = GetEggPokemonID(Pokemon)
+                        Dim parentID As Integer = CInt(DexID.GetSplit(0, "_"))
+                        Dim parentAD As String = ""
+                        If DexID.Contains("_") = True Then
+                            parentAD = DexID.GetSplit(1, "_")
+                        End If
 
-                        Dim newEggID As Integer = P3D.Pokemon.GetPokemonByID(parentID).EggPokemon
+                        Dim newEggID As String = P3D.Pokemon.GetPokemonByID(parentID, parentAD).EggPokemon
                         Dim s As String = DaycareID.ToString() & "|Egg|" & newEggID.ToString()
 
                         Logger.Debug("Egg created!" & Environment.NewLine & "EggID: " & newEggID)
