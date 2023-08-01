@@ -11,6 +11,7 @@
     Dim MenuCursor As Integer = 0
     Dim MenuHeader As String = ""
     Dim message As String = ""
+    Dim UsedFromInventory As Boolean = False
 
     Public Sub New(ByVal currentScreen As Screen)
         Me.PreScreen = currentScreen
@@ -20,6 +21,21 @@
         Me.CanBePaused = True
         Me.CanMuteAudio = False
         Me.CanChat = False
+    End Sub
+
+    Public Sub New(ByVal currentScreen As Screen, Optional MailItemID As String = "")
+        Me.PreScreen = currentScreen
+        Me.Identification = Identifications.MailSystemScreen
+
+        Me.MouseVisible = True
+        Me.CanBePaused = True
+        Me.CanMuteAudio = False
+        Me.CanChat = False
+        If MailItemID <> "" Then
+            Me.UsedFromInventory = True
+            Me.index = 0
+            ChosenMail(MailItemID)
+        End If
     End Sub
 
     Public Overrides Sub Draw()
@@ -53,15 +69,20 @@
         Canvas.DrawRectangle(New Rectangle(32, 64, 352, 624), New Color(255, 255, 255, 224))
         Canvas.DrawRectangle(New Rectangle(400, 64, 704, 624), New Color(255, 255, 255, 224))
 
-        For i = scrollIndex To scrollIndex + 8
-            If i = 0 Then
-                DrawMail(Nothing, New Vector2(42, 78 + (i - scrollIndex) * 64), i)
-            Else
-                If i <= Core.Player.Mails.Count Then
-                    DrawMail(Core.Player.Mails(i - 1), New Vector2(42, 78 + (i - scrollIndex) * 64 + 2 * (i - scrollIndex)), i)
+        If UsedFromInventory = True Then
+            DrawMail(Nothing, New Vector2(42, 78), scrollIndex)
+        Else
+            For i = scrollIndex To scrollIndex + 8
+                If i = 0 Then
+                    DrawMail(Nothing, New Vector2(42, 78 + (i - scrollIndex) * 64), i)
+                Else
+                    If i <= Core.Player.Mails.Count Then
+                        DrawMail(Core.Player.Mails(i - 1), New Vector2(42, 78 + (i - scrollIndex) * 64 + 2 * (i - scrollIndex)), i)
+                    End If
                 End If
-            End If
-        Next
+            Next
+
+        End If
 
         Canvas.DrawScrollBar(New Vector2(368, 86), Core.Player.Mails.Count + 1, 9, scrollIndex, New Size(6, 560), False, Color.LightGray, Color.Black)
 
@@ -583,19 +604,21 @@
 
                     If Controls.Accept(True, False, False) = True Then
                         Dim MailIndex As Integer = -1
-                        For i = 0 To 8
-                            If i < Core.Player.Mails.Count + 1 Then
-                                If New Rectangle(46, 82 + 64 * i + 2 * (i - scrollIndex), 288, 64).Contains(MouseHandler.MousePosition) Then
-                                    MailIndex = scrollIndex + i
-                                    Exit For
+                        If UsedFromInventory = False Then
+                            For i = 0 To 8
+                                If i < Core.Player.Mails.Count + 1 Then
+                                    If New Rectangle(46, 82 + 64 * i + 2 * (i - scrollIndex), 288, 64).Contains(MouseHandler.MousePosition) Then
+                                        MailIndex = scrollIndex + i
+                                        Exit For
+                                    End If
+                                Else
+                                    If New Rectangle(46, 82 + 64 * i + 2 * (i - scrollIndex), 288, 64).Contains(MouseHandler.MousePosition) Then
+                                        EditMailIndex = 4
+                                        Exit For
+                                    End If
                                 End If
-                            Else
-                                If New Rectangle(46, 82 + 64 * i + 2 * (i - scrollIndex), 288, 64).Contains(MouseHandler.MousePosition) Then
-                                    EditMailIndex = 4
-                                    Exit For
-                                End If
-                            End If
-                        Next
+                            Next
+                        End If
                         If MailIndex <> -1 Then
                             selectIndex = MailIndex
                             SoundManager.PlaySound("select")
@@ -637,14 +660,22 @@
                                 End If
                             Case 4
                                 SoundManager.PlaySound("select")
-                                Me.index = -1
-                                EditMailIndex = 0
+                                If UsedFromInventory = True Then
+                                    Core.SetScreen(New TransitionScreen(Me, Me.PreScreen, Color.Black, False))
+                                Else
+                                    Me.index = -1
+                                    EditMailIndex = 0
+                                End If
                         End Select
                     End If
 
                     If Controls.Dismiss(True, False, True) = True Then
-                        Me.index = -1
-                        SoundManager.PlaySound("select")
+                        If UsedFromInventory = True Then
+                            Core.SetScreen(New TransitionScreen(Me, Me.PreScreen, Color.Black, False))
+                        Else
+                            Me.index = -1
+                            EditMailIndex = 0
+                        End If
                     End If
                 End If
             End If
@@ -652,10 +683,10 @@
     End Sub
 
     Private Sub ChosenMailHandler(ByVal params As Object())
-        ChosenMail(CInt(params(0)))
+        ChosenMail(CStr(params(0)))
     End Sub
 
-    Private Sub ChosenMail(ByVal ItemID As Integer)
+    Private Sub ChosenMail(ByVal ItemID As String)
         Me.index = 0
         Me.EditMailIndex = 0
         Me.TempNewMail = New Items.MailItem.MailData

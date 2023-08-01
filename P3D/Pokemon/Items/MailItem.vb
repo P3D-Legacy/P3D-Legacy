@@ -8,7 +8,7 @@ Namespace Items
         Inherits Item
 
         Public Structure MailData
-            Dim MailID As Integer
+            Dim MailID As String
             Dim MailHeader As String
             Dim MailText As String
             Dim MailSender As String
@@ -30,7 +30,7 @@ Namespace Items
             Dim data() As String = s.Split("\,")
 
             Dim mail As New MailData
-            mail.MailID = CInt(data(0))
+            mail.MailID = CStr(data(0))
             mail.MailSender = data(1)
             mail.MailHeader = data(2)
             mail.MailText = data(3)
