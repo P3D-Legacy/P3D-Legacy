@@ -36,6 +36,18 @@
                             amount = int(item.MaxStack - Core.Player.Inventory.GetItemAmount(_itemID)).Clamp(0, 999)
                         End If
                         Core.Player.Inventory.AddItem(_itemID, amount)
+                        If item.IsMail = True AndAlso item.IsGameModeItem = False Then
+                            Dim hasAllMail = True
+                            For m = 300 To 323
+                                If Core.Player.Inventory.GetItemAmount(m.ToString) = 0 Then
+                                    hasAllMail = False
+                                    Exit For
+                                End If
+                            Next
+                            If hasAllMail = True Then
+                                GameJolt.Emblem.AchieveEmblem("mailman")
+                            End If
+                        End If
                     End If
                 Case "remove"
                     Dim amount As Integer = 1
