@@ -284,27 +284,22 @@
                     CanContinue = False
                 Case "voltorbflip"
                     If Core.Player.Inventory.GetItemAmount(54.ToString) > 0 Then
-                        If CInt(GameModeManager.GetGameRuleValue("CoinCaseCap", "0")) > 0 AndAlso Core.Player.Coins > CInt(GameModeManager.GetGameRuleValue("CoinCaseCap", "0")) Then
-                            Screen.TextBox.Show(Localization.GetString("VoltorbFlip_BeforeGame_FullCoinCase", "Your Coin Case is already full!"))
-                            IsReady = True
-                        Else
-                            If VoltorbFlip.VoltorbFlipScreen.TotalCoins = -1 Then
-                                Core.SetScreen(New VoltorbFlip.VoltorbFlipScreen(CurrentScreen))
-                            End If
-                            If CurrentScreen.Identification = Screen.Identifications.OverworldScreen Then
-                                VoltorbFlip.VoltorbFlipScreen.CurrentLevel = 1
-                                VoltorbFlip.VoltorbFlipScreen.PreviousLevel = 1
-                                If VoltorbFlip.VoltorbFlipScreen.TotalCoins > 0 Then
-                                    Screen.TextBox.Show(Localization.GetString("VoltorbFlip_AfterGame_Won1", "You've won") & " " & VoltorbFlip.VoltorbFlipScreen.TotalCoins & " " & Localization.GetString("VoltorbFlip_AfterGame_Won2", "Coins!"))
-                                    Core.Player.Coins += VoltorbFlip.VoltorbFlipScreen.TotalCoins
-                                    PlayerStatistics.Track("Obtained Coins", VoltorbFlip.VoltorbFlipScreen.TotalCoins)
-                                    VoltorbFlip.VoltorbFlipScreen.TotalCoins = -1
-                                    IsReady = True
-                                Else
-                                    Screen.TextBox.Show(Localization.GetString("VoltorbFlip_AfterGame_Lost", "Too bad, you didn't win~any Coins!*Better luck next time!"))
-                                    VoltorbFlip.VoltorbFlipScreen.TotalCoins = -1
-                                    IsReady = True
-                                End If
+                        If VoltorbFlip.VoltorbFlipScreen.TotalCoins = -1 Then
+                            Core.SetScreen(New VoltorbFlip.VoltorbFlipScreen(CurrentScreen))
+                        End If
+                        If CurrentScreen.Identification = Screen.Identifications.OverworldScreen Then
+                            VoltorbFlip.VoltorbFlipScreen.CurrentLevel = 1
+                            VoltorbFlip.VoltorbFlipScreen.PreviousLevel = 1
+                            If VoltorbFlip.VoltorbFlipScreen.TotalCoins > 0 Then
+                                Screen.TextBox.Show(Localization.GetString("VoltorbFlip_AfterGame_Won1", "You've won") & " " & VoltorbFlip.VoltorbFlipScreen.TotalCoins & " " & Localization.GetString("VoltorbFlip_AfterGame_Won2", "Coins!"))
+                                Core.Player.Coins += VoltorbFlip.VoltorbFlipScreen.TotalCoins
+                                PlayerStatistics.Track("Obtained Coins", VoltorbFlip.VoltorbFlipScreen.TotalCoins)
+                                VoltorbFlip.VoltorbFlipScreen.TotalCoins = -1
+                                IsReady = True
+                            Else
+                                Screen.TextBox.Show(Localization.GetString("VoltorbFlip_AfterGame_Lost", "Too bad, you didn't win~any Coins!*Better luck next time!"))
+                                VoltorbFlip.VoltorbFlipScreen.TotalCoins = -1
+                                IsReady = True
                             End If
                         End If
                     Else
