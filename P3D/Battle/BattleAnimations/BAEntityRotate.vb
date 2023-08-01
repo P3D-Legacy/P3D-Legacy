@@ -122,12 +122,15 @@
             Me.RotationSpeedVector = New Vector3(Me.RotationSpeedVector.X * -1, Me.RotationSpeedVector.Y * -1, Me.RotationSpeedVector.Z * -1)
             If DoRotation.X = 1.0F Then
                 ReadyAxis.X = 0.0F
+                AmountRotated.X -= AmountRotated.X * 2
             End If
             If DoRotation.Y = 1.0F Then
                 ReadyAxis.Y = 0.0F
+                AmountRotated.Y -= AmountRotated.Y * 2
             End If
             If DoRotation.Z = 1.0F Then
                 ReadyAxis.Z = 0.0F
+                AmountRotated.Z -= AmountRotated.Z * 2
             End If
         Else
             Me.Ready = True

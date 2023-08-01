@@ -197,7 +197,7 @@ nextIndex:
                                     If Shakes(i) = False Then
                                         CatchAnimation.AnimationRotate(BallEntity, False, 0, 0, 0.15F, 0, 0, MathHelper.PiOver4, 12 + i * 10, 0, False, False, True, True)
                                     Else
-                                        CatchAnimation.AnimationRotate(BallEntity, False, 0, 0, -0.15F, 0, 0, 0 - MathHelper.PiOver4, 12 + i * 10, 0, False, False, True, True)
+                                        CatchAnimation.AnimationRotate(BallEntity, False, 0, 0, -0.15F, 0, 0, -MathHelper.PiOver4, 12 + i * 10, 0, False, False, True, True)
                                     End If
                                 Next
 
