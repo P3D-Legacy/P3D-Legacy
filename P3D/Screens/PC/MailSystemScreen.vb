@@ -303,7 +303,7 @@
                 Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\General", New Rectangle(16, 16, 16, 16), ""), New Rectangle(640 + 128, yPlus + 320, 64, 64), Nothing, Color.White, 0.0F, New Vector2(0), SpriteEffects.FlipHorizontally, 0.0F)
             End If
             If TakenFromParty = True Then
-                Core.SpriteBatch.DrawString(FontManager.MainFont, "To PC", New Vector2(CInt(734 - FontManager.MainFont.MeasureString("To PC").X / 2), yPlus + CInt(348 - FontManager.MainFont.MeasureString("To PC").Y / 2)), Color.Black)
+                Core.SpriteBatch.DrawString(FontManager.MainFont, "Send To PC", New Vector2(CInt(734 - FontManager.MainFont.MeasureString("Send To PC").X / 2), yPlus + CInt(348 - FontManager.MainFont.MeasureString("Send To PC").Y / 2)), Color.Black)
             Else
                 Core.SpriteBatch.DrawString(FontManager.MainFont, "Delete", New Vector2(CInt(734 - FontManager.MainFont.MeasureString("Delete").X / 2), yPlus + CInt(348 - FontManager.MainFont.MeasureString("Delete").Y / 2)), Color.Black)
             End If
