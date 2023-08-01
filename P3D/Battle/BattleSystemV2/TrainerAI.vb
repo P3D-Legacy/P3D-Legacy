@@ -103,6 +103,23 @@ Namespace BattleSystem
             ' - use never-miss attack when own accuracy is low/opp evasion is high
 
             '-------------------------------------AI BEGIN------------------------------------------------------------------------------------'
+            '-------------------------------------Encore Move if an encore is in effect-------------------------------------------------------'
+
+            If BattleScreen.FieldEffects.OppEncore > 0 Then
+                Dim attackIndex As Integer = -1
+                For a = 0 To p.Attacks.Count - 1
+                    If p.Attacks(a).ID = BattleScreen.FieldEffects.OppEncoreMove.ID Then
+                        attackIndex = a
+                    End If
+                Next
+                If attackIndex <> -1 AndAlso p.Attacks(attackIndex).CurrentPP > 0 Then
+                    Return New RoundConst() With {.StepType = RoundConst.StepTypes.Move, .Argument = BattleScreen.FieldEffects.OppEncoreMove}
+                Else
+                    BattleScreen.FieldEffects.OppEncoreMove = Nothing
+                    BattleScreen.FieldEffects.OppEncore = 0
+                    BattleScreen.BattleQuery.Add(New TextQueryObject(p.GetDisplayName() & "'s encore stopped."))
+                End If
+            End If
 
             '-------------------------------------Random move depending on difficulty---------------------------------------------------------'
 

@@ -426,6 +426,21 @@
                     AvailableAttacks.Add(i)
                 Next
                 Dim OppAttackChoice As Integer = Core.Random.Next(0, AvailableAttacks.Count)
+                If BattleScreen.FieldEffects.OppEncore > 0 Then
+                    Dim attackIndex As Integer = -1
+                    For a = 0 To BattleScreen.OppPokemon.Attacks.Count - 1
+                        If BattleScreen.OppPokemon.Attacks(a).ID = BattleScreen.FieldEffects.OppEncoreMove.ID Then
+                            attackIndex = a
+                        End If
+                    Next
+                    If attackIndex <> -1 AndAlso BattleScreen.OppPokemon.Attacks(attackIndex).CurrentPP > 0 Then
+                        Return New RoundConst() With {.StepType = RoundConst.StepTypes.Move, .Argument = BattleScreen.FieldEffects.OppEncoreMove}
+                    Else
+                        BattleScreen.FieldEffects.OppEncoreMove = Nothing
+                        BattleScreen.FieldEffects.OppEncore = 0
+                        BattleScreen.BattleQuery.Add(New TextQueryObject(BattleScreen.OppPokemon.GetDisplayName() & "'s encore stopped."))
+                    End If
+                End If
                 Dim Ready As Boolean = False
                 While Ready = False
                     If BattleScreen.OppPokemon.Attacks(OppAttackChoice) Is BattleScreen.FieldEffects.OppTormentMove OrElse BattleScreen.OppPokemon.Attacks(OppAttackChoice).Disabled > 0 OrElse BattleScreen.FieldEffects.OppTaunt > 0 AndAlso BattleScreen.OppPokemon.Attacks(OppAttackChoice).Category = Attack.Categories.Status Or BattleScreen.OppPokemon.Attacks(OppAttackChoice).CurrentPP <= 0 Then

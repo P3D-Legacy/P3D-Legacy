@@ -67,19 +67,17 @@
             End If
 
             If Not lastMove Is Nothing Then
-                If lastMove.CurrentPP > 0 Then
-                    Dim deductPP As Integer = 3
-
-                    If lastMove.CurrentPP < 3 Then
-                        deductPP = lastMove.CurrentPP
-                    End If
-
-                    lastMove.CurrentPP -= deductPP
-
-                    BattleScreen.BattleQuery.Add(New TextQueryObject(op.GetDisplayName() & "'s " & lastMove.Name & " lost " & deductPP & " PP!"))
+                If own = True Then
+                    BattleScreen.FieldEffects.OppEncoreMove = lastMove
                 Else
-                    BattleScreen.BattleQuery.Add(New TextQueryObject(Me.Name & " failed!"))
+                    BattleScreen.FieldEffects.OwnEncoreMove = lastMove
                 End If
+                If own = True Then
+                    BattleScreen.FieldEffects.OppEncore = 3
+                Else
+                    BattleScreen.FieldEffects.OwnEncore = 3
+                End If
+                BattleScreen.BattleQuery.Add(New TextQueryObject(op.GetDisplayName & " received an encore!"))
             Else
                 BattleScreen.BattleQuery.Add(New TextQueryObject(Me.Name & " failed!"))
             End If
