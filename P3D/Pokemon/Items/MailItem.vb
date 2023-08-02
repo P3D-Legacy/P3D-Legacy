@@ -43,7 +43,7 @@ Namespace Items
         End Function
 
         Public Shared Function GetStringFromMail(ByVal mail As MailData) As String
-            Dim s As String = mail.MailID.ToString() & "\," &
+            Dim s As String = mail.MailID & "\," &
                 mail.MailSender & "\," &
                 mail.MailHeader & "\," &
                 mail.MailText & "\," &

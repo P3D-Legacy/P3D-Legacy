@@ -247,6 +247,10 @@ Public Class GameModeItem
     ''' </summary>
     Public Overrides Sub Use()
         If gmScriptPath = "" Then
+            If IsMail = True Then
+                Core.SetScreen(New TransitionScreen(Core.CurrentScreen, New MailSystemScreen(Core.CurrentScreen, Me.gmID), Color.Black, False))
+            End If
+
             If gmIsTM = True And gmTeachMove IsNot Nothing Then
                 SoundManager.PlaySound("PC\LogOn", False)
                 Dim selScreen = New PartyScreen(Core.CurrentScreen, Me, AddressOf Me.UseOnPokemon, "Use " & Me.Name, True) With {.Mode = Screens.UI.ISelectionScreen.ScreenMode.Selection, .CanExit = True}

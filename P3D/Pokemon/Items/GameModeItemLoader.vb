@@ -120,6 +120,8 @@ Public Class GameModeItemLoader
                             item.gmFlingDamage = CInt(value)
                         Case "ishealingitem"
                             item.gmIsHealingItem = CBool(value)
+                        Case "ismail"
+                            item.gmIsMail = CBool(value)
                         Case "healhpamount"
                             item.gmHealHPAmount = CInt(value)
                         Case "curestatus"
