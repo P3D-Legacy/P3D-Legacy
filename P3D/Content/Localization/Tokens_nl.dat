@@ -162,19 +162,15 @@ option_screen_game_viewbobbing_description,Turns camera shaking on or off.
 
 option_screen_graphics,Beeld
 option_screen_graphics_fov,Gezichtsveld
-option_screen_graphics_fov_description,The field of view. The higher the value is,~the more you can see.~Warning: Too large value can cause lags in larger maps.
 option_screen_graphics_renderdistance,Renderafstand
-option_screen_graphics_renderdistance_description,The render distance determines,~how far you can see.~By turning this down, you can improve your FPS.
 option_screen_graphics_renderdistance_tiny,Heel dichtbij
 option_screen_graphics_renderdistance short,Dichtbij
 option_screen_graphics_renderdistance_normal,Normaal
 option_screen_graphics_renderdistance_far, Ver
 option_screen_graphics_renderdistance_extreme,Extreem ver
 option_screen_graphics_offset_mapquality,Offset-kaart kwaliteit
-option_screen_graphics_offset_mapquality_description,Sets the quality of the offset maps.~The details and update frequency of offset maps increase with this value.~Set this value to 0 to prevent the game from loading offset maps.
 option_screen_graphics_offset_mapquality_off,Uit
 option_screen_graphics_graphics,Beeldkwaliteit
-option_screen_graphics_graphics_description,Affects if some objects are rendered~or not. By turning this down, you can improve your FPS.~This settings is for all save states.
 option_screen_graphics_graphics_fancy,Hoog
 option_screen_graphics_graphics_fast,Laag
 option_screen_graphics_multisampling,Multi Sampling
@@ -182,17 +178,14 @@ option_screen_graphics_multisampling,Multi Sampling
 option_screen_battle,Gevecht
 option_screen_battle_3dmodels,3D Modellen
 option_screen_battle_animations,Animaties
-option_screen_battle_animations_description,Determines if the game shows battle animations.
 option_screen_battle_battlestyle,Gevechtstijl
 option_screen_battle_battlestyle_shift,Wisselen
 option_screen_battle_battlestyle_set,Doorgaan
-option_screen_battle_style_description,Battle Style~Set: You are not asked to switch out your Pokémon~Shift: You can switch out your Pokémon after defeating an opponent.
 
 option_screen_controls,Besturing
 option_screen_controls_xboxgamepad,Xbox Gamepad
 option_screen_controls_resetkeybindings,Toetsen Herstellen
 option_screen_controls_cameraspeed,Camerasnelheid
-option_screen_controls_cameraspeed_description,The camera speed sets the speed on which the~mouse can rotate the view.
 option_screen_controls_cameraspeed_slow,...Traag...
 option_screen_controls_cameraspeed_medium,Standaard
 option_screen_controls_cameraspeed_fast,Supersnel!
@@ -200,9 +193,7 @@ option_screen_controls_cameraspeed_fastest,LICHTSNELHEID!
 
 option_screen_audio,Geluid
 option_screen_audio_volume_music,Muziekvolume
-option_screen_audio_volume_music_description,The volume of the background music.
 option_screen_audio_volume_sfx,Geluidenvolume
-option_screen_audio_volume_music_description,The volume of the sound effects and jingles.
 option_screen_audio_muted,Gedempt
 
 option_screen_contentpacks_up,Verplaats omhoog
@@ -218,11 +209,8 @@ option_screen_contentpacks_content,Inhoud
 option_screen_contentpacks_description,Beschrijving
 
 option_screen_resetoptions,Herstel Opties
-option_screen_resetoptions_description,Resets all options.
 option_screen_save_options,Sla Opties Op
-option_screen_save_options_description,Save the options and close the menu.
 option_screen_close,Sluit
-option_screen_close_menu_description,Close the menu and do not save~the changes.
 ---
 Pausescreen:
 pause_menu_title,Spelmenu
@@ -1330,111 +1318,111 @@ item_name_320,Sneeuwbrief
 item_name_321,Ruimtebrief
 item_name_322,Staalbrief
 item_name_323,Tunnelbrief
-item_name_324,Brugbrief T
-item_name_325,Brugbrief D
-item_name_326,Brugbrief S
-item_name_327,Brugbrief V
-item_name_328,Brugbrief M
-item_name_329,Favored Mail
-item_name_330,Thanks Mail
-item_name_331,Inquiry Mail
-item_name_332,Greet Mail
-item_name_333,RSVPMail
-item_name_334,Like Mail
-item_name_335,Reply Mail
-item_name_336,Kolben Mail
+item_name_324,Hoogspannings~Brugbrief
+item_name_325,Ophaal~Brugbrief
+item_name_326,Torenhoge~Brugbrief
+item_name_327,Klassieke~Brugbrief
+item_name_328,Majesteuze~Brugbrief
+item_name_329,Favorietbrief
+item_name_330,Dankbrief
+item_name_331,Inlichting~brief
+item_name_332,Groetbrief
+item_name_333,Verzoekbrief
+item_name_334,Waardeerbrief
+item_name_335,Antwoordbrief
+item_name_336,Kolben-brief
 
 Mega Stones:
-item_name_507,Abomasite
-item_name_508,Absolite
-item_name_509,Aerodactylite
-item_name_510,Aggronite
-item_name_511,Alakazite
-item_name_512,Ampharosite
-item_name_513,Banettite
-item_name_514,Blastoisinite
-item_name_515,Blazikenite
-item_name_516,Charizardite X
-item_name_517,Charizardite Y
-item_name_518,Garchompite
-item_name_519,Gardevoirite
-item_name_520,Gengarite
-item_name_521,Gyaradosite
-item_name_522,Heracronite
-item_name_523,Houndoominite
-item_name_524,Kangaskhanite
-item_name_525,Lucarionite
-item_name_526,Manectite
-item_name_527,Mawilite
-item_name_528,Medichamite
-item_name_529,Mewtwonite X
-item_name_530,Mewtwonite Y
-item_name_531,Pinsirite
-item_name_532,Scizorite
-item_name_533,Tyranitarite
-item_name_534,Venusaurite
-item_name_535,Altarianite
-item_name_536,Audinite
-item_name_537,Beedrillite
-item_name_538,Cameruptite
-item_name_539,Diancite
-item_name_540,Galladite
-item_name_541,Glalitite
-item_name_542,Latiasite
-item_name_543,Latiosite
-item_name_544,Lopunnite
-item_name_545,Metagrossite
-item_name_546,Pidgeotite
-item_name_547,Sablenite
-item_name_548,Salamencite
-item_name_549,Sceptilite
-item_name_550,Sharpedonite
-item_name_551,Slowbronite
-item_name_552,Steelixite
-item_name_553,Swampertite
+item_name_507,Abomasiet
+item_name_508,Absoliet
+item_name_509,Aerodactyliet
+item_name_510,Aggroniet
+item_name_511,Alakaziet
+item_name_512,Ampharosiet
+item_name_513,Banettiet
+item_name_514,Blastoisiniet
+item_name_515,Blazikeniet
+item_name_516,Charizardiet X
+item_name_517,Charizardiet Y
+item_name_518,Garchompiet
+item_name_519,Gardevoiriet
+item_name_520,Gengariet
+item_name_521,Gyaradosiet
+item_name_522,Heracroniet
+item_name_523,Houndoominiet
+item_name_524,Kangaskhaniet
+item_name_525,Lucarioniet
+item_name_526,Manectiet
+item_name_527,Mawiliet
+item_name_528,Medichamiet
+item_name_529,Mewtwoniet X
+item_name_530,Mewtwoniet Y
+item_name_531,Pinsiriet
+item_name_532,Scizoriet
+item_name_533,Tyranitariet
+item_name_534,Venusauriet
+item_name_535,Altarianiet
+item_name_536,Audiniet
+item_name_537,Beedrilliet
+item_name_538,Cameruptiet
+item_name_539,Dianciet
+item_name_540,Galladiet
+item_name_541,Glalitiet
+item_name_542,Latiasiet
+item_name_543,Latiosiet
+item_name_544,Lopunniet
+item_name_545,Metagrossiet
+item_name_546,Pidgeotiet
+item_name_547,Sableniet
+item_name_548,Salamenciet
+item_name_549,Sceptiliet
+item_name_550,Sharpedoniet
+item_name_551,Slowbroniet
+item_name_552,Steelixiet
+item_name_553,Swampertiet
 
 Gems:
-item_name_630,Fire Gem
-item_name_631,Water Gem
-item_name_632,Electric Gem
-item_name_633,Grass Gem
-item_name_634,Ice Gem
-item_name_635,Fighting Gem
-item_name_636,Poison Gem
-item_name_637,Ground Gem
-item_name_638,Flying Gem
-item_name_639,Psychic Gem
-item_name_640,Bug Gem
-item_name_641,Rock Gem
-item_name_642,Ghost Gem
-item_name_643,Dragon Gem
-item_name_644,Dark Gem
-item_name_645,Steel Gem
-item_name_646,Normal Gem
-item_name_647,Fairy Gem
+item_name_630,Vuurjuweel
+item_name_631,Waterjuweel
+item_name_632,Electrisch~juweel
+item_name_633,Grasjuweel
+item_name_634,Ijsjuweel
+item_name_635,Vechtjuweel
+item_name_636,Gifjuweel
+item_name_637,Grondjuweel
+item_name_638,Vliegjuweel
+item_name_639,Psychischjuweel
+item_name_640,Insectjuweel
+item_name_641,Rotsjuweel
+item_name_642,Geestjuweel
+item_name_643,Draakjuweel
+item_name_644,Duisterjuweel
+item_name_645,Staaljuweel
+item_name_646,Normaaljuweel
+item_name_647,Feejuweel
 
 Memories:
-item_name_660,Bug Memory
-item_name_661,Dark Memory
-item_name_662,Dragon Memory
-item_name_663,Electric Memory
-item_name_664,Fairy Memory
-item_name_665,Fighting Memory
-item_name_666,Fire Memory
-item_name_667,Flying Memory
-item_name_668,Ghost Memory
-item_name_669,Grass Memory
-item_name_670,Ground Memory
-item_name_671,Ice Memory
-item_name_672,Poison Memory
-item_name_673,Psychic Memory
-item_name_674,Rock Memory
-item_name_675,Steel Memory
-item_name_676,Water Memory
+item_name_660,Insect-~herinnering
+item_name_661,Duister-~herinnering
+item_name_662,Draak-~herinnering
+item_name_663,Elektrisch-~herinnering
+item_name_664,Feeherinnering
+item_name_665,Vecht-~herinnering
+item_name_666,Vuur-~herinnering
+item_name_667,Vlieg-~herinnering
+item_name_668,Geest-~herinnering
+item_name_669,Gras-~herinnering
+item_name_670,Grond-~herinnering
+item_name_671,Ijsherinnering
+item_name_672,Gifherinnering
+item_name_673,Psychisch-~herinnering
+item_name_674,Rots-~herinnering
+item_name_675,Staal-~herinnering
+item_name_676,Water-~herinnering
 
 Item Use Text:
 Key Items:
-item_use_54,Your coins:~
+item_use_54,Jouw Munten:~
 -------------------
 GameMessages:
 game_message_screenshot,Schermafbeelding opgeslagen als
