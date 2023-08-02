@@ -1995,7 +1995,7 @@ item_name_163,Light Ball
 item_name_167,Deep Sea Tooth
 item_name_170,Berserk Gene
 item_name_171,Wide Lens
-item_name_172,Up Grade
+item_name_172,Up-Grade
 item_name_173,Pearl String
 item_name_176,Grip Claw
 item_name_179,Oval Stone
@@ -2013,7 +2013,7 @@ item_name_287,Rose Incence
 item_name_288,Full Incense
 item_name_289,Lax Incense
 item_name_290,Luck Incense
-item_name_291,Luck Incense
+item_name_291,Pure Incense
 item_name_293,Damp Rock
 item_name_294,Heat Rock
 item_name_295,Smooth Rock
@@ -2044,7 +2044,7 @@ item_name_597,Grassy Seed
 item_name_598,Misty Seed
 item_name_599,Psychic Seed
 item_name_600,Terrain Extender
-item_name_648,Poke Toy
+item_name_648,Poké Toy
 item_name_649,Fluffy Tail
 item_name_650,Bright Powder
 item_name_654,Peat Block
@@ -2083,10 +2083,10 @@ XItems:
 item_name_33,XAccuracy
 item_name_44,Dire Hit
 item_name_49,XAttack
-item_name_50,XSp Def
+item_name_50,XSp. Def.
 item_name_51,XDefend
 item_name_52,XSpeed
-item_name_53,XSpecial
+item_name_53,XSp. Atk.
 item_name_68,Guard Spec
 
 Apricorns:

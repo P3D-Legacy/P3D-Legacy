@@ -52,7 +52,7 @@ global_pokemon_type_ground,Grond
 global_pokemon_type_electric,Electrisch
 global_pokemon_type_psychic,Psychisch
 global_pokemon_type_rock,Rots
-global_pokemon_type_ice,Ijs
+global_pokemon_type_ice,IJs
 global_pokemon_type_bug,Insect
 global_pokemon_type_dragon,Draak
 global_pokemon_type_ghost,Geest
@@ -1117,164 +1117,164 @@ item_name_74,Vergrootglas
 item_name_75,Goudblad
 item_name_76,Zacht zand
 item_name_77,Scherpe Bek
-item_name_81,Poison Barb
-item_name_82,Kings Rock
-item_name_83,Prism Scale
-item_name_84,Reaper Cloth
-item_name_88,Silver Powder
-item_name_90,Silk Scarf
-item_name_91,Amulet Coin
-item_name_94,Cleanse Tag
-item_name_95,Mystic Water
-item_name_96,Twisted Spoon
-item_name_98,Black Belt
-item_name_100,Magmarizer
-item_name_102,Black Glasses
-item_name_103,Slowpoke Tail
-item_name_104,Pink Bow
-item_name_105,Stick
-item_name_106,Smoke Ball
-item_name_107,Nevermelt Ice
-item_name_108,Magnet
-item_name_109,Rare Bone
-item_name_110,Pearl
-item_name_111,Big Pearl
-item_name_113,Spell Tag
-item_name_117,Miracle Seed
-item_name_118,Thick Club
-item_name_119,Focus Band
-item_name_120,Electirizer
-item_name_125,Hard Stone
-item_name_126,Lucky Egg
-item_name_131,Stardust
-item_name_132,Star Piece
-item_name_138,Charcoal
-item_name_140,Scope Lens
-item_name_141,Protector
-item_name_142,Lagging Tail
-item_name_143,Metal Coat
-item_name_144,Dragon Fang
-item_name_145,Wave Incense
-item_name_146,Leftovers
-item_name_147,White Flute
-item_name_148,Soothe Bell
-item_name_149,Comet Shard
-item_name_151,Dragon Scale
-item_name_153,Balm Mushroom
-item_name_154,Shed Shell
-item_name_155,Quick Powder
-item_name_162,Deep Sea Scale
-item_name_163,Light Ball
-item_name_167,Deep Sea Tooth
-item_name_170,Berserk Gene
-item_name_171,Wide Lens
-item_name_172,Up Grade
-item_name_173,Pearl String
-item_name_176,Grip Claw
-item_name_179,Oval Stone
-item_name_180,Brick Piece
-item_name_182,Black Sludge
-item_name_183,Razor Fang
-item_name_184,Razor Claw
-item_name_185,Dubious Disc
-item_name_187,Ability Capsule
-item_name_189,Big Nugget
-item_name_190,Heart Scale
-item_name_263,Odd Incense
-item_name_264,Sea Incense
-item_name_287,Rose Incence
-item_name_288,Full Incense
-item_name_289,Lax Incense
-item_name_290,Luck Incense
-item_name_291,Luck Incense
-item_name_293,Damp Rock
-item_name_294,Heat Rock
-item_name_295,Smooth Rock
-item_name_296,Icy Rock
-item_name_297,Light Clay
-item_name_298,Eviolite
-item_name_299,Rock Incense
-item_name_503,Sachet
-item_name_504,Whipped Dream
-item_name_505,Toxic Orb
-item_name_506,Life Orb
-item_name_577,Flame Orb
-item_name_578,Choice Band
-item_name_579,Choice Scarf
-item_name_580,Choice Specs
-item_name_581,Macho Brace
-item_name_582,Power Weight
-item_name_583,Power Bracer
-item_name_584,Power Belt
-item_name_585,Power Lens
-item_name_586,Power Band
-item_name_587,Power Anklet
-item_name_591,Expert Belt
-item_name_594,Snowball
-item_name_595,Cell Battery
-item_name_596,Electric Seed
-item_name_597,Grassy Seed
-item_name_598,Misty Seed
-item_name_599,Psychic Seed
-item_name_600,Terrain Extender
-item_name_648,Poke Toy
-item_name_649,Fluffy Tail
-item_name_650,Bright Powder
-item_name_654,Peat Block
-item_name_1996,Burn Drive
-item_name_1997,Chill Drive
-item_name_1998,Douse Drive
-item_name_1999,Shock Drive
+item_name_81,Gifweerhaak
+item_name_82,Koningsteen
+item_name_83,Prisma-schub
+item_name_84,Doodskleed
+item_name_88,Zilverpoeder
+item_name_90,Zijden Sjaal
+item_name_91,Amuletmunt
+item_name_94,Reinigings-~Label
+item_name_95,Mystiek Water
+item_name_96,Verbogen Lepel
+item_name_98,Zwarte Band
+item_name_100,Magmariseerder
+item_name_102,Zwarte Bril
+item_name_103,Slowpoke-~staart
+item_name_104,Roze Strik
+item_name_105,Stok
+item_name_106,Rookbal
+item_name_107,Smeltnooit IJs
+item_name_108,Magneet
+item_name_109,Zeldzaam Bot
+item_name_110,Parel
+item_name_111,Grote Parel
+item_name_113,Spreuk-Lebel
+item_name_117,Mirakel Zaadje
+item_name_118,Dikke Knots
+item_name_119,Focusband
+item_name_120,Elektriseerder
+item_name_125,Harde Steen
+item_name_126,Geluksei
+item_name_131,Sterrenstof
+item_name_132,Stuk Ster
+item_name_138,Houtskool
+item_name_140,Kijkglas
+item_name_141,Beschermer
+item_name_142,Trage Staart
+item_name_143,Metalen Laag
+item_name_144,Drakentand
+item_name_145,Golfwierrook
+item_name_146,Kliekjes
+item_name_147,Witte Fluit
+item_name_148,Kalmeerbel
+item_name_149,Komeetscherf
+item_name_151,Drakenschaal
+item_name_153,Balsem~paddenstoel
+item_name_154,Schuilschelp
+item_name_155,Snelheids-~poeder
+item_name_162,Diepzeeschub
+item_name_163,Lichtbal
+item_name_167,Diepzeetand
+item_name_170,Berserk-Gen
+item_name_171,Groothoeklens
+item_name_172,Upgrade
+item_name_173,Parelsnoer
+item_name_176,Gripklauw
+item_name_179,Ovale Steen
+item_name_180,Stuk Baksteen
+item_name_182,Zwarte Slib
+item_name_183,Scheermestand
+item_name_184,Scheermesklauw
+item_name_185,Dubieuze~Schijf
+item_name_187,Vaardigheids-~capsule
+item_name_189,Groot~Goudklompje
+item_name_190,Hartschub
+item_name_263,Vreemde~Wierrook
+item_name_264,Zeelucht-~wierrook
+item_name_287,Rozenwierrook
+item_name_288,Volledige~Wierrook
+item_name_289,Ontspannings-~wierrook
+item_name_290,Gelukswierrook
+item_name_291,Pure Wierrook
+item_name_293,Vochtrots
+item_name_294,Hitterots
+item_name_295,Gladde Rots
+item_name_296,IJzige Rots
+item_name_297,Lichte Klei
+item_name_298,Evioliet
+item_name_299,Rotswierrook
+item_name_503,Zakje
+item_name_504,Geklopte Droom
+item_name_505,Gifbol
+item_name_506,Levensbol
+item_name_577,Vlammenbol
+item_name_578,Keuzeband
+item_name_579,Keuzesjaal
+item_name_580,Keuzebril
+item_name_581,Macho-armband
+item_name_582,Krachtgewicht
+item_name_583,Krachtbeugel
+item_name_584,Krachtriem
+item_name_585,Krachtlens
+item_name_586,Krachtband
+item_name_587,Kracht-~enkelband
+item_name_591,Expertband
+item_name_594,Sneeuwbal
+item_name_595,Batterijcel
+item_name_596,Electrisch~Zaadje
+item_name_597,Grassig Zaadje
+item_name_598,Mistig Zaadje
+item_name_599,Psychisch~Zaadje
+item_name_600,Terrein-~uitbreider
+item_name_648,Poké-Speelgoed
+item_name_649,Pluizige~Staart
+item_name_650,Fel Poeder
+item_name_654,Turfblok
+item_name_1996,Brandschijf
+item_name_1997,Kalmteschijf
+item_name_1998,Blusschijf
+item_name_1999,Shokschijf
 
 Fossils:
-item_name_601,Helix Fossil
-item_name_602,Dome Fossil
-item_name_603,Old Amber
-item_name_604,Root Fossil
-item_name_605,Claw Fossil
-item_name_606,Skull Fossil
-item_name_607,Armor Fossil
-item_name_608,Cover Fossil
-item_name_609,Plume Fossil
-item_name_610,Jaw Fossil
-item_name_611,Sail Fossil
+item_name_601,Schroeffossiel
+item_name_602,Koepelfossiel
+item_name_603,Oude Amber
+item_name_604,Wortelfossiel
+item_name_605,Klauwfossiel
+item_name_606,Schedelfossiel
+item_name_607,Pantserfossiel
+item_name_608,Schuilfossiel
+item_name_609,Pluimfossiel
+item_name_610,Kaakfossiel
+item_name_611,Zeilfossiel
 
 Repels:
-item_name_20,Repel
-item_name_42,Super Repel
-item_name_43,Max Repel
+item_name_20,Afweer
+item_name_42,Superafweer
+item_name_43,Maximale~afweer
 
 Vitamins:
-item_name_25,Zinc
-item_name_26,HPUp
-item_name_27,Protein
-item_name_28,Iron
-item_name_29,Carbos
+item_name_25,Zink
+item_name_26,IP-Plus
+item_name_27,Proteïne
+item_name_28,Ijzer
+item_name_29,Koolhydraten
 item_name_31,Calcium
 
 XItems:
-item_name_33,XAccuracy
-item_name_44,Dire Hit
-item_name_49,XAttack
-item_name_50,XSp Def
-item_name_51,XDefend
-item_name_52,XSpeed
-item_name_53,XSpecial
-item_name_68,Guard Spec
+item_name_33,X-~Nauwkeurigheid
+item_name_44,Harde Treffer
+item_name_49,X-Aanval
+item_name_50,X-Sp. Verdediging
+item_name_51,X-Verdediging
+item_name_52,X-Snelheid
+item_name_53,X-Sp. Aanval
+item_name_68,Blokkeerder
 
 Apricorns:
-item_name_85,Red Apricorn
-item_name_89,Blu Apricorn
-item_name_92,Ylw Apricorn
-item_name_93,Grn Apricorn
-item_name_97,Wht Apricorn
-item_name_99,Blk Apricorn
-item_name_101,Pnk Apricorn
+item_name_85,Rode Apricorn
+item_name_89,Blauwe~Apricorn
+item_name_92,Gele Apricorn
+item_name_93,Groene~Apricorn
+item_name_97,Witte Apricorn
+item_name_99,Zwarte~Apricorn
+item_name_101,Roze Apricorn
 
 Plants:
-item_name_86,Tiny Mushroom
-item_name_87,Big Mushroom
-item_name_253,Honey
+item_name_86,Kleine~Paddenstoel
+item_name_87,Grote~Paddenstoel
+item_name_253,Honing
 
 Wings:
 item_name_254,Health Wing
