@@ -52,7 +52,7 @@ global_pokemon_type_ground,Grond
 global_pokemon_type_electric,Electrisch
 global_pokemon_type_psychic,Psychisch
 global_pokemon_type_rock,Rots
-global_pokemon_type_ice,IJs
+global_pokemon_type_ice,Ijs
 global_pokemon_type_bug,Insect
 global_pokemon_type_dragon,Draak
 global_pokemon_type_ghost,Geest
@@ -590,7 +590,7 @@ Places_Tin Tower,Tinnen Toren
 Places_Tin Tower Peak,Tinnen Toren-Piek
 Places_Burned Tower,Verbrande Toren
 Places_Glitter Lighthouse,Glitter-vuurtoren
-Places_Ice Path,IJspad
+Places_Ice Path,Ijspad
 Places_National Park,Nationaal Park
 Places_Whirl Islands,Draaikolkeilanden
 Places_Lake of Rage,Woedemeer
@@ -612,7 +612,7 @@ Places_Mt. Moon,Maanberg
 Places_Mt. Ember,Sintelberg
 Places_Three Isle Path,Pad van Drie-eiland
 Places_Berry Forest,Bessenbos
-Places_Icefall Cave,IJsvalgrot
+Places_Icefall Cave,Ijsvalgrot
 Places_Lost Cave,Verloren Grot
 Places_Trainer Tower,Trainertoren
 Places_Altering Cave,Verandergrot
@@ -1098,7 +1098,7 @@ item_name_34,Bladsteen
 item_name_112,Eeuwigsteen
 item_name_169,Zonnesteen
 item_name_262,Plakkerige~Rots
-item_name_593,IJssteen
+item_name_593,Ijssteen
 item_name_135,Glimmende~steen
 item_name_136,Schemersteen
 item_name_137,Dageraad-~steen
@@ -1134,7 +1134,7 @@ item_name_103,Slowpoke-~staart
 item_name_104,Roze Strik
 item_name_105,Stok
 item_name_106,Rookbal
-item_name_107,Smeltnooit IJs
+item_name_107,Smeltnooit Ijs
 item_name_108,Magneet
 item_name_109,Zeldzaam Bot
 item_name_110,Parel
@@ -1190,7 +1190,7 @@ item_name_291,Pure Wierrook
 item_name_293,Vochtrots
 item_name_294,Hitterots
 item_name_295,Gladde Rots
-item_name_296,IJzige Rots
+item_name_296,Ijzige Rots
 item_name_297,Lichte Klei
 item_name_298,Evioliet
 item_name_299,Rotswierrook
@@ -1277,64 +1277,64 @@ item_name_87,Grote~Paddenstoel
 item_name_253,Honing
 
 Wings:
-item_name_254,Health Wing
-item_name_255,Muscle Wing
-item_name_256,Resist Wing
-item_name_257,Genius Wing
-item_name_258,Clever Wing
-item_name_259,Swift Wing
-item_name_260,Pretty Wing
-item_name_261,Sticky Wing
+item_name_254,Gezondheid-~vleugel
+item_name_255,Gespierdheid-~vleugel
+item_name_256,Weerstand-~vleugel
+item_name_257,Genialiteit-~vleugel
+item_name_258,Handigheid-~vleugel
+item_name_259,Vlugheid-~vleugel
+item_name_260,Schoonheid-~vleugel
+item_name_261,Plakkigheid-~vleugel
 
 Plates:
-item_name_267,Draco Plate
-item_name_268,Dread Plate
-item_name_269,Earth Plate
-item_name_270,Fist Plate
-item_name_271,Flame Plate
-item_name_272,Icicle Plate
-item_name_273,Insect Plate
-item_name_274,Iron Plate
-item_name_275,Meadow Plate
-item_name_276,Mind Plate
-item_name_277,Pixie Plate
-item_name_278,Sky Plate
-item_name_279,Splash Plate
-item_name_280,Spooky Plate
-item_name_281,Stone Plate
-item_name_282,Toxic Plate
-item_name_283,Zap Plate
+item_name_267,Drakenplaat
+item_name_268,Vreesplaat
+item_name_269,Aardeplaat
+item_name_270,Vuistplaat
+item_name_271,Vlammenplaat
+item_name_272,Ijspegelplaat
+item_name_273,Insectenplaat
+item_name_274,Ijzerplaat
+item_name_275,Weideplaat
+item_name_276,Geestplaat
+item_name_277,Elfjesplaat
+item_name_278,Luchtplaat
+item_name_279,Plonsplaat
+item_name_280,Spokenplaat
+item_name_281,Steenplaat
+item_name_282,Gifplaat
+item_name_283,Schokplaat
 
 Mail:
-item_name_300,Grass Mail
-item_name_301,Bead Mail
-item_name_302,Dream Mail
-item_name_303,Fab Mail
-item_name_304,Glitter Mail
-item_name_305,Harbor Mail
-item_name_306,Mech Mail
-item_name_307,Orange Mail
-item_name_308,Retro Mail
-item_name_309,Shadow Mail
-item_name_310,Tropic Mail
-item_name_311,Wave Mail
-item_name_312,Wood Mail
-item_name_313,Air Mail
-item_name_314,Bloom Mail
-item_name_315,Brick Mail
-item_name_316,Bubble Mail
-item_name_317,Flame Mail
-item_name_318,Heart Mail
-item_name_319,Mosaic Mail
-item_name_320,Snow Mail
-item_name_321,Space Mail
-item_name_322,Steel Mail
-item_name_323,Tunnel Mail
-item_name_324,Bridge Mail T
-item_name_325,Bridge Mail D
-item_name_326,Bridge Mail S
-item_name_327,Bridge Mail V
-item_name_328,Bridge Mail M
+item_name_300,Grasbrief
+item_name_301,Kralenbrief
+item_name_302,Droombrief
+item_name_303,Prachtbrief
+item_name_304,Glitterbrief
+item_name_305,Havenbrief
+item_name_306,Mechaniekbrief
+item_name_307,Oranjebrief
+item_name_308,Retrobrief
+item_name_309,Schaduwbrief
+item_name_310,Tropenbrief
+item_name_311,Golfbrief
+item_name_312,Houtbrief
+item_name_313,Luchtbrief
+item_name_314,Bloeibrief
+item_name_315,Baksteenbrief
+item_name_316,Bubbelbrief
+item_name_317,Vlammenbrief
+item_name_318,Hartenbrief
+item_name_319,Mozaïekbrief
+item_name_320,Sneeuwbrief
+item_name_321,Ruimtebrief
+item_name_322,Staalbrief
+item_name_323,Tunnelbrief
+item_name_324,Brugbrief T
+item_name_325,Brugbrief D
+item_name_326,Brugbrief S
+item_name_327,Brugbrief V
+item_name_328,Brugbrief M
 item_name_329,Favored Mail
 item_name_330,Thanks Mail
 item_name_331,Inquiry Mail
