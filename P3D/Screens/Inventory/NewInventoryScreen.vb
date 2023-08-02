@@ -406,10 +406,26 @@ Public Class NewInventoryScreen
                         If _tabIndex = 4 Then
                             nameTextHeight = 40
                         End If
+
+                        Dim TextLine1 As String = cItem.Name.GetSplit(0, "~")
+                        Dim TextLine2 As String = ""
+
+                        Dim fontSizeOffset As Integer = 0
+                        If cItem.Name.Contains("~") Then
+                            fontSizeOffset = 16
+                            TextLine2 = cItem.Name.GetSplit(1, "~")
+                        End If
+                        nameTextHeight += fontSizeOffset
+
                         Canvas.DrawRectangle(itemBatch, New Rectangle(CInt(itemLoc.X) - 16 - 9, CInt(itemLoc.Y) + 48, 128 + 18, nameTextHeight), New Color(0, 0, 0, CInt(If(_tabInControl, 64, 128) * _interfaceFade)))
 
-                        Dim fontWidth As Integer = CInt(FontManager.MiniFont.MeasureString(cItem.Name).X)
-                        itemBatch.DrawString(FontManager.MiniFont, cItem.Name, itemLoc + New Vector2(48 - fontWidth / 2.0F, 51), New Color(255, 255, 255, itemPanelAlpha))
+                        Dim fontWidth1 As Integer = CInt(FontManager.MiniFont.MeasureString(TextLine1).X)
+                        Dim fontWidth2 As Integer = CInt(FontManager.MiniFont.MeasureString(TextLine2).X)
+
+                        itemBatch.DrawString(FontManager.MiniFont, TextLine1, itemLoc + New Vector2(48 - fontWidth1 / 2.0F, 51), New Color(255, 255, 255, itemPanelAlpha))
+                        If TextLine2 <> "" Then
+                            itemBatch.DrawString(FontManager.MiniFont, TextLine2, itemLoc + New Vector2(48 - fontWidth2 / 2.0F, 51 + 16), New Color(255, 255, 255, itemPanelAlpha))
+                        End If
                         If _tabIndex <> 7 Then
                             itemBatch.DrawString(FontManager.MainFont, "x" & _items(i + (PageIndex * 10)).Amount.ToString(), itemLoc + New Vector2(84, 26), New Color(40, 40, 40, itemPanelAlpha))
                         End If
@@ -422,7 +438,7 @@ Public Class NewInventoryScreen
                                 AttackName = CType(cItem, GameModeItem).gmTeachMove.Name
                             End If
                             Dim TMfontWidth As Integer = CInt(FontManager.MiniFont.MeasureString(AttackName).X)
-                            itemBatch.DrawString(FontManager.MiniFont, AttackName, itemLoc + New Vector2(48 - TMfontWidth / 2.0F, 51 + 16), New Color(255, 255, 255, itemPanelAlpha))
+                            itemBatch.DrawString(FontManager.MiniFont, AttackName, itemLoc + New Vector2(48 - TMfontWidth / 2.0F, 51 + 16 + fontSizeOffset), New Color(255, 255, 255, itemPanelAlpha))
                         End If
                     End If
                 End If

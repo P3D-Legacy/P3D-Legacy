@@ -250,15 +250,15 @@ Namespace VoltorbFlip
                     Case 2 'How to Play
                         SpriteBatch.DrawRectangle(New Rectangle(CInt(GameOrigin.X), CInt(GameOrigin.Y), GameSize.Width + 64, GameSize.Height + 32), New Color(0, 0, 0, 128))
 
-                        Dim TutorialString1 As String = Localization.GetString("VoltorbFlip_Tutorial_HowToPlay_Image1", "If you flip the cards in this order, you'll collect: 3 x 1 x 2 x 1 x 3... A total of 18 Coins! And then...")
-                        Dim TutorialString2 As String = Localization.GetString("VoltorbFlip_Tutorial_HowToPlay_Image2", "If you select ""Quit"", you'll keep those 18 Coins.")
-                        Dim TutorialString3 As String = Localization.GetString("VoltorbFlip_Tutorial_HowToPlay_Image3", "But if you find Voltorb, you'll lose all your Coins!")
+                        Dim TutorialString1 As String = Localization.GetString("VoltorbFlip_Tutorial_HowToPlay_Image1", "If you flip the cards in this order, you'll collect: 3 x 1 x 2 x 1 x 3... A total of 18 Coins! And then...").Replace("~", Environment.NewLine)
+                        Dim TutorialString2 As String = Localization.GetString("VoltorbFlip_Tutorial_HowToPlay_Image2", "If you select ""Quit"", you'll keep those 18 Coins.").Replace("~", Environment.NewLine)
+                        Dim TutorialString3 As String = Localization.GetString("VoltorbFlip_Tutorial_HowToPlay_Image3", "But if you find Voltorb, you'll lose all your Coins!").Replace("~", Environment.NewLine)
 
                         SpriteBatch.Draw(TextureManager.GetTexture("Textures\VoltorbFlip\Tutorial_HowToPlay"), New Rectangle(CInt(TutorialRectangle.X), CInt(TutorialRectangle.Y), TutorialRectangle.Width, TutorialRectangle.Height), MainColor)
 
                         SpriteBatch.DrawString(FontManager.MainFont, TutorialString1.CropStringToWidth(FontManager.MainFont, 1, 448), New Vector2(CInt(TutorialRectangle.X + 256 - FontManager.MainFont.MeasureString(TutorialString1.CropStringToWidth(FontManager.MainFont, 1, 448)).X / 2), CInt(TutorialRectangle.Y + 128 - FontManager.MainFont.MeasureString(TutorialString1.CropStringToWidth(FontManager.MainFont, 1, 448)).Y / 2)), FontColor)
                         SpriteBatch.DrawString(FontManager.MainFont, TutorialString2.CropStringToWidth(FontManager.MainFont, 1, 304), New Vector2(CInt(TutorialRectangle.X + 336 - FontManager.MainFont.MeasureString(TutorialString2.CropStringToWidth(FontManager.MainFont, 1, 304)).X / 2), CInt(TutorialRectangle.Y + 256 - FontManager.MainFont.MeasureString(TutorialString2.CropStringToWidth(FontManager.MainFont, 1, 304)).Y / 2)), FontColor)
-                        SpriteBatch.DrawString(FontManager.MainFont, TutorialString3.CropStringToWidth(FontManager.MainFont, 1, 304), New Vector2(CInt(TutorialRectangle.X + 336 - FontManager.MainFont.MeasureString(TutorialString2.CropStringToWidth(FontManager.MainFont, 1, 304)).X / 2), CInt(TutorialRectangle.Y + 336 - FontManager.MainFont.MeasureString(TutorialString3.CropStringToWidth(FontManager.MainFont, 1, 304)).Y / 2)), FontColor)
+                        SpriteBatch.DrawString(FontManager.MainFont, TutorialString3.CropStringToWidth(FontManager.MainFont, 1, 304), New Vector2(CInt(TutorialRectangle.X + 336 - FontManager.MainFont.MeasureString(TutorialString3.CropStringToWidth(FontManager.MainFont, 1, 304)).X / 2), CInt(TutorialRectangle.Y + 336 - FontManager.MainFont.MeasureString(TutorialString3.CropStringToWidth(FontManager.MainFont, 1, 304)).Y / 2)), FontColor)
 
                         Dim QuitButtonText As String = Localization.GetString("VoltorbFlip_QuitButton", "Quit")
                         SpriteBatch.DrawString(FontManager.MainFont, QuitButtonText, New Vector2(CInt(TutorialRectangle.X + 8 + 128 / 2 - FontManager.MainFont.MeasureString(QuitButtonText).X / 2), CInt(TutorialRectangle.Y + 228 + 56 / 2 - FontManager.MainFont.MeasureString(QuitButtonText).Y / 2)), FontColor)
@@ -267,7 +267,7 @@ Namespace VoltorbFlip
                     Case 3 'Hint
                         SpriteBatch.DrawRectangle(New Rectangle(CInt(GameOrigin.X), CInt(GameOrigin.Y), GameSize.Width + 64, GameSize.Height + 32), New Color(0, 0, 0, 128))
 
-                        Dim TutorialString As String = Localization.GetString("VoltorbFlip_Tutorial_Hint_Image", "By looking at the numbers on the sides of the cards, you can see the hidden number and Voltorb totals.")
+                        Dim TutorialString As String = Localization.GetString("VoltorbFlip_Tutorial_Hint_Image", "By looking at the numbers on the sides of the cards, you can see the hidden number and Voltorb totals.").Replace("~", Environment.NewLine)
                         SpriteBatch.Draw(TextureManager.GetTexture("Textures\VoltorbFlip\Tutorial_Hint"), New Rectangle(CInt(TutorialRectangle.X), CInt(TutorialRectangle.Y), TutorialRectangle.Width, TutorialRectangle.Height), MainColor)
 
                         SpriteBatch.DrawString(FontManager.MainFont, TutorialString.CropStringToWidth(FontManager.MainFont, 1, 448), New Vector2(CInt(TutorialRectangle.X + 256 - FontManager.MainFont.MeasureString(TutorialString.CropStringToWidth(FontManager.MainFont, 1, 448)).X / 2), CInt(TutorialRectangle.Y + 320 - FontManager.MainFont.MeasureString(TutorialString.CropStringToWidth(FontManager.MainFont, 1, 448)).Y / 2)), FontColor)
@@ -275,7 +275,7 @@ Namespace VoltorbFlip
                     Case 4 'About Memos
                         SpriteBatch.DrawRectangle(New Rectangle(CInt(GameOrigin.X), CInt(GameOrigin.Y), GameSize.Width + 64, GameSize.Height + 32), New Color(0, 0, 0, 128))
 
-                        Dim TutorialString As String = Localization.GetString("VoltorbFlip_Tutorial_AboutMemos_Image", "Select ""Open Memo"" to open the Memo Window. Select the cards and press [<system.button(enter1)>] to add and [<system.button(back1)>] to remove marks.")
+                        Dim TutorialString As String = Localization.GetString("VoltorbFlip_Tutorial_AboutMemos_Image", "Select ""Open Memo"" to open the Memo Window. Select the cards and press [<system.button(enter1)>] to add and [<system.button(back1)>] to remove marks.").Replace("~", Environment.NewLine)
                         Dim ButtonTextTop As String = Localization.GetString("VoltorbFlip_MemoButton_Open_Line1", "Open")
                         Dim ButtonTextBottom As String = Localization.GetString("VoltorbFlip_MemoButton_Open_Line2", "Memos")
 

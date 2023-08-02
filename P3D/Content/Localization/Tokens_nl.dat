@@ -360,7 +360,7 @@ apricorn_screen_take,Neem
 apricorn_screen_ready,Ik heb de PokéBalls voor je gemaakt. Hier is het resultaat van mijn werk:
 apricorn_screen_obtain,Ontvangen
 ---
-Dayopvangscherm:
+Daycare screen:
 daycare_screen_daycare,Dagopvang
 daycare_screen_money, / Geld: 
 daycare_screen_deposit,Deponeer
@@ -373,21 +373,7 @@ daycare_screen_backadvice,DRUK OP <system.button(openmenu)> OM TERUG TE GAAN
 daycare_screen_pokemon_choose_header,Deponeer Pokémon
 Egg,Ei
 ---
-Netwerkscherm:
-network_screen_isonline,You are in a co-op game already! Please close the connection~to open a new game or connect again!~~~Press E to go back!
-network_screen_header,Co-Op Gameplay
-network_screen_main_header,You can either join a game or host a~new one to play together with a friend.
-network_screen_main_join,Verbind
-network_screen_main_host,Host
-network_screen_main_close,Sluit
-network_screen_join_header,Maak verbinding met een spel:~Voer het IP adres van de spelhost in.
-network_screen_join_cancel,Annuleer
-network_screen_join_join,Verbind
-network_screen_host_header,Een spel hosten:~Je kunt hiermee het spel open zetten voor andere spelers binnen je netwerk.
-network_screen_host_cancel,Cancel
-network_screen_host_host,Host
----
-Donateursscherm:
+Donation screen:
 donation_screen_donators,Donateurs
 donation_screen_backadvice,,DRUK OP <system.button(openmenu)> OM TE SLUITEN
 ---
@@ -398,7 +384,7 @@ black_out_screen_line3,PokéCenter gebracht worden
 black_out_screen_line4, om verdere schade aan je
 black_out_screen_line5,Pokémon te voorkomen.
 ---
-Gevechten:
+Battle:
 ---
 Voltorb Flip:
 VoltorbFlip_LV.,NV.
@@ -454,13 +440,13 @@ VoltorbFlip_AfterGame_Lost,Jammer, je hebt geen munten~gewonnen!*Volgende keer b
 VoltorbFlip_BeforeGame_NoCoinCase,Je hebt geen Muntenkist!~Kom terug als je er een hebt!
 
 VoltorbFlip_Tutorial_HowToPlay_Message,Voltorb Flip is een spel waarin~je kaarten omdraait om de~cijfers eronder te onthullen.*De kaarten verbergen de~cijfers 1 t/m 3...~maar ook Voltorb.*Het eerste cijfer dat je~omdraait zal je dat aantal~Munten geven.*Vanaf dat moment zal het~volgende cijfer dat je vind~het totaal aantal Munten dat~je hebt verzameld~vermenigvuldigen met dat getal.*Als het een 2 is, wordt het~totaal twee keer zoveel.*Als het een 3 is, wordt het~totaal drie keer zoveel.*Maar als je een Voltorb~omdraait, is het spel voorbij.*Als dat gebeurt, verlies je~alle Munten die je in het~huidige niveau hebt verzameld.*Als je "Stop" selecteert,~zal je het niveau verlaten.*Als het te moeilijk wordt, is~het soms handiger om eerder~te stoppen.*Als je alle verstopte 2 en 3~kaarten hebt gevonden, heb je~het spel voltooid.*Als je al deze kaarten hebt~omgedraaid, zul je stijgen~naar het volgende niveau.*Op hogere niveaus heb je kans~om meer munten winnen.~Doe je best!
-VoltorbFlip_Tutorial_Hint_Message,The numbers at the side~of the board give you a clue~about the numbers hidden on~the backs of the cards.*The larger the number, the~more likely it is that there~are many large numbers hidden~in that row or column.*In the same way, you can tell~how many Voltorb are hidden~in the row or column.*Consider the hidden number~totals and the Voltorb~totals carefully as you~flip over cards.
-VoltorbFlip_Tutorial_AboutMemos_Message,Select "Open Memo" or press~[<system.button(run)>] to open the~Memo Window.*You can mark the cards with~the numbers 1 through 3,~but also with a Voltorb mark.*When you have an idea of the~numbers hidden on the back~of the cards, open the Memo~Window, choose the type of~mark you want to use with~the Mouse Wheel or the~Gamepad's Shoulder Buttons~and then press [<system.button(enter1)>]~while highlighting the card~you want to mark.*If you want to remove a mark,~choose the type of mark you~want to remove with the~Mouse Wheel or the Gamepad's~Shoulder Buttons and then~press [<system.button(back1)>] while~highlighting the card you~want to remove the mark from.*You can also use the~mouse to select a~mark type or a card.
-VoltorbFlip_Tutorial_HowToPlay_Image1,If you flip the cards in this order, you'll collect: 3 x 1 x 2 x 1 x 3... A total of 18 Coins! And then...
-VoltorbFlip_Tutorial_HowToPlay_Image2,If you select "Quit", you'll keep those 18 Coins.
-VoltorbFlip_Tutorial_HowToPlay_Image3,But if you find Voltorb, you'll lose all your Coins!
-VoltorbFlip_Tutorial_Hint_Image,By looking at the numbers on the sides of the cards, you can see the hidden number and Voltorb totals.
-VoltorbFlip_Tutorial_AboutMemos_Image,Select "Open Memo" to open the Memo Window. Select the cards and press [<system.button(enter1)>] to add and [<system.button(back1)>] to remove marks.
+VoltorbFlip_Tutorial_Hint_Message,De cijfers aan de zijkant van~het bord geven je een~aanwijzing over de getallen~die verborgen zijn op de~achterkant van de kaarten.*Hoe groter de cijfers, hoe~waarschijnlijker het is dat~er veel grote getallen~verborgen zitten in die rijen~of kolommen.*Op dezelfde manier kun je zien~hoeveel Voltorb verborgen zijn~in een rij of kolom.*Denk goed na over de totalen~van de verborgen getallen en~de Voltorb-totalen als je~kaarten omdraait.
+VoltorbFlip_Tutorial_AboutMemos_Message,Selecteer "Open Memo" of druk~op [<system.button(run)>] om het ~Memo-venster te openen.*Je kunt de kaarten markeren~met de cijfers 1 t/m 3, maar~ook met een Voltorbmarkering.*Als je een idee hebt welke~cijfers achterop de kaarten~kunnen staan, open dan het~Memo-venster, kies het type~markering dat je wilt~gebruiken met het muiswiel of~de schouderknoppen van de~controller en druk op~[<system.button(enter1)>] terwijl je de~cursor op de kaart hebt staan~die je wilt markeren.*Als je een markering wilt~verwijderen, kies het type~markering dat je wilt~verwijderen met het muiswiel of~de schouderknoppen van de~controller en druk op [<system.button(back1)>]~terwijl je de cursor op de~kaart hebt staan waar je de~markering van wilt verwijderen.*Je kunt ook de muis gebruiken~om een kaart of type markering~te selecteren.
+VoltorbFlip_Tutorial_HowToPlay_Image1,Als je de kaarten omdraait in deze volgorde, krijg je in totaal:~3 x 1 x 2 x 1 x 3... 18 Munten! En dan...
+VoltorbFlip_Tutorial_HowToPlay_Image2,Als je "Stop" selecteert, hou je deze 18 Munten.
+VoltorbFlip_Tutorial_HowToPlay_Image3,Maar vind je een Voltorb, dan verlies je al je Munten!
+VoltorbFlip_Tutorial_Hint_Image,Door te kijken naar de cijfers naast de kaarten, kun je het totaal verborgen cijfers en Voltorb zien.
+VoltorbFlip_Tutorial_AboutMemos_Image,Selecteer "Open Memo" om het Memo-venster te openen. Kies de kaarten en voeg markeringen toe met [<system.button(enter1)>] en haal ze weg met [<system.button(back1)>].
 ----
 Gevechten:
 battle_trainer_about_to_send_out_1,staat op het punt om
@@ -471,7 +457,7 @@ battle_switch_fainted,is uitgeschakeld!
 battle_switch_egg,Kan geen ei inzetten!
 battle_cannot_switch,Kan niet wisselen.
 ---
-Tijdens de Intro & Outro:
+During Intro & Outro:
 --
 battle_main_wild_appear_1,Een wilde
 battle_main_wild_appear_2,~kwam tevoorschijn!
@@ -486,7 +472,7 @@ battle_main_trainer_defeat_3,~zijn verslagen!
 battle_main_trainer_defeat_4, ontving
 battle_main_trainer_defeat_5,~PokéDollars voor het winnen!
 ---
-Tijdens een gevechtronde:
+During a battle round:
 --
 battle_attack_poison_damage,ontving schade door de vergiftiging!
 battle_attack_curse_damage,~ontving schade door de vloek!
@@ -718,9 +704,9 @@ Places_Canyon Entrance,Ravijningang
 Places_Sevault Canyon,Sevault Ravijn
 Places_Tanoby Ruins,Tanoby Ruïnes
 Places_Safari Zone Gate,Hek van Safari-zone
-Places_S.S. Aqua,S.S. Aqua
+Places_S.S. Aqua,Stoomboot Aqua
 Places_Elite 4,Elite 4
-Places_Indigo Plateau,Indigo Toernooi
+Places_Indigo Plateau,Indigo-Toernooi
 Places_Twirl Forest,Ronddraaibos
 Places_Berry Vista,Bessenuitzicht
 Places_Battle Frontier,Gevechtfrontier
@@ -769,38 +755,38 @@ item_name_188,NestBal
 
 Key Items:
 item_name_6,Fiets
-item_name_41,Stoomboot Kaartje
+item_name_41,Stoomboot-~kaartje
 item_name_54,Muntenkist
 item_name_55,Detector
-item_name_56,Kristalvleugel
+item_name_56,Kristal-~vleugel
 item_name_58,Oude Hengel
 item_name_59,Goede Hengel
 item_name_61,Super Hengel
 item_name_66,Rode Schub
 item_name_67,Geheim Drankje
 item_name_69,Mysterieus Ei
-item_name_71,Zilvervleugel
+item_name_71,Zilver-~vleugel
 item_name_78,Renschoenen
 item_name_115,GS-Bal
 item_name_116,Blauwe Kaart
 item_name_127,Kaartsleutel
-item_name_128,Machineonderdeel
-item_name_130,Verloren Voorwerp
+item_name_128,Machine-~onderdeel
+item_name_130,Verloren~Voorwerp
 item_name_133,Keldersleutel
 item_name_134,Pas
-item_name_175,Waterspuitfles
-item_name_178,Regenboogvleugel
+item_name_175,Waterspuit-~fles
+item_name_178,Regenboog~vleugel
 item_name_241,Ovale Bedel
-item_name_242,Glimmende Bedel
+item_name_242,Glimmende~Bedel
 item_name_265,Tri-Pas
 item_name_284,Regenboogpas
 item_name_285,Oude Zeekaart
-item_name_286,Oeroude scherf
+item_name_286,Oeroude~scherf
 item_name_292,Lege Zeekaart
-item_name_592,Vrijheid Zeekaart
+item_name_592,Vrijheid~Zeekaart
 item_name_576,Mega-armband
 item_name_651,Lichtsteen
-item_name_652,Duisternissteen
+item_name_652,Duistersteen
 item_name_653,Zwart Auguriet
 
 Technical Machines:
@@ -1001,18 +987,18 @@ item_name_252,HM 10
 Medicine:
 item_name_7,Lavakoekje
 item_name_9,Tegengif
-item_name_10,Brandmedicijn
-item_name_11,Vriesmedicijn
+item_name_10,Brand-~medicijn
+item_name_11,Vries-~medicijn
 item_name_12,Ontwaker
-item_name_13,Verlammedicijn
-item_name_14,Volledig Herstel
+item_name_13,Verlam-~medicijn
+item_name_14,Volledig~Herstel
 item_name_15,Max-Drankje
 item_name_16,Hyper-Drankje
 item_name_17,Super-Drankje
 item_name_18,Drankje
 item_name_21,Max-Elixer
-item_name_32,Zeldzaam Snoepje
-item_name_38,Multimedicijn
+item_name_32,Zeldzaam~Snoepje
+item_name_38,Multi-~medicijn
 item_name_39,Opwekker
 item_name_40,Max-Opwekker
 item_name_46,Vers Water
@@ -1023,13 +1009,13 @@ item_name_63,Ether
 item_name_64,Max-Ether
 item_name_65,Elixer
 item_name_72,Moo Moo Melk
-item_name_114,Woede-Energiereep
+item_name_114,Woede-~Energiereep
 item_name_121,Energiepoeder
 item_name_122,Energiewortel
 item_name_123,Geneespoeder
-item_name_124,Opwekkingskruiden
+item_name_124,Opwekkings-~kruiden
 item_name_139,Bessensap
-item_name_152,Pewter Krokantjes
+item_name_152,Pewter~Krokantjes
 item_name_156,Heilige As
 item_name_266,Fanta
 item_name_502,KP-Max
@@ -1111,22 +1097,26 @@ item_name_24,Watersteen
 item_name_34,Bladsteen
 item_name_112,Eeuwigsteen
 item_name_169,Zonnesteen
-item_name_262,Plakkerige Rots
+item_name_262,Plakkerige~Rots
+item_name_593,IJssteen
+item_name_135,Glimmende~steen
+item_name_136,Schemersteen
+item_name_137,Dageraad-~steen
 
 Standard:
-item_name_19,Escape Rope
-item_name_30,Lucky Punch
-item_name_35,Metal Powder
-item_name_36,Nugget
-item_name_37,Poké Doll
-item_name_57,Exp. Share
-item_name_60,Silver Leaf
-item_name_70,Sticky Barb
-item_name_73,Quick Claw
-item_name_74,Zoom Lens
-item_name_75,Gold Leaf
-item_name_76,Soft Sand
-item_name_77,Sharp Beak
+item_name_19,Ontsnappings-~Touw
+item_name_30,Geluksklap
+item_name_35,Metaalpoeder
+item_name_36,Goudklompje
+item_name_37,Poké-Pop
+item_name_57,Ervarings-~deler
+item_name_60,Zilverblad
+item_name_70,Plakkerige~Weerhaak
+item_name_73,Snelle Klauw
+item_name_74,Vergrootglas
+item_name_75,Goudblad
+item_name_76,Zacht zand
+item_name_77,Scherpe Bek
 item_name_81,Poison Barb
 item_name_82,Kings Rock
 item_name_83,Prism Scale
@@ -1158,9 +1148,6 @@ item_name_125,Hard Stone
 item_name_126,Lucky Egg
 item_name_131,Stardust
 item_name_132,Star Piece
-item_name_135,Shiny Stone
-item_name_136,Dusk Stone
-item_name_137,Dawn Stone
 item_name_138,Charcoal
 item_name_140,Scope Lens
 item_name_141,Protector
@@ -1223,7 +1210,6 @@ item_name_585,Power Lens
 item_name_586,Power Band
 item_name_587,Power Anklet
 item_name_591,Expert Belt
-item_name_593,Ice Stone
 item_name_594,Snowball
 item_name_595,Cell Battery
 item_name_596,Electric Seed

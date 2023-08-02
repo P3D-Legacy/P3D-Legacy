@@ -1925,6 +1925,10 @@ item_name_34,Leaf Stone
 item_name_112,Everstone
 item_name_169,Sun Stone
 item_name_262,Sticky Rock
+item_name_593,Ice Stone
+item_name_135,Shiny Stone
+item_name_136,Dusk Stone
+item_name_137,Dawn Stone
 
 Standard:
 item_name_19,Escape Rope
@@ -1971,9 +1975,6 @@ item_name_125,Hard Stone
 item_name_126,Lucky Egg
 item_name_131,Stardust
 item_name_132,Star Piece
-item_name_135,Shiny Stone
-item_name_136,Dusk Stone
-item_name_137,Dawn Stone
 item_name_138,Charcoal
 item_name_140,Scope Lens
 item_name_141,Protector
@@ -2036,7 +2037,6 @@ item_name_585,Power Lens
 item_name_586,Power Band
 item_name_587,Power Anklet
 item_name_591,Expert Belt
-item_name_593,Ice Stone
 item_name_594,Snowball
 item_name_595,Cell Battery
 item_name_596,Electric Seed
