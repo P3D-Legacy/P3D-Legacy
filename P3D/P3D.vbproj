@@ -14861,9 +14861,6 @@
     <Content Include="Content\Pokemon\Sprites\215.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Pokemon\Sprites\215_hisui-f.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="Content\Pokemon\Sprites\215_hisui.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
