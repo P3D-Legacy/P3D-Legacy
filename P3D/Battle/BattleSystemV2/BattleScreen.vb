@@ -1137,10 +1137,17 @@ nextIndex:
                 End If
             End If
 
-            If GameController.IS_DEBUG_ACTIVE = True Or Core.Player.SandBoxMode = True Then
-                If KeyBoardHandler.KeyPressed(Keys.K) = True Then
-                    Battle.Won = True
-                    EndBattle(False)
+            Dim canEnd As Boolean = True
+            Dim blockinteractscreen() As Screen.Identifications = {Screen.Identifications.PartyScreen, Screen.Identifications.SummaryScreen, Screen.Identifications.PauseScreen, Screen.Identifications.ChatScreen}
+            If blockinteractscreen.Contains(Core.CurrentScreen.Identification) = True Then
+                canEnd = False
+            End If
+            If canEnd = True Then
+                If GameController.IS_DEBUG_ACTIVE = True Or Core.Player.SandBoxMode = True Then
+                    If KeyBoardHandler.KeyPressed(Keys.K) = True Then
+                        Battle.Won = True
+                        EndBattle(False)
+                    End If
                 End If
             End If
 

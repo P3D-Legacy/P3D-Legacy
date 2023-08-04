@@ -316,6 +316,12 @@
         End Sub
 
         Public Sub Update(ByRef BattleScreen As BattleScreen)
+            Dim blockinteractscreen() As Screen.Identifications = {Screen.Identifications.PartyScreen, Screen.Identifications.SummaryScreen, Screen.Identifications.PauseScreen, Screen.Identifications.ChatScreen}
+            If blockinteractscreen.Contains(Core.CurrentScreen.Identification) = True Then
+                CanInteract = False
+            Else
+                CanInteract = True
+            End If
             If CanInteract = True Then
                 Select Case MenuState
                     Case MenuStates.Main
