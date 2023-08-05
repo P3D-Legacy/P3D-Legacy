@@ -303,7 +303,7 @@
                         s = s.PreScreen
                     End While
                     Core.SetScreen(s)
-                    Screen.TextBox.Show("Saving is not possible right now.")
+                    Screen.TextBox.Show(Localization.GetString("game_menu_save_notpossible", "Saving is not possible right now."))
                 Else
                     Core.SetScreen(New SaveScreen(Me))
                 End If
