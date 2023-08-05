@@ -18,7 +18,7 @@ Namespace Items.KeyItems
 					Screen.Level.OwnPlayer.SetTexture(Core.Player.TempRideSkin, True)
 					Core.Player.Skin = Core.Player.TempRideSkin
 
-					Screen.TextBox.Show("<player.name> stepped off the Bicycle.")
+					Screen.TextBox.Show("<player.name> stepped~off the Bicycle.")
 					While Core.CurrentScreen.Identification <> Screen.Identifications.OverworldScreen
 						Core.CurrentScreen = Core.CurrentScreen.PreScreen
 					End While
