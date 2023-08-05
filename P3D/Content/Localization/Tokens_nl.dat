@@ -438,7 +438,38 @@ VoltorbFlip_Tutorial_HowToPlay_Image3,Maar vind je een Voltorb, dan verlies je a
 VoltorbFlip_Tutorial_Hint_Image,Door te kijken naar de cijfers naast de kaarten, kun je het totaal verborgen cijfers en Voltorb zien.
 VoltorbFlip_Tutorial_AboutMemos_Image,Selecteer "Open Memo" om het Memo-venster te openen. Kies de kaarten en voeg markeringen toe met [<system.button(enter1)>] en haal ze weg met [<system.button(back1)>].
 ----
-Gevechten:
+PokedexScreen
+pokedex_seen,Gezien:
+pokedex_obtained,Gevangen:
+pokedex_available,Available:
+pokedex_select,Kies een Pokédex
+pokedex_habitat_dex_name,Habitat-Dex
+pokedex_habitat_select,Kies een Habitat
+pokedex_order,Volgorde:
+pokedex_order_numeric,Numeriek
+pokedex_order_alphabetically,A-Z
+pokedex_order_height,Lengte
+pokedex_order_weight,Gewicht
+pokedex_filter,Filter:
+pokedex_filter_none,Geen
+pokedex_filter_name,Naam
+pokedex_filter_type1,Type 1
+pokedex_filter_type2,Type 2
+pokedex_search_hint_1,Druk op
+pokedex_search_hint_2,op het toetsenbord om te zoeken.
+pokedex_search_no_results,Geen zoekresultaten
+pokedex_data_species,SOORT
+pokedex_data_type,TYPE
+pokedex_data_height,LENGTE
+pokedex_data_weight,GEWICHT
+pokedex_data_form_switch_hint,Druk op [Shift] om te wisselen tussen vormen
+pokedex_data_page_details,Details
+pokedex_data_page_habitat,Habitat
+pokedex_data_page_evolution,Evolutie
+pokedex_habitat_area_unknown,Gebied onbekend.
+pokedex_evolution_no_evolutions,evolueert niet.
+----
+Battle:
 battle_trainer_about_to_send_out_1,staat op het punt om
 battle_trainer_about_to_send_out_2,in te zetten om te vechten! Wil je je Pokémon verwisselen met een andere?
 battle_choose_pokemon,Kies Pokémon
