@@ -286,6 +286,8 @@ Public Class NewMainMenuScreen
     Private _GameJoltButtonIndex As Integer = 0 'This is to tell which button on a GameJolt profile is selected: the profile itself or the gender & reset buttons
     Public Shared _menuIndex As Integer = 0 '0 = Game Profiles, 1 = GameJolt Submenu, 2 = Options Submenu, 3 = GameJolt Options Submenu
 
+    Public GameModeSplash As Texture2D
+
     Private _messageBox As UI.MessageBox
 
     Public Sub New(ByVal currentScreen As Screen)
@@ -490,22 +492,26 @@ Public Class NewMainMenuScreen
                                     _selectedProfile += 1
                                     _screenOffsetTarget.X -= 180
                                     _GameJoltButtonIndex = 0
+                                    GameModeSplash = Nothing
                                 End If
                                 If Controls.Left(True) And _selectedProfile > 0 Then
                                     _selectedProfile -= 1
                                     _screenOffsetTarget.X += 180
                                     _GameJoltButtonIndex = 0
+                                    GameModeSplash = Nothing
                                 End If
                             Case 1
                                 If Controls.Right(True) And _selectedProfile < _GameJoltProfiles.Count - 1 Then
                                     _selectedProfile += 1
                                     _gameJoltOffsetTarget.X -= 180
                                     _GameJoltButtonIndex = 0
+                                    GameModeSplash = Nothing
                                 End If
                                 If Controls.Left(True) And _selectedProfile > 0 Then
                                     _selectedProfile -= 1
                                     _gameJoltOffsetTarget.X += 180
                                     _GameJoltButtonIndex = 0
+                                    GameModeSplash = Nothing
                                 End If
                             Case 2, 3
                                 If Controls.Right(True) And _selectedProfile < _OptionsProfiles.Count - 1 Then
@@ -636,6 +642,21 @@ Public Class NewMainMenuScreen
                 End If
                 UpdateScreenOffset()
                 UpdateOptionsOffset()
+
+                If _MainProfiles(_selectedProfile).GameMode <> "Kolben" Then
+                    If GameModeSplash Is Nothing Then
+                        Try
+                            Dim fileName As String = GameController.GamePath & "\GameModes\" & _MainProfiles(_selectedProfile).GameMode & "\MainMenu.png"
+                            If IO.File.Exists(fileName) = True Then
+                                Using stream As IO.Stream = IO.File.Open(fileName, IO.FileMode.OpenOrCreate)
+                                    GameModeSplash = Texture2D.FromStream(GraphicsDevice, stream)
+                                End Using
+                            End If
+                        Catch ex As Exception
+                            Logger.Log(Logger.LogTypes.ErrorMessage, "MainMenuScreen.vb/UpdateNewGameMenu: An error occurred trying to load the splash image at """ & GameController.GamePath & "\GameModes\" & _MainProfiles(_selectedProfile).GameMode & "\MainMenu.png"". This could have been caused by an invalid file header. (Exception: " & ex.Message & ")")
+                        End Try
+                    End If
+                End If
             End If
         End If
     End Sub
@@ -773,6 +794,9 @@ Public Class NewMainMenuScreen
                 Dim textSize As Vector2 = FontManager.InGameFont.MeasureString("Please wait..")
                 GetFontRenderer().DrawString(FontManager.InGameFont, "Please wait" & LoadingDots.Dots, New Vector2(windowSize.Width / 2.0F - textSize.X / 2.0F, windowSize.Height / 2.0F - textSize.Y / 2.0F + 100), Color.White)
             Else
+                If GameModeSplash IsNot Nothing Then
+                    DrawGameModeSplash()
+                End If
                 Select Case _menuIndex
                     Case 1, 3
                         DrawOptionsProfiles(True)
@@ -782,6 +806,28 @@ Public Class NewMainMenuScreen
                 DrawMainProfiles()
             End If
         End If
+    End Sub
+    Public Sub DrawGameModeSplash()
+        Dim backSize As New Size(windowSize.Width, windowSize.Height)
+        Dim origSize As New Size(GameModeSplash.Width, GameModeSplash.Height)
+        Dim aspectRatio As Single = CSng(origSize.Width / origSize.Height)
+
+        backSize.Width = CInt(windowSize.Width * aspectRatio)
+        backSize.Height = CInt(backSize.Width / aspectRatio)
+
+        If backSize.Width > backSize.Height Then
+            backSize.Width = windowSize.Width
+            backSize.Height = CInt(windowSize.Width / aspectRatio)
+        Else
+            backSize.Height = windowSize.Height
+            backSize.Width = CInt(windowSize.Height / aspectRatio)
+        End If
+        If backSize.Height < windowSize.Height Then
+            backSize.Height = windowSize.Height
+            backSize.Width = CInt(windowSize.Height / origSize.Height * origSize.Width)
+        End If
+
+        Core.SpriteBatch.Draw(GameModeSplash, New Rectangle(0, 0, backSize.Width, backSize.Height), Color.White)
     End Sub
     Public Sub DrawGameJoltButtons(ByVal offset As Vector2)
         Dim r As New Rectangle(CInt(offset.X + 400), CInt(offset.Y + 200), 512, 128)
@@ -1520,7 +1566,7 @@ Public Class GameModeSelectionScreen
         PreScreen.Draw()
 
         If GameModeSplash IsNot Nothing Then
-            SpriteBatch.Draw(GameModeSplash, windowSize, Color.White)
+            DrawGameModeSplash()
         End If
 
         Dim text = Localization.GetString("gamemode_menu_select1", "Select a GameMode") + Environment.NewLine + Localization.GetString("gamemode_menu_select2", "to start the new game with.")
@@ -1594,6 +1640,29 @@ Public Class GameModeSelectionScreen
         'Draw Arrow
         SpriteBatch.Draw(_menuTexture, New Rectangle(CInt(displayRect.X + displayRect.Width + 16), CInt(displayRect.Y + (FontManager.InGameFont.MeasureString(tempGameModesDisplay).Y + 64) / 2 - 16), 16, 32), New Rectangle(64, 0, 16, 32), Color.White)
 
+    End Sub
+
+    Public Sub DrawGameModeSplash()
+        Dim backSize As New Size(windowSize.Width, windowSize.Height)
+        Dim origSize As New Size(GameModeSplash.Width, GameModeSplash.Height)
+        Dim aspectRatio As Single = CSng(origSize.Width / origSize.Height)
+
+        backSize.Width = CInt(windowSize.Width * aspectRatio)
+        backSize.Height = CInt(backSize.Width / aspectRatio)
+
+        If backSize.Width > backSize.Height Then
+            backSize.Width = windowSize.Width
+            backSize.Height = CInt(windowSize.Width / aspectRatio)
+        Else
+            backSize.Height = windowSize.Height
+            backSize.Width = CInt(windowSize.Height / aspectRatio)
+        End If
+        If backSize.Height < windowSize.Height Then
+            backSize.Height = windowSize.Height
+            backSize.Width = CInt(windowSize.Height / origSize.Height * origSize.Width)
+        End If
+
+        Core.SpriteBatch.Draw(GameModeSplash, New Rectangle(0, 0, backSize.Width, backSize.Height), Color.White)
     End Sub
 
     Public Overrides Sub Update()
