@@ -230,6 +230,7 @@ game_menu_trainer_card,<playername>
 game_menu_save,Opslaan
 game_menu_options,Opties
 game_menu_exit,Menu Verlaten
+game_menu_end_contest,Stop Wedstrijd
 ---
 InventoryScreen:
 inventory_menu_bag,Tas

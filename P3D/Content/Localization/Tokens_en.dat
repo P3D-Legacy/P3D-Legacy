@@ -259,6 +259,7 @@ game_menu_trainer_card,<player.name>
 game_menu_save,Save
 game_menu_options,Options
 game_menu_exit,Exit Menu
+game_menu_end_contest,End Contest
 ---
 NewGameScreen:
 new_game_intro_1,Hello!~Sorry to keep~you waiting!*Welcome to the world~of Pokémon!*My name is Oak.~People call me~Pokémon Prof.*This world is inhabited~by creatures that~we call

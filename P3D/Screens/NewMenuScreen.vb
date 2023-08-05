@@ -49,26 +49,26 @@
         If Screen.Level.SaveOnly = False Then
 
             If Core.Player.HasPokedex = True Then
-                _menuOptions.Add("Pokédex")
+                _menuOptions.Add(Localization.GetString("game_menu_pokedex", "Pokédex"))
             End If
 
             If Screen.Level.IsBugCatchingContest = True Then
                 _menuOptions.AddRange({Screen.Level.BugCatchingContestData.GetSplit(2) & " x" & Core.Player.Inventory.GetItemAmount(177.ToString),
-                                        "Bag",
+                                        Localization.GetString("game_menu_bag", "Bag"),
                                         "|||" & Core.Player.Name, 'Trainer card
-                                        "End Contest"})
+                                        Localization.GetString("game_menu_end_contest", "End Contest")})
             Else
                 If Core.Player.Pokemons.Count > 0 Then
-                    _menuOptions.Add("Pokémon")
+                    _menuOptions.Add(Localization.GetString("game_menu_party", "Pokémon"))
                 End If
-                _menuOptions.AddRange({"Bag",
-                                         "|||" & Core.Player.Name,
-                                        "Save"})
+                _menuOptions.AddRange({Localization.GetString("game_menu_bag", "Bag"),
+                                         "|||" & Localization.GetString("game_menu_trainer_card", Core.Player.Name),
+                                        Localization.GetString("game_menu_save", "Save")})
             End If
 
-            _menuOptions.Add("Options")
+            _menuOptions.Add(Localization.GetString("game_menu_options", "Options"))
         Else
-            _menuOptions.Add("Save")
+            _menuOptions.Add(Localization.GetString("game_menu_save", "Save"))
         End If
     End Sub
 
@@ -288,15 +288,15 @@
 
     Private Sub PressButton()
         Select Case _menuOptions(_menuIndex)
-            Case "Pokédex"
+            Case Localization.GetString("game_menu_pokedex", "Pokédex")
                 Core.SetScreen(New TransitionScreen(Core.CurrentScreen, New PokedexSelectScreen(Me), Color.White, False))
-            Case "Pokémon"
+            Case Localization.GetString("game_menu_party", "Pokémon")
                 SetScreen(New PartyScreen(Me))
-            Case "Bag"
+            Case Localization.GetString("game_menu_bag", "Bag")
                 Core.SetScreen(New NewInventoryScreen(Me))
-            Case "|||" & Core.Player.Name
+            Case "|||" & Localization.GetString("game_menu_trainer_card", Core.Player.Name)
                 Core.SetScreen(New NewTrainerScreen(Me))
-            Case "Save"
+            Case Localization.GetString("game_menu_save", "Save")
                 If CBool(GameModeManager.GetGameRuleValue("SavingDisabled", "0")) = True AndAlso Core.Player.SandBoxMode = False Then
                     Dim s As Screen = Core.CurrentScreen
                     While Not s.PreScreen Is Nothing And s.Identification <> Identifications.OverworldScreen
@@ -307,13 +307,13 @@
                 Else
                     Core.SetScreen(New SaveScreen(Me))
                 End If
-            Case "Options"
+            Case Localization.GetString("game_menu_options", "Options")
                 Core.SetScreen(New NewOptionScreen(Me))
-            Case "Exit"
+            Case Localization.GetString("game_menu_exit", "Exit")
                 Core.SetScreen(PreScreen)
             Case Screen.Level.BugCatchingContestData.GetSplit(2) & " x" & Core.Player.Inventory.GetItemAmount(177.ToString)
                 Me.ShowBalls()
-            Case "End Contest"
+            Case Localization.GetString("game_menu_end_contest", "End Contest")
                 Me.EndContest()
         End Select
     End Sub
