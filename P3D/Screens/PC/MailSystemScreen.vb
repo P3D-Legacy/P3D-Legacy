@@ -78,7 +78,13 @@
 
         Dim background As Texture2D = TextureManager.GetTexture("GUI\Menus\MailboxBackground")
 
-        Core.SpriteBatch.Draw(background, New Rectangle(0, 0, backSize.Width, backSize.Height), Color.White)
+        Dim xOffset As Integer = 0
+        If windowSize.Width < backSize.Width Then
+            Dim xAspectRatio As Single = CSng(origSize.Width / backSize.Width)
+            xOffset = CInt(Math.Floor((backSize.Width - windowSize.Width) * xAspectRatio) / 2)
+        End If
+
+        Core.SpriteBatch.Draw(background, New Rectangle(0, 0, backSize.Width, backSize.Height), New Rectangle(xOffset, 0, origSize.Width, origSize.Height), Color.White)
         Canvas.DrawRectangle(New Rectangle(32, 16, 240, 48), New Color(255, 255, 255, 224))
         Canvas.DrawRectangle(New Rectangle(48, 64 - 2, 208, 2), Color.DarkGray)
 

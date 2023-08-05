@@ -826,8 +826,13 @@ Public Class NewMainMenuScreen
             backSize.Height = windowSize.Height
             backSize.Width = CInt(windowSize.Height / origSize.Height * origSize.Width)
         End If
+        Dim xOffset As Integer = 0
+        If windowSize.Width < backSize.Width Then
+            Dim xAspectRatio As Single = CSng(origSize.Width / backSize.Width)
+            xOffset = CInt(Math.Floor((backSize.Width - windowSize.Width) * xAspectRatio) / 2)
+        End If
 
-        Core.SpriteBatch.Draw(GameModeSplash, New Rectangle(0, 0, backSize.Width, backSize.Height), Color.White)
+        Core.SpriteBatch.Draw(GameModeSplash, New Rectangle(0, 0, backSize.Width, backSize.Height), New Rectangle(xOffset, 0, origSize.Width, origSize.Height), Color.White)
     End Sub
     Public Sub DrawGameJoltButtons(ByVal offset As Vector2)
         Dim r As New Rectangle(CInt(offset.X + 400), CInt(offset.Y + 200), 512, 128)
@@ -1661,8 +1666,13 @@ Public Class GameModeSelectionScreen
             backSize.Height = windowSize.Height
             backSize.Width = CInt(windowSize.Height / origSize.Height * origSize.Width)
         End If
+        Dim xOffset As Integer = 0
+        If windowSize.Width < backSize.Width Then
+            Dim xAspectRatio As Single = CSng(origSize.Width / backSize.Width)
+            xOffset = CInt(Math.Floor((backSize.Width - windowSize.Width) * xAspectRatio) / 2)
+        End If
 
-        Core.SpriteBatch.Draw(GameModeSplash, New Rectangle(0, 0, backSize.Width, backSize.Height), Color.White)
+        Core.SpriteBatch.Draw(GameModeSplash, New Rectangle(0, 0, backSize.Width, backSize.Height), New Rectangle(xOffset, 0, origSize.Width, origSize.Height), Color.White)
     End Sub
 
     Public Overrides Sub Update()
