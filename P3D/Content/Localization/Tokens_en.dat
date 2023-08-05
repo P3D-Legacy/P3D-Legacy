@@ -84,6 +84,7 @@ General:
 HP,HP
 PP,PP
 Lv.,Lv.
+No.,No.
 Level,Level
 MaxHP,Max HP
 Attack,Attack
@@ -378,6 +379,37 @@ VoltorbFlip_Tutorial_HowToPlay_Image2,If you select "Quit", you'll keep those 18
 VoltorbFlip_Tutorial_HowToPlay_Image3,But if you find Voltorb, you'll lose all your Coins!
 VoltorbFlip_Tutorial_Hint_Image,By looking at the numbers on the sides of the cards, you can see the hidden number and Voltorb totals.
 VoltorbFlip_Tutorial_AboutMemos_Image,Select "Open Memo" to open the Memo Window. Select the cards and press [<system.button(enter1)>] to add and [<system.button(back1)>] to remove marks.
+----
+PokedexScreen
+pokedex_seen,Seen:
+pokedex_obtained,Obtained:
+pokedex_available,Available:
+pokedex_select,Select a Pokédex
+pokedex_habitat_dex_name,Habitat-Dex
+pokedex_habitat_select,Select a Habitat
+pokedex_order,Order:
+pokedex_order_numeric,Numeric
+pokedex_order_alphabetically,A-Z
+pokedex_order_height,Height
+pokedex_order_weight,Weight
+pokedex_filter,Filter:
+pokedex_filter_none,None
+pokedex_filter_name,Name
+pokedex_filter_type1,Type 1
+pokedex_filter_type2,Type 2
+pokedex_search_hint_1,Press
+pokedex_search_hint_2,on the keyboard to search.
+pokedex_search_no_results,No search results.
+pokedex_data_species,SPECIES
+pokedex_data_type,TYPE
+pokedex_data_height,HEIGHT
+pokedex_data_weight,WEIGHT
+pokedex_data_form_switch_hint,Press [Shift] to switch forms
+pokedex_data_page_details,Details
+pokedex_data_page_habitat,Habitat
+pokedex_data_page_evolution,Evolution
+pokedex_habitat_area_unknown,Area Unknown.
+pokedex_evolution_no_evolutions,doesn't evolve.
 ----
 Battle:
 battle_trainer_about_to_send_out_1,is about to send out
