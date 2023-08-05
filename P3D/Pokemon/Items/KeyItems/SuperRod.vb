@@ -82,7 +82,7 @@ Namespace Items.KeyItems
 
                 CType(Core.CurrentScreen, OverworldScreen).ActionScript.StartScript(s, 2)
             Else
-                Screen.TextBox.Show("Now is not the time~to use that.", {}, True, True)
+                Screen.TextBox.Show(Localization.GetString("item_cannot_use", "Now is not the time~to use that."), {}, True, True)
             End If
         End Sub
 

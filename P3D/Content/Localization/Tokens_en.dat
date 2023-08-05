@@ -2294,7 +2294,12 @@ item_name_675,Steel Memory
 item_name_676,Water Memory
 
 Item Use Text:
+item_cannot_use,Now is not the time~to use that.
+item_6_missingskin,You can't use this item~without a bicycle skin.*Its name should be the~same as your current one,~but with "_bike" at the end.
+item_6_only_custom_gamemodes,This item can't be used~on this GameMode.
+
 Key Items:
+item_use_6,<player.name> stepped~off the Bicycle.
 item_use_54,Your Coins:~
 -------------------
 Move Names:

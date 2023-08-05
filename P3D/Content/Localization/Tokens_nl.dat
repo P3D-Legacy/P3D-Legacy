@@ -1454,7 +1454,12 @@ item_name_675,Staal-~herinnering
 item_name_676,Water-~herinnering
 
 Item Use Text:
+item_cannot_use,Het is nu niet het moment~om dat te gebruiken.
+item_6_missingskin,Je kunt dit voorwerp niet~gebruiken zonder een fiets-~karakterafbeelding.*De naam van de karakter-~afbeelding moet dezelfde zijn~als degene die je nu gebruikt~maar dan met "_bike" aan~het eind.
+item_6_only_custom_gamemodes,Dit voorwerp kan niet gebruikt~worden in deze SpelModus.
+
 Key Items:
+item_use_6,<player.name> stapte~van de fiets af.
 item_use_54,Jouw Munten:~
 -------------------
 GameMessages:

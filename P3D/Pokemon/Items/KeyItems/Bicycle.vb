@@ -18,7 +18,7 @@ Namespace Items.KeyItems
 					Screen.Level.OwnPlayer.SetTexture(Core.Player.TempRideSkin, True)
 					Core.Player.Skin = Core.Player.TempRideSkin
 
-					Screen.TextBox.Show("<player.name> stepped~off the Bicycle.")
+					Screen.TextBox.Show(Localization.GetString("item_use_6", "<player.name> stepped~off the Bicycle."))
 					While Core.CurrentScreen.Identification <> Screen.Identifications.OverworldScreen
 						Core.CurrentScreen = Core.CurrentScreen.PreScreen
 					End While
@@ -56,17 +56,17 @@ Namespace Items.KeyItems
 									MusicManager.Play("Ride", True)
 								End If
 							Else
-								Screen.TextBox.Show("Now is not the time~to use that.", {}, True, True)
+								Screen.TextBox.Show(Localization.GetString("item_cannot_use", "Now is not the time~to use that."), {}, True, True)
 							End If
 						Else
-							Screen.TextBox.Show("You can't use this item~without a bicycle skin.*Its name should be the~same as your current one,~but with ""_bike"" at the end.", {}, True, False)
+							Screen.TextBox.Show(Localization.GetString("item_6_missingskin", "You can't use this item~without a bicycle skin.*Its name should be the~same as your current one,~but with ""_bike"" at the end."), {}, True, False)
 						End If
 					Else
-						Screen.TextBox.Show("Now is not the time~to use that.", {}, True, True)
+						Screen.TextBox.Show(Localization.GetString("item_cannot_use", "Now is not the time~to use that."), {}, True, True)
 					End If
 				End If
 			Else
-				Screen.TextBox.Show("This item can't be used~on this GameMode.", {}, True, True)
+				Screen.TextBox.Show(Localization.GetString("item_6_only_custom_gamemodes", "This item can't be used~on this GameMode."), {}, True, True)
 			End If
 		End Sub
 
