@@ -302,13 +302,13 @@
             SoundManager.PlaySound("select")
             Select Case Me.ActionValue
                 Case 0
-                    oScreen.ActionScript.StartScript(Me.AdditionalValue, 1)
+                    oScreen.ActionScript.StartScript(Me.AdditionalValue, 1,,, "NPCInteract")
                 Case 1
-                    oScreen.ActionScript.StartScript(Me.AdditionalValue, 0)
+                    oScreen.ActionScript.StartScript(Me.AdditionalValue, 0,,, "NPCInteract")
                 Case 3
-                    oScreen.ActionScript.StartScript(Me.AdditionalValue.Replace("<br>", Environment.NewLine), 2)
+                    oScreen.ActionScript.StartScript(Me.AdditionalValue.Replace("<br>", Environment.NewLine), 2,,, "NPCInteract")
                 Case Else
-                    oScreen.ActionScript.StartScript(Me.AdditionalValue, 0)
+                    oScreen.ActionScript.StartScript(Me.AdditionalValue, 0,,, "NPCInteract")
             End Select
         End If
     End Sub
@@ -438,10 +438,8 @@
                                     End If
                                 End With
 
-
-                                Screen.Level.OwnPlayer.Opacity = 0.5F
-                                CType(Core.CurrentScreen, OverworldScreen).ActionScript.StartScript(s, 2)
-                                ActionScript.IsInsightScript = True
+                                CType(Core.CurrentScreen, OverworldScreen).ActionScript.StartScript(s, 2,,, "NPCInSight")
+                                ActionScript.IsInSightScript = True
                             End If
                         End If
                     End If

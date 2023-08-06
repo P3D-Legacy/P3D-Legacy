@@ -13,11 +13,11 @@
             If Core.CurrentScreen.Identification = Screen.Identifications.OverworldScreen Then
                 Select Case command.ToLower()
                     Case "start"
-                        CType(Core.CurrentScreen, OverworldScreen).ActionScript.StartScript(argument, 0, True, False)
+                        CType(Core.CurrentScreen, OverworldScreen).ActionScript.StartScript(argument, 0, True, False, "ScriptCommand")
                     Case "text"
-                        CType(Core.CurrentScreen, OverworldScreen).ActionScript.StartScript(argument, 1, True, False)
+                        CType(Core.CurrentScreen, OverworldScreen).ActionScript.StartScript(argument, 1, True, False, "ScriptCommand")
                     Case "run"
-                        CType(Core.CurrentScreen, OverworldScreen).ActionScript.StartScript(argument, 2, True, False)
+                        CType(Core.CurrentScreen, OverworldScreen).ActionScript.StartScript(argument, 2, True, False, "ScriptCommand")
                 End Select
             End If
 

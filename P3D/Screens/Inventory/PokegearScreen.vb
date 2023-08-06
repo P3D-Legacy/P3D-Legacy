@@ -1364,7 +1364,7 @@
 
             Player.Temp.PokegearPage = Me.menuIndex
             Core.SetScreen(Me.PreScreen)
-            CType(Core.CurrentScreen, OverworldScreen).ActionScript.StartScript("phone\" & chosenID, 0)
+            CType(Core.CurrentScreen, OverworldScreen).ActionScript.StartScript("phone\" & chosenID, 0,,, "PhoneCall")
         End Sub
 
         Private Sub InitializePhone()
@@ -1448,7 +1448,7 @@
 
                 Call_Flag = "receiving"
 
-                CType(Core.CurrentScreen, OverworldScreen).ActionScript.StartScript("phone\" & chosenID, 0)
+                CType(Core.CurrentScreen, OverworldScreen).ActionScript.StartScript("phone\" & chosenID, 0,,, "PhoneReceiving")
             End If
         End Sub
 
@@ -1501,7 +1501,7 @@
 
                 Call_Flag = "receiving"
 
-                CType(Core.CurrentScreen, OverworldScreen).ActionScript.StartScript("phone\" & chosenID, 0)
+                CType(Core.CurrentScreen, OverworldScreen).ActionScript.StartScript("phone\" & chosenID, 0,,, "PhoneReceiving")
             End If
         End Sub
 

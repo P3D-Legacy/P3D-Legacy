@@ -55,7 +55,7 @@
                         End If
                         If ActivateScript <> "" Then
                             If Core.CurrentScreen.Identification = Screen.Identifications.OverworldScreen Then
-                                CType(Core.CurrentScreen, OverworldScreen).ActionScript.StartScript(Me.ActivateScript, 0, False)
+                                CType(Core.CurrentScreen, OverworldScreen).ActionScript.StartScript(Me.ActivateScript, 0, False,, "StrengthTrigger")
                             End If
                         End If
 

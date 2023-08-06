@@ -131,7 +131,7 @@ Public Class NotificationPopup
                         If Me._positionY <= BackY Then
                             Me._positionY = BackY
                             If Me._scriptFile <> "" Then
-                                CType(Core.CurrentScreen, OverworldScreen).ActionScript.StartScript(Me._scriptFile, 0, False)
+                                CType(Core.CurrentScreen, OverworldScreen).ActionScript.StartScript(Me._scriptFile, 0, False,, "Notification")
                             End If
                             Me.IsReady = True
                         End If

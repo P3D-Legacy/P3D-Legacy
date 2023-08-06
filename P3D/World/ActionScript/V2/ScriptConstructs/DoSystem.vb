@@ -77,6 +77,8 @@
                         buttonName = KeyBindings.GetKeyName(key)
                     End If
                     Return buttonName
+                Case "scripttrigger"
+                    Return ActionScript.ScriptTrigger
                 Case "random"
                     Dim minRange As Integer = 1
                     Dim maxRange As Integer = 2
@@ -130,7 +132,7 @@
 
                     Return DefaultNull
                 Case "isinsightscript"
-                    Return ReturnBoolean(ActionScript.IsInsightScript)
+                    Return ReturnBoolean(ActionScript.IsInSightScript)
                 Case "lastinput"
                     Return InputScreen.LastInput
                 Case "return"

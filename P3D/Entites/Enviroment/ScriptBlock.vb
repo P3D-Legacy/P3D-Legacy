@@ -87,6 +87,10 @@
         If Core.CurrentScreen.Identification = Screen.Identifications.OverworldScreen Then
             Dim oS As OverworldScreen = CType(Core.CurrentScreen, OverworldScreen)
 
+            Dim scriptTrigger As String = "ScriptBlockWalkOn"
+            If Me.clickedToActivate = True Then
+                scriptTrigger = "ScriptBlockInteracted"
+            End If
             If oS.ActionScript.IsReady = True Or canAttach = True Then
                 If Me.CorrectRotation() = True Then
                     If Me.clickedToActivate = True Then
@@ -94,9 +98,9 @@
                         SoundManager.PlaySound("select")
                     End If
                     If Me.TriggerID = 2 Then
-                        oS.ActionScript.StartScript(Me.AdditionalValue, GetActivationID())
+                        oS.ActionScript.StartScript(Me.AdditionalValue, GetActivationID(),,, scriptTrigger)
                     Else
-                        oS.ActionScript.StartScript(Me._scriptID, GetActivationID())
+                        oS.ActionScript.StartScript(Me._scriptID, GetActivationID(),,, scriptTrigger)
                         ActionScript.TempSpin = True
                     End If
                 End If

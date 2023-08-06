@@ -92,15 +92,25 @@ nextScript:
             End If
         End Get
     End Property
+    Private Shared _scriptTrigger As String = ""
+    Public Shared Property ScriptTrigger() As String
+        Get
+            Return _scriptTrigger
+        End Get
+        Set(value As String)
+            _scriptTrigger = value
+        End Set
+    End Property
 
-    Public Shared IsInsightScript As Boolean = False
+
+    Public Shared IsInSightScript As Boolean = False
 
     ''' <summary>
     ''' Starts a script.
     ''' </summary>
     ''' <param name="Input">The input string.</param>
     ''' <param name="InputType">Type of information; 0: Script path, 1: Text, 2: Direct input.</param>
-    Public Sub StartScript(ByVal Input As String, ByVal InputType As Integer, Optional ByVal CheckDelay As Boolean = True, Optional ByVal ResetInsight As Boolean = True)
+    Public Sub StartScript(ByVal Input As String, ByVal InputType As Integer, Optional ByVal CheckDelay As Boolean = True, Optional ByVal ResetInsight As Boolean = True, Optional ScriptTrigger As String = "")
         Screen.Level.OwnPlayer.Opacity = 1
         If Core.Player.IsRunning = True OrElse Screen.Level.Riding = True Then
             Screen.Camera.Speed = 0.04F
@@ -114,8 +124,10 @@ nextScript:
 
         Dim l As ScriptLevel = ScriptLevels(ScriptLevelIndex)
 
+        ActionScript.ScriptTrigger = ScriptTrigger
+
         If ResetInsight = True Then
-            IsInsightScript = False
+            IsInSightScript = False
         End If
 
         If reDelay = 0.0F Or CheckDelay = False Then

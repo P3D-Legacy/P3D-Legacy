@@ -94,6 +94,7 @@
 
     Public Sub EndScript(ByVal forceEnd As Boolean)
         ActionScript.ScriptLevelIndex -= 1
+        ActionScript.ScriptTrigger = ""
         If ActionScript.ScriptLevelIndex = -1 Or forceEnd = True Then
             ActionScript.ScriptLevelIndex = -1
             Dim oS As OverworldScreen = CType(Core.CurrentScreen, OverworldScreen)

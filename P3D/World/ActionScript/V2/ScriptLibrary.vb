@@ -411,7 +411,8 @@ Namespace ScriptVersion2
             r(New ScriptCommand("system", "sort", "str", {New ScriptArgument("sortMode", ScriptArgument.ArgumentTypes.Str, {"ascending", "descending"}),
                                                          New ScriptArgument("returnIndex", ScriptArgument.ArgumentTypes.Int),
                                                          New ScriptArgument("list", ScriptArgument.ArgumentTypes.Arr)}.ToList(), "Sorts the list after sortmode and returns the item at the given index.", ",", True))
-            r(New ScriptCommand("system", "isinsightscript", "bool", "Returns if the running script was triggred by the inSight function of an NPC.", ",", True))
+            r(New ScriptCommand("system", "ScriptTrigger", "string", "Returns what triggered the current script (NPCInSight, NPCInteract, ScriptBlockWalkOn, ScriptBlockInteract, Notification, PhoneReceive, PhoneCall, StartScript, ScriptCommand, StrengthTrigger, MapScript, ChatCommand).", ",", True))
+            r(New ScriptCommand("system", "IsInSightScript", "bool", "Returns if the running script was triggered by the inSight function of an NPC.", ",", True))
             r(New ScriptCommand("system", "lastinput", "str", "Returns the last input received from the input screen (@screen.input).", ",", True))
             r(New ScriptCommand("system", "return", "str", "Returns the value set with the "":return"" switch.", ",", True))
             r(New ScriptCommand("system", "isint", "bool", {New ScriptArgument("expression", ScriptArgument.ArgumentTypes.Str)}.ToList(), "Checks if the expression is an integer (Outdated, use <math.isint> instead).", ",", True))

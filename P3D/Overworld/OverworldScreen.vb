@@ -166,14 +166,14 @@ Public Class OverworldScreen
     Public Overrides Sub Update()
         If GameModeManager.ActiveGameMode.StartScript <> "" AndAlso ActionScript.IsReady AndAlso Not GlobalGameModeScriptStarted Then
             ActionScript.reDelay = 0.0F
-            ActionScript.StartScript(GameModeManager.ActiveGameMode.StartScript, 0)
+            ActionScript.StartScript(GameModeManager.ActiveGameMode.StartScript, 0,,, "StartScript")
             GlobalGameModeScriptStarted = True
         End If
 
         'If the MapScript has a value loaded from the MapScript map tag and there is no script running, start that script:
         If LevelLoader.MapScript <> "" And ActionScript.IsReady = True Then
             ActionScript.reDelay = 0.0F
-            ActionScript.StartScript(LevelLoader.MapScript, 0)
+            ActionScript.StartScript(LevelLoader.MapScript, 0,,, "MapScript")
 
             LevelLoader.MapScript = "" 'Reset the MapScript.
         End If
