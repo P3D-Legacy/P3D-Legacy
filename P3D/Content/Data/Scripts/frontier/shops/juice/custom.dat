@@ -8,19 +8,19 @@ version=2
 
 @text.show(Please select your~first berry.)
 @item.select(plants,2000-2066)
-:if:<item.selected>=-1
+:if:<inventory.selected>=-1
 	@text.show(Come again soon!)
 	:end
 :endif
-@storage.set(integer,berry1,<item.selected>)
+@storage.set(integer,berry1,<inventory.selected>)
 
 @text.show(Please select your~second berry.)
 @item.select(plants,2000-2066)
-:if:<item.selected>=-1
+:if:<inventory.selected>=-1
 	@text.show(Come again soon!)
 	:end
 :endif
-@storage.set(integer,berry2,<item.selected>)
+@storage.set(integer,berry2,<inventory.selected>)
 
 @storage.set(string,drink,fail)
 @storage.set(integer,value,-1)
