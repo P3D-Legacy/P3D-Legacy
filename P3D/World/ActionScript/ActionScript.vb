@@ -71,6 +71,7 @@ nextScript:
                 Logger.Debug("Unlock Camera")
                 CType(Screen.Camera, OverworldCamera).YawLocked = False
                 CType(Screen.Camera, OverworldCamera).ResetCursor()
+                GameJolt.PokegearScreen.Call_Flag = ""
             End If
             If reDelay > 0.0F Then
                 reDelay -= 0.1F
