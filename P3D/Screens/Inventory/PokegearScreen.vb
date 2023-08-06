@@ -472,9 +472,11 @@
                     ownFrameSize.Width = CInt(ownE.SpriteTexture.Width / 3)
                 End If
                 If ownFrameSize.Width > 32 Then
-                    ownFrameScale = 0.5F
+                    ownFrameScale = CSng(32 / ownFrameSize.Width)
                 End If
-
+                If ownFrameSize.Width <= 16 Then
+                    ownFrameScale = 2.0F
+                End If
                 Core.SpriteBatch.Draw(ownE.SpriteTexture, New Rectangle(CInt(startPos.X + 64 - (ownFrameSize.Width * ownFrameScale / 2)), CInt(startPos.Y + 96 - (ownFrameSize.Height * ownFrameScale / 2)), CInt(ownFrameSize.Width * ownFrameScale), CInt(ownFrameSize.Height * ownFrameScale)), New Rectangle(0, ownFrameSize.Height * 2, ownFrameSize.Width, ownFrameSize.Height), Color.White)
                 Core.SpriteBatch.DrawString(FontManager.MainFont, ownE.Username, New Vector2(CInt(startPos.X + 88), CInt(startPos.Y + 80)), Color.Black)
 
@@ -512,10 +514,12 @@
                                             frameSize.Width = CInt(e.SpriteTexture.Width / 3)
                                         End If
                                         If frameSize.Width > 32 Then
-                                            frameScale = 0.5F
+                                            frameScale = CSng(32 / frameSize.Width)
                                         End If
-
-                                        Core.SpriteBatch.Draw(e.SpriteTexture, New Rectangle(CInt(startPos.X + 64 - (frameSize.Width * frameScale / 2)), CInt(startPos.Y + 96 - (ownFrameSize.Height * ownFrameScale / 2) + 36 + i * 36), CInt(frameSize.Width * frameScale), CInt(frameSize.Height * frameScale)), New Rectangle(0, frameSize.Height * 2, frameSize.Width, frameSize.Height), Color.White)
+                                        If frameSize.Width <= 16 Then
+                                            frameScale = 2.0F
+                                        End If
+                                        Core.SpriteBatch.Draw(e.SpriteTexture, New Rectangle(CInt(startPos.X + 64 - (frameSize.Width * frameScale / 2)), CInt(startPos.Y + 96 - (frameSize.Height * frameScale / 2) + 36 + i * 36), CInt(frameSize.Width * frameScale), CInt(frameSize.Height * frameScale)), New Rectangle(0, frameSize.Height * 2, frameSize.Width, frameSize.Height), Color.White)
                                         Core.SpriteBatch.DrawString(FontManager.MainFont, e.Username, New Vector2(CInt(startPos.X + 88), CInt(startPos.Y + 80 + 36 + i * 36)), Color.Black)
                                         Core.SpriteBatch.DrawString(FontManager.MainFont, "Rank " & (index + 1).ToString() & " (" & e.Points.ToString() & ")", New Vector2(CInt(startPos.X + 332), CInt(startPos.Y + 80 + 36 + i * 36)), Color.Black)
                                     Else
@@ -572,7 +576,7 @@
                     If Controls.Accept(True, False, False) = True Then
                         Dim startPos As Vector2 = GetStartPosition()
                         For i = 0 To 8
-                            Dim r As New Rectangle(CInt(startPos.X + 40), CInt(startPos.Y + 80 + i * 36), 510, 32)
+                            Dim r As New Rectangle(CInt(startPos.X + 40), CInt(startPos.Y + 80 + 36 + i * 36), 510, 32)
                             If r.Contains(MouseHandler.MousePosition) Then
                                 If RankListSelect = i + RankListScroll Then
                                     SoundManager.PlaySound("select")
@@ -701,7 +705,10 @@
                     ownFrameSize.Width = CInt(ownE.SpriteTexture.Width / 3)
                 End If
                 If ownFrameSize.Width > 32 Then
-                    ownFrameScale = 0.5F
+                    ownFrameScale = CSng(32 / ownFrameSize.Width)
+                End If
+                If ownFrameSize.Width <= 16 Then
+                    ownFrameScale = 2.0F
                 End If
 
                 Core.SpriteBatch.Draw(ownE.SpriteTexture, New Rectangle(CInt(startPos.X + 64 - (ownFrameSize.Width * ownFrameScale / 2)), CInt(startPos.Y + 96 - (ownFrameSize.Height * ownFrameScale / 2)), CInt(ownFrameSize.Width * ownFrameScale), CInt(ownFrameSize.Height * ownFrameScale)), New Rectangle(0, ownFrameSize.Height * 2, ownFrameSize.Width, ownFrameSize.Height), Color.White)
@@ -732,8 +739,21 @@
 
                                     If e.DoneLoading = True Then
                                         Dim frameSize As New Size(CInt(e.SpriteTexture.Width / 3), CInt(e.SpriteTexture.Height / 4))
-
-                                        Core.SpriteBatch.Draw(e.SpriteTexture, New Rectangle(CInt(startPos.X + 48), CInt(startPos.Y + 80 + 36 + i * 36), 32, 32), New Rectangle(0, frameSize.Height * 2, frameSize.Width, frameSize.Height), Color.White)
+                                        Dim frameScale As Single = 1.0F
+                                        If e.SpriteTexture.Width = e.SpriteTexture.Height / 2 Then
+                                            frameSize.Width = CInt(e.SpriteTexture.Width / 2)
+                                        ElseIf e.SpriteTexture.Width = e.SpriteTexture.Height Then
+                                            frameSize.Width = CInt(e.SpriteTexture.Width / 4)
+                                        Else
+                                            frameSize.Width = CInt(e.SpriteTexture.Width / 3)
+                                        End If
+                                        If frameSize.Width > 32 Then
+                                            frameScale = CSng(32 / frameSize.Width)
+                                        End If
+                                        If frameSize.Width <= 16 Then
+                                            frameScale = 2.0F
+                                        End If
+                                        Core.SpriteBatch.Draw(e.SpriteTexture, New Rectangle(CInt(startPos.X + 64 - (frameSize.Width * frameScale / 2)), CInt(startPos.Y + 80 + 36 - (frameSize.Height * frameScale / 2) + i * 36), CInt(frameSize.Width * frameScale), CInt(frameSize.Height * frameScale)), New Rectangle(0, frameSize.Height * 2, frameSize.Width, frameSize.Height), Color.White)
                                         Core.SpriteBatch.DrawString(FontManager.MainFont, e.Username, New Vector2(CInt(startPos.X + 88), CInt(startPos.Y + 80 + 36 + i * 36)), Color.Black)
                                         Core.SpriteBatch.DrawString(FontManager.MainFont, "Level " & Emblem.GetPlayerLevel(e.Points) & " (" & e.Points.ToString() & ")", New Vector2(CInt(startPos.X + 332), CInt(startPos.Y + 80 + 36 + i * 36)), Color.Black)
                                     Else
@@ -966,8 +986,23 @@
                             Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokegear"), New Rectangle(CInt(startPos.X + 40 + 16 + 480), CInt(startPos.Y + 80 + i * 36), 16, 32), New Rectangle(104, 112, 8, 16), Color.White, 0.0F, Vector2.Zero, eff, 0.0F)
 
                             Dim frameSize As New Size(CInt(lP.Sprite.Width / 3), CInt(lP.Sprite.Height / 4))
+                            Dim frameScale As Single = 1.0F
+                            If lP.Sprite.Width = lP.Sprite.Height / 2 Then
+                                frameSize.Width = CInt(lP.Sprite.Width / 2)
+                            ElseIf lP.Sprite.Width = lP.Sprite.Height Then
+                                frameSize.Width = CInt(lP.Sprite.Width / 4)
+                            Else
+                                frameSize.Width = CInt(lP.Sprite.Width / 3)
+                            End If
+                            If frameSize.Width > 32 Then
+                                frameScale = CSng(32 / frameSize.Width)
+                            End If
+                            If frameSize.Width <= 16 Then
+                                frameScale = 2.0F
+                            End If
+                            Core.SpriteBatch.Draw(lP.Sprite, New Rectangle(CInt(startPos.X + 64 - (frameSize.Width * frameScale / 2)), CInt(startPos.Y + 96 - (frameSize.Height * frameScale / 2) + 36 + i * 36), CInt(frameSize.Width * frameScale), CInt(frameSize.Height * frameScale)), New Rectangle(0, frameSize.Height * 2, frameSize.Width, frameSize.Height), Color.White)
 
-                            Core.SpriteBatch.Draw(lP.Sprite, New Rectangle(CInt(startPos.X + 48), CInt(startPos.Y + 80 + i * 36), 32, 32), New Rectangle(0, frameSize.Height * 2, frameSize.Width, frameSize.Height), Color.White)
+                            Core.SpriteBatch.Draw(lP.Sprite, New Rectangle(CInt(startPos.X + 48), CInt(startPos.Y + 80 + i * 36), CInt(frameSize.Width * frameScale), CInt(frameSize.Height * frameScale)), New Rectangle(0, frameSize.Height * 2, frameSize.Width, frameSize.Height), Color.White)
                             Core.SpriteBatch.DrawString(FontManager.MainFont, lP.Name, New Vector2(CInt(startPos.X + 88), CInt(startPos.Y + 80 + i * 36)), Color.Black)
                         End If
                     Next
@@ -1085,8 +1120,22 @@
             Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokegear"), New Rectangle(CInt(startPos.X + 40 + 16 + 480), CInt(startPos.Y + 46), 16, 32), New Rectangle(104, 112, 8, 16), Color.White)
             Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokegear"), New Rectangle(CInt(startPos.X + 40 + 16 + 200), CInt(startPos.Y + 46), 16, 32), New Rectangle(104, 112, 8, 16), Color.White)
 
-            Dim frameSize As New Size(CInt(UserSprite.Width / 3), CInt(UserSprite.Height / 4))
-            Core.SpriteBatch.Draw(UserSprite, New Rectangle(CInt(startPos.X + 48), CInt(startPos.Y + 46), 32, 32), New Rectangle(0, frameSize.Height * 2, frameSize.Width, frameSize.Height), Color.White)
+            Dim FrameSize As New Size(CInt(UserSprite.Width / 3), CInt(UserSprite.Height / 4))
+            Dim FrameScale As Single = 1.0F
+            If UserSprite.Width = UserSprite.Height / 2 Then
+                FrameSize.Width = CInt(UserSprite.Width / 2)
+            ElseIf UserSprite.Width = UserSprite.Height Then
+                FrameSize.Width = CInt(UserSprite.Width / 4)
+            Else
+                FrameSize.Width = CInt(UserSprite.Width / 3)
+            End If
+            If FrameSize.Width > 32 Then
+                FrameScale = CSng(32 / FrameSize.Width)
+            End If
+            If FrameSize.Width <= 16 Then
+                FrameScale = 2.0F
+            End If
+            Core.SpriteBatch.Draw(UserSprite, New Rectangle(CInt(startPos.X + 64 - (FrameSize.Width * FrameScale / 2)), CInt(startPos.Y + 46 + 16 - (FrameSize.Height * FrameScale / 2)), CInt(FrameSize.Width * FrameScale), CInt(FrameSize.Height * FrameScale)), New Rectangle(0, FrameSize.Height * 2, FrameSize.Width, FrameSize.Height), Color.White)
             Core.SpriteBatch.DrawString(FontManager.MainFont, UserName, New Vector2(CInt(startPos.X + 88), CInt(startPos.Y + 48)), Color.Black)
 
             If UserOrigin.Contains("GJ") = True Then
@@ -1276,9 +1325,12 @@
                             frameSize.Width = CInt(_spriteTexture.Width / 3)
                         End If
                         If frameSize.Width > 32 Then
-                            frameScale = 0.5F
+                            frameScale = CSng(32 / frameSize.Width)
                         End If
-                        Core.SpriteBatch.Draw(_spriteTexture, New Rectangle(CInt(startPos.X + 48), CInt(startPos.Y + 80 + 16 - (frameSize.Height * frameScale / 2) + i * 36), CInt(frameSize.Width * frameScale), CInt(frameSize.Height * frameScale)), New Rectangle(0, frameSize.Height * 2, frameSize.Width, frameSize.Height), Color.White)
+                        If frameSize.Width <= 16 Then
+                            frameScale = 2.0F
+                        End If
+                        Core.SpriteBatch.Draw(_spriteTexture, New Rectangle(CInt(startPos.X + 48), CInt(startPos.Y + 96 - (frameSize.Height * frameScale / 2) + i * 36), CInt(frameSize.Width * frameScale), CInt(frameSize.Height * frameScale)), New Rectangle(0, frameSize.Height * 2, frameSize.Width, frameSize.Height), Color.White)
                         Core.SpriteBatch.DrawString(FontManager.MainFont, C.Name, New Vector2(CInt(startPos.X + 88), CInt(startPos.Y + 84 + i * 36)), Color.Black)
                         Core.SpriteBatch.DrawString(FontManager.MainFont, "Location: " & C.Location, New Vector2(CInt(startPos.X + 320), CInt(startPos.Y + 84 + i * 36)), Color.Black)
                     End If
