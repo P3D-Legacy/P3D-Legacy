@@ -30,7 +30,7 @@ version=2
 			:endwhen
 		:endif
 	:else
-		:if:<phone.callflag>=receiving
+		:if:<system.scripttrigger>=phonereceiving
 			@text.notification(Day-Care Man*Receiving call.......,500,5,5,phone,phone\012)
 		:else
 			@text.show(Hello <player.name>!*We were raising your~Pokémon, and my goodness,~we were surprised!*Your Pokémon was holding~an Egg!*We don't know how it~got there, but your~Pokémon had it.*If you want to have it~visit us on Route 34.)
