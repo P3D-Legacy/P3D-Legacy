@@ -20,7 +20,7 @@
             Entry = Entry.Remove(0, Entry.IndexOf("{") + 1)
             Entry = Entry.Remove(Entry.Length - 1, 1)
 
-            Dim eID As Integer = CInt(Entry.GetSplit(0, "|"))
+            Dim eID As String = Entry.GetSplit(0, "|")
             Dim eType As Integer = CInt(Entry.GetSplit(1, "|"))
 
             If Type.Contains(eType) = True Then

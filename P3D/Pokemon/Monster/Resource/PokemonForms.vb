@@ -480,7 +480,11 @@ Public Class PokemonForms
     Public Shared Function GetAdditionalValueFromDataFile(ByVal DataFile As String) As String
 
         Dim CompareNumber As Integer = CInt(DataFile.GetSplit(0, "_"))
-        Dim CompareSuffix As String = DataFile.Remove(0, DataFile.IndexOf("_"))
+        Dim CompareSuffix As String = ""
+        If DataFile.Contains("_") Then
+            CompareSuffix = DataFile.Remove(0, DataFile.IndexOf("_"))
+        End If
+
         If _pokemonList.Count > 0 Then
             For Each listP In _pokemonList
                 If listP.IsNumber(CompareNumber) = True AndAlso CompareSuffix = listP.DataFileSuffix Then
