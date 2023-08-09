@@ -142,7 +142,27 @@ gamemode_menu_contentpath,Inhoudspad
 gamemode_menu_create,Creëer
 gamemode_menu_back,Terug
 ---
-
+JoinServerScreen:
+join_server_screen_title,Verbind met een server:
+join_server_screen_local_server_title,Lokaal
+join_server_screen_local_server_description,Één-Speler: Speel op je lokale computer.
+join_server_screen_button_join,Verbind
+join_server_screen_button_play,Speel
+join_server_screen_button_refresh,Ververs
+join_server_screen_button_new,Nieuw
+join_server_screen_button_add,Voeg toe
+join_server_screen_button_edit,Bewerk
+join_server_screen_button_remove,Verwijder
+join_server_screen_tooltip_no_players,Geen spelers op de server.
+join_server_screen_tooltip_player_list,Spelerlijst
+join_server_screen_ping,Ping:
+join_server_screen_server_unavailable,Server niet bereikbaar.
+join_server_screen_server_online,Server beschikbaar.
+join_server_screen_server_polling,Peilen
+join_server_screen_server_full,De server is vol.
+join_server_screen_version_mismatch,Versie komt niet overeen met die van de server.
+join_server_screen_no_connection,(geen verbinding)
+---
 Options Screen:
 option_screen_title,Opties
 option_screen_warning,Opties zijn nog niet opgeslagen, vergeet niet op "Pas toe" te drukken voor je terug gaat.

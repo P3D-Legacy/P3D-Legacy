@@ -599,7 +599,7 @@ Public Class JoinServerScreen
                     If New Rectangle(CInt(startPos.X) + width - 32, CInt(startPos.Y) + 3, 28, 28).Contains(MouseHandler.MousePosition) = True Then
                         Canvas.DrawRectangle(New Rectangle(MouseHandler.MousePosition.X + 10, MouseHandler.MousePosition.Y + 10, 160, 32), Color.Black)
                         Canvas.DrawBorder(3, New Rectangle(MouseHandler.MousePosition.X + 10, MouseHandler.MousePosition.Y + 10, 160, 32), Color.Gray)
-                        Core.SpriteBatch.DrawInterfaceString(FontManager.InGameFont, "Ping: " & PingResult & " ms", New Vector2(MouseHandler.MousePosition.X + 14, MouseHandler.MousePosition.Y + 16), Color.White)
+                        Core.SpriteBatch.DrawInterfaceString(FontManager.InGameFont, Localization.GetString("join_server_screen_ping", "Ping:") & " " & PingResult & " ms", New Vector2(MouseHandler.MousePosition.X + 14, MouseHandler.MousePosition.Y + 16), Color.White)
                     End If
                 Else
                     Core.SpriteBatch.DrawInterface(TextureManager.GetTexture("GUI\Menus\Menu", New Rectangle(80 + 14 * CInt(Math.Floor(JoinServerScreen.BarAnimationState / 10)), 224, 14, 14), ""), New Rectangle(CInt(startPos.X) + width - 32, CInt(startPos.Y) + 3, 28, 28), Color.White)
