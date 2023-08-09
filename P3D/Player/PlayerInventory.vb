@@ -170,9 +170,9 @@ Public Class PlayerInventory
     Public Function GetMessageReceive(ByVal Item As Item, ByVal Amount As Integer) As String
         Dim Message As String
         If Amount = 1 Then
-            Message = Core.Player.Name & " stored it in the~" & Core.Player.Inventory.GetItemPocketChar(Item) & Item.ItemType.ToString() & " pocket."
+            Message = Localization.GetString("item_stored_in_pocket_single_start", "<player.name> stored it in the~").Replace("<player.name>", Core.Player.Name) & Core.Player.Inventory.GetItemPocketChar(Item) & Item.ItemType.ToString() & " " & Localization.GetString("item_stored_in_pocket_single_end", "pocket.").Replace("<player.name>", Core.Player.Name)
         Else
-            Message = Core.Player.Name & " stored them~in the " & Core.Player.Inventory.GetItemPocketChar(Item) & Item.ItemType.ToString() & " pocket."
+            Message = Localization.GetString("item_stored_in_pocket_multiple_start", "<player.name> stored them~in the").Replace("<player.name>", Core.Player.Name) & " " & Core.Player.Inventory.GetItemPocketChar(Item) & Item.ItemType.ToString() & " " & Localization.GetString("item_stored_in_pocket_multiple_end", "pocket.").Replace("<player.name>", Core.Player.Name)
         End If
         Return Message
     End Function

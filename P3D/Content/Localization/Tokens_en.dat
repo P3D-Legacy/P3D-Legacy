@@ -411,6 +411,20 @@ pokedex_data_page_evolution,Evolution
 pokedex_habitat_area_unknown,Area Unknown.
 pokedex_evolution_no_evolutions,doesn't evolve.
 ----
+Receiving Items:
+item_received_single,Received the~
+item_received_multiple,Received
+item_stored_in_pocket_single_start,<player.name> stored it in the~
+item_stored_in_pocket_single_end,pocket.
+item_stored_in_pocket_multiple_start,<player.name> stored them~in the
+item_stored_in_pocket_multiple_end,pocket.
+
+Berries:
+berry_picked_single_start,<player.name> picked the~
+berry_picked_single_end,Berry.
+berry_picked_multiple_start,<player.name> picked the~
+berry_picked_multiple_end,Berries.
+----
 Battle:
 battle_trainer_about_to_send_out_1,is about to send out
 battle_trainer_about_to_send_out_2,! Do you want to switch your Pokémon?
