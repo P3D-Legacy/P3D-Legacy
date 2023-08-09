@@ -12,6 +12,7 @@ Public MustInherit Class Item
     'GameMode Items
     Public gmID As String = ""
     Public gmName As String = ""
+    Public gmPluralName As String = gmName & "s"
     Public gmDescription As String = ""
     Public gmTextureSource As String = "Items\GameModeItems"
     Public gmTextureRectangle As Rectangle
@@ -82,6 +83,25 @@ Public MustInherit Class Item
             End If
         End Get
     End Property
+
+    Public Function OneLineName() As String
+        Return Name.Replace("~", " ")
+    End Function
+    Public Function OneLinePluralName() As String
+        If IsGameModeItem = True Then
+            If Localization.TokenExists("item_pluralname_" & gmID) = True Then
+                Return Localization.GetString("item_pluralname_" & gmID).Replace("~", " ")
+            Else
+                Return gmPluralName.Replace("~", " ")
+            End If
+        Else
+            If Localization.TokenExists("item_pluralname_" & Me.ID) = True Then
+                Return Localization.GetString("item_pluralname_" & Me.ID).Replace("~", " ")
+            Else
+                Return PluralName.Replace("~", " ")
+            End If
+        End If
+    End Function
 
     ''' <summary>
     ''' The ID of the item.
@@ -329,7 +349,7 @@ Public MustInherit Class Item
         End If
 
         If Core.Player.Inventory.GetItemAmount(ItemID) <= 0 Then
-            Return "*There are no~" & Me.PluralName & " left."
+            Return "*There are no~" & Me.OneLinePluralName() & " left."
         End If
 
         Return ""

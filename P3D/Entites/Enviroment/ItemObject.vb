@@ -146,7 +146,7 @@
                 SoundManager.PlaySound("Receive_Item", True)
             End If
             Screen.TextBox.TextColor = TextBox.PlayerColor
-            Screen.TextBox.Show(Core.Player.Name & " found~" & Me.Item.Name & "!*" & Core.Player.Inventory.GetMessageReceive(Item, 1), {Me})
+            Screen.TextBox.Show(Localization.GetString("item_found", "<player.name> found~").Replace("<player.name>", Core.Player.Name) & Me.Item.OneLineName() & "!*" & Core.Player.Inventory.GetMessageReceive(Item, 1), {Me})
             Dim ItemID As String
             If Me.Item.IsGameModeItem Then
                 ItemID = Me.Item.gmID

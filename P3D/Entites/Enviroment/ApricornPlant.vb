@@ -135,7 +135,7 @@
         If hasApricorn = True Then
             Dim Item As Item = GetItem()
 
-            text = "There is a " & Item.Name & "~on this tree.*Do you want to pick it?%Yes|No%"
+            text = "There is a " & Item.OneLineName() & "~on this tree.*Do you want to pick it?%Yes|No%"
         End If
 
         Screen.TextBox.Show(text, {Me})
@@ -155,7 +155,7 @@
             PlayerStatistics.Track("[85]Apricorns picked", 1)
             SoundManager.PlaySound("Receive_Item", True)
             Screen.TextBox.TextColor = TextBox.PlayerColor
-            Screen.TextBox.Show(Core.Player.Name & " picked the~" & Item.Name & ".*" & Core.Player.Inventory.GetMessageReceive(Item, 1), {Me})
+            Screen.TextBox.Show(Core.Player.Name & " picked the~" & Item.OneLineName() & ".*" & Core.Player.Inventory.GetMessageReceive(Item, 1), {Me})
             AddApriconSave()
             hasApricorn = False
             ChangeTexture()

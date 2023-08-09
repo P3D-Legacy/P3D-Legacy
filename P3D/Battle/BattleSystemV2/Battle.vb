@@ -1397,7 +1397,7 @@
                     If p.Item.OriginalName.ToLower() = "choice band" Or p.Item.OriginalName.ToLower() = "choice specs" Or p.Item.OriginalName.ToLower() = "choice scarf" Then
                         If Not BattleScreen.FieldEffects.OwnChoiceMove Is Nothing Then
                             If Not moveUsed Is BattleScreen.FieldEffects.OwnChoiceMove Then
-                                BattleScreen.BattleQuery.Add(New TextQueryObject(p.GetDisplayName() & "'s move was prevented due to " & p.Item.Name & "!"))
+                                BattleScreen.BattleQuery.Add(New TextQueryObject(p.GetDisplayName() & "'s move was prevented due to " & p.Item.OneLineName() & "!"))
                                 Exit Sub
                             End If
                         Else
@@ -1410,7 +1410,7 @@
                     If p.Item.OriginalName.ToLower() = "choice band" Or p.Item.OriginalName.ToLower() = "choice specs" Or p.Item.OriginalName.ToLower() = "choice scarf" Then
                         If Not BattleScreen.FieldEffects.OppChoiceMove Is Nothing Then
                             If Not moveUsed Is BattleScreen.FieldEffects.OppChoiceMove Then
-                                BattleScreen.BattleQuery.Add(New TextQueryObject(p.GetDisplayName() & "'s move was prevented due to " & p.Item.Name & "!"))
+                                BattleScreen.BattleQuery.Add(New TextQueryObject(p.GetDisplayName() & "'s move was prevented due to " & p.Item.OneLineName() & "!"))
                                 Exit Sub
                             End If
                         Else
@@ -4787,9 +4787,9 @@
                 Select Case message
                     Case "" 'Print default message only
                         If cause.StartsWith("berry:") = True Then
-                            BattleScreen.BattleQuery.Add(New TextQueryObject(p.GetDisplayName() & " ate the " & lostItem.Name & " Berry!"))
+                            BattleScreen.BattleQuery.Add(New TextQueryObject(p.GetDisplayName() & " ate the " & lostItem.OneLineName() & " Berry!"))
                         Else
-                            BattleScreen.BattleQuery.Add(New TextQueryObject(p.GetDisplayName() & " lost the " & lostItem.Name & "!"))
+                            BattleScreen.BattleQuery.Add(New TextQueryObject(p.GetDisplayName() & " lost the " & lostItem.OneLineName() & "!"))
                         End If
                     Case "-1" 'Print no message at all
                         'Do nothing
@@ -4797,9 +4797,9 @@
                         BattleScreen.BattleQuery.Add(New TextQueryObject(message))
 
                         If cause.StartsWith("berry:") = True Then
-                            BattleScreen.BattleQuery.Add(New TextQueryObject(p.GetDisplayName() & " ate the " & lostItem.Name & " Berry!"))
+                            BattleScreen.BattleQuery.Add(New TextQueryObject(p.GetDisplayName() & " ate the " & lostItem.OneLineName() & " Berry!"))
                         Else
-                            BattleScreen.BattleQuery.Add(New TextQueryObject(p.GetDisplayName() & " lost the " & lostItem.Name & "!"))
+                            BattleScreen.BattleQuery.Add(New TextQueryObject(p.GetDisplayName() & " lost the " & lostItem.OneLineName() & "!"))
                         End If
                 End Select
             End If
@@ -5016,7 +5016,7 @@
                             ChangeWeather(own, own, BattleWeather.WeatherTypes.Hailstorm, turns, BattleScreen, "Snow Warning summoned a hailstorm!", "snowwarning")
                         Case "frisk"
                             If Not op.Item Is Nothing Then
-                                .BattleQuery.Add(New TextQueryObject(op.GetDisplayName() & " is holding " & op.Item.Name & "."))
+                                .BattleQuery.Add(New TextQueryObject(op.GetDisplayName() & " is holding " & op.Item.OneLineName() & "."))
                             End If
                         Case "multitype"
                             p.OriginalType1 = p.Type1

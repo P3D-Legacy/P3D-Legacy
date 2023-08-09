@@ -66,7 +66,7 @@
             If Not op.Item Is Nothing Then
                 If op.Item.IsBerry = True OrElse op.Item.OriginalName.ToLower().EndsWith(" gem") Then
                     Dim ItemID As Integer = op.Item.ID
-                    BattleScreen.Battle.RemoveHeldItem(Not own, own, BattleScreen, op.GetDisplayName() & "'s " & op.Item.Name & " got burned up!", "move:incinerate")
+                    BattleScreen.Battle.RemoveHeldItem(Not own, own, BattleScreen, op.GetDisplayName() & "'s " & op.Item.OneLineName() & " got burned up!", "move:incinerate")
                 End If
             End If
         End Sub

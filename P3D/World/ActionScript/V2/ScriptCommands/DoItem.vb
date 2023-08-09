@@ -76,9 +76,9 @@
                     If showMessage = True Then
                         Dim Message As String = ""
                         If amount = 1 Then
-                            Message = "<playername> handed over the~" & Item.Name & "!"
+                            Message = "<playername> handed over the~" & Item.OneLineName() & "!"
                         Else
-                            Message = "<playername> handed over the~" & Item.PluralName & "!"
+                            Message = "<playername> handed over the~" & Item.OneLinePluralName() & "!"
                         End If
 
                         Screen.TextBox.reDelay = 0.0F
@@ -110,9 +110,9 @@
                     Dim Amount As Integer = int(argument.GetSplit(1))
 
                     If Not item Is Nothing Then
-                        Dim receiveString As String = Localization.GetString("item_received_single", "Received the~") & item.Name.Replace("~", " ") & ".*"
+                        Dim receiveString As String = Localization.GetString("item_received_single", "Received the~") & item.OneLineName() & ".*"
                         If Amount > 1 Then
-                            receiveString = Localization.GetString("item_received_multiple", "Received") & " " & Amount & "~" & item.PluralName.Replace("~", " ") & ".*"
+                            receiveString = Localization.GetString("item_received_multiple", "Received") & " " & Amount & "~" & item.OneLinePluralName() & ".*"
                         End If
 
                         SoundManager.PlaySound("Receive_Item", True)

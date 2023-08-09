@@ -7,7 +7,6 @@ Public Class GameModeItem
 
     Inherits Item
 
-    Public gmPluralName As String = gmName
     Public gmPrice As Integer = 0
     Public gmBattlePointsPrice As Integer = 1
     Public gmItemType As ItemTypes = ItemTypes.Standard

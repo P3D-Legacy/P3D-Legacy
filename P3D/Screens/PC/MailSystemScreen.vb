@@ -794,7 +794,7 @@
             Else
                 Core.Player.Inventory.AddItem(Core.Player.Pokemons(PokeIndex).Item.ID.ToString, 1)
             End If
-            text = "Taken " & Core.Player.Pokemons(PokeIndex).Item.Name & " from " & Core.Player.Pokemons(PokeIndex).GetDisplayName() & ", and attached the Mail to " & Core.Player.Pokemons(PokeIndex).GetDisplayName() & "."
+            text = "Taken " & Core.Player.Pokemons(PokeIndex).Item.OneLineName() & " from " & Core.Player.Pokemons(PokeIndex).GetDisplayName() & ", and attached the Mail to " & Core.Player.Pokemons(PokeIndex).GetDisplayName() & "."
         End If
 
         Core.Player.Pokemons(PokeIndex).Item = Item.GetItemByID(TempNewMail.MailID.ToString)

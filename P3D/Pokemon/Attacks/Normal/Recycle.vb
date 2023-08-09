@@ -60,7 +60,7 @@
                 Dim p As Pokemon = BattleScreen.OwnPokemon
                 If Not BattleScreen.FieldEffects.OwnConsumedItem Is Nothing Then
                     p.Item = BattleScreen.FieldEffects.OwnConsumedItem
-                    BattleScreen.BattleQuery.Add(New TextQueryObject(p.GetDisplayName() & " found one " & p.Item.Name & "!"))
+                    BattleScreen.BattleQuery.Add(New TextQueryObject(p.GetDisplayName() & " found one " & p.Item.OneLineName() & "!"))
                 Else
                     BattleScreen.BattleQuery.Add(New TextQueryObject("Recycle failed!"))
                 End If
@@ -69,7 +69,7 @@
 
                 If Not BattleScreen.FieldEffects.OppConsumedItem Is Nothing Then
                     p.Item = BattleScreen.FieldEffects.OppConsumedItem
-                    BattleScreen.BattleQuery.Add(New TextQueryObject(p.GetDisplayName() & " found one " & p.Item.Name & "!"))
+                    BattleScreen.BattleQuery.Add(New TextQueryObject(p.GetDisplayName() & " found one " & p.Item.OneLineName() & "!"))
                 Else
                     BattleScreen.BattleQuery.Add(New TextQueryObject("Recycle failed!"))
                 End If

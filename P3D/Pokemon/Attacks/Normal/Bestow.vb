@@ -105,7 +105,7 @@
                 p.OriginalItem = Item.GetItemByID(ItemID)
                 p.OriginalItem.AdditionalData = p.Item.AdditionalData
 
-                If BattleScreen.Battle.RemoveHeldItem(own, own, BattleScreen, op.GetDisplayName() & " received the item " & p.Item.Name & " from " & p.GetDisplayName() & "!", "move:bestow") Then
+                If BattleScreen.Battle.RemoveHeldItem(own, own, BattleScreen, op.GetDisplayName() & " received the item " & p.Item.OneLineName() & " from " & p.GetDisplayName() & "!", "move:bestow") Then
                     If own = True Then
                         BattleScreen.FieldEffects.StolenItemIDs.Add(ItemID)
                     End If

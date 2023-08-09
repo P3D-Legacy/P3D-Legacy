@@ -788,7 +788,7 @@ Public Class PartyScreen
                     
                     p.Item = Nothing
                 Else
-                    ShowMessage("Taken " & p.Item.Name & " from " & p.GetDisplayName() & ".")
+                    ShowMessage("Taken " & p.Item.OneLineName() & " from " & p.GetDisplayName() & ".")
                     Dim ItemID As String
                     If p.Item.IsGameModeItem Then
                         ItemID = p.Item.gmID
@@ -835,7 +835,7 @@ Public Class PartyScreen
                     End If
                     Core.Player.Inventory.AddItem(ReItemID, 1)
 
-                    message = "Switched " & p.GetDisplayName() & "'s " & i.Name & " with a " & reItem.Name & "."
+                    message = "Switched " & p.GetDisplayName() & "'s " & i.Name & " with a " & reItem.OneLineName() & "."
                 End If
             Else
                 message = "Gave " & p.GetDisplayName() & " a " & i.Name & "."

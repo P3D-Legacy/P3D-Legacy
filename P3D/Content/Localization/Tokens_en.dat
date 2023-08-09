@@ -427,6 +427,7 @@ pokedex_evolution_no_evolutions,doesn't evolve.
 Receiving Items:
 item_received_single,Received the~
 item_received_multiple,Received
+item_found,<player.name> found~
 item_stored_in_pocket_single_start,<player.name> stored it in the~
 item_stored_in_pocket_single_end,pocket.
 item_stored_in_pocket_multiple_start,<player.name> stored them~in the

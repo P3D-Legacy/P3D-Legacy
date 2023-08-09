@@ -97,7 +97,7 @@ Namespace BattleSystem.Moves.Normal
                 op.OriginalItem = Item.GetItemByID(ItemID)
                 op.OriginalItem.AdditionalData = op.Item.AdditionalData
 
-                If BattleScreen.Battle.RemoveHeldItem(Not own, own, BattleScreen, "Covet stole the item " & op.Item.Name & " from " & op.GetDisplayName() & "!", "move:covet") Then
+                If BattleScreen.Battle.RemoveHeldItem(Not own, own, BattleScreen, "Covet stole the item " & op.Item.OneLineName() & " from " & op.GetDisplayName() & "!", "move:covet") Then
                     If own = False Then
                         BattleScreen.FieldEffects.StolenItemIDs.Add(ItemID)
                     End If

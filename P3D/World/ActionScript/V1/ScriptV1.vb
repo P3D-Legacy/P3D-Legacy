@@ -1678,9 +1678,9 @@
 
         Dim Message As String = ""
         If Amount = 1 Then
-            Message = "Received the~" & Item.Name & ".*" & Core.Player.Name & " stored it in the~" & Item.ItemType.ToString() & " pocket."
+            Message = "Received the~" & Item.OneLineName() & ".*" & Core.Player.Name & " stored it in the~" & Item.ItemType.ToString() & " pocket."
         Else
-            Message = "Received " & Amount & "~" & Item.PluralName & ".*" & Core.Player.Name & " stored them~in the " & Item.ItemType.ToString() & " pocket."
+            Message = "Received " & Amount & "~" & Item.OneLinePluralName() & ".*" & Core.Player.Name & " stored them~in the " & Item.ItemType.ToString() & " pocket."
         End If
 
         Core.Player.Inventory.AddItem(ItemID, Amount)
@@ -1700,9 +1700,9 @@
 
         Dim Message As String = ""
         If Amount = 1 Then
-            Message = "<playername> handed over the~" & Item.Name & "!"
+            Message = "<playername> handed over the~" & Item.OneLineName() & "!"
         Else
-            Message = "<playername> handed over the~" & Item.PluralName & "!"
+            Message = "<playername> handed over the~" & Item.OneLinePluralName() & "!"
         End If
 
         Core.Player.Inventory.RemoveItem(ItemID, Amount)

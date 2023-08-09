@@ -112,7 +112,7 @@
             s &= "@text.show(" & message & ")" & Environment.NewLine &
                 "@options.show(Yes,No)" & Environment.NewLine &
                 ":when:Yes" & Environment.NewLine &
-                "@text.show(Your Pokémon handed over~the " & item.Name & "!)" & Environment.NewLine &
+                "@text.show(Your Pokémon handed over~the " & Item.OneLineName() & "!)" & Environment.NewLine &
                 "@item.give(" & PickupItemID & ",1)" & Environment.NewLine &
                 "@item.messagegive(" & PickupItemID & ",1)" & Environment.NewLine &
                 ":when:No" & Environment.NewLine &
@@ -128,7 +128,7 @@
             s &= "@text.show(" & message & ")" & Environment.NewLine &
                 "@options.show(Yes,No)" & Environment.NewLine &
                 ":when:Yes" & Environment.NewLine &
-                "@text.show(Your Pokémon handed over~the " & item.Name & "!)" & Environment.NewLine &
+                "@text.show(Your Pokémon handed over~the " & Item.OneLineName() & "!)" & Environment.NewLine &
                 "@item.give(" & PickupItemID & ",1)" & Environment.NewLine &
                 "@item.messagegive(" & PickupItemID & ",1)" & Environment.NewLine &
                 ":when:No" & Environment.NewLine &
@@ -482,7 +482,7 @@
                     r = New ReactionContainer("Your Pokémon was surprised~that you suddenly spoke to it!", MessageBulb.NotificationTypes.Exclamation)
                 Case 42
                     If Not p.Item Is Nothing Then
-                        r = New ReactionContainer("<name> almost forgot~it was holding~that " & p.Item.Name & "!", MessageBulb.NotificationTypes.Question)
+                        r = New ReactionContainer("<name> almost forgot~it was holding~that " & p.Item.OneLineName() & "!", MessageBulb.NotificationTypes.Question)
                     End If
                 Case 43
                     If IceAround() = True Then

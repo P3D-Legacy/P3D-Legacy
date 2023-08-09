@@ -125,7 +125,7 @@
             End If
             op.OriginalItem = Item.GetItemByID(ItemID)
             op.OriginalItem.AdditionalData = op.Item.AdditionalData
-            BattleScreen.Battle.RemoveHeldItem(Not own, own, BattleScreen, p.GetDisplayName() & " knocked off the " & op.GetDisplayName() & "'s " & op.OriginalItem.Name & "!", "move:knockoff")
+            BattleScreen.Battle.RemoveHeldItem(Not own, own, BattleScreen, p.GetDisplayName() & " knocked off the " & op.GetDisplayName() & "'s " & op.OriginalItem.OneLineName() & "!", "move:knockoff")
 
         End Sub
 

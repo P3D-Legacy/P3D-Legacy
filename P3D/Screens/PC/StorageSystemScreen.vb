@@ -1055,7 +1055,7 @@ Public Class StorageSystemScreen
 
                     Core.Player.Pokemons(CInt(CursorPosition.Y)).Item = Nothing
                 Else
-                    Screen.TextBox.Show("Taken " & Core.Player.Pokemons(CInt(CursorPosition.Y)).Item.Name & "~from " & Core.Player.Pokemons(CInt(CursorPosition.Y)).GetDisplayName() & ".")
+                    Screen.TextBox.Show("Taken " & Core.Player.Pokemons(CInt(CursorPosition.Y)).Item.OneLineName() & "~from " & Core.Player.Pokemons(CInt(CursorPosition.Y)).GetDisplayName() & ".")
                     Dim ItemID As String
                     If Core.Player.Pokemons(CInt(CursorPosition.Y)).Item.IsGameModeItem Then
                         ItemID = Core.Player.Pokemons(CInt(CursorPosition.Y)).Item.gmID
@@ -1075,7 +1075,7 @@ Public Class StorageSystemScreen
 
                     GetBox(CurrentBox).Pokemon(id).GetPokemon.Item = Nothing
                 Else
-                    Screen.TextBox.Show("Taken " & GetBox(CurrentBox).Pokemon(id).GetPokemon.Item.Name & "~from " & GetBox(CurrentBox).Pokemon(id).GetPokemon.GetDisplayName() & ".")
+                    Screen.TextBox.Show("Taken " & GetBox(CurrentBox).Pokemon(id).GetPokemon.Item.OneLineName() & "~from " & GetBox(CurrentBox).Pokemon(id).GetPokemon.GetDisplayName() & ".")
                     Dim ItemID As String
                     If GetBox(CurrentBox).Pokemon(id).GetPokemon.Item.IsGameModeItem Then
                         ItemID = GetBox(CurrentBox).Pokemon(id).GetPokemon.Item.gmID
@@ -1144,7 +1144,7 @@ Public Class StorageSystemScreen
 
                     Core.Player.Pokemons(CInt(CursorPosition.Y)).Item = Nothing
                 Else
-                    Screen.TextBox.Show("Taken " & Core.Player.Pokemons(CInt(CursorPosition.Y)).Item.Name & "~from " & Core.Player.Pokemons(CInt(CursorPosition.Y)).GetDisplayName() & ".")
+                    Screen.TextBox.Show("Taken " & Core.Player.Pokemons(CInt(CursorPosition.Y)).Item.OneLineName() & "~from " & Core.Player.Pokemons(CInt(CursorPosition.Y)).GetDisplayName() & ".")
                     Dim ItemID As String
                     If Core.Player.Pokemons(CInt(CursorPosition.Y)).Item.IsGameModeItem Then
                         ItemID = Core.Player.Pokemons(CInt(CursorPosition.Y)).Item.gmID
@@ -1167,7 +1167,7 @@ Public Class StorageSystemScreen
 
                     GetBox(CurrentBox).Pokemon(id).GetPokemon.Item = Nothing
                 Else
-                    Screen.TextBox.Show("Taken " & GetBox(CurrentBox).Pokemon(id).GetPokemon.Item.Name & "~from " & GetBox(CurrentBox).Pokemon(id).GetPokemon.GetDisplayName() & ".")
+                    Screen.TextBox.Show("Taken " & GetBox(CurrentBox).Pokemon(id).GetPokemon.Item.OneLineName() & "~from " & GetBox(CurrentBox).Pokemon(id).GetPokemon.GetDisplayName() & ".")
                     Dim ItemID As String
                     If GetBox(CurrentBox).Pokemon(id).GetPokemon.Item.IsGameModeItem Then
                         ItemID = GetBox(CurrentBox).Pokemon(id).GetPokemon.Item.gmID
