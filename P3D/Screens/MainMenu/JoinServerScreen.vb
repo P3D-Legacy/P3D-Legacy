@@ -124,36 +124,36 @@ Public Class JoinServerScreen
             Dim Text As String = ""
             Select Case i
                 Case 0
-                    Text = "Join"
+                    Text = Localization.GetString("join_server_screen_button_join", "Join")
                     Dim s As Server = ServerList(selectIndex)
 
                     If s.IsLocal = True Then
-                        Text = "Play"
+                        Text = Localization.GetString("join_server_screen_button_play", "Play")
                     Else
                         If s.CanJoin() = False Then
                             CanvasTexture = TextureManager.GetTexture("GUI\Menus\Menu", New Rectangle(48, 0, 48, 48), "")
                         End If
                     End If
                 Case 1
-                    Text = "Refresh"
+                    Text = Localization.GetString("join_server_screen_button_refresh", "Refresh")
                 Case 2
-                    Text = "Add"
+                    Text = Localization.GetString("join_server_screen_button_add", "Add")
                 Case 3
-                    Text = "Edit"
+                    Text = Localization.GetString("join_server_screen_button_edit", "Edit")
                     Dim s As Server = ServerList(selectIndex)
 
                     If s.IsLocal = True Then
                         CanvasTexture = TextureManager.GetTexture("GUI\Menus\Menu", New Rectangle(48, 0, 48, 48), "")
                     End If
                 Case 4
-                    Text = "Remove"
+                    Text = Localization.GetString("join_server_screen_button_remove", "Remove")
                     Dim s As Server = ServerList(selectIndex)
 
                     If s.IsLocal = True Then
                         CanvasTexture = TextureManager.GetTexture("GUI\Menus\Menu", New Rectangle(48, 0, 48, 48), "")
                     End If
                 Case 5
-                    Text = "Back"
+                    Text = Localization.GetString("global_back", "Back")
             End Select
 
             Canvas.DrawImageBorder(CanvasTexture, 2, New Rectangle(CInt(Core.ScreenSize.Width / 2) - 560 + i * 192, Core.ScreenSize.Height - 136, 128, 64), True)
@@ -406,7 +406,7 @@ Public Class JoinServerScreen
 
         Public Sub Ping()
             If IsLocal = True Then
-                Me.Name = "Local"
+                Me.Name = Localization.GetString("join_server_screen_local_server_title", "Local")
                 Me.PingResult = 0
                 Me.StartedPing = True
                 Me.Pinged = True
@@ -414,7 +414,7 @@ Public Class JoinServerScreen
                 Me.MaxPlayersOnline = 1
                 Me.IP = "127.0.0.1"
                 Me.Port = "15124"
-                Me.ServerMessage = "Single-player: Play on your local computer."
+                Me.ServerMessage = Localization.GetString("join_server_screen_local_server_description", "Single-player: Play on your local computer.")
                 Me.ServerProtocolVersion = Servers.ServersManager.PROTOCOLVERSION
             Else
                 Dim t As New Threading.Thread(AddressOf StartPing)
@@ -547,12 +547,12 @@ Public Class JoinServerScreen
 
         Public Function GetServerStatus() As String
             If ReceivedError = True Then
-                Return "Cannot reach server."
+                Return Localization.GetString("join_server_screen_server_unavailable", "Cannot reach server.")
             End If
             If Me.Pinged = True Then
-                Return "Server online"
+                Return Localization.GetString("join_server_screen_server_online", "Server online.")
             Else
-                Return "Polling" & LoadingDots.Dots
+                Return Localization.GetString("join_server_screen_server_polling", "Polling") & LoadingDots.Dots
             End If
         End Function
 
@@ -572,7 +572,7 @@ Public Class JoinServerScreen
                 If New Rectangle(CInt(startPos.X) + width - 32, CInt(startPos.Y) + 3, 28, 28).Contains(MouseHandler.MousePosition) = True Then
                     Canvas.DrawRectangle(New Rectangle(MouseHandler.MousePosition.X + 10, MouseHandler.MousePosition.Y + 10, 160, 32), Color.Black)
                     Canvas.DrawBorder(3, New Rectangle(MouseHandler.MousePosition.X + 10, MouseHandler.MousePosition.Y + 10, 160, 32), Color.Gray)
-                    Core.SpriteBatch.DrawInterfaceString(FontManager.InGameFont, "(no connection)", New Vector2(MouseHandler.MousePosition.X + 14, MouseHandler.MousePosition.Y + 16), Color.White)
+                    Core.SpriteBatch.DrawInterfaceString(FontManager.InGameFont, Localization.GetString("join_server_screen_no_connection", "(no connection)"), New Vector2(MouseHandler.MousePosition.X + 14, MouseHandler.MousePosition.Y + 16), Color.White)
                 End If
             Else
                 If Pinged = True Then
@@ -581,10 +581,10 @@ Public Class JoinServerScreen
 
                     If CanJoin() = False Then
                         If CurrentPlayersOnline >= MaxPlayersOnline Then
-                            message = "The server is full."
+                            message = Localization.GetString("join_server_screen_server_full", "The server is full.")
                         End If
                         If ServerProtocolVersion <> Servers.ServersManager.PROTOCOLVERSION Then
-                            message = "Version doesn't match the server's version."
+                            message = Localization.GetString("join_server_screen_version_mismatch", "Version doesn't match the server's version.")
                         End If
 
                         color = New Color(190, 0, 0, 255)
@@ -606,10 +606,10 @@ Public Class JoinServerScreen
                     If New Rectangle(CInt(startPos.X) + width - 32, CInt(startPos.Y) + 3, 28, 28).Contains(MouseHandler.MousePosition) = True Then
                         Canvas.DrawRectangle(New Rectangle(MouseHandler.MousePosition.X + 10, MouseHandler.MousePosition.Y + 10, 160, 32), Color.Black)
                         Canvas.DrawBorder(3, New Rectangle(MouseHandler.MousePosition.X + 10, MouseHandler.MousePosition.Y + 10, 160, 32), Color.Gray)
-                        Core.SpriteBatch.DrawInterfaceString(FontManager.InGameFont, "Polling" & LoadingDots.Dots, New Vector2(MouseHandler.MousePosition.X + 14, MouseHandler.MousePosition.Y + 16), Color.White)
+                        Core.SpriteBatch.DrawInterfaceString(FontManager.InGameFont, Localization.GetString("join_server_screen_server_polling", "Polling") & LoadingDots.Dots, New Vector2(MouseHandler.MousePosition.X + 14, MouseHandler.MousePosition.Y + 16), Color.White)
                     End If
 
-                    Core.SpriteBatch.DrawInterfaceString(FontManager.InGameFont, "Polling" & LoadingDots.Dots, New Vector2(CInt(startPos.X) + 4, CInt(startPos.Y) + 30), New Color(180, 180, 180, 255), 0.0F, Vector2.Zero, 1.0F, SpriteEffects.None, 0.0F)
+                    Core.SpriteBatch.DrawInterfaceString(FontManager.InGameFont, Localization.GetString("join_server_screen_server_polling", "Polling") & LoadingDots.Dots, New Vector2(CInt(startPos.X) + 4, CInt(startPos.Y) + 30), New Color(180, 180, 180, 255), 0.0F, Vector2.Zero, 1.0F, SpriteEffects.None, 0.0F)
                 End If
             End If
 
@@ -622,13 +622,13 @@ Public Class JoinServerScreen
                 startPos.X = CInt(Core.ScreenSize.Width / 2 - width / 2)
 
                 If Core.ScaleScreenRec(New Rectangle(CInt(startPos.X) + width - 36 - FontManager.MiniFont.MeasureString(Me.CurrentPlayersOnline & "/" & Me.MaxPlayersOnline).X.ToInteger(), CInt(startPos.Y) + 3, FontManager.MiniFont.MeasureString(Me.CurrentPlayersOnline & "/" & Me.MaxPlayersOnline).X.ToInteger(), 28)).Contains(MouseHandler.MousePosition) = True Then
-                    Dim tooltipText As String = "No players on the server."
+                    Dim tooltipText As String = Localization.GetString("join_server_screen_tooltip_no_players", "No players on the server.")
 
                     If PlayerList.Count > 0 Then
                         tooltipText = PlayerList.ToArray().ArrayToString(True)
                     End If
 
-                    Dim v = FontManager.MiniFont.MeasureString("Player List" & Environment.NewLine & tooltipText)
+                    Dim v = FontManager.MiniFont.MeasureString(Localization.GetString("join_server_screen_tooltip_player_list", "Player List") & Environment.NewLine & tooltipText)
 
                     Dim drawY As Integer = MouseHandler.MousePosition.Y + 10
                     If drawY + v.Y + 12 > Core.windowSize.Height Then
@@ -641,7 +641,7 @@ Public Class JoinServerScreen
                     Canvas.DrawRectangle(New Rectangle(MouseHandler.MousePosition.X + 10, drawY, CInt(v.X + 10), CInt(v.Y + 22)), Color.Black, True)
                     Canvas.DrawBorder(3, New Rectangle(MouseHandler.MousePosition.X + 10, drawY, CInt(v.X + 10), CInt(v.Y + 22)), Color.Gray, True)
 
-                    Core.SpriteBatch.DrawInterfaceString(FontManager.MiniFont, "Player List", New Vector2(MouseHandler.MousePosition.X + 14, drawY + 6), Color.LightBlue)
+                    Core.SpriteBatch.DrawInterfaceString(FontManager.MiniFont, Localization.GetString("join_server_screen_tooltip_player_list", "Player List"), New Vector2(MouseHandler.MousePosition.X + 14, drawY + 6), Color.LightBlue)
                     Core.SpriteBatch.DrawInterfaceString(FontManager.MiniFont, tooltipText, New Vector2(MouseHandler.MousePosition.X + 14, drawY + 6 + 34), Color.White)
                 End If
             End If
