@@ -380,6 +380,7 @@ Public Class NewMainMenuScreen
                                                 SoundManager.PlaySound("select")
                                             End If
                                         Else
+                                            GameModeSplash = Nothing
                                             If CurrentScreen.Identification = Identifications.MainMenuScreen Then
                                                 Dim diff As Integer = x - _selectedProfile
                                                 _screenOffsetTarget.X -= diff * 180
