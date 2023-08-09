@@ -46,7 +46,6 @@
         If System.IO.Directory.GetFiles(fullpath).Count > 0 Then
             If System.IO.File.Exists(tokenFullpath) = False Then
                 Logger.Debug("Did NOT find token file for suffix: " & LanguageSuffix)
-                LanguageSuffix = "en"
             End If
 
             If System.IO.File.Exists(tokenFullpath) = True Then
