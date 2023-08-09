@@ -140,7 +140,7 @@
     Public Overrides Sub ClickFunction()
         If CanInteractWith Then
             RemoveItem(Me)
-            If Me.Item.Name.Contains("HM") Then
+            If Me.Item.OriginalName.Contains("HM") Then
                 SoundManager.PlaySound("Receive_HM", True)
             Else
                 SoundManager.PlaySound("Receive_Item", True)
