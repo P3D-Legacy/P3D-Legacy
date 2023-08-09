@@ -422,6 +422,7 @@ Public Class NewMainMenuScreen
                                     Next
                                 End If
                             Case 2
+                                GameModeSplash = Nothing
                                 For x = 0 To _MainProfiles.Count - 1
                                     Dim xOffset As Single = _screenOrigin.X + _mainOffset.X + x * 180 + ((x + 1) * 100 * (1 - _fadeInMain))
                                     If New Rectangle(CInt(xOffset), CInt(_screenOrigin.Y + _screenOffsetTarget.Y), 160, 160).Contains(MouseHandler.MousePosition) Then
@@ -474,6 +475,7 @@ Public Class NewMainMenuScreen
                                                 SoundManager.PlaySound("select")
                                             End If
                                         Else
+                                            GameModeSplash = Nothing
                                             If CurrentScreen.Identification = Identifications.MainMenuScreen Then
                                                 Dim diff As Integer = x - _selectedProfile
                                                 _optionsOffsetTarget.X -= diff * 180
@@ -644,7 +646,7 @@ Public Class NewMainMenuScreen
                 UpdateScreenOffset()
                 UpdateOptionsOffset()
 
-                If _MainProfiles(_selectedProfile).GameMode <> "Kolben" Then
+                If _MainProfiles(_selectedProfile).GameMode <> "Kolben" AndAlso (_menuIndex = 0 OrElse _menuIndex = 1) Then
                     If GameModeSplash Is Nothing Then
                         Try
                             Dim fileName As String = GameController.GamePath & "\GameModes\" & _MainProfiles(_selectedProfile).GameMode & "\MainMenu.png"
