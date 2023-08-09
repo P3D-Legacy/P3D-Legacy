@@ -374,8 +374,6 @@ black_out_screen_line3,PokéCenter gebracht worden
 black_out_screen_line4, om verdere schade aan je
 black_out_screen_line5,Pokémon te voorkomen.
 ---
-Battle:
----
 Voltorb Flip:
 VoltorbFlip_LV.,NV.
 VoltorbFlip_CurrentCoins_Line1,Munten in dit
@@ -468,6 +466,20 @@ pokedex_data_page_habitat,Habitat
 pokedex_data_page_evolution,Evolutie
 pokedex_habitat_area_unknown,Gebied onbekend.
 pokedex_evolution_no_evolutions,evolueert niet.
+----
+Receiving Items:
+item_received_single,Ontving een~
+item_received_multiple,Ontving
+item_stored_in_pocket_single_start,<player.name> stopte het weg~in het
+item_stored_in_pocket_single_end,vakje.
+item_stored_in_pocket_multiple_start,<player.name> stopte ze weg~in het
+item_stored_in_pocket_multiple_end,vakje.
+
+Berries:
+berry_picked_single_start,<player.name> plukte de~
+berry_picked_single_end,Bes.
+berry_picked_multiple_start,<player.name> plukte de~
+berry_picked_multiple_end,Bessen.
 ----
 Battle:
 battle_trainer_about_to_send_out_1,staat op het punt om
