@@ -655,24 +655,22 @@
         If Not Me.Model Is Nothing Then
             For Each mesh As ModelMesh In Me.Model.Meshes
                 For Each part As ModelMeshPart In mesh.MeshParts
-                    If part.Effect.GetType().Name.ToLower() = Screen.Effect.GetType().Name.ToLower() Then
-                        With CType(part.Effect, BasicEffect)
-                            Lighting.UpdateLighting(CType(part.Effect, BasicEffect), True)
-                            .Alpha = Me.Opacity
-                            .DiffuseColor = Screen.Effect.DiffuseColor
+                    With CType(part.Effect, BasicEffect)
+                        Lighting.UpdateLighting(CType(part.Effect, BasicEffect), True)
+                        .Alpha = Me.Opacity
+                        .DiffuseColor = Screen.Effect.DiffuseColor
 
-                            If Not Screen.Level.World Is Nothing Then
-                                If Screen.Level.World.EnvironmentType = P3D.World.EnvironmentTypes.Outside Then
-                                    .DiffuseColor *= SkyDome.GetDaytimeColor(True).ToVector3()
-                                End If
+                        If Not Screen.Level.World Is Nothing Then
+                            If Screen.Level.World.EnvironmentType = P3D.World.EnvironmentTypes.Outside Then
+                                .DiffuseColor *= SkyDome.GetDaytimeColor(True).ToVector3()
                             End If
+                        End If
 
-                            .FogEnabled = True
-                            .FogColor = Screen.Effect.FogColor
-                            .FogEnd = Screen.Effect.FogEnd
-                            .FogStart = Screen.Effect.FogStart
-                        End With
-                    End If
+                        .FogEnabled = True
+                        .FogColor = Screen.Effect.FogColor
+                        .FogEnd = Screen.Effect.FogEnd
+                        .FogStart = Screen.Effect.FogStart
+                    End With
                 Next
             Next
         End If
