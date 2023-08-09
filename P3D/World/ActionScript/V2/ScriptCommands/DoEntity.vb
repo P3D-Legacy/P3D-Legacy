@@ -105,6 +105,9 @@
                                 Dim textureInformation() As String = textureData.Split(CChar(","))
 
                                 ent.Textures(textureID) = TextureManager.GetTexture(textureInformation(0), New Rectangle(int(textureInformation(1)), int(textureInformation(2)), int(textureInformation(3)), int(textureInformation(4))))
+                            Case "setmodelpath"
+                                ent.ModelPath = argument.GetSplit(1)
+                                ent.Model = ModelManager.GetModel(ent.ModelPath)
                             Case "addtoposition"
                                 Dim PositionList As List(Of String) = argument.Split(CChar(",")).ToList()
                                 Dim newPosition As Vector3 = New Vector3(sng(PositionList(1).Replace("~", CStr(ent.Position.X)).Replace(".", GameController.DecSeparator)),

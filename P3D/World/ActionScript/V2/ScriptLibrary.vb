@@ -246,6 +246,8 @@ Namespace ScriptVersion2
                                                 New ScriptArgument("additionalValue", ScriptArgument.ArgumentTypes.Str)}.ToList(), "Sets the AdditionalValue property of the selected entity."))
             r(New ScriptCommand("entity", "setcollision", {New ScriptArgument("entityID", ScriptArgument.ArgumentTypes.Int),
                                                 New ScriptArgument("collision", ScriptArgument.ArgumentTypes.Bool)}.ToList(), "Sets the Collision property of the selected entity."))
+            r(New ScriptCommand("entity", "setmodelpath", {New ScriptArgument("entityID", ScriptArgument.ArgumentTypes.Int),
+                                                New ScriptArgument("ModelPath", ScriptArgument.ArgumentTypes.Str)}.ToList(), "Sets the ModelPath property of the selected entity."))
             r(New ScriptCommand("entity", "settexture", {New ScriptArgument("entityID", ScriptArgument.ArgumentTypes.Int),
                                                 New ScriptArgument("textureIndex", ScriptArgument.ArgumentTypes.Str),
                                                 New ScriptArgument("textureName", ScriptArgument.ArgumentTypes.Str),
