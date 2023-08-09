@@ -490,6 +490,7 @@ pokedex_evolution_no_evolutions,evolueert niet.
 Receiving Items:
 item_received_single,Ontving een~
 item_received_multiple,Ontving
+item_found,<player.name> vond~
 item_stored_in_pocket_single_start,<player.name> stopte het weg~in het
 item_stored_in_pocket_single_end,vakje.
 item_stored_in_pocket_multiple_start,<player.name> stopte ze weg~in het
@@ -806,28 +807,54 @@ item_name_181,SafariBal
 item_name_186,GeneesBal
 item_name_188,NestBal
 
+Balls (Plural):
+item_pluralname_1,MeesterBallen
+item_pluralname_2,UltraBallen
+item_pluralname_3,PremierBallen
+item_pluralname_4,BeterBallen
+item_pluralname_5,PokéBallen
+item_pluralname_45,KoesterBallen
+item_pluralname_79,DuikBallen
+item_pluralname_80,NetBallen
+item_pluralname_129,VlugBallen
+item_pluralname_150,TimerBallen
+item_pluralname_157,GewichtsBallen
+item_pluralname_158,SchemerBallen
+item_pluralname_159,NiveauBallen
+item_pluralname_160,LokaasBallen
+item_pluralname_161,SnelBallen
+item_pluralname_164,VriendBallen
+item_pluralname_165,MaanBallen
+item_pluralname_166,LiefdesBallen
+item_pluralname_168,HerhaalBallen
+item_pluralname_174,LuxeBallen
+item_pluralname_177,SportBallen
+item_pluralname_181,SafariBallen
+item_pluralname_186,GeneesBallen
+item_pluralname_188,NestBallen
+
 Key Items:
 item_name_6,Fiets
-item_name_41,Stoomboot-~kaartje
+item_name_41,Stoomboot~kaartje
 item_name_54,Muntenkist
 item_name_55,Detector
-item_name_56,Kristal-~vleugel
+item_name_56,Kristal~vleugel
 item_name_58,Oude Hengel
 item_name_59,Goede Hengel
 item_name_61,Super Hengel
 item_name_66,Rode Schub
 item_name_67,Geheim Drankje
 item_name_69,Mysterieus Ei
-item_name_71,Zilver-~vleugel
+item_name_71,Zilver~vleugel
 item_name_78,Renschoenen
 item_name_115,GS-Bal
 item_name_116,Blauwe Kaart
 item_name_127,Kaartsleutel
-item_name_128,Machine-~onderdeel
+item_name_128,Machine~onderdeel
 item_name_130,Verloren~Voorwerp
 item_name_133,Keldersleutel
 item_name_134,Pas
-item_name_175,Waterspuit-~fles
+item_name_175,Waterspuit~fles
 item_name_178,Regenboog~vleugel
 item_name_241,Ovale Bedel
 item_name_242,Glimmende~Bedel
@@ -1040,10 +1067,10 @@ item_name_252,HM 10
 Medicine:
 item_name_7,Lavakoekje
 item_name_9,Tegengif
-item_name_10,Brand-~medicijn
-item_name_11,Vries-~medicijn
+item_name_10,Brand~medicijn
+item_name_11,Vries~medicijn
 item_name_12,Ontwaker
-item_name_13,Verlam-~medicijn
+item_name_13,Verlam~medicijn
 item_name_14,Volledig~Herstel
 item_name_15,Max-Drankje
 item_name_16,Hyper-Drankje
@@ -1051,7 +1078,7 @@ item_name_17,Super-Drankje
 item_name_18,Drankje
 item_name_21,Max-Elixer
 item_name_32,Zeldzaam~Snoepje
-item_name_38,Multi-~medicijn
+item_name_38,Multi~medicijn
 item_name_39,Opwekker
 item_name_40,Max-Opwekker
 item_name_46,Vers Water
@@ -1066,12 +1093,48 @@ item_name_114,Woede-~Energiereep
 item_name_121,Energiepoeder
 item_name_122,Energiewortel
 item_name_123,Geneespoeder
-item_name_124,Opwekkings-~kruiden
+item_name_124,Opwekkings~kruiden
 item_name_139,Bessensap
 item_name_152,Pewter~Krokantjes
 item_name_156,Heilige As
 item_name_266,Fanta
 item_name_502,KP-Max
+
+Medicine (Plural):
+item_pluralname_7,Lavakoekjes
+item_pluralname_9,Tegengiffen
+item_pluralname_10,Brandmedicijnen
+item_pluralname_11,Vriesmedicijnen
+item_pluralname_12,Ontwakers
+item_pluralname_13,Verlammedicijnen
+item_pluralname_14,Volledige~Herstellingen
+item_pluralname_15,Max-Drankjes
+item_pluralname_16,Hyper-Drankjes
+item_pluralname_17,Super-Drankjes
+item_pluralname_18,Drankjes
+item_pluralname_21,Max-Elixers
+item_pluralname_32,Zeldzaam~Snoepjes
+item_pluralname_38,Multimedicijnen
+item_pluralname_39,Opwekkers
+item_pluralname_40,Max-Opwekkers
+item_pluralname_46,Vers~Watertjes
+item_pluralname_47,Frisdranken
+item_pluralname_48,Limonades
+item_pluralname_62,KP-Plussen
+item_pluralname_63,Ethers
+item_pluralname_64,Max-Ethers
+item_pluralname_65,Elixers
+item_pluralname_72,Moo Moo Melken
+item_pluralname_114,Woede-Energierepen
+item_pluralname_121,Energiepoeders
+item_pluralname_122,Energiewortels
+item_pluralname_123,Geneespoeders
+item_pluralname_124,Opwekkings~kruiden
+item_pluralname_139,Bessensappen
+item_pluralname_152,Pewter~Krokantjes
+item_pluralname_156,Heilige Assen
+item_pluralname_266,Fantas
+item_pluralname_502,KP-Maxen
 
 Berries:
 item_name_2000,Cheri
@@ -1154,21 +1217,35 @@ item_name_262,Plakkerige~Rots
 item_name_593,Ijssteen
 item_name_135,Glimmende~steen
 item_name_136,Schemersteen
-item_name_137,Dageraad-~steen
+item_name_137,Dageraad~steen
+
+Stones (Plural):
+item_pluralname_8,Maanstenen
+item_pluralname_22,Vuurstenen
+item_pluralname_23,Donderstenen
+item_pluralname_24,Waterstenen
+item_pluralname_34,Bladstenen
+item_pluralname_112,Eeuwigstenen
+item_pluralname_169,Zonnestenen
+item_pluralname_262,Plakkerige Rotsen
+item_pluralname_593,Ijsstenen
+item_pluralname_135,Glimmende stenen
+item_pluralname_136,Schemerstenen
+item_pluralname_137,Dageraadstenen
 
 Standard:
-item_name_19,Ontsnappings-~Touw
+item_name_19,Ontsnappings~touw
 item_name_30,Geluksklap
 item_name_35,Metaalpoeder
 item_name_36,Goudklompje
 item_name_37,Poké-Pop
-item_name_57,Ervarings-~deler
+item_name_57,Ervarings~deler
 item_name_60,Zilverblad
 item_name_70,Plakkerige~Weerhaak
 item_name_73,Snelle Klauw
 item_name_74,Vergrootglas
 item_name_75,Goudblad
-item_name_76,Zacht zand
+item_name_76,Zacht Zand
 item_name_77,Scherpe Bek
 item_name_81,Gifweerhaak
 item_name_82,Koningsteen
@@ -1177,22 +1254,22 @@ item_name_84,Doodskleed
 item_name_88,Zilverpoeder
 item_name_90,Zijden Sjaal
 item_name_91,Amuletmunt
-item_name_94,Reinigings-~Label
+item_name_94,Reinigings~label
 item_name_95,Mystiek Water
 item_name_96,Verbogen Lepel
 item_name_98,Zwarte Band
 item_name_100,Magmariseerder
 item_name_102,Zwarte Bril
-item_name_103,Slowpoke-~staart
+item_name_103,Slowpoke~staart
 item_name_104,Roze Strik
 item_name_105,Stok
 item_name_106,Rookbal
-item_name_107,Smeltnooit Ijs
+item_name_107,Smeltnooit-Ijs
 item_name_108,Magneet
 item_name_109,Zeldzaam Bot
 item_name_110,Parel
 item_name_111,Grote Parel
-item_name_113,Spreuk-Lebel
+item_name_113,Spreuk-Label
 item_name_117,Mirakel Zaadje
 item_name_118,Dikke Knots
 item_name_119,Focusband
@@ -1225,7 +1302,7 @@ item_name_172,Upgrade
 item_name_173,Parelsnoer
 item_name_176,Gripklauw
 item_name_179,Ovale Steen
-item_name_180,Stuk Baksteen
+item_name_180,Baksteenstuk
 item_name_182,Zwarte Slib
 item_name_183,Scheermestand
 item_name_184,Scheermesklauw
@@ -1279,6 +1356,129 @@ item_name_1997,Kalmteschijf
 item_name_1998,Blusschijf
 item_name_1999,Shokschijf
 
+Standard (Plural):
+item_pluralname_19,Ontsnappingstouwen
+item_pluralname_30,Geluksklappen
+item_pluralname_35,Metaalpoeders
+item_pluralname_36,Goudklompjes
+item_pluralname_37,Poké-Poppen
+item_pluralname_57,Ervaringsdelers
+item_pluralname_60,Zilverbladen
+item_pluralname_70,Plakkerige Weerhaken
+item_pluralname_73,Snelle Klauwen
+item_pluralname_74,Vergrootglazen
+item_pluralname_75,Goudbladen
+item_pluralname_76,Zachte Zanden
+item_pluralname_77,Scherpe Bekken
+item_pluralname_81,Gifweerhaken
+item_pluralname_82,Koningstenen
+item_pluralname_83,Prismaschubben
+item_pluralname_84,Doodskleden
+item_pluralname_88,Zilverpoeders
+item_pluralname_90,Zijden Sjalen
+item_pluralname_91,Amuletmunten
+item_pluralname_94,Reinigingslabels
+item_pluralname_95,Mystieke Wateren
+item_pluralname_96,Verbogen Lepels
+item_pluralname_98,Zwarte Banden
+item_pluralname_100,Magmariseerders
+item_pluralname_102,Zwarte Brillen
+item_pluralname_103,Slowpokestaart
+item_pluralname_104,Roze Strikken
+item_pluralname_105,Stokken
+item_pluralname_106,Rookballen
+item_pluralname_107,Smeltnooit-Ijzen
+item_pluralname_108,Magneten
+item_pluralname_109,Zeldzame Botten
+item_pluralname_110,Parels
+item_pluralname_111,Grote Parels
+item_pluralname_113,Spreuklabels
+item_pluralname_117,Mirakelzaadjes
+item_pluralname_118,Dikke Knotsen
+item_pluralname_119,Focusbanden
+item_pluralname_120,Elektriseerders
+item_pluralname_125,Harde Stenen
+item_pluralname_126,Gelukseieren
+item_pluralname_131,Sterrenstoffen
+item_pluralname_132,Stukken Ster
+item_pluralname_138,Houtskolen
+item_pluralname_140,Kijkglazen
+item_pluralname_141,Beschermers
+item_pluralname_142,Trage Staarten
+item_pluralname_143,Metalen Lagen
+item_pluralname_144,Drakentanden
+item_pluralname_145,Golfwierroken
+item_pluralname_146,Kliekjes
+item_pluralname_147,Witte Fluiten
+item_pluralname_148,Kalmeerbellen
+item_pluralname_149,Komeetscherven
+item_pluralname_151,Drakenschalen
+item_pluralname_153,Balsempaddenstoelen
+item_pluralname_154,Schuilschelpen
+item_pluralname_155,Snelheidspoeders
+item_pluralname_162,Diepzeeschubben
+item_pluralname_163,Lichtballen
+item_pluralname_167,Diepzeetanden
+item_pluralname_170,Berserk-Genen
+item_pluralname_171,Groothoeklenzen
+item_pluralname_172,Upgrades
+item_pluralname_173,Parelsnoeren
+item_pluralname_176,Gripklauwen
+item_pluralname_179,Ovale Stenen
+item_pluralname_180,Stuk Bakstenen
+item_pluralname_182,Zwarte Slibben
+item_pluralname_183,Scheermestanden
+item_pluralname_184,Scheermesklauwen
+item_pluralname_185,Dubieuze Schijven
+item_pluralname_187,Vaardigheidscapsules
+item_pluralname_189,Grote Goudklompjes
+item_pluralname_190,Hartschubben
+item_pluralname_263,Vreemde Wierroken
+item_pluralname_264,Zeeluchtwierroken
+item_pluralname_287,Rozenwierroken
+item_pluralname_288,Volledige Wierroken
+item_pluralname_289,Ontspanningswierroken
+item_pluralname_290,Gelukswierroken
+item_pluralname_291,Pure Wierroken
+item_pluralname_293,Vochtrotsen
+item_pluralname_294,Hitterotsen
+item_pluralname_295,Gladde Rotsen
+item_pluralname_296,Ijzige Rotsen
+item_pluralname_297,Lichte Kleien
+item_pluralname_298,Eviolieten
+item_pluralname_299,Rotswierroken
+item_pluralname_503,Zakjes
+item_pluralname_504,Geklopte Dromen
+item_pluralname_505,Gifbollen
+item_pluralname_506,Levensbollen
+item_pluralname_577,Vlammenbollen
+item_pluralname_578,Keuzebanden
+item_pluralname_579,Keuzesjalen
+item_pluralname_580,Keuzebrillen
+item_pluralname_581,Macho-armbanden
+item_pluralname_582,Krachtgewichten
+item_pluralname_583,Krachtbeugels
+item_pluralname_584,Krachtriemen
+item_pluralname_585,Krachtlenzen
+item_pluralname_586,Krachtbanden
+item_pluralname_587,Krachtenkelbanden
+item_pluralname_591,Expertbanden
+item_pluralname_594,Sneeuwbal
+item_pluralname_595,Batterijcellen
+item_pluralname_596,Electrische Zaadjes
+item_pluralname_597,Grassige Zaadjes
+item_pluralname_598,Mistige Zaadjes
+item_pluralname_599,Psychische Zaadjes
+item_pluralname_600,Terreinuitbreiders
+item_pluralname_648,Poké-Speelgoeden
+item_pluralname_649,Pluizige Staarten
+item_pluralname_650,Felle Poeders
+item_pluralname_654,Turfblokken
+item_pluralname_1996,Brandschijven
+item_pluralname_1997,Kalmteschijven
+item_pluralname_1998,Blusschijven
+item_pluralname_1999,Shokschijven
+
 Fossils:
 item_name_601,Schroeffossiel
 item_name_602,Koepelfossiel
@@ -1292,10 +1492,28 @@ item_name_609,Pluimfossiel
 item_name_610,Kaakfossiel
 item_name_611,Zeilfossiel
 
+Fossils (Plural):
+item_pluralname_601,Schroeffossielen
+item_pluralname_602,Koepelfossielen
+item_pluralname_603,Oude Ambers
+item_pluralname_604,Wortelfossielen
+item_pluralname_605,Klauwfossielen
+item_pluralname_606,Schedelfossielen
+item_pluralname_607,Pantserfossielen
+item_pluralname_608,Schuilfossielen
+item_pluralname_609,Pluimfossielen
+item_pluralname_610,Kaakfossielen
+item_pluralname_611,Zeilfossielen
+
 Repels:
-item_name_20,Afweer
-item_name_42,Superafweer
-item_name_43,Maximale~afweer
+item_name_20,Afweerder
+item_name_42,Superafweerder
+item_name_43,Maximale~Afweerder
+
+Repels (Plural):
+item_pluralname_20,Afweerders
+item_pluralname_42,Superafweerders
+item_pluralname_43,Maximale Afweersers
 
 Vitamins:
 item_name_25,Zink
@@ -1304,6 +1522,14 @@ item_name_27,Proteïne
 item_name_28,Ijzer
 item_name_29,Koolhydraten
 item_name_31,Calcium
+
+Vitamins (Plural):
+item_pluralname_25,Zinken
+item_pluralname_26,IP-Plussen
+item_pluralname_27,Proteïnes
+item_pluralname_28,Ijzers
+item_pluralname_29,Koolhydraten
+item_pluralname_31,Calciums
 
 XItems:
 item_name_33,X-~Nauwkeurigheid
@@ -1315,6 +1541,16 @@ item_name_52,X-Snelheid
 item_name_53,X-Sp. Aanval
 item_name_68,Blokkeerder
 
+XItems (Plural):
+item_pluralname_33,X-Nauwkeurigheids
+item_pluralname_44,Harde Treffers
+item_pluralname_49,X-Aanvals
+item_pluralname_50,X-Sp. Verdedigings
+item_pluralname_51,X-Verdedigings
+item_pluralname_52,X-Snelheids
+item_pluralname_53,X-Sp. Aanvals
+item_pluralname_68,Blokkeerders
+
 Apricorns:
 item_name_85,Rode Apricorn
 item_name_89,Blauwe~Apricorn
@@ -1324,10 +1560,24 @@ item_name_97,Witte Apricorn
 item_name_99,Zwarte~Apricorn
 item_name_101,Roze Apricorn
 
+Apricorns (Plural):
+item_pluralname_85,Rode Apricorns
+item_pluralname_89,Blauwe Apricorns
+item_pluralname_92,Gele Apricorns
+item_pluralname_93,Groene Apricorns
+item_pluralname_97,Witte Apricorns
+item_pluralname_99,Zwarte Apricorns
+item_pluralname_101,Roze Apricorns
+
 Plants:
 item_name_86,Kleine~Paddenstoel
 item_name_87,Grote~Paddenstoel
 item_name_253,Honing
+
+Plants (Plural):
+item_pluralname_86,Kleine Paddenstoelen
+item_pluralname_87,Grote Paddenstoelen
+item_pluralname_253,Honingen
 
 Wings:
 item_name_254,Gezondheid-~vleugel
@@ -1358,6 +1608,25 @@ item_name_281,Steenplaat
 item_name_282,Gifplaat
 item_name_283,Schokplaat
 
+Plates (Plural):
+item_pluralname_267,Drakenplaten
+item_pluralname_268,Vreesplaten
+item_pluralname_269,Aardeplaten
+item_pluralname_270,Vuistplaten
+item_pluralname_271,Vlammenplaten
+item_pluralname_272,Ijspegelplaten
+item_pluralname_273,Insectenplaten
+item_pluralname_274,Ijzerplaten
+item_pluralname_275,Weideplaten
+item_pluralname_276,Geestplaten
+item_pluralname_277,Elfjesplaten
+item_pluralname_278,Luchtplaten
+item_pluralname_279,Plonsplaten
+item_pluralname_280,Spokenplaten
+item_pluralname_281,Steenplaten
+item_pluralname_282,Gifplaten
+item_pluralname_283,Schokplaten
+
 Mail:
 item_name_300,Grasbrief
 item_name_301,Kralenbrief
@@ -1383,19 +1652,58 @@ item_name_320,Sneeuwbrief
 item_name_321,Ruimtebrief
 item_name_322,Staalbrief
 item_name_323,Tunnelbrief
-item_name_324,Hoogspannings~Brugbrief
-item_name_325,Ophaal~Brugbrief
+item_name_324,Hoogspannings~brugbrief
+item_name_325,Ophaal~brugbrief
 item_name_326,Torenhoge~Brugbrief
 item_name_327,Klassieke~Brugbrief
 item_name_328,Majesteuze~Brugbrief
 item_name_329,Favorietbrief
 item_name_330,Dankbrief
-item_name_331,Inlichting~brief
+item_name_331,Inlichtings~brief
 item_name_332,Groetbrief
 item_name_333,Verzoekbrief
 item_name_334,Waardeerbrief
 item_name_335,Antwoordbrief
 item_name_336,Kolben-brief
+
+Mail (Plural):
+item_pluralname_300,Grasbrieven
+item_pluralname_301,Kralenbrieven
+item_pluralname_302,Droombrieven
+item_pluralname_303,Prachtbrieven
+item_pluralname_304,Glitterbrieven
+item_pluralname_305,Havenbrieven
+item_pluralname_306,Mechaniekbrieven
+item_pluralname_307,Oranjebrieven
+item_pluralname_308,Retrobrieven
+item_pluralname_309,Schaduwbrieven
+item_pluralname_310,Tropenbrieven
+item_pluralname_311,Golfbrieven
+item_pluralname_312,Houtbrieven
+item_pluralname_313,Luchtbrieven
+item_pluralname_314,Bloeibrieven
+item_pluralname_315,Baksteenbrieven
+item_pluralname_316,Bubbelbrieven
+item_pluralname_317,Vlammenbrieven
+item_pluralname_318,Hartenbrieven
+item_pluralname_319,Mozaïekbrieven
+item_pluralname_320,Sneeuwbrieven
+item_pluralname_321,Ruimtebrieven
+item_pluralname_322,Staalbrieven
+item_pluralname_323,Tunnelbrieven
+item_pluralname_324,Hoogspanningsbrugbrieven
+item_pluralname_325,Ophaalbrugbrieven
+item_pluralname_326,Torenhoge Brugbrieven
+item_pluralname_327,Klassieke Brugbrieven
+item_pluralname_328,Majesteuze Brugbrieven
+item_pluralname_329,Favorietbrieven
+item_pluralname_330,Dankbrieven
+item_pluralname_331,Inlichtingsbrieven
+item_pluralname_332,Groetbrieven
+item_pluralname_333,Verzoekbrieven
+item_pluralname_334,Waardeerbrieven
+item_pluralname_335,Antwoordbrieven
+item_pluralname_336,Kolben-brieven
 
 Mega Stones:
 item_name_507,Abomasiet
@@ -1446,6 +1754,55 @@ item_name_551,Slowbroniet
 item_name_552,Steelixiet
 item_name_553,Swampertiet
 
+Mega Stones (Plural):
+item_pluralname_507,Abomasieten
+item_pluralname_508,Absolieten
+item_pluralname_509,Aerodactylieten
+item_pluralname_510,Aggronieten
+item_pluralname_511,Alakazieten
+item_pluralname_512,Ampharosieten
+item_pluralname_513,Banettieten
+item_pluralname_514,Blastoisinieten
+item_pluralname_515,Blazikenieten
+item_pluralname_516,Charizardieten X
+item_pluralname_517,Charizardieten Y
+item_pluralname_518,Garchompieten
+item_pluralname_519,Gardevoirieten
+item_pluralname_520,Gengarieten
+item_pluralname_521,Gyaradosieten
+item_pluralname_522,Heracronieten
+item_pluralname_523,Houndoominieten
+item_pluralname_524,Kangaskhanieten
+item_pluralname_525,Lucarionieten
+item_pluralname_526,Manectieten
+item_pluralname_527,Mawilieten
+item_pluralname_528,Medichamieten
+item_pluralname_529,Mewtwonieten X
+item_pluralname_530,Mewtwonieten Y
+item_pluralname_531,Pinsirieten
+item_pluralname_532,Scizorieten
+item_pluralname_533,Tyranitarieten
+item_pluralname_534,Venusaurieten
+item_pluralname_535,Altarianieten
+item_pluralname_536,Audinieten
+item_pluralname_537,Beedrillieten
+item_pluralname_538,Cameruptieten
+item_pluralname_539,Diancieten
+item_pluralname_540,Galladieten
+item_pluralname_541,Glalitieten
+item_pluralname_542,Latiasieten
+item_pluralname_543,Latiosieten
+item_pluralname_544,Lopunnieten
+item_pluralname_545,Metagrossieten
+item_pluralname_546,Pidgeotieten
+item_pluralname_547,Sablenieten
+item_pluralname_548,Salamencieten
+item_pluralname_549,Sceptilieten
+item_pluralname_550,Sharpedonieten
+item_pluralname_551,Slowbronieten
+item_pluralname_552,Steelixieten
+item_pluralname_553,Swampertieten
+
 Gems:
 item_name_630,Vuurjuweel
 item_name_631,Waterjuweel
@@ -1466,6 +1823,26 @@ item_name_645,Staaljuweel
 item_name_646,Normaaljuweel
 item_name_647,Feejuweel
 
+Gems (Plural):
+item_pluralname_630,Vuurjuwelen
+item_pluralname_631,Waterjuwelen
+item_pluralname_632,Electrischjuwelen
+item_pluralname_633,Grasjuwelen
+item_pluralname_634,Ijsjuwelen
+item_pluralname_635,Vechtjuwelen
+item_pluralname_636,Gifjuwelen
+item_pluralname_637,Grondjuwelen
+item_pluralname_638,Vliegjuwelen
+item_pluralname_639,Psychischjuwelen
+item_pluralname_640,Insectjuwelen
+item_pluralname_641,Rotsjuwelen
+item_pluralname_642,Geestjuwelen
+item_pluralname_643,Draakjuwelen
+item_pluralname_644,Duisterjuwelen
+item_pluralname_645,Staaljuwelen
+item_pluralname_646,Normaaljuwelen
+item_pluralname_647,Feejuwelen
+
 Memories:
 item_name_660,Insect-~herinnering
 item_name_661,Duister-~herinnering
@@ -1484,6 +1861,25 @@ item_name_673,Psychisch-~herinnering
 item_name_674,Rots-~herinnering
 item_name_675,Staal-~herinnering
 item_name_676,Water-~herinnering
+
+Memories (Plural):
+item_pluralname_660,Insect-herinneringen
+item_pluralname_661,Duister-herinneringen
+item_pluralname_662,Draak-herinneringen
+item_pluralname_663,Elektrisch-herinneringen
+item_pluralname_664,Feeherinnering
+item_pluralname_665,Vecht-herinneringen
+item_pluralname_666,Vuur-herinneringen
+item_pluralname_667,Vlieg-herinneringen
+item_pluralname_668,Geest-herinneringen
+item_pluralname_669,Gras-herinneringen
+item_pluralname_670,Grond-herinneringen
+item_pluralname_671,Ijsherinnering
+item_pluralname_672,Gifherinnering
+item_pluralname_673,Psychisch-herinneringen
+item_pluralname_674,Rots-herinneringen
+item_pluralname_675,Staal-herinneringen
+item_pluralname_676,Water-herinneringen
 
 Item Use Text:
 item_cannot_use,Het is nu niet het moment~om dat te gebruiken.
