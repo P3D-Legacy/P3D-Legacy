@@ -110,9 +110,9 @@
                     Dim Amount As Integer = int(argument.GetSplit(1))
 
                     If Not item Is Nothing Then
-                        Dim receiveString As String = Localization.GetString("item_received_single", "Received the~") & item.Name & ".*"
+                        Dim receiveString As String = Localization.GetString("item_received_single", "Received the~") & item.Name.Replace("~", " ") & ".*"
                         If Amount > 1 Then
-                            receiveString = Localization.GetString("item_received_multiple", "Received") & " " & Amount & "~" & item.PluralName & ".*"
+                            receiveString = Localization.GetString("item_received_multiple", "Received") & " " & Amount & "~" & item.PluralName.Replace("~", " ") & ".*"
                         End If
 
                         SoundManager.PlaySound("Receive_Item", True)
