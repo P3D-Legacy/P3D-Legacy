@@ -352,7 +352,7 @@
 
                             If distance <= Me.TrainerSight Then
                                 Dim InSightMusic As String = "nomusic"
-                                Dim t As Trainer = Nothing
+
                                 If Me.IsTrainer = True Then
                                     Dim trainerFilePath As String = GameModeManager.GetScriptPath(Me.AdditionalValue & ".dat")
                                     Security.FileValidation.CheckFileValid(trainerFilePath, False, "NPC.vb")
@@ -365,7 +365,7 @@
                                             If Trainer.IsBeaten(trainerID) = True Then
                                                 Exit Sub
                                             Else
-                                                t = New Trainer(trainerID)
+                                                Dim t As New Trainer(trainerID)
                                                 InSightMusic = t.GetInSightMusic()
                                             End If
                                         ElseIf l.StartsWith("@battle.starttrainer(") = True Then
@@ -373,74 +373,73 @@
                                             If Trainer.IsBeaten(trainerID) = True Then
                                                 Exit Sub
                                             Else
-                                                t = New Trainer(trainerID)
+                                                Dim t As New Trainer(trainerID)
                                                 InSightMusic = t.GetInSightMusic()
                                             End If
                                         End If
                                     Next
                                 End If
-                                If t IsNot Nothing Then
-                                    Dim needFacing As Integer = 0
-                                    Select Case Me.faceRotation
-                                        Case 0
-                                            needFacing = 2
-                                        Case 1
-                                            needFacing = 3
-                                        Case 2
-                                            needFacing = 0
-                                        Case 3
-                                            needFacing = 1
-                                    End Select
-                                    Dim turns As Integer = needFacing - Screen.Camera.GetPlayerFacingDirection()
-                                    If turns < 0 Then
-                                        turns = 4 - turns.ToPositive()
-                                    End If
 
-                                    CType(Core.CurrentScreen, OverworldScreen).TrainerEncountered = True
-                                    If InSightMusic <> "nomusic" And InSightMusic <> "" Then
-                                        MusicManager.Play(InSightMusic, True, 0.0F)
-                                    End If
-                                    Screen.Camera.StopMovement()
-                                    Me.Movement = Movements.Still
+                                Dim needFacing As Integer = 0
+                                Select Case Me.faceRotation
+                                    Case 0
+                                        needFacing = 2
+                                    Case 1
+                                        needFacing = 3
+                                    Case 2
+                                        needFacing = 0
+                                    Case 3
+                                        needFacing = 1
+                                End Select
+                                Dim turns As Integer = needFacing - Screen.Camera.GetPlayerFacingDirection()
+                                If turns < 0 Then
+                                    turns = 4 - turns.ToPositive()
+                                End If
 
-                                    Dim offset As New Vector2(0, 0)
-                                    Select Case Me.faceRotation
-                                        Case 0
-                                            offset.Y = -0.01F
-                                        Case 1
-                                            offset.X = -0.01F
-                                        Case 2
-                                            offset.Y = 0.01F
-                                        Case 3
-                                            offset.X = 0.01F
-                                    End Select
+                                CType(Core.CurrentScreen, OverworldScreen).TrainerEncountered = True
+                                If InSightMusic <> "nomusic" And InSightMusic <> "" Then
+                                    MusicManager.Play(InSightMusic, True, 0.0F)
+                                End If
+                                Screen.Camera.StopMovement()
+                                Me.Movement = Movements.Still
 
-                                    Dim s As String = "version=2" & Environment.NewLine &
+                                Dim offset As New Vector2(0, 0)
+                                Select Case Me.faceRotation
+                                    Case 0
+                                        offset.Y = -0.01F
+                                    Case 1
+                                        offset.X = -0.01F
+                                    Case 2
+                                        offset.Y = 0.01F
+                                    Case 3
+                                        offset.X = 0.01F
+                                End Select
+
+                                Dim s As String = "version=2" & Environment.NewLine &
                                     "@player.turn(" & turns & ")" & Environment.NewLine
 
-                                    With CType(Screen.Camera, OverworldCamera)
-                                        If CType(Screen.Camera, OverworldCamera).ThirdPerson = True And IsOnScreen() = False Then
-                                            s &= "@camera.setfocus(npc," & Me.NPCID & ")" & Environment.NewLine
-                                            Dim cPosition = .ThirdPersonOffset.X.ToString() & "," & .ThirdPersonOffset.Y.ToString() & "," & .ThirdPersonOffset.Z.ToString()
-                                            s &= "@sound.play(Emote_Exclamation)" & Environment.NewLine &
+                                With CType(Screen.Camera, OverworldCamera)
+                                    If CType(Screen.Camera, OverworldCamera).ThirdPerson = True And IsOnScreen() = False Then
+                                        s &= "@camera.setfocus(npc," & Me.NPCID & ")" & Environment.NewLine
+                                        Dim cPosition = .ThirdPersonOffset.X.ToString() & "," & .ThirdPersonOffset.Y.ToString() & "," & .ThirdPersonOffset.Z.ToString()
+                                        s &= "@sound.play(Emote_Exclamation)" & Environment.NewLine &
                                              "@entity.showmessagebulb(1|" & Me.Position.X + offset.X & "|" & Me.Position.Y + 0.7F & "|" & Me.Position.Z + offset.Y & ")" & Environment.NewLine &
                                              "@npc.move(" & Me.NPCID & "," & distance - 1 & ")" & Environment.NewLine &
                                              "@script.start(" & Me.AdditionalValue & ")" & Environment.NewLine &
                                              "@camera.resetfocus" & Environment.NewLine &
                                              "@camera.setposition(" & cPosition & ")" & Environment.NewLine &
                                              ":end"
-                                        Else
-                                            s &= "@sound.play(Emote_Exclamation)" & Environment.NewLine &
+                                    Else
+                                        s &= "@sound.play(Emote_Exclamation)" & Environment.NewLine &
                                         "@entity.showmessagebulb(1|" & Me.Position.X + offset.X & "|" & Me.Position.Y + 0.7F & "|" & Me.Position.Z + offset.Y & ")" & Environment.NewLine &
                                         "@npc.move(" & Me.NPCID & "," & distance - 1 & ")" & Environment.NewLine &
                                         "@script.start(" & Me.AdditionalValue & ")" & Environment.NewLine &
                                         ":end"
-                                        End If
-                                    End With
+                                    End If
+                                End With
 
-                                    CType(Core.CurrentScreen, OverworldScreen).ActionScript.StartScript(s, 2,,, "NPCInSight")
-                                    ActionScript.IsInSightScript = True
-                                End If
+                                CType(Core.CurrentScreen, OverworldScreen).ActionScript.StartScript(s, 2,,, "NPCInSight")
+                                ActionScript.IsInSightScript = True
                             End If
                         End If
                     End If
