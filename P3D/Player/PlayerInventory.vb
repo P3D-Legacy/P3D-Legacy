@@ -169,10 +169,20 @@ Public Class PlayerInventory
     ''' <param name="Amount">The amount.</param>
     Public Function GetMessageReceive(ByVal Item As Item, ByVal Amount As Integer) As String
         Dim Message As String
+        Dim SpaceAfterStart As String = ""
         If Amount = 1 Then
-            Message = Localization.GetString("item_stored_in_pocket_single_start", "<player.name> stored it in the~").Replace("<player.name>", Core.Player.Name) & " " & Core.Player.Inventory.GetItemPocketChar(Item) & Localization.GetString("item_category_" & Item.ItemType.ToString(), Item.ItemType.ToString()) & " " & Localization.GetString("item_stored_in_pocket_single_end", "pocket.").Replace("<player.name>", Core.Player.Name)
+            If Localization.GetString("item_stored_in_pocket_single_start", "<player.name> stored it in the~").Replace("<player.name>", Core.Player.Name).EndsWith("~") = False Then
+                SpaceAfterStart = " "
+            End If
         Else
-            Message = Localization.GetString("item_stored_in_pocket_multiple_start", "<player.name> stored them~in the").Replace("<player.name>", Core.Player.Name) & " " & Core.Player.Inventory.GetItemPocketChar(Item) & Localization.GetString("item_category_" & Item.ItemType.ToString(), Item.ItemType.ToString()) & " " & Localization.GetString("item_stored_in_pocket_multiple_end", "pocket.").Replace("<player.name>", Core.Player.Name)
+            If Localization.GetString("item_stored_in_pocket_multiple_start", "<player.name> stored them~in the").Replace("<player.name>", Core.Player.Name).EndsWith("~") = False Then
+                SpaceAfterStart = " "
+            End If
+        End If
+        If Amount = 1 Then
+            Message = Localization.GetString("item_stored_in_pocket_single_start", "<player.name> stored it in the~").Replace("<player.name>", Core.Player.Name) & SpaceAfterStart & Core.Player.Inventory.GetItemPocketChar(Item) & Localization.GetString("item_category_" & Item.ItemType.ToString(), Item.ItemType.ToString()) & " " & Localization.GetString("item_stored_in_pocket_single_end", "pocket.").Replace("<player.name>", Core.Player.Name)
+        Else
+            Message = Localization.GetString("item_stored_in_pocket_multiple_start", "<player.name> stored them~in the").Replace("<player.name>", Core.Player.Name) & SpaceAfterStart & Core.Player.Inventory.GetItemPocketChar(Item) & Localization.GetString("item_category_" & Item.ItemType.ToString(), Item.ItemType.ToString()) & " " & Localization.GetString("item_stored_in_pocket_multiple_end", "pocket.").Replace("<player.name>", Core.Player.Name)
         End If
         Return Message
     End Function
