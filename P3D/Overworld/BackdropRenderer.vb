@@ -1,66 +1,28 @@
 ﻿Public Class BackdropRenderer
+    Private ReadOnly _backdrops As New List(Of Backdrop)
 
-    Private _backdrops As New List(Of Backdrop)
-
-    Public Sub Initialize()
+    Public Sub AddBackdrop(backdrop As Backdrop)
+        _backdrops.Add(backdrop)
     End Sub
 
     Public Sub Clear()
-        Me._backdrops.Clear()
-    End Sub
-
-    Public Sub AddBackdrop(ByVal Backdrop As Backdrop)
-        Me._backdrops.Add(Backdrop)
+        _backdrops.Clear()
     End Sub
 
     Public Sub Update()
-        For Each b As Backdrop In Me._backdrops
+        For Each b In _backdrops
             b.Update()
         Next
     End Sub
 
     Public Sub Draw()
-        Dim tempRasterizer = GraphicsDevice.RasterizerState
-
-        GraphicsDevice.RasterizerState = RasterizerState.CullNone
-        GraphicsDevice.SamplerStates(0) = New SamplerState() With {.Filter = TextureFilter.Point, .AddressU = TextureAddressMode.Wrap, .AddressV = TextureAddressMode.Wrap}
-
-        For Each b As Backdrop In Me._backdrops
-            b.Draw({0, 1, 3, 2, 3, 0})
+        For Each b In _backdrops
+            b.Draw()
         Next
-
-        GraphicsDevice.RasterizerState = tempRasterizer
-        GraphicsDevice.SamplerStates(0) = Core.sampler
     End Sub
 
     Public Class Backdrop
-
-        Structure VertexPositionNormalTangentTexture
-
-            Public pos As Vector3
-            Public uv As Vector2
-            Public normal As Vector3
-            Public tangent As Vector3
-
-            Public Sub New(ByVal position As Vector3, ByVal nor As Vector3, ByVal tan As Vector3, ByVal texturePosition As Vector2)
-                Me.pos = position
-                Me.normal = nor
-                Me.tangent = tan
-                Me.uv = texturePosition
-            End Sub
-
-            Public Shared Function SizeInBytes() As Integer
-                Return 4 * (3 + 2 + 3 + 3)
-            End Function
-
-            Public Shared VertexElements As VertexElement() = {New VertexElement(0, VertexElementFormat.Vector3, VertexElementUsage.Position, 0),
-                 New VertexElement(12, VertexElementFormat.Vector2, VertexElementUsage.TextureCoordinate, 0),
-                 New VertexElement(20, VertexElementFormat.Vector3, VertexElementUsage.Normal, 0),
-                 New VertexElement(32, VertexElementFormat.Vector3, VertexElementUsage.Tangent, 0)}
-
-            Public Shared VertexDeclaration As VertexDeclaration = New VertexDeclaration(VertexElements)
-
-        End Structure
+        Implements IDisposable
 
         Public Enum BackdropTypes
             Water
@@ -68,133 +30,140 @@
             Texture
         End Enum
 
-        Private _vertices As New List(Of VertexPositionNormalTangentTexture)
-        Private _backdropType As BackdropTypes = BackdropTypes.Grass
+        Private Shared ReadOnly VertexBufferData As VertexPositionNormalTexture() = { _
+            New VertexPositionNormalTexture(New Vector3(-0.5, -0.5, 0.5), Vector3.Up, New Vector2(0, 1)),
+            New VertexPositionNormalTexture(New Vector3(-0.5, -0.5, -0.5), Vector3.Up, New Vector2(0, 0)),
+            New VertexPositionNormalTexture(New Vector3(0.5, -0.5, -0.5), Vector3.Up, New Vector2(1, 0)),
+            New VertexPositionNormalTexture(New Vector3(0.5, -0.5, -0.5), Vector3.Up, New Vector2(1, 0)),
+            New VertexPositionNormalTexture(New Vector3(0.5, -0.5, 0.5), Vector3.Up, New Vector2(1, 1)),
+            New VertexPositionNormalTexture(New Vector3(-0.5, -0.5, 0.5), Vector3.Up, New Vector2(0, 1))
+        }
+
+        Private Shared ReadOnly IndexBufferData As Short() = New Short() {0, 1, 2, 3, 4, 5}
+
+        Private Shared ReadOnly VertexBuffer As VertexBuffer
+        Private Shared ReadOnly IndexBuffer As IndexBuffer
+
+        Private ReadOnly _backdropType As BackdropTypes = BackdropTypes.Grass
         Private _backdropTexture As Texture2D = Nothing
-        Private _worldMatrix As Matrix = Matrix.Identity
-        Private _position As Vector3
-        Private _rotation As Vector3
-        Private _shader As Effect
-        Private _width As Integer = 0
-        Private _height As Integer = 0
 
-        Dim WaterAnimation As Animation
+        Private ReadOnly _waterAnimation As Animation = Nothing
 
-        Private _waterAnimationDelay As Single = CSng(1 / Water.WaterSpeed)
-        Private _waterAnimationIndex As Integer = 0
+        Private ReadOnly _world As Matrix
+        Private ReadOnly _perInstanceVertexBuffer As VertexBuffer
+        Private ReadOnly _vertexBufferBindings As VertexBufferBinding()
 
-        Private _setTexture As Boolean = False
+        Private _shader As Vector3 = Vector3.One
 
-        Public Sub New(ByVal BackdropType As String, ByVal Position As Vector3, ByVal Rotation As Vector3, ByVal Width As Integer, ByVal Height As Integer)
-            Me.New(BackdropType, Position, Rotation, Width, Height, Nothing)
+        Shared Sub New()
+            VertexBuffer = New VertexBuffer(GraphicsDevice, GetType(VertexPositionNormalTexture), VertexBufferData.Length, BufferUsage.WriteOnly)
+            VertexBuffer.SetData(VertexBufferData)
+
+            IndexBuffer = New IndexBuffer(GraphicsDevice, GetType(Short), IndexBufferData.Length, BufferUsage.WriteOnly)
+            IndexBuffer.SetData(IndexBufferData)
         End Sub
 
-        Public Sub New(ByVal BackdropType As String, ByVal Position As Vector3, ByVal Rotation As Vector3, ByVal Width As Integer, ByVal Height As Integer, ByVal BackdropTexture As Texture2D)
-            _shader = Content.Load(Of Effect)("Effects\BackdropShader")
-
-            _vertices.Add(New VertexPositionNormalTangentTexture(New Vector3(0, 0, 0), New Vector3(-1, 0, 0), New Vector3(0, 1, 0), New Vector2(0, 0)))
-            _vertices.Add(New VertexPositionNormalTangentTexture(New Vector3(Width, 0, 0), New Vector3(-1, 0, 0), New Vector3(0, 1, 0), New Vector2(1, 0)))
-            _vertices.Add(New VertexPositionNormalTangentTexture(New Vector3(0, 0, Height), New Vector3(-1, 0, 0), New Vector3(0, 1, 0), New Vector2(0, 1)))
-            _vertices.Add(New VertexPositionNormalTangentTexture(New Vector3(Width, 0, Height), New Vector3(-1, 0, 0), New Vector3(0, 1, 0), New Vector2(1, 1)))
-
-            Me._position = Position
-            Me._rotation = Rotation
-            Me._backdropTexture = BackdropTexture
-
-            Me._width = Width
-            Me._height = Height
-
-            Select Case BackdropType.ToLower()
+        Public Sub New(backdropType As String, position As Vector3, rotation As Vector3, scale As Vector3, size As Vector2, backdropTexture As Texture2D)
+            Select Case backdropType.ToLower()
                 Case "water"
-                    Me._backdropType = BackdropTypes.Water
-                    Dim WaterSize As Size = New Size(CInt(TextureManager.GetTexture("Textures\Backdrops\Water").Width / 3), CInt(TextureManager.GetTexture("Textures\Backdrops\Water").Height))
-                    WaterAnimation = New Animation(TextureManager.GetTexture("Textures\Backdrops\Water"), 1, 3, WaterSize.Width, WaterSize.Height, Water.WaterSpeed, 0, 0)
-                    _backdropTexture = TextureManager.GetTexture("Textures\Backdrops\Water", WaterAnimation.TextureRectangle, "")
+                    _backdropType = BackdropTypes.Water
+
+                    Dim waterSize = New Size(CInt(TextureManager.GetTexture("Textures\Backdrops\Water").Width / 3), CInt(TextureManager.GetTexture("Textures\Backdrops\Water").Height))
+                    _waterAnimation = New Animation(TextureManager.GetTexture("Textures\Backdrops\Water"), 1, 3, waterSize.Width, waterSize.Height, Water.WaterSpeed, 0, 0)
+                    _backdropTexture = TextureManager.GetTexture("Textures\Backdrops\Water", _waterAnimation.TextureRectangle, "")
                 Case "grass"
-                    Me._backdropType = BackdropTypes.Grass
+                    _backdropType = BackdropTypes.Grass
+
+                    Dim grassSize = New Size(CInt(TextureManager.GetTexture("Textures\Backdrops\Grass").Width / 4), CInt(TextureManager.GetTexture("Textures\Backdrops\Grass").Height))
+                    Dim x = 0
+
+                    Select Case World.CurrentSeason
+                        Case World.Seasons.Winter
+                            x = 0
+                        Case World.Seasons.Spring
+                            x = grassSize.Width
+                        Case World.Seasons.Summer
+                            x = grassSize.Width * 2
+                        Case World.Seasons.Fall
+                            x = grassSize.Width * 3
+                    End Select
+
+                    _backdropTexture = TextureManager.GetTexture("Backdrops\Grass", New Rectangle(x, 0, grassSize.Width, grassSize.Height))
                 Case "texture"
-                    Me._backdropType = BackdropTypes.Texture
+                    _backdropType = BackdropTypes.Texture
+                    _backdropTexture = backdropTexture
             End Select
 
-            Me.Update()
+            Dim perInstanceVertexBufferData As New List(Of VertexPerInstancePosition)
+
+            For x = 0 To size.X - 1
+                For y = 0 To size.Y - 1
+                    perInstanceVertexBufferData.Add(New VertexPerInstancePosition(New Vector3(x * scale.X, 0 * scale.Y, y * scale.Z)))
+                Next
+            Next
+
+            _world = Matrix.CreateScale(scale) * Matrix.CreateFromYawPitchRoll(rotation.Y, rotation.X, rotation.Z) * Matrix.CreateTranslation(position + New Vector3(0.5, 0.5, 0.5))
+
+            _perInstanceVertexBuffer = New VertexBuffer(GraphicsDevice, GetType(VertexPerInstancePosition), perInstanceVertexBufferData.Count, BufferUsage.WriteOnly)
+            _perInstanceVertexBuffer.SetData(perInstanceVertexBufferData.ToArray())
+
+            _vertexBufferBindings = New VertexBufferBinding() {New VertexBufferBinding(VertexBuffer), New VertexBufferBinding(_perInstanceVertexBuffer, 0, 1)}
         End Sub
 
         Public Sub Update()
-            _worldMatrix = Matrix.CreateFromYawPitchRoll(Me._rotation.Y, Me._rotation.X, Me._rotation.Z) * Matrix.CreateTranslation(Me._position)
+            If _backdropType = BackdropTypes.Water Then
+                _waterAnimation.Update(0.005)
 
-            Select Case Me._backdropType
-                Case BackdropTypes.Water
-                    If Core.GameOptions.GraphicStyle = 1 Then
-                        If Not WaterAnimation Is Nothing Then
-                            WaterAnimation.Update(0.005)
-                            _backdropTexture = TextureManager.GetTexture("Textures\Backdrops\Water", WaterAnimation.TextureRectangle, "")
-                        End If
-                    End If
-                Case BackdropTypes.Grass
-                    If Me._setTexture = False Then
-                        Dim GrassSize As Size = New Size(CInt(TextureManager.GetTexture("Textures\Backdrops\Grass").Width / 4), CInt(TextureManager.GetTexture("Textures\Backdrops\Grass").Height))
-                        Dim x As Integer = 0
+                If Core.GameOptions.GraphicStyle = 1 Then
+                    _backdropTexture = TextureManager.GetTexture("Textures\Backdrops\Water", _waterAnimation.TextureRectangle, "")
+                End If
+            End If
 
-                        Select Case World.CurrentSeason
-                            Case World.Seasons.Winter
-                                x = 0
-                            Case World.Seasons.Spring
-                                x = GrassSize.Width
-                            Case World.Seasons.Summer
-                                x = GrassSize.Width * 2
-                            Case World.Seasons.Fall
-                                x = GrassSize.Width * 3
-                        End Select
-
-                        _backdropTexture = TextureManager.GetTexture("Backdrops\Grass", New Rectangle(x, 0, GrassSize.Width, GrassSize.Height))
-                        Me._setTexture = True
-                    End If
-            End Select
-        End Sub
-
-        Public Sub Draw(ByVal Indicies As Short())
-            Dim vBuffer As New VertexBuffer(Core.GraphicsDevice, VertexPositionNormalTangentTexture.VertexDeclaration, _vertices.Count, BufferUsage.None)
-            Dim iBuffer As New IndexBuffer(Core.GraphicsDevice, GetType(Short), Indicies.Count, BufferUsage.None)
-
-            vBuffer.SetData(Of VertexPositionNormalTangentTexture)(_vertices.ToArray())
-            iBuffer.SetData(Of Short)(Indicies)
-
-            _shader.Parameters("World").SetValue(_worldMatrix)
-            _shader.CurrentTechnique = _shader.Techniques("Texture")
-            _shader.Parameters("View").SetValue(Screen.Camera.View)
-            _shader.Parameters("Projection").SetValue(Screen.Camera.Projection)
-            _shader.Parameters("DiffuseColor").SetValue(GetDiffuseColor())
-            _shader.Parameters("TexStretch").SetValue(New Vector2(Me._width, Me._height))
-            _shader.Parameters("color").SetValue(_backdropTexture)
-
-            For Each pass As EffectPass In _shader.CurrentTechnique.Passes
-                pass.Apply()
-                GraphicsDevice.SetVertexBuffer(vBuffer)
-                GraphicsDevice.Indices = iBuffer
-                'GraphicsDevice.DrawIndexedPrimitives(PrimitiveType.TriangleList, 0, 0, _vertices.Count, 0, Indicies.Count)
-                GraphicsDevice.DrawIndexedPrimitives(PrimitiveType.TriangleList, 0, 0, _vertices.Count)
-            Next
-
-            vBuffer.Dispose()
-            iBuffer.Dispose()
-        End Sub
-
-        Private Function GetDiffuseColor() As Vector4
-            Dim dayColor As Vector3 = Vector3.One
-            Dim diffuseColor As Vector3 = Screen.Effect.DiffuseColor
-
-            If Not Screen.Level.World Is Nothing Then
+            If Screen.Level.World IsNot Nothing Then
                 Select Case Screen.Level.World.EnvironmentType
-                    Case P3D.World.EnvironmentTypes.Outside
-                        dayColor = SkyDome.GetDaytimeColor(True).ToVector3()
-                    Case P3D.World.EnvironmentTypes.Dark
-                        dayColor = New Vector3(0.5F, 0.5F, 0.5F)
+                    Case World.EnvironmentTypes.Outside
+                        _shader = New Vector3(1.0F)
+                    Case World.EnvironmentTypes.Dark
+                        _shader = New Vector3(0.5F)
+                    Case Else
+                        _shader = New Vector3(1.0F)
                 End Select
             End If
 
-            Return (dayColor * diffuseColor * Lighting.GetEnvironmentColor(1)).ToColor().ToVector4()
-        End Function
+            If Screen.Level.LightingType = 6 Then
+                _shader = New Vector3(0.5F)
+            End If
+        End Sub
 
+        Public Sub Draw()
+            Screen.Effect.World = _world
+            Screen.Effect.View = Screen.Camera.View
+            Screen.Effect.Projection = Screen.Camera.Projection
+            Screen.Effect.Alpha = 1
+
+            Dim effectDiffuseColor As Vector3 = Screen.Effect.DiffuseColor
+            Screen.Effect.DiffuseColor = effectDiffuseColor * _shader
+
+            If Screen.Level.IsDark OrElse Screen.Level.LightingType = 6 Then
+                Screen.Effect.DiffuseColor *= New Vector3(0.5, 0.5, 0.5)
+            End If
+
+            Screen.Effect.TextureEnabled = True
+            Screen.Effect.Texture = _backdropTexture
+            Screen.Effect.EnableHardwareInstancing = True
+            Screen.Effect.CurrentTechnique.Passes(0).Apply()
+
+            GraphicsDevice.SetVertexBuffers(_vertexBufferBindings)
+            GraphicsDevice.Indices = IndexBuffer
+            GraphicsDevice.DrawInstancedPrimitives(PrimitiveType.TriangleList, 0, 0, VertexBuffer.VertexCount, _perInstanceVertexBuffer.VertexCount)
+
+            ' Post Draw
+            Screen.Effect.DiffuseColor = effectDiffuseColor
+            Screen.Effect.EnableHardwareInstancing = False
+        End Sub
+
+        Public Sub Dispose() Implements IDisposable.Dispose
+            _perInstanceVertexBuffer.Dispose()
+        End Sub
     End Class
-
 End Class
