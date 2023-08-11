@@ -111,7 +111,15 @@ Public Class Badge
         For Each b As BadgeDeclaration In Badges
             If b.ID = ID Then
                 If Localization.TokenExists("badge_" & b.ID.ToString) = True Then
-                    Return Localization.GetString("badge_" & b.ID.ToString, b.Name)
+                    If GameModeManager.ActiveGameMode.IsDefaultGamemode = False Then
+                        If Localization.LocalizationTokens("badge_" & b.ID.ToString).IsGameModeToken = False Then
+                            Return b.Name
+                        Else
+                            Return Localization.GetString("badge_" & b.ID.ToString)
+                        End If
+                    Else
+                        Return Localization.GetString("badge_" & b.ID.ToString)
+                    End If
                 Else
                     Return b.Name
                 End If

@@ -88,6 +88,11 @@
 
                             If LocalizationTokens.ContainsKey(TokenName) = False Then
                                 LocalizationTokens.Add(TokenName, New Token(TokenContent, "en", IsGameModeFile))
+                            Else
+                                If LocalizationTokens(TokenName).IsGameModeToken = False And IsGameModeFile = True Then
+                                    LocalizationTokens.Remove(TokenName)
+                                    LocalizationTokens.Add(TokenName, New Token(TokenContent, LanguageSuffix, IsGameModeFile))
+                                End If
                             End If
                         End If
                     Next
