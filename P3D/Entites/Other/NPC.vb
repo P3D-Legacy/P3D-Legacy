@@ -360,7 +360,7 @@
                                     Dim trainerContent() As String = System.IO.File.ReadAllLines(trainerFilePath)
                                     For Each line As String In trainerContent
                                         Dim l As String = line.Trim()
-                                        If l.StartsWith("@trainer:") = True Then
+                                        If l.ToLower.StartsWith("@trainer:") = True Then
                                             Dim trainerID As String = l.GetSplit(1, ":")
                                             If Trainer.IsBeaten(trainerID) = True Then
                                                 Exit Sub
@@ -368,7 +368,7 @@
                                                 Dim t As New Trainer(trainerID)
                                                 InSightMusic = t.GetInSightMusic()
                                             End If
-                                        ElseIf l.StartsWith("@battle.starttrainer(") = True Then
+                                        ElseIf l.ToLower.StartsWith("@battle.starttrainer(") = True Then
                                             Dim trainerID As String = l.Remove(l.Length - 1, 1).Remove(0, "@battle.starttrainer(".Length)
                                             If Trainer.IsBeaten(trainerID) = True Then
                                                 Exit Sub
