@@ -1,4 +1,6 @@
-﻿Public Class BackdropRenderer
+﻿Imports System.Runtime.InteropServices
+
+Public Class BackdropRenderer
     Private ReadOnly _backdrops As New List(Of Backdrop)
 
     Public Sub AddBackdrop(backdrop As Backdrop)
@@ -50,16 +52,16 @@
         Private ReadOnly _waterAnimation As Animation = Nothing
 
         Private ReadOnly _world As Matrix
-        Private ReadOnly _perInstanceVertexBuffer As VertexBuffer
-        Private ReadOnly _vertexBufferBindings As VertexBufferBinding()
+        Private ReadOnly _vertexBufferDataPerInstance As VertexPerInstancePosition()
+        Private ReadOnly _vertexBufferPerInstances As VertexBuffer()
 
         Private _shader As Vector3 = Vector3.One
 
         Shared Sub New()
-            VertexBuffer = New VertexBuffer(GraphicsDevice, GetType(VertexPositionNormalTexture), VertexBufferData.Length, BufferUsage.WriteOnly)
+            VertexBuffer = New VertexBuffer(Core.GraphicsDevice, VertexPositionNormalTexture.VertexDeclaration, VertexBufferData.Length, BufferUsage.WriteOnly)
             VertexBuffer.SetData(VertexBufferData)
 
-            IndexBuffer = New IndexBuffer(GraphicsDevice, GetType(Short), IndexBufferData.Length, BufferUsage.WriteOnly)
+            IndexBuffer = New IndexBuffer(Core.GraphicsDevice, GetType(Short), IndexBufferData.Length, BufferUsage.WriteOnly)
             IndexBuffer.SetData(IndexBufferData)
         End Sub
 
@@ -94,20 +96,28 @@
                     _backdropTexture = backdropTexture
             End Select
 
-            Dim perInstanceVertexBufferData As New List(Of VertexPerInstancePosition)
+            Dim vertexBufferDataPerInstance As New List(Of VertexPerInstancePosition)
 
             For x = 0 To size.X - 1
                 For y = 0 To size.Y - 1
-                    perInstanceVertexBufferData.Add(New VertexPerInstancePosition(New Vector3(x * scale.X, 0 * scale.Y, y * scale.Z)))
+                    vertexBufferDataPerInstance.Add(New VertexPerInstancePosition(New Vector3(x * scale.X, 0 * scale.Y, y * scale.Z)))
                 Next
             Next
 
             _world = Matrix.CreateScale(scale) * Matrix.CreateFromYawPitchRoll(rotation.Y, rotation.X, rotation.Z) * Matrix.CreateTranslation(position + New Vector3(0.5, 0.5, 0.5))
-
-            _perInstanceVertexBuffer = New VertexBuffer(GraphicsDevice, GetType(VertexPerInstancePosition), perInstanceVertexBufferData.Count, BufferUsage.WriteOnly)
-            _perInstanceVertexBuffer.SetData(perInstanceVertexBufferData.ToArray())
-
-            _vertexBufferBindings = New VertexBufferBinding() {New VertexBufferBinding(VertexBuffer), New VertexBufferBinding(_perInstanceVertexBuffer, 0, 1)}
+            _vertexBufferDataPerInstance = vertexBufferDataPerInstance.ToArray()
+            
+            Dim vertexBufferPerInstances As New List(Of VertexBuffer)
+            Dim instanceMaxSize = (16 * 1024) \ Marshal.SizeOf(GetType(VertexPerInstancePosition))
+            
+            For i As Integer = 0 To _vertexBufferDataPerInstance.Length - 1 Step instanceMaxSize
+                Dim instanceSize = Math.Min(instanceMaxSize, _vertexBufferDataPerInstance.Length - i)
+                Dim tempVertexBuffer = New VertexBuffer(Core.GraphicsDevice, VertexPerInstancePosition.VertexDeclaration, instanceSize, BufferUsage.WriteOnly)
+                tempVertexBuffer.SetData(_vertexBufferDataPerInstance, i, instanceSize)
+                vertexBufferPerInstances.Add(tempVertexBuffer)
+            Next
+            
+            _vertexBufferPerInstances = vertexBufferPerInstances.ToArray()
         End Sub
 
         Public Sub Update()
@@ -152,18 +162,22 @@
             Screen.Effect.Texture = _backdropTexture
             Screen.Effect.EnableHardwareInstancing = True
             Screen.Effect.CurrentTechnique.Passes(0).Apply()
-
-            GraphicsDevice.SetVertexBuffers(_vertexBufferBindings)
-            GraphicsDevice.Indices = IndexBuffer
-            GraphicsDevice.DrawInstancedPrimitives(PrimitiveType.TriangleList, 0, 0, VertexBuffer.VertexCount, _perInstanceVertexBuffer.VertexCount)
-
+            
+            For Each vertexBufferPerInstance In _vertexBufferPerInstances
+                Core.GraphicsDevice.SetVertexBuffers(New VertexBufferBinding(VertexBuffer), New VertexBufferBinding(vertexBufferPerInstance, 0, 1))
+                Core.GraphicsDevice.Indices = IndexBuffer
+                Core.GraphicsDevice.DrawInstancedPrimitives(PrimitiveType.TriangleList, 0, 0, VertexBuffer.VertexCount, vertexBufferPerInstance.VertexCount)
+            Next
+            
             ' Post Draw
             Screen.Effect.DiffuseColor = effectDiffuseColor
             Screen.Effect.EnableHardwareInstancing = False
         End Sub
 
         Public Sub Dispose() Implements IDisposable.Dispose
-            _perInstanceVertexBuffer.Dispose()
+            For Each buffer In _vertexBufferPerInstances
+                buffer.Dispose()
+            Next
         End Sub
     End Class
 End Class
