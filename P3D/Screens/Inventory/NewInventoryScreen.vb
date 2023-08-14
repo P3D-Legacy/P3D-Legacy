@@ -509,8 +509,8 @@ Public Class NewInventoryScreen
                 If cItem.IsGameModeItem = True Then
                     itemTitle = CType(cItem, GameModeItem).gmTeachMove.Name
 
-                    If CType(cItem, GameModeItem).gmIsTM Then
-                        If CType(cItem, GameModeItem).OriginalName.StartsWith("HM") Then
+                    If CType(cItem, GameModeItem).gmTeachMove IsNot Nothing Then
+                        If CType(cItem, GameModeItem).gmIsHM = True Then
                             'JSON stuff
                             'itemSubTitle = _translation.HIDDEN_MACHINE_TITLE(cItem.ItemType.ToString())
                             itemSubTitle = "Hidden Machine"

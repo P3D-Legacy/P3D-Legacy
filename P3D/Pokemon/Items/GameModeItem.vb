@@ -30,15 +30,14 @@ Public Class GameModeItem
     Public gmCureStatusEffects As List(Of String)
 
     'Evolution Item
-    Public gmIsEvolutionItem As Boolean = False
     Public gmEvolutionPokemon As List(Of Integer)
 
-    'TechMachine Item
-    Public gmIsTM As Boolean = False
+    'Machine Item
+    Public gmIsHM As Boolean = False
     Public gmTeachMove As BattleSystem.Attack
     Public gmCanTeachAlways As Boolean = False
     Public gmCanTeachWhenFullyEvolved As Boolean = False
-    Public gmCanTeachWhenGender As Boolean = False
+    Public gmCanTeachWhenGendered As Boolean = False
 
     'Mega Stone Item
     Public gmMegaPokemonNumber As Integer
@@ -250,7 +249,7 @@ Public Class GameModeItem
                 Core.SetScreen(New TransitionScreen(Core.CurrentScreen, New MailSystemScreen(Core.CurrentScreen, Me.gmID), Color.Black, False))
             End If
 
-            If gmIsTM = True And gmTeachMove IsNot Nothing Then
+            If gmTeachMove IsNot Nothing Then
                 SoundManager.PlaySound("PC\LogOn", False)
                 Dim selScreen = New PartyScreen(Core.CurrentScreen, Me, AddressOf Me.UseOnPokemon, "Use " & Me.Name, True) With {.Mode = Screens.UI.ISelectionScreen.ScreenMode.Selection, .CanExit = True}
                 AddHandler selScreen.SelectedObject, AddressOf UseItemhandler
@@ -272,7 +271,7 @@ Public Class GameModeItem
                 AddHandler selScreen.SelectedObject, AddressOf UseItemhandler
 
                 Core.SetScreen(selScreen)
-            ElseIf gmIsEvolutionItem = True AndAlso gmEvolutionPokemon IsNot Nothing AndAlso gmEvolutionPokemon.Count > 0 Then
+            ElseIf gmEvolutionPokemon IsNot Nothing AndAlso gmEvolutionPokemon.Count > 0 Then
                 Dim selScreen = New PartyScreen(Core.CurrentScreen, Me, AddressOf Me.UseOnPokemon, "Use " & Me.Name, True) With {.Mode = Screens.UI.ISelectionScreen.ScreenMode.Selection, .CanExit = True}
                 AddHandler selScreen.SelectedObject, AddressOf UseItemhandler
 
@@ -305,7 +304,7 @@ Public Class GameModeItem
 
         Dim p As Pokemon = Core.Player.Pokemons(PokeIndex)
 
-        If gmIsTM = True AndAlso gmTeachMove IsNot Nothing Then
+        If gmTeachMove IsNot Nothing Then
 
             Dim a As BattleSystem.Attack = gmTeachMove
             Dim t As String = CanTeach(p)
@@ -316,8 +315,10 @@ Public Class GameModeItem
 
                     Return True
                 Else
-                    If CBool(GameModeManager.GetGameRuleValue("SingleUseTM", "0")) = True Then
-                        Core.Player.Inventory.RemoveItem(gmID.ToString, 1)
+                    If gmIsHM = False Then
+                        If CBool(GameModeManager.GetGameRuleValue("SingleUseTM", "0")) = True Then
+                            Core.Player.Inventory.RemoveItem(gmID.ToString, 1)
+                        End If
                     End If
                     p.Attacks.Add(BattleSystem.Attack.GetAttackByID(a.ID))
 
@@ -524,7 +525,7 @@ Public Class GameModeItem
                 End If
             End If
         End If
-        If gmIsEvolutionItem = True AndAlso gmEvolutionPokemon IsNot Nothing AndAlso gmEvolutionPokemon.Count > 0 Then
+        If gmEvolutionPokemon IsNot Nothing AndAlso gmEvolutionPokemon.Count > 0 Then
             Return Me.UseEvolutionItem(PokeIndex)
         End If
 
@@ -564,7 +565,7 @@ Public Class GameModeItem
             End If
         End If
 
-        If gmCanTeachWhenGender = True Then
+        If gmCanTeachWhenGendered = True Then
             If p.Gender <> Pokemon.Genders.Genderless And p.Machines.Count > 0 Then
                 Return ""
             End If

@@ -267,7 +267,7 @@
                         Dim TechMachine As Item = Item.GetItemByID(Me.MachineItemID)
                         If TechMachine.ItemType = Items.ItemTypes.Machines Then
                             If TechMachine.IsGameModeItem = True Then
-                                If CType(TechMachine, GameModeItem).gmIsTM = True Then
+                                If CType(TechMachine, GameModeItem).gmIsHM = False Then
                                     Core.Player.Inventory.RemoveItem(Me.MachineItemID, 1)
                                 End If
                             Else

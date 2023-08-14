@@ -138,8 +138,6 @@ Public Class GameModeItemLoader
                             Else
                                 item.gmCureStatusEffects.AddRange(StatusEffectList)
                             End If
-                        Case "isevolutionitem"
-                            item.gmIsEvolutionItem = CBool(value)
                         Case "evolutionpokemon"
                             Dim PokemonList As New List(Of Integer)
                             Dim valueSplit As String() = value.Split(CChar(","))
@@ -155,10 +153,16 @@ Public Class GameModeItemLoader
                             End If
                         Case "script"
                             item.gmScriptPath = value
-                        Case "istm"
-                            item.gmIsTM = CBool(value)
+                        Case "ishm"
+                            item.gmIsHM = CBool(value)
                         Case "teachmove"
                             item.gmTeachMove = BattleSystem.Attack.GetAttackByID(CInt(value))
+                        Case "canteachalways"
+                            item.gmCanTeachAlways = CBool(value)
+                        Case "canteachwhenfullyevolved"
+                            item.gmCanTeachWhenFullyEvolved = CBool(value)
+                        Case "canteachwhengendered"
+                            item.gmCanTeachWhenGendered = CBool(value)
                     End Select
                 End If
             Next
@@ -177,7 +181,7 @@ Public Class GameModeItemLoader
                     item.gmCanBeUsed = False
                     item.gmCanBeUsedInBattle = False
                 End If
-                If item.gmIsTM = True AndAlso item.gmTeachMove IsNot Nothing AndAlso item.gmDescription = "" Then
+                If item.gmTeachMove IsNot Nothing AndAlso item.gmDescription = "" Then
                     Dim AttackName As String = item.gmTeachMove.Name
                     item.gmDescription = "Teaches """ & AttackName & """ to a Pokémon."
                     item.gmItemType = ItemTypes.Machines
