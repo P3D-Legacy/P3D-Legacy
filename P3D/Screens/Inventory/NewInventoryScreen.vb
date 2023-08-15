@@ -340,8 +340,8 @@ Public Class NewInventoryScreen
             mainBackgroundColor = New Color(255, 255, 255, CInt(255 * _interfaceFade))
         End If
 
-        Canvas.DrawRectangle(New Rectangle(halfWidth - 400, halfHeight - 232, 260, 32), New Color(84, 198, 216, mainBackgroundColor.A))
-        Canvas.DrawRectangle(New Rectangle(halfWidth - 140, halfHeight - 216, 16, 16), New Color(84, 198, 216, mainBackgroundColor.A))
+        Canvas.DrawRectangle(New Rectangle(halfWidth - 400, halfHeight - 232, 260, 32), New Color(ColorProvider.MainColor.R, ColorProvider.MainColor.G, ColorProvider.MainColor.B, mainBackgroundColor.A))
+        Canvas.DrawRectangle(New Rectangle(halfWidth - 140, halfHeight - 216, 16, 16), New Color(ColorProvider.MainColor.R, ColorProvider.MainColor.G, ColorProvider.MainColor.B, mainBackgroundColor.A))
         SpriteBatch.Draw(_texture, New Rectangle(halfWidth - 140, halfHeight - 232, 16, 16), New Rectangle(80, 0, 16, 16), mainBackgroundColor)
         SpriteBatch.Draw(_texture, New Rectangle(halfWidth - 124, halfHeight - 216, 16, 16), New Rectangle(80, 0, 16, 16), mainBackgroundColor)
 

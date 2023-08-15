@@ -388,6 +388,8 @@ Public Class NewMainMenuScreen
                                                 _selectedProfile = x
                                                 If _MainProfiles(_selectedProfile)._gameModeExists Then
                                                     GameModeManager.SetGameModePointer(_MainProfiles(_selectedProfile)._gameMode)
+                                                Else
+                                                    GameModeManager.SetGameModePointer("Kolben")
                                                 End If
                                                 _menuTexture = TextureManager.GetTexture("GUI\Menus\MainMenu")
                                                 _oldMenuTexture = TextureManager.GetTexture("GUI\Menus\Menu")
@@ -502,12 +504,22 @@ Public Class NewMainMenuScreen
                                     _screenOffsetTarget.X -= 180
                                     _GameJoltButtonIndex = 0
                                     GameModeSplash = Nothing
+                                    If _MainProfiles(_selectedProfile)._gameModeExists Then
+                                        GameModeManager.SetGameModePointer(_MainProfiles(_selectedProfile)._gameMode)
+                                    End If
+                                    _menuTexture = TextureManager.GetTexture("GUI\Menus\MainMenu")
+                                    _oldMenuTexture = TextureManager.GetTexture("GUI\Menus\Menu")
                                 End If
                                 If Controls.Left(True) And _selectedProfile > 0 Then
                                     _selectedProfile -= 1
                                     _screenOffsetTarget.X += 180
                                     _GameJoltButtonIndex = 0
                                     GameModeSplash = Nothing
+                                    If _MainProfiles(_selectedProfile)._gameModeExists Then
+                                        GameModeManager.SetGameModePointer(_MainProfiles(_selectedProfile)._gameMode)
+                                    End If
+                                    _menuTexture = TextureManager.GetTexture("GUI\Menus\MainMenu")
+                                    _oldMenuTexture = TextureManager.GetTexture("GUI\Menus\Menu")
                                 End If
                             Case 1
                                 If Controls.Right(True) And _selectedProfile < _GameJoltProfiles.Count - 1 Then
@@ -515,12 +527,22 @@ Public Class NewMainMenuScreen
                                     _gameJoltOffsetTarget.X -= 180
                                     _GameJoltButtonIndex = 0
                                     GameModeSplash = Nothing
+                                    If _MainProfiles(_selectedProfile)._gameModeExists Then
+                                        GameModeManager.SetGameModePointer(_MainProfiles(_selectedProfile)._gameMode)
+                                    End If
+                                    _menuTexture = TextureManager.GetTexture("GUI\Menus\MainMenu")
+                                    _oldMenuTexture = TextureManager.GetTexture("GUI\Menus\Menu")
                                 End If
                                 If Controls.Left(True) And _selectedProfile > 0 Then
                                     _selectedProfile -= 1
                                     _gameJoltOffsetTarget.X += 180
                                     _GameJoltButtonIndex = 0
                                     GameModeSplash = Nothing
+                                    If _MainProfiles(_selectedProfile)._gameModeExists Then
+                                        GameModeManager.SetGameModePointer(_MainProfiles(_selectedProfile)._gameMode)
+                                    End If
+                                    _menuTexture = TextureManager.GetTexture("GUI\Menus\MainMenu")
+                                    _oldMenuTexture = TextureManager.GetTexture("GUI\Menus\Menu")
                                 End If
                             Case 2, 3
                                 If Controls.Right(True) And _selectedProfile < _OptionsProfiles.Count - 1 Then
@@ -1561,6 +1583,8 @@ Public Class GameModeSelectionScreen
     Private tempGameModesDisplay As String = ""
     Private GameModeSplash As Texture2D = Nothing
 
+    Private _menuTexture As Texture2D
+
     Private Const WIDTH = 320
     Private Const HEIGHT = 64
     Private Const GAP = 32
@@ -1575,8 +1599,9 @@ Public Class GameModeSelectionScreen
         CanTakeScreenshot = True
 
         PreScreen = currentScreen
-
         _gameModes = GameModeManager.GetAllGameModes
+        GameModeManager.SetGameModePointer(_gameModes(_index).DirectoryName)
+        _menuTexture = TextureManager.GetTexture("GUI\Menus\MainMenu")
     End Sub
 
     Public Overrides Sub Draw()
@@ -1589,7 +1614,6 @@ Public Class GameModeSelectionScreen
         Dim text = Localization.GetString("gamemode_menu_select1", "Select a GameMode") + Environment.NewLine + Localization.GetString("gamemode_menu_select2", "to start the new game with.")
 
         GetFontRenderer().DrawString(FontManager.InGameFont, text, New Vector2(30, 30), Color.White)
-        Dim _menuTexture As Texture2D = TextureManager.GetTexture("GUI\Menus\MainMenu")
 
         'Draw buttons
         Dim center = CInt(windowSize.Width / 2 + 320)
@@ -1693,13 +1717,17 @@ Public Class GameModeSelectionScreen
 
         If _index > 0 AndAlso Controls.Up(True, True, True, True, True, True) Then
             _index -= 1
+            GameModeManager.SetGameModePointer(_gameModes(_index).DirectoryName)
             tempGameModesDisplay = ""
             GameModeSplash = Nothing
+            _menuTexture = TextureManager.GetTexture("GUI\Menus\MainMenu")
         End If
         If _index < _gameModes.Length - 1 AndAlso Controls.Down(True, True, True, True, True, True) Then
             _index += 1
+            GameModeManager.SetGameModePointer(_gameModes(_index).DirectoryName)
             tempGameModesDisplay = ""
             GameModeSplash = Nothing
+            _menuTexture = TextureManager.GetTexture("GUI\Menus\MainMenu")
         End If
         If KeyBoardHandler.KeyPressed(KeyBindings.EscapeKey) Or KeyBoardHandler.KeyPressed(KeyBindings.BackKey1) Or KeyBoardHandler.KeyPressed(KeyBindings.BackKey2) Or MouseHandler.ButtonPressed(MouseHandler.MouseButtons.RightButton) Or ControllerHandler.ButtonPressed(Buttons.B) Then
             SoundManager.PlaySound("select")
@@ -1707,6 +1735,7 @@ Public Class GameModeSelectionScreen
         End If
         If Controls.Accept(True, True, True) Then
             GameModeManager.SetGameModePointer(_gameModes(_index).DirectoryName)
+            
             Localization.ReloadGameModeTokens()
             SoundManager.PlaySound("select")
             If GameModeManager.ActiveGameMode.IntroType = "0" Then
@@ -1716,7 +1745,7 @@ Public Class GameModeSelectionScreen
             End If
         End If
 
-            Dim targetOffset = GetTargetOffset()
+        Dim targetOffset = GetTargetOffset()
 
         If _offset <> targetOffset Then
             _offset = MathHelper.Lerp(_offset, targetOffset, 0.25F)
