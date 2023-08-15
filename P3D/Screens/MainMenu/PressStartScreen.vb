@@ -386,6 +386,12 @@ Public Class NewMainMenuScreen
                                                 _screenOffsetTarget.X -= diff * 180
 
                                                 _selectedProfile = x
+                                                If _MainProfiles(_selectedProfile)._gameModeExists Then
+                                                    GameModeManager.SetGameModePointer(_MainProfiles(_selectedProfile)._gameMode)
+                                                End If
+                                                _menuTexture = TextureManager.GetTexture("GUI\Menus\MainMenu")
+                                                _oldMenuTexture = TextureManager.GetTexture("GUI\Menus\Menu")
+
                                             End If
                                             Exit For
                                         End If
@@ -1015,6 +1021,9 @@ Public Class NewMainMenuScreen
 
         GameModeManager.SetGameModePointer("Kolben")
 
+        _menuTexture = TextureManager.GetTexture("GUI\Menus\MainMenu")
+        _oldMenuTexture = TextureManager.GetTexture("GUI\Menus\Menu")
+
         _MainProfiles.Add(New GameProfile("", True, False))
 
         _loading = False
@@ -1038,7 +1047,7 @@ Public Class NewMainMenuScreen
         Private _IsOptionsMenuButton As Boolean = False
 
         Private _name As String = ""
-        Private _gameMode As String
+        Public _gameMode As String
         Private _pokedexSeen As Integer
         Private _pokedexCaught As Integer
         Private _badges As Integer
@@ -1046,7 +1055,7 @@ Public Class NewMainMenuScreen
         Private _location As String
         Private _pokemonTextures As New List(Of Texture2D)
         Private _sprite As Texture2D
-        Private _gameModeExists As Boolean
+        Public _gameModeExists As Boolean
         Private _skin As String = ""
         Private _surfing As Boolean = False
         Private _tempSurfSkin As String = ""
