@@ -913,8 +913,21 @@
                 _moveMenuAlpha -= 15
                 If _moveMenuAlpha <= 0 Then
                     _moveMenuAlpha = 0
-                    MoveMenuStartRound(BattleScreen)
-                    Visible = False
+                    If BattleScreen.OwnPokemon.Attacks(_moveMenuIndex).ID = 226 Then
+                        If PartyScreen.Selected <> -1 Then
+                            BattleScreen.FieldEffects.OwnBatonPassIndex = PartyScreen.Selected
+                            MoveMenuStartRound(BattleScreen)
+                            PartyScreen.Selected = -1
+                        Else
+                            Dim selScreen = New PartyScreen(Core.CurrentScreen, Item.GetItemByID(5.ToString), Nothing, "Choose Pokémon", False, False, False) With {.Mode = Screens.UI.ISelectionScreen.ScreenMode.Selection, .CanExit = False}
+                            AddHandler selScreen.SelectedObject, Nothing
+
+                            Core.SetScreen(selScreen)
+                        End If
+                    Else
+                        MoveMenuStartRound(BattleScreen)
+                        Visible = False
+                    End If
                 End If
             Else
                 UseStruggle(BattleScreen)
@@ -980,12 +993,16 @@
                 BattleScreen.BattleQuery.Clear()
                 BattleScreen.BattleQuery.Add(BattleScreen.FocusBattle())
                 BattleScreen.BattleQuery.Insert(0, New ToggleMenuQueryObject(True))
+                Dim BatonPassSuffix As String = ""
+                If BattleScreen.FieldEffects.OwnBatonPassIndex <> -1 Then
+                    BatonPassSuffix = "|BATON|" & BattleScreen.FieldEffects.OwnBatonPassIndex
+                End If
                 If BattleScreen.IsMegaEvolvingOwn Then
-                    BattleScreen.SendClientCommand("MEGA|" & BattleScreen.OwnPokemon.Attacks(_moveMenuIndex).ID.ToString())
+                    BattleScreen.SendClientCommand("MEGA|" & BattleScreen.OwnPokemon.Attacks(_moveMenuIndex).ID.ToString() & BatonPassSuffix)
                     BattleScreen.IsMegaEvolvingOwn = False
                     BattleScreen.FieldEffects.OwnMegaEvolved = True
                 Else
-                    BattleScreen.SendClientCommand("MOVE|" & BattleScreen.OwnPokemon.Attacks(_moveMenuIndex).ID.ToString())
+                    BattleScreen.SendClientCommand("MOVE|" & BattleScreen.OwnPokemon.Attacks(_moveMenuIndex).ID.ToString() & BatonPassSuffix)
                 End If
             Else
                 If BattleScreen.IsMegaEvolvingOwn Then

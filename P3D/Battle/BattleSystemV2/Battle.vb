@@ -405,7 +405,15 @@
                     If BattleScreen.ReceivedInput.StartsWith("MEGA|") Then
                         BattleScreen.IsMegaEvolvingOpp = True
                     End If
-                    Dim moveID As Integer = CInt(BattleScreen.ReceivedInput.Remove(0, 5))
+                    Dim moveID As Integer
+                    Dim inputString As String = BattleScreen.ReceivedInput.Remove(0, 5)
+                    If inputString.Contains("|BATON|") Then
+                        BattleScreen.FieldEffects.OppBatonPassIndex = CInt(inputString.GetSplit(2, "|"))
+                        moveID = CInt(inputString.GetSplit(0, "|"))
+                    Else
+                        moveID = CInt(inputString)
+                    End If
+
                     Return New RoundConst() With {.StepType = RoundConst.StepTypes.Move, .Argument = GetPokemonMoveFromID(BattleScreen.OppPokemon, moveID)}
                 ElseIf BattleScreen.ReceivedInput.StartsWith("SWITCH|") Then
                     BattleScreen.OppStatistics.Switches += 1
@@ -7383,7 +7391,7 @@
                     If .OwnUsedBatonPass = False Then .OwnEmbargo = 0
                     .OwnYawn = 0
                     If .OwnUsedBatonPass = False Then .OwnPerishSongCount = 0
-                    .OwnConfusionTurns = 0
+                    If .OwnUsedBatonPass = False Then .OwnConfusionTurns = 0
                     .OwnTorment = 0
                     .OwnTormentMove = Nothing
                     .OwnChoiceMove = Nothing
@@ -7794,7 +7802,7 @@
                     If .OppUsedBatonPass = False Then .OppEmbargo = 0
                     .OppYawn = 0
                     If .OppUsedBatonPass = False Then .OppPerishSongCount = 0
-                    .OppConfusionTurns = 0
+                    If .OppUsedBatonPass = False Then .OppConfusionTurns = 0
                     .OppTorment = 0
                     .OppTormentMove = Nothing
                     .OppChoiceMove = Nothing

@@ -291,10 +291,12 @@
         Public OwnUsedBatonPass As Boolean = False
         Public OwnBatonPassStats As List(Of Integer)
         Public OwnBatonPassConfusion As Boolean = False
+        Public OwnBatonPassIndex As Integer = -1
 
         Public OppUsedBatonPass As Boolean = False
         Public OppBatonPassStats As List(Of Integer)
         Public OppBatonPassConfusion As Boolean = False
+        Public OppBatonPassIndex As Integer = -1
 
         Public Function CanUseItem(ByVal own As Boolean) As Boolean
             Dim embargo As Integer = OwnEmbargo

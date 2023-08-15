@@ -57,21 +57,34 @@
 
         Public Overrides Sub MoveHits(own As Boolean, BattleScreen As BattleScreen)
             If own = True Then
-                If Core.Player.CountFightablePokemon > 1 Then
+                If Core.Player.CountFightablePokemon > 1 AndAlso BattleScreen.FieldEffects.OwnBatonPassIndex <> BattleScreen.OwnPokemonIndex AndAlso BattleScreen.FieldEffects.OwnBatonPassIndex <> -1 Then
                     BattleScreen.FieldEffects.OwnUsedBatonPass = True
 
-                    BattleScreen.Battle.SwitchOutOwn(BattleScreen, GetPokemonIndex(BattleScreen, own), -1)
+                    BattleScreen.Battle.SwitchOutOwn(BattleScreen, BattleScreen.FieldEffects.OwnBatonPassIndex, -1)
+                    BattleScreen.FieldEffects.OwnBatonPassIndex = -1
                 Else
                     BattleScreen.BattleQuery.Add(New TextQueryObject(Me.Name & " failed!"))
                 End If
             Else
-                If BattleScreen.IsTrainerBattle = True Or BattleScreen.IsRemoteBattle = True Or BattleScreen.IsPVPBattle = True Then
-                    If BattleScreen.Trainer.CountUseablePokemon > 1 Then
+                If BattleScreen.IsTrainerBattle = True Then
+                    If BattleScreen.IsRemoteBattle = True Or BattleScreen.IsPVPBattle = True Then
                         BattleScreen.FieldEffects.OppUsedBatonPass = True
+                        If BattleScreen.Trainer.CountUseablePokemon > 1 AndAlso BattleScreen.FieldEffects.OppBatonPassIndex <> BattleScreen.OppPokemonIndex AndAlso BattleScreen.FieldEffects.OppBatonPassIndex <> -1 Then
+                            BattleScreen.FieldEffects.OppUsedBatonPass = True
 
-                        BattleScreen.Battle.SwitchOutOpp(BattleScreen, GetPokemonIndex(BattleScreen, own))
+                            BattleScreen.Battle.SwitchOutOpp(BattleScreen, BattleScreen.FieldEffects.OppBatonPassIndex)
+                            BattleScreen.FieldEffects.OppBatonPassIndex = -1
+                        Else
+                            BattleScreen.BattleQuery.Add(New TextQueryObject(Me.Name & " failed!"))
+                        End If
                     Else
-                        BattleScreen.BattleQuery.Add(New TextQueryObject(Me.Name & " failed!"))
+                        If BattleScreen.Trainer.CountUseablePokemon > 1 Then
+                            BattleScreen.FieldEffects.OppUsedBatonPass = True
+
+                            BattleScreen.Battle.SwitchOutOpp(BattleScreen, GetPokemonIndex(BattleScreen, own))
+                        Else
+                            BattleScreen.BattleQuery.Add(New TextQueryObject(Me.Name & " failed!"))
+                        End If
                     End If
                 Else
                     BattleScreen.BattleQuery.Add(New TextQueryObject(Me.Name & " failed!"))
@@ -96,6 +109,6 @@
             Return -1
         End Function
 
-    End Class
 
+    End Class
 End Namespace
