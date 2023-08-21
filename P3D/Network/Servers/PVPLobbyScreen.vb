@@ -180,12 +180,12 @@
 
         'Menu:
         If ReceivedBattleOffer = True Then
-            Canvas.DrawRectangle(New Rectangle(CInt(Core.windowSize.Width / 2 - (64 * 4) / 2), 100, 64 * 4, 64), New Color(255, 255, 255, 150))
-            Core.SpriteBatch.DrawString(FontManager.MainFont, "Your opponent wants to" & Environment.NewLine & "battle with this setup.", New Vector2(CInt(Core.windowSize.Width / 2 - (64 * 4) / 2) + 4, 104), Color.Black)
+            Canvas.DrawRectangle(New Rectangle(CInt(Core.windowSize.Width / 2 - (64 * 5) / 2), 100, 64 * 5, 64), New Color(255, 255, 255, 150))
+            Core.SpriteBatch.DrawString(FontManager.MainFont, "Your opponent wants to" & Environment.NewLine & "battle with this setup.", New Vector2(CInt(Core.windowSize.Width / 2 - (64 * 4.5) / 2) + 4, 104), Color.Black)
         Else
             If SentBattleOffer = True Then
-                Canvas.DrawRectangle(New Rectangle(CInt(Core.windowSize.Width / 2 - (64 * 4) / 2), 100, 64 * 4, 64), New Color(255, 255, 255, 150))
-                Core.SpriteBatch.DrawString(FontManager.MainFont, "You want to battle" & Environment.NewLine & "with this setup.", New Vector2(CInt(Core.windowSize.Width / 2 - (64 * 4) / 2) + 4, 104), Color.Black)
+                Canvas.DrawRectangle(New Rectangle(CInt(Core.windowSize.Width / 2 - (64 * 5) / 2), 100, 64 * 5, 64), New Color(255, 255, 255, 150))
+                Core.SpriteBatch.DrawString(FontManager.MainFont, "You want to battle" & Environment.NewLine & "with this setup.", New Vector2(CInt(Core.windowSize.Width / 2 - (64 * 4.5) / 2) + 4, 104), Color.Black)
             End If
         End If
 
