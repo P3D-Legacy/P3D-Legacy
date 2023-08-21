@@ -1000,9 +1000,8 @@
                             If frameSize.Width <= 16 Then
                                 frameScale = 2.0F
                             End If
-                            Core.SpriteBatch.Draw(lP.Sprite, New Rectangle(CInt(startPos.X + 64 - (frameSize.Width * frameScale / 2)), CInt(startPos.Y + 96 - (frameSize.Height * frameScale / 2) + 36 + i * 36), CInt(frameSize.Width * frameScale), CInt(frameSize.Height * frameScale)), New Rectangle(0, frameSize.Height * 2, frameSize.Width, frameSize.Height), Color.White)
+                            Core.SpriteBatch.Draw(lP.Sprite, New Rectangle(CInt(startPos.X + 64 - (frameSize.Width * frameScale / 2)), CInt(startPos.Y + 96 - (frameSize.Height * frameScale / 2) + i * 36), CInt(frameSize.Width * frameScale), CInt(frameSize.Height * frameScale)), New Rectangle(0, frameSize.Height * 2, frameSize.Width, frameSize.Height), Color.White)
 
-                            Core.SpriteBatch.Draw(lP.Sprite, New Rectangle(CInt(startPos.X + 48), CInt(startPos.Y + 80 + i * 36), CInt(frameSize.Width * frameScale), CInt(frameSize.Height * frameScale)), New Rectangle(0, frameSize.Height * 2, frameSize.Width, frameSize.Height), Color.White)
                             Core.SpriteBatch.DrawString(FontManager.MainFont, lP.Name, New Vector2(CInt(startPos.X + 88), CInt(startPos.Y + 80 + i * 36)), Color.Black)
                         End If
                     Next
@@ -2174,7 +2173,7 @@
                 If frameSize.Width > 32 Then
                     frameScale = 0.5F
                 End If
-                Core.SpriteBatch.Draw(TradeRequestTexture, New Rectangle(CInt(startPos.X + 40), CInt(startPos.Y + 74), CInt(frameSize.Width * frameScale), CInt(frameSize.Height * frameScale)), New Rectangle(0, frameSize.Height * 2, frameSize.Width, frameSize.Height), Color.White)
+                Core.SpriteBatch.Draw(TradeRequestTexture, New Rectangle(CInt(startPos.X + 64 - (frameSize.Width * frameScale / 2)), CInt(startPos.Y + 96 - (frameSize.Height * frameScale / 2)), CInt(frameSize.Width * frameScale), CInt(frameSize.Height * frameScale)), New Rectangle(0, frameSize.Height * 2, frameSize.Width, frameSize.Height), Color.White)
 
                 For i = 0 To 1
                     Dim eff As SpriteEffects = SpriteEffects.None
@@ -2237,7 +2236,7 @@
 
                     If Controls.Accept(True, False, False) = True Then
                         For i = 0 To 1
-                            If New Rectangle(CInt(startPos.X + 40), CInt(startPos.Y + 152 + i * 64), 160, 32).Contains(MouseHandler.MousePosition) = True Then
+                            If New Rectangle(CInt(startPos.X + 40), CInt(startPos.Y + 152 + i * 64), 224, 32).Contains(MouseHandler.MousePosition) = True Then
                                 If i = Me.TradeRequestCursor Then
                                     Select Case i
                                         Case 0
@@ -2323,7 +2322,7 @@
                     frameScale = 0.5F
                 End If
 
-                Core.SpriteBatch.Draw(BattleRequestTexture, New Rectangle(CInt(startPos.X + 40), CInt(startPos.Y + 74), CInt(frameSize.Width * frameScale), CInt(frameSize.Height * frameScale)), New Rectangle(0, frameSize.Height * 2, frameSize.Width, frameSize.Height), Color.White)
+                Core.SpriteBatch.Draw(BattleRequestTexture, New Rectangle(CInt(startPos.X + 64 - (frameSize.Width * frameScale / 2)), CInt(startPos.Y + 96 - (frameSize.Height * frameScale / 2)), CInt(frameSize.Width * frameScale), CInt(frameSize.Height * frameScale)), New Rectangle(0, frameSize.Height * 2, frameSize.Width, frameSize.Height), Color.White)
 
                 For i = 0 To 1
                     Dim eff As SpriteEffects = SpriteEffects.None
@@ -2385,7 +2384,7 @@
 
                     If Controls.Accept(True, False, False) = True Then
                         For i = 0 To 1
-                            If New Rectangle(CInt(startPos.X + 40), CInt(startPos.Y + 152 + i * 64), 160, 32).Contains(MouseHandler.MousePosition) = True Then
+                            If New Rectangle(CInt(startPos.X + 40), CInt(startPos.Y + 152 + i * 64), 224, 32).Contains(MouseHandler.MousePosition) = True Then
                                 If i = Me.BattleRequestCursor Then
                                     Select Case i
                                         Case 0
