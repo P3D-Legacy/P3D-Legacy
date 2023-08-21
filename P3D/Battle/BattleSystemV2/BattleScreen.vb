@@ -134,6 +134,8 @@
             Me.IsTrainerBattle = True
             Me.MouseVisible = False
             Me.PVPGameJoltID = ""
+            'Reset variable when new battle starts
+            FirstRound = True
         End Sub
 
 #Region "Initialize"
@@ -1655,6 +1657,7 @@ nextIndex:
         'Client:
         Public SentInput As Boolean = False
         Public Shared ReceivedQuery As String = ""
+        Public Shared FirstRound As Boolean = True
         Public ClientWaitForData As Boolean = False
         Public ReceivedPokemonData As Boolean = False
         Public TempPVPBattleQuery As New Dictionary(Of Integer, QueryObject)

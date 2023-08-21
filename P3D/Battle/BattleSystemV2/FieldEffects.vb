@@ -287,6 +287,10 @@
         Public DefeatedTrainerPokemon As Boolean = False
         Public RoamingFled As Boolean = False
 
+        'Moves that swap out Pokémon
+        Public OwnSwapIndex As Integer = -1
+        Public OppSwapIndex As Integer = -1
+
         'BatonPassTemp:
         Public OwnUsedBatonPass As Boolean = False
         Public OwnBatonPassStats As List(Of Integer)

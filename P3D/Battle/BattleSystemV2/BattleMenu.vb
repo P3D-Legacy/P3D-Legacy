@@ -772,6 +772,7 @@
         Private Sub MainMenuOpenBattleMenu(ByVal BattleScreen As BattleScreen)
             _retractMenu = True
             _nextMenuState = MenuStates.Moves
+            PartyScreen.Selected = -1
 
             BattleScreen.BattleQuery.Clear()
             Dim q As New CameraQueryObject(New Vector3(11, 0.5F, 14.0F), New Vector3(11, 0.5F, 14.0F), Screen.Camera.Speed, Screen.Camera.Speed, -(CSng(MathHelper.PiOver4) + 0.3F), -(CSng(MathHelper.PiOver4) + 0.3F), -0.3F, -0.3F, 0.04F, 0.04F)
@@ -913,16 +914,22 @@
                 _moveMenuAlpha -= 15
                 If _moveMenuAlpha <= 0 Then
                     _moveMenuAlpha = 0
-                    If BattleScreen.OwnPokemon.Attacks(_moveMenuIndex).ID = 226 Then
-                        If PartyScreen.Selected <> -1 Then
-                            BattleScreen.FieldEffects.OwnBatonPassIndex = PartyScreen.Selected
-                            MoveMenuStartRound(BattleScreen)
-                            PartyScreen.Selected = -1
-                        Else
+                    If BattleScreen.OwnPokemon.Attacks(_moveMenuIndex).SwapsOutOwnPokemon = True Then
+                        If PartyScreen.Selected = -1 Then
                             Dim selScreen = New PartyScreen(Core.CurrentScreen, Item.GetItemByID(5.ToString), Nothing, "Choose Pokémon", False, False, False) With {.Mode = Screens.UI.ISelectionScreen.ScreenMode.Selection, .CanExit = False}
                             AddHandler selScreen.SelectedObject, Nothing
 
                             Core.SetScreen(selScreen)
+                        End If
+                        If CurrentScreen.Identification <> Screen.Identifications.PartyScreen AndAlso PartyScreen.Selected <> -1 Then
+                            If BattleScreen.OwnPokemon.Attacks(_moveMenuIndex).ID = 226 Then
+                                BattleScreen.FieldEffects.OwnBatonPassIndex = PartyScreen.Selected
+                            Else
+                                BattleScreen.FieldEffects.OwnSwapIndex = PartyScreen.Selected
+                            End If
+                            PartyScreen.Selected = -1
+                            MoveMenuStartRound(BattleScreen)
+                            Visible = False
                         End If
                     Else
                         MoveMenuStartRound(BattleScreen)
@@ -993,16 +1000,18 @@
                 BattleScreen.BattleQuery.Clear()
                 BattleScreen.BattleQuery.Add(BattleScreen.FocusBattle())
                 BattleScreen.BattleQuery.Insert(0, New ToggleMenuQueryObject(True))
-                Dim BatonPassSuffix As String = ""
+                Dim SwitchPokeSuffix As String = ""
                 If BattleScreen.FieldEffects.OwnBatonPassIndex <> -1 Then
-                    BatonPassSuffix = "|BATON|" & BattleScreen.FieldEffects.OwnBatonPassIndex
+                    SwitchPokeSuffix = ";BATON;" & BattleScreen.FieldEffects.OwnBatonPassIndex
+                ElseIf BattleScreen.FieldEffects.OwnSwapIndex <> -1 Then
+                    SwitchPokeSuffix = ";SWAP;" & BattleScreen.FieldEffects.OwnSwapIndex
                 End If
                 If BattleScreen.IsMegaEvolvingOwn Then
-                    BattleScreen.SendClientCommand("MEGA|" & BattleScreen.OwnPokemon.Attacks(_moveMenuIndex).ID.ToString() & BatonPassSuffix)
+                    BattleScreen.SendClientCommand("MEGA|" & BattleScreen.OwnPokemon.Attacks(_moveMenuIndex).ID.ToString() & SwitchPokeSuffix)
                     BattleScreen.IsMegaEvolvingOwn = False
                     BattleScreen.FieldEffects.OwnMegaEvolved = True
                 Else
-                    BattleScreen.SendClientCommand("MOVE|" & BattleScreen.OwnPokemon.Attacks(_moveMenuIndex).ID.ToString() & BatonPassSuffix)
+                    BattleScreen.SendClientCommand("MOVE|" & BattleScreen.OwnPokemon.Attacks(_moveMenuIndex).ID.ToString() & SwitchPokeSuffix)
                 End If
             Else
                 If BattleScreen.IsMegaEvolvingOwn Then

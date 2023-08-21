@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Cute
-            Me.Name = Localization.GetString("move_name_" & Me.ID,"U-turn")
+            Me.Name = Localization.GetString("move_name_" & Me.ID, "U-turn")
             Me.Description = "After making its attack, the user rushes back to switch places with a party Pokémon in waiting."
             Me.CriticalChance = 1
             Me.IsHMMove = False
@@ -25,6 +25,7 @@
             '#End
 
             '#SpecialDefinitions
+            Me.SwapsOutOwnPokemon = True
             Me.MakesContact = True
             Me.ProtectAffected = True
             Me.MagicCoatAffected = False
@@ -54,14 +55,43 @@
 
         Public Overrides Sub MoveSwitch(own As Boolean, BattleScreen As BattleScreen)
             If own = True Then
-                If Core.Player.CountFightablePokemon > 1 Then
-                    BattleScreen.Battle.SwitchOutOwn(BattleScreen, GetPokemonIndex(BattleScreen, own), -1)
+                If BattleScreen.OwnPokemon.Status <> Pokemon.StatusProblems.Fainted Then
+                    If Core.Player.CountFightablePokemon > 1 AndAlso BattleScreen.FieldEffects.OwnSwapIndex <> BattleScreen.OwnPokemonIndex AndAlso BattleScreen.FieldEffects.OwnSwapIndex <> -1 Then
+                        BattleScreen.Battle.SwitchOutOwn(BattleScreen, BattleScreen.FieldEffects.OwnSwapIndex, -1)
+                        BattleScreen.FieldEffects.OwnSwapIndex = -1
+                    Else
+                        BattleScreen.BattleQuery.Add(New TextQueryObject(Me.Name & " failed!"))
+                    End If
+                Else
+                    BattleScreen.FieldEffects.OwnSwapIndex = -1
                 End If
             Else
-                If BattleScreen.IsTrainerBattle = True Or BattleScreen.IsRemoteBattle = True Or BattleScreen.IsPVPBattle = True Then
-                    If BattleScreen.Trainer.CountUseablePokemon > 1 Then
-                        BattleScreen.Battle.SwitchOutOpp(BattleScreen, GetPokemonIndex(BattleScreen, own))
+                If BattleScreen.IsTrainerBattle = True Then
+                    If BattleScreen.IsRemoteBattle = True Or BattleScreen.IsPVPBattle = True Then
+                        If BattleScreen.OppPokemon.Status <> Pokemon.StatusProblems.Fainted Then
+                            BattleScreen.FieldEffects.OppUsedBatonPass = True
+                            If BattleScreen.Trainer.CountUseablePokemon > 1 AndAlso BattleScreen.FieldEffects.OppSwapIndex <> BattleScreen.OppPokemonIndex AndAlso BattleScreen.FieldEffects.OppSwapIndex <> -1 Then
+                                BattleScreen.FieldEffects.OppUsedBatonPass = True
+
+                                BattleScreen.Battle.SwitchOutOpp(BattleScreen, BattleScreen.FieldEffects.OppSwapIndex)
+                                BattleScreen.FieldEffects.OppSwapIndex = -1
+                            Else
+                                BattleScreen.BattleQuery.Add(New TextQueryObject(Me.Name & " failed!"))
+                            End If
+                        Else
+                            BattleScreen.FieldEffects.OppSwapIndex = -1
+                        End If
+                    Else
+                        If BattleScreen.Trainer.CountUseablePokemon > 1 Then
+                            BattleScreen.FieldEffects.OppUsedBatonPass = True
+
+                            BattleScreen.Battle.SwitchOutOpp(BattleScreen, GetPokemonIndex(BattleScreen, own))
+                        Else
+                            BattleScreen.BattleQuery.Add(New TextQueryObject(Me.Name & " failed!"))
+                        End If
                     End If
+                Else
+                    BattleScreen.BattleQuery.Add(New TextQueryObject(Me.Name & " failed!"))
                 End If
             End If
         End Sub

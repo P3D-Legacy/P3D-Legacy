@@ -202,6 +202,8 @@
         Public IsTrappingMove As Boolean = False
         Public RemovesOwnFrozen As Boolean = False
         Public RemovesOppFrozen As Boolean = False
+        Public SwapsOutOwnPokemon As Boolean = False
+        Public SwapsOutOppPokemon As Boolean = False
 
         'effected by various moves items and abilities
         Public ProtectAffected As Boolean = True

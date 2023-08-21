@@ -10,7 +10,9 @@
         End Sub
 
         Public Overrides Sub Update(BV2Screen As BattleScreen)
-            BattleScreen.ReceivedInput = ""
+            If BattleScreen.FirstRound = False Then
+                BattleScreen.ReceivedInput = ""
+            End If
             BV2Screen.SentHostData = False
             BattleScreen.ReceivedQuery = ""
             BV2Screen.SentInput = False

@@ -407,9 +407,12 @@
                     End If
                     Dim moveID As Integer
                     Dim inputString As String = BattleScreen.ReceivedInput.Remove(0, 5)
-                    If inputString.Contains("|BATON|") Then
-                        BattleScreen.FieldEffects.OppBatonPassIndex = CInt(inputString.GetSplit(2, "|"))
-                        moveID = CInt(inputString.GetSplit(0, "|"))
+                    If inputString.Contains(";BATON;") Then
+                        BattleScreen.FieldEffects.OppBatonPassIndex = CInt(inputString.GetSplit(2, ";"))
+                        moveID = CInt(inputString.GetSplit(0, ";"))
+                    ElseIf inputString.Contains(";SWAP;") Then
+                        BattleScreen.FieldEffects.OppSwapIndex = CInt(inputString.GetSplit(2, ";"))
+                        moveID = CInt(inputString.GetSplit(0, ";"))
                     Else
                         moveID = CInt(inputString)
                     End If
@@ -5508,7 +5511,7 @@
                         cq2.PassThis = True
 
                         BattleScreen.BattleQuery.AddRange({cq1, cq2})
-
+                        BattleScreen.FirstRound = False
                         StartRound(BattleScreen)
 
                         BattleScreen.ClearMainMenuTime = True
