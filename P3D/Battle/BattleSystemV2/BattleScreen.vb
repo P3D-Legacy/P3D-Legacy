@@ -326,6 +326,8 @@
 
             If IsPVPBattle = False And IsRemoteBattle = False Then
                 PlayerStatistics.Track("Trainer battles", 1)
+            Else
+                TempPVPBattleQuery.Clear()
             End If
 
             Me.defaultMapType = defaultMapType
@@ -550,7 +552,6 @@
 
             Battle.SwitchInOwn(Me, meIndex, True, OwnPokemonIndex)
             Battle.SwitchInOpp(Me, True, OppPokemonIndex)
-            TempPVPBattleQuery.Clear()
 
             Me.BattleQuery.AddRange({cq1, q5, cq2})
 
@@ -1847,6 +1848,7 @@ nextIndex:
             Else
                 BV2Screen.BattleMenu.Visible = True
             End If
+            BV2Screen.TempPVPBattleQuery.Clear()
         End Sub
 
         'Sends some variables that let the client know the current state of the battle
@@ -1909,7 +1911,6 @@ nextIndex:
                 End If
                 d &= q.ToString()
             Next
-            Me.TempPVPBattleQuery.Clear()
 
             Logger.Debug("[Battle]: Sent Host Query")
             If GameController.IS_DEBUG_ACTIVE Then
