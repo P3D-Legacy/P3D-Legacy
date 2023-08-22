@@ -69,9 +69,7 @@
                 If BattleScreen.IsTrainerBattle = True Then
                     If BattleScreen.IsRemoteBattle = True Or BattleScreen.IsPVPBattle = True Then
                         If BattleScreen.OppPokemon.Status <> Pokemon.StatusProblems.Fainted Then
-                            BattleScreen.FieldEffects.OppUsedBatonPass = True
                             If BattleScreen.Trainer.CountUseablePokemon > 1 AndAlso BattleScreen.FieldEffects.OppSwapIndex <> BattleScreen.OppPokemonIndex AndAlso BattleScreen.FieldEffects.OppSwapIndex <> -1 Then
-                                BattleScreen.FieldEffects.OppUsedBatonPass = True
 
                                 BattleScreen.Battle.SwitchOutOpp(BattleScreen, BattleScreen.FieldEffects.OppSwapIndex)
                                 BattleScreen.FieldEffects.OppSwapIndex = -1
@@ -83,7 +81,6 @@
                         End If
                     Else
                         If BattleScreen.Trainer.CountUseablePokemon > 1 Then
-                            BattleScreen.FieldEffects.OppUsedBatonPass = True
 
                             BattleScreen.Battle.SwitchOutOpp(BattleScreen, GetPokemonIndex(BattleScreen, own))
                         Else
