@@ -793,8 +793,8 @@
                                    .NoEffect & Environment.NewLine & Environment.NewLine &
                                    .Critical
 
-                Core.SpriteBatch.DrawString(FontManager.MainFont, s1, New Vector2(40, 340), Color.White, 0.0F, Vector2.Zero, 1.1F, SpriteEffects.None, 0.0F)
-                Core.SpriteBatch.DrawString(FontManager.MainFont, s2, New Vector2(250, 340), Color.LightBlue, 0.0F, Vector2.Zero, 1.1F, SpriteEffects.None, 0.0F)
+                Core.SpriteBatch.DrawString(FontManager.MainFont, s1, New Vector2(40, 340), Color.White, 0.0F, Vector2.Zero, 1.0F, SpriteEffects.None, 0.0F)
+                Core.SpriteBatch.DrawString(FontManager.MainFont, s2, New Vector2(304, 340), Color.LightBlue, 0.0F, Vector2.Zero, 1.0F, SpriteEffects.None, 0.0F)
             End With
 
             'Draw Pokémon left:
@@ -880,8 +880,8 @@
                                    .NoEffect & Environment.NewLine & Environment.NewLine &
                                    .Critical
 
-                Core.SpriteBatch.DrawString(FontManager.MainFont, s1, New Vector2(Core.windowSize.Width - 360, 340), Color.White, 0.0F, Vector2.Zero, 1.1F, SpriteEffects.None, 0.0F)
-                Core.SpriteBatch.DrawString(FontManager.MainFont, s2, New Vector2(Core.windowSize.Width - 150, 340), Color.LightBlue, 0.0F, Vector2.Zero, 1.1F, SpriteEffects.None, 0.0F)
+                Core.SpriteBatch.DrawString(FontManager.MainFont, s1, New Vector2(Core.windowSize.Width - 360, 340), Color.White, 0.0F, Vector2.Zero, 1.0F, SpriteEffects.None, 0.0F)
+                Core.SpriteBatch.DrawString(FontManager.MainFont, s2, New Vector2(Core.windowSize.Width - 56, 340), Color.LightBlue, 0.0F, Vector2.Zero, 1.0F, SpriteEffects.None, 0.0F)
             End With
 
         End If
