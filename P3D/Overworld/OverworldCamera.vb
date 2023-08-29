@@ -888,7 +888,7 @@ Public Class OverworldCamera
                 Screen.Level.OverworldPokemon.Visible = False
 
                 If Screen.Level.IsRadioOn = False OrElse GameJolt.PokegearScreen.StationCanPlay(Screen.Level.SelectedRadioStation) = False Then
-                    MusicManager.Play(Screen.Level.MusicLoop)
+                    MusicManager.Play(Screen.Level.MusicLoop, True, 0.01F)
                 End If
             End If
         End If

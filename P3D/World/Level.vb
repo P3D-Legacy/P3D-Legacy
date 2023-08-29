@@ -1072,7 +1072,7 @@ Public Class Level
                             MusicManager.Play("ride", True)
                         Else
                             If MusicManager.GetSong(MusicLoop) IsNot Nothing Then
-                                MusicManager.Play(MusicLoop, True)
+                                MusicManager.Play(MusicLoop, True, 0.01F)
                             Else
                                 MusicManager.Play("silence")
                             End If

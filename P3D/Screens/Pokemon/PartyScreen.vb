@@ -1025,7 +1025,7 @@ Public Class PartyScreen
             End If
 
             If Screen.Level.IsRadioOn = False OrElse GameJolt.PokegearScreen.StationCanPlay(Screen.Level.SelectedRadioStation) = False Then
-                MusicManager.Play(Level.MusicLoop)
+                MusicManager.Play(Level.MusicLoop, True, 0.01F)
             End If
         Else
             If Screen.Level.Surfing = False And Screen.Camera.IsMoving() = False And Screen.Camera.Turning = False And Level.CanRide() = True Then

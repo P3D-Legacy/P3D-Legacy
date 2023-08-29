@@ -328,7 +328,7 @@
                     s = s.PreScreen
                 End While
                 Core.SetScreen(New TransitionScreen(s, s.PreScreen, Color.Black, False))
-                MusicManager.Play(SavedMusic)
+                MusicManager.Play(SavedMusic, True, 0.01F)
             Else
                 Dim s As Screen = Core.CurrentScreen
                 While s.Identification <> Identifications.BattleScreen

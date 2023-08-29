@@ -23,7 +23,7 @@
         Level.Load("|")
 
         Me.SecretBase.LoadSecretBaseFromStore(Screen.Level)
-        MusicManager.Play(Level.MusicLoop, True)
+        MusicManager.Play(Level.MusicLoop, True, 0.01F)
     End Sub
 
     Public Overrides Sub Update()
