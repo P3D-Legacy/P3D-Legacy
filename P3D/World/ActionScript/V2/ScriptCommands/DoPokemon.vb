@@ -78,11 +78,7 @@
 
                         Dim catchMethod As String = "random reason"
                         If commas > 1 Then
-                            Dim catchMethodLocalization As String = argument.GetSplit(2)
-                            If argument.GetSplit(2).StartsWith("<system.token(") AndAlso argument.GetSplit(2).EndsWith(")>") Then
-                                catchMethodLocalization = Localization.GetString(catchMethodLocalization.Remove(0, "<system.token(".Length).Remove(argument.GetSplit(2).Length - 2, 2))
-                            End If
-                            catchMethod = catchMethodLocalization
+                            catchMethod = ScriptCommander.Parse(argument.GetSplit(2)).ToString()
                         End If
 
                         Dim catchBall As Item = Item.GetItemByID(5.ToString)
@@ -92,11 +88,7 @@
 
                         Dim catchLocation As String = Screen.Level.MapName
                         If commas > 3 Then
-                            Dim catchLocationLocalization As String = argument.GetSplit(4)
-                            If argument.GetSplit(4).StartsWith("<system.token(") AndAlso argument.GetSplit(4).EndsWith(")>") Then
-                                catchLocationLocalization = Localization.GetString(catchLocationLocalization.Remove(0, "<system.token(".Length).Remove(argument.GetSplit(4).Length - 2, 2))
-                            End If
-                            catchLocation = catchLocationLocalization
+                            catchLocation = ScriptCommander.Parse(argument.GetSplit(4)).ToString()
                         End If
 
                         Dim isEgg As Boolean = False
@@ -106,7 +98,7 @@
 
                         Dim catchTrainer As String = Core.Player.Name
                         If commas > 5 And argument.GetSplit(6) <> "<playername>" And argument.GetSplit(6) <> "<player.name>" Then
-                            catchTrainer = argument.GetSplit(6)
+                            catchTrainer = ScriptCommander.Parse(argument.GetSplit(6)).ToString()
                         End If
 
                         Dim heldItem As String = 0.ToString
@@ -915,11 +907,7 @@
 
                         Dim catchMethod As String = "random reason"
                         If commas > 1 Then
-                            Dim catchMethodLocalization As String = argument.GetSplit(2)
-                            If argument.GetSplit(2).StartsWith("<system.token(") AndAlso argument.GetSplit(2).EndsWith(")>") Then
-                                catchMethodLocalization = Localization.GetString(catchMethodLocalization.Remove(0, "<system.token(".Length).Remove(argument.GetSplit(2).Length - 2, 2))
-                            End If
-                            catchMethod = catchMethodLocalization
+                            catchMethod = ScriptCommander.Parse(argument.GetSplit(2)).ToString()
                         End If
 
                         Dim catchBall As Item = Item.GetItemByID(5.ToString)
@@ -929,11 +917,7 @@
 
                         Dim catchLocation As String = Screen.Level.MapName
                         If commas > 3 Then
-                            Dim catchLocationLocalization As String = argument.GetSplit(4)
-                            If argument.GetSplit(4).StartsWith("<system.token(") AndAlso argument.GetSplit(4).EndsWith(")>") Then
-                                catchLocationLocalization = Localization.GetString(catchLocationLocalization.Remove(0, "<system.token(".Length).Remove(argument.GetSplit(4).Length - 2, 2))
-                            End If
-                            catchLocation = catchLocationLocalization
+                            catchLocation = ScriptCommander.Parse(argument.GetSplit(4)).ToString()
                         End If
 
                         Dim isEgg As Boolean = False
@@ -943,7 +927,7 @@
 
                         Dim catchTrainer As String = Core.Player.Name
                         If commas > 5 And argument.GetSplit(6) <> "<playername>" And argument.GetSplit(6) <> "<player.name>" Then
-                            catchTrainer = argument.GetSplit(6)
+                            catchTrainer = ScriptCommander.Parse(argument.GetSplit(6)).ToString()
                         End If
 
                         Dim heldItem As String = 0.ToString
