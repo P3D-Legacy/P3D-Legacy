@@ -676,7 +676,7 @@ Public Class MusicManager
         Dim SongDuration As TimeSpan = Nothing
         If songFilePath.Contains(".ogg") Then
             DurationOGG = New VorbisWaveReader(songFilePath)
-            SongDuration = DurationOgg.TotalTime
+            SongDuration = DurationOGG.TotalTime
         ElseIf songFilePath.Contains(".mp3") Then
             DurationMP3 = New Mp3FileReader(songFilePath)
             SongDuration = DurationMP3.TotalTime
