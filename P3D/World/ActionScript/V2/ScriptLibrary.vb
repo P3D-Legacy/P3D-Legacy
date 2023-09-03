@@ -192,7 +192,8 @@ Namespace ScriptVersion2
                                                New ScriptArgument("level", ScriptArgument.ArgumentTypes.Int),
                                                New ScriptArgument("shiny", ScriptArgument.ArgumentTypes.Int, True, "-1"),
                                                New ScriptArgument("musicloop", ScriptArgument.ArgumentTypes.Str, True, ""),
-                                               New ScriptArgument("introtype", ScriptArgument.ArgumentTypes.Int, True, "0-10")}.ToList(), "Initializes the battle with a wild Pokémon."))
+                                               New ScriptArgument("introtype", ScriptArgument.ArgumentTypes.Int, True, "0-10"),
+                                               New ScriptArgument("gender", ScriptArgument.ArgumentTypes.Int, True, "")}.ToList(), "Initializes the battle with a wild Pokémon."))
             r(New ScriptCommand("battle", "setvar", {New ScriptArgument("varName", ScriptArgument.ArgumentTypes.Str, {"canrun", "cancatch", "canblackout", "canreceiveexp", "canuseitems", "frontiertrainer", "divebattle", "inversebattle, custombattlemusic, hiddenabilitychance"}),
                                                  New ScriptArgument("varValue", ScriptArgument.ArgumentTypes.Str)}.ToList(), "Sets a battle value."))
             ' Constructs:
@@ -818,6 +819,8 @@ Namespace ScriptVersion2
             r(New ScriptCommand("pokemon", "id", "int", {New ScriptArgument("pokemonIndex", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Returns the ID of a Pokémon in the player's party.", ",", True))
             r(New ScriptCommand("pokemon", "number", "int", {New ScriptArgument("pokemonIndex", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Returns the ID of a Pokémon in the player's party.", ",", True))
             r(New ScriptCommand("pokemon", "data", "pokemonData", {New ScriptArgument("pokemonIndex", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Returns the save data for a Pokémon in the player's party.", ",", True))
+            r(New ScriptCommand("pokemon", "gender", "int", {New ScriptArgument("pokemonIndex", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Returns the gender for a Pokémon in the player's party.", ",", True))
+            r(New ScriptCommand("pokemon", "genderchance", "int", {New ScriptArgument("pokemonID", ScriptArgument.ArgumentTypes.Str)}.ToList(), "Returns the Male/Female chance (1-100) of a Pokémon as defined by its Data file.", ",", True))
             r(New ScriptCommand("pokemon", "level", "int", {New ScriptArgument("pokemonIndex", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Returns the level of a Pokémon in the player's party.", ",", True))
             r(New ScriptCommand("pokemon", "hasfullhp", "bool", {New ScriptArgument("pokemonIndex", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Returns if a Pokémon in the player's party has a full Hit Point count.", ",", True))
             r(New ScriptCommand("pokemon", "hp", "int", {New ScriptArgument("pokemonIndex", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Returns the Hit Points of a Pokémon in the player's party.", ",", True))

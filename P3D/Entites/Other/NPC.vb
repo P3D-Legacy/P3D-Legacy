@@ -113,6 +113,18 @@
             End If
         End If
 
+        If StringHelper.IsNumeric(Me.TextureID) = False Then
+            If System.IO.File.Exists(GameController.GamePath & "\" & GameModeManager.ActiveGameMode.ContentPath & texturePath & Me.TextureID & PokemonAddition & ".png") = False Then
+                If Me.TextureID.Contains("_") Then
+                    Me.TextureID = Me.TextureID.GetSplit(0, "_")
+                ElseIf Me.TextureID.Contains("-") Then
+                    Me.TextureID = Me.TextureID.GetSplit(0, "-")
+                ElseIf Me.TextureID.Contains(";") Then
+                    Me.TextureID = Me.TextureID.GetSplit(0, ";")
+                End If
+            End If
+        End If
+
         If UseGameJoltID = True And Core.Player.IsGameJoltSave = True And GameJolt.API.LoggedIn = True AndAlso Not GameJolt.Emblem.GetOnlineSprite(GameJoltID) Is Nothing Then
             Me.Texture = GameJolt.Emblem.GetOnlineSprite(GameJoltID)
         Else

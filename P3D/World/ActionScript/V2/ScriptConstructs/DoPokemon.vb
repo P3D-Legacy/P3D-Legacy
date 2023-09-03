@@ -17,6 +17,19 @@
                 Case "data"
                     Dim index As Integer = int(argument.GetSplit(0))
                     Return Core.Player.Pokemons(index).GetSaveData().Replace(",", "§").Replace("[", "«").Replace("]", "»")
+                Case "gender"
+                    Dim index As Integer = int(argument.GetSplit(0))
+                    Return Core.Player.Pokemons(index).Gender
+                Case "genderchance"
+                    Dim dexID As String = argument.GetSplit(0)
+                    Dim dexAD As String = ""
+                    If dexID.Contains("_") = True Then
+                        dexAD = PokemonForms.GetAdditionalValueFromDataFile(dexID)
+                        dexID = dexID.GetSplit(0, "_")
+                    End If
+                    Dim p As Pokemon = Pokemon.GetPokemonByID(CInt(dexID), dexAD)
+
+                    Return p.IsMale
                 Case "level"
                     Dim index As Integer = int(argument.GetSplit(0))
                     Return Core.Player.Pokemons(index).Level

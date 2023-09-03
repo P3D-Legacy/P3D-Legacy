@@ -128,18 +128,30 @@
                                             Case 0
                                                 musicLoop = args(i)
                                             Case 1
-                                                introType = int(args(i))
+                                                If args(i) <> "" Then
+                                                    introType = int(args(i))
+                                                End If
                                         End Select
                                     Next
                                 End If
                             End If
                         Else
                             If argument.Length > 0 Then
-                                Dim ID As Integer = int(argument.GetSplit(0).Split(CChar("_"))(0))
+                                Dim ID As Integer
                                 Dim AD As String = ""
-                                If argument.GetSplit(0).Contains(CChar("_")) Then
-                                    AD = argument.GetSplit(0).Split(CChar("_"))(1)
+                                If argument.GetSplit(0).Contains("-") Then
+                                    ID = int(argument.GetSplit(0).GetSplit(0, "-"))
+                                ElseIf argument.GetSplit(0).Contains(";") Then
+                                    ID = int(argument.GetSplit(0).GetSplit(0, ";"))
+                                    AD = argument.GetSplit(0).GetSplit(1, ";")
+                                Else
+                                    ID = int(argument.GetSplit(0).GetSplit(0, "_"))
+
+                                    If argument.GetSplit(0).Contains("_") Then
+                                        AD = PokemonForms.GetAdditionalValueFromDataFile(argument.GetSplit(0))
+                                    End If
                                 End If
+
                                 Dim Level As Integer = int(argument.GetSplit(1))
 
                                 If AD IsNot "" Then
@@ -150,7 +162,6 @@
                                     p.Generate(Level, True)
 
                                 End If
-
 
                                 Dim args() As String = argument.Split(CChar(","))
 
@@ -163,7 +174,20 @@
                                         Case 3
                                             musicLoop = args(i)
                                         Case 4
-                                            introType = int(args(i))
+                                            If args(i) <> "" Then
+                                                introType = int(args(i))
+                                            End If
+                                        Case 5
+                                            If args(i) <> "" Then
+                                                Select Case int(args(i))
+                                                    Case 0
+                                                        p.Gender = Pokemon.Genders.Male
+                                                    Case 1
+                                                        p.Gender = Pokemon.Genders.Female
+                                                    Case 2
+                                                        p.Gender = Pokemon.Genders.Genderless
+                                                End Select
+                                            End If
                                     End Select
                                 Next
                             End If
