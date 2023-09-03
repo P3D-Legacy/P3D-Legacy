@@ -476,6 +476,24 @@ Public Class PokemonForms
         Return Nothing
 
     End Function
+    Public Shared Function GetDataFileForms(ByVal Number As Integer) As List(Of String)
+        Dim Forms As New List(Of String)
+        Forms.Add(Number.ToString)
+        If _pokemonList.Count > 0 Then
+            For Each listP In _pokemonList
+                If listP.IsNumber(Number) = True AndAlso listP.AdditionalValue <> "" AndAlso listP.DataFileSuffix <> "" Then
+                    Forms.Add(listP.AdditionalValue)
+                End If
+            Next
+        End If
+
+        If Forms.Count > 0 Then
+            Return Forms
+        End If
+
+        Return Nothing
+
+    End Function
 
     Public Shared Function GetAdditionalValueFromDataFile(ByVal DataFile As String) As String
 

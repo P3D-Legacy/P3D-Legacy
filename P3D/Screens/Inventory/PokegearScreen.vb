@@ -1859,6 +1859,7 @@
                 Select Case Me.Content.ToLower()
                     Case "[pokedexentry]"
                         Dim triedIDs As New List(Of Integer)
+                        Dim triedADs As New List(Of String)
                         Dim chosenID As Integer = -1
                         Dim chosenAD As String = ""
 
@@ -1868,16 +1869,18 @@
                                 If Pokedex.GetEntryType(Core.Player.PokedexData, Pokedex.PokemonIDs(ID)) < 2 Then
                                     triedIDs.Add(ID)
                                 Else
-                                    If Pokedex.PokemonIDs(ID).Contains("_") Then
-                                        chosenID = CInt(Pokedex.PokemonIDs(ID).GetSplit(0, "_"))
-                                        chosenAD = PokemonForms.GetAdditionalValueFromDataFile(Pokedex.PokemonIDs(ID))
-                                    ElseIf Pokedex.PokemonIDs(ID).Contains(";") Then
-                                        chosenID = CInt(Pokedex.PokemonIDs(ID).GetSplit(0, ";"))
-                                        chosenAD = Pokedex.PokemonIDs(ID).GetSplit(1, ";")
+                                    If PokemonForms.GetDataFileForms(ID).Count > 0 Then
+                                        Dim FormList As List(Of String) = PokemonForms.GetDataFileForms(ID)
+                                        Dim FormString As Integer = Core.Random.Next(0, FormList.Count - 1)
+                                        If Pokedex.PokemonIDs(FormString).Contains("_") Then
+                                            chosenID = CInt(Pokedex.PokemonIDs(FormString).GetSplit(0, "_"))
+                                            chosenAD = PokemonForms.GetAdditionalValueFromDataFile(Pokedex.PokemonIDs(FormString))
+                                        Else
+                                            chosenID = FormString
+                                        End If
                                     Else
                                         chosenID = ID
                                     End If
-
                                 End If
                             End If
                         End While
