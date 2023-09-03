@@ -8166,7 +8166,6 @@
 
                     If Core.Player.BattleStyle = 1 OrElse BattleScreen.IsPVPBattle = True Then
                         BattleScreen.HasSwitchedOwn = False
-                        StartRound(BattleScreen)
                     End If
                 End With
             End If

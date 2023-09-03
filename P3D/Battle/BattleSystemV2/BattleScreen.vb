@@ -327,6 +327,7 @@
             If IsPVPBattle = False And IsRemoteBattle = False Then
                 PlayerStatistics.Track("Trainer battles", 1)
             Else
+                FieldEffects.Weather = BattleWeather.WeatherTypes.Clear
                 TempPVPBattleQuery.Clear()
             End If
 
@@ -1154,6 +1155,11 @@ nextIndex:
                 End If
             End If
 
+            If BattleQuery.Count = 0 Then
+                For i = 0 To 99
+                    InsertCasualCameramove()
+                Next
+            End If
             'Update the world:
             Screen.Level.World.Initialize(Screen.Level.EnvironmentType, World.GetWeatherTypeFromWeather(Screen.Level.World.CurrentMapWeather))
         End Sub
@@ -1848,7 +1854,6 @@ nextIndex:
             Else
                 BV2Screen.BattleMenu.Visible = True
             End If
-            BV2Screen.TempPVPBattleQuery.Clear()
         End Sub
 
         'Sends some variables that let the client know the current state of the battle
@@ -1922,6 +1927,7 @@ nextIndex:
             End If
             Core.ServersManager.ServerConnection.SendPackage(New Servers.Package(Servers.Package.PackageTypes.BattleHostData, Core.ServersManager.ID, Servers.Package.ProtocolTypes.TCP, {PartnerNetworkID.ToString(), d}.ToList()))
             SentHostData = True
+            TempPVPBattleQuery.Clear()
         End Sub
 
 #End Region
