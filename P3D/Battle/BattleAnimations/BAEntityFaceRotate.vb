@@ -20,6 +20,8 @@
         Me.TargetEntity = TargetEntity
         Me.TurnSpeed = TurnSpeed
         Me.TurnDelay = TurnDelay
+
+        Me.AnimationType = AnimationTypes.Rotation
     End Sub
 
     Public Overrides Sub DoActionActive()

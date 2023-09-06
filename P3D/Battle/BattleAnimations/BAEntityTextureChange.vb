@@ -11,6 +11,7 @@
         Me.RemoveEntityAfter = RemoveEntityAfter
         Me.TargetEntity = Entity
         Me.Texture = Texture
+
         Me.AnimationType = AnimationTypes.Texture
     End Sub
 

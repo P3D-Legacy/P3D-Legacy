@@ -20,6 +20,8 @@
         Me.EndRotation = EndRotation
         Me.TargetEntity = Entity
         Me.ReturnVector = TargetEntity.Rotation
+
+        Me.AnimationType = AnimationTypes.Rotation
     End Sub
 
     Public Sub New(ByVal Entity As Entity, ByVal RemoveEntityAfter As Boolean, ByVal RotationSpeedVector As Vector3, ByVal EndRotation As Vector3, ByVal startDelay As Single, ByVal endDelay As Single, ByVal DoXRotation As Boolean, ByVal DoYRotation As Boolean, ByVal DoZRotation As Boolean)

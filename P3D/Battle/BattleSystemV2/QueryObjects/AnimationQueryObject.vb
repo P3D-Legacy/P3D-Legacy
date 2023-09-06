@@ -1,4 +1,6 @@
-﻿Namespace BattleSystem
+﻿Imports System.Xml
+
+Namespace BattleSystem
 
 	Public Class AnimationQueryObject
 		Inherits QueryObject
@@ -228,6 +230,34 @@
 
 		End Sub
 
+		Public Sub AnimationColor(ByVal Entity As Entity, ByVal RemoveEntityAfter As Boolean, ByVal TransitionSpeedIn As Single, ByVal ReturnToFromWhenDone As Boolean, ByVal startDelay As Single, ByVal endDelay As Single, ByVal VectorColorTo As Vector3, Optional ByVal VectorColorFrom As Vector3 = Nothing, Optional TransitionSpeedOut As Single = -1)
+			Dim ColorEntity As Entity
+			If Entity Is Nothing Then
+				ColorEntity = CurrentEntity
+			Else
+				ColorEntity = Entity
+			End If
+			Dim baEntityColor As BAEntityColor = New BAEntityColor(ColorEntity, RemoveEntityAfter, TransitionSpeedIn, ReturnToFromWhenDone, startDelay, endDelay, VectorColorTo, VectorColorFrom, TransitionSpeedOut)
+			AnimationSequence.Add(baEntityColor)
+		End Sub
+
+		Public Sub AnimationColor(ByVal Entity As Entity, ByVal RemoveEntityAfter As Boolean, ByVal TransitionSpeedIn As Single, ByVal ReturnToFromWhenDone As Boolean, ByVal startDelay As Single, ByVal endDelay As Single, ByVal ColorTo As Color, Optional ByVal ColorFrom As Color = Nothing, Optional TransitionSpeedOut As Single = -1)
+			Dim ColorEntity As Entity
+			If Entity Is Nothing Then
+				ColorEntity = CurrentEntity
+			Else
+				ColorEntity = Entity
+			End If
+			Dim VectorColorTo As Vector3 = ColorTo.ToVector3
+			Dim VectorColorFrom As Vector3 = Nothing
+			If ColorFrom <> Nothing Then
+				VectorColorFrom = ColorFrom.ToVector3
+			End If
+
+			Dim baEntityColor As BAEntityColor = New BAEntityColor(ColorEntity, RemoveEntityAfter, TransitionSpeedIn, ReturnToFromWhenDone, startDelay, endDelay, VectorColorTo, VectorColorFrom, TransitionSpeedOut)
+			AnimationSequence.Add(baEntityColor)
+		End Sub
+
 		Public Sub AnimationFade(ByVal Entity As Entity, ByVal RemoveEntityAfter As Boolean, ByVal TransitionSpeed As Single, ByVal FadeIn As Boolean, ByVal EndState As Single, ByVal startDelay As Single, ByVal endDelay As Single, Optional ByVal startState As Single = -1.0F)
 			Dim FadeEntity As Entity
 			If Entity Is Nothing Then
@@ -240,6 +270,7 @@
 			AnimationSequence.Add(baEntityOpacity)
 
 		End Sub
+
 		Public Sub AnimationRotate(Entity As Entity, ByVal RemoveEntityAfter As Boolean, ByVal RotationSpeedX As Single, ByVal RotationSpeedY As Single, ByVal RotationSpeedZ As Single, ByVal EndRotationX As Single, ByVal EndRotationY As Single, ByVal EndRotationZ As Single, ByVal startDelay As Single, ByVal endDelay As Single, ByVal DoXRotation As Boolean, ByVal DoYRotation As Boolean, ByVal DoZRotation As Boolean, ByVal DoReturn As Boolean)
 			Dim RotateEntity As Entity
 			If Entity Is Nothing Then
@@ -252,7 +283,6 @@
 			Dim EndRotation As Vector3 = New Vector3(EndRotationX, EndRotationY, EndRotationZ)
 			Dim baEntityRotate As BAEntityRotate = New BAEntityRotate(RotateEntity, RemoveEntityAfter, RotationSpeedVector, EndRotation, startDelay, endDelay, DoXRotation, DoYRotation, DoZRotation, DoReturn)
 			AnimationSequence.Add(baEntityRotate)
-
 
 		End Sub
 

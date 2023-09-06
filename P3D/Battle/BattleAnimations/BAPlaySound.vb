@@ -14,6 +14,7 @@
         Me.Visible = False
         Me.stopMusic = stopMusic
         Me.IsPokemon = IsPokemon
+
         AnimationType = AnimationTypes.Sound
     End Sub
 
