@@ -66,6 +66,18 @@
             End If
         End Function
 
+        Public Overrides Sub InternalOpponentPokemonMoveAnimation(ByVal BattleScreen As BattleScreen, ByVal BattleFlip As Boolean, ByVal CurrentPokemon As Pokemon, ByVal CurrentEntity As NPC)
+            Dim MoveAnimation As AnimationQueryObject = New AnimationQueryObject(CurrentEntity, BattleFlip, False)
+            MoveAnimation.AnimationPlaySound("Battle\Attacks\Ground\Earthquake", 0.0F, 0)
+            MoveAnimation.AnimationCameraOscillateMove(New Vector3(0, 0, 0.075), 0.045, True, 16, 0, 0, 0, New Vector3(0, 0, 1))
+
+            MoveAnimation.AnimationCameraOscillateMove(New Vector3(0, 0.06, 0), 0.03, True, 4, 0, 0, 0, New Vector3(0, 0, 1))
+            MoveAnimation.AnimationCameraOscillateMove(New Vector3(0, -0.06, 0), 0.03, True, 4, 4, 0, 0, New Vector3(0, 0, 1))
+            MoveAnimation.AnimationCameraOscillateMove(New Vector3(0, 0.06, 0), 0.03, True, 4, 8, 0, 0, New Vector3(0, 0, 1))
+            MoveAnimation.AnimationCameraOscillateMove(New Vector3(0, -0.06, 0), 0.03, True, 4, 12, 0, 0, New Vector3(0, 0, 1))
+
+            BattleScreen.BattleQuery.Add(MoveAnimation)
+        End Sub
     End Class
 
 End Namespace

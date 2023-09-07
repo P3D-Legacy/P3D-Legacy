@@ -18311,6 +18311,9 @@
     <Content Include="Content\Sounds\Battle\Attacks\Grass\VineWhip_Start.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\Sounds\Battle\Attacks\Ground\Earthquake.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\Sounds\Battle\Attacks\Ice\IcePunch_Crystals.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -28737,7 +28740,9 @@
     <Compile Include="Battle\BattleAnimations\BAEntityColor.vb" />
     <Compile Include="Battle\BattleAnimations\BABackground.vb" />
     <Compile Include="Battle\BattleAnimations\BAEntityFaceRotate.vb" />
+    <Compile Include="Battle\BattleAnimations\BACameraOscillateMove.vb" />
     <Compile Include="Battle\BattleAnimations\BAEntityOscillateMove.vb" />
+    <Compile Include="Battle\BattleAnimations\BACameraChangeAngle.vb" />
     <Compile Include="Battle\BattleAnimations\BAEntitySetPosition.vb" />
     <Compile Include="Battle\BattleAnimations\BAEntityRotate.vb" />
     <Compile Include="Battle\BattleAnimations\BAEntityMove.vb" />

@@ -74,9 +74,9 @@
         Public Overrides Sub InternalOpponentPokemonMoveAnimation(ByVal BattleScreen As BattleScreen, ByVal BattleFlip As Boolean, ByVal CurrentPokemon As Pokemon, ByVal CurrentEntity As NPC)
             Dim MoveAnimation As AnimationQueryObject = New AnimationQueryObject(CurrentEntity, BattleFlip, True)
             MoveAnimation.AnimationPlaySound("Battle\Attacks\Psychic\Psychic", 0.0F, 0)
-            MoveAnimation.AnimationBackground(TextureManager.GetTexture("Textures\Battle\Psychic\PsychicBackground"), 0, 0, 1.5F, 0.6F, 0.075F, 0.075F, True, 11, 2, 6)
+            MoveAnimation.AnimationBackground(TextureManager.GetTexture("Textures\Battle\Psychic\PsychicBackground"), 0, 0, 9.0F, 0.6F, 0.075F, 0.075F, True, 11, 2, 6)
 
-            MoveAnimation.AnimationOscillateMove(Nothing, False, New Vector3(0, 0, 0.05), 0.035, True, 0.75, 1, 0.5, 0, New Vector3(0, 0, 1))
+            MoveAnimation.AnimationOscillateMove(Nothing, False, New Vector3(0, 0, 0.05), 0.035, True, 4.5, 1, 0.5, 0, New Vector3(0, 0, 1))
 
             BattleScreen.BattleQuery.Add(MoveAnimation)
         End Sub

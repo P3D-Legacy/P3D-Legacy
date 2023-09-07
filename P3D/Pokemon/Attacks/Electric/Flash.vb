@@ -60,7 +60,7 @@
         Public Overrides Sub InternalOpponentPokemonMoveAnimation(ByVal BattleScreen As BattleScreen, ByVal BattleFlip As Boolean, ByVal CurrentPokemon As Pokemon, ByVal CurrentEntity As NPC)
             Dim MoveAnimation As AnimationQueryObject = New AnimationQueryObject(CurrentEntity, BattleFlip, True)
             MoveAnimation.AnimationPlaySound("Battle\Attacks\Electric\Flash", 0.0F, 0)
-            MoveAnimation.AnimationBackground(TextureManager.GetTexture("Textures\Battle\Electric\FlashBackground"), 0, 0, 0.25F, 0.9F, 0.2F, 0.025F, True, 1, 0, 6)
+            MoveAnimation.AnimationBackground(TextureManager.GetTexture("Textures\Battle\Electric\FlashBackground"), 0, 0, 1.5F, 0.9F, 0.2F, 0.025F, True, 1, 0, 6)
             MoveAnimation.AnimationColor(CurrentEntity, False, 0.2F, True, 0, 0, New Vector3(0.1), Nothing, 0.025F)
 
             BattleScreen.BattleQuery.Add(MoveAnimation)

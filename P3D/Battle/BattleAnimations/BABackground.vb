@@ -36,8 +36,8 @@
         Me.DoTile = DoTile
         Me.AnimationWidth = CInt(Texture.Width / AnimationLength)
         Me.AnimationLength = AnimationLength
-        DurationWhole = CSng(Math.Truncate(CDbl(Duration)))
-        DurationFraction = CSng((Duration - DurationWhole) * 1000)
+        DurationWhole = CSng(Math.Truncate(CDbl(Duration / 6.0F)))
+        DurationFraction = CSng((Duration / 6.0F - DurationWhole) * 1000)
         Me.TextureScale = TextureScale
 
         If Me.AnimationWidth <> -1 OrElse Me.AnimationWidth <> Nothing Then

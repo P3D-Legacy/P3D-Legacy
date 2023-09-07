@@ -14,10 +14,9 @@
         Size
         Rotation
         Texture
-        Wait
-        ViewPokeBill
         Sound
         Background
+        Camera
     End Enum
 
     Public AnimationType As AnimationTypes = AnimationTypes.Nothing

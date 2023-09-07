@@ -205,8 +205,8 @@ Namespace BattleSystem
 				End If
 			End If
 
-			Dim DurationWhole = CSng(Math.Truncate(CDbl(Duration)))
-			Dim DurationFraction = CSng((Duration - DurationWhole) * 1000)
+			Dim DurationWhole = CSng(Math.Truncate(CDbl(Duration / 6.0F)))
+			Dim DurationFraction = CSng((Duration / 6.0F - DurationWhole) * 1000)
 			Dim DurationTime As TimeSpan = New TimeSpan(0, 0, 0, CInt(DurationWhole), CInt(DurationFraction))
 			Dim baEntityOscillateMove As BAEntityOscillateMove = New BAEntityOscillateMove(MoveEntity, RemoveEntityAfter, Distance, Speed, BothWays, DurationTime, startDelay, endDelay, MovementCurve, ReturnToStart)
 			AnimationSequence.Add(baEntityOscillateMove)
@@ -329,6 +329,28 @@ Namespace BattleSystem
 		Public Sub AnimationBackground(ByVal Texture As Texture2D, ByVal startDelay As Single, ByVal endDelay As Single, ByVal Duration As Single, Optional ByVal AfterFadeInOpacity As Single = 1.0F, Optional ByVal FadeInSpeed As Single = 0.125F, Optional ByVal FadeOutSpeed As Single = 0.125F, Optional ByVal DoTile As Boolean = False, Optional ByVal AnimationLength As Integer = 1, Optional ByVal AnimationSpeed As Integer = 4, Optional ByVal Scale As Integer = 4)
 			Dim baBackground As BABackground = New BABackground(Texture, startDelay, endDelay, Duration, AfterFadeInOpacity, FadeInSpeed, FadeOutSpeed, DoTile, AnimationLength, AnimationSpeed, Scale)
 			AnimationSequence.Add(baBackground)
+		End Sub
+
+		Public Sub AnimationCameraChangeAngle(ByRef Battlescreen As BattleScreen, ByVal CameraAngleID As Integer, ByVal startDelay As Single, ByVal endDelay As Single)
+			Dim baCameraChangeAngle As BACameraChangeAngle = New BACameraChangeAngle(Battlescreen, CameraAngleID, startDelay, endDelay)
+			AnimationSequence.Add(baCameraChangeAngle)
+		End Sub
+
+		Public Sub AnimationCameraOscillateMove(ByVal Distance As Vector3, ByVal Speed As Single, ByVal BothWays As Boolean, ByVal Duration As Single, ByVal startDelay As Single, ByVal endDelay As Single, Optional MovementCurve As Integer = 0, Optional ReturnToStart As Vector3 = Nothing)
+			Dim ReturnPosition As New Vector3(0)
+
+			If Not BattleFlipped = Nothing Then
+				If BattleFlipped = True Then
+					Distance.Z *= -1.0F
+				End If
+			End If
+
+			Dim DurationWhole = CSng(Math.Truncate(CDbl(Duration / 6.0F)))
+			Dim DurationFraction = CSng((Duration / 6.0F - DurationWhole) * 1000)
+			Dim DurationTime As TimeSpan = New TimeSpan(0, 0, 0, CInt(DurationWhole), CInt(DurationFraction))
+			Dim baCameraOscillateMove As BACameraOscillateMove = New BACameraOscillateMove(Distance, Speed, BothWays, DurationTime, startDelay, endDelay, MovementCurve, ReturnToStart)
+			AnimationSequence.Add(baCameraOscillateMove)
+
 		End Sub
 
 	End Class

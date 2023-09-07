@@ -69,7 +69,7 @@
             Dim RayEntity = MoveAnimation.SpawnEntity(CurrentEntity.Position, TextureManager.GetTexture("Textures\Battle\Ghost\ConfuseRay", New Rectangle(0, 0, 16, 16), ""), New Vector3(0.5F), 0.0F)
             MoveAnimation.AnimationFade(RayEntity, False, 0.025F, True, 1.0F, 0, 0)
             MoveAnimation.AnimationMove(RayEntity, False, 1.5, 0, 0, 0.025, False, False, 0, 0,,, 0.0125)
-            MoveAnimation.AnimationOscillateMove(RayEntity, True, New Vector3(0, 0.075, 0), 0.02, True, 1, 0, 0, 1)
+            MoveAnimation.AnimationOscillateMove(RayEntity, True, New Vector3(0, 0.075, 0), 0.02, True, 6, 0, 0, 1)
 
             MoveAnimation.AnimationChangeTexture(RayEntity, False, TextureManager.GetTexture("Textures\Battle\Ghost\ConfuseRay", New Rectangle(16, 0, 16, 16), ""), 0.5, 0)
             MoveAnimation.AnimationChangeTexture(RayEntity, False, TextureManager.GetTexture("Textures\Battle\Ghost\ConfuseRay", New Rectangle(0, 0, 16, 16), ""), 1.0, 0)
@@ -93,8 +93,8 @@
 
             Dim RayEntity = MoveAnimation.SpawnEntity(SpawnPosition, TextureManager.GetTexture("Textures\Battle\Ghost\ConfuseRay", New Rectangle(0, 0, 16, 16), ""), New Vector3(0.5F), 1.0F)
             MoveAnimation.AnimationMove(RayEntity, False, 1.5, 0, 0, 0.025, False, False, 0, 0,,, 0.0125)
-            MoveAnimation.AnimationOscillateMove(RayEntity, False, New Vector3(0, 0.075, 0), 0.02, True, 1, 0, 0, 1)
-            MoveAnimation.AnimationOscillateMove(RayEntity, False, New Vector3(0, 0, 0.2), 0.075, True, 1.5, 4, 0, 1)
+            MoveAnimation.AnimationOscillateMove(RayEntity, False, New Vector3(0, 0.075, 0), 0.02, True, 6, 0, 0, 1)
+            MoveAnimation.AnimationOscillateMove(RayEntity, False, New Vector3(0, 0, 0.2), 0.075, True, 7.5, 4, 0, 1)
 
             MoveAnimation.AnimationChangeTexture(RayEntity, False, TextureManager.GetTexture("Textures\Battle\Ghost\ConfuseRay", New Rectangle(16, 0, 16, 16), ""), 0.5, 0)
             MoveAnimation.AnimationChangeTexture(RayEntity, False, TextureManager.GetTexture("Textures\Battle\Ghost\ConfuseRay", New Rectangle(0, 0, 16, 16), ""), 1.0, 0)
