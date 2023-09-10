@@ -518,8 +518,12 @@
 #Region "Movement and Camera"
 
     Private Sub NPCMovement()
-        If Core.CurrentScreen.Identification = Screen.Identifications.OverworldScreen Then
-            If CType(Core.CurrentScreen, OverworldScreen).ActionScript.IsReady = False Then
+        Dim s As Screen = CurrentScreen
+        While Not s.PreScreen Is Nothing And s.Identification <> Screen.Identifications.OverworldScreen
+            s = s.PreScreen
+        End While
+        If s.Identification = Screen.Identifications.OverworldScreen Then
+            If CType(s, OverworldScreen).ActionScript.IsReady = False Then
                 Exit Sub
             End If
         End If
