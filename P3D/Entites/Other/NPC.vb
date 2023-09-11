@@ -186,8 +186,14 @@
         End If
     End Sub
 
-    Public Shared Sub RemoveNPCData(ByVal file As String, ByVal ID As Integer, ByVal action As String, ByVal addition As String)
-        Dim Data As String = "{" & file & "|" & ID & "|" & action & "|" & addition & "}"
+    Public Shared Sub RemoveNPCData(ByVal file As String, ByVal ID As Integer, ByVal action As String, Optional ByVal addition As String = "")
+        Dim Data As String
+        If addition = "" Then
+            Data = "{" & file & "|" & ID & "|" & action & "}"
+        Else
+            Data = "{" & file & "|" & ID & "|" & action & "|" & addition & "}"
+        End If
+
 
         Dim NData() As String = Core.Player.NPCData.SplitAtNewline()
         Dim nList As List(Of String) = NData.ToList()
