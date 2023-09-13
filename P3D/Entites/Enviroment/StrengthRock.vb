@@ -61,7 +61,7 @@
                 End If
             Next
 
-            Dim pName As String = "MissignNo."
+            Dim pName As String = "MissingNo."
             Dim pNumber As Integer = 23
 
             If Not useP Is Nothing Then

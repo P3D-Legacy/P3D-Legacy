@@ -41,7 +41,7 @@
 
     Public Overrides Sub ResultFunction(Result As Integer)
         If Result = 0 Then
-            Dim pName As String = "MissignNo."
+            Dim pName As String = "MissingNo."
 
             For Each p As Pokemon In Core.Player.Pokemons
                 If p.IsEgg() = False Then
