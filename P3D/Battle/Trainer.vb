@@ -140,7 +140,7 @@ Public Class Trainer
                             isDoubleTrainerValid += 1
                         End If
                     Case "money"
-                        Me.Money = CInt(ScriptCommander.Parse(value).ToString())
+                        Me.Money = CInt(ScriptConversion.ToInteger(ScriptCommander.Parse(value).ToString()))
                     Case "intromessage"
                         Me.IntroMessage = ScriptCommander.Parse(value).ToString()
                     Case "outromessage"
