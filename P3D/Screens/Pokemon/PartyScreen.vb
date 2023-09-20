@@ -713,7 +713,7 @@ Public Class PartyScreen
     End Sub
 
     Private Function CanUseMove(ByVal p As Pokemon, ByVal moveName As String, ByVal hmMove As Integer) As Boolean
-        If GameController.IS_DEBUG_ACTIVE Then
+        If GameController.IS_DEBUG_ACTIVE OrElse Core.Player.SandBoxMode = True Then
             Return True
         End If
         If p.IsEgg() = False Then
