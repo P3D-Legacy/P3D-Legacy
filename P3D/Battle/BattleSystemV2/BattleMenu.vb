@@ -158,7 +158,7 @@
 
                             Dim t = TextureManager.GetTexture("GUI\Battle\Interface")
                             For dX As Integer = 0 To EXPlength Step 4
-                                Core.SpriteBatch.Draw(t, New Rectangle(CInt(pos.X) + 50 + dX, CInt(pos.Y) + 54, 4, 6), New Rectangle(0, 43, 2, 3), New Color(255, 255, 255, _moveMenuAlpha))
+                                Core.SpriteBatch.Draw(t, New Rectangle(CInt(pos.X) + 50 + dX, CInt(pos.Y) + 64, 4, 6), New Rectangle(0, 43, 2, 3), New Color(255, 255, 255, _moveMenuAlpha))
                             Next
                         End If
                     End If
