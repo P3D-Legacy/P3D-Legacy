@@ -179,7 +179,7 @@ Public Class Trainer
                         If value <> "" Then
                             Dim itemData() As String = ScriptCommander.Parse(value).ToString().Split(CChar(","))
                             For Each ItemID As String In itemData
-                                Items.Add(Item.GetItemByID(ItemID).ToString))
+                                Items.Add(Item.GetItemByID(ItemID.ToString))
                             Next
                         End If
                     Case "gender"
