@@ -6,6 +6,7 @@
     Dim AnimationName As String = ""
     Dim Animation As Animation = Nothing
 
+    Dim LevelName As String = ""
     Dim Item As Item
     Dim ItemID As Integer = 0
     Dim checkedExistence As Boolean = False
@@ -19,6 +20,9 @@
 
         Me.Item = Item.GetItemByID(Me.AdditionalValue.GetSplit(1))
         Me.ItemID = CInt(Me.AdditionalValue.GetSplit(0))
+        If Me.AdditionalValue.Split(",").Count > 1 Then
+            Me.LevelName = Me.AdditionalValue.GetSplit(2)
+        End If
 
         Me.Textures(0) = Me.Item.Texture
         If Me.ActionValue = 0 Then
@@ -89,7 +93,10 @@
             checkedExistence = True
 
             If ItemExists(Me) = True Then
-                RemoveItem(Me)
+                If Me.LevelName = "" Then
+                    Me.LevelName = Screen.Level.LevelFile
+                End If
+                RemoveItem(Me, Me.LevelName)
             End If
         End If
 
@@ -139,7 +146,10 @@
 
     Public Overrides Sub ClickFunction()
         If CanInteractWith Then
-            RemoveItem(Me)
+            If Me.LevelName = "" Then
+                Me.LevelName = Screen.Level.LevelFile
+            End If
+            RemoveItem(Me, Me.LevelName)
             If Me.Item.OriginalName.Contains("HM") Then
                 SoundManager.PlaySound("Receive_HM", True)
             Else
@@ -191,15 +201,15 @@
         End If
     End Function
 
-    Public Shared Sub RemoveItem(ByVal ItemObject As ItemObject)
+    Public Shared Sub RemoveItem(ByVal ItemObject As ItemObject, ByVal LevelName As String)
         Screen.Level.Entities.Remove(ItemObject)
 
         If Core.Player.ItemData = "" Then
-            Core.Player.ItemData = (Screen.Level.LevelFile & "|" & ItemObject.ItemID.ToString()).ToLower()
+            Core.Player.ItemData = (LevelName & "|" & ItemObject.ItemID.ToString()).ToLower()
         Else
             Dim IDs() As String = Core.Player.ItemData.Split(CChar(","))
-            If IDs.Contains((Screen.Level.LevelFile & "|" & ItemObject.ItemID.ToString()).ToLower()) = False Then
-                Core.Player.ItemData &= "," & (Screen.Level.LevelFile & "|" & ItemObject.ItemID.ToString()).ToLower()
+            If IDs.Contains((LevelName & "|" & ItemObject.ItemID.ToString()).ToLower()) = False Then
+                Core.Player.ItemData &= "," & (LevelName & "|" & ItemObject.ItemID.ToString()).ToLower()
             End If
         End If
     End Sub
