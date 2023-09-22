@@ -163,6 +163,18 @@
                 Me._name = value
             End Set
         End Property
+        Public Property Description() As String
+            Get
+                If Localization.TokenExists("move_desc_" & Me.ID.ToString) = True Then
+                    Return Localization.GetString("move_desc_" & Me.ID.ToString)
+                Else
+                    Return Me._description
+                End If
+            End Get
+            Set(value As String)
+                Me._description = value
+            End Set
+        End Property
 
         Private _ID As Integer = 1
         Public OriginalID As Integer = 1 'Original MoveID, remove when not needed anymore. This stores the original move ID when the move isn't programmed yet.
@@ -179,7 +191,7 @@
         Public OriginalPP As Integer = 35
         Public Category As Categories = Categories.Physical
         Public ContestCategory As ContestCategories = ContestCategories.Tough
-        Public Description As String = "Pounds with forelegs or tail."
+        Public _description As String = "Pounds with forelegs or tail."
         Public CriticalChance As Integer = 1
         Public IsHMMove As Boolean = False
         Public Target As Targets = Targets.OneAdjacentTarget

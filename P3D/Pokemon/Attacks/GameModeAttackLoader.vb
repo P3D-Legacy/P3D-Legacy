@@ -195,6 +195,9 @@
                     If move.ID >= 1000 Then
                         Dim testMove As Attack = Attack.GetAttackByID(move.ID)
                         If testMove.IsDefaultMove = True Then
+                            If Localization.TokenExists("move_name_" & move.ID.ToString) = True Then
+                                move.Name = Localization.GetString("move_name_" & move.ID.ToString)
+                            End If
                             LoadedMoves.Add(move) 'Add the move.
                         Else
                             Logger.Log(Logger.LogTypes.ErrorMessage, "GameModeAttackLoader.vb: User defined moves are not allowed to have an ID of an already existing move or an ID below 1000. The ID for the move loaded from """ & file & """ has the ID " & move.ID.ToString() & ", which is the ID of an already existing move (" & testMove.Name & ").")
