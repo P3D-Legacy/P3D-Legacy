@@ -196,6 +196,10 @@
 
             Me.OppPokemon = WildPokemon
 
+            If Me.OppPokemon.CatchRate = -1 Then
+                CanCatch = False
+            End If
+
             If Core.Player.Pokemons.Count = 0 Then
                 Dim p1 As Pokemon = Pokemon.GetPokemonByID(247)
                 p1.Generate(15, True)
