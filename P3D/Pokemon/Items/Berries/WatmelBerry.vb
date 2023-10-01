@@ -5,6 +5,8 @@ Public Class WatmelBerry
 
     Inherits Berry
 
+        Public Overrides ReadOnly Property CanBeUsed As Boolean = False
+        Public Overrides ReadOnly Property CanBeUsedInBattle As Boolean = False
         Public Sub New()
             MyBase.New(64800, "Pokéblock ingredient. Plant in loamy soil to grow Watmel.", "25.0cm", "Soft", 1, 2)
 

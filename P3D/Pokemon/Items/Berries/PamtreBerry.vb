@@ -5,6 +5,8 @@ Namespace Items.Berries
 
         Inherits Berry
 
+        Public Overrides ReadOnly Property CanBeUsed As Boolean = False
+        Public Overrides ReadOnly Property CanBeUsedInBattle As Boolean = False
         Public Sub New()
             MyBase.New(64800, "Pokéblock ingredient. Plant in loamy soil to grow Pamtre.", "24.4cm", "Very Soft", 1, 2)
 
