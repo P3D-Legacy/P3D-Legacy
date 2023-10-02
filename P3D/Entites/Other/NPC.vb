@@ -505,7 +505,7 @@
                 Me.Rotation.Y = GetRotationFromInteger(ChangeRotation).Y
             End If
         End If
-
+        Me.Update()
         MyBase.UpdateEntity()
     End Sub
 
