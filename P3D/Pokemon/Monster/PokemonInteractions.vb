@@ -245,7 +245,7 @@
             Case Pokemon.StatusProblems.Sleep
                 Select Case Core.Random.Next(0, 3)
                     Case 0
-                        Return New ReactionContainer("<name> seems~a little tiered.", MessageBulb.NotificationTypes.Poisoned)
+                        Return New ReactionContainer("<name> seems~a little tired.", MessageBulb.NotificationTypes.Poisoned)
                     Case 1
                         Return New ReactionContainer("<name> is somehow~fighting off sleep...", MessageBulb.NotificationTypes.Poisoned)
                     Case 2
@@ -315,7 +315,7 @@
                 Case 10
                     r = New ReactionContainer("<name> seems to be~angry for some reason.", MessageBulb.NotificationTypes.Angry)
                 Case 11
-                    r = New ReactionContainer("Your Pokémon turned to face~the other way, showing a~defiant expression. ", MessageBulb.NotificationTypes.Unsure)
+                    r = New ReactionContainer("Your Pokémon turned to face~the other way, showing a~defiant expression.", MessageBulb.NotificationTypes.Unsure)
                 Case 12
                     r = New ReactionContainer("<name> is looking~down steadily...", MessageBulb.NotificationTypes.Waiting)
                 Case 13
@@ -486,7 +486,7 @@
                     End If
                 Case 43
                     If IceAround() = True Then
-                        r = New ReactionContainer("Oh!~its slipping and came~over here for support.", MessageBulb.NotificationTypes.Exclamation)
+                        r = New ReactionContainer("Oh!~It's slipping and came~over here for support.", MessageBulb.NotificationTypes.Exclamation)
                     End If
                 Case 44
                     If IceAround() = True Then
