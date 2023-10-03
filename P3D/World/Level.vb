@@ -950,6 +950,10 @@ Public Class Level
                             OffsetmapEntities.RemoveAt(i)
                             i -= 1
                         Else
+                            If TryCast(OffsetmapEntities(i), NPC) IsNot Nothing Then
+                                CType(OffsetmapEntities(i), NPC).Update()
+                            End If
+
                             OffsetmapEntities(i).UpdateEntity()
                         End If
                     Else
