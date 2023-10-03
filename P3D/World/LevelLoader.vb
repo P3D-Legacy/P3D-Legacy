@@ -1223,7 +1223,7 @@
         End Select
 
         If isTriggered = True Then
-            Screen.Level.BackdropRenderer.AddBackdrop(New BackdropRenderer.Backdrop(BackdropType, Position, Rotation, Width, Height, Texture))
+            Screen.Level.BackdropRenderer.AddBackdrop(New BackdropRenderer.Backdrop(BackdropType, Position, Rotation, Vector3.One, New Vector2(Width, Height), Texture))
         End If
     End Sub
 

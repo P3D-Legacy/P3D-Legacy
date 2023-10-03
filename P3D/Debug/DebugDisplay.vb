@@ -1,63 +1,81 @@
-﻿Imports NAudio.Wave
+﻿Imports System.Reflection
+Imports System.Text
+Imports NAudio.Wave
 
 Public Class DebugDisplay
 
+    Private Shared ReadOnly StringBuilder As StringBuilder = New StringBuilder()
+    
     ''' <summary>
     ''' Renders the debug information.
     ''' </summary>
     Public Shared Sub Draw()
-        If Core.CurrentScreen.CanDrawDebug = True Then
-            Dim isDebugString As String = ""
-            If GameController.IS_DEBUG_ACTIVE = True Then
-                isDebugString = " (Debugmode / " & System.IO.File.GetLastWriteTime(System.Reflection.Assembly.GetExecutingAssembly.Location).ToString() & ")"
+        StringBuilder.Clear()
+        
+        If Core.CurrentScreen.CanDrawDebug Then
+            If GameController.IS_DEBUG_ACTIVE Then
+                StringBuilder.AppendFormat("{0} {1} {2} / FPS: {3:F0} (Debugmode / {4})", 
+                                           GameController.GAMENAME, 
+                                           GameController.GAMEDEVELOPMENTSTAGE, 
+                                           GameController.GAMEVERSION, 
+                                           Core.GameInstance.FpsMonitor.Value, 
+                                           File.GetLastWriteTime(Assembly.GetExecutingAssembly().Location).ToString())
+                StringBuilder.AppendLine()
+            Else
+                StringBuilder.AppendFormat("{0} {1} {2} / FPS: {3:F0}", 
+                                           GameController.GAMENAME, 
+                                           GameController.GAMEDEVELOPMENTSTAGE, 
+                                           GameController.GAMEVERSION, 
+                                           Core.GameInstance.FpsMonitor.Value)
+                StringBuilder.AppendLine()
             End If
 
-            Dim ActionscriptActive As Boolean = True
-            If Core.CurrentScreen.Identification = Screen.Identifications.OverworldScreen Then
-                ActionscriptActive = CType(Core.CurrentScreen, OverworldScreen).ActionScript.IsReady
-            End If
-
-            Dim cameraInformation = ""
-            If Not Screen.Camera Is Nothing Then
-
-                Dim thirdPersonString As String = ""
+            If Screen.Camera IsNot Nothing Then
                 If Screen.Camera.Name = "Overworld" Then
-                    Dim c As OverworldCamera = CType(Screen.Camera, OverworldCamera)
-                    If c.ThirdPerson = True Then
-                        thirdPersonString = " / " & c.ThirdPersonOffset.ToString()
+                    Dim camera = CType(Screen.Camera, OverworldCamera)
+                    
+                    If camera.ThirdPerson Then
+                        StringBuilder.AppendFormat("{0} / {1}", Screen.Camera.Position.ToString(), camera.ThirdPersonOffset.ToString())
+                        StringBuilder.AppendLine()
+                        StringBuilder.AppendFormat("{0:F} ; {1:F}", Screen.Camera.Yaw, Screen.Camera.Pitch)
+                        StringBuilder.AppendLine()
+                    Else
+                        StringBuilder.AppendLine(Screen.Camera.Position.ToString())
+                        StringBuilder.AppendFormat("{0:F} ; {1:F}", Screen.Camera.Yaw, Screen.Camera.Pitch)
+                        StringBuilder.AppendLine()
                     End If
+                Else
+                    StringBuilder.AppendLine(Screen.Camera.Position.ToString())
+                    StringBuilder.AppendFormat("{0:F} ; {1:F}", Screen.Camera.Yaw, Screen.Camera.Pitch)
+                    StringBuilder.AppendLine()
                 End If
-
-                cameraInformation = Screen.Camera.Position.ToString() & thirdPersonString & Environment.NewLine & Screen.Camera.Yaw & "; " & Screen.Camera.Pitch & Environment.NewLine
-
             End If
-            Dim MapPath As String = ""
+
+            StringBuilder.AppendFormat("E: {0}/{1} (Draw Calls: {2})", _drawnVertices, _maxVertices, Core.GraphicsManager.GraphicsDevice.Metrics.DrawCount)
+            StringBuilder.AppendLine()
+
+            If TypeOf Core.CurrentScreen Is OverworldScreen Then
+                StringBuilder.AppendFormat("C: {0} A: {1}", _maxDistance, CType(Core.CurrentScreen, OverworldScreen).ActionScript.IsReady)
+                StringBuilder.AppendLine()
+            Else 
+                StringBuilder.AppendFormat("C: {0}", _maxDistance)
+                StringBuilder.AppendLine()
+            End If
+            
             If Screen.Level IsNot Nothing Then
-                MapPath = Environment.NewLine & "MapPath: " & Screen.Level.LevelFile.ToString
+                StringBuilder.AppendFormat("Map Path: {0}", Screen.Level.LevelFile)
+                StringBuilder.AppendLine()
             End If
 
-            Dim s As String = GameController.GAMENAME & " " & GameController.GAMEDEVELOPMENTSTAGE & " " & GameController.GAMEVERSION & " / FPS: " & Math.Round(Core.GameInstance.FPSMonitor.Value, 0) & isDebugString & Environment.NewLine &
-                cameraInformation &
-                "E: " & _drawnVertices.ToString() & "/" & _maxVertices.ToString() & Environment.NewLine &
-                "C: " & _maxDistance.ToString() & " A: " & ActionscriptActive.ToString() &
-                MapPath
-
-            If Core.GameOptions.ContentPackNames.Count() > 0 Then
-                Dim contentPackString As String = ""
-                For Each ContentPackName As String In Core.GameOptions.ContentPackNames
-                    If contentPackString <> "" Then
-                        contentPackString &= ", "
-                    End If
-                    contentPackString &= ContentPackName
-                Next
-                contentPackString = "Loaded ContentPacks: " & contentPackString
-                s &= Environment.NewLine & contentPackString
+            If Core.GameOptions.ContentPackNames.Length > 0 Then
+                StringBuilder.AppendFormat("Loaded Content Packs: {0}", String.Join(", ", Core.GameOptions.ContentPackNames))
+                StringBuilder.AppendLine()
             End If
 
-            Core.SpriteBatch.DrawInterfaceString(FontManager.MainFont, s, New Vector2(7, 7), Color.Black)
-            Core.SpriteBatch.DrawInterfaceString(FontManager.MainFont, s, New Vector2(5, 5), Color.White)
+            Dim resultString As String = StringBuilder.ToString()
 
-            ' DrawMediaInfo() To test music
+            Core.SpriteBatch.DrawInterfaceString(FontManager.MainFont, resultString, New Vector2(7, 7), Color.Black)
+            Core.SpriteBatch.DrawInterfaceString(FontManager.MainFont, resultString, New Vector2(5, 5), Color.White)
         End If
     End Sub
 

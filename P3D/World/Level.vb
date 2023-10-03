@@ -740,7 +740,6 @@ Public Class Level
         Me.StartOffsetMapUpdate()
 
         Me._backdropRenderer = New BackdropRenderer()
-        Me._backdropRenderer.Initialize()
     End Sub
 
     ''' <summary>
