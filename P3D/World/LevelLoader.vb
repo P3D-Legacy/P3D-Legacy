@@ -1205,6 +1205,9 @@
         Dim TextureRectangle As Rectangle = CType(GetTag(Tags, "Texture"), Rectangle)
         Dim Texture As Texture2D = TextureManager.GetTexture(TexturePath, TextureRectangle)
 
+        Dim AnimationSpeed As Integer = CInt(GetTag(Tags, "AnimationSpeed"))
+        Dim FrameCount As Integer = CInt(GetTag(Tags, "FrameCount"))
+
         Dim trigger As String = ""
         Dim isTriggered As Boolean = True
 
@@ -1223,7 +1226,7 @@
         End Select
 
         If isTriggered = True Then
-            Screen.Level.BackdropRenderer.AddBackdrop(New BackdropRenderer.Backdrop(BackdropType, Position, Rotation, Width, Height, Texture))
+            Screen.Level.BackdropRenderer.AddBackdrop(New BackdropRenderer.Backdrop(BackdropType, Position, Rotation, Width, Height, Texture, AnimationSpeed, FrameCount))
         End If
     End Sub
 

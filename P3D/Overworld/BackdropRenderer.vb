@@ -66,11 +66,13 @@
             Water
             Grass
             Texture
+            Animation
         End Enum
 
         Private _vertices As New List(Of VertexPositionNormalTangentTexture)
         Private _backdropType As BackdropTypes = BackdropTypes.Grass
         Private _backdropTexture As Texture2D = Nothing
+        Private _customTexture As Texture2D = Nothing
         Private _worldMatrix As Matrix = Matrix.Identity
         Private _position As Vector3
         Private _rotation As Vector3
@@ -79,6 +81,7 @@
         Private _height As Integer = 0
 
         Dim WaterAnimation As Animation
+        Dim CustomAnimation As Animation
 
         Private _waterAnimationDelay As Single = CSng(1 / Water.WaterSpeed)
         Private _waterAnimationIndex As Integer = 0
@@ -89,7 +92,7 @@
             Me.New(BackdropType, Position, Rotation, Width, Height, Nothing)
         End Sub
 
-        Public Sub New(ByVal BackdropType As String, ByVal Position As Vector3, ByVal Rotation As Vector3, ByVal Width As Integer, ByVal Height As Integer, ByVal BackdropTexture As Texture2D)
+        Public Sub New(ByVal BackdropType As String, ByVal Position As Vector3, ByVal Rotation As Vector3, ByVal Width As Integer, ByVal Height As Integer, ByVal BackdropTexture As Texture2D, Optional ByVal AnimationSpeed As Integer = Nothing, Optional FrameCount As Integer = Nothing)
             _shader = Content.Load(Of Effect)("Effects\BackdropShader")
 
             _vertices.Add(New VertexPositionNormalTangentTexture(New Vector3(0, 0, 0), New Vector3(-1, 0, 0), New Vector3(0, 1, 0), New Vector2(0, 0)))
@@ -114,6 +117,28 @@
                     Me._backdropType = BackdropTypes.Grass
                 Case "texture"
                     Me._backdropType = BackdropTypes.Texture
+                Case "animation"
+                    Me._backdropType = BackdropTypes.Animation
+                    _customTexture = BackdropTexture
+                    Dim _animationspeed As Integer
+                    Dim _frameCount As Integer
+
+                    If AnimationSpeed = Nothing Then
+                        _animationspeed = Water.WaterSpeed
+                    Else
+                        _animationspeed = AnimationSpeed
+                    End If
+
+                    If FrameCount = Nothing Then
+                        _frameCount = 3
+                    Else
+                        _frameCount = FrameCount
+                    End If
+
+                    Dim AnimationSize As Size = New Size(CInt(_customTexture.Width / _frameCount), CInt(_customTexture.Height))
+                    CustomAnimation = New Animation(_customTexture, 1, _frameCount, AnimationSize.Width, AnimationSize.Height, _animationspeed, 0, 0)
+                    _backdropTexture = TextureManager.GetTexture(_customTexture, CustomAnimation.TextureRectangle)
+
             End Select
 
             Me.Update()
@@ -149,6 +174,19 @@
                         _backdropTexture = TextureManager.GetTexture("Backdrops\Grass", New Rectangle(x, 0, GrassSize.Width, GrassSize.Height))
                         Me._setTexture = True
                     End If
+                Case BackdropTypes.Animation
+                    If Core.GameOptions.GraphicStyle = 1 Then
+                        If Not CustomAnimation Is Nothing Then
+                            CustomAnimation.Update(0.005)
+                            _backdropTexture = TextureManager.GetTexture(_customTexture, CustomAnimation.TextureRectangle)
+                        End If
+                    Else
+                        If Me._setTexture = False Then
+                            _backdropTexture = TextureManager.GetTexture(_customTexture, CustomAnimation.TextureRectangle)
+                            Me._setTexture = True
+                        End If
+                    End If
+
             End Select
         End Sub
 
