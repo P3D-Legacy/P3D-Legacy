@@ -28,7 +28,39 @@ Public Class DebugDisplay
                     End If
                 End If
 
-                cameraInformation = Screen.Camera.Position.ToString() & thirdPersonString & Environment.NewLine & Screen.Camera.Yaw & "; " & Screen.Camera.Pitch & Environment.NewLine
+                Dim CompassText As String = ""
+                If Screen.Camera IsNot Nothing Then
+                    Dim PlayerCompass As String = ""
+                    If thirdPersonString <> "" Then
+                        Select Case Screen.Camera.GetPlayerFacingDirection
+                            Case 0
+                                PlayerCompass = "P: 0/n"
+                            Case 1
+                                PlayerCompass = "P: 1/w"
+                            Case 2
+                                PlayerCompass = "P: 2/s"
+                            Case 3
+                                PlayerCompass = "P: 3/e"
+                        End Select
+                    End If
+                    Dim CameraCompass As String = ""
+                    Select Case Screen.Camera.GetFacingDirection()
+                        Case 0
+                            CameraCompass = "C: 0/n"
+                        Case 1
+                            CameraCompass = "C: 1/w"
+                        Case 2
+                            CameraCompass = "C: 2/s"
+                        Case 3
+                            CameraCompass = "C: 3/e"
+                    End Select
+                    If thirdPersonString <> "" Then
+                        CompassText = "Compass: " & PlayerCompass & ", " & CameraCompass
+                    Else
+                        CompassText = "Compass: " & CameraCompass
+                    End If
+                End If
+                cameraInformation = Screen.Camera.Position.ToString() & thirdPersonString & Environment.NewLine & Screen.Camera.Yaw & "; " & Screen.Camera.Pitch & Environment.NewLine & CompassText & Environment.NewLine
 
             End If
             Dim MapPath As String = ""
