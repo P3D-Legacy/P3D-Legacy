@@ -30,6 +30,17 @@ Public Class DebugDisplay
 
                 Dim CompassText As String = ""
                 If Screen.Camera IsNot Nothing Then
+                    Dim CameraCompass As String = ""
+                    Select Case Screen.Camera.GetFacingDirection()
+                        Case 0
+                            CameraCompass = "C: 0/n"
+                        Case 1
+                            CameraCompass = "C: 1/w"
+                        Case 2
+                            CameraCompass = "C: 2/s"
+                        Case 3
+                            CameraCompass = "C: 3/e"
+                    End Select
                     Dim PlayerCompass As String = ""
                     If thirdPersonString <> "" Then
                         Select Case Screen.Camera.GetPlayerFacingDirection
@@ -42,20 +53,7 @@ Public Class DebugDisplay
                             Case 3
                                 PlayerCompass = "P: 3/e"
                         End Select
-                    End If
-                    Dim CameraCompass As String = ""
-                    Select Case Screen.Camera.GetFacingDirection()
-                        Case 0
-                            CameraCompass = "C: 0/n"
-                        Case 1
-                            CameraCompass = "C: 1/w"
-                        Case 2
-                            CameraCompass = "C: 2/s"
-                        Case 3
-                            CameraCompass = "C: 3/e"
-                    End Select
-                    If thirdPersonString <> "" Then
-                        CompassText = "Compass: " & PlayerCompass & ", " & CameraCompass
+                        CompassText = "Compass: " & CameraCompass & "  " & PlayerCompass
                     Else
                         CompassText = "Compass: " & CameraCompass
                     End If
