@@ -4,7 +4,7 @@
 
     Shared BlockTexturesTemp As New Dictionary(Of String, Texture2D)
 
-
+    Dim CurrentSeason As World.Seasons
     Dim AnimationNames As List(Of String)
 
     Dim Animations As List(Of Animation)
@@ -70,6 +70,7 @@
                 For i = 0 To Me.rows(n) - 1
                     For j = 0 To Me.columns(n) - 1
                         If SeasonColorTexture <> "" Then
+                            CurrentSeason = P3D.World.CurrentSeason
                             BlockTexturesTemp.Add(AnimationNames(n) & "_" & (j + columns(n) * i).ToString, P3D.World.GetSeasonTexture(TextureManager.GetTexture("Textures\Seasons\" & Me.SeasonColorTexture), TextureManager.GetTexture(AdditionalValue, New Rectangle(r.X + r.Width * j, r.Y + r.Height * i, r.Width, r.Height))))
                         Else
                             BlockTexturesTemp.Add(AnimationNames(n) & "_" & (j + columns(n) * i).ToString, TextureManager.GetTexture(AdditionalValue, New Rectangle(r.X + r.Width * j, r.Y + r.Height * i, r.Width, r.Height)))
@@ -190,6 +191,10 @@
 
     Private Sub ChangeTexture(ByVal n As Integer)
         If BlockTexturesTemp.Count = 0 Then
+            ClearAnimationResources()
+            CreateBlockTextureTemp()
+        End If
+        If Me.CurrentSeason <> P3D.World.CurrentSeason Then
             ClearAnimationResources()
             CreateBlockTextureTemp()
         End If
