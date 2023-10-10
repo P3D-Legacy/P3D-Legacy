@@ -164,7 +164,7 @@
                             turns = turns + 4
                         End If
 
-                        If turns > 0 Then
+                        If turns > 0 OrElse ForceCameraTurn = True Then
                             Screen.Camera.Turn(turns, ForceCameraTurn)
                             Started = True
                             Screen.Level.OverworldPokemon.Visible = False
