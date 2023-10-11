@@ -586,25 +586,53 @@
                 End If
             Case Movements.Walk
                 If Me.Moved = 0.0F Then
-                    If Core.Random.Next(0, 120) = 0 Then
+                    If Core.Random.Next(0, 129) = 0 Then
+                        Dim newRotation As Integer = Me.faceRotation
                         If Core.Random.Next(0, 3) = 0 Then
-                            Dim newRotation As Integer = Me.faceRotation
                             While newRotation = Me.faceRotation
                                 newRotation = Core.Random.Next(0, 4)
                             End While
-                            Me.faceRotation = newRotation
                         End If
-                        Dim contains As Boolean = False
-                        Dim newPosition As Vector3 = (GetMove() / Speed) + Me.Position
-                        If CheckCollision(newPosition) = True Then
+                        Dim newPosition As Vector3 = (GetMove(newRotation) / Speed) + Me.Position
+                        Dim canMove As Boolean = False
+
+                        For Each r As Rectangle In Me.MoveRectangles
+                            If r.Contains(New Point(CInt(newPosition.X), CInt(newPosition.Z))) = True AndAlso CheckCollision(newPosition) = True Then
+                                canMove = True
+                                Exit For
+                            End If
+                        Next
+                        Dim CanRotate As New List(Of Integer)
+                        While canMove = False
+                            newRotation += 1
+                            If newRotation > 3 Then
+                                newRotation -= 4
+                            End If
+                            newPosition = (GetMove(newRotation) / Speed) + Me.Position
                             For Each r As Rectangle In Me.MoveRectangles
                                 If r.Contains(New Point(CInt(newPosition.X), CInt(newPosition.Z))) = True Then
-                                    contains = True
-                                    Exit For
+                                    If CheckCollision(newPosition) = True Then
+                                        canMove = True
+                                        Exit While
+                                    Else
+                                        If CanRotate.Contains(newRotation) = False AndAlso newRotation <> Me.faceRotation Then
+                                            CanRotate.Add(newRotation)
+                                        End If
+                                    End If
                                 End If
                             Next
-                            If contains = True Then
-                                Moved = 1.0F
+                            If newRotation = Me.faceRotation Then
+                                Exit While
+                            End If
+                        End While
+
+                        Me.faceRotation = newRotation
+
+                        If canMove = True Then
+                            Moved = 1.0F
+                        Else
+                            If CanRotate.Count > 0 Then
+                                Me.faceRotation = CanRotate(Random.Next(0, CanRotate.Count))
                             End If
                         End If
                     End If
