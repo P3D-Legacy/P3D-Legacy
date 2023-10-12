@@ -283,7 +283,7 @@ Public Class CoreSpriteBatch
     ''' <param name="Font">A font for diplaying text.</param>
     ''' <param name="Text">A text string.</param>
     ''' <param name="Position">The location (in screen coordinates) to draw the sprite.</param>
-    ''' <param name="Color">The color to tint a sprite. Use Color.White for full color with no tinting.</param>
+    ''' <param name="Color">The color to tint a sprite. Use Color.White for full color with no tinting.</param>interfacescal
     ''' <param name="Rotation">Specifies the angle (in radians) to rotate the sprite about its center.</param>
     ''' <param name="Origin">The sprite origin; the default is (0,0) which represents the upper-left corner.</param>
     ''' <param name="Scale">Scale factor.</param>
@@ -307,10 +307,22 @@ Public Class CoreSpriteBatch
     ''' </summary>
     Public ReadOnly Property InterfaceScale() As Double
         Get
-            If Core.windowSize.Height < Core.CurrentScreen.GetScreenScaleMinimum().Height Or Core.windowSize.Width < Core.CurrentScreen.GetScreenScaleMinimum().Width Then
-                Return 0.5D
-            End If
-            Return 1D
+            Select Case Core.GameOptions.InterfaceScale
+                Case 1
+                    Return 0.5D
+                Case 2
+                    Return 1D
+                Case 3
+                    Return 2d
+                Case Else
+                    If Core.windowSize.Height < Core.CurrentScreen.GetScreenScaleMinimum().Height Or Core.windowSize.Width < Core.CurrentScreen.GetScreenScaleMinimum().Width Then
+                        Return 0.5D
+                    End If
+                    If Core.windowSize.Height > Core.CurrentScreen.GetScreenScaleMaximum().Height Or Core.windowSize.Width > Core.CurrentScreen.GetScreenScaleMaximum().Width Then
+                        Return 2D
+                    End If
+                    Return 1D
+            End Select
         End Get
     End Property
 

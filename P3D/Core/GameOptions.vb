@@ -15,7 +15,16 @@
     Public MaxOffsetLevel As Integer = 0
     Public UpdateDisabled As Boolean = False
     Public Extras As New List(Of String)
+    Private _interfaceScale As Integer = 0
 
+    Public Property InterfaceScale As Integer
+        Get
+            Return _interfaceScale
+        End Get
+        Set(value As Integer)
+            _interfaceScale = CInt(value)
+        End Set
+    End Property
     Public Sub LoadOptions()
         KeyBindings.CreateKeySave(False)
         If Directory.Exists(GameController.GamePath & "\Save\") = False Then
@@ -109,6 +118,8 @@
                         End If
                     Case "updatedisabled"
                         UpdateDisabled = CBool(value)
+                    Case "interfacescale"
+                        InterfaceScale = CInt(value)
                 End Select
             End If
         Next
@@ -153,6 +164,7 @@
                 "ForceMusic|" & Me.ForceMusic.ToNumberString() & Environment.NewLine &
                 "MaxOffsetLevel|" & Me.MaxOffsetLevel.ToString() & Environment.NewLine &
                 "UpdateDisabled|" & Me.UpdateDisabled.ToNumberString() & Environment.NewLine &
+                "InterfaceScale|" & Me.InterfaceScale.ToString() & Environment.NewLine &
                 "Extras|" & String.Join(";", Me.Extras)
 
             File.WriteAllText(GameController.GamePath & "\Save\options.dat", Data)
@@ -184,6 +196,7 @@
             "ForceMusic|0" & Environment.NewLine &
             "MaxOffsetLevel|0" & Environment.NewLine &
             "UpdateDisabled|0" & Environment.NewLine &
+            "InterfaceScale|0" & Environment.NewLine &
             "Extras|"
 
         File.WriteAllText(GameController.GamePath & "\Save\options.dat", s)

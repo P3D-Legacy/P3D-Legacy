@@ -447,6 +447,16 @@ Public MustInherit Class Screen
     End Function
 
     ''' <summary>
+    ''' Returns the maximum size for the screen size to display a regular interface before switching to the large size.
+    ''' </summary>
+    ''' <returns></returns>
+    ''' <remarks>The default size is 800x620 pixels.</remarks>
+    Public Overridable Function GetScreenScaleMaximum() As Size
+        '// Default size: 2560x1440 pixels.
+        Return New Size(2560, 1440)
+    End Function
+
+    ''' <summary>
     ''' Returns the spritebatch that should render a font.
     ''' </summary>
     ''' <returns></returns>

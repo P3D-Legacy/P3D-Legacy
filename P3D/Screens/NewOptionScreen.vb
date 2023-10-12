@@ -13,6 +13,7 @@ Public Class NewOptionScreen
 	Dim ShowBattleAnimations As Integer = 1
 	Dim DiagonalMovement As Boolean = True
 	Dim Difficulty As Integer = 0
+	Dim InterfaceScale As Integer = 0
 	Dim BattleStyle As Integer = 1
 	Dim LoadOffsetMaps As Integer = 1
 	Dim ViewBobbing As Boolean = True
@@ -130,6 +131,7 @@ Public Class NewOptionScreen
 		Me.Sound = CInt(SoundManager.Volume * 100)
 		Me.RenderDistance = Core.GameOptions.RenderDistance
 		Me.GraphicStyle = Core.GameOptions.GraphicStyle
+		Me.InterfaceScale = Core.GameOptions.InterfaceScale
 		Me.ShowBattleAnimations = Core.Player.ShowBattleAnimations
 		Me.DiagonalMovement = Core.Player.DiagonalMovement
 		Me.BattleStyle = Core.Player.BattleStyle
@@ -749,7 +751,6 @@ Public Class NewOptionScreen
 			End If
 		Next
 		If ScrollControl IsNot Nothing Then
-			cPosition.X += 332
 		End If
 
 		_cursorDestPosition = cPosition
@@ -942,8 +943,16 @@ Public Class NewOptionScreen
 
 					Me.ControlList.Add(New ScrollBar(New Vector2(Delta_X + 100, Delta_Y + 120), 400, Localization.GetString("option_screen_game_difficulty", "Difficulty"), Me.Difficulty, 0, 2, AddressOf ChangeDifficulty, d, 2))
 				End If
-				Me.ControlList.Add(New ToggleButton(New Vector2(Delta_X + 100, Delta_Y + 180), 3, 64, Localization.GetString("option_screen_game_viewbobbing", "View Bobbing"), Me.ViewBobbing, AddressOf ToggleBobbing, {Localization.GetString("global_off", "Off"), Localization.GetString("global_on", "On")}.ToList(), 3))
-				Me.ControlList.Add(New CommandButton(New Vector2(Delta_X + 530 + 24, Delta_Y + 327), 1, 48, Localization.GetString("global_back", "Back"), AddressOf SwitchToMain, 4))
+				Dim s As New Dictionary(Of Integer, String)
+				s.Add(0, Localization.GetString("option_screen_game_interfacescale_automatic", "Automatic"))
+				s.Add(1, "0.5x")
+				s.Add(2, "1x")
+				s.Add(3, "2x")
+
+				Me.ControlList.Add(New ScrollBar(New Vector2(Delta_X + 100, Delta_Y + 180), 400, Localization.GetString("option_screen_game_interfacescale", "Interface Scale"), Me.InterfaceScale, 0, 3, AddressOf ChangeInterfaceScale, s, 3))
+
+				Me.ControlList.Add(New ToggleButton(New Vector2(Delta_X + 100, Delta_Y + 240), 3, 64, Localization.GetString("option_screen_game_viewbobbing", "View Bobbing"), Me.ViewBobbing, AddressOf ToggleBobbing, {Localization.GetString("global_off", "Off"), Localization.GetString("global_on", "On")}.ToList(), 4))
+				Me.ControlList.Add(New CommandButton(New Vector2(Delta_X + 530 + 24, Delta_Y + 327), 1, 48, Localization.GetString("global_back", "Back"), AddressOf SwitchToMain, 5))
 
 			Case 2 ' "Graphics" from the Options menu.
 				Me.ControlList.Add(New ScrollBar(New Vector2(Delta_X + 100, Delta_Y + 40), 400, Localization.GetString("option_screen_graphics_fov", "Field of View"), CInt(Me.FOV), 45, 120, AddressOf ChangeFOV, 1))
@@ -1074,6 +1083,7 @@ Public Class NewOptionScreen
 		Me.Sound = 50
 		Me.RenderDistance = 2
 		Me.GraphicStyle = 1
+		Me.InterfaceScale = 0
 		Me.ShowBattleAnimations = 1
 		Me.DiagonalMovement = False
 		Me.Difficulty = 0
@@ -1095,6 +1105,7 @@ Public Class NewOptionScreen
 		SoundManager.Muted = CBool(Me.Muted)
 		Core.GameOptions.RenderDistance = Me.RenderDistance
 		Core.GameOptions.GraphicStyle = Me.GraphicStyle
+		Core.GameOptions.InterfaceScale = Me.InterfaceScale
 		If PreScreen.Identification <> Identifications.MainMenuScreen Then
 			Camera.CreateNewProjection(Me.FOV)
 			TextBox.TextSpeed = Me.TextSpeed
@@ -1250,6 +1261,9 @@ Public Class NewOptionScreen
 
 	Private Sub ChangeDifficulty(ByVal c As ScrollBar)
 		Me.Difficulty = c.Value
+	End Sub
+	Private Sub ChangeInterfaceScale(ByVal c As ScrollBar)
+		Me.InterfaceScale = c.Value
 	End Sub
 
 #End Region

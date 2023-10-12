@@ -145,6 +145,7 @@
     Public Sub Draw(ByVal Position As Vector2, Optional ByVal DrawBox As Boolean = True, Optional ByVal Size As Single = 1.0F)
         If Me.Showing = True Then
             With Core.SpriteBatch
+                Dim sizeMultiplier As Integer = CInt(3 * Math.Ceiling(Core.SpriteBatch.InterfaceScale))
                 'Bounding box
                 If DrawBox Then
                     Dim MaxWidth = 0
@@ -156,7 +157,7 @@
                             MaxWidth = 48
                         End If
                     Next
-                    Canvas.DrawImageBorder(TextureManager.GetTexture("GUI\Overworld\ChooseBox", New Rectangle(0, 0, 48, 48), ""), 3, New Rectangle(CInt(Position.X), CInt(Position.Y), CInt((MaxWidth * 3) * Size), CInt((48 * Size) * Options.Count)), True)
+                    Canvas.DrawImageBorder(TextureManager.GetTexture("GUI\Overworld\ChooseBox", New Rectangle(0, 0, 48, 48), ""), sizeMultiplier, New Rectangle(CInt(Position.X), CInt(Position.Y), CInt((MaxWidth * sizeMultiplier) * Size), CInt(48 * Size * Math.Ceiling(Core.SpriteBatch.InterfaceScale) * Options.Count)), False)
                 End If
                 'Text
                 For i = 0 To Options.Count - 1
@@ -165,17 +166,18 @@
                         Case "textfont", "braille"
                             useSize = 2 * Size
                     End Select
-                    .DrawString(Me.TextFont.SpriteFont, Options(i).Replace("[POKE]", "Poké"), New Vector2(CInt(Position.X + 48), CInt(Position.Y) + 32 + i * 48 * Size), Color.Black, 0.0F, Vector2.Zero, useSize, SpriteEffects.None, 0.0F)
+                    useSize = CInt(useSize * Math.Ceiling(Core.SpriteBatch.InterfaceScale))
+                    .DrawString(Me.TextFont.SpriteFont, Options(i).Replace("[POKE]", "Poké"), New Vector2(CInt(Position.X + CInt(48 * Math.Ceiling(Core.SpriteBatch.InterfaceScale))), CInt(Position.Y) + CInt((32 + i * 48 * Size) * Math.Ceiling(Core.SpriteBatch.InterfaceScale))), Color.Black, 0.0F, Vector2.Zero, useSize, SpriteEffects.None, 0.0F)
                 Next
                 'Cursor
-                .Draw(TextureManager.GetTexture("GUI\Overworld\ChooseBox"), New Rectangle(CInt(Position.X + 24), CInt(Position.Y) + 34 + CInt(index * 48 * Size), CInt(24 * Size), CInt(24 * Size)), New Rectangle(72, 0, 8, 8), Color.White)
+                .Draw(TextureManager.GetTexture("GUI\Overworld\ChooseBox"), New Rectangle(CInt(Position.X + CInt(24 * Math.Ceiling(Core.SpriteBatch.InterfaceScale))), CInt(Position.Y) + CInt((34 + CInt(index * 48 * Size)) * Math.Ceiling(Core.SpriteBatch.InterfaceScale)), CInt(24 * Size * Math.Ceiling(Core.SpriteBatch.InterfaceScale)), CInt(24 * Size * Math.Ceiling(Core.SpriteBatch.InterfaceScale))), New Rectangle(72, 0, 8, 8), Color.White)
             End With
         End If
     End Sub
 
     Public Sub Draw()
         If Me.Showing = True Then
-            Dim Position As Vector2 = New Vector2(CInt(Core.windowSize.Width / 2) - 48, Core.windowSize.Height - 160.0F - 96.0F - (Options.Count - 1) * 48)
+            Dim Position As Vector2 = New Vector2(CInt(Core.windowSize.Width / 2) - CInt(48 * Math.Ceiling(Core.SpriteBatch.InterfaceScale)), Core.windowSize.Height - CInt(160.0F * Math.Ceiling(Core.SpriteBatch.InterfaceScale)) - CInt(96.0F * Math.Ceiling(Core.SpriteBatch.InterfaceScale)) - CInt((Options.Count - 1) * 48 * Math.Ceiling(Core.SpriteBatch.InterfaceScale)))
             Me.Draw(Position)
         End If
     End Sub
