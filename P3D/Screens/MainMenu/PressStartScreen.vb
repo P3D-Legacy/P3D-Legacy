@@ -1533,6 +1533,7 @@ Public Class NewMainMenuScreen
                             Waterfall.ClearAnimationResources()
                             Water.AddDefaultWaterAnimationResources()
                             Waterfall.AddDefaultWaterAnimationResources()
+                            AnimatedBlock.ClearAnimationResources()
 
                             World.IsMainMenu = False
                             If _isGameJolt Then

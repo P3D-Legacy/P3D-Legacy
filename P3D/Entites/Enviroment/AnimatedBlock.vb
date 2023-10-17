@@ -191,13 +191,15 @@
     End Sub
 
     Private Sub ChangeTexture(ByVal n As Integer)
-        If BlockTexturesTemp.Count = 0 Then
-            ClearAnimationResources()
-            CreateBlockTextureTemp()
-        End If
-        If Me.CurrentSeason <> P3D.World.CurrentSeason Then
-            ClearAnimationResources()
-            CreateBlockTextureTemp()
+        If CurrentScreen.Identification = Screen.Identifications.OverworldScreen Then
+            If BlockTexturesTemp.Count = 0 Then
+                ClearAnimationResources()
+                CreateBlockTextureTemp()
+            End If
+            If Me.CurrentSeason <> P3D.World.CurrentSeason AndAlso SeasonColorTexture <> "" Then
+                ClearAnimationResources()
+                CreateBlockTextureTemp()
+            End If
         End If
         If Not Animations Is Nothing Then
             Dim i = Animations(n).CurrentRow
