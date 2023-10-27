@@ -171,7 +171,7 @@ Public Class World
         End If
 
         If Weather = Weathers.Mist Then
-            Screen.Effect.FogStart = -1
+            Screen.Effect.FogStart = 0
             Screen.Effect.FogEnd = 19
 
             Screen.Camera.FarPlane = 20
