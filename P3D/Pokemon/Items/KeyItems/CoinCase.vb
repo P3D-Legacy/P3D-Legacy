@@ -5,7 +5,7 @@ Namespace Items.KeyItems
 
         Inherits KeyItem
 
-        Public Overrides ReadOnly Property Description As String = "A case for holding coins obtained at the Game Corner. It holds up to 50,000 coins."
+        Public Overrides ReadOnly Property Description As String = "A case for holding coins obtained at the Game Corner."
         Public Overrides ReadOnly Property CanBeUsed As Boolean = True
 
         Public Sub New()
