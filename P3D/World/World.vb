@@ -28,6 +28,7 @@ Public Class World
         Sandstorm = 7
         Ash = 8
         Blizzard = 9
+        Mist = 10
     End Enum
 
     Public Enum EnvironmentTypes As Integer
@@ -166,6 +167,14 @@ Public Class World
             Screen.Effect.FogEnd = 20
 
             Screen.Camera.FarPlane = 24
+            GoTo endsub
+        End If
+
+        If Weather = Weathers.Mist Then
+            Screen.Effect.FogStart = -1
+            Screen.Effect.FogEnd = 19
+
+            Screen.Camera.FarPlane = 20
             GoTo endsub
         End If
 
@@ -469,6 +478,8 @@ endsub:
                 Return Weathers.Blizzard
             Case 10 ' Thunderstorm
                 Return Weathers.Thunderstorm
+            Case 11 'Mist
+                Return Weathers.Mist
         End Select
         Return Weathers.Clear
     End Function
@@ -499,6 +510,8 @@ endsub:
                 Return 9
             Case Weathers.Thunderstorm
                 Return 10
+            Case Weathers.Mist
+                Return 11
             Case Else
                 Return 0
         End Select
@@ -644,7 +657,7 @@ endsub:
     Private Shared WeatherOffset As New Vector2(0, 0)
     Private Shared ObjectsList As New List(Of Rectangle)
 
-    Public Shared NoParticlesList() As Weathers = {Weathers.Clear, Weathers.Sunny, Weathers.Fog}
+    Public Shared NoParticlesList() As Weathers = {Weathers.Clear, Weathers.Sunny, Weathers.Fog, Weathers.Mist}
 
     Public Shared Sub DrawWeather(ByVal MapWeather As Weathers)
         If NoParticlesList.Contains(MapWeather) = False Then
