@@ -1654,7 +1654,7 @@ Public Class GameModeSelectionScreen
             If dispName = "Kolben" Then
                 dispName = "Pokemon 3D"
             End If
-            Dim dispDescription As String = GameMode.Description
+            Dim dispDescription As String = GameMode.Description.Replace("~", Environment.NewLine).Replace("*", Environment.NewLine)
             Dim dispVersion As String = GameMode.Version
             Dim dispAuthor As String = GameMode.Author
 
