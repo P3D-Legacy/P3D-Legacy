@@ -516,7 +516,7 @@ Public Class NewOptionScreen
 			FontManager.LoadFonts()
 			MusicManager.PlayNoMusic()
 			ContentPackManager.Clear()
-			Water.WaterSpeed = 8
+			GameModeManager.ForceWaterSpeed = -1
 			For Each s As String In Core.GameOptions.ContentPackNames
 				ContentPackManager.Load(GameController.GamePath & "\ContentPacks\" & s & "\exceptions.dat")
 			Next

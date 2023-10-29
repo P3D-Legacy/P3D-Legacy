@@ -83,7 +83,7 @@
         Dim WaterAnimation As Animation
         Dim CustomAnimation As Animation
 
-        Private _waterAnimationDelay As Single = CSng(1 / Water.WaterSpeed)
+        Private _waterAnimationDelay As Single = CSng(1 / GameModeManager.ActiveGameMode.WaterSpeed)
         Private _waterAnimationIndex As Integer = 0
 
         Private _setTexture As Boolean = False
@@ -111,7 +111,7 @@
                 Case "water"
                     Me._backdropType = BackdropTypes.Water
                     Dim WaterSize As Size = New Size(CInt(TextureManager.GetTexture("Textures\Backdrops\Water").Width / 3), CInt(TextureManager.GetTexture("Textures\Backdrops\Water").Height))
-                    WaterAnimation = New Animation(TextureManager.GetTexture("Textures\Backdrops\Water"), 1, 3, WaterSize.Width, WaterSize.Height, Water.WaterSpeed, 0, 0)
+                    WaterAnimation = New Animation(TextureManager.GetTexture("Textures\Backdrops\Water"), 1, 3, WaterSize.Width, WaterSize.Height, GameModeManager.ActiveGameMode.WaterSpeed, 0, 0)
                     _backdropTexture = TextureManager.GetTexture("Textures\Backdrops\Water", WaterAnimation.TextureRectangle, "")
                 Case "grass"
                     Me._backdropType = BackdropTypes.Grass
@@ -124,7 +124,7 @@
                     Dim _frameCount As Integer
 
                     If AnimationSpeed = Nothing Then
-                        _animationspeed = Water.WaterSpeed
+                        _animationspeed = GameModeManager.ActiveGameMode.WaterSpeed
                     Else
                         _animationspeed = AnimationSpeed
                     End If

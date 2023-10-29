@@ -9,12 +9,10 @@
     Dim WaterAnimation As Animation
     Dim currentRectangle As New Rectangle(0, 0, 0, 0)
 
-    Public Shared Property WaterSpeed As Integer = 8
-
     Public Overrides Sub Initialize()
         MyBase.Initialize()
 
-        WaterAnimation = New Animation(TextureManager.GetTexture("Textures\Routes"), 1, 3, 16, 16, WaterSpeed, 15, 0)
+        WaterAnimation = New Animation(TextureManager.GetTexture("Textures\Routes"), 1, 3, 16, 16, GameModeManager.ActiveGameMode.WaterSpeed, 15, 0)
 
         CreateWaterTextureTemp()
     End Sub

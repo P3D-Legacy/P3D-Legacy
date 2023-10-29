@@ -10,7 +10,7 @@
                 Dim Lines() As String = System.IO.File.ReadAllLines(ContentPackFile)
                 For Each Line As String In Lines
                     If Line.GetSplit(0, "|").ToLower = "waterspeed" Then
-                        Water.WaterSpeed = CInt(Line.GetSplit(1, "|"))
+                        GameModeManager.ForceWaterSpeed = CInt(Line.GetSplit(1, "|"))
                     Else
                         Select Case Line.CountSplits("|")
                             Case 2 'ResolutionChange
