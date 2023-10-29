@@ -518,6 +518,8 @@ Namespace ScriptVersion2
             r(New ScriptCommand("player", "setrivalname", {New ScriptArgument("name", ScriptArgument.ArgumentTypes.Str)}.ToList(), "Sets the rival's name."))
             r(New ScriptCommand("player", "setrivalskin", {New ScriptArgument("skin", ScriptArgument.ArgumentTypes.Str)}.ToList(), "Sets the rival's skin."))
             r(New ScriptCommand("player", "setopacity", {New ScriptArgument("opacity", ScriptArgument.ArgumentTypes.Sng)}.ToList(), "Sets the player entity's opacity."))
+            r(New ScriptCommand("player", "setscriptsteps", {New ScriptArgument("stepAmount", ScriptArgument.ArgumentTypes.Int), New ScriptArgument("scriptPath", ScriptArgument.ArgumentTypes.Str)}.ToList(), "Executes a script file after having moved the given amount of steps."))
+            r(New ScriptCommand("player", "clearscriptsteps", "Clears the register created with @player.setscriptsteps, preventing the script from being executed."))
 
             ' Constructs:
             r(New ScriptCommand("player", "position", "sngarr", {New ScriptArgument("coordinate", ScriptArgument.ArgumentTypes.StrArr, {"x", "y", "z"}, True, "")}.ToList(), "Returns the position of the player. The normal coordinate combination is ""X,Y,Z"".", ",", True))
@@ -543,6 +545,7 @@ Namespace ScriptVersion2
             r(New ScriptCommand("player", "gamejoltid", "str", "Returns the player's GameJolt ID.", ",", True))
             r(New ScriptCommand("player", "haspokedex", "bool", "Returns if the player received the Pokédex.", ",", True))
             r(New ScriptCommand("player", "haspokegear", "bool", "Returns if the player received the Pokégear.", ",", True))
+            r(New ScriptCommand("player", "scriptsteps", "int", "Returns the amount of steps before the script as defined by @player.setscriptsteps is executed.", ",", True))
         End Sub
 
         Private Shared Sub DoNPC()

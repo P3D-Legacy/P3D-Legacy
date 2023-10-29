@@ -376,6 +376,18 @@
                     Dim newOpacity As Single = sng(argument.Replace("~", Screen.Level.OwnPlayer.Opacity.ToString().Replace(".", GameController.DecSeparator)))
                     Screen.Level.OwnPlayer.Opacity = newOpacity
                     IsReady = True
+                Case "setscriptsteps"
+                    If argument.Contains(",") = True Then
+                        Dim args() As String = argument.Split(CChar(","))
+                        Core.Player.ScriptSteps = CInt(args(0))
+                        ActionScript.RegisterID("SCRIPTSTEPS", "str", args(1))
+                    End If
+                    IsReady = True
+                Case "clearscriptsteps"
+                    ActionScript.UnregisterID("SCRIPTSTEPS", "str")
+                    ActionScript.UnregisterID("SCRIPTSTEPS")
+                    Core.Player.ScriptSteps = 0
+                    IsReady = True
                 Case Else
                     IsReady = True
             End Select

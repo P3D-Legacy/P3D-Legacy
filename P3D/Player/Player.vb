@@ -151,6 +151,15 @@
         End Set
     End Property
 
+    Public Property ScriptSteps() As Integer
+        Get
+            Return _scriptSteps
+        End Get
+        Set(value As Integer)
+            _scriptSteps = value
+        End Set
+    End Property
+
     Public Property SaveCreated() As String
         Get
             Return _saveCreated
@@ -399,6 +408,7 @@
     Private _lastSavePlace As String = "yourroom.dat"
     Private _lastSavePlacePosition As String = "1,0.1,3"
     Private _repelSteps As Integer = 0
+    Private _scriptSteps As Integer = 0
     Private _saveCreated As String = "Pre 0.21"
     Private _daycareSteps As Integer = 0
     Private _poisonSteps As Integer = 0
@@ -849,6 +859,8 @@
                         End If
                     Case "repelsteps"
                         RepelSteps = CInt(Value)
+                    Case "scriptsteps"
+                        ScriptSteps = CInt(Value)
                     Case "lastsaveplace"
                         LastSavePlace = Value
                     Case "lastsaveplaceposition"
@@ -1347,6 +1359,7 @@
             "LastRestPlacePosition|" & LastRestPlacePosition & Environment.NewLine &
             "DiagonalMovement|" & DiagonalMovement.ToNumberString() & Environment.NewLine &
             "RepelSteps|" & RepelSteps.ToString() & Environment.NewLine &
+            "ScriptSteps|" & ScriptSteps.ToString() & Environment.NewLine &
             "LastSavePlace|" & LastSavePlace & Environment.NewLine &
             "LastSavePlacePosition|" & LastSavePlacePosition & Environment.NewLine &
             "Difficulty|" & DifficultyMode.ToString() & Environment.NewLine &
@@ -1779,6 +1792,7 @@
             StepEventCheckTrainers()
             StepEventCheckEggHatching(stepAmount)
             StepEventCheckRepel(stepAmount)
+            StepEventCheckScript(stepAmount)
             StepEventWildPokemon()
             StepEventPokegearCall()
         Else
@@ -1866,6 +1880,35 @@
                         _stepEventRepelMessage = True
                     Else
                         _repelSteps = 1
+                    End If
+                End If
+            End If
+        End If
+    End Sub
+
+    Private Sub StepEventCheckScript(ByVal stepAmount As Integer)
+        If ScriptSteps > 0 Then
+            ScriptSteps -= stepAmount
+
+            If ScriptSteps <= 0 Then
+                If CurrentScreen.Identification = Screen.Identifications.OverworldScreen Then
+                    If CanFireStepEvent() = True Then
+                        Dim registerContent() As Object = ActionScript.GetRegisterValue("SCRIPTSTEPS")
+
+                        If registerContent(0) Is Nothing Or registerContent(1) Is Nothing Then
+                            Logger.Log(Logger.LogTypes.Warning, "ScriptComparer.vb: No valid script has been set to be executed.")
+                            ActionScript.UnregisterID("SCRIPTSTEPS", "str")
+                            ActionScript.UnregisterID("SCRIPTSTEPS")
+                            Exit Sub
+                        End If
+
+                        Dim lValue As String = CStr(registerContent(0))
+
+                        CType(CurrentScreen, OverworldScreen).ActionScript.StartScript(lValue, 0, False)
+                        ActionScript.UnregisterID("SCRIPTSTEPS", "str")
+                        ActionScript.UnregisterID("SCRIPTSTEPS")
+                    Else
+                        ScriptSteps = 1
                     End If
                 End If
             End If
