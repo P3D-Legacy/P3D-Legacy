@@ -32738,6 +32738,7 @@
     <Compile Include="World\ActionScript\V2\ScriptConstructs\DoRadio.vb" />
     <Compile Include="World\ActionScript\V2\ScriptConstructs\DoRegister.vb" />
     <Compile Include="World\ActionScript\V2\ScriptConstructs\DoRival.vb" />
+    <Compile Include="World\ActionScript\V2\ScriptConstructs\DoScript.vb" />
     <Compile Include="World\ActionScript\V2\ScriptConstructs\DoStorage.vb" />
     <Compile Include="World\ActionScript\V2\ScriptConstructs\DoSystem.vb" />
     <Compile Include="World\ActionScript\V2\ScriptLibrary.vb" />

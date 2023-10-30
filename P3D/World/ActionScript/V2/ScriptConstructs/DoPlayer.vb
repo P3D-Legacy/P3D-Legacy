@@ -127,8 +127,6 @@
                         ReturnBoolean(Core.Player.IsGameJoltSave = True AndAlso GameJolt.LogInScreen.UserBanned(GameJoltSave.GameJoltID) = False)
                     End If
                     Return ReturnBoolean(Core.Player.IsGameJoltSave)
-                Case "scriptsteps"
-                    Return Core.Player.ScriptSteps
             End Select
             Return DEFAULTNULL
         End Function

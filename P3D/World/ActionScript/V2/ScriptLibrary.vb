@@ -359,6 +359,11 @@ Namespace ScriptVersion2
             r(New ScriptCommand("script", "start", {New ScriptArgument("scriptFile", ScriptArgument.ArgumentTypes.Str)}.ToList(), "Starts a script with the given filename (without file extension)."))
             r(New ScriptCommand("script", "text", {New ScriptArgument("text", ScriptArgument.ArgumentTypes.Str)}.ToList(), "Starts a script with a simple text to display."))
             r(New ScriptCommand("script", "run", {New ScriptArgument("scriptContent", ScriptArgument.ArgumentTypes.Str)}.ToList(), "Runs script content. New lines are represented with ""^""."))
+            r(New ScriptCommand("script", "delay", {New ScriptArgument("scriptPath", ScriptArgument.ArgumentTypes.Str), New ScriptArgument("delayType", ScriptArgument.ArgumentTypes.Str, {"steps"}), New ScriptArgument("delayValue", ScriptArgument.ArgumentTypes.Str)}.ToList(), "Executes a script file after something happened (like having moved a certain amount of steps)."))
+            r(New ScriptCommand("script", "delay", "Clears the register created with @script.delay, preventing the script from being executed."))
+
+            ' Constructs:
+            r(New ScriptCommand("script", "delay", "str,int", {New ScriptArgument("type", ScriptArgument.ArgumentTypes.Str, {"type", "script", "value"})}.ToList(), "Returns the ""type"", ""scriptpath"" or ""value"" of what will trigger the script, like the number of steps.", ",", True))
         End Sub
 
         Private Shared Sub DoRegister()
@@ -518,8 +523,6 @@ Namespace ScriptVersion2
             r(New ScriptCommand("player", "setrivalname", {New ScriptArgument("name", ScriptArgument.ArgumentTypes.Str)}.ToList(), "Sets the rival's name."))
             r(New ScriptCommand("player", "setrivalskin", {New ScriptArgument("skin", ScriptArgument.ArgumentTypes.Str)}.ToList(), "Sets the rival's skin."))
             r(New ScriptCommand("player", "setopacity", {New ScriptArgument("opacity", ScriptArgument.ArgumentTypes.Sng)}.ToList(), "Sets the player entity's opacity."))
-            r(New ScriptCommand("player", "setscriptsteps", {New ScriptArgument("stepAmount", ScriptArgument.ArgumentTypes.Int), New ScriptArgument("scriptPath", ScriptArgument.ArgumentTypes.Str)}.ToList(), "Executes a script file after having moved the given amount of steps."))
-            r(New ScriptCommand("player", "clearscriptsteps", "Clears the register created with @player.setscriptsteps, preventing the script from being executed."))
 
             ' Constructs:
             r(New ScriptCommand("player", "position", "sngarr", {New ScriptArgument("coordinate", ScriptArgument.ArgumentTypes.StrArr, {"x", "y", "z"}, True, "")}.ToList(), "Returns the position of the player. The normal coordinate combination is ""X,Y,Z"".", ",", True))
@@ -545,7 +548,6 @@ Namespace ScriptVersion2
             r(New ScriptCommand("player", "gamejoltid", "str", "Returns the player's GameJolt ID.", ",", True))
             r(New ScriptCommand("player", "haspokedex", "bool", "Returns if the player received the Pokédex.", ",", True))
             r(New ScriptCommand("player", "haspokegear", "bool", "Returns if the player received the Pokégear.", ",", True))
-            r(New ScriptCommand("player", "scriptsteps", "int", "Returns the amount of steps before the script as defined by @player.setscriptsteps is executed.", ",", True))
         End Sub
 
         Private Shared Sub DoNPC()

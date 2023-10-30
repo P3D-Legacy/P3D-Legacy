@@ -18,6 +18,26 @@
                         CType(Core.CurrentScreen, OverworldScreen).ActionScript.StartScript(argument, 1, True, False, "ScriptCommand")
                     Case "run"
                         CType(Core.CurrentScreen, OverworldScreen).ActionScript.StartScript(argument, 2, True, False, "ScriptCommand")
+                    Case "delay"
+                        If argument.Contains(",") = True Then
+                            ActionScript.UnregisterID("SCRIPTDELAY", "str")
+                            ActionScript.UnregisterID("SCRIPTDELAY")
+                            Core.Player.ScriptDelaySteps = 0
+
+                            Dim args() As String = argument.Split(CChar(","))
+                            Select Case args(1).ToLower
+                                Case "steps"
+                                    Core.Player.ScriptDelaySteps = CInt(args(2))
+                            End Select
+
+                            ActionScript.RegisterID("SCRIPTDELAY", "str", CStr(args(1) & ";" & args(0)))
+                        End If
+                        IsReady = True
+                    Case "cleardelay"
+                        ActionScript.UnregisterID("SCRIPTDELAY", "str")
+                        ActionScript.UnregisterID("SCRIPTDELAY")
+                        Core.Player.ScriptDelaySteps = 0
+                        IsReady = True
                 End Select
             End If
 

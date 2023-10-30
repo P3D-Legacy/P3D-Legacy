@@ -307,6 +307,8 @@ Namespace ScriptVersion2
                     Return DoFileSystem(subClass)
                 Case "screen"
                     Return DoScreen(subClass)
+                Case "script"
+                    Return DoScript(subClass)
             End Select
             Return DefaultNull
         End Function
