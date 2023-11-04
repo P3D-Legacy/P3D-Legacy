@@ -279,7 +279,8 @@
             Dim q As CameraQueryObject = New CameraQueryObject(New Vector3(13, 0, 15), New Vector3(21, 0, 15), 0.05F, 0.05F, -0.8F, 1.4F, 0.0F, 0.0F, 0.016F, 0.016F)
             q.PassThis = True
 
-            Dim q1 As New PlaySoundQueryObject(OppPokemon.Number.ToString(), True, 5.0F)
+            Dim crySuffixOpp As String = PokemonForms.GetCrySuffix(OppPokemon)
+            Dim q1 As New PlaySoundQueryObject(OppPokemon.Number.ToString(), True, 5.0F, crySuffixOpp)
             If OppPokemon.IsShiny = True Then
                 q1 = New PlaySoundQueryObject("Battle\shiny", False, 5.0F)
             End If
@@ -291,7 +292,8 @@
             Dim q3 As CameraQueryObject = New CameraQueryObject(New Vector3(14, 0, 11), New Vector3(14, 0, 15), 0.01F, 0.01F, MathHelper.PiOver2, MathHelper.PiOver2, 0.0F, 0.0F)
             q3.PassThis = True
 
-            Dim q31 As New PlaySoundQueryObject(OwnPokemon.Number.ToString(), True, 3.0F)
+            Dim crySuffixOwn As String = PokemonForms.GetCrySuffix(OwnPokemon)
+            Dim q31 As New PlaySoundQueryObject(OwnPokemon.Number.ToString(), True, 3.0F, crySuffixOwn)
             Dim q4 As TextQueryObject = New TextQueryObject("Go, " & Me.OwnPokemon.GetDisplayName() & "!")
 
             Me.BattleQuery.AddRange({cq, q1, q, q2, q22, q3, q31, q4})
@@ -462,7 +464,7 @@
 
             ' Ball is thrown
             Dim BallThrowOpp As AnimationQueryObject = New AnimationQueryObject(OppPokemonNPC, False)
-
+            Dim crySuffixOpp As String = PokemonForms.GetCrySuffix(OppPokemon)
             If Core.Player.ShowBattleAnimations <> 0 AndAlso IsPVPBattle = False Then
                 BallThrowOpp.AnimationPlaySound("Battle\Pokeball\Throw", 0, 0)
                 BallThrowOpp.AnimationSetPosition(Nothing, False, 15, CSng(0.5 + OppEntityOffsetY), 13, 0, 0)
@@ -488,9 +490,9 @@
 
                 ' Pokemon appears
                 BallThrowOpp.AnimationFade(Nothing, False, 1, True, 1, 3, 0)
-                BallThrowOpp.AnimationPlaySound(CStr(Me.OppPokemon.Number), 4, 0,, True)
+                BallThrowOpp.AnimationPlaySound(CStr(Me.OppPokemon.Number), 4, 0,, True, crySuffixOpp)
             Else
-                BallThrowOpp.AnimationPlaySound(CStr(Me.OppPokemon.Number), 0, 0,, True)
+                BallThrowOpp.AnimationPlaySound(CStr(Me.OppPokemon.Number), 0, 0,, True, crySuffixOpp)
             End If
 
 
@@ -500,17 +502,18 @@
                 BallThrowOpp.AnimationMove(Nothing, False, 0, -0.5F, 0, 0.05F, False, False, 4, 0,,,, 3)
             End If
 
+            Dim crySuffixOwn As String = PokemonForms.GetCrySuffix(OwnPokemon)
+
             Dim q2 As CameraQueryObject = New CameraQueryObject(New Vector3(14, 0, 15), New Vector3(13, 0, 15), 0.05F, 0.05F, MathHelper.PiOver2, -0.8F, 0.0F, 0.0F, 0.05F, 0.05F)
 
             Dim q3 As CameraQueryObject = New CameraQueryObject(New Vector3(14, 0, 11), New Vector3(14, 0, 15), 0.01F, 0.01F, MathHelper.PiOver2, MathHelper.PiOver2, 0.0F, 0.0F)
             q3.PassThis = True
-            Dim q31 As New PlaySoundQueryObject(OwnPokemon.Number.ToString(), True, 3.0F)
+
+            Dim q31 As New PlaySoundQueryObject(OwnPokemon.Number.ToString(), True, 3.0F, crySuffixOwn)
             Dim q4 As TextQueryObject = New TextQueryObject("Go," & " " & Me.OwnPokemon.GetDisplayName() & "!")
 
-
-            Me.BattleQuery.AddRange({cq, q, q1, q11, BallThrowOpp, q2, q3, q31, q4})
-
             If IsPVPBattle = True AndAlso Core.Player.ShowBattleAnimations <> 0 AndAlso IsPVPBattle = False Then
+                Me.BattleQuery.AddRange({cq, q, q1, q11, BallThrowOpp, q2, q3, q4})
                 ' Ball is thrown
                 Dim BallThrowOwn As AnimationQueryObject = New AnimationQueryObject(Me.OwnPokemonNPC, False)
 
@@ -541,11 +544,14 @@
 
                 ' Pokemon appears
                 BallThrowOwn.AnimationFade(Nothing, False, 1, True, 1, 3, 0)
-                BallThrowOwn.AnimationPlaySound(CStr(Me.OwnPokemon.Number), 4, 0,, True)
+                BallThrowOwn.AnimationPlaySound(CStr(Me.OwnPokemon.Number), 4, 0,, True, crySuffixOwn)
 
                 '  Pokémon falls down
                 BallThrowOwn.AnimationMove(Nothing, False, 0, -0.5F, 0, 0.05F, False, False, 5, 0,,,, 3)
                 Me.BattleQuery.Add(BallThrowOwn)
+            Else
+
+                Me.BattleQuery.AddRange({cq, q, q1, q11, BallThrowOpp, q2, q3, q31, q4})
             End If
 
             Dim q5 As ToggleMenuQueryObject = New ToggleMenuQueryObject(Me.BattleMenu.Visible)
@@ -681,7 +687,8 @@
             Dim q As CameraQueryObject = New CameraQueryObject(New Vector3(13, 0, 15), New Vector3(21, 0, 15), 0.05F, 0.05F, -0.8F, 1.4F, 0.0F, 0.0F, 0.016F, 0.016F)
             q.PassThis = True
 
-            Dim q1 As New PlaySoundQueryObject(OppPokemon.Number.ToString(), True, 5.0F)
+            Dim crySuffixOpp As String = PokemonForms.GetCrySuffix(OppPokemon)
+            Dim q1 As New PlaySoundQueryObject(OppPokemon.Number.ToString(), True, 5.0F, crySuffixOpp)
             Dim q2 As TextQueryObject = New TextQueryObject("Wild " & OppPokemon.GetDisplayName() & " appeared!")
 
             Dim q5 As ToggleMenuQueryObject = New ToggleMenuQueryObject(Me.BattleMenu.Visible)
@@ -803,7 +810,8 @@
             Dim q As CameraQueryObject = New CameraQueryObject(New Vector3(13, 0, 15), New Vector3(21, 0, 15), 0.05F, 0.05F, -0.8F, 1.4F, 0.0F, 0.0F, 0.016F, 0.016F)
             q.PassThis = True
 
-            Dim q1 As New PlaySoundQueryObject(OppPokemon.Number.ToString(), True, 5.0F)
+            Dim crySuffixOpp As String = PokemonForms.GetCrySuffix(OppPokemon)
+            Dim q1 As New PlaySoundQueryObject(OppPokemon.Number.ToString(), True, 5.0F, crySuffixOpp)
             Dim q2 As TextQueryObject = New TextQueryObject("Wild " & OppPokemon.GetDisplayName() & " appeared!")
 
             Dim q22 As CameraQueryObject = New CameraQueryObject(New Vector3(14, 0, 15), New Vector3(13, 0, 15), 0.05F, 0.05F, MathHelper.PiOver2, -0.8F, 0.0F, 0.0F, 0.05F, 0.05F)
@@ -811,7 +819,8 @@
             Dim q3 As CameraQueryObject = New CameraQueryObject(New Vector3(14, 0, 11), New Vector3(14, 0, 15), 0.01F, 0.01F, MathHelper.PiOver2, MathHelper.PiOver2, 0.0F, 0.0F)
             q3.PassThis = True
 
-            Dim q31 As New PlaySoundQueryObject(OwnPokemon.Number.ToString(), True, 3.0F)
+            Dim crySuffixOwn As String = PokemonForms.GetCrySuffix(OwnPokemon)
+            Dim q31 As New PlaySoundQueryObject(OwnPokemon.Number.ToString(), True, 3.0F, crySuffixOwn)
             Dim q4 As TextQueryObject = New TextQueryObject("Go, " & Me.OwnPokemon.GetDisplayName() & "!")
 
             Me.BattleQuery.AddRange({cq, q1, q, q2, q22, q3, q4})

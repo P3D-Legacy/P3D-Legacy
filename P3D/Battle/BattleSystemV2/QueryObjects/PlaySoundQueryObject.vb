@@ -6,17 +6,19 @@
 
         Dim _sound As String = ""
         Dim _isPokemonSound As Boolean = False
+        Dim _crySuffix As String = ""
         Dim _delay As Single = 0.0F
 
-        Public Sub New(ByVal sound As String, ByVal isPokemonSound As Boolean)
-            Me.New(sound, isPokemonSound, 0.0F)
+        Public Sub New(ByVal sound As String, ByVal isPokemonSound As Boolean, Optional ByVal CrySuffix As String = "")
+            Me.New(sound, isPokemonSound, 0.0F, CrySuffix)
         End Sub
 
-        Public Sub New(ByVal sound As String, ByVal isPokemonSound As Boolean, ByVal delay As Single)
+        Public Sub New(ByVal sound As String, ByVal isPokemonSound As Boolean, ByVal delay As Single, Optional ByVal CrySuffix As String = "")
             MyBase.New(QueryTypes.PlaySound)
 
             Me._sound = sound
             Me._isPokemonSound = isPokemonSound
+            Me._crySuffix = CrySuffix
             Me._delay = delay
             Me.PassThis = True
         End Sub
@@ -34,7 +36,7 @@
 
         Private Sub InternalPlaySound()
             If _isPokemonSound = True Then
-                SoundManager.PlayPokemonCry(CInt(_sound))
+                SoundManager.PlayPokemonCry(CInt(_sound), _crySuffix)
             Else
                 SoundManager.PlaySound(Me._sound, False)
             End If

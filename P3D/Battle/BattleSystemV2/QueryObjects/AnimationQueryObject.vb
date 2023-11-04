@@ -321,8 +321,8 @@ Namespace BattleSystem
 			AnimationSequence.Add(baEntityScale)
 		End Sub
 
-		Public Sub AnimationPlaySound(ByVal sound As String, ByVal startDelay As Single, ByVal endDelay As Single, Optional ByVal stopMusic As Boolean = False, Optional ByVal IsPokemon As Boolean = False)
-			Dim baSound As BAPlaySound = New BAPlaySound(sound, startDelay, endDelay, stopMusic, IsPokemon)
+		Public Sub AnimationPlaySound(ByVal sound As String, ByVal startDelay As Single, ByVal endDelay As Single, Optional ByVal stopMusic As Boolean = False, Optional ByVal IsPokemon As Boolean = False, Optional ByVal CrySuffix As String = "")
+			Dim baSound As BAPlaySound = New BAPlaySound(sound, startDelay, endDelay, stopMusic, IsPokemon, CrySuffix)
 			AnimationSequence.Add(baSound)
 		End Sub
 

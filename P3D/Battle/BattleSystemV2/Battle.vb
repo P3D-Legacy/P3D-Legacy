@@ -2825,8 +2825,9 @@
 
             If BattleScreen.IsTrainerBattle = False AndAlso Core.Player.ShowBattleAnimations <> 0 AndAlso BattleScreen.IsPVPBattle = False Then
                 If own = False Then
+                    Dim crySuffixOpp As String = PokemonForms.GetCrySuffix(BattleScreen.OppPokemon)
                     Dim FaintAnimation As AnimationQueryObject = New AnimationQueryObject(BattleScreen.OppPokemonNPC, True)
-                    FaintAnimation.AnimationPlaySound(CStr(BattleScreen.OppPokemon.Number), 0, 2, False, True)
+                    FaintAnimation.AnimationPlaySound(CStr(BattleScreen.OppPokemon.Number), 0, 2, False, True, crySuffixOpp)
                     FaintAnimation.AnimationMove(Nothing, False, 0, -1, 0, 0.05, False, False, 2, 2)
                     BattleScreen.BattleQuery.Add(FaintAnimation)
                 End If
@@ -7623,12 +7624,12 @@
                         Threading.Interlocked.Increment(SmokeSpawned)
                     Loop While SmokeSpawned <= 38
                 End If
-
+                Dim crySuffixOwn As String = PokemonForms.GetCrySuffix(BattleScreen.OwnPokemon)
                 If Core.Player.ShowBattleAnimations <> 0 AndAlso BattleScreen.IsPVPBattle = False Then
                     ' Pokemon appears
                     BallThrow.AnimationSetPosition(Nothing, False, 12, CSng(0.5), 13, 0, 0)
                     BallThrow.AnimationFade(Nothing, False, 1, True, 1, 3, 0)
-                    BallThrow.AnimationPlaySound(CStr(BattleScreen.OwnPokemon.Number), 4, 0,, True)
+                    BallThrow.AnimationPlaySound(CStr(BattleScreen.OwnPokemon.Number), 4, 0,, True, crySuffixOwn)
                     '  Pokémon falls down
                     BallThrow.AnimationMove(Nothing, False, 0, -0.5F + PositionOffsetY, 0, 0.05F, False, False, 5, 0,,,, 3)
 
@@ -8068,11 +8069,11 @@
                 Else
                     BattleScreen.Battle.ChangeCameraAngle(1, False, BattleScreen)
                 End If
-
+                Dim crySuffixOpp As String = PokemonForms.GetCrySuffix(BattleScreen.OppPokemon)
                 If Core.Player.ShowBattleAnimations <> 0 AndAlso BattleScreen.IsPVPBattle = False Then
                     ' Pokemon appears
                     BallThrow.AnimationFade(Nothing, False, 1, True, 1, 3, 0)
-                    BallThrow.AnimationPlaySound(CStr(BattleScreen.OppPokemon.Number), 4, 0,, True)
+                    BallThrow.AnimationPlaySound(CStr(BattleScreen.OppPokemon.Number), 4, 0,, True, crySuffixOpp)
                     '  Pokémon falls down
                     BallThrow.AnimationMove(Nothing, False, 0, -0.5F, 0, 0.05F, False, False, 5, 0)
                     BattleScreen.BattleQuery.Add(BallThrow)
