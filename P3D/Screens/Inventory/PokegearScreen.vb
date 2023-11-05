@@ -1866,18 +1866,31 @@
                         While chosenID = -1 And triedIDs.Count < Pokedex.PokemonMaxCount
                             Dim ID As Integer = Core.Random.Next(1, Pokedex.PokemonMaxCount + 1)
                             If triedIDs.Contains(ID) = False Then
-                                If Pokedex.GetEntryType(Core.Player.PokedexData, Pokedex.PokemonIDs(ID)) < 2 Then
-                                    triedIDs.Add(ID)
-                                Else
-                                    If PokemonForms.GetDataFileForms(ID).Count > 0 Then
-                                        Dim FormList As List(Of String) = PokemonForms.GetDataFileForms(ID)
-                                        Dim FormString As Integer = Core.Random.Next(0, FormList.Count - 1)
-                                        If Pokedex.PokemonIDs(FormString).Contains("_") Then
-                                            chosenID = CInt(Pokedex.PokemonIDs(FormString).GetSplit(0, "_"))
-                                            chosenAD = PokemonForms.GetAdditionalValueFromDataFile(Pokedex.PokemonIDs(FormString))
+                                If PokemonForms.GetDataFileForms(ID).Count > 0 Then
+                                    Dim FormList As List(Of String) = PokemonForms.GetDataFileForms(ID)
+                                    Dim FormIndex As Integer = Core.Random.Next(0, FormList.Count)
+                                    While FormList.Count > 0
+                                        If Pokedex.GetEntryType(Core.Player.PokedexData, FormList(FormIndex)) < 2 Then
+                                            FormList.RemoveAt(FormIndex)
+                                            FormIndex = Core.Random.Next(0, FormList.Count)
                                         Else
-                                            chosenID = FormString
+                                            If FormList(FormIndex).Contains("_") Then
+                                                chosenID = CInt(FormList(FormIndex).GetSplit(0, "_"))
+                                                chosenAD = PokemonForms.GetAdditionalValueFromDataFile(FormList(FormIndex))
+                                                Exit While
+                                            Else
+                                                chosenID = CInt(FormList(FormIndex))
+                                                Exit While
+                                            End If
                                         End If
+
+                                    End While
+                                    If chosenID = -1 Then
+                                        triedIDs.Add(ID)
+                                    End If
+                                Else
+                                    If Pokedex.GetEntryType(Core.Player.PokedexData, ID.ToString) < 2 Then
+                                        triedIDs.Add(ID)
                                     Else
                                         chosenID = ID
                                     End If
@@ -1889,7 +1902,7 @@
 
                             Dim p As Pokemon = Pokemon.GetPokemonByID(chosenID, chosenAD)
 
-                            output = "Welcome to the Pokédex Show! Today, we are going to look at the entry of " & p.GetName() & "! Its entry reads:~""" & p.PokedexEntry.Text & """~Wow, that is interesting! Also, " & p.GetName() & " is " & p.PokedexEntry.Height & "m high and weights " & p.PokedexEntry.Weight & "kg.~Isn't that amazing?~" & p.GetName() & " is part of the " & p.PokedexEntry.Species & " species.~That's all the information we have. Tune in next time!"
+                            output = "Welcome to the Pokédex Show! Today, we are going to look at the entry of " & p.GetName(True) & "! Its entry reads:~""" & p.PokedexEntry.Text & """~Wow, that is interesting! Also, " & p.GetName(True) & " is " & p.PokedexEntry.Height & "m high and weighs " & p.PokedexEntry.Weight & "kg.~Isn't that amazing?~" & p.GetName(True) & " is part of the " & p.PokedexEntry.Species & " species.~That's all the information we have. Tune in next time!"
                         End If
                     Case "[randompokemon]"
                         Dim levels() As String = {"route29.dat", "route30.dat", "route31.dat", "route32.dat", "route33.dat", "route36.dat", "route37.dat", "route38.dat", "route39.dat", "routes\route34.dat", "routes\route35.dat", "routes\route42.dat", "routes\route43.dat", "routes\route44.dat", "routes\route45.dat", "routes\route46.dat"}
@@ -1905,7 +1918,7 @@
                         levelName = levelName.Substring(0, 5) & " " & levelName.Remove(0, 5)
 
                         If Not p Is Nothing Then
-                            output = "Professor Oak's Pokémon Talk! With Mary!~~Professor Oak: " & p.GetName() & " has been spotted on " & levelName & ".~Mary: " & p.GetName() & "! How smart! How inspiring!"
+                            output = "Professor Oak's Pokémon Talk! With Mary!~~Professor Oak: " & p.GetName(True) & " has been spotted on " & levelName & ".~Mary: " & p.GetName(True) & "! How smart! How inspiring!"
                         End If
                     Case "[unown]"
                         Dim words() As String = {"doom", "dark", "help", "join us", "stay", "lost", "vanish", "always there", "no eyes"}

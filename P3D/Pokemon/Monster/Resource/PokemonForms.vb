@@ -482,7 +482,7 @@ Public Class PokemonForms
         If _pokemonList.Count > 0 Then
             For Each listP In _pokemonList
                 If listP.IsNumber(Number) = True AndAlso listP.AdditionalValue <> "" AndAlso listP.DataFileSuffix <> "" Then
-                    Forms.Add(listP.AdditionalValue)
+                    Forms.Add(CStr(Number.ToString & listP.DataFileSuffix))
                 End If
             Next
         End If
