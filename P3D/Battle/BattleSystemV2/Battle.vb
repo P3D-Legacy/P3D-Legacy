@@ -2154,7 +2154,7 @@
 
                             If effectiveness <> 0 Then
 
-                                If Damage = 0 Then
+                                If Damage = 0 AndAlso moveUsed.ID = 117 Then
                                     BattleScreen.BattleQuery.Add(New TextQueryObject("But it failed..."))
                                     moveUsed.MoveMisses(own, BattleScreen)
                                     effectiveness = 0
