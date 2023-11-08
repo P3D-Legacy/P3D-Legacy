@@ -2152,8 +2152,15 @@
                                 Damage = moveUsed.GetDamage(Critical, own, Not own, BattleScreen)
                             End If
 
-
                             If effectiveness <> 0 Then
+
+                                If Damage = 0 Then
+                                    BattleScreen.BattleQuery.Add(New TextQueryObject("But it failed..."))
+                                    moveUsed.MoveMisses(own, BattleScreen)
+                                    effectiveness = 0
+                                    Exit For
+                                End If
+
                                 Dim sturdyWorked As Boolean = False
 
                                 If substitute = 0 Then
