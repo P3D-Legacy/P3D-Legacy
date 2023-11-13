@@ -5886,7 +5886,11 @@
                         ReduceHP(loseHP, False, True, BattleScreen, .OppPokemon.GetDisplayName() & " lost HP due to Leech Seed!", "leechseed")
 
                         If .FieldEffects.OwnHealBlock = 0 Then
-                            GainHP(addHP, True, True, BattleScreen, "", "leechseed")
+                            If .OppPokemon.Ability.Name.ToLower() = "liquid ooze" And BattleScreen.FieldEffects.CanUseAbility(False, BattleScreen) = True Then
+                                BattleScreen.Battle.ReduceHP(addHP, True, True, BattleScreen, "Liquid Ooze damaged " & .OwnPokemon.GetDisplayName() & "!", "liquidooze")
+                            Else
+                                GainHP(addHP, True, True, BattleScreen, "", "leechseed")
+                            End If
                         End If
                     End If
                 End If
@@ -6777,7 +6781,11 @@
                         ReduceHP(loseHP, True, False, BattleScreen, .OwnPokemon.GetDisplayName() & " lost HP due to Leech Seed!", "leechseed")
 
                         If .FieldEffects.OppHealBlock = 0 Then
-                            GainHP(addHP, False, False, BattleScreen, "", "leechseed")
+                            If .OwnPokemon.Ability.Name.ToLower() = "liquid ooze" And BattleScreen.FieldEffects.CanUseAbility(True, BattleScreen) = True Then
+                                BattleScreen.Battle.ReduceHP(addHP, False, False, BattleScreen, "Liquid Ooze damaged " & .OppPokemon.GetDisplayName() & "!", "liquidooze")
+                            Else
+                                GainHP(addHP, False, False, BattleScreen, "", "leechseed")
+                            End If
                         End If
                     End If
                 End If
