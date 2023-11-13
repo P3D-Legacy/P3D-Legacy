@@ -6,6 +6,7 @@
     Dim alpha As Integer = 255
     Dim alphaFade As Integer = -1
     Dim loadedLevel As Boolean = False
+    Dim backgroundLevel As String = "indigo\halloffame_interface.dat"
 
     Dim menuState As Integer = 0
     Dim texture As Texture2D
@@ -85,13 +86,15 @@
 
     End Class
 
-    Public Sub New(ByVal currentScreen As Screen, ByVal i As Integer)
+    Public Sub New(ByVal currentScreen As Screen, ByVal i As Integer, Optional ByVal backgroundLevel As String = "indigo\halloffame_interface.dat")
+        Me.backgroundLevel = backgroundLevel
         SetupScreen(currentScreen)
         Me.Preselect = i
         Me.Cursor = Me.Preselect
     End Sub
 
-    Public Sub New(ByVal currentScreen As Screen)
+    Public Sub New(ByVal currentScreen As Screen, Optional ByVal backgroundLevel As String = "indigo\halloffame_interface.dat")
+        Me.backgroundLevel = backgroundLevel
         SetupScreen(currentScreen)
     End Sub
 
@@ -143,7 +146,7 @@
             Camera = New BattleSystem.BattleCamera()
 
             Level = New Level()
-            Level.Load("indigo\halloffame_interface.dat")
+            Level.Load(backgroundLevel)
 
             ResetCamera()
             Me.loadedLevel = True

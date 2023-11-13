@@ -174,7 +174,15 @@
                     CanContinue = False
                 Case "halloffame"
                     If argument <> "" Then
-                        Core.SetScreen(New TransitionScreen(Core.CurrentScreen, New HallOfFameScreen(Core.CurrentScreen, int(argument)), Color.Black, False))
+                        If argument.Contains(",") = False Then
+                            If StringHelper.IsNumeric(argument) Then
+                                Core.SetScreen(New TransitionScreen(Core.CurrentScreen, New HallOfFameScreen(Core.CurrentScreen, int(argument)), Color.Black, False))
+                            Else
+                                Core.SetScreen(New TransitionScreen(Core.CurrentScreen, New HallOfFameScreen(Core.CurrentScreen, argument), Color.Black, False))
+                            End If
+                        Else
+                            Core.SetScreen(New TransitionScreen(Core.CurrentScreen, New HallOfFameScreen(Core.CurrentScreen, int(argument.GetSplit(0, ",")), argument.GetSplit(1, ",")), Color.Black, False))
+                        End If
                     Else
                         Core.SetScreen(New TransitionScreen(Core.CurrentScreen, New HallOfFameScreen(Core.CurrentScreen), Color.Black, False))
                     End If
