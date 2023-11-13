@@ -1420,26 +1420,27 @@
 
         Private Sub InitializePhone()
             InitializedPhone = True
+            If System.IO.File.Exists(GameModeManager.GetContentFilePath("Data\contacts.dat")) Then
+                Dim reg() As String = Core.Player.RegisterData.Split(CChar(","))
 
-            Dim reg() As String = Core.Player.RegisterData.Split(CChar(","))
+                Dim contactData() As String = System.IO.File.ReadAllLines(GameModeManager.GetContentFilePath("Data\contacts.dat"))
 
-            Dim contactData() As String = System.IO.File.ReadAllLines(GameModeManager.GetContentFilePath("Data\contacts.dat"))
+                For Each r As String In reg
+                    If r.StartsWith("phone_contact_") = True Then
+                        Dim newID As String = r.Remove(0, "phone_contact_".Length)
 
-            For Each r As String In reg
-                If r.StartsWith("phone_contact_") = True Then
-                    Dim newID As String = r.Remove(0, "phone_contact_".Length)
+                        For Each line As String In contactData
+                            If line.StartsWith(newID & "|") = True Then
+                                Dim NCD() As String = line.Split(CChar("|"))
 
-                    For Each line As String In contactData
-                        If line.StartsWith(newID & "|") = True Then
-                            Dim NCD() As String = line.Split(CChar("|"))
+                                Dim newContact As New Contact With {.ID = NCD(0), .Name = NCD(1), .Texture = NCD(2), .Location = NCD(3), .CanRandomCall = CBool(NCD(4))}
 
-                            Dim newContact As New Contact With {.ID = NCD(0), .Name = NCD(1), .Texture = NCD(2), .Location = NCD(3), .CanRandomCall = CBool(NCD(4))}
-
-                            PhoneContacts.Add(newContact)
-                        End If
-                    Next
-                End If
-            Next
+                                PhoneContacts.Add(newContact)
+                            End If
+                        Next
+                    End If
+                Next
+            End If
 
             PhoneContacts = (From c In PhoneContacts Order By c.ID Ascending).ToList()
         End Sub
@@ -1505,6 +1506,9 @@
 
         Public Shared Sub RandomCall()
             If Core.CurrentScreen.Identification <> Identifications.OverworldScreen Then
+                Exit Sub
+            End If
+            If System.IO.File.Exists(GameModeManager.GetContentFilePath("Data\contacts.dat")) = False Then
                 Exit Sub
             End If
 
