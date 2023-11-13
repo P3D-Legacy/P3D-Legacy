@@ -15,6 +15,7 @@
         WaterAnimation = New Animation(TextureManager.GetTexture("Textures\Routes"), 1, 3, 16, 16, GameModeManager.ActiveGameMode.WaterSpeed, 15, 0)
 
         CreateWaterTextureTemp()
+        ChangeTexture()
     End Sub
 
     Public Shared Sub ClearAnimationResources()
@@ -195,65 +196,64 @@
     End Function
 
     Public Overrides Sub UpdateEntity()
-        If Not WaterAnimation Is Nothing Then
-            WaterAnimation.Update(0.005)
-            If currentRectangle <> WaterAnimation.TextureRectangle Then
-                ChangeTexture()
+        If Core.GameOptions.GraphicStyle = 1 Then
+            If Not WaterAnimation Is Nothing Then
+                WaterAnimation.Update(0.005)
+                If currentRectangle <> WaterAnimation.TextureRectangle Then
+                    ChangeTexture()
 
-                currentRectangle = WaterAnimation.TextureRectangle
+                    currentRectangle = WaterAnimation.TextureRectangle
+                End If
             End If
         End If
-
         MyBase.UpdateEntity()
     End Sub
 
     Private Sub ChangeTexture()
-        If Core.GameOptions.GraphicStyle = 1 Then
-            If WaterTexturesTemp.Count = 0 OrElse Water.WaterTexturesTemp.ContainsKey("_0") = False OrElse Water.WaterTexturesTemp.ContainsKey(AdditionalValue & "_0") = False Then
-                ClearAnimationResources()
-                AddDefaultWaterAnimationResources()
-                CreateWaterTextureTemp()
-            End If
-
-            Select Case Me.Rotation.Y
-                Case 0, MathHelper.TwoPi
-                    Select Case WaterAnimation.CurrentColumn
-                        Case 0
-                            Me.Textures(0) = Water.WaterTexturesTemp(waterTextureName & "_0")
-                        Case 1
-                            Me.Textures(0) = Water.WaterTexturesTemp(waterTextureName & "_1")
-                        Case 2
-                            Me.Textures(0) = Water.WaterTexturesTemp(waterTextureName & "_2")
-                    End Select
-                Case MathHelper.Pi * 0.5F
-                    Select Case WaterAnimation.CurrentColumn
-                        Case 0
-                            Me.Textures(0) = Water.WaterTexturesTemp(waterTextureName & "_3")
-                        Case 1
-                            Me.Textures(0) = Water.WaterTexturesTemp(waterTextureName & "_4")
-                        Case 2
-                            Me.Textures(0) = Water.WaterTexturesTemp(waterTextureName & "_5")
-                    End Select
-                Case MathHelper.Pi
-                    Select Case WaterAnimation.CurrentColumn
-                        Case 0
-                            Me.Textures(0) = Water.WaterTexturesTemp(waterTextureName & "_6")
-                        Case 1
-                            Me.Textures(0) = Water.WaterTexturesTemp(waterTextureName & "_7")
-                        Case 2
-                            Me.Textures(0) = Water.WaterTexturesTemp(waterTextureName & "_8")
-                    End Select
-                Case MathHelper.Pi * 1.5
-                    Select Case WaterAnimation.CurrentColumn
-                        Case 0
-                            Me.Textures(0) = Water.WaterTexturesTemp(waterTextureName & "_9")
-                        Case 1
-                            Me.Textures(0) = Water.WaterTexturesTemp(waterTextureName & "_10")
-                        Case 2
-                            Me.Textures(0) = Water.WaterTexturesTemp(waterTextureName & "_11")
-                    End Select
-            End Select
+        If WaterTexturesTemp.Count = 0 OrElse Water.WaterTexturesTemp.ContainsKey("_0") = False OrElse Water.WaterTexturesTemp.ContainsKey(AdditionalValue & "_0") = False Then
+            ClearAnimationResources()
+            AddDefaultWaterAnimationResources()
+            CreateWaterTextureTemp()
         End If
+
+        Select Case Me.Rotation.Y
+            Case 0, MathHelper.TwoPi
+                Select Case WaterAnimation.CurrentColumn
+                    Case 0
+                        Me.Textures(0) = Water.WaterTexturesTemp(waterTextureName & "_0")
+                    Case 1
+                        Me.Textures(0) = Water.WaterTexturesTemp(waterTextureName & "_1")
+                    Case 2
+                        Me.Textures(0) = Water.WaterTexturesTemp(waterTextureName & "_2")
+                End Select
+            Case MathHelper.Pi * 0.5F
+                Select Case WaterAnimation.CurrentColumn
+                    Case 0
+                        Me.Textures(0) = Water.WaterTexturesTemp(waterTextureName & "_3")
+                    Case 1
+                        Me.Textures(0) = Water.WaterTexturesTemp(waterTextureName & "_4")
+                    Case 2
+                        Me.Textures(0) = Water.WaterTexturesTemp(waterTextureName & "_5")
+                End Select
+            Case MathHelper.Pi
+                Select Case WaterAnimation.CurrentColumn
+                    Case 0
+                        Me.Textures(0) = Water.WaterTexturesTemp(waterTextureName & "_6")
+                    Case 1
+                        Me.Textures(0) = Water.WaterTexturesTemp(waterTextureName & "_7")
+                    Case 2
+                        Me.Textures(0) = Water.WaterTexturesTemp(waterTextureName & "_8")
+                End Select
+            Case MathHelper.Pi * 1.5
+                Select Case WaterAnimation.CurrentColumn
+                    Case 0
+                        Me.Textures(0) = Water.WaterTexturesTemp(waterTextureName & "_9")
+                    Case 1
+                        Me.Textures(0) = Water.WaterTexturesTemp(waterTextureName & "_10")
+                    Case 2
+                        Me.Textures(0) = Water.WaterTexturesTemp(waterTextureName & "_11")
+                End Select
+        End Select
     End Sub
 
     Public Overrides Sub ResultFunction(ByVal Result As Integer)
