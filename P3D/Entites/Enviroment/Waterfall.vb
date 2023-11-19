@@ -32,7 +32,7 @@
     Public Overrides Sub Initialize()
         MyBase.Initialize()
 
-        WaterAnimation = New Animation(TextureManager.GetTexture("Textures\Routes"), 1, 3, 16, 16, 9, 13, 0)
+        WaterAnimation = New Animation(TextureManager.GetTexture("Textures\Routes"), 1, 3, 16, 16, GameModeManager.ActiveGameMode.WaterSpeed, 13, 0)
 
         CreateWaterTextureTemp()
         ChangeTexture()
