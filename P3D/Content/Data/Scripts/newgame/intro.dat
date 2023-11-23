@@ -130,6 +130,7 @@
 @screen.skinselection()
 
 @player.wearskin(<screen.selectedskin>)
+@player.setgender(<screen.selectedgender>)
 @npc.wearskin(1,<screen.selectedskin>)
 
 :while:<camera.z><11.5
@@ -140,7 +141,7 @@
 :endwhile
 
 @text.show(Now, what did you say~your name was?)
-@screen.input(<screen.selectedskin>,name,<screen.selectedskin>,14)
+@screen.input(<screen.selectedname>,name,<screen.selectedname>,14)
 @player.setname(<system.lastinput>)
 
 @text.show(Alright, nice to meet you,~<player.name>!)

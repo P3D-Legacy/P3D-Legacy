@@ -13,6 +13,10 @@
             Select Case command.ToLower()
                 Case "selectedskin"
                     Return Screens.MainMenu.NewNewGameScreen.CharacterSelectionScreen.SelectedSkin
+                Case "selectedname"
+                    Return Screens.MainMenu.NewNewGameScreen.CharacterSelectionScreen.SelectedName
+                Case "selectedgender"
+                    Return Screens.MainMenu.NewNewGameScreen.CharacterSelectionScreen.SelectedGender
             End Select
 
             Return DefaultNull

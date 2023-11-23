@@ -253,6 +253,8 @@
             Private _fadeIn As Single = 0F
 
             Private Shared _selectedSkin As String = ""
+            Private Shared _selectedName As String = ""
+            Private Shared _selectedGender As String = ""
 
             Public Shared Property SelectedSkin() As String
                 Get
@@ -260,6 +262,22 @@
                 End Get
                 Set(value As String)
                     _selectedSkin = value
+                End Set
+            End Property
+            Public Shared Property SelectedName() As String
+                Get
+                    Return _selectedName
+                End Get
+                Set(value As String)
+                    _selectedName = value
+                End Set
+            End Property
+            Public Shared Property SelectedGender() As String
+                Get
+                    Return _selectedGender
+                End Get
+                Set(value As String)
+                    _selectedGender = value
                 End Set
             End Property
 
@@ -314,7 +332,10 @@
 
                     If Controls.Accept(False, True, True) Then
                         SoundManager.PlaySound("select")
-                        _selectedSkin = _skins(_index)
+                        SelectedSkin = _skins(_index)
+                        SelectedName = _names(_index)
+                        SelectedGender = _genders(_index)
+
                         SetScreen(PreScreen)
                     End If
                     If Controls.Accept(True, False, False) Then
@@ -322,7 +343,9 @@
                             If New Rectangle(CInt(windowSize.Width / 2 - 128 + i * 280 - _index * 280 + _offset), CInt(windowSize.Height / 2 - 128), 256, 256).Contains(MouseHandler.MousePosition) Then
                                 If i = _index Then
                                     SoundManager.PlaySound("select")
-                                    _selectedSkin = _skins(_index)
+                                    SelectedSkin = _skins(_index)
+                                    SelectedName = _names(_index)
+                                    SelectedGender = _genders(_index)
                                     SetScreen(PreScreen)
                                 Else
                                     _offset += (i - _index) * 280

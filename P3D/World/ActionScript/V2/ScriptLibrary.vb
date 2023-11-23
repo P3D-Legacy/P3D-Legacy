@@ -352,6 +352,11 @@ Namespace ScriptVersion2
             r(New ScriptCommand("screen", "secretbase", "Opens the Secret Base screen."))
             r(New ScriptCommand("screen", "skinselection", "Opens the Player Skin selection screen."))
             r(New ScriptCommand("screen", "voltorbflip", "Opens the Voltorb Flip minigame screen."))
+            ' Constructs:
+            r(New ScriptCommand("screen", "selectedskin", "str", "Returns the texture name of the skin selected by using @Screen.SkinSelection", ",", True))
+            r(New ScriptCommand("screen", "selectedname", "str", "Returns the default name assigned to the skin selected by using @Screen.SkinSelection", ",", True))
+            r(New ScriptCommand("screen", "selectedname", "str", "Returns the default gender assigned to the skin selected by using @Screen.SkinSelection", ",", True))
+
         End Sub
 
         Private Shared Sub DoScript()
