@@ -30,7 +30,7 @@
             Me.MagicCoatAffected = False
             Me.SnatchAffected = False
             Me.MirrorMoveAffected = True
-            Me.KingsrockAffected = True
+            Me.KingsrockAffected = False
             Me.CounterAffected = False
 
             Me.DisabledWhileGravity = False
