@@ -59,7 +59,7 @@
 
         Public Overrides Sub MoveHits(own As Boolean, BattleScreen As BattleScreen)
             If Core.Random.Next(0, 100) < GetEffectChance(0, own, BattleScreen) Then
-                BattleScreen.Battle.InflictFlinch(Not own, own, BattleScreen, "", "move:muddywater")
+                BattleScreen.Battle.LowerStat(Not own, own, BattleScreen, "Accuracy", 1, "", "move:muddywater")
             End If
         End Sub
 
