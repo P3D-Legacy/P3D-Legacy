@@ -167,14 +167,16 @@
     Public Overrides Sub Draw()
         Level.Draw()
 
-        Canvas.DrawRectangle(New Rectangle(0, 0, Core.windowSize.Width - 128, Core.windowSize.Height), New Color(84, 198, 216, alpha))
+        Dim BackColor As Color = Screens.UI.ColorProvider.MainColor(False)
+        Dim GradientColor As Color = Screens.UI.ColorProvider.AccentColor(False)
+        Canvas.DrawRectangle(New Rectangle(0, 0, Core.windowSize.Width, Core.windowSize.Height), New Color(BackColor, alpha))
 
         For y = -64 To Core.windowSize.Height Step 64
             Core.SpriteBatch.Draw(Me.texture, New Rectangle(Core.windowSize.Width - 128, y + TileOffset, 128, 64), New Rectangle(48, 0, 16, 16), New Color(255, 255, 255, alpha))
         Next
 
-        Canvas.DrawGradient(New Rectangle(0, 0, CInt(Core.windowSize.Width), 200), New Color(42, 167, 198, alpha), New Color(42, 167, 198, 0), False, -1)
-        Canvas.DrawGradient(New Rectangle(0, CInt(Core.windowSize.Height - 200), CInt(Core.windowSize.Width), 200), New Color(42, 167, 198, 0), New Color(42, 167, 198, alpha), False, -1)
+        Canvas.DrawGradient(New Rectangle(0, 0, CInt(Core.windowSize.Width), 200), New Color(GradientColor, alpha), New Color(GradientColor, 0), False, -1)
+        Canvas.DrawGradient(New Rectangle(0, CInt(Core.windowSize.Height - 200), CInt(Core.windowSize.Width), 200), New Color(GradientColor, 0), New Color(GradientColor, alpha), False, -1)
 
         Core.SpriteBatch.DrawString(FontManager.MainFont, "Hall of Fame", New Vector2(100, 24), Color.White, 0.0F, Vector2.Zero, 2.0F, SpriteEffects.None, 0.0F)
 
