@@ -65,7 +65,7 @@ Public Class CreditsScreen
         CreditsPages.Add(New CreditsPage("Graphic Design", Color.White, Color.Black, {"Benjamin Smith", """The Omega Ghost""", "Jasper Speelman", """Godeken""", "Caleb Coleman", "Miguel Nunez", "Grant Garrett", """Anvil555""", """princess-phoenix""", """AgentPaperCraft"""}.ToList())) '10
         CreditsPages.Add(New CreditsPage("Map Design", Color.White, Color.Black, {"Benjamin Smith", """Fanta""", "Conner Joseph Brewster"}.ToList()))
         CreditsPages.Add(New CreditsPage("Actionscript", Color.White, Color.Black, {"Benjamin Smith", """Fanta""", "Conner Joseph Brewster", "Jasper Speelman"}.ToList()))
-        CreditsPages.Add(New CreditsPage("Script System Development", Color.White, Color.Black, {"Benjamin Smith", """Aragas""", "Yong Jian Ming"}.ToList()))
+        CreditsPages.Add(New CreditsPage("Script System Development", Color.White, Color.Black, {"Benjamin Smith", """Aragas""", "Yong Jian Ming", "Jasper Speelman"}.ToList()))
         CreditsPages.Add(New CreditsPage("Website Host/Server Development", Color.White, Color.Black, {"Daniel S. Billing", """Aragas""", """iErws[GR]"""}.ToList()))
         CreditsPages.Add(New CreditsPage("GameJolt Service/API Programming", Color.White, Color.Black, {"David DeCarmine", """nilllzz"""}.ToList()))
         CreditsPages.Add(New CreditsPage("Community Staff", Color.White, Color.Black, {"Conner Joseph Brewster", "Benjamin Smith", "Daniel S. Billing", """Fanta""", """MamaLeef""", "Tim ten Brink"}.ToList()))
