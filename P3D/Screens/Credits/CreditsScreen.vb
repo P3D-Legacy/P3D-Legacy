@@ -39,11 +39,12 @@ Public Class CreditsScreen
         SkyDome = New SkyDome()
         Camera = New CreditsCamera()
 
-        Level = New Level()
         InitializeCreditsPages(ending)
         InitializeCameraLevels(ending)
-
-        ExecuteCameraLevel()
+        If CameraLevels IsNot Nothing AndAlso CameraLevels.Count > 0 Then
+            Level = New Level()
+            ExecuteCameraLevel()
+        End If
 
         MusicManager.Play("credits", True, False)
     End Sub
@@ -95,18 +96,23 @@ Public Class CreditsScreen
                 CameraLevels.Add(New CameraLevel("barktown.dat", New Vector3(20, 1.5, 14), New Vector3(20, 1.5, 28), 0.04F, 0.0F, -0.1F))
             Case "kanto"
 
+            Case Else
         End Select
     End Sub
 
     Private Sub ExecuteCameraLevel()
-        If Me.ExecutedCameraLevel = False Then
-            Me.ExecutedCameraLevel = True
-            CameraLevels(CurrentCameraLevelIndex).Apply(CType(Camera, CreditsCamera))
+        If CameraLevels IsNot Nothing AndAlso CameraLevels.Count > 0 Then
+            If Me.ExecutedCameraLevel = False Then
+                Me.ExecutedCameraLevel = True
+                CameraLevels(CurrentCameraLevelIndex).Apply(CType(Camera, CreditsCamera))
+            End If
         End If
     End Sub
 
     Public Overrides Sub Draw()
-        Level.Draw()
+        If CameraLevels IsNot Nothing AndAlso CameraLevels.Count > 0 Then
+            Level.Draw()
+        End If
 
         If TheEnd = True Then
             CreditsPages(CreditsPages.Count - 1).Draw()
@@ -116,8 +122,10 @@ Public Class CreditsScreen
     End Sub
 
     Public Overrides Sub Update()
-        Camera.Update()
-        Level.Update()
+        If CameraLevels IsNot Nothing AndAlso CameraLevels.Count > 0 Then
+            Camera.Update()
+            Level.Update()
+        End If
 
         CreditsPages(CurrentPageIndex).Update()
 
@@ -141,15 +149,17 @@ Public Class CreditsScreen
             End If
         End If
 
-        If CType(Camera, CreditsCamera).IsReady = True And TheEnd = False Then
-            Me.CurrentCameraLevelIndex += 1
-            If Me.CurrentCameraLevelIndex > Me.CameraLevels.Count - 1 Then
-                Me.CurrentCameraLevelIndex = 0
+        If CameraLevels IsNot Nothing AndAlso CameraLevels.Count > 0 Then
+            If CType(Camera, CreditsCamera).IsReady = True And TheEnd = False Then
+                Me.CurrentCameraLevelIndex += 1
+                If Me.CurrentCameraLevelIndex > Me.CameraLevels.Count - 1 Then
+                    Me.CurrentCameraLevelIndex = 0
+                End If
+                Me.ExecutedCameraLevel = False
             End If
-            Me.ExecutedCameraLevel = False
-        End If
 
-        ExecuteCameraLevel()
+            ExecuteCameraLevel()
+        End If
     End Sub
 
     Public Sub ChangeSavedScreen()
