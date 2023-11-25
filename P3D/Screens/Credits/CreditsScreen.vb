@@ -59,14 +59,14 @@ Public Class CreditsScreen
         Else
             CreditsPages.Add(New CreditsPage("Pokémon 3D", Color.White, Color.Black, {"Trademark (TM) 2012 - " & COPYRIGHTYEAR, "made by Kolben Games", "", "GameMode made by", GameModeManager.ActiveGameMode.Author}.ToList()))
         End If
-        CreditsPages.Add(New CreditsPage("Pokémon 3D Team", Color.White, Color.Black, {"Benjamin Smith", """Aragas""", """Fanta""", "Jorge Luis Espinoza", "Conner Joseph Brewster", """The Omega Ghost""", "Daniel S. Billing"}.ToList()))
+        CreditsPages.Add(New CreditsPage("Pokémon 3D Team", Color.White, Color.Black, {"Benjamin Smith", """Aragas""", """Fanta""", "Jorge Luis Espinoza", "Conner Joseph Brewster", """The Omega Ghost""", "Daniel S. Billing", "Jasper ""JappaWakka"" Speelman"}.ToList()))
         CreditsPages.Add(New CreditsPage("Director", Color.White, Color.Black, {"Benjamin Smith"}.ToList()))
         CreditsPages.Add(New CreditsPage("Initial Development", Color.White, Color.Black, {"""nilllzz""", "Jason Houston", "Daniel S. Billing", "Benjamin Smith", "Hunter Graves"}.ToList()))
-        CreditsPages.Add(New CreditsPage("Programming", Color.White, Color.Black, {"Benjamin Smith", "Jorge Luis Espinoza", """Aragas""", "Jasper Speelman"}.ToList()))
-        CreditsPages.Add(New CreditsPage("Graphic Design", Color.White, Color.Black, {"Benjamin Smith", """The Omega Ghost""", "Jasper Speelman", """Godeken""", "Caleb Coleman", "Miguel Nunez", "Grant Garrett", """Anvil555""", """princess-phoenix""", """AgentPaperCraft"""}.ToList())) '10
+        CreditsPages.Add(New CreditsPage("Programming", Color.White, Color.Black, {"Benjamin Smith", "Jorge Luis Espinoza", """Aragas""", "Jasper ""JappaWakka"" Speelman"}.ToList()))
+        CreditsPages.Add(New CreditsPage("Graphic Design", Color.White, Color.Black, {"Benjamin Smith", """The Omega Ghost""", "Jasper ""JappaWakka"" Speelman", """Godeken""", "Caleb Coleman", "Miguel Nunez", "Grant Garrett", """Anvil555""", """princess-phoenix""", """AgentPaperCraft"""}.ToList())) '10
         CreditsPages.Add(New CreditsPage("Map Design", Color.White, Color.Black, {"Benjamin Smith", """Fanta""", "Conner Joseph Brewster"}.ToList()))
-        CreditsPages.Add(New CreditsPage("Actionscript", Color.White, Color.Black, {"Benjamin Smith", """Fanta""", "Conner Joseph Brewster", "Jasper Speelman"}.ToList()))
-        CreditsPages.Add(New CreditsPage("Script System Development", Color.White, Color.Black, {"Benjamin Smith", """Aragas""", "Yong Jian Ming", "Jasper Speelman"}.ToList()))
+        CreditsPages.Add(New CreditsPage("ActionScript", Color.White, Color.Black, {"Benjamin Smith", """Fanta""", "Conner Joseph Brewster", "Jasper ""JappaWakka"" Speelman"}.ToList()))
+        CreditsPages.Add(New CreditsPage("Script System Development", Color.White, Color.Black, {"Benjamin Smith", """Aragas""", "Yong Jian Ming", "Jasper ""JappaWakka"" Speelman"}.ToList()))
         CreditsPages.Add(New CreditsPage("Website Host/Server Development", Color.White, Color.Black, {"Daniel S. Billing", """Aragas""", """iErws[GR]"""}.ToList()))
         CreditsPages.Add(New CreditsPage("GameJolt Service/API Programming", Color.White, Color.Black, {"David DeCarmine", """nilllzz"""}.ToList()))
         CreditsPages.Add(New CreditsPage("Community Staff", Color.White, Color.Black, {"Conner Joseph Brewster", "Benjamin Smith", "Daniel S. Billing", """Fanta""", """MamaLeef""", "Tim ten Brink"}.ToList()))
