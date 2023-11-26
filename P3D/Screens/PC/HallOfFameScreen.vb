@@ -178,9 +178,11 @@
         Canvas.DrawGradient(New Rectangle(0, 0, CInt(Core.windowSize.Width), 200), New Color(GradientColor, alpha), New Color(GradientColor, 0), False, -1)
         Canvas.DrawGradient(New Rectangle(0, CInt(Core.windowSize.Height - 200), CInt(Core.windowSize.Width), 200), New Color(GradientColor, 0), New Color(GradientColor, alpha), False, -1)
 
+        Core.SpriteBatch.DrawString(FontManager.MainFont, "Hall of Fame", New Vector2(100 + 4, 24 + 4), Color.Black, 0.0F, Vector2.Zero, 2.0F, SpriteEffects.None, 0.0F)
         Core.SpriteBatch.DrawString(FontManager.MainFont, "Hall of Fame", New Vector2(100, 24), Color.White, 0.0F, Vector2.Zero, 2.0F, SpriteEffects.None, 0.0F)
 
         If Not Me.SelectedEntry Is Nothing Then
+            Core.SpriteBatch.DrawString(FontManager.MainFont, "Entry No. " & (Me.SelectedEntry.ID + 1).ToString(), New Vector2(-1100 + (255 - alpha) * 5.0F + 4, 70 + 4), Color.Black, 0.0F, Vector2.Zero, 2.0F, SpriteEffects.None, 0.0F)
             Core.SpriteBatch.DrawString(FontManager.MainFont, "Entry No. " & (Me.SelectedEntry.ID + 1).ToString(), New Vector2(-1100 + (255 - alpha) * 5.0F, 70), Color.White, 0.0F, Vector2.Zero, 2.0F, SpriteEffects.None, 0.0F)
         End If
 
@@ -193,7 +195,7 @@
                     Core.SpriteBatch.Draw(Me.texture, New Rectangle(100 + 64, 100 + p * 96, 64 * 8, 64), New Rectangle(32, 16, 16, 16), New Color(255, 255, 255, alpha))
                     Core.SpriteBatch.Draw(Me.texture, New Rectangle(100 + 64 * 9, 100 + p * 96, 64, 64), New Rectangle(16, 16, 16, 16), New Color(255, 255, 255, alpha), 0.0F, Vector2.Zero, SpriteEffects.FlipHorizontally, 0.0F)
 
-                    Core.SpriteBatch.DrawString(FontManager.MainFont, "Entry No. " & (Me.Entries(i).ID + 1).ToString(), New Vector2(120, 116 + p * 96), New Color(0, 0, 0, alpha), 0.0F, Vector2.Zero, 1.25F, SpriteEffects.None, 0.0F)
+                    Core.SpriteBatch.DrawString(FontManager.MainFont, "Entry No. " & (Me.Entries(i).ID + 1).ToString(), New Vector2(120, 116 + p * 96), New Color(0, 0, 0, alpha), 0.0F, Vector2.Zero, 1.0F, SpriteEffects.None, 0.0F)
 
                     For d = 0 To Me.Entries(i).PokemonList.Count - 1
                         Dim pokeTexture = Me.Entries(i).PokemonList(d).GetPokemon().GetMenuTexture()
@@ -204,7 +206,7 @@
                 End If
             Next
 
-            Core.SpriteBatch.DrawString(FontManager.MainFont, "Entries: ", New Vector2(90 + 64 * 11, 119), New Color(0, 0, 0, alpha))
+            Core.SpriteBatch.DrawString(FontManager.MainFont, "Entries: ", New Vector2(90 + 64 * 11, 119), New Color(255, 255, 255, alpha))
             Core.SpriteBatch.DrawString(FontManager.MainFont, AmountOfEntries.ToString(), New Vector2(190 + 64 * 11, 119), New Color(255, 255, 255, alpha))
 
             DrawCursor()
