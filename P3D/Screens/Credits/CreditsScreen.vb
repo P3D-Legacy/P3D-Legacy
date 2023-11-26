@@ -12,6 +12,7 @@ Public Class CreditsScreen
     Dim ExecutedCameraLevel As Boolean = False
 
     Dim TheEnd As Boolean = False
+    Dim FadeAlpha As Integer = 0
 
     Public SavedOverworld As OverworldStorage
 
@@ -156,6 +157,17 @@ Public Class CreditsScreen
         End If
 
         If TheEnd = True Then
+            If FadeAlpha < 255 Then
+                FadeAlpha += 5
+                If FadeAlpha >= 255 Then
+                    FadeAlpha = 255
+                End If
+            End If
+
+            Dim ContinueString As String = Localization.GetString("credits_continue", "Press [Enter] to continue.")
+            Core.SpriteBatch.DrawString(FontManager.InGameFont, ContinueString, New Vector2(CInt(windowSize.Width / 2 - FontManager.InGameFont.MeasureString(ContinueString).X / 2 + 2), CInt(windowSize.Height - 160 + 2)), New Color(Color.Black, FadeAlpha))
+            Core.SpriteBatch.DrawString(FontManager.InGameFont, ContinueString, New Vector2(CInt(windowSize.Width / 2 - FontManager.InGameFont.MeasureString(ContinueString).X / 2), CInt(windowSize.Height - 160)), New Color(Color.White, FadeAlpha))
+
             CreditsPages(CreditsPages.Count - 1).Draw()
         Else
             CreditsPages(CurrentPageIndex).Draw()
@@ -241,14 +253,20 @@ Public Class CreditsScreen
         Public Sub Draw()
             Dim alpha As Byte = GetAlphaValue()
 
-            Dim posTitle As Vector2 = New Vector2(CInt(Core.windowSize.Width / 2 - FontManager.InGameFont.MeasureString(_title).X / 2), CInt(100))
+            Dim Title As String = _title
+            If Localization.TokenExists("credits_title_" & _title) Then
+                Title = Localization.GetString("credits_title_" & _title, _title)
+            End If
+            Dim posTitle As Vector2 = New Vector2(CInt(Core.windowSize.Width / 2 - FontManager.InGameFont.MeasureString(Title).X / 2), CInt(100))
 
-            Core.SpriteBatch.DrawString(FontManager.InGameFont, Me._title, New Vector2(posTitle.X + 2, posTitle.Y + 2), AColor(Me._color2))
-            Core.SpriteBatch.DrawString(FontManager.InGameFont, Me._title, posTitle, AColor(Me._color))
+            Core.SpriteBatch.DrawString(FontManager.InGameFont, Title, New Vector2(posTitle.X + 2, posTitle.Y + 2), AColor(Me._color2))
+            Core.SpriteBatch.DrawString(FontManager.InGameFont, Title, posTitle, AColor(Me._color))
 
             For i = 0 To _rows.Count - 1
                 Dim line As String = _rows(i)
-
+                If Localization.TokenExists("credits_line_" & _rows(i)) Then
+                    line = Localization.GetString("credits_line_" & _rows(i), _rows(i))
+                End If
                 Dim posLine As Vector2 = New Vector2(CInt(Core.windowSize.Width / 2 - FontManager.MainFont.MeasureString(line).X / 2), CInt(200) + i * 35)
 
                 Core.SpriteBatch.DrawString(FontManager.MainFont, line, New Vector2(posLine.X + 2, posLine.Y + 2), AColor(Me._color2))
