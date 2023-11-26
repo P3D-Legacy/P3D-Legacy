@@ -16,7 +16,7 @@
                     If argument.Split(",").Length > 1 Then
                         LoopSong = CBool(argument.GetSplit(1, ","))
                     End If
-                    MusicManager.Play(argument.GetSplit(0, ","), LoopSong, LoopSong)
+                    MusicManager.Play(argument.GetSplit(0, ","), True, LoopSong)
 
                     If LoopSong = True Then
                         If Core.CurrentScreen.Identification = Screen.Identifications.OverworldScreen Then
@@ -33,7 +33,7 @@
                         LoopSong = CBool(argument.GetSplit(1, ","))
                     End If
                     MusicManager.ForceMusic = argument.GetSplit(0, ",")
-                    MusicManager.Play(argument.GetSplit(0, ","), LoopSong, LoopSong)
+                    MusicManager.Play(argument.GetSplit(0, ","), True, LoopSong)
 
                     If LoopSong = True Then
                         If Core.CurrentScreen.Identification = Screen.Identifications.OverworldScreen Then

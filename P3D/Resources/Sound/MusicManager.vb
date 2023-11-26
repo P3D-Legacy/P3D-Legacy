@@ -41,14 +41,19 @@ Public Class LoopStream
 
             If bytesRead = 0 Then
 
-                If _enableLooping Then
+                If _enableLooping And MusicManager.EnableLooping = True Then
                     _sourceStream.Position = 0
                 Else
                     If Not _sourceStream.Position = 0 Then
                         If MusicManager.Playlist.Count > 1 Then
                             MusicManager.Playlist.RemoveAt(0)
+                        ElseIf MusicManager.EnableLooping = False AndAlso MusicManager.Playlist.Count > 0 Then
+                            MusicManager.Playlist.RemoveAt(0)
                         End If
-                        Dim NextSong As SongContainer = MusicManager.Playlist(0)
+                        Dim NextSong As SongContainer = Nothing
+                        If MusicManager.Playlist.Count > 0 Then
+                            NextSong = MusicManager.Playlist(0)
+                        End If
                         If NextSong IsNot Nothing Then
                             Logger.Debug($"Play song [{NextSong.Name}]")
                             _sourceStream.Dispose()
@@ -141,6 +146,7 @@ Public Class MusicManager
     Public Shared audioFileMP3 As Mp3FileReader
     Public Shared audioFileWMA As MediaFoundationReader
     Public Shared _stream As WaveChannel32
+    Public Shared EnableLooping As Boolean = True
 
     Public Shared Property PauseVolume As Single = 1.0F
     Public Shared Property MasterVolume As Single = 1.0F
@@ -301,6 +307,7 @@ Public Class MusicManager
                 'End If
             End If
         End If
+
         If Core.GameInstance.IsActive AndAlso _lastVolume <> (Volume * PauseVolume * MasterVolume) Then
             UpdateVolume()
         End If
@@ -410,6 +417,7 @@ Public Class MusicManager
         Dim playedSong As SongContainer = Nothing
 
         ' get the current song, only play if it's different
+
         Dim currentSong = GetCurrentSong().ToLowerInvariant()
         Dim songName = GetSongName(song)
         Dim AfterBattleIntroSongName As String = GetSongName(AfterBattleIntroSong)
@@ -475,7 +483,7 @@ Public Class MusicManager
                 _isIntroStarted = False
                 _isFadingIn = False
             End If
-
+            EnableLooping = loopSong
             ' intro was not requested or does not exist
             If Not _isIntroStarted AndAlso Not _isFadingIn AndAlso AfterBattleIntroSongName = "" Then
                 Playlist.Clear()
