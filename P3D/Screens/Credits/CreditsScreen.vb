@@ -63,22 +63,39 @@ Public Class CreditsScreen
         CreditsPages.Add(New CreditsPage("Director", Color.White, Color.Black, {"Benjamin Smith"}.ToList()))
         CreditsPages.Add(New CreditsPage("Initial Development", Color.White, Color.Black, {"""nilllzz""", "Jason Houston", "Daniel S. Billing", "Benjamin Smith", "Hunter Graves"}.ToList()))
         CreditsPages.Add(New CreditsPage("Programming", Color.White, Color.Black, {"Benjamin Smith", "Jorge Luis Espinoza", """Aragas""", "Jasper ""JappaWakka"" Speelman"}.ToList()))
-        CreditsPages.Add(New CreditsPage("Graphic Design", Color.White, Color.Black, {"Benjamin Smith", """The Omega Ghost""", "Jasper ""JappaWakka"" Speelman", """Godeken""", "Caleb Coleman", "Miguel Nunez", "Grant Garrett", """Anvil555""", """princess-phoenix""", """AgentPaperCraft"""}.ToList())) '10
-        CreditsPages.Add(New CreditsPage("Map Design", Color.White, Color.Black, {"Benjamin Smith", """Fanta""", "Conner Joseph Brewster"}.ToList()))
-        CreditsPages.Add(New CreditsPage("ActionScript", Color.White, Color.Black, {"Benjamin Smith", """Fanta""", "Conner Joseph Brewster", "Jasper ""JappaWakka"" Speelman"}.ToList()))
         CreditsPages.Add(New CreditsPage("Script System Development", Color.White, Color.Black, {"Benjamin Smith", """Aragas""", "Yong Jian Ming", "Jasper ""JappaWakka"" Speelman"}.ToList()))
         CreditsPages.Add(New CreditsPage("Website Host/Server Development", Color.White, Color.Black, {"Daniel S. Billing", """Aragas""", """iErws[GR]"""}.ToList()))
-        CreditsPages.Add(New CreditsPage("GameJolt Service/API Programming", Color.White, Color.Black, {"David DeCarmine", """nilllzz"""}.ToList()))
-        CreditsPages.Add(New CreditsPage("Community Staff", Color.White, Color.Black, {"Conner Joseph Brewster", "Benjamin Smith", "Daniel S. Billing", """Fanta""", """MamaLeef""", "Tim ten Brink"}.ToList()))
-        CreditsPages.Add(New CreditsPage("0.59 QA Team", Color.White, Color.Black, {"Tim ten Brink", """iErws[GR]""", """Runaryu/agravedigger""", """AlexCorruptor""", """HantomPro""", """Lexichu_"""}.ToList())) '6
-        CreditsPages.Add(New CreditsPage("Past QA Team", Color.White, Color.Black, {"Tim Drescher", "Daniel Steinborn", "Marc Boisvert-Dupras", "Matt Chambers", "William Hunn", "Torben Carrington", """Sanio""", """Vanilla"""}.ToList())) '8
-        CreditsPages.Add(New CreditsPage("Legacy Contributors", Color.White, Color.Black, {"Yong Jian Ming", "Andrew Leach", "Manuel Lampe", "Robert Nobbmann", "Maximilian Schröder", "Jan Mika Eine"}.ToList()))
-        CreditsPages.Add(New CreditsPage("Special Thanks", Color.White, Color.Black, {"""MunchingOrange""", """TheFlamingSpade""", """SlyFoxHound""", """ArsenioDev""", """TrUShade""", """Isaaking6""", """ParadiseGamer13"""}.ToList()))
-        CreditsPages.Add(New CreditsPage("Special Thanks", Color.White, Color.Black, {"Davey Van Raaij", "Diego López", "The GameJolt Team", "The AppSharp Team", "The Smogon University Sprite Project Team"}.ToList()))
-        CreditsPages.Add(New CreditsPage("", Color.White, Color.Black, {"And probably a lot more.", "Especially all the awesome people from", "the discord server and", "the pokemon3d.net community.", "Thanks for helping and playing this great game."}.ToList()))
-        CreditsPages.Add(New CreditsPage("", Color.White, Color.Black))
-        CreditsPages.Add(New CreditsPage("", Color.White, Color.Black))
-        CreditsPages.Add(New CreditsPage("THE END", Color.White, Color.Black, {"Thank you for playing!"}.ToList()))
+
+        If Core.Player.IsGameJoltSave = True Then
+            CreditsPages.Add(New CreditsPage("GameJolt Service/API Programming", Color.White, Color.Black, {"David DeCarmine", """nilllzz"""}.ToList()))
+        End If
+
+        If GameModeManager.ActiveGameMode.IsDefaultGamemode = False AndAlso File.Exists(GameModeManager.GetContentFilePath("Data\Credits.dat")) Then
+            Dim Credits() As String = System.IO.File.ReadAllLines(GameModeManager.GetContentFilePath("Data\Credits.dat"))
+            For Each Line As String In Credits
+                If Line.Contains("|") = True And Line.StartsWith("#") = False Then
+                    If Line.GetSplit(0, "|").ToLower = ending.ToLower OrElse Line.GetSplit(0, "|") = "" Then
+                        Dim creditTitle As String = Line.GetSplit(1, "|")
+                        Dim creditNames As List(Of String) = Line.GetSplit(2, "|").Split(",").ToList
+                        CreditsPages.Add(New CreditsPage(creditTitle, Color.White, Color.Black, creditNames))
+                    End If
+                End If
+            Next
+        Else
+            CreditsPages.Add(New CreditsPage("Graphic Design", Color.White, Color.Black, {"Benjamin Smith", """The Omega Ghost""", "Jasper ""JappaWakka"" Speelman", """Godeken""", "Caleb Coleman", "Miguel Nunez", "Grant Garrett", """Anvil555""", """princess-phoenix""", """AgentPaperCraft"""}.ToList())) '10
+            CreditsPages.Add(New CreditsPage("Map Design", Color.White, Color.Black, {"Benjamin Smith", """Fanta""", "Conner Joseph Brewster"}.ToList()))
+            CreditsPages.Add(New CreditsPage("ActionScript", Color.White, Color.Black, {"Benjamin Smith", """Fanta""", "Conner Joseph Brewster", "Jasper ""JappaWakka"" Speelman"}.ToList()))
+            CreditsPages.Add(New CreditsPage("Community Staff", Color.White, Color.Black, {"Conner Joseph Brewster", "Benjamin Smith", "Daniel S. Billing", """Fanta""", """MamaLeef""", "Tim ten Brink"}.ToList()))
+            CreditsPages.Add(New CreditsPage("0.59 QA Team", Color.White, Color.Black, {"Tim ten Brink", """iErws[GR]""", """Runaryu/agravedigger""", """AlexCorruptor""", """HantomPro""", """Lexichu_"""}.ToList())) '6
+            CreditsPages.Add(New CreditsPage("Past QA Team", Color.White, Color.Black, {"Tim Drescher", "Daniel Steinborn", "Marc Boisvert-Dupras", "Matt Chambers", "William Hunn", "Torben Carrington", """Sanio""", """Vanilla"""}.ToList())) '8
+            CreditsPages.Add(New CreditsPage("Legacy Contributors", Color.White, Color.Black, {"Yong Jian Ming", "Andrew Leach", "Manuel Lampe", "Robert Nobbmann", "Maximilian Schröder", "Jan Mika Eine"}.ToList()))
+            CreditsPages.Add(New CreditsPage("Special Thanks", Color.White, Color.Black, {"""MunchingOrange""", """TheFlamingSpade""", """SlyFoxHound""", """ArsenioDev""", """TrUShade""", """Isaaking6""", """ParadiseGamer13"""}.ToList()))
+            CreditsPages.Add(New CreditsPage("Special Thanks", Color.White, Color.Black, {"Davey Van Raaij", "Diego López", "The GameJolt Team", "The AppSharp Team", "The Smogon University Sprite Project Team"}.ToList()))
+            CreditsPages.Add(New CreditsPage("", Color.White, Color.Black, {"And probably a lot more.", "Especially all the awesome people from", "the discord server and", "the pokemon3d.net community.", "Thanks for helping and playing this great game."}.ToList()))
+            CreditsPages.Add(New CreditsPage("", Color.White, Color.Black))
+            CreditsPages.Add(New CreditsPage("", Color.White, Color.Black))
+            CreditsPages.Add(New CreditsPage("THE END", Color.White, Color.Black, {"Thank you for playing!"}.ToList()))
+        End If
     End Sub
 
     ' Credit camera starting positions:
