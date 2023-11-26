@@ -73,10 +73,10 @@ Public Class CreditsScreen
         If GameModeManager.ActiveGameMode.IsDefaultGamemode = False AndAlso File.Exists(GameModeManager.GetContentFilePath("Data\Credits.dat")) Then
             Dim Credits() As String = System.IO.File.ReadAllLines(GameModeManager.GetContentFilePath("Data\Credits.dat"))
             For Each Line As String In Credits
-                If Line.Contains("|") = True And Line.StartsWith("#") = False Then
-                    If Line.GetSplit(0, "|").ToLower = ending.ToLower OrElse Line.GetSplit(0, "|") = "" Then
-                        Dim creditTitle As String = Line.GetSplit(1, "|")
-                        Dim creditNames As List(Of String) = Line.GetSplit(2, "|").Split(",").ToList
+                If Line.Contains("|") = True AndAlso Line.StartsWith("#") = False AndAlso Line.StartsWith("Credits") = True Then
+                    If Line.GetSplit(1, "|").ToLower = ending.ToLower OrElse Line.GetSplit(1, "|") = "" Then
+                        Dim creditTitle As String = Line.GetSplit(2, "|")
+                        Dim creditNames As List(Of String) = Line.GetSplit(3, "|").Split(",").ToList
                         CreditsPages.Add(New CreditsPage(creditTitle, Color.White, Color.Black, creditNames))
                     End If
                 End If
@@ -100,8 +100,30 @@ Public Class CreditsScreen
 
     ' Credit camera starting positions:
     Private Sub InitializeCameraLevels(ByVal ending As String)
-        Select Case ending.ToLower()
-            Case "johto"
+
+        If GameModeManager.ActiveGameMode.IsDefaultGamemode = False AndAlso File.Exists(GameModeManager.GetContentFilePath("Data\Credits.dat")) Then
+            Dim Credits() As String = System.IO.File.ReadAllLines(GameModeManager.GetContentFilePath("Data\Credits.dat"))
+            For Each Line As String In Credits
+                If Line.Contains("|") = True And Line.StartsWith("#") = False AndAlso Line.StartsWith("Background") = True Then
+                    If Line.GetSplit(1, "|").ToLower = ending.ToLower OrElse Line.GetSplit(1, "|") = "" Then
+                        Dim MapPath As String = Line.GetSplit(2, "|")
+
+                        Dim StartPosition() As String = Line.GetSplit(3, "|").Split(",")
+                        Dim StartVector As New Vector3(CSng(StartPosition(0).InsertDecSeparator), CSng(StartPosition(1).InsertDecSeparator), CSng(StartPosition(2).InsertDecSeparator))
+
+                        Dim EndPosition() As String = Line.GetSplit(4, "|").Split(",")
+                        Dim EndVector As New Vector3(CSng(EndPosition(0).InsertDecSeparator), CSng(EndPosition(1).InsertDecSeparator), CSng(EndPosition(2).InsertDecSeparator))
+
+                        Dim CameraSpeed As Single = CSng(Line.GetSplit(5, "|").InsertDecSeparator) * 0.04F
+                        Dim CameraYaw As Single = CSng(Line.GetSplit(6, "|").InsertDecSeparator)
+                        Dim CameraPitch As Single = CSng(Line.GetSplit(7, "|").InsertDecSeparator)
+                        CameraLevels.Add(New CameraLevel(MapPath, EndVector, StartVector, CameraSpeed, CameraYaw, CameraPitch))
+                    End If
+                End If
+            Next
+        Else
+            Select Case ending.ToLower()
+                Case "johto"
                 CameraLevels.Add(New CameraLevel("route29.dat", New Vector3(50, 2, 10), New Vector3(0, 2, 10), 0.04F, MathHelper.Pi * 1.5F, -0.3F))
                 CameraLevels.Add(New CameraLevel("routes\route42.dat", New Vector3(50, 2, 10), New Vector3(0, 2, 10), 0.04F, MathHelper.Pi * 1.5F, -0.3F))
                 CameraLevels.Add(New CameraLevel("route38.dat", New Vector3(34, 2, 10), New Vector3(0, 2, 10), 0.04F, MathHelper.Pi * 1.5F, -0.3F))
@@ -111,10 +133,10 @@ Public Class CreditsScreen
                 CameraLevels.Add(New CameraLevel("route31.dat", New Vector3(29, 2, 10), New Vector3(0, 2, 10), 0.04F, MathHelper.Pi * 1.5F, -0.3F))
                 CameraLevels.Add(New CameraLevel("routes\route43.dat", New Vector3(10, 2, 3), New Vector3(10, 2, 30), 0.04F, 0.0F, -0.3F))
                 CameraLevels.Add(New CameraLevel("barktown.dat", New Vector3(20, 1.5, 14), New Vector3(20, 1.5, 28), 0.04F, 0.0F, -0.1F))
-            Case "kanto"
+                Case "kanto"
+            End Select
+        End If
 
-            Case Else
-        End Select
     End Sub
 
     Private Sub ExecuteCameraLevel()
@@ -129,6 +151,8 @@ Public Class CreditsScreen
     Public Overrides Sub Draw()
         If CameraLevels IsNot Nothing AndAlso CameraLevels.Count > 0 Then
             Level.Draw()
+        Else
+            Canvas.DrawRectangle(New Rectangle(0, 0, Core.windowSize.Width, Core.windowSize.Height), New Color(0, 0, 0))
         End If
 
         If TheEnd = True Then
