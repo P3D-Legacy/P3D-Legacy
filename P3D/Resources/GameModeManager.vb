@@ -732,7 +732,7 @@ Public Class GameMode
 
     Public ReadOnly Property IsDefaultGamemode() As Boolean
         Get
-            Return (Me.Name = "Pokemon 3D")
+            Return (Me.Name = "Kolben")
         End Get
     End Property
 

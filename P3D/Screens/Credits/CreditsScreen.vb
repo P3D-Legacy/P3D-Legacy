@@ -71,7 +71,24 @@ Public Class CreditsScreen
             CreditsPages.Add(New CreditsPage("GameJolt Service/API Programming", Color.White, Color.Black, {"David DeCarmine", """nilllzz"""}.ToList()))
         End If
 
-        If GameModeManager.ActiveGameMode.IsDefaultGamemode = False AndAlso File.Exists(GameModeManager.GetContentFilePath("Data\Credits.dat")) Then
+        If GameModeManager.ActiveGameMode.IsDefaultGamemode = True OrElse File.Exists(GameModeManager.GetContentFilePath("Data\Credits.dat")) = False Then
+            CreditsPages.Add(New CreditsPage("Graphic Design", Color.White, Color.Black, {"Benjamin Smith", """The Omega Ghost""", "Jasper Speelman", """Godeken""", "Caleb Coleman", "Miguel Nunez", "Grant Garrett", """Anvil555""", """princess-phoenix""", """AgentPaperCraft"""}.ToList())) '10
+            CreditsPages.Add(New CreditsPage("Map Design", Color.White, Color.Black, {"Benjamin Smith", """Fanta""", "Conner Joseph Brewster"}.ToList()))
+            CreditsPages.Add(New CreditsPage("ActionScript", Color.White, Color.Black, {"Benjamin Smith", """Fanta""", "Conner Joseph Brewster", "Jasper Speelman"}.ToList()))
+            CreditsPages.Add(New CreditsPage("Community Staff", Color.White, Color.Black, {"Conner Joseph Brewster", "Benjamin Smith", "Daniel S. Billing", """Fanta""", """MamaLeef""", "Tim ten Brink"}.ToList()))
+            CreditsPages.Add(New CreditsPage("0.59 QA Team", Color.White, Color.Black, {"Tim ten Brink", """iErws[GR]""", """Runaryu/agravedigger""", """AlexCorruptor""", """HantomPro""", """Lexichu_"""}.ToList())) '6
+            CreditsPages.Add(New CreditsPage("Past QA Team", Color.White, Color.Black, {"Tim Drescher", "Daniel Steinborn", "Marc Boisvert-Dupras", "Matt Chambers", "William Hunn", "Torben Carrington", """Sanio""", """Vanilla"""}.ToList())) '8
+            CreditsPages.Add(New CreditsPage("Legacy Contributors", Color.White, Color.Black, {"Yong Jian Ming", "Andrew Leach", "Manuel Lampe", "Robert Nobbmann", "Maximilian Schröder", "Jan Mika Eine"}.ToList()))
+            CreditsPages.Add(New CreditsPage("Special Thanks", Color.White, Color.Black, {"""MunchingOrange""", """TheFlamingSpade""", """SlyFoxHound""", """ArsenioDev""", """TrUShade""", """Isaaking6""", """ParadiseGamer13"""}.ToList()))
+            CreditsPages.Add(New CreditsPage("Special Thanks", Color.White, Color.Black, {"Davey Van Raaij", "Diego López", "The GameJolt Team", "The AppSharp Team", "The Smogon University Sprite Project Team"}.ToList()))
+            CreditsPages.Add(New CreditsPage("", Color.White, Color.Black, {"And probably a lot more.", "Especially all the awesome people from", "the Discord server and", "the pokemon3d.net community.", "Thanks for helping and playing this great game."}.ToList()))
+            If Core.Player.IsGameJoltSave = False Then
+                CreditsPages.Add(New CreditsPage("", Color.White, Color.Black))
+            End If
+            CreditsPages.Add(New CreditsPage("", Color.White, Color.Black))
+            CreditsPages.Add(New CreditsPage("", Color.White, Color.Black))
+            CreditsPages.Add(New CreditsPage("THE END", Color.White, Color.Black, {"Thank you for playing!"}.ToList()))
+        Else
             Dim Credits() As String = System.IO.File.ReadAllLines(GameModeManager.GetContentFilePath("Data\Credits.dat"))
             For Each Line As String In Credits
                 If Line.Contains("|") = True AndAlso Line.StartsWith("#") = False AndAlso Line.StartsWith("Credits") = True Then
@@ -82,30 +99,28 @@ Public Class CreditsScreen
                     End If
                 End If
             Next
-        Else
-            CreditsPages.Add(New CreditsPage("Graphic Design", Color.White, Color.Black, {"Benjamin Smith", """The Omega Ghost""", "Jasper Speelman", """Godeken""", "Caleb Coleman", "Miguel Nunez", "Grant Garrett", """Anvil555""", """princess-phoenix""", """AgentPaperCraft"""}.ToList())) '10
-            CreditsPages.Add(New CreditsPage("Map Design", Color.White, Color.Black, {"Benjamin Smith", """Fanta""", "Conner Joseph Brewster"}.ToList()))
-            CreditsPages.Add(New CreditsPage("ActionScript", Color.White, Color.Black, {"Benjamin Smith", """Fanta""", "Conner Joseph Brewster", "Jasper Speelman"}.ToList()))
-            CreditsPages.Add(New CreditsPage("Community Staff", Color.White, Color.Black, {"Conner Joseph Brewster", "Benjamin Smith", "Daniel S. Billing", """Fanta""", """MamaLeef""", "Tim ten Brink"}.ToList()))
-            CreditsPages.Add(New CreditsPage("0.59 QA Team", Color.White, Color.Black, {"Tim ten Brink", """iErws[GR]""", """Runaryu/agravedigger""", """AlexCorruptor""", """HantomPro""", """Lexichu_"""}.ToList())) '6
-            CreditsPages.Add(New CreditsPage("Past QA Team", Color.White, Color.Black, {"Tim Drescher", "Daniel Steinborn", "Marc Boisvert-Dupras", "Matt Chambers", "William Hunn", "Torben Carrington", """Sanio""", """Vanilla"""}.ToList())) '8
-            CreditsPages.Add(New CreditsPage("Legacy Contributors", Color.White, Color.Black, {"Yong Jian Ming", "Andrew Leach", "Manuel Lampe", "Robert Nobbmann", "Maximilian Schröder", "Jan Mika Eine"}.ToList()))
-            CreditsPages.Add(New CreditsPage("Special Thanks", Color.White, Color.Black, {"""MunchingOrange""", """TheFlamingSpade""", """SlyFoxHound""", """ArsenioDev""", """TrUShade""", """Isaaking6""", """ParadiseGamer13"""}.ToList()))
-            CreditsPages.Add(New CreditsPage("Special Thanks", Color.White, Color.Black, {"Davey Van Raaij", "Diego López", "The GameJolt Team", "The AppSharp Team", "The Smogon University Sprite Project Team"}.ToList()))
-            CreditsPages.Add(New CreditsPage("", Color.White, Color.Black, {"And probably a lot more.", "Especially all the awesome people from", "the discord server and", "the pokemon3d.net community.", "Thanks for helping and playing this great game."}.ToList()))
-            If Core.Player.IsGameJoltSave = False Then
-                CreditsPages.Add(New CreditsPage("", Color.White, Color.Black))
-            End If
-            CreditsPages.Add(New CreditsPage("", Color.White, Color.Black))
-            CreditsPages.Add(New CreditsPage("", Color.White, Color.Black))
-            CreditsPages.Add(New CreditsPage("THE END", Color.White, Color.Black, {"Thank you for playing!"}.ToList()))
         End If
+
     End Sub
 
     ' Credit camera starting positions:
     Private Sub InitializeCameraLevels(ByVal ending As String)
 
-        If GameModeManager.ActiveGameMode.IsDefaultGamemode = False AndAlso File.Exists(GameModeManager.GetContentFilePath("Data\Credits.dat")) Then
+        If GameModeManager.ActiveGameMode.IsDefaultGamemode = True OrElse File.Exists(GameModeManager.GetContentFilePath("Data\Credits.dat")) = False Then
+            Select Case ending.ToLower()
+                Case "johto"
+                    CameraLevels.Add(New CameraLevel("route29.dat", New Vector3(50, 2, 10), New Vector3(0, 2, 10), 0.04F, MathHelper.Pi * 1.5F, -0.3F))
+                    CameraLevels.Add(New CameraLevel("routes\route42.dat", New Vector3(50, 2, 10), New Vector3(0, 2, 10), 0.04F, MathHelper.Pi * 1.5F, -0.3F))
+                    CameraLevels.Add(New CameraLevel("route38.dat", New Vector3(34, 2, 10), New Vector3(0, 2, 10), 0.04F, MathHelper.Pi * 1.5F, -0.3F))
+                    CameraLevels.Add(New CameraLevel("routes\route45.dat", New Vector3(10, 2, 3), New Vector3(10, 2, 30), 0.04F, 0.0F, -0.3F))
+                    CameraLevels.Add(New CameraLevel("Ecruteak.dat", New Vector3(22, 0, 22), New Vector3(36, 14, 8), 0.04F, MathHelper.Pi * 1.7F, 0.3F))
+                    CameraLevels.Add(New CameraLevel("routes\route34.dat", New Vector3(10, 2, 3), New Vector3(10, 2, 40), 0.04F, 0.0F, -0.3F))
+                    CameraLevels.Add(New CameraLevel("route31.dat", New Vector3(29, 2, 10), New Vector3(0, 2, 10), 0.04F, MathHelper.Pi * 1.5F, -0.3F))
+                    CameraLevels.Add(New CameraLevel("routes\route43.dat", New Vector3(10, 2, 3), New Vector3(10, 2, 30), 0.04F, 0.0F, -0.3F))
+                    CameraLevels.Add(New CameraLevel("barktown.dat", New Vector3(20, 1.5, 14), New Vector3(20, 1.5, 28), 0.04F, 0.0F, -0.1F))
+                Case "kanto"
+            End Select
+        Else
             Dim Credits() As String = System.IO.File.ReadAllLines(GameModeManager.GetContentFilePath("Data\Credits.dat"))
             For Each Line As String In Credits
                 If Line.Contains("|") = True And Line.StartsWith("#") = False AndAlso Line.StartsWith("Background") = True Then
@@ -125,20 +140,6 @@ Public Class CreditsScreen
                     End If
                 End If
             Next
-        Else
-            Select Case ending.ToLower()
-                Case "johto"
-                CameraLevels.Add(New CameraLevel("route29.dat", New Vector3(50, 2, 10), New Vector3(0, 2, 10), 0.04F, MathHelper.Pi * 1.5F, -0.3F))
-                CameraLevels.Add(New CameraLevel("routes\route42.dat", New Vector3(50, 2, 10), New Vector3(0, 2, 10), 0.04F, MathHelper.Pi * 1.5F, -0.3F))
-                CameraLevels.Add(New CameraLevel("route38.dat", New Vector3(34, 2, 10), New Vector3(0, 2, 10), 0.04F, MathHelper.Pi * 1.5F, -0.3F))
-                CameraLevels.Add(New CameraLevel("routes\route45.dat", New Vector3(10, 2, 3), New Vector3(10, 2, 30), 0.04F, 0.0F, -0.3F))
-                CameraLevels.Add(New CameraLevel("Ecruteak.dat", New Vector3(22, 0, 22), New Vector3(36, 14, 8), 0.04F, MathHelper.Pi * 1.7F, 0.3F))
-                CameraLevels.Add(New CameraLevel("routes\route34.dat", New Vector3(10, 2, 3), New Vector3(10, 2, 40), 0.04F, 0.0F, -0.3F))
-                CameraLevels.Add(New CameraLevel("route31.dat", New Vector3(29, 2, 10), New Vector3(0, 2, 10), 0.04F, MathHelper.Pi * 1.5F, -0.3F))
-                CameraLevels.Add(New CameraLevel("routes\route43.dat", New Vector3(10, 2, 3), New Vector3(10, 2, 30), 0.04F, 0.0F, -0.3F))
-                CameraLevels.Add(New CameraLevel("barktown.dat", New Vector3(20, 1.5, 14), New Vector3(20, 1.5, 28), 0.04F, 0.0F, -0.1F))
-                Case "kanto"
-            End Select
         End If
 
     End Sub
@@ -154,6 +155,7 @@ Public Class CreditsScreen
 
     Public Overrides Sub Draw()
         If CameraLevels IsNot Nothing AndAlso CameraLevels.Count > 0 Then
+            SkyDome.Draw(Camera.FOV)
             Level.Draw()
         Else
             Canvas.DrawRectangle(New Rectangle(0, 0, Core.windowSize.Width, Core.windowSize.Height), New Color(0, 0, 0))
@@ -168,8 +170,8 @@ Public Class CreditsScreen
             End If
 
             Dim ContinueString As String = Localization.GetString("credits_continue", "Press [Enter] to continue.")
-            Core.SpriteBatch.DrawString(FontManager.InGameFont, ContinueString, New Vector2(CInt(windowSize.Width / 2 - FontManager.InGameFont.MeasureString(ContinueString).X / 2 + 2), CInt(windowSize.Height - 160 + 2)), New Color(Color.Black, FadeAlpha))
-            Core.SpriteBatch.DrawString(FontManager.InGameFont, ContinueString, New Vector2(CInt(windowSize.Width / 2 - FontManager.InGameFont.MeasureString(ContinueString).X / 2), CInt(windowSize.Height - 160)), New Color(Color.White, FadeAlpha))
+            Core.SpriteBatch.DrawString(FontManager.InGameFont, ContinueString, New Vector2(CInt(windowSize.Width / 2 - FontManager.InGameFont.MeasureString(ContinueString).X / 2 + 2), CInt(windowSize.Height - 128 + 2)), New Color(Color.Black, FadeAlpha))
+            Core.SpriteBatch.DrawString(FontManager.InGameFont, ContinueString, New Vector2(CInt(windowSize.Width / 2 - FontManager.InGameFont.MeasureString(ContinueString).X / 2), CInt(windowSize.Height - 128)), New Color(Color.White, FadeAlpha))
 
             CreditsPages(CreditsPages.Count - 1).Draw()
         Else
@@ -216,6 +218,8 @@ Public Class CreditsScreen
 
             ExecuteCameraLevel()
         End If
+
+        SkyDome.Update()
     End Sub
 
     Public Sub ChangeSavedScreen()
