@@ -171,7 +171,7 @@ Namespace ScriptVersion2
         Private Shared Sub DoMusic()
             ' Commands:
             r(New ScriptCommand("music", "play", {New ScriptArgument("musicFile", ScriptArgument.ArgumentTypes.Str),
-                                 New ScriptArgument("loopSong", ScriptArgument.ArgumentTypes.Bool, True, "true")}.ToList(), "Changes the currently playing music to a new one."))
+                                 New ScriptArgument("loopSong", ScriptArgument.ArgumentTypes.Bool, True, "true"), New ScriptArgument("fadeIntoSong", ScriptArgument.ArgumentTypes.Bool, True, "false")}.ToList(), "Changes the currently playing music to a new one."))
             r(New ScriptCommand("music", "forceplay", {New ScriptArgument("musicFile", ScriptArgument.ArgumentTypes.Str)}.ToList(), "Changes the currently playing music to a new one and prevents the music from being changed by warps or surfing/riding and such."))
             r(New ScriptCommand("music", "unforce", "Allows warps and surfing/riding etc. to change the music again."))
             r(New ScriptCommand("music", "setmusicloop", {New ScriptArgument("musicFile", ScriptArgument.ArgumentTypes.Str)}.ToList(), "Sets the map musicloop to a new musicfile."))

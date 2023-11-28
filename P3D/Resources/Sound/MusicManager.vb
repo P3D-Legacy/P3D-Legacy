@@ -520,11 +520,19 @@ Public Class MusicManager
                     If _isFadingIn Then
                         Return Playlist(0).Name
                     Else
-                        Return Playlist(1).Name
+                        If Playlist(1) IsNot Nothing Then
+                            Return Playlist(1).Name
+                        Else
+                            Return Playlist(0).Name
+                        End If
                     End If
                 Else
                     If _isIntroStarted Then
-                        Return Playlist(1).Name
+                        If Playlist(1) IsNot Nothing Then
+                            Return Playlist(1).Name
+                        Else
+                            Return Playlist(0).Name
+                        End If
                     Else
                         Return Playlist(0).Name
                     End If
