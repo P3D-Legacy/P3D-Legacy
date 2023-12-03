@@ -1420,6 +1420,10 @@ nextIndex:
                         End If
                     End If
                 Next
+
+                FieldEffects.OwnRageFistPower = 0
+                FieldEffects.OppRageFistPower = 0
+
             Else
                 For Each p As Pokemon In Core.Player.Pokemons
                     If IsRemoteBattle = True Then
@@ -1453,6 +1457,10 @@ nextIndex:
                     End If
                     p.ResetTemp()
                 Next
+
+                FieldEffects.OwnRageFistPower = 0
+                FieldEffects.OppRageFistPower = 0
+
                 ResetVars()
                 Core.SetScreen(New TransitionScreen(Me, New BlackOutScreen(Me), Color.Black, False))
             End If

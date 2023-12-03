@@ -1875,7 +1875,9 @@
                     'returnMove = New Moves.Dragon.Eternabeam()
                 Case 796
                     returnMove = New Moves.Steel.SteelBeam()
-                    'Case 797
+                Case 797
+                    returnMove = New Moves.Ghost.RageFist()
+                    'Case 798
                     'Blank
                 Case 999
                     If GameController.IS_DEBUG_ACTIVE = True Or Core.Player.SandBoxMode = True Then

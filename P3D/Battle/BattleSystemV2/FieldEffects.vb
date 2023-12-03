@@ -64,6 +64,7 @@
         Public OwnLockOn As Integer = 0 'Counter for the moves lock-on and mind reader
         Public OwnBideCounter As Integer = 0 'Counter for the Bide move
         Public OwnBideDamage As Integer = 0 'Half of the damage dealt by bide
+        Public OwnRageFistPower As Integer = 0 'how much the Power of the attack Rage Fist increases
         Public OwnLansatBerry As Integer = 0 'Raise critical hit ration when Lansat got eaten
         Public OwnCustapBerry As Integer = 0 'Raises the attack speed once when Custap got eaten
         Public OwnTrappedCounter As Integer = 0 'If the pokemon is trapped (for example by Spider Web), this is =1
@@ -203,6 +204,7 @@
         Public OppSolarBlade As Integer = 0
         Public OppLockOn As Integer = 0
         Public OppBideCounter As Integer = 0
+        Public OppRageFistPower As Integer = 0
         Public OppBideDamage As Integer = 0
         Public OppLansatBerry As Integer = 0
         Public OppCustapBerry As Integer = 0

@@ -28795,6 +28795,7 @@
     <Compile Include="Pokemon\Attacks\Ghost\PhantomForce.vb" />
     <Compile Include="Pokemon\Attacks\Ghost\ShadowBone.vb" />
     <Compile Include="Pokemon\Attacks\Ghost\ShadowForce.vb" />
+    <Compile Include="Pokemon\Attacks\Ghost\RageFist.vb" />
     <Compile Include="Pokemon\Attacks\Ghost\SpiritShackle.vb" />
     <Compile Include="Pokemon\Attacks\Grass\Leafage.vb" />
     <Compile Include="Pokemon\Attacks\Grass\GrassyTerrain.vb" />

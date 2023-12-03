@@ -2197,6 +2197,9 @@
                                         If BattleScreen.FieldEffects.OppBideCounter > 0 Then
                                             BattleScreen.FieldEffects.OppBideDamage += didDamage
                                         End If
+                                        If BattleScreen.FieldEffects.OppRageFistPower < 350 Then
+                                            BattleScreen.FieldEffects.OppRageFistPower += 50
+                                        End If
                                     Else
                                         Dim didDamage As Integer = Damage
                                         If didDamage > op.HP Then
@@ -2207,6 +2210,9 @@
 
                                         If BattleScreen.FieldEffects.OwnBideCounter > 0 Then
                                             BattleScreen.FieldEffects.OwnBideDamage += didDamage
+                                        End If
+                                        If BattleScreen.FieldEffects.OwnRageFistPower < 350 Then
+                                            BattleScreen.FieldEffects.OwnRageFistPower += 50
                                         End If
                                     End If
                                 End If
