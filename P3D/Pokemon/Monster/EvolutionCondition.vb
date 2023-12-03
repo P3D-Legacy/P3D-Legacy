@@ -17,6 +17,7 @@ Public Class EvolutionCondition
         InPartyType
         Weather
         Region
+        Status
     End Enum
 
     Public Structure Condition
@@ -69,6 +70,8 @@ Public Class EvolutionCondition
                 c.ConditionType = ConditionTypes.Weather
             Case "region"
                 c.ConditionType = ConditionTypes.Region
+            Case "status"
+                c.ConditionType = ConditionTypes.Status
         End Select
         Me.Conditions.Add(c)
     End Sub
@@ -267,6 +270,27 @@ Public Class EvolutionCondition
                                     End If
                                 End If
                             Next
+                        Case ConditionTypes.Status
+                            Dim RequiredStatus As Pokemon.StatusProblems = Nothing
+                            Select Case c.Argument
+                                Case "brn"
+                                    RequiredStatus = Pokemon.StatusProblems.Burn
+                                Case "frz"
+                                    RequiredStatus = Pokemon.StatusProblems.Freeze
+                                Case "prz"
+                                    RequiredStatus = Pokemon.StatusProblems.Paralyzed
+                                Case "psn"
+                                    RequiredStatus = Pokemon.StatusProblems.Poison
+                                Case "bpsn"
+                                    RequiredStatus = Pokemon.StatusProblems.BadPoison
+                                Case "slp"
+                                    RequiredStatus = Pokemon.StatusProblems.Sleep
+                                Case "fnt"
+                                    RequiredStatus = Pokemon.StatusProblems.Fainted
+                            End Select
+                            If RequiredStatus <> Nothing AndAlso p.Status <> RequiredStatus Then
+                                canEvolve = False
+                            End If
                     End Select
                 Next
             End If
