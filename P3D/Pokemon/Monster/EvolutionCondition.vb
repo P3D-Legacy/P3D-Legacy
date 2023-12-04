@@ -18,6 +18,7 @@ Public Class EvolutionCondition
         Weather
         Region
         Status
+        EnvironmentType
     End Enum
 
     Public Structure Condition
@@ -72,6 +73,8 @@ Public Class EvolutionCondition
                 c.ConditionType = ConditionTypes.Region
             Case "status"
                 c.ConditionType = ConditionTypes.Status
+            Case "environment"
+                c.ConditionType = ConditionTypes.EnvironmentType
         End Select
         Me.Conditions.Add(c)
     End Sub
@@ -289,6 +292,10 @@ Public Class EvolutionCondition
                                     RequiredStatus = Pokemon.StatusProblems.Fainted
                             End Select
                             If RequiredStatus <> Nothing AndAlso p.Status <> RequiredStatus Then
+                                canEvolve = False
+                            End If
+                        Case ConditionTypes.EnvironmentType
+                            If Screen.Level.EnvironmentType <> CInt(c.Argument) Then
                                 canEvolve = False
                             End If
                     End Select
