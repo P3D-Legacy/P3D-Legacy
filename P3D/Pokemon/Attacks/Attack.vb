@@ -1861,8 +1861,8 @@
                     'returnMove = New Moves.Grass.GravApple()
                     'Case 789
                     'returnMove = New Moves.Fairy.SpiritBreak()
-                    'Case 790
-                    'returnMove = New Moves.Fairy.StrangeSteam()
+                Case 790
+                    returnMove = New Moves.Fairy.StrangeSteam()
                     'Case 791
                     'returnMove = New Moves.Water.LifeDew()
                     'Case 792

@@ -28784,6 +28784,7 @@
     <Compile Include="Pokemon\Attacks\Fairy\Geomancy.vb" />
     <Compile Include="Pokemon\Attacks\Fairy\LightOfRuin.vb" />
     <Compile Include="Pokemon\Attacks\Fairy\FleurCannon.vb" />
+    <Compile Include="Pokemon\Attacks\Fairy\StrangeSteam.vb" />
     <Compile Include="Pokemon\Attacks\Fairy\NaturesMadness.vb" />
     <Compile Include="Pokemon\Attacks\Fighting\FinalGambit.vb" />
     <Compile Include="Pokemon\Attacks\Fighting\FlyingPress.vb" />
