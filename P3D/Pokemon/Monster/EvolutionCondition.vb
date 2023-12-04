@@ -73,7 +73,7 @@ Public Class EvolutionCondition
                 c.ConditionType = ConditionTypes.Region
             Case "status"
                 c.ConditionType = ConditionTypes.Status
-            Case "environment"
+            Case "environmenttype"
                 c.ConditionType = ConditionTypes.EnvironmentType
         End Select
         Me.Conditions.Add(c)
