@@ -241,7 +241,15 @@ Public Class EvolutionCondition
                                 canEvolve = False
                             End If
                         Case ConditionTypes.Place
-                            If Screen.Level.MapName.ToLower() <> c.Argument.ToLower() Then
+                            Dim places As List(Of String) = c.Argument.Split(CChar(";")).ToList()
+                            Dim PlaceMatch As Boolean = False
+                            For i = 0 To places.Count - 1
+                                If places(i).ToLower = Screen.Level.MapName.ToLower() Then
+                                    PlaceMatch = True
+                                    Exit For
+                                End If
+                            Next
+                            If PlaceMatch = False Then
                                 canEvolve = False
                             End If
                         Case ConditionTypes.Trade
@@ -295,7 +303,9 @@ Public Class EvolutionCondition
                                 canEvolve = False
                             End If
                         Case ConditionTypes.EnvironmentType
-                            If Screen.Level.EnvironmentType <> CInt(c.Argument) Then
+                            Dim environments As List(Of String) = c.Argument.Split(CChar(";")).ToList()
+
+                            If environments.Contains(CStr(Screen.Level.EnvironmentType)) = False Then
                                 canEvolve = False
                             End If
                     End Select
