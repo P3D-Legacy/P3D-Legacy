@@ -344,7 +344,7 @@
                     r = New ReactionContainer("<name> puts in~extra effort.", MessageBulb.NotificationTypes.Friendly)
                 Case 2
                     If IsOutside() = True Then
-                        r = New ReactionContainer("<name> is smelling~the scents of the~surrounding air", MessageBulb.NotificationTypes.Friendly)
+                        r = New ReactionContainer("<name> is smelling~the scents of the~surrounding air.", MessageBulb.NotificationTypes.Friendly)
                     End If
                 Case 3
                     If IsOutside() = True Then
