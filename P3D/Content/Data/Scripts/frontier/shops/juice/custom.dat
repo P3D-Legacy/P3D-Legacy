@@ -1,5 +1,6 @@
 version=2
 @text.show(Welcome to the Juice Shoppe!*I can help you make your own~custom drinks free of charge!*All you have to do is~provide the berries!*Would you like to begin?)
+@options.setcancelindex(1)
 @Options.show(Yes,No)
 	:when:No
 	@text.show(Come again soon!)

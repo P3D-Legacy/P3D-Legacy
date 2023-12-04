@@ -88,6 +88,7 @@ version=2
 @storage.set(string,juiceselect,<storage.get(string,juiceselect)>Exit)
 
 @text.show(Welcome to the Juice Shoppe!*Please take a look~at our daily specials!)
+@options.setcancelindex(5)
 @options.show(<storage.get(string,juiceselect)>)
 	:when:Exit
 		@text.show(Come again soon!)
