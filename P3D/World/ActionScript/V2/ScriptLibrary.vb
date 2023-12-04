@@ -786,7 +786,7 @@ Namespace ScriptVersion2
             r(New ScriptCommand("pokemon", "setot", {New ScriptArgument("pokemonIndex", ScriptArgument.ArgumentTypes.Int),
                                                        New ScriptArgument("newOT", ScriptArgument.ArgumentTypes.Str)}.ToList(), "Sets the Original Trainer of a Pokémon in the player's party."))
             r(New ScriptCommand("pokemon", "setitem", {New ScriptArgument("pokemonIndex", ScriptArgument.ArgumentTypes.Int),
-                                                       New ScriptArgument("itemID", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Sets the item of a Pokémon in the player's party."))
+                                                       New ScriptArgument("itemID", ScriptArgument.ArgumentTypes.Str)}.ToList(), "Sets the item of a Pokémon in the player's party."))
             r(New ScriptCommand("pokemon", "setitemData", {New ScriptArgument("pokemonIndex", ScriptArgument.ArgumentTypes.Int),
                                                        New ScriptArgument("itemData", ScriptArgument.ArgumentTypes.Str)}.ToList(), "Sets the data of the item of a Pokémon in the player's party."))
             r(New ScriptCommand("pokemon", "setcatchtrainer", {New ScriptArgument("pokemonIndex", ScriptArgument.ArgumentTypes.Int),
@@ -799,6 +799,8 @@ Namespace ScriptVersion2
                                                        New ScriptArgument("location", ScriptArgument.ArgumentTypes.Str)}.ToList(), "Sets the Catch Location of a Pokémon in the player's party."))
             r(New ScriptCommand("pokemon", "setcatchlocation", {New ScriptArgument("pokemonIndex", ScriptArgument.ArgumentTypes.Int),
                                                        New ScriptArgument("location", ScriptArgument.ArgumentTypes.Str)}.ToList(), "Sets the Catch Location of a Pokémon in the player's party."))
+            r(New ScriptCommand("pokemon", "setstatus", {New ScriptArgument("pokemonIndex", ScriptArgument.ArgumentTypes.Int),
+                                                       New ScriptArgument("status", ScriptArgument.ArgumentTypes.Str, {"brn", "frz", "prz", "psn", "bpsn", "slp", "fnt"})}.ToList(), "Sets the status of a Pokémon in the player's party. Setting that to ""fnt"" (Fainted) will also set the Pokémon's HP to 0."))
             r(New ScriptCommand("pokemon", "newroaming", {New ScriptArgument("pokemonID", ScriptArgument.ArgumentTypes.Int),
                                                       New ScriptArgument("level", ScriptArgument.ArgumentTypes.Int),
                                                       New ScriptArgument("regionID", ScriptArgument.ArgumentTypes.Int),

@@ -1025,6 +1025,31 @@
                         SetScreen(New TransitionScreen(CType(CurrentScreen, OverworldScreen), New HatchEggScreen(CType(CurrentScreen, OverworldScreen), {Pokemon}.ToList, CanRename, Message), Color.White, False))
                         CanContinue = False
                     End If
+                Case "setstatus"
+                    Dim Index As Integer = int(argument.GetSplit(0, ","))
+                    Dim Status As Pokemon.StatusProblems = Nothing
+                    Select Case argument.GetSplit(1, ",")
+                        Case "brn"
+                            Status = Pokemon.StatusProblems.Burn
+                        Case "frz"
+                            Status = Pokemon.StatusProblems.Freeze
+                        Case "prz"
+                            Status = Pokemon.StatusProblems.Paralyzed
+                        Case "psn"
+                            Status = Pokemon.StatusProblems.Poison
+                        Case "bpsn"
+                            Status = Pokemon.StatusProblems.BadPoison
+                        Case "slp"
+                            Status = Pokemon.StatusProblems.Sleep
+                        Case "fnt"
+                            Status = Pokemon.StatusProblems.Fainted
+                    End Select
+                    If Status <> Nothing AndAlso Core.Player.Pokemons.Count - 1 >= Index Then
+                        Core.Player.Pokemons(Index).Status = Status
+                        If Status = Pokemon.StatusProblems.Fainted Then
+                            Core.Player.Pokemons(Index).HP = 0
+                        End If
+                    End If
             End Select
 
             IsReady = True
