@@ -1247,12 +1247,12 @@ nextIndex:
             'Level.StopOffsetMapUpdate()
 
             Dim str As String = ""
-            'Call the EndBattle function of the abilities and Reverts battle only Pokemon formes.
+            'Call the EndBattle function of the abilities and Reverts battle-only Pokemon forms.
             For Each p As Pokemon In Core.Player.Pokemons
                 str = p.AdditionalData.ToLower()
                 Select Case str
                     Case "mega", "mega_x", "mega_y", "primal", "blade"
-                        p.AdditionalData = PokemonForms.GetInitialAdditionalData(p)
+                        p.AdditionalData = ""
                         p.ReloadDefinitions()
                         p.CalculateStats()
                         If str <> "blade" Then
