@@ -6,6 +6,7 @@ Public Class EvolutionCondition
         Item
         HoldItem
         Place
+        NotPlace
         Trade
         Gender
         AtkDef
@@ -19,6 +20,7 @@ Public Class EvolutionCondition
         Region
         Status
         EnvironmentType
+        NotEnvironmentType
     End Enum
 
     Public Structure Condition
@@ -47,6 +49,8 @@ Public Class EvolutionCondition
                 c.ConditionType = ConditionTypes.HoldItem
             Case "location", "place"
                 c.ConditionType = ConditionTypes.Place
+            Case "notlocation", "notplace"
+                c.ConditionType = ConditionTypes.NotPlace
             Case "friendship"
                 c.ConditionType = ConditionTypes.Friendship
             Case "trade"
@@ -75,6 +79,8 @@ Public Class EvolutionCondition
                 c.ConditionType = ConditionTypes.Status
             Case "environmenttype"
                 c.ConditionType = ConditionTypes.EnvironmentType
+            Case "notenvironmenttype"
+                c.ConditionType = ConditionTypes.NotEnvironmentType
         End Select
         Me.Conditions.Add(c)
     End Sub
@@ -252,6 +258,18 @@ Public Class EvolutionCondition
                             If PlaceMatch = False Then
                                 canEvolve = False
                             End If
+                        Case ConditionTypes.NotPlace
+                            Dim places As List(Of String) = c.Argument.Split(CChar(";")).ToList()
+                            Dim PlaceMatch As Boolean = False
+                            For i = 0 To places.Count - 1
+                                If places(i).ToLower = Screen.Level.MapName.ToLower() Then
+                                    PlaceMatch = True
+                                    Exit For
+                                End If
+                            Next
+                            If PlaceMatch = True Then
+                                canEvolve = False
+                            End If
                         Case ConditionTypes.Trade
                             If StringHelper.IsNumeric(c.Argument) Then
                                 If CInt(c.Argument) > 0 Then
@@ -306,6 +324,12 @@ Public Class EvolutionCondition
                             Dim environments As List(Of String) = c.Argument.Split(CChar(";")).ToList()
 
                             If environments.Contains(CStr(Screen.Level.EnvironmentType)) = False Then
+                                canEvolve = False
+                            End If
+                        Case ConditionTypes.NotEnvironmentType
+                            Dim environments As List(Of String) = c.Argument.Split(CChar(";")).ToList()
+
+                            If environments.Contains(CStr(Screen.Level.EnvironmentType)) = True Then
                                 canEvolve = False
                             End If
                     End Select
