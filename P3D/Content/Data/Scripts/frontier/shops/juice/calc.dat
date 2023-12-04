@@ -1,13 +1,13 @@
 version=2
 :if:<inventory.juicecolor(<storage.get(int,berry1)>)>=<inventory.juicecolor(<storage.get(int,berry2)>)>
 	@storage.set(string,drink,<inventory.juicecolor(<storage.get(int,berry1)>)>)
-	@storage.set(integer,value,(<inventory.juicegroup(<storage.get(int,berry1)>)>+<inventory.juicegroup(<storage.get(int,berry2)>)>)*4)
+	@storage.set(integer,value,<math.int(<math.int(<inventory.juicegroup(<storage.get(int,berry1)>)>+<inventory.juicegroup(<storage.get(int,berry2)>)>)>*4)>)
 	:if:<storage.get(int,berry1)>=<storage.get(int,berry2)>
-		@storage.set(integer,value,<inventory.juicegroup(<storage.get(int,berry1)>)>*4)
+		@storage.set(integer,value,<math.int(<inventory.juicegroup(<storage.get(int,berry1)>)>*4)>)
 	:endif
 :else
 	@storage.set(string,drink,shake)
-	@storage.set(integer,value,(<inventory.juicegroup(<storage.get(int,berry1)>)>+<inventory.juicegroup(<storage.get(int,berry2)>)>)*6)
+	@storage.set(integer,value,<math.int(<math.int(<inventory.juicegroup(<storage.get(int,berry1)>)>+<inventory.juicegroup(<storage.get(int,berry2)>)>)>*6)>)
 
 	:select:<storage.get(int,berry1)>
 		:when:2057
@@ -42,3 +42,4 @@ version=2
 			:endif
 	:endwhen
 :endif
+:end
