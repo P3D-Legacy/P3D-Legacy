@@ -28,6 +28,7 @@ Public Class ActionScript
 
     Public Shared ScriptLevels(99) As ScriptLevel
     Public Shared ScriptLevelIndex As Integer = -1
+    Public Shared emAddToWhile As Boolean = False
 
     Public reDelay As Single = 0.0F
 
@@ -116,7 +117,7 @@ nextScript:
             Screen.Camera.Speed = 0.04F
         End If
         ScriptLevelIndex += 1
-
+        emAddToWhile = True
         TempSpin = False
 
         Dim arr(99) As Boolean
@@ -308,6 +309,13 @@ nextScript:
     End Sub
 
     Public Sub AddToWhileQuery(ByVal RemovedScript As Script)
+        If emAddToWhile = True Then
+            If ScriptLevelIndex = 0 Then
+                emAddToWhile = False
+            Else
+                ScriptLevelIndex -= 1
+            End If
+        End If
         If CSL().WhileQueryInitialized = True And CSL().ScriptVersion = 2 Then
             CSL().WhileQuery.Add(RemovedScript)
 
@@ -322,6 +330,10 @@ nextScript:
                 CSL().WhileQuery.Clear()
                 CSL().WhileQueryInitialized = False
             End If
+        End If
+        If emAddToWhile = True Then
+            ScriptLevelIndex += 1
+            emAddToWhile = False
         End If
     End Sub
 
