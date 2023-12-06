@@ -337,8 +337,10 @@ Public Class PokemonForms
                 r = n - 649
             Case 722 To 809
                 r = n - 721
-            Case Else
+            Case 810 To 905
                 r = n - 809
+            Case Else
+                r = n - 905
         End Select
 
         While r > 16
