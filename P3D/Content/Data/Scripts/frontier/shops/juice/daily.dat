@@ -1,8 +1,8 @@
 version=2
 :if:<register.registered(dailyjuicecalc)>=false
+	@register.registertime(dailyjuicecalc,1,day)
 	@storage.set(integer,juicecount,0)
-	@storage.set(string,drink,fail)
-	:while:5><storage.get(integer,juicecount)>
+	:while:<storage.get(integer,juicecount)><6
 		@register.unregister(juicetype<storage.get(integer,juicecount)>,str)
 		@register.unregister(juiceval<storage.get(integer,juicecount)>,int)
 		@register.unregister(juicedesc<storage.get(integer,juicecount)>,int)
@@ -12,21 +12,7 @@ version=2
 		@storage.set(integer,berry2,<system.random(2000,2066)>)
 		@storage.set(string,drink,fail)
 		@storage.set(integer,value,-1)
-		:select:<storage.get(integer,juicecount)>
-			:when:0
-				@script.start(frontier\shops\juice\calc)
-			:when:1
-				@script.start(frontier\shops\juice\calc)
-			:when:2
-				@script.start(frontier\shops\juice\calc)
-			:when:3
-				@script.start(frontier\shops\juice\calc)
-			:when:4
-				@script.start(frontier\shops\juice\calc)
-			:when:5
-				@script.start(frontier\shops\juice\calc)
-		:endwhen
-		
+		@script.start(frontier\shops\juice\calc)
 		@register.register(juicetype<storage.get(integer,juicecount)>,str,<storage.get(string,drink)>)
 		@register.register(juiceval<storage.get(integer,juicecount)>,int,<storage.get(integer,value)>)
 		
@@ -68,18 +54,15 @@ version=2
 				@register.register(juicedesc<storage.get(integer,juicecount)>,str,Perilous Soup    20 BP)
 				@register.register(juicecost<storage.get(integer,juicecount)>,int,20)
 		:endwhen
-		@storage.set(string,drink,fail)
 		@storage.set(integer,juicecount,<math.int(<storage.get(integer,juicecount)>+1)>)
 	:endwhile
-	@register.registertime(dailyjuicecalc,1,day)
 :endif
 
-@storage.set(string,drink,fail)
 @storage.set(integer,value,-1)
 	
 @storage.set(integer,juicecount,0)
 @storage.set(string,juiceselect,)
-:while:5><storage.get(integer,juicecount)>
+:while:6><storage.get(integer,juicecount)>
 	:if:<register.registered(solddailyjuice<storage.get(integer,juicecount)>)>=false
 		@storage.set(string,juiceselect,<storage.get(string,juiceselect)><register.value(juicedesc<storage.get(integer,juicecount)>)>,)
 	:endif
@@ -88,7 +71,7 @@ version=2
 @storage.set(string,juiceselect,<storage.get(string,juiceselect)>Exit)
 
 @text.show(Welcome to the Juice Shoppe!*Please take a look~at our daily specials!)
-@options.setcancelindex(5)
+@options.setcancelindex(6)
 @options.show(<storage.get(string,juiceselect)>)
 	:when:Exit
 		@text.show(Come again soon!)
