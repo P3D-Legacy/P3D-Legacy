@@ -598,125 +598,6 @@
 
         Entity.MakeShake = Name.ToLower() = "drunknilllzz"
 
-        ''' Indev 0.54 Removal List
-        ''' 1. All Mega Stones. [ID: 507 - 553]
-        ''' 2. Shiny Candy [ID: 501]
-        If Not ActionScript.IsRegistered("PokemonIndev054Update") Then
-            ' Check Inventory.
-            Inventory.RemoveItem(501.ToString)
-            For i As Integer = 507 To 553 Step +1
-                Inventory.RemoveItem(i.ToString)
-            Next
-
-            ' Check Party Pokemon.
-            For Each Pokemon As Pokemon In Pokemons
-                If Pokemon.Item IsNot Nothing AndAlso (Pokemon.Item.ID >= 501 OrElse (Pokemon.Item.ID >= 507 AndAlso Pokemon.Item.ID <= 553)) Then
-                    Pokemon.Item = Nothing
-                End If
-            Next
-
-            ' Check PC Boxes.
-            If Not String.IsNullOrWhiteSpace(BoxData) Then
-                Dim TempBoxData As New List(Of String)
-                TempBoxData.AddRange(BoxData.SplitAtNewline())
-
-                For Each item As String In TempBoxData
-                    If Not String.IsNullOrWhiteSpace(item) AndAlso Not item.StartsWith("BOX") Then
-                        Dim TempString As String = item.Remove(item.IndexOf("{"))
-                        Dim TempPokemon As Pokemon = Pokemon.GetPokemonByData(item.Remove(0, item.IndexOf("{")))
-
-                        If TempPokemon.Item IsNot Nothing AndAlso (TempPokemon.Item.ID >= 501 OrElse (TempPokemon.Item.ID >= 507 AndAlso TempPokemon.Item.ID <= 553)) Then
-                            TempPokemon.Item = Nothing
-                        End If
-
-                        item = TempString & TempPokemon.ToString()
-                    End If
-                Next
-
-                BoxData = String.Join(Environment.NewLine, TempBoxData)
-            End If
-
-            ' Check Day Care.
-            If Not String.IsNullOrWhiteSpace(DaycareData) Then
-                Dim TempDaycareData As New List(Of String)
-                TempDaycareData.AddRange(DaycareData.SplitAtNewline())
-
-                For Each item As String In TempDaycareData
-                    If Not String.IsNullOrWhiteSpace(item) AndAlso item.Contains("{") Then
-                        Dim TempString As String = ItemData.Remove(item.IndexOf("{"))
-                        Dim TempPokemon As Pokemon = Pokemon.GetPokemonByData(item.Remove(0, item.IndexOf("{")))
-
-                        If TempPokemon.Item IsNot Nothing AndAlso (TempPokemon.Item.ID >= 501 OrElse (TempPokemon.Item.ID >= 507 AndAlso TempPokemon.Item.ID <= 553)) Then
-                            TempPokemon.Item = Nothing
-                        End If
-
-                        item = TempString & TempPokemon.ToString()
-                    End If
-                Next
-
-                DaycareData = String.Join(Environment.NewLine, TempDaycareData)
-            End If
-
-            ActionScript.RegisterID("PokemonIndev054Update")
-        End If
-
-        ''' Indev 0.54.2 OT Fix List.
-        If Not ActionScript.IsRegistered("PokemonIndev0542Update") Then
-            ' Check Party Pokemon.
-            For Each Pokemon As Pokemon In Pokemons
-                If String.Equals(Pokemon.CatchTrainerName, Core.Player.Name, StringComparison.OrdinalIgnoreCase) AndAlso Pokemon.OT <> GameJoltSave.GameJoltID Then
-                    Pokemon.OT = GameJoltSave.GameJoltID
-                End If
-            Next
-
-            ' Check PC Boxes.
-            If Not String.IsNullOrWhiteSpace(BoxData) Then
-                Dim TempBoxData As New List(Of String)
-                TempBoxData.AddRange(BoxData.SplitAtNewline())
-
-                For Each item As String In TempBoxData
-                    If Not String.IsNullOrWhiteSpace(item) AndAlso Not item.StartsWith("BOX") Then
-                        Dim TempString As String = item.Remove(item.IndexOf("{"))
-                        Dim TempPokemon As Pokemon = Pokemon.GetPokemonByData(item.Remove(0, item.IndexOf("{")))
-
-                        If String.Equals(TempPokemon.CatchTrainerName, Core.Player.Name, StringComparison.OrdinalIgnoreCase) AndAlso TempPokemon.OT <> GameJoltSave.GameJoltID Then
-                            TempPokemon.OT = GameJoltSave.GameJoltID
-                        End If
-
-                        item = TempString & TempPokemon.ToString()
-                    End If
-                Next
-
-                BoxData = String.Join(Environment.NewLine, TempBoxData)
-            End If
-
-            ' Check Day Care.
-            If Not String.IsNullOrWhiteSpace(DaycareData) Then
-                Dim TempDaycareData As New List(Of String)
-                TempDaycareData.AddRange(DaycareData.SplitAtNewline())
-
-                For Each item As String In TempDaycareData
-                    If Not String.IsNullOrWhiteSpace(item) AndAlso item.Contains("{") Then
-                        Dim TempString As String = ItemData.Remove(item.IndexOf("{"))
-                        Dim TempPokemon As Pokemon = Pokemon.GetPokemonByData(item.Remove(0, item.IndexOf("{")))
-
-                        If String.Equals(TempPokemon.CatchTrainerName, Core.Player.Name, StringComparison.OrdinalIgnoreCase) AndAlso TempPokemon.OT <> GameJoltSave.GameJoltID Then
-                            TempPokemon.OT = GameJoltSave.GameJoltID
-                        End If
-
-                        item = TempString & TempPokemon.ToString()
-                    End If
-                Next
-
-                DaycareData = String.Join(Environment.NewLine, TempDaycareData)
-            End If
-
-            ' Remove Duplicate data.
-            Core.Player.PokeFiles = Core.Player.PokeFiles.Distinct().ToList()
-
-            ActionScript.RegisterID("PokemonIndev0542Update")
-        End If
-
         loadedSave = True
     End Sub
 
@@ -828,7 +709,7 @@
                             PlayTime = New TimeSpan(CInt(dd(0)), CInt(dd(1)), CInt(dd(2)))
                         End If
                     Case "ot"
-                        OT = CStr(CInt(Value).Clamp(0, 99999))
+                        OT = CStr(CInt(Value).Clamp(0, 999999))
                     Case "points"
                         Points = CInt(Value)
                     Case "haspokedex"
