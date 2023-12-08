@@ -931,11 +931,7 @@
 
             Level.Load("battle\" & levelfile)
             Level.MapName = SavedOverworld.Level.MapName
-            If World.setDaytime = Nothing Then
-                Level.DayTime = World.GetTime + 1
-            Else
-                Level.DayTime = World.GetTime
-            End If
+            Level.DayTime = World.GetTime + 1
         End Sub
 
 #End Region

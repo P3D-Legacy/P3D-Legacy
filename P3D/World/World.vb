@@ -5,7 +5,7 @@ Public Class World
     Private Shared _regionWeather As Weathers = Weathers.Clear
     Private Shared _regionWeatherSet As Boolean = False
     Public Shared setSeason As Seasons = Nothing
-    Public Shared setDaytime As DayTimes = Nothing
+    Public Shared setDaytime As Integer = -1
 
     Public Shared IsMainMenu As Boolean = False
     Public Shared IsAurora As Boolean = False
@@ -86,8 +86,8 @@ Public Class World
                 Return DayTimes.Day
             End If
 
-            If setDaytime <> Nothing Then
-                Return setDaytime
+            If setDaytime <> -1 Then
+                Return CType(setDaytime, DayTimes)
             Else
                 Dim time As DayTimes = DayTimes.Day
 

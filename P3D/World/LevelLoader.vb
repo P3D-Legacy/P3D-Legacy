@@ -1045,11 +1045,7 @@
             If TagExists(Tags, "DayTime") = True Then
                 Screen.Level.DayTime = CInt(GetTag(Tags, "DayTime"))
             Else
-                If World.setDaytime = Nothing Then
-                    Screen.Level.DayTime = World.GetTime + 1
-                Else
-                    Screen.Level.DayTime = World.setDaytime
-                End If
+                Screen.Level.DayTime = World.GetTime + 1
             End If
         End If
 

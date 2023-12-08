@@ -55,10 +55,10 @@
                 Case "setdaytime"
                     Dim daytime As Integer = int(argument)
                     If daytime > 0 AndAlso daytime <= 4 Then
-                        World.setDaytime = CType(daytime, World.DayTimes)
+                        World.setDaytime = daytime - 1
                         Screen.Level.DayTime = daytime
                     Else
-                        World.setDaytime = Nothing
+                        World.setDaytime = -1
                         Screen.Level.DayTime = World.GetTime + 1
                     End If
                     IsReady = True

@@ -307,7 +307,7 @@
             Core.ServersManager.ServerConnection.Disconnect()
         End If
 
-        World.setDaytime = Nothing
+        World.setDaytime = -1
         World.setSeason = Nothing
         Chat.ClearChat()
         ScriptStorage.Clear()
