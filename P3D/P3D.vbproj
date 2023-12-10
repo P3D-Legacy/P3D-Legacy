@@ -28766,6 +28766,7 @@
     <Compile Include="Pokemon\Abilities\Galvanize.vb" />
     <Compile Include="Pokemon\Abilities\SurgeSurfer.vb" />
     <Compile Include="Pokemon\Abilities\ParentalBond.vb" />
+    <Compile Include="Pokemon\Attacks\AttackSpecialBasePower.vb" />
     <Compile Include="Pokemon\Attacks\Bug\PollenPuff.vb" />
     <Compile Include="Pokemon\Attacks\Bug\FirstImpression.vb" />
     <Compile Include="Pokemon\Attacks\Bug\FellStinger.vb" />
@@ -28920,6 +28921,7 @@
     <Compile Include="Pokemon\Items\Standard\ExpertBelt.vb" />
     <Compile Include="Pokemon\Items\Stones\IceStone.vb" />
     <Compile Include="Pokemon\Items\Stones\BlackAurugite.vb" />
+    <Compile Include="Pokemon\Monster\GameModeElementLoader.vb" />
     <Compile Include="Resources\Blur\BlurHandler.vb" />
     <Content Include="Content\Data\Scripts\faraway\mewtwonite_y.dat">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

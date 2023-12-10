@@ -200,7 +200,12 @@ Public Class GameModeItemLoader
                     ElseIf item.gmName.StartsWith("HM") Then
                         item.gmSortValue = -100000 + CInt(item.gmName.Remove(0, 2))
                     End If
-                    item.gmTextureSource = "Items\ItemSheet"
+                    If item.gmTeachMove.Type.IsGameModeElement = False Then
+                        item.gmTextureSource = "Items\ItemSheet"
+                    Else
+                        item.gmTextureSource = item.gmTeachMove.Type.gmMachineTextureSource
+                    End If
+
                     item.SetTeachMoveTextureRectangle()
 
                 End If

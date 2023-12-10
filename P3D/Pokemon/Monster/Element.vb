@@ -3,6 +3,8 @@
 ''' </summary>
 Public Class Element
 
+    Public IsGameModeElement As Boolean = False
+
     ''' <summary>
     ''' The Type an Element can be.
     ''' </summary>
@@ -30,18 +32,41 @@ Public Class Element
     End Enum
 
     Private _type As Types = Types.Blank
+    'GameMode Element Properties
+    Private gmType As Integer = 0
+    Public gmName As String = "Normal"
+    Public gmOriginalName As String = "Normal"
+    Public gmTypeRectangle As Rectangle = New Rectangle(0, 0, 48, 16)
+    Public gmMachineTextureSource As String = "Items\ItemSheet"
+    Public gmMachineTextureRectangle As Rectangle = New Rectangle(144, 168, 24, 24)
+    Public gmEffectivenessAttack As New Dictionary(Of Integer, Single)
+    Public gmEffectivenessDefense As New Dictionary(Of Integer, Single)
 
     ''' <summary>
     ''' The Type of this Element.
     ''' </summary>
-    Public Property Type As Types
+    Public Property Type As Integer
         Get
-            Return Me._type
+            If Me.IsGameModeElement = True Then
+                Return Me.gmType
+            Else
+                Return Me._type
+            End If
         End Get
-        Set(value As Types)
-            Me._type = value
+        Set(value As Integer)
+            If Me.IsGameModeElement = True Then
+                Me.gmType = value
+            Else
+                Me._type = CType(value, Types)
+            End If
         End Set
     End Property
+    ''' <summary>
+    ''' Creates a new instance of the Element class for GameMode Elements.
+    ''' </summary>
+    '''
+    Public Sub New()
+    End Sub
 
     ''' <summary>
     ''' Creates a new instance of the Element class.
@@ -162,711 +187,723 @@ Public Class Element
             Return 1
         End If
 
-        If d._type = Types.Blank Or a._type = Types.Blank Then
+        If d.Type = Types.Blank Or a.Type = Types.Blank Then
             Return 1
         End If
 
-        Select Case a._type
-            Case Types.Normal
-                Select Case d._type
+        If a.IsGameModeElement = False Then
+            If d.IsGameModeElement = False Then
+                Select Case a.Type
                     Case Types.Normal
-                        Return 1
+                        Select Case d.Type
+                            Case Types.Normal
+                                Return 1
+                            Case Types.Fighting
+                                Return 1
+                            Case Types.Flying
+                                Return 1
+                            Case Types.Poison
+                                Return 1
+                            Case Types.Ground
+                                Return 1
+                            Case Types.Rock
+                                Return 0.5F
+                            Case Types.Bug
+                                Return 1
+                            Case Types.Ghost
+                                Return 0
+                            Case Types.Steel
+                                Return 0.5F
+                            Case Types.Fire
+                                Return 1
+                            Case Types.Water
+                                Return 1
+                            Case Types.Grass
+                                Return 1
+                            Case Types.Electric
+                                Return 1
+                            Case Types.Psychic
+                                Return 1
+                            Case Types.Ice
+                                Return 1
+                            Case Types.Dragon
+                                Return 1
+                            Case Types.Dark
+                                Return 1
+                            Case Else
+                                Return 1
+                        End Select
                     Case Types.Fighting
-                        Return 1
+                        Select Case d.Type
+                            Case Types.Normal
+                                Return 2
+                            Case Types.Fighting
+                                Return 1
+                            Case Types.Flying
+                                Return 0.5F
+                            Case Types.Poison
+                                Return 0.5F
+                            Case Types.Ground
+                                Return 1
+                            Case Types.Rock
+                                Return 2
+                            Case Types.Bug
+                                Return 0.5F
+                            Case Types.Ghost
+                                Return 0
+                            Case Types.Steel
+                                Return 2
+                            Case Types.Fire
+                                Return 1
+                            Case Types.Water
+                                Return 1
+                            Case Types.Grass
+                                Return 1
+                            Case Types.Electric
+                                Return 1
+                            Case Types.Psychic
+                                Return 0.5F
+                            Case Types.Ice
+                                Return 2
+                            Case Types.Dragon
+                                Return 1
+                            Case Types.Dark
+                                Return 2
+                            Case Types.Fairy
+                                Return 0.5F
+                            Case Else
+                                Return 1
+                        End Select
                     Case Types.Flying
-                        Return 1
+                        Select Case d.Type
+                            Case Types.Normal
+                                Return 1
+                            Case Types.Fighting
+                                Return 2
+                            Case Types.Flying
+                                Return 1
+                            Case Types.Poison
+                                Return 1
+                            Case Types.Ground
+                                Return 1
+                            Case Types.Rock
+                                Return 0.5F
+                            Case Types.Bug
+                                Return 2
+                            Case Types.Ghost
+                                Return 1
+                            Case Types.Steel
+                                Return 0.5F
+                            Case Types.Fire
+                                Return 1
+                            Case Types.Water
+                                Return 1
+                            Case Types.Grass
+                                Return 2
+                            Case Types.Electric
+                                Return 0.5F
+                            Case Types.Psychic
+                                Return 1
+                            Case Types.Ice
+                                Return 1
+                            Case Types.Dragon
+                                Return 1
+                            Case Types.Dark
+                                Return 1
+                            Case Else
+                                Return 1
+                        End Select
                     Case Types.Poison
-                        Return 1
+                        Select Case d.Type
+                            Case Types.Normal
+                                Return 1
+                            Case Types.Fighting
+                                Return 1
+                            Case Types.Flying
+                                Return 1
+                            Case Types.Poison
+                                Return 0.5F
+                            Case Types.Ground
+                                Return 0.5F
+                            Case Types.Rock
+                                Return 0.5F
+                            Case Types.Bug
+                                Return 1
+                            Case Types.Ghost
+                                Return 0.5F
+                            Case Types.Steel
+                                Return 0
+                            Case Types.Fire
+                                Return 1
+                            Case Types.Water
+                                Return 1
+                            Case Types.Grass
+                                Return 2
+                            Case Types.Electric
+                                Return 1
+                            Case Types.Psychic
+                                Return 1
+                            Case Types.Ice
+                                Return 1
+                            Case Types.Dragon
+                                Return 1
+                            Case Types.Dark
+                                Return 1
+                            Case Types.Fairy
+                                Return 2
+                            Case Else
+                                Return 1
+                        End Select
                     Case Types.Ground
-                        Return 1
+                        Select Case d.Type
+                            Case Types.Normal
+                                Return 1
+                            Case Types.Fighting
+                                Return 1
+                            Case Types.Flying
+                                Return 0
+                            Case Types.Poison
+                                Return 2
+                            Case Types.Ground
+                                Return 1
+                            Case Types.Rock
+                                Return 2
+                            Case Types.Bug
+                                Return 0.5F
+                            Case Types.Ghost
+                                Return 1
+                            Case Types.Steel
+                                Return 2
+                            Case Types.Fire
+                                Return 2
+                            Case Types.Water
+                                Return 1
+                            Case Types.Grass
+                                Return 0.5F
+                            Case Types.Electric
+                                Return 2
+                            Case Types.Psychic
+                                Return 1
+                            Case Types.Ice
+                                Return 1
+                            Case Types.Dragon
+                                Return 1
+                            Case Types.Dark
+                                Return 1
+                            Case Else
+                                Return 1
+                        End Select
                     Case Types.Rock
-                        Return 0.5F
+                        Select Case d.Type
+                            Case Types.Normal
+                                Return 1
+                            Case Types.Fighting
+                                Return 0.5F
+                            Case Types.Flying
+                                Return 2
+                            Case Types.Poison
+                                Return 1
+                            Case Types.Ground
+                                Return 0.5F
+                            Case Types.Rock
+                                Return 1
+                            Case Types.Bug
+                                Return 2
+                            Case Types.Ghost
+                                Return 1
+                            Case Types.Steel
+                                Return 0.5F
+                            Case Types.Fire
+                                Return 2
+                            Case Types.Water
+                                Return 1
+                            Case Types.Grass
+                                Return 1
+                            Case Types.Electric
+                                Return 1
+                            Case Types.Psychic
+                                Return 1
+                            Case Types.Ice
+                                Return 2
+                            Case Types.Dragon
+                                Return 1
+                            Case Types.Dark
+                                Return 1
+                            Case Else
+                                Return 1
+                        End Select
                     Case Types.Bug
-                        Return 1
+                        Select Case d.Type
+                            Case Types.Normal
+                                Return 1
+                            Case Types.Fighting
+                                Return 0.5F
+                            Case Types.Flying
+                                Return 0.5F
+                            Case Types.Poison
+                                Return 0.5F
+                            Case Types.Ground
+                                Return 1
+                            Case Types.Rock
+                                Return 1
+                            Case Types.Bug
+                                Return 1
+                            Case Types.Ghost
+                                Return 0.5F
+                            Case Types.Steel
+                                Return 0.5F
+                            Case Types.Fire
+                                Return 0.5F
+                            Case Types.Water
+                                Return 1
+                            Case Types.Grass
+                                Return 2
+                            Case Types.Electric
+                                Return 1
+                            Case Types.Psychic
+                                Return 2
+                            Case Types.Ice
+                                Return 1
+                            Case Types.Dragon
+                                Return 1
+                            Case Types.Dark
+                                Return 2
+                            Case Types.Fairy
+                                Return 0.5F
+                            Case Else
+                                Return 1
+                        End Select
                     Case Types.Ghost
-                        Return 0
+                        Select Case d.Type
+                            Case Types.Normal
+                                Return 0
+                            Case Types.Fighting
+                                Return 1
+                            Case Types.Flying
+                                Return 1
+                            Case Types.Poison
+                                Return 1
+                            Case Types.Ground
+                                Return 1
+                            Case Types.Rock
+                                Return 1
+                            Case Types.Bug
+                                Return 1
+                            Case Types.Ghost
+                                Return 2
+                            Case Types.Steel
+                                Return 1
+                            Case Types.Fire
+                                Return 1
+                            Case Types.Water
+                                Return 1
+                            Case Types.Grass
+                                Return 1
+                            Case Types.Electric
+                                Return 1
+                            Case Types.Psychic
+                                Return 2
+                            Case Types.Ice
+                                Return 1
+                            Case Types.Dragon
+                                Return 1
+                            Case Types.Dark
+                                Return 0.5F
+                            Case Else
+                                Return 1
+                        End Select
                     Case Types.Steel
-                        Return 0.5F
+                        Select Case d.Type
+                            Case Types.Normal
+                                Return 1
+                            Case Types.Fighting
+                                Return 1
+                            Case Types.Flying
+                                Return 1
+                            Case Types.Poison
+                                Return 1
+                            Case Types.Ground
+                                Return 1
+                            Case Types.Rock
+                                Return 2
+                            Case Types.Bug
+                                Return 1
+                            Case Types.Ghost
+                                Return 1
+                            Case Types.Steel
+                                Return 0.5F
+                            Case Types.Fire
+                                Return 0.5F
+                            Case Types.Water
+                                Return 0.5F
+                            Case Types.Grass
+                                Return 1
+                            Case Types.Electric
+                                Return 0.5F
+                            Case Types.Psychic
+                                Return 1
+                            Case Types.Ice
+                                Return 2
+                            Case Types.Dragon
+                                Return 1
+                            Case Types.Dark
+                                Return 1
+                            Case Types.Fairy
+                                Return 2
+                            Case Else
+                                Return 1
+                        End Select
                     Case Types.Fire
-                        Return 1
+                        Select Case d.Type
+                            Case Types.Normal
+                                Return 1
+                            Case Types.Fighting
+                                Return 1
+                            Case Types.Flying
+                                Return 1
+                            Case Types.Poison
+                                Return 1
+                            Case Types.Ground
+                                Return 1
+                            Case Types.Rock
+                                Return 0.5F
+                            Case Types.Bug
+                                Return 2
+                            Case Types.Ghost
+                                Return 1
+                            Case Types.Steel
+                                Return 2
+                            Case Types.Fire
+                                Return 0.5F
+                            Case Types.Water
+                                Return 0.5F
+                            Case Types.Grass
+                                Return 2
+                            Case Types.Electric
+                                Return 1
+                            Case Types.Psychic
+                                Return 1
+                            Case Types.Ice
+                                Return 2
+                            Case Types.Dragon
+                                Return 0.5F
+                            Case Types.Dark
+                                Return 1
+                            Case Else
+                                Return 1
+                        End Select
                     Case Types.Water
-                        Return 1
+                        Select Case d.Type
+                            Case Types.Normal
+                                Return 1
+                            Case Types.Fighting
+                                Return 1
+                            Case Types.Flying
+                                Return 1
+                            Case Types.Poison
+                                Return 1
+                            Case Types.Ground
+                                Return 2
+                            Case Types.Rock
+                                Return 2
+                            Case Types.Bug
+                                Return 1
+                            Case Types.Ghost
+                                Return 1
+                            Case Types.Steel
+                                Return 1
+                            Case Types.Fire
+                                Return 2
+                            Case Types.Water
+                                Return 0.5F
+                            Case Types.Grass
+                                Return 0.5F
+                            Case Types.Electric
+                                Return 1
+                            Case Types.Psychic
+                                Return 1
+                            Case Types.Ice
+                                Return 1
+                            Case Types.Dragon
+                                Return 0.5F
+                            Case Types.Dark
+                                Return 1
+                            Case Else
+                                Return 1
+                        End Select
                     Case Types.Grass
-                        Return 1
+                        Select Case d.Type
+                            Case Types.Normal
+                                Return 1
+                            Case Types.Fighting
+                                Return 1
+                            Case Types.Flying
+                                Return 0.5F
+                            Case Types.Poison
+                                Return 0.5F
+                            Case Types.Ground
+                                Return 2
+                            Case Types.Rock
+                                Return 2
+                            Case Types.Bug
+                                Return 0.5F
+                            Case Types.Ghost
+                                Return 1
+                            Case Types.Steel
+                                Return 0.5F
+                            Case Types.Fire
+                                Return 0.5F
+                            Case Types.Water
+                                Return 2
+                            Case Types.Grass
+                                Return 0.5F
+                            Case Types.Electric
+                                Return 1
+                            Case Types.Psychic
+                                Return 1
+                            Case Types.Ice
+                                Return 1
+                            Case Types.Dragon
+                                Return 0.5F
+                            Case Types.Dark
+                                Return 1
+                            Case Else
+                                Return 1
+                        End Select
                     Case Types.Electric
-                        Return 1
+                        Select Case d.Type
+                            Case Types.Normal
+                                Return 1
+                            Case Types.Fighting
+                                Return 1
+                            Case Types.Flying
+                                Return 2
+                            Case Types.Poison
+                                Return 1
+                            Case Types.Ground
+                                Return 0
+                            Case Types.Rock
+                                Return 1
+                            Case Types.Bug
+                                Return 1
+                            Case Types.Ghost
+                                Return 1
+                            Case Types.Steel
+                                Return 1
+                            Case Types.Fire
+                                Return 1
+                            Case Types.Water
+                                Return 2
+                            Case Types.Grass
+                                Return 0.5F
+                            Case Types.Electric
+                                Return 0.5F
+                            Case Types.Psychic
+                                Return 1
+                            Case Types.Ice
+                                Return 1
+                            Case Types.Dragon
+                                Return 0.5F
+                            Case Types.Dark
+                                Return 1
+                            Case Else
+                                Return 1
+                        End Select
                     Case Types.Psychic
-                        Return 1
+                        Select Case d.Type
+                            Case Types.Normal
+                                Return 1
+                            Case Types.Fighting
+                                Return 2
+                            Case Types.Flying
+                                Return 1
+                            Case Types.Poison
+                                Return 2
+                            Case Types.Ground
+                                Return 1
+                            Case Types.Rock
+                                Return 1
+                            Case Types.Bug
+                                Return 1
+                            Case Types.Ghost
+                                Return 1
+                            Case Types.Steel
+                                Return 0.5F
+                            Case Types.Fire
+                                Return 1
+                            Case Types.Water
+                                Return 1
+                            Case Types.Grass
+                                Return 1
+                            Case Types.Electric
+                                Return 1
+                            Case Types.Psychic
+                                Return 0.5F
+                            Case Types.Ice
+                                Return 1
+                            Case Types.Dragon
+                                Return 1
+                            Case Types.Dark
+                                Return 0
+                            Case Else
+                                Return 1
+                        End Select
                     Case Types.Ice
-                        Return 1
+                        Select Case d.Type
+                            Case Types.Normal
+                                Return 1
+                            Case Types.Fighting
+                                Return 1
+                            Case Types.Flying
+                                Return 2
+                            Case Types.Poison
+                                Return 1
+                            Case Types.Ground
+                                Return 2
+                            Case Types.Rock
+                                Return 1
+                            Case Types.Bug
+                                Return 1
+                            Case Types.Ghost
+                                Return 1
+                            Case Types.Steel
+                                Return 0.5F
+                            Case Types.Fire
+                                Return 0.5F
+                            Case Types.Water
+                                Return 0.5F
+                            Case Types.Grass
+                                Return 2
+                            Case Types.Electric
+                                Return 1
+                            Case Types.Psychic
+                                Return 1
+                            Case Types.Ice
+                                Return 0.5F
+                            Case Types.Dragon
+                                Return 2
+                            Case Types.Dark
+                                Return 1
+                            Case Else
+                                Return 1
+                        End Select
                     Case Types.Dragon
-                        Return 1
+                        Select Case d.Type
+                            Case Types.Normal
+                                Return 1
+                            Case Types.Fighting
+                                Return 1
+                            Case Types.Flying
+                                Return 1
+                            Case Types.Poison
+                                Return 1
+                            Case Types.Ground
+                                Return 1
+                            Case Types.Rock
+                                Return 1
+                            Case Types.Bug
+                                Return 1
+                            Case Types.Ghost
+                                Return 1
+                            Case Types.Steel
+                                Return 0.5F
+                            Case Types.Fire
+                                Return 1
+                            Case Types.Water
+                                Return 1
+                            Case Types.Grass
+                                Return 1
+                            Case Types.Electric
+                                Return 1
+                            Case Types.Psychic
+                                Return 1
+                            Case Types.Ice
+                                Return 1
+                            Case Types.Dragon
+                                Return 2
+                            Case Types.Dark
+                                Return 1
+                            Case Types.Fairy
+                                Return 0
+                            Case Else
+                                Return 1
+                        End Select
                     Case Types.Dark
-                        Return 1
-                    Case Else
-                        Return 1
-                End Select
-            Case Types.Fighting
-                Select Case d._type
-                    Case Types.Normal
-                        Return 2
-                    Case Types.Fighting
-                        Return 1
-                    Case Types.Flying
-                        Return 0.5F
-                    Case Types.Poison
-                        Return 0.5F
-                    Case Types.Ground
-                        Return 1
-                    Case Types.Rock
-                        Return 2
-                    Case Types.Bug
-                        Return 0.5F
-                    Case Types.Ghost
-                        Return 0
-                    Case Types.Steel
-                        Return 2
-                    Case Types.Fire
-                        Return 1
-                    Case Types.Water
-                        Return 1
-                    Case Types.Grass
-                        Return 1
-                    Case Types.Electric
-                        Return 1
-                    Case Types.Psychic
-                        Return 0.5F
-                    Case Types.Ice
-                        Return 2
-                    Case Types.Dragon
-                        Return 1
-                    Case Types.Dark
-                        Return 2
+                        Select Case d.Type
+                            Case Types.Normal
+                                Return 1
+                            Case Types.Fighting
+                                Return 0.5F
+                            Case Types.Flying
+                                Return 1
+                            Case Types.Poison
+                                Return 1
+                            Case Types.Ground
+                                Return 1
+                            Case Types.Rock
+                                Return 1
+                            Case Types.Bug
+                                Return 1
+                            Case Types.Ghost
+                                Return 2
+                            Case Types.Steel
+                                Return 1
+                            Case Types.Fire
+                                Return 1
+                            Case Types.Water
+                                Return 1
+                            Case Types.Grass
+                                Return 1
+                            Case Types.Electric
+                                Return 1
+                            Case Types.Psychic
+                                Return 2
+                            Case Types.Ice
+                                Return 1
+                            Case Types.Dragon
+                                Return 1
+                            Case Types.Dark
+                                Return 0.5F
+                            Case Types.Fairy
+                                Return 0.5F
+                            Case Else
+                                Return 1
+                        End Select
                     Case Types.Fairy
-                        Return 0.5F
-                    Case Else
-                        Return 1
-                End Select
-            Case Types.Flying
-                Select Case d._type
-                    Case Types.Normal
-                        Return 1
-                    Case Types.Fighting
-                        Return 2
-                    Case Types.Flying
-                        Return 1
-                    Case Types.Poison
-                        Return 1
-                    Case Types.Ground
-                        Return 1
-                    Case Types.Rock
-                        Return 0.5F
-                    Case Types.Bug
-                        Return 2
-                    Case Types.Ghost
-                        Return 1
-                    Case Types.Steel
-                        Return 0.5F
-                    Case Types.Fire
-                        Return 1
-                    Case Types.Water
-                        Return 1
-                    Case Types.Grass
-                        Return 2
-                    Case Types.Electric
-                        Return 0.5F
-                    Case Types.Psychic
-                        Return 1
-                    Case Types.Ice
-                        Return 1
-                    Case Types.Dragon
-                        Return 1
-                    Case Types.Dark
-                        Return 1
-                    Case Else
-                        Return 1
-                End Select
-            Case Types.Poison
-                Select Case d._type
-                    Case Types.Normal
-                        Return 1
-                    Case Types.Fighting
-                        Return 1
-                    Case Types.Flying
-                        Return 1
-                    Case Types.Poison
-                        Return 0.5F
-                    Case Types.Ground
-                        Return 0.5F
-                    Case Types.Rock
-                        Return 0.5F
-                    Case Types.Bug
-                        Return 1
-                    Case Types.Ghost
-                        Return 0.5F
-                    Case Types.Steel
-                        Return 0
-                    Case Types.Fire
-                        Return 1
-                    Case Types.Water
-                        Return 1
-                    Case Types.Grass
-                        Return 2
-                    Case Types.Electric
-                        Return 1
-                    Case Types.Psychic
-                        Return 1
-                    Case Types.Ice
-                        Return 1
-                    Case Types.Dragon
-                        Return 1
-                    Case Types.Dark
-                        Return 1
-                    Case Types.Fairy
-                        Return 2
-                    Case Else
-                        Return 1
-                End Select
-            Case Types.Ground
-                Select Case d._type
-                    Case Types.Normal
-                        Return 1
-                    Case Types.Fighting
-                        Return 1
-                    Case Types.Flying
-                        Return 0
-                    Case Types.Poison
-                        Return 2
-                    Case Types.Ground
-                        Return 1
-                    Case Types.Rock
-                        Return 2
-                    Case Types.Bug
-                        Return 0.5F
-                    Case Types.Ghost
-                        Return 1
-                    Case Types.Steel
-                        Return 2
-                    Case Types.Fire
-                        Return 2
-                    Case Types.Water
-                        Return 1
-                    Case Types.Grass
-                        Return 0.5F
-                    Case Types.Electric
-                        Return 2
-                    Case Types.Psychic
-                        Return 1
-                    Case Types.Ice
-                        Return 1
-                    Case Types.Dragon
-                        Return 1
-                    Case Types.Dark
-                        Return 1
-                    Case Else
-                        Return 1
-                End Select
-            Case Types.Rock
-                Select Case d._type
-                    Case Types.Normal
-                        Return 1
-                    Case Types.Fighting
-                        Return 0.5F
-                    Case Types.Flying
-                        Return 2
-                    Case Types.Poison
-                        Return 1
-                    Case Types.Ground
-                        Return 0.5F
-                    Case Types.Rock
-                        Return 1
-                    Case Types.Bug
-                        Return 2
-                    Case Types.Ghost
-                        Return 1
-                    Case Types.Steel
-                        Return 0.5F
-                    Case Types.Fire
-                        Return 2
-                    Case Types.Water
-                        Return 1
-                    Case Types.Grass
-                        Return 1
-                    Case Types.Electric
-                        Return 1
-                    Case Types.Psychic
-                        Return 1
-                    Case Types.Ice
-                        Return 2
-                    Case Types.Dragon
-                        Return 1
-                    Case Types.Dark
-                        Return 1
-                    Case Else
-                        Return 1
-                End Select
-            Case Types.Bug
-                Select Case d._type
-                    Case Types.Normal
-                        Return 1
-                    Case Types.Fighting
-                        Return 0.5F
-                    Case Types.Flying
-                        Return 0.5F
-                    Case Types.Poison
-                        Return 0.5F
-                    Case Types.Ground
-                        Return 1
-                    Case Types.Rock
-                        Return 1
-                    Case Types.Bug
-                        Return 1
-                    Case Types.Ghost
-                        Return 0.5F
-                    Case Types.Steel
-                        Return 0.5F
-                    Case Types.Fire
-                        Return 0.5F
-                    Case Types.Water
-                        Return 1
-                    Case Types.Grass
-                        Return 2
-                    Case Types.Electric
-                        Return 1
-                    Case Types.Psychic
-                        Return 2
-                    Case Types.Ice
-                        Return 1
-                    Case Types.Dragon
-                        Return 1
-                    Case Types.Dark
-                        Return 2
-                    Case Types.Fairy
-                        Return 0.5F
-                    Case Else
-                        Return 1
-                End Select
-            Case Types.Ghost
-                Select Case d._type
-                    Case Types.Normal
-                        Return 0
-                    Case Types.Fighting
-                        Return 1
-                    Case Types.Flying
-                        Return 1
-                    Case Types.Poison
-                        Return 1
-                    Case Types.Ground
-                        Return 1
-                    Case Types.Rock
-                        Return 1
-                    Case Types.Bug
-                        Return 1
-                    Case Types.Ghost
-                        Return 2
-                    Case Types.Steel
-                        Return 1
-                    Case Types.Fire
-                        Return 1
-                    Case Types.Water
-                        Return 1
-                    Case Types.Grass
-                        Return 1
-                    Case Types.Electric
-                        Return 1
-                    Case Types.Psychic
-                        Return 2
-                    Case Types.Ice
-                        Return 1
-                    Case Types.Dragon
-                        Return 1
-                    Case Types.Dark
-                        Return 0.5F
-                    Case Else
-                        Return 1
-                End Select
-            Case Types.Steel
-                Select Case d._type
-                    Case Types.Normal
-                        Return 1
-                    Case Types.Fighting
-                        Return 1
-                    Case Types.Flying
-                        Return 1
-                    Case Types.Poison
-                        Return 1
-                    Case Types.Ground
-                        Return 1
-                    Case Types.Rock
-                        Return 2
-                    Case Types.Bug
-                        Return 1
-                    Case Types.Ghost
-                        Return 1
-                    Case Types.Steel
-                        Return 0.5F
-                    Case Types.Fire
-                        Return 0.5F
-                    Case Types.Water
-                        Return 0.5F
-                    Case Types.Grass
-                        Return 1
-                    Case Types.Electric
-                        Return 0.5F
-                    Case Types.Psychic
-                        Return 1
-                    Case Types.Ice
-                        Return 2
-                    Case Types.Dragon
-                        Return 1
-                    Case Types.Dark
-                        Return 1
-                    Case Types.Fairy
-                        Return 2
-                    Case Else
-                        Return 1
-                End Select
-            Case Types.Fire
-                Select Case d._type
-                    Case Types.Normal
-                        Return 1
-                    Case Types.Fighting
-                        Return 1
-                    Case Types.Flying
-                        Return 1
-                    Case Types.Poison
-                        Return 1
-                    Case Types.Ground
-                        Return 1
-                    Case Types.Rock
-                        Return 0.5F
-                    Case Types.Bug
-                        Return 2
-                    Case Types.Ghost
-                        Return 1
-                    Case Types.Steel
-                        Return 2
-                    Case Types.Fire
-                        Return 0.5F
-                    Case Types.Water
-                        Return 0.5F
-                    Case Types.Grass
-                        Return 2
-                    Case Types.Electric
-                        Return 1
-                    Case Types.Psychic
-                        Return 1
-                    Case Types.Ice
-                        Return 2
-                    Case Types.Dragon
-                        Return 0.5F
-                    Case Types.Dark
-                        Return 1
-                    Case Else
-                        Return 1
-                End Select
-            Case Types.Water
-                Select Case d._type
-                    Case Types.Normal
-                        Return 1
-                    Case Types.Fighting
-                        Return 1
-                    Case Types.Flying
-                        Return 1
-                    Case Types.Poison
-                        Return 1
-                    Case Types.Ground
-                        Return 2
-                    Case Types.Rock
-                        Return 2
-                    Case Types.Bug
-                        Return 1
-                    Case Types.Ghost
-                        Return 1
-                    Case Types.Steel
-                        Return 1
-                    Case Types.Fire
-                        Return 2
-                    Case Types.Water
-                        Return 0.5F
-                    Case Types.Grass
-                        Return 0.5F
-                    Case Types.Electric
-                        Return 1
-                    Case Types.Psychic
-                        Return 1
-                    Case Types.Ice
-                        Return 1
-                    Case Types.Dragon
-                        Return 0.5F
-                    Case Types.Dark
-                        Return 1
-                    Case Else
-                        Return 1
-                End Select
-            Case Types.Grass
-                Select Case d._type
-                    Case Types.Normal
-                        Return 1
-                    Case Types.Fighting
-                        Return 1
-                    Case Types.Flying
-                        Return 0.5F
-                    Case Types.Poison
-                        Return 0.5F
-                    Case Types.Ground
-                        Return 2
-                    Case Types.Rock
-                        Return 2
-                    Case Types.Bug
-                        Return 0.5F
-                    Case Types.Ghost
-                        Return 1
-                    Case Types.Steel
-                        Return 0.5F
-                    Case Types.Fire
-                        Return 0.5F
-                    Case Types.Water
-                        Return 2
-                    Case Types.Grass
-                        Return 0.5F
-                    Case Types.Electric
-                        Return 1
-                    Case Types.Psychic
-                        Return 1
-                    Case Types.Ice
-                        Return 1
-                    Case Types.Dragon
-                        Return 0.5F
-                    Case Types.Dark
-                        Return 1
-                    Case Else
-                        Return 1
-                End Select
-            Case Types.Electric
-                Select Case d._type
-                    Case Types.Normal
-                        Return 1
-                    Case Types.Fighting
-                        Return 1
-                    Case Types.Flying
-                        Return 2
-                    Case Types.Poison
-                        Return 1
-                    Case Types.Ground
-                        Return 0
-                    Case Types.Rock
-                        Return 1
-                    Case Types.Bug
-                        Return 1
-                    Case Types.Ghost
-                        Return 1
-                    Case Types.Steel
-                        Return 1
-                    Case Types.Fire
-                        Return 1
-                    Case Types.Water
-                        Return 2
-                    Case Types.Grass
-                        Return 0.5F
-                    Case Types.Electric
-                        Return 0.5F
-                    Case Types.Psychic
-                        Return 1
-                    Case Types.Ice
-                        Return 1
-                    Case Types.Dragon
-                        Return 0.5F
-                    Case Types.Dark
-                        Return 1
-                    Case Else
-                        Return 1
-                End Select
-            Case Types.Psychic
-                Select Case d._type
-                    Case Types.Normal
-                        Return 1
-                    Case Types.Fighting
-                        Return 2
-                    Case Types.Flying
-                        Return 1
-                    Case Types.Poison
-                        Return 2
-                    Case Types.Ground
-                        Return 1
-                    Case Types.Rock
-                        Return 1
-                    Case Types.Bug
-                        Return 1
-                    Case Types.Ghost
-                        Return 1
-                    Case Types.Steel
-                        Return 0.5F
-                    Case Types.Fire
-                        Return 1
-                    Case Types.Water
-                        Return 1
-                    Case Types.Grass
-                        Return 1
-                    Case Types.Electric
-                        Return 1
-                    Case Types.Psychic
-                        Return 0.5F
-                    Case Types.Ice
-                        Return 1
-                    Case Types.Dragon
-                        Return 1
-                    Case Types.Dark
-                        Return 0
-                    Case Else
-                        Return 1
-                End Select
-            Case Types.Ice
-                Select Case d._type
-                    Case Types.Normal
-                        Return 1
-                    Case Types.Fighting
-                        Return 1
-                    Case Types.Flying
-                        Return 2
-                    Case Types.Poison
-                        Return 1
-                    Case Types.Ground
-                        Return 2
-                    Case Types.Rock
-                        Return 1
-                    Case Types.Bug
-                        Return 1
-                    Case Types.Ghost
-                        Return 1
-                    Case Types.Steel
-                        Return 0.5F
-                    Case Types.Fire
-                        Return 0.5F
-                    Case Types.Water
-                        Return 0.5F
-                    Case Types.Grass
-                        Return 2
-                    Case Types.Electric
-                        Return 1
-                    Case Types.Psychic
-                        Return 1
-                    Case Types.Ice
-                        Return 0.5F
-                    Case Types.Dragon
-                        Return 2
-                    Case Types.Dark
-                        Return 1
-                    Case Else
-                        Return 1
-                End Select
-            Case Types.Dragon
-                Select Case d._type
-                    Case Types.Normal
-                        Return 1
-                    Case Types.Fighting
-                        Return 1
-                    Case Types.Flying
-                        Return 1
-                    Case Types.Poison
-                        Return 1
-                    Case Types.Ground
-                        Return 1
-                    Case Types.Rock
-                        Return 1
-                    Case Types.Bug
-                        Return 1
-                    Case Types.Ghost
-                        Return 1
-                    Case Types.Steel
-                        Return 0.5F
-                    Case Types.Fire
-                        Return 1
-                    Case Types.Water
-                        Return 1
-                    Case Types.Grass
-                        Return 1
-                    Case Types.Electric
-                        Return 1
-                    Case Types.Psychic
-                        Return 1
-                    Case Types.Ice
-                        Return 1
-                    Case Types.Dragon
-                        Return 2
-                    Case Types.Dark
-                        Return 1
-                    Case Types.Fairy
-                        Return 0
-                    Case Else
-                        Return 1
-                End Select
-            Case Types.Dark
-                Select Case d._type
-                    Case Types.Normal
-                        Return 1
-                    Case Types.Fighting
-                        Return 0.5F
-                    Case Types.Flying
-                        Return 1
-                    Case Types.Poison
-                        Return 1
-                    Case Types.Ground
-                        Return 1
-                    Case Types.Rock
-                        Return 1
-                    Case Types.Bug
-                        Return 1
-                    Case Types.Ghost
-                        Return 2
-                    Case Types.Steel
-                        Return 1
-                    Case Types.Fire
-                        Return 1
-                    Case Types.Water
-                        Return 1
-                    Case Types.Grass
-                        Return 1
-                    Case Types.Electric
-                        Return 1
-                    Case Types.Psychic
-                        Return 2
-                    Case Types.Ice
-                        Return 1
-                    Case Types.Dragon
-                        Return 1
-                    Case Types.Dark
-                        Return 0.5F
-                    Case Types.Fairy
-                        Return 0.5F
-                    Case Else
-                        Return 1
-                End Select
-            Case Types.Fairy
-                Select Case d._type
-                    Case Types.Fire
-                        Return 0.5F
-                    Case Types.Fighting
-                        Return 2.0F
-                    Case Types.Poison
-                        Return 0.5F
-                    Case Types.Dragon
-                        Return 2.0F
-                    Case Types.Dark
-                        Return 2.0F
-                    Case Types.Steel
-                        Return 0.5F
-                End Select
-            Case Types.Shadow
-                Select Case d._type
+                        Select Case d.Type
+                            Case Types.Fire
+                                Return 0.5F
+                            Case Types.Fighting
+                                Return 2.0F
+                            Case Types.Poison
+                                Return 0.5F
+                            Case Types.Dragon
+                                Return 2.0F
+                            Case Types.Dark
+                                Return 2.0F
+                            Case Types.Steel
+                                Return 0.5F
+                        End Select
                     Case Types.Shadow
-                        Return 0.5F
+                        Select Case d.Type
+                            Case Types.Shadow
+                                Return 0.5F
+                            Case Else
+                                Return 2
+                        End Select
                     Case Else
-                        Return 2
+                        Return 1
                 End Select
-            Case Else
-                Return 1
-        End Select
+            Else
+                If d.gmEffectivenessDefense.ContainsKey(a.Type) Then
+                    Return d.gmEffectivenessDefense(a.Type)
+                End If
+            End If
+        Else
+            If a.gmEffectivenessDefense.ContainsKey(d.Type) Then
+                Return a.gmEffectivenessDefense(d.Type)
+            End If
+        End If
 
         Return 1
     End Function
@@ -876,108 +913,116 @@ Public Class Element
     ''' </summary>
     Public Function GetElementImage() As Rectangle
         Dim r As New Rectangle(0, 0, 0, 0)
-
-        Select Case Me._type
-            Case Types.Normal
-                r = New Rectangle(0, 0, 48, 16)
-            Case Types.Grass
-                r = New Rectangle(0, 16, 48, 16)
-            Case Types.Fire
-                r = New Rectangle(0, 32, 48, 16)
-            Case Types.Water
-                r = New Rectangle(0, 48, 48, 16)
-            Case Types.Electric
-                r = New Rectangle(0, 64, 48, 16)
-            Case Types.Ground
-                r = New Rectangle(0, 80, 48, 16)
-            Case Types.Rock
-                r = New Rectangle(0, 96, 48, 16)
-            Case Types.Ice
-                r = New Rectangle(0, 112, 48, 16)
-            Case Types.Steel
-                r = New Rectangle(0, 128, 48, 16)
-            Case Types.Bug
-                r = New Rectangle(48, 0, 48, 16)
-            Case Types.Fighting
-                r = New Rectangle(48, 16, 48, 16)
-            Case Types.Flying
-                r = New Rectangle(48, 32, 48, 16)
-            Case Types.Poison
-                r = New Rectangle(48, 48, 48, 16)
-            Case Types.Ghost
-                r = New Rectangle(48, 64, 48, 16)
-            Case Types.Dark
-                r = New Rectangle(48, 80, 48, 16)
-            Case Types.Psychic
-                r = New Rectangle(48, 96, 48, 16)
-            Case Types.Dragon
-                r = New Rectangle(48, 128, 48, 16)
-            Case Types.Fairy
-                r = New Rectangle(96, 48, 48, 16)
-            Case Types.Shadow
-                r = New Rectangle(96, 64, 48, 16)
-            Case Types.Blank
-                r = New Rectangle(48, 112, 48, 16)
-            Case Else
-                r = New Rectangle(48, 112, 48, 16)
-        End Select
+        If Me.IsGameModeElement = False Then
+            Select Case Me._type
+                Case Types.Normal
+                    r = New Rectangle(0, 0, 48, 16)
+                Case Types.Grass
+                    r = New Rectangle(0, 16, 48, 16)
+                Case Types.Fire
+                    r = New Rectangle(0, 32, 48, 16)
+                Case Types.Water
+                    r = New Rectangle(0, 48, 48, 16)
+                Case Types.Electric
+                    r = New Rectangle(0, 64, 48, 16)
+                Case Types.Ground
+                    r = New Rectangle(0, 80, 48, 16)
+                Case Types.Rock
+                    r = New Rectangle(0, 96, 48, 16)
+                Case Types.Ice
+                    r = New Rectangle(0, 112, 48, 16)
+                Case Types.Steel
+                    r = New Rectangle(0, 128, 48, 16)
+                Case Types.Bug
+                    r = New Rectangle(48, 0, 48, 16)
+                Case Types.Fighting
+                    r = New Rectangle(48, 16, 48, 16)
+                Case Types.Flying
+                    r = New Rectangle(48, 32, 48, 16)
+                Case Types.Poison
+                    r = New Rectangle(48, 48, 48, 16)
+                Case Types.Ghost
+                    r = New Rectangle(48, 64, 48, 16)
+                Case Types.Dark
+                    r = New Rectangle(48, 80, 48, 16)
+                Case Types.Psychic
+                    r = New Rectangle(48, 96, 48, 16)
+                Case Types.Dragon
+                    r = New Rectangle(48, 128, 48, 16)
+                Case Types.Fairy
+                    r = New Rectangle(96, 48, 48, 16)
+                Case Types.Shadow
+                    r = New Rectangle(96, 64, 48, 16)
+                Case Types.Blank
+                    r = New Rectangle(48, 112, 48, 16)
+                Case Else
+                    r = New Rectangle(48, 112, 48, 16)
+            End Select
+        Else
+            r = gmTypeRectangle
+        End If
 
         Return r
     End Function
 
     Public Overrides Function ToString() As String
-        Select Case Me._type
-            Case Types.Blank
-                Return "Blank"
-            Case Types.Bug
-                Return "Bug"
-            Case Types.Dark
-                Return "Dark"
-            Case Types.Dragon
-                Return "Dragon"
-            Case Types.Electric
-                Return "Electric"
-            Case Types.Fairy
-                Return "Fairy"
-            Case Types.Fighting
-                Return "Fighting"
-            Case Types.Fire
-                Return "Fire"
-            Case Types.Flying
-                Return "Flying"
-            Case Types.Ghost
-                Return "Ghost"
-            Case Types.Grass
-                Return "Grass"
-            Case Types.Ground
-                Return "Ground"
-            Case Types.Ice
-                Return "Ice"
-            Case Types.Normal
-                Return "Normal"
-            Case Types.Poison
-                Return "Poison"
-            Case Types.Psychic
-                Return "Psychic"
-            Case Types.Rock
-                Return "Rock"
-            Case Types.Shadow
-                Return "Shadow"
-            Case Types.Steel
-                Return "Steel"
-            Case Types.Water
-                Return "Water"
-            Case Else
-                Return "Blank"
-        End Select
+        If IsGameModeElement = False Then
+            Select Case Me._type
+                Case Types.Blank
+                    Return "Blank"
+                Case Types.Bug
+                    Return "Bug"
+                Case Types.Dark
+                    Return "Dark"
+                Case Types.Dragon
+                    Return "Dragon"
+                Case Types.Electric
+                    Return "Electric"
+                Case Types.Fairy
+                    Return "Fairy"
+                Case Types.Fighting
+                    Return "Fighting"
+                Case Types.Fire
+                    Return "Fire"
+                Case Types.Flying
+                    Return "Flying"
+                Case Types.Ghost
+                    Return "Ghost"
+                Case Types.Grass
+                    Return "Grass"
+                Case Types.Ground
+                    Return "Ground"
+                Case Types.Ice
+                    Return "Ice"
+                Case Types.Normal
+                    Return "Normal"
+                Case Types.Poison
+                    Return "Poison"
+                Case Types.Psychic
+                    Return "Psychic"
+                Case Types.Rock
+                    Return "Rock"
+                Case Types.Shadow
+                    Return "Shadow"
+                Case Types.Steel
+                    Return "Steel"
+                Case Types.Water
+                    Return "Water"
+                Case Else
+                    Return "Blank"
+            End Select
+        Else
+            Return gmName
+        End If
+
     End Function
 
     Public Shared Operator =(ByVal Element1 As Element, ByVal Element2 As Element) As Boolean
-        Return Element1._type = Element2._type
+        Return Element1.Type = Element2.Type
     End Operator
 
     Public Shared Operator <>(ByVal Element1 As Element, ByVal Element2 As Element) As Boolean
-        Return Element1._type <> Element2._type
+        Return Element1.Type <> Element2.Type
     End Operator
 
 End Class

@@ -49,6 +49,7 @@
                 ContentPackManager.Load(GameController.GamePath & "\ContentPacks\" & s & "\exceptions.dat")
             Next
 
+            BattleSystem.GameModeElementLoader.Load()
             BattleSystem.GameModeAttackLoader.Load()
 
             SmashRock.Load()

@@ -84,7 +84,11 @@
                             Case "accuracy", "acc"
                                 move.Accuracy = CInt(value)
                             Case "type"
-                                move.Type = New Element(value)
+                                If StringHelper.IsNumeric(value) = False Then
+                                    move.Type = GameModeElementLoader.GetElementByName(value)
+                                Else
+                                    move.Type = GameModeElementLoader.GetElementByID(CInt(value))
+                                End If
                             Case "category"
                                 Select Case value.ToLower()
                                     Case "physical"

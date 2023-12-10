@@ -197,45 +197,49 @@ Public Class GameModeItem
 
     Public Sub SetTeachMoveTextureRectangle()
         Dim r As New Rectangle(144, 168, 24, 24)
+        If gmTeachMove.Type.IsGameModeElement = False Then
 
-        Select Case gmTeachMove.Type.Type
-            Case Element.Types.Blank, Element.Types.Normal
-                r = New Rectangle(144, 168, 24, 24)
-            Case Element.Types.Bug
-                r = New Rectangle(24, 192, 24, 24)
-            Case Element.Types.Dark
-                r = New Rectangle(384, 168, 24, 24)
-            Case Element.Types.Dragon
-                r = New Rectangle(408, 168, 24, 24)
-            Case Element.Types.Electric
-                r = New Rectangle(288, 168, 24, 24)
-            Case Element.Types.Fairy
-                r = New Rectangle(72, 264, 24, 24)
-            Case Element.Types.Fighting
-                r = New Rectangle(168, 168, 24, 24)
-            Case Element.Types.Fire
-                r = New Rectangle(360, 168, 24, 24)
-            Case Element.Types.Flying
-                r = New Rectangle(0, 192, 24, 24)
-            Case Element.Types.Ghost
-                r = New Rectangle(480, 168, 24, 24)
-            Case Element.Types.Grass
-                r = New Rectangle(336, 168, 24, 24)
-            Case Element.Types.Ground
-                r = New Rectangle(456, 168, 24, 24)
-            Case Element.Types.Ice
-                r = New Rectangle(312, 168, 24, 24)
-            Case Element.Types.Poison
-                r = New Rectangle(264, 168, 24, 24)
-            Case Element.Types.Psychic
-                r = New Rectangle(216, 168, 24, 24)
-            Case Element.Types.Rock
-                r = New Rectangle(240, 168, 24, 24)
-            Case Element.Types.Steel
-                r = New Rectangle(432, 168, 24, 24)
-            Case Element.Types.Water
-                r = New Rectangle(192, 168, 24, 24)
-        End Select
+            Select Case gmTeachMove.Type.Type
+                Case Element.Types.Blank, Element.Types.Normal
+                    r = New Rectangle(144, 168, 24, 24)
+                Case Element.Types.Bug
+                    r = New Rectangle(24, 192, 24, 24)
+                Case Element.Types.Dark
+                    r = New Rectangle(384, 168, 24, 24)
+                Case Element.Types.Dragon
+                    r = New Rectangle(408, 168, 24, 24)
+                Case Element.Types.Electric
+                    r = New Rectangle(288, 168, 24, 24)
+                Case Element.Types.Fairy
+                    r = New Rectangle(72, 264, 24, 24)
+                Case Element.Types.Fighting
+                    r = New Rectangle(168, 168, 24, 24)
+                Case Element.Types.Fire
+                    r = New Rectangle(360, 168, 24, 24)
+                Case Element.Types.Flying
+                    r = New Rectangle(0, 192, 24, 24)
+                Case Element.Types.Ghost
+                    r = New Rectangle(480, 168, 24, 24)
+                Case Element.Types.Grass
+                    r = New Rectangle(336, 168, 24, 24)
+                Case Element.Types.Ground
+                    r = New Rectangle(456, 168, 24, 24)
+                Case Element.Types.Ice
+                    r = New Rectangle(312, 168, 24, 24)
+                Case Element.Types.Poison
+                    r = New Rectangle(264, 168, 24, 24)
+                Case Element.Types.Psychic
+                    r = New Rectangle(216, 168, 24, 24)
+                Case Element.Types.Rock
+                    r = New Rectangle(240, 168, 24, 24)
+                Case Element.Types.Steel
+                    r = New Rectangle(432, 168, 24, 24)
+                Case Element.Types.Water
+                    r = New Rectangle(192, 168, 24, 24)
+            End Select
+        Else
+            r = gmTeachMove.Type.gmMachineTextureRectangle
+        End If
 
         gmTextureRectangle = r
     End Sub

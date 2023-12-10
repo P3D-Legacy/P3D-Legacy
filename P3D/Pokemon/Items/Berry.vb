@@ -31,7 +31,7 @@
         Public SummerGrow As Integer = 2
         Public FallGrow As Integer = 1
 
-        Public Type As Element.Types
+        Public Type As Integer
         Public Power As Integer = 80
 
         Public JuiceColor As String = "red"

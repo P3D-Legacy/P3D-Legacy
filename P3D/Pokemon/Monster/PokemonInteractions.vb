@@ -721,7 +721,7 @@
         Public Daytime As Integer = -1
         Public Weather As Integer = -1
         Public Season As Integer = -1
-        Public Types As New List(Of Element.Types)
+        Public Types As New List(Of Integer)
         Public Probability As Integer = 100
 
         Public Sub New(ByVal dataLine As String)
@@ -758,7 +758,7 @@
 
             If dataParts(5) <> "-1" Then
                 For Each typePart As String In dataParts(5).Split(CChar(","))
-                    Me.Types.Add(New Element(typePart).Type)
+                    Me.Types.Add(BattleSystem.GameModeElementLoader.GetElementByName(typePart).Type)
                 Next
             End If
 
@@ -856,7 +856,7 @@
             End If
 
             If Me.Types.Count > 0 Then
-                For Each t As Element.Types In Me.Types
+                For Each t As Integer In Me.Types
                     If p.IsType(t) = False Then
                         Return False
                     End If

@@ -543,6 +543,7 @@
         End If
         GameModeManager.SetGameModePointer(GameMode)
 
+        BattleSystem.GameModeElementLoader.Load()
         BattleSystem.GameModeAttackLoader.Load()
         GameModeItemLoader.Load()
 
