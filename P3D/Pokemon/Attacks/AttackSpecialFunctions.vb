@@ -358,6 +358,11 @@
                                     End If
                                     BattleScreen.Battle.SwitchOutOwn(BattleScreen, SwitchTo, -1, Message)
                                 End If
+                            Case "randomstatus"
+                                fSub = CInt(f.GetSplit(1, ",")).Clamp(0, 100).ToString
+                                If f.Split(CChar(",")).Count > 2 Then
+                                    fSub &= "," & f.GetSplit(2, ",")
+                                End If
                             Case Else
                                 fSub = CInt(f.GetSplit(1, ",")).Clamp(0, 100).ToString
                         End Select
@@ -381,6 +386,33 @@
                     End If
 
                     Select Case fMain.ToLower()
+                        Case "randomstatus"
+                            Dim chance As Integer = CInt(fSub.GetSplit(0, ","))
+                            Dim withoutBadPoison As Boolean = False
+                            If fSub.Contains(",") Then
+                                withoutBadPoison = CBool(fSub.GetSplit(1, ","))
+                            End If
+
+                            Dim randomNumber As Integer = Core.Random.Next(0, 7)
+                            If withoutBadPoison = True Then
+                                randomNumber = Core.Random.Next(0, 6)
+                            End If
+                            Select Case randomNumber
+                                Case 0
+                                    Paralyze(Move, own, BattleScreen, CInt(fSub))
+                                Case 1
+                                    Poison(Move, own, BattleScreen, CInt(fSub))
+                                Case 2
+                                    Burn(Move, own, BattleScreen, CInt(fSub))
+                                Case 3
+                                    Freeze(Move, own, BattleScreen, CInt(fSub))
+                                Case 4
+                                    Sleep(Move, own, BattleScreen, CInt(fSub))
+                                Case 5
+                                    Confuse(Move, own, BattleScreen, CInt(fSub))
+                                Case 6
+                                    BadPoison(Move, own, BattleScreen, CInt(fSub))
+                            End Select
                         Case "paralyze"
                             Paralyze(Move, own, BattleScreen, CInt(fSub))
                         Case "poison"
