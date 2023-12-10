@@ -72,7 +72,7 @@
                                     Dim OldFunctionList = move.GameModeFunction
                                     move.GameModeFunction = OldFunctionList & "|" & value
                                 End If
-                            Case "basepower", "getbasepower"
+                            Case "multiplier", "getbasepower"
                                 If move.GameModeBasePower = "" Then
                                     move.GameModeBasePower = value
                                 Else
