@@ -227,6 +227,7 @@
                                 Dim Target As Boolean = own
                                 Dim Message As String = ""
                                 Dim RaiseAmount As Integer = 1
+                                Dim Chance As Integer = 100
 
                                 If f.Split(CChar(",")).Count > 2 Then
                                     Target = CBool(f.GetSplit(2, ","))
@@ -236,15 +237,24 @@
                                             If CInt(f.GetSplit(4, ",")) > 0 Then
                                                 RaiseAmount = CInt(f.GetSplit(4, ","))
                                             End If
+                                            If f.Split(CChar(",")).Count > 5 Then
+                                                If CInt(f.GetSplit(5, ",")) > 0 Then
+                                                    Chance = CInt(f.GetSplit(5, ","))
+                                                End If
+                                            End If
                                         End If
                                     End If
                                 End If
-                                BattleScreen.Battle.RaiseStat(Target, own, BattleScreen, Stat, RaiseAmount, Message, "move:" & Move.Name, True)
+                                If GetEffectChanceResult(Move, Chance) = True Then
+                                    BattleScreen.Battle.RaiseStat(Target, own, BattleScreen, Stat, RaiseAmount, Message, "move:" & Move.Name, True)
+                                End If
                             Case "lowerstat", "decreasestat"
                                 Dim Stat As String = f.GetSplit(1, ",")
                                 Dim Message As String = ""
                                 Dim Target As Boolean = own
                                 Dim LowerAmount As Integer = 1
+                                Dim Chance As Integer = 100
+
                                 If f.Split(CChar(",")).Count > 2 Then
                                     Target = CBool(f.GetSplit(2, ","))
                                     If f.Split(CChar(",")).Count > 3 Then
@@ -253,10 +263,17 @@
                                             If CInt(f.GetSplit(4, ",")) > 0 Then
                                                 LowerAmount = CInt(f.GetSplit(4, ","))
                                             End If
+                                            If f.Split(CChar(",")).Count > 5 Then
+                                                If CInt(f.GetSplit(5, ",")) > 0 Then
+                                                    Chance = CInt(f.GetSplit(5, ","))
+                                                End If
+                                            End If
                                         End If
                                     End If
                                 End If
-                                BattleScreen.Battle.LowerStat(Target, own, BattleScreen, Stat, LowerAmount, Message, "move:" & Move.Name, True)
+                                If GetEffectChanceResult(Move, Chance) = True Then
+                                    BattleScreen.Battle.LowerStat(Target, own, BattleScreen, Stat, LowerAmount, Message, "move:" & Move.Name, True)
+                                End If
                             Case "reducehp", "drainhp", "damage"
                                 Dim Target As Boolean = CBool(f.GetSplit(1, ","))
                                 Dim HPAmount As Integer = 0
@@ -384,7 +401,7 @@
         End Sub
 
         Private Shared Function GetEffectChanceResult(ByVal move As Attack, ByVal chance As Integer) As Boolean
-            Return Core.Random.Next(0, 100) <= chance
+            Return Core.Random.Next(0, 101) <= chance
         End Function
 
         Private Shared Sub Paralyze(ByVal Move As Attack, ByVal own As Boolean, ByVal BattleScreen As BattleScreen, Chance As Integer)
