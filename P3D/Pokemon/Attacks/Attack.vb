@@ -181,6 +181,7 @@
         Public IsDefaultMove As Boolean = False 'if Pound gets loaded instead of the correct move, this is true.
 
         Public GameModeFunction As String = "" 'A GameMode can specify a pre defined function for a move.
+        Public GameModeBasePower As String = "" 'A GameMode can specify a base power calculation for a move.
         Public IsGameModeMove As Boolean = False
         Public gmDeductPP As Boolean = True
 
@@ -1954,7 +1955,11 @@
         ''' <param name="Own">If the own Pokémon used the move.</param>
         ''' <param name="BattleScreen">Reference to the BattleScreen.</param>
         Public Overridable Function GetBasePower(ByVal own As Boolean, ByVal BattleScreen As BattleScreen) As Integer
-            Return Me.Power
+            If Me.IsGameModeMove = False Then
+                Return Me.Power
+            Else
+                Return AttackSpecialBasePower.GetGameModeBasePower(Me, own, BattleScreen)
+            End If
         End Function
 
         ''' <summary>
