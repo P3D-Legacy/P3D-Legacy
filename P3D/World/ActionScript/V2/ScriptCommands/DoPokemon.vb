@@ -1043,6 +1043,10 @@
                             Status = Pokemon.StatusProblems.Sleep
                         Case "fnt"
                             Status = Pokemon.StatusProblems.Fainted
+                        Case "none"
+                            Status = Pokemon.StatusProblems.None
+                        Case Else
+                            Status = Pokemon.StatusProblems.None
                     End Select
                     If Status <> Nothing AndAlso Core.Player.Pokemons.Count - 1 >= Index Then
                         Core.Player.Pokemons(Index).Status = Status
