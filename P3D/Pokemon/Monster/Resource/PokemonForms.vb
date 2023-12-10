@@ -592,7 +592,7 @@ Public Class PokemonForms
                         ElseIf trigger(0).ToLower = "gender" Then
                             If GetGenderFormMatch(P, True) = "match" Then
                                 If TypeChange <> Element.Types.Blank Then
-                                    Return BattleSystem.GameModeElementLoader.GetElementByName(TypeChange).ToString
+                                    Return BattleSystem.GameModeElementLoader.GetElementByID(TypeChange).ToString
                                 Else
                                     Return AdditionalValue
                                 End If
