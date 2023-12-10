@@ -198,6 +198,7 @@
         Public Target As Targets = Targets.OneAdjacentTarget
         Public Priority As Integer = 0
         Public TimesToAttack As Integer = 1
+        Public gmTimesToAttack As String = "1"
         Public EffectChances As New List(Of Integer)
         '#End
 
@@ -1977,7 +1978,15 @@
         ''' <param name="Own">If the own Pokémon used the move.</param>
         ''' <param name="BattleScreen">Reference to the BattleScreen.</param>
         Public Overridable Function GetTimesToAttack(ByVal own As Boolean, ByVal BattleScreen As BattleScreen) As Integer
-            Return Me.TimesToAttack
+            If Me.IsGameModeMove = False Then
+                Return Me.TimesToAttack
+            Else
+                If gmTimesToAttack.Contains("-") Then
+                    Return Core.Random.Next(CInt(gmTimesToAttack.GetSplit(0, "-")), CInt(gmTimesToAttack.GetSplit(1, "-")) + 1)
+                Else
+                    Return CInt(gmTimesToAttack)
+                End If
+            End If
         End Function
 
         ''' <summary>

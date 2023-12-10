@@ -118,7 +118,7 @@
                             Case "priority"
                                 move.Priority = CInt(value)
                             Case "timestoattack", "tta"
-                                move.TimesToAttack = CInt(value)
+                                move.gmTimesToAttack = value
                             Case "makescontact", "contact"
                                 move.MakesContact = CBool(value)
                             Case "protectaffected"
