@@ -90,8 +90,6 @@
 
             If dig > 0 Then
                 basepower *= 2
-            Else
-                basepower *= 2
             End If
 
             UsedLevel = magLevel
