@@ -193,6 +193,138 @@
                                 move.UseOppEvasion = CBool(value)
                             Case "deductpp"
                                 move.gmDeductPP = CBool(value)
+                            Case "aifield1", "aifield2", "aifield3"
+                                Dim AIFieldType As Attack.AIField = Attack.AIField.Nothing
+                                Select Case value
+                                    Case "damage"
+                                        AIFieldType = Attack.AIField.Damage
+                                    Case "poison"
+                                        AIFieldType = Attack.AIField.Poison
+                                    Case "burn"
+                                        AIFieldType = Attack.AIField.Burn
+                                    Case "paralysis"
+                                        AIFieldType = Attack.AIField.Paralysis
+                                    Case "sleep"
+                                        AIFieldType = Attack.AIField.Sleep
+                                    Case "freeze"
+                                        AIFieldType = Attack.AIField.Freeze
+                                    Case "confusion"
+                                        AIFieldType = Attack.AIField.Confusion
+                                    Case "confuseown"
+                                        AIFieldType = Attack.AIField.ConfuseOwn
+                                    Case "canpoison"
+                                        AIFieldType = Attack.AIField.CanPoison
+                                    Case "canburn"
+                                        AIFieldType = Attack.AIField.CanBurn
+                                    Case "canparalyse"
+                                        AIFieldType = Attack.AIField.CanParalyse
+                                    Case "cansleep"
+                                        AIFieldType = Attack.AIField.CanSleep
+                                    Case "canfreeze"
+                                        AIFieldType = Attack.AIField.CanFreeze
+                                    Case "canconfuse"
+                                        AIFieldType = Attack.AIField.CanConfuse
+                                    Case "raiseattack"
+                                        AIFieldType = Attack.AIField.RaiseAttack
+                                    Case "raisedefense"
+                                        AIFieldType = Attack.AIField.RaiseDefense
+                                    Case "raisespattack"
+                                        AIFieldType = Attack.AIField.RaiseSpAttack
+                                    Case "raisespdefense"
+                                        AIFieldType = Attack.AIField.RaiseSpDefense
+                                    Case "raisespeed"
+                                        AIFieldType = Attack.AIField.RaiseSpeed
+                                    Case "raiseaccuracy"
+                                        AIFieldType = Attack.AIField.RaiseAccuracy
+                                    Case "raiseevasion"
+                                        AIFieldType = Attack.AIField.RaiseEvasion
+                                    Case "lowerattack"
+                                        AIFieldType = Attack.AIField.LowerAttack
+                                    Case "lowerdefense"
+                                        AIFieldType = Attack.AIField.LowerDefense
+                                    Case "lowerspattack"
+                                        AIFieldType = Attack.AIField.LowerSpAttack
+                                    Case "lowerspdefense"
+                                        AIFieldType = Attack.AIField.LowerSpDefense
+                                    Case "lowerspeed"
+                                        AIFieldType = Attack.AIField.LowerSpeed
+                                    Case "loweraccuracy"
+                                        AIFieldType = Attack.AIField.LowerAccuracy
+                                    Case "lowerevasion"
+                                        AIFieldType = Attack.AIField.LowerEvasion
+                                    Case "canraiseattack"
+                                        AIFieldType = Attack.AIField.CanRaiseAttack
+                                    Case "canraisedefense"
+                                        AIFieldType = Attack.AIField.CanRaiseDefense
+                                    Case "canraisespattack"
+                                        AIFieldType = Attack.AIField.CanRaiseSpAttack
+                                    Case "canraisespdefense"
+                                        AIFieldType = Attack.AIField.CanRaiseSpDefense
+                                    Case "canraisespeed"
+                                        AIFieldType = Attack.AIField.CanRaiseSpeed
+                                    Case "canraiseaccuracy"
+                                        AIFieldType = Attack.AIField.CanRaiseAccuracy
+                                    Case "canrauseevasion"
+                                        AIFieldType = Attack.AIField.CanRauseEvasion
+                                    Case "canlowerattack"
+                                        AIFieldType = Attack.AIField.CanLowerAttack
+                                    Case "canlowerdefense"
+                                        AIFieldType = Attack.AIField.CanLowerDefense
+                                    Case "canlowerspattack"
+                                        AIFieldType = Attack.AIField.CanLowerSpAttack
+                                    Case "canlowerspdefense"
+                                        AIFieldType = Attack.AIField.CanLowerSpDefense
+                                    Case "canlowerspeed"
+                                        AIFieldType = Attack.AIField.CanLowerSpeed
+                                    Case "canloweraccuracy"
+                                        AIFieldType = Attack.AIField.CanLowerAccuracy
+                                    Case "canlowerevasion"
+                                        AIFieldType = Attack.AIField.CanLowerEvasion
+                                    Case "flinch"
+                                        AIFieldType = Attack.AIField.Flinch
+                                    Case "canflinch"
+                                        AIFieldType = Attack.AIField.CanFlinch
+                                    Case "infatuation"
+                                        AIFieldType = Attack.AIField.Infatuation
+                                    Case "trap"
+                                        AIFieldType = Attack.AIField.Trap
+                                    Case "ohko"
+                                        AIFieldType = Attack.AIField.OHKO
+                                    Case "multiturn"
+                                        AIFieldType = Attack.AIField.MultiTurn
+                                    Case "recoil"
+                                        AIFieldType = Attack.AIField.Recoil
+                                    Case "healing"
+                                        AIFieldType = Attack.AIField.Healing
+                                    Case "curestatus"
+                                        AIFieldType = Attack.AIField.CureStatus
+                                    Case "support"
+                                        AIFieldType = Attack.AIField.Support
+                                    Case "recharge"
+                                        AIFieldType = Attack.AIField.Recharge
+                                    Case "highpriority"
+                                        AIFieldType = Attack.AIField.HighPriority
+                                    Case "absorbing"
+                                        AIFieldType = Attack.AIField.Absorbing
+                                    Case "selfdestruct"
+                                        AIFieldType = Attack.AIField.Selfdestruct
+                                    Case "thrawout"
+                                        AIFieldType = Attack.AIField.ThrawOut
+                                    Case "cannotmiss"
+                                        AIFieldType = Attack.AIField.CannotMiss
+                                    Case "removereflectlightscreen"
+                                        AIFieldType = Attack.AIField.RemoveReflectLightscreen
+                                End Select
+                                If AIFieldType <> Attack.AIField.Nothing Then
+                                    If key.EndsWith("1") Then
+                                        move.AIField1 = AIFieldType
+                                    ElseIf key.EndsWith("2") Then
+                                        move.AIField2 = AIFieldType
+                                    ElseIf key.EndsWith("3") Then
+                                        move.AIField3 = AIFieldType
+                                    End If
+                                End If
+
                         End Select
                     End If
                 Next
