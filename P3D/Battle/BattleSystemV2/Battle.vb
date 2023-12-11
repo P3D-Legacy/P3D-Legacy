@@ -1817,7 +1817,7 @@
                     dive = BattleScreen.FieldEffects.OwnDiveCounter
                 End If
 
-                If dive > 0 And moveUsed.CanHitInMidAir = False Then
+                If dive > 0 And moveUsed.CanHitUnderwater = False Then
                     DoesNotMiss = False
                 End If
             End If
