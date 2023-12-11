@@ -228,6 +228,7 @@
                                 Dim Message As String = ""
                                 Dim RaiseAmount As Integer = 1
                                 Dim Chance As Integer = 100
+                                Dim FailMessage As String = ""
 
                                 If f.Split(CChar(",")).Count > 2 Then
                                     Target = CBool(f.GetSplit(2, ","))
@@ -241,19 +242,21 @@
                                                 If CInt(f.GetSplit(5, ",")) > 0 Then
                                                     Chance = CInt(f.GetSplit(5, ","))
                                                 End If
+                                                If f.Split(CChar(",")).Count > 6 Then
+                                                    FailMessage = f.GetSplit(6, ",")
+                                                End If
                                             End If
                                         End If
                                     End If
                                 End If
-                                If GetEffectChanceResult(Move, Chance) = True Then
-                                    BattleScreen.Battle.RaiseStat(Target, own, BattleScreen, Stat, RaiseAmount, Message, "move:" & Move.Name, True)
-                                End If
+                                RaiseStat(Move, own, Stat, Target, Message, RaiseAmount, Chance, FailMessage, BattleScreen)
                             Case "lowerstat", "decreasestat"
                                 Dim Stat As String = f.GetSplit(1, ",")
                                 Dim Message As String = ""
                                 Dim Target As Boolean = own
                                 Dim LowerAmount As Integer = 1
                                 Dim Chance As Integer = 100
+                                Dim FailMessage As String = ""
 
                                 If f.Split(CChar(",")).Count > 2 Then
                                     Target = CBool(f.GetSplit(2, ","))
@@ -267,13 +270,14 @@
                                                 If CInt(f.GetSplit(5, ",")) > 0 Then
                                                     Chance = CInt(f.GetSplit(5, ","))
                                                 End If
+                                                If f.Split(CChar(",")).Count > 6 Then
+                                                    FailMessage = f.GetSplit(6, ",")
+                                                End If
                                             End If
                                         End If
                                     End If
                                 End If
-                                If GetEffectChanceResult(Move, Chance) = True Then
-                                    BattleScreen.Battle.LowerStat(Target, own, BattleScreen, Stat, LowerAmount, Message, "move:" & Move.Name, True)
-                                End If
+                                LowerStat(Move, own, Stat, Target, Message, LowerAmount, Chance, FailMessage, BattleScreen)
                             Case "reducehp", "drainhp", "damage"
                                 Dim Target As Boolean = CBool(f.GetSplit(1, ","))
                                 Dim HPAmount As Integer = 0
@@ -435,6 +439,32 @@
         Private Shared Function GetEffectChanceResult(ByVal move As Attack, ByVal chance As Integer) As Boolean
             Return Core.Random.Next(0, 101) <= chance
         End Function
+        Private Shared Sub LowerStat(ByVal Move As Attack, own As Boolean, Stat As String, Target As Boolean, Message As String, LowerAmount As Integer, Chance As Integer, FailMessage As String, ByVal BattleScreen As BattleScreen)
+            If GetEffectChanceResult(Move, Chance) = True Then
+                If BattleScreen.Battle.LowerStat(Target, own, BattleScreen, Stat, LowerAmount, Message, "move:" & Move.Name, True) = False Then
+                    If Move.Category = Attack.Categories.Status Then
+                        If FailMessage = "" Then
+                            BattleScreen.BattleQuery.Add(New TextQueryObject(Move.Name & " failed!"))
+                        Else
+                            BattleScreen.BattleQuery.Add(New TextQueryObject(FailMessage.Replace("<movename>", Move.Name)))
+                        End If
+                    End If
+                End If
+            End If
+        End Sub
+        Private Shared Sub RaiseStat(ByVal Move As Attack, own As Boolean, Stat As String, Target As Boolean, Message As String, RaiseAmount As Integer, Chance As Integer, FailMessage As String, ByVal BattleScreen As BattleScreen)
+            If GetEffectChanceResult(Move, Chance) = True Then
+                If BattleScreen.Battle.RaiseStat(Target, own, BattleScreen, Stat, RaiseAmount, Message, "move:" & Move.Name, True) = False Then
+                    If Move.Category = Attack.Categories.Status Then
+                        If FailMessage = "" Then
+                            BattleScreen.BattleQuery.Add(New TextQueryObject(Move.Name & " failed!"))
+                        Else
+                            BattleScreen.BattleQuery.Add(New TextQueryObject(FailMessage.Replace("<movename>", Move.Name)))
+                        End If
+                    End If
+                End If
+            End If
+        End Sub
 
         Private Shared Sub Paralyze(ByVal Move As Attack, ByVal own As Boolean, ByVal BattleScreen As BattleScreen, Chance As Integer)
             If GetEffectChanceResult(Move, Chance) = True Then
