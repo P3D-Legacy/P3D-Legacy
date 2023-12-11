@@ -66,7 +66,7 @@
 
             CanPoison
             CanBurn
-            CanParalyse
+            CanParalyze
             CanSleep
             CanFreeze
             CanConfuse

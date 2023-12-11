@@ -216,8 +216,8 @@
                                         AIFieldType = Attack.AIField.CanPoison
                                     Case "canburn"
                                         AIFieldType = Attack.AIField.CanBurn
-                                    Case "canparalyse"
-                                        AIFieldType = Attack.AIField.CanParalyse
+                                    Case "canparalyze"
+                                        AIFieldType = Attack.AIField.CanParalyze
                                     Case "cansleep"
                                         AIFieldType = Attack.AIField.CanSleep
                                     Case "canfreeze"
