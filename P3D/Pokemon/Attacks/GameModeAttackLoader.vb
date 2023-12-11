@@ -324,7 +324,8 @@
                                         move.AIField3 = AIFieldType
                                     End If
                                 End If
-
+                            Case "usemoveanims"
+                                move.gmUseMoveAnims = Attack.GetAttackByID(CInt(value))
                         End Select
                     End If
                 Next

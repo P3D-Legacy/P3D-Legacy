@@ -199,6 +199,7 @@
         Public Priority As Integer = 0
         Public TimesToAttack As Integer = 1
         Public gmTimesToAttack As String = "1"
+        Public gmUseMoveAnims As Attack = Nothing
         Public EffectChances As New List(Of Integer)
         '#End
 
@@ -2227,7 +2228,13 @@
         End Sub
 
         Public Overridable Sub InternalUserPokemonMoveAnimation(ByVal BattleScreen As BattleScreen, ByVal BattleFlip As Boolean, ByVal CurrentPokemon As Pokemon, ByVal CurrentEntity As NPC)
-            'Override this method in the attack class to insert the move animation query objects into the queue.
+            If Me.IsGameModeMove = True Then
+                If gmUseMoveAnims IsNot Nothing Then
+                    gmUseMoveAnims.InternalUserPokemonMoveAnimation(BattleScreen, BattleFlip, CurrentPokemon, CurrentEntity)
+                End If
+            Else
+                'Override this method in the attack class to insert the move animation query objects into the queue.
+            End If
         End Sub
 
         Public Sub OpponentPokemonMoveAnimation(ByVal BattleScreen As BattleScreen, ByVal own As Boolean)
@@ -2245,7 +2252,13 @@
         End Sub
 
         Public Overridable Sub InternalOpponentPokemonMoveAnimation(ByVal BattleScreen As BattleScreen, ByVal BattleFlip As Boolean, ByVal CurrentPokemon As Pokemon, ByVal CurrentEntity As NPC)
-            'Override this method in the attack class to insert the move animation query objects into the queue.
+            If Me.IsGameModeMove = True Then
+                If gmUseMoveAnims IsNot Nothing Then
+                    gmUseMoveAnims.InternalOpponentPokemonMoveAnimation(BattleScreen, BattleFlip, CurrentPokemon, CurrentEntity)
+                End If
+            Else
+                'Override this method in the attack class to insert the move animation query objects into the queue.
+            End If
         End Sub
 
 #End Region
