@@ -1424,9 +1424,9 @@ Public Class Pokemon
                             Me.ExperienceType = ExperienceTypes.Slow
                     End Select
                 Case "type1"
-                    Me.Type1 = New Element(Value)
+                    Me.Type1 = BattleSystem.GameModeElementLoader.GetElementByName(Value)
                 Case "type2"
-                    Me.Type2 = New Element(Value)
+                    Me.Type2 = BattleSystem.GameModeElementLoader.GetElementByName(Value)
                 Case "catchrate"
                     Me.CatchRate = CInt(Value)
                 Case "basefriendship"

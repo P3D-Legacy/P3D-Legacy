@@ -85,45 +85,45 @@
                                     If StringHelper.IsNumeric(data(i).GetSplit(0, ",")) = True Then
                                         typeID = CInt(data(i).GetSplit(0, ","))
                                     Else
-                                        Select Case data(i).GetSplit(0, ",")
+                                        Select Case data(i).GetSplit(0, ",").ToLower
                                             Case "normal"
-                                                typeID = element.Types.Normal
+                                                typeID = Element.Types.Normal
                                             Case "fighting"
-                                                typeID = element.Types.Fighting
+                                                typeID = Element.Types.Fighting
                                             Case "flying"
-                                                typeID = element.Types.Flying
+                                                typeID = Element.Types.Flying
                                             Case "poison"
-                                                typeID = element.Types.Poison
+                                                typeID = Element.Types.Poison
                                             Case "ground"
-                                                typeID = element.Types.Ground
+                                                typeID = Element.Types.Ground
                                             Case "rock"
-                                                typeID = element.Types.Rock
+                                                typeID = Element.Types.Rock
                                             Case "bug"
-                                                typeID = element.Types.Bug
+                                                typeID = Element.Types.Bug
                                             Case "ghost"
-                                                typeID = element.Types.Ghost
+                                                typeID = Element.Types.Ghost
                                             Case "steel"
-                                                typeID = element.Types.Steel
+                                                typeID = Element.Types.Steel
                                             Case "fire"
-                                                typeID = element.Types.Fire
+                                                typeID = Element.Types.Fire
                                             Case "water"
-                                                typeID = element.Types.Water
+                                                typeID = Element.Types.Water
                                             Case "grass"
-                                                typeID = element.Types.Grass
+                                                typeID = Element.Types.Grass
                                             Case "electric"
-                                                typeID = element.Types.Electric
+                                                typeID = Element.Types.Electric
                                             Case "psychic"
-                                                typeID = element.Types.Psychic
+                                                typeID = Element.Types.Psychic
                                             Case "ice"
-                                                typeID = element.Types.Ice
+                                                typeID = Element.Types.Ice
                                             Case "dragon"
-                                                typeID = element.Types.Dragon
+                                                typeID = Element.Types.Dragon
                                             Case "dark"
-                                                typeID = element.Types.Dark
+                                                typeID = Element.Types.Dark
                                             Case "fairy"
-                                                typeID = element.Types.Fairy
+                                                typeID = Element.Types.Fairy
                                             Case "shadow"
-                                                typeID = element.Types.Shadow
+                                                typeID = Element.Types.Shadow
                                         End Select
                                     End If
                                     element.gmEffectivenessAttack.Add(typeID, CSng(data(i).GetSplit(1, ",").InsertDecSeparator))
@@ -135,45 +135,45 @@
                                     If StringHelper.IsNumeric(data(i).GetSplit(0, ",")) = True Then
                                         typeID = CInt(data(i).GetSplit(0, ","))
                                     Else
-                                        Select Case data(i).GetSplit(0, ",")
+                                        Select Case data(i).GetSplit(0, ",").ToLower
                                             Case "normal"
-                                                typeID = element.Types.Normal
+                                                typeID = Element.Types.Normal
                                             Case "fighting"
-                                                typeID = element.Types.Fighting
+                                                typeID = Element.Types.Fighting
                                             Case "flying"
-                                                typeID = element.Types.Flying
+                                                typeID = Element.Types.Flying
                                             Case "poison"
-                                                typeID = element.Types.Poison
+                                                typeID = Element.Types.Poison
                                             Case "ground"
-                                                typeID = element.Types.Ground
+                                                typeID = Element.Types.Ground
                                             Case "rock"
-                                                typeID = element.Types.Rock
+                                                typeID = Element.Types.Rock
                                             Case "bug"
-                                                typeID = element.Types.Bug
+                                                typeID = Element.Types.Bug
                                             Case "ghost"
-                                                typeID = element.Types.Ghost
+                                                typeID = Element.Types.Ghost
                                             Case "steel"
-                                                typeID = element.Types.Steel
+                                                typeID = Element.Types.Steel
                                             Case "fire"
-                                                typeID = element.Types.Fire
+                                                typeID = Element.Types.Fire
                                             Case "water"
-                                                typeID = element.Types.Water
+                                                typeID = Element.Types.Water
                                             Case "grass"
-                                                typeID = element.Types.Grass
+                                                typeID = Element.Types.Grass
                                             Case "electric"
-                                                typeID = element.Types.Electric
+                                                typeID = Element.Types.Electric
                                             Case "psychic"
-                                                typeID = element.Types.Psychic
+                                                typeID = Element.Types.Psychic
                                             Case "ice"
-                                                typeID = element.Types.Ice
+                                                typeID = Element.Types.Ice
                                             Case "dragon"
-                                                typeID = element.Types.Dragon
+                                                typeID = Element.Types.Dragon
                                             Case "dark"
-                                                typeID = element.Types.Dark
+                                                typeID = Element.Types.Dark
                                             Case "fairy"
-                                                typeID = element.Types.Fairy
+                                                typeID = Element.Types.Fairy
                                             Case "shadow"
-                                                typeID = element.Types.Shadow
+                                                typeID = Element.Types.Shadow
                                         End Select
                                     End If
                                     element.gmEffectivenessDefense.Add(typeID, CSng(data(i).GetSplit(1, ",").InsertDecSeparator))
@@ -274,11 +274,11 @@
                     Return New Element(Element.Types.Fairy)
                 Case "shadow"
                     Return New Element(Element.Types.Shadow)
-                Case "blank"
+                Case "blank", ""
                     Return New Element(Element.Types.Blank)
                 Case Else
                     For Each e As Element In LoadedElements
-                        If e.ToString.ToLower = Name.ToLower Then
+                        If e.gmOriginalName.ToLower = Name.ToLower Then
                             Return e
                         End If
                     Next

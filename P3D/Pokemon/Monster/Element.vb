@@ -34,7 +34,6 @@ Public Class Element
     Private _type As Types = Types.Blank
     'GameMode Element Properties
     Private gmType As Integer = 0
-    Public gmName As String = "Normal"
     Public gmOriginalName As String = "Normal"
     Public gmTypeRectangle As Rectangle = New Rectangle(0, 0, 48, 16)
     Public gmMachineTextureSource As String = "Items\ItemSheet"
@@ -1012,7 +1011,12 @@ Public Class Element
                     Return "Blank"
             End Select
         Else
-            Return gmName
+            If Localization.TokenExists("type_" & gmOriginalName) = True Then
+                Return Localization.GetString("type_" & gmOriginalName, gmOriginalName)
+            Else
+                Return gmOriginalName
+            End If
+
         End If
 
     End Function
