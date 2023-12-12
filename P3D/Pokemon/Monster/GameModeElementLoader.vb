@@ -190,7 +190,7 @@
                 If setID = True Then
                     If element.Type >= 20 Then
                         If Localization.TokenExists("element_name_" & element.gmOriginalName.ToString) = True Then
-                            element.gmName = Localization.GetString("move_name_" & element.gmOriginalName.ToString)
+                            element.gmOriginalName = Localization.GetString("move_name_" & element.gmOriginalName.ToString)
                         End If
                         For i = 0 To 18
                             If element.gmEffectivenessAttack.ContainsKey(i) = False Then
