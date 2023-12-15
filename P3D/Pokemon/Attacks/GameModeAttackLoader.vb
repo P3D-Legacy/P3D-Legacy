@@ -57,6 +57,75 @@
                         value = l.Remove(0, l.IndexOf("|") + 1)
 
                         Select Case key.ToLower()
+                            Case "copymove"
+                                If nonCommentLines = 1 Then
+                                    move.gmCopyMove = CInt(value)
+
+                                    Dim _attack As Attack = GameModeAttackLoader.GetAttackByID(move.gmCopyMove)
+                                    move.Power = _attack.Power
+                                    move.Accuracy = _attack.Accuracy
+                                    move.Name = _attack.Name
+                                    move.OriginalPP = _attack.OriginalPP
+                                    move.CurrentPP = _attack.CurrentPP
+                                    move.MaxPP = _attack.MaxPP
+                                    move.Category = _attack.Category
+                                    move.ContestCategory = _attack.ContestCategory
+                                    move.Description = _attack.Description
+                                    move.CriticalChance = _attack.CriticalChance
+                                    move.IsHMMove = _attack.IsHMMove
+                                    move.Target = _attack.Target
+                                    move.Priority = _attack.Priority
+                                    move.TimesToAttack = _attack.TimesToAttack
+                                    move.EffectChances = _attack.EffectChances
+                                    move.MakesContact = _attack.MakesContact
+                                    move.HasSecondaryEffect = _attack.HasSecondaryEffect
+                                    move.IsHealingMove = _attack.IsHealingMove
+                                    move.IsDamagingMove = _attack.IsDamagingMove
+                                    move.IsProtectMove = _attack.IsProtectMove
+                                    move.IsOneHitKOMove = _attack.IsOneHitKOMove
+                                    move.IsRecoilMove = _attack.IsRecoilMove
+                                    move.IsTrappingMove = _attack.IsTrappingMove
+                                    move.RemovesOwnFrozen = _attack.RemovesOwnFrozen
+                                    move.RemovesOppFrozen = _attack.RemovesOppFrozen
+                                    move.SwapsOutOwnPokemon = _attack.SwapsOutOwnPokemon
+                                    move.SwapsOutOppPokemon = _attack.SwapsOutOppPokemon
+                                    move.ProtectAffected = _attack.ProtectAffected
+                                    move.MagicCoatAffected = _attack.MagicCoatAffected
+                                    move.SnatchAffected = _attack.SnatchAffected
+                                    move.MirrorMoveAffected = _attack.MirrorMoveAffected
+                                    move.KingsrockAffected = _attack.KingsrockAffected
+                                    move.CounterAffected = _attack.CounterAffected
+                                    move.IsAffectedBySubstitute = _attack.IsAffectedBySubstitute
+                                    move.ImmunityAffected = _attack.ImmunityAffected
+                                    move.IsWonderGuardAffected = _attack.IsWonderGuardAffected
+                                    move.DisabledWhileGravity = _attack.DisabledWhileGravity
+                                    move.UseEffectiveness = _attack.UseEffectiveness
+                                    move.UseAccEvasion = _attack.UseAccEvasion
+                                    move.CanHitInMidAir = _attack.CanHitInMidAir
+                                    move.CanHitUnderground = _attack.CanHitUnderground
+                                    move.CanHitUnderwater = _attack.CanHitUnderwater
+                                    move.CanHitSleeping = _attack.CanHitSleeping
+                                    move.CanGainSTAB = _attack.CanGainSTAB
+                                    move.UseOppDefense = _attack.UseOppDefense
+                                    move.UseOppEvasion = _attack.UseOppEvasion
+                                    move.IsPulseMove = _attack.IsPulseMove
+                                    move.IsBulletMove = _attack.IsBulletMove
+                                    move.IsJawMove = _attack.IsJawMove
+                                    move.IsDanceMove = _attack.IsDanceMove
+                                    move.IsExplosiveMove = _attack.IsExplosiveMove
+                                    move.IsPowderMove = _attack.IsPowderMove
+                                    move.IsPunchingMove = _attack.IsPunchingMove
+                                    move.IsSlicingMove = _attack.IsSlicingMove
+                                    move.IsSoundMove = _attack.IsSoundMove
+                                    move.IsWindMove = _attack.IsWindMove
+                                    move.FocusOppPokemon = _attack.FocusOppPokemon
+                                    move.Disabled = _attack.Disabled
+                                    move.AIField1 = _attack.AIField1
+                                    move.AIField2 = _attack.AIField2
+                                    move.AIField3 = _attack.AIField3
+                                Else
+                                    Logger.Log(Logger.LogTypes.ErrorMessage, "GameModeAttackLoader.vb: The CopyMove property should be the first property set in the move definition file. It is currently property number " & nonCommentLines.ToString & ".")
+                                End If
                             Case "id"
                                 move.ID = CInt(value)
                                 move.OriginalID = CInt(value)
