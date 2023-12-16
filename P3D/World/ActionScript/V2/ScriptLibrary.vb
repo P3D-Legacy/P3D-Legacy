@@ -862,6 +862,8 @@ Namespace ScriptVersion2
             r(New ScriptCommand("pokemon", "countattacks", "int", {New ScriptArgument("pokemonIndex", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Counts the moves the Pokémon knows.", ",", True))
             r(New ScriptCommand("pokemon", "attackname", "str", {New ScriptArgument("pokemonIndex", ScriptArgument.ArgumentTypes.Int),
                                                              New ScriptArgument("moveIndex", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Returns the name of the move of a Pokémon in the player's party.", ",", True))
+            r(New ScriptCommand("pokemon", "levelattacks", "str", {New ScriptArgument("pokemonIndex", ScriptArgument.ArgumentTypes.Int),
+                                                             New ScriptArgument("maxLevel", ScriptArgument.ArgumentTypes.Int, True, "-1")}.ToList(), "Returns a list of move IDs separated by commas that a Pokémon in the player's party can learn at or below its current level/the level specified by the maxLevel argument.", ",", True))
             r(New ScriptCommand("pokemon", "isShiny", "bool", {New ScriptArgument("pokemonIndex", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Returns if the Pokémon is Shiny.", ",", True))
             r(New ScriptCommand("pokemon", "nature", "str", {New ScriptArgument("pokemonIndex", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Returns the nature of a Pokémon in the player's party.", ",", True))
             r(New ScriptCommand("pokemon", "ownpokemon", "bool", {New ScriptArgument("pokemonIndex", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Returns if a Pokémon in the player's party was caught by the player.", ",", True))
