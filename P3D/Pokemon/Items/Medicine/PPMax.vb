@@ -7,6 +7,7 @@ Namespace Items.Medicine
         Public Overrides ReadOnly Property Description As String = "A medicine that can optimally raise the maximum PP of a single move that has been learned by the target Pokémon."
         Public Overrides ReadOnly Property PokeDollarPrice As Integer = 9800
         Public Overrides ReadOnly Property PluralName As String = "PP Maxes"
+        Public Overrides ReadOnly Property CanBeUsedInBattle As Boolean = False
 
         Public Sub New()
             _textureRectangle = New Rectangle(120, 240, 24, 24)
