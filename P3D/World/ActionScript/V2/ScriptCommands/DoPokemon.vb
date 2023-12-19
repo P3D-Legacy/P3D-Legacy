@@ -629,7 +629,7 @@
                     Core.Player.Pokemons(Index).Item = Nothing
                 Case "setitemdata"
                     Dim Index As Integer = int(argument.GetSplit(0, ","))
-                    Dim itemData As String = argument.GetSplit(1, ",")
+                    Dim itemData As String = argument.Remove(0, argument.IndexOf(",") + 1)
 
                     If Core.Player.Pokemons.Count - 1 >= Index Then
                         If Not Core.Player.Pokemons(Index).Item Is Nothing Then
