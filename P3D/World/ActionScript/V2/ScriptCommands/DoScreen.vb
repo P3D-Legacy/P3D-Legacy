@@ -53,7 +53,7 @@
                     End If
                     Dim shopIdentifier As String = ""
                     If argument.CountSplits() > 4 Then
-                        shopIdentifier = argument.GetSplit(4)            ' p for PokéDollars, bp for Battle Points, c for coins.
+                        shopIdentifier = argument.GetSplit(4)
                     End If
 
                     Core.SetScreen(New TransitionScreen(Core.CurrentScreen, New TradeScreen(Core.CurrentScreen, storeData, canBuy, canSell, currencyIndicator, shopIdentifier), Color.Black, False))

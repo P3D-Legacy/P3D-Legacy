@@ -164,6 +164,8 @@ Public Class TradeScreen
                             Me.TradeItems.Add(New TradeItem(itemData(0), ResultAmount, ScriptConversion.ToInteger(itemData(2)), Me.Currency))
                         End If
                     End If
+                Else
+                    Me.TradeItems.Add(New TradeItem(itemData(0), ScriptConversion.ToInteger(itemData(1)), ScriptConversion.ToInteger(itemData(2)), Me.Currency))
                 End If
             Else
                 Me.TradeItems.Add(New TradeItem(itemData(0), ScriptConversion.ToInteger(itemData(1)), ScriptConversion.ToInteger(itemData(2)), Me.Currency))
