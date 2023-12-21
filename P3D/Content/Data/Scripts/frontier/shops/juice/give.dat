@@ -7,8 +7,9 @@ version=2
 		@text.show(Give this Purple Juice to your~<pokemon.displayname(<pokemon.selected>)>?)
 		@Options.show(Yes,No)
 			:when:No
-			@text.show(Come again soon!)
+				@text.show(Come again soon!)
 				:endscript
+			:when:Yes
 		:endwhen
 		@pokemon.addfriendship(<pokemon.selected>,4)
 		@pokemon.addev(<pokemon.selected>,hp,<storage.get(integer,value)>)
@@ -17,8 +18,9 @@ version=2
 		@text.show(Give this Red Juice to your~<pokemon.displayname(<pokemon.selected>)>?)
 		@Options.show(Yes,No)
 			:when:No
-			@text.show(Come again soon!)
+				@text.show(Come again soon!)
 				:endscript
+			:when:Yes
 		:endwhen
 		@pokemon.addfriendship(<pokemon.selected>,4)
 		@pokemon.addev(<pokemon.selected>,atk,<storage.get(integer,value)>)
@@ -27,8 +29,9 @@ version=2
 		@text.show(Give this Yellow Juice to your~<pokemon.displayname(<pokemon.selected>)>?)
 		@Options.show(Yes,No)
 			:when:No
-			@text.show(Come again soon!)
+				@text.show(Come again soon!)
 				:endscript
+			:when:Yes
 		:endwhen
 		@pokemon.addfriendship(<pokemon.selected>,4)
 		@pokemon.addev(<pokemon.selected>,def,<storage.get(integer,value)>)
@@ -37,8 +40,9 @@ version=2
 		@text.show(Give this Blue Juice to your~<pokemon.displayname(<pokemon.selected>)>?)
 		@Options.show(Yes,No)
 			:when:No
-			@text.show(Come again soon!)
+				@text.show(Come again soon!)
 				:endscript
+			:when:Yes
 		:endwhen
 		@pokemon.addfriendship(<pokemon.selected>,4)
 		@pokemon.addev(<pokemon.selected>,spatk,<storage.get(integer,value)>)
@@ -47,8 +51,9 @@ version=2
 		@text.show(Give this Green Juice to your~<pokemon.displayname(<pokemon.selected>)>?)
 		@Options.show(Yes,No)
 			:when:No
-			@text.show(Come again soon!)
+				@text.show(Come again soon!)
 				:endscript
+			:when:Yes
 		:endwhen
 		@pokemon.addfriendship(<pokemon.selected>,4)
 		@pokemon.addev(<pokemon.selected>,spdef,<storage.get(integer,value)>)
@@ -57,8 +62,9 @@ version=2
 		@text.show(Give this Pink Juice to your~<pokemon.displayname(<pokemon.selected>)>?)
 		@Options.show(Yes,No)
 			:when:No
-			@text.show(Come again soon!)
+				@text.show(Come again soon!)
 				:endscript
+			:when:Yes
 		:endwhen
 		@pokemon.addfriendship(<pokemon.selected>,4)
 		@pokemon.addev(<pokemon.selected>,speed,<storage.get(integer,value)>)
@@ -67,8 +73,9 @@ version=2
 		@text.show(Give this Colorful Shake to~your <pokemon.displayname(<pokemon.selected>)>?)
 		@Options.show(Yes,No)
 			:when:No
-			@text.show(Come again soon!)
+				@text.show(Come again soon!)
 				:endscript
+			:when:Yes
 		:endwhen
 		@pokemon.addfriendship(<pokemon.selected>,<storage.get(integer,value)>)
 	:when:soda
@@ -80,16 +87,19 @@ version=2
 		:endwhen
 		@Options.show(Yes,No)
 			:when:No
-			@text.show(Come again soon!)
+				@text.show(Come again soon!)
 				:endscript
+			:when:Yes
 		:endwhen
 		@pokemon.addlevel(<pokemon.selected>,<storage.get(integer,value)>)
 	:when:soup
 		@text.show(Give this Perilous Soup to your~<pokemon.displayname(<pokemon.selected>)>?)
 		@Options.show(Yes,No)
 			:when:No
-			@text.show(Come again soon!)
+				@text.show(Come again soon!)
 				:endscript
+			:when:Yes
 		:endwhen
 		@pokemon.setallevs(<pokemon.selected>,0,0,0,0,0,0)
 :endwhen
+:end
