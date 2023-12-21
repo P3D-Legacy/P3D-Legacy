@@ -278,6 +278,10 @@ Warps:
 {"Entity"{ENT[{"EntityID"{str[WarpBlock]}}{"Position"{sngArr[44,3,34]}}{"TexturePath"{str[Village]}}{"Textures"{recArr[[128,16,16,16]]}}{"TextureIndex"{intArr[0,0,0,0,0,0,0,0,0,0]}}{"Collision"{bool[1]}}{"ModelID"{int[0]}}{"Action"{int[0]}}{"AdditionalValue"{str[frontier\battlepike\exterior.dat,5,3.1,30,0]}}{"Rotation"{int[0]}}{"Visible"{bool[0]}}]}}
 {"Entity"{ENT[{"EntityID"{str[WarpBlock]}}{"Position"{sngArr[44,3,35]}}{"TexturePath"{str[Village]}}{"Textures"{recArr[[128,16,16,16]]}}{"TextureIndex"{intArr[0,0,0,0,0,0,0,0,0,0]}}{"Collision"{bool[1]}}{"ModelID"{int[0]}}{"Action"{int[0]}}{"AdditionalValue"{str[frontier\battlepike\exterior.dat,5,3.1,31,0]}}{"Rotation"{int[0]}}{"Visible"{bool[0]}}]}}
 
+NPC:
+{"NPC"{NPC[{"Position"{sngArr[14,4,33]}}{"TextureID"{str[darkfire]}}{"ID"{int[100]}}{"Name"{str[GymGuy]}}{"Action"{int[0]}}{"AdditionalValue"{str[Soon...]}}{"Rotation"{int[1]}}{"Movement"{str[Still]}}{"MoveRectangles"{recArr[]}}]}}
+{"NPC"{NPC[{"Position"{sngArr[14,4,34]}}{"TextureID"{str[[POKEMON|S]6]}}{"ID"{int[101]}}{"Name"{str[GymGuy]}}{"Action"{int[0]}}{"AdditionalValue"{str[Char!]}}{"Rotation"{int[0]}}{"Movement"{str[Still]}}{"MoveRectangles"{recArr[]}}]}}
+
 Castle:
 {"Structure"{STR[{"Map"{str[structures\frontier\facilities\castle.dat]}}{"Offset"{sngArr[6,4,25]}}]}}
 
