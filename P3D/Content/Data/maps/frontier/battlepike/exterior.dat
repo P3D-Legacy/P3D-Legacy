@@ -600,9 +600,9 @@ Pike Building
 
 NPCs:
 Shops:
-{"NPC"{NPC[{"Position"{sngArr[29,4,28]}}{"TextureID"{str[29]}}{"ID"{int[10]}}{"Name"{str[GymGuy]}}{"Action"{int[1]}}{"AdditionalValue"{str[frontier\shops\juice\choice]}}{"Rotation"{int[1]}}{"Movement"{str[Still]}}{"MoveRectangles"{recArr[]}}]}}
-{"NPC"{NPC[{"Position"{sngArr[29,4,30]}}{"TextureID"{str[13]}}{"ID"{int[11]}}{"Name"{str[GymGuy]}}{"Action"{int[1]}}{"AdditionalValue"{str[frontier\shops\juice\held]}}{"Rotation"{int[1]}}{"Movement"{str[Still]}}{"MoveRectangles"{recArr[]}}]}}
-{"NPC"{NPC[{"Position"{sngArr[37,4,29]}}{"TextureID"{str[67]}}{"ID"{int[12]}}{"Name"{str[GymGuy]}}{"Action"{int[1]}}{"AdditionalValue"{str[frontier\shops\berry\protect]}}{"Rotation"{int[3]}}{"Movement"{str[Still]}}{"MoveRectangles"{recArr[]}}]}}
+{"NPC"{NPC[{"Position"{sngArr[29,4,28]}}{"TextureID"{str[29]}}{"ID"{int[10]}}{"Name"{str[GymGuy]}}{"Action"{int[1]}}{"AdditionalValue"{str[frontier\shops\choice]}}{"Rotation"{int[1]}}{"Movement"{str[Still]}}{"MoveRectangles"{recArr[]}}]}}
+{"NPC"{NPC[{"Position"{sngArr[29,4,30]}}{"TextureID"{str[13]}}{"ID"{int[11]}}{"Name"{str[GymGuy]}}{"Action"{int[1]}}{"AdditionalValue"{str[frontier\shops\held]}}{"Rotation"{int[1]}}{"Movement"{str[Still]}}{"MoveRectangles"{recArr[]}}]}}
+{"NPC"{NPC[{"Position"{sngArr[37,4,29]}}{"TextureID"{str[67]}}{"ID"{int[12]}}{"Name"{str[GymGuy]}}{"Action"{int[1]}}{"AdditionalValue"{str[frontier\shops\protect]}}{"Rotation"{int[3]}}{"Movement"{str[Still]}}{"MoveRectangles"{recArr[]}}]}}
 
 {"NPC"{NPC[{"Position"{sngArr[33,4,42]}}{"TextureID"{str[darkfire]}}{"ID"{int[100]}}{"Name"{str[GymGuy]}}{"Action"{int[0]}}{"AdditionalValue"{str[Soon...]}}{"Rotation"{int[0]}}{"Movement"{str[Still]}}{"MoveRectangles"{recArr[]}}]}}
 {"NPC"{NPC[{"Position"{sngArr[34,4,42]}}{"TextureID"{str[[POKEMON|S]6]}}{"ID"{int[101]}}{"Name"{str[GymGuy]}}{"Action"{int[0]}}{"AdditionalValue"{str[Char!]}}{"Rotation"{int[1]}}{"Movement"{str[Still]}}{"MoveRectangles"{recArr[]}}]}}

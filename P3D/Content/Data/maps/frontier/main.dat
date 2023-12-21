@@ -1584,8 +1584,8 @@ Shops:
 {"NPC"{NPC[{"Position"{sngArr[38,4,20]}}{"TextureID"{str[battletower\30]}}{"ID"{int[13]}}{"Name"{str[GymGuy]}}{"Action"{int[1]}}{"AdditionalValue"{str[frontier\shops\berry\grabbag]}}{"Rotation"{int[1]}}{"Movement"{str[Still]}}{"MoveRectangles"{recArr[]}}]}}
 
 {"NPC"{NPC[{"Position"{sngArr[47,4,28]}}{"TextureID"{str[battletower\29]}}{"ID"{int[14]}}{"Name"{str[GymGuy]}}{"Action"{int[1]}}{"AdditionalValue"{str[frontier\shops\field]}}{"Rotation"{int[2]}}{"Movement"{str[Still]}}{"MoveRectangles"{recArr[]}}]}}
-{"NPC"{NPC[{"Position"{sngArr[46,4,38]}}{"TextureID"{str[28]}}{"ID"{int[15]}}{"Name"{str[GymGuy]}}{"Action"{int[1]}}{"AdditionalValue"{str[frontier\shops\consumables]}}{"Rotation"{int[0]}}{"Movement"{str[Still]}}{"MoveRectangles"{recArr[]}}]}}
-{"NPC"{NPC[{"Position"{sngArr[48,4,38]}}{"TextureID"{str[2]}}{"ID"{int[16]}}{"Name"{str[GymGuy]}}{"Action"{int[1]}}{"AdditionalValue"{str[frontier\shops\gems]}}{"Rotation"{int[0]}}{"Movement"{str[Still]}}{"MoveRectangles"{recArr[]}}]}}
+{"NPC"{NPC[{"Position"{sngArr[46,4,38]}}{"TextureID"{str[28]}}{"ID"{int[15]}}{"Name"{str[GymGuy]}}{"Action"{int[1]}}{"AdditionalValue"{str[frontier\shops\consume]}}{"Rotation"{int[0]}}{"Movement"{str[Still]}}{"MoveRectangles"{recArr[]}}]}}
+{"NPC"{NPC[{"Position"{sngArr[48,4,38]}}{"TextureID"{str[2]}}{"ID"{int[16]}}{"Name"{str[GymGuy]}}{"Action"{int[1]}}{"AdditionalValue"{str[frontier\shops\gem]}}{"Rotation"{int[0]}}{"Movement"{str[Still]}}{"MoveRectangles"{recArr[]}}]}}
 
 {"NPC"{NPC[{"Position"{sngArr[28,4,46]}}{"TextureID"{str[sage]}}{"ID"{int[17]}}{"Name"{str[GymGuy]}}{"Action"{int[1]}}{"AdditionalValue"{str[frontier\shops\evo]}}{"Rotation"{int[3]}}{"Movement"{str[Still]}}{"MoveRectangles"{recArr[]}}]}}
 {"NPC"{NPC[{"Position"{sngArr[28,4,48]}}{"TextureID"{str[sage]}}{"ID"{int[18]}}{"Name"{str[GymGuy]}}{"Action"{int[1]}}{"AdditionalValue"{str[frontier\shops\tms]}}{"Rotation"{int[3]}}{"Movement"{str[Still]}}{"MoveRectangles"{recArr[]}}]}}
@@ -1594,7 +1594,7 @@ Shops:
 
 {"NPC"{NPC[{"Position"{sngArr[18,4,28]}}{"TextureID"{str[PinkShirtGirl]}}{"ID"{int[21]}}{"Name"{str[GymGuy]}}{"Action"{int[1]}}{"AdditionalValue"{str[frontier\shops\mints]}}{"Rotation"{int[2]}}{"Movement"{str[Still]}}{"MoveRectangles"{recArr[]}}]}}
 {"NPC"{NPC[{"Position"{sngArr[20,4,28]}}{"TextureID"{str[64]}}{"ID"{int[22]}}{"Name"{str[GymGuy]}}{"Action"{int[1]}}{"AdditionalValue"{str[frontier\shops\specialty]}}{"Rotation"{int[2]}}{"Movement"{str[Still]}}{"MoveRectangles"{recArr[]}}]}}
-{"NPC"{NPC[{"Position"{sngArr[19,4,38]}}{"TextureID"{str[66]}}{"ID"{int[23]}}{"Name"{str[GymGuy]}}{"Action"{int[1]}}{"AdditionalValue"{str[frontier\shops\vitamins]}}{"Rotation"{int[0]}}{"Movement"{str[Still]}}{"MoveRectangles"{recArr[]}}]}}
+{"NPC"{NPC[{"Position"{sngArr[19,4,38]}}{"TextureID"{str[66]}}{"ID"{int[23]}}{"Name"{str[GymGuy]}}{"Action"{int[1]}}{"AdditionalValue"{str[frontier\shops\vitamin]}}{"Rotation"{int[0]}}{"Movement"{str[Still]}}{"MoveRectangles"{recArr[]}}]}}
 
 Warps:
 Center:
