@@ -74,7 +74,7 @@
         Dim p As Vector2 = New Vector2(40, 50)
 
         If Pokemon.Attacks.Count > 0 Then
-            Canvas.DrawImageBorder(CanvasTexture, 2, New Rectangle(CInt(p.X + 432 - 352 + AttackPos), CInt(p.Y + 18), 288, 384))
+            Canvas.DrawImageBorder(CanvasTexture, 2, New Rectangle(CInt(p.X + 432 - 352 + AttackPos), CInt(p.Y + 18), 320, 384))
 
             Dim A As BattleSystem.Attack = Pokemon.Attacks(AttackIndex)
 
