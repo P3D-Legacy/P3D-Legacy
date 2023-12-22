@@ -20,17 +20,17 @@
                     Case "opacity"
                         Return ent.Opacity * 100
                     Case "position"
-                        Return ent.Position.X.ToString() & "," & ent.Position.Y.ToString() & "," & ent.Position.Z.ToString()
+                        Return ent.Position.X.ToString().ReplaceDecSeparator & "," & ent.Position.Y.ToString().ReplaceDecSeparator & "," & ent.Position.Z.ToString().ReplaceDecSeparator
                     Case "positiony"
-                        Return ent.Position.Y
+                        Return ent.Position.Y.ToString.ReplaceDecSeparator
                     Case "positionz"
-                        Return ent.Position.Z
+                        Return ent.Position.Z.ToString.ReplaceDecSeparator
                     Case "positionx"
-                        Return ent.Position.X
+                        Return ent.Position.X.ToString.ReplaceDecSeparator
                     Case "rotation"
                         Return ent.Rotation.X.ToString() & "," & ent.Rotation.Y.ToString() & "," & ent.Rotation.Z.ToString()
                     Case "scale"
-                        Return ent.Scale.X.ToString() & "," & ent.Scale.Y.ToString() & "," & ent.Scale.Z.ToString()
+                        Return ent.Scale.X.ToString().ReplaceDecSeparator & "," & ent.Scale.Y.ToString().ReplaceDecSeparator & "," & ent.Scale.Z.ToString().ReplaceDecSeparator
                     Case "additionalvalue"
                         Return ent.AdditionalValue
                     Case "collision"
