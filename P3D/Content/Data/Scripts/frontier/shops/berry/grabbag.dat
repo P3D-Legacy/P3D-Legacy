@@ -26,4 +26,4 @@ version=2
 	:when:Exit
 		:endscript
 :endwhen
-@script.start(frontier\shops\berrybag)
+:end
