@@ -141,7 +141,12 @@ Public Class NewInventoryScreen
         _preScreenTarget = New RenderTarget2D(GraphicsDevice, windowSize.Width, windowSize.Height)
         _blur = New Resources.Blur.BlurHandler(windowSize.Width, windowSize.Height)
 
-        _tabIndex = StartPageIndex
+        If AllowedPages.Contains(StartPageIndex) = False Then
+            _tabIndex = AllowedPages(0)
+        Else
+            _tabIndex = StartPageIndex
+        End If
+
         _pageIndex = Player.Temp.BagPageIndex
         _itemindex = Player.Temp.BagItemIndex
 
