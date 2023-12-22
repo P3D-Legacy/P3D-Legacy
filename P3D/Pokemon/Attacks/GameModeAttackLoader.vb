@@ -61,7 +61,7 @@
                                 If nonCommentLines = 1 Then
                                     move.gmCopyMove = CInt(value)
 
-                                    Dim _attack As Attack = GameModeAttackLoader.GetAttackByID(move.gmCopyMove)
+                                    Dim _attack As Attack = Attack.GetAttackByID(move.gmCopyMove)
                                     move.Power = _attack.Power
                                     move.Accuracy = _attack.Accuracy
                                     move.Name = _attack.Name
