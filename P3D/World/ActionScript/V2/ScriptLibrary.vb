@@ -290,6 +290,7 @@ Namespace ScriptVersion2
             r(New ScriptCommand("item", "messagegive", {New ScriptArgument("ItemID", ScriptArgument.ArgumentTypes.Int),
                                              New ScriptArgument("Amount", ScriptArgument.ArgumentTypes.Int, True, "1")}.ToList(), "Displays a message for getting the specified amount of items."))
             r(New ScriptCommand("item", "repel", {New ScriptArgument("RepelItemID", ScriptArgument.ArgumentTypes.Int, {"20", "42", "43"})}.ToList(), "Adds the steps of the Repel to the Repel steps of the player."))
+            r(New ScriptCommand("item", "use", {New ScriptArgument("ItemID", ScriptArgument.ArgumentTypes.Str)}.ToList(), "Uses the specified item if the player has it."))
             r(New ScriptCommand("item", "select", {New ScriptArgument("AllowedPages", ScriptArgument.ArgumentTypes.Str, True, "-1"),
                                              New ScriptArgument("AllowedItems", ScriptArgument.ArgumentTypes.Str, True, "-1")}.ToList(), "Opens an item select screen with only the specified item type pages (separated with "";"", e.g. ""0;1;2"" or ""standard;medicine;plants"") and possible item IDs (single items separated with "";"", or with a ""-"" if you want a range, e.g. ""2000-2066"")."))
 
