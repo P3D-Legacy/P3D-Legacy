@@ -324,7 +324,7 @@ Public Class Level
     ''' <summary>
     ''' The type of Ride the player can use on this map.
     ''' </summary>
-    ''' <remarks>0 = Depends on CanDig and CanFly, 1 = True, 2 = False</remarks>
+    ''' <remarks>0 = Depends on CanDig and CanFly, 1 = True, 2 = False, 3 = Can't stop riding</remarks>
     Public Property RideType As Integer
         Get
             Return Me._rideType
@@ -1214,6 +1214,8 @@ Public Class Level
                     Return True
                 Case 2
                     Return False
+                Case 3
+                    Return True
             End Select
         End If
         If Screen.Level.CanDig = False And Screen.Level.CanFly = False Then

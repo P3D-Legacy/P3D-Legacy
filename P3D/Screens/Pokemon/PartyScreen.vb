@@ -1014,18 +1014,22 @@ Public Class PartyScreen
 
     Private Sub UseRide()
         If Screen.Level.Riding = True Then
-            Screen.Level.Riding = False
-            Screen.Level.OwnPlayer.SetTexture(Core.Player.TempRideSkin, True)
-            Core.Player.Skin = Core.Player.TempRideSkin
+            If Screen.Level.RideType = 3 Then
+                TextBox.Show(Localization.GetString("fieldmove_ride_cannot_walk", "You cannot walk here!"), {}, True, False)
+            Else
+                Screen.Level.Riding = False
+                Screen.Level.OwnPlayer.SetTexture(Core.Player.TempRideSkin, True)
+                Core.Player.Skin = Core.Player.TempRideSkin
 
-            ChooseBox.Showing = False
-            Core.SetScreen(Me.PreScreen)
-            If Core.CurrentScreen.Identification = Identifications.MenuScreen Then
-                Core.SetScreen(Core.CurrentScreen.PreScreen)
-            End If
+                ChooseBox.Showing = False
+                Core.SetScreen(Me.PreScreen)
+                If Core.CurrentScreen.Identification = Identifications.MenuScreen Then
+                    Core.SetScreen(Core.CurrentScreen.PreScreen)
+                End If
 
-            If Screen.Level.IsRadioOn = False OrElse GameJolt.PokegearScreen.StationCanPlay(Screen.Level.SelectedRadioStation) = False Then
-                MusicManager.Play(Level.MusicLoop, True, 0.01F)
+                If Screen.Level.IsRadioOn = False OrElse GameJolt.PokegearScreen.StationCanPlay(Screen.Level.SelectedRadioStation) = False Then
+                    MusicManager.Play(Level.MusicLoop, True, 0.01F)
+                End If
             End If
         Else
             If Screen.Level.Surfing = False And Screen.Camera.IsMoving() = False And Screen.Camera.Turning = False And Level.CanRide() = True Then
@@ -1057,7 +1061,7 @@ Public Class PartyScreen
                     MusicManager.Play("ride", True)
                 End If
             Else
-                TextBox.Show("You cannot Ride here!", {}, True, False)
+                TextBox.Show(Localization.GetString("fieldmove_ride_cannot_ride", "You cannot Ride here!"), {}, True, False)
             End If
         End If
     End Sub

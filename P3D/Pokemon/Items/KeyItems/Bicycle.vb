@@ -14,19 +14,22 @@ Namespace Items.KeyItems
 		Public Overrides Sub Use()
 			If GameModeManager.ActiveGameMode.IsDefaultGamemode = False AndAlso Core.Player.IsGameJoltSave = False Then
 				If Screen.Level.Riding = True Then
-					Screen.Level.Riding = False
-					Screen.Level.OwnPlayer.SetTexture(Core.Player.TempRideSkin, True)
-					Core.Player.Skin = Core.Player.TempRideSkin
+					If Screen.Level.RideType = 3 Then
+						Screen.TextBox.Show(Localization.GetString("item_6_cannot_walk", "You cannot walk here!"), {}, True, False)
+					Else
+						Screen.Level.Riding = False
+						Screen.Level.OwnPlayer.SetTexture(Core.Player.TempRideSkin, True)
+						Core.Player.Skin = Core.Player.TempRideSkin
 
-					Screen.TextBox.Show(Localization.GetString("item_use_6", "<player.name> stepped~off the Bicycle."))
-					While Core.CurrentScreen.Identification <> Screen.Identifications.OverworldScreen
-						Core.CurrentScreen = Core.CurrentScreen.PreScreen
-					End While
+						Screen.TextBox.Show(Localization.GetString("item_use_6", "<player.name> stepped~off the Bicycle."))
+						While Core.CurrentScreen.Identification <> Screen.Identifications.OverworldScreen
+							Core.CurrentScreen = Core.CurrentScreen.PreScreen
+						End While
 
-					If Screen.Level.IsRadioOn = False OrElse GameJolt.PokegearScreen.StationCanPlay(Screen.Level.SelectedRadioStation) = False Then
-						MusicManager.Play(Screen.Level.MusicLoop)
+						If Screen.Level.IsRadioOn = False OrElse GameJolt.PokegearScreen.StationCanPlay(Screen.Level.SelectedRadioStation) = False Then
+							MusicManager.Play(Screen.Level.MusicLoop)
+						End If
 					End If
-
 				Else
 					If Screen.Level.Surfing = False AndAlso Screen.Level.Riding = False AndAlso Screen.Camera.IsMoving() = False AndAlso Screen.Camera.Turning = False And Screen.Level.CanRide() = True Then
 						Dim BikeSkin As String = Core.Player.Skin & "_Bike"

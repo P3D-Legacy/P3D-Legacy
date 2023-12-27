@@ -118,6 +118,9 @@ fieldmove_headbutt_used,used~Headbutt!
 
 fieldmove_waterfall_used,used~Waterfall.
 
+fieldmove_ride_cannot_walk,You cannot walk here!
+fieldmove_ride_cannot_ride,You cannot Ride here!
+fieldmove_ride_used,used~Ride!
 ---
 GameInteractions:
 game_interaction_interact,Interact
@@ -2326,6 +2329,7 @@ item_name_676,Water Memory
 
 Item Use Text:
 item_cannot_use,Now is not the time~to use that.
+item_6_cannot_walk,You cannot walk here!
 item_6_missingskin,You can't use this item~without a bicycle skin.*Its name should be the~same as your current one,~but with "_bike" at the end.
 item_6_only_custom_gamemodes,This item can't be used~on this GameMode.
 
