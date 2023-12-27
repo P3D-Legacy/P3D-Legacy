@@ -567,7 +567,7 @@ south:
 Signs:
 {"Entity"{ENT[{"EntityID"{str[SignBlock]}}{"Position"{sngArr[35,4,42]}}{"TexturePath"{str[frontier]}}{"Textures"{recArr[[0,82,16,14][0,82,3,14]]}}{"TextureIndex"{intArr[0,0,1,1,1,1,0,0]}}{"Collision"{bool[1]}}{"ModelID"{int[4]}}{"Action"{int[0]}}{"AdditionalValue"{str[Battle Pike*East to Battle Hall~West to Battle Castle~North to Battle Tower~South to Frontier Plaza.]}}{"Rotation"{int[0]}}]}}
 {"Entity"{ENT[{"EntityID"{str[SignBlock]}}{"Position"{sngArr[23,4,27]}}{"TexturePath"{str[frontier]}}{"Textures"{recArr[[0,82,16,14][0,82,3,14]]}}{"TextureIndex"{intArr[0,0,1,1,1,1,0,0]}}{"Collision"{bool[1]}}{"ModelID"{int[4]}}{"Action"{int[0]}}{"AdditionalValue"{str[Battle Castle ahead.]}}{"Rotation"{int[1]}}]}}
-{"Entity"{ENT[{"EntityID"{str[SignBlock]}}{"Position"{sngArr[43,4,31]}}{"TexturePath"{str[frontier]}}{"Textures"{recArr[[0,82,16,14][0,82,3,14]]}}{"TextureIndex"{intArr[0,0,1,1,1,1,0,0]}}{"Collision"{bool[1]}}{"ModelID"{int[4]}}{"Action"{int[0]}}{"AdditionalValue"{str[Battle hall ahead.]}}{"Rotation"{int[1]}}]}}
+{"Entity"{ENT[{"EntityID"{str[SignBlock]}}{"Position"{sngArr[43,4,31]}}{"TexturePath"{str[frontier]}}{"Textures"{recArr[[0,82,16,14][0,82,3,14]]}}{"TextureIndex"{intArr[0,0,1,1,1,1,0,0]}}{"Collision"{bool[1]}}{"ModelID"{int[4]}}{"Action"{int[0]}}{"AdditionalValue"{str[Battle Hall ahead.]}}{"Rotation"{int[1]}}]}}
 {"Entity"{ENT[{"EntityID"{str[SignBlock]}}{"Position"{sngArr[35,4,12]}}{"TexturePath"{str[frontier]}}{"Textures"{recArr[[0,82,16,14][0,82,3,14]]}}{"TextureIndex"{intArr[0,0,1,1,1,1,0,0]}}{"Collision"{bool[1]}}{"ModelID"{int[4]}}{"Action"{int[0]}}{"AdditionalValue"{str[Battle Tower ahead.]}}{"Rotation"{int[0]}}]}}
 
 Shops:
