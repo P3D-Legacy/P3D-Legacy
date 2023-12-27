@@ -211,6 +211,7 @@ Namespace ScriptVersion2
             r(New ScriptCommand("level", "waitforsave", "Makes the level idle until the current saving of an GameJolt save is done."))
             r(New ScriptCommand("level", "reload", "Reloads the current map."))
             r(New ScriptCommand("level", "setsafari", {New ScriptArgument("safari", ScriptArgument.ArgumentTypes.Bool)}.ToList(), "Sets if the current map is a Safari Zone (influences battle style)."))
+            r(New ScriptCommand("level", "setridetype", {New ScriptArgument("rideType", ScriptArgument.ArgumentTypes.Int, {"0-3"})}.ToList(), "Sets the Ride Type of the current map. (0 = Depends on CanDig and CanFly tags, 1 = Can ride, 2 = Can not ride, 3 = Can't stop riding once started)"))
             ' Constructs:
             r(New ScriptCommand("level", "mapfile", "str", "Returns the mapfile of the currently loaded map.", ",", True))
             r(New ScriptCommand("level", "levelfile", "str", "Returns the mapfile of the currently loaded map.", ",", True))
