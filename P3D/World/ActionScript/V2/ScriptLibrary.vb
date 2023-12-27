@@ -826,6 +826,7 @@ Namespace ScriptVersion2
                                                New ScriptArgument("trainerName", ScriptArgument.ArgumentTypes.Str, True, "Current TrainerName"),
                                                New ScriptArgument("heldItemID", ScriptArgument.ArgumentTypes.Int, True, "0"),
                                                New ScriptArgument("isShiny", ScriptArgument.ArgumentTypes.Bool, True, "false")}.ToList(), "Adds a Pokémon with the given Pokémon properties to the storage system."))
+            r(New ScriptCommand("pokemon", "ride", {New ScriptArgument("pokemonID", ScriptArgument.ArgumentTypes.Int, True, "-1")}.ToList(), "Makes a Pokémon in the player's party use the field move Ride. If the argument is left empty, the first Pokémon who knows Ride gets selected."))
 
 
             ' Constructs:
