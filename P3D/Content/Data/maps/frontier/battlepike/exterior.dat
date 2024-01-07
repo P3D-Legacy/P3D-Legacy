@@ -572,6 +572,7 @@ Signs:
 
 Shops:
 W:
+{"Floor"{ENT[{"Size"{intArr[3,5]}}{"SeasonTexture"{str[Grass]}}{"Position"{intArr[28,4,27]}}{"hasSnow"{bool[0]}}{"TexturePath"{str[frontier]}}{"Texture"{rec[16,0,16,16]}}]}}
 {"Entity"{ENT[{"Scale"{sngArr[0.15,1.5,0.15]}}{"EntityID"{str[WallBlock]}}{"Position"{sngArr[30,4.25,31]}}{"TexturePath"{str[frontier]}}{"Textures"{recArr[[20,111,4,1]]}}{"TextureIndex"{intArr[0,0,0,0,0,0,0,0,-1,-1]}}{"Collision"{bool[1]}}{"ModelID"{int[1]}}{"Action"{int[0]}}{"AdditionalValue"{str[]}}{"Rotation"{int[0]}}]}}
 {"Entity"{ENT[{"Scale"{sngArr[0.15,1.5,0.15]}}{"EntityID"{str[WallBlock]}}{"Position"{sngArr[28,4.25,31]}}{"TexturePath"{str[frontier]}}{"Textures"{recArr[[20,111,4,1]]}}{"TextureIndex"{intArr[0,0,0,0,0,0,0,0,-1,-1]}}{"Collision"{bool[1]}}{"ModelID"{int[1]}}{"Action"{int[0]}}{"AdditionalValue"{str[]}}{"Rotation"{int[0]}}]}}
 {"Entity"{ENT[{"Scale"{sngArr[0.15,1.5,0.15]}}{"EntityID"{str[WallBlock]}}{"Position"{sngArr[28,4.25,27]}}{"TexturePath"{str[frontier]}}{"Textures"{recArr[[20,111,4,1]]}}{"TextureIndex"{intArr[0,0,0,0,0,0,0,0,-1,-1]}}{"Collision"{bool[1]}}{"ModelID"{int[1]}}{"Action"{int[0]}}{"AdditionalValue"{str[]}}{"Rotation"{int[0]}}]}}
@@ -584,6 +585,7 @@ W:
 {"EntityField"{ENT[{"Scale"{sngArr[1,0.15,1]}}{"Size"{intArr[1,5]}}{"EntityID"{str[WallBlock]}}{"Position"{sngArr[28,4.925,27]}}{"TexturePath"{str[frontier]}}{"Textures"{recArr[[24,102,16,2]]}}{"TextureIndex"{intArr[0,0,-1,-1,-1,-1,-1,-1,-1,-1]}}{"Collision"{bool[0]}}{"ModelID"{int[1]}}{"Action"{int[0]}}{"AdditionalValue"{str[]}}{"Rotation"{int[3]}}]}}
 
 E:
+{"Floor"{ENT[{"Size"{intArr[3,5]}}{"SeasonTexture"{str[Grass]}}{"Position"{intArr[36,4,27]}}{"hasSnow"{bool[0]}}{"TexturePath"{str[frontier]}}{"Texture"{rec[16,0,16,16]}}]}}
 {"Entity"{ENT[{"Scale"{sngArr[0.15,1.5,0.15]}}{"EntityID"{str[WallBlock]}}{"Position"{sngArr[38,4.25,31]}}{"TexturePath"{str[frontier]}}{"Textures"{recArr[[20,111,4,1]]}}{"TextureIndex"{intArr[0,0,0,0,0,0,0,0,-1,-1]}}{"Collision"{bool[1]}}{"ModelID"{int[1]}}{"Action"{int[0]}}{"AdditionalValue"{str[]}}{"Rotation"{int[0]}}]}}
 {"Entity"{ENT[{"Scale"{sngArr[0.15,1.5,0.15]}}{"EntityID"{str[WallBlock]}}{"Position"{sngArr[36,4.25,31]}}{"TexturePath"{str[frontier]}}{"Textures"{recArr[[20,111,4,1]]}}{"TextureIndex"{intArr[0,0,0,0,0,0,0,0,-1,-1]}}{"Collision"{bool[1]}}{"ModelID"{int[1]}}{"Action"{int[0]}}{"AdditionalValue"{str[]}}{"Rotation"{int[0]}}]}}
 {"Entity"{ENT[{"Scale"{sngArr[0.15,1.5,0.15]}}{"EntityID"{str[WallBlock]}}{"Position"{sngArr[36,4.25,27]}}{"TexturePath"{str[frontier]}}{"Textures"{recArr[[20,111,4,1]]}}{"TextureIndex"{intArr[0,0,0,0,0,0,0,0,-1,-1]}}{"Collision"{bool[1]}}{"ModelID"{int[1]}}{"Action"{int[0]}}{"AdditionalValue"{str[]}}{"Rotation"{int[0]}}]}}
@@ -596,7 +598,7 @@ E:
 {"EntityField"{ENT[{"Scale"{sngArr[1,0.15,1]}}{"Size"{intArr[1,5]}}{"EntityID"{str[WallBlock]}}{"Position"{sngArr[36,4.925,27]}}{"TexturePath"{str[frontier]}}{"Textures"{recArr[[24,96,16,2]]}}{"TextureIndex"{intArr[0,0,-1,-1,-1,-1,-1,-1,-1,-1]}}{"Collision"{bool[0]}}{"ModelID"{int[1]}}{"Action"{int[0]}}{"AdditionalValue"{str[]}}{"Rotation"{int[3]}}]}}
 
 Pike Building
-{"Entity"{ENT[{"ID"{int[14]}}{"Scale"{sngArr[2,2,2]}}{"EntityID"{str[WallBlock]}}{"Position"{sngArr[33,3.49,28.5]}}{"TexturePath"{str[BarkTown]}}{"Textures"{recArr[[64,0,16,16]]}}{"TextureIndex"{intArr[0,0]}}{"Collision"{bool[0]}}{"ModelID"{int[1]}}{"Action"{int[0]}}{"AdditionalValue"{str[]}}{"ModelPath"{str[Models\BattlePike\BattlePike]}}{"Rotation"{int[1]}}]}}
+{"Entity"{ENT[{"ID"{int[14]}}{"Scale"{sngArr[2.01,2,2.01]}}{"EntityID"{str[WallBlock]}}{"Position"{sngArr[33,3.49,28.5]}}{"TexturePath"{str[BarkTown]}}{"Textures"{recArr[[64,0,16,16]]}}{"TextureIndex"{intArr[0,0]}}{"Collision"{bool[0]}}{"ModelID"{int[1]}}{"Action"{int[0]}}{"AdditionalValue"{str[]}}{"ModelPath"{str[Models\BattlePike\BattlePike]}}{"Rotation"{int[1]}}]}}
 
 NPCs:
 Shops:
