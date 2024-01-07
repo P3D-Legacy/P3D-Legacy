@@ -440,14 +440,14 @@ Public Class OverworldScreen
 
         'Set to correct music:
         If TrainerEncountered = False Then
-            Dim x = 0
-            While (x < 100 And String.IsNullOrEmpty(Level.MusicLoop))
-                Thread.Sleep(20)
-                x = x + 1
-            End While
-            If String.IsNullOrEmpty(Level.MusicLoop) Then
-                Return
-            End If
+            'Dim x = 0
+            'While (x < 100 And String.IsNullOrEmpty(Level.MusicLoop))
+            '    Thread.Sleep(20)
+            '    x = x + 1
+            'End While
+            'If String.IsNullOrEmpty(Level.MusicLoop) Then
+            '    Return
+            'End If
 
             Dim theme As String = Level.MusicLoop
             If Screen.Level.Surfing = True Then
@@ -464,7 +464,9 @@ Public Class OverworldScreen
                 Level.IsRadioOn = False
             End If
 
-            MusicManager.Play(theme, True) 'remove when debugging music
+            If MusicManager._currentSongName Is "silence" Or MusicManager.CurrentSong Is Nothing Then
+                MusicManager.Play(theme, True) 'remove when debugging music
+            End If
         End If
     End Sub
 

@@ -1078,7 +1078,9 @@ Public Class Level
                             If MusicManager.GetSong(MusicLoop) IsNot Nothing Then
                                 MusicManager.Play(MusicLoop, True, 0.01F)
                             Else
-                                MusicManager.Play("silence")
+                                If MusicManager._currentSongName Is "silence" Or MusicManager.CurrentSong Is Nothing Then
+                                    MusicManager.Play("silence")
+                                End If
                             End If
                         End If
                     End If
