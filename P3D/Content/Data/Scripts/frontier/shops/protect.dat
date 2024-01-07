@@ -1,5 +1,5 @@
 version=2
-@text.show(These items will heal~or protect your precios~Pokémon.)
+@text.show(These items will heal~or protect your precious~Pokémon.)
 
 @options.show(Buy,Cancel)
 	:when:Buy
