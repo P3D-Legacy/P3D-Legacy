@@ -5,7 +5,8 @@ version=2
 	:while:<storage.get(integer,juicecount)><6
 		@register.unregister(juicetype<storage.get(integer,juicecount)>,str)
 		@register.unregister(juiceval<storage.get(integer,juicecount)>,int)
-		@register.unregister(juicedesc<storage.get(integer,juicecount)>,int)
+		@register.unregister(juicedesc<storage.get(integer,juicecount)>,str)
+		@register.unregister(juicecost<storage.get(integer,juicecount)>,int)
 		@register.unregister(solddailyjuice<storage.get(integer,juicecount)>)
 		
 		@storage.set(integer,berry1,<system.random(2000,2066)>)
@@ -24,43 +25,43 @@ version=2
 		:endif
 		@register.register(juicetype<storage.get(integer,juicecount)>,str,<storage.get(string,drink)>)
 		@register.register(juiceval<storage.get(integer,juicecount)>,int,<storage.get(integer,value)>)
-		
+
 		:select:<storage.get(string,drink)>
 			:when:fail
 				@text.show(Something went wrong please~try again later.)
 				:endscript
 			:when:purple
-				@register.register(juicedesc<storage.get(integer,juicecount)>,str,Purple Juice    <math.int(<storage.get(integer,value)>/4)> BP)
+				@register.register(juicedesc<storage.get(integer,juicecount)>,str,#<math.int(<storage.get(integer,juicecount)>+1)> Purple Juice    <math.int(<storage.get(integer,value)>/4)> BP)
 				@register.register(juicecost<storage.get(integer,juicecount)>,int,<math.int(<storage.get(integer,value)>/4)>)
 			:when:red
-				@register.register(juicedesc<storage.get(integer,juicecount)>,str,Red Juice    <math.int(<storage.get(integer,value)>/4)> BP)
+				@register.register(juicedesc<storage.get(integer,juicecount)>,str,#<math.int(<storage.get(integer,juicecount)>+1)> Red Juice    <math.int(<storage.get(integer,value)>/4)> BP)
 				@register.register(juicecost<storage.get(integer,juicecount)>,int,<math.int(<storage.get(integer,value)>/4)>)
 			:when:yellow
-				@register.register(juicedesc<storage.get(integer,juicecount)>,str,Yellow Juice    <math.int(<storage.get(integer,value)>/4)> BP)
+				@register.register(juicedesc<storage.get(integer,juicecount)>,str,#<math.int(<storage.get(integer,juicecount)>+1)> Yellow Juice    <math.int(<storage.get(integer,value)>/4)> BP)
 				@register.register(juicecost<storage.get(integer,juicecount)>,int,<math.int(<storage.get(integer,value)>/4)>)
 			:when:blue
-				@register.register(juicedesc<storage.get(integer,juicecount)>,str,Blue Juice    <math.int(<storage.get(integer,value)>/4)> BP)
+				@register.register(juicedesc<storage.get(integer,juicecount)>,str,#<math.int(<storage.get(integer,juicecount)>+1)> Blue Juice    <math.int(<storage.get(integer,value)>/4)> BP)
 				@register.register(juicecost<storage.get(integer,juicecount)>,int,<math.int(<storage.get(integer,value)>/4)>)
 			:when:green
-				@register.register(juicedesc<storage.get(integer,juicecount)>,str,Green Juice    <math.int(<storage.get(integer,value)>/4)> BP)
+				@register.register(juicedesc<storage.get(integer,juicecount)>,str,#<math.int(<storage.get(integer,juicecount)>+1)> Green Juice    <math.int(<storage.get(integer,value)>/4)> BP)
 				@register.register(juicecost<storage.get(integer,juicecount)>,int,<math.int(<storage.get(integer,value)>/4)>)
 			:when:pink
-				@register.register(juicedesc<storage.get(integer,juicecount)>,str,Pink Juice    <math.int(<storage.get(integer,value)>/4)> BP)
+				@register.register(juicedesc<storage.get(integer,juicecount)>,str,#<math.int(<storage.get(integer,juicecount)>+1)> Pink Juice    <math.int(<storage.get(integer,value)>/4)> BP)
 				@register.register(juicecost<storage.get(integer,juicecount)>,int,<math.int(<storage.get(integer,value)>/4)>)
 			:when:shake
-				@register.register(juicedesc<storage.get(integer,juicecount)>,str,Colorful Shake    <math.int(<storage.get(integer,value)>/6)> BP)
+				@register.register(juicedesc<storage.get(integer,juicecount)>,str,#<math.int(<storage.get(integer,juicecount)>+1)> Colorful Shake    <math.int(<storage.get(integer,value)>/6)> BP)
 				@register.register(juicecost<storage.get(integer,juicecount)>,int,<math.int(<storage.get(integer,value)>/6)>)
 			:when:soda
 				:select:<storage.get(integer,value)>
 					:when:1;2;3
-						@register.register(juicedesc<storage.get(integer,juicecount)>,str,Rare Soda    <math.int(10*<storage.get(integer,value)>)> BP)
+						@register.register(juicedesc<storage.get(integer,juicecount)>,str,#<math.int(<storage.get(integer,juicecount)>+1)> Rare Soda    <math.int(10*<storage.get(integer,value)>)> BP)
 						@register.register(juicecost<storage.get(integer,juicecount)>,int,<math.int((1+<storage.get(integer,value)>)*10)>)
 					:when:4;5
-						@register.register(juicedesc<storage.get(integer,juicecount)>,str,Ultra Rare Soda    <math.int(10*<storage.get(integer,value)>)> BP)
+						@register.register(juicedesc<storage.get(integer,juicecount)>,str,#<math.int(<storage.get(integer,juicecount)>+1)> Ultra Rare Soda    <math.int(10*<storage.get(integer,value)>)> BP)
 						@register.register(juicecost<storage.get(integer,juicecount)>,int,<math.int((1+<storage.get(integer,value)>)*10)>)
 				:endwhen
 			:when:soup
-				@register.register(juicedesc<storage.get(integer,juicecount)>,str,Perilous Soup    20 BP)
+				@register.register(juicedesc<storage.get(integer,juicecount)>,str,#<math.int(<storage.get(integer,juicecount)>+1)> Perilous Soup    20 BP)
 				@register.register(juicecost<storage.get(integer,juicecount)>,int,20)
 		:endwhen
 		@storage.set(integer,juicecount,<math.int(<storage.get(integer,juicecount)>+1)>)
