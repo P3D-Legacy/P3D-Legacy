@@ -35,6 +35,9 @@ version=2
 	:end
 :endif
 
+@item.remove(<storage.get(int,berry1)>,1)
+@item.remove(<storage.get(int,berry2)>,1)
+
 @script.start(frontier\shops\juice\give)
 
 @text.show(Come again soon!)
