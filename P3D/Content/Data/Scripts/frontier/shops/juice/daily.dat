@@ -15,9 +15,9 @@ version=2
 			@storage.set(integer,value,<math.int(<inventory.juicegroup(<storage.get(int,berry1)>)>*4)>)
 		:else
 			@storage.set(integer,berry2,<system.random(2000,2066)>)
-			:if:<system.random(0,19)>>18
-				@storage.set(integer,berry1,<system.random(2058,2066)>)
-				@storage.set(integer,berry2,<system.random(2058,2066)>)
+			:if:<system.random(0,2)>>1
+				@storage.set(integer,berry1,<system.random(2057,2066)>)
+				@storage.set(integer,berry2,<system.random(2057,2066)>)
 			:endif
 			@storage.set(string,drink,fail)
 			@storage.set(integer,value,-1)

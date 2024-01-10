@@ -11,32 +11,32 @@ version=2
 
 	:select:<storage.get(int,berry1)>
 		:when:2057
-			:if:<storage.get(int,berry2)>=2058
+			:if:<storage.get(int,berry2)>=2058 <or> <storage.get(int,berry2)>=2057
 				@storage.set(string,drink,soda)
 				@storage.set(integer,value,<system.random(1,3)>)
 			:endif
 		:when:2058
-			:if:<storage.get(int,berry2)>=2057
+			:if:<storage.get(int,berry2)>=2057 <or> <storage.get(int,berry2)>=2058
 				@storage.set(string,drink,soda)
 				@storage.set(integer,value,<system.random(1,3)>)
 			:endif
 		:when:2059
-			:if:<storage.get(int,berry2)>=2064
+			:if:<storage.get(int,berry2)>=2064 <or> <storage.get(int,berry2)>=2059
 				@storage.set(string,drink,soda)
 				@storage.set(integer,value,<system.random(4,5)>)
 			:endif
 		:when:2064
-			:if:<storage.get(int,berry2)>=2059
+			:if:<storage.get(int,berry2)>=2059 <or> <storage.get(int,berry2)>=2064
 				@storage.set(string,drink,soda)
 				@storage.set(integer,value,<system.random(4,5)>)
 			:endif
 		:when:2065
-			:if:<storage.get(int,berry2)>=2066
+			:if:<storage.get(int,berry2)>=2066 <or> <storage.get(int,berry2)>=2065
 				@storage.set(string,drink,soup)
 				@storage.set(integer,value,0)
 			:endif
 		:when:2066
-			:if:<storage.get(int,berry2)>=2065
+			:if:<storage.get(int,berry2)>=2065 <or> <storage.get(int,berry2)>=2066
 				@storage.set(string,drink,soup)
 				@storage.set(integer,value,0)
 			:endif
