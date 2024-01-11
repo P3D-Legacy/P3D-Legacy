@@ -697,6 +697,7 @@ Public Class TradeScreen
 
             If Me.BuyItemsList.Count = 0 Then
                 Me.MenuState = MenuStates.BuyItemsCategory
+                Me.Cursor -= 1
                 Me.LoadBuyCategoriesItems()
             End If
         End If
