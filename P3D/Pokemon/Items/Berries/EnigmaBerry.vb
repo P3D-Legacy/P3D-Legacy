@@ -4,7 +4,8 @@ Namespace Items.Berries
     Public Class EnigmaBerry
 
         Inherits Berry
-
+        Public Overrides ReadOnly Property CanBeUsed As Boolean = False
+        Public Overrides ReadOnly Property CanBeUsedInBattle As Boolean = False
         Public Sub New()
             MyBase.New(86400, "A Berry to be consumed by Pokémon. If a Pokémon holds one, being hit by a supereffective attack will restore its HP.", "15.5cm", "Hard", 1, 2)
 

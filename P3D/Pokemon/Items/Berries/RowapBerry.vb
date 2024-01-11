@@ -4,7 +4,8 @@ Namespace Items.Berries
     Public Class RowapBerry
 
         Inherits Berry
-
+        Public Overrides ReadOnly Property CanBeUsed As Boolean = False
+        Public Overrides ReadOnly Property CanBeUsedInBattle As Boolean = False
         Public Sub New()
             MyBase.New(86400, "If held by a Pokémon and a special attack lands, the attacker takes damage. ", "13.2cm", "Very Soft", 1, 5)
 

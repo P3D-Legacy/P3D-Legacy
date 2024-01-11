@@ -4,7 +4,8 @@ Namespace Items.Berries
     Public Class KeeBerry
 
         Inherits Berry
-
+        Public Overrides ReadOnly Property CanBeUsed As Boolean = False
+        Public Overrides ReadOnly Property CanBeUsedInBattle As Boolean = False
         Public Sub New()
             MyBase.New(86400, "If held by a Pokémon, this Berry will increase the holder's Defense if it's hit with a physical move.", "5.0cm", "Very Soft", 1, 5)
 

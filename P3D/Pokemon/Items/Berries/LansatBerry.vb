@@ -4,7 +4,8 @@ Namespace Items.Berries
     Public Class LansatBerry
 
         Inherits Berry
-
+        Public Overrides ReadOnly Property CanBeUsed As Boolean = False
+        Public Overrides ReadOnly Property CanBeUsedInBattle As Boolean = False
         Public Sub New()
             MyBase.New(86400, "A Berry to be consumed by Pokémon. If a Pokémon holds one, its critical-hit ratio will increase when it's in a pinch.", "9.7cm", "Soft", 1, 2)
 

@@ -4,7 +4,8 @@ Namespace Items.Berries
     Public Class WacanBerry
 
         Inherits Berry
-
+        Public Overrides ReadOnly Property CanBeUsed As Boolean = False
+        Public Overrides ReadOnly Property CanBeUsedInBattle As Boolean = False
         Public Sub New()
             MyBase.New(64800, "If held by a Pokémon, this berry will lessen the damage taken from one supereffective Electric-type attack.", "25.0cm", "Very Soft", 1, 5)
 

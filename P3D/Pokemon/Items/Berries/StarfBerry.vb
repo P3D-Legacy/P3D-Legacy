@@ -4,7 +4,8 @@ Namespace Items.Berries
     Public Class StarfBerry
 
         Inherits Berry
-
+        Public Overrides ReadOnly Property CanBeUsed As Boolean = False
+        Public Overrides ReadOnly Property CanBeUsedInBattle As Boolean = False
         Public Sub New()
             MyBase.New(86400, "A Berry to be consumed by Pokémon. If a Pokémon holds one, one of its stats will sharply increase when it's in a pinch.", "15.2cm", "Super Hard", 1, 2)
 

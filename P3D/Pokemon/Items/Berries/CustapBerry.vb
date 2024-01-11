@@ -4,7 +4,8 @@ Namespace Items.Berries
     Public Class CustapBerry
 
         Inherits Berry
-
+        Public Overrides ReadOnly Property CanBeUsed As Boolean = False
+        Public Overrides ReadOnly Property CanBeUsedInBattle As Boolean = False
         Public Sub New()
             MyBase.New(86400, "If held by a Pokémon, it gets to move first just once in a pinch.", "26.7cm", "Super Hard", 1, 5)
 

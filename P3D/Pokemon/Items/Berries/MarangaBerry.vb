@@ -4,7 +4,8 @@ Namespace Items.Berries
     Public Class MarangaBerry
 
         Inherits Berry
-
+        Public Overrides ReadOnly Property CanBeUsed As Boolean = False
+        Public Overrides ReadOnly Property CanBeUsedInBattle As Boolean = False
         Public Sub New()
             MyBase.New(86400, "If held by a Pokémon, this Berry will increase the holder's Sp. Def if it's hit with a special move.", "18.6cm", "Hard", 1, 5)
 

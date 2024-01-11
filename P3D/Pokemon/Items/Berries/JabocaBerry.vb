@@ -4,7 +4,8 @@ Namespace Items.Berries
     Public Class JabocaBerry
 
         Inherits Berry
-
+        Public Overrides ReadOnly Property CanBeUsed As Boolean = False
+        Public Overrides ReadOnly Property CanBeUsedInBattle As Boolean = False
         Public Sub New()
             MyBase.New(86400, "If held by a Pokémon, and if a foe's physical attack lands, the foe also takes damage.", "3.3cm", "Soft", 1, 5)
 
