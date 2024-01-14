@@ -138,6 +138,7 @@ Public Class NewInventoryScreen
 
     Public Sub New(ByVal currentScreen As Screen, ByVal AllowedPages As Integer(), ByVal StartPageIndex As Integer, ByVal DoStuff As DoStuff, Optional ByVal AllowedItems As List(Of String) = Nothing, Optional ByVal DoReturnItem As Boolean = False)
 
+        SelectedItem = "-1"
         _preScreenTarget = New RenderTarget2D(GraphicsDevice, windowSize.Width, windowSize.Height)
         _blur = New Resources.Blur.BlurHandler(windowSize.Width, windowSize.Height)
 
