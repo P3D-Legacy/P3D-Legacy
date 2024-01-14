@@ -4,6 +4,7 @@ Namespace Items.Berries
     Public Class TamatoBerry
 
         Inherits Berry
+        Public Overrides ReadOnly Property CanBeUsedInBattle As Boolean = False
 
         Public Sub New()
             MyBase.New(21600, "A Berry to be consumed by Pokémon. Using it on a Pokémon makes it more friendly but lowers its base Speed.", "20.0m", "Soft", 2, 4)

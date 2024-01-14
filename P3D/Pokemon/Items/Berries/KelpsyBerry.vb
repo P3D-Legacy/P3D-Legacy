@@ -4,6 +4,7 @@ Namespace Items.Berries
     Public Class KelpsyBerry
 
         Inherits Berry
+        Public Overrides ReadOnly Property CanBeUsedInBattle As Boolean = False
 
         Public Sub New()
             MyBase.New(10800, "A Berry to be consumed by Pokémon. Using it on a Pokémon makes it more friendly but lowers its base Attack.", "38.1cm", "Hard", 2, 6)
