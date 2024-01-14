@@ -14,6 +14,7 @@ version=2
 	:end
 :endif
 @storage.set(integer,berry1,<inventory.selected>)
+@item.remove(<storage.get(int,berry1)>,1,0)
 
 @text.show(Please select your~second berry.)
 @item.select(plants,2000-2066)
@@ -22,6 +23,7 @@ version=2
 	:end
 :endif
 @storage.set(integer,berry2,<inventory.selected>)
+@item.give(<storage.get(int,berry1)>,1)
 
 @storage.set(string,drink,fail)
 @storage.set(integer,value,-1)
@@ -37,8 +39,13 @@ version=2
 
 @item.remove(<storage.get(int,berry1)>,1)
 @item.remove(<storage.get(int,berry2)>,1)
+@item.give(<storage.get(int,berry1)>,1)
+@item.give(<storage.get(int,berry2)>,1)
 
 @script.start(frontier\shops\juice\give)
+
+@item.remove(<storage.get(int,berry1)>,1,0)
+@item.remove(<storage.get(int,berry2)>,1,0)
 
 @text.show(Come again soon!)
 :end	
