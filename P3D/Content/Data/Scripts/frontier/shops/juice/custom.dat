@@ -18,12 +18,12 @@ version=2
 
 @text.show(Please select your~second berry.)
 @item.select(plants,2000-2066)
+@item.give(<storage.get(int,berry1)>,1)
 :if:<inventory.selected>=-1
 	@text.show(Come again soon!)
 	:end
 :endif
 @storage.set(integer,berry2,<inventory.selected>)
-@item.give(<storage.get(int,berry1)>,1)
 
 @storage.set(string,drink,fail)
 @storage.set(integer,value,-1)
