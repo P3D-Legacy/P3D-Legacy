@@ -468,32 +468,32 @@
                                     If .EVHP + evValue > 255 Then
                                         evValue = 255 - .EVHP
                                     End If
-                                    .EVHP = evValue
+                                    .EVHP += evValue
                                 Case "atk", "attack"
                                     If .EVAttack + evValue > 255 Then
                                         evValue = 255 - .EVAttack
                                     End If
-                                    .EVAttack = evValue
+                                    .EVAttack += evValue
                                 Case "def", "defense"
                                     If .EVDefense + evValue > 255 Then
                                         evValue = 255 - .EVDefense
                                     End If
-                                    .EVDefense = evValue
+                                    .EVDefense += evValue
                                 Case "spatk", "specialattack", "spattack"
                                     If .EVSpAttack + evValue > 255 Then
                                         evValue = 255 - .EVSpAttack
                                     End If
-                                    .EVSpAttack = evValue
+                                    .EVSpAttack += evValue
                                 Case "spdef", "specialdefense", "spdefense"
                                     If .EVSpDefense + evValue > 255 Then
                                         evValue = 255 - .EVSpDefense
                                     End If
-                                    .EVSpDefense = evValue
+                                    .EVSpDefense += evValue
                                 Case "speed"
                                     If .EVSpeed + evValue > 255 Then
                                         evValue = 255 - .EVSpeed
                                     End If
-                                    .EVSpeed = evValue
+                                    .EVSpeed += evValue
                             End Select
                         End With
                     End If
