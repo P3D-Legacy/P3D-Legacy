@@ -113,7 +113,7 @@ Public Class Logger
 
             Dim GameMode As String = "[No GameMode loaded]"
             If Not GameModeManager.ActiveGameMode Is Nothing Then
-                GameMode = GameModeManager.ActiveGameMode.Name
+                GameMode = GameModeManager.ActiveGameMode.DirectoryName
             End If
 
             Dim OnlineInformation As String = "GameJolt Account: FALSE"

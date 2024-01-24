@@ -1631,7 +1631,7 @@ Public Class GameModeSelectionScreen
             Dim displayText = _gameModes(i).Name.CropStringToWidth(FontManager.InGameFont, WIDTH - 32)
 
             If displayText = "Kolben" Then
-                displayText = "Pokemon 3D"
+                displayText = "Pokémon 3D"
             End If
             For x = 0 To CInt(WIDTH / 16)
                 For y = 0 To CInt(HEIGHT / 16)
@@ -1652,7 +1652,7 @@ Public Class GameModeSelectionScreen
 
             Dim dispName As String = GameMode.Name
             If dispName = "Kolben" Then
-                dispName = "Pokemon 3D"
+                dispName = "Pokémon 3D"
             End If
             Dim dispDescription As String = GameMode.Description.Replace("~", Environment.NewLine).Replace("*", Environment.NewLine)
             Dim dispVersion As String = GameMode.Version

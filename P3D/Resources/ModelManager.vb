@@ -32,7 +32,7 @@ Public Class ModelManager
     Public Shared Function ModelExist(ByVal Path As String) As Boolean
         Dim cContent As ContentManager = ContentPackManager.GetContentManager(Path, ".xnb")
         If cContent.RootDirectory = "Content" Then
-            If GameModeManager.ActiveGameMode.Name <> "Kolben" Then
+            If GameModeManager.ActiveGameMode.DirectoryName <> "Kolben" Then
                 Return False
             End If
         End If
