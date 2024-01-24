@@ -114,6 +114,11 @@ Public Class GameModeItemLoader
                             item.gmBattlePointsPrice = CInt(value)
                         Case "catchmultiplier"
                             item.gmCatchMultiplier = CSng(value.ReplaceDecSeparator)
+                        Case "expmultiplier"
+                            If value.Split(",").Count > 1 Then
+                                item.gmOverrideTradeExp = CBool(value.GetSplit(1, ","))
+                            End If
+                            item.gmExpMultiplier = CDbl(value.GetSplit(0, ",").ReplaceDecSeparator)
                         Case "maxstack"
                             item.gmMaxStack = CInt(value)
                         Case "flingdamage"

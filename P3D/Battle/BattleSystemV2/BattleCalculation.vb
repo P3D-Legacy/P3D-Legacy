@@ -1002,8 +1002,25 @@
             Dim b As Double = op.BaseExperience
 
             Dim t As Double = 1D
-            If p.OT <> Core.Player.OT Then
-                t = 1.5D
+            If p.Item.IsGameModeItem = True Then
+                If CType(p.Item, GameModeItem).gmExpMultiplier <> -1D AndAlso CType(p.Item, GameModeItem).gmOverrideTradeExp = True Then
+                    t = CType(p.Item, GameModeItem).gmExpMultiplier
+                Else
+                    If p.OT <> Core.Player.OT Then
+                        t = 1.5D
+                    End If
+                End If
+            Else
+                If p.OT <> Core.Player.OT Then
+                    t = 1.5D
+                End If
+            End If
+
+            Dim gm As Double = 1D
+            If p.Item.IsGameModeItem = True Then
+                If CType(p.Item, GameModeItem).gmExpMultiplier <> -1D AndAlso CType(p.Item, GameModeItem).gmOverrideTradeExp = False Then
+                    gm = CType(p.Item, GameModeItem).gmExpMultiplier
+                End If
             End If
 
             Dim e As Double = 1D
@@ -1037,7 +1054,7 @@
                 End If
             End If
 
-            Dim EXP As Integer = CInt((((a * b * L) / (5 * s)) * (((2 * L + 10) ^ 2.5D) / ((L + Lp + 10) ^ 2.5D)) + 1) * t * e * 1)
+            Dim EXP As Integer = CInt((((a * b * L) / (5 * s)) * (((2 * L + 10) ^ 2.5D) / ((L + Lp + 10) ^ 2.5D)) + 1) * t * e * gm * 1)
 
             If EXP < 2 Then
                 EXP = 2

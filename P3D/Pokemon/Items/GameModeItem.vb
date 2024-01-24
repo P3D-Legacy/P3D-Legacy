@@ -21,6 +21,8 @@ Public Class GameModeItem
     Public gmCanBeUsedInBattle As Boolean = True
     Public gmCanBeTossed As Boolean = True
     Public gmBattleSelectPokemon As Boolean = True
+    Public gmExpMultiplier As Double = -1D
+    Public gmOverrideTradeExp As Boolean = False
 
     Public gmSortValue As Integer = 0
 
