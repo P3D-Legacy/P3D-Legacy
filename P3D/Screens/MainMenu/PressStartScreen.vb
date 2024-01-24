@@ -954,7 +954,7 @@ Public Class NewMainMenuScreen
                         SpriteBatch.Draw(tmpProfile.PokemonTextures(i), New Rectangle(displayRect.X + 30 + i * 70, displayRect.Y + 70, 64, 64), Color.White)
                     Next
                     GetFontRenderer().DrawString(FontManager.InGameFont, Localization.GetString("main_menu_savefile_name", "Player Name") & ": " & tmpProfile.Name & Environment.NewLine &
-                                                                            Localization.GetString("main_menu_savefile_gamemode", "GameMode") & ": " & tmpProfile.GameMode, New Vector2(displayRect.X + 30, displayRect.Y + 20), Color.White, 0F, Vector2.Zero, 1.0F, SpriteEffects.None, 0F)
+                                                                            Localization.GetString("main_menu_savefile_gamemode", "GameMode") & ": " & GameModeManager.GetGameMode(tmpProfile.GameMode).Name, New Vector2(displayRect.X + 30, displayRect.Y + 20), Color.White, 0F, Vector2.Zero, 1.0F, SpriteEffects.None, 0F)
                     GetFontRenderer().DrawString(FontManager.InGameFont, Localization.GetString("main_menu_savefile_badges", "Badges") & ": " & tmpProfile.Badges.ToString() & Environment.NewLine &
                                                                             Localization.GetString("main_menu_savefile_playtime", "Play time") & ": " & tmpProfile.TimePlayed & Environment.NewLine &
                                                                             Localization.GetString("main_menu_savefile_location", "Location") & ": " & tmpProfile.Location, New Vector2(displayRect.X + 30, displayRect.Y + 150), Color.White, 0F, Vector2.Zero, 1.0F, SpriteEffects.None, 0F)
