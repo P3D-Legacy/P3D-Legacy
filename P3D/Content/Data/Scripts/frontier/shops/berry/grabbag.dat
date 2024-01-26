@@ -6,7 +6,7 @@ version=2
 		:if:<player.bp><5
 			@text.show(You don't have enough BP!~Come back soon!)
 			:exitscript
-		:end
+		:endif
 		@storage.set(integer,berryloop,0)
 		:while:15><storage.get(integer,berryloop)>
 			@storage.set(integer,berrytogive,<system.random(2000,2067)>)
@@ -18,7 +18,7 @@ version=2
 		:if:<player.bp><10
 			@text.show(You don't have enough BP!~Come back soon!)
 			:exitscript
-		:end
+		:endif
 		@storage.set(integer,berryloop,0)
 		:while:10><storage.get(integer,berryloop)>
 			@storage.set(integer,berrytogive,<system.random(2029,2067)>)
