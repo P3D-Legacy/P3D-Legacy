@@ -120,7 +120,9 @@
                 ElseIf Me.TextureID.Contains("-") Then
                     Me.TextureID = Me.TextureID.GetSplit(0, "-")
                 ElseIf Me.TextureID.Contains(";") Then
-                    Me.TextureID = Me.TextureID.GetSplit(0, ";")
+                    Dim p As Pokemon = Pokemon.GetPokemonByID(CInt(Me.TextureID.GetSplit(0, ";")), Me.TextureID.GetSplit(1, ";"), True)
+                    Dim formaddition = PokemonForms.GetOverworldAddition(p)
+                    Me.TextureID = Me.TextureID.GetSplit(0, ";") & formaddition
                 End If
             End If
         End If
