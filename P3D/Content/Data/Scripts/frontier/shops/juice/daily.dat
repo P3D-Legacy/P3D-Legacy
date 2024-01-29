@@ -117,7 +117,7 @@ version=2
 :if:<player.bp><<register.value(juicecost<storage.get(integer,select)>)>
 	@text.show(You don't have enough BP!~Come again soon!)
 	:exitscript
-:end
+:endif
 
 @text.show(Which Pokemon is this~drink for?)
 @pokemon.select
