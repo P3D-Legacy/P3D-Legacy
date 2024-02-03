@@ -338,19 +338,19 @@
         Private Sub DrawTrading()
             Select Case tState
                 Case 0
-                    Core.SpriteBatch.Draw(Me.SelectedPokemon.GetTexture(True), New Rectangle(CInt(MathHelper.Min(CInt(SelectedPokemon.GetTexture(True).Width * 3 / 2), 144)), ownPokemonPosition, MathHelper.Min(SelectedPokemon.GetTexture(True).Width * 3, 288), MathHelper.Min(SelectedPokemon.GetTexture(True).Height * 3, 288)), Color.White)
+                    Core.SpriteBatch.Draw(Me.SelectedPokemon.GetTexture(True), New Rectangle(CInt(Core.windowSize.Height / 2 - MathHelper.Min(CInt(SelectedPokemon.GetTexture(True).Width * 3 / 2), 144)), ownPokemonPosition, MathHelper.Min(SelectedPokemon.GetTexture(True).Width * 3, 288), MathHelper.Min(SelectedPokemon.GetTexture(True).Height * 3, 288)), Color.White)
                 Case 1
-                    Core.SpriteBatch.Draw(Me.SelectedPokemon.GetTexture(False), New Rectangle(CInt(MathHelper.Min(CInt(SelectedPokemon.GetTexture(False).Width * 3 / 2), 144)), CInt(Core.windowSize.Height / 2 - MathHelper.Min(CInt(SelectedPokemon.GetTexture(False).Height * 3 / 2), 144)), MathHelper.Min(SelectedPokemon.GetTexture(False).Width * 3, 288), MathHelper.Min(SelectedPokemon.GetTexture(False).Height * 3, 288)), Color.White)
+                    Core.SpriteBatch.Draw(Me.SelectedPokemon.GetTexture(False), New Rectangle(CInt(Core.windowSize.Height / 2 - MathHelper.Min(CInt(SelectedPokemon.GetTexture(False).Width * 3 / 2), 144)), CInt(Core.windowSize.Height / 2 - MathHelper.Min(CInt(SelectedPokemon.GetTexture(False).Height * 3 / 2), 144)), MathHelper.Min(SelectedPokemon.GetTexture(False).Width * 3, 288), MathHelper.Min(SelectedPokemon.GetTexture(False).Height * 3, 288)), Color.White)
 
                     Dim t As String = "Sending " & Me.SelectedPokemon.GetDisplayName() & " to Wondertrade." & Environment.NewLine & "Good-bye, " & Me.SelectedPokemon.GetDisplayName() & "!"
 
                     Core.SpriteBatch.DrawString(FontManager.MainFont, t, New Vector2(CInt(Core.windowSize.Width / 2 - FontManager.MainFont.MeasureString(t).X / 2), CInt(Core.windowSize.Height / 2 + 130)), Color.White)
                 Case 2
-                    Core.SpriteBatch.Draw(Me.SelectedPokemon.GetTexture(False), New Rectangle(CInt(MathHelper.Min(CInt(SelectedPokemon.GetTexture(False).Width * 3 / 2), 144)), ownPokemonPosition, MathHelper.Min(SelectedPokemon.GetTexture(False).Width * 3, 288), MathHelper.Min(SelectedPokemon.GetTexture(False).Height * 3, 288)), Color.White)
+                    Core.SpriteBatch.Draw(Me.SelectedPokemon.GetTexture(False), New Rectangle(CInt(Core.windowSize.Height / 2 - MathHelper.Min(CInt(SelectedPokemon.GetTexture(False).Width * 3 / 2), 144)), ownPokemonPosition, MathHelper.Min(SelectedPokemon.GetTexture(False).Width * 3, 288), MathHelper.Min(SelectedPokemon.GetTexture(False).Height * 3, 288)), Color.White)
                 Case 3
-                    Core.SpriteBatch.Draw(Me.WonderTradePokemon.GetTexture(True), New Rectangle(CInt(MathHelper.Min(CInt(WonderTradePokemon.GetTexture(True).Width * 3 / 2), 144)), oppPokemonPosition, MathHelper.Min(WonderTradePokemon.GetTexture(True).Width * 3, 288), MathHelper.Min(SelectedPokemon.GetTexture(True).Height * 3, 288)), Color.White)
+                    Core.SpriteBatch.Draw(Me.WonderTradePokemon.GetTexture(True), New Rectangle(CInt(Core.windowSize.Height / 2 - MathHelper.Min(CInt(WonderTradePokemon.GetTexture(True).Width * 3 / 2), 144)), oppPokemonPosition, MathHelper.Min(WonderTradePokemon.GetTexture(True).Width * 3, 288), MathHelper.Min(SelectedPokemon.GetTexture(True).Height * 3, 288)), Color.White)
                 Case 4
-                    Core.SpriteBatch.Draw(Me.WonderTradePokemon.GetTexture(True), New Rectangle(CInt(MathHelper.Min(CInt(WonderTradePokemon.GetTexture(True).Width * 3 / 2), 144)), CInt(Core.windowSize.Height / 2 - MathHelper.Min(CInt(WonderTradePokemon.GetTexture(True).Height * 3 / 2), 144)), MathHelper.Min(WonderTradePokemon.GetTexture(True).Width * 3, 288), MathHelper.Min(SelectedPokemon.GetTexture(True).Height * 3, 288)), Color.White)
+                    Core.SpriteBatch.Draw(Me.WonderTradePokemon.GetTexture(True), New Rectangle(CInt(Core.windowSize.Height / 2 - MathHelper.Min(CInt(WonderTradePokemon.GetTexture(True).Width * 3 / 2), 144)), CInt(Core.windowSize.Height / 2 - MathHelper.Min(CInt(WonderTradePokemon.GetTexture(True).Height * 3 / 2), 144)), MathHelper.Min(WonderTradePokemon.GetTexture(True).Width * 3, 288), MathHelper.Min(SelectedPokemon.GetTexture(True).Height * 3, 288)), Color.White)
 
                     Dim t As String = Me.PartnerEmblem.Username & " sent over " & Me.WonderTradePokemon.GetDisplayName() & "."
 
