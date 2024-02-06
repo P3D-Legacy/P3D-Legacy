@@ -35,7 +35,7 @@
 
         ConstructMenu()
 
-        If Screen.Level.SaveOnly = False Then
+        If Player.Temp.MenuIndex < _menuOptions.Count Then
             _menuIndex = Player.Temp.MenuIndex
         Else
             _menuIndex = 0
