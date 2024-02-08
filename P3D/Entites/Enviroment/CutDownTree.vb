@@ -53,7 +53,7 @@
                     Next
                 End If
 
-                If pName <> "" Then
+                If pName <> "MissingNo." Then
                     Exit For
                 End If
             Next
