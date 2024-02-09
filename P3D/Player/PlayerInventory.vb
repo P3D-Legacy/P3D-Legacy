@@ -78,6 +78,20 @@ Public Class PlayerInventory
         Next
 
         Me.Add(New ItemContainer(ID, Amount))
+
+        Dim item As Item = Item.GetItemByID(ID)
+        If item.IsMail = True AndAlso item.IsGameModeItem = False Then
+            Dim hasAllMail = True
+            For m = 300 To 323
+                If Core.Player.Inventory.GetItemAmount(m.ToString) = 0 Then
+                    hasAllMail = False
+                    Exit For
+                End If
+            Next
+            If hasAllMail = True Then
+                GameJolt.Emblem.AchieveEmblem("mailman")
+            End If
+        End If
     End Sub
 
     ''' <summary>
