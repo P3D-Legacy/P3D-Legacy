@@ -1372,7 +1372,7 @@ Public Class Pokemon
 
         Dim Level As Integer = 5
         If Tags.ContainsKey("Level") = True Then
-            Level = CInt(Tags("Level"))
+            Level = CInt(ScriptConversion.ToInteger(ScriptVersion2.ScriptCommander.Parse(Tags("Level"))))
         End If
 
         Dim p As Pokemon = GetPokemonByID(PokemonID, NewAdditionalData)
@@ -1714,7 +1714,7 @@ Public Class Pokemon
                 Case "nickname"
                     Me.NickName = tagValue
                 Case "level"
-                    Me.Level = CInt(tagValue).Clamp(1, CInt(GameModeManager.GetGameRuleValue("MaxLevel", "100")))
+                    Me.Level = ScriptConversion.ToInteger(ScriptVersion2.ScriptCommander.Parse(tagValue)).Clamp(1, CInt(GameModeManager.GetGameRuleValue("MaxLevel", "100")))
                 Case "ot"
                     Me.OT = tagValue
                 Case "ability"
