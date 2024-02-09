@@ -814,6 +814,15 @@
             End If
         End If
 
+        Dim s As Screen = Core.CurrentScreen
+        While Not s.PreScreen Is Nothing And s.Identification <> Screen.Identifications.InventoryScreen
+            s = s.PreScreen
+        End While
+
+        If s.Identification = Screen.Identifications.InventoryScreen Then
+            CType(s, NewInventoryScreen).LoadItems()
+        End If
+
         Me.message = text
     End Sub
 
