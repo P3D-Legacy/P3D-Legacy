@@ -111,14 +111,18 @@
                     Case 1
                         cParent = parent2
                 End Select
-                For Each THMMove As BattleSystem.Attack In p.AttackLearns.Values
-                    For Each m1 As BattleSystem.Attack In cParent.Attacks
-                        If m1.ID = THMMove.ID Then
-                            Dim newAttack As BattleSystem.Attack = BattleSystem.Attack.GetAttackByID(m1.ID)
-                            EggMoves.Add(newAttack)
-                        End If
+                For Each aList As List(Of BattleSystem.Attack) In p.AttackLearns.Values
+                    For Each THMMove As BattleSystem.Attack In aList
+                        For Each m1 As BattleSystem.Attack In cParent.Attacks
+                            If m1.ID = THMMove.ID Then
+                                Dim newAttack As BattleSystem.Attack = BattleSystem.Attack.GetAttackByID(m1.ID)
+                                EggMoves.Add(newAttack)
+                            End If
+                        Next
+
                     Next
                 Next
+
             End If
 
             ' Egg Moves:

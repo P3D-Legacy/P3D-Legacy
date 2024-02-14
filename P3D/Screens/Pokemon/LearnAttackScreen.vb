@@ -3,7 +3,7 @@
     Inherits Screen
 
     Dim Pokemon As Pokemon
-    Dim newAttack As BattleSystem.Attack
+    Dim newAttacks As List(Of BattleSystem.Attack)
     Dim mainTexture As Texture2D
 
     Dim chosen As Boolean = False
@@ -17,16 +17,22 @@
 
     Dim currentCharIndex As Integer = 0
 
+    Public Sub New(ByVal currentScreen As Screen, ByVal Pokemon As Pokemon, ByVal newAttacks As List(Of BattleSystem.Attack))
+        Me.New(currentScreen, Pokemon, newAttacks, "-1")
+    End Sub
     Public Sub New(ByVal currentScreen As Screen, ByVal Pokemon As Pokemon, ByVal newAttack As BattleSystem.Attack)
-        Me.New(currentScreen, Pokemon, newAttack, "-1")
+        Me.New(currentScreen, Pokemon, New List(Of BattleSystem.Attack) From {newAttack}, "-1")
     End Sub
 
     Public Sub New(ByVal currentScreen As Screen, ByVal Pokemon As Pokemon, ByVal newAttack As BattleSystem.Attack, ByVal MachineItemID As String)
+        Me.New(currentScreen, Pokemon, New List(Of BattleSystem.Attack) From {newAttack}, MachineItemID)
+    End Sub
+    Public Sub New(ByVal currentScreen As Screen, ByVal Pokemon As Pokemon, ByVal newAttacks As List(Of BattleSystem.Attack), ByVal MachineItemID As String)
         Me.Identification = Identifications.LearnAttackScreen
 
         Me.PreScreen = currentScreen
         Me.Pokemon = Pokemon
-        Me.newAttack = newAttack
+        Me.newAttacks = newAttacks
         Me.MachineItemID = MachineItemID
 
         mainTexture = TextureManager.GetTexture("GUI\Menus\Menu")
@@ -118,7 +124,7 @@
 
             Dim A As BattleSystem.Attack
             If AttackIndex = 4 Then
-                A = newAttack
+                A = newAttacks(0)
             Else
                 A = Pokemon.Attacks(AttackIndex)
             End If
@@ -146,7 +152,7 @@
             For i = 0 To Me.Pokemon.Attacks.Count - 1
                 DrawAttack(i, Me.Pokemon.Attacks(i))
             Next
-            DrawAttack(4, newAttack)
+            DrawAttack(4, newAttacks(0))
         End If
 
         If chosen = True Then
@@ -156,9 +162,9 @@
 
             Dim drawText As String = ""
             If AttackIndex = 4 Then
-                drawText = "Give up on learning """ & newAttack.Name & """?"
+                drawText = "Give up on learning """ & newAttacks(0).Name & """?"
             Else
-                drawText = "Forget """ & Pokemon.Attacks(AttackIndex).Name & """ to learn """ & newAttack.Name & """?"
+                drawText = "Forget """ & Pokemon.Attacks(AttackIndex).Name & """ to learn """ & newAttacks(0).Name & """?"
                 If canForget = False Then
                     drawText = "Cannot forget the move " & Pokemon.Attacks(AttackIndex).Name & " because" & Environment.NewLine & "it's a Hidden Machine move."
                 End If
@@ -208,15 +214,15 @@
         End If
         If currentCharIndex > (Pokemon.GetDisplayName() & " ").Length + 1 Then
             If currentCharIndex < GetText().Length Then
-                Core.SpriteBatch.DrawString(FontManager.MainFont, ("wants to learn """ & newAttack.Name & """. But " & Pokemon.GetDisplayName() & " can only learn 4 attacks." & Environment.NewLine & "Do you want " & Pokemon.GetDisplayName() & " to forget an attack to learn """ & newAttack.Name & """?").Remove(currentCharIndex - (Pokemon.GetDisplayName() & " ").Length), New Vector2(FontManager.MainFont.MeasureString(Pokemon.GetDisplayName()).X + 152, 20), Color.White)
+                Core.SpriteBatch.DrawString(FontManager.MainFont, ("wants to learn """ & newAttacks(0).Name & """. But " & Pokemon.GetDisplayName() & " can only learn 4 attacks." & Environment.NewLine & "Do you want " & Pokemon.GetDisplayName() & " to forget an attack to learn """ & newAttacks(0).Name & """?").Remove(currentCharIndex - (Pokemon.GetDisplayName() & " ").Length), New Vector2(FontManager.MainFont.MeasureString(Pokemon.GetDisplayName()).X + 152, 20), Color.White)
             Else
-                Core.SpriteBatch.DrawString(FontManager.MainFont, "wants to learn """ & newAttack.Name & """. But " & Pokemon.GetDisplayName() & " can only learn 4 attacks." & Environment.NewLine & "Do you want " & Pokemon.GetDisplayName() & " to forget an attack to learn """ & newAttack.Name & """?", New Vector2(FontManager.MainFont.MeasureString(Pokemon.GetDisplayName()).X + 152, 20), Color.White)
+                Core.SpriteBatch.DrawString(FontManager.MainFont, "wants to learn """ & newAttacks(0).Name & """. But " & Pokemon.GetDisplayName() & " can only learn 4 attacks." & Environment.NewLine & "Do you want " & Pokemon.GetDisplayName() & " to forget an attack to learn """ & newAttacks(0).Name & """?", New Vector2(FontManager.MainFont.MeasureString(Pokemon.GetDisplayName()).X + 152, 20), Color.White)
             End If
         End If
     End Sub
 
     Private Function GetText() As String
-        Return Pokemon.GetDisplayName() & " wants to learn """ & newAttack.Name & """. But " & Pokemon.GetDisplayName() & " can only learn 4 attacks." & Environment.NewLine & "Do you want " & Pokemon.GetDisplayName() & " to forget an attack to learn """ & newAttack.Name & """?"
+        Return Pokemon.GetDisplayName() & " wants to learn """ & newAttacks(0).Name & """. But " & Pokemon.GetDisplayName() & " can only learn 4 attacks." & Environment.NewLine & "Do you want " & Pokemon.GetDisplayName() & " to forget an attack to learn """ & newAttacks(0).Name & """?"
     End Function
 
     Private Sub DrawAttack(ByVal i As Integer, ByVal A As BattleSystem.Attack)
@@ -253,13 +259,13 @@
 
     Private Sub ClickYes()
         If canForget = True Then
-            Dim Text As String = Pokemon.GetDisplayName() & " didn't~learn " & newAttack.Name & "!"
+            Dim Text As String = Pokemon.GetDisplayName() & " didn't~learn " & newAttacks(0).Name & "!"
 
             If AttackIndex <> 4 Then
                 TeachMovesScreen.LearnedMove = True
                 Text = "1... 2... 3... and...*Ta-da!*" & Pokemon.GetDisplayName() & " forgot~" & Pokemon.Attacks(AttackIndex).Name & " and..."
                 Pokemon.Attacks.RemoveAt(AttackIndex)
-                Pokemon.Attacks.Insert(AttackIndex, newAttack)
+                Pokemon.Attacks.Insert(AttackIndex, newAttacks(0))
 
                 If Me.MachineItemID <> "-1" Then
                     PlayerStatistics.Track("TMs/HMs used", 1)
@@ -285,7 +291,12 @@
 
             TextBox.Show(Text, {}, False, False)
             Core.GameInstance.IsMouseVisible = False
-            Core.SetScreen(Me.PreScreen)
+            If Me.newAttacks.Count > 1 Then
+                Me.newAttacks.RemoveAt(0)
+                Core.SetScreen(New LearnAttackScreen(Me.PreScreen, Me.Pokemon, Me.newAttacks))
+            Else
+                Core.SetScreen(Me.PreScreen)
+            End If
         End If
     End Sub
 
@@ -295,7 +306,7 @@
     End Sub
 
     Private Sub FollowUpText()
-        TextBox.Show("... " & Pokemon.GetDisplayName() & " learned~" & newAttack.Name & "!")
+        TextBox.Show("... " & Pokemon.GetDisplayName() & " learned~" & newAttacks(0).Name & "!")
         SoundManager.PlaySound("success_small", True)
     End Sub
 

@@ -42,24 +42,28 @@ Namespace Items.Medicine
                 Dim removedItem As Boolean = False
 
                 If Pokemon.AttackLearns.ContainsKey(Pokemon.Level) = True Then
-                    If Pokemon.KnowsMove(Pokemon.AttackLearns(Pokemon.Level)) = False Then
-                        If Pokemon.Attacks.Count = 4 Then
-                            s &= "@pokemon.learnattack(" & PokeIndex & "," & Pokemon.AttackLearns(Pokemon.Level).ID & ")" & Environment.NewLine
+                    Dim aList As List(Of BattleSystem.Attack) = Pokemon.AttackLearns(Pokemon.Level)
+                    For a = 0 To aList.Count - 1
+                        If Pokemon.KnowsMove(aList(a)) = False Then
+                            If Pokemon.Attacks.Count = 4 Then
+                                s &= "@pokemon.learnattack(" & PokeIndex & "," & aList(a).ID & ")" & Environment.NewLine
 
-                            Dim t As String = Me.RemoveItem()
-                            If t <> "" Then
-                                s &= "@text.show(" & t & ")" & Environment.NewLine
+                                Dim t As String = Me.RemoveItem()
+                                If t <> "" Then
+                                    s &= "@text.show(" & t & ")" & Environment.NewLine
+                                End If
+                                removedItem = True
+                            Else
+                                Pokemon.Attacks.Add(aList(a))
+
+                                s &= "@sound.play(success_small,1)" & Environment.NewLine &
+                                     "@text.show(" & Pokemon.GetDisplayName() & " learned~" & aList(a).Name & "!" & Me.RemoveItem() & ")" & Environment.NewLine
+                                removedItem = True
+                                PlayerStatistics.Track("Moves learned", 1)
                             End If
-                            removedItem = True
-                        Else
-                            Pokemon.Attacks.Add(Pokemon.AttackLearns(Pokemon.Level))
-
-                            s &= "@sound.play(success_small,1)" & Environment.NewLine &
-                                 "@text.show(" & Pokemon.GetDisplayName() & " learned~" & Pokemon.AttackLearns(Pokemon.Level).Name & "!" & Me.RemoveItem() & ")" & Environment.NewLine
-                            removedItem = True
-                            PlayerStatistics.Track("Moves learned", 1)
                         End If
-                    End If
+                    Next
+
                 End If
 
                 If Pokemon.CanEvolve(EvolutionCondition.EvolutionTrigger.LevelUp, "") = True Then

@@ -633,7 +633,7 @@ Public Class Pokemon
     Private _type1 As Element
     Private _type2 As Element
     Public StartItems As New Dictionary(Of Item, Integer)
-    Public AttackLearns As New Dictionary(Of Integer, BattleSystem.Attack)
+    Public AttackLearns As New Dictionary(Of Integer, List(Of BattleSystem.Attack))
     Public EggMoves As New List(Of Integer)
     Public TutorAttacks As New List(Of BattleSystem.Attack)
     Public EvolutionConditions As New List(Of EvolutionCondition)
@@ -1385,6 +1385,7 @@ Public Class Pokemon
     ''' Loads definition data from the data files and empties the temp textures.
     ''' </summary>
     Public Sub ReloadDefinitions()
+        Me.AttackLearns.Clear()
         Me.LoadDefinitions(Me.Number, Me.AdditionalData)
         Me.ClearTextures()
     End Sub
@@ -1562,12 +1563,11 @@ Public Class Pokemon
                     Dim MoveID As Integer = CInt(Value.GetSplit(1))
 
                     If AttackLearns.ContainsKey(Level) = True Then
-                        While AttackLearns.ContainsKey(Level)
-                            Level += 1
-                        End While
+                        AttackLearns(Level).Add(BattleSystem.Attack.GetAttackByID(MoveID))
+                    Else
+                        AttackLearns.Add(Level, New List(Of BattleSystem.Attack))
+                        AttackLearns(Level).Add(BattleSystem.Attack.GetAttackByID(MoveID))
                     End If
-
-                    Me.AttackLearns.Add(Level, BattleSystem.Attack.GetAttackByID(MoveID))
                 Case "evolutioncondition"
                     'Evolution,Type,Argument,Trigger
 
@@ -1612,7 +1612,7 @@ Public Class Pokemon
             Me.EggPokemon = Me.Number.ToString
         End If
 
-        Dim pAttacks As New SortedDictionary(Of Integer, BattleSystem.Attack)
+        Dim pAttacks As New SortedDictionary(Of Integer, List(Of BattleSystem.Attack))
         For i = 0 To AttackLearns.Count - 1
             pAttacks.Add(AttackLearns.Keys(i), AttackLearns.Values(i))
         Next
@@ -2138,26 +2138,29 @@ Public Class Pokemon
         Dim canLearnMoves As New List(Of BattleSystem.Attack)
         For i = 0 To Me.AttackLearns.Count - 1
             If Me.AttackLearns.Keys(i) <= Me.Level Then
+                For Each levelAttack As BattleSystem.Attack In Me.AttackLearns(Me.AttackLearns.Keys(i))
+                    Dim hasMove As Boolean = False
 
-                Dim hasMove As Boolean = False
-                For Each m As BattleSystem.Attack In Me.Attacks
-                    If m.ID = Me.AttackLearns.Values(i).ID Then
-                        hasMove = True
-                        Exit For
-                    End If
-                Next
-                If hasMove = False Then
-                    For Each m As BattleSystem.Attack In canLearnMoves
-                        If m.ID = Me.AttackLearns.Values(i).ID Then
+                    For Each m As BattleSystem.Attack In Me.Attacks
+                        If m.ID = levelAttack.ID Then
                             hasMove = True
                             Exit For
                         End If
                     Next
-                End If
+                    If hasMove = False Then
+                        For Each m As BattleSystem.Attack In canLearnMoves
+                            If m.ID = levelAttack.ID Then
+                                hasMove = True
+                                Exit For
+                            End If
+                        Next
+                    End If
 
-                If hasMove = False Then
-                    canLearnMoves.Add(Me.AttackLearns.Values(i))
-                End If
+                    If hasMove = False Then
+                        canLearnMoves.Add(levelAttack)
+                    End If
+
+                Next
             End If
         Next
 
@@ -2452,7 +2455,13 @@ Public Class Pokemon
     ''' <param name="learnLevel">The level the Pokémon learns the desired move on.</param>
     Public Sub LearnAttack(ByVal learnLevel As Integer)
         If AttackLearns.ContainsKey(learnLevel) = True Then
-            Dim a As BattleSystem.Attack = AttackLearns(learnLevel)
+            Dim a As BattleSystem.Attack
+            Dim aList As List(Of BattleSystem.Attack) = AttackLearns(learnLevel)
+            If aList.Count > 1 Then
+                a = aList(Random.Next(0, aList.Count - 1))
+            Else
+                a = aList(0)
+            End If
 
             For Each la As BattleSystem.Attack In Attacks
                 If la.ID = a.ID Then

@@ -547,10 +547,12 @@ Public Class GameModeItem
             Return ""
         End If
 
-        For Each learnAttack As BattleSystem.Attack In p.AttackLearns.Values
-            If learnAttack.ID = gmTeachMove.ID Then
-                Return ""
-            End If
+        For Each aList As List(Of BattleSystem.Attack) In p.AttackLearns.Values
+            For Each learnAttack As BattleSystem.Attack In aList
+                If learnAttack.ID = gmTeachMove.ID Then
+                    Return ""
+                End If
+            Next
         Next
 
         If gmCanTeachAlways = True Then

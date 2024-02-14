@@ -17,28 +17,31 @@
         Me.Identification = Identifications.TeachMovesScreen
 
         For i = 0 To Pokemon.AttackLearns.Count - 1
-            Dim tutorMove As BattleSystem.Attack = Pokemon.AttackLearns.Values(i)
-            Dim learnLevel As Integer = Pokemon.AttackLearns.Keys(i)
+            Dim aList As List(Of BattleSystem.Attack) = Pokemon.AttackLearns.Values(i)
+            For a = 0 To aList.Count - 1
+                Dim tutorMove As BattleSystem.Attack = aList(a)
+                Dim learnLevel As Integer = Pokemon.AttackLearns.Keys(i)
 
-            If learnLevel <= Pokemon.Level Then
-                Dim canLearnMove As Boolean = True
+                If learnLevel <= Pokemon.Level Then
+                    Dim canLearnMove As Boolean = True
 
-                For Each learnedAttack As BattleSystem.Attack In Pokemon.Attacks
-                    If learnedAttack.ID = tutorMove.ID Then
-                        canLearnMove = False
+                    For Each learnedAttack As BattleSystem.Attack In Pokemon.Attacks
+                        If learnedAttack.ID = tutorMove.ID Then
+                            canLearnMove = False
+                        End If
+                    Next
+
+                    For Each move As BattleSystem.Attack In MovesList
+                        If move.ID = tutorMove.ID Then
+                            canLearnMove = False
+                        End If
+                    Next
+
+                    If canLearnMove = True Then
+                        MovesList.Add(tutorMove)
                     End If
-                Next
-
-                For Each move As BattleSystem.Attack In MovesList
-                    If move.ID = tutorMove.ID Then
-                        canLearnMove = False
-                    End If
-                Next
-
-                If canLearnMove = True Then
-                    MovesList.Add(tutorMove)
                 End If
-            End If
+            Next
         Next
 
         Me.MouseVisible = False
@@ -64,10 +67,14 @@
                 End If
             Next
             For i = 0 To Pokemon.AttackLearns.Count - 1
-                Dim learnAttack As BattleSystem.Attack = Pokemon.AttackLearns.Values(i)
-                If learnAttack.ID = a.ID Then
-                    canLearnMove = True
-                End If
+                Dim aList As List(Of BattleSystem.Attack) = Pokemon.AttackLearns.Values(i)
+                For lA = 0 To aList.Count - 1
+                    Dim learnAttack As BattleSystem.Attack = aList(lA)
+                    If learnAttack.ID = a.ID Then
+                        canLearnMove = True
+                    End If
+                Next
+
             Next
             For Each eggMoveID As Integer In Pokemon.EggMoves
                 If eggMoveID = a.ID Then

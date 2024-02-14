@@ -742,11 +742,18 @@
                         End If
 
                         p.Level += amount
-                        For i = 0 To amount - 1
-                            If p.AttackLearns.ContainsKey(originalLevel + i) = True AndAlso p.KnowsMove(p.AttackLearns(originalLevel + i)) = False Then
-                                AttackLearnList.Add(p.AttackLearns(originalLevel + i))
-                            End If
-                        Next
+                        If amount > 0 Then
+                            For i = 1 To amount
+                                If p.AttackLearns.ContainsKey(originalLevel + i) = True Then
+                                    Dim aList As List(Of BattleSystem.Attack) = p.AttackLearns(originalLevel + i)
+                                    For a = 0 To aList.Count - 1
+                                        If AttackLearnList.Contains(aList(a)) = False AndAlso p.KnowsMove(aList(a)) = False Then
+                                            AttackLearnList.Add(aList(a))
+                                        End If
+                                    Next
+                                End If
+                            Next
+                        End If
                         Dim s As String = "version=2" & Environment.NewLine
 
                         If amount > 0 Then

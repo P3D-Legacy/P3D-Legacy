@@ -135,7 +135,7 @@
     Dim evolutionStarted As Boolean = False
     Dim evolved As Boolean = False
     Dim brokeEvolution As Boolean = False
-    Dim learnAttack As Boolean = False
+    Dim AttackLearnList As New List(Of BattleSystem.Attack)
 
     Dim EvolutionArg As String = ""
     Dim EvolutionTrigger As EvolutionCondition.EvolutionTrigger
@@ -198,6 +198,7 @@
                 Sparks.Add(New Spark())
             Next
         Else
+
             If evolutionReady = False And TextBox.Showing = False Then
                 MusicManager.Play("evolution", True)
 
@@ -260,16 +261,19 @@
                         evolutionReady = True
                         Dim t As String = "Congratulations!*Your " & currentPokemon.GetDisplayName() & "~evolved into " & evolvedPokemon.GetName() & "!"
                         If evolvedPokemon.AttackLearns.ContainsKey(evolvedPokemon.Level) = True Then
-                            If evolvedPokemon.KnowsMove(evolvedPokemon.AttackLearns(evolvedPokemon.Level)) = False Then
-                                If evolvedPokemon.Attacks.Count = 4 Then
-                                    Me.learnAttack = True
-                                Else
-                                    evolvedPokemon.Attacks.Add(evolvedPokemon.AttackLearns(evolvedPokemon.Level))
+                            Dim aList As List(Of BattleSystem.Attack) = evolvedPokemon.AttackLearns(evolvedPokemon.Level)
+                            For a = 0 To aList.Count - 1
+                                If evolvedPokemon.KnowsMove(aList(a)) = False Then
+                                    If evolvedPokemon.Attacks.Count = 4 Then
+                                        Me.AttackLearnList.Add(aList(a))
+                                    Else
+                                        evolvedPokemon.Attacks.Add(aList(a))
 
-                                    t &= "*" & evolvedPokemon.GetDisplayName() & " learned~" & evolvedPokemon.AttackLearns(evolvedPokemon.Level).Name & "!"
-                                    PlayerStatistics.Track("Moves learned", 1)
+                                        t &= "*" & evolvedPokemon.GetDisplayName() & " learned~" & aList(a).Name & "!"
+                                        PlayerStatistics.Track("Moves learned", 1)
+                                    End If
                                 End If
-                            End If
+                            Next
                         End If
 
                         If Me.EvolutionTrigger = EvolutionCondition.EvolutionTrigger.Trading Then
@@ -298,9 +302,9 @@
                 End If
             Else
                 If TextBox.Showing = False Then
-                    If learnAttack = True Then
-                        learnAttack = False
-                        Core.SetScreen(New LearnAttackScreen(Core.CurrentScreen, evolvedPokemon, evolvedPokemon.AttackLearns(evolvedPokemon.Level)))
+                    If AttackLearnList.Count > 0 Then
+                        Core.SetScreen(New LearnAttackScreen(Core.CurrentScreen, evolvedPokemon, AttackLearnList))
+                        AttackLearnList.Clear()
                     Else
                         Endscene()
                     End If
@@ -346,10 +350,15 @@
         Dim HPpercentage As Integer = CInt((currentPokemon.HP / currentPokemon.MaxHP) * 100)
         Dim ID As String = currentPokemon.GetEvolutionID(Me.EvolutionTrigger, Me.EvolutionArg)
         If ID.Contains(CChar("_")) Then
-            evolvedPokemon = Pokemon.GetPokemonByID(CInt(ID.Split(CChar("_"))(0)), ID.Split(CChar("_"))(1))
+            evolvedPokemon = Pokemon.GetPokemonByID(CInt(ID.Split(CChar("_"))(0)), ID.Split(CChar("_"))(1), True)
         Else
-            evolvedPokemon = Pokemon.GetPokemonByID(CInt(ID))
+            evolvedPokemon = Pokemon.GetPokemonByID(CInt(ID), "", True)
         End If
+
+        If evolvedPokemon.AdditionalData = "" AndAlso currentPokemon.AdditionalData <> "" Then
+            evolvedPokemon.AdditionalData = currentPokemon.AdditionalData
+        End If
+
         evolvedPokemon.Status = currentPokemon.Status
 
         evolvedPokemon.EVHP = currentPokemon.EVHP

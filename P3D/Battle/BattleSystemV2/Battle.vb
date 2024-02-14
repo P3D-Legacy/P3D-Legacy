@@ -8302,12 +8302,13 @@
 
                 For i = 0 To expPokemon.Count - 1
                     Dim PokeIndex As Integer = expPokemon(i)
-
+                    Dim AttackLearnList As New List(Of BattleSystem.Attack)
+                    Dim LevelUpAmount As Integer = 0
+                    Dim originalLevel As Integer = Core.Player.Pokemons(PokeIndex).Level
                     If Core.Player.Pokemons(PokeIndex).Level < CInt(GameModeManager.GetGameRuleValue("MaxLevel", "100")) Then
                         Dim EXP As Integer = BattleCalculation.GainExp(Core.Player.Pokemons(PokeIndex), BattleScreen, expPokemon)
                         BattleScreen.BattleQuery.Add(New TextQueryObject(Core.Player.Pokemons(PokeIndex).GetDisplayName() & " gained " & EXP & " experience points."))
 
-                        Dim originalLevel As Integer = Core.Player.Pokemons(PokeIndex).Level
                         Dim moveLevel As Integer = originalLevel
 
                         For e = 1 To EXP
@@ -8327,10 +8328,29 @@
                                 BattleScreen.BattleQuery.Add(New PlaySoundQueryObject("Battle\exp_max", False))
                                 BattleScreen.BattleQuery.Add(New TextQueryObject(Core.Player.Pokemons(PokeIndex).GetDisplayName() & " reached level " & moveLevel & "!"))
                                 BattleScreen.BattleQuery.Add(New DisplayLevelUpQueryObject(Core.Player.Pokemons(PokeIndex), oldStats))
-                                If Core.Player.Pokemons(PokeIndex).AttackLearns.ContainsKey(moveLevel) = True AndAlso Core.Player.Pokemons(PokeIndex).KnowsMove(Core.Player.Pokemons(PokeIndex).AttackLearns(Core.Player.Pokemons(PokeIndex).Level)) = False Then
-                                    BattleScreen.BattleQuery.Add(New LearnMovesQueryObject(Core.Player.Pokemons(PokeIndex), Core.Player.Pokemons(PokeIndex).AttackLearns(moveLevel), BattleScreen))
-                                End If
+
                             End If
+                        Next
+                        LevelUpAmount = moveLevel - originalLevel
+                    End If
+                    If LevelUpAmount > 0 Then
+                        For l = 1 To LevelUpAmount
+                            If Core.Player.Pokemons(PokeIndex).AttackLearns.ContainsKey(originalLevel + l) Then
+
+                                Dim aList As List(Of BattleSystem.Attack) = Core.Player.Pokemons(PokeIndex).AttackLearns(originalLevel + l)
+                                For a = 0 To aList.Count - 1
+                                    If AttackLearnList.Contains(aList(a)) = False AndAlso Core.Player.Pokemons(PokeIndex).KnowsMove(aList(a)) = False Then
+                                        AttackLearnList.Add(aList(a))
+                                    End If
+                                Next
+
+                            End If
+
+                        Next
+                    End If
+                    If AttackLearnList.Count > 0 Then
+                        For a = 0 To AttackLearnList.Count - 1
+                            BattleScreen.BattleQuery.Add(New LearnMovesQueryObject(Core.Player.Pokemons(PokeIndex), AttackLearnList(a), BattleScreen))
                         Next
                     End If
 
