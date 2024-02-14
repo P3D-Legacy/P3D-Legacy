@@ -627,7 +627,8 @@
                         End If
                     End If
                 Next
-                fileList.Sort()
+                Dim newFileList = (From f In fileList Order By CInt(f.GetSplit(0, "_").GetSplit(0, ";")) Ascending).ToList()
+                fileList = newFileList
 
                 While CurrentPokemon.Count < 20 And noMorePokemon = False
                     If index <= fileList.Count - 1 Then
