@@ -97,7 +97,6 @@ End Class
 Public Class MusicManager
 
     Private Const DEFAULT_FADE_SPEED As Single = 0.5F
-    Private Const NO_MUSIC As String = "silence"
 
     Private Shared _songs As Dictionary(Of String, SongContainer) = New Dictionary(Of String, SongContainer)()
     Public Shared Property Volume As Single = 1.0F
@@ -118,7 +117,7 @@ Public Class MusicManager
 
     Public Shared Playlist As List(Of SongContainer)
     ' currently playing song
-    Public Shared _currentSongName As String = NO_MUSIC
+    Public Shared _currentSongName As String = "Silence"
     ' if the song in _currentSong is an actual existing song
     Public Shared _currentSong As SongContainer = Nothing
 
@@ -133,8 +132,6 @@ Public Class MusicManager
     ' song that gets played after the intro finished
     Public Shared _introContinueSong As String
 
-    ' song that plays after fading is finished
-    Private Shared _nextSong As String
     ' speeds that get added/subtracted from the volume to fade the song
     Private Shared _fadeSpeed As Single = DEFAULT_FADE_SPEED
     ' if the song that gets played after fading completed is an intro to another song
@@ -152,7 +149,7 @@ Public Class MusicManager
     Public Shared Property MasterVolume As Single = 1.0F
     Public Shared ReadOnly Property CurrentSong As SongContainer
         Get
-            If Playlist(0) IsNot Nothing Then
+            If Playlist.Count > 0 AndAlso Playlist(0) IsNot Nothing Then
                 Return Playlist(0)
             Else
                 Return MusicManager.GetSong("silence")
@@ -228,13 +225,14 @@ Public Class MusicManager
         ' cleans all remains of currently playing songs
         Playlist.Clear()
         _currentSong = Nothing
-        _currentSongName = NO_MUSIC
+        _currentSongName = "Silence"
         _isIntroStarted = False
+        PlayNoMusic()
     End Sub
 
     Public Shared Sub PlayNoMusic()
-        ' fades out current track and sets to NO_MUSIC
-        Play(NO_MUSIC)
+        ' fades out current track and sets to "Silence"
+        Play("Silence", True, 0.01F)
     End Sub
 
     Public Shared Sub Update()
@@ -286,9 +284,6 @@ Public Class MusicManager
                         Else
                             Volume = 1.0F
                         End If
-                        If _nextSong = NO_MUSIC Then
-                            _nextSong = "Silence"
-                        End If
 
                     End If
 
@@ -332,7 +327,7 @@ Public Class MusicManager
 
     Public Shared Sub [Stop]()
         Playlist.Clear()
-        MusicManager.Play(NO_MUSIC, False, 0.0F)
+        MusicManager.Play("Silence", False, 0.0F)
         _isIntroStarted = False
     End Sub
 
@@ -388,7 +383,7 @@ Public Class MusicManager
             _currentSongName = song.Name
             _currentSong = song
         Else
-            _currentSongName = NO_MUSIC
+            _currentSongName = "Silence"
             _currentSong = Nothing
         End If
 
@@ -422,7 +417,7 @@ Public Class MusicManager
         Dim songName = GetSongName(song)
         Dim AfterBattleIntroSongName As String = GetSongName(AfterBattleIntroSong)
 
-        If currentSong = NO_MUSIC OrElse currentSong <> songName Then
+        If currentSong = "Silence" OrElse currentSong <> songName Then
             If AfterBattleIntroSongName <> "" Then
                 Dim battleIntroSong = GetSong(songName)
                 Dim regularIntroSong = GetSong("intro\" + AfterBattleIntroSongName)
@@ -540,10 +535,10 @@ Public Class MusicManager
             ElseIf Playlist.Count = 1 Then
                 Return Playlist(0).Name
             Else
-                Return NO_MUSIC
+                Return "Silence"
             End If
         Else
-            Return NO_MUSIC
+            Return "Silence"
         End If
     End Function
 
@@ -731,7 +726,7 @@ Public Class MusicManager
                 {"mt_mortar", "IlexForest"},
                 {"whirlpool_islands", "IlexForest"},
                 {"tohjo_falls", "IlexForest"},
-                {"NO_MUSIC", NO_MUSIC}
+                {"no_music", "Silence"}
             }
         End Get
     End Property
