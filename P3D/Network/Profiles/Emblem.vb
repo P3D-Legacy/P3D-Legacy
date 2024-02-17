@@ -968,8 +968,17 @@
         End Function
 
         Public Shared Sub GetAchievedEmblems()
-            Dim APICall As New APICall(AddressOf AddAchievedEmblems)
-            APICall.FetchAllAchievedTrophies()
+            For Each newEmblem In Core.Player.EarnedAchievements
+                If Not Core.GameJoltSave.AchievedEmblems.Contains(newEmblem) Then
+                    Core.GameJoltSave.AchievedEmblems.Add(newEmblem)
+                End If
+            Next
+
+            If Core.GameJoltSave.AchievedEmblems.Contains("trainer") = False Then
+                Core.GameJoltSave.AchievedEmblems.Add("trainer")
+            End If
+            'Dim APICall As New APICall(AddressOf AddAchievedEmblems)
+            'APICall.FetchAllAchievedTrophies()
         End Sub
 
         Private Shared Sub AddAchievedEmblems(ByVal result As String)

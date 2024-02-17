@@ -1539,7 +1539,6 @@ Public Class NewMainMenuScreen
                             If _isGameJolt Then
                                 Core.Player.IsGameJoltSave = True
                                 Core.Player.LoadGame("GAMEJOLTSAVE")
-                                GameJolt.Emblem.GetAchievedEmblems()
 
                                 SetScreen(New JoinServerScreen(CurrentScreen))
                             Else

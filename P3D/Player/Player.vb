@@ -537,6 +537,7 @@
         GameMode = "Kolben"
 
         LoadPlayer()
+        GameJolt.Emblem.GetAchievedEmblems()
 
         If GameModeManager.GameModeExists(GameMode) = False Then
             GameMode = "Kolben"
