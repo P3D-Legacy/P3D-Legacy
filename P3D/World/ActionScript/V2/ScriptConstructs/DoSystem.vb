@@ -152,6 +152,8 @@
                     Return output
                 Case "scriptlevel"
                     Return ActionScript.ScriptLevelIndex.ToString()
+                case "language"
+                    Return Localization.LanguageSuffix
             End Select
 
             Return DefaultNull
