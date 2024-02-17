@@ -1362,12 +1362,12 @@ Public Class Pokemon
 
         Dim NewAdditionalData As String = ""
         If Tags.ContainsKey("AdditionalData") = True Then
-            NewAdditionalData = CStr(Tags("AdditionalData"))
+            NewAdditionalData = CStr(ScriptVersion2.ScriptCommander.Parse(Tags("AdditionalData")))
         End If
 
         Dim PokemonID As Integer = 10
         If Tags.ContainsKey("Pokemon") = True Then
-            PokemonID = CInt(Tags("Pokemon"))
+            PokemonID = CInt(ScriptConversion.ToInteger(ScriptVersion2.ScriptCommander.Parse(Tags("Pokemon"))))
         End If
 
         Dim Level As Integer = 5
@@ -1687,12 +1687,12 @@ Public Class Pokemon
 
             Select Case tagName.ToLower()
                 Case "originalnumber"
-                    Me.OriginalNumber = CInt(tagValue)
+                    Me.OriginalNumber = CInt(ScriptConversion.ToInteger(ScriptVersion2.ScriptCommander.Parse(tagValue)))
                 Case "experience"
-                    Me.Experience = CInt(tagValue)
+                    Me.Experience = CInt(ScriptConversion.ToInteger(ScriptVersion2.ScriptCommander.Parse(tagValue)))
                     loadedEXP = True
                 Case "gender"
-                    Select Case CInt(tagValue)
+                    Select Case CInt(ScriptConversion.ToInteger(ScriptVersion2.ScriptCommander.Parse(tagValue)))
                         Case 0
                             Me.Gender = Genders.Male
                         Case 1
@@ -1702,29 +1702,28 @@ Public Class Pokemon
                     End Select
                     loadedGender = True
                 Case "eggsteps"
-                    Me.EggSteps = CInt(tagValue)
+                    Me.EggSteps = CInt(ScriptConversion.ToInteger(ScriptVersion2.ScriptCommander.Parse(tagValue)))
                 Case "item"
-                    If StringHelper.IsNumeric(tagValue) Then
-                        Me.Item = Item.GetItemByID(tagValue)
-                    End If
+                    Me.Item = Item.GetItemByID(ScriptVersion2.ScriptCommander.Parse(tagValue).ToString)
                 Case "itemdata"
                     If Not Me.Item Is Nothing Then
-                        Me.Item.AdditionalData = tagValue
+                        Me.Item.AdditionalData = ScriptVersion2.ScriptCommander.Parse(tagValue).ToString
                     End If
                 Case "nickname"
-                    Me.NickName = tagValue
+                    Me.NickName = ScriptVersion2.ScriptCommander.Parse(tagValue).ToString
                 Case "level"
                     Me.Level = ScriptConversion.ToInteger(ScriptVersion2.ScriptCommander.Parse(tagValue)).Clamp(1, CInt(GameModeManager.GetGameRuleValue("MaxLevel", "100")))
                 Case "ot"
                     Me.OT = tagValue
                 Case "ability"
-                    Me.Ability = P3D.Ability.GetAbilityByID(CInt(tagValue))
+                    Dim argument As String = ScriptVersion2.ScriptCommander.Parse(tagValue).ToString
+                    Me.Ability = P3D.Ability.GetAbilityByID(CInt(argument))
                     'is this relevant for the client in PvP?
                     SetOriginalAbility()
                     Me.NormalAbility = Ability
                     loadedAbility = True
                 Case "status"
-                    Select Case tagValue
+                    Select Case ScriptVersion2.ScriptCommander.Parse(tagValue).ToString
                         Case "BRN"
                             Me.Status = StatusProblems.Burn
                         Case "PSN"
@@ -1743,36 +1742,36 @@ Public Class Pokemon
                             Me.Status = StatusProblems.None
                     End Select
                 Case "nature"
-                    Me.Nature = ConvertIDToNature(CInt(tagValue))
+                    Me.Nature = ConvertIDToNature(CInt(ScriptConversion.ToInteger(ScriptVersion2.ScriptCommander.Parse(tagValue))))
                     loadedNature = True
                 Case "catchlocation"
-                    Me.CatchLocation = tagValue
+                    Me.CatchLocation = ScriptVersion2.ScriptCommander.Parse(tagValue).ToString
                 Case "catchtrainer"
-                    Me.CatchTrainerName = tagValue
+                    Me.CatchTrainerName = ScriptVersion2.ScriptCommander.Parse(tagValue).ToString
                 Case "catchball"
-                    Me.CatchBall = Item.GetItemByID(tagValue)
+                    Me.CatchBall = Item.GetItemByID(ScriptVersion2.ScriptCommander.Parse(tagValue).ToString)
                 Case "catchmethod"
-                    Me.CatchMethod = tagValue
+                    Me.CatchMethod = ScriptVersion2.ScriptCommander.Parse(tagValue).ToString
                 Case "friendship"
-                    Me.Friendship = CInt(tagValue)
+                    Me.Friendship = CInt(ScriptConversion.ToInteger(ScriptVersion2.ScriptCommander.Parse(tagValue)))
                     loadedFriendship = True
                 Case "isshiny"
-                    Me.IsShiny = CBool(tagValue)
+                    Me.IsShiny = CBool(ScriptVersion2.ScriptCommander.Parse(tagValue).ToString)
                     loadedShiny = True
                 Case "attack1", "attack2", "attack3", "attack4"
-                    If Not P3D.BattleSystem.Attack.ConvertStringToAttack(tagValue) Is Nothing Then
-                        Attacks.Add(P3D.BattleSystem.Attack.ConvertStringToAttack(tagValue))
+                    If Not P3D.BattleSystem.Attack.ConvertStringToAttack(ScriptVersion2.ScriptCommander.Parse(tagValue).ToString) Is Nothing Then
+                        Attacks.Add(P3D.BattleSystem.Attack.ConvertStringToAttack(ScriptVersion2.ScriptCommander.Parse(tagValue).ToString))
                     End If
                     loadedAttacks = True
                 Case "stats"
-                    Dim Stats() As String = tagValue.Split(CChar(","))
+                    Dim Stats() As String = ScriptVersion2.ScriptCommander.Parse(tagValue).ToString.Split(CChar(","))
                     HP = CInt(Stats(0)).Clamp(0, 999)
                     loadedHP = True
                 Case "hp"
-                    HP = CInt(tagValue)
+                    HP = CInt(ScriptConversion.ToInteger(ScriptVersion2.ScriptCommander.Parse(tagValue)))
                     loadedHP = True
                 Case "fps", "evs"
-                    Dim EVs() As String = tagValue.Split(CChar(","))
+                    Dim EVs() As String = ScriptVersion2.ScriptCommander.Parse(tagValue).ToString.Split(CChar(","))
                     EVHP = CInt(EVs(0)).Clamp(0, 255)
                     EVAttack = CInt(EVs(1)).Clamp(0, 255)
                     EVDefense = CInt(EVs(2)).Clamp(0, 255)
@@ -1780,7 +1779,7 @@ Public Class Pokemon
                     EVSpDefense = CInt(EVs(4)).Clamp(0, 255)
                     EVSpeed = CInt(EVs(5)).Clamp(0, 255)
                 Case "dvs", "ivs"
-                    Dim IVs() As String = tagValue.Split(CChar(","))
+                    Dim IVs() As String = ScriptVersion2.ScriptCommander.Parse(tagValue).ToString.Split(CChar(","))
                     IVHP = CInt(IVs(0))
                     IVAttack = CInt(IVs(1))
                     IVDefense = CInt(IVs(2))
@@ -1789,9 +1788,9 @@ Public Class Pokemon
                     IVSpeed = CInt(IVs(5))
                     loadedIVs = True
                 Case "additionaldata"
-                    Me.AdditionalData = tagValue
+                    Me.AdditionalData = ScriptVersion2.ScriptCommander.Parse(tagValue).ToString
                 Case "idvalue"
-                    Me.IndividualValue = tagValue
+                    Me.IndividualValue = ScriptVersion2.ScriptCommander.Parse(tagValue).ToString
             End Select
         Next
 
