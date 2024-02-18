@@ -1274,7 +1274,7 @@ nextIndex:
 
             'Shift the Roaming Pokemon.
             If RoamingBattle = True Then
-                If FieldEffects.RoamingFled = False AndAlso Battle.Fled = False Then
+                If FieldEffects.RoamingFled = False AndAlso Battle.Fled = False AndAlso OppPokemon.HP <= 0 Or OppPokemon.Status = Pokemon.StatusProblems.Fainted Then
                     Core.Player.RoamingPokemonData = RoamingPokemon.RemoveRoamingPokemon(RoamingPokemonStorage)
                 Else
                     Core.Player.RoamingPokemonData = RoamingPokemon.ReplaceRoamingPokemon(RoamingPokemonStorage)
