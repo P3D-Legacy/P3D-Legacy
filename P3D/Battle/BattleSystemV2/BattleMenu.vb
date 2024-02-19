@@ -485,7 +485,7 @@
                 Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\Types", Me.Move.Type.GetElementImage(), ""), New Rectangle(Core.ScreenSize.Width - (AllExtended + extraExtended) + 28, 132 + Index * 96, 48, 16), New Color(255, 255, 255, 255 - deductAlpha))
 
                 If isSelected = True Then
-                    If Move.Disabled > 0 Then
+                    If Move.Disabled > 0 OrElse BattleScreen.FieldEffects.OwnEncore > 0 AndAlso BattleScreen.FieldEffects.OwnEncoreMove.ID <> Move.ID Then
                         Core.SpriteBatch.DrawString(FontManager.MainFont, "Disabled!", New Vector2(CInt(Core.ScreenSize.Width - (AllExtended + extraExtended) + 28), CInt(152 + Index * 96)), Color.Black)
                     Else
                         Dim ppColor As Color = GetPPColor()
@@ -522,7 +522,7 @@
 
                         If Controls.Accept(False, True, True) = True And isSelected = True Then
                             SoundManager.PlaySound("select")
-                            If Me.Move.Disabled = 0 Then
+                            If Me.Move.Disabled = 0 AndAlso BattleScreen.FieldEffects.OwnEncore = 0 OrElse BattleScreen.FieldEffects.OwnEncoreMove.ID = Move.ID Then
                                 Me.ClickAction(BattleScreen)
                             End If
                         End If
@@ -530,7 +530,7 @@
                             If MouseHandler.IsInRectangle(New Rectangle(Core.ScreenSize.Width - 255, 116 + Index * 96, 255, 80)) = True Then
                                 If isSelected = True Then
                                     SoundManager.PlaySound("select")
-                                    If Me.Move.Disabled = 0 Then
+                                    If Me.Move.Disabled = 0 AndAlso BattleScreen.FieldEffects.OwnEncore = 0 OrElse BattleScreen.FieldEffects.OwnEncoreMove.ID = Move.ID Then
                                         Me.ClickAction(BattleScreen)
                                     End If
                                 Else
