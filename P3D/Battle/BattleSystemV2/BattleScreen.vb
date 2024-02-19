@@ -858,6 +858,7 @@
             PVPLobbyScreen.ScreenState = PVPLobbyScreen.ScreenStates.Stopped
             InitializeTrainer(PVPTrainer, OverworldScreen, 0)
             Me.CanBePaused = False
+            Me.CanChat = False
         End Sub
 
         Public Sub LoadBattleMap()
