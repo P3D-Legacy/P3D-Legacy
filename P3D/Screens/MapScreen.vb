@@ -59,7 +59,7 @@
                 PlayerSkinTexture = TextureManager.GetTexture("Textures\NPC\" & Core.Player.Skin)
             End If
         End If
-        Me.MouseVisibVisible = False
+        Me.MouseVisible = False
 
         Me.objectsTexture = TextureManager.GetTexture("GUI\Map\map_objects")
         LoadMapTexture()
@@ -389,18 +389,26 @@
         If hoverText = "" And pokehoverText = "" And drawObjects(2) = True Then
             For Each Place As Place In places
                 If Place.getRectangle(mapOffset).Contains(cursorPoint) = True Then
-                    If Controls.Accept(True, True, True) = True Then
-                        Place.Click(flag)
-                    End If
+                    Dim DoUpdate As Boolean = False
                     If Place.Visible = VisibleMode.Always OrElse Place.Visible = VisibleMode.Temporary AndAlso Place.ContainFiles.Contains(Level.LevelFile.ToLower()) = True Then
-                        hoverText = Place.Name
+                        DoUpdate = True
                     ElseIf Place.Visible = VisibleMode.Unlock Then
                         For Each p As String In Place.ContainFiles
                             If Core.Player.VisitedMaps.ToLower().Split(CChar(",")).Contains(p.ToLower()) = True Then
-                                hoverText = Place.Name
+                                DoUpdate = True
                             End If
                         Next
                         Exit For
+                    ElseIf Place.Visible = VisibleMode.Register Then
+                        If ActionScript.IsRegistered(Place.RegisterName) = True Then
+                            DoUpdate = True
+                        End If
+                    End If
+                    If DoUpdate = True Then
+                        If Controls.Accept(True, True, True) = True Then
+                            Place.Click(flag)
+                        End If
+                        hoverText = Place.Name
                     End If
                     Exit For
                 End If
@@ -409,17 +417,26 @@
         If hoverText = "" And pokehoverText = "" And drawObjects(0) = True Then
             For Each City As City In cities
                 If City.getRectangle(mapOffset).Contains(cursorPoint) = True Then
-                    If Controls.Accept(True, True, True) = True Then
-                        City.Click(flag)
-                    End If
+                    Dim DoUpdate As Boolean = False
                     If City.Visible = VisibleMode.Always OrElse City.Visible = VisibleMode.Temporary AndAlso City.ContainFiles.Contains(Level.LevelFile.ToLower()) = True Then
-                        hoverText = City.Name
+                        DoUpdate = True
                     ElseIf City.Visible = VisibleMode.Unlock Then
-                        For Each c As String In City.ContainFiles
-                            If Core.Player.VisitedMaps.ToLower().Split(CChar(",")).Contains(c.ToLower()) = True Then
-                                hoverText = City.Name
+                        For Each p As String In City.ContainFiles
+                            If Core.Player.VisitedMaps.ToLower().Split(CChar(",")).Contains(p.ToLower()) = True Then
+                                DoUpdate = True
                             End If
                         Next
+                        Exit For
+                    ElseIf City.Visible = VisibleMode.Register Then
+                        If ActionScript.IsRegistered(City.RegisterName) = True Then
+                            DoUpdate = True
+                        End If
+                    End If
+                    If DoUpdate = True Then
+                        If Controls.Accept(True, True, True) = True Then
+                            City.Click(flag)
+                        End If
+                        hoverText = City.Name
                     End If
                     Exit For
                 End If
@@ -428,18 +445,28 @@
         If hoverText = "" And pokehoverText = "" And drawObjects(1) = True Then
             For Each Route As Route In routes
                 If Route.getRectangle(mapOffset).Contains(cursorPoint) = True Then
-                    If Controls.Accept(True, True, True) = True Then
-                        Route.Click(flag)
-                    End If
+                    Dim DoUpdate As Boolean = False
                     If Route.Visible = VisibleMode.Always OrElse Route.Visible = VisibleMode.Temporary AndAlso Route.ContainFiles.Contains(Level.LevelFile.ToLower()) = True Then
-                        hoverText = Route.Name
+                        DoUpdate = True
                     ElseIf Route.Visible = VisibleMode.Unlock Then
-                        For Each r As String In Route.ContainFiles
-                            If Core.Player.VisitedMaps.ToLower().Split(CChar(",")).Contains(r.ToLower()) = True Then
-                                hoverText = Route.Name
+                        For Each p As String In Route.ContainFiles
+                            If Core.Player.VisitedMaps.ToLower().Split(CChar(",")).Contains(p.ToLower()) = True Then
+                                DoUpdate = True
                             End If
                         Next
+                        Exit For
+                    ElseIf Route.Visible = VisibleMode.Register Then
+                        If ActionScript.IsRegistered(Route.RegisterName) = True Then
+                            DoUpdate = True
+                        End If
                     End If
+                    If DoUpdate = True Then
+                        If Controls.Accept(True, True, True) = True Then
+                            Route.Click(flag)
+                        End If
+                        hoverText = Route.Name
+                    End If
+                    Exit For
                 End If
             Next
         End If
