@@ -305,9 +305,8 @@
                     If AttackLearnList.Count > 0 Then
                         Core.SetScreen(New LearnAttackScreen(Core.CurrentScreen, evolvedPokemon, AttackLearnList))
                         AttackLearnList.Clear()
-                    Else
-                        Endscene()
                     End If
+                    Endscene()
                 End If
             End If
         End If
