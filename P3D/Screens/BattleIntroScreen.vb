@@ -548,30 +548,30 @@
 
         If BattleSystem.BattleScreen.CustomBattleMusic = "" OrElse MusicManager.SongExists(BattleSystem.BattleScreen.CustomBattleMusic) = False Then
             If b.IsPVPBattle = True Then
-                MusicManager.Play(MusicLoop, False, 0.0F, False, "pvp")
+                MusicManager.Play(MusicLoop, False, 0.0F, True, "pvp")
             Else
                 If b.IsTrainerBattle = True Then
-                    MusicManager.Play(MusicLoop, False, 0.0F, False, Trainer.GetBattleMusicName())
+                    MusicManager.Play(MusicLoop, False, 0.0F, True, Trainer.GetBattleMusicName())
                 ElseIf Screen.Level.IsSafariZone = True Or Screen.Level.IsBugCatchingContest = True Then
                     If MusicManager.SongExists(Screen.Level.CurrentRegion.Split(CChar(","))(0) & "_wild") = True Then
-                        MusicManager.Play(MusicLoop, False, 0.0F, False, Screen.Level.CurrentRegion.Split(CChar(","))(0) & "_wild")
+                        MusicManager.Play(MusicLoop, False, 0.0F, True, Screen.Level.CurrentRegion.Split(CChar(","))(0) & "_wild")
                     Else
-                        MusicManager.Play(MusicLoop, False, 0.0F, False, "johto_wild")
+                        MusicManager.Play(MusicLoop, False, 0.0F, True, "johto_wild")
                     End If
                 Else
                     If BattleSystem.BattleScreen.RoamingBattle = True AndAlso BattleSystem.BattleScreen.RoamingPokemonStorage.MusicLoop <> "" AndAlso MusicManager.SongExists(BattleSystem.BattleScreen.RoamingPokemonStorage.MusicLoop) = True Then
-                        MusicManager.Play(MusicLoop, True, 0.0F, False, BattleSystem.BattleScreen.RoamingPokemonStorage.MusicLoop)
+                        MusicManager.Play(MusicLoop, True, 0.0F, True, BattleSystem.BattleScreen.RoamingPokemonStorage.MusicLoop)
                     Else
                         If MusicManager.SongExists(Screen.Level.CurrentRegion.Split(CChar(","))(0) & "_wild") = True Then
-                            MusicManager.Play(MusicLoop, False, 0.0F, False, Screen.Level.CurrentRegion.Split(CChar(","))(0) & "_wild")
+                            MusicManager.Play(MusicLoop, False, 0.0F, True, Screen.Level.CurrentRegion.Split(CChar(","))(0) & "_wild")
                         Else
-                            MusicManager.Play(MusicLoop, False, 0.0F, False, "johto_wild")
+                            MusicManager.Play(MusicLoop, False, 0.0F, True, "johto_wild")
                         End If
                     End If
                 End If
             End If
         Else
-            MusicManager.Play(MusicLoop, True, 0.0F, False, BattleSystem.BattleScreen.CustomBattleMusic)
+            MusicManager.Play(MusicLoop, True, 0.0F, True, BattleSystem.BattleScreen.CustomBattleMusic)
         End If
         If Not MusicLoop Is Nothing Then
             If MusicManager.GetSong(MusicLoop).Duration.TotalSeconds <= 1 Then
