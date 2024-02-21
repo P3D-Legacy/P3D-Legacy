@@ -426,7 +426,6 @@
 #End Region
 
         Private Sub CloseScreen()
-            MusicManager.Play(Screen.Level.MusicLoop, True, 0.01F)
             Core.SetScreen(New TransitionScreen(Me, Me.PreScreen, Color.White, False))
         End Sub
 

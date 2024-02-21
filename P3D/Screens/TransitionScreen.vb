@@ -71,6 +71,14 @@
 
     Public Overrides Sub Update()
         If reduce = False Then
+            Dim s As Screen = NewScreen
+            While s.Identification <> Identifications.OverworldScreen AndAlso s.PreScreen IsNot Nothing
+                s = s.PreScreen
+            End While
+            If s.Identification = Identifications.OverworldScreen Then
+                MusicManager.Play(Screen.Level.MusicLoop, True, 0.01F)
+            End If
+
             alpha += Speed
             If OldScreen.UpdateFadeOut = True Then
                 OldScreen.Update()
