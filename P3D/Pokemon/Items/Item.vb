@@ -388,11 +388,13 @@ Public MustInherit Class Item
                 LoadItemBuffer()
             End If
 
-            Dim type = _itemBuffer.FirstOrDefault(Function(itemTypePair)
-                                                      Return itemTypePair.Key.Id = CInt(ID)
-                                                  End Function).Value
-            If type IsNot Nothing Then
-                Return CType(Activator.CreateInstance(type), Item)
+            If ID <> "" Then
+                Dim type = _itemBuffer.FirstOrDefault(Function(itemTypePair)
+                                                          Return itemTypePair.Key.Id = CInt(ID)
+                                                      End Function).Value
+                If type IsNot Nothing Then
+                    Return CType(Activator.CreateInstance(type), Item)
+                End If
             End If
 
         End If
