@@ -136,6 +136,7 @@
     Dim evolved As Boolean = False
     Dim brokeEvolution As Boolean = False
     Dim AttackLearnList As New List(Of BattleSystem.Attack)
+    Dim HasStartedAttackLearning As Boolean = False
 
     Dim EvolutionArg As String = ""
     Dim EvolutionTrigger As EvolutionCondition.EvolutionTrigger
@@ -149,7 +150,7 @@
 
         Me.PreScreen = currentScreen
         Me.FromBattle = FromBattle
-
+        Me.HasStartedAttackLearning = False
         For Each i As Integer In EvolvePokemonIndices
             PokeList.Add(i)
         Next
@@ -302,11 +303,16 @@
                 End If
             Else
                 If TextBox.Showing = False Then
-                    If AttackLearnList.Count > 0 Then
-                        Core.SetScreen(New LearnAttackScreen(Core.CurrentScreen, evolvedPokemon, AttackLearnList))
-                        AttackLearnList.Clear()
+                    If HasStartedAttackLearning = False Then
+                        If AttackLearnList.Count > 0 Then
+                            Core.SetScreen(New LearnAttackScreen(Core.CurrentScreen, evolvedPokemon, AttackLearnList))
+                            HasStartedAttackLearning = True
+                        End If
+                    Else
+                        If Core.CurrentScreen.Identification = Identifications.EvolutionScreen Then
+                            Endscene()
+                        End If
                     End If
-                    Endscene()
                 End If
             End If
         End If
@@ -322,7 +328,7 @@
 
             Core.Player.Pokemons(PokeList(0)) = evolvedPokemon
         End If
-
+        AttackLearnList.Clear()
         PokeList.RemoveAt(0)
         If PokeList.Count = 0 Then
             If FromBattle = False Then
