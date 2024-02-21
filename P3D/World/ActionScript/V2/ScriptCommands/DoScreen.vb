@@ -175,7 +175,7 @@
                 Case "halloffame"
                     If argument <> "" Then
                         If argument.Contains(",") = False Then
-                            If StringHelper.IsNumeric(argument) Then
+                            If argument.EndsWith(".dat") = False Then
                                 Core.SetScreen(New TransitionScreen(Core.CurrentScreen, New HallOfFameScreen(Core.CurrentScreen, int(argument)), Color.Black, False))
                             Else
                                 Core.SetScreen(New TransitionScreen(Core.CurrentScreen, New HallOfFameScreen(Core.CurrentScreen, argument), Color.Black, False))
