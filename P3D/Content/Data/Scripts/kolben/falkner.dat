@@ -26,7 +26,7 @@ version=2
 				:when:9
 					@text.show(If you ever want to~annoy Darkfire, just tell him~that his Charizard is not~a real dragon.*Mega stones don't count man.)
 				:when:10
-					@text.show(Did you know that the~beak of a pelipper is~able to almost double in size~whenever it gulps up water?*It does not only catch~prey with that beak but can also~use it to protect young Wingull~from nature.)
+					@text.show(Did you know that the~beak of a Pelipper is~able to almost double in size~whenever it gulps up water?*It does not only catch~prey with that beak but can also~use it to protect young Wingull~from nature.)
 				:when:11
 					@text.show(Did I ever tell you~my favorite bird?*Well to be honest there~are too many to choose from.~If I had to pick one~however it would be either~Pidgeot,~Altaria,~or Rowlet.)
 				:when:12
