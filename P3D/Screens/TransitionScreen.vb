@@ -71,11 +71,8 @@
 
     Public Overrides Sub Update()
         If reduce = False Then
-            Dim s As Screen = NewScreen
-            While s.Identification <> Identifications.OverworldScreen AndAlso s.PreScreen IsNot Nothing
-                s = s.PreScreen
-            End While
-            If s.Identification = Identifications.OverworldScreen Then
+            Dim screens() As Screen.Identifications = {Screen.Identifications.PokegearScreen, Screen.Identifications.OverworldScreen}
+            If screens.Contains(NewScreen.Identification) Then
                 MusicManager.Play(Screen.Level.MusicLoop, True, 0.01F)
             End If
 

@@ -2084,6 +2084,9 @@
             End If
 
             If Controls.Dismiss(True, True, True) = True Then
+                If CurrentStation Is Nothing Then
+                    MusicManager.Play(Screen.Level.MusicLoop)
+                End If
                 SoundManager.PlaySound("select")
                 Me.menuIndex = MenuScreens.Main
             End If
