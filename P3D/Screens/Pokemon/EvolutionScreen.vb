@@ -136,7 +136,7 @@
     Dim evolved As Boolean = False
     Dim brokeEvolution As Boolean = False
     Dim AttackLearnList As New List(Of BattleSystem.Attack)
-    Dim HasStartedAttackLearning As Boolean = False
+    Dim CanEnd As Boolean = False
 
     Dim EvolutionArg As String = ""
     Dim EvolutionTrigger As EvolutionCondition.EvolutionTrigger
@@ -148,9 +148,12 @@
         Me.Identification = Identifications.EvolutionScreen
         PlayerStatistics.Track("Evolutions", 1)
 
+        If Me.AttackLearnList.Count > 0 Then
+            AttackLearnList.Clear()
+        End If
         Me.PreScreen = currentScreen
         Me.FromBattle = FromBattle
-        Me.HasStartedAttackLearning = False
+        Me.CanEnd = False
         For Each i As Integer In EvolvePokemonIndices
             PokeList.Add(i)
         Next
@@ -272,9 +275,12 @@
 
                                         t &= "*" & evolvedPokemon.GetDisplayName() & " learned~" & aList(a).Name & "!"
                                         PlayerStatistics.Track("Moves learned", 1)
+                                        CanEnd = True
                                     End If
                                 End If
                             Next
+                        Else
+                            CanEnd = True
                         End If
 
                         If Me.EvolutionTrigger = EvolutionCondition.EvolutionTrigger.Trading Then
@@ -303,10 +309,10 @@
                 End If
             Else
                 If TextBox.Showing = False Then
-                    If HasStartedAttackLearning = False Then
+                    If CanEnd = False Then
                         If AttackLearnList.Count > 0 Then
                             Core.SetScreen(New LearnAttackScreen(Core.CurrentScreen, evolvedPokemon, AttackLearnList))
-                            HasStartedAttackLearning = True
+                            CanEnd = True
                         End If
                     Else
                         If Core.CurrentScreen.Identification = Identifications.EvolutionScreen Then
@@ -328,7 +334,6 @@
 
             Core.Player.Pokemons(PokeList(0)) = evolvedPokemon
         End If
-        AttackLearnList.Clear()
         PokeList.RemoveAt(0)
         If PokeList.Count = 0 Then
             If FromBattle = False Then
