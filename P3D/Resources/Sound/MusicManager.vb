@@ -227,7 +227,13 @@ Public Class MusicManager
         _currentSong = Nothing
         _currentSongName = "Silence"
         _isIntroStarted = False
-        PlayNoMusic()
+        If Muted = True Then
+            Volume = 0.0F
+        Else
+            Volume = 1.0F
+        End If
+        _isFadingOut = False
+        Play("Silence", True, 0.0F)
     End Sub
 
     Public Shared Sub PlayNoMusic()

@@ -71,11 +71,6 @@
 
     Public Overrides Sub Update()
         If reduce = False Then
-            Dim screens() As Screen.Identifications = {Screen.Identifications.PokegearScreen, Screen.Identifications.OverworldScreen}
-            If screens.Contains(NewScreen.Identification) Then
-                MusicManager.Play(Screen.Level.MusicLoop, True, 0.01F)
-            End If
-
             alpha += Speed
             If OldScreen.UpdateFadeOut = True Then
                 OldScreen.Update()
@@ -85,6 +80,10 @@
                 reduce = True
                 If noStuff = False Then
                     doSub()
+                End If
+                Dim screens() As Screen.Identifications = {Screen.Identifications.PokegearScreen, Screen.Identifications.OverworldScreen}
+                If screens.Contains(NewScreen.Identification) Then
+                    MusicManager.Play(Screen.Level.MusicLoop, True, 0.02F)
                 End If
             End If
         Else

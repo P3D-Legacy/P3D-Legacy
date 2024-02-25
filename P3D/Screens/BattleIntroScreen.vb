@@ -546,6 +546,7 @@
         Player.Temp.BeforeBattleFacing = Screen.Camera.GetPlayerFacingDirection()
         Dim b As BattleSystem.BattleScreen = CType(Me.NewScreen, BattleSystem.BattleScreen)
 
+        MusicManager.ClearCurrentlyPlaying()
         If BattleSystem.BattleScreen.CustomBattleMusic = "" OrElse MusicManager.SongExists(BattleSystem.BattleScreen.CustomBattleMusic) = False Then
             If b.IsPVPBattle = True Then
                 MusicManager.Play(MusicLoop, False, 0.0F, True, "pvp")
