@@ -148,9 +148,7 @@
         Me.Identification = Identifications.EvolutionScreen
         PlayerStatistics.Track("Evolutions", 1)
 
-        If Me.AttackLearnList.Count > 0 Then
-            AttackLearnList.Clear()
-        End If
+        Me.AttackLearnList.Clear()
         Me.PreScreen = currentScreen
         Me.FromBattle = FromBattle
         Me.CanEnd = False
@@ -312,8 +310,8 @@
                     If CanEnd = False Then
                         If AttackLearnList.Count > 0 Then
                             Core.SetScreen(New LearnAttackScreen(Core.CurrentScreen, evolvedPokemon, AttackLearnList))
-                            CanEnd = True
                         End If
+                        CanEnd = True
                     Else
                         If Core.CurrentScreen.Identification = Identifications.EvolutionScreen Then
                             Endscene()
