@@ -332,9 +332,7 @@ Public Class MusicManager
     End Sub
 
     Public Shared Sub [Stop]()
-        Playlist.Clear()
-        MusicManager.Play("Silence", False, 0.0F)
-        _isIntroStarted = False
+        ClearCurrentlyPlaying()
     End Sub
 
     Public Shared Sub ResumePlayback()
@@ -423,7 +421,7 @@ Public Class MusicManager
         Dim songName = GetSongName(song)
         Dim AfterBattleIntroSongName As String = GetSongName(AfterBattleIntroSong)
 
-        If currentSong = "Silence" OrElse currentSong <> songName Then
+        If currentSong = "silence" OrElse currentSong <> songName Then
             If AfterBattleIntroSongName <> "" Then
                 Dim battleIntroSong = GetSong(songName)
                 Dim regularIntroSong = GetSong("intro\" + AfterBattleIntroSongName)
