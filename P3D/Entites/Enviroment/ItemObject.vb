@@ -20,8 +20,8 @@
 
         Me.Item = Item.GetItemByID(Me.AdditionalValue.GetSplit(1))
         Me.ItemID = CInt(Me.AdditionalValue.GetSplit(0))
-        If Me.AdditionalValue.Split(",").Count > 1 Then
-            Me.LevelName = Me.AdditionalValue.GetSplit(2)
+        If Me.AdditionalValue.Split(",").Count > 2 Then
+            Me.LevelName = Me.AdditionalValue.GetSplit(2).ToLower()
         End If
 
         Me.Textures(0) = Me.Item.Texture
@@ -94,7 +94,7 @@
 
             If ItemExists(Me) = True Then
                 If Me.LevelName = "" Then
-                    Me.LevelName = Screen.Level.LevelFile
+                    Me.LevelName = Screen.Level.LevelFile.ToLower()
                 End If
                 RemoveItem(Me, Me.LevelName)
             End If
@@ -147,7 +147,7 @@
     Public Overrides Sub ClickFunction()
         If CanInteractWith Then
             If Me.LevelName = "" Then
-                Me.LevelName = Screen.Level.LevelFile
+                Me.LevelName = Screen.Level.LevelFile.ToLower()
             End If
             RemoveItem(Me, Me.LevelName)
             If Me.Item.OriginalName.Contains("HM") Then
@@ -184,13 +184,13 @@
             If Core.Player.ItemData.Contains(",") = True Then
                 Dim IDs() As String = Core.Player.ItemData.ToLower().Split(CChar(","))
 
-                If IDs.Contains((Screen.Level.LevelFile & "|" & ItemObject.ItemID.ToString()).ToLower()) = True Then
+                If IDs.Contains((Screen.Level.LevelFile.ToLower() & "|" & ItemObject.ItemID.ToString()).ToLower()) = True Then
                     Return True
                 Else
                     Return False
                 End If
             Else
-                If Core.Player.ItemData.ToLower() = (Screen.Level.LevelFile & "|" & ItemObject.ItemID.ToString()).ToLower() Then
+                If Core.Player.ItemData.ToLower() = (Screen.Level.LevelFile.ToLower() & "|" & ItemObject.ItemID.ToString()).ToLower() Then
                     Return True
                 Else
                     Return False
@@ -205,11 +205,11 @@
         Screen.Level.Entities.Remove(ItemObject)
 
         If Core.Player.ItemData = "" Then
-            Core.Player.ItemData = (LevelName & "|" & ItemObject.ItemID.ToString()).ToLower()
+            Core.Player.ItemData = (LevelName.ToLower() & "|" & ItemObject.ItemID.ToString()).ToLower()
         Else
             Dim IDs() As String = Core.Player.ItemData.Split(CChar(","))
-            If IDs.Contains((LevelName & "|" & ItemObject.ItemID.ToString()).ToLower()) = False Then
-                Core.Player.ItemData &= "," & (LevelName & "|" & ItemObject.ItemID.ToString()).ToLower()
+            If IDs.Contains((LevelName.ToLower() & "|" & ItemObject.ItemID.ToString()).ToLower()) = False Then
+                Core.Player.ItemData &= "," & (LevelName.ToLower() & "|" & ItemObject.ItemID.ToString()).ToLower()
             End If
         End If
     End Sub
