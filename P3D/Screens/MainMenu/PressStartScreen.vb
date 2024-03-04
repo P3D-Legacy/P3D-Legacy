@@ -674,7 +674,7 @@ Public Class NewMainMenuScreen
                 UpdateScreenOffset()
                 UpdateOptionsOffset()
 
-                If _MainProfiles(_selectedProfile).GameMode <> "Kolben" AndAlso (_menuIndex = 0 OrElse _menuIndex = 1) Then
+                If (_menuIndex = 0 OrElse _menuIndex = 1) AndAlso _MainProfiles(_selectedProfile).GameMode <> "Kolben" Then
                     If GameModeSplash Is Nothing Then
                         Try
                             Dim fileName As String = GameController.GamePath & "\GameModes\" & _MainProfiles(_selectedProfile).GameMode & "\MainMenu.png"
