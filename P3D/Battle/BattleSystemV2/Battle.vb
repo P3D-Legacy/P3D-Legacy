@@ -24,8 +24,8 @@
             Dim Argument As Object
         End Structure
 
-        Public OwnStep As RoundConst
-        Public OppStep As RoundConst
+        Public Shared OwnStep As RoundConst
+        Public Shared OppStep As RoundConst
 
         ''' <summary>
         ''' Returns the move of a Pokémon with a specified ID.
@@ -631,8 +631,8 @@
                 Exit Sub
             End If
             Dim OppStep = GetOppStep(BattleScreen, OwnStep)
-            Me.OwnStep = OwnStep
-            Me.OppStep = OppStep
+            Battle.OwnStep = OwnStep
+            Battle.OppStep = OppStep
             BattleScreen.OwnFaint = False '''
             BattleScreen.OppFaint = False '''
             If OwnStep.StepType = RoundConst.StepTypes.Move Then
@@ -2814,6 +2814,20 @@
                     BattleScreen.BattleQuery.Add(New TextQueryObject("But it missed..."))
                 End If
                 moveUsed.MoveMisses(own, BattleScreen)
+            End If
+            ''Own Pokémon Encore
+            Dim attackIndex As Integer = -1
+            If own = True AndAlso BattleScreen.FieldEffects.OwnEncore > 0 Then
+                For a = 0 To BattleScreen.OwnPokemon.Attacks.Count - 1
+                    If BattleScreen.OwnPokemon.Attacks(a).ID = BattleScreen.FieldEffects.OwnEncoreMove.ID Then
+                        attackIndex = a
+                    End If
+                Next
+                If attackIndex <> -1 AndAlso BattleScreen.OwnPokemon.Attacks(attackIndex).CurrentPP = 0 Then
+                    BattleScreen.FieldEffects.OwnEncoreMove = Nothing
+                    BattleScreen.FieldEffects.OwnEncore = 0
+                    BattleScreen.BattleQuery.Add(New TextQueryObject(BattleScreen.OwnPokemon.GetDisplayName() & "'s encore stopped."))
+                End If
             End If
         End Sub
 
