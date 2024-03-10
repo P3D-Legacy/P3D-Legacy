@@ -231,6 +231,8 @@
 {671|blue|||||OtherForms,10,7|_blue|_blue||||1}
 {671|orange|||||OtherForms,11,7|_orange|_orange||||1}
 {671|white|||||OtherForms,12,7|_white|_white||||1}
+{678||Gender;0|||||_m|_m||||}
+{678||Gender;1||||Gender,4,0|_f|_f||||}
 {681|blade||||_blade|OtherForms,6,8|_blade|_blade||||1}
 {705|hisui||Hisuian ||_hisui|Regional,12,4|_hisui|_hisui||||}
 {706|hisui||Hisuian ||_hisui|Regional,13,4|_hisui|_hisui||||}
