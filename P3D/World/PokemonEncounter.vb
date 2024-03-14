@@ -138,6 +138,10 @@ Public Class PokemonEncounter
                             Dim p As Pokemon = Core.Player.GetWalkPokemon()
                             If Not p Is Nothing Then
                                 If p.Level >= Pokemon.Level Then
+                                    If BattleSystem.BattleScreen.RoamingBattle = True Then
+                                        BattleSystem.BattleScreen.RoamingBattle = False
+                                        BattleSystem.BattleScreen.RoamingPokemonStorage = Nothing
+                                    End If
                                     Exit Sub
                                 End If
                             End If
@@ -148,6 +152,10 @@ Public Class PokemonEncounter
                             If Not Core.Player.Pokemons(0).Item Is Nothing Then
                                 If Core.Player.Pokemons(0).Item.ID = 94 Then
                                     If Core.Random.Next(0, 3) = 0 Then
+                                        If BattleSystem.BattleScreen.RoamingBattle = True Then
+                                            BattleSystem.BattleScreen.RoamingBattle = False
+                                            BattleSystem.BattleScreen.RoamingPokemonStorage = Nothing
+                                        End If
                                         Exit Sub
                                     End If
                                 End If
@@ -159,6 +167,10 @@ Public Class PokemonEncounter
                             If Not Core.Player.Pokemons(0).Item Is Nothing Then
                                 If Core.Player.Pokemons(0).Item.ID = 291 Then
                                     If Core.Random.Next(0, 3) = 0 Then
+                                        If BattleSystem.BattleScreen.RoamingBattle = True Then
+                                            BattleSystem.BattleScreen.RoamingBattle = False
+                                            BattleSystem.BattleScreen.RoamingPokemonStorage = Nothing
+                                        End If
                                         Exit Sub
                                     End If
                                 End If
