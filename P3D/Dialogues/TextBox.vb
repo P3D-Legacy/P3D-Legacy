@@ -26,7 +26,7 @@
 
     Dim Entities() As Entity
 
-    Dim ResultFunction As ChooseBox.DoAnswer = Nothing
+    Public ResultFunction As ChooseBox.DoAnswer = Nothing
 
     Public Delegate Sub FollowUpDelegate()
     Public FollowUp As FollowUpDelegate = Nothing

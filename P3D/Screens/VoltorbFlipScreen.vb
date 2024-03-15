@@ -97,6 +97,8 @@ Namespace VoltorbFlip
             Me.MouseVisible = True
             Me.CanChat = Me.PreScreen.CanChat
             Me.CanBePaused = Me.PreScreen.CanBePaused
+            ChooseBox.readyForResult = False
+            TextBox.ResultFunction = Nothing
 
         End Sub
 
