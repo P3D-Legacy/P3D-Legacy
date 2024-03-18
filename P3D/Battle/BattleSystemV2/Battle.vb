@@ -856,8 +856,8 @@
                     ChangeCameraAngle(0, True, BattleScreen)
                     BattleScreen.BattleQuery.Add(New TextQueryObject(BattleScreen.OwnPokemon.GetDisplayName() & " is trapped!"))
 
-                    BattleScreen.FieldEffects.OppUsedMoves.Add(CInt(OppStep.Argument))
-                    Dim oppMove As Attack = Attack.GetAttackByID(CInt(OppStep.Argument))
+                    Dim oppMove As Attack = CType(OppStep.Argument, Attack)
+                    BattleScreen.FieldEffects.OppUsedMoves.Add(oppMove.ID)
                     If SelectedMoveOpp = True Then oppMove.MoveSelected(False, BattleScreen)
                     DoAttackRound(BattleScreen, False, oppMove)
                     EndRound(BattleScreen, 2)
