@@ -423,7 +423,7 @@ Namespace VoltorbFlip
                 End If
             End If
 
-        End Sub
+            End Subqu
         Private Sub DrawCursor()
             If GameState = States.Game OrElse GameState = States.Memo Then
                 Dim mainBackgroundColor As Color = New Color(255, 255, 255)
@@ -914,19 +914,21 @@ TryAgain:
                     Dim QuitQuestionText As String = Localization.GetString("VoltorbFlip_QuitQuestion_Question_1", "If you quit now, you will~receive") & " " & CurrentCoins.ToString & " " & Localization.GetString("VoltorbFlip_QuitQuestion_Question_2", "Coin(s).*Will you quit?") & "%" & Localization.GetString("VoltorbFlip_QuitQuestion_AnswerYes", "Yes") & "|" & Localization.GetString("VoltorbFlip_QuitQuestion_AnswerNo", "No") & "%"
 
                     'Quiting Voltorb Flip
-                    If Controls.Dismiss(False, True, True) AndAlso GameState = States.Game AndAlso Delay = 0 Then
+                    If Controls.Dismiss(False, True, True) AndAlso (GameState = States.Game OrElse GameState = States.Memo) AndAlso Delay = 0 Then
                         TextBox.Show(QuitQuestionText)
                         SoundManager.PlaySound("select")
                         GameState = States.QuitQuestion
+                        MemoMenuX = 0
                     End If
 
                     'Quiting Voltorb Flip using the mouse
                     Dim QuitButtonRectangle As New Rectangle(CInt(GameOrigin.X + 424), CInt(GameOrigin.Y + 448), 128, 56)
-                    If Controls.Accept(True, False, False) AndAlso MouseHandler.IsInRectangle(QuitButtonRectangle) AndAlso GameState = States.Game AndAlso Delay = 0 Then
+                    If Controls.Accept(True, False, False) AndAlso MouseHandler.IsInRectangle(QuitButtonRectangle) AndAlso GameState = States.Game OrElse GameState = States.Memo) AndAlso Delay = 0 Then
                         TextBox.Show(QuitQuestionText)
                         ChooseBox.CancelIndex = 1
                         SoundManager.PlaySound("select")
                         GameState = States.QuitQuestion
+                        MemoMenuX = 0
                     End If
 
 
