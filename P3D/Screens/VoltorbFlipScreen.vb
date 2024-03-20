@@ -32,6 +32,15 @@ Namespace VoltorbFlip
 
         Public Shared GameState As States = States.Opening
 
+        Public Shared Texture_HUD As Texture2D = Nothing
+        Public Shared Texture_Cursor_Game As Texture2D = Nothing
+        Public Shared Texture_Cursor_Memo As Texture2D = Nothing
+        Public Shared Texture_Tile_Front As Texture2D = Nothing
+        Public Shared Texture_Tile_Back As Texture2D = Nothing
+        Public Shared Texture_Board As Texture2D = Nothing
+        Public Shared Texture_Background As Texture2D = Nothing
+        Public Shared Texture_Button_Quit As Texture2D = Nothing
+
         Public Shared Property PreviousLevel As Integer = 1
         Public Shared Property CurrentLevel As Integer = 1
 
@@ -77,6 +86,15 @@ Namespace VoltorbFlip
                                                  Identifications.PVPLobbyScreen}
 
         Public Sub New(ByVal currentScreen As Screen)
+            Texture_HUD = TextureManager.GetTexture("Textures\VoltorbFlip\HUD")
+            Texture_Cursor_Game = TextureManager.GetTexture("Textures\VoltorbFlip\Cursor_Game")
+            Texture_Cursor_Memo = TextureManager.GetTexture("Textures\VoltorbFlip\Cursor_Memo")
+            Texture_Tile_Front = TextureManager.GetTexture("Textures\VoltorbFlip\Tile_Front")
+            Texture_Tile_Back = TextureManager.GetTexture("Textures\VoltorbFlip\Tile_Back")
+            Texture_Board = TextureManager.GetTexture("Textures\VoltorbFlip\Board")
+            Texture_Background = TextureManager.GetTexture("Textures\VoltorbFlip\Background")
+            Texture_Button_Quit = TextureManager.GetTexture("Textures\VoltorbFlip\Quit_Button")
+
             GameState = States.Opening
             GameOrigin = New Vector2(CInt(windowSize.Width / 2 - GameSize.Width / 2 - 32), CInt(windowSize.Height / 2 - _screenTransitionY))
             BoardOrigin = New Vector2(GameOrigin.X + 32, GameOrigin.Y + 160)
@@ -162,7 +180,7 @@ Namespace VoltorbFlip
                 mainBackgroundColor = New Color(255, 255, 255, CInt(255 * _interfaceFade))
             End If
 
-            Canvas.DrawImageBorder(TextureManager.GetTexture("Textures\VoltorbFlip\Background"), 2, New Rectangle(CInt(GameOrigin.X), CInt(GameOrigin.Y), CInt(GameSize.Width), CInt(GameSize.Height)), mainBackgroundColor, False)
+            Canvas.DrawImageBorder(Texture_Background, 2, New Rectangle(CInt(GameOrigin.X), CInt(GameOrigin.Y), CInt(GameSize.Width), CInt(GameSize.Height)), mainBackgroundColor, False)
 
         End Sub
         Private Sub DrawHUD()
@@ -178,11 +196,11 @@ Namespace VoltorbFlip
 
             'Level
             Dim LevelText As String = Localization.GetString("VoltorbFlip_LV.", "LV.") & " " & CurrentLevel.ToString
-            Canvas.DrawImageBorder(TextureManager.GetTexture("Textures\VoltorbFlip\HUD"), 2, New Rectangle(CInt(GameOrigin.X + 32), CInt(GameOrigin.Y + 32), 96, 96), mainBackgroundColor, False)
+            Canvas.DrawImageBorder(Texture_HUD, 2, New Rectangle(CInt(GameOrigin.X + 32), CInt(GameOrigin.Y + 32), 96, 96), mainBackgroundColor, False)
             SpriteBatch.DrawString(FontManager.MainFont, LevelText, New Vector2(CInt(GameOrigin.X + 80 + 4 - FontManager.MainFont.MeasureString(LevelText).X / 2), CInt(GameOrigin.Y + 80 + 4 - FontManager.MainFont.MeasureString(LevelText).Y / 2)), Fontcolor)
 
             'Current Coins
-            Canvas.DrawImageBorder(TextureManager.GetTexture("Textures\VoltorbFlip\HUD"), 2, New Rectangle(CInt(GameOrigin.X + 128 + 24), CInt(GameOrigin.Y + 32), 192, 96), mainBackgroundColor, False)
+            Canvas.DrawImageBorder(Texture_HUD, 2, New Rectangle(CInt(GameOrigin.X + 128 + 24), CInt(GameOrigin.Y + 32), 192, 96), mainBackgroundColor, False)
 
             Dim CurrentCoinsText1 As String = Localization.GetString("VoltorbFlip_CurrentCoins_Line1", "Coins found")
             Dim CurrentCoinsText2 As String = Localization.GetString("VoltorbFlip_CurrentCoins_Line2", "in this LV.")
@@ -208,7 +226,7 @@ Namespace VoltorbFlip
             SpriteBatch.DrawString(FontManager.MainFont, CurrentCoinsText3, New Vector2(CInt(GameOrigin.X + 232 + 24 - FontManager.MainFont.MeasureString(CurrentCoinsText3).X / 2), CInt(GameOrigin.Y + 80 + 4 + FontManager.MainFont.MeasureString(CurrentCoinsText2).Y / 2)), Fontcolor)
 
             'Total Coins
-            Canvas.DrawImageBorder(TextureManager.GetTexture("Textures\VoltorbFlip\HUD"), 2, New Rectangle(CInt(GameOrigin.X + 336 + 32), CInt(GameOrigin.Y + 32), 192, 96), mainBackgroundColor, False)
+            Canvas.DrawImageBorder(Texture_HUD, 2, New Rectangle(CInt(GameOrigin.X + 336 + 32), CInt(GameOrigin.Y + 32), 192, 96), mainBackgroundColor, False)
 
             Dim TotalCoinsText1 As String = Localization.GetString("VoltorbFlip_TotalCoins_Line1", "<player.name>'s")
             Dim TotalCoinsText2 As String = Localization.GetString("VoltorbFlip_TotalCoins_Line2", "earned Coins")
@@ -300,7 +318,7 @@ Namespace VoltorbFlip
                 mainBackgroundColor = New Color(255, 255, 255, CInt(255 * _interfaceFade))
             End If
 
-            SpriteBatch.Draw(TextureManager.GetTexture("Textures\VoltorbFlip\Board"), New Rectangle(CInt(BoardOrigin.X), CInt(BoardOrigin.Y), BoardSize.Width, BoardSize.Height), mainBackgroundColor)
+            SpriteBatch.Draw(Texture_Board, New Rectangle(CInt(BoardOrigin.X), CInt(BoardOrigin.Y), BoardSize.Width, BoardSize.Height), mainBackgroundColor)
 
             DrawTiles()
 
@@ -431,9 +449,9 @@ Namespace VoltorbFlip
                     mainBackgroundColor = New Color(255, 255, 255, CInt(255 * _interfaceFade))
                 End If
 
-                Dim CursorImage As Texture2D = TextureManager.GetTexture("Textures\VoltorbFlip\Cursor_Game")
+                Dim CursorImage As Texture2D = Texture_Cursor_Game
                 If GameState = States.Memo Then
-                    CursorImage = TextureManager.GetTexture("Textures\VoltorbFlip\Cursor_Memo")
+                    CursorImage = Texture_Cursor_Memo
                 End If
 
                 SpriteBatch.Draw(CursorImage, New Rectangle(CInt(VoltorbFlipScreen.BoardOrigin.X + BoardCursorPosition.X), CInt(VoltorbFlipScreen.BoardOrigin.Y + BoardCursorPosition.Y), TileSize.Width, TileSize.Height), mainBackgroundColor)
@@ -451,7 +469,7 @@ Namespace VoltorbFlip
             End If
 
             Dim QuitButtonRectangle As New Rectangle(CInt(GameOrigin.X + 424), CInt(GameOrigin.Y + 448), 128, 56)
-            SpriteBatch.Draw(TextureManager.GetTexture("Textures\VoltorbFlip\Quit_Button"), QuitButtonRectangle, mainColor)
+            SpriteBatch.Draw(Texture_Button_Quit, QuitButtonRectangle, mainColor)
 
             Dim QuitButtonText As String = Localization.GetString("VoltorbFlip_QuitButton", "Quit")
             SpriteBatch.DrawString(FontManager.MainFont, QuitButtonText, New Vector2(CInt(QuitButtonRectangle.X + QuitButtonRectangle.Width / 2 - FontManager.MainFont.MeasureString(QuitButtonText).X / 2), CInt(QuitButtonRectangle.Y + QuitButtonRectangle.Height / 2 - FontManager.MainFont.MeasureString(QuitButtonText).Y / 2)), ShadowColor)
@@ -1442,9 +1460,9 @@ TryAgain:
 
         Public Function GetImage() As Texture2D
             If Flipped = True Then
-                Return TextureManager.GetTexture("VoltorbFlip\Tile_Front", New Rectangle(Value * 32, 0, 32, 32))
+                Return TextureManager.GetTexture(VoltorbFlipScreen.Texture_Tile_Front, New Rectangle(Value * 32, 0, 32, 32))
             Else
-                Return TextureManager.GetTexture("VoltorbFlip\Tile_Back", New Rectangle(0, 0, 32, 32))
+                Return TextureManager.GetTexture(VoltorbFlipScreen.Texture_Tile_Back, New Rectangle(0, 0, 32, 32))
             End If
         End Function
 
