@@ -423,7 +423,7 @@ Namespace VoltorbFlip
                 End If
             End If
 
-            End Subqu
+        End Sub
         Private Sub DrawCursor()
             If GameState = States.Game OrElse GameState = States.Memo Then
                 Dim mainBackgroundColor As Color = New Color(255, 255, 255)
@@ -923,7 +923,7 @@ TryAgain:
 
                     'Quiting Voltorb Flip using the mouse
                     Dim QuitButtonRectangle As New Rectangle(CInt(GameOrigin.X + 424), CInt(GameOrigin.Y + 448), 128, 56)
-                    If Controls.Accept(True, False, False) AndAlso MouseHandler.IsInRectangle(QuitButtonRectangle) AndAlso GameState = States.Game OrElse GameState = States.Memo) AndAlso Delay = 0 Then
+                    If Controls.Accept(True, False, False) AndAlso MouseHandler.IsInRectangle(QuitButtonRectangle) AndAlso (GameState = States.Game OrElse GameState = States.Memo) AndAlso Delay = 0 Then
                         TextBox.Show(QuitQuestionText)
                         ChooseBox.CancelIndex = 1
                         SoundManager.PlaySound("select")
