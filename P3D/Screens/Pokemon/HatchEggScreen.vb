@@ -102,7 +102,7 @@
                     SoundManager.PlaySound("success", True)
                     Stage = 7
                     If Message = "" Then
-                        TextBox.Show("Congratulations!~Your egg hatched into~a " & cPokemon.GetName() & "!")
+                        TextBox.Show("Congratulations!~Your egg hatched into~" & cPokemon.GetName() & "!")
                     Else
                         TextBox.Show(Message)
                     End If
