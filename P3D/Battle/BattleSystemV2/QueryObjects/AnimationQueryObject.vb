@@ -104,10 +104,10 @@ Namespace BattleSystem
 		Public Function SpawnEntity(ByVal Position As Vector3, ByVal Texture As Texture2D, ByVal Scale As Vector3, ByVal Opacity As Single, Optional ByVal startDelay As Single = 0.0F, Optional ByVal endDelay As Single = 0.0F, Optional ModelPath As String = "") As Entity
 			Dim NewPosition As Vector3
 			If Not Position = Nothing Then
-				If BattleFlipped = True Then
-					Position.X *= -1
-				End If
 				If CurrentEntity IsNot Nothing Then
+					If BattleFlipped = True Then
+						Position.X *= -1
+					End If
 					NewPosition = CurrentEntity.Position + Position
 				Else
 					NewPosition = Position

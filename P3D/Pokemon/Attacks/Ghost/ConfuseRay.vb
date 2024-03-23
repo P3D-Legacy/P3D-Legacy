@@ -85,7 +85,12 @@
         Public Overrides Sub InternalOpponentPokemonMoveAnimation(ByVal BattleScreen As BattleScreen, ByVal BattleFlip As Boolean, ByVal CurrentPokemon As Pokemon, ByVal CurrentEntity As NPC)
             Dim MoveAnimation = New AnimationQueryObject(Nothing, BattleFlip)
             Dim SpawnPosition As Vector3 = CurrentEntity.Position
-            SpawnPosition.X = CurrentEntity.Position.X - 1.5F
+            If BattleFlip = False Then
+                SpawnPosition.X = CurrentEntity.Position.X - 1.5F
+            Else
+                SpawnPosition.X = CurrentEntity.Position.X + 1.5F
+            End If
+
             If CurrentEntity.Model IsNot Nothing Then
                 SpawnPosition.Y = CurrentEntity.Position.Y - 0.5F
             End If
