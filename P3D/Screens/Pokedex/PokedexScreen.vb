@@ -1984,46 +1984,49 @@ Public Class PokedexViewScreen
         End If
 
         If Controls.ShiftPressed = True Or ControllerHandler.ButtonPressed(Buttons.Back) Then
-            Dim OriginalFormIndex As Integer = Me.FormIndex
-            Me.FormIndex += 1
+            If Me.Forms.Count > 0 Then
 
-            If Me.FormIndex > Me.Forms.Count - 1 Then
-                Me.FormIndex = 0
-            End If
+                Dim OriginalFormIndex As Integer = Me.FormIndex
+                Me.FormIndex += 1
 
-            Dim formID As String = Me.Forms(Me.FormIndex)
-            If formID <> "" AndAlso Pokedex.GetEntryType(Core.Player.PokedexData, formID) = 0 Then
-                While Pokedex.GetEntryType(Core.Player.PokedexData, formID) = 0
-                    Me.FormIndex += 1
+                If Me.FormIndex > Me.Forms.Count - 1 Then
+                    Me.FormIndex = 0
+                End If
 
-                    If Me.FormIndex > Me.Forms.Count - 1 Then
-                        Me.FormIndex = 0
+                Dim formID As String = Me.Forms(Me.FormIndex)
+                If formID <> "" AndAlso Pokedex.GetEntryType(Core.Player.PokedexData, formID) = 0 Then
+                    While Pokedex.GetEntryType(Core.Player.PokedexData, formID) = 0
+                        Me.FormIndex += 1
+
+                        If Me.FormIndex > Me.Forms.Count - 1 Then
+                            Me.FormIndex = 0
+                        End If
+                        formID = Me.Forms(Me.FormIndex)
+                        If FormIndex = OriginalFormIndex Then
+                            Exit While
+                        End If
+                    End While
+                End If
+
+                If Me.Forms(Me.FormIndex) IsNot "" Then
+                    Dim PokeID As Integer = CInt(Me.Forms(Me.FormIndex).GetSplit(0, "_").GetSplit(0, ";"))
+                    Dim PokeAD As String = ""
+
+                    If Me.Forms(Me.FormIndex).Contains("_") Then
+                        PokeAD = PokemonForms.GetAdditionalValueFromDataFile(Me.Forms(Me.FormIndex))
+                    ElseIf Me.Forms(Me.FormIndex).Contains(";") Then
+                        PokeAD = Me.Forms(Me.FormIndex).GetSplit(1, ";")
                     End If
-                    formID = Me.Forms(Me.FormIndex)
+
+                    Dim newPokemon As Pokemon = Pokemon.GetPokemonByID(PokeID, PokeAD, True)
+
+                    Dim playCry As Boolean = True
                     If FormIndex = OriginalFormIndex Then
-                        Exit While
+                        playCry = False
                     End If
-                End While
-            End If
+                    LoadPokemonData(-1, newPokemon, playCry)
 
-            If Me.Forms(Me.FormIndex) IsNot "" Then
-                Dim PokeID As Integer = CInt(Me.Forms(Me.FormIndex).GetSplit(0, "_").GetSplit(0, ";"))
-                Dim PokeAD As String = ""
-
-                If Me.Forms(Me.FormIndex).Contains("_") Then
-                    PokeAD = PokemonForms.GetAdditionalValueFromDataFile(Me.Forms(Me.FormIndex))
-                ElseIf Me.Forms(Me.FormIndex).Contains(";") Then
-                    PokeAD = Me.Forms(Me.FormIndex).GetSplit(1, ";")
                 End If
-
-                Dim newPokemon As Pokemon = Pokemon.GetPokemonByID(PokeID, PokeAD, True)
-
-                Dim playCry As Boolean = True
-                If FormIndex = OriginalFormIndex Then
-                    playCry = False
-                End If
-                LoadPokemonData(-1, newPokemon, playCry)
-
             End If
         End If
 
@@ -2170,7 +2173,7 @@ Public Class PokedexViewScreen
 
     Private Sub UpdatePage3()
 
-        If Controls.Accept(True, False, False) = True Then
+        If Controls.Accept(True, False, False) = True AndAlso Me.DexIndex > -1 Then
             Dim centerVector As Vector2 = Core.GetMiddlePosition(New Size(CInt(64 * scale), CInt(64 * scale)))
 
             Dim pokemon As Pokemon = Nothing
