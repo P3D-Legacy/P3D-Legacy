@@ -2408,7 +2408,7 @@
 
                                                 op.Type1 = moveUsed.GetAttackType(own, BattleScreen)
                                                 op.Type2.Type = Element.Types.Blank
-                                                BattleScreen.BattleQuery.Add(New TextQueryObject(op.GetDisplayName() & " changed it's color!"))
+                                                BattleScreen.BattleQuery.Add(New TextQueryObject(op.GetDisplayName() & " changed its color!"))
                                             End If
                                         End If
                                     Case "rough skin"
@@ -5014,7 +5014,7 @@
                                 RaiseStat(own, own, BattleScreen, "Special Attack", 1, "Download analyzed the foe!", "download")
                             End If
                         Case "mold breaker"
-                            .BattleQuery.Add(New TextQueryObject(p.GetDisplayName() & " breakes the mold!"))
+                            .BattleQuery.Add(New TextQueryObject(p.GetDisplayName() & " breaks the mold!"))
                         Case "turbo blaze"
                             .BattleQuery.Add(New TextQueryObject(p.GetDisplayName() & " is radiating a blazing aura!"))
                         Case "teravolt"
