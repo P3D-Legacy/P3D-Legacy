@@ -53,41 +53,45 @@
         End Sub
 
         Public Overrides Function GetTimesToAttack(own As Boolean, BattleScreen As BattleScreen) As Integer
-            Dim i As Integer = 1
+            Dim i As Integer = 0
             If own = True Then
                 For Each p As Pokemon In Core.Player.Pokemons
-                    If p.Status = Pokemon.StatusProblems.None Then
+                    If p.Status <> Pokemon.StatusProblems.Fainted Then
                         i += 1
                     End If
                 Next
             ElseIf BattleScreen.IsTrainerBattle = True Then
                 For Each p As Pokemon In BattleScreen.Trainer.Pokemons
-                    If p.Status = Pokemon.StatusProblems.None Then
+                    If p.Status <> Pokemon.StatusProblems.Fainted Then
                         i += 1
                     End If
                 Next
+            Else
+                i += 1
             End If
-            i = i-1
             Return i
         End Function
 
         Public Overrides Function GetBasePower(own As Boolean, BattleScreen As BattleScreen) As Integer
             Dim avgTeamBaseAttack As Double = 0.0D
             Dim pokemonCounter As Integer = 0
-            If own Then
+            If own = True Then
                 For Each pokemon As Pokemon In Core.Player.Pokemons
                     If (Not pokemon.IsEgg) AndAlso pokemon.Status <> Pokemon.StatusProblems.Fainted And pokemon.HP > 0 Then
                         avgTeamBaseAttack += (pokemon.BaseAttack / 10)
                         pokemonCounter += 1
                     End If
                 Next
-            Else
+            ElseIf BattleScreen.IsTrainerBattle = True Then
                 For Each pokemon As Pokemon In BattleScreen.Trainer.Pokemons
                     If (Not pokemon.IsEgg) AndAlso pokemon.Status <> Pokemon.StatusProblems.Fainted And pokemon.HP > 0 Then
                         avgTeamBaseAttack += (pokemon.BaseAttack / 10)
                         pokemonCounter += 1
                     End If
                 Next
+            Else
+                avgTeamBaseAttack += (BattleScreen.OppPokemon.BaseAttack / 10)
+                pokemonCounter = 1
             End If
             If pokemonCounter <> 0 Then
                 avgTeamBaseAttack = avgTeamBaseAttack / pokemonCounter
