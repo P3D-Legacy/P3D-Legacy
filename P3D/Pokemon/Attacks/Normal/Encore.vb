@@ -61,9 +61,20 @@
                 op = BattleScreen.OwnPokemon
             End If
 
-            Dim lastMove As Attack = BattleScreen.FieldEffects.OppLastMove
-            If own = False Then
-                lastMove = BattleScreen.FieldEffects.OwnLastMove
+            Dim lastMove As Attack
+
+            If own = True Then
+                If (BattleScreen.FieldEffects.OppLastMove Is Nothing AndAlso Battle.OppStep.StepType = Battle.RoundConst.StepTypes.Move) OrElse Battle.OppStep.StepType = Battle.RoundConst.StepTypes.Move AndAlso CType(Battle.OppStep.Argument, Attack).ID <> BattleScreen.FieldEffects.OppLastMove.ID Then
+                    lastMove = CType(Battle.OppStep.Argument, Attack)
+                Else
+                    lastMove = BattleScreen.FieldEffects.OppLastMove
+                End If
+            Else
+                If (BattleScreen.FieldEffects.OwnLastMove Is Nothing AndAlso Battle.OwnStep.StepType = Battle.RoundConst.StepTypes.Move) OrElse Battle.OwnStep.StepType = Battle.RoundConst.StepTypes.Move AndAlso CType(Battle.OwnStep.Argument, Attack).ID <> BattleScreen.FieldEffects.OwnLastMove.ID Then
+                    lastMove = CType(Battle.OwnStep.Argument, Attack)
+                Else
+                    lastMove = BattleScreen.FieldEffects.OwnLastMove
+                End If
             End If
 
             If Not lastMove Is Nothing Then

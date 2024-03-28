@@ -80,48 +80,53 @@ Public Class PokemonForms
                                                                     form.WildFormTriggers.Add(arguments(10))
                                                                 End If
                                                                 If arguments.Count >= 12 Then
-                                                                    Select Case arguments(11).ToLower
-                                                                        Case "normal"
-                                                                            form.TypeChange = Element.Types.Normal
-                                                                        Case "fighting"
-                                                                            form.TypeChange = Element.Types.Fighting
-                                                                        Case "flying"
-                                                                            form.TypeChange = Element.Types.Flying
-                                                                        Case "poison"
-                                                                            form.TypeChange = Element.Types.Poison
-                                                                        Case "ground"
-                                                                            form.TypeChange = Element.Types.Ground
-                                                                        Case "rock"
-                                                                            form.TypeChange = Element.Types.Rock
-                                                                        Case "bug"
-                                                                            form.TypeChange = Element.Types.Bug
-                                                                        Case "ghost"
-                                                                            form.TypeChange = Element.Types.Ghost
-                                                                        Case "steel"
-                                                                            form.TypeChange = Element.Types.Steel
-                                                                        Case "fire"
-                                                                            form.TypeChange = Element.Types.Fire
-                                                                        Case "water"
-                                                                            form.TypeChange = Element.Types.Water
-                                                                        Case "grass"
-                                                                            form.TypeChange = Element.Types.Grass
-                                                                        Case "electric"
-                                                                            form.TypeChange = Element.Types.Electric
-                                                                        Case "psychic"
-                                                                            form.TypeChange = Element.Types.Psychic
-                                                                        Case "ice"
-                                                                            form.TypeChange = Element.Types.Ice
-                                                                        Case "dragon"
-                                                                            form.TypeChange = Element.Types.Dragon
-                                                                        Case "dark"
-                                                                            form.TypeChange = Element.Types.Dark
-                                                                        Case "fairy"
-                                                                            form.TypeChange = Element.Types.Fairy
-                                                                        Case "shadow"
-                                                                            form.TypeChange = Element.Types.Shadow
-                                                                        Case Else
-                                                                            form.TypeChange = Element.Types.Blank
-                                                                    End Select
+                                                                    If StringHelper.IsNumeric(arguments(11)) = False Then
+
+                                                                        Select Case arguments(11).ToLower
+                                                                            Case "normal"
+                                                                                form.TypeChange = Element.Types.Normal
+                                                                            Case "fighting"
+                                                                                form.TypeChange = Element.Types.Fighting
+                                                                            Case "flying"
+                                                                                form.TypeChange = Element.Types.Flying
+                                                                            Case "poison"
+                                                                                form.TypeChange = Element.Types.Poison
+                                                                            Case "ground"
+                                                                                form.TypeChange = Element.Types.Ground
+                                                                            Case "rock"
+                                                                                form.TypeChange = Element.Types.Rock
+                                                                            Case "bug"
+                                                                                form.TypeChange = Element.Types.Bug
+                                                                            Case "ghost"
+                                                                                form.TypeChange = Element.Types.Ghost
+                                                                            Case "steel"
+                                                                                form.TypeChange = Element.Types.Steel
+                                                                            Case "fire"
+                                                                                form.TypeChange = Element.Types.Fire
+                                                                            Case "water"
+                                                                                form.TypeChange = Element.Types.Water
+                                                                            Case "grass"
+                                                                                form.TypeChange = Element.Types.Grass
+                                                                            Case "electric"
+                                                                                form.TypeChange = Element.Types.Electric
+                                                                            Case "psychic"
+                                                                                form.TypeChange = Element.Types.Psychic
+                                                                            Case "ice"
+                                                                                form.TypeChange = Element.Types.Ice
+                                                                            Case "dragon"
+                                                                                form.TypeChange = Element.Types.Dragon
+                                                                            Case "dark"
+                                                                                form.TypeChange = Element.Types.Dark
+                                                                            Case "fairy"
+                                                                                form.TypeChange = Element.Types.Fairy
+                                                                            Case "shadow"
+                                                                                form.TypeChange = Element.Types.Shadow
+                                                                            Case Else
+                                                                                form.TypeChange = Element.Types.Blank
+                                                                        End Select
+                                                                    Else
+                                                                        form.TypeChange = BattleSystem.GameModeElementLoader.GetElementByID(CInt(arguments(11))).Type
+                                                                    End If
                                                                     If arguments.Count >= 13 Then
                                                                         If arguments(12) <> "" Then
                                                                             form.IncludeBaseFormInDexCount = CBool(arguments(12))
@@ -562,7 +567,7 @@ Public Class PokemonForms
         Public OverworldSpriteFileSuffix As String = ""
         Public CryFileSuffix As String = ""
         Public WildFormTriggers As New List(Of String)
-        Public TypeChange As Element.Types = Element.Types.Blank
+        Public TypeChange As Integer = Element.Types.Blank
         Public IncludeBaseFormInDexCount As Boolean = False
 
         Public Overridable Function GetInitialAdditionalData(ByVal P As Pokemon) As String
@@ -587,13 +592,13 @@ Public Class PokemonForms
                         ElseIf trigger(0).ToLower = "gender" Then
                             If GetGenderFormMatch(P, True) = "match" Then
                                 If TypeChange <> Element.Types.Blank Then
-                                    Return TypeChange.ToString
+                                    Return BattleSystem.GameModeElementLoader.GetElementByID(TypeChange).ToString
                                 Else
                                     Return AdditionalValue
                                 End If
                             End If
                         ElseIf trigger(0).ToLower = "season" Then
-                            If GetSeasonFormMatch(true) = "match" Then
+                            If GetSeasonFormMatch(True) = "match" Then
                                 If TypeChange <> Element.Types.Blank Then
                                     Return TypeChange.ToString
                                 Else

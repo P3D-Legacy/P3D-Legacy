@@ -12,7 +12,7 @@
 
             Select Case command.ToLower()
                 Case "notification"
-                    '@text.notification(message,[int_delay=500],[int_backgroundID=0],[int_IconID=0],[str_sfx],[str_script],[bool_force=0])
+                    '@text.notification(message,[int_delay=500],[int_backgroundID=0],[int_IconID=0],[str_sfx],[str_script],[bool_force=0],[clear_list=0])
                     Dim _NotificationPopup As New NotificationPopup
                     Dim args As String() = argument.Split(CChar(","))
                     Select Case args.Length
@@ -30,11 +30,21 @@
                             _NotificationPopup.Setup(args(0), int(args(1)), int(args(2)), int(args(3)), args(4), args(5))
                         Case 7
                             _NotificationPopup.Setup(args(0), int(args(1)), int(args(2)), int(args(3)), args(4), args(5), CBool(args(6)))
+                        Case 8
+                            _NotificationPopup.Setup(args(0), int(args(1)), int(args(2)), int(args(3)), args(4), args(5), CBool(args(6)))
                     End Select
-                    If args.Length = 7 AndAlso CBool(args(6)) = True Then
-                        CType(CurrentScreen, OverworldScreen).NotificationPopupList.Insert(0, _NotificationPopup)
-                    Else
-                        CType(CurrentScreen, OverworldScreen).NotificationPopupList.Add(_NotificationPopup)
+                    If args.Length = 8 Then
+                        If CType(CurrentScreen, OverworldScreen).NotificationPopupList.Count > 0 AndAlso CBool(args(7)) = True Then
+                            CType(CurrentScreen, OverworldScreen).NotificationPopupList(0)._delayDate = Date.Now
+                            If CType(CurrentScreen, OverworldScreen).NotificationPopupList.Count > 1 Then
+                                CType(CurrentScreen, OverworldScreen).NotificationPopupList.RemoveRange(1, CType(CurrentScreen, OverworldScreen).NotificationPopupList.Count - 2)
+                            End If
+                        End If
+                    End If
+                    If args.Length >= 7 AndAlso CBool(args(6)) = True Then
+                            CType(CurrentScreen, OverworldScreen).NotificationPopupList.Insert(0, _NotificationPopup)
+                        Else
+                            CType(CurrentScreen, OverworldScreen).NotificationPopupList.Add(_NotificationPopup)
                     End If
                 Case "show"
                     Screen.TextBox.reDelay = 0.0F

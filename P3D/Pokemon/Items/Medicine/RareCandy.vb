@@ -29,10 +29,6 @@ Namespace Items.Medicine
                 Dim beforeHP As Integer = Pokemon.MaxHP
                 Pokemon.LevelUp(False)
                 Pokemon.Experience = Pokemon.NeedExperience(Pokemon.Level)
-                If Pokemon.Status = P3D.Pokemon.StatusProblems.Fainted Then
-                    Pokemon.Status = P3D.Pokemon.StatusProblems.None
-                    Pokemon.HP = (Pokemon.MaxHP - beforeHP).Clamp(1, 999)
-                End If
 
                 Dim s As String =
                     "version=2" & Environment.NewLine &
@@ -68,6 +64,11 @@ Namespace Items.Medicine
 
                 If Pokemon.CanEvolve(EvolutionCondition.EvolutionTrigger.LevelUp, "") = True Then
                     s &= "@pokemon.evolve(" & PokeIndex & ")" & Environment.NewLine
+                End If
+
+                If Pokemon.Status = P3D.Pokemon.StatusProblems.Fainted Then
+                    s &= "@pokemon.setstatus(" & PokeIndex & ",none)" & Environment.NewLine &
+                         "@pokemon.setstat(" & PokeIndex & ",chp," & (Pokemon.MaxHP - beforeHP).Clamp(1, 999) & ")" & Environment.NewLine
                 End If
 
                 If removedItem = False Then

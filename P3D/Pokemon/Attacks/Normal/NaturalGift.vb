@@ -90,7 +90,7 @@ Namespace BattleSystem.Moves.Normal
 
             If Not p.Item Is Nothing Then
                 If p.Item.isBerry = True Then
-                    Return New Element(CType(p.Item, Items.Berry).Type)
+                    Return BattleSystem.GameModeElementLoader.GetElementByID(CType(p.Item, Items.Berry).Type)
                 End If
             End If
 

@@ -954,7 +954,7 @@ Public Class NewMainMenuScreen
                         SpriteBatch.Draw(tmpProfile.PokemonTextures(i), New Rectangle(displayRect.X + 30 + i * 70, displayRect.Y + 70, 64, 64), Color.White)
                     Next
                     GetFontRenderer().DrawString(FontManager.InGameFont, Localization.GetString("main_menu_savefile_name", "Player Name") & ": " & tmpProfile.Name & Environment.NewLine &
-                                                                            Localization.GetString("main_menu_savefile_gamemode", "GameMode") & ": " & tmpProfile.GameMode, New Vector2(displayRect.X + 30, displayRect.Y + 20), Color.White, 0F, Vector2.Zero, 1.0F, SpriteEffects.None, 0F)
+                                                                            Localization.GetString("main_menu_savefile_gamemode", "GameMode") & ": " & GameModeManager.GetGameMode(tmpProfile.GameMode).Name, New Vector2(displayRect.X + 30, displayRect.Y + 20), Color.White, 0F, Vector2.Zero, 1.0F, SpriteEffects.None, 0F)
                     GetFontRenderer().DrawString(FontManager.InGameFont, Localization.GetString("main_menu_savefile_badges", "Badges") & ": " & tmpProfile.Badges.ToString() & Environment.NewLine &
                                                                             Localization.GetString("main_menu_savefile_playtime", "Play time") & ": " & tmpProfile.TimePlayed & Environment.NewLine &
                                                                             Localization.GetString("main_menu_savefile_location", "Location") & ": " & tmpProfile.Location, New Vector2(displayRect.X + 30, displayRect.Y + 150), Color.White, 0F, Vector2.Zero, 1.0F, SpriteEffects.None, 0F)
@@ -1630,7 +1630,7 @@ Public Class GameModeSelectionScreen
             Dim displayText = _gameModes(i).Name.CropStringToWidth(FontManager.InGameFont, WIDTH - 32)
 
             If displayText = "Kolben" Then
-                displayText = "Pokemon 3D"
+                displayText = "Pokémon 3D"
             End If
             For x = 0 To CInt(WIDTH / 16)
                 For y = 0 To CInt(HEIGHT / 16)
@@ -1651,7 +1651,7 @@ Public Class GameModeSelectionScreen
 
             Dim dispName As String = GameMode.Name
             If dispName = "Kolben" Then
-                dispName = "Pokemon 3D"
+                dispName = "Pokémon 3D"
             End If
             Dim dispDescription As String = GameMode.Description.Replace("~", Environment.NewLine).Replace("*", Environment.NewLine)
             Dim dispVersion As String = GameMode.Version

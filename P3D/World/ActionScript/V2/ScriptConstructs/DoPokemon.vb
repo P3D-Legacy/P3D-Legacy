@@ -149,6 +149,28 @@
                     Dim moveIndex As Integer = int(argument.GetSplit(1))
 
                     Return Core.Player.Pokemons(pokeIndex).Attacks(moveIndex).Name
+                Case "levelattacks"
+                    Dim pokeIndex As Integer = int(argument.GetSplit(0))
+                    Dim MaxLevel As Integer = Core.Player.Pokemons(pokeIndex).Level
+                    Dim levelMoves As String = ""
+                    If argument.Split(",").Count > 1 Then
+                        If argument.GetSplit(1).ToLower = "-1" Then
+                            MaxLevel = Core.Player.Pokemons(pokeIndex).Level
+                        Else
+                            MaxLevel = CInt(argument.GetSplit(1))
+                        End If
+                    End If
+
+                    For Each level As Integer In Core.Player.Pokemons(pokeIndex).AttackLearns.Keys
+                        If level <= MaxLevel Then
+                            If levelMoves = "" Then
+                                levelMoves = Core.Player.Pokemons(pokeIndex).AttackLearns(level).ID.ToString
+                            Else
+                                levelMoves &= "," & Core.Player.Pokemons(pokeIndex).AttackLearns(level).ID.ToString
+                            End If
+                        End If
+                    Next
+                    Return levelMoves
                 Case "isshiny"
                     Dim index As Integer = int(argument.GetSplit(0))
 

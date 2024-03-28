@@ -21,6 +21,7 @@
                 ContentPackManager.Load(GameController.GamePath & "\ContentPacks\" & s & "\exceptions.dat")
             Next
 
+            BattleSystem.GameModeElementLoader.Load()
             BattleSystem.GameModeAttackLoader.Load()
             GameModeItemLoader.Load()
 
@@ -159,7 +160,7 @@
 
             Core.Player.filePrefix = folderPath
             Core.Player.GameStart = Date.Now
-            Core.Player.GameMode = GameModeManager.ActiveGameMode.Name
+            Core.Player.GameMode = GameModeManager.ActiveGameMode.DirectoryName
             Core.Player.startFOV = 60
             Core.Player.startFreeCameraMode = True
             Core.Player.startPosition = New Vector3(x, y, z)

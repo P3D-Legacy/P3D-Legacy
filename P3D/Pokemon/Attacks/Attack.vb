@@ -66,7 +66,7 @@
 
             CanPoison
             CanBurn
-            CanParalyse
+            CanParalyze
             CanSleep
             CanFreeze
             CanConfuse
@@ -181,8 +181,10 @@
         Public IsDefaultMove As Boolean = False 'if Pound gets loaded instead of the correct move, this is true.
 
         Public GameModeFunction As String = "" 'A GameMode can specify a pre defined function for a move.
+        Public GameModeBasePower As String = "" 'A GameMode can specify a base power calculation for a move.
         Public IsGameModeMove As Boolean = False
         Public gmDeductPP As Boolean = True
+        Public gmCopyMove As Integer = -1
 
         Private _power As Integer = 40
         Private _accuracy As Integer = 100
@@ -197,6 +199,8 @@
         Public Target As Targets = Targets.OneAdjacentTarget
         Public Priority As Integer = 0
         Public TimesToAttack As Integer = 1
+        Public gmTimesToAttack As String = "1"
+        Public gmUseMoveAnims As Attack = Nothing
         Public EffectChances As New List(Of Integer)
         '#End
 
@@ -1903,9 +1907,14 @@
         End Function
 
         Public Function GetEffectChance(ByVal i As Integer, ByVal own As Boolean, ByVal BattleScreen As BattleScreen) As Integer
-            Dim chance As Integer = Me.EffectChances(i)
+            Dim _attack As Attack = Me
+            If gmCopyMove <> -1 Then
+                _attack = GameModeAttackLoader.GetAttackByID(gmCopyMove)
+            End If
 
-            If Me.HasSecondaryEffect = True Then
+            Dim chance As Integer = _attack.EffectChances(i)
+
+            If _attack.HasSecondaryEffect = True Then
                 Dim p As Pokemon = BattleScreen.OwnPokemon
                 If own = False Then
                     p = BattleScreen.OppPokemon
@@ -1935,6 +1944,9 @@
         ''' <param name="Own">If the own Pokémon used the move.</param>
         ''' <param name="BattleScreen">Reference to the BattleScreen.</param>
         Public Overridable Sub PreAttack(ByVal Own As Boolean, ByVal BattleScreen As BattleScreen)
+            If gmCopyMove <> -1 Then
+                GameModeAttackLoader.GetAttackByID(gmCopyMove).PreAttack(Own, BattleScreen)
+            End If
             'DO NOTHING HERE
         End Sub
 
@@ -1944,6 +1956,9 @@
         ''' <param name="Own">If the own Pokémon used the move.</param>
         ''' <param name="BattleScreen">Reference to the BattleScreen.</param>
         Public Overridable Function MoveFailBeforeAttack(ByVal Own As Boolean, ByVal BattleScreen As BattleScreen) As Boolean
+            If gmCopyMove <> -1 Then
+                Return GameModeAttackLoader.GetAttackByID(gmCopyMove).MoveFailBeforeAttack(Own, BattleScreen)
+            End If
             'DO NOTHING HERE
             Return False
         End Function
@@ -1954,7 +1969,20 @@
         ''' <param name="Own">If the own Pokémon used the move.</param>
         ''' <param name="BattleScreen">Reference to the BattleScreen.</param>
         Public Overridable Function GetBasePower(ByVal own As Boolean, ByVal BattleScreen As BattleScreen) As Integer
-            Return Me.Power
+            If Me.IsGameModeMove = False Then
+                Return Me.Power
+            Else
+                If gmCopyMove <> -1 Then
+                    Dim _attack As Attack = GameModeAttackLoader.GetAttackByID(gmCopyMove)
+                    If _attack.IsGameModeMove = False Then
+                        Return _attack.GetBasePower(own, BattleScreen)
+                    Else
+                        Return AttackSpecialBasePower.GetGameModeBasePower(_attack, own, BattleScreen)
+                    End If
+                Else
+                    Return AttackSpecialBasePower.GetGameModeBasePower(Me, own, BattleScreen)
+                End If
+            End If
         End Function
 
         ''' <summary>
@@ -1963,7 +1991,12 @@
         ''' <param name="Own">If the own Pokémon used the move.</param>
         ''' <param name="BattleScreen">Reference to the BattleScreen.</param>
         Public Overridable Function GetDamage(ByVal Critical As Boolean, ByVal Own As Boolean, ByVal targetPokemon As Boolean, ByVal BattleScreen As BattleScreen, Optional ByVal ExtraParameter As String = "") As Integer
-            Return BattleCalculation.CalculateDamage(Me, Critical, Own, targetPokemon, BattleScreen, ExtraParameter)
+            If gmCopyMove <> -1 Then
+                Dim _attack As Attack = GameModeAttackLoader.GetAttackByID(gmCopyMove)
+                Return BattleCalculation.CalculateDamage(_attack, Critical, Own, targetPokemon, BattleScreen, ExtraParameter)
+            Else
+                Return BattleCalculation.CalculateDamage(Me, Critical, Own, targetPokemon, BattleScreen, ExtraParameter)
+            End If
         End Function
 
         ''' <summary>
@@ -1972,7 +2005,28 @@
         ''' <param name="Own">If the own Pokémon used the move.</param>
         ''' <param name="BattleScreen">Reference to the BattleScreen.</param>
         Public Overridable Function GetTimesToAttack(ByVal own As Boolean, ByVal BattleScreen As BattleScreen) As Integer
-            Return Me.TimesToAttack
+            If Me.IsGameModeMove = False Then
+                Return Me.TimesToAttack
+            Else
+                If gmCopyMove <> -1 Then
+                    Dim _attack As Attack = GameModeAttackLoader.GetAttackByID(gmCopyMove)
+                    If _attack.IsGameModeMove = False Then
+                        Return _attack.GetTimesToAttack(own, BattleScreen)
+                    Else
+                        If _attack.gmTimesToAttack.Contains("-") Then
+                            Return Core.Random.Next(CInt(_attack.gmTimesToAttack.GetSplit(0, "-")), CInt(_attack.gmTimesToAttack.GetSplit(1, "-")) + 1)
+                        Else
+                            Return CInt(_attack.gmTimesToAttack)
+                        End If
+                    End If
+                Else
+                    If gmTimesToAttack.Contains("-") Then
+                        Return Core.Random.Next(CInt(gmTimesToAttack.GetSplit(0, "-")), CInt(gmTimesToAttack.GetSplit(1, "-")) + 1)
+                    Else
+                        Return CInt(gmTimesToAttack)
+                    End If
+                End If
+            End If
         End Function
 
         ''' <summary>
@@ -1982,21 +2036,39 @@
         ''' <param name="BattleScreen">Reference to the BattleScreen.</param>
         Public Overridable Sub MoveHits(ByVal own As Boolean, ByVal BattleScreen As BattleScreen)
             If Me.IsGameModeMove = True Then
-                AttackSpecialFunctions.ExecuteMoveHitsFunction(Me, own, BattleScreen)
+                If gmCopyMove <> -1 Then
+                    Dim _attack As Attack = GameModeAttackLoader.GetAttackByID(gmCopyMove)
+                    If _attack.IsGameModeMove = False Then
+                        _attack.MoveHits(own, BattleScreen)
+                    Else
+                        AttackSpecialFunctions.ExecuteMoveHitsFunction(_attack, own, BattleScreen)
+                    End If
+                Else
+                    AttackSpecialFunctions.ExecuteMoveHitsFunction(Me, own, BattleScreen)
+                End If
             Else
                 'DO NOTHING HERE (will do secondary effect if moves overrides it)
             End If
         End Sub
 
         Public Overridable Sub MoveRecoil(ByVal own As Boolean, ByVal BattleScreen As BattleScreen)
+            If gmCopyMove <> -1 Then
+                GameModeAttackLoader.GetAttackByID(gmCopyMove).MoveRecoil(own, BattleScreen)
+            End If
             'DO NOTHING HERE (will do recoil if moves overrides it)
         End Sub
 
         Public Overridable Sub MoveRecharge(ByVal own As Boolean, ByVal BattleScreen As BattleScreen)
+            If gmCopyMove <> -1 Then
+                GameModeAttackLoader.GetAttackByID(gmCopyMove).MoveRecharge(own, BattleScreen)
+            End If
             'DO NOTHING HERE (will do a one turn recharge if moves overrides it)
         End Sub
 
         Public Overridable Sub MoveMultiTurn(ByVal own As Boolean, ByVal BattleScreen As BattleScreen)
+            If gmCopyMove <> -1 Then
+                GameModeAttackLoader.GetAttackByID(gmCopyMove).MoveMultiTurn(own, BattleScreen)
+            End If
             'DO NOTHING HERE (will do the multi turn countdown if moves overrides it)
         End Sub
 
@@ -2010,6 +2082,9 @@
         ''' <param name="Own">If the own Pokémon used the move.</param>
         ''' <param name="BattleScreen">Reference to the BattleScreen.</param>
         Public Overridable Sub MoveMisses(ByVal own As Boolean, ByVal BattleScreen As BattleScreen)
+            If gmCopyMove <> -1 Then
+                GameModeAttackLoader.GetAttackByID(gmCopyMove).MoveMisses(own, BattleScreen)
+            End If
             'DO NOTHING HERE
         End Sub
 
@@ -2019,6 +2094,9 @@
         ''' <param name="Own">If the own Pokémon used the move.</param>
         ''' <param name="BattleScreen">Reference to the BattleScreen.</param>
         Public Overridable Sub MoveProtectedDetected(ByVal own As Boolean, ByVal BattleScreen As BattleScreen)
+            If gmCopyMove <> -1 Then
+                GameModeAttackLoader.GetAttackByID(gmCopyMove).MoveProtectedDetected(own, BattleScreen)
+            End If
             'DO NOTHING HERE
         End Sub
 
@@ -2028,6 +2106,9 @@
         ''' <param name="Own">If the own Pokémon used the move.</param>
         ''' <param name="BattleScreen">Reference to the BattleScreen.</param>
         Public Overridable Sub MoveHasNoEffect(ByVal own As Boolean, ByVal BattleScreen As BattleScreen)
+            If gmCopyMove <> -1 Then
+                GameModeAttackLoader.GetAttackByID(gmCopyMove).MoveHasNoEffect(own, BattleScreen)
+            End If
             'DO NOTHING HERE
         End Sub
 
@@ -2077,7 +2158,16 @@
         ''' <param name="BattleScreen">Reference to the BattleScreen.</param>
         Public Overridable Function DeductPP(ByVal own As Boolean, ByVal BattleScreen As BattleScreen) As Boolean
             If Me.IsGameModeMove = True Then
-                Return gmDeductPP
+                If gmCopyMove <> -1 Then
+                    Dim _attack As Attack = GameModeAttackLoader.GetAttackByID(gmCopyMove)
+                    If _attack.IsGameModeMove = False Then
+                        Return _attack.DeductPP(own, BattleScreen)
+                    Else
+                        Return _attack.gmDeductPP
+                    End If
+                Else
+                    Return gmDeductPP
+                End If
             Else
                 Return True
             End If
@@ -2098,6 +2188,10 @@
         ''' <param name="Own">If the own Pokémon used the move.</param>
         ''' <param name="BattleScreen">Reference to the BattleScreen.</param>
         Public Overridable Sub MoveSelected(ByVal own As Boolean, ByVal BattleScreen As BattleScreen)
+            If gmCopyMove <> -1 Then
+                GameModeAttackLoader.GetAttackByID(gmCopyMove).MoveSelected(own, BattleScreen)
+            End If
+
             'DO NOTHING
         End Sub
 
@@ -2107,6 +2201,9 @@
         ''' <param name="Own">If the own Pokémon used the move.</param>
         ''' <param name="BattleScreen">Reference to the BattleScreen.</param>
         Public Overridable Sub BeforeDealingDamage(ByVal own As Boolean, ByVal BattleScreen As BattleScreen)
+            If gmCopyMove <> -1 Then
+                GameModeAttackLoader.GetAttackByID(gmCopyMove).BeforeDealingDamage(own, BattleScreen)
+            End If
             'DO NOTHING
         End Sub
 
@@ -2116,6 +2213,9 @@
         ''' <param name="Own">If the own Pokémon used the move.</param>
         ''' <param name="BattleScreen">Reference to the BattleScreen.</param>
         Public Overridable Sub AbsorbedBySubstitute(ByVal own As Boolean, ByVal BattleScreen As BattleScreen)
+            If gmCopyMove <> -1 Then
+                GameModeAttackLoader.GetAttackByID(gmCopyMove).AbsorbedBySubstitute(own, BattleScreen)
+            End If
             'DO NOTHING
         End Sub
 
@@ -2125,6 +2225,9 @@
         ''' <param name="Own">If the own Pokémon used the move.</param>
         ''' <param name="BattleScreen">Reference to the BattleScreen.</param>
         Public Overridable Sub MoveFailsSoundproof(ByVal own As Boolean, ByVal BattleScreen As BattleScreen)
+            If gmCopyMove <> -1 Then
+                GameModeAttackLoader.GetAttackByID(gmCopyMove).MoveFailsSoundproof(own, BattleScreen)
+            End If
             'DO NOTHING
         End Sub
 
@@ -2134,6 +2237,9 @@
         ''' <param name="Own">If the own Pokémon used the move.</param>
         ''' <param name="BattleScreen">Reference to the BattleScreen.</param>
         Public Overridable Sub InflictedFlinch(ByVal own As Boolean, ByVal BattleScreen As BattleScreen)
+            If gmCopyMove <> -1 Then
+                GameModeAttackLoader.GetAttackByID(gmCopyMove).InflictedFlinch(own, BattleScreen)
+            End If
             'DO NOTHING
         End Sub
 
@@ -2143,6 +2249,9 @@
         ''' <param name="Own">If the own Pokémon is confused.</param>
         ''' <param name="BattleScreen">Reference to the BattleScreen.</param>
         Public Overridable Sub HurtItselfInConfusion(ByVal own As Boolean, ByVal BattleScreen As BattleScreen)
+            If gmCopyMove <> -1 Then
+                GameModeAttackLoader.GetAttackByID(gmCopyMove).HurtItselfInConfusion(own, BattleScreen)
+            End If
             'DO NOTHING
         End Sub
 
@@ -2152,6 +2261,9 @@
         ''' <param name="Own">If the own Pokémon is in love.</param>
         ''' <param name="BattleScreen">Reference to the BattleScreen.</param>
         Public Overridable Sub IsAttracted(ByVal own As Boolean, ByVal BattleScreen As BattleScreen)
+            If gmCopyMove <> -1 Then
+                GameModeAttackLoader.GetAttackByID(gmCopyMove).IsAttracted(own, BattleScreen)
+            End If
             'DO NOTHING
         End Sub
 
@@ -2161,6 +2273,9 @@
         ''' <param name="Own">If the own Pokémon used the move.</param>
         ''' <param name="BattleScreen">Reference to the BattleScreen.</param>
         Public Overridable Sub IsSleeping(ByVal own As Boolean, ByVal BattleScreen As BattleScreen)
+            If gmCopyMove <> -1 Then
+                GameModeAttackLoader.GetAttackByID(gmCopyMove).IsSleeping(own, BattleScreen)
+            End If
             'DO NOTHING
         End Sub
 
@@ -2213,7 +2328,13 @@
         End Sub
 
         Public Overridable Sub InternalUserPokemonMoveAnimation(ByVal BattleScreen As BattleScreen, ByVal BattleFlip As Boolean, ByVal CurrentPokemon As Pokemon, ByVal CurrentEntity As NPC)
-            'Override this method in the attack class to insert the move animation query objects into the queue.
+            If Me.IsGameModeMove = True Then
+                If gmUseMoveAnims IsNot Nothing Then
+                    gmUseMoveAnims.InternalUserPokemonMoveAnimation(BattleScreen, BattleFlip, CurrentPokemon, CurrentEntity)
+                End If
+            Else
+                'Override this method in the attack class to insert the move animation query objects into the queue.
+            End If
         End Sub
 
         Public Sub OpponentPokemonMoveAnimation(ByVal BattleScreen As BattleScreen, ByVal own As Boolean)
@@ -2231,7 +2352,13 @@
         End Sub
 
         Public Overridable Sub InternalOpponentPokemonMoveAnimation(ByVal BattleScreen As BattleScreen, ByVal BattleFlip As Boolean, ByVal CurrentPokemon As Pokemon, ByVal CurrentEntity As NPC)
-            'Override this method in the attack class to insert the move animation query objects into the queue.
+            If Me.IsGameModeMove = True Then
+                If gmUseMoveAnims IsNot Nothing Then
+                    gmUseMoveAnims.InternalOpponentPokemonMoveAnimation(BattleScreen, BattleFlip, CurrentPokemon, CurrentEntity)
+                End If
+            Else
+                'Override this method in the attack class to insert the move animation query objects into the queue.
+            End If
         End Sub
 
 #End Region

@@ -211,6 +211,7 @@ Namespace ScriptVersion2
             r(New ScriptCommand("level", "waitforsave", "Makes the level idle until the current saving of an GameJolt save is done."))
             r(New ScriptCommand("level", "reload", "Reloads the current map."))
             r(New ScriptCommand("level", "setsafari", {New ScriptArgument("safari", ScriptArgument.ArgumentTypes.Bool)}.ToList(), "Sets if the current map is a Safari Zone (influences battle style)."))
+            r(New ScriptCommand("level", "setridetype", {New ScriptArgument("rideType", ScriptArgument.ArgumentTypes.Int, {"0-3"})}.ToList(), "Sets the Ride Type of the current map. (0 = Depends on CanDig and CanFly tags, 1 = Can ride, 2 = Can not ride, 3 = Can't stop riding once started)"))
             ' Constructs:
             r(New ScriptCommand("level", "mapfile", "str", "Returns the mapfile of the currently loaded map.", ",", True))
             r(New ScriptCommand("level", "levelfile", "str", "Returns the mapfile of the currently loaded map.", ",", True))
@@ -290,6 +291,7 @@ Namespace ScriptVersion2
             r(New ScriptCommand("item", "messagegive", {New ScriptArgument("ItemID", ScriptArgument.ArgumentTypes.Int),
                                              New ScriptArgument("Amount", ScriptArgument.ArgumentTypes.Int, True, "1")}.ToList(), "Displays a message for getting the specified amount of items."))
             r(New ScriptCommand("item", "repel", {New ScriptArgument("RepelItemID", ScriptArgument.ArgumentTypes.Int, {"20", "42", "43"})}.ToList(), "Adds the steps of the Repel to the Repel steps of the player."))
+            r(New ScriptCommand("item", "use", {New ScriptArgument("ItemID", ScriptArgument.ArgumentTypes.Str)}.ToList(), "Uses the specified item if the player has it."))
             r(New ScriptCommand("item", "select", {New ScriptArgument("AllowedPages", ScriptArgument.ArgumentTypes.Str, True, "-1"),
                                              New ScriptArgument("AllowedItems", ScriptArgument.ArgumentTypes.Str, True, "-1")}.ToList(), "Opens an item select screen with only the specified item type pages (separated with "";"", e.g. ""0;1;2"" or ""standard;medicine;plants"") and possible item IDs (single items separated with "";"", or with a ""-"" if you want a range, e.g. ""2000-2066"")."))
 
@@ -825,6 +827,7 @@ Namespace ScriptVersion2
                                                New ScriptArgument("trainerName", ScriptArgument.ArgumentTypes.Str, True, "Current TrainerName"),
                                                New ScriptArgument("heldItemID", ScriptArgument.ArgumentTypes.Int, True, "0"),
                                                New ScriptArgument("isShiny", ScriptArgument.ArgumentTypes.Bool, True, "false")}.ToList(), "Adds a Pokémon with the given Pokémon properties to the storage system."))
+            r(New ScriptCommand("pokemon", "ride", {New ScriptArgument("pokemonID", ScriptArgument.ArgumentTypes.Int, True, "-1")}.ToList(), "Makes a Pokémon in the player's party use the field move Ride. If the argument is left empty, the first Pokémon who knows Ride gets selected."))
 
 
             ' Constructs:
@@ -862,6 +865,8 @@ Namespace ScriptVersion2
             r(New ScriptCommand("pokemon", "countattacks", "int", {New ScriptArgument("pokemonIndex", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Counts the moves the Pokémon knows.", ",", True))
             r(New ScriptCommand("pokemon", "attackname", "str", {New ScriptArgument("pokemonIndex", ScriptArgument.ArgumentTypes.Int),
                                                              New ScriptArgument("moveIndex", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Returns the name of the move of a Pokémon in the player's party.", ",", True))
+            r(New ScriptCommand("pokemon", "levelattacks", "str", {New ScriptArgument("pokemonIndex", ScriptArgument.ArgumentTypes.Int),
+                                                             New ScriptArgument("maxLevel", ScriptArgument.ArgumentTypes.Int, True, "-1")}.ToList(), "Returns a list of move IDs separated by commas that a Pokémon in the player's party can learn at or below its current level/the level specified by the maxLevel argument.", ",", True))
             r(New ScriptCommand("pokemon", "isShiny", "bool", {New ScriptArgument("pokemonIndex", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Returns if the Pokémon is Shiny.", ",", True))
             r(New ScriptCommand("pokemon", "nature", "str", {New ScriptArgument("pokemonIndex", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Returns the nature of a Pokémon in the player's party.", ",", True))
             r(New ScriptCommand("pokemon", "ownpokemon", "bool", {New ScriptArgument("pokemonIndex", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Returns if a Pokémon in the player's party was caught by the player.", ",", True))

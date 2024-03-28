@@ -114,6 +114,11 @@ Public Class GameModeItemLoader
                             item.gmBattlePointsPrice = CInt(value)
                         Case "catchmultiplier"
                             item.gmCatchMultiplier = CSng(value.ReplaceDecSeparator)
+                        Case "expmultiplier"
+                            If value.Split(",").Count > 1 Then
+                                item.gmOverrideTradeExp = CBool(value.GetSplit(1, ","))
+                            End If
+                            item.gmExpMultiplier = CDbl(value.GetSplit(0, ",").ReplaceDecSeparator)
                         Case "maxstack"
                             item.gmMaxStack = CInt(value)
                         Case "flingdamage"
@@ -200,7 +205,12 @@ Public Class GameModeItemLoader
                     ElseIf item.gmName.StartsWith("HM") Then
                         item.gmSortValue = -100000 + CInt(item.gmName.Remove(0, 2))
                     End If
-                    item.gmTextureSource = "Items\ItemSheet"
+                    If item.gmTeachMove.Type.IsGameModeElement = False Then
+                        item.gmTextureSource = "Items\ItemSheet"
+                    Else
+                        item.gmTextureSource = item.gmTeachMove.Type.gmMachineTextureSource
+                    End If
+
                     item.SetTeachMoveTextureRectangle()
 
                 End If

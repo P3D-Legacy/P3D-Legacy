@@ -34,7 +34,7 @@ Public Class FontManager
             End If
         Next
         'if there's a game mode loaded, look in that too for additional fonts
-        If Not GameModeManager.ActiveGameMode.Name = "Kolben" Then
+        If Not GameModeManager.ActiveGameMode.DirectoryName = "Kolben" Then
             If Not GameModeManager.ActiveGameMode.ContentPath = "\Content\" Then
                 If System.IO.Directory.Exists(GameController.GamePath & GameModeManager.ActiveGameMode.ContentPath & "\Fonts\BMP") = True Then
                     For Each s As String In System.IO.Directory.GetFiles(GameController.GamePath & GameModeManager.ActiveGameMode.ContentPath & "\Fonts\BMP")

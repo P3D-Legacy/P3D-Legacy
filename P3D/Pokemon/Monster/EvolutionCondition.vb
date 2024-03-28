@@ -207,7 +207,7 @@ Public Class EvolutionCondition
                         Case ConditionTypes.InPartyType
                             Dim isInParty As Boolean = False
                             For Each pokemon As Pokemon In Core.Player.Pokemons
-                                If pokemon.IsType(New Element(c.Argument).Type) = True Then
+                                If pokemon.IsType(BattleSystem.GameModeElementLoader.GetElementByName(c.Argument).Type) = True Then
                                     isInParty = True
                                     Exit For
                                 End If

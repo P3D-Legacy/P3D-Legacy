@@ -123,6 +123,11 @@
                             steps = 250
                     End Select
                     Core.Player.RepelSteps += steps
+                Case "use"
+                    Dim itemID As String = argument
+                    If Core.Player.Inventory.GetItemAmount(itemID) > 0 Then
+                        Item.GetItemByID(itemID).Use()
+                    End If
                 Case "select"
                     Dim allowedPages As Integer()
                     Dim allowedItems As New List(Of String)

@@ -53,7 +53,7 @@
 
             Me.AIField1 = AIField.Damage
             Me.AIField2 = AIField.MultiTurn
-            Me.AIField3 = AIField.CanParalyse
+            Me.AIField3 = AIField.CanParalyze
 
             EffectChances.Add(30)
         End Sub

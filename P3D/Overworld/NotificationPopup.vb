@@ -59,7 +59,7 @@ Public Class NotificationPopup
         FrameSizeBack = CInt(BackTexture.Width / 3)
         _background = TextureManager.GetTexture(BackTexture, New Rectangle(CInt(_backgroundIndex.X * FrameSizeBack), CInt(_backgroundIndex.Y * FrameSizeBack), FrameSizeBack, FrameSizeBack))
 
-        _positionY = CInt(0 - _size.Height * (FrameSizeBack / 3) * _scale - 12)
+        _positionY = CInt(0 - _size.Height * (FrameSizeBack / 3) * _scale - (FrameSizeBack / 3 * _scale) - 5)
 
         If IconIndex <> -1 Then
             _iconIndex = New Vector2(IconIndex, 0)
@@ -127,7 +127,7 @@ Public Class NotificationPopup
                 Dim BackY As Integer = CInt(0 - _size.Height * (FrameSizeBack / 3) * _scale - (FrameSizeBack / 3 * _scale) - 5)
                 If Me._interacted = True OrElse _forceAccept = True Then
                     If Me._positionY > BackY Then
-                        Me._positionY -= CInt(1.5 * (FrameSizeBack / 3 * _scale) / _size.Height)
+                        Me._positionY -= CInt(1.6 * (FrameSizeBack / 3 * _scale) / _size.Height)
                         If Me._positionY <= BackY Then
                             Me._positionY = BackY
                             If Me._scriptFile <> "" Then
@@ -138,7 +138,7 @@ Public Class NotificationPopup
                     End If
                 Else
                     If Me._positionY > BackY Then
-                        Me._positionY -= CInt(0.7 * (FrameSizeBack / 3 * _scale) / _size.Height)
+                        Me._positionY -= CInt(1.0 * (FrameSizeBack / 3 * _scale) / _size.Height)
                         If Me._positionY <= BackY Then
                             Me._positionY = BackY
                             Me.IsReady = True

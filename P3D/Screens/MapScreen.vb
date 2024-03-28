@@ -2,6 +2,12 @@
 
     Inherits Screen
 
+    Public Enum VisibleMode As Integer
+        Always
+        Temporary
+        Unlock
+        Register
+    End Enum
     Public Const RasterSize As Integer = 32
     Public Shared mapOffsetX As Integer = 100
     Public Shared mapOffsetY As Integer = 75
@@ -148,12 +154,29 @@
                         If Tags.ContainsKey("playerposition") = True Then
                             PlayerPositionList = Tags("playerposition").Split(CChar(",")).ToList()
                         End If
+                        Dim Visible As Integer = VisibleMode.Always
+                        If Tags.ContainsKey("visible") = True Then
+                            Select Case Tags("visible").ToLower()
+                                Case "0", "always"
+                                    Visible = VisibleMode.Always
+                                Case "1", "temporary"
+                                    Visible = VisibleMode.Temporary
+                                Case "2", "unlock"
+                                    Visible = VisibleMode.Unlock
+                                Case "3", "register"
+                                    Visible = VisibleMode.Register
+                            End Select
+                        End If
+                        Dim Register As String = ""
+                        If Tags.ContainsKey("register") = True Then
+                            Register = Tags("register")
+                        End If
                         If Tags.ContainsKey("flyto") = True Then
                             Dim FlyTo As New List(Of String)
                             FlyTo = Tags("flyto").Split(CChar(",")).ToList()
-                            cities.Add(New City(Name, MapFiles, CInt(PositionList(0)), CInt(PositionList(1)), CitySize, FlyTo(0), New Vector3(CSng(FlyTo(1)), CSng(FlyTo(2)), CSng(FlyTo(3))), CInt(PlayerPositionList(0)), CInt(PlayerPositionList(1))))
+                            cities.Add(New City(Name, MapFiles, CInt(PositionList(0)), CInt(PositionList(1)), CitySize, FlyTo(0), New Vector3(CSng(FlyTo(1)), CSng(FlyTo(2)), CSng(FlyTo(3))), CInt(PlayerPositionList(0)), CInt(PlayerPositionList(1)), Visible, Register))
                         Else
-                            cities.Add(New City(Name, MapFiles, CInt(PositionList(0)), CInt(PositionList(1)), CitySize, "", Nothing, CInt(PlayerPositionList(0)), CInt(PlayerPositionList(1))))
+                            cities.Add(New City(Name, MapFiles, CInt(PositionList(0)), CInt(PositionList(1)), CitySize, "", Nothing, CInt(PlayerPositionList(0)), CInt(PlayerPositionList(1)), Visible, Register))
                         End If
                     Case "route"
                         Dim Name As String = Tags("name")
@@ -209,12 +232,31 @@
                         If Tags.ContainsKey("playerposition") = True Then
                             PlayerPositionList = Tags("playerposition").Split(CChar(",")).ToList()
                         End If
+
+                        Dim Visible As Integer = VisibleMode.Always
+                        If Tags.ContainsKey("visible") = True Then
+                            Select Case Tags("visible").ToLower()
+                                Case "0", "always"
+                                    Visible = VisibleMode.Always
+                                Case "1", "temporary"
+                                    Visible = VisibleMode.Temporary
+                                Case "2", "unlock"
+                                    Visible = VisibleMode.Unlock
+                                Case "3", "register"
+                                    Visible = VisibleMode.Register
+                            End Select
+                        End If
+
+                        Dim Register As String = ""
+                        If Tags.ContainsKey("register") = True Then
+                            Register = Tags("register")
+                        End If
                         If Tags.ContainsKey("flyto") = True Then
                             Dim FlyTo As New List(Of String)
                             FlyTo = Tags("flyto").Split(CChar(",")).ToList()
-                            routes.Add(New Route(Name, MapFiles, CInt(PositionList(0)), CInt(PositionList(1)), RouteDirection, RouteType, FlyTo(0), New Vector3(CSng(FlyTo(1)), CSng(FlyTo(2)), CSng(FlyTo(3))), CInt(PlayerPositionList(0)), CInt(PlayerPositionList(1))))
+                            routes.Add(New Route(Name, MapFiles, CInt(PositionList(0)), CInt(PositionList(1)), RouteDirection, RouteType, FlyTo(0), New Vector3(CSng(FlyTo(1)), CSng(FlyTo(2)), CSng(FlyTo(3))), CInt(PlayerPositionList(0)), CInt(PlayerPositionList(1)), Visible, Register))
                         Else
-                            routes.Add(New Route(Name, MapFiles, CInt(PositionList(0)), CInt(PositionList(1)), RouteDirection, RouteType, "", Nothing, CInt(PlayerPositionList(0)), CInt(PlayerPositionList(1))))
+                            routes.Add(New Route(Name, MapFiles, CInt(PositionList(0)), CInt(PositionList(1)), RouteDirection, RouteType, "", Nothing, CInt(PlayerPositionList(0)), CInt(PlayerPositionList(1)), Visible, Register))
                         End If
                     Case "place"
                         Dim Name As String = Tags("name")
@@ -242,12 +284,32 @@
                         If Tags.ContainsKey("playerposition") = True Then
                             PlayerPositionList = Tags("playerposition").Split(CChar(",")).ToList()
                         End If
+
+                        Dim Visible As Integer = VisibleMode.Always
+                        If Tags.ContainsKey("visible") = True Then
+                            Select Case Tags("visible").ToLower()
+                                Case "0", "always"
+                                    Visible = VisibleMode.Always
+                                Case "1", "temporary"
+                                    Visible = VisibleMode.Temporary
+                                Case "2", "unlock"
+                                    Visible = VisibleMode.Unlock
+                                Case "3", "register"
+                                    Visible = VisibleMode.Register
+                            End Select
+                        End If
+
+                        Dim Register As String = ""
+                        If Tags.ContainsKey("register") = True Then
+                            Register = Tags("register")
+                        End If
+
                         If Tags.ContainsKey("flyto") = True Then
                             Dim FlyTo As New List(Of String)
                             FlyTo = Tags("flyto").Split(CChar(",")).ToList()
-                            places.Add(New Place(Name, MapFiles, CInt(PositionList(0)), CInt(PositionList(1)), PlaceSize, FlyTo(0), New Vector3(CSng(FlyTo(1)), CSng(FlyTo(2)), CSng(FlyTo(3))), CInt(PlayerPositionList(0)), CInt(PlayerPositionList(1))))
+                            places.Add(New Place(Name, MapFiles, CInt(PositionList(0)), CInt(PositionList(1)), PlaceSize, FlyTo(0), New Vector3(CSng(FlyTo(1)), CSng(FlyTo(2)), CSng(FlyTo(3))), CInt(PlayerPositionList(0)), CInt(PlayerPositionList(1)), Visible, Register))
                         Else
-                            places.Add(New Place(Name, MapFiles, CInt(PositionList(0)), CInt(PositionList(1)), PlaceSize, "", Nothing, CInt(PlayerPositionList(0)), CInt(PlayerPositionList(1))))
+                            places.Add(New Place(Name, MapFiles, CInt(PositionList(0)), CInt(PositionList(1)), PlaceSize, "", Nothing, CInt(PlayerPositionList(0)), CInt(PlayerPositionList(1)), Visible, Register))
                         End If
                 End Select
 
@@ -344,10 +406,27 @@
         If hoverText = "" And pokehoverText = "" And drawObjects(2) = True Then
             For Each Place As Place In places
                 If Place.getRectangle(mapOffset).Contains(cursorPoint) = True Then
-                    If Controls.Accept(True, True, True) = True Then
-                        Place.Click(flag)
+                    Dim DoUpdate As Boolean = False
+                    If Place.Visible = VisibleMode.Always OrElse Place.Visible = VisibleMode.Temporary AndAlso Place.ContainFiles.Contains(Level.LevelFile.ToLower()) = True Then
+                        DoUpdate = True
+                    ElseIf Place.Visible = VisibleMode.Unlock Then
+                        For Each p As String In Place.ContainFiles
+                            If Core.Player.VisitedMaps.ToLower().Split(CChar(",")).Contains(p.ToLower()) = True Then
+                                DoUpdate = True
+                            End If
+                            Exit For
+                        Next
+                    ElseIf Place.Visible = VisibleMode.Register Then
+                        If ActionScript.IsRegistered(Place.Register) = True Then
+                            DoUpdate = True
+                        End If
                     End If
-                    hoverText = Place.Name
+                    If DoUpdate = True Then
+                        If Controls.Accept(True, True, True) = True Then
+                            Place.Click(flag)
+                        End If
+                        hoverText = Place.Name
+                    End If
                     Exit For
                 End If
             Next
@@ -355,10 +434,27 @@
         If hoverText = "" And pokehoverText = "" And drawObjects(0) = True Then
             For Each City As City In cities
                 If City.getRectangle(mapOffset).Contains(cursorPoint) = True Then
-                    If Controls.Accept(True, True, True) = True Then
-                        City.Click(flag)
+                    Dim DoUpdate As Boolean = False
+                    If City.Visible = VisibleMode.Always OrElse City.Visible = VisibleMode.Temporary AndAlso City.ContainFiles.Contains(Level.LevelFile.ToLower()) = True Then
+                        DoUpdate = True
+                    ElseIf City.Visible = VisibleMode.Unlock Then
+                        For Each p As String In City.ContainFiles
+                            If Core.Player.VisitedMaps.ToLower().Split(CChar(",")).Contains(p.ToLower()) = True Then
+                                DoUpdate = True
+                            End If
+                            Exit For
+                        Next
+                    ElseIf City.Visible = VisibleMode.Register Then
+                        If ActionScript.IsRegistered(City.Register) = True Then
+                            DoUpdate = True
+                        End If
                     End If
-                    hoverText = City.Name
+                    If DoUpdate = True Then
+                        If Controls.Accept(True, True, True) = True Then
+                            City.Click(flag)
+                        End If
+                        hoverText = City.Name
+                    End If
                     Exit For
                 End If
             Next
@@ -366,10 +462,28 @@
         If hoverText = "" And pokehoverText = "" And drawObjects(1) = True Then
             For Each Route As Route In routes
                 If Route.getRectangle(mapOffset).Contains(cursorPoint) = True Then
-                    If Controls.Accept(True, True, True) = True Then
-                        Route.Click(flag)
+                    Dim DoUpdate As Boolean = False
+                    If Route.Visible = VisibleMode.Always OrElse Route.Visible = VisibleMode.Temporary AndAlso Route.ContainFiles.Contains(Level.LevelFile.ToLower()) = True Then
+                        DoUpdate = True
+                    ElseIf Route.Visible = VisibleMode.Unlock Then
+                        For Each p As String In Route.ContainFiles
+                            If Core.Player.VisitedMaps.ToLower().Split(CChar(",")).Contains(p.ToLower()) = True Then
+                                DoUpdate = True
+                            End If
+                            Exit For
+                        Next
+                    ElseIf Route.Visible = VisibleMode.Register Then
+                        If ActionScript.IsRegistered(Route.Register) = True Then
+                            DoUpdate = True
+                        End If
                     End If
-                    hoverText = Route.Name
+                    If DoUpdate = True Then
+                        If Controls.Accept(True, True, True) = True Then
+                            Route.Click(flag)
+                        End If
+                        hoverText = Route.Name
+                    End If
+                    Exit For
                 End If
             Next
         End If
@@ -450,7 +564,24 @@
                     c = Color.Gray
                 End If
 
-                Core.SpriteBatch.Draw(Route.getTexture(objectsTexture, isSelected), Route.getRectangle(mapOffset), c)
+                Dim DoDraw As Boolean = False
+                If Route.Visible = VisibleMode.Always OrElse Route.Visible = VisibleMode.Temporary AndAlso Route.ContainFiles.Contains(Level.LevelFile.ToLower()) = True Then
+                    DoDraw = True
+                ElseIf Route.Visible = VisibleMode.Unlock Then
+                    For Each p As String In Route.ContainFiles
+                        If Core.Player.VisitedMaps.ToLower().Split(CChar(",")).Contains(p.ToLower()) = True Then
+                            DoDraw = True
+                        End If
+                        Exit For
+                    Next
+                ElseIf Route.Visible = VisibleMode.Register Then
+                    If ActionScript.IsRegistered(Route.Register) = True Then
+                        DoDraw = True
+                    End If
+                End If
+                If DoDraw = True Then
+                    Core.SpriteBatch.Draw(Route.getTexture(objectsTexture, isSelected), Route.getRectangle(mapOffset), c)
+                End If
             Next
         End If
 
@@ -466,7 +597,24 @@
                     c = Color.Gray
                 End If
 
-                Core.SpriteBatch.Draw(City.getTexture(objectsTexture, isSelected), City.getRectangle(mapOffset), c)
+                Dim DoDraw As Boolean = False
+                If City.Visible = VisibleMode.Always OrElse City.Visible = VisibleMode.Temporary AndAlso City.ContainFiles.Contains(Level.LevelFile.ToLower()) = True Then
+                    DoDraw = True
+                ElseIf City.Visible = VisibleMode.Unlock Then
+                    For Each p As String In City.ContainFiles
+                        If Core.Player.VisitedMaps.ToLower().Split(CChar(",")).Contains(p.ToLower()) = True Then
+                            DoDraw = True
+                        End If
+                        Exit For
+                    Next
+                ElseIf City.Visible = VisibleMode.Register Then
+                    If ActionScript.IsRegistered(City.Register) = True Then
+                        DoDraw = True
+                    End If
+                End If
+                If DoDraw = True Then
+                    Core.SpriteBatch.Draw(City.getTexture(objectsTexture, isSelected), City.getRectangle(mapOffset), c)
+                End If
             Next
         End If
 
@@ -482,7 +630,24 @@
                     c = Color.Gray
                 End If
 
-                Core.SpriteBatch.Draw(Place.getTexture(objectsTexture, isSelected), Place.getRectangle(mapOffset), c)
+                Dim DoDraw As Boolean = False
+                If Place.Visible = VisibleMode.Always OrElse Place.Visible = VisibleMode.Temporary AndAlso Place.ContainFiles.Contains(Level.LevelFile.ToLower()) = True Then
+                    DoDraw = True
+                ElseIf Place.Visible = VisibleMode.Unlock Then
+                    For Each p As String In Place.ContainFiles
+                        If Core.Player.VisitedMaps.ToLower().Split(CChar(",")).Contains(p.ToLower()) = True Then
+                            DoDraw = True
+                        End If
+                        Exit For
+                    Next
+                ElseIf Place.Visible = VisibleMode.Register Then
+                    If ActionScript.IsRegistered(Place.Register) = True Then
+                        DoDraw = True
+                    End If
+                End If
+                If DoDraw = True Then
+                    Core.SpriteBatch.Draw(Place.getTexture(objectsTexture, isSelected), Place.getRectangle(mapOffset), c)
+                End If
             Next
         End If
 
@@ -739,10 +904,12 @@
         Public FlyToFile As String = ""
         Public FlyToPosition As Vector3 = New Vector3(0)
         Public Size As CitySize = CitySize.Small
+        Public Visible As Integer = VisibleMode.Always
+        Public Register As String = ""
 
         Dim T As Texture2D = Nothing
 
-        Public Sub New(ByVal Name As String, ByVal ContainFiles() As String, ByVal PositionX As Integer, ByVal PositionY As Integer, ByVal Size As CitySize, Optional ByVal FlyToFile As String = "", Optional ByVal FlyToPosition As Vector3 = Nothing, Optional PlayerPositionX As Integer = -1, Optional PlayerPositionY As Integer = -1)
+        Public Sub New(ByVal Name As String, ByVal ContainFiles() As String, ByVal PositionX As Integer, ByVal PositionY As Integer, ByVal Size As CitySize, Optional ByVal FlyToFile As String = "", Optional ByVal FlyToPosition As Vector3 = Nothing, Optional PlayerPositionX As Integer = -1, Optional PlayerPositionY As Integer = -1, Optional Visible As Integer = VisibleMode.Always, Optional Register As String = "")
             Me.Name = Name
 
             For Each file As String In ContainFiles
@@ -765,6 +932,8 @@
 
             Me.FlyToFile = FlyToFile
             Me.FlyToPosition = FlyToPosition
+            Me.Visible = Visible
+            Me.Register = Register
         End Sub
 
         Public Function getPosition() As Vector2
@@ -842,7 +1011,7 @@
         Public Function CanFlyTo(ByVal flag() As Object) As Boolean
             If flag(0).ToString().ToLower() = "fly" Then
                 If FlyToPosition <> Nothing And FlyToFile <> "" Then
-                    If Core.Player.VisitedMaps.Split(CChar(",")).Contains(FlyToFile) = True Or GameController.IS_DEBUG_ACTIVE = True Or Core.Player.SandBoxMode = True Then
+                    If Core.Player.VisitedMaps.ToLower().Split(CChar(",")).Contains(FlyToFile.ToLower()) = True Or GameController.IS_DEBUG_ACTIVE = True Or Core.Player.SandBoxMode = True Then
                         Return True
                     End If
                 End If
@@ -894,10 +1063,12 @@
 
         Public RouteDirection As RouteDirections = RouteDirections.Horizontal
         Public RouteType As RouteTypes = RouteTypes.Land
+        Public Visible As Integer = VisibleMode.Always
+        Public Register As String = ""
 
         Dim T As Texture2D = Nothing
 
-        Public Sub New(ByVal Name As String, ByVal ContainFiles() As String, ByVal PositionX As Integer, ByVal PositionY As Integer, ByVal RouteDirection As RouteDirections, ByVal RouteType As RouteTypes, Optional ByVal FlyToFile As String = "", Optional ByVal FlyToPosition As Vector3 = Nothing, Optional PlayerPositionX As Integer = -1, Optional PlayerPositionY As Integer = -1)
+        Public Sub New(ByVal Name As String, ByVal ContainFiles() As String, ByVal PositionX As Integer, ByVal PositionY As Integer, ByVal RouteDirection As RouteDirections, ByVal RouteType As RouteTypes, Optional ByVal FlyToFile As String = "", Optional ByVal FlyToPosition As Vector3 = Nothing, Optional PlayerPositionX As Integer = -1, Optional PlayerPositionY As Integer = -1, Optional Visible As Integer = VisibleMode.Always, Optional Register As String = "")
             Me.Name = Name
             Me.PositionX = PositionX
             Me.PositionY = PositionY
@@ -919,6 +1090,9 @@
             End If
             Me.FlyToFile = FlyToFile
             Me.FlyToPosition = FlyToPosition
+
+            Me.Visible = Visible
+            Me.Register = Register
         End Sub
 
         Public Function getPosition() As Vector2
@@ -1030,7 +1204,7 @@
         Public Function CanFlyTo(ByVal flag() As Object) As Boolean
             If flag(0).ToString().ToLower() = "fly" Then
                 If FlyToPosition <> Nothing And FlyToFile <> "" Then
-                    If Core.Player.VisitedMaps.Split(CChar(",")).Contains(FlyToFile) = True Or GameController.IS_DEBUG_ACTIVE = True Or Core.Player.SandBoxMode = True Then
+                    If Core.Player.VisitedMaps.ToLower().Split(CChar(",")).Contains(FlyToFile.ToLower()) = True Or GameController.IS_DEBUG_ACTIVE = True Or Core.Player.SandBoxMode = True Then
                         Return True
                     End If
                 End If
@@ -1058,13 +1232,15 @@
         Public PlayerPositionX As Integer = -1
         Public PlayerPositionY As Integer = -1
         Public PlaceSize As PlaceSizes
+        Public Visible As Integer = VisibleMode.Always
+        Public Register As String = ""
 
         Public FlyToFile As String = ""
         Public FlyToPosition As Vector3 = New Vector3(0)
 
         Dim T As Texture2D = Nothing
 
-        Public Sub New(ByVal Name As String, ByVal ContainFiles() As String, ByVal PositionX As Integer, ByVal PositionY As Integer, ByVal PlaceSize As PlaceSizes, Optional ByVal FlyToFile As String = "", Optional ByVal FlyToPosition As Vector3 = Nothing, Optional PlayerPositionX As Integer = -1, Optional PlayerPositionY As Integer = -1)
+        Public Sub New(ByVal Name As String, ByVal ContainFiles() As String, ByVal PositionX As Integer, ByVal PositionY As Integer, ByVal PlaceSize As PlaceSizes, Optional ByVal FlyToFile As String = "", Optional ByVal FlyToPosition As Vector3 = Nothing, Optional PlayerPositionX As Integer = -1, Optional PlayerPositionY As Integer = -1, Optional Visible As Integer = VisibleMode.Always, Optional Register As String = "")
             Me.Name = Name
             Me.PositionX = PositionX
             Me.PositionY = PositionY
@@ -1086,6 +1262,8 @@
 
             Me.FlyToFile = FlyToFile
             Me.FlyToPosition = FlyToPosition
+            Me.Visible = Visible
+            Me.Register = Register
         End Sub
 
         Public Function getPosition() As Vector2
@@ -1175,7 +1353,7 @@
                 If FlyToPosition <> Nothing And FlyToFile <> "" Then
                     Dim flytomap As Boolean = False
                     For Each map In ContainFiles
-                        If Core.Player.VisitedMaps.Split(CChar(",")).Contains(map) = True Then
+                        If Core.Player.VisitedMaps.ToLower().Split(CChar(",")).Contains(map.ToLower()) = True Then
                             flytomap = True
                             Exit For
                         End If

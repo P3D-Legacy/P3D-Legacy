@@ -13,7 +13,7 @@ Namespace Items.KeyItems
         End Sub
 
         Public Overrides Sub Use()
-            If IsInfrontOfWater() = True And Screen.Level.Surfing = False And Screen.Level.Riding = False Then
+            If IsInfrontOfWater() = True Then
                 Dim s As String = "version=2"
 
                 While Core.CurrentScreen.Identification <> Screen.Identifications.OverworldScreen

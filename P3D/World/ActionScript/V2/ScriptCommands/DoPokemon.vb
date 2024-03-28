@@ -1050,6 +1050,10 @@
                             Status = Pokemon.StatusProblems.Sleep
                         Case "fnt"
                             Status = Pokemon.StatusProblems.Fainted
+                        Case "none"
+                            Status = Pokemon.StatusProblems.None
+                        Case Else
+                            Status = Pokemon.StatusProblems.None
                     End Select
                     If Status <> Nothing AndAlso Core.Player.Pokemons.Count - 1 >= Index Then
                         Core.Player.Pokemons(Index).Status = Status
@@ -1057,6 +1061,71 @@
                             Core.Player.Pokemons(Index).HP = 0
                         End If
                     End If
+                Case "ride"
+                    Dim Index As Integer = -1
+                    If argument <> "" Then
+                        If Core.Player.Pokemons(Index).KnowsMove(BattleSystem.Attack.GetAttackByID(560)) = False Then
+                            Logger.Log(Logger.LogTypes.ErrorMessage, "The specified Pokémon does not know the move Ride. The specified index is: " & Index.ToString & ".")
+                        Else
+                            Index = CInt(argument)
+                        End If
+                    End If
+
+                    If Index = -1 Then
+                        For p = 0 To Core.Player.Pokemons.Count - 1
+                            If Core.Player.Pokemons(p).KnowsMove(BattleSystem.Attack.GetAttackByID(560)) Then
+                                Index = p
+                                Exit For
+                            End If
+                        Next
+                    End If
+
+                    If Index <> -1 Then
+                        If Screen.Level.Riding = True Then
+                            If Screen.Level.RideType = 3 Then
+                                Screen.TextBox.Show(Localization.GetString("fieldmove_ride_cannot_walk", "You cannot walk here!"), {}, True, False)
+                            Else
+                                Screen.Level.Riding = False
+                                Screen.Level.OwnPlayer.SetTexture(Core.Player.TempRideSkin, True)
+                                Core.Player.Skin = Core.Player.TempRideSkin
+                                Screen.ChooseBox.Showing = False
+
+
+                                If Screen.Level.IsRadioOn = False OrElse GameJolt.PokegearScreen.StationCanPlay(Screen.Level.SelectedRadioStation) = False Then
+                                    MusicManager.Play(Screen.Level.MusicLoop, True, 0.01F)
+                                End If
+                            End If
+                        Else
+                            If Screen.Level.Surfing = False And Screen.Camera.IsMoving() = False And Screen.Camera.Turning = False And Screen.Level.CanRide() = True Then
+                                Screen.ChooseBox.Showing = False
+
+                                Screen.Level.Riding = True
+                                Core.Player.TempRideSkin = Core.Player.Skin
+
+                                Dim skin As String = "[POKEMON|"
+                                If Core.Player.Pokemons(Index).IsShiny = True Then
+                                    skin &= "S]"
+                                Else
+                                    skin &= "N]"
+                                End If
+                                skin &= Core.Player.Pokemons(Index).Number & PokemonForms.GetOverworldAddition(Core.Player.Pokemons(Index))
+
+                                Screen.Level.OwnPlayer.SetTexture(skin, False)
+
+                                SoundManager.PlayPokemonCry(Core.Player.Pokemons(Index).Number)
+
+                                Screen.TextBox.Show(Core.Player.Pokemons(Index).GetDisplayName() & " " & Localization.GetString("fieldmove_ride_used", "used~Ride!"), {}, True, False)
+                                PlayerStatistics.Track("Ride used", 1)
+
+                                If Screen.Level.IsRadioOn = False OrElse GameJolt.PokegearScreen.StationCanPlay(Screen.Level.SelectedRadioStation) = False Then
+                                    MusicManager.Play("ride", True)
+                                End If
+                            Else
+                                Screen.TextBox.Show(Localization.GetString("fieldmove_ride_cannot_ride", "You cannot Ride here!"), {}, True, False)
+                            End If
+                        End If
+                    End If
+
             End Select
 
             IsReady = True

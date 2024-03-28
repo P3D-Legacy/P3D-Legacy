@@ -53,7 +53,7 @@ Namespace BattleSystem.Moves.Electric
 
             Me.AIField1 = AIField.Damage
             Me.AIField2 = AIField.Recoil
-            Me.AIField3 = AIField.CanParalyse
+            Me.AIField3 = AIField.CanParalyze
 
             Me.EffectChances.Add(10)
         End Sub

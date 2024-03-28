@@ -1425,9 +1425,9 @@ Public Class Pokemon
                             Me.ExperienceType = ExperienceTypes.Slow
                     End Select
                 Case "type1"
-                    Me.Type1 = New Element(Value)
+                    Me.Type1 = BattleSystem.GameModeElementLoader.GetElementByName(Value)
                 Case "type2"
-                    Me.Type2 = New Element(Value)
+                    Me.Type2 = BattleSystem.GameModeElementLoader.GetElementByName(Value)
                 Case "catchrate"
                     Me.CatchRate = CInt(Value)
                 Case "basefriendship"
@@ -2959,7 +2959,7 @@ Public Class Pokemon
     ''' Checks if the Pokémon is of a certain type.
     ''' </summary>
     ''' <param name="CheckType">The type to check.</param>
-    Public Function IsType(ByVal CheckType As Element.Types) As Boolean
+    Public Function IsType(ByVal CheckType As Integer) As Boolean
         If Type1.Type = CheckType Or Type2.Type = CheckType Then
             Return True
         End If

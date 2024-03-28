@@ -69,6 +69,9 @@
                 Case "setsafari"
                     Screen.Level.IsSafariZone = CBool(argument)
                     IsReady = True
+                Case "setridetype"
+                    Screen.Level.RideType = CInt(argument).Clamp(0, 3)
+                    IsReady = True
             End Select
         End Sub
 
