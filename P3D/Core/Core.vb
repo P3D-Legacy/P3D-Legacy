@@ -158,14 +158,14 @@
             ControllerHandler.Update()
             Controls.MakeMouseVisible()
             MouseHandler.Update()
-            If KeyBoardHandler.KeyPressed(KeyBindings.EscapeKey) = True Or ControllerHandler.ButtonDown(Buttons.Start) = True Then
+            If KeyBoardHandler.KeyPressed(KeyBindings.EscapeKey) = True OrElse ControllerHandler.ButtonPressed(Buttons.Start) = True Then
                 CurrentScreen.EscapePressed()
             End If
         End If
 
         CurrentScreen.Update()
         If CurrentScreen.CanChat = True Then
-            If KeyBoardHandler.KeyPressed(KeyBindings.ChatKey) = True Or ControllerHandler.ButtonPressed(Buttons.RightShoulder) = True Then
+            If KeyBoardHandler.KeyPressed(KeyBindings.ChatKey) = True OrElse ControllerHandler.ButtonPressed(Buttons.RightShoulder) = True Then
                 If JoinServerScreen.Online = True Or Player.SandBoxMode = True Or GameController.IS_DEBUG_ACTIVE = True Then
                     SetScreen(New ChatScreen(CurrentScreen))
                 End If

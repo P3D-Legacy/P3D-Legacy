@@ -170,12 +170,12 @@
             End Select
         End If
 
-        If Controls.Dismiss() = True Or KeyBoardHandler.KeyPressed(KeyBindings.EscapeKey) = True And leftEscapeKey = True Or ControllerHandler.ButtonPressed(Buttons.Start) = True Then
+        If Controls.Dismiss() = True OrElse leftEscapeKey = True AndAlso (KeyBoardHandler.KeyPressed(KeyBindings.EscapeKey) = True OrElse ControllerHandler.ButtonPressed(Buttons.Start) = True) Then
             SoundManager.PlaySound("select")
             ClickContinue()
         End If
 
-        If KeyBoardHandler.KeyDown(KeyBindings.EscapeKey) = False And ControllerHandler.ButtonDown(Buttons.Start) = False Then
+        If KeyBoardHandler.KeyDown(KeyBindings.EscapeKey) = False And ControllerHandler.ButtonPressed(Buttons.Start) = False Then
             Me.leftEscapeKey = True
         End If
     End Sub
