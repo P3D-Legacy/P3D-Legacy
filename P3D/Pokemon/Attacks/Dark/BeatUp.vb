@@ -91,7 +91,7 @@
                 Next
             Else
                 avgTeamBaseAttack += (BattleScreen.OppPokemon.BaseAttack / 10)
-                pokemonCounter = 1
+                pokemonCounter += 1
             End If
             If pokemonCounter <> 0 Then
                 avgTeamBaseAttack = avgTeamBaseAttack / pokemonCounter
