@@ -222,6 +222,10 @@ Public Class Trainer
                             addLevel = CInt(Math.Ceiling(level / 5))
                         End If
 
+                        If level + addLevel > CInt(GameModeManager.GetGameRuleValue("MaxLevel", "100")) Then
+                            addLevel = CInt(GameModeManager.GetGameRuleValue("MaxLevel", "100")) - level
+                        End If
+
                         While level + addLevel > p.Level
                             p.LevelUp(False)
                             p.Experience = p.NeedExperience(p.Level)
@@ -276,6 +280,10 @@ Public Class Trainer
                     ElseIf Core.Player.DifficultyMode = 2 Then
                         addLevel = CInt(Math.Ceiling(Level / 5))
                     End If
+                    If Level + addLevel > CInt(GameModeManager.GetGameRuleValue("MaxLevel", "100")) Then
+                        addLevel = CInt(GameModeManager.GetGameRuleValue("MaxLevel", "100")) - Level
+                    End If
+
                     Level += addLevel
 
                     Dim maxLevel As Integer = CInt(GameModeManager.GetGameRuleValue("MaxLevel", "100"))
