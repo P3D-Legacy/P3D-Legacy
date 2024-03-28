@@ -163,11 +163,13 @@
 
                     For Each level As Integer In Core.Player.Pokemons(pokeIndex).AttackLearns.Keys
                         If level <= MaxLevel Then
-                            If levelMoves = "" Then
-                                levelMoves = Core.Player.Pokemons(pokeIndex).AttackLearns(level).ID.ToString
-                            Else
-                                levelMoves &= "," & Core.Player.Pokemons(pokeIndex).AttackLearns(level).ID.ToString
-                            End If
+                            For Each a As BattleSystem.Attack In Core.Player.Pokemons(pokeIndex).AttackLearns(level)
+                                If levelMoves = "" Then
+                                    levelMoves = a.ID.ToString
+                                Else
+                                    levelMoves &= "," & a.ID.ToString
+                                End If
+                            Next
                         End If
                     Next
                     Return levelMoves
