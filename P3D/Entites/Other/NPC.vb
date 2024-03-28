@@ -183,7 +183,7 @@
 
         If Core.Player.NPCData = "" Then
             Core.Player.NPCData = Data
-        Else
+        ElseIf Core.Player.NPCData.Contains(Data) = False Then
             Core.Player.NPCData &= Environment.NewLine & Data
         End If
     End Sub
