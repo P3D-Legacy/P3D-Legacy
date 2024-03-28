@@ -107,9 +107,9 @@
             End If
 
             If bide = 0 Then
-                Return False
-            Else
                 Return True
+            Else
+                Return False
             End If
         End Function
 
