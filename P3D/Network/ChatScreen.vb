@@ -933,9 +933,11 @@ Public Class ChatScreen
 
     Dim ControllerShown As Boolean = False
     Public Overrides Sub ChangeTo()
-        If ControllerHandler.IsConnected() = True And Core.GameOptions.GamePadEnabled = True And ControllerShown = False Then
-            Core.SetScreen(New InputScreen(Me, "", InputScreen.InputModes.Text, "", 38, New List(Of Texture2D), AddressOf Me.GetControllerInput))
-            ControllerShown = True
+        If ControllerHandler.ButtonDown(Buttons.RightShoulder) = True Then
+            If ControllerHandler.IsConnected() = True And Core.GameOptions.GamePadEnabled = True And ControllerShown = False Then
+                Core.SetScreen(New InputScreen(Me, "", InputScreen.InputModes.Text, "", 38, New List(Of Texture2D), AddressOf Me.GetControllerInput))
+                ControllerShown = True
+            End If
         End If
     End Sub
 
