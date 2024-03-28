@@ -121,6 +121,7 @@
     End Sub
 
     Private Shared Sub ToggleFullScreen()
+        Core.GraphicsManager.HardwareModeSwitch = False
         If Core.GraphicsManager.IsFullScreen = False Then
             ' MonoGame Bug > GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width != System.Windows.Forms.Screen.PrimaryScreen.Bounds.Width
             ' MonoGame Bug > GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height != System.Windows.Forms.Screen.PrimaryScreen.Bounds.Height
