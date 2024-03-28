@@ -686,7 +686,7 @@
 
         Dim regionString As String = Localization.GetString(Me.currentRegion(0).ToString().ToUpper() & Me.currentRegion.Remove(0, 1))
         If Me.regions.Count > 1 Then
-            regionString &= " (Press the Shift/Shoulder Buttons to switch between regions.)"
+            regionString &= " (Press the Shift Key/Shoulder Triggers to switch between regions.)"
         End If
 
         Core.SpriteBatch.DrawString(FontManager.InGameFont, regionString, New Vector2(MapScreen.mapOffsetX + 2, MapScreen.mapOffsetY - 31), Color.Black)
