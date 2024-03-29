@@ -20,7 +20,7 @@
                             LoopSong = CBool(argument.GetSplit(1, ","))
                         End If
                     End If
-                        If argument.Split(",").Length > 2 Then
+                    If argument.Split(",").Length > 2 Then
                         FadeIntoSong = CBool(argument.GetSplit(2, ","))
                     End If
 
@@ -41,11 +41,19 @@
                     End If
                 Case "forceplay"
                     Dim LoopSong As Boolean = True
+                    Dim FadeIntoSong As Boolean = False
                     If argument.Split(",").Length > 1 Then
                         LoopSong = CBool(argument.GetSplit(1, ","))
                     End If
+                    If argument.Split(",").Length > 2 Then
+                        FadeIntoSong = CBool(argument.GetSplit(2, ","))
+                    End If
                     MusicManager.ForceMusic = argument.GetSplit(0, ",")
-                    MusicManager.Play(argument.GetSplit(0, ","), True, LoopSong)
+                    If FadeIntoSong = False Then
+                        MusicManager.Play(argument.GetSplit(0, ","), True, LoopSong)
+                    Else
+                        MusicManager.Play(argument.GetSplit(0, ","), True, 0.01F, LoopSong)
+                    End If
 
                     If LoopSong = True Then
                         If Core.CurrentScreen.Identification = Screen.Identifications.OverworldScreen Then
