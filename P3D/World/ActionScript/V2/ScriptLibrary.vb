@@ -282,13 +282,13 @@ Namespace ScriptVersion2
 
         Private Shared Sub DoItem()
             ' Commands:
-            r(New ScriptCommand("item", "give", {New ScriptArgument("ItemID", ScriptArgument.ArgumentTypes.Int),
+            r(New ScriptCommand("item", "give", {New ScriptArgument("ItemID", ScriptArgument.ArgumentTypes.Str),
                                              New ScriptArgument("Amount", ScriptArgument.ArgumentTypes.Int, True, "1")}.ToList(), "Adds the given amount of items to the player's inventory."))
-            r(New ScriptCommand("item", "remove", {New ScriptArgument("ItemID", ScriptArgument.ArgumentTypes.Int),
+            r(New ScriptCommand("item", "remove", {New ScriptArgument("ItemID", ScriptArgument.ArgumentTypes.Str),
                                              New ScriptArgument("Amount", ScriptArgument.ArgumentTypes.Int, True, "1"),
                                                New ScriptArgument("showMessage", ScriptArgument.ArgumentTypes.Bool, True, "true")}.ToList(), "Removes the given amount of items from the player's inventory. Displays a message afterwards, if ""showMessage"" is true."))
-            r(New ScriptCommand("item", "clearitem", {New ScriptArgument("ItemID", ScriptArgument.ArgumentTypes.Int, True, "")}.ToList(), "Clears all items with the given ID from the player's inventory. Clears the whole inventory if ItemID is empty."))
-            r(New ScriptCommand("item", "messagegive", {New ScriptArgument("ItemID", ScriptArgument.ArgumentTypes.Int),
+            r(New ScriptCommand("item", "clearitem", {New ScriptArgument("ItemID", ScriptArgument.ArgumentTypes.Str, True, "")}.ToList(), "Clears all items with the given ID from the player's inventory. Clears the whole inventory if ItemID is empty."))
+            r(New ScriptCommand("item", "messagegive", {New ScriptArgument("ItemID", ScriptArgument.ArgumentTypes.Str),
                                              New ScriptArgument("Amount", ScriptArgument.ArgumentTypes.Int, True, "1")}.ToList(), "Displays a message for getting the specified amount of items."))
             r(New ScriptCommand("item", "repel", {New ScriptArgument("RepelItemID", ScriptArgument.ArgumentTypes.Int, {"20", "42", "43"})}.ToList(), "Adds the steps of the Repel to the Repel steps of the player."))
             r(New ScriptCommand("item", "use", {New ScriptArgument("ItemID", ScriptArgument.ArgumentTypes.Str)}.ToList(), "Uses the specified item if the player has it."))
@@ -447,7 +447,7 @@ Namespace ScriptVersion2
             r(New ScriptCommand("environment", "setcanteleport", {New ScriptArgument("canteleport", ScriptArgument.ArgumentTypes.Bool)}.ToList(), "Sets the ""CanTeleport"" parameter of the current map."))
             r(New ScriptCommand("environment", "setwildpokemongrass", {New ScriptArgument("canencounter", ScriptArgument.ArgumentTypes.Bool)}.ToList(), "Sets the ""WildPokemonGrass"" parameter of the current map."))
             r(New ScriptCommand("environment", "setwildpokemonwater", {New ScriptArgument("canencounter", ScriptArgument.ArgumentTypes.Bool)}.ToList(), "Sets the ""WildPokemonWater"" parameter of the current map."))
-            r(New ScriptCommand("environment", "setwildpokemoneverywhere", {New ScriptArgument("canencounter", ScriptArgument.ArgumentTypes.Bool)}.ToList(), "Sets the ""WildPokemonEverywhere"" parameter of the current map."))
+            r(New ScriptCommand("environment", "setwildpokemoneverywhere", {New ScriptArgument("canencounter", ScriptArgument.ArgumentTypes.Bool)}.ToList(), "Sets the ""WildPokemonFloor"" parameter of the current map."))
             r(New ScriptCommand("environment", "setisdark", {New ScriptArgument("isDark", ScriptArgument.ArgumentTypes.Bool)}.ToList(), "Sets the ""IsDark"" parameter of the current map."))
             r(New ScriptCommand("environment", "setrenderdistance", {New ScriptArgument("distance", ScriptArgument.ArgumentTypes.Str, {"0-4", "tiny", "small", "normal", "far", "extreme"})}.ToList(), "Sets the render distance."))
             r(New ScriptCommand("environment", "toggledarkness", "Toggles the ""IsDark"" parameter of the current map."))
