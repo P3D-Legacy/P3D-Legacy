@@ -580,7 +580,7 @@ Namespace ScriptVersion2
             r(New ScriptCommand("npc", "move", {New ScriptArgument("npcID", ScriptArgument.ArgumentTypes.Int),
                                                 New ScriptArgument("steps", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Starts NPC movement of the selected NPC."))
             r(New ScriptCommand("npc", "setMoveY", {New ScriptArgument("npcID", ScriptArgument.ArgumentTypes.Int),
-                                                New ScriptArgument("steps", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Sets the steps the selected NPC should walk in the Y direction."))
+                                                New ScriptArgument("distance", ScriptArgument.ArgumentTypes.Sng)}.ToList(), "Sets the distance that the selected NPC should move in the Y direction."))
             r(New ScriptCommand("npc", "moveasync", {New ScriptArgument("npcID", ScriptArgument.ArgumentTypes.Int),
                                                 New ScriptArgument("steps", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Starts async NPC movement of the selected NPC."))
             r(New ScriptCommand("npc", "turn", {New ScriptArgument("npcID", ScriptArgument.ArgumentTypes.Int),
