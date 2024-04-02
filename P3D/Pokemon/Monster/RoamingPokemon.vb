@@ -4,6 +4,7 @@ Public Class RoamingPokemon
     Public LevelFile As String = ""
     Public MusicLoop As String = ""
     Public PokemonReference As Pokemon = Nothing
+    Public ScriptPath As String = ""
 
     Public Sub New(ByVal DataLine As String)
         Dim data() As String = DataLine.Split(CChar("|"))
@@ -13,6 +14,10 @@ Public Class RoamingPokemon
         Me.WorldID = CInt(data(2))
         Me.LevelFile = data(3)
         Me.MusicLoop = data(4)
+
+        If data.Length = 8 Then
+            ScriptPath = data(7)
+        End If
     End Sub
 
     Public Function CompareData() As String
@@ -53,9 +58,14 @@ Public Class RoamingPokemon
                     If nextIndex > levelList.Count - 1 Then
                         nextIndex = 0
                     End If
+                    If data.Length = 7 Then
+                        'PokémonID,Level,regionID,startLevelFile,MusicLoop,Shiny,PokemonData,ScriptPath
+                        newData &= data(0) & "|" & data(1) & "|" & CInt(data(2)).ToString() & "|" & levelList(nextIndex) & "|" & data(4) & "|" & data(5) & "|" & data(6) & "|"
+                    Else
+                        'PokémonID,Level,regionID,startLevelFile,MusicLoop,Shiny,PokemonData,ScriptPath
+                        newData &= data(0) & "|" & data(1) & "|" & CInt(data(2)).ToString() & "|" & levelList(nextIndex) & "|" & data(4) & "|" & data(5) & "|" & data(6) & "|" & data(7)
+                    End If
 
-                    'PokémonID,Level,regionID,startLevelFile,MusicLoop,Shiny,PokemonData
-                    newData &= data(0) & "|" & data(1) & "|" & CInt(data(2)).ToString() & "|" & levelList(nextIndex) & "|" & data(4) & "|" & data(5) & "|" & data(6)
                 Else
                     newData &= line
                 End If
@@ -98,7 +108,7 @@ Public Class RoamingPokemon
             If line.StartsWith(compareData) = False Then
                 newData &= line
             Else
-                newData &= p.PokemonReference.Number & "|" & p.PokemonReference.Level & "|" & p.WorldID.ToString() & "|" & p.LevelFile & "|" & p.MusicLoop & "|" & p.PokemonReference.IsShiny & "|" & p.PokemonReference.GetSaveData()
+                newData &= p.PokemonReference.Number & "|" & p.PokemonReference.Level & "|" & p.WorldID.ToString() & "|" & p.LevelFile & "|" & p.MusicLoop & "|" & p.PokemonReference.IsShiny & "|" & p.PokemonReference.GetSaveData() & "|" & p.ScriptPath
             End If
         Next
 

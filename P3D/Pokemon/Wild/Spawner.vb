@@ -108,7 +108,7 @@ Public Class Spawner
                 Dim possibleEncounters As New List(Of String)
 
                 For Each cLine As String In roamingData
-                    If cLine <> "" And cLine.CountSeperators("|") = 6 Then
+                    If cLine <> "" And cLine.CountSeperators("|") >= 6 Then
                         possibleEncounters.Add(cLine)
                     End If
                 Next

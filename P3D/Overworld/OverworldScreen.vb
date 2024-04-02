@@ -24,6 +24,7 @@ Public Class OverworldScreen
     ''' The delay until the XBOX buttons get shown since the player last pressed a button.
     ''' </summary>
     Private ShowControlsDelay As Single = 4.0F
+    Public AfterRoamingBattleScript As String = ""
 
 #End Region
 
@@ -467,6 +468,10 @@ Public Class OverworldScreen
             If MusicManager._currentSongName Is "silence" Or MusicManager.CurrentSong Is Nothing Then
                 MusicManager.Play(theme, True) 'remove when debugging music
             End If
+        End If
+        If AfterRoamingBattleScript <> "" Then
+            ActionScript.StartScript(AfterRoamingBattleScript, 0,,, "AfterRoamingBattleScript")
+            AfterRoamingBattleScript = ""
         End If
     End Sub
 

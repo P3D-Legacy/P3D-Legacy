@@ -682,11 +682,16 @@
                         p.IsShiny = CBool(data(5))
                     End If
 
+                    Dim ScriptPath As String = ""
+                    If data.Length > 6 AndAlso data(6) <> "" Then
+                        ScriptPath = data(6)
+                    End If
+
                     If Core.Player.RoamingPokemonData <> "" Then
                         Core.Player.RoamingPokemonData &= Environment.NewLine
                     End If
 
-                    Core.Player.RoamingPokemonData &= data(0) & "|" & data(1) & "|" & data(2) & "|" & data(3) & "|" & data(4) & "|" & p.IsShiny & "|" & p.GetSaveData()
+                    Core.Player.RoamingPokemonData &= data(0) & "|" & data(1) & "|" & data(2) & "|" & data(3) & "|" & data(4) & "|" & p.IsShiny & "|" & p.GetSaveData() & "|" & ScriptPath
                 Case "evolve"
                     Dim args() As String = argument.Split(CChar(","))
                     Dim triggerStr As String = "level"
