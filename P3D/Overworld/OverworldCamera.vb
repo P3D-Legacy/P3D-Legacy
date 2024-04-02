@@ -281,53 +281,55 @@ Public Class OverworldCamera
 
     Private Sub ScrollThirdPersonCamera()
         If _isFixed = False Then
-            If Controls.Down(True, False, True, False, False, False) = True Then
-                If _scrollSpeed = 0.0F Or _scrollDirection <> 1 Then
-                    _scrollSpeed = 0.01F
+            If CurrentScreen.Identification <> Screen.Identifications.OverworldScreen OrElse CType(CurrentScreen, OverworldScreen).ActionScript.IsReady = True Then
+                If Controls.Down(True, False, True, False, False, False) = True Then
+                    If _scrollSpeed = 0.0F Or _scrollDirection <> 1 Then
+                        _scrollSpeed = 0.01F
+                    End If
+
+                    _scrollDirection = 1
+                    _scrollSpeed += _scrollSpeed.Clamp(0, 0.01)
+                End If
+                If ControllerHandler.ButtonDown(Buttons.LeftTrigger) = True Then
+                    If _scrollSpeed = 0.0F Or _scrollDirection <> 1 Then
+                        _scrollSpeed = 0.002F
+                    End If
+
+                    _scrollDirection = 1
+                    _scrollSpeed += _scrollSpeed.Clamp(0, 0.002F)
+                End If
+                If Controls.Up(True, False, True, False, False, False) = True Then
+                    If _scrollSpeed = 0.0F Or _scrollDirection <> -1 Then
+                        _scrollSpeed = 0.01F
+                    End If
+
+                    _scrollDirection = -1
+                    _scrollSpeed += _scrollSpeed.Clamp(0, 0.01)
+                End If
+                If ControllerHandler.ButtonDown(Buttons.RightTrigger) = True Then
+                    If _scrollSpeed = 0.0F Or _scrollDirection <> -1 Then
+                        _scrollSpeed = 0.002F
+                    End If
+
+                    _scrollDirection = -1
+                    _scrollSpeed += _scrollSpeed.Clamp(0, 0.002F)
                 End If
 
-                _scrollDirection = 1
-                _scrollSpeed += _scrollSpeed.Clamp(0, 0.01)
-            End If
-            If ControllerHandler.ButtonDown(Buttons.LeftTrigger) = True Then
-                If _scrollSpeed = 0.0F Or _scrollDirection <> 1 Then
-                    _scrollSpeed = 0.002F
-                End If
+                _scrollSpeed = _scrollSpeed.Clamp(0, 0.08)
 
-                _scrollDirection = 1
-                _scrollSpeed += _scrollSpeed.Clamp(0, 0.002F)
-            End If
-            If Controls.Up(True, False, True, False, False, False) = True Then
-                If _scrollSpeed = 0.0F Or _scrollDirection <> -1 Then
-                    _scrollSpeed = 0.01F
-                End If
+                If _scrollSpeed > 0.0F Then
+                    ThirdPersonOffset.Y += _scrollSpeed * _scrollDirection
+                    ThirdPersonOffset.Z += _scrollSpeed * _scrollDirection
 
-                _scrollDirection = -1
-                _scrollSpeed += _scrollSpeed.Clamp(0, 0.01)
-            End If
-            If ControllerHandler.ButtonDown(Buttons.RightTrigger) = True Then
-                If _scrollSpeed = 0.0F Or _scrollDirection <> -1 Then
-                    _scrollSpeed = 0.002F
-                End If
+                    If GameController.IS_DEBUG_ACTIVE = False And Core.Player.SandBoxMode = False Then
+                        ThirdPersonOffset.Y = ThirdPersonOffset.Y.Clamp(0, 1.32F)
+                        ThirdPersonOffset.Z = ThirdPersonOffset.Z.Clamp(-0.1, 2.7F)
+                    End If
 
-                _scrollDirection = -1
-                _scrollSpeed += _scrollSpeed.Clamp(0, 0.002F)
-            End If
-
-            _scrollSpeed = _scrollSpeed.Clamp(0, 0.08)
-
-            If _scrollSpeed > 0.0F Then
-                ThirdPersonOffset.Y += _scrollSpeed * _scrollDirection
-                ThirdPersonOffset.Z += _scrollSpeed * _scrollDirection
-
-                If GameController.IS_DEBUG_ACTIVE = False And Core.Player.SandBoxMode = False Then
-                    ThirdPersonOffset.Y = ThirdPersonOffset.Y.Clamp(0, 1.32F)
-                    ThirdPersonOffset.Z = ThirdPersonOffset.Z.Clamp(-0.1, 2.7F)
-                End If
-
-                _scrollSpeed -= 0.001F
-                If _scrollSpeed <= 0.0F Then
-                    _scrollSpeed = 0.0F
+                    _scrollSpeed -= 0.001F
+                    If _scrollSpeed <= 0.0F Then
+                        _scrollSpeed = 0.0F
+                    End If
                 End If
             End If
         End If
