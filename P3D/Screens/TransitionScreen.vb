@@ -83,7 +83,16 @@
                 End If
                 Dim screens() As Screen.Identifications = {Screen.Identifications.PokegearScreen, Screen.Identifications.OverworldScreen}
                 If screens.Contains(NewScreen.Identification) Then
-                    MusicManager.Play(Screen.Level.MusicLoop, True, 0.02F)
+                    'Play music depending on the player state in the level (surfing and riding):
+                    If Screen.Level.Surfing = True Then
+                        MusicManager.Play("surf", True) 'Play "surf" when player is surfing.
+                    Else
+                        If Screen.Level.Riding = True Then
+                            MusicManager.Play("ride", True) 'Play "ride" when player is riding.
+                        Else
+                            MusicManager.Play(Level.MusicLoop, True, 0.02F) 'Play default MusicLoop.
+                        End If
+                    End If
                 End If
             End If
         Else

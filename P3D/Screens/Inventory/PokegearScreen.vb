@@ -2085,7 +2085,16 @@
 
             If Controls.Dismiss(True, True, True) = True Then
                 If CurrentStation Is Nothing Then
-                    MusicManager.Play(Screen.Level.MusicLoop)
+                    'Play music depending on the player state in the level (surfing and riding):
+                    If Screen.Level.Surfing = True Then
+                        MusicManager.Play("surf", True) 'Play "surf" when player is surfing.
+                    Else
+                        If Screen.Level.Riding = True Then
+                            MusicManager.Play("ride", True) 'Play "ride" when player is riding.
+                        Else
+                            MusicManager.Play(Level.MusicLoop, True) 'Play default MusicLoop.
+                        End If
+                    End If
                 End If
                 SoundManager.PlaySound("select")
                 Me.menuIndex = MenuScreens.Main
