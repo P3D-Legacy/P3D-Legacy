@@ -1,6 +1,6 @@
 Public Class RoamingPokemon
 
-    Public RoamerID As Integer = -1
+    Public RoamerID As String = ""
     Public WorldID As Integer = -1
     Public LevelFile As String = ""
     Public MusicLoop As String = ""
@@ -10,7 +10,7 @@ Public Class RoamingPokemon
     Public Sub New(ByVal DataLine As String)
         Dim data() As String = DataLine.Split(CChar("|"))
 
-        Me.RoamerID = CInt(data(0))
+        Me.RoamerID = data(0)
         Me.PokemonReference = Pokemon.GetPokemonByData(data(6))
 
         Me.WorldID = CInt(data(3))
@@ -23,7 +23,7 @@ Public Class RoamingPokemon
     End Sub
 
     Public Function CompareData() As String
-        Return Me.RoamerID.ToString & "|" & PokemonForms.GetPokemonDataFileName(Me.PokemonReference.Number, Me.PokemonReference.AdditionalData, True) & "|" & Me.PokemonReference.Level.ToString() & "|" & Me.WorldID.ToString() & "|"
+        Return Me.RoamerID & "|" & PokemonForms.GetPokemonDataFileName(Me.PokemonReference.Number, Me.PokemonReference.AdditionalData, True) & "|" & Me.PokemonReference.Level.ToString() & "|" & Me.WorldID.ToString() & "|"
     End Function
 
     Public Function GetPokemon() As Pokemon
