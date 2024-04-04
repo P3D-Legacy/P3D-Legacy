@@ -673,10 +673,22 @@
                         Core.Player.Pokemons(Index).CatchLocation = placeLocalization
                     End If
                 Case "newroaming"
-                    ' PokémonID,Level,regionID,startLevelFile,MusicLoop,[Shiny]
+                    ' PokémonID,Level,regionID,startLevelFile,MusicLoop,[Shiny],[ScriptPath]
                     Dim data() As String = argument.Split(CChar(","))
-                    Dim p As Pokemon = Pokemon.GetPokemonByID(CInt(data(0)))
-                    p.Generate(CInt(data(1)), True)
+
+                    Dim PokemonID As String = data(0)
+                    Dim PokemonAddition As String = "xXx"
+                    If PokemonID.Contains("_") Then
+                        PokemonAddition = PokemonForms.GetAdditionalValueFromDataFile(data(0))
+                        PokemonID = data(0).GetSplit(0, "_")
+                    End If
+                    If PokemonID.Contains(";") Then
+                        PokemonAddition = data(0).GetSplit(1, ";")
+                        PokemonID = data(0).GetSplit(0, ";")
+                    End If
+
+                    Dim p As Pokemon = Pokemon.GetPokemonByID(CInt(PokemonID), PokemonAddition)
+                    p.Generate(CInt(data(1)), True, PokemonAddition)
 
                     If data.Length > 5 AndAlso data(5) <> "" AndAlso data(5) <> "-1" Then
                         p.IsShiny = CBool(data(5))
