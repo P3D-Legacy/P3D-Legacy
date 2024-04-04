@@ -802,6 +802,25 @@ Public Class Level
         Entities.AddRange({OwnPlayer, OverworldPokemon})
 
         Me.Surfing = Core.Player.startSurfing
+        If Me.Surfing = True And OwnPlayer.SkinName = Core.Player.Skin Then
+            With Screen.Level.OwnPlayer
+                Core.Player.TempSurfSkin = .SkinName
+
+                Dim pokemonNumber As Integer = Core.Player.Pokemons(Core.Player.SurfPokemon).Number
+                Dim SkinName As String = "[POKEMON|N]" & pokemonNumber & PokemonForms.GetOverworldAddition(Core.Player.Pokemons(Core.Player.SurfPokemon))
+                If Core.Player.Pokemons(Core.Player.SurfPokemon).IsShiny = True Then
+                    SkinName = "[POKEMON|S]" & pokemonNumber & PokemonForms.GetOverworldAddition(Core.Player.Pokemons(Core.Player.SurfPokemon))
+                End If
+
+                .SetTexture(SkinName, False)
+
+                .UpdateEntity()
+
+                If MusicManager.CurrentSong.Name.ToLower <> "surf" AndAlso (Screen.Level.IsRadioOn = False OrElse GameJolt.PokegearScreen.StationCanPlay(Screen.Level.SelectedRadioStation) = False) Then
+                    MusicManager.Play("surf", True)
+                End If
+            End With
+        End If
         Me.StartOffsetMapUpdate()
     End Sub
 
