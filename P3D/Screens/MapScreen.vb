@@ -316,15 +316,26 @@
                 If Not String.IsNullOrWhiteSpace(Core.Player.RoamingPokemonData) Then
                     If Core.Player.RoamingPokemonData.Length > 0 AndAlso Core.Player.RoamingPokemonData.Contains("|") Then
                         For Each Pokes As String In Core.Player.RoamingPokemonData.SplitAtNewline
-                            ' PokémonID,Level,regionID,startLevelFile,MusicLoop,Shiny,PokemonData
+                            ' RoamerID,PokémonID,Level,regionID,startLevelFile,MusicLoop,[Shiny],[ScriptPath]
                             Dim TempData() As String = Pokes.Split("|")
                             Dim MapFiles() As String = Tags("mapfiles").Split(",")
-                            Dim PokeCurrentLocation As String = TempData(3)
+                            Dim PokeCurrentLocation As String = TempData(4)
                             If MapFiles.Contains(PokeCurrentLocation) Then
-                                TempPoke.Add(New Roaming(CInt(TempData(0)), CInt(Tags("position").Split(",")(0)), CInt(Tags("position").Split(",")(1)), Tags("name")))
+                                TempPoke.Add(New Roaming(TempData(1), CInt(Tags("position").Split(",")(0)), CInt(Tags("position").Split(",")(1)), Tags("name")))
                             End If
-                            If RoamingPokeName Is Nothing OrElse Not RoamingPokeName.Contains(Pokemon.GetPokemonByID(CInt(TempData(0))).GetName) Then
-                                RoamingPokeName.Add(Pokemon.GetPokemonByID(CInt(TempData(0))).GetName)
+
+                            Dim PokemonID As String = TempData(1)
+                            Dim PokemonAddition As String = "xXx"
+                            If PokemonID.Contains("_") Then
+                                PokemonAddition = PokemonForms.GetAdditionalValueFromDataFile(TempData(1))
+                                PokemonID = TempData(1).GetSplit(0, "_")
+                            End If
+                            If PokemonID.Contains(";") Then
+                                PokemonAddition = TempData(1).GetSplit(1, ";")
+                                PokemonID = TempData(1).GetSplit(0, ";")
+                            End If
+                            If RoamingPokeName Is Nothing OrElse Not RoamingPokeName.Contains(Pokemon.GetPokemonByID(CInt(PokemonID), PokemonAddition).GetName) Then
+                                RoamingPokeName.Add(Pokemon.GetPokemonByID(CInt(PokemonID), PokemonAddition).GetName)
                             End If
                         Next
                     End If
@@ -1370,7 +1381,7 @@
 
     Public Class Roaming
 
-        Public ID As Integer
+        Public ID As String
         Public Name As String
         Public Location As String
         Public PositionX As Integer
@@ -1380,10 +1391,20 @@
 
         Dim T As Texture2D = Nothing
 
-        Public Sub New(ByVal ID As Integer, ByVal PositionX As Integer, ByVal PositionY As Integer, ByVal Location As String)
+        Public Sub New(ByVal ID As String, ByVal PositionX As Integer, ByVal PositionY As Integer, ByVal Location As String)
             Me.ID = ID
-            Me.Name = Pokemon.GetPokemonByID(ID).GetName
-            Me.Species = Pokemon.GetPokemonByID(ID)
+            Dim PokemonID As String = ID
+            Dim PokemonAddition As String = "xXx"
+            If PokemonID.Contains("_") Then
+                PokemonAddition = PokemonForms.GetAdditionalValueFromDataFile(ID)
+                PokemonID = ID.GetSplit(0, "_")
+            End If
+            If PokemonID.Contains(";") Then
+                PokemonAddition = ID.GetSplit(1, ";")
+                PokemonID = ID.GetSplit(0, ";")
+            End If
+            Me.Name = Pokemon.GetPokemonByID(CInt(PokemonID), PokemonAddition).GetName
+            Me.Species = Pokemon.GetPokemonByID(CInt(PokemonID), PokemonAddition)
             Me.PositionX = PositionX
             Me.PositionY = PositionY
             Me.Location = Location

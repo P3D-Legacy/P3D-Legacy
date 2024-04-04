@@ -11,14 +11,14 @@ Public Class RoamingPokemon
         Dim data() As String = DataLine.Split(CChar("|"))
 
         Me.RoamerID = data(0)
-        Me.PokemonReference = Pokemon.GetPokemonByData(data(6))
+        Me.PokemonReference = Pokemon.GetPokemonByData(data(8))
 
         Me.WorldID = CInt(data(3))
         Me.LevelFile = data(4)
         Me.MusicLoop = data(5)
 
-        If data.Length = 9 Then
-            ScriptPath = data(8)
+        If data.Length = 10 Then
+            ScriptPath = data(9)
         End If
     End Sub
 
@@ -35,7 +35,7 @@ Public Class RoamingPokemon
 
         Dim newData As String = ""
         For Each line As String In Core.Player.RoamingPokemonData.SplitAtNewline()
-            If line <> "" And line.CountSeperators("|") >= 7 Then
+            If line <> "" AndAlso line.CountSeperators("|") >= 8 Then
                 Dim data() As String = line.Split(CChar("|"))
 
                 If newData <> "" Then
@@ -88,12 +88,7 @@ Public Class RoamingPokemon
         Dim newData As String = ""
 
         For Each line As String In Core.Player.RoamingPokemonData.SplitAtNewline()
-            If line.CountSeperators("|") = 7 AndAlso line.StartsWith(compareData.Remove(0, compareData.IndexOf("|") + 1)) = False Then
-                If newData <> "" Then
-                    newData &= Environment.NewLine
-                End If
-                newData &= line
-            ElseIf line.StartsWith(compareData) = False Then
+            If line.StartsWith(compareData) = False Then
                 If newData <> "" Then
                     newData &= Environment.NewLine
                 End If
@@ -114,9 +109,7 @@ Public Class RoamingPokemon
                 newData &= Environment.NewLine
             End If
 
-            If line.CountSeperators("|") = 7 AndAlso line.StartsWith(compareData.Remove(0, compareData.IndexOf("|") + 1)) = False Then
-                newData &= line
-            ElseIf line.StartsWith(compareData) = False Then
+            If line.StartsWith(compareData) = False Then
                 newData &= line
             Else
                 newData &= p.RoamerID & "|" & p.PokemonReference.Number & "|" & p.PokemonReference.Level & "|" & p.WorldID.ToString() & "|" & p.LevelFile & "|" & p.MusicLoop & "|" & p.PokemonReference.IsShiny & "|" & p.PokemonReference.GetSaveData() & "|" & p.ScriptPath

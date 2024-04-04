@@ -679,11 +679,11 @@
                     Dim PokemonID As String = data(1)
                     Dim PokemonAddition As String = "xXx"
                     If PokemonID.Contains("_") Then
-                        PokemonAddition = PokemonForms.GetAdditionalValueFromDataFile(data(0))
+                        PokemonAddition = PokemonForms.GetAdditionalValueFromDataFile(data(1))
                         PokemonID = data(1).GetSplit(0, "_")
                     End If
                     If PokemonID.Contains(";") Then
-                        PokemonAddition = data(0).GetSplit(1, ";")
+                        PokemonAddition = data(1).GetSplit(1, ";")
                         PokemonID = data(1).GetSplit(0, ";")
                     End If
 

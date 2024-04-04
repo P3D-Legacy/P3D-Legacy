@@ -24,7 +24,7 @@ Public Class Spawner
             Dim roamingPokemon As RoamingPokemon = CheckForRoaming(LevelFile, Method)
 
             If Not roamingPokemon Is Nothing Then
-                Logger.Debug("Roaming Pokemon (" & roamingPokemon.PokemonReference.Number & ") appears!")
+                Logger.Debug("Roaming Pokemon (" & PokemonForms.GetPokemonDataFileName(roamingPokemon.PokemonReference.Number, roamingPokemon.PokemonReference.AdditionalData, True) & ") appears!")
                 BattleSystem.BattleScreen.RoamingBattle = True
                 BattleSystem.BattleScreen.RoamingPokemonStorage = roamingPokemon
                 Return roamingPokemon.GetPokemon()
@@ -111,8 +111,6 @@ Public Class Spawner
                     If cLine <> "" Then
                         If cLine.CountSeperators("|") >= 8 Then
                             possibleEncounters.Add(cLine)
-                        ElseIf cLine.CountSeperators("|") = 7 Then
-                            possibleEncounters.Add(Random.Next(100, 1001).ToString & "|" & cLine)
                         End If
                     End If
                 Next

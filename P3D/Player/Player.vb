@@ -974,23 +974,25 @@
                     If RoamingPokemonData <> "" Then
                         RoamingPokemonData &= Environment.NewLine
                     End If
-                    If line.CountSeperators("|") < 5 Then
+                    If line.CountSeperators("|") < 6 Then
                         'Convert potential old data:
                         Dim data() As String = line.Split(CChar("|"))
                         Dim newP As Pokemon = Pokemon.GetPokemonByID(CInt(data(0)))
                         newP.Generate(CInt(data(1)), True)
 
-                        RoamingPokemonData &= newP.Number.ToString() & "|" & newP.Level.ToString() & "|" & data(2) & "|" & data(3) & "||" & newP.IsShiny.ToNumberString() & "|" & newP.GetSaveData()
-                    Else
-                        If line.CountSeperators("|") < 6 Then
-                            'Update to include shiny
-                            Dim data() As String = line.Split(CChar("|"))
-                            Dim newP As Pokemon = Pokemon.GetPokemonByData(data(5))
+                        RoamingPokemonData &= Random.Next(100, 1001).ToString & "|" & newP.Number.ToString() & "|" & newP.Level.ToString() & "|" & data(2) & "|" & data(3) & "||" & newP.IsShiny.ToNumberString() & "|" & newP.GetSaveData()
+                    ElseIf line.CountSeperators("|") < 7 Then
+                        'Update to include shiny (and identifier)
+                        Dim data() As String = line.Split(CChar("|"))
+                        Dim newP As Pokemon = Pokemon.GetPokemonByData(data(5))
 
-                            RoamingPokemonData &= data(0) & "|" & data(1) & "|" & data(2) & "|" & data(3) & "|" & data(4) & "|" & newP.IsShiny.ToNumberString() & "|" & data(5)
-                        Else
-                            RoamingPokemonData &= line
-                        End If
+                        RoamingPokemonData &= Random.Next(100, 1001).ToString & "|" & data(0) & "|" & data(1) & "|" & data(2) & "|" & data(3) & "|" & data(4) & "|" & newP.IsShiny.ToNumberString() & "|" & data(5)
+                    ElseIf line.CountSeperators("|") < 8 Then
+                        'Update to include (and identifier)
+                        Dim data() As String = line.Split(CChar("|"))
+                        RoamingPokemonData &= Random.Next(100, 1001).ToString & "|" & data(0) & "|" & data(1) & "|" & data(2) & "|" & data(3) & "|" & data(4) & "|" & "|" & data(5) & "|" & data(6)
+                    Else
+                        RoamingPokemonData &= line
                     End If
                 Next
             End If
