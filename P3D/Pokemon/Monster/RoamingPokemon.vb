@@ -1,5 +1,6 @@
 Public Class RoamingPokemon
 
+    Public RoamerID As Integer = -1
     Public WorldID As Integer = -1
     Public LevelFile As String = ""
     Public MusicLoop As String = ""
@@ -9,19 +10,20 @@ Public Class RoamingPokemon
     Public Sub New(ByVal DataLine As String)
         Dim data() As String = DataLine.Split(CChar("|"))
 
+        Me.RoamerID = CInt(data(0))
         Me.PokemonReference = Pokemon.GetPokemonByData(data(6))
 
-        Me.WorldID = CInt(data(2))
-        Me.LevelFile = data(3)
-        Me.MusicLoop = data(4)
+        Me.WorldID = CInt(data(3))
+        Me.LevelFile = data(4)
+        Me.MusicLoop = data(5)
 
-        If data.Length = 8 Then
-            ScriptPath = data(7)
+        If data.Length = 9 Then
+            ScriptPath = data(8)
         End If
     End Sub
 
     Public Function CompareData() As String
-        Return Me.PokemonReference.Number.ToString() & "|" & Me.PokemonReference.Level.ToString() & "|" & Me.WorldID.ToString() & "|"
+        Return Me.RoamerID.ToString & "|" & PokemonForms.GetPokemonDataFileName(Me.PokemonReference.Number, Me.PokemonReference.AdditionalData, True) & "|" & Me.PokemonReference.Level.ToString() & "|" & Me.WorldID.ToString() & "|"
     End Function
 
     Public Function GetPokemon() As Pokemon
@@ -33,14 +35,14 @@ Public Class RoamingPokemon
 
         Dim newData As String = ""
         For Each line As String In Core.Player.RoamingPokemonData.SplitAtNewline()
-            If line <> "" And line.CountSeperators("|") >= 6 Then
+            If line <> "" And line.CountSeperators("|") >= 7 Then
                 Dim data() As String = line.Split(CChar("|"))
 
                 If newData <> "" Then
                     newData &= Environment.NewLine
                 End If
 
-                If CInt(data(2)) = worldID Or worldID = -1 Then
+                If CInt(data(3)) = worldID Or worldID = -1 Then
                     Dim regionsFile As String = GameModeManager.GetScriptPath("worldmap\roaming_regions.dat")
                     Security.FileValidation.CheckFileValid(regionsFile, False, "RoamingPokemon.vb")
 
@@ -48,22 +50,23 @@ Public Class RoamingPokemon
                     Dim levelList As New List(Of String)
 
                     For Each worldLine As String In worldList
-                        If worldLine.StartsWith(CInt(data(2)).ToString() & "|") = True Then
+                        If worldLine.StartsWith(CInt(data(3)).ToString() & "|") = True Then
                             levelList = worldLine.Remove(0, worldLine.IndexOf("|") + 1).Split(CChar(",")).ToList()
                         End If
                     Next
 
-                    Dim currentIndex As Integer = levelList.IndexOf(data(3))
+                    Dim currentIndex As Integer = levelList.IndexOf(data(4))
                     Dim nextIndex As Integer = currentIndex + 1
                     If nextIndex > levelList.Count - 1 Then
                         nextIndex = 0
                     End If
-                    If data.Length = 7 Then
-                        'PokémonID,Level,regionID,startLevelFile,MusicLoop,Shiny,PokemonData,ScriptPath
-                        newData &= data(0) & "|" & data(1) & "|" & CInt(data(2)).ToString() & "|" & levelList(nextIndex) & "|" & data(4) & "|" & data(5) & "|" & data(6) & "|"
+                    'RoamerID|PokémonID|Level|regionID|startLevelFile|MusicLoop|Shiny|PokemonData|ScriptPath
+                    If data.Length = 8 Then
+                        'No Script
+                        newData &= data(0) & "|" & data(1) & "|" & data(2) & "|" & CInt(data(3)).ToString() & "|" & levelList(nextIndex) & "|" & data(5) & "|" & data(6) & "|" & data(7) & "|"
                     Else
-                        'PokémonID,Level,regionID,startLevelFile,MusicLoop,Shiny,PokemonData,ScriptPath
-                        newData &= data(0) & "|" & data(1) & "|" & CInt(data(2)).ToString() & "|" & levelList(nextIndex) & "|" & data(4) & "|" & data(5) & "|" & data(6) & "|" & data(7)
+                        'With Script
+                        newData &= data(0) & "|" & data(1) & "|" & data(2) & "|" & CInt(data(3)).ToString() & "|" & levelList(nextIndex) & "|" & data(5) & "|" & data(6) & "|" & data(7) & "|" & data(8)
                     End If
 
                 Else
@@ -85,7 +88,12 @@ Public Class RoamingPokemon
         Dim newData As String = ""
 
         For Each line As String In Core.Player.RoamingPokemonData.SplitAtNewline()
-            If line.StartsWith(compareData) = False Then
+            If line.CountSeperators("|") = 7 AndAlso line.StartsWith(compareData.Remove(0, compareData.IndexOf("|") + 1)) = False Then
+                If newData <> "" Then
+                    newData &= Environment.NewLine
+                End If
+                newData &= line
+            ElseIf line.StartsWith(compareData) = False Then
                 If newData <> "" Then
                     newData &= Environment.NewLine
                 End If
@@ -105,10 +113,13 @@ Public Class RoamingPokemon
             If newData <> "" Then
                 newData &= Environment.NewLine
             End If
-            If line.StartsWith(compareData) = False Then
+
+            If line.CountSeperators("|") = 7 AndAlso line.StartsWith(compareData.Remove(0, compareData.IndexOf("|") + 1)) = False Then
+                newData &= line
+            ElseIf line.StartsWith(compareData) = False Then
                 newData &= line
             Else
-                newData &= p.PokemonReference.Number & "|" & p.PokemonReference.Level & "|" & p.WorldID.ToString() & "|" & p.LevelFile & "|" & p.MusicLoop & "|" & p.PokemonReference.IsShiny & "|" & p.PokemonReference.GetSaveData() & "|" & p.ScriptPath
+                newData &= p.RoamerID & "|" & p.PokemonReference.Number & "|" & p.PokemonReference.Level & "|" & p.WorldID.ToString() & "|" & p.LevelFile & "|" & p.MusicLoop & "|" & p.PokemonReference.IsShiny & "|" & p.PokemonReference.GetSaveData() & "|" & p.ScriptPath
             End If
         Next
 

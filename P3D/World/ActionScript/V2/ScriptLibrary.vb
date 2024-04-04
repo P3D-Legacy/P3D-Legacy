@@ -804,10 +804,13 @@ Namespace ScriptVersion2
                                                        New ScriptArgument("location", ScriptArgument.ArgumentTypes.Str)}.ToList(), "Sets the Catch Location of a Pokémon in the player's party."))
             r(New ScriptCommand("pokemon", "setstatus", {New ScriptArgument("pokemonIndex", ScriptArgument.ArgumentTypes.Int),
                                                        New ScriptArgument("status", ScriptArgument.ArgumentTypes.Str, {"brn", "frz", "prz", "psn", "bpsn", "slp", "fnt"})}.ToList(), "Sets the status of a Pokémon in the player's party. Setting that to ""fnt"" (Fainted) will also set the Pokémon's HP to 0."))
-            r(New ScriptCommand("pokemon", "newroaming", {New ScriptArgument("pokemonID", ScriptArgument.ArgumentTypes.Int),
+            r(New ScriptCommand("pokemon", "newroaming", {New ScriptArgument("roamerID", ScriptArgument.ArgumentTypes.Int),
+                                                      New ScriptArgument("pokemonID", ScriptArgument.ArgumentTypes.Str),
                                                       New ScriptArgument("level", ScriptArgument.ArgumentTypes.Int),
                                                       New ScriptArgument("regionID", ScriptArgument.ArgumentTypes.Int),
-                                                      New ScriptArgument("startMap", ScriptArgument.ArgumentTypes.Str)}.ToList(), "Adds a new Roaming Pokémon to the list of Roaming Pokémon.", "|", False))
+                                                      New ScriptArgument("startMap", ScriptArgument.ArgumentTypes.Str),
+                                                      New ScriptArgument("shiny", ScriptArgument.ArgumentTypes.Bool, True, "-1"),
+                                                      New ScriptArgument("scriptPath", ScriptArgument.ArgumentTypes.Str, True)}.ToList(), "Adds a new Roaming Pokémon to the list of Roaming Pokémon.", "|", False))
             r(New ScriptCommand("pokemon", "evolve", {New ScriptArgument("pokemonIndex", ScriptArgument.ArgumentTypes.Int),
                                                   New ScriptArgument("evolutionTrigger", ScriptArgument.ArgumentTypes.Str, {"level", "none", "item", "trade"}, True, "level"),
                                                   New ScriptArgument("evolutionArgument", ScriptArgument.ArgumentTypes.Str, True, "")}.ToList(), "Tries to evolve a Pokémon with the given conditions."))

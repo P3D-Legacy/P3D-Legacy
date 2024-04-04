@@ -673,37 +673,37 @@
                         Core.Player.Pokemons(Index).CatchLocation = placeLocalization
                     End If
                 Case "newroaming"
-                    ' PokémonID,Level,regionID,startLevelFile,MusicLoop,[Shiny],[ScriptPath]
+                    ' RoamerID,PokémonID,Level,regionID,startLevelFile,MusicLoop,[Shiny],[ScriptPath]
                     Dim data() As String = argument.Split(CChar(","))
 
-                    Dim PokemonID As String = data(0)
+                    Dim PokemonID As String = data(1)
                     Dim PokemonAddition As String = "xXx"
                     If PokemonID.Contains("_") Then
                         PokemonAddition = PokemonForms.GetAdditionalValueFromDataFile(data(0))
-                        PokemonID = data(0).GetSplit(0, "_")
+                        PokemonID = data(1).GetSplit(0, "_")
                     End If
                     If PokemonID.Contains(";") Then
                         PokemonAddition = data(0).GetSplit(1, ";")
-                        PokemonID = data(0).GetSplit(0, ";")
+                        PokemonID = data(1).GetSplit(0, ";")
                     End If
 
                     Dim p As Pokemon = Pokemon.GetPokemonByID(CInt(PokemonID), PokemonAddition)
-                    p.Generate(CInt(data(1)), True, PokemonAddition)
+                    p.Generate(CInt(data(2)), True, PokemonAddition)
 
-                    If data.Length > 5 AndAlso data(5) <> "" AndAlso data(5) <> "-1" Then
-                        p.IsShiny = CBool(data(5))
+                    If data.Length > 6 AndAlso data(6) <> "" AndAlso data(6) <> "-1" Then
+                        p.IsShiny = CBool(data(6))
                     End If
 
                     Dim ScriptPath As String = ""
-                    If data.Length > 6 AndAlso data(6) <> "" Then
-                        ScriptPath = data(6)
+                    If data.Length > 7 AndAlso data(7) <> "" Then
+                        ScriptPath = data(7)
                     End If
 
                     If Core.Player.RoamingPokemonData <> "" Then
                         Core.Player.RoamingPokemonData &= Environment.NewLine
                     End If
 
-                    Core.Player.RoamingPokemonData &= data(0) & "|" & data(1) & "|" & data(2) & "|" & data(3) & "|" & data(4) & "|" & p.IsShiny & "|" & p.GetSaveData() & "|" & ScriptPath
+                    Core.Player.RoamingPokemonData &= data(0) & "|" & data(1) & "|" & data(2) & "|" & data(3) & "|" & data(4) & "|" & data(5) & "|" & p.IsShiny & "|" & p.GetSaveData() & "|" & ScriptPath
                 Case "evolve"
                     Dim args() As String = argument.Split(CChar(","))
                     Dim triggerStr As String = "level"

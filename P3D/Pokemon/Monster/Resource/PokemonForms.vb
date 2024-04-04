@@ -430,6 +430,7 @@ Public Class PokemonForms
         Return FileName
     End Function
 
+    'Return the identifier for the Pokémon including the suffix when available, including non-data forms if desired.
     Public Shared Function GetPokemonDataFileName(ByVal Number As Integer, ByVal AdditionalData As String, Optional ByVal AlsoCheckNonDataForms As Boolean = False) As String
         Dim FileName As String = Number.ToString()
         Dim FilePath As String = GameModeManager.GetPokemonDataFilePath(FileName & ".dat")

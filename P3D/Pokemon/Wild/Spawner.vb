@@ -108,8 +108,12 @@ Public Class Spawner
                 Dim possibleEncounters As New List(Of String)
 
                 For Each cLine As String In roamingData
-                    If cLine <> "" And cLine.CountSeperators("|") >= 6 Then
-                        possibleEncounters.Add(cLine)
+                    If cLine <> "" Then
+                        If cLine.CountSeperators("|") >= 8 Then
+                            possibleEncounters.Add(cLine)
+                        ElseIf cLine.CountSeperators("|") = 7 Then
+                            possibleEncounters.Add(Random.Next(100, 1001).ToString & "|" & cLine)
+                        End If
                     End If
                 Next
 
@@ -120,7 +124,7 @@ Public Class Spawner
                         Dim line As String = possibleEncounters(i)
                         Dim data() As String = line.Split(CChar("|"))
 
-                        If data(3).ToLower() = LevelFile.ToLower() Then
+                        If data(4).ToLower() = LevelFile.ToLower() Then
                             Return New RoamingPokemon(line)
                         End If
                     Next

@@ -1276,12 +1276,12 @@ nextIndex:
             'Shift the Roaming Pokemon.
             If RoamingBattle = True Then
                 If FieldEffects.RoamingFled = False AndAlso Battle.Fled = False AndAlso Battle.Caught = True Or OppPokemon.HP <= 0 Or OppPokemon.Status = Pokemon.StatusProblems.Fainted Then
-                    If RoamingPokemonStorage.ScriptPath <> "" Then
-                        CType(SavedOverworld.OverworldScreen, OverworldScreen).AfterRoamingBattleScript = RoamingPokemonStorage.ScriptPath
-                    End If
                     Core.Player.RoamingPokemonData = RoamingPokemon.RemoveRoamingPokemon(RoamingPokemonStorage)
                 Else
                     Core.Player.RoamingPokemonData = RoamingPokemon.ReplaceRoamingPokemon(RoamingPokemonStorage)
+                End If
+                If RoamingPokemonStorage.ScriptPath <> "" Then
+                    CType(SavedOverworld.OverworldScreen, OverworldScreen).AfterRoamingBattleScript = RoamingPokemonStorage.ScriptPath
                 End If
                 RoamingPokemon.ShiftRoamingPokemon(RoamingPokemonStorage.WorldID)
             End If
