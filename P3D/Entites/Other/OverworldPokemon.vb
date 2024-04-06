@@ -90,17 +90,13 @@ Public Class OverworldPokemon
 
             Me.ChangeTexture()
 
-            If Moving = True Then
-                Me.AnimationDelay -= 0.1F
-                If AnimationDelay <= 0.0F Then
-                    AnimationX += 1
-                    AnimationDelay = AnimationDelayLength
-                    If AnimationX > 4 Then
-                        AnimationX = 1
-                    End If
+            Me.AnimationDelay -= 0.1F
+            If AnimationDelay <= 0.0F Then
+                AnimationX += 1
+                AnimationDelay = AnimationDelayLength
+                If AnimationX > 4 Then
+                    AnimationX = 1
                 End If
-            Else
-                AnimationX = 1
             End If
 
             ChangePosition()

@@ -62,16 +62,12 @@
                     End If
                 End If
             Else
-                If Me.Texture.Width = Me.Texture.Height Then
-                    AnimationX = 1
-                Else
-                    Me.AnimationDelay -= 0.1F
-                    If AnimationDelay <= 0.0F Then
-                        AnimationX += 1
-                        AnimationDelay = 2.2F
-                        If AnimationX > 4 Then
-                            AnimationX = 1
-                        End If
+                Me.AnimationDelay -= 0.1F
+                If AnimationDelay <= 0.0F Then
+                    AnimationX += 1
+                    AnimationDelay = 2.2F
+                    If AnimationX > 4 Then
+                        AnimationX = 1
                     End If
                 End If
             End If
