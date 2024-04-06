@@ -98,12 +98,34 @@
                     Dim Amount As Integer = int(argument.GetSplit(1))
 
                     If Not item Is Nothing Then
-                        Dim receiveString As String = Localization.GetString("item_received_single", "Received the~") & item.OneLineName() & ".*"
-                        If Amount > 1 Then
-                            receiveString = Localization.GetString("item_received_multiple", "Received") & " " & Amount & "~" & item.OneLinePluralName() & ".*"
+                        Dim receiveString As String = Localization.GetString("item_received_single", "Received the~") & item.OneLineName()
+                        If item.ItemType = Items.ItemTypes.Machines Then
+                            If Amount > 1 Then
+                                If item.IsGameModeItem = True Then
+                                    receiveString = Localization.GetString("item_received_multiple", "Received") & " " & Amount & "~" & item.OneLinePluralName() & " " & CType(item, GameModeItem).gmTeachMove.Name & ".*"
+                                Else
+                                    receiveString = Localization.GetString("item_received_multiple", "Received") & " " & Amount & "~" & item.OneLinePluralName() & " " & CType(item, Items.TechMachine).Attack.Name & ".*"
+                                End If
+                            Else
+                                If item.IsGameModeItem = True Then
+                                    receiveString &= " " & CType(item, GameModeItem).gmTeachMove.Name & ".*"
+                                Else
+                                    receiveString &= " " & CType(item, Items.TechMachine).Attack.Name & ".*"
+                                End If
+                            End If
+                        Else
+                            If Amount > 1 Then
+                                receiveString = Localization.GetString("item_received_multiple", "Received") & " " & Amount & "~" & item.OneLinePluralName() & ".*"
+                            Else
+                                receiveString &= ".*"
+                            End If
                         End If
 
-                        SoundManager.PlaySound("Receive_Item", True)
+                        If item.OriginalName.Contains("HM") Then
+                            SoundManager.PlaySound("Receive_HM", True)
+                        Else
+                            SoundManager.PlaySound("Receive_Item", True)
+                        End If
 
                         Screen.TextBox.reDelay = 0.0F
                         Screen.TextBox.TextColor = TextBox.PlayerColor

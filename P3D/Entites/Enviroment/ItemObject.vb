@@ -156,7 +156,19 @@
                 SoundManager.PlaySound("Receive_Item", True)
             End If
             Screen.TextBox.TextColor = TextBox.PlayerColor
-            Screen.TextBox.Show(Localization.GetString("item_found", "<player.name> found~").Replace("<player.name>", Core.Player.Name) & Me.Item.OneLineName() & "!*" & Core.Player.Inventory.GetMessageReceive(Item, 1), {Me})
+
+            Dim foundString As String = Localization.GetString("item_found", "<player.name> found~").Replace("<player.name>", Core.Player.Name) & Me.Item.OneLineName()
+            If Item.ItemType = Items.ItemTypes.Machines Then
+                If Item.IsGameModeItem = True Then
+                    foundString &= " " & CType(Item, GameModeItem).gmTeachMove.Name & "!*"
+                Else
+                    foundString &= " " & CType(Item, Items.TechMachine).Attack.Name & "!*"
+                End If
+            Else
+                foundString &= "!*"
+            End If
+
+            Screen.TextBox.Show(foundString & Core.Player.Inventory.GetMessageReceive(Item, 1), {Me})
             Dim ItemID As String
             If Me.Item.IsGameModeItem Then
                 ItemID = Me.Item.gmID
