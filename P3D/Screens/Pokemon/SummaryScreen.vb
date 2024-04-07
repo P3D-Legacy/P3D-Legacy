@@ -565,18 +565,18 @@
         Dim s As String = ""
         Dim percent As Integer = CInt((GetPokemon().EggSteps / GetPokemon().BaseEggSteps) * 100)
         If percent <= 33 Then
-            s = "It looks like this Egg will" & Environment.NewLine & "take a long time to hatch."
+            s = "It looks like this Egg will take a long time to hatch."
         ElseIf percent > 33 And percent <= 66 Then
-            s = "It's getting warmer and moves" & Environment.NewLine & "a little. It will hatch soon."
+            s = "It's getting warmer and moves a little. It will hatch soon."
         Else
-            s = "There is strong movement" & Environment.NewLine & "noticeable. It will hatch soon!"
+            s = "There is strong movement noticeable. It will hatch soon!"
         End If
 
         Canvas.DrawRectangle(New Rectangle(DeltaX + 400, DeltaY + 76, 350, 32), New Color(0, 0, 0, CInt(100 * _fadeIn)))
         Canvas.DrawRectangle(New Rectangle(DeltaX + 400, DeltaY + 108, 350, 96), New Color(0, 0, 0, CInt(70 * _fadeIn)))
 
         SpriteBatch.DrawString(FontManager.MainFont, "The Egg Watch", New Vector2(DeltaX + 410, DeltaY + 80), New Color(255, 255, 255, CInt(220 * _fadeIn)))
-        SpriteBatch.DrawString(FontManager.MainFont, s, New Vector2(DeltaX + 410, DeltaY + 132), New Color(255, 255, 255, CInt(220 * _fadeIn)))
+        SpriteBatch.DrawString(FontManager.MainFont, s.CropStringToWidth(FontManager.MainFont, 1.0F, 330), New Vector2(DeltaX + 410, DeltaY + 108 + 48 - FontManager.MainFont.MeasureString(s.CropStringToWidth(FontManager.MainFont, 1.0F, 330)).Y / 2), New Color(255, 255, 255, CInt(220 * _fadeIn)))
     End Sub
 
     Private Sub GetYOffset()
