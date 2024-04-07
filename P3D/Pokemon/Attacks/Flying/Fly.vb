@@ -110,14 +110,15 @@
                     BattleScreen.FieldEffects.OppFlyCounter = 1
                 End If
                 Return True
-            Else
+            ElseIf fly = 1 Then
                 If Own = True Then
-                    BattleScreen.FieldEffects.OwnFlyCounter = 0
+                    BattleScreen.FieldEffects.OwnFlyCounter = 2
                 Else
-                    BattleScreen.FieldEffects.OppFlyCounter = 0
+                    BattleScreen.FieldEffects.OppFlyCounter = 2
                 End If
                 Return False
             End If
+            Return False
         End Function
         Public Overrides Sub MoveSelected(own As Boolean, BattleScreen As BattleScreen)
             If own = True Then
@@ -145,6 +146,7 @@
             Else
                 BattleScreen.FieldEffects.OppFlyCounter = 0
             End If
+            Me.FailPokemonMoveAnimation(BattleScreen, own)
         End Sub
 
         Public Overrides Sub MoveMisses(own As Boolean, BattleScreen As BattleScreen)
@@ -173,6 +175,85 @@
 
         Public Overrides Sub IsAttracted(own As Boolean, BattleScreen As BattleScreen)
             MoveFails(own, BattleScreen)
+        End Sub
+        Public Overrides Sub InternalUserPokemonMoveAnimation(ByVal BattleScreen As BattleScreen, ByVal BattleFlip As Boolean, ByVal CurrentPokemon As Pokemon, ByVal CurrentEntity As NPC)
+            Dim fly As Integer = BattleScreen.FieldEffects.OwnFlyCounter
+            If BattleFlip = True Then
+                fly = BattleScreen.FieldEffects.OppFlyCounter
+            End If
+            Dim MoveAnimation = New AnimationQueryObject(CurrentEntity, BattleFlip)
+
+            If fly = 0 Then
+                MoveAnimation.AnimationPlaySound("Battle\Attacks\Flying\Fly_Start", 0, 0)
+                MoveAnimation.AnimationFade(Nothing, False, 0.2F, False, 0.0F, 0, 0)
+                Dim FlyEntity = MoveAnimation.SpawnEntity(New Vector3(0), TextureManager.GetTexture("Textures\Battle\Flying\Fly", New Rectangle(0, 0, 32, 32), ""), New Vector3(0.5F), 0.0F)
+                MoveAnimation.AnimationFade(FlyEntity, False, 0.2F, True, 1.0F, 0, 0)
+                MoveAnimation.AnimationMove(FlyEntity, True, 0.0, 2.0, 0.0, 0.06, False, False, 1.4F, 0.0,,, 0.06, 0)
+                MoveAnimation.AnimationChangeTexture(FlyEntity, False, TextureManager.GetTexture("Textures\Battle\Flying\Fly", New Rectangle(0, 32, 32, 32), ""), 1.3F, 0)
+                MoveAnimation.AnimationChangeTexture(FlyEntity, False, TextureManager.GetTexture("Textures\Battle\Flying\Fly", New Rectangle(0, 64, 32, 32), ""), 1.4F, 0)
+                MoveAnimation.AnimationChangeTexture(FlyEntity, False, TextureManager.GetTexture("Textures\Battle\Flying\Fly", New Rectangle(0, 96, 32, 32), ""), 1.5F, 0)
+                MoveAnimation.AnimationChangeTexture(FlyEntity, False, TextureManager.GetTexture("Textures\Battle\Flying\Fly", New Rectangle(0, 128, 32, 32), ""), 1.6F, 0)
+                MoveAnimation.AnimationChangeTexture(FlyEntity, False, TextureManager.GetTexture("Textures\Battle\Flying\Fly", New Rectangle(0, 160, 32, 32), ""), 1.7F, 0)
+
+                BattleScreen.BattleQuery.Add(MoveAnimation)
+            Else
+                MoveAnimation.AnimationPlaySound("Battle\Attacks\Flying\Fly_Start", 0, 0)
+                Dim FlyEntity = MoveAnimation.SpawnEntity(New Vector3(0, 0.9, 0), TextureManager.GetTexture("Textures\Battle\Flying\Fly", New Rectangle(0, 0, 32, 32), ""), New Vector3(0.5F), 1.0F)
+                MoveAnimation.AnimationMove(FlyEntity, True, 2.0, 0.5, 0, 0.07, False, False, 0.0F, 0.0,,, 0.035, 0)
+
+                BattleScreen.BattleQuery.Add(MoveAnimation)
+            End If
+        End Sub
+        Public Overrides Sub InternalOpponentPokemonMoveAnimation(ByVal BattleScreen As BattleScreen, ByVal BattleFlip As Boolean, ByVal CurrentPokemon As Pokemon, ByVal CurrentEntity As NPC)
+            Dim fly As Integer = BattleScreen.FieldEffects.OwnFlyCounter
+            If BattleFlip = True Then
+                fly = BattleScreen.FieldEffects.OppFlyCounter
+            End If
+
+            If fly = 2 Then
+                Dim MoveAnimation = New AnimationQueryObject(CurrentEntity, BattleFlip)
+
+                MoveAnimation.AnimationPlaySound("Battle\Attacks\Flying\Fly_Hit", 0, 0)
+                Dim FlyEntity = MoveAnimation.SpawnEntity(New Vector3(-2, 0.9, 0), TextureManager.GetTexture("Textures\Battle\Flying\Fly", New Rectangle(0, 0, 32, 32), ""), New Vector3(0.5F), 1.0F)
+                MoveAnimation.AnimationMove(FlyEntity, True, 0.0, 0.0, 0.0, 0.07, False, False, 0.0, 0.0,,, 0.035, 3)
+
+                If BattleFlip = False Then
+                    MoveAnimation.AnimationFade(BattleScreen.OwnPokemonNPC, False, 1, True, 1.0F, 0, 0)
+                Else
+                    MoveAnimation.AnimationFade(BattleScreen.OppPokemonNPC, False, 1, True, 1.0F, 0, 0)
+                End If
+
+                BattleScreen.BattleQuery.Add(MoveAnimation)
+            End If
+        End Sub
+        Public Overrides Sub InternalFailPokemonMoveAnimation(BattleScreen As BattleScreen, BattleFlip As Boolean, CurrentPokemon As Pokemon, CurrentEntity As NPC)
+            Dim MoveAnimation = New AnimationQueryObject(CurrentEntity, BattleFlip)
+            Dim FadeDelay As Single = 0.0F
+            Dim FadeSpeed As Single = 1.0F
+
+            Dim fly As Integer = BattleScreen.FieldEffects.OwnFlyCounter
+            If BattleFlip = True Then
+                fly = BattleScreen.FieldEffects.OppFlyCounter
+            End If
+
+            If BattleScreen.FieldEffects.Gravity > 0 Then
+                FadeDelay = 2.3F
+                FadeSpeed = 0.2F
+                Dim FlyEntity = MoveAnimation.SpawnEntity(New Vector3(0, 2, 0), TextureManager.GetTexture("Textures\Battle\Flying\Fly", New Rectangle(0, 160, 32, 32), ""), New Vector3(0.5F), 1.0F)
+                MoveAnimation.AnimationMove(FlyEntity, False, 0.0, 0.0, 0.0, 0.1F, False, False, 0.0F, 0.0,,, 0.1F, 1)
+                MoveAnimation.AnimationChangeTexture(FlyEntity, False, TextureManager.GetTexture("Textures\Battle\Flying\Fly", New Rectangle(0, 128, 32, 32), ""), 0.0F, 0)
+                MoveAnimation.AnimationChangeTexture(FlyEntity, False, TextureManager.GetTexture("Textures\Battle\Flying\Fly", New Rectangle(0, 96, 32, 32), ""), 0.1F, 0)
+                MoveAnimation.AnimationChangeTexture(FlyEntity, False, TextureManager.GetTexture("Textures\Battle\Flying\Fly", New Rectangle(0, 64, 32, 32), ""), 0.2F, 0)
+                MoveAnimation.AnimationChangeTexture(FlyEntity, False, TextureManager.GetTexture("Textures\Battle\Flying\Fly", New Rectangle(0, 32, 32, 32), ""), 0.3F, 0)
+                MoveAnimation.AnimationChangeTexture(FlyEntity, False, TextureManager.GetTexture("Textures\Battle\Flying\Fly", New Rectangle(0, 0, 32, 32), ""), 0.4F, 0)
+                MoveAnimation.AnimationFade(FlyEntity, True, FadeSpeed, False, 0.0F, FadeDelay + 0.1F, 0, 1)
+            End If
+            If BattleFlip = False Then
+                MoveAnimation.AnimationFade(BattleScreen.OwnPokemonNPC, False, FadeSpeed, True, 1.0F, FadeDelay, 0)
+            Else
+                MoveAnimation.AnimationFade(BattleScreen.OppPokemonNPC, False, FadeSpeed, True, 1.0F, FadeDelay, 0)
+            End If
+            BattleScreen.BattleQuery.Add(MoveAnimation)
         End Sub
     End Class
 

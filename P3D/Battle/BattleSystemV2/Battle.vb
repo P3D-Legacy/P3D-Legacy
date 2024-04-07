@@ -2113,6 +2113,14 @@
                     'Opp Pokémon move animation! This displays the move effects that target the other Pokémon and appear after the camera switched around.
                     moveUsed.OpponentPokemonMoveAnimation(BattleScreen, own)
 
+                    'Reset Fly if needed after the animation definition
+                    If own = True And BattleScreen.FieldEffects.OwnFlyCounter = 2 Then
+                        BattleScreen.FieldEffects.OwnFlyCounter = 0
+                    End If
+                    If own = False And BattleScreen.FieldEffects.OppFlyCounter = 2 Then
+                        BattleScreen.FieldEffects.OwnFlyCounter = 0
+                    End If
+
                     If moveUsed.IsDamagingMove = True Then
                         ChangeCameraAngle(2, own, BattleScreen)
                         If op.Ability.Name.ToLower() = "wonder guard" And effectiveness <= 1.0F And BattleScreen.FieldEffects.CanUseAbility(Not own, BattleScreen) = True And moveUsed.IsWonderGuardAffected = True Then
@@ -4553,13 +4561,21 @@
                     End If
                     BattleScreen.BattleQuery.Add(New PlaySoundQueryObject(sound, False, 0.0F))
                 End If
+
+                Dim fly As Integer = BattleScreen.FieldEffects.OwnFlyCounter
+                If own = False Then
+                    fly = BattleScreen.FieldEffects.OppFlyCounter
+                End If
+
                 If Core.Player.ShowBattleAnimations <> 0 AndAlso BattleScreen.IsPVPBattle = False Then
-                    Dim HitAnimation As AnimationQueryObject = New AnimationQueryObject(pNPC, own)
-                    HitAnimation.AnimationFade(Nothing, False, 1, False, 0, 0, 0)
-                    HitAnimation.AnimationFade(Nothing, False, 1, True, 1, 1, 0)
-                    HitAnimation.AnimationFade(Nothing, False, 1, False, 0, 2, 0)
-                    HitAnimation.AnimationFade(Nothing, False, 1, True, 1, 3, 0)
-                    BattleScreen.BattleQuery.Add(HitAnimation)
+                    If fly = 0 Then
+                        Dim HitAnimation As AnimationQueryObject = New AnimationQueryObject(pNPC, own)
+                        HitAnimation.AnimationFade(Nothing, False, 1, False, 0, 0, 0)
+                        HitAnimation.AnimationFade(Nothing, False, 1, True, 1, 1, 0)
+                        HitAnimation.AnimationFade(Nothing, False, 1, False, 0, 2, 0)
+                        HitAnimation.AnimationFade(Nothing, False, 1, True, 1, 3, 0)
+                        BattleScreen.BattleQuery.Add(HitAnimation)
+                    End If
                 End If
 
                 If own = True Then

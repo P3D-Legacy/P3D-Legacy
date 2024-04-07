@@ -2361,6 +2361,30 @@
             End If
         End Sub
 
+        Public Sub FailPokemonMoveAnimation(ByVal BattleScreen As BattleScreen, ByVal own As Boolean)
+            If Core.Player.ShowBattleAnimations <> 0 AndAlso BattleScreen.IsPVPBattle = False Then
+                Dim BattleFlip As Boolean = False
+                Dim CurrentPokemon As Pokemon = BattleScreen.OwnPokemon
+                Dim CurrentEntity As NPC = BattleScreen.OwnPokemonNPC
+                If own = False Then
+                    BattleFlip = True
+                    CurrentPokemon = BattleScreen.OppPokemon
+                    CurrentEntity = BattleScreen.OppPokemonNPC
+                End If
+                Me.InternalFailPokemonMoveAnimation(BattleScreen, BattleFlip, CurrentPokemon, CurrentEntity)
+            End If
+        End Sub
+
+        Public Overridable Sub InternalFailPokemonMoveAnimation(ByVal BattleScreen As BattleScreen, ByVal BattleFlip As Boolean, ByVal CurrentPokemon As Pokemon, ByVal CurrentEntity As NPC)
+            If Me.IsGameModeMove = True Then
+                If gmUseMoveAnims IsNot Nothing Then
+                    gmUseMoveAnims.InternalFailPokemonMoveAnimation(BattleScreen, BattleFlip, CurrentPokemon, CurrentEntity)
+                End If
+            Else
+                'Override this method in the attack class to insert the move animation query objects into the queue.
+            End If
+        End Sub
+
 #End Region
 
         ''' <summary>
