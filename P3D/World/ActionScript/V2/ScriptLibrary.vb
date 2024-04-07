@@ -919,6 +919,8 @@ Namespace ScriptVersion2
             r(New ScriptCommand("pokemon", "type2", "str", {New ScriptArgument("pokemonIndex", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Returns the second type of a Pokémon in the player's party.", ",", True))
             r(New ScriptCommand("pokemon", "istype", "bool", {New ScriptArgument("pokemonIndex", ScriptArgument.ArgumentTypes.Int),
                                                           New ScriptArgument("type", ScriptArgument.ArgumentTypes.Str)}.ToList(), "Checks if a Pokémon in the player's party has a specific type.", ",", True))
+            r(New ScriptCommand("pokemon", "IsRoaming", "bool", {New ScriptArgument("roamerID", ScriptArgument.ArgumentTypes.Str)}.ToList(), "Checks if the given roaming Pokémon is still active.", ",", True))
+
         End Sub
 
         Private Shared Sub r(ByVal s As ScriptCommand)

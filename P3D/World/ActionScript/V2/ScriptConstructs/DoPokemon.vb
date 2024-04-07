@@ -515,6 +515,15 @@
                         adjusted = CBool(argument)
                     End If
                     Return Pokemon.MasterShinyRate(adjusted)
+                Case "isroaming"
+                    Dim RoamerID As String = argument
+
+                    For Each line As String In Core.Player.RoamingPokemonData.SplitAtNewline()
+                        If line.StartsWith(RoamerID) = True Then
+                            Return ReturnBoolean(True)
+                        End If
+                    Next
+                    Return ReturnBoolean(False)
             End Select
             Return DEFAULTNULL
         End Function
