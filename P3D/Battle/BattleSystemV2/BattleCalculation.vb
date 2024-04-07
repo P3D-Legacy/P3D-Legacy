@@ -1002,7 +1002,7 @@
             Dim b As Double = op.BaseExperience
 
             Dim t As Double = 1D
-            If p.Item.IsGameModeItem = True Then
+            If Not p.Item Is Nothing AndAlso p.Item.IsGameModeItem = True Then
                 If CType(p.Item, GameModeItem).gmExpMultiplier <> -1D AndAlso CType(p.Item, GameModeItem).gmOverrideTradeExp = True Then
                     t = CType(p.Item, GameModeItem).gmExpMultiplier
                 Else
@@ -1017,7 +1017,7 @@
             End If
 
             Dim gm As Double = 1D
-            If p.Item.IsGameModeItem = True Then
+            If Not p.Item Is Nothing AndAlso p.Item.IsGameModeItem = True Then
                 If CType(p.Item, GameModeItem).gmExpMultiplier <> -1D AndAlso CType(p.Item, GameModeItem).gmOverrideTradeExp = False Then
                     gm = CType(p.Item, GameModeItem).gmExpMultiplier
                 End If
