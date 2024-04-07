@@ -1051,7 +1051,7 @@
                     End If
                 Case "setstatus"
                     Dim Index As Integer = int(argument.GetSplit(0, ","))
-                    Dim Status As Pokemon.StatusProblems = Nothing
+                    Dim Status As Integer = -1
                     Select Case argument.GetSplit(1, ",")
                         Case "brn"
                             Status = Pokemon.StatusProblems.Burn
@@ -1072,8 +1072,8 @@
                         Case Else
                             Status = Pokemon.StatusProblems.None
                     End Select
-                    If Status <> Nothing AndAlso Core.Player.Pokemons.Count - 1 >= Index Then
-                        Core.Player.Pokemons(Index).Status = Status
+                    If Status <> -1 AndAlso Core.Player.Pokemons.Count - 1 >= Index Then
+                        Core.Player.Pokemons(Index).Status = CType(Status, Pokemon.StatusProblems)
                         If Status = Pokemon.StatusProblems.Fainted Then
                             Core.Player.Pokemons(Index).HP = 0
                         End If
