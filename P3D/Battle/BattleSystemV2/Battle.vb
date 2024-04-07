@@ -1576,6 +1576,15 @@
             Dim gravity As Integer = BattleScreen.FieldEffects.Gravity
             If gravity > 0 Then
                 If moveUsed.DisabledWhileGravity = True Then
+                    Dim fly As Integer = BattleScreen.FieldEffects.OwnFlyCounter
+                    If own = False Then
+                        fly = BattleScreen.FieldEffects.OppFlyCounter
+                    End If
+
+                    If fly > 0 Then
+                        moveUsed.MoveMisses(own, BattleScreen)
+                    End If
+
                     BattleScreen.BattleQuery.Add(New TextQueryObject(p.GetDisplayName() & "'s move was prevented due to Gravity!"))
                     Exit Sub
                 End If
