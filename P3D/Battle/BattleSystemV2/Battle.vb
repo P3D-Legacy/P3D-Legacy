@@ -2036,6 +2036,7 @@
 
                             If protectWorks = True Then
                                 BattleScreen.BattleQuery.Add(New TextQueryObject(op.GetDisplayName() & " protected itself!"))
+                                moveUsed.MoveProtectedDetected(own, BattleScreen)
                                 Exit Sub
                             End If
                         End If
@@ -2054,6 +2055,7 @@
 
                             If detectWorks = True Then
                                 BattleScreen.BattleQuery.Add(New TextQueryObject(op.GetDisplayName() & " protected itself!"))
+                                moveUsed.MoveProtectedDetected(own, BattleScreen)
                                 Exit Sub
                             End If
                         End If
@@ -2076,7 +2078,7 @@
                                 If moveUsed.MakesContact = True Then
                                     Me.LowerStat(own, Not own, BattleScreen, "Attack", 1, "", "move:kingsshield")
                                 End If
-
+                                moveUsed.MoveProtectedDetected(own, BattleScreen)
                                 Exit Sub
                             End If
                         End If
