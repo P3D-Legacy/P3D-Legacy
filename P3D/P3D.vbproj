@@ -29373,9 +29373,12 @@
     <Content Include="Content\Data\maps\poke\diamonddive\underwater\4.poke">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <None Include="Content\Data\maps\poke\pallet\main.poke">
+    <Content Include="Content\Data\maps\poke\olvine\dock.poke">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
+    </Content>
+    <Content Include="Content\Data\maps\poke\pallet\main.poke">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\Data\maps\poke\routes\route23.poke">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
