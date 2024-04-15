@@ -275,7 +275,21 @@ nextIndex:
                     Case 5
                         Core.SetScreen(Me.PreScreen)
                         BattleSystem.Battle.Won = True
-                        CType(Core.CurrentScreen, BattleSystem.BattleScreen).EndBattle(False)
+
+                        If CBool(GameModeManager.GetGameRuleValue("GainExpAfterCatch", "0")) = True AndAlso BattleSystem.BattleScreen.CanReceiveEXP = True Then
+                            CType(Core.CurrentScreen, BattleSystem.BattleScreen).BattleQuery.Clear()
+                            If CType(Camera, BattleSystem.BattleCamera).TargetMode = True Then
+                                Camera.Position = New Vector3(BattleScreen.OppPokemonNPC.Position.X - 2.5F, BattleScreen.OppPokemonNPC.Position.Y + 0.25F, BattleScreen.OppPokemonNPC.Position.Z + 0.5F) - BattleSystem.BattleScreen.BattleMapOffset
+                                Camera.Pitch = -0.25F
+                                Camera.Yaw = MathHelper.Pi * 1.5F + 0.25F
+                                CType(Camera, BattleSystem.BattleCamera).TargetMode = False
+                            End If
+
+                            BattleCatchScreen.GainCatchEXP(CType(Core.CurrentScreen, BattleSystem.BattleScreen))
+                            CType(Core.CurrentScreen, BattleSystem.BattleScreen).BattleQuery.Add(New BattleSystem.EndBattleQueryObject(False))
+                        Else
+                            CType(Core.CurrentScreen, BattleSystem.BattleScreen).EndBattle(False)
+                        End If
 
                 End Select
             End If
@@ -474,4 +488,80 @@ nextIndex:
         End If
     End Function
 
+    Public Shared Sub GainCatchEXP(Battlescreen As BattleSystem.BattleScreen)
+
+        Battlescreen.BattleMenu.Visible = False
+
+        Dim expPokemon As New List(Of Integer)
+        For Each i As Integer In Battlescreen.ParticipatedPokemon
+            If Core.Player.Pokemons(i).Status <> Pokemon.StatusProblems.Fainted And Core.Player.Pokemons(i).IsEgg() = False Then
+                expPokemon.Add(i)
+            End If
+        Next
+
+        For i = 0 To Core.Player.Pokemons.Count - 1
+            If expPokemon.Contains(i) = False And Not Core.Player.Pokemons(i).Item Is Nothing AndAlso Core.Player.Pokemons(i).Item.OriginalName.ToLower() = "exp. share" AndAlso Core.Player.Pokemons(i).Status <> Pokemon.StatusProblems.Fainted AndAlso Core.Player.Pokemons(i).IsEgg() = False Then
+                expPokemon.Add(i)
+            End If
+        Next
+
+        For i = 0 To expPokemon.Count - 1
+            Dim PokeIndex As Integer = expPokemon(i)
+            Dim AttackLearnList As New List(Of BattleSystem.Attack)
+            Dim LevelUpAmount As Integer = 0
+            Dim originalLevel As Integer = Core.Player.Pokemons(PokeIndex).Level
+            If Core.Player.Pokemons(PokeIndex).Level < CInt(GameModeManager.GetGameRuleValue("MaxLevel", "100")) Then
+                Dim EXP As Integer = BattleSystem.BattleCalculation.GainExp(Core.Player.Pokemons(PokeIndex), Battlescreen, expPokemon)
+                Battlescreen.BattleQuery.Add(New BattleSystem.TextQueryObject(Core.Player.Pokemons(PokeIndex).GetDisplayName() & " gained " & EXP & " experience points."))
+
+                Dim moveLevel As Integer = originalLevel
+
+                For e = 1 To EXP
+                    Dim oldStats() As Integer
+                    With Core.Player.Pokemons(PokeIndex)
+                        oldStats = { .MaxHP, .Attack, .Defense, .SpAttack, .SpDefense, .Speed}
+                    End With
+                    Core.Player.Pokemons(PokeIndex).GetExperience(1, False)
+
+                    If moveLevel < Core.Player.Pokemons(PokeIndex).Level Then
+                        moveLevel = Core.Player.Pokemons(PokeIndex).Level
+
+                        Core.Player.AddPoints(CInt(Math.Sqrt(Core.Player.Pokemons(PokeIndex).Level)).Clamp(1, 10), "Leveled up a Pokémon to level " & moveLevel.ToString() & ".")
+                        Core.Player.Pokemons(PokeIndex).ChangeFriendShip(Pokemon.FriendShipCauses.LevelUp)
+
+                        Core.Player.Pokemons(PokeIndex).hasLeveledUp = True
+                        Battlescreen.BattleQuery.Add(New BattleSystem.PlaySoundQueryObject("Battle\exp_max", False))
+                        Battlescreen.BattleQuery.Add(New BattleSystem.TextQueryObject(Core.Player.Pokemons(PokeIndex).GetDisplayName() & " reached level " & moveLevel & "!"))
+                        Battlescreen.BattleQuery.Add(New BattleSystem.DisplayLevelUpQueryObject(Core.Player.Pokemons(PokeIndex), oldStats))
+
+                    End If
+                Next
+                LevelUpAmount = moveLevel - originalLevel
+            End If
+            If LevelUpAmount > 0 Then
+                For l = 1 To LevelUpAmount
+                    If Core.Player.Pokemons(PokeIndex).AttackLearns.ContainsKey(originalLevel + l) Then
+
+                        Dim aList As List(Of BattleSystem.Attack) = Core.Player.Pokemons(PokeIndex).AttackLearns(originalLevel + l)
+                        For a = 0 To aList.Count - 1
+                            If AttackLearnList.Contains(aList(a)) = False AndAlso Core.Player.Pokemons(PokeIndex).KnowsMove(aList(a)) = False Then
+                                AttackLearnList.Add(aList(a))
+                            End If
+                        Next
+
+                    End If
+
+                Next
+            End If
+            If AttackLearnList.Count > 0 Then
+                For a = 0 To AttackLearnList.Count - 1
+                    Battlescreen.BattleQuery.Add(New BattleSystem.LearnMovesQueryObject(Core.Player.Pokemons(PokeIndex), AttackLearnList(a), Battlescreen))
+                Next
+            End If
+
+            Core.Player.Pokemons(PokeIndex).GainEffort(Battlescreen.OppPokemon)
+        Next
+
+        Battlescreen.ParticipatedPokemon.Clear()
+    End Sub
 End Class
