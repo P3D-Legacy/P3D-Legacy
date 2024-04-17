@@ -276,7 +276,7 @@
         End If
 
         Dim t1 As Texture2D = TextureManager.GetTexture("GUI\Intro\VSIntro", New Rectangle(CInt(barPosition.X), CInt(barPosition.Y), 128, 64), "")
-        Dim t2 As Texture2D = TextureManager.GetTexture("GUI\Intro\VSIntro", New Rectangle(CInt(VSPosition.X), CInt(VSPosition.Y), 61, 54), "")
+        Dim t2 As Texture2D = TextureManager.GetTexture("GUI\Intro\VSIntro", New Rectangle(CInt(VSPosition.X), CInt(VSPosition.Y), 64, 64), "")
         Dim t3 As Texture2D = TextureManager.GetTexture(TrainerTexture1, New Rectangle(0, Trainer1FrameSize.Height * 2, Trainer1FrameSize.Width, Trainer1FrameSize.Height))
        
 
@@ -307,9 +307,9 @@
         Next
 
         Canvas.DrawRectangle(New Rectangle(0, 0, Core.windowSize.Width, blackPosition), Color.Black)
-        Core.SpriteBatch.Draw(t3, New Rectangle(CInt(Core.windowSize.Width - trainerPosition), CInt(Core.windowSize.Height / 2 + 128 - (CInt(MathHelper.Min(t3.Height * 10, 256) * 0.875))), MathHelper.Min(t3.Width * 10, 256), CInt(MathHelper.Min(t3.Height * 10, 256) * 0.875)), New Rectangle(0, 0, t3.Width, CInt(t3.Height * 0.875)), Color.White)
-        Core.SpriteBatch.Draw(t2, New Rectangle(trainerPosition - 61 * 4, CInt(Core.windowSize.Height / 2) - 96, 61 * 4, 54 * 4), Color.White)
         Canvas.DrawRectangle(New Rectangle(0, Core.windowSize.Height - blackPosition, Core.windowSize.Width, blackPosition), Color.Black)
+        Core.SpriteBatch.Draw(t3, New Rectangle(CInt(Core.windowSize.Width - trainerPosition), CInt(Core.windowSize.Height / 2 + 128 - (CInt(MathHelper.Min(t3.Height * 10, 256) * 0.875))), MathHelper.Min(t3.Width * 10, 256), CInt(MathHelper.Min(t3.Height * 10, 256) * 0.875)), New Rectangle(0, 0, t3.Width, CInt(t3.Height * 0.875)), Color.White)
+        Core.SpriteBatch.Draw(t2, New Rectangle(CInt(trainerPosition * 1.5 - 64 * 6), CInt(Core.windowSize.Height / 2) - 192, 64 * 6, 64 * 6), Color.White)
 
         If textPosition > 0 Then
             Dim tWidth As Integer = CInt(FontManager.InGameFont.MeasureString(Trainer.TrainerType).X * 3.0F)
@@ -381,7 +381,7 @@
     End Sub
 
     Private Sub UpdateFaceshotIntro()
-        Me.barOffset += 18
+        Me.barOffset += 14
         Me.blackPosition = (Me.blackPosition + 10).Clamp(0, CInt(Core.windowSize.Height / 2 - 128))
         If blackPosition >= CInt(Core.windowSize.Height / 2 - 128) Then
             trainerPosition = (trainerPosition + 20).Clamp(0, 420)

@@ -23,7 +23,7 @@ Public Class Trainer
 
     Public VSImageOrigin As String = "VSIntro"
     Public VSImagePosition As Vector2 = New Vector2(0, 0)
-    Public VSImageSize As Size = New Size(61, 54)
+    Public VSImageSize As Size = New Size(64, 64)
     Public BarImagePosition As Vector2 = New Vector2(0, 0)
 
     Public OutroMessage As String = "TRAINER_DEFAULT_MESSAGE"
