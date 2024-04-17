@@ -751,9 +751,11 @@ Public Class NewOptionScreen
 			End If
 		Next
 		If ScrollControl IsNot Nothing Then
-		End If
+			_cursorDestPosition = New Vector2(cPosition.X + 332, cPosition.Y)
+		Else
 
-		_cursorDestPosition = cPosition
+			_cursorDestPosition = cPosition
+		End If
 	End Sub
 
 	Private Function GetButtonPosition(ByVal direction As String) As Vector2
