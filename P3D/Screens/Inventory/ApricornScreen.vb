@@ -17,16 +17,23 @@
     Dim Buttons As New List(Of ButtonIcon)
     Dim Labels As New List(Of Label)
 
-    Dim mainTexture As Texture2D
     Dim lastUpdateState As States = States.None
+
+    Dim buttonTexture As Texture2D
+    Dim mainTexture As Texture2D
+    Dim _closing As Boolean = False
+    Dim _enrollY As Single = 0F
+    Public Shared _interfaceFade As Single = 0F
 
     Dim CursorIndex As Integer = 0
 
     Public Sub New(ByVal currentScreen As Screen, ByVal owner As String)
         Me.Identification = Identifications.ApricornScreen
 
+        Me.mainTexture = TextureManager.GetTexture("GUI\Menus\General")
+
         Me.PreScreen = currentScreen
-        Me.mainTexture = TextureManager.GetTexture("GUI\Menus\Menu")
+        Me.buttonTexture = TextureManager.GetTexture("GUI\Menus\Menu")
         Me.owner = owner
         Me.MouseVisible = True
 
@@ -52,33 +59,42 @@
             Me.Buttons.Clear()
             Me.Labels.Clear()
 
-            Me.Labels.Add(New Label(Localization.GetString("apricorn_screen_apricorns"), New Vector2(96, 128), FontManager.MainFont))
+            Dim halfWidth As Integer = CInt(Core.windowSize.Width / 2)
+            Dim halfHeight As Integer = CInt(Core.windowSize.Height / 2)
+
+            Dim Delta_X As Integer = halfWidth - 400
+            Dim Delta_Y As Integer = halfHeight - 200
 
             Select Case Me.State
                 Case States.Wait
-                    Me.Labels.Add(New Label(Localization.GetString("apricorn_screen_producing").Replace("~", Environment.NewLine), New Vector2(104, 200), FontManager.MainFont))
-                    Me.Labels.Add(New Label(Localization.GetString("apricorn_screen_backadvice"), New Vector2(104, 260), Color.DarkGray, FontManager.MainFont))
+                    Me.Labels.Add(New Label(Localization.GetString("apricorn_screen_producing").Replace("~", Environment.NewLine), New Vector2(Delta_X + 56, Delta_Y + 48), FontManager.MainFont))
+                    Me.Labels.Add(New Label(Localization.GetString("apricorn_screen_backadvice").Replace("~", Environment.NewLine), New Vector2(Delta_X + 56, Delta_Y + 16 + 96 * 2), FontManager.MainFont))
                 Case States.CanGive
                     Dim T As Texture2D = TextureManager.GetTexture("Items\ItemSheet")
 
-                    Me.Labels.Add(New Label(Localization.GetString("apricorn_screen_choose_apricorns"), New Vector2(104, 172), FontManager.MainFont))
-                    Dim RedApricorn As ButtonIcon = New ButtonIcon(AddressOf Me.GiveApricorn, "0 / " & Core.Player.Inventory.GetItemAmount(85.ToString), FontManager.MainFont, T, New Rectangle(240, 72, 24, 24), New Vector2(128, 208), New Size(48, 48), "85")
-                    Dim BlueApricorn As ButtonIcon = New ButtonIcon(AddressOf Me.GiveApricorn, "0 / " & Core.Player.Inventory.GetItemAmount(89.ToString), FontManager.MainFont, T, New Rectangle(336, 72, 24, 24), New Vector2(128, 284), New Size(48, 48), "89")
-                    Dim YellowApricorn As ButtonIcon = New ButtonIcon(AddressOf Me.GiveApricorn, "0 / " & Core.Player.Inventory.GetItemAmount(92.ToString), FontManager.MainFont, T, New Rectangle(384, 72, 24, 24), New Vector2(128, 360), New Size(48, 48), "92")
-                    Dim GreenApricorn As ButtonIcon = New ButtonIcon(AddressOf Me.GiveApricorn, "0 / " & Core.Player.Inventory.GetItemAmount(93.ToString), FontManager.MainFont, T, New Rectangle(408, 72, 24, 24), New Vector2(128, 436), New Size(48, 48), "93")
-                    Dim WhiteApricorn As ButtonIcon = New ButtonIcon(AddressOf Me.GiveApricorn, "0 / " & Core.Player.Inventory.GetItemAmount(97.ToString), FontManager.MainFont, T, New Rectangle(0, 96, 24, 24), New Vector2(128, 512), New Size(48, 48), "97")
-                    Dim BlackApricorn As ButtonIcon = New ButtonIcon(AddressOf Me.GiveApricorn, "0 / " & Core.Player.Inventory.GetItemAmount(99.ToString), FontManager.MainFont, T, New Rectangle(48, 96, 24, 24), New Vector2(240, 208), New Size(48, 48), "99")
-                    Dim PinkApricorn As ButtonIcon = New ButtonIcon(AddressOf Me.GiveApricorn, "0 / " & Core.Player.Inventory.GetItemAmount(101.ToString), FontManager.MainFont, T, New Rectangle(72, 96, 24, 24), New Vector2(240, 284), New Size(48, 48), "101")
+                    Me.Labels.Add(New Label(Localization.GetString("apricorn_screen_choose_apricorns").Replace("~", Environment.NewLine), New Vector2(Delta_X + 48, Delta_Y + 48), FontManager.MainFont))
+                    Dim RedApricorn As ButtonIcon = New ButtonIcon(AddressOf Me.GiveApricorn, "0 / " & Core.Player.Inventory.GetItemAmount(85.ToString), FontManager.MainFont, T, New Rectangle(240, 72, 24, 24), New Vector2(Delta_X + 128, Delta_Y + 16 + 104), New Size(48, 48), "85")
+                    Dim BlueApricorn As ButtonIcon = New ButtonIcon(AddressOf Me.GiveApricorn, "0 / " & Core.Player.Inventory.GetItemAmount(89.ToString), FontManager.MainFont, T, New Rectangle(336, 72, 24, 24), New Vector2(Delta_X + 128 * 2, Delta_Y + 16 + 104), New Size(48, 48), "89")
+                    Dim YellowApricorn As ButtonIcon = New ButtonIcon(AddressOf Me.GiveApricorn, "0 / " & Core.Player.Inventory.GetItemAmount(92.ToString), FontManager.MainFont, T, New Rectangle(384, 72, 24, 24), New Vector2(Delta_X + 128 * 3, Delta_Y + 16 + 104), New Size(48, 48), "92")
+                    Dim GreenApricorn As ButtonIcon = New ButtonIcon(AddressOf Me.GiveApricorn, "0 / " & Core.Player.Inventory.GetItemAmount(93.ToString), FontManager.MainFont, T, New Rectangle(408, 72, 24, 24), New Vector2(Delta_X + 128 * 4, Delta_Y + 16 + 104), New Size(48, 48), "93")
+                    Dim WhiteApricorn As ButtonIcon = New ButtonIcon(AddressOf Me.GiveApricorn, "0 / " & Core.Player.Inventory.GetItemAmount(97.ToString), FontManager.MainFont, T, New Rectangle(0, 96, 24, 24), New Vector2(Delta_X + 128 * 5, Delta_Y + 16 + 104), New Size(48, 48), "97")
+                    Dim BlackApricorn As ButtonIcon = New ButtonIcon(AddressOf Me.GiveApricorn, "0 / " & Core.Player.Inventory.GetItemAmount(99.ToString), FontManager.MainFont, T, New Rectangle(48, 96, 24, 24), New Vector2(Delta_X + 128, Delta_Y + 16 + 104 * 2), New Size(48, 48), "99")
+                    Dim PinkApricorn As ButtonIcon = New ButtonIcon(AddressOf Me.GiveApricorn, "0 / " & Core.Player.Inventory.GetItemAmount(101.ToString), FontManager.MainFont, T, New Rectangle(72, 96, 24, 24), New Vector2(Delta_X + 128 * 2, Delta_Y + 16 + 104 * 2), New Size(48, 48), "101")
 
-                    Dim GiveButton As ButtonIcon = New ButtonIcon(AddressOf Me.Give, Localization.GetString("apricorn_screen_ok"), FontManager.MainFont, mainTexture, New Rectangle(48, 128, 16, 16), New Vector2(240, 512), New Size(48, 48), "OK")
+                    Dim AddAllButton As ButtonIcon = New ButtonIcon(AddressOf Me.AddAllApricorns, Localization.GetString("apricorn_screen_all"), FontManager.MainFont, buttonTexture, New Rectangle(64, 160, 16, 16), New Vector2(Delta_X + 128 * 3, Delta_Y + 16 + 104 * 2), New Size(48, 48), "Clear")
+
+                    Dim ClearButton As ButtonIcon = New ButtonIcon(AddressOf Me.ClearApricorns, Localization.GetString("apricorn_screen_clear"), FontManager.MainFont, buttonTexture, New Rectangle(64, 128, 16, 16), New Vector2(Delta_X + 128 * 4, Delta_Y + 16 + 104 * 2), New Size(48, 48), "Clear")
+
+                    Dim GiveButton As ButtonIcon = New ButtonIcon(AddressOf Me.Give, Localization.GetString("apricorn_screen_ok"), FontManager.MainFont, buttonTexture, New Rectangle(48, 128, 16, 16), New Vector2(Delta_X + 128 * 5, Delta_Y + 16 + 104 * 2), New Size(48, 48), "OK")
                     GiveButton.Enabled = False
-                    Dim ClearButton As ButtonIcon = New ButtonIcon(AddressOf Me.ClearApricorns, Localization.GetString("apricorn_screen_clear"), FontManager.MainFont, mainTexture, New Rectangle(64, 128, 16, 16), New Vector2(240, 436), New Size(48, 48), "Clear")
 
-                    Buttons.AddRange({RedApricorn, BlueApricorn, YellowApricorn, GreenApricorn, WhiteApricorn, BlackApricorn, PinkApricorn, ClearButton, GiveButton})
+                    Buttons.AddRange({RedApricorn, BlueApricorn, YellowApricorn, GreenApricorn, WhiteApricorn, BlackApricorn, PinkApricorn, AddAllButton, ClearButton, GiveButton})
                 Case States.CanTake
-                    Dim TakeButton As ButtonIcon = New ButtonIcon(AddressOf Me.Take, Localization.GetString("apricorn_screen_take"), FontManager.MainFont, mainTexture, New Rectangle(48, 128, 16, 16), New Vector2(128, 450), New Size(48, 48))
+                    Me.Labels.Add(New Label(Localization.GetString("apricorn_screen_ready"), New Vector2(Delta_X + 48, Delta_Y + 48), FontManager.MainFont))
+
+                    Dim TakeButton As ButtonIcon = New ButtonIcon(AddressOf Me.Take, Localization.GetString("apricorn_screen_take"), FontManager.MainFont, buttonTexture, New Rectangle(48, 128, 16, 16), New Vector2(Delta_X + 128 * 5, Delta_Y + 16 + 104 * 2), New Size(48, 48))
                     Buttons.AddRange({TakeButton})
-                    Me.Labels.Add(New Label(Localization.GetString("apricorn_screen_ready"), New Vector2(104, 200), FontManager.MainFont))
+
             End Select
         End If
     End Sub
@@ -87,43 +103,82 @@
         TextBox.Update()
         InitializeScreen()
 
-        If TextBox.Showing = False Then
-            If Controls.Dismiss() = True Then
-                Core.SetScreen(Me.PreScreen)
-            End If
+        If _closing Then
+            ' When the interface is closing, only update the closing animation
+            ' Once the interface is completely closed, set to the previous screen.
 
-            If Controls.Up(True, True) = True Or Controls.Left(True, True) = True Then
-                Me.CursorIndex -= 1
-                If Me.CursorIndex < 0 Then
-                    Me.CursorIndex = Me.Buttons.Count - 1
+            If _interfaceFade > 0F Then
+                _interfaceFade = MathHelper.Lerp(0, _interfaceFade, 0.8F)
+                If _interfaceFade < 0F Then
+                    _interfaceFade = 0F
                 End If
             End If
-            If Controls.Down(True, True) = True Or Controls.Right(True, True) = True Then
-                Me.CursorIndex += 1
-                If Me.CursorIndex > Me.Buttons.Count - 1 Then
-                    Me.CursorIndex = 0
+            If _enrollY > 0 Then
+                _enrollY = MathHelper.Lerp(0, _enrollY, 0.8F)
+                If _enrollY <= 0 Then
+                    _enrollY = 0
                 End If
             End If
-
-            If Me.Buttons.Count > 0 Then
-                If Controls.Accept(False, True, True) = True Then
-                    SoundManager.PlaySound("select")
-                    Me.Buttons(Me.CursorIndex).Click()
+            If _enrollY <= 2.0F Then
+                SetScreen(Me.PreScreen)
+            End If
+        Else
+            'Update intro animation:
+            Dim maxWindowHeight As Integer = 400
+            If _enrollY < maxWindowHeight Then
+                _enrollY = MathHelper.Lerp(maxWindowHeight, _enrollY, 0.8F)
+                If _enrollY >= maxWindowHeight Then
+                    _enrollY = maxWindowHeight
                 End If
             End If
+            If _interfaceFade < 1.0F Then
+                _interfaceFade = MathHelper.Lerp(1.0F, _interfaceFade, 0.95F)
+                If _interfaceFade > 1.0F Then
+                    _interfaceFade = 1.0F
+                End If
+            End If
+            If TextBox.Showing = False Then
+                Select Case Me.State
+                    Case States.Wait
+                        UpdateWait()
+                    Case States.CanGive
+                        UpdateGive()
+                    Case States.CanTake
+                        UpdateTake()
+                End Select
 
-            For Each B As ButtonIcon In Buttons
-                B.Update()
-            Next
+                If Controls.Dismiss() = True Then
+                    _closing = True
+                End If
 
-            Select Case Me.State
-                Case States.Wait
-                    UpdateWait()
-                Case States.CanGive
-                    UpdateGive()
-                Case States.CanTake
-                    UpdateTake()
-            End Select
+                If Me.State <> States.CanGive Then
+                    If Controls.Left(True, True) = True Or Controls.Up(True, True) Then
+                        Me.CursorIndex -= 1
+                        If Me.CursorIndex < 0 Then
+                            Me.CursorIndex = Me.Buttons.Count - 1
+                        End If
+                    End If
+
+                    If Controls.Down(True, True) = True Or Controls.Right(True, True) = True Then
+                        Me.CursorIndex += 1
+                        If Me.CursorIndex > Me.Buttons.Count - 1 Then
+                            Me.CursorIndex = 0
+                        End If
+                    End If
+                End If
+
+                If Me.Buttons.Count > 0 Then
+                    If Controls.Accept(False, True, True) = True Then
+                        SoundManager.PlaySound("select")
+                        Me.Buttons(Me.CursorIndex).Click()
+                    End If
+                End If
+
+                For Each B As ButtonIcon In Buttons
+                    B.Update()
+                Next
+
+            End If
         End If
     End Sub
 
@@ -132,7 +187,43 @@
     End Sub
 
     Private Sub UpdateGive()
+        If Controls.Up(True, True, False) = True Or Controls.Down(True, True, False) = True Then
+            If Me.CursorIndex < 5 Then
+                Me.CursorIndex += 5
+            Else
+                Me.CursorIndex -= 5
+            End If
+        End If
 
+        If Controls.Left(True, True, False) = True Then
+            If Me.CursorIndex <= 0 OrElse Me.CursorIndex = 5 Then
+                Me.CursorIndex += 4
+            Else
+                Me.CursorIndex -= 1
+            End If
+        End If
+
+        If Controls.Right(True, True, False) = True Then
+            If Me.CursorIndex >= Me.Buttons.Count - 1 OrElse Me.CursorIndex = 4 Then
+                Me.CursorIndex -= 4
+            Else
+                Me.CursorIndex += 1
+            End If
+        End If
+
+        If Controls.Left(True, False, True, False, False, False) = True Then
+            Me.CursorIndex -= 1
+            If Me.CursorIndex < 0 Then
+                Me.CursorIndex = Me.Buttons.Count - 1
+            End If
+        End If
+
+        If Controls.Right(True, False, True, False, False, False) = True Then
+            Me.CursorIndex += 1
+            If Me.CursorIndex > Me.Buttons.Count - 1 Then
+                Me.CursorIndex = 0
+            End If
+        End If
     End Sub
 
     Private Sub UpdateTake()
@@ -142,17 +233,15 @@
     Public Overrides Sub Draw()
         Me.PreScreen.Draw()
 
-        Canvas.DrawImageBorder(TextureManager.GetTexture("GUI\Menus\Menu", New Rectangle(0, 0, 48, 48), ""), 2, New Rectangle(60, 100, 800, 480))
+        DrawBackground()
 
         For i = 0 To Me.Buttons.Count - 1
             Dim b As ButtonIcon = Me.Buttons(i)
 
             If i = Me.CursorIndex Then
-                Canvas.DrawRectangle(New Rectangle(CInt(b.Position.X) - 2, CInt(b.Position.Y) - 2, 52, 52), New Color(0, 125, 255))
-                Canvas.DrawRectangle(New Rectangle(CInt(b.Position.X), CInt(b.Position.Y), 48, 48), New Color(102, 196, 255))
+                Canvas.DrawRectangle(New Rectangle(CInt(b.Position.X - 4), CInt(b.Position.Y - 4), 56, 56), New Color(Color.White, CInt(255 * 0.5 * _interfaceFade)))
+                Canvas.DrawBorder(2, New Rectangle(CInt(b.Position.X - 4), CInt(b.Position.Y - 4), 56, 56), New Color(Color.White, CInt(255 * _interfaceFade)))
             End If
-
-            b.Draw()
         Next
 
         For Each Button As ButtonIcon In Buttons
@@ -174,18 +263,52 @@
 
         TextBox.Draw()
     End Sub
+    Private Sub DrawBackground()
+        Dim mainBackgroundColor As Color = Color.White
+        If _closing Then
+            mainBackgroundColor = New Color(255, 255, 255, CInt(255 * _interfaceFade))
+        End If
 
+        Dim halfWidth As Integer = CInt(Core.windowSize.Width / 2)
+        Dim halfHeight As Integer = CInt(Core.windowSize.Height / 2)
+
+        Canvas.DrawRectangle(New Rectangle(halfWidth - 400, halfHeight - 232, 260, 32), New Color(Screens.UI.ColorProvider.MainColor(False).R, Screens.UI.ColorProvider.MainColor(False).G, Screens.UI.ColorProvider.MainColor(False).B, mainBackgroundColor.A))
+        Canvas.DrawRectangle(New Rectangle(halfWidth - 140, halfHeight - 216, 16, 16), New Color(Screens.UI.ColorProvider.MainColor(False).R, Screens.UI.ColorProvider.MainColor(False).G, Screens.UI.ColorProvider.MainColor(False).B, mainBackgroundColor.A))
+        SpriteBatch.Draw(mainTexture, New Rectangle(halfWidth - 140, halfHeight - 232, 16, 16), New Rectangle(80, 0, 16, 16), mainBackgroundColor)
+        SpriteBatch.Draw(mainTexture, New Rectangle(halfWidth - 124, halfHeight - 216, 16, 16), New Rectangle(80, 0, 16, 16), mainBackgroundColor)
+
+        SpriteBatch.DrawString(FontManager.ChatFont, Localization.GetString("apricorn_screen_apricorns", "Apricorns"), New Vector2(halfWidth - 390, halfHeight - 228), mainBackgroundColor)
+
+        For y = 0 To CInt(_enrollY) Step 16
+            For x = 0 To 800 Step 16
+                SpriteBatch.Draw(mainTexture, New Rectangle(halfWidth - 400 + x, halfHeight - 200 + y, 16, 16), New Rectangle(64, 0, 4, 4), mainBackgroundColor)
+            Next
+        Next
+
+        Dim modRes As Integer = CInt(_enrollY) Mod 16
+        If modRes > 0 Then
+            For x = 0 To 800 Step 16
+                SpriteBatch.Draw(mainTexture, New Rectangle(halfWidth - 400 + x, CInt(_enrollY + (halfHeight - 200)), 16, modRes), New Rectangle(64, 0, 4, 4), mainBackgroundColor)
+            Next
+        End If
+    End Sub
     Private Sub DrawWait()
 
     End Sub
 
     Private Sub DrawTake()
+        Dim halfWidth As Integer = CInt(Core.windowSize.Width / 2)
+        Dim halfHeight As Integer = CInt(Core.windowSize.Height / 2)
+
+        Dim Delta_X As Integer = halfWidth - 400
+        Dim Delta_Y As Integer = halfHeight - 200
+
         For i = 0 To 6
-            Dim x As Integer = 0
-            Dim y As Integer = i
-            While y > 1
-                y -= 2
-                x += 1
+            Dim x As Integer = i
+            Dim y As Integer = 0
+            While x > 4
+                x -= 5
+                y += 1
             End While
 
             Dim ItemID As Integer = 0
@@ -207,8 +330,11 @@
             End Select
 
             Dim Item As Item = Item.GetItemByID(ItemID.ToString)
-            Core.SpriteBatch.Draw(Item.Texture, New Rectangle(100 + x * 64, 260 + y * 96, 48, 48), Color.White)
-            Core.SpriteBatch.DrawString(FontManager.MainFont, "x" & Apricorns(i), New Vector2(110 + x * 64, 300 + y * 96), Color.Black)
+            Dim TextSize As Vector2 = FontManager.MainFont.MeasureString("x" & Apricorns(i))
+
+            Core.SpriteBatch.Draw(Item.Texture, New Rectangle(Delta_X + 128 + x * 128, Delta_Y + 16 + 104 + y * 104, 48, 48), New Color(Color.White, _interfaceFade))
+            Core.SpriteBatch.DrawRectangle(New Rectangle(CInt(Delta_X + 128 + x * 128 + 48 / 2 - TextSize.X / 2 - 8), CInt(Delta_Y + 16 + 104 + y * 104 + 48 + 8), CInt(TextSize.X + 16), CInt(TextSize.Y + 16)), New Color(Color.Black, CInt(255 * 0.4F * _interfaceFade)))
+            Core.SpriteBatch.DrawString(FontManager.MainFont, "x" & Apricorns(i), New Vector2(CInt(48 / 2) - CInt(TextSize.X / 2) + Delta_X + 128 + x * 128, 48 + Delta_Y + 16 + 104 + y * 104 + CInt(TextSize.Y / 2)), New Color(Color.White, _interfaceFade))
         Next
     End Sub
 
@@ -241,7 +367,7 @@
 
             If HasApricorns() = True Then
                 For Each Button As ButtonIcon In Me.Buttons
-                    If Button.AdditionalValue = "OK" Then
+                    If Button.AdditionalValue = Localization.GetString("apricorn_screen_ok") Then
                         Button.Enabled = True
                     End If
                 Next
@@ -279,7 +405,27 @@
     End Sub
 
     Private Sub ClearApricorns()
+        For Each Button As ButtonIcon In Me.Buttons
+            If Button.AdditionalValue = Localization.GetString("apricorn_screen_ok") Then
+                Button.Enabled = False
+            End If
+        Next
+
         Me.Apricorns = {"0", "0", "0", "0", "0", "0", "0"}.ToList()
+
+        AdjustButtonTexts()
+    End Sub
+
+    Private Sub AddAllApricorns()
+        Me.Apricorns = {Core.Player.Inventory.GetItemAmount(85.ToString).ToString, Core.Player.Inventory.GetItemAmount(89.ToString).ToString, Core.Player.Inventory.GetItemAmount(92.ToString).ToString, Core.Player.Inventory.GetItemAmount(93.ToString).ToString, Core.Player.Inventory.GetItemAmount(97.ToString).ToString, Core.Player.Inventory.GetItemAmount(99.ToString).ToString, Core.Player.Inventory.GetItemAmount(101.ToString).ToString}.ToList()
+
+        If HasApricorns() = True Then
+            For Each Button As ButtonIcon In Me.Buttons
+                If Button.AdditionalValue = Localization.GetString("apricorn_screen_ok") Then
+                    Button.Enabled = True
+                End If
+            Next
+        End If
 
         AdjustButtonTexts()
     End Sub
@@ -317,7 +463,7 @@
     Private Sub Take()
         Me.State = States.CanGive
 
-        Dim text As String = Core.Player.Name & Localization.GetString("apricorn_screen_obtain")
+        Dim text As String = Core.Player.Name & " " & Localization.GetString("apricorn_screen_obtain")
 
         If CInt(Apricorns(0)) > 0 Then
             Core.Player.Inventory.AddItem(159.ToString, CInt(Apricorns(0)))
@@ -433,11 +579,11 @@
 
         Public Position As Vector2
         Public Text As String
-        Public ForeColor As Color = Color.Black
+        Public ForeColor As Color = Color.White
         Public Font As SpriteFont
 
         Public Sub New(ByVal Text As String, ByVal Position As Vector2, ByVal Font As SpriteFont)
-            Me.New(Text, Position, Color.Black, Font)
+            Me.New(Text, Position, Color.White, Font)
         End Sub
 
         Public Sub New(ByVal Text As String, ByVal Position As Vector2, ByVal ForeColor As Color, ByVal Font As SpriteFont)
@@ -448,7 +594,7 @@
         End Sub
 
         Public Sub Draw()
-            Core.SpriteBatch.DrawString(Me.Font, Me.Text, Me.Position, Me.ForeColor)
+            Core.SpriteBatch.DrawString(Me.Font, Me.Text, Me.Position, New Color(Me.ForeColor, _interfaceFade))
         End Sub
 
     End Class
@@ -509,11 +655,12 @@
                 bColor = Color.DarkGray
             End If
 
-            Core.SpriteBatch.Draw(Me.Texture, New Rectangle(CInt(Me.Position.X), CInt(Me.Position.Y), Me.Size.Width, Me.Size.Height), TextureRectangle, bColor)
+            Core.SpriteBatch.Draw(Me.Texture, New Rectangle(CInt(Me.Position.X), CInt(Me.Position.Y), Me.Size.Width, Me.Size.Height), TextureRectangle, New Color(bColor, _interfaceFade))
 
             Dim TextSize As Vector2 = Font.MeasureString(Me.Text)
-            Dim TColor As Color = Color.Black
-            Core.SpriteBatch.DrawString(Me.Font, Me.Text, New Vector2(CInt(Me.Size.Width / 2) - CInt(TextSize.X / 2) + Me.Position.X, Me.Size.Height + Me.Position.Y), TColor)
+            Dim TColor As Color = New Color(Color.White, _interfaceFade)
+            Core.SpriteBatch.DrawRectangle(New Rectangle(CInt(Me.Position.X + Me.Size.Width / 2 - TextSize.X / 2 - 8), CInt(Me.Position.Y + Me.Size.Height + 8), CInt(TextSize.X + 16), CInt(TextSize.Y + 16)), New Color(Color.Black, CInt(255 * 0.4F * _interfaceFade)))
+            Core.SpriteBatch.DrawString(Me.Font, Me.Text, New Vector2(CInt(Me.Size.Width / 2) - CInt(TextSize.X / 2) + Me.Position.X, Me.Size.Height + Me.Position.Y + CInt(TextSize.Y / 2)), TColor)
         End Sub
 
         Public Sub Click()

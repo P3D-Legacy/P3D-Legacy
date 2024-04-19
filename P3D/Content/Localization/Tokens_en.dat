@@ -319,9 +319,10 @@ apricorn_screen_backadvice,PRESS E TO GO BACK
 apricorn_screen_choose_apricorns,Please choose the Apricorns I should take to produce Pokéballs.
 apricorn_screen_ok,OK
 apricorn_screen_clear,Clear
+apricorn_screen_all,All
 apricorn_screen_take,Take
 apricorn_screen_ready,I am ready producing Pokéballs. Here's the result of my work:
-apricorn_screen_obtain, obtained
+apricorn_screen_obtain,obtained
 ---
 Donation screen:
 donation_screen_donators,Donators
