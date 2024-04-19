@@ -579,7 +579,6 @@ Public Class TradeScreen
                     End If
                 End If
             Next
-
             ' Item description:
             If New Rectangle(736, 160, 256, 256).Contains(MouseHandler.MousePosition) = True Then
                 Me.BuyItemsShowDescription = Not Me.BuyItemsShowDescription
@@ -598,6 +597,10 @@ Public Class TradeScreen
             If New Rectangle(664 + 64, 484 + 64 + 22, 64 * 3, 64).Contains(MouseHandler.MousePosition) = True Then
                 Me.ButtonBuyItemsBuy()
             End If
+        End If
+
+        If Me.Cursor > Me.BuyItemsList.Count - 1 Then
+            Me.Cursor = Me.BuyItemsList.Count - 1
         End If
 
         If ControllerHandler.ButtonPressed(Buttons.Y) = True Or KeyBoardHandler.KeyPressed(KeyBindings.SpecialKey) = True Then
