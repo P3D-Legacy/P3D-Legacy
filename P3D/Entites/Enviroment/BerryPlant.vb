@@ -185,7 +185,7 @@
                     If Me.Berries = 1 Then
                         Text = Localization.GetString("berry_picked_single_start", "<player.name> picked the~").Replace("<player.name>", Core.Player.Name) & Berry.OneLineName() & " " & Localization.GetString("berry_picked_single_end", "Berry.") & "*" & Core.Player.Inventory.GetMessageReceive(Berry, Me.Berries)
                     Else
-                        Text = Localization.GetString("berry_picked_multiple_start", "<player.name> picked the~").Replace("<player.name>", Core.Player.Name) & Berries & "~" & Berry.OneLineName() & " " & Localization.GetString("berry_picked_multiple_end", "Berries.") & "*" & Core.Player.Inventory.GetMessageReceive(Berry, Me.Berries)
+                        Text = Localization.GetString("berry_picked_multiple_start", "<player.name> picked the~").Replace("<player.name>", Core.Player.Name) & Berries & Berry.OneLineName() & " " & Localization.GetString("berry_picked_multiple_end", "Berries.") & "*" & Core.Player.Inventory.GetMessageReceive(Berry, Me.Berries)
                     End If
 
                     Core.Player.AddPoints(2, "Picked berries.")

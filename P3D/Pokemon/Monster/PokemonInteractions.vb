@@ -508,11 +508,11 @@
                     r = New ReactionContainer("<name> is sniffing~at <player.name>.", MessageBulb.NotificationTypes.Friendly)
                 Case 51
                     If IsOutside() = True And World.GetCurrentRegionWeather() = World.Weathers.Rain And GrassAround() = True Then
-                        r = New ReactionContainer("<name> is taking shelter in the grass from the rain!", MessageBulb.NotificationTypes.Waiting)
+                        r = New ReactionContainer("<name> is taking~shelter in the grass from~the rain!", MessageBulb.NotificationTypes.Waiting)
                     End If
                 Case 52
                     If IsOutside() = True And World.GetCurrentRegionWeather() = World.Weathers.Rain And GrassAround() = True Then
-                        r = New ReactionContainer("<name> is splashing~around in the wet grass", MessageBulb.NotificationTypes.Note)
+                        r = New ReactionContainer("<name> is splashing~around in the wet grass!", MessageBulb.NotificationTypes.Note)
                     End If
             End Select
         End While
