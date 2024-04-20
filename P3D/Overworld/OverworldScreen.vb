@@ -201,7 +201,7 @@ Public Class OverworldScreen
         End If
 
         'Middle click/Thumbstick press: Show first Pokémon in party.
-        If ActionScript.IsReady = True Then
+        If ActionScript.IsReady = True AndAlso Screen.Camera.IsMoving() = False Then
             If MouseHandler.ButtonPressed(MouseHandler.MouseButtons.MiddleButton) = True Or ControllerHandler.ButtonPressed(Buttons.LeftStick) = True Then
                 If Core.Player.Pokemons.Count > 0 Then
                     Core.SetScreen(New SummaryScreen(CurrentScreen, Core.Player.Pokemons.ToArray, 0))
