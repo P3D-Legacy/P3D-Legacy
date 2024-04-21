@@ -524,6 +524,41 @@
                         End If
                     Next
                     Return ReturnBoolean(False)
+                Case "fullyhealed"
+                    Dim IsFullyHealed As Boolean = True
+                    If argument = "" Then
+                        For Each pokemon As Pokemon In Core.Player.Pokemons
+                            If pokemon.Attacks.Count > 0 Then
+                                For d = 0 To pokemon.Attacks.Count - 1
+                                    If pokemon.Attacks(d).CurrentPP < pokemon.Attacks(d).MaxPP Then
+                                        IsFullyHealed = False
+                                    End If
+                                Next
+                            End If
+                            If pokemon.HP < pokemon.MaxHP Then
+                                IsFullyHealed = False
+                            End If
+                            If pokemon.Status <> Pokemon.StatusProblems.None Then
+                                IsFullyHealed = False
+                            End If
+                        Next
+                    Else
+                        Dim pokemon As Pokemon = Core.Player.Pokemons(CInt(argument))
+                        If pokemon.Attacks.Count > 0 Then
+                            For d = 0 To pokemon.Attacks.Count - 1
+                                If pokemon.Attacks(d).CurrentPP < pokemon.Attacks(d).MaxPP Then
+                                    IsFullyHealed = False
+                                End If
+                            Next
+                        End If
+                        If pokemon.HP < pokemon.MaxHP Then
+                            IsFullyHealed = False
+                        End If
+                        If pokemon.Status <> Pokemon.StatusProblems.None Then
+                            IsFullyHealed = False
+                        End If
+                    End If
+                    Return ReturnBoolean(IsFullyHealed)
             End Select
             Return DEFAULTNULL
         End Function

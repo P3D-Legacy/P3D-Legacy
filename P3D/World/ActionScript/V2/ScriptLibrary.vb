@@ -920,6 +920,7 @@ Namespace ScriptVersion2
             r(New ScriptCommand("pokemon", "istype", "bool", {New ScriptArgument("pokemonIndex", ScriptArgument.ArgumentTypes.Int),
                                                           New ScriptArgument("type", ScriptArgument.ArgumentTypes.Str)}.ToList(), "Checks if a Pokémon in the player's party has a specific type.", ",", True))
             r(New ScriptCommand("pokemon", "IsRoaming", "bool", {New ScriptArgument("roamerID", ScriptArgument.ArgumentTypes.Str)}.ToList(), "Checks if the given roaming Pokémon is still active.", ",", True))
+            r(New ScriptCommand("pokemon", "FullyHealed", "bool", {New ScriptArgument("pokemonIndex", ScriptArgument.ArgumentTypes.Str, True, "")}.ToList(), "Checks if a specific Pokémon or all Pokémon in the party are fully healed.", ",", True))
 
         End Sub
 
