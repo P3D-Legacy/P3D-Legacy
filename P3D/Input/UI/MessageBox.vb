@@ -93,7 +93,8 @@
                     If _fadeIn + 0.01F >= 1.0F Then
                         _fadeIn = 1.0F
                     End If
-                Else
+                End If
+                If _fadeIn > 0.75F Then
                     If Controls.Dismiss(True, True, True) Or Controls.Accept(True, True, True) Then
                         _closing = True
                     End If
