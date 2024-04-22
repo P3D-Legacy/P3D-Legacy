@@ -435,6 +435,8 @@ Namespace ScriptVersion2
             r(New ScriptCommand("system", "issng", "bool", {New ScriptArgument("expression", ScriptArgument.ArgumentTypes.Str)}.ToList(), "Checks if the expression is a single (Outdated, use <math.issng> instead).", ",", True))
             r(New ScriptCommand("system", "chrw", "str", {New ScriptArgument("charCodes", ScriptArgument.ArgumentTypes.IntArr)}.ToList(), "Converts Unicode CharCodes into a string.", ",", True))
             r(New ScriptCommand("system", "scriptlevel", "int", "Returns the current script level (call depth).", ",", True))
+            r(New ScriptCommand("system", "Language", "str", "Returns the current game language suffix.", ",", True))
+            r(New ScriptCommand("system", "FileExists", "bool", {New ScriptArgument("filePath", ScriptArgument.ArgumentTypes.Str)}.ToList(), "Returns if the specified file (including extension) exists (relative to the GameMode's ContentPath).", ",", True))
         End Sub
 
         Private Shared Sub DoEnvironment()

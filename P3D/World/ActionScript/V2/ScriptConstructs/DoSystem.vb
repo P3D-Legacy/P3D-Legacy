@@ -152,8 +152,10 @@
                     Return output
                 Case "scriptlevel"
                     Return ActionScript.ScriptLevelIndex.ToString()
-                case "language"
+                Case "language"
                     Return Localization.LanguageSuffix
+                Case "fileexists"
+                    Return ReturnBoolean(GameModeManager.ContentFileExists(argument))
             End Select
 
             Return DefaultNull
