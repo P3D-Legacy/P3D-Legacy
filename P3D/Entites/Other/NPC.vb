@@ -218,8 +218,12 @@
 
     Public Shared Sub RemoveNPCData(ByVal FullData As String)
         Dim Data() As String = FullData.Split(CChar("|"))
+        If Data.Count > 3 Then
+            RemoveNPCData(Data(0), CInt(Data(1)), Data(2), Data(3))
+        Else
+            RemoveNPCData(Data(0), CInt(Data(1)), Data(2))
+        End If
 
-        RemoveNPCData(Data(0), CInt(Data(1)), Data(2), Data(3))
     End Sub
 
 #End Region
