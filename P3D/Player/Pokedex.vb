@@ -94,8 +94,8 @@
                 End If
 
                 If ID.Contains("_") Then
-                    If Pokemon.GetPokemonByID(CInt(ID.GetSplit(0, "_"))).DexForms.Contains(ID.GetSplit(1, "_")) Then
-                        cOriginalEntry = GetEntryType(Data, ID.GetSplit(0, "_")).ToString
+                    If Pokemon.GetPokemonByID(CInt(ID.GetSplit(0, "_").GetSplit(0, ";"))).DexForms.Contains(ID.GetSplit(1, "_")) Then
+                        cOriginalEntry = GetEntryType(Data, ID.GetSplit(0, "_").GetSplit(0, ";")).ToString
                     End If
                 End If
 
@@ -121,9 +121,9 @@
                 End If
 
                 If ID.Contains("_") Then
-                    If Pokemon.GetPokemonByID(CInt(ID.GetSplit(0, "_"))).DexForms.Contains(ID.GetSplit(1, "_")) Then
-                        If cData.Contains("{" & ID.GetSplit(0, "_") & "|") = False Then
-                            cData &= "{" & ID.GetSplit(0, "_") & "|" & 0 & "}" & Environment.NewLine
+                    If Pokemon.GetPokemonByID(CInt(ID.GetSplit(0, "_").GetSplit(0, ";"))).DexForms.Contains(ID.GetSplit(1, "_")) Then
+                        If cData.Contains("{" & ID.GetSplit(0, "_").GetSplit(0, ";") & "|") = False Then
+                            cData &= "{" & ID.GetSplit(0, "_").GetSplit(0, ";") & "|" & 0 & "}" & Environment.NewLine
                         End If
                     End If
                 End If
