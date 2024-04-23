@@ -387,7 +387,7 @@
                 End If
             Else
                 p = BattleScreen.OppPokemon
-                If p.Type1.Type = Element.Types.Flying Or p.Type2.Type = Element.Types.Flying Or p.Ability.Name.ToLower() = "levitate" And BattleScreen.FieldEffects.CanUseAbility(False, BattleScreen) = True Then
+                If p.Type1.Type = Element.Types.Flying Or (p.Type2 IsNot Nothing AndAlso p.Type2.Type = Element.Types.Flying) Or p.Ability.Name.ToLower() = "levitate" And BattleScreen.FieldEffects.CanUseAbility(False, BattleScreen) = True Then
                     grounded = False
                 End If
                 If BattleScreen.FieldEffects.Gravity > 0 Or BattleScreen.FieldEffects.OppSmacked > 0 Or BattleScreen.FieldEffects.OppIngrain > 0 Then

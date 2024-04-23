@@ -8173,7 +8173,7 @@
                         End If
                     End If
                     If spikeAffected = True Then
-                        If .FieldEffects.OwnToxicSpikes > 0 And p.Status = Pokemon.StatusProblems.None And p.Type1.Type <> Element.Types.Poison And p.Type2.Type <> Element.Types.Poison Then
+                        If .FieldEffects.OwnToxicSpikes > 0 And p.Status = Pokemon.StatusProblems.None And p.Type1.Type <> Element.Types.Poison And (p.Type2 IsNot Nothing AndAlso p.Type2.Type <> Element.Types.Poison) Then
                             Select Case .FieldEffects.OwnToxicSpikes
                                 Case 1
                                     InflictPoison(False, True, BattleScreen, False, "The Toxic Spikes hurt " & p.GetDisplayName() & "!", "toxicspikes")
