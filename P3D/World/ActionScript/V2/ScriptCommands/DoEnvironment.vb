@@ -15,8 +15,10 @@
                     Screen.Level.WeatherType = int(argument)
                 Case "setregionweather"
                     World.RegionWeather = CType(int(argument), World.Weathers)
+                    World.RegionWeatherSet = True
                 Case "resetregionweather"
                     World.RegionWeather = World.GetRegionWeather(World.CurrentSeason)
+                    World.RegionWeatherSet = False
                 Case "setseason"
                     If int(argument) = -1 Then
                         World.setSeason = Nothing
