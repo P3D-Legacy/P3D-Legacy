@@ -22,7 +22,7 @@
                     Return Core.Player.Pokedexes(dexIndex).Obtained
                 Case "dexseen"
                     Dim dexIndex As Integer = int(argument)
-                    Return Core.Player.Pokedexes(dexIndex).Seen
+                    Return Core.Player.Pokedexes(dexIndex).Seen + Core.Player.Pokedexes(dexIndex).Obtained
                 Case "getheight"
                     Dim id As Integer = CInt(argument.GetSplit(0, "_").GetSplit(0, ";"))
                     Dim ad As String = ""
