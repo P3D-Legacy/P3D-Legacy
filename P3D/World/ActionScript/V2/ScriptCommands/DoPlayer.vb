@@ -376,6 +376,41 @@
                     Dim newOpacity As Single = sng(argument.Replace("~", Screen.Level.OwnPlayer.Opacity.ToString().Replace(".", GameController.DecSeparator)))
                     Screen.Level.OwnPlayer.Opacity = newOpacity
                     IsReady = True
+                Case "quitgame"
+                    'Reset VoltorbFlipScreen's Variables
+                    VoltorbFlip.VoltorbFlipScreen.CurrentLevel = 1
+                    VoltorbFlip.VoltorbFlipScreen.PreviousLevel = 1
+                    VoltorbFlip.VoltorbFlipScreen.ConsecutiveWins = 0
+                    VoltorbFlip.VoltorbFlipScreen.TotalFlips = 0
+                    VoltorbFlip.VoltorbFlipScreen.CurrentCoins = 0
+                    VoltorbFlip.VoltorbFlipScreen.TotalCoins = -1
+
+                    If JoinServerScreen.Online = True Then
+                        Core.ServersManager.ServerConnection.Disconnect()
+                    End If
+
+                    World.setDaytime = -1
+                    World.setSeason = Nothing
+                    Chat.ClearChat()
+                    ScriptStorage.Clear()
+                    GameModeManager.SetGameModePointer("Kolben")
+                    Localization.LocalizationTokens.Clear()
+                    Localization.LoadTokenFile(GameMode.DefaultLocalizationsPath, False)
+                    Core.OffsetMaps.Clear()
+                    TextureManager.TextureList.Clear()
+                    TextureManager.TextureRectList.Clear()
+                    Whirlpool.LoadedWaterTemp = False
+                    Core.Player.RunToggled = False
+                    If argument <> "" Then
+                        If CBool(argument) = True Then
+                            Core.SetScreen(New TransitionScreen(Core.CurrentScreen, New PressStartScreen(), Color.Black, False, 15))
+                        Else
+                            Core.SetScreen(New PressStartScreen())
+                        End If
+                    Else
+                        Core.SetScreen(New PressStartScreen())
+                    End If
+                    Core.Player.loadedSave = False
                 Case Else
                     IsReady = True
             End Select
