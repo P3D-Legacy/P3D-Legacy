@@ -56,23 +56,39 @@
         End Sub
 
         Public Overrides Function MoveFailBeforeAttack(Own As Boolean, BattleScreen As BattleScreen) As Boolean
-            Dim damage As Integer = BattleScreen.FieldEffects.OwnLastDamage
+            Dim hasBeenDamaged As Boolean = BattleScreen.FieldEffects.OppPokemonDamagedLastTurn
             If Own = True Then
-                damage = BattleScreen.FieldEffects.OppLastDamage
+                hasBeenDamaged = BattleScreen.FieldEffects.OwnPokemonDamagedLastTurn
             End If
 
-            If damage > 0 Then
-                Dim lastMove As Attack = BattleScreen.FieldEffects.OwnLastMove
-                If Own = True Then
-                    lastMove = BattleScreen.FieldEffects.OppLastMove
+            If BattleScreen.FieldEffects.OppTurnCounts = 0 OrElse BattleScreen.FieldEffects.OwnTurnCounts = 0 Then
+                If Own = False Then
+                    hasBeenDamaged = BattleScreen.FieldEffects.OppPokemonDamagedThisTurn
+                Else
+                    hasBeenDamaged = BattleScreen.FieldEffects.OwnPokemonDamagedThisTurn
                 End If
-                If Not lastMove Is Nothing Then
-                    If lastMove.Category = Categories.Special Then
-                        Return False
+            End If
+
+            If hasBeenDamaged = True Then
+                Dim damage As Integer = BattleScreen.FieldEffects.OwnLastDamage
+                If Own = True Then
+                    damage = BattleScreen.FieldEffects.OppLastDamage
+                End If
+
+                If damage > 0 Then
+                    Dim lastMove As Attack = BattleScreen.FieldEffects.OwnLastMove
+                    If Own = True Then
+                        lastMove = BattleScreen.FieldEffects.OppLastMove
+                    End If
+                    If Not lastMove Is Nothing Then
+                        If lastMove.Category = Categories.Special Then
+                            Return False
+                        End If
                     End If
                 End If
             End If
 
+            BattleScreen.BattleQuery.Add(New TextQueryObject(Me.Name & " failed!"))
             Return True
         End Function
 

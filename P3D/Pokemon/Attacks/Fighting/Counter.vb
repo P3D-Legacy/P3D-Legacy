@@ -53,12 +53,20 @@
         End Sub
 
         Public Overrides Function MoveFailBeforeAttack(Own As Boolean, BattleScreen As BattleScreen) As Boolean
-            Dim damagedLastTurn As Boolean = BattleScreen.FieldEffects.OppPokemonDamagedLastTurn
-            If Own = False Then
-                damagedLastTurn = BattleScreen.FieldEffects.OwnPokemonDamagedThisTurn
+            Dim hasBeenDamaged As Boolean = BattleScreen.FieldEffects.OppPokemonDamagedLastTurn
+            If Own = True Then
+                hasBeenDamaged = BattleScreen.FieldEffects.OwnPokemonDamagedLastTurn
             End If
 
-            If damagedLastTurn = True Then
+            If BattleScreen.FieldEffects.OppTurnCounts = 0 OrElse BattleScreen.FieldEffects.OwnTurnCounts = 0 Then
+                If Own = False Then
+                    hasBeenDamaged = BattleScreen.FieldEffects.OppPokemonDamagedThisTurn
+                Else
+                    hasBeenDamaged = BattleScreen.FieldEffects.OwnPokemonDamagedThisTurn
+                End If
+            End If
+
+            If hasBeenDamaged = True Then
                 Dim damage As Integer = BattleScreen.FieldEffects.OwnLastDamage
                 If Own = True Then
                     damage = BattleScreen.FieldEffects.OppLastDamage
@@ -77,6 +85,7 @@
                 End If
             End If
 
+            BattleScreen.BattleQuery.Add(New TextQueryObject(Me.Name & " failed!"))
             Return True
         End Function
 
