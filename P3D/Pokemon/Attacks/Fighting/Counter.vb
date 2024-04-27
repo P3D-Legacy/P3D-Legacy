@@ -85,7 +85,7 @@
                 End If
             End If
 
-            BattleScreen.BattleQuery.Add(New TextQueryObject(Me.Name & " failed!"))
+            BattleScreen.BattleQuery.Add(New TextQueryObject("But it failed!"))
             Return True
         End Function
 
