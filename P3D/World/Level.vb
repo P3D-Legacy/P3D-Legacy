@@ -42,6 +42,7 @@ Public Class Level
     Public _DayTime As World.DayTimes = World.GetTime
     Private _environmentType As Integer = 0
     Private _saveonly As Boolean = False
+    Private _disableMenus As Boolean = False
     Private _wildPokemonGrass As Boolean = True
     Private _wildPokemonFloor As Boolean = False
     Private _wildPokemonWater As Boolean = True
@@ -391,6 +392,18 @@ Public Class Level
         End Get
         Set(value As Boolean)
             Me._saveonly = value
+        End Set
+    End Property
+
+    ''' <summary>
+    ''' If the player should be prevented from opening the start menu or accessing the PokéGear..
+    ''' </summary>
+    Public Property DisableMenus As Boolean
+        Get
+            Return Me._disableMenus
+        End Get
+        Set(value As Boolean)
+            Me._disableMenus = value
         End Set
     End Property
 

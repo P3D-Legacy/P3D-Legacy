@@ -1021,6 +1021,11 @@
         Else
             Screen.Level.SaveOnly = False
         End If
+        If TagExists(Tags, "DisableMenus") = True Then
+            Screen.Level.DisableMenus = CBool(GetTag(Tags, "DisableMenus"))
+        Else
+            Screen.Level.DisableMenus = False
+        End If
         If _reload = False Then
             If TagExists(Tags, "EnvironmentType") = True Then
                 Screen.Level.EnvironmentType = CInt(GetTag(Tags, "EnvironmentType"))
