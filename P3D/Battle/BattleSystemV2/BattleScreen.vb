@@ -1351,7 +1351,7 @@ nextIndex:
                             End If
 
                             p.Item.AdditionalData = p.OriginalItem.AdditionalData
-                            Screen.TextBox.Show(Core.Player.Name & " received~" & p.OriginalItem.Name & "and gave it back to~" & p.GetDisplayName)
+                            Screen.TextBox.Show(Core.Player.Name & " received~" & p.OriginalItem.Name & "and gave it back to~" & p.GetDisplayName & "!")
                             p.OriginalItem = Nothing
                         End If
                     Else
@@ -1364,7 +1364,7 @@ nextIndex:
                                 End If
 
                                 p.Item.AdditionalData = p.OriginalItem.AdditionalData
-                                Screen.TextBox.Show(Core.Player.Name & " found~" & p.OriginalItem.Name & "*and gave it back to~" & p.GetDisplayName)
+                                Screen.TextBox.Show(Core.Player.Name & " found~" & p.OriginalItem.Name & "*and gave it back to~" & p.GetDisplayName & "!")
                                 p.OriginalItem = Nothing
                             Else
                                 If p.OriginalItem.IsGameModeItem = True Then
@@ -1430,7 +1430,7 @@ nextIndex:
                                 p.Item = P3D.Item.GetItemByID(p.OriginalItem.ID.ToString)
                             End If
                             p.Item.AdditionalData = p.OriginalItem.AdditionalData
-                            Screen.TextBox.Show(Core.Player.Name & " received~" & p.OriginalItem.Name & "and gave it back to~" & p.GetDisplayName)
+                            Screen.TextBox.Show(Core.Player.Name & " received~" & p.OriginalItem.Name & "and gave it back to~" & p.GetDisplayName & "!")
                         End If
                     Else
                         If Not p.OriginalItem Is Nothing Then
@@ -1446,7 +1446,7 @@ nextIndex:
                             Else
                                 p.Item = P3D.Item.GetItemByID(p.OriginalItem.ID.ToString)
                                 p.Item.AdditionalData = p.OriginalItem.AdditionalData
-                                Screen.TextBox.Show(Core.Player.Name & " found~" & p.OriginalItem.Name & "*and gave it back to~" & p.GetDisplayName)
+                                Screen.TextBox.Show(Core.Player.Name & " found~" & p.OriginalItem.Name & "*and gave it back to~" & p.GetDisplayName & "!")
                                 p.OriginalItem = Nothing
                             End If
                         End If
