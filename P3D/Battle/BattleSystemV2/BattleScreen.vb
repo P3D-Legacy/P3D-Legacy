@@ -1338,6 +1338,7 @@ nextIndex:
                 End If
 
                 Dim hasLevelUp As Boolean = False
+                Dim ItemReturnScript As String = "@Text.Show("
                 For Each p As Pokemon In Core.Player.Pokemons
                     If p.hasLeveledUp = True Then
                         hasLevelUp = True
@@ -1351,7 +1352,10 @@ nextIndex:
                             End If
 
                             p.Item.AdditionalData = p.OriginalItem.AdditionalData
-                            Screen.TextBox.Show(Core.Player.Name & " received~" & p.OriginalItem.Name & "and gave it back to~" & p.GetDisplayName & "!")
+                            If ItemReturnScript <> "" Then
+                                ItemReturnScript &= "*"
+                            End If
+                            ItemReturnScript &= Core.Player.Name & " received~" & p.OriginalItem.Name & "*and gave it back to~" & p.GetDisplayName & "!"
                             p.OriginalItem = Nothing
                         End If
                     Else
@@ -1364,7 +1368,12 @@ nextIndex:
                                 End If
 
                                 p.Item.AdditionalData = p.OriginalItem.AdditionalData
-                                Screen.TextBox.Show(Core.Player.Name & " found~" & p.OriginalItem.Name & "*and gave it back to~" & p.GetDisplayName & "!")
+
+                                If ItemReturnScript <> "" Then
+                                    ItemReturnScript &= "*"
+                                End If
+
+                                ItemReturnScript &= Core.Player.Name & " found~" & p.OriginalItem.Name & "*and gave it back to~" & p.GetDisplayName & "!"
                                 p.OriginalItem = Nothing
                             Else
                                 If p.OriginalItem.IsGameModeItem = True Then
@@ -1372,15 +1381,27 @@ nextIndex:
                                 Else
                                     Core.Player.Inventory.AddItem(p.OriginalItem.ID.ToString, 1)
                                 End If
+                                If ItemReturnScript <> "" Then
+                                    ItemReturnScript &= ")" & Environment.NewLine
+                                End If
+                                ItemReturnScript &= "@Sound.Play(item_found)" & Environment.NewLine & "@Text.Show(" & Core.Player.Name & " found~" & p.OriginalItem.Name & "!*" & Core.Player.Inventory.GetMessageReceive(p.OriginalItem, 1)
 
-                                SoundManager.PlaySound("item_found", True)
-                                Screen.TextBox.Show(Core.Player.Name & " found~" & p.OriginalItem.Name & "!*" & Core.Player.Inventory.GetMessageReceive(p.OriginalItem, 1))
                                 p.OriginalItem = Nothing
+                                End If
                             End If
-                        End If
                     End If
                     p.ResetTemp()
                 Next
+                If ItemReturnScript <> "" Then
+                    ItemReturnScript &= ")"
+                End If
+
+                Dim s As String =
+                "version=2" & Environment.NewLine &
+                ItemReturnScript & Environment.NewLine &
+                ":end"
+
+                CType(SavedOverworld.OverworldScreen, OverworldScreen).ActionScript.StartScript(s, 2, False)
 
                 If hasLevelUp = False Then
                     Core.SetScreen(New TransitionScreen(Me, SavedOverworld.OverworldScreen, New Color(255, 255, 255), False, AddressOf ChangeSavedScreen))
@@ -1421,38 +1442,67 @@ nextIndex:
                 FieldEffects.OppRageFistPower = 0
 
             Else
+                Dim ItemReturnScript As String = "@Text.Show("
                 For Each p As Pokemon In Core.Player.Pokemons
                     If IsRemoteBattle = True Then
                         If p.OriginalItem IsNot Nothing Then
                             If p.OriginalItem.IsGameModeItem = True Then
-                                p.Item = P3D.Item.GetItemByID(p.OriginalItem.gmID.ToString)
+                                p.Item = P3D.Item.GetItemByID(p.OriginalItem.gmID)
                             Else
                                 p.Item = P3D.Item.GetItemByID(p.OriginalItem.ID.ToString)
                             End If
+
                             p.Item.AdditionalData = p.OriginalItem.AdditionalData
-                            Screen.TextBox.Show(Core.Player.Name & " received~" & p.OriginalItem.Name & "and gave it back to~" & p.GetDisplayName & "!")
+                            If ItemReturnScript <> "" Then
+                                ItemReturnScript &= "*"
+                            End If
+                            ItemReturnScript &= Core.Player.Name & " received~" & p.OriginalItem.Name & "*and gave it back to~" & p.GetDisplayName & "!"
+                            p.OriginalItem = Nothing
                         End If
                     Else
                         If Not p.OriginalItem Is Nothing Then
-                            If p.Item IsNot Nothing Then
+                            If p.Item Is Nothing Then
+                                If p.OriginalItem.IsGameModeItem = True Then
+                                    p.Item = P3D.Item.GetItemByID(p.OriginalItem.gmID.ToString)
+                                Else
+                                    p.Item = P3D.Item.GetItemByID(p.OriginalItem.ID.ToString)
+                                End If
+
+                                p.Item.AdditionalData = p.OriginalItem.AdditionalData
+
+                                If ItemReturnScript <> "" Then
+                                    ItemReturnScript &= "*"
+                                End If
+
+                                ItemReturnScript &= Core.Player.Name & " found~" & p.OriginalItem.Name & "*and gave it back to~" & p.GetDisplayName & "!"
+                                p.OriginalItem = Nothing
+                            Else
                                 If p.OriginalItem.IsGameModeItem = True Then
                                     Core.Player.Inventory.AddItem(p.OriginalItem.gmID, 1)
                                 Else
                                     Core.Player.Inventory.AddItem(p.OriginalItem.ID.ToString, 1)
                                 End If
-                                SoundManager.PlaySound("item_found", True)
-                                Screen.TextBox.Show(Core.Player.Name & " found~" & p.OriginalItem.Name & "!*" & Core.Player.Inventory.GetMessageReceive(p.OriginalItem, 1))
-                                p.OriginalItem = Nothing
-                            Else
-                                p.Item = P3D.Item.GetItemByID(p.OriginalItem.ID.ToString)
-                                p.Item.AdditionalData = p.OriginalItem.AdditionalData
-                                Screen.TextBox.Show(Core.Player.Name & " found~" & p.OriginalItem.Name & "*and gave it back to~" & p.GetDisplayName & "!")
+                                If ItemReturnScript <> "" Then
+                                    ItemReturnScript &= ")" & Environment.NewLine
+                                End If
+                                ItemReturnScript &= "@Sound.Play(item_found)" & Environment.NewLine & "@Text.Show(" & Core.Player.Name & " found~" & p.OriginalItem.Name & "!*" & Core.Player.Inventory.GetMessageReceive(p.OriginalItem, 1)
+
                                 p.OriginalItem = Nothing
                             End If
                         End If
                     End If
                     p.ResetTemp()
                 Next
+                If ItemReturnScript <> "" Then
+                    ItemReturnScript &= ")"
+                End If
+
+                Dim s As String =
+                "version=2" & Environment.NewLine &
+                ItemReturnScript & Environment.NewLine &
+                ":end"
+
+                CType(SavedOverworld.OverworldScreen, OverworldScreen).ActionScript.StartScript(s, 2, False)
 
                 FieldEffects.OwnRageFistPower = 0
                 FieldEffects.OppRageFistPower = 0

@@ -297,6 +297,9 @@ nextIndex:
     End Sub
 
     Private Sub CatchPokemon()
+        If Not p.OriginalItem Is Nothing Then
+            p.OriginalItem = Nothing
+        End If
         p.ResetTemp()
 
         Dim s As String = "Gotcha!~" & p.GetName() & " was caught!"

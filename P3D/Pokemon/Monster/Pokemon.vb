@@ -1074,10 +1074,6 @@ Public Class Pokemon
             _originalNumber = -1
         End If
 
-        If Not _originalItem Is Nothing Then
-            Me._originalItem = Nothing
-        End If
-
         If OriginalType1 IsNot Nothing Then
             Me.Type1.Type = OriginalType1.Type
             OriginalType1 = Nothing
