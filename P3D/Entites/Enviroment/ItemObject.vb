@@ -14,6 +14,7 @@
     Dim X, Y, width, height, rows, columns, animationSpeed, startRow, startColumn As Integer
     Dim CurrentRectangle As New Rectangle(0, 0, 0, 0)
     Dim CanInteractWith As Boolean = True
+    Public HiddenDelay As Date = Nothing
 
     Public Overloads Sub Initialize(Optional ByVal AnimationData As List(Of List(Of Integer)) = Nothing)
         MyBase.Initialize()
@@ -101,11 +102,14 @@
         End If
 
         If Me.IsHiddenItem() = True Then
-            If Me.Opacity > 0.0F Then
-                Me.Opacity -= 0.01F
-                If Me.Opacity <= 0.0F Then
-                    Me.Opacity = 1.0F
-                    Me.Visible = False
+            If HiddenDelay <> Nothing AndAlso Date.Now >= HiddenDelay Then
+                If Me.Opacity > 0.0F Then
+                    Me.Opacity -= 0.01F
+                    If Me.Opacity <= 0.0F Then
+                        Me.Opacity = 0.0F
+                        Me.Visible = False
+                    End If
+                    Me.NormalOpacity = Me.Opacity
                 End If
             End If
         End If

@@ -20,7 +20,9 @@ Namespace Items.KeyItems
                     Dim i As ItemObject = CType(e, ItemObject)
                     If i.IsHiddenItem() = True Then
                         i.Opacity = 1.0F
+                        i.NormalOpacity = 1.0F
                         i.Visible = True
+                        i.HiddenDelay = Date.Now + New TimeSpan(0, 0, 3)
                         found = True
                     End If
                 End If
