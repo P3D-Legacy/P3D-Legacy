@@ -1391,16 +1391,17 @@ nextIndex:
                     End If
                     p.ResetTemp()
                 Next
-                If ItemReturnScript <> "" Then
+                If ItemReturnScript <> "@Text.Show(" Then
                     ItemReturnScript &= ")"
+
+                    Dim s As String =
+                    "version=2" & Environment.NewLine &
+                    ItemReturnScript & Environment.NewLine &
+                    ":end"
+
+                    CType(SavedOverworld.OverworldScreen, OverworldScreen).ActionScript.StartScript(s, 2, False)
+
                 End If
-
-                Dim s As String =
-                "version=2" & Environment.NewLine &
-                ItemReturnScript & Environment.NewLine &
-                ":end"
-
-                CType(SavedOverworld.OverworldScreen, OverworldScreen).ActionScript.StartScript(s, 2, False)
 
                 If hasLevelUp = False Then
                     Core.SetScreen(New TransitionScreen(Me, SavedOverworld.OverworldScreen, New Color(255, 255, 255), False, AddressOf ChangeSavedScreen))
@@ -1492,16 +1493,17 @@ nextIndex:
                     End If
                     p.ResetTemp()
                 Next
-                If ItemReturnScript <> "" Then
+                If ItemReturnScript <> "@Text.Show(" Then
                     ItemReturnScript &= ")"
+
+                    Dim s As String =
+                    "version=2" & Environment.NewLine &
+                    ItemReturnScript & Environment.NewLine &
+                    ":end"
+
+                    CType(SavedOverworld.OverworldScreen, OverworldScreen).ActionScript.StartScript(s, 2, False)
+
                 End If
-
-                Dim s As String =
-                "version=2" & Environment.NewLine &
-                ItemReturnScript & Environment.NewLine &
-                ":end"
-
-                CType(SavedOverworld.OverworldScreen, OverworldScreen).ActionScript.StartScript(s, 2, False)
 
                 FieldEffects.OwnRageFistPower = 0
                 FieldEffects.OppRageFistPower = 0
