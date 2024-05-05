@@ -598,7 +598,6 @@
             SavedOverworld.SkyDome = Screen.SkyDome
 
             InitializeScreen()
-            FieldEffects.Weather = BattleWeather.WeatherTypes.Clear
 
             PlayerStatistics.Track("Safari battles", 1)
 
