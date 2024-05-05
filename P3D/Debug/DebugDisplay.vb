@@ -68,7 +68,7 @@ Public Class DebugDisplay
 
             Dim s As String = GameController.GAMENAME & " " & GameController.GAMEDEVELOPMENTSTAGE & " " & GameController.GAMEVERSION & " / FPS: " & Math.Round(Core.GameInstance.FPSMonitor.Value, 0) & isDebugString & Environment.NewLine &
                 cameraInformation &
-                "E: " & _drawnVertices.ToString() & "/" & _maxVertices.ToString() & Environment.NewLine &
+                "E: " & _drawnVertices.ToString() & "/" & _maxVertices.ToString() & " (" & _maxVisibleVertices & ")" & Environment.NewLine &
                 "C: " & _maxDistance.ToString() & " A: " & ActionscriptActive.ToString() &
                 MapPath
 
@@ -96,6 +96,7 @@ Public Class DebugDisplay
     'Values for tracking render data of the level.
     Private Shared _drawnVertices As Integer = 0
     Private Shared _maxVertices As Integer = 0
+    Private Shared _maxVisibleVertices As Integer = 0
     Private Shared _maxDistance As Integer = 0
 
     ''' <summary>
@@ -107,6 +108,18 @@ Public Class DebugDisplay
         End Get
         Set(value As Integer)
             _drawnVertices = value
+        End Set
+    End Property
+
+    ''' <summary>
+    ''' The maximum amount of visible vertices that are present in the current scene.
+    ''' </summary>
+    Public Shared Property MaxVisibleVertices() As Integer
+        Get
+            Return _maxVisibleVertices
+        End Get
+        Set(value As Integer)
+            _maxVisibleVertices = value
         End Set
     End Property
 

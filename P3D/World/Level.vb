@@ -849,6 +849,7 @@ Public Class Level
 
         ' Reset the Debug values:
         DebugDisplay.DrawnVertices = 0
+        DebugDisplay.MaxVisibleVertices = 0
         DebugDisplay.MaxVertices = 0
         DebugDisplay.MaxDistance = 0
 
@@ -870,6 +871,9 @@ Public Class Level
         For i = 0 To AllFloors.Count - 1
             If i <= AllFloors.Count - 1 Then
                 AllFloors(i).Render()
+                If AllFloors(i).Visible = True Then
+                    DebugDisplay.MaxVisibleVertices += AllFloors(i).VertexCount
+                End If
                 DebugDisplay.MaxVertices += AllFloors(i).VertexCount
             End If
         Next
@@ -878,6 +882,9 @@ Public Class Level
         For i = 0 To AllEntities.Count - 1
             If i <= AllEntities.Count - 1 Then
                 AllEntities(i).Render()
+                If AllEntities(i).Visible = True Then
+                    DebugDisplay.MaxVisibleVertices += AllEntities(i).VertexCount
+                End If
                 DebugDisplay.MaxVertices += AllEntities(i).VertexCount
             End If
         Next
@@ -1015,6 +1022,9 @@ Public Class Level
             If i <= Me.OffsetmapFloors.Count - 1 Then
                 If Not Me.OffsetmapFloors(i) Is Nothing Then
                     Me.OffsetmapFloors(i).Render()
+                    If OffsetmapFloors(i).Visible = True Then
+                        DebugDisplay.MaxVisibleVertices += OffsetmapFloors(i).VertexCount
+                    End If
                     DebugDisplay.MaxVertices += Me.OffsetmapFloors(i).VertexCount
                 End If
             End If
@@ -1024,6 +1034,9 @@ Public Class Level
         For i = 0 To Me.OffsetmapEntities.Count - 1
             If i <= Me.OffsetmapEntities.Count - 1 Then
                 If Not Me.OffsetmapEntities(i) Is Nothing Then
+                    If OffsetmapEntities(i).Visible = True Then
+                        DebugDisplay.MaxVisibleVertices += OffsetmapEntities(i).VertexCount
+                    End If
                     Me.OffsetmapEntities(i).Render()
                     DebugDisplay.MaxVertices += Me.OffsetmapEntities(i).VertexCount
                 End If

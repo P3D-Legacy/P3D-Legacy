@@ -937,6 +937,8 @@
 #End Region
 
         Public Overrides Sub Draw()
+            DebugDisplay.MaxVertices = 0
+            DebugDisplay.MaxVisibleVertices = 0
 
             Dim ForegroundEntities As New List(Of Entity)
 
@@ -1024,6 +1026,9 @@ nextIndexBackground:
                 GraphicsDevice.Clear(Microsoft.Xna.Framework.Color.Transparent)
                 For i = 0 To ForegroundEntities.Count - 1
                     ForegroundEntities(i).Render()
+                    If ForegroundEntities(i).Visible = True Then
+                        DebugDisplay.MaxVisibleVertices += ForegroundEntities(i).VertexCount
+                    End If
                     DebugDisplay.MaxVertices += ForegroundEntities(i).VertexCount
                 Next
 
