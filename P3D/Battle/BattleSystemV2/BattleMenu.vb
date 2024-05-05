@@ -317,7 +317,7 @@
 
         Public Sub Update(ByRef BattleScreen As BattleScreen)
             Dim blockinteractscreen() As Screen.Identifications = {Screen.Identifications.PartyScreen, Screen.Identifications.SummaryScreen, Screen.Identifications.PauseScreen, Screen.Identifications.ChatScreen}
-            If blockinteractscreen.Contains(Core.CurrentScreen.Identification) = True Then
+            If blockinteractscreen.Contains(Core.CurrentScreen.Identification) = True OrElse (BattleScreen.BattleQuery.Count > 0 AndAlso BattleScreen.BattleQuery(0).QueryType = QueryObject.QueryTypes.Textbox) Then
                 CanInteract = False
             Else
                 CanInteract = True
