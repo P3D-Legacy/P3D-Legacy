@@ -153,11 +153,17 @@ Public Class NotificationPopup
     ''' Renders the NotificationPopup.
     ''' </summary>
     Public Sub Draw()
-        Dim TextHeader As String = _text.GetSplit(0, "*").Replace(CChar("~"), Environment.NewLine).CropStringToWidth(FontManager.InGameFont, CInt(_scale), CInt((_size.Width * (FrameSizeBack / 3) - FrameSizeBack / 3 * 4) * _scale))
+
+        Dim TextHeader As String = _text.GetSplit(0, "*").Replace(CChar("~"), Environment.NewLine)
         Dim TextBody As String = _text.GetSplit(1, "*").Replace(CChar("~"), Environment.NewLine)
 
+        While FontManager.InGameFont.MeasureString(TextHeader).X * CInt(_scale) > CInt((_size.Width * (FrameSizeBack / 3) - FrameSizeBack / 3 * 4) * _scale)
+            _size.Width += 1
+        End While
 
-        While FontManager.InGameFont.MeasureString(TextHeader).Y * 2 + FontManager.InGameFont.MeasureString(TextBody).Y > CInt(((_size.Height * FrameSizeBack / 3) - FrameSizeBack / 3) * _scale - 5)
+        TextHeader = TextHeader.CropStringToWidth(FontManager.InGameFont, CInt(_scale), CInt((_size.Width * (FrameSizeBack / 3) - FrameSizeBack / 3 * 4) * _scale))
+
+        While FontManager.InGameFont.MeasureString(TextHeader).Y * CInt(_scale) + FontManager.InGameFont.MeasureString(TextBody).Y > CInt(((_size.Height * FrameSizeBack / 3) - FrameSizeBack / 3) * _scale - 5)
             _size.Height += 1
         End While
 
