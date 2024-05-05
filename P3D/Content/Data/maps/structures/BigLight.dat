@@ -1,0 +1,17 @@
+Light:
+	5x5:
+		{"Shader"{SHA[{"Size"{intArr[3,3,1]}}{"Position"{intArr[-1,0,-2]}}{"Shader"{sngArr[1.1,1.1,1.1]}}{"StopOnContact"{bool[0]}}]}}
+		{"Shader"{SHA[{"Size"{intArr[5,3,1]}}{"Position"{intArr[-2,0,-1]}}{"Shader"{sngArr[1.1,1.1,1.1]}}{"StopOnContact"{bool[0]}}]}}
+		{"Shader"{SHA[{"Size"{intArr[5,3,1]}}{"Position"{intArr[-2,0,0]}}{"Shader"{sngArr[1.1,1.1,1.1]}}{"StopOnContact"{bool[0]}}]}}
+		{"Shader"{SHA[{"Size"{intArr[5,3,1]}}{"Position"{intArr[-2,0,1]}}{"Shader"{sngArr[1.1,1.1,1.1]}}{"StopOnContact"{bool[0]}}]}}
+		{"Shader"{SHA[{"Size"{intArr[3,3,1]}}{"Position"{intArr[-1,0,2]}}{"Shader"{sngArr[1.1,1.1,1.1]}}{"StopOnContact"{bool[0]}}]}}
+	
+	7x7:
+		{"Shader"{SHA[{"Size"{intArr[3,3,1]}}{"Position"{intArr[-1,0,-3]}}{"Shader"{sngArr[1.1,1.1,1.1]}}{"StopOnContact"{bool[0]}}]}}
+		{"Shader"{SHA[{"Size"{intArr[5,3,1]}}{"Position"{intArr[-2,0,-2]}}{"Shader"{sngArr[1.1,1.1,1.1]}}{"StopOnContact"{bool[0]}}]}}
+		{"Shader"{SHA[{"Size"{intArr[7,3,1]}}{"Position"{intArr[-3,0,-1]}}{"Shader"{sngArr[1.1,1.1,1.1]}}{"StopOnContact"{bool[0]}}]}}
+		{"Shader"{SHA[{"Size"{intArr[7,3,1]}}{"Position"{intArr[-3,0,0]}}{"Shader"{sngArr[1.1,1.1,1.1]}}{"StopOnContact"{bool[0]}}]}}
+		{"Shader"{SHA[{"Size"{intArr[7,3,1]}}{"Position"{intArr[-3,0,1]}}{"Shader"{sngArr[1.1,1.1,1.1]}}{"StopOnContact"{bool[0]}}]}}
+		{"Shader"{SHA[{"Size"{intArr[5,3,1]}}{"Position"{intArr[-2,0,2]}}{"Shader"{sngArr[1.1,1.1,1.1]}}{"StopOnContact"{bool[0]}}]}}
+		{"Shader"{SHA[{"Size"{intArr[3,3,1]}}{"Position"{intArr[-1,0,3]}}{"Shader"{sngArr[1.1,1.1,1.1]}}{"StopOnContact"{bool[0]}}]}}
+	

@@ -29562,6 +29562,9 @@
     <Content Include="Content\Data\maps\structures\frontier\arches\hall.dat">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="Content\Data\maps\structures\BigLight.dat">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Content\Data\maps\structures\goldenrod\chair.dat">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
