@@ -1223,7 +1223,29 @@
 
             Cursors(1) = Cursors(1).Clamp(0, 4)
 
-            If Controls.Accept(True, True, True) = True Then
+            Dim MouseAccept As Boolean = False
+            If Controls.Accept(True, False, False) = True Then
+                Dim pressedIndex As Integer = -1
+                Dim startPos As Vector2 = GetStartPosition()
+                For x = 0 To 4
+                    Dim r As New Rectangle(CInt(startPos.X + (x * 96) + 76), CInt(startPos.Y + 100), 64, 64)
+                    If r.Contains(MouseHandler.MousePosition) = True Then
+                        pressedIndex = x
+                    End If
+                Next
+                If pressedIndex > -1 Then
+                    If 4 >= pressedIndex Then
+                        If Cursors(1) = pressedIndex Then
+                            SoundManager.PlaySound("select")
+                            MouseAccept = True
+                        Else
+                            Cursors(1) = pressedIndex
+                        End If
+                    End If
+                End If
+            End If
+
+            If Controls.Accept(False, True, True) = True OrElse MouseAccept = True Then
                 Dim sameServer As Boolean = False
                 Dim sameConnection As Boolean = False
 
