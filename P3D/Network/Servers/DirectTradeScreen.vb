@@ -83,10 +83,9 @@
         End Select
     End Sub
 
-    Dim offerYOffset As Integer = 0
-    Dim tradeYOffset As Integer = 0
-
     Private Sub DrawIdle()
+        Dim RectangleSize As Size = New Size(320, 320)
+
         'Own Side:
         Dim _ownTexture As Texture2D = Screen.Level.OwnPlayer.Texture
         Dim _ownframeSize As Size
@@ -100,22 +99,22 @@
         _ownTexture = TextureManager.GetTexture(_ownTexture, New Rectangle(0, _ownframeSize.Height * 2, _ownframeSize.Width, _ownframeSize.Height))
 
         Core.SpriteBatch.Draw(_ownTexture, New Rectangle(100, 32, 64, 64), Color.White)
-        Core.SpriteBatch.DrawString(FontManager.MainFont, Core.Player.Name, New Vector2(170, 54), Color.White, 0.0F, Vector2.Zero, 1.0F, SpriteEffects.None, 0.0F)
+        Core.SpriteBatch.DrawString(FontManager.MainFont, Core.Player.Name, New Vector2(100 + 64 + 16, CInt(64 - FontManager.MainFont.MeasureString(Core.Player.Name).Y / 2)), Color.White, 0.0F, Vector2.Zero, 1.0F, SpriteEffects.None, 0.0F)
 
-        Canvas.DrawRectangle(New Rectangle(100, 100, 256, 256), New Color(255, 255, 255, 150))
+        Canvas.DrawRectangle(New Rectangle(100, 100, RectangleSize.Width, RectangleSize.Height), New Color(255, 255, 255, 150))
 
         If Not Me.OfferPokemon Is Nothing Then
-            GetYOffset(offerYOffset, OfferPokemon)
-            Core.SpriteBatch.Draw(Me.OfferPokemon.GetTexture(True), New Rectangle(100, 100 - offerYOffset, MathHelper.Min(OfferPokemon.GetTexture(True).Width * 3, 288), MathHelper.Min(OfferPokemon.GetTexture(True).Height * 3, 288)), Color.White)
+            Dim offerOffset = New Vector2(MathHelper.Min(OfferPokemon.GetTexture(True).Width * 3, 288), MathHelper.Min(OfferPokemon.GetTexture(True).Height * 3, 288))
+            Core.SpriteBatch.Draw(Me.OfferPokemon.GetTexture(True), New Rectangle(100 + CInt(RectangleSize.Width / 2) - CInt(offerOffset.X / 2), 100 + CInt(RectangleSize.Height / 2) - CInt(offerOffset.Y / 2), MathHelper.Min(OfferPokemon.GetTexture(True).Width * 3, 288), MathHelper.Min(OfferPokemon.GetTexture(True).Height * 3, 288)), Color.White)
 
-            Canvas.DrawRectangle(New Rectangle(100, 400, 256, 128), New Color(255, 255, 255, 150))
+            Canvas.DrawRectangle(New Rectangle(100, CInt(100 + RectangleSize.Height + 48), RectangleSize.Width, 128), New Color(255, 255, 255, 150))
 
             Dim itemString As String = "none"
             If Not Me.OfferPokemon.Item Is Nothing Then
                 itemString = OfferPokemon.Item.Name
             End If
 
-            Core.SpriteBatch.DrawString(FontManager.MainFont, OfferPokemon.GetDisplayName() & Environment.NewLine & "Level: " & OfferPokemon.Level & Environment.NewLine & "OT: " & OfferPokemon.OT & " / " & OfferPokemon.CatchTrainerName & Environment.NewLine & "Item: " & itemString, New Vector2(114, 414), Color.Black)
+            Core.SpriteBatch.DrawString(FontManager.MainFont, OfferPokemon.GetDisplayName() & Environment.NewLine & "Level: " & OfferPokemon.Level & Environment.NewLine & "OT: " & OfferPokemon.OT & " / " & OfferPokemon.CatchTrainerName & Environment.NewLine & "Item: " & itemString, New Vector2(100 + 16, CInt(100 + RectangleSize.Height + 48) + 16), Color.Black)
         End If
 
         'Menu:
@@ -178,47 +177,27 @@
             End If
             _otherTexture = TextureManager.GetTexture(_otherTexture, New Rectangle(0, _otherframeSize.Height * 2, _otherframeSize.Width, _otherframeSize.Height))
 
-            Core.SpriteBatch.Draw(_otherTexture, New Rectangle(CInt(Core.windowSize.Width - 356), 32, 64, 64), Color.White)
-            Core.SpriteBatch.DrawString(FontManager.MainFont, tempPlayer.Name, New Vector2(CInt(Core.windowSize.Width - 356) + 70, 54), Color.White, 0.0F, Vector2.Zero, 1.0F, SpriteEffects.None, 0.0F)
+            Core.SpriteBatch.Draw(_otherTexture, New Rectangle(CInt(Core.windowSize.Width - 100 - RectangleSize.Width), 32, 64, 64), Color.White)
+            Core.SpriteBatch.DrawString(FontManager.MainFont, tempPlayer.Name, New Vector2(CInt(Core.windowSize.Width - 100 - RectangleSize.Width) + 64 + 16, CInt(64 - FontManager.MainFont.MeasureString(tempPlayer.Name).Y / 2)), Color.White, 0.0F, Vector2.Zero, 1.0F, SpriteEffects.None, 0.0F)
         End If
 
-        Canvas.DrawRectangle(New Rectangle(CInt(Core.windowSize.Width - 356), 100, 256, 256), New Color(255, 255, 255, 150))
+        Canvas.DrawRectangle(New Rectangle(CInt(Core.windowSize.Width - 100 - RectangleSize.Width), 100, RectangleSize.Width, RectangleSize.Height), New Color(255, 255, 255, 150))
 
         If Not TradePokemon Is Nothing Then
-            GetYOffset(tradeYOffset, TradePokemon)
-            Core.SpriteBatch.Draw(TradePokemon.GetTexture(True), New Rectangle(CInt(Core.windowSize.Width - 356), 100 - tradeYOffset, MathHelper.Min(TradePokemon.GetTexture(True).Width * 3, 288), MathHelper.Min(TradePokemon.GetTexture(True).Height * 3, 288)), Color.White)
+            Dim offerOffset = New Vector2(MathHelper.Min(TradePokemon.GetTexture(True).Width * 3, 288), MathHelper.Min(TradePokemon.GetTexture(True).Height * 3, 288))
+            Core.SpriteBatch.Draw(TradePokemon.GetTexture(True), New Rectangle(CInt(Core.windowSize.Width - 100) - CInt(RectangleSize.Width / 2) - CInt(offerOffset.X / 2), 100 + CInt(RectangleSize.Height / 2) - CInt(offerOffset.Y / 2), MathHelper.Min(TradePokemon.GetTexture(True).Width * 3, 288), MathHelper.Min(TradePokemon.GetTexture(True).Height * 3, 288)), Color.White)
 
-            Canvas.DrawRectangle(New Rectangle(CInt(Core.windowSize.Width - 356), 400, 256, 128), New Color(255, 255, 255, 150))
+            Canvas.DrawRectangle(New Rectangle(CInt(Core.windowSize.Width - 100 - RectangleSize.Width), CInt(100 + RectangleSize.Height + 48), RectangleSize.Width, 128), New Color(255, 255, 255, 150))
 
             Dim itemString As String = "none"
             If Not TradePokemon.Item Is Nothing Then
                 itemString = TradePokemon.Item.Name
             End If
 
-            Core.SpriteBatch.DrawString(FontManager.MainFont, TradePokemon.GetDisplayName() & Environment.NewLine & "Level: " & TradePokemon.Level & Environment.NewLine & "OT: " & TradePokemon.OT & " / " & TradePokemon.CatchTrainerName & Environment.NewLine & "Item: " & itemString, New Vector2(CInt(Core.windowSize.Width - 356) + 14, 414), Color.Black)
+            Core.SpriteBatch.DrawString(FontManager.MainFont, TradePokemon.GetDisplayName() & Environment.NewLine & "Level: " & TradePokemon.Level & Environment.NewLine & "OT: " & TradePokemon.OT & " / " & TradePokemon.CatchTrainerName & Environment.NewLine & "Item: " & itemString, New Vector2(CInt(Core.windowSize.Width - 100 - RectangleSize.Width) + 16, CInt(100 + RectangleSize.Height + 48) + 16), Color.Black)
         End If
     End Sub
 
-    Private Sub GetYOffset(ByRef offset As Integer, ByVal p As Pokemon)
-        Dim t As Texture2D = p.GetTexture(True)
-        offset = -1
-
-        Dim cArr(t.Width * t.Height - 1) As Color
-        t.GetData(cArr)
-
-        For y = 0 To t.Height - 1
-            For x = 0 To t.Width - 1
-                If cArr(x + y * t.Height) <> Color.Transparent Then
-                    offset = y
-                    Exit For
-                End If
-            Next
-
-            If offset <> -1 Then
-                Exit For
-            End If
-        Next
-    End Sub
 
     Private Sub DrawCursor()
         Dim cPosition As Vector2 = New Vector2(CInt(Core.windowSize.Width / 2 - (64 * 4) / 2) + 160, 200 + Me.Cursor * 96 - 42)
@@ -460,7 +439,7 @@
 
                 Dim t As String = "Sending " & OfferPokemon.GetDisplayName() & " to " & p.Name & "." & Environment.NewLine & "Good-bye, " & OfferPokemon.GetDisplayName() & "!"
 
-                Core.SpriteBatch.DrawString(FontManager.MainFont, t, New Vector2(CInt(Core.windowSize.Width / 2 - FontManager.MainFont.MeasureString(t).X / 2), CInt(Core.windowSize.Height / 2 + 130)), Color.White)
+                Core.SpriteBatch.DrawString(FontManager.MainFont, t, New Vector2(CInt(Core.windowSize.Width / 2 - FontManager.MainFont.MeasureString(t).X / 2), CInt(Core.windowSize.Height / 2 + 192)), Color.White)
             Case 2
                 Core.SpriteBatch.Draw(Me.OfferPokemon.GetTexture(False), New Rectangle(CInt(Core.windowSize.Width / 2 - MathHelper.Min(CInt(OfferPokemon.GetTexture(False).Width * 3 / 2), 144)), ownPokemonPosition, MathHelper.Min(OfferPokemon.GetTexture(False).Width * 3, 288), MathHelper.Min(OfferPokemon.GetTexture(False).Height * 3, 288)), Color.White)
             Case 3
@@ -478,7 +457,7 @@
 
                 Dim t As String = p.Name & " sent over " & TradePokemon.GetDisplayName() & "."
 
-                Core.SpriteBatch.DrawString(FontManager.MainFont, t, New Vector2(CInt(Core.windowSize.Width / 2 - FontManager.MainFont.MeasureString(t).X / 2), CInt(Core.windowSize.Height / 2 + 130)), Color.White)
+                Core.SpriteBatch.DrawString(FontManager.MainFont, t, New Vector2(CInt(Core.windowSize.Width / 2 - FontManager.MainFont.MeasureString(t).X / 2), CInt(Core.windowSize.Height / 2 + 192)), Color.White)
         End Select
     End Sub
 
@@ -502,12 +481,12 @@
                     End If
                 End If
             Case 2
-                If ownPokemonPosition > -256 Then
+                If ownPokemonPosition > -288 Then
                     ownPokemonPosition -= 4
-                    If ownPokemonPosition <= -256 Then
-                        ownPokemonPosition = -256
+                    If ownPokemonPosition <= -288 Then
+                        ownPokemonPosition = -288
                         tState = 3
-                        oppPokemonPosition = -256
+                        oppPokemonPosition = -288
                     End If
                 End If
             Case 3
