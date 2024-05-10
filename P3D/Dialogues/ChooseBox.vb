@@ -129,7 +129,7 @@
         If Me.DoDelegate = True Then
             Subs(result)
         Else
-            If Core.CurrentScreen.Identification = Screen.Identifications.OverworldScreen Then
+            If Core.CurrentScreen.Identification = Screen.Identifications.OverworldScreen OrElse Core.CurrentScreen.Identification = Screen.Identifications.NewGameScreen Then
                 If Me.ActionScript = True Then
                     Dim c As OverworldScreen = CType(Core.CurrentScreen, OverworldScreen)
                     c.ActionScript.Switch(Me.Options(result))
