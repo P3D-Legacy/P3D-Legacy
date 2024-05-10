@@ -392,7 +392,7 @@
     Public Statistics As String = ""
 
     'Secure fields:
-    Private _name As String = "<playername>"
+    Private _name As String = "<player.name>"
     Private _rivalName As String = "???"
     Private _rivalSkin As String = "Silver"
     Private _gender As String = "Male"
@@ -2060,7 +2060,7 @@
         Trophies.Clear()
 
         'Restore default values:
-        Name = "<playername>"
+        Name = "<player.name>"
         RivalName = ""
         RivalSkin = ""
         Money = 0

@@ -249,6 +249,7 @@
 
     Private Function ReplaceIntroName(ByVal Name As String) As String
         Dim n As String = Name.Replace("<rivalname>", Core.Player.RivalName)
+        n = n.Replace("<rival.name>", Core.Player.RivalName)
         n = n.Replace("<playername>", Core.Player.Name)
         n = n.Replace("<player.name>", Core.Player.Name)
         n = n.Replace("[POKE]", "Poké")

@@ -66,7 +66,7 @@
 
     Private Sub SetupOptions()
         For i = 0 To Options.Count - 1
-            Options(i) = Options(i).Replace("<playername>", Core.Player.Name)
+            Options(i) = Options(i).Replace("<playername>", Core.Player.Name).Replace("<player.name>", Core.Player.Name)
         Next
     End Sub
 

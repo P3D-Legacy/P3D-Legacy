@@ -660,7 +660,7 @@
                 End If
 
                 Dim catchTrainer As String = Core.Player.Name
-                If commas > 5 And Me.Value.GetSplit(6) <> "<playername>" Then
+                If commas > 5 And Me.Value.GetSplit(6) <> "<playername>" And Me.Value.GetSplit(6) <> "<player.name>" Then
                     catchTrainer = Me.Value.GetSplit(6)
                 End If
 
@@ -1700,9 +1700,9 @@
 
         Dim Message As String = ""
         If Amount = 1 Then
-            Message = "<playername> handed over the~" & Item.OneLineName() & "!"
+            Message = "<player.name> handed over the~" & Item.OneLineName() & "!"
         Else
-            Message = "<playername> handed over the~" & Item.OneLinePluralName() & "!"
+            Message = "<player.name> handed over the~" & Item.OneLinePluralName() & "!"
         End If
 
         Core.Player.Inventory.RemoveItem(ItemID, Amount)

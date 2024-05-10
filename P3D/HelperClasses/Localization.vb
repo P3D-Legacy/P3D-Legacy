@@ -110,7 +110,9 @@
                 Dim result As String = resultToken.TokenContent
                 If Core.Player IsNot Nothing Then
                     result = result.Replace("<playername>", Core.Player.Name)
+                    result = result.Replace("<player.name>", Core.Player.Name)
                     result = result.Replace("<rivalname>", Core.Player.RivalName)
+                    result = result.Replace("<rival.name>", Core.Player.RivalName)
                 End If
                 If result.Contains("<") Then
                     result = CStr(ScriptVersion2.ScriptComparer.EvaluateConstruct(result))

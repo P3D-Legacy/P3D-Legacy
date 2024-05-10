@@ -29,6 +29,7 @@
             Me._text = Me._text.Replace("~", " ")
             Me._text = Me._text.Replace("<player.name>", Core.Player.Name)
             Me._text = Me._text.Replace("<playername>", Core.Player.Name)
+            Me._text = Me._text.Replace("<rival.name>", Core.Player.RivalName)
             Me._text = Me._text.Replace("<rivalname>", Core.Player.RivalName)
             Me._text = Me._text.Replace("[POKE]", "Poké")
 

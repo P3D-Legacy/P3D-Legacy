@@ -64,9 +64,9 @@
                     If showMessage = True Then
                         Dim Message As String = ""
                         If amount = 1 Then
-                            Message = "<playername> handed over the~" & Item.OneLineName() & "!"
+                            Message = "<player.name> handed over the~" & Item.OneLineName() & "!"
                         Else
-                            Message = "<playername> handed over the~" & Item.OneLinePluralName() & "!"
+                            Message = "<player.name> handed over the~" & Item.OneLinePluralName() & "!"
                         End If
 
                         Screen.TextBox.reDelay = 0.0F
