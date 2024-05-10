@@ -1017,7 +1017,7 @@ Public Class OverworldCamera
                 _aimDirection = facing
             End If
         Else
-            If ForceCameraTurn = True Then
+            If _thirdPerson = True AndAlso ForceCameraTurn = True Then
                 Dim facing As Integer = GetFacingDirection()
                 facing += _playerFacing - GetFacingDirection()
 
