@@ -117,6 +117,10 @@
 
             Level.Draw()
 
+            If FadeValue > 0 Then
+                Canvas.DrawRectangle(windowSize, New Color(FadeColor.R, FadeColor.G, FadeColor.B, FadeValue))
+            End If
+
             PokemonImageView.Draw()
             ImageView.Draw()
             TextBox.Draw()
@@ -126,9 +130,6 @@
                 ChooseBox.Draw()
             End If
 
-            If FadeValue > 0 Then
-                Canvas.DrawRectangle(windowSize, New Color(FadeColor.R, FadeColor.G, FadeColor.B, FadeValue))
-            End If
         End Sub
 
         Public Shared Sub EndNewGame(ByVal map As String, ByVal x As Single, ByVal y As Single, ByVal z As Single, ByVal rot As Integer)
