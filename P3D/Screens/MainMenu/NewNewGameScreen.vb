@@ -310,7 +310,8 @@
                     If _fadeIn + 0.01F >= 1.0F Then
                         _fadeIn = 1.0F
                     End If
-                Else
+                End If
+                If _fadeIn > 0.9F Then
                     If Controls.Left(True) And _index > 0 Then
                         _index -= 1
                         _offset -= 280
@@ -362,7 +363,7 @@
 
             Public Overrides Sub Draw()
                 PreScreen.Draw()
-                Dim backcolor As New Color(_colors(_index), CInt(100 * _fadeIn))
+                Dim backcolor As New Color(_colors(_index), CInt(128 * _fadeIn))
 
                 Canvas.DrawRectangle(windowSize, backcolor)
 
@@ -385,7 +386,10 @@
                     SpriteBatch.Draw(sprite, New Rectangle(CInt(windowSize.Width / 2 - CInt(outSize / 2) + i * 280 - _index * 280 + _offset), CInt(windowSize.Height / 2 - 128), outSize, outSize), New Rectangle(0, frameSize.Height * 2, frameSize.Width, frameSize.Height), New Color(255, 255, 255, CInt(255 * _fadeIn)))
                 Next
 
+                SpriteBatch.DrawString(FontManager.MainFont, _names(_index), New Vector2(CInt(windowSize.Width / 2.0F - FontManager.MainFont.MeasureString(_names(_index)).X) + 2, CInt(windowSize.Height / 2.0F + 200) + 2), New Color(0, 0, 0, CInt(255 * _fadeIn)), 0F, Vector2.Zero, 2.0F, SpriteEffects.None, 0F)
                 SpriteBatch.DrawString(FontManager.MainFont, _names(_index), New Vector2(CInt(windowSize.Width / 2.0F - FontManager.MainFont.MeasureString(_names(_index)).X), CInt(windowSize.Height / 2.0F + 200)), New Color(255, 255, 255, CInt(255 * _fadeIn)), 0F, Vector2.Zero, 2.0F, SpriteEffects.None, 0F)
+
+                SpriteBatch.DrawString(FontManager.MainFont, Localization.GetString("global_" & _genders(_index).ToLower(), _genders(_index)), New Vector2(CInt(windowSize.Width / 2.0F - FontManager.MainFont.MeasureString(Localization.GetString("global_" & _genders(_index).ToLower(), _genders(_index))).X / 2.0F) + 1, CInt(windowSize.Height / 2.0F + 300) + 1), New Color(0, 0, 0, CInt(255 * _fadeIn)), 0F, Vector2.Zero, 1.0F, SpriteEffects.None, 0F)
                 SpriteBatch.DrawString(FontManager.MainFont, Localization.GetString("global_" & _genders(_index).ToLower(), _genders(_index)), New Vector2(CInt(windowSize.Width / 2.0F - FontManager.MainFont.MeasureString(Localization.GetString("global_" & _genders(_index).ToLower(), _genders(_index))).X / 2.0F), CInt(windowSize.Height / 2.0F + 300)), New Color(255, 255, 255, CInt(255 * _fadeIn)), 0F, Vector2.Zero, 1.0F, SpriteEffects.None, 0F)
             End Sub
 
