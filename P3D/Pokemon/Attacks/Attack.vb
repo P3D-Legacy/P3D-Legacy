@@ -1909,7 +1909,7 @@
         Public Function GetEffectChance(ByVal i As Integer, ByVal own As Boolean, ByVal BattleScreen As BattleScreen) As Integer
             Dim _attack As Attack = Me
             If gmCopyMove <> -1 Then
-                _attack = GameModeAttackLoader.GetAttackByID(gmCopyMove)
+                _attack = GetAttackByID(gmCopyMove)
             End If
 
             Dim chance As Integer = _attack.EffectChances(i)
@@ -1945,7 +1945,7 @@
         ''' <param name="BattleScreen">Reference to the BattleScreen.</param>
         Public Overridable Sub PreAttack(ByVal Own As Boolean, ByVal BattleScreen As BattleScreen)
             If gmCopyMove <> -1 Then
-                GameModeAttackLoader.GetAttackByID(gmCopyMove).PreAttack(Own, BattleScreen)
+                GetAttackByID(gmCopyMove).PreAttack(Own, BattleScreen)
             End If
             'DO NOTHING HERE
         End Sub
@@ -1957,7 +1957,7 @@
         ''' <param name="BattleScreen">Reference to the BattleScreen.</param>
         Public Overridable Function MoveFailBeforeAttack(ByVal Own As Boolean, ByVal BattleScreen As BattleScreen) As Boolean
             If gmCopyMove <> -1 Then
-                Return GameModeAttackLoader.GetAttackByID(gmCopyMove).MoveFailBeforeAttack(Own, BattleScreen)
+                Return GetAttackByID(gmCopyMove).MoveFailBeforeAttack(Own, BattleScreen)
             End If
             'DO NOTHING HERE
             Return False
@@ -1973,7 +1973,7 @@
                 Return Me.Power
             Else
                 If gmCopyMove <> -1 Then
-                    Dim _attack As Attack = GameModeAttackLoader.GetAttackByID(gmCopyMove)
+                    Dim _attack As Attack = GetAttackByID(gmCopyMove)
                     If _attack.IsGameModeMove = False Then
                         Return _attack.GetBasePower(own, BattleScreen)
                     Else
@@ -1992,7 +1992,7 @@
         ''' <param name="BattleScreen">Reference to the BattleScreen.</param>
         Public Overridable Function GetDamage(ByVal Critical As Boolean, ByVal Own As Boolean, ByVal targetPokemon As Boolean, ByVal BattleScreen As BattleScreen, Optional ByVal ExtraParameter As String = "") As Integer
             If gmCopyMove <> -1 Then
-                Dim _attack As Attack = GameModeAttackLoader.GetAttackByID(gmCopyMove)
+                Dim _attack As Attack = GetAttackByID(gmCopyMove)
                 Return BattleCalculation.CalculateDamage(_attack, Critical, Own, targetPokemon, BattleScreen, ExtraParameter)
             Else
                 Return BattleCalculation.CalculateDamage(Me, Critical, Own, targetPokemon, BattleScreen, ExtraParameter)
@@ -2009,7 +2009,7 @@
                 Return Me.TimesToAttack
             Else
                 If gmCopyMove <> -1 Then
-                    Dim _attack As Attack = GameModeAttackLoader.GetAttackByID(gmCopyMove)
+                    Dim _attack As Attack = GetAttackByID(gmCopyMove)
                     If _attack.IsGameModeMove = False Then
                         Return _attack.GetTimesToAttack(own, BattleScreen)
                     Else
@@ -2037,7 +2037,7 @@
         Public Overridable Sub MoveHits(ByVal own As Boolean, ByVal BattleScreen As BattleScreen)
             If Me.IsGameModeMove = True Then
                 If gmCopyMove <> -1 Then
-                    Dim _attack As Attack = GameModeAttackLoader.GetAttackByID(gmCopyMove)
+                    Dim _attack As Attack = GetAttackByID(gmCopyMove)
                     If _attack.IsGameModeMove = False Then
                         _attack.MoveHits(own, BattleScreen)
                     Else
@@ -2053,21 +2053,21 @@
 
         Public Overridable Sub MoveRecoil(ByVal own As Boolean, ByVal BattleScreen As BattleScreen)
             If gmCopyMove <> -1 Then
-                GameModeAttackLoader.GetAttackByID(gmCopyMove).MoveRecoil(own, BattleScreen)
+                GetAttackByID(gmCopyMove).MoveRecoil(own, BattleScreen)
             End If
             'DO NOTHING HERE (will do recoil if moves overrides it)
         End Sub
 
         Public Overridable Sub MoveRecharge(ByVal own As Boolean, ByVal BattleScreen As BattleScreen)
             If gmCopyMove <> -1 Then
-                GameModeAttackLoader.GetAttackByID(gmCopyMove).MoveRecharge(own, BattleScreen)
+                GetAttackByID(gmCopyMove).MoveRecharge(own, BattleScreen)
             End If
             'DO NOTHING HERE (will do a one turn recharge if moves overrides it)
         End Sub
 
         Public Overridable Sub MoveMultiTurn(ByVal own As Boolean, ByVal BattleScreen As BattleScreen)
             If gmCopyMove <> -1 Then
-                GameModeAttackLoader.GetAttackByID(gmCopyMove).MoveMultiTurn(own, BattleScreen)
+                GetAttackByID(gmCopyMove).MoveMultiTurn(own, BattleScreen)
             End If
             'DO NOTHING HERE (will do the multi turn countdown if moves overrides it)
         End Sub
@@ -2083,7 +2083,7 @@
         ''' <param name="BattleScreen">Reference to the BattleScreen.</param>
         Public Overridable Sub MoveMisses(ByVal own As Boolean, ByVal BattleScreen As BattleScreen)
             If gmCopyMove <> -1 Then
-                GameModeAttackLoader.GetAttackByID(gmCopyMove).MoveMisses(own, BattleScreen)
+                GetAttackByID(gmCopyMove).MoveMisses(own, BattleScreen)
             End If
             'DO NOTHING HERE
         End Sub
@@ -2095,7 +2095,7 @@
         ''' <param name="BattleScreen">Reference to the BattleScreen.</param>
         Public Overridable Sub MoveProtectedDetected(ByVal own As Boolean, ByVal BattleScreen As BattleScreen)
             If gmCopyMove <> -1 Then
-                GameModeAttackLoader.GetAttackByID(gmCopyMove).MoveProtectedDetected(own, BattleScreen)
+                GetAttackByID(gmCopyMove).MoveProtectedDetected(own, BattleScreen)
             End If
             'DO NOTHING HERE
         End Sub
@@ -2107,7 +2107,7 @@
         ''' <param name="BattleScreen">Reference to the BattleScreen.</param>
         Public Overridable Sub MoveHasNoEffect(ByVal own As Boolean, ByVal BattleScreen As BattleScreen)
             If gmCopyMove <> -1 Then
-                GameModeAttackLoader.GetAttackByID(gmCopyMove).MoveHasNoEffect(own, BattleScreen)
+                GetAttackByID(gmCopyMove).MoveHasNoEffect(own, BattleScreen)
             End If
             'DO NOTHING HERE
         End Sub
@@ -2159,7 +2159,7 @@
         Public Overridable Function DeductPP(ByVal own As Boolean, ByVal BattleScreen As BattleScreen) As Boolean
             If Me.IsGameModeMove = True Then
                 If gmCopyMove <> -1 Then
-                    Dim _attack As Attack = GameModeAttackLoader.GetAttackByID(gmCopyMove)
+                    Dim _attack As Attack = GetAttackByID(gmCopyMove)
                     If _attack.IsGameModeMove = False Then
                         Return _attack.DeductPP(own, BattleScreen)
                     Else
@@ -2189,7 +2189,7 @@
         ''' <param name="BattleScreen">Reference to the BattleScreen.</param>
         Public Overridable Sub MoveSelected(ByVal own As Boolean, ByVal BattleScreen As BattleScreen)
             If gmCopyMove <> -1 Then
-                GameModeAttackLoader.GetAttackByID(gmCopyMove).MoveSelected(own, BattleScreen)
+                GetAttackByID(gmCopyMove).MoveSelected(own, BattleScreen)
             End If
 
             'DO NOTHING
@@ -2202,7 +2202,7 @@
         ''' <param name="BattleScreen">Reference to the BattleScreen.</param>
         Public Overridable Sub BeforeDealingDamage(ByVal own As Boolean, ByVal BattleScreen As BattleScreen)
             If gmCopyMove <> -1 Then
-                GameModeAttackLoader.GetAttackByID(gmCopyMove).BeforeDealingDamage(own, BattleScreen)
+                GetAttackByID(gmCopyMove).BeforeDealingDamage(own, BattleScreen)
             End If
             'DO NOTHING
         End Sub
@@ -2214,7 +2214,7 @@
         ''' <param name="BattleScreen">Reference to the BattleScreen.</param>
         Public Overridable Sub AbsorbedBySubstitute(ByVal own As Boolean, ByVal BattleScreen As BattleScreen)
             If gmCopyMove <> -1 Then
-                GameModeAttackLoader.GetAttackByID(gmCopyMove).AbsorbedBySubstitute(own, BattleScreen)
+                GetAttackByID(gmCopyMove).AbsorbedBySubstitute(own, BattleScreen)
             End If
             'DO NOTHING
         End Sub
@@ -2226,7 +2226,7 @@
         ''' <param name="BattleScreen">Reference to the BattleScreen.</param>
         Public Overridable Sub MoveFailsSoundproof(ByVal own As Boolean, ByVal BattleScreen As BattleScreen)
             If gmCopyMove <> -1 Then
-                GameModeAttackLoader.GetAttackByID(gmCopyMove).MoveFailsSoundproof(own, BattleScreen)
+                GetAttackByID(gmCopyMove).MoveFailsSoundproof(own, BattleScreen)
             End If
             'DO NOTHING
         End Sub
@@ -2238,7 +2238,7 @@
         ''' <param name="BattleScreen">Reference to the BattleScreen.</param>
         Public Overridable Sub InflictedFlinch(ByVal own As Boolean, ByVal BattleScreen As BattleScreen)
             If gmCopyMove <> -1 Then
-                GameModeAttackLoader.GetAttackByID(gmCopyMove).InflictedFlinch(own, BattleScreen)
+                GetAttackByID(gmCopyMove).InflictedFlinch(own, BattleScreen)
             End If
             'DO NOTHING
         End Sub
@@ -2250,7 +2250,7 @@
         ''' <param name="BattleScreen">Reference to the BattleScreen.</param>
         Public Overridable Sub HurtItselfInConfusion(ByVal own As Boolean, ByVal BattleScreen As BattleScreen)
             If gmCopyMove <> -1 Then
-                GameModeAttackLoader.GetAttackByID(gmCopyMove).HurtItselfInConfusion(own, BattleScreen)
+                GetAttackByID(gmCopyMove).HurtItselfInConfusion(own, BattleScreen)
             End If
             'DO NOTHING
         End Sub
@@ -2262,7 +2262,7 @@
         ''' <param name="BattleScreen">Reference to the BattleScreen.</param>
         Public Overridable Sub IsAttracted(ByVal own As Boolean, ByVal BattleScreen As BattleScreen)
             If gmCopyMove <> -1 Then
-                GameModeAttackLoader.GetAttackByID(gmCopyMove).IsAttracted(own, BattleScreen)
+                GetAttackByID(gmCopyMove).IsAttracted(own, BattleScreen)
             End If
             'DO NOTHING
         End Sub
@@ -2274,7 +2274,7 @@
         ''' <param name="BattleScreen">Reference to the BattleScreen.</param>
         Public Overridable Sub IsSleeping(ByVal own As Boolean, ByVal BattleScreen As BattleScreen)
             If gmCopyMove <> -1 Then
-                GameModeAttackLoader.GetAttackByID(gmCopyMove).IsSleeping(own, BattleScreen)
+                GetAttackByID(gmCopyMove).IsSleeping(own, BattleScreen)
             End If
             'DO NOTHING
         End Sub
