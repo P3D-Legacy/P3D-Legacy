@@ -260,10 +260,6 @@ Public Class MusicManager
                     Volume = 0F
                     _isFadingOut = False
 
-                    If Playlist.Count > 1 Then
-                        Playlist.RemoveAt(0)
-                    End If
-
                     Dim song = Playlist(0)
 
                     If Not song Is Nothing Then
@@ -439,6 +435,7 @@ Public Class MusicManager
                     playedSong = battleIntroSong
                 Else
                     If regularIntroSong IsNot Nothing AndAlso regularIntroSong.Origin = regularLoopSong.Origin Then
+                        Playlist.Clear()
                         Playlist.Add(regularIntroSong)
                         If regularLoopSong IsNot Nothing Then
                             Playlist.Add(regularLoopSong)
@@ -446,6 +443,7 @@ Public Class MusicManager
                         Play(regularIntroSong)
                         playedSong = regularIntroSong
                     ElseIf regularLoopSong IsNot Nothing Then
+                        Playlist.Clear()
                         Playlist.Add(regularLoopSong)
                         Play(regularLoopSong)
                         playedSong = regularLoopSong
@@ -463,12 +461,13 @@ Public Class MusicManager
                             _isIntroStarted = False
                             _isFadingIn = True
                             FadeInto(introSong, fadeSpeed)
+                            Playlist.Add(nextSong)
                         Else
                             _isIntroStarted = True
                             _introEndTime = Date.Now + introSong.Duration
                             Play(introSong)
+                            Playlist.AddRange({introSong, nextSong})
                         End If
-                        Playlist.AddRange({introSong, nextSong})
                         playedSong = introSong
                     Else
                         _isIntroStarted = False
@@ -491,8 +490,8 @@ Public Class MusicManager
                     FadeInto(nextSong, fadeSpeed)
                 Else
                     Play(nextSong)
+                    Playlist.Add(nextSong)
                 End If
-                Playlist.Add(nextSong)
                 playedSong = nextSong
 
             End If
