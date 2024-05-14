@@ -71,7 +71,7 @@ Public Class PartyScreen
     Dim ChoosePokemon As DoStuff
     Public ExitedSub As DoStuff
 
-    Public LearnAttack As BattleSystem.Attack
+    Public LearnAttack As BattleSystem.Attack = Nothing
     Public LearnType As Integer = 0
     Dim moveLearnArg As Object = Nothing
 
@@ -417,6 +417,31 @@ Public Class PartyScreen
                             End If
                         Else
                             If CType(moveLearnArg, Items.TechMachine).CanTeach(p) = "" Then
+                                AttackLabel = "Able!"
+                            End If
+                        End If
+                    Case 2 'Learnable Move
+                        If LearnAttack IsNot Nothing Then
+                            Dim canLearnMove As Boolean = False
+                            For i = 0 To p.AttackLearns.Count - 1
+                                Dim aList As List(Of BattleSystem.Attack) = p.AttackLearns.Values(i)
+                                For lA = 0 To aList.Count - 1
+                                    If aList(lA).ID = LearnAttack.ID Then
+                                        canLearnMove = True
+                                    End If
+                                Next
+                            Next
+                            For Each eggMoveID As Integer In p.EggMoves
+                                If eggMoveID = LearnAttack.ID Then
+                                    canLearnMove = True
+                                End If
+                            Next
+                            For Each TMMoveID As Integer In p.Machines
+                                If TMMoveID = LearnAttack.ID Then
+                                    canLearnMove = True
+                                End If
+                            Next
+                            If canLearnMove = True Then
                                 AttackLabel = "Able!"
                             End If
                         End If

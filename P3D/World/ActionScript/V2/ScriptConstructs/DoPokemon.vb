@@ -173,6 +173,29 @@
                         End If
                     Next
                     Return levelMoves
+                Case "canlearnattack"
+                    Dim pokeIndex As Integer = int(argument.GetSplit(0))
+                    Dim LearnAttack As BattleSystem.Attack = BattleSystem.Attack.GetAttackByID(int(argument.GetSplit(1)))
+                    Dim canLearnMove As Boolean = False
+                    For i = 0 To Core.Player.Pokemons(pokeIndex).AttackLearns.Count - 1
+                        Dim aList As List(Of BattleSystem.Attack) = Core.Player.Pokemons(pokeIndex).AttackLearns.Values(i)
+                        For lA = 0 To aList.Count - 1
+                            If aList(lA).ID = LearnAttack.ID Then
+                                canLearnMove = True
+                            End If
+                        Next
+                    Next
+                    For Each eggMoveID As Integer In Core.Player.Pokemons(pokeIndex).EggMoves
+                        If eggMoveID = LearnAttack.ID Then
+                            canLearnMove = True
+                        End If
+                    Next
+                    For Each TMMoveID As Integer In Core.Player.Pokemons(pokeIndex).Machines
+                        If TMMoveID = LearnAttack.ID Then
+                            canLearnMove = True
+                        End If
+                    Next
+                    Return ReturnBoolean(canLearnMove)
                 Case "isshiny"
                     Dim index As Integer = int(argument.GetSplit(0))
 

@@ -379,6 +379,7 @@
                     Dim canExit As Boolean = False
                     Dim canChooseEgg As Boolean = True
                     Dim canChooseFainted As Boolean = True
+                    Dim canLearnAttack As Integer = -1
 
                     If argument <> "" Then
                         Dim data() As String = argument.Split(CChar(","))
@@ -392,9 +393,17 @@
                         If data.Length > 2 Then
                             canChooseEgg = CBool(data(2))
                         End If
+                        If data.Length > 3 Then
+                            canLearnAttack = CInt(data(3))
+                        End If
                     End If
 
                     Dim selScreen = New PartyScreen(Core.CurrentScreen, Item.GetItemByID(5.ToString), Nothing, "Choose Pokémon", canExit, canChooseFainted, canChooseEgg) With {.Mode = Screens.UI.ISelectionScreen.ScreenMode.Selection, .CanExit = canExit}
+
+                    If canLearnAttack <> -1 Then
+                        selScreen = New PartyScreen(Core.CurrentScreen, Item.GetItemByID(5.ToString), Nothing, "Learn " & BattleSystem.Attack.GetAttackByID(canLearnAttack).Name, canExit, canChooseFainted, canChooseEgg) With {.Mode = Screens.UI.ISelectionScreen.ScreenMode.Selection, .CanExit = canExit}
+                        selScreen.SetupLearnAttack(BattleSystem.Attack.GetAttackByID(canLearnAttack), 2, Nothing)
+                    End If
                     AddHandler selScreen.SelectedObject, Nothing
 
                     Core.SetScreen(selScreen)
