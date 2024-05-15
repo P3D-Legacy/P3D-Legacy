@@ -45,7 +45,7 @@ Public Class LoopStream
                     _sourceStream.Position = 0
                 Else
                     If Not _sourceStream.Position = 0 Then
-                        If MusicManager.Playlist.Count > 1 Then
+                        If MusicManager.Playlist.Count > 1 And MusicManager._isCurrentlyFading = False Then
                             MusicManager.Playlist.RemoveAt(0)
                         ElseIf MusicManager.EnableLooping = False AndAlso MusicManager.Playlist.Count > 0 Then
                             MusicManager.Playlist.RemoveAt(0)
@@ -137,6 +137,7 @@ Public Class MusicManager
     ' if the song that gets played after fading completed is an intro to another song
     Public Shared _isFadingIn As Boolean = False
     Private Shared _isFadingOut As Boolean = False
+    Public Shared _isCurrentlyFading As Boolean = False
     ' NAudio properties
     Public Shared outputDevice As WaveOutEvent
     Public Shared audioFileOGG As VorbisWaveReader
@@ -253,6 +254,7 @@ Public Class MusicManager
 
             ' fading
             If _isFadingOut Then
+                _isCurrentlyFading = True
                 Volume -= _fadeSpeed
 
                 If Volume <= 0F Then
@@ -276,10 +278,12 @@ Public Class MusicManager
                         Else
                             Volume = 1.0F
                         End If
+                        _isCurrentlyFading = False
                     Else
 
                         ' no song found, do not fade into anything
                         _isFadingIn = False
+                        _isCurrentlyFading = False
                         ClearCurrentlyPlaying()
                         If Muted = True Then
                             Volume = 0.0F
@@ -350,7 +354,7 @@ Public Class MusicManager
     Private Shared Sub Play(song As SongContainer)
         If Not song Is Nothing Then
 
-            Logger.Debug($"Play song [{song.Name}]")
+            Logger.Debug($"Play song [{song.song}]")
             If outputDevice IsNot Nothing Then
                 outputDevice.Dispose()
             End If
