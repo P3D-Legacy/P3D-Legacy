@@ -45,43 +45,45 @@ Public Class LoopStream
                     _sourceStream.Position = 0
                 Else
                     If Not _sourceStream.Position = 0 Then
-                        If MusicManager.Playlist.Count > 1 And MusicManager._isCurrentlyFading = False Then
-                            MusicManager.Playlist.RemoveAt(0)
-                        ElseIf MusicManager.EnableLooping = False AndAlso MusicManager.Playlist.Count > 0 Then
-                            MusicManager.Playlist.RemoveAt(0)
-                        End If
-                        Dim NextSong As SongContainer = Nothing
-                        If MusicManager.Playlist.Count > 0 Then
-                            NextSong = MusicManager.Playlist(0)
-                        End If
-                        If NextSong IsNot Nothing Then
-                            Logger.Debug($"Play song [{NextSong.Name}]")
-                            _sourceStream.Dispose()
+                        If MusicManager._isCurrentlyFading = False Then
+                            If MusicManager.Playlist.Count > 1 Then
+                                MusicManager.Playlist.RemoveAt(0)
+                            ElseIf MusicManager.EnableLooping = False AndAlso MusicManager.Playlist.Count > 0 Then
+                                MusicManager.Playlist.RemoveAt(0)
+                            End If
+                            Dim NextSong As SongContainer = Nothing
+                            If MusicManager.Playlist.Count > 0 Then
+                                NextSong = MusicManager.Playlist(0)
+                            End If
+                            If NextSong IsNot Nothing Then
+                                Logger.Debug($"Play song [{NextSong.Name}]")
+                                _sourceStream.Dispose()
 
-                            If NextSong.AudioType = ".ogg" Then
-                                _sourceStream = New VorbisWaveReader(NextSong.Song)
-                            ElseIf NextSong.AudioType = ".mp3" Then
-                                _sourceStream = New Mp3FileReader(NextSong.Song)
-                            ElseIf NextSong.AudioType = ".wma" Then
-                                _sourceStream = New MediaFoundationReader(NextSong.Song)
+                                If NextSong.AudioType = ".ogg" Then
+                                    _sourceStream = New VorbisWaveReader(NextSong.Song)
+                                ElseIf NextSong.AudioType = ".mp3" Then
+                                    _sourceStream = New Mp3FileReader(NextSong.Song)
+                                ElseIf NextSong.AudioType = ".wma" Then
+                                    _sourceStream = New MediaFoundationReader(NextSong.Song)
+                                End If
+                                _sourceStream.Position = 0
+                                MusicManager._currentSongName = NextSong.Name
+                                MusicManager._currentSong = NextSong
+                                _enableLooping = NextSong.IsLoop
+                            Else
+                                If MusicManager.GetSong("silence").AudioType = ".ogg" Then
+                                    _sourceStream = New VorbisWaveReader(MusicManager.GetSong("silence").Song)
+                                ElseIf MusicManager.GetSong("silence").AudioType = ".mp3" Then
+                                    _sourceStream = New Mp3FileReader(MusicManager.GetSong("silence").Song)
+                                ElseIf MusicManager.GetSong("silence").AudioType = ".wma" Then
+                                    _sourceStream = New MediaFoundationReader(MusicManager.GetSong("silence").Song)
+                                End If
+                                _enableLooping = True
+                                _sourceStream.Position = 0
+                                MusicManager._currentSong = Nothing
+                                MusicManager._currentSongName = "silence"
+                                Logger.Debug($"Play song [silence]")
                             End If
-                            _sourceStream.Position = 0
-                            MusicManager._currentSongName = NextSong.Name
-                            MusicManager._currentSong = NextSong
-                            _enableLooping = NextSong.IsLoop
-                        Else
-                            If MusicManager.GetSong("silence").AudioType = ".ogg" Then
-                                _sourceStream = New VorbisWaveReader(MusicManager.GetSong("silence").Song)
-                            ElseIf MusicManager.GetSong("silence").AudioType = ".mp3" Then
-                                _sourceStream = New Mp3FileReader(MusicManager.GetSong("silence").Song)
-                            ElseIf MusicManager.GetSong("silence").AudioType = ".wma" Then
-                                _sourceStream = New MediaFoundationReader(MusicManager.GetSong("silence").Song)
-                            End If
-                            _enableLooping = True
-                            _sourceStream.Position = 0
-                            MusicManager._currentSong = Nothing
-                            MusicManager._currentSongName = "silence"
-                            Logger.Debug($"Play song [silence]")
                         End If
                     Else
                         Exit While
