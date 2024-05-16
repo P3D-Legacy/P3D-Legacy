@@ -615,29 +615,21 @@
     Public ReadOnly Property VertexCount() As Integer
         Get
             If Me._cachedVertexCount = -1 Then
-                If Not Me.Model Is Nothing Then
-                    For Each mesh As ModelMesh In Me.Model.Meshes
-                        For Each part As ModelMeshPart In mesh.MeshParts
-                            Me._cachedVertexCount += CInt(part.VertexBuffer.VertexCount / 3)
-                        Next
-                    Next
-                Else
-                    If Not Me.BaseModel Is Nothing Then
-                        Dim c As Integer = CInt(Me.BaseModel.vertexBuffer.VertexCount / 3)
-                        Dim min As Integer = 0
+                If Not Me.BaseModel Is Nothing Then
+                    Dim c As Integer = CInt(Me.BaseModel.vertexBuffer.VertexCount / 3)
+                    Dim min As Integer = 0
 
-                        For i = 0 To Me.TextureIndex.Length - 1
-                            If i <= c - 1 Then
-                                If TextureIndex(i) > -1 Then
-                                    min += 1
-                                End If
+                    For i = 0 To Me.TextureIndex.Length - 1
+                        If i <= c - 1 Then
+                            If TextureIndex(i) > -1 Then
+                                min += 1
                             End If
-                        Next
+                        End If
+                    Next
 
-                        Me._cachedVertexCount = min
-                    Else
-                        Me._cachedVertexCount = 0
-                    End If
+                    Me._cachedVertexCount = min
+                Else
+                    Me._cachedVertexCount = 0
                 End If
             End If
             Return Me._cachedVertexCount
