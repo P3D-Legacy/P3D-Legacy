@@ -61,11 +61,15 @@
                 End If
             End If
 
-            FunctionList.Add("Phone")
+            If ActionScript.IsRegistered("pokegear_remove_phone") = False Then
+                FunctionList.Add("Phone")
+            End If
             If ActionScript.IsRegistered("pokegear_card_radio") = True Or GameController.IS_DEBUG_ACTIVE = True Then
                 FunctionList.Add("Radio")
             End If
-            FunctionList.Add("Worldmap")
+            If ActionScript.IsRegistered("pokegear_remove_worldmap") = False Then
+                FunctionList.Add("Worldmap")
+            End If
             If ActionScript.IsRegistered("pokegear_card_minimap") = True Or GameController.IS_DEBUG_ACTIVE = True Then
                 FunctionList.Add("Minimap")
             End If
