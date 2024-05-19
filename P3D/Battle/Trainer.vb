@@ -212,26 +212,29 @@ Public Class Trainer
                 If PokeData.StartsWith("{") = True And PokeData.EndsWith("}") = True Then
                     Dim p As Pokemon = Pokemon.GetPokemonByData(PokeData)
 
-                    If Core.Player.DifficultyMode > 0 Then
-                        Dim level As Integer = p.Level
+                    Dim level As Integer = p.Level
 
-                        Dim addLevel As Integer = 0
-                        If Core.Player.DifficultyMode = 1 Then
-                            addLevel = CInt(Math.Ceiling(level / 10))
-                        ElseIf Core.Player.DifficultyMode = 2 Then
-                            addLevel = CInt(Math.Ceiling(level / 5))
-                        End If
-
-                        If level + addLevel > CInt(GameModeManager.GetGameRuleValue("MaxLevel", "100")) Then
-                            addLevel = CInt(GameModeManager.GetGameRuleValue("MaxLevel", "100")) - level
-                        End If
-
-                        While level + addLevel > p.Level
-                            p.LevelUp(False)
-                            p.Experience = p.NeedExperience(p.Level)
-                        End While
-                        p.HP = p.MaxHP
+                    Dim addLevel As Integer = 0
+                    If Core.Player.DifficultyMode = 0 Then
+                        addLevel = CInt(Math.Ceiling(level * CSng(GameModeManager.GetGameRuleValue("LevelMultiplier", "1.0")) - level))
+                    ElseIf Core.Player.DifficultyMode = 1 Then
+                        addLevel = CInt(Math.Ceiling(level * CSng(GameModeManager.GetGameRuleValue("LevelMultiplier", "1.1")) - level))
+                    ElseIf Core.Player.DifficultyMode = 2 Then
+                        addLevel = CInt(Math.Ceiling(level * CSng(GameModeManager.GetGameRuleValue("LevelMultiplier", "1.2")) - level))
                     End If
+
+                    If level + addLevel > CInt(GameModeManager.GetGameRuleValue("MaxLevel", "100")) Then
+                        addLevel = CInt(GameModeManager.GetGameRuleValue("MaxLevel", "100")) - level
+                    End If
+                    If addLevel <= 0 Then
+                        addLevel = 0
+                    End If
+
+                    While level + addLevel > p.Level
+                        p.LevelUp(False)
+                        p.Experience = p.NeedExperience(p.Level)
+                    End While
+                    p.HP = p.MaxHP
 
                     Pokemons.Add(p)
                 Else
@@ -275,13 +278,18 @@ Public Class Trainer
                     End If
 
                     Dim addLevel As Integer = 0
-                    If Core.Player.DifficultyMode = 1 Then
-                        addLevel = CInt(Math.Ceiling(Level / 10))
+                    If Core.Player.DifficultyMode = 0 Then
+                        addLevel = CInt(Math.Ceiling(Level * CSng(GameModeManager.GetGameRuleValue("LevelMultiplier", "1.0")) - Level))
+                    ElseIf Core.Player.DifficultyMode = 1 Then
+                        addLevel = CInt(Math.Ceiling(Level * CSng(GameModeManager.GetGameRuleValue("LevelMultiplier", "1.1")) - Level))
                     ElseIf Core.Player.DifficultyMode = 2 Then
-                        addLevel = CInt(Math.Ceiling(Level / 5))
+                        addLevel = CInt(Math.Ceiling(Level * CSng(GameModeManager.GetGameRuleValue("LevelMultiplier", "1.2")) - Level))
                     End If
                     If Level + addLevel > CInt(GameModeManager.GetGameRuleValue("MaxLevel", "100")) Then
                         addLevel = CInt(GameModeManager.GetGameRuleValue("MaxLevel", "100")) - Level
+                    End If
+                    If addLevel <= 0 Then
+                        addLevel = 0
                     End If
 
                     Level += addLevel

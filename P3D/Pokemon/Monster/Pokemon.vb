@@ -10,7 +10,7 @@ Public Class Pokemon
 
     Public Shared ReadOnly Property MasterShinyRate(Optional ByVal adjusted As Boolean = True) As Integer
         Get
-            Dim shinyRate As Integer = 4096
+            Dim shinyRate As Integer = GameModeManager.ActiveGameMode.MasterShinyRate '4096 by default
 
             If adjusted Then
                 For Each mysteryEvent As MysteryEventScreen.MysteryEvent In MysteryEventScreen.ActivatedMysteryEvents

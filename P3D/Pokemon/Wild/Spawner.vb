@@ -170,10 +170,12 @@ Public Class Spawner
                 End If
 
                 Dim addLevel As Integer = 0
-                If Core.Player.DifficultyMode = 1 Then
-                    addLevel = CInt(Math.Floor(level / 10))
+                If Core.Player.DifficultyMode = 0 Then
+                    addLevel = CInt(Math.Ceiling(level * CSng(GameModeManager.GetGameRuleValue("LevelMultiplier", "1.0")) - level))
+                ElseIf Core.Player.DifficultyMode = 1 Then
+                    addLevel = CInt(Math.Ceiling(level * CSng(GameModeManager.GetGameRuleValue("LevelMultiplier", "1.1")) - level))
                 ElseIf Core.Player.DifficultyMode = 2 Then
-                    addLevel = CInt(Math.Floor(level / 5))
+                    addLevel = CInt(Math.Ceiling(level * CSng(GameModeManager.GetGameRuleValue("LevelMultiplier", "1.2")) - level))
                 End If
                 level += addLevel
                 If level > CInt(GameModeManager.GetGameRuleValue("MaxLevel", "100")) Then

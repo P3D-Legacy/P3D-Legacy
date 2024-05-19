@@ -388,7 +388,7 @@ Public Class GameMode
     ''' <param name="SkinNames">The skin names for the new GameMode. Must be the same amount as SkinFiles and SkinColors.</param>
     ''' <param name="SkinGenders">The skin names for the new GameMode. Must be the same amount as SkinFiles and SkinColors.</param>
     Public Sub New(ByVal Name As String, ByVal Description As String, ByVal Version As String, ByVal Author As String, ByVal MapPath As String, ByVal ScriptPath As String, ByVal PokeFilePath As String, ByVal PokemonDataPath As String, ByVal ContentPath As String, ByVal LocalizationsPath As String, ByVal GameRules As List(Of GameRule), ByVal HardGameRules As List(Of GameRule), ByVal SuperHardGameRules As List(Of GameRule),
-                   ByVal StartMap As String, ByVal StartPosition As Vector3, ByVal StartRotation As Single, ByVal StartLocationName As String, ByVal StartDialogue As String, ByVal StartColor As Color, ByVal PokemonAppear As String, ByVal IntroMusic As String, ByVal IntroType As String, ByVal SkinColors As List(Of Color), ByVal SkinFiles As List(Of String), ByVal SkinNames As List(Of String), ByVal SkinGenders As List(Of String), Optional WaterSpeed As Integer = 8)
+                   ByVal StartMap As String, ByVal StartPosition As Vector3, ByVal StartRotation As Single, ByVal StartLocationName As String, ByVal StartDialogue As String, ByVal StartColor As Color, ByVal PokemonAppear As String, ByVal IntroMusic As String, ByVal IntroType As String, ByVal SkinColors As List(Of Color), ByVal SkinFiles As List(Of String), ByVal SkinNames As List(Of String), ByVal SkinGenders As List(Of String), Optional WaterSpeed As Integer = 8, Optional MasterShinyRate As Integer = 4096)
         Me._name = Name
         Me._description = Description
         Me._version = Version
@@ -403,6 +403,7 @@ Public Class GameMode
         Me._hardGameRules = HardGameRules
         Me._superHardGameRules = SuperHardGameRules
         Me._waterspeed = WaterSpeed
+        Me._masterShinyRate = MasterShinyRate
 
         Me._startMap = StartMap
         Me._startPosition = StartPosition
@@ -514,6 +515,8 @@ Public Class GameMode
                             End If
                         Case "waterspeed"
                             Me._waterspeed = CInt(Value)
+                        Case "shinyrate"
+                            Me._masterShinyRate = CInt(Value)
                         Case "startmap"
                             Me._startMap = Value
                         Case "startposition"
@@ -646,13 +649,17 @@ Public Class GameMode
         gameRules.Add(New GameRule("CanForgetHM", "0"))
         gameRules.Add(New GameRule("CoinCaseCap", "0"))
         gameRules.Add(New GameRule("GainExpAfterCatch", "1"))
+        gameRules.Add(New GameRule("ShinyRate", "4096"))
+        gameRules.Add(New GameRule("LevelMultiplier", "1.0"))
 
         gameMode._gameRules = gameRules
 
         Dim hardGameRules As New List(Of GameRule)
         hardGameRules.Add(New GameRule("OverworldPoison", "1"))
+        hardGameRules.Add(New GameRule("LevelMultiplier", "1.1"))
 
         Dim superHardGameRules As New List(Of GameRule)
+        hardGameRules.Add(New GameRule("LevelMultiplier", "1.2"))
 
         gameMode._hardGameRules = hardGameRules
         gameMode._superHardGameRules = superHardGameRules
@@ -804,6 +811,7 @@ Public Class GameMode
     Private _hardGameRules As New List(Of GameRule)
     Private _superHardGameRules As New List(Of GameRule)
     Private _waterspeed As Integer = 8
+    Private _masterShinyRate As Integer = 4096
 
     ''' <summary>
     ''' The name of this GameMode.
@@ -938,6 +946,17 @@ Public Class GameMode
         End Get
         Set(value As Integer)
             Me._waterspeed = value
+        End Set
+    End Property
+    ''' <summary>
+    ''' The master shiny rate
+    ''' </summary>
+    Public Property MasterShinyRate As Integer
+        Get
+            Return Me._masterShinyRate
+        End Get
+        Set(value As Integer)
+            Me._masterShinyRate = value
         End Set
     End Property
 
