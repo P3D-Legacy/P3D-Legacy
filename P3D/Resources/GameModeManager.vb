@@ -374,6 +374,8 @@ Public Class GameMode
     ''' <param name="PokemonDataPath">The Pokemon-Datapath to load Pokemon data from.</param>
     ''' <param name="ContentPath">The path to load images, sound and music from.</param>
     ''' <param name="GameRules">The GameRules that apply to the new GameMode.</param>
+    ''' <param name="HardGameRules">The GameRules that apply to the new GameMode for the Hard Difficulty.</param>
+    ''' <param name="SuperHardGameRules">The GameRules that apply to the new GameMode for the Super Hard Difficulty.</param>
     ''' <param name="StartMap">The start map for the new GameMode.</param>
     ''' <param name="StartPosition">The start position for the new GameMode.</param>
     ''' <param name="StartRotation">The start rotation for the new GameMode.</param>
@@ -385,7 +387,7 @@ Public Class GameMode
     ''' <param name="SkinFiles">The skin files for the new GameMode. Must be the same amount as SkinColors and SkinNames.</param>
     ''' <param name="SkinNames">The skin names for the new GameMode. Must be the same amount as SkinFiles and SkinColors.</param>
     ''' <param name="SkinGenders">The skin names for the new GameMode. Must be the same amount as SkinFiles and SkinColors.</param>
-    Public Sub New(ByVal Name As String, ByVal Description As String, ByVal Version As String, ByVal Author As String, ByVal MapPath As String, ByVal ScriptPath As String, ByVal PokeFilePath As String, ByVal PokemonDataPath As String, ByVal ContentPath As String, ByVal LocalizationsPath As String, ByVal GameRules As List(Of GameRule), ByVal HardGameRules As List(Of GameRule),
+    Public Sub New(ByVal Name As String, ByVal Description As String, ByVal Version As String, ByVal Author As String, ByVal MapPath As String, ByVal ScriptPath As String, ByVal PokeFilePath As String, ByVal PokemonDataPath As String, ByVal ContentPath As String, ByVal LocalizationsPath As String, ByVal GameRules As List(Of GameRule), ByVal HardGameRules As List(Of GameRule), ByVal SuperHardGameRules As List(Of GameRule),
                    ByVal StartMap As String, ByVal StartPosition As Vector3, ByVal StartRotation As Single, ByVal StartLocationName As String, ByVal StartDialogue As String, ByVal StartColor As Color, ByVal PokemonAppear As String, ByVal IntroMusic As String, ByVal IntroType As String, ByVal SkinColors As List(Of Color), ByVal SkinFiles As List(Of String), ByVal SkinNames As List(Of String), ByVal SkinGenders As List(Of String), Optional WaterSpeed As Integer = 8)
         Me._name = Name
         Me._description = Description
@@ -399,6 +401,7 @@ Public Class GameMode
         Me._localizationsPath = LocalizationsPath
         Me._gameRules = GameRules
         Me._hardGameRules = HardGameRules
+        Me._superHardGameRules = SuperHardGameRules
         Me._waterspeed = WaterSpeed
 
         Me._startMap = StartMap
@@ -460,6 +463,7 @@ Public Class GameMode
 
                                         _gameRules.Add(New GameRule(rule.GetSplit(0, "|"), rule.GetSplit(1, "|")))
                                         _hardGameRules.Add(New GameRule(rule.GetSplit(0, "|"), rule.GetSplit(1, "|")))
+                                        _superHardGameRules.Add(New GameRule(rule.GetSplit(0, "|"), rule.GetSplit(1, "|")))
                                     End If
                                 Next
                             End If
@@ -477,7 +481,34 @@ Public Class GameMode
                                                 End If
                                             End If
                                         Next
+                                        For i = 0 To _superHardGameRules.Count - 1
+                                            If i <= _superHardGameRules.Count - 1 Then
+                                                If _superHardGameRules(i).RuleName.ToLower = rule.GetSplit(0, "|").ToLower Then
+                                                    _superHardGameRules.RemoveAt(i)
+                                                    i -= 1
+                                                End If
+                                            End If
+                                        Next
                                         _hardGameRules.Add(New GameRule(rule.GetSplit(0, "|"), rule.GetSplit(1, "|")))
+                                        _superHardGameRules.Add(New GameRule(rule.GetSplit(0, "|"), rule.GetSplit(1, "|")))
+                                    End If
+                                Next
+                            End If
+                        Case "superhardgamerules"
+                            If Value <> "" And Value.Contains("(") And Value.Contains(")") And Value.Contains("|") = True Then
+                                Dim rules() As String = Value.Split(CChar(")"))
+                                For Each rule As String In rules
+                                    If rule.StartsWith("(") = True Then
+                                        rule = rule.Remove(0, 1)
+                                        For i = 0 To _superHardGameRules.Count - 1
+                                            If i <= _superHardGameRules.Count - 1 Then
+                                                If _superHardGameRules(i).RuleName.ToLower = rule.GetSplit(0, "|").ToLower Then
+                                                    _superHardGameRules.RemoveAt(i)
+                                                    i -= 1
+                                                End If
+                                            End If
+                                        Next
+                                        _superHardGameRules.Add(New GameRule(rule.GetSplit(0, "|"), rule.GetSplit(1, "|")))
                                     End If
                                 Next
                             End If
@@ -593,7 +624,7 @@ Public Class GameMode
         Dim SkinNames As List(Of String) = {"Ethan", "Lyra", "Nate", "Rosa", "Hilbert", "Hilda"}.ToList()
         Dim SkinGenders As List(Of String) = {"Male", "Female", "Male", "Female", "Male", "Female"}.ToList()
 
-        Dim gameMode As New GameMode("Kolben", "The normal game mode.", GameController.GAMEVERSION, "Kolben Games", "\Content\Data\maps\", "\Content\Data\Scripts\", "\Content\Data\maps\poke\", "\Content\Pokemon\Data\", "\Content\", "\Content\Localization\", New List(Of GameRule), New List(Of GameRule),
+        Dim gameMode As New GameMode("Kolben", "The normal game mode.", GameController.GAMEVERSION, "Kolben Games", "\Content\Data\maps\", "\Content\Data\Scripts\", "\Content\Data\maps\poke\", "\Content\Pokemon\Data\", "\Content\", "\Content\Localization\", New List(Of GameRule), New List(Of GameRule), New List(Of GameRule),
                                      "newgame\intro0.dat", New Vector3(1.0F, 0.1F, 3.0F), MathHelper.PiOver2, "Your Room", "", New Color(59, 123, 165), "0", "welcome", "1", SkinColors, SkinFiles, SkinNames, SkinGenders, 8)
 
         gameMode.StartScript = "startscript\main"
@@ -621,7 +652,10 @@ Public Class GameMode
         Dim hardGameRules As New List(Of GameRule)
         hardGameRules.Add(New GameRule("OverworldPoison", "1"))
 
+        Dim superHardGameRules As New List(Of GameRule)
+
         gameMode._hardGameRules = hardGameRules
+        gameMode._superHardGameRules = superHardGameRules
         Return gameMode
     End Function
 
@@ -655,7 +689,13 @@ Public Class GameMode
             HardGameRuleString &= "(" & rule.RuleName & "|" & rule.RuleValue & ")"
         Next
 
+        Dim SuperHardGameRuleString As String = "SuperHardGameRules|"
+        For Each rule As GameRule In Me._superHardGameRules
+            SuperHardGameRuleString &= "(" & rule.RuleName & "|" & rule.RuleValue & ")"
+        Next
+
         s &= HardGameRuleString & Environment.NewLine &
+        SuperHardGameRuleString & Environment.NewLine &
             "StartMap|" & Me._startMap & Environment.NewLine &
             "StartPosition|" & Me._startPosition.X.ToString().Replace(GameController.DecSeparator, ".") & "," & Me._startPosition.Y.ToString().Replace(GameController.DecSeparator, ".") & "," & Me._startPosition.Z.ToString().Replace(GameController.DecSeparator, ".") & Environment.NewLine &
             "StartRotation|" & Me._startRotation.ToString().Replace(GameController.DecSeparator, ".") & Environment.NewLine &
@@ -762,6 +802,7 @@ Public Class GameMode
     Private _contentPath As String = ""
     Private _gameRules As New List(Of GameRule)
     Private _hardGameRules As New List(Of GameRule)
+    Private _superHardGameRules As New List(Of GameRule)
     Private _waterspeed As Integer = 8
 
     ''' <summary>
@@ -906,18 +947,30 @@ Public Class GameMode
     ''' </summary>
     Public Property GameRules() As List(Of GameRule)
         Get
-            If Core.Player.DifficultyMode > 0 Then
-                Return Me._hardGameRules
-            Else
-                Return Me._gameRules
-            End If
+            Select Case Core.Player.DifficultyMode
+                Case 0
+                    Return Me._gameRules
+                Case 1
+                    Return Me._hardGameRules
+                Case 2
+                    Return Me._superHardGameRules
+                Case Else
+                    Return Me._gameRules
+            End Select
         End Get
         Set(value As List(Of GameRule))
-            If Core.Player.DifficultyMode > 0 Then
-                Me._hardGameRules = value
-            Else
-                Me._gameRules = value
-            End If
+            Select Case Core.Player.DifficultyMode
+                Case 0
+                    Me._gameRules = value
+                Case 1
+                    Me._hardGameRules = value
+                Case 2
+                    Me._superHardGameRules = value
+                Case Else
+                    Me._gameRules = value
+                    Me._hardGameRules = value
+                    Me._superHardGameRules = value
+            End Select
         End Set
     End Property
 
