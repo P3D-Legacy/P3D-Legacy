@@ -30,15 +30,18 @@
 
     Dim AnimateIdle As Boolean = True
     Dim AnimationX As Integer = 1
+    Dim AnimationX_Offset As Integer = 0
     Const AnimationDelayLength As Single = 1.1F
     Dim AnimationDelay As Single = AnimationDelayLength
 
     Public Movement As Movements = Movements.Still
     Public MoveRectangles As New List(Of Rectangle)
     Public TurningDelay As Single = 2.0F
+    Public StraightDirection As Integer = -1
 
     Public MoveY As Single = 0.0F
     Public MoveAsync As Boolean = False
+    Public Interacted As Boolean = False
 
     Public Overloads Sub Initialize(ByVal TextureID As String, ByVal Rotation As Integer, ByVal Name As String, ByVal ID As Integer, ByVal AnimateIdle As Boolean, ByVal Movement As String, ByVal MoveRectangles As List(Of Rectangle))
         MyBase.Initialize()
@@ -321,19 +324,21 @@
     End Sub
 
     Public Sub ActivateScript()
-        Dim oScreen As OverworldScreen = CType(Core.CurrentScreen, OverworldScreen)
-        If oScreen.ActionScript.IsReady = True Then
-            SoundManager.PlaySound("select")
-            Select Case Me.ActionValue
-                Case 0
-                    oScreen.ActionScript.StartScript(Me.AdditionalValue, 1,,, "NPCInteract")
-                Case 1
-                    oScreen.ActionScript.StartScript(Me.AdditionalValue, 0,,, "NPCInteract")
-                Case 3
-                    oScreen.ActionScript.StartScript(Me.AdditionalValue.Replace("<br>", Environment.NewLine), 2,,, "NPCInteract")
-                Case Else
-                    oScreen.ActionScript.StartScript(Me.AdditionalValue, 0,,, "NPCInteract")
-            End Select
+        If CurrentScreen.Identification = Screen.Identifications.OverworldScreen Then
+            Dim oScreen As OverworldScreen = CType(Core.CurrentScreen, OverworldScreen)
+            If oScreen.ActionScript.IsReady = True Then
+                SoundManager.PlaySound("select")
+                Select Case Me.ActionValue
+                    Case 0
+                        oScreen.ActionScript.StartScript(Me.AdditionalValue, 1,,, "NPCInteract")
+                    Case 1
+                        oScreen.ActionScript.StartScript(Me.AdditionalValue, 0,,, "NPCInteract")
+                    Case 3
+                        oScreen.ActionScript.StartScript(Me.AdditionalValue.Replace("<br>", Environment.NewLine), 2,,, "NPCInteract")
+                    Case Else
+                        oScreen.ActionScript.StartScript(Me.AdditionalValue, 0,,, "NPCInteract")
+                End Select
+            End If
         End If
     End Sub
 
@@ -473,14 +478,20 @@
     End Sub
 
     Public Overrides Sub ClickFunction()
-        Dim newHeading As Integer = Screen.Camera.GetPlayerFacingDirection() - 2
-        If newHeading < 0 Then
-            newHeading += 4
+        If Me.Movement = Movements.Straight Then
+            StraightDirection = Me.faceRotation
         End If
-        Me.faceRotation = newHeading
 
         If Me.Moved = 0.0F Then
+            Dim newHeading As Integer = Screen.Camera.GetPlayerFacingDirection() - 2
+            If newHeading < 0 Then
+                newHeading += 4
+            End If
+            Me.faceRotation = newHeading
+
             ActivateScript()
+        ElseIf Me.Moved < 0.48F Then
+            Interacted = True
         End If
     End Sub
 
@@ -654,37 +665,14 @@
                     Dim newPosition As Vector3 = (GetMove(newRotation) / Speed) + Me.Position
                     Dim blocked As Boolean = False
 
-                    '' check if player is not in the way
-                    If CInt(Screen.Camera.Position.X) = newPosition.X And CInt(Screen.Camera.Position.Z) = newPosition.Z Then
-                        blocked = True
+                    If CheckBlockedByPlayerOrNPC(newPosition) = True AndAlso StraightDirection <> -1 Then
+                        newRotation = Me.StraightDirection
+                        frontRotation = Me.StraightDirection
+                        newPosition = (GetMove(newRotation) / Speed) + Me.Position
+                        StraightDirection = -1
                     End If
-                    '' check if a following Pokémon is not in the way
-                    If CInt(Screen.Level.OverworldPokemon.Position.X) = newPosition.X And CInt(Screen.Level.OverworldPokemon.Position.Z) = newPosition.Z Then
-                        blocked = True
-                    End If
-                    '' check if an NPC is not in the way
-                    For Each NPC As NPC In Screen.Level.GetNPCs()
-                        If CInt(NPC.Position.X) = newPosition.X And CInt(NPC.Position.Z) = newPosition.Z And NPC.NPCID <> Me.NPCID Then
-                            blocked = True
-                            Exit For
-                        End If
-                    Next
-                    '' check if a NetworkPlayer is not in the way
-                    For Each Player As NetworkPlayer In Screen.Level.NetworkPlayers
-                        If CInt(Player.Position.X) = newPosition.X And CInt(Player.Position.Z) = newPosition.Z Then
-                            blocked = True
-                            Exit For
-                        End If
-                    Next
-                    '' check if a NetworkPokémon is not in the way
-                    For Each Pokemon As NetworkPokemon In Screen.Level.NetworkPokemon
-                        If CInt(Pokemon.Position.X) = newPosition.X And CInt(Pokemon.Position.Z) = newPosition.Z Then
-                            blocked = True
-                            Exit For
-                        End If
-                    Next
 
-                    If blocked = False Then
+                    If CheckBlockedByPlayerOrNPC(newPosition) = False Then
                         If CheckCollision(newPosition) = True Then
                             For Each r As Rectangle In Me.MoveRectangles
                                 If r.Contains(New Point(CInt(newPosition.X), CInt(newPosition.Z))) = True Then
@@ -704,25 +692,7 @@
                                 newRotation = newRotation - 4
                             End If
                             newPosition = (GetMove(newRotation) / Speed) + Me.Position
-                            If CheckCollision(newPosition) = True Then
-                                For Each r As Rectangle In Me.MoveRectangles
-                                    If r.Contains(New Point(CInt(newPosition.X), CInt(newPosition.Z))) = True Then
-                                        contains = True
-                                        Exit For
-                                    End If
-                                Next
-                            End If
-                            If contains = True Then
-                                '' Only change faceRotation when it's possible to move
-                                Me.faceRotation = newRotation
-                                Moved = 1.0F
-                            Else
-                                '' If not possible to move to the right, check left
-                                newRotation = frontRotation - 1
-                                If newRotation < 0 Then
-                                    newRotation = newRotation + 4
-                                End If
-                                newPosition = (GetMove(newRotation) / Speed) + Me.Position
+                            If CheckBlockedByPlayerOrNPC(newPosition) = False Then
                                 If CheckCollision(newPosition) = True Then
                                     For Each r As Rectangle In Me.MoveRectangles
                                         If r.Contains(New Point(CInt(newPosition.X), CInt(newPosition.Z))) = True Then
@@ -736,26 +706,82 @@
                                     Me.faceRotation = newRotation
                                     Moved = 1.0F
                                 Else
-                                    '' If not possible to move to the left, check behind
-                                    newRotation = frontRotation + 2
-                                    If newRotation > 3 Then
-                                        newRotation = newRotation - 4
+                                    '' If not possible to move to the right, check left
+                                    newRotation = frontRotation - 1
+                                    If newRotation < 0 Then
+                                        newRotation = newRotation + 4
                                     End If
                                     newPosition = (GetMove(newRotation) / Speed) + Me.Position
-
-                                    If CheckCollision(newPosition) = True Then
+                                    If CheckBlockedByPlayerOrNPC(newPosition) = False Then
+                                        If CheckCollision(newPosition) = True Then
+                                            For Each r As Rectangle In Me.MoveRectangles
+                                                If r.Contains(New Point(CInt(newPosition.X), CInt(newPosition.Z))) = True Then
+                                                    contains = True
+                                                    Exit For
+                                                End If
+                                            Next
+                                        End If
+                                        If contains = True Then
+                                            '' Only change faceRotation when it's possible to move
+                                            Me.faceRotation = newRotation
+                                            Moved = 1.0F
+                                        Else
+                                            '' If not possible to move to the left, check behind
+                                            newRotation = frontRotation + 2
+                                            If newRotation > 3 Then
+                                                newRotation = newRotation - 4
+                                            End If
+                                            newPosition = (GetMove(newRotation) / Speed) + Me.Position
+                                            If CheckBlockedByPlayerOrNPC(newPosition) = False Then
+                                                If CheckCollision(newPosition) = True Then
+                                                    For Each r As Rectangle In Me.MoveRectangles
+                                                        If r.Contains(New Point(CInt(newPosition.X), CInt(newPosition.Z))) = True Then
+                                                            contains = True
+                                                            Exit For
+                                                        End If
+                                                    Next
+                                                End If
+                                                If contains = True Then
+                                                    '' Only change faceRotation when it's possible to move
+                                                    Me.faceRotation = newRotation
+                                                    Moved = 1.0F
+                                                End If
+                                            Else
+                                                Dim CanRotate As Boolean = False
+                                                For Each r As Rectangle In Me.MoveRectangles
+                                                    If r.Contains(New Point(CInt(newPosition.X), CInt(newPosition.Z))) = True Then
+                                                        CanRotate = True
+                                                        Exit For
+                                                    End If
+                                                Next
+                                                If CanRotate = True Then
+                                                    Me.faceRotation = newRotation
+                                                End If
+                                            End If
+                                        End If
+                                    Else
+                                        Dim CanRotate As Boolean = False
                                         For Each r As Rectangle In Me.MoveRectangles
                                             If r.Contains(New Point(CInt(newPosition.X), CInt(newPosition.Z))) = True Then
-                                                contains = True
+                                                CanRotate = True
                                                 Exit For
                                             End If
                                         Next
+                                        If CanRotate = True Then
+                                            Me.faceRotation = newRotation
+                                        End If
                                     End If
-                                    If contains = True Then
-                                        '' Only change faceRotation when it's possible to move
-                                        Me.faceRotation = newRotation
-                                        Moved = 1.0F
+                                End If
+                            Else
+                                Dim CanRotate As Boolean = False
+                                For Each r As Rectangle In Me.MoveRectangles
+                                    If r.Contains(New Point(CInt(newPosition.X), CInt(newPosition.Z))) = True Then
+                                        CanRotate = True
+                                        Exit For
                                     End If
+                                Next
+                                If CanRotate = True Then
+                                    Me.faceRotation = newRotation
                                 End If
                             End If
                         End If
@@ -786,6 +812,21 @@
             End If
         End If
 
+        '' check if a NetworkPlayer is not in the way
+        For Each Player As NetworkPlayer In Screen.Level.NetworkPlayers
+            If CInt(Player.Position.X) <> newPosition.X And CInt(Player.Position.Z) <> newPosition.Z Then
+                interactPlayer = False
+                Exit For
+            End If
+        Next
+        '' check if a NetworkPokémon is not in the way
+        For Each Pokemon As NetworkPokemon In Screen.Level.NetworkPokemon
+            If CInt(Pokemon.Position.X) <> newPosition.X And CInt(Pokemon.Position.Z) <> newPosition.Z Then
+                interactPlayer = False
+                Exit For
+            End If
+        Next
+
         If interactPlayer = True Then
             Return False
         End If
@@ -812,6 +853,52 @@
         Next
 
         Return True
+    End Function
+    Private Function CheckBlockedByPlayerOrNPC(ByVal newPosition As Vector3) As Boolean
+        newPosition = New Vector3(CInt(newPosition.X), CInt(newPosition.Y), CInt(newPosition.Z))
+
+        Dim blocked As Boolean = False
+
+        '' check if player or a following Pokémon is not in the way
+        If Screen.Camera.IsMoving() = False Then
+            If CInt(Screen.Camera.Position.X) = newPosition.X And CInt(Screen.Camera.Position.Z) = newPosition.Z Then
+                blocked = True
+            End If
+            If CInt(Screen.Level.OverworldPokemon.Position.X) = newPosition.X And CInt(Screen.Level.OverworldPokemon.Position.Z) = newPosition.Z Then
+                blocked = True
+            End If
+        Else
+            Dim cameraNewPosition As Vector3 = Screen.Camera.GetForwardMovedPosition()
+            Dim cameraOldPosition As Vector3 = Screen.Camera.GetForwardMovedPosition() - Screen.Camera.GetMoveDirection()
+            If CInt(cameraNewPosition.X) = newPosition.X And CInt(cameraNewPosition.Z) = newPosition.Z Or CInt(cameraOldPosition.X) = newPosition.X And CInt(cameraOldPosition.Z) = newPosition.Z Then
+                blocked = True
+            End If
+            If CInt(Screen.Level.OverworldPokemon.Position.X) = newPosition.X And CInt(Screen.Level.OverworldPokemon.Position.Z) = newPosition.Z Then
+                blocked = True
+            End If
+        End If
+        '' check if a NetworkPlayer is not in the way
+        For Each Player As NetworkPlayer In Screen.Level.NetworkPlayers
+            If CInt(Player.Position.X) = newPosition.X And CInt(Player.Position.Z) = newPosition.Z Then
+                blocked = True
+                Exit For
+            End If
+        Next
+        '' check if a NetworkPokémon is not in the way
+        For Each Pokemon As NetworkPokemon In Screen.Level.NetworkPokemon
+            If CInt(Pokemon.Position.X) = newPosition.X And CInt(Pokemon.Position.Z) = newPosition.Z Then
+                blocked = True
+                Exit For
+            End If
+        Next
+        '' check if an NPC is not in the way
+        For Each NPC As NPC In Screen.Level.GetNPCs()
+            If CInt(NPC.Position.X) = newPosition.X And CInt(NPC.Position.Z) = newPosition.Z And NPC.NPCID <> Me.NPCID Then
+                blocked = True
+                Exit For
+            End If
+        Next
+        Return blocked
     End Function
 
     Private Sub Move()
@@ -842,14 +929,9 @@
             If AnimationDelay <= 0.0F Then
                 AnimationDelay = AnimationDelayLength
                 AnimationX += 1
-                If Me.Texture.Width = Me.Texture.Height / 2 Then
-                    If AnimationX > 2 Then
-                        AnimationX = 1
-                    End If
-                Else
-                    If AnimationX > 4 Then
-                        AnimationX = 1
-                    End If
+
+                If AnimationX > 4 Then
+                    AnimationX = 1
                 End If
             End If
 
@@ -862,11 +944,31 @@
                 End If
                 Moved = 0.0F
                 MoveY = 0.0F
-                AnimationX = 1
+                If Me.Movement = Movements.Straight AndAlso Me.Texture.Width <> Me.Texture.Height Then
+                    If AnimationX_Offset = 0 Then
+                        AnimationX_Offset = 2
+                    Else
+                        AnimationX_Offset = 0
+                    End If
+                Else
+                    AnimationX_Offset = 0
+                End If
+                AnimationX = 1 + AnimationX_Offset
                 AnimationDelay = AnimationDelayLength
                 ChangeTexture()
                 ApplyShaders()
                 Speed = NPC.STANDARD_SPEED
+
+                If Interacted = True Then
+                    Dim newHeading As Integer = Screen.Camera.GetPlayerFacingDirection() - 2
+                    If newHeading < 0 Then
+                        newHeading += 4
+                    End If
+                    Me.faceRotation = newHeading
+
+                    ActivateScript()
+                    Interacted = False
+                End If
             End If
         Else
             If Me.AnimateIdle = True Then
@@ -874,14 +976,8 @@
                 If AnimationDelay <= 0.0F Then
                     AnimationDelay = AnimationDelayLength
                     AnimationX += 1
-                    If Me.Texture.Width = Me.Texture.Height / 2 Then
-                        If AnimationX > 2 Then
-                            AnimationX = 1
-                        End If
-                    Else
-                        If AnimationX > 4 Then
-                            AnimationX = 1
-                        End If
+                    If AnimationX > 4 Then
+                        AnimationX = 1
                     End If
                 End If
             End If
