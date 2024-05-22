@@ -11,7 +11,6 @@
     Public GamePadEnabled As Boolean = True
     Public StartedOfflineGame As Boolean = False
     Public WindowSize As New Vector2(1200, 680)
-    Public ForceMusic As Boolean = False
     Public MaxOffsetLevel As Integer = 0
     Public UpdateDisabled As Boolean = False
     Public Extras As New List(Of String)
@@ -108,8 +107,6 @@
                                 Me.WindowSize.Y = CSng(arg(1).Replace(".", GameController.DecSeparator)).Clamp(1, 4096)
                             End If
                         End If
-                    Case "forcemusic"
-                        Me.ForceMusic = CBool(value)
                     Case "maxoffsetlevel"
                         Me.MaxOffsetLevel = CInt(value)
                     Case "extras"
@@ -161,7 +158,6 @@
                 "PreferMultiSampling|" & Core.GraphicsManager.PreferMultiSampling.ToNumberString() & Environment.NewLine &
                 "ContentPacks|" & ContentPackString & Environment.NewLine &
                 "WindowSize|" & Core.windowSize.Width.ToString() & "," & Core.windowSize.Height.ToString().Replace(GameController.DecSeparator, ".") & Environment.NewLine &
-                "ForceMusic|" & Me.ForceMusic.ToNumberString() & Environment.NewLine &
                 "MaxOffsetLevel|" & Me.MaxOffsetLevel.ToString() & Environment.NewLine &
                 "UpdateDisabled|" & Me.UpdateDisabled.ToNumberString() & Environment.NewLine &
                 "InterfaceScale|" & Me.InterfaceScale.ToString() & Environment.NewLine &
@@ -193,7 +189,6 @@
             "PreferMultiSampling|1" & Environment.NewLine &
             "ContentPacks|" & Environment.NewLine &
             "WindowSize|1200,680" & Environment.NewLine &
-            "ForceMusic|0" & Environment.NewLine &
             "MaxOffsetLevel|0" & Environment.NewLine &
             "UpdateDisabled|0" & Environment.NewLine &
             "InterfaceScale|0" & Environment.NewLine &
