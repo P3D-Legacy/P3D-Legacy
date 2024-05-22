@@ -1107,7 +1107,7 @@
                 If Item.IsBall = True Then
                     Core.Player.Inventory.RemoveItem(itemID.ToString, 1)
                     If TempBattleScreen.IsTrainerBattle = False Then
-                        If BattleScreen.CanCatch = True Or CBool(GameModeManager.GetGameRuleValue("OnlyCaptureFirst", "0")) = True And Core.Player.PokeFiles.Contains(BattleScreen.TempPokeFile) = True Then
+                        If BattleScreen.CanCatch = True Or CBool(GameModeManager.GetGameRuleValue("OnlyCaptureFirst", "0")) = True And Core.Player.PokeFiles.Contains(BattleScreen.TempPokeFile) = False Then
                             TempBattleScreen.BattleQuery.Clear()
                             TempBattleScreen.BattleQuery.Add(TempBattleScreen.FocusBattle())
                             TempBattleScreen.BattleQuery.Insert(0, New ToggleMenuQueryObject(True))
