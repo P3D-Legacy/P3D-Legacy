@@ -659,7 +659,7 @@ Public Class GameMode
         hardGameRules.Add(New GameRule("LevelMultiplier", "1.1"))
 
         Dim superHardGameRules As New List(Of GameRule)
-        hardGameRules.Add(New GameRule("LevelMultiplier", "1.2"))
+        superHardGameRules.Add(New GameRule("LevelMultiplier", "1.2"))
 
         gameMode._hardGameRules = hardGameRules
         gameMode._superHardGameRules = superHardGameRules
