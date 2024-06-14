@@ -93,25 +93,12 @@
                 Directory.CreateDirectory(GameController.GamePath & "\screenshots\")
             End If
 
-            If Core.GraphicsManager.IsFullScreen = False Then
-                Dim b As New Drawing.Bitmap(Core.windowSize.Width, Core.windowSize.Height)
-                Using g As Drawing.Graphics = Drawing.Graphics.FromImage(b)
-                    g.CopyFromScreen(Core.Window.ClientBounds.X, Core.Window.ClientBounds.Y, 0, 0, New Drawing.Size(b.Width, b.Height))
-                End Using
+            Dim b As New Drawing.Bitmap(Core.windowSize.Width, Core.windowSize.Height)
+            Using g As Drawing.Graphics = Drawing.Graphics.FromImage(b)
+                g.CopyFromScreen(Core.Window.ClientBounds.X, Core.Window.ClientBounds.Y, 0, 0, New Drawing.Size(b.Width, b.Height))
+            End Using
 
-                b.Save(GameController.GamePath & "\screenshots\" & fileName, Drawing.Imaging.ImageFormat.Png)
-            Else
-                Dim screenshot As New RenderTarget2D(Core.GraphicsDevice, Core.windowSize.Width, Core.windowSize.Height, False, SurfaceFormat.Color, DepthFormat.Depth24Stencil8)
-                Core.GraphicsDevice.SetRenderTarget(screenshot)
-
-                Core.Draw()
-
-                Core.GraphicsDevice.SetRenderTarget(Nothing)
-
-                Dim stream As Stream = File.OpenWrite(GameController.GamePath & "\screenshots\" & fileName)
-                screenshot.SaveAsPng(stream, Core.windowSize.Width, Core.windowSize.Height)
-                stream.Dispose()
-            End If
+            b.Save(GameController.GamePath & "\screenshots\" & fileName, Drawing.Imaging.ImageFormat.Png)
 
             Core.GameMessage.SetupText(Localization.GetString("game_message_screenshot") & fileName, FontManager.MainFont, Color.White)
             Core.GameMessage.ShowMessage(12, Core.GraphicsDevice)
