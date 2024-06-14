@@ -391,20 +391,20 @@
             Public Sub Draw(ByVal AllExtended As Integer, ByVal SelExtended As Integer, ByVal isSelected As Boolean)
                 Dim extraExtended As Integer = 0
                 If isSelected = True Then
-                    Canvas.DrawGradient(New Rectangle(Core.ScreenSize.Width - 255, 100 + Index * 96, 255, 112), New Color(42, 167, 198, 0), New Color(42, 167, 198, (SelExtended + AllExtended)), True, -1)
+                    Canvas.DrawGradient(New Rectangle(Core.windowSize.Width - 255, 100 + Index * 96, 255, 112), New Color(42, 167, 198, 0), New Color(42, 167, 198, (SelExtended + AllExtended)), True, -1)
 
                     extraExtended = SelExtended
                 End If
-                Core.SpriteBatch.Draw(Me.Texture, New Rectangle(Core.ScreenSize.Width - (AllExtended + extraExtended), 116 + Index * 96, 80, 80), New Rectangle(16, 16, 16, 16), Color.White)
-                Core.SpriteBatch.Draw(Me.Texture, New Rectangle(Core.ScreenSize.Width - (AllExtended + extraExtended) + 80, 116 + Index * 96, AllExtended + extraExtended - 80, 80), New Rectangle(32, 16, 16, 16), Color.White)
+                Core.SpriteBatch.Draw(Me.Texture, New Rectangle(Core.windowSize.Width - (AllExtended + extraExtended), 116 + Index * 96, 80, 80), New Rectangle(16, 16, 16, 16), Color.White)
+                Core.SpriteBatch.Draw(Me.Texture, New Rectangle(Core.windowSize.Width - (AllExtended + extraExtended) + 80, 116 + Index * 96, AllExtended + extraExtended - 80, 80), New Rectangle(32, 16, 16, 16), Color.White)
 
-                Core.SpriteBatch.Draw(Me.IconUnselected, New Rectangle(Core.ScreenSize.Width - (AllExtended + extraExtended) + 28, 132 + Index * 96, 48, 48), Color.White)
+                Core.SpriteBatch.Draw(Me.IconUnselected, New Rectangle(Core.windowSize.Width - (AllExtended + extraExtended) + 28, 132 + Index * 96, 48, 48), Color.White)
                 If isSelected = True Then
-                    Core.SpriteBatch.Draw(Me.IconSelected, New Rectangle(Core.ScreenSize.Width - (AllExtended + extraExtended) + 28, 132 + Index * 96, 48, 48), New Color(255, 255, 255, (SelExtended + AllExtended)))
-                    Core.SpriteBatch.DrawString(FontManager.MainFont, Me.Text, New Vector2(CInt(Core.ScreenSize.Width - (AllExtended + extraExtended) + 86), CInt(144 + Index * 96)), New Color(0, 0, 0, (SelExtended + AllExtended)))
+                    Core.SpriteBatch.Draw(Me.IconSelected, New Rectangle(Core.windowSize.Width - (AllExtended + extraExtended) + 28, 132 + Index * 96, 48, 48), New Color(255, 255, 255, (SelExtended + AllExtended)))
+                    Core.SpriteBatch.DrawString(FontManager.MainFont, Me.Text, New Vector2(CInt(Core.windowSize.Width - (AllExtended + extraExtended) + 86), CInt(144 + Index * 96)), New Color(0, 0, 0, (SelExtended + AllExtended)))
                 Else
                     If IconFading > 0 Then
-                        Core.SpriteBatch.Draw(Me.IconSelected, New Rectangle(Core.ScreenSize.Width - (AllExtended) + 28, 132 + Index * 96, 48, 48), New Color(255, 255, 255, IconFading))
+                        Core.SpriteBatch.Draw(Me.IconSelected, New Rectangle(Core.windowSize.Width - (AllExtended) + 28, 132 + Index * 96, 48, 48), New Color(255, 255, 255, IconFading))
                     End If
                 End If
             End Sub
@@ -412,7 +412,7 @@
             Public Sub Update(ByVal BattleScreen As BattleScreen, ByVal AllExtended As Integer, ByVal isSelected As Boolean)
                 Me.Activate(BattleScreen, AllExtended, isSelected)
                 If isSelected = False Then
-                    If MouseHandler.IsInRectangle(New Rectangle(Core.ScreenSize.Width - (AllExtended) + 28, 132 + Index * 96, 48, 48)) = True Then
+                    If MouseHandler.IsInRectangle(New Rectangle(Core.windowSize.Width - (AllExtended) + 28, 132 + Index * 96, 48, 48)) = True Then
                         If IconFading < 255 Then
                             IconFading += 15
                             If IconFading > 255 Then
@@ -439,7 +439,7 @@
                         Me.ClickAction(BattleScreen)
                     End If
                     If Controls.Accept(True, False, False) = True Then
-                        If MouseHandler.IsInRectangle(New Rectangle(Core.ScreenSize.Width - 255, 116 + Index * 96, 255, 80)) = True Then
+                        If MouseHandler.IsInRectangle(New Rectangle(Core.windowSize.Width - 255, 116 + Index * 96, 255, 80)) = True Then
                             If isSelected = True Then
                                 SoundManager.PlaySound("select")
                                 Me.ClickAction(BattleScreen)
@@ -475,7 +475,7 @@
 
                 Dim extraExtended As Integer = 0
                 If isSelected = True Then
-                    Canvas.DrawGradient(New Rectangle(Core.ScreenSize.Width - 255, 100 + Index * 96, 255, 112), New Color(42, 167, 198, 0), New Color(42, 167, 198, (SelExtended + AllExtended) - deductAlpha), True, -1)
+                    Canvas.DrawGradient(New Rectangle(Core.windowSize.Width - 255, 100 + Index * 96, 255, 112), New Color(42, 167, 198, 0), New Color(42, 167, 198, (SelExtended + AllExtended) - deductAlpha), True, -1)
 
                     extraExtended = SelExtended
                 End If
@@ -483,23 +483,23 @@
                 If Move.Disabled > 0 OrElse BattleScreen.FieldEffects.OwnEncore > 0 AndAlso BattleScreen.FieldEffects.OwnEncoreMove.ID <> Move.ID Then
                     BackgroundDrawColor = New Color(210, 210, 210)
                 End If
-                Core.SpriteBatch.Draw(Me.Texture, New Rectangle(Core.ScreenSize.Width - (AllExtended + extraExtended), 116 + Index * 96, 80, 80), New Rectangle(16, 16, 16, 16), New Color(BackgroundDrawColor.R, BackgroundDrawColor.G, BackgroundDrawColor.B, 255 - deductAlpha))
-                Core.SpriteBatch.Draw(Me.Texture, New Rectangle(Core.ScreenSize.Width - (AllExtended + extraExtended) + 80, 116 + Index * 96, AllExtended + extraExtended - 80, 80), New Rectangle(32, 16, 16, 16), New Color(BackgroundDrawColor.R, BackgroundDrawColor.G, BackgroundDrawColor.B, 255 - deductAlpha))
+                Core.SpriteBatch.Draw(Me.Texture, New Rectangle(Core.windowSize.Width - (AllExtended + extraExtended), 116 + Index * 96, 80, 80), New Rectangle(16, 16, 16, 16), New Color(BackgroundDrawColor.R, BackgroundDrawColor.G, BackgroundDrawColor.B, 255 - deductAlpha))
+                Core.SpriteBatch.Draw(Me.Texture, New Rectangle(Core.windowSize.Width - (AllExtended + extraExtended) + 80, 116 + Index * 96, AllExtended + extraExtended - 80, 80), New Rectangle(32, 16, 16, 16), New Color(BackgroundDrawColor.R, BackgroundDrawColor.G, BackgroundDrawColor.B, 255 - deductAlpha))
 
-                Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\Types", Me.Move.Type.GetElementImage(), ""), New Rectangle(Core.ScreenSize.Width - (AllExtended + extraExtended) + 28, 132 + Index * 96, 48, 16), New Color(255, 255, 255, 255 - deductAlpha))
+                Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\Types", Me.Move.Type.GetElementImage(), ""), New Rectangle(Core.windowSize.Width - (AllExtended + extraExtended) + 28, 132 + Index * 96, 48, 16), New Color(255, 255, 255, 255 - deductAlpha))
 
                 If isSelected = True Then
                     If Move.Disabled > 0 OrElse BattleScreen.FieldEffects.OwnEncore > 0 AndAlso BattleScreen.FieldEffects.OwnEncoreMove.ID <> Move.ID Then
-                        Core.SpriteBatch.DrawString(FontManager.MainFont, "Disabled!", New Vector2(CInt(Core.ScreenSize.Width - (AllExtended + extraExtended) + 28), CInt(152 + Index * 96)), Color.Black)
+                        Core.SpriteBatch.DrawString(FontManager.MainFont, "Disabled!", New Vector2(CInt(Core.windowSize.Width - (AllExtended + extraExtended) + 28), CInt(152 + Index * 96)), Color.Black)
                     Else
                         Dim ppColor As Color = GetPPColor()
                         ppColor.A = CByte((extraExtended + AllExtended - deductAlpha).Clamp(0, 255))
 
-                        Core.SpriteBatch.DrawString(FontManager.MainFont, Me.Move.CurrentPP & "/" & Me.Move.MaxPP, New Vector2(CInt(Core.ScreenSize.Width - (AllExtended + extraExtended) + 28), CInt(152 + Index * 96)), ppColor)
+                        Core.SpriteBatch.DrawString(FontManager.MainFont, Me.Move.CurrentPP & "/" & Me.Move.MaxPP, New Vector2(CInt(Core.windowSize.Width - (AllExtended + extraExtended) + 28), CInt(152 + Index * 96)), ppColor)
                     End If
-                    Core.SpriteBatch.DrawString(FontManager.MainFont, Me.Move.Name, New Vector2(CInt(Core.ScreenSize.Width - (AllExtended + extraExtended) + 86), CInt(132 + Index * 96)), New Color(0, 0, 0, (SelExtended + AllExtended) - deductAlpha))
+                    Core.SpriteBatch.DrawString(FontManager.MainFont, Me.Move.Name, New Vector2(CInt(Core.windowSize.Width - (AllExtended + extraExtended) + 86), CInt(132 + Index * 96)), New Color(0, 0, 0, (SelExtended + AllExtended) - deductAlpha))
                 Else
-                    Core.SpriteBatch.DrawString(FontManager.MainFont, Me.Move.Name, New Vector2(Core.ScreenSize.Width - (AllExtended + extraExtended) + 28, 152 + Index * 96), New Color(0, 0, 0, 255 - (extraExtended + AllExtended) - deductAlpha))
+                    Core.SpriteBatch.DrawString(FontManager.MainFont, Me.Move.Name, New Vector2(Core.windowSize.Width - (AllExtended + extraExtended) + 28, 152 + Index * 96), New Color(0, 0, 0, 255 - (extraExtended + AllExtended) - deductAlpha))
                 End If
             End Sub
 
@@ -531,7 +531,7 @@
                             End If
                         End If
                         If Controls.Accept(True, False, False) = True Then
-                            If MouseHandler.IsInRectangle(New Rectangle(Core.ScreenSize.Width - 255, 116 + Index * 96, 255, 80)) = True Then
+                            If MouseHandler.IsInRectangle(New Rectangle(Core.windowSize.Width - 255, 116 + Index * 96, 255, 80)) = True Then
                                 If isSelected = True Then
                                     SoundManager.PlaySound("select")
                                     If Me.Move.Disabled = 0 AndAlso BattleScreen.FieldEffects.OwnEncore = 0 OrElse BattleScreen.FieldEffects.OwnEncoreMove.ID = Move.ID Then
