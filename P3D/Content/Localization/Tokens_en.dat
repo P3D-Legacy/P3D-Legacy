@@ -104,7 +104,7 @@ fieldmove_strength_used,used~Strength!
 
 fieldmove_surf_type0,Do you want to Surf?
 fieldmove_surf_type1,The water looks still~and deep.~Do you want to Surf?
-fieldmove_surf_type2,This lake is~calm and shallow~Do you want to Surf?
+fieldmove_surf_type2,This lake is~calm and shallow.~Do you want to Surf?
 fieldmove_surf_used,used~Surf!
 
 fieldmove_dive_down_1,The water seems to be~really deep at this point.
@@ -1519,7 +1519,7 @@ pokemon_name_Stakataka,Stakataka
 pokemon_name_Blacephalon,Blacephalon
 pokemon_name_Zeraora,Zeraora
 pokemon_name_Meltan,Meltan
-pokemon_name_,
+pokemon_name_Melmetal,Melmetal
 pokemon_name_Grookey,Grookey
 pokemon_name_Thwackey,Thwackey
 pokemon_name_Rillaboom,Rillaboom
@@ -1617,16 +1617,6 @@ pokemon_name_Sneasler,Sneasler
 pokemon_name_Overqwil,Overqwil
 pokemon_name_Enamorus,Enamorus
 --------------
-Item categories:
-item_category_Standard,Standard
-item_category_Medicine,Medicine
-item_category_Machines,TM/HM
-item_category_Pokeballs,Pokéballs
-item_category_Plants,Plants
-item_category_KeyItems,Key Items
-item_category_BattleItems,Battle Items
-item_category_Mail,Mail
----
 Item names:
 Balls:
 item_name_1,Master Ball
