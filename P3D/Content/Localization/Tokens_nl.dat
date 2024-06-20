@@ -45,7 +45,7 @@ global_pokemon_type_ground,Grond
 global_pokemon_type_electric,Electrisch
 global_pokemon_type_psychic,Psychisch
 global_pokemon_type_rock,Rots
-global_pokemon_type_ice,Ijs
+global_pokemon_type_ice,IJs
 global_pokemon_type_bug,Insect
 global_pokemon_type_dragon,Draak
 global_pokemon_type_ghost,Geest
@@ -481,33 +481,33 @@ Places:
 Places_???,???
 
 Towns:
-Places_New Bark Town,Plantenstek-dorp
-Places_Cherrygrove City,Kersentuin-stad
-Places_Violet City,Viooltjes-stad
-Places_Azalea Town,Azalea-dorp
-Places_Goldenrod City,Guldenroede-stad
-Places_Ecruteak City,Teakboom-stad
-Places_Olivine City,Olijvenrank-stad
-Places_Cianwood City,Cyaanhout-stad
-Places_Mahogany Town,Mahonie-dorp
-Places_Blackthorn City,Sleedoorn-stad
-Places_Pallet Town,Palet-dorp
-Places_Viridian City,Viridiaan-stad
-Places_Saffron City,Saffraangeel-stad
-Places_Pewter City,Pewter-stad
-Places_Cerulean City,Hemelsblauw-stad
-Places_Celadon City,Zeegroen-stad
-Places_Vermilion City,Vermiljoen-stad
-Places_Fuchsia City,Fuchsia-stad
-Places_Cinnabar Island,Cinnaber-eiland
-Places_Lavender Town,Lavendel-dorp
-Places_One Island,Een-eiland
-Places_Two Island,Twee-eiland
-Places_Three Island,Drie-eiland
-Places_Four Island,Vier-eiland
-Places_Five Island,Vijf-eiland
-Places_Six Island,Zes-eiland
-Places_Seven Island,Zeven-eiland
+Places_New Bark Town,New Bark Town
+Places_Cherrygrove City,Cherrygrove City
+Places_Violet City,Violet City
+Places_Azalea Town,Azalea Town
+Places_Goldenrod City,Goldenrod City
+Places_Ecruteak City,Ecruteak City
+Places_Olivine City,Olivine City
+Places_Cianwood City,Cianwood City
+Places_Mahogany Town,Mahogany Town
+Places_Blackthorn City,Blackthorn City
+Places_Pallet Town,Pallet Town
+Places_Viridian City,Viridian City
+Places_Saffron City,Saffron City
+Places_Pewter City,Pewter City
+Places_Cerulean City,Cerulean City
+Places_Celadon City,Celadon City
+Places_Vermilion City,Vermilion City
+Places_Fuchsia City,Fuchsia City
+Places_Cinnabar Island,Cinnabar Island
+Places_Lavender Town,Lavender Town
+Places_One Island,One Island
+Places_Two Island,Two Island
+Places_Three Island,Three Island
+Places_Four Island,Four Island
+Places_Five Island,Five Island
+Places_Six Island,Six Island
+Places_Seven Island,Seven Island
 
 Special Houses:
 Places_Gate,Poort
@@ -515,68 +515,68 @@ Places_Pokemon Center,Pokémon-Centrum
 Places_Pokemon Mart,Pokémon-Winkel
 Places_Elms lab,Elm's Lab
 Places_Oak's lab,Oak's Lab
-Places_Azalea Town Gym,Gym van Azalea-dorp
-Places_Violet City Gym,Gym van Viooltjes-stad
-Places_Goldenrod City Gym,Gym van Guldenroede-stad
-Places_Ecruteak City Gym,Gym van Teakboom-stad
-Places_Cianwood City Gym,Gym van Cyaanhout-stad
-Places_Olivine City Gym,Gym van Olijvenrank-stad
-Places_Mahogany City Gym,Gym van Mahonie-dorp
-Places_Blackthorn City Gym,Gym van Sleedoorn-stad
+Places_Azalea Town Gym,Azalea Town Gym
+Places_Violet City Gym,Violet City Gym
+Places_Goldenrod City Gym,Goldenrod City Gym
+Places_Ecruteak City Gym,Ecruteak City Gym
+Places_Cianwood City Gym,Cianwood City Gym
+Places_Olivine City Gym,Olivine City Gym
+Places_Mahogany City Gym,Mahogany City Gym
+Places_Blackthorn City Gym,Blackthorn City Gym
 Places_Your House,Jouw Huis
 Places_Your Room,Jouw Kamer
 Places_Daycare,Dagopvang
-Places_Pewter City Gym,Gym van Pewter-stad
-Places_Cerulean City Gym,Gym van Hemelsblauw-stad
-Places_Vermilion City Gym,Gym van Vermiljoen-stad
-Places_Celadon City Gym,Gym van Zeegroen-stad
-Places_Fuchsia City Gym,Gym van Fuchsia-stad
-Places_Saffron City Gym,Gym van Saffraangeel-stad
-Places_Cinnabar Gym,Gym van Cinnaber-eiland
-Places_Viridian City Gym,Gym van Viridiaan-stad
+Places_Pewter City Gym,Pewter City Gym
+Places_Cerulean City Gym,Cerulean City Gym
+Places_Vermilion City Gym,Vermilion City Gym
+Places_Celadon City Gym,Celadon City Gym
+Places_Fuchsia City Gym,Fuchsia City Gym
+Places_Saffron City Gym,Saffron City Gym
+Places_Cinnabar Gym,Cinnabar Gym
+Places_Viridian City Gym,Viridian City Gym
 Places_Dance Theater,Danstheater
 Places_Lighthouse,Vuurtoren
-Places_Team Rocket HQ,Team Rocket's Basis
+Places_Team Rocket HQ,Team Rocket's Hoofdkwartier
 Places_Radio Tower,Radiotoren
 Places_Seaplane Port,Watervliegtuighaven
 
 Dungeons:
-Places_Ilex Forest,Ilexbos
+Places_Ilex Forest,Ilex-bos
 Places_Dark Cave,Donkere Grot
-Places_Ruins of Alph,Ruïnes van Alf
-Places_Slowpoke Well,Slowpoke Waterput
-Places_Sprout Tower,Kiemtoren
+Places_Ruins of Alph,Ruïnes van Alfa
+Places_Slowpoke Well,Slowpokewaterput
+Places_Sprout Tower,Bellsprouttoren
 Places_Union Cave,Uniegrot
-Places_Mt. Mortar,Mortierberg
-Places_Bell Tower,Tinnen Toren
+Places_Mt. Mortar,Mt. Mortar
+Places_Bell Tower,Beltoren
 Places_Tin Tower,Tinnen Toren
-Places_Tin Tower Peak,Tinnen Toren-Piek
+Places_Tin Tower Peak,Tinnen Torenpiek
 Places_Burned Tower,Verbrande Toren
-Places_Glitter Lighthouse,Glitter-vuurtoren
-Places_Ice Path,Ijspad
+Places_Glitter Lighthouse,Glittervuurtoren
+Places_Ice Path,IJspad
 Places_National Park,Nationaal Park
 Places_Whirl Islands,Draaikolkeilanden
-Places_Lake of Rage,Woedemeer
+Places_Lake of Rage,Meer van Razernij
 Places_Underground,Ondergronds
 Places_Dragon's Den,Drakennest
-Places_Tohjo Falls,Watervallen van Tohjo
+Places_Tohjo Falls,Tohjo-watervallen
 Places_Victory Road,Overwinningsweg
-Places_Mt. Silver,Zilverberg
+Places_Mt. Silver,Mt. Silver
 Places_Diamond Dive,Diamantduik
 Places_Indigo Plateau,Indigo-Plateau
 Places_Safari Zone,Safarigebied
-Places_Viridian Forest,Viridiaan-bos
-Places_Cerulean Cave,Hemelsblauw-grot
+Places_Viridian Forest,Viridian-bos
+Places_Cerulean Cave,Cerulean-grot
 Places_Power Plant,Energiecentrale
 Places_Rock Tunnel,Rotstunnel
 Places_Seafoam Islands,Zeeschuimeilanden
 Places_Pal Park,Maatjespark
 Places_Diglett's Cave,Diglett's Grot
-Places_Mt. Moon,Maanberg
-Places_Mt. Ember,Sintelberg
-Places_Three Isle Path,Pad van Drie-eiland
+Places_Mt. Moon,Mt. Moon
+Places_Mt. Ember,Mt. Ember
+Places_Three Isle Path,Pad van Three Island
 Places_Berry Forest,Bessenbos
-Places_Icefall Cave,Ijsvalgrot
+Places_Icefall Cave,IJsvalgrot
 Places_Lost Cave,Verloren Grot
 Places_Trainer Tower,Trainertoren
 Places_Altering Cave,Verandergrot
@@ -651,12 +651,12 @@ Places_Route 48,Route 48
 Places_Route 49,Route 49
 Places_Route 50,Route 50
 
-Places_Treasure Beach,Schatkiststrand
+Places_Treasure Beach,Schattenstrand
 Places_Kindle Road,Ontstekingsweg
 Places_Cape Brink,Kaapse Brink
-Places_Three Isle Port,Haven van Drie-eiland
+Places_Three Isle Port,Haven van Three Island
 Places_Bond Bridge,Verbondbrug
-Places_Five Isle Meadow,Weiland van Vijf-eiland
+Places_Five Isle Meadow,Weiland van Five Island
 Places_Memorial Pillar,Gedenkzuil
 Places_Water Labyrinth,Waterdoolhof
 Places_Resort Gorgeous,Schoonheidsparadijs
@@ -666,17 +666,17 @@ Places_Outcast Island,Verstotelingeneiland
 Places_Ruin Valley,Ruïnevallei
 Places_Tower Straits,Torenstraat
 Places_Canyon Entrance,Ravijningang
-Places_Sevault Canyon,Sevault Ravijn
-Places_Tanoby Ruins,Tanoby Ruïnes
-Places_Safari Zone Gate,Hek van Safari-zone
+Places_Sevault Canyon,Sevault-ravijn
+Places_Tanoby Ruins,Ruïnes van Tanoby
+Places_Safari Zone Gate,Safarigebiedhek
 Places_S.S. Aqua,Stoomboot Aqua
 Places_Elite 4,Elite 4
 Places_Indigo Plateau,Indigo-Toernooi
 Places_Twirl Forest,Ronddraaibos
 Places_Berry Vista,Bessenuitzicht
 Places_Frontier Plaza,Frontier Plaza
-Places_Battle Frontier,Gevechtfrontier
-Places_Battle Tower,Gevechttoren
+Places_Battle Frontier,Gevechtsfrontier
+Places_Battle Tower,Gevechtstoren
 Places_Battle Factory,Gevechtsfabriek
 Places_Battle Pike,Gevechtsslang
 Places_Battle Hall,Gevechtshal
@@ -2050,7 +2050,7 @@ item_name_34,Bladsteen
 item_name_112,Eeuwigsteen
 item_name_169,Zonnesteen
 item_name_262,Plakkerige~Rots
-item_name_593,Ijssteen
+item_name_593,IJssteen
 item_name_135,Glimmende~steen
 item_name_136,Schemersteen
 item_name_137,Dageraad~steen
@@ -2064,7 +2064,7 @@ item_pluralname_34,Bladstenen
 item_pluralname_112,Eeuwigstenen
 item_pluralname_169,Zonnestenen
 item_pluralname_262,Plakkerige Rotsen
-item_pluralname_593,Ijsstenen
+item_pluralname_593,IJsstenen
 item_pluralname_135,Glimmende stenen
 item_pluralname_136,Schemerstenen
 item_pluralname_137,Dageraadstenen
@@ -2100,7 +2100,7 @@ item_name_103,Slowpoke~staart
 item_name_104,Roze Strik
 item_name_105,Stok
 item_name_106,Rookbal
-item_name_107,Smeltnooit-Ijs
+item_name_107,Smeltnooit-IJs
 item_name_108,Magneet
 item_name_109,Zeldzaam Bot
 item_name_110,Parel
@@ -2431,7 +2431,7 @@ item_name_268,Vreesplaat
 item_name_269,Aardeplaat
 item_name_270,Vuistplaat
 item_name_271,Vlammenplaat
-item_name_272,Ijspegelplaat
+item_name_272,IJspegelplaat
 item_name_273,Insectenplaat
 item_name_274,Ijzerplaat
 item_name_275,Weideplaat
@@ -2450,7 +2450,7 @@ item_pluralname_268,Vreesplaten
 item_pluralname_269,Aardeplaten
 item_pluralname_270,Vuistplaten
 item_pluralname_271,Vlammenplaten
-item_pluralname_272,Ijspegelplaten
+item_pluralname_272,IJspegelplaten
 item_pluralname_273,Insectenplaten
 item_pluralname_274,Ijzerplaten
 item_pluralname_275,Weideplaten
@@ -2644,7 +2644,7 @@ item_name_630,Vuurjuweel
 item_name_631,Waterjuweel
 item_name_632,Electrisch~juweel
 item_name_633,Grasjuweel
-item_name_634,Ijsjuweel
+item_name_634,IJsjuweel
 item_name_635,Vechtjuweel
 item_name_636,Gifjuweel
 item_name_637,Grondjuweel
@@ -2664,7 +2664,7 @@ item_pluralname_630,Vuurjuwelen
 item_pluralname_631,Waterjuwelen
 item_pluralname_632,Electrischjuwelen
 item_pluralname_633,Grasjuwelen
-item_pluralname_634,Ijsjuwelen
+item_pluralname_634,IJsjuwelen
 item_pluralname_635,Vechtjuwelen
 item_pluralname_636,Gifjuwelen
 item_pluralname_637,Grondjuwelen
@@ -2691,7 +2691,7 @@ item_name_667,Vlieg-~herinnering
 item_name_668,Geest-~herinnering
 item_name_669,Gras-~herinnering
 item_name_670,Grond-~herinnering
-item_name_671,Ijsherinnering
+item_name_671,IJsherinnering
 item_name_672,Gifherinnering
 item_name_673,Psychisch-~herinnering
 item_name_674,Rots-~herinnering
@@ -2710,7 +2710,7 @@ item_pluralname_667,Vlieg-herinneringen
 item_pluralname_668,Geest-herinneringen
 item_pluralname_669,Gras-herinneringen
 item_pluralname_670,Grond-herinneringen
-item_pluralname_671,Ijsherinnering
+item_pluralname_671,IJsherinnering
 item_pluralname_672,Gifherinnering
 item_pluralname_673,Psychisch-herinneringen
 item_pluralname_674,Rots-herinneringen
@@ -2735,7 +2735,7 @@ move_name_4,Komeetslag
 move_name_5,Megaslag
 move_name_6,Afrekening
 move_name_7,Vuurslag
-move_name_8,Ijsslag
+move_name_8,IJsslag
 move_name_9,Donderslag
 move_name_10,Krab
 move_name_11,Handgreep
@@ -2770,65 +2770,65 @@ move_name_39,Kwispel
 move_name_40,Gifsteek
 move_name_41,Dubbelnaald
 move_name_42,Naaldraket
-move_name_43,Leer
-move_name_44,Bite
-move_name_45,Growl
-move_name_46,Roar
-move_name_47,Sing
-move_name_48,Supersonic
-move_name_49,Sonic Boom
+move_name_43,Lonk
+move_name_44,Beet
+move_name_45,Grom
+move_name_46,Brul
+move_name_47,Zang
+move_name_48,Supersonisch
+move_name_49,Supersone knal
 move_name_51,Acid
-move_name_52,Ember
-move_name_53,Flamethrower
+move_name_52,Sintel
+move_name_53,Vlammenwerper
 move_name_54,Mist
-move_name_55,Water Gun
-move_name_56,Hydro Pump
+move_name_55,Waterpistool
+move_name_56,Hydropomp
 move_name_57,Surf
-move_name_58,Ice Beam
-move_name_59,Blizzard
-move_name_60,Psybeam
-move_name_61,Bubble Beam
-move_name_62,Aurora Beam
-move_name_63,Hyper Beam
-move_name_64,Peck
-move_name_65,Drill Peck
-move_name_66,Submission
-move_name_67,Low Kick
-move_name_68,Counter
-move_name_69,Seismic Toss
+move_name_58,IJsstraal
+move_name_59,Sneeuwstorm
+move_name_60,Psychische straal
+move_name_61,Bubblestraal
+move_name_62,Aurorastraal
+move_name_63,Hyperstraal
+move_name_64,Boor
+move_name_65,Drilboor
+move_name_66,Onderwerping
+move_name_67,Lage schop
+move_name_68,Tegenaanval
+move_name_69,Seismische smak
 move_name_70,Kracht
-move_name_71,Absorb
-move_name_72,Mega Drain
-move_name_73,Leech Seed
-move_name_74,Growth
-move_name_75,Razor Leaf
-move_name_76,Solar Beam
-move_name_77,Poison Powder
-move_name_78,Stun Spore
-move_name_79,Sleep Powder
-move_name_80,Petal Dance
-move_name_81,String Shot
-move_name_82,Dragon Rage
-move_name_83,Fire Spin
-move_name_84,Thunder Shock
-move_name_85,Thunderbolt
-move_name_86,Thunder Wave
-move_name_87,Thunder
-move_name_88,Rock Throw
-move_name_89,Earthquake
-move_name_90,Fissure
-move_name_91,Dig
-move_name_92,Toxic
-move_name_93,Confusion
-move_name_94,Psychic
-move_name_95,Hypnosis
-move_name_96,Meditate
-move_name_97,Agility
-move_name_98,Quick Attack
-move_name_99,Rage
-move_name_100,Teleport
-move_name_101,Night Shade
-move_name_102,Mimic
+move_name_71,Absorbeer
+move_name_72,Enorme absorbering
+move_name_73,IP-onttrekkend zaadje
+move_name_74,Groei
+move_name_75,Mesblad
+move_name_76,Zonnestraal
+move_name_77,Gifpoeder
+move_name_78,Verdeelspoor
+move_name_79,Slaappoeder
+move_name_80,Bloemendans
+move_name_81,Bindschot
+move_name_82,Drakenfurie
+move_name_83,Vuurdraak
+move_name_84,Donderschok
+move_name_85,Bliksemstraal
+move_name_86,Dondergolf
+move_name_87,Donder
+move_name_88,Steenworp
+move_name_89,Aardbeving
+move_name_90,Kloof
+move_name_91,Graaf
+move_name_92,Vergiftig
+move_name_93,Verwarring
+move_name_94,Psychisch
+move_name_95,Hypnose
+move_name_96,Mediteer
+move_name_97,Behendigheid
+move_name_98,Snelle aanval
+move_name_99,Razernij
+move_name_100,Teleporteer
+move_name_101,Nachtschade
+move_name_102,Immitatie
 move_name_103,Screech
 move_name_104,Double Team
 move_name_105,Recover
