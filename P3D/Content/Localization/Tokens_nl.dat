@@ -67,7 +67,7 @@ global_pokemon_move_fly,Vlieg
 global_pokemon_move_rocksmash,Steenknal
 global_pokemon_move_ride,Rijd
 global_pokemon_move_flash,Flits
-global_pokemon_move_cut,Hak
+global_pokemon_move_cut,Snijd
 global_pokemon_move_teleport,Teleporteer
 global_pokemon_move_dig,Graaf
 global_used,Gebruikt
@@ -91,8 +91,8 @@ Speed,Snelheid
 FieldMoves:
 
 fieldmove_cut_1,Zo te zien kan deze boom~omgehakt worden!
-fieldmove_cut_2,*Wil je Hak gebruiken?
-fieldmove_cut_used,gebruikte~Hak!
+fieldmove_cut_2,*Wil je Snijd gebruiken?
+fieldmove_cut_used,gebruikte~Snijd!
 
 fieldmove_rocksmash_1,Deze steen ziet er~breekbaar uit!
 fieldmove_rocksmash_2,*Wil je Steenknal gebruiken?
@@ -2742,7 +2742,7 @@ move_name_11,Handgreep
 move_name_12,Guillotine
 move_name_13,Meswind
 move_name_14,Zwaardendans
-move_name_15,Hak
+move_name_15,Snijd
 move_name_16,Windvlaag
 move_name_17,Vleugelaanval
 move_name_18,Wervelwind
@@ -2829,115 +2829,115 @@ move_name_99,Razernij
 move_name_100,Teleporteer
 move_name_101,Nachtschade
 move_name_102,Immitatie
-move_name_103,Screech
-move_name_104,Double Team
-move_name_105,Recover
-move_name_106,Harden
-move_name_107,Minimize
-move_name_108,Smokescreen
-move_name_109,Confuse Ray
-move_name_110,Withdraw
-move_name_111,Defense Curl
-move_name_112,Barrier
-move_name_113,Light Screen
-move_name_114,Haze
-move_name_115,Reflect
-move_name_116,Focus Energy
-move_name_117,Bide
-move_name_118,Metronome
-move_name_119,Mirror Move
-move_name_120,Self-Destruct
-move_name_121,Egg Bomb
-move_name_122,Lick
+move_name_103,Gil
+move_name_104,Dubbelteam
+move_name_105,Herstel
+move_name_106,Verharding
+move_name_107,Verklein
+move_name_108,Rookgordijn
+move_name_109,Verwarstraal
+move_name_110,Terugtrekking
+move_name_111,Verdediging
+move_name_112,Barrière
+move_name_113,Lichtscherm
+move_name_114,Waas
+move_name_115,Reflecteer
+move_name_116,Focus energie
+move_name_117,Wacht af
+move_name_118,Metronoom
+move_name_119,Spiegelzet
+move_name_120,Zelfvernietiging
+move_name_121,Eierbom
+move_name_122,Lik
 move_name_123,Smog
-move_name_124,Sludge
-move_name_125,Bone Club
-move_name_126,Fire Blast
+move_name_124,Blubber
+move_name_125,Botknuppel
+move_name_126,Vuurschot
 move_name_127,Waterval
-move_name_128,Clamp
-move_name_129,Swift
-move_name_130,Skull Bash
-move_name_131,Spike Cannon
-move_name_132,Constrict
-move_name_133,Amnesia
-move_name_134,Kinesis
-move_name_135,Soft-Boiled
-move_name_136,High Jump Kick
-move_name_137,Glare
-move_name_138,Dream Eater
-move_name_139,Poison Gas
-move_name_140,Barrage
-move_name_141,Leech Life
-move_name_142,Lovely Kiss
-move_name_143,Sky Attack
-move_name_144,Transform
-move_name_145,Bubble
-move_name_146,Dizzy Punch
-move_name_147,Spore
-move_name_148,Flash
-move_name_149,Psywave
-move_name_150,Splash
-move_name_151,Acid Armor
-move_name_152,Crabhammer
-move_name_153,Explosion
-move_name_154,Fury Swipes
-move_name_155,Bonemerang
-move_name_156,Rest
-move_name_157,Rock Slide
-move_name_158,Hyper Fang
-move_name_159,Sharpen
-move_name_160,Conversion
-move_name_161,Tri Attack
-move_name_162,Super Fang
-move_name_163,Slash
-move_name_164,Substitute
-move_name_165,Struggle
-move_name_166,Sketch
-move_name_167,Triple Kick
-move_name_168,Thief
-move_name_169,Spider Web
-move_name_170,Mind Reader
-move_name_171,Nightmare
-move_name_172,Flame Wheel
-move_name_173,Snore
-move_name_174,Curse
-move_name_175,Flail
-move_name_176,Conversion 2
-move_name_177,Aeroblast
-move_name_178,Cotton Spore
-move_name_179,Reversal
-move_name_180,Spite
-move_name_181,Powder Snow
-move_name_182,Protect
-move_name_183,Mach Punch
-move_name_184,Scary Face
-move_name_185,Feint Attack
-move_name_186,Sweet Kiss
-move_name_187,Belly Drum
-move_name_188,Sludge Bomb
-move_name_189,Mud-Slap
+move_name_128,Klem
+move_name_129,Vlug
+move_name_130,Schedelbeuk
+move_name_131,Spijkerkanon
+move_name_132,Beperk
+move_name_133,Amnesie
+move_name_134,Telekinese
+move_name_135,Zachtgekookt
+move_name_136,Hoge sprongschop
+move_name_137,Staar
+move_name_138,Droometer
+move_name_139,Gifgas
+move_name_140,Versperring
+move_name_141,Onttrek leven
+move_name_142,Nachtkus
+move_name_143,Luchtaanval
+move_name_144,Transformeer
+move_name_145,Bubbel
+move_name_146,Duizelslag
+move_name_147,Spoor
+move_name_148,Flits
+move_name_149,Psychische golf
+move_name_150,Spetter
+move_name_151,Zuurschild
+move_name_152,Krabhamer
+move_name_153,Explosie
+move_name_154,Furieslag
+move_name_155,Botmerang
+move_name_156,Slaap
+move_name_157,Steenlawine
+move_name_158,Hypertand
+move_name_159,Verscherp
+move_name_160,Omzetting
+move_name_161,Drievoudige aanval
+move_name_162,Supertand
+move_name_163,Hak
+move_name_164,Kloon
+move_name_165,Spartel
+move_name_166,Schets
+move_name_167,Driedubbele schop
+move_name_168,Dief
+move_name_169,Spinnenweb
+move_name_170,Gedachtenlezer
+move_name_171,Nachtmerrie
+move_name_172,Vlamwiel
+move_name_173,Snurk
+move_name_174,Vloek
+move_name_175,Huppel
+move_name_176,Omzetting2
+move_name_177,Luchtschot
+move_name_178,Wattenspoor
+move_name_179,Omkering
+move_name_180,Spijt
+move_name_181,Poedersneeuw
+move_name_182,Bescherm
+move_name_183,Machslag
+move_name_184,Eng gezicht
+move_name_185,Duizelaanval
+move_name_186,Lieve kus
+move_name_187,Buikslag
+move_name_188,Blubberbom
+move_name_189,Modderklap
 move_name_190,Octazooka
-move_name_191,Spikes
-move_name_192,Zap Cannon
-move_name_193,Foresight
-move_name_194,Destiny Bond
-move_name_195,Perish Song
-move_name_196,Icy Wind
-move_name_197,Detect
-move_name_198,Bone Rush
-move_name_199,Lock-On
-move_name_200,Outrage
-move_name_201,Sandstorm
-move_name_202,Giga Drain
-move_name_203,Endure
-move_name_204,Charm
-move_name_205,Rollout
-move_name_206,False Swipe
-move_name_207,Swagger
-move_name_208,Milk Drink
-move_name_209,Spark
-move_name_210,Fury Cutter
-move_name_211,Steel Wing
+move_name_191,Spijkers
+move_name_192,Zapkanon
+move_name_193,Vooruitblik
+move_name_194,Lotsverbintenis
+move_name_195,Verdwijnlied
+move_name_196,IJzige wind
+move_name_197,Opsporing
+move_name_198,Botraas
+move_name_199,Doel vergrendelen
+move_name_200,Woede
+move_name_201,Zandstorm
+move_name_202,Giga-absorbering
+move_name_203,Weerstand
+move_name_204,Charmeer
+move_name_205,Uitrol
+move_name_206,Stompe klap
+move_name_207,Opschepperij
+move_name_208,Melkdrank
+move_name_209,Vonk
+move_name_210,Furiesnijder
+move_name_211,Staalvleugel
 move_name_212,Mean Look
 move_name_213,Attract
 move_name_214,Sleep Talk
