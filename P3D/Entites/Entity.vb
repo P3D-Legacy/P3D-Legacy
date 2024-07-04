@@ -277,6 +277,10 @@
                 newEnt = New RockClimbEntity()
                 SetProperties(newEnt, propertiesEnt)
                 CType(newEnt, RockClimbEntity).Initialize()
+            Case "holeblock"
+                newEnt = New HoleBlock()
+                SetProperties(newEnt, propertiesEnt)
+                CType(newEnt, HoleBlock).Initialize()
         End Select
 
         Return newEnt

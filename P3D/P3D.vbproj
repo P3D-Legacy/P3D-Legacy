@@ -28776,6 +28776,7 @@
     <Compile Include="Battle\BattleAnimations\BAPlaySound.vb" />
     <Compile Include="Battle\BattleSystemV2\QueryObjects\AnimationQueryObject.vb" />
     <Compile Include="Dialogues\ImageView.vb" />
+    <Compile Include="Entites\Enviroment\HoleBlock.vb" />
     <Compile Include="Overworld\NotificationPopup.vb" />
     <Compile Include="Overworld\RouteSign.vb" />
     <Compile Include="Pokemon\Abilities\SteamEngine.vb" />
