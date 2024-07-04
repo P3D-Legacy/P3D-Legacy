@@ -453,6 +453,8 @@
     Public RunMode As Boolean = True
     Public RunToggled As Boolean = False
 
+    Public DoWalkAnimation As Boolean = False
+
     Public Structure Temp
         Public Shared PokemonScreenIndex As Integer = 0
         Public Shared PokemonStatusPageIndex As Integer = 0

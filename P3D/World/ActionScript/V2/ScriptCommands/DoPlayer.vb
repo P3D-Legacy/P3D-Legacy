@@ -376,6 +376,10 @@
                     Dim newOpacity As Single = sng(argument.Replace("~", Screen.Level.OwnPlayer.Opacity.ToString().Replace(".", GameController.DecSeparator)))
                     Screen.Level.OwnPlayer.Opacity = newOpacity
                     IsReady = True
+                Case "dowalkanimation"
+                    Dim doWalkAnimation As Boolean = CBool(argument)
+                    Core.Player.DoWalkAnimation = doWalkAnimation
+                    IsReady = True
                 Case "quitgame"
                     'Reset VoltorbFlipScreen's Variables
                     VoltorbFlip.VoltorbFlipScreen.CurrentLevel = 1
