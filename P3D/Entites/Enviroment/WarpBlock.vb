@@ -37,7 +37,22 @@
                     Return True
                 End If
             End If
-
+            Dim WarpSoundName As String = "Warp_Exit"
+            If c >= 6 Then
+                Dim WarpSoundData As Integer = CInt(link.GetSplit(6))
+                Select Case WarpSoundData
+                    Case 0
+                        WarpSoundName = "Warp_Exit"
+                    Case 1
+                        WarpSoundName = "Warp_RegularDoor"
+                    Case 2
+                        WarpSoundName = "Warp_Ladder"
+                    Case 3
+                        WarpSoundName = ""
+                    Case Else
+                        WarpSoundName = "Warp_Exit"
+                End Select
+            End If
             If System.IO.File.Exists(GameController.GamePath & "\" & GameModeManager.ActiveGameMode.MapPath & destination) = True Or System.IO.File.Exists(GameController.GamePath & "\Content\Data\maps\" & destination) = True Then
                 If MapViewMode = False Then
                     Screen.Level.WarpData.WarpDestination = Me.AdditionalValue.GetSplit(0)
@@ -46,6 +61,13 @@
                     Screen.Level.WarpData.DoWarpInNextTick = True
                     Screen.Level.WarpData.CorrectCameraYaw = Screen.Camera.Yaw
                     Screen.Level.WarpData.IsWarpBlock = True
+                    If GameModeManager.ContentFileExists("Sounds\" & WarpSoundName & ".wav") = True Or GameModeManager.ContentFileExists("Sounds\" & WarpSoundName & ".xnb") = True Then
+                        Screen.Level.WarpData.WarpSound = WarpSoundName
+                    ElseIf WarpSoundName = "" Then
+                        Screen.Level.WarpData.WarpSound = Nothing
+                    Else
+                        Screen.Level.WarpData.WarpSound = "Warp_Exit"
+                    End If
                     Logger.Debug("Lock Camera")
                     CType(Screen.Camera, OverworldCamera).YawLocked = True
                 Else

@@ -319,6 +319,7 @@
         TextureManager.TextureRectList.Clear()
         Whirlpool.LoadedWaterTemp = False
         Core.Player.RunToggled = False
+        Core.Player.DoWalkAnimation = True
         Core.SetScreen(New PressStartScreen())
         Core.Player.loadedSave = False
     End Sub
