@@ -1,107 +1,110 @@
 language_name,Español
 =====
 Global:
-global_join,Únete
-global_play,Reproducir
-global_refresh, Actualizar
+global_join,Unirse
+global_play,Jugar
+global_refresh,Refrescar
 global_new,Nuevo
-global_add, Agregar
+global_add,Agregar
 global_edit,Editar
-global_remove, Eliminar
-global_please_wait,Por favor espere
-carga_global,Cargando
+global_remove,Eliminar
+global_please_wait,Por favor espere...
+global_loading,Cargando
 global_game,Juego
-global_login, Iniciar sesión
-global_male,Masculino
-global_female,Mujer
-global_genderless, sin género
-global_sí, sí
+global_login,Conectarse
+global_male,Chico
+global_female,Chica
+global_genderless,Sin Género
+global_yes,Si
 global_no,No
 global_accept,Aceptar
 global_cancel,Cancelar
-global_gamemode,ModoJuego
+global_gamemode,Modo de Juego
 global_clear,Borrar
 global_save,Guardar
 global_apply,Aplicar
 global_close,Cerrar
-global_back,Atrás
-global_on, encendido
-global_off,Apagado
-global_habilitado,habilitado
-global_disabled,Deshabilitado
-global_enable, Habilitar
-global_disable, Deshabilitar
+global_back,Volver
+global_on,Encender
+global_off,Apagar
+global_enabled,Habilitado
+global_disabled,Desactivado
+global_enable,Habilitar
+global_disable,Desactivar
 global_player_name,Nombre del jugador
-insignias_globales,Insignias
-global_play_time,Tiempo de reproducción
-ubicación_global,Ubicación
-dinero_global,Dinero
-puntos_globales,Puntos
-nombre_global,Nombre
-orden_global, Orden
-filtro_global,Filtro
-reinicio_global,Restablecer
+global_badges,Insignias
+global_play_time,Tiempo de juego
+global_location,Ubicación
+global_money,Dinero
+global_points,Puntos
+global_name,Nombre
+global_order,Orden
+global_filter,Filtro
+global_reset,Restablecer
 global_pokemon_type_normal,Normal
 global_pokemon_type_fire,Fuego
-global_pokemon_type_flying,Volar
+global_pokemon_type_flying,Volador
 global_pokemon_type_fighting,Lucha
 global_pokemon_type_water,Agua
-global_pokemon_type_grass,Hierba
+global_pokemon_type_grass,Planta
 global_pokemon_type_poison,Veneno
 global_pokemon_type_ground,Tierra
 global_pokemon_type_electric,Eléctrico
 global_pokemon_type_psychic,Psíquico
 global_pokemon_type_rock,Roca
 global_pokemon_type_ice,Hielo
-global_pokemon_type_bug,Error
+global_pokemon_type_bug,Bicho
 global_pokemon_type_dragon,Dragón
 global_pokemon_type_ghost,Fantasma
 global_pokemon_type_dark,Oscuro
 global_pokemon_type_steel,Acero
 global_pokemon_type_fairy,Hada
-global_pokemon_type_blank,En blanco
+global_pokemon_type_blank,Vacío
 global_true,Verdadero
-global_falso, falso
+global_false,Falso
 global_select,Seleccionar
 global_summary,Resumen
-elemento_global,elemento
+global_item,Ítem
 global_use,Usar
-dar_global,dar
+global_give,Dar
 global_take,Tomar
-global_toss,lanzamiento
+global_toss,Tirar
 global_switch,Cambiar
-global_pokemon_move_fly,Volar
-global_pokemon_move_rocksmash,Golpe roca
+global_pokemon_move_fly,Vuelo
+global_pokemon_move_rocksmash,Romperocas
 global_pokemon_move_ride,Montar
 global_pokemon_move_flash,Destello
 global_pokemon_move_cut,Corte
 global_pokemon_move_teleport,Teletransporte
 global_pokemon_move_dig,Excavar
 global_used,Usado
-global_eggs_cannot_hold, los huevos no pueden contener elementos.
+global_eggs_cannot_hold,Los huevos no pueden tener objetos.
 ---
 General:
 HP,PS
 PP,PP
-Lv.,Nv.
+Lv.,Lv.
 Level,Nivel
+MaxHP,Max HP
 Attack,Ataque
 Defense,Defensa
-Special_Attack,Ataque especial
-Special_Defense,Defensa especial
+Special_Attack,Ataque Especial
+Sp_Attack,Ataque Esp.
+Special_Defense,Defensa Especial
+Sp_Defense, Defensa Esp.
 Speed,Velocidad
 ---
 GameInteractions:
 game_interaction_interact,Interactuar
 game_interaction_gamemenu,Menú del juego
 game_interaction_pokegear,Pokégear
-game_interaction_pausemenu,menú de pausa
+game_interaction_pausemenu,Menú de pausa
 game_interaction_notification,Notificación
-game_notification_accept, presione <system.button(special)> para aceptar.
-game_notification_dismiss, presione <system.button(special)> para cerrar. 
+game_notification_accept,Pulsa <system.button(special)> para aceptar.
+game_notification_dismiss,Pulsa <system.button(special)> para descartar.
 ---
 PressStartScreen:
-start_screen_press,Presione
+start_screen_press,Presiona
 start_screen_tostart,para empezar.
 ---
 Main Menu:
@@ -109,25 +112,25 @@ main_menu_newgame_line1,Nuevo
 main_menu_newgame_line2,Juego
 main_menu_options,Opciones
 main_menu_savefile_name,Nombre del jugador
-main_menu_savefile_gamemode, Modo de juego
+main_menu_savefile_gamemode,Modo de juego
 main_menu_savefile_badges,Insignias
-main_menu_savefile_playtime,Tiempo de reproducción
-main_menu_savefile_ubicación,Ubicación
-main_menu_error_gamemode_profile,¡El GameMode requerido no existe!
-main_menu_error_gamemode_message, el modo de juego requerido no existe. ~ Requiere el modo de juego para jugar en este perfil.
-main_menu_error_gamejolt_1,La descarga falló. Presione Aceptar para volver a intentarlo.
-main_menu_error_gamejolt_2,Si el problema persiste, vuelve a intentarlo más tarde
-main_menu_error_gamejolt_3, o contáctenos en nuestro servidor Discord:
-main_menu_error_gamejolt_4, http://www.discord.me/p3d
-main_menu_error_filevalidation, ¡La validación del archivo falló! ~ Vuelva a descargar los archivos del juego para resolver este problema.
+main_menu_savefile_playtime,Tiempo de juego
+main_menu_savefile_location,Ubicación
+main_menu_error_gamemode_profile,¡El Modo de juego requerido no existe!
+main_menu_error_gamemode_message,El Modo de juego requerido no existe.~Vuelve a adquirir el Modo de juego para jugar en este perfil.
+main_menu_error_gamejolt_1,La descarga falló. Pulsa Aceptar para intentarlo de nuevo.
+main_menu_error_gamejolt_2,Si el problema persiste, por favor, inténtalo de nuevo más tarde
+main_menu_error_gamejolt_3,o contáctanos en nuestro servidor de Discord:
+main_menu_error_gamejolt_4,http://www.discord.me/p3d
+main_menu_error_filevalidation,¡La validación del archivo falló!~Vuelve a descargar los archivos del juego para resolver este problema.
 main_menu_options_language,Idioma
 main_menu_options_audio,Audio
 main_menu_options_controls,Controles
-main_menu_options_contentpacks_line1, Contenido
-main_menu_options_contentpacks_line2,Paquetes
+main_menu_options_contentpacks_line1,Contenido
+main_menu_options_contentpacks_line2,Packs
 
 DeleteScreen:
-delete_menu_delete_confirm,¿Realmente deseas borrar tu progreso?
+delete_menu_delete_confirm,¿Realmente quieres borrar la partida guardada?
 delete_menu_delete,Borrar
 delete_menu_cancel,Cancelar
 
@@ -138,7 +141,7 @@ gamemode_menu_name,Nombre
 gamemode_menu_description,Descripción
 gamemode_menu_version,Versión
 gamemode_menu_author,Autor
-gamemode_menu_contentpath,Pack de Contenidos
+gamemode_menu_contentpath,Ruta de contenido
 gamemode_menu_create,Crear
 gamemode_menu_back,Volver
 ---
@@ -150,64 +153,64 @@ option_screen_backadvice,PULSA E PARA VOLVER
 option_screen_description,Descripción 
 
 option_screen_game,Juego
-option_screen_game_textspeed,Velocidad de texto
-option_screen_game_textspeed_description,la velocidad con la que aparece el cuadro de texto y ~ muestra el texto
+option_screen_game_textspeed,Velocidad del texto
+option_screen_game_textspeed_description,La velocidad a la que aparece y se muestra el texto en el cuadro de diálogo.
 option_screen_game_difficulty,Dificultad
-option_screen_game_difficulty_description,Modo de dificultad~Establece el nivel de dificultad.
+option_screen_game_difficulty_description,Modo de dificultad. Establece el nivel de dificultad.
 option_screen_game_difficulty_easy,Fácil
 option_screen_game_difficulty_hard,Difícil
-option_screen_game_difficulty_superhard,Súper Difícil
-option_screen_game_viewbobbing,Ver balanceo
+option_screen_game_difficulty_superhard,Muy difícil
+option_screen_game_viewbobbing,Ver Balance
 option_screen_game_viewbobbing_description,Activa o desactiva el movimiento de la cámara.
 
 option_screen_graphics,Gráficos
 option_screen_graphics_fov,Campo de visión
-option_screen_graphics_fov_description,El campo de visión. Cuanto más alto sea el valor,~más podrá ver.~Advertencia: un valor demasiado grande puede causar retrasos en mapas más grandes.
+option_screen_graphics_fov_description,El campo de visión. A mayor valor, más se puede ver. Advertencia: Un valor demasiado alto puede causar retrasos en mapas grandes.
 option_screen_graphics_renderdistance,Distancia de renderizado
-option_screen_graphics_renderdistance_description,La distancia de renderizado determina,~hasta dónde puedes ver.~Al rechazar esto, puedes mejorar tu FPS.
-option_screen_graphics_renderdistance_tiny,Pequeño
-option_screen_graphics_renderdistance_short,Corto
+option_screen_graphics_renderdistance_description,La distancia de renderizado determina qué tan lejos puedes ver. Al reducir esto, puedes mejorar los fotogramas por segundo (FPS).
+option_screen_graphics_renderdistance_tiny,Mínima
+option_screen_graphics_renderdistance_short,Corta
 option_screen_graphics_renderdistance_normal,Normal
-option_screen_graphics_renderdistance_far,Lejos
-option_screen_graphics_renderdistance_extreme,Extremo
-option_screen_graphics_offset_mapquality,calidad del mapa compensado
-option_screen_graphics_offset_mapquality_description,Establece la calidad de los mapas de compensación.~Los detalles y la frecuencia de actualización de los mapas de compensación aumentan con este valor.~Establece este valor en 0 para evitar que el juego cargue mapas de compensación.
+option_screen_graphics_renderdistance_far,Lejana
+option_screen_graphics_renderdistance_extreme,Extrema
+option_screen_graphics_offset_mapquality,Calidad del mapa de desplazamiento
+option_screen_graphics_offset_mapquality_description,Establece la calidad de los mapas de desplazamiento. Los detalles y la frecuencia de actualización de los mapas de desplazamiento aumentan con este valor. Establece este valor en 0 para evitar que el juego cargue mapas de desplazamiento.
 option_screen_graphics_offset_mapquality_off,Desactivado
 option_screen_graphics_graphics,Gráficos
-option_screen_graphics_graphics_description, afecta si algunos objetos se representan o no. Al rechazar esto, puede mejorar su FPS. ~ Esta configuración es para todos los estados guardados.
+option_screen_graphics_graphics_description,Afecta si algunos objetos se representan o no. Al reducir esto, puedes mejorar los fotogramas por segundo (FPS). Esta configuración es para todos los estados guardados.
 option_screen_graphics_graphics_fancy,Fantasía
-option_screen_graphics_graphics_fast,Rápido
+option_screen_graphics_graphics_fast,Rápidos
 option_screen_graphics_multisampling,Muestreo múltiple
 
 option_screen_battle,Batalla
 option_screen_battle_3dmodels,Modelos 3D
 option_screen_battle_animations,Animaciones
-option_screen_battle_animations_description, determina si el juego muestra animaciones de batalla.
+option_screen_battle_animations_description,Determina si el juego muestra animaciones de batalla.
 option_screen_battle_battlestyle,Estilo de batalla
-option_screen_battle_battlestyle_shift,Mayús
-option_screen_battle_battlestyle_set,Establecer
-option_screen_battle_style_description,Battle Style~Set: No se te pide que cambies tu Pokémon~Shift: Puedes cambiar tu Pokémon después de derrotar a un oponente.
+option_screen_battle_battlestyle_shift,Cambio
+option_screen_battle_battlestyle_set,Fijo
+option_screen_battle_style_description,Estilo de batalla~Fijo: No se te pregunta si quieres cambiar tu Pokémon~Cambio: Puedes cambiar tu Pokémon después de derrotar a un oponente.n_battle_style_description,Battle Style~Set: You are not asked to switch out your Pokémon~Shift: You can switch out your Pokémon after defeating an opponent.
 
 option_screen_controls,Controles
 option_screen_controls_xboxgamepad,Mando de Xbox
-option_screen_controls_resetkeybindings,Restablecer combinaciones de teclas
+option_screen_controls_resetkeybindings,Restablecer asignaciones de teclas
 option_screen_controls_cameraspeed,Velocidad de la cámara
-option_screen_controls_cameraspeed_description, la velocidad de la cámara establece la velocidad a la que el mouse puede rotar la vista.
-option_screen_controls_cameraspeed_slow,...Lento...
+option_screen_controls_cameraspeed_description,La velocidad de la cámara determina la rapidez con la que el ratón puede rotar la vista.
+option_screen_controls_cameraspeed_slow,...Lenta...
 option_screen_controls_cameraspeed_medium,Estándar
-option_screen_controls_cameraspeed_fast, ¡Súper rápido!
+option_screen_controls_cameraspeed_fast,¡Súper rápida!
 option_screen_controls_cameraspeed_fastest,¡VELOCIDAD DE LA LUZ!
 
 option_screen_audio,Audio
-option_screen_audio_volume_music,Volumen de música
+option_screen_audio_volume_music,Volumen de la música
 option_screen_audio_volume_music_description,El volumen de la música de fondo.
-option_screen_audio_volume_sfx,Volumen SoundFX
-option_screen_audio_volume_music_description,El volumen de los efectos de sonido y jingles.
-option_screen_audio_muted,silenciado
+option_screen_audio_volume_sfx,Volumen de los efectos de sonido
+option_screen_audio_volume_music_description,El volumen de los efectos de sonido y las melodías.
+option_screen_audio_muted,Sin sonido
 
-option_screen_contentpacks_up,Mover hacia arriba
-option_screen_contentpacks_down,Mover hacia abajo
-option_screen_contentpacks_información,Información
+option_screen_contentpacks_up,Mover arriba
+option_screen_contentpacks_down,Mover abajo
+option_screen_contentpacks_information,Información
 option_screen_contentpacks_songs,Canciones
 option_screen_contentpacks_sounds,Sonidos
 option_screen_contentpacks_textures,Texturas
@@ -218,36 +221,36 @@ option_screen_contentpacks_content,Contenido
 option_screen_contentpacks_description,Descripción
 
 option_screen_resetoptions,Restablecer configuración.
-option_screen_resetoptions_description,Restablecer todas la configuración.
-option_screen_save_options,Opciones de guardado.
+option_screen_resetoptions_description,Restablece todas las opciones.
+option_screen_save_options,Guardar opciones
 option_screen_save_options_description,Guarda las opciones y cierra el menú.
-option_screen_close,Cerrar.
-option_screen_close_menu_description,Cerrar el menú y no guardar los cambios.
+option_screen_close,Cerrar
+option_screen_close_menu_description,Cierra el menú sin guardar los cambios.
 ---
 Pausescreen:
 pause_menu_title,Menú del juego
 pause_menu_back_to_game,Volver al juego
 pause_menu_disconnect,Desconectar
 pause_menu_quit_to_menu,Salir al menú
-pause_menu_autosave_fail, no se puede crear guardado automático.
+pause_menu_autosave_fail,No se puede crear el guardado automático.
 pause_menu_yes,Sí
-pausa_menú_no,No
+pause_menu_no,No
 pause_menu_confirmation,¿Realmente quieres salir? El progreso no guardado se perderá.
 ---
 IngameMenu:
 game_menu_pokedex,Pokédex
 game_menu_party,Pokémon
-game_menu_bag,Bolsa
+game_menu_bag,Mochila
 game_menu_trainer_card,<playername>
 game_menu_save,Guardar
 game_menu_options,Opciones
-game_menu_exit,Salir del menú 
+game_menu_exit,Salir del menú
 ---
 InventoryScreen:
-inventario_menu_bag,Bolsa
-Inventory_menu_backadvice,PULSA E PARA VOLVER
-Inventory_menu_items,Artículos
-Inventory_menu_description,Descripción
+inventory_menu_bag, Mochila
+inventory_menu_backadvice,PRESIONA E PARA VOLVER
+inventory_menu_items,Objetos
+inventory_menu_description,Descripción
 ---
 NewGameScreen:
 new_game_intro_1,¡Hola!~¡Perdón por haberte hecho esperar!*¡Bienvenido al mundo~de Pokémon!*Mi nombre es Oak.~La gente me llama~Pokémon Prof.*Este mundo está habitado~por criaturas a las que~llamamos
@@ -273,52 +276,52 @@ map_screen_roaming,Pokémons errantes
 ---
 PokedexScreen:
 pokedex_screen_seen,Avistado
-pokedex_screen_obtenido,obtenido
+pokedex_screen_obtained,Obtenido
 pokedex_screen_rare,Raro
-pokedex_screen_backadvice,PULSA E PARA VOLVER 
+pokedex_screen_backadvice,PRESIONA E PARA VOLVER
 ---
 PokemonScreen:
 pokemon_screen_choose_a_pokemon,Elige un Pokémon
-pokemon_screen_backadvice,Presiona la tecla E para regresar.
+pokemon_screen_backadvice,Pulsa la tecla E para regresar.
 pokemon_screen_item_give,Dar
 pokemon_screen_item_take,Tomar
 pokemon_screen_item_back,Atrás
 pokemon_screen_doesnt_hold_item,~no contiene ningún elemento.
-pokemon_screen_take_item_1,Tomó
+pokemon_screen_take_item_1,Recogiste
 pokemon_screen_take_item_2,de~
 pokemon_screen_take_item_3,~y ponlo en el~
 pokemon_screen_take_item_4,¡bolsillo!
 pokemon_screen_give_item_1,Dio
 pokemon_screen_give_item_2,a~
 pokemon_screen_give_item_3,
-pokemon_screen_give_item_4,~y pon
-pokemon_screen_give_item_5,~volver al inventario.
+pokemon_screen_give_item_4,~y ponlo
+pokemon_screen_give_item_5,~de vuelta al inventario.
 pokemon_screen_summary,Resumen
 pokemon_screen_switch,Cambiar
-pokemon_screen_item,Artículo
+pokemon_screen_item,Objeto
 pokemon_screen_back,Atrás
-pokemon_screen_VACÍO,VACÍO 
+pokemon_screen_EMPTY,VACÍO
 ---
 Pokemon Status Screen:
 All pages:
 poke_status_screen_nature,Naturaleza
-poke_status_screen_backadvice,PULSA E PARA VOLVER
-poke_status_screen_closeadvice,PULSA E PARA CERRAR
+poke_status_screen_backadvice,PRESIONA E PARA VOLVER
+poke_status_screen_closeadvice,PRESIONA E PARA CERRAR
 poke_status_screen_number,# 
 Page 1:
-poke_status_screen_all_exp,Puntos Exp.
-poke_status_screen_nxt_lv,Sig. Nv.
-poke_status_screen_stats_page,Estadísticas 
+poke_status_screen_all_exp,Exp Total
+poke_status_screen_nxt_lv,Próx. Niv.
+poke_status_screen_stats_page,Página de Estadísticas
 Page 2:
 poke_status_screen_OT,OT
 poke_status_screen_Item,Objeto
-poke_status_screen_no_item,Ninguno
-poke_status_screen_ability,Abilidad
-poke_status_screen_details_page,Detalles
+poke_status_screen_no_item,sin objeto
+poke_status_screen_ability,Habilidad
+poke_status_screen_details_page,Página de Detalles
 Page 3:
-poke_status_screen_power,Potencia
+poke_status_screen_power,Poder
 poke_status_screen_accuracy,Precisión
-poke_status_screen_moves_page,Movimientos 
+poke_status_screen_moves_page,Página de Movimientos
 ---
 Trainer Card Screen:
 trainer_screen_trainer_card,Tarjeta de Entrenador
@@ -327,27 +330,27 @@ trainer_screen_points,Puntos
 trainer_screen_money,Dinero
 trainer_screen_pokedex,Pokédex
 trainer_screen_time,Tiempo
-trainer_screen_collected_badges,Medallas recopiladas
+trainer_screen_collected_badges,Medallas obtenidas
 trainer_screen_badge, Medalla
 trainer_screen_backadvice,PULSA E PARA VOLVER
 trainer_screen_empty_badge,???
 ---
 Save Screen:
-save_screen_title,¿Quieres guardar el juego?
-save_screen_name,Nombre
-save_screen_badges,Insignias
-save_screen_money,Dinero
-save_screen_time,Tiempo
-save_screen_yes,Sí
+save_screen_title,Do you want to save the game?
+save_screen_name,Name
+save_screen_badges,Badges
+save_screen_money,Money
+save_screen_time,Time
+save_screen_yes,Yes
 save_screen_no,No
-save_screen_success,Guardó el juego.
+save_screen_success,Saved the game.
 ---
 Item Detail Screen:
-item_detail_screen_use,Usar
-item_detail_screen_give,Dar
-item_detail_screen_trash,Papelera
-item_detail_screen_back,Atrás
-item_detail_screen_give_item,Dar
+item_detail_screen_use,Use
+item_detail_screen_give,Give
+item_detail_screen_trash,Trash
+item_detail_screen_back,Back
+item_detail_screen_give_item,Give 
 ---
 Apricorn Screen:
 apricorn_screen_apricorns,Albaricoques
@@ -369,13 +372,13 @@ daycare_screen_lv, / Lv.
 daycare_screen_costs, / Costos:
 daycare_screen_pokedollar,Pokedólar
 daycare_screen_withdraw,Retirar
-daycare_screen_backadvice,PULSA E PARA VOLVER
+daycare_screen_backadvice,PRESIONA E PARA VOLVER
 daycare_screen_pokemon_choose_header,Depositar Pokémon
 Egg,Egg
 ---
 Network Screen:
 network_screen_isonline,¡Ya estás en un juego cooperativo! ¡Cierra la conexión~para abrir un nuevo juego o conectarte de nuevo!~~~¡Presiona E para volver!
-network_screen_header,juego cooperativo
+network_screen_header,Juego cooperativo
 network_screen_main_header,puedes unirte a un juego o organizar uno nuevo para jugar con un amigo.
 network_screen_main_join,Unirse
 network_screen_main_host,Anfitrión
@@ -414,28 +417,29 @@ battle_main_trainer_intro_1, y~
 battle_main_trainer_intro_2, ¡quiero~combatir!
 battle_main_trainer_intro_3, ¡quiere~combatir!
 battle_main_intro_1,¡VAMOS!
-batalla_principal_intro_2,!
+battle_main_intro_2,!
 battle_main_trainer_defeat_1,~fue derrotado!
 battle_main_trainer_defeat_2, y~
 battle_main_trainer_defeat_3,~fueron derrotados!
 battle_main_trainer_defeat_4, tengo
-battle_main_trainer_defeat_5,~¡PokéDollars por ganar!
+battle_main_trainer_defeat_5,~¡PokéDólares ganados!!
+battle_main_cannot_switch,No se puede cambiar de Pokémon.
 ---
 attackTurn:
-battle_attack_poison_damage,¡~fue herido por veneno!
+battle_attack_poison_damage,¡~fue dañado por envenenamiento!
 battle_attack_curse_damage,~está afectado por la maldición!
 battle_attack_fire_damage,¡~fue herido por su quemadura!
 battle_attack_trainer_item_1, usó un ~
 battle_attack_trainer_item_2,!
-battle_attack_asleep, es rápido~dormido.
-battle_attack_woke_up, desperté!
-battle_attack_paralyzed, ¡está paralizado!~ ¡No se puede mover!
+battle_attack_asleep, ~ tiene un sueño ligero..¡Está dormido!
+battle_attack_woke_up, ~ despertó!
+battle_attack_paralyzed, ~ ¡está paralizado!~ ¡No se puede mover!
 battle_attack_frozen_free, ¡Ya no está congelado!
-battle_attack_frozen, ¡Está congelado~sólido!
-battle_attack_flinched, ¡Se estremeció!
+battle_attack_frozen, ¡ ~ Está congelado!
+battle_attack_flinched, ¡ ~ Retrocedió!
 battle_attack_no_longer_confused, ¡Ya no está confundido!
-battle_attack_confused, está~confundido.
-battle_attack_hit_self_confusion, ¡sSe golpea a sí mismo~en confusión!
+battle_attack_confused, ~ está confundido.
+battle_attack_hit_self_confusion, ~ ¡Se golpea a sí mismo en confusión!
 battle_attack_no_PP_left, ¡No le quedan PP!*
 battle_attack_used, usado
 ---
@@ -448,7 +452,7 @@ badge_Soul,Alma
 badge_Marsh,Pantano
 badge_Volcano,Volcán
 badge_Earth,Tierra
-badge_Zephyr,Céfiro
+badge_Zephyr,Zafiro
 badge_Hive,Colmena
 badge_Plain,Planicie
 badge_Fog,Niebla
@@ -581,7 +585,7 @@ Places_Millenial Star Tower,Torre de la estrella milenaria
 Places_Kolben Tower,Torre Kolben
 Places_Faraway Island,Isla lejana
 Places_Underwater Cave,Cueva submarina
-Places_Embedded Tower,Torre empotrada
+Places_Embedded Tower,Torre oculta.
 
 Routes:
 Places_Route 1,Ruta 1
@@ -644,14 +648,15 @@ Places_Five Isle Meadow,Prado Isla Inta
 Places_Memorial Pillar,Pilar Recuerdo
 Places_Water Labyrinth,Aquarinto
 Places_Resort Gorgeous,Isla Inta
-Places_Water Path,Via Acuatica
-Places_Grass Path,Via De Hierba
+Places_Water Path,Camino Acuatico
+Places_Grass Path,Camino de césped.
 Places_Outcast Island,Isla Aislada
 Places_Ruin Valley,Valle Ruinas
+Places_Tower Straits,Tower Straits
 Places_Canyon Entrance,Entrada al Cañón
-Places_Sevault Canyon, Cañón Sétano
+Places_Sevault Canyon,Cañón Sétano
 Places_Tanoby Ruins,Ruinas Sete
-Places_Safari Zone Gate, Entrada Zona Safari 
+Places_Safari Zone Gate,Entrada Zona Safari 
 Places_S.S. Aqua,S.S. Aqua
 Places_Elite 4,Alto Mando
 Places_Indigo Plateau, Meseta Añil 
@@ -689,16 +694,16 @@ game_message_continue_autosave,Continuando estado guardado:
 ---
 Online:
 game_message_close_connection,Cerraste el juego cooperativo.
-game_message_disconncet, Te desconectaste del host.
-game_message_cannot_connect_client_1, No se puede conectar al host (
+game_message_disconncet,Te desconectaste del host.
+game_message_cannot_connect_client_1,No se puede conectar al host (
 game_message_cannot_connect_client_2,)!
-game_message_client_connect_1, Te uniste al juego (
+game_message_client_connect_1,Te uniste al juego (
 game_message_client_connect_2,)!
 game_message_client_host_closed_1, el anfitrión (
 game_message_client_host_closed_2,) cerró la conexión.
 game_message_client_outdated_newer_version,Tienes una versión obsoleta o más nueva del juego.
-game_message_host_session_started, usted (anfitrión) inició una sesión cooperativa.
-game_message_host_outdated_newer_version, ¡El cliente tiene una versión obsoleta o más nueva del juego!
+game_message_host_session_started,usted (anfitrión) inició una sesión cooperativa.
+game_message_host_outdated_newer_version,¡El cliente tiene una versión obsoleta o más nueva del juego!
 game_message_host_client_accept,¡Un cliente se unió al juego!
 game_message_host_client_disconnect,¡El cliente se desconectó! La sesión de Co-Op ha sido cerrada.
 ---
@@ -953,6 +958,1337 @@ pokemon_name_Tyranitar,Tyranitar
 pokemon_name_Lugia,Lugia
 pokemon_name_Ho-Oh,Ho-Oh
 pokemon_name_Celebi,Celebi
+--------------
+Item categories:
+item_category_Standard,Estándar
+item_category_Medicine,Medicina
+item_category_Machines,TM/HM
+item_category_Pokeballs,Pokéballs
+item_category_Plants,Bayas
+item_category_KeyItems,Objetos Clave
+item_category_BattleItems,Objetos de combate
+item_category_Mail,Correo
+---
+Item names:
+Balls:
+item_name_1,Master Ball
+item_name_2,Ultra Ball
+item_name_3,Honor Ball
+item_name_4,Super Ball
+item_name_5,Poké Ball
+item_name_45,Gloria Ball
+item_name_79,Buceo Ball
+item_name_80,Malla Ball
+item_name_129,Veloz Ball
+item_name_150,Turno Ball
+item_name_157,Peso Ball
+item_name_158,Ocaso Ball
+item_name_159,Nivel Ball
+item_name_160,Cebo Ball
+item_name_161,Rapid Ball
+item_name_164,Amigo Ball
+item_name_165,Luna Ball
+item_name_166,Amor Ball
+item_name_168,Acopio Ball
+item_name_174,Lujo Ball
+item_name_177,Competi Ball
+item_name_181,Safari Ball
+item_name_186,Sana Ball
+item_name_188,Nido Ball
+
+Key Items:
+item_name_6,Bicicleta
+item_name_41,Ticket S.S.
+item_name_54,Caja de Monedas
+item_name_55,Buscador de Objetos
+item_name_56,Ala de Cristal
+item_name_58,Caña Vieja
+item_name_59,Caña Buena
+item_name_61,Super Caña
+item_name_66,Escama Roja
+item_name_67,Poción Secreta
+item_name_69,Huevo Misterioso
+item_name_71,Ala Plateada
+item_name_78,Zapatillas de Correr
+item_name_115,GS Ball
+item_name_116,Tarjeta Azul
+item_name_127,Llave Tarjeta
+item_name_128,Pieza Máquina
+item_name_130,Objeto Perdido
+item_name_133,Llave del Sótano
+item_name_134,Pase
+item_name_175,Botella de Agua
+item_name_178,Ala Arcoíris
+item_name_241,Amuleto Oval
+item_name_242,Amuleto Brillante
+item_name_265,Pase Trío
+item_name_284,Pase Arcoíris
+item_name_285,Mapa Mar Antiguo
+item_name_286,Fragmento Antiguo
+item_name_292,Mapa Mar Vacío
+item_name_592,Mapa Mar Libertad
+item_name_576,Mega Brazalete
+item_name_651,Piedra Luz
+item_name_652,Piedra Oscura
+item_name_653,Augurita Negra
+
+Technical Machines:
+item_name_191,TM 01
+item_name_192,TM 02
+item_name_193,TM 03
+item_name_194,TM 04
+item_name_195,TM 05
+item_name_196,TM 06
+item_name_197,TM 07
+item_name_198,TM 08
+item_name_199,TM 09
+item_name_200,TM 10
+item_name_201,TM 11
+item_name_202,TM 12
+item_name_203,TM 13
+item_name_204,TM 14
+item_name_205,TM 15
+item_name_206,TM 16
+item_name_207,TM 17
+item_name_208,TM 18
+item_name_209,TM 19
+item_name_210,TM 20
+item_name_211,TM 21
+item_name_212,TM 22
+item_name_213,TM 23
+item_name_214,TM 24
+item_name_215,TM 25
+item_name_216,TM 26
+item_name_217,TM 27
+item_name_218,TM 28
+item_name_219,TM 29
+item_name_220,TM 30
+item_name_221,TM 31
+item_name_222,TM 32
+item_name_223,TM 33
+item_name_224,TM 34
+item_name_225,TM 35
+item_name_226,TM 36
+item_name_227,TM 37
+item_name_228,TM 38
+item_name_229,TM 39
+item_name_230,TM 40
+item_name_231,TM 41
+item_name_232,TM 42
+item_name_233,TM 43
+item_name_234,TM 44
+item_name_235,TM 45
+item_name_236,TM 46
+item_name_237,TM 47
+item_name_238,TM 48
+item_name_239,TM 49
+item_name_240,TM 50
+item_name_351,TM 51
+item_name_352,TM 52
+item_name_353,TM 53
+item_name_354,TM 54
+item_name_355,TM 55
+item_name_356,TM 56
+item_name_357,TM 57
+item_name_358,TM 58
+item_name_359,TM 59
+item_name_360,TM 60
+item_name_361,TM 61
+item_name_362,TM 62
+item_name_363,TM 63
+item_name_364,TM 64
+item_name_365,TM 65
+item_name_366,TM 66
+item_name_367,TM 67
+item_name_368,TM 68
+item_name_369,TM 69
+item_name_370,TM 70
+item_name_371,TM 71
+item_name_372,TM 72
+item_name_373,TM 73
+item_name_374,TM 74
+item_name_375,TM 75
+item_name_376,TM 76
+item_name_377,TM 77
+item_name_378,TM 78
+item_name_379,TM 79
+item_name_380,TM 80
+item_name_381,TM 81
+item_name_382,TM 82
+item_name_383,TM 83
+item_name_384,TM 84
+item_name_385,TM 85
+item_name_386,TM 86
+item_name_387,TM 87
+item_name_388,TM 88
+item_name_389,TM 89
+item_name_390,TM 90
+item_name_391,TM 91
+item_name_392,TM 92
+item_name_393,TM 93
+item_name_394,TM 94
+item_name_395,TM 95
+item_name_396,TM 96
+item_name_397,TM 97
+item_name_398,TM 98
+item_name_399,TM 99
+item_name_400,TM 100
+item_name_401,TM 101
+item_name_402,TM 102
+item_name_403,TM 103
+item_name_404,TM 104
+item_name_405,TM 105
+item_name_406,TM 106
+item_name_407,TM 107
+item_name_408,TM 108
+item_name_409,TM 109
+item_name_410,TM 110
+item_name_411,TM 111
+item_name_412,TM 112
+item_name_413,TM 113
+item_name_414,TM 114
+item_name_415,TM 115
+item_name_416,TM 116
+item_name_417,TM 117
+item_name_418,TM 118
+item_name_419,TM 119
+item_name_420,TM 120
+item_name_421,TM 121
+item_name_422,TM 122
+item_name_423,TM 123
+item_name_424,TM 124
+item_name_425,TM 125
+item_name_426,TM 126
+item_name_427,TM 127
+item_name_428,TM 128
+item_name_429,TM 129
+item_name_430,TM 130
+item_name_431,TM 131
+item_name_432,TM 132
+item_name_433,TM 133
+item_name_434,TM 134
+item_name_435,TM 135
+item_name_436,TM 136
+item_name_437,TM 137
+item_name_438,TM 138
+item_name_439,TM 139
+item_name_440,TM 140
+item_name_441,TM 141
+item_name_442,TM 142
+item_name_443,TM 143
+item_name_444,TM 144
+item_name_445,TM 145
+item_name_446,TM 146
+item_name_447,TM 147
+item_name_448,TM 148
+item_name_449,TM 149
+item_name_450,TM 150
+item_name_451,TM 151
+item_name_452,TM 152
+item_name_453,TM 153
+item_name_454,TM 154
+item_name_455,TM 155
+item_name_456,TM 156
+item_name_457,TM 157
+item_name_458,TM 158
+item_name_459,TM 159
+item_name_460,TM 160
+item_name_461,TM 161
+item_name_462,TM 162
+item_name_463,TM 163
+item_name_464,TM 164
+item_name_465,TM 165
+item_name_466,TM 166
+item_name_467,TM 167
+item_name_468,TM 168
+item_name_469,TM 169
+item_name_470,TM 170
+item_name_471,TM 171
+item_name_472,TM 172
+item_name_473,TM 173
+item_name_474,TM 174
+item_name_475,TM 175
+item_name_476,TM 176
+item_name_477,TM 177
+item_name_478,TM 178
+item_name_479,TM 179
+item_name_480,TM 180
+item_name_481,TM 181
+
+Hidden Machines:
+item_name_247,HM 01
+item_name_244,HM 02
+item_name_245,HM 03
+item_name_246,HM 04
+item_name_243,HM 05
+item_name_248,HM 06
+item_name_249,HM 07
+item_name_250,HM 08
+item_name_251,HM 09
+item_name_252,HM 10
+
+Medicine:
+item_name_7,Galleta Lava
+item_name_9,Antídoto
+item_name_10,Curar Quemadura
+item_name_11,Curar Congelación
+item_name_12,Despertar
+item_name_13,Curar Parálisis
+item_name_14,Restaurar Todo
+item_name_15,Poción Máxima
+item_name_16,Hiperpoción
+item_name_17,Superpoción
+item_name_18,Poción
+item_name_21,Elixir Máximo 
+item_name_32,Carameloraro
+item_name_38,Curar Todo
+item_name_39,Revivir
+item_name_40,Max Revivir
+item_name_46,Agua Fresca
+item_name_47,Refresco
+item_name_48,Limonada
+item_name_62,PP Plus
+item_name_63,Éter
+item_name_64,Éter Máx.
+item_name_65,Elíxir
+item_name_72,Leche Mu-mu
+item_name_114,Barrita Ira Dulce
+item_name_121,Polvo Energía
+item_name_122,Raíz Energía
+item_name_123,Polvo Curación
+item_name_124,Hierba Revivir
+item_name_139,Zumo de Baya
+item_name_152,Crujidos Pewter
+item_name_156,Ceniza Sagrada
+item_name_266,Fanta
+item_name_502,PP Máx.
+
+Berries:
+item_name_2000,Cheri
+item_name_2001,Chesto
+item_name_2002,Pecha
+item_name_2003,Rawst
+item_name_2004,Aspear
+item_name_2005,Leppa
+item_name_2006,Oran
+item_name_2007,Persim
+item_name_2008,Lum
+item_name_2009,Sitrus
+item_name_2010,Figy
+item_name_2011,Wiki
+item_name_2012,Mago
+item_name_2013,Aguav
+item_name_2014,Iapapa
+item_name_2015,Razz
+item_name_2016,Bluk
+item_name_2017,Nanab
+item_name_2018,Wepear
+item_name_2019,Pinap
+item_name_2020,Pomeg
+item_name_2021,Kelpsy
+item_name_2022,Qualot
+item_name_2023,Hondew
+item_name_2024,Grepa
+item_name_2025,Tamato
+item_name_2026,Cornn
+item_name_2027,Magost
+item_name_2028,Rabuta
+item_name_2029,Nomel
+item_name_2030,Spelon
+item_name_2031,Pamtre
+item_name_2032,Watmel
+item_name_2033,Durin
+item_name_2034,Belue
+item_name_2035,Occa
+item_name_2036,Passho
+item_name_2037,Wacan
+item_name_2038,Rindo
+item_name_2039,Yache
+item_name_2040,Chople
+item_name_2041,Kebia
+item_name_2042,Shuca
+item_name_2043,Coba
+item_name_2044,Payapa
+item_name_2045,Tanga
+item_name_2046,Charti
+item_name_2047,Kasib
+item_name_2048,Haban
+item_name_2049,Colbur
+item_name_2050,Babiri
+item_name_2051,Chilan
+item_name_2052,Liechi
+item_name_2053,Ganlon
+item_name_2054,Salac
+item_name_2055,Petaya
+item_name_2056,Apicot
+item_name_2057,Lansat
+item_name_2058,Starf
+item_name_2059,Enigma
+item_name_2060,Micle
+item_name_2061,Custap
+item_name_2062,Jaboca
+item_name_2063,Rowap
+item_name_2064,Roseli
+item_name_2065,Kee
+item_name_2066,Maranga
+
+Stones:
+item_name_8,Piedra Lunar
+item_name_22,Piedra Fuego
+item_name_23,Piedra Trueno
+item_name_24,Piedra Agua
+item_name_34,Piedra Hoja
+item_name_112,Piedra Eterna
+item_name_169,Piedra Solar
+item_name_262,Roca Adhesiva
+
+Standard:
+item_name_19,Cuerda Escape
+item_name_30,Puño Suerte
+item_name_35,Polvo Brillante
+item_name_36,Pepita
+item_name_37,Muñeco Pokémon
+item_name_57,Repartir Exp.
+item_name_60,Hoja Plateada
+item_name_70,Barba Pegajosa
+item_name_73,Garra Rápida
+item_name_74,Telescopio
+item_name_75,Hoja Dorada
+item_name_76,Arena Fina
+item_name_77,Pico Afilado
+item_name_81,Flecha Venenosa
+item_name_82,Roca del Rey
+item_name_83,Escama Bella
+item_name_84,Tela Terrible
+item_name_88,Polvo Plata
+item_name_90,Pañuelo de Seda
+item_name_91,Moneda Amuleto
+item_name_94,Amuleto
+item_name_95,Agus Mística
+item_name_96,Cuchara Torcida
+item_name_98,Cinturon Negro
+item_name_100,Magmatizador
+item_name_102,Gafas de sol
+item_name_103,Cola Slowpoke
+item_name_104,Lazo rosa
+item_name_105,Puerro
+item_name_106,Bomba de humo
+item_name_107,Antiderretir
+item_name_108,Imán
+item_name_109,Hueso Raro
+item_name_110,Perla
+item_name_111,Perla grande
+item_name_113,Hechizo
+item_name_117,Semilla milagro
+item_name_118,Hueso grueso
+item_name_119,Banda focus
+item_name_120,Electrizador
+item_name_125,Piedra dura
+item_name_126,Huevo suerte
+item_name_131,Polvoestelar
+item_name_132,Trozo Estrella
+item_name_135,Piedra brillante
+item_name_136,Piedra noche
+item_name_137,Piedra alba
+item_name_138,Carbón
+item_name_140,Periscopio
+item_name_141,Protector
+item_name_142,Cola plúmbea
+item_name_143,Revestimiento metálico
+item_name_144,Colmillo Dragon
+item_name_145,Incienso acua
+item_name_146,Restos
+item_name_147,Flauta blanca
+item_name_148,Campana alivio
+item_name_149,Fragmento cometa
+item_name_151,Escamadragón
+item_name_153,Hongo Bálsamo
+item_name_154,Muda concha
+item_name_155,Quick Powder
+item_name_162,Escama marina
+item_name_163,Bola luminosa
+item_name_167,Diente marino 
+item_name_170,Gen loco
+item_name_171,Lupa
+item_name_172,Mejora
+item_name_173,Sarta de perlas
+item_name_176,Garra garfio
+item_name_179,Piedra Oval
+item_name_180,Ladrillo
+item_name_182,Lodo negro
+item_name_183,Colmillo agudo
+item_name_184,Garra afilada
+item_name_185,Disco extraño
+item_name_187,Cápsula habilidad
+item_name_189,Maxipepita
+item_name_190,Escala Corazón
+item_name_263,Incienso Raro
+item_name_264,Incienso Marino
+item_name_287,Incienso Rosa
+item_name_288,Incienso Lento
+item_name_289,Incienso Relajado
+item_name_290,Incienso Suerte
+item_name_291,Incienso Suerte
+item_name_293,Roca Lluvia
+item_name_294,Roca Calor
+item_name_295,Roca Suave
+item_name_296,Roca Helada
+item_name_297,Refleluz
+item_name_298,Mineral evolutivo
+item_name_299,Roca Incienso
+item_name_503,Saquito fragante
+item_name_504,Dulce de nata
+item_name_505,Toxisfera
+item_name_506,Vidasfera
+item_name_577,Llamasfera
+item_name_578,Cinta elección
+item_name_579,Pañuelo elección
+item_name_580,Gafas elección
+item_name_581,Brazal firme
+item_name_582,Pesa recia
+item_name_583,Brazal recio
+item_name_584,Cinturon recio
+item_name_585,Lente recia
+item_name_586,Banda recia
+item_name_587,Franja recia
+item_name_591,Cinta experto
+item_name_593,Piedra hielo
+item_name_594,Bola de nieve
+item_name_595,Pila
+item_name_596,Semilla electro
+item_name_597,Semilla hierba
+item_name_598,Semilla mística
+item_name_599,Semilla psique
+item_name_600,Cubresuelos
+item_name_648,Jugete pokémon
+item_name_649,Cola Skitty
+item_name_650,Polvo brillo
+item_name_654,Bloque de turba
+item_name_1996,PiroROM
+item_name_1997,CrioROM
+item_name_1998,HidroROM
+item_name_1999,FulgoROM
+
+Fossils:
+item_name_601,Fósil hélix
+item_name_602,Fósil domo
+item_name_603,Ámbar viejo
+item_name_604,Fósil raíz
+item_name_605,Fósil garra
+item_name_606,Fósil cráneo
+item_name_607,Fósil armadura
+item_name_608,Fósil tapa
+item_name_609,Fósil pluma
+item_name_610,Fósil mandíbula
+item_name_611,Sail Fossil
+
+Repels:
+item_name_20,Repelente
+item_name_42,Super Repelente
+item_name_43,Max Repelente
+
+Vitamins:
+item_name_25,Zinc
+item_name_26,Más PS
+item_name_27,Proteina
+item_name_28,Hierro
+item_name_29,Carburante
+item_name_31,Calcio
+
+XItems:
+item_name_33,Precision X
+item_name_44,Protección especial
+item_name_49,Ataque X
+item_name_50,Defensa especial X
+item_name_51,Defensa X
+item_name_52,Velocidad X
+item_name_53,Especial X
+item_name_68,Protección especial
+
+Apricorns:
+item_name_85,Bonguri rojo
+item_name_89,Bonguri azul
+item_name_92,Bonguri amarillo
+item_name_93,Bonguri verde
+item_name_97,Bonguri blanco
+item_name_99,Bonguri negro
+item_name_101,Bonguri rosa
+
+Plants:
+item_name_86,Hongo pequeño
+item_name_87,Hongo grande
+item_name_253,Miel
+
+Wings:
+item_name_254,Pluma Salud
+item_name_255,Pluma Músculo
+item_name_256,Pluma Aguante
+item_name_257,Pluma Intelecto
+item_name_258,Pluma Nente
+item_name_259,Pluma Ímpetu
+item_name_260,Pluma Bella
+item_name_261,Pluma Pegajosa
+
+Plates:
+item_name_267,Tabla draco
+item_name_268,Tabla oscura
+item_name_269,Tabla terrax
+item_name_270,Tabla fuerte
+item_name_271,Tabla llama
+item_name_272,Tabla helada
+item_name_273,Tabla bicho
+item_name_274,Tabla acero
+item_name_275,Tabla pradal
+item_name_276,Tabla mental
+item_name_277,Tabla duende
+item_name_278,Tabla cielo
+item_name_279,Tabla linfa
+item_name_280,Tabla terror
+item_name_281,Tabla pétrea
+item_name_282,Tabla tóxica
+item_name_283,Tabla trueno
+
+Mail:
+item_name_300,Correo Planta
+item_name_301,Correo Cuentas
+item_name_302,Correo Sueño
+item_name_303,Correo Fabuloso
+item_name_304,Correo Brillante
+item_name_305,Correo Puerto
+item_name_306,Correo Mecánico
+item_name_307,Correo Naranja
+item_name_308,Correo Retro
+item_name_309,Correo Sombra
+item_name_310,Correo Trópico
+item_name_311,Correo Ola
+item_name_312,Correo Madera
+item_name_313,Correo Aéreo
+item_name_314,Correo Flor
+item_name_315,Correo Ladrillo
+item_name_316,Correo Burbuja
+item_name_317,Correo Llama
+item_name_318,Correo Corazón
+item_name_319,Correo Mosaico
+item_name_320,Correo Nieve
+item_name_321,Correo Espacio
+item_name_322,Correo Acero
+item_name_323,Correo Túnel
+item_name_324,Correo Puente T
+item_name_325,Correo Puente D
+item_name_326,Correo Puente S
+item_name_327,Correo Puente V
+item_name_328,Correo Puente M
+item_name_329,Correo Favorito
+item_name_330,Correo Agradecimiento
+item_name_331,Correo Consulta
+item_name_332,Correo Saludo
+item_name_333,Correo RSVP
+item_name_334,Correo Gusto
+item_name_335,Correo Respuesta
+item_name_336,Correo Kolben
+
+Mega Stones:
+item_name_507,Abomasite
+item_name_508,Absolite
+item_name_509,Aerodactylite
+item_name_510,Aggronite
+item_name_511,Alakazite
+item_name_512,Ampharosite
+item_name_513,Banettite
+item_name_514,Blastoisinite
+item_name_515,Blazikenite
+item_name_516,Charizardite X
+item_name_517,Charizardite Y
+item_name_518,Garchompite
+item_name_519,Gardevoirite
+item_name_520,Gengarite
+item_name_521,Gyaradosite
+item_name_522,Heracronite
+item_name_523,Houndoominite
+item_name_524,Kangaskhanite
+item_name_525,Lucarionite
+item_name_526,Manectite
+item_name_527,Mawilite
+item_name_528,Medichamite
+item_name_529,Mewtwonite X
+item_name_530,Mewtwonite Y
+item_name_531,Pinsirite
+item_name_532,Scizorite
+item_name_533,Tyranitarite
+item_name_534,Venusaurite
+item_name_535,Altarianite
+item_name_536,Audinite
+item_name_537,Beedrillite
+item_name_538,Cameruptite
+item_name_539,Diancite
+item_name_540,Galladite
+item_name_541,Glalitite
+item_name_542,Latiasite
+item_name_543,Latiosite
+item_name_544,Lopunnite
+item_name_545,Metagrossite
+item_name_546,Pidgeotite
+item_name_547,Sablenite
+item_name_548,Salamencite
+item_name_549,Sceptilite
+item_name_550,Sharpedonite
+item_name_551,Slowbronite
+item_name_552,Steelixite
+item_name_553,Swampertite
+
+Gems:
+item_name_630,Gema Fuego
+item_name_631,Gema Agua
+item_name_632,Gema Eléctrica
+item_name_633,Gema Planta
+item_name_634,Gema Hielo
+item_name_635,Gema Lucha
+item_name_636,Gema Veneno
+item_name_637,Gema Tierra
+item_name_638,Gema Voladora
+item_name_639,Gema Psíquica
+item_name_640,Gema Bicho
+item_name_641,Gema Roca
+item_name_642,Gema Fantasma
+item_name_643,Gema Dragón
+item_name_644,Gema Siniestra
+item_name_645,Gema Acero
+item_name_646,Gema Normal
+item_name_647,Gema Hada
+
+Memories:
+item_name_660,Disco bicho
+item_name_661,Disco siniestro
+item_name_662,Disco dragon
+item_name_663,Disco eléctrico
+item_name_664,Disco hada
+item_name_665,Disco lucha
+item_name_666,Disco fuego
+item_name_667,Disco volador
+item_name_668,Disco fantasma
+item_name_669,Disco planta
+item_name_670,Disco tierra
+item_name_671,Disco hielo
+item_name_672,Disco veneno
+item_name_673,Disco psiquico
+item_name_674,Disco roca
+item_name_675,Disco acero
+item_name_676,Disco agua
+-------------------
+Move Names:
+move_name_1,Destructor
+move_name_2,Golpe Kárate
+move_name_3,Doble Bofetón
+move_name_4,Puño Cometa
+move_name_5,Mega Puño
+move_name_6,Dia de pago
+move_name_7,Puño Fuego
+move_name_8,Puño Hielo
+move_name_9,Puño Trueno
+move_name_10,Arañazo
+move_name_11,Agarre
+move_name_12,Guillotina
+move_name_13,Viento cortante
+move_name_14,Danza Espada
+move_name_15,Corte
+move_name_16,Tornado
+move_name_17,Ataque ala
+move_name_18,Remolino
+move_name_19,Vuelo
+move_name_20,Atadura
+move_name_21,Atizar
+move_name_22,Látigo cepa
+move_name_23,Pisotón
+move_name_24,Patada Doble
+move_name_25,Mega Patada
+move_name_26,Patada salto
+move_name_27,Patada Giro
+move_name_28,Ataque arena
+move_name_29,Golpe Cabeza
+move_name_30,Cornada
+move_name_31,Ataque furia
+move_name_32,Perforador
+move_name_33,Placaje
+move_name_34,Golpe Cuerpo
+move_name_35,Constricción
+move_name_36,Derribo
+move_name_37,Seña
+move_name_38,Doble filo
+move_name_39,Látigo
+move_name_40,Picotazo veneno
+move_name_41,Doble ataque
+move_name_42,Pin Misil
+move_name_43,Malicioso
+move_name_44,Mordisco
+move_name_45,Gruñido
+move_name_46,Rugido
+move_name_47,Canto
+move_name_48,Supersónico
+move_name_49,Bomba sónica
+move_name_51,Ácido
+move_name_52,Ascuas
+move_name_53,Lanzallamas
+move_name_54,Neblina
+move_name_55,Pistola agua
+move_name_56,Hidrobomba
+move_name_57,Surf
+move_name_58,Rayo Hielo
+move_name_59,Ventisca
+move_name_60,Psicorrayo
+move_name_61,Rayo Burbuja
+move_name_62,Rayo Aurora
+move_name_63,Hyper Rayo
+move_name_64,Picotazo
+move_name_65,Pico Taladro
+move_name_66,Sumisión
+move_name_67,Patada Baja
+move_name_68,Contraataque
+move_name_69,Golpe Sismico
+move_name_70,Fuerza
+move_name_71,Absorber
+move_name_72,Megaagotar
+move_name_73,Drenadoras
+move_name_74,Desarrollo
+move_name_75,Hola afilada
+move_name_76,Rayo Solar
+move_name_77,Polvo Veneno
+move_name_78,Paralizador
+move_name_79,Somnífero
+move_name_80,Danza Pétalo
+move_name_81,Disparo Demora
+move_name_82,Furia Dragon
+move_name_83,Giro Fuego
+move_name_84,Impactrueno
+move_name_85,Rayo
+move_name_86,Onda Trueno
+move_name_87,Trueno
+move_name_88,Lanzarrocas
+move_name_89,Terremoto
+move_name_90,Fisura
+move_name_91,Excavar
+move_name_92,Tóxico
+move_name_93,Confusión
+move_name_94,Psíquico
+move_name_95,Hipnosis
+move_name_96,Meditación
+move_name_97,Agilidad
+move_name_98,Ataque Rápido
+move_name_99,Furia
+move_name_100,Teletransportación
+move_name_101,Tinieblas
+move_name_102,Mimético
+move_name_103,Chirrido
+move_name_104,Equipo Doble
+move_name_105,Recuperación
+move_name_106,Fortaleza
+move_name_107,Minimizar
+move_name_108,Pantalla de Humo
+move_name_109,Rayo Confuso
+move_name_110,Refugio
+move_name_111,Rizo Defensa
+move_name_112,Barrera
+move_name_113,Pantalla de luz
+move_name_114,Nibla
+move_name_115,Reflejo
+move_name_116,Foco Energía
+move_name_117,Venganza
+move_name_118,Metronomo
+move_name_119,Movimiento Espejo
+move_name_120,Autodestrucción
+move_name_121,Bomba Huevo
+move_name_122,Lengüetazo
+move_name_123,Polución
+move_name_124,Residuos
+move_name_125,Hueso Palo
+move_name_126,Llamarada
+move_name_127,Cascada
+move_name_128,Tenaza
+move_name_129,Rapidez
+move_name_130,Cabezazo
+move_name_131,Clavo Cañón
+move_name_132,Restricción
+move_name_133,Amnesia
+move_name_134,Kinético
+move_name_135,Amortiguador
+move_name_136,Pat.Salto Alta
+move_name_137,Deslumbrar
+move_name_138,Come Sueños
+move_name_139,Gas Venenoso
+move_name_140,Presa
+move_name_141,Chupavidas
+move_name_142,Beso Amoroso
+move_name_143,Ataque Aéreo
+move_name_144,Transformación
+move_name_145,Burbuja
+move_name_146,Puño Mareo
+move_name_147,Espora
+move_name_148,Destello
+move_name_149,Psicoonda
+move_name_150,Salpicadura
+move_name_151,Armadura Ácida
+move_name_152,Armadura Ácida
+move_name_153,Explosión
+move_name_154,Golpes Furia
+move_name_155,Huesomerang
+move_name_156,Descanso
+move_name_157,Avalancha
+move_name_158,Hipercolmillo
+move_name_159,Afilar
+move_name_160,Conversión
+move_name_161,Tri Attaque
+move_name_162,Superdiente
+move_name_163,Cuchillada
+move_name_164,Sustituto
+move_name_165,Forcejeo
+move_name_166,Esquema
+move_name_167,Patada Triple
+move_name_168,Ladrón
+move_name_169,Telaraña
+move_name_170,Telépata
+move_name_171,Pesadilla
+move_name_172,Rueda Fuego
+move_name_173,Ronquido
+move_name_174,Maldición
+move_name_175,Azote
+move_name_176,Conversión 2
+move_name_177,Aerochorro
+move_name_178,Esporalgodón
+move_name_179,Inversión
+move_name_180,Rencor
+move_name_181,Nieve Polvo
+move_name_182,Protección
+move_name_183,Ultra Puño
+move_name_184,Cara Susto
+move_name_185,Finta
+move_name_186,Beso Dulce
+move_name_187,Tambor
+move_name_188,Bomba Lodo
+move_name_189,Bofetón Lodo
+move_name_190,Pulpocañón
+move_name_191,Púas
+move_name_192,Electrocañón
+move_name_193,Profecía
+move_name_194,Mismo Destino
+move_name_195,Canto Mortal
+move_name_196,Viento Hielo
+move_name_197,Detección
+move_name_198,Ataque Óseo
+move_name_199,Fijar Blanco
+move_name_200,Enfado
+move_name_201,Tormena Arena
+move_name_202,Gigadrenado
+move_name_203,Aguante
+move_name_204,Encanto
+move_name_205,Desenrollar
+move_name_206,Falsotortazo
+move_name_207,Contoneo
+move_name_208,Batido
+move_name_209,Chispa
+move_name_210,Corte Furia
+move_name_211,Ala de Acero
+move_name_212,Mal de Ojo
+move_name_213,Atracción
+move_name_214,Sonámbulo
+move_name_215,Campana Cura
+move_name_216,Retribución
+move_name_217,Presente
+move_name_218,Frustración
+move_name_219,Velo Sagrado
+move_name_220,Divide Dolor
+move_name_221,Fiego Sagrado
+move_name_222,Magnitud
+move_name_223,Puño Dinámico
+move_name_224,Megacuerno
+move_name_225,Dracoaliento
+move_name_226,Relevo
+move_name_227,Otra Vez
+move_name_228,Persecución
+move_name_229,Giro Rápido
+move_name_230,Dulce Aroma
+move_name_231,Cola Férrea
+move_name_232,Garra Metal
+move_name_233,Tiro Vital
+move_name_234,Sol Matinal
+move_name_235,Sintesis
+move_name_236,Luz Lunar
+move_name_237,Poder Oculto
+move_name_238,Tajo Cruzado
+move_name_239,Ciclón
+move_name_240,Danza LLuvia
+move_name_241,Dia Soleado
+move_name_242,Triturar
+move_name_243,Manto Espejo
+move_name_244,Más Psique
+move_name_245,Velocidad Extrema
+move_name_246,Poder Pasado
+move_name_247,Bola Sombra
+move_name_248,Premonición
+move_name_249,Golpe Roca
+move_name_250,Torbellino
+move_name_251,Paliza
+move_name_252,Sorpresa
+move_name_253,Alboroto
+move_name_254,Reserva
+move_name_255,Escupir
+move_name_256,Tragar
+move_name_257,Onda Ígnea
+move_name_258,Granizo
+move_name_259,Tormeno
+move_name_260,Camelo
+move_name_261,Fuego Fatuo
+move_name_262,Legado
+move_name_263,Imagen
+move_name_264,Puño Certero
+move_name_265,Estímulo
+move_name_267,Adaptación
+move_name_268,Carga
+move_name_269,Mofa
+move_name_271,Truco
+move_name_272,Imitación
+move_name_273,Deseo
+move_name_274,Ayuda
+move_name_275,Arraigo
+move_name_276,Fuerza Bruta
+move_name_277,Capa Mágica
+move_name_278,Reciclaje
+move_name_279,Desquite
+move_name_280,Demolición
+move_name_281,Bostezo
+move_name_282,Desarme
+move_name_283,Esfuerzo
+move_name_284,Estallido
+move_name_285,Intercambio
+move_name_287,Alivio
+move_name_289,Robo
+move_name_291,Buceo
+move_name_292,Empujón
+move_name_294,Ráfaga
+move_name_295,Resplandor
+move_name_296,Bola Neblina
+move_name_297,Danza Pluma
+move_name_298,Danza Caos
+move_name_299,Patada Ígnea
+move_name_300,Chapoteo Lodo
+move_name_301,Bola Hielo
+move_name_302,Brazo Pincho
+move_name_303,Relajo
+move_name_304,Vozarrón
+move_name_305,Colmillo Veneno
+move_name_306,Garra Brutal
+move_name_307,Anillo Ígneo
+move_name_308,Hidrocañon
+move_name_309,Puño Meteoro
+move_name_310,Impresionar
+move_name_311,Meteorobola
+move_name_312,Aromaterapia
+move_name_313,Llanto Falso
+move_name_314,Aire Afilado
+move_name_315,Sofoco
+move_name_316,Rastreo
+move_name_317,Tumba Rocas
+move_name_318,Viento Plata
+move_name_319,Eco Metálico
+move_name_320,Silbato
+move_name_321,Cosquillas
+move_name_322,Masa Cósmica
+move_name_323,Cosquillas
+move_name_324,Doble Rayo
+move_name_325,Puño Sombra
+move_name_326,Paranormal
+move_name_327,Gancho Alto
+move_name_328,Bucle Arena
+move_name_329,Frío Polar
+move_name_330,Agua Lodosa
+move_name_331,Recurrente
+move_name_332,Golpe Áereo
+move_name_333,Carámbano
+move_name_334,Defensa Férrea
+move_name_335,Bloqueo
+move_name_336,Aullido
+move_name_337,Garra Dragón
+move_name_338,Planta Feroz
+move_name_339,Corpulencia
+move_name_340,Bote
+move_name_341,Disparo Lodo
+move_name_342,Cola Veneno
+move_name_343,Antojo
+move_name_344,Placaje Eléctrico 
+move_name_345,Hoja Mágica
+move_name_346,Hidrochorro
+move_name_347,Paz Mental
+move_name_348,Hoja Aguda
+move_name_349,Danza Dragón
+move_name_350,Pedrada
+move_name_351,Pedrada
+move_name_352,Pedrada
+move_name_353,Deseo Oculto
+move_name_354,Deseo Oculto
+move_name_355,Respiro
+move_name_356,Gravedad
+move_name_357,Gran Ojo
+move_name_358,Gran Ojo
+move_name_359,Machada
+move_name_360,Giro Bola
+move_name_361,Deseo Cura
+move_name_362,Salmuera
+move_name_363,Don Natural
+move_name_364,Amago
+move_name_365,Picoteo
+move_name_366,Viento Afín
+move_name_367,Acupressure
+move_name_368,Represión Metálica
+move_name_369,Ida y Vuelta
+move_name_370,A Bocajarro
+move_name_371,Vendetta
+move_name_372,Acupresión
+move_name_373,Embargo
+move_name_374,Lanzamiento
+move_name_375,Psicocambio
+move_name_376,As Oculto
+move_name_377,Anticura
+move_name_378,Estrujón
+move_name_379,Truco Fuerza
+move_name_384,Power Swap
+move_name_385,Cambia Defensa
+move_name_386,Castigo
+move_name_387,Última Baza
+move_name_388,Abatidoras
+move_name_389,Golpe Bajo
+move_name_390,Abatidoras
+move_name_391,Cambia Almas
+move_name_392,Acua Aro
+move_name_393,Levitón
+move_name_394,Envite Ígneo
+move_name_395,Palmeo
+move_name_396,Esfera Aural
+move_name_397,Pulimento
+move_name_398,Puya Nociva
+move_name_399,Pulso Umbrío
+move_name_400,Tajo Umbrío
+move_name_401,Acua Cola
+move_name_402,Bomba Germen
+move_name_403,Tajo Aéreo
+move_name_404,Tijera-X
+move_name_405,Zulmbido
+move_name_406,Pulso Dragón
+move_name_407,Carga Dragón
+move_name_408,Joya de Luz
+move_name_409,Puño Drenaje
+move_name_410,Onda Vacío
+move_name_411,Onda Certera
+move_name_412,Energibola
+move_name_413,Pájaro Osado
+move_name_414,Tierra Viva
+move_name_415,Trapicheo
+move_name_416,Giga Impacto
+move_name_417,Maquinación
+move_name_418,Puño Bala
+move_name_419,Alud
+move_name_420,Canto Helado
+move_name_421,Garra Umbría
+move_name_422,Colmillo Rayo
+move_name_423,Colmillo Hielo
+move_name_424,Colmillo Fuego
+move_name_425,Sombra Vil
+move_name_426,Bomba Fango
+move_name_427,Psicocorte
+move_name_428,Cabezaso Zem
+move_name_429,Disparo Espejo
+move_name_430,Foco Resplandor
+move_name_431,Treparrocas
+move_name_432,Despejar
+move_name_433,Espacio Raro
+move_name_434,Cometa Draco
+move_name_435,Chispazo
+move_name_436,Humareda
+move_name_437,Lluevehojas
+move_name_438,Latigazo
+move_name_439,Romperrocas
+move_name_440,Veneno X
+move_name_441,Lanza Mugre
+move_name_442,Cabeza de Hierro
+move_name_443,Bomba Imán
+move_name_444,Roca Afilada
+move_name_445,Seducción
+move_name_446,Trampa Rocas
+move_name_447,Hierba Lazo
+move_name_448,Cháchara
+move_name_449,Sentencia
+move_name_450,Picadura
+move_name_451,Rayo Carga
+move_name_452,Mazazo
+move_name_453,Acua Jet
+move_name_454,Al Ataque
+move_name_455,Al Defender
+move_name_456,Auxilio
+move_name_457,Testarazo
+move_name_458,Doble Golpe
+move_name_459,Distorsión
+move_name_460,Corte Vacío
+move_name_462,Agarrón
+move_name_463,Lluvia Ígnea
+move_name_464,Brecha Negra
+move_name_465,Fogonazo
+move_name_466,Viento Aciago
+move_name_467,Golpe Umbrío
+move_name_468,Afilagarras
+move_name_473,Psicocarga
+move_name_474,Carga Tóxica
+move_name_475,Aligerar
+move_name_479,Antiaéreo
+move_name_480,Llave Corsé
+move_name_481,Pirotecnia
+move_name_482,Onda Tóxica
+move_name_483,Danza Aleteo
+move_name_484,Cuerpo Pesado
+move_name_485,Sincrorruido
+move_name_486,Bola Voltio
+move_name_488,Nitrocarga
+move_name_489,Enrosque
+move_name_490,Puntapié
+move_name_491,Bomba Ácida
+move_name_492,Juego Sucio
+move_name_493,Onda Simple
+move_name_494,Danza Amiga
+move_name_496,Canon
+move_name_497,Eco Voz
+move_name_498,Guardia Baja
+move_name_499,Niebla Clara
+move_name_500,Poder Reserva
+move_name_503,Escaldar
+move_name_504,Rompecoraza
+move_name_505,Pulso Cura
+move_name_506,Infortunio
+move_name_508,Cambio de Marcha
+move_name_509,Llave Giro
+move_name_510,Calcinación
+move_name_512,Acróbata
+move_name_513,Clonatipo
+move_name_515,Sacrificio
+move_name_516,Ofrenda
+move_name_517,Infierno
+move_name_518,Voto Agua
+move_name_519,Voto Fuego
+move_name_520,Voto Planta
+move_name_521,Voltiocambio
+move_name_522,Estoicismo
+move_name_523,Terratemblor
+move_name_524,Vaho Gélido
+move_name_525,Cola Dragón
+move_name_526,Avivar
+move_name_527,Electrotela
+move_name_528,Voltio Cruel
+move_name_529,Voltio Cruel
+move_name_530,Golpe Bis
+move_name_531,Arrumaco
+move_name_532,Arrumaco
+move_name_533,Espada Santa
+move_name_534,Chona Filo
+move_name_535,Golpe Calor
+move_name_536,Ciclón de Hojas
+move_name_537,Rodillo de Púas
+move_name_538,Rizo Algodón
+move_name_539,Rizo Algodón
+move_name_540,Rizo Algodón
+move_name_541,Plumerazo
+move_name_542,Vendaval
+move_name_543,Ariete
+move_name_544,Rueda Doble
+move_name_545,Bomba Ígnea
+move_name_546,Tecno Shock
+move_name_548,Sable Místico
+move_name_549,Mundo Gélido
+move_name_550,Ataque Fulgor
+move_name_551,Llama Azul
+move_name_552,Danza Llama
+move_name_553,Rayo Gélido
+move_name_554,Llama Gélida
+move_name_555,Alarido
+move_name_556,Chuzos
+move_name_557,V de Fuego
+move_name_558,Llama fusión
+move_name_559,Rayo Fusión
+move_name_560,Montar
+move_name_564,Red Viscosa
+move_name_565,Aguijón Letal
+move_name_566,Golpe Fantasma
+move_name_568,Golpe Fantasma
+move_name_570,Carga Parábola
+move_name_572,Tormenta Floral
+move_name_573,Liofilización
+move_name_574,Voz Cautivadora
+move_name_575,Última Palabra
+move_name_577,Beso Drenaje
+move_name_580,Campo de Hierba
+move_name_581,Campo de Niebla
+move_name_583,Carantoña
+move_name_584,Viento Feérico
+move_name_585,Fuerza Lunar
+move_name_586,Estruendo
+move_name_588,Escudo Real
+move_name_589,Camaradería
+move_name_590,Confidencia
+move_name_591,Tormenta Diamantes
+move_name_592,Chorro de Vapor
+move_name_593,Paso Dimensional
+move_name_594,Shuriken de Agua
+move_name_595,Llama Embrujada
+move_name_598,Onda Anómala
+move_name_599,Trampa Venenosa
+move_name_601,Geocontrol
+move_name_604,Terreno Eléctrico
+move_name_605,Brillo Mágico
+move_name_606,Celebración
+move_name_608,Ojitos Tiernos
+move_name_609,Moflete Estático
+move_name_610,Clemencia
+move_name_611,Acoso
+move_name_612,Puño Incremento
+move_name_613,Ala Mortífera
+move_name_614,Mil Flechas
+move_name_615,Mil Temblores
+move_name_616,Fuerza Telúrica
+move_name_617,Luz Aniquiladora
+move_name_618,Pulso Primigenio
+move_name_619,Filo del Abismo
+move_name_620,Ascenso Draco
+move_name_621,Filo del Abismo
+move_name_659,Recogearena
+move_name_660,Escaramuza
+move_name_662,Puntada Sombría
+move_name_663,Lariat Oscuro
+move_name_664,Aria Burbuja
+move_name_665,Martillo Hielo
+move_name_667,Fuerza Equina
+move_name_668,Fuerza Equina
+move_name_669,Cuchilla Sola
+move_name_670,Follaje
+move_name_672,Hilo Venenoso
+move_name_674,Piñón Auxiliar
+move_name_676,Bola de Polen
+move_name_677,Anclaje
+move_name_678,Campo Psiquico
+move_name_679,Plancha
+move_name_680,Látigo Ígneo
+move_name_681,Chulería
+move_name_682,Llama Final
+move_name_684,Cuerno Certero
+move_name_686,Danza Despertar
+move_name_688,Patada Tropical
+move_name_691,Fragor Escamas
+move_name_692,Martillo Dragón
+move_name_693,Giro Vil
+move_name_705,Cañón Floral
+move_name_706,Psicocolmillo
+move_name_708,Hueso Sombrío
+move_name_709,Roca Veloz
+move_name_710,Hidroariete
+move_name_711,Láser Prisma
+move_name_715,Ojos Llorosos
+move_name_716,Electropunzada
+move_name_717,Furia Natural
+move_name_749,Alquitranazo
+move_name_796,Metaláser
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------
 Story translation:
 ---
