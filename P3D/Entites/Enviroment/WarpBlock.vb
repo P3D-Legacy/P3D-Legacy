@@ -27,14 +27,16 @@
                 End If
             Next
             If c >= 5 Then
-                Dim validRotations As New List(Of Integer)
+                If link.GetSplit(5, ",") <> "" Then
+                    Dim validRotations As New List(Of Integer)
 
-                Dim rotationData() As String = link.GetSplit(5, ",").Split(CChar("|"))
-                For Each Element As String In rotationData
-                    validRotations.Add(CInt(Element))
-                Next
-                If validRotations.Contains(Screen.Camera.GetPlayerFacingDirection()) = False Then
-                    Return True
+                    Dim rotationData() As String = link.GetSplit(5, ",").Split(CChar("|"))
+                    For Each Element As String In rotationData
+                        validRotations.Add(CInt(Element))
+                    Next
+                    If validRotations.Contains(Screen.Camera.GetPlayerFacingDirection()) = False Then
+                        Return True
+                    End If
                 End If
             End If
             Dim WarpSoundName As String = "Warp_Exit"
@@ -44,7 +46,7 @@
                     Case 0
                         WarpSoundName = "Warp_Exit"
                     Case 1
-                        WarpSoundName = "Warp_RegularDoor"
+                        WarpSoundName = "Warp_Door"
                     Case 2
                         WarpSoundName = "Warp_Ladder"
                     Case 3
