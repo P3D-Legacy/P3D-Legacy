@@ -29740,9 +29740,6 @@
     <Content Include="Content\Data\maps\structures\stairs\vroad\n.dat">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Data\maps\structures\stairs\vroad\s.dat">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="Content\Data\maps\structures\stairs\vroad\w.dat">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
