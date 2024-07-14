@@ -451,6 +451,19 @@
                     Dim doWalkAnimation As Boolean = CBool(argument)
                     Core.Player.DoWalkAnimation = doWalkAnimation
                     IsReady = True
+                Case "removeitemdata"
+                    Dim IDs() As String = Core.Player.ItemData.Split(CChar(","))
+                    Dim LevelPath As String = argument.GetSplit(0, ",")
+                    Dim LevelItemIndex As String = argument.GetSplit(1, ",")
+
+                    If IDs.Contains((LevelPath.ToLower() & "|" & LevelItemIndex).ToLower()) = True Then
+                        If Core.Player.ItemData.Split(",").Count = 1 Then
+                            Core.Player.ItemData = ""
+                        Else
+                            Core.Player.ItemData = Core.Player.ItemData.Replace(("," & (LevelPath.ToLower() & "|" & LevelItemIndex).ToLower()).ToString, "")
+                        End If
+                    End If
+                    IsReady = True
                 Case "quitgame"
                     'Reset VoltorbFlipScreen's Variables
                     VoltorbFlip.VoltorbFlipScreen.CurrentLevel = 1

@@ -535,6 +535,7 @@ Namespace ScriptVersion2
             r(New ScriptCommand("player", "setopacity", {New ScriptArgument("opacity", ScriptArgument.ArgumentTypes.Sng)}.ToList(), "Sets the player entity's opacity."))
             r(New ScriptCommand("player", "QuitGame", {New ScriptArgument("doFade", ScriptArgument.ArgumentTypes.Bool, True, "")}.ToList(), "Quits the game and goes back to the Main Menu (with optionally a fade out and in)."))
             r(New ScriptCommand("player", "DoWalkAnimation", {New ScriptArgument("walkAnimation", ScriptArgument.ArgumentTypes.Bool)}.ToList(), "Enables or disables the player's walking animation when walking or during a @player.move command."))
+            r(New ScriptCommand("player", "RemoveItemData", {New ScriptArgument("levelPath", ScriptArgument.ArgumentTypes.Str), New ScriptArgument("itemIndex", ScriptArgument.ArgumentTypes.Str)}.ToList(), "Makes the specified item index of the specified map spawn again after it has been found."))
 
             ' Constructs:
             r(New ScriptCommand("player", "position", "sngarr", {New ScriptArgument("coordinate", ScriptArgument.ArgumentTypes.StrArr, {"x", "y", "z"}, True, "")}.ToList(), "Returns the position of the player. The normal coordinate combination is ""X,Y,Z"".", ",", True))
