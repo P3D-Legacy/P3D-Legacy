@@ -20,6 +20,8 @@
                 Case "toggle"
                     Screen.Level.OverworldPokemon.Visible = Not Screen.Level.OverworldPokemon.Visible
                     IsReady = True
+                Case Else
+                    IsReady = True
             End Select
 
         End Sub
