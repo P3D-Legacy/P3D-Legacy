@@ -64,13 +64,21 @@
             Dim WarpTurns As Integer = CInt(Me.AdditionalValue.GetSplit(5))
             Dim FallSpeed As String = "2.25"
             If Me.AdditionalValue.Split(",").Count >= 7 Then
-                FallSpeed = Me.AdditionalValue.GetSplit(6)
+                If Me.AdditionalValue.GetSplit(6) <> "" Then
+                    FallSpeed = Me.AdditionalValue.GetSplit(6)
+                End If
+            End If
+            Dim CameraFollows As Boolean = False
+            If Me.AdditionalValue.Split(",").Count >= 8 Then
+                If Me.AdditionalValue.GetSplit(7) <> "" Then
+                    CameraFollows = CBool(Me.AdditionalValue.GetSplit(7))
+                End If
             End If
 
-            If Me.AdditionalValue.Split(",").Count >= 8 Then
+            If Me.AdditionalValue.Split(",").Count >= 9 Then
                 Dim validRotations As New List(Of Integer)
 
-                Dim rotationData() As String = Me.AdditionalValue.GetSplit(7, ",").Split(CChar("|"))
+                Dim rotationData() As String = Me.AdditionalValue.GetSplit(8, ",").Split(CChar("|"))
                 For Each Element As String In rotationData
                     validRotations.Add(CInt(Element))
                 Next
@@ -98,26 +106,37 @@
 
                 s &= "@Player.SetMovement(0,-1,0)" & Environment.NewLine &
                     "@Player.DoWalkAnimation(0)" & Environment.NewLine &
+                    "@Sound.Play(Drop_Fall)" & Environment.NewLine &
                     "@Player.SetSpeed(" & FallSpeed & ")" & Environment.NewLine &
                     "@Player.Move(2)" & Environment.NewLine &
                     "@Player.SetOpacity(0)" & Environment.NewLine &
                     "@Player.ResetMovement" & Environment.NewLine &
                     "@Level.Wait(30)" & Environment.NewLine &
-                    "@Screen.FadeOut(35)" & Environment.NewLine &
-                    "@Player.Warp(" & Destination & "," & CStr(WarpPosition.X).Replace(GameController.DecSeparator, ".") & "," & CStr(WarpPosition.Y).Replace(GameController.DecSeparator, ".") & "," & CStr(WarpPosition.Z).Replace(GameController.DecSeparator, ".") & "," & WarpTurns & ")" & Environment.NewLine &
+                    "@Screen.FadeOut(35)" & Environment.NewLine
+                If CameraFollows = False Then
+                    s &= "@Player.Warp(" & Destination & "," & CStr(WarpPosition.X).Replace(GameController.DecSeparator, ".") & "," & CStr(WarpPosition.Y).Replace(GameController.DecSeparator, ".") & "," & CStr(WarpPosition.Z).Replace(GameController.DecSeparator, ".") & "," & WarpTurns & ",3)" & Environment.NewLine &
                     "@Level.Update" & Environment.NewLine &
                     "@Camera.Defix" & Environment.NewLine &
                     "@Camera.Reset" & Environment.NewLine &
                     "@Camera.SetYaw(0)" & Environment.NewLine &
                     "@Camera.Update" & Environment.NewLine &
                     "@Camera.Fix" & Environment.NewLine &
-                    "@Player.Warp(" & CStr(WarpPosition.X).Replace(GameController.DecSeparator, ".") & "," & CStr(WarpPosition.Y + DropDistance).Replace(GameController.DecSeparator, ".") & "," & CStr(WarpPosition.Z).Replace(GameController.DecSeparator, ".") & ")" & Environment.NewLine &
-                    "@Player.SetOpacity(1)" & Environment.NewLine &
+                    "@Player.Warp(" & CStr(WarpPosition.X).Replace(GameController.DecSeparator, ".") & "," & CStr(WarpPosition.Y + DropDistance).Replace(GameController.DecSeparator, ".") & "," & CStr(WarpPosition.Z).Replace(GameController.DecSeparator, ".") & ")" & Environment.NewLine
+                Else
+                    s &= "@Player.Warp(" & Destination & "," & CStr(WarpPosition.X).Replace(GameController.DecSeparator, ".") & "," & CStr(WarpPosition.Y + DropDistance).Replace(GameController.DecSeparator, ".") & "," & CStr(WarpPosition.Z).Replace(GameController.DecSeparator, ".") & "," & WarpTurns & ",3)" & Environment.NewLine &
+                   "@Level.Update" & Environment.NewLine &
+                   "@Camera.Defix" & Environment.NewLine &
+                   "@Camera.Reset" & Environment.NewLine &
+                   "@Camera.SetYaw(0)" & Environment.NewLine &
+                   "@Camera.Update" & Environment.NewLine
+                End If
+                s &= "@Player.SetOpacity(1)" & Environment.NewLine &
                     "@Level.Update" & Environment.NewLine &
                     "@Player.SetMovement(0,-1,0)" & Environment.NewLine &
                     "@Player.SetSpeed(" & FallSpeed & ")" & Environment.NewLine &
                     "@Screen.FadeIn(35)" & Environment.NewLine &
                     "@Player.Move(" & DropDistance & ")" & Environment.NewLine &
+                    "@Sound.Play(Drop_Land)" & Environment.NewLine &
                     "@Level.Update" & Environment.NewLine &
                     "@Camera.Update" & Environment.NewLine &
                     "@Camera.Defix" & Environment.NewLine &

@@ -712,6 +712,11 @@ Public Class Level
         ''' If the warp action got triggered by a warp block.
         ''' </summary>
         Public IsWarpBlock As Boolean
+
+        ''' <summary>
+        ''' What sound effect to trigger when warping
+        ''' </summary>
+        Public WarpSound As String
     End Structure
 
     ''' <summary>
@@ -1159,13 +1164,15 @@ Public Class Level
             ' Because of the map change, Roaming Pokémon are moving to their next location on the world map:
             RoamingPokemon.ShiftRoamingPokemon(-1)
 
-            ' Check if the enter sound should be played by checking if CanDig or CanFly properties are different from the last map:
-            If tempProperties <> Me.CanDig.ToString() & "," & Me.CanFly.ToString() Then
-                SoundManager.PlaySound("enter", False)
-            ElseIf tempProperties = "True,False" And Me.CanDig = True And Me.CanFly = False Then
-                SoundManager.PlaySound("enter", False)
-            ElseIf tempProperties = "False,False" And Me.CanDig = False And Me.CanFly = False Then
-                SoundManager.PlaySound("enter", False)
+            ' Check if the "warp" sound should be played by checking if CanDig or CanFly properties are different from the last map:
+            If Not Me.WarpData.WarpSound = Nothing And Not Me.WarpData.WarpSound = "" Then
+                If tempProperties <> Me.CanDig.ToString() & "," & Me.CanFly.ToString() Then
+                    SoundManager.PlaySound(Me.WarpData.WarpSound, False)
+                ElseIf tempProperties = "True,False" And Me.CanDig = True And Me.CanFly = False Then
+                    SoundManager.PlaySound(Me.WarpData.WarpSound, False)
+                ElseIf tempProperties = "False,False" And Me.CanDig = False And Me.CanFly = False Then
+                    SoundManager.PlaySound(Me.WarpData.WarpSound, False)
+                End If
             End If
 
             ' Unlock the yaw on the camera:
