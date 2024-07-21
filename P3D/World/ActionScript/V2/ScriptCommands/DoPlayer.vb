@@ -279,6 +279,28 @@
                             Screen.Camera.Position = New Vector3(sng(argument.GetSplit(0).Replace("~", CStr(cPosition.X)).Replace(".", GameController.DecSeparator)),
                                                                  sng(argument.GetSplit(1).Replace("~", CStr(cPosition.Y)).Replace(".", GameController.DecSeparator)),
                                                                  sng(argument.GetSplit(2).Replace("~", CStr(cPosition.Z)).Replace(".", GameController.DecSeparator)))
+                        Case 1
+                            If argument.GetSplit(0).Contains(".dat") = True Then
+                                Screen.Level.WarpData.WarpDestination = argument.GetSplit(0)
+                                Screen.Level.WarpData.WarpPosition = Screen.Camera.Position
+                                Screen.Level.WarpData.WarpRotations = 0
+                                Dim WarpSoundData As Integer = CInt(argument.GetSplit(1))
+                                Select Case WarpSoundData
+                                    Case 0
+                                        Screen.Level.WarpData.WarpSound = "Warp_Exit"
+                                    Case 1
+                                        Screen.Level.WarpData.WarpSound = "Warp_Door"
+                                    Case 2
+                                        Screen.Level.WarpData.WarpSound = "Warp_Ladder"
+                                    Case 3
+                                        Screen.Level.WarpData.WarpSound = ""
+                                    Case Else
+                                        Screen.Level.WarpData.WarpSound = "Warp_Exit"
+                                End Select
+                                Screen.Level.WarpData.DoWarpInNextTick = True
+                                Screen.Level.WarpData.CorrectCameraYaw = Screen.Camera.Yaw
+                            End If
+
                         Case 0
                             Screen.Level.WarpData.WarpDestination = argument
                             Screen.Level.WarpData.WarpPosition = Screen.Camera.Position
