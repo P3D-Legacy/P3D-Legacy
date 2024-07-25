@@ -216,11 +216,11 @@ Public Class Trainer
 
                     Dim addLevel As Integer = 0
                     If Core.Player.DifficultyMode = 0 Then
-                        addLevel = CInt(Math.Ceiling(level * CSng(GameModeManager.GetGameRuleValue("LevelMultiplier", "1.0")) - level))
+                        addLevel = CInt(Math.Ceiling(level * CSng(GameModeManager.GetGameRuleValue("LevelMultiplier", "1.0").InsertDecSeparator) - level))
                     ElseIf Core.Player.DifficultyMode = 1 Then
-                        addLevel = CInt(Math.Ceiling(level * CSng(GameModeManager.GetGameRuleValue("LevelMultiplier", "1.1")) - level))
+                        addLevel = CInt(Math.Ceiling(level * CSng(GameModeManager.GetGameRuleValue("LevelMultiplier", "1.1").InsertDecSeparator) - level))
                     ElseIf Core.Player.DifficultyMode = 2 Then
-                        addLevel = CInt(Math.Ceiling(level * CSng(GameModeManager.GetGameRuleValue("LevelMultiplier", "1.2")) - level))
+                        addLevel = CInt(Math.Ceiling(level * CSng(GameModeManager.GetGameRuleValue("LevelMultiplier", "1.2").InsertDecSeparator) - level))
                     End If
 
                     If level + addLevel > CInt(GameModeManager.GetGameRuleValue("MaxLevel", "100")) Then
@@ -279,11 +279,11 @@ Public Class Trainer
 
                     Dim addLevel As Integer = 0
                     If Core.Player.DifficultyMode = 0 Then
-                        addLevel = CInt(Math.Ceiling(Level * CSng(GameModeManager.GetGameRuleValue("LevelMultiplier", "1.0")) - Level))
+                        addLevel = CInt(Math.Ceiling(Level * CSng(GameModeManager.GetGameRuleValue("LevelMultiplier", "1.0").InsertDecSeparator) - Level))
                     ElseIf Core.Player.DifficultyMode = 1 Then
-                        addLevel = CInt(Math.Ceiling(Level * CSng(GameModeManager.GetGameRuleValue("LevelMultiplier", "1.1")) - Level))
+                        addLevel = CInt(Math.Ceiling(Level * CSng(GameModeManager.GetGameRuleValue("LevelMultiplier", "1.1").InsertDecSeparator) - Level))
                     ElseIf Core.Player.DifficultyMode = 2 Then
-                        addLevel = CInt(Math.Ceiling(Level * CSng(GameModeManager.GetGameRuleValue("LevelMultiplier", "1.2")) - Level))
+                        addLevel = CInt(Math.Ceiling(Level * CSng(GameModeManager.GetGameRuleValue("LevelMultiplier", "1.2").InsertDecSeparator) - Level))
                     End If
                     If Level + addLevel > CInt(GameModeManager.GetGameRuleValue("MaxLevel", "100")) Then
                         addLevel = CInt(GameModeManager.GetGameRuleValue("MaxLevel", "100")) - Level
