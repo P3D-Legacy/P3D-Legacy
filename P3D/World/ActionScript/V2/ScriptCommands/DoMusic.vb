@@ -32,7 +32,7 @@
 
                     If LoopSong = True Then
                         If Core.CurrentScreen.Identification = Screen.Identifications.OverworldScreen Then
-                            Screen.Level.MusicLoop = argument
+                            Screen.Level.MusicLoop = argument.GetSplit(0, ",")
                         End If
                     Else
                         If Core.CurrentScreen.Identification = Screen.Identifications.OverworldScreen Then
@@ -57,7 +57,7 @@
 
                     If LoopSong = True Then
                         If Core.CurrentScreen.Identification = Screen.Identifications.OverworldScreen Then
-                            Screen.Level.MusicLoop = argument
+                            Screen.Level.MusicLoop = argument.GetSplit(0, ",")
                         End If
                     Else
                         If Core.CurrentScreen.Identification = Screen.Identifications.OverworldScreen Then

@@ -308,6 +308,10 @@ Public Class MusicManager
                 'End If
                 'End If
                 'End If
+            Else
+                If _isFadingIn = False Then
+                    _isCurrentlyFading = False
+                End If
             End If
         End If
 
