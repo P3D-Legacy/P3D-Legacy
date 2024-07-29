@@ -2409,16 +2409,31 @@ Public Class Pokemon
     ''' </summary>
     ''' 
     Public Sub CalculateStatsBarSpeed()
-        Me.MaxHP = CalcStatus(Me.Level, True, Me.BaseHP, Me.EVHP, Me.IVHP, "HP")
-        Me.Attack = CalcStatus(Me.Level, False, Me.BaseAttack, Me.EVAttack, Me.IVAttack, "Attack")
-        Me.Defense = CalcStatus(Me.Level, False, Me.BaseDefense, Me.EVDefense, Me.IVDefense, "Defense")
-        Me.SpAttack = CalcStatus(Me.Level, False, Me.BaseSpAttack, Me.EVSpAttack, Me.IVSpAttack, "SpAttack")
-        Me.SpDefense = CalcStatus(Me.Level, False, Me.BaseSpDefense, Me.EVSpDefense, Me.IVSpDefense, "SpDefense")
+        If IsTransformed = False Then
+            Me.MaxHP = CalcStatus(Me.Level, True, Me.BaseHP, Me.EVHP, Me.IVHP, "HP")
+            Me.Attack = CalcStatus(Me.Level, False, Me.BaseAttack, Me.EVAttack, Me.IVAttack, "Attack")
+            Me.Defense = CalcStatus(Me.Level, False, Me.BaseDefense, Me.EVDefense, Me.IVDefense, "Defense")
+            Me.SpAttack = CalcStatus(Me.Level, False, Me.BaseSpAttack, Me.EVSpAttack, Me.IVSpAttack, "SpAttack")
+            Me.SpDefense = CalcStatus(Me.Level, False, Me.BaseSpDefense, Me.EVSpDefense, Me.IVSpDefense, "SpDefense")
+        Else
+            Dim p As Pokemon = GetPokemonByID(Me.OriginalNumber, Me.AdditionalData)
+            Me.MaxHP = CalcStatus(Me.Level, True, p.BaseHP, Me.EVHP, Me.IVHP, "HP")
+            Me.OriginalStats(0) = CalcStatus(Me.Level, False, p.BaseAttack, Me.EVAttack, Me.IVAttack, "Attack")
+            Me.OriginalStats(1) = CalcStatus(Me.Level, False, p.BaseDefense, Me.EVDefense, Me.IVDefense, "Defense")
+            Me.OriginalStats(2) = CalcStatus(Me.Level, False, p.BaseSpAttack, Me.EVSpAttack, Me.IVSpAttack, "SpAttack")
+            Me.OriginalStats(3) = CalcStatus(Me.Level, False, p.BaseSpDefense, Me.EVSpDefense, Me.IVSpDefense, "SpDefense")
+        End If
     End Sub
 
     Public Sub CalculateStats()
         CalculateStatsBarSpeed()
-        Me.Speed = CalcStatus(Me.Level, False, Me.BaseSpeed, Me.EVSpeed, Me.IVSpeed, "Speed")
+        If IsTransformed = False Then
+            Me.Speed = CalcStatus(Me.Level, False, Me.BaseSpeed, Me.EVSpeed, Me.IVSpeed, "Speed")
+        Else
+            Dim p As Pokemon = GetPokemonByID(Me.OriginalNumber, Me.AdditionalData)
+            Me.OriginalStats(4) = CalcStatus(Me.Level, False, p.BaseSpeed, Me.EVSpeed, Me.IVSpeed, "Speed")
+        End If
+
     End Sub
 
     ''' <summary>
@@ -2435,7 +2450,7 @@ Public Class Pokemon
             If Me.Number = 292 Then
                 Return 1
             ElseIf OriginalNumber <> -1 AndAlso OriginalNumber <> Number Then 'when transformed
-                Return CInt(Math.Floor((((IVStat + (2 * GetPokemonByID(OriginalNumber).BaseHP) + (EVStat / 4) + 100) * calcLevel) / 100) + 10))
+                Return CInt(Math.Floor((((IVStat + (2 * GetPokemonByID(OriginalNumber, AdditionalData).BaseHP) + (EVStat / 4) + 100) * calcLevel) / 100) + 10))
             Else
                 Return CInt(Math.Floor((((IVStat + (2 * baseStat) + (EVStat / 4) + 100) * calcLevel) / 100) + 10))
             End If
