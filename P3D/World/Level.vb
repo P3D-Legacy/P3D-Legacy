@@ -914,6 +914,7 @@ Public Class Level
                 Core.OffsetMaps.Clear()
                 Logger.Debug(String.Format("Reload map file: {0}", Me._levelFile))
                 Me.Load(LevelFile, True)
+                Screen.Level.OverworldPokemon.Visible = False
             End If
         End If
 
