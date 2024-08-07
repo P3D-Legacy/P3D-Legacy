@@ -8355,7 +8355,7 @@
                         For e = 1 To EXP
                             Dim oldStats() As Integer
                             With Core.Player.Pokemons(PokeIndex)
-                                If .IsTransformed = False Then
+                                If .IsTransformed = True Then
                                     oldStats = { .MaxHP, .OriginalStats(0), .OriginalStats(1), .OriginalStats(2), .OriginalStats(3), .OriginalStats(4)}
                                 Else
                                     oldStats = { .MaxHP, .Attack, .Defense, .SpAttack, .SpDefense, .Speed}
