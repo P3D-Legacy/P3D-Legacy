@@ -27,6 +27,7 @@ Public Class KeyBindings
     Public Shared DisableControllerKey As Keys = Keys.F6
     Public Shared FullScreenKey As Keys = Keys.F11
     Public Shared DebugWalkKey As Keys = Keys.LeftControl
+    Public Shared SandBoxModeSwitchKey As Keys = Keys.RightControl
 
     Public Shared EnterKey1 As Keys = Keys.Enter
     Public Shared EnterKey2 As Keys = Keys.Space
@@ -85,6 +86,8 @@ Public Class KeyBindings
                             DebugKey = binding
                         Case "debugwalk"
                             DebugWalkKey = binding
+                        Case "sandboxmodeswitch"
+                            SandBoxModeSwitchKey = binding
                         Case "perspectiveswitch"
                             PerspectiveSwitchKey = binding
                         Case "fullscreen"

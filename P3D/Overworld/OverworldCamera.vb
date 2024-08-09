@@ -172,6 +172,16 @@ Public Class OverworldCamera
 #Region "Update"
 
     Public Overrides Sub Update()
+        If GameController.IS_DEBUG_ACTIVE = True Or Core.Player.IsGameJoltSave = False Then
+            If KeyBoardHandler.KeyPressed(KeyBindings.SandBoxModeSwitchKey) = True Then
+                Core.Player.SandBoxMode = Not Core.Player.SandBoxMode
+                If Core.Player.SandBoxMode = True Then
+                    Core.GameMessage.ShowMessage(Localization.GetString("game_message_sandbox_mode_on"), 12, FontManager.MainFont, Color.White)
+                Else
+                    Core.GameMessage.ShowMessage(Localization.GetString("game_message_sandbox_mode_off"), 12, FontManager.MainFont, Color.White)
+                End If
+            End If
+        End If
 
         If GameController.IS_DEBUG_ACTIVE = True Or Core.Player.SandBoxMode = True Then
             If KeyBoardHandler.KeyPressed(KeyBindings.DebugWalkKey) = True Then
@@ -321,7 +331,7 @@ Public Class OverworldCamera
                     ThirdPersonOffset.Y += _scrollSpeed * _scrollDirection
                     ThirdPersonOffset.Z += _scrollSpeed * _scrollDirection
 
-                    If GameController.IS_DEBUG_ACTIVE = False And Core.Player.SandBoxMode = False Then
+                    If Core.Player.SandBoxMode = False Then
                         ThirdPersonOffset.Y = ThirdPersonOffset.Y.Clamp(0, 1.32F)
                         ThirdPersonOffset.Z = ThirdPersonOffset.Z.Clamp(-0.1, 2.7F)
                     End If
