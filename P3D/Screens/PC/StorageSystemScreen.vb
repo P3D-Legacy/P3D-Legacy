@@ -1345,6 +1345,8 @@ Public Class StorageSystemScreen
                         End If
                     Next
                 Next
+                Core.SpriteBatch.DrawString(FontManager.MainFont, "Press" & " " & KeyBindings.SpecialKey.ToString & " " & "on the keyboard to filter.", New Vector2(44, 200 + 5 * 84), Color.Black)
+                Core.SpriteBatch.DrawString(FontManager.MainFont, "Press" & " " & KeyBindings.SpecialKey.ToString & " " & "on the keyboard to filter.", New Vector2(44 - 2, 200 + 5 * 84 - 2), Color.White)
             End If
         End If
     End Sub
@@ -2304,7 +2306,7 @@ Public Class StorageSystemFilterScreen
                 Dim l As List(Of Pokemon) = Me._storageSystemScreen.GetPokemonList(True, False)
 
                 For Each p As Pokemon In l
-                    If p.GetName().ToString().ToUpper() = chosenLetter And pokemonList.Contains(p.GetName()) = False Then
+                    If p.GetName().ToString().ToUpper().StartsWith(chosenLetter) And pokemonList.Contains(p.GetName()) = False Then
                         pokemonList.Add(p.GetName)
                     End If
                 Next
@@ -2341,8 +2343,8 @@ Public Class StorageSystemFilterScreen
         Dim types As New List(Of String)
 
         For Each p As Pokemon In l
-            If types.Contains(p.Type1.Type.ToString()) = False Then
-                types.Add(p.Type1.Type.ToString())
+            If types.Contains(p.Type1.ToString()) = False Then
+                types.Add(p.Type1.ToString())
             End If
         Next
 
@@ -2388,8 +2390,8 @@ Public Class StorageSystemFilterScreen
         Dim types As New List(Of String)
 
         For Each p As Pokemon In l
-            If types.Contains(p.Type2.Type.ToString()) = False Then
-                types.Add(p.Type2.Type.ToString())
+            If types.Contains(p.Type2.ToString()) = False Then
+                types.Add(p.Type2.ToString())
             End If
         Next
 
