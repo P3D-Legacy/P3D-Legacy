@@ -173,7 +173,7 @@ Public Class OverworldCamera
 
     Public Overrides Sub Update()
         If GameController.IS_DEBUG_ACTIVE = True Or Core.Player.IsGameJoltSave = False Then
-            If KeyBoardHandler.KeyPressed(KeyBindings.SandBoxModeSwitchKey) = True Then
+            If KeyBoardHandler.KeyDown(KeyBindings.DebugKey) = True AndAlso KeyBoardHandler.KeyPressed(Keys.B) = True Then
                 Core.Player.SandBoxMode = Not Core.Player.SandBoxMode
                 If Core.Player.SandBoxMode = True Then
                     Core.GameMessage.ShowMessage(Localization.GetString("game_message_sandbox_mode_on"), 12, FontManager.MainFont, Color.White)
