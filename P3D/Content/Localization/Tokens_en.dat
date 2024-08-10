@@ -128,8 +128,8 @@ game_interaction_gamemenu,Game Menu
 game_interaction_pokegear,Pokégear
 game_interaction_pausemenu,Pause Menu
 game_interaction_notification,Notification
-game_notification_accept,Press <system.button(special)> to accept.
-game_notification_dismiss,Press <system.button(special)> to dismiss.
+game_notification_accept,Press [<system.button(special)>] to accept.
+game_notification_dismiss,Press [<system.button(special)>] to dismiss.
 ---
 PressStartScreen:
 start_screen_press,Press
@@ -192,7 +192,7 @@ join_server_screen_no_connection,(no connection)
 Options Screen:
 option_screen_title,Options
 option_screen_warning,Options aren't saved yet, scroll down and choose "Save options."
-option_screen_backadvice,PRESS E TO GO BACK
+option_screen_backadvice,PRESS [<system.button(OpenMenu)>] TO GO BACK
 option_screen_description,Description
 
 option_screen_game,Game
@@ -315,7 +315,7 @@ save_screen_no,No
 Apricorn Screen:
 apricorn_screen_apricorns,Apricorns
 apricorn_screen_producing,I am producing the Balls at the moment.~Come back later.
-apricorn_screen_backadvice,PRESS E TO GO BACK
+apricorn_screen_backadvice,PRESS [<system.button(OpenMenu)>] TO GO BACK
 apricorn_screen_choose_apricorns,Please choose the Apricorns I should take to produce Pokéballs.
 apricorn_screen_ok,OK
 apricorn_screen_clear,Clear
@@ -593,7 +593,7 @@ Places_Scrufib Chamber,Scrufib Chamber
 Places_Rixy Chamber,Rixy Chamber
 Places_Viapois Chamber,Viapois Chamber
 Places_Ancient Ruins,Ancient Ruins
-Places_Millenial Star Tower,Millennial Star Tower
+Places_Millennial Star Tower,Millennial Star Tower
 Places_Kolben Tower,Kolben Tower
 Places_Faraway Island,Faraway Island
 Places_Underwater Cave,Underwater Cave
