@@ -1,0 +1,3047 @@
+language_name,Português Brasileiro
+=====
+Global:
+global_please_wait,Aguarde
+global_loading,Carregando
+global_game,Jogo
+global_login,Logar
+global_male,Masculino
+global_female,Feminino
+global_genderless,Não-Binário
+global_yes,Sim
+global_no,Não
+global_accept,Aceitar
+global_cancel,Cancelar
+global_gamemode,Modo de Jogo
+global_clear,Completo
+global_save,Salvar
+global_apply,Aplicar
+global_close,Fechar
+global_back,Voltar
+global_on,Ligado
+global_off,Desligado
+global_enabled,Ativado
+global_disabled,Desativado
+global_enable,Ativar
+global_disable,Desativar
+global_player_name,Nome do Jogador
+global_badges,Insígnias
+global_play_time,Tempo de Jogo
+global_location,Local
+global_money,Dinheiro
+global_points,Pontos
+global_name,Nome
+global_order,Ordem
+global_filter,Filtro
+global_reset,Resetar
+global_pokemon_type_normal,Normal
+global_pokemon_type_fire,Fogo
+global_pokemon_type_flying,Voador
+global_pokemon_type_fighting,Lutador
+global_pokemon_type_water,Água
+global_pokemon_type_grass,Grama
+global_pokemon_type_poison,Veneno
+global_pokemon_type_ground,Terra
+global_pokemon_type_electric,Elétrico
+global_pokemon_type_psychic,Psíquico
+global_pokemon_type_rock,Pedra
+global_pokemon_type_ice,Gelo
+global_pokemon_type_bug,Inseto
+global_pokemon_type_dragon,Dragão
+global_pokemon_type_ghost,Fantasma
+global_pokemon_type_dark,Sombrio
+global_pokemon_type_steel,Aço
+global_pokemon_type_fairy,Fada
+global_pokemon_type_blank,Nulo
+global_true,Verdadeiro
+global_false,Falso
+global_select,Selecionar
+global_summary,Resumo
+global_item,Item
+global_use,Usar
+global_give,Dar
+global_take,Pegar
+global_toss,Jogar Fora
+global_switch,Trocar
+global_pokemon_move_fly,Fly
+global_pokemon_move_rocksmash,Rock Smash
+global_pokemon_move_ride,Ride
+global_pokemon_move_flash,Flash
+global_pokemon_move_cut,Cut
+global_pokemon_move_teleport,Teleport
+global_pokemon_move_dig,Dig
+global_used,Usou
+global_eggs_cannot_hold,Ovos não podem segurar itens.
+---
+General:
+HP,HP
+PP,PP
+Lv.,Nv.
+No.,Nº.
+Level,Nível
+MaxHP,HP Máximo
+Attack,Ataque
+Defense,Defesa
+Special_Attack,Super Ataque
+Sp_Attack,Sp. Ataque
+Special_Defense,Super Defesa
+Sp_Defense,Sp. Defesa
+Speed,Velocidade
+---
+FieldMoves:
+
+fieldmove_cut_1,Esta árvore parece que~pode ser cortada!
+fieldmove_cut_2,*Você deseja usar Cut?
+fieldmove_cut_used,usou~Cut!
+
+fieldmove_rocksmash_1,Esta pedra parece que~pode ser quebrada!
+fieldmove_rocksmash_2,*Você deseja ~usar Rock Smash?
+fieldmove_rocksmash_used,usou~Rock Smash!
+
+fieldmove_strength_1,Parece que um Pokémon~pode mover isso.
+fieldmove_strength_2,*Você deseja usar Strength?
+fieldmove_strength_used,usou~Strength!
+
+fieldmove_surf_type0,Voce deseja usar Surf? 
+fieldmove_surf_type1,A água parece calma~e funda.~Você deseja usar Surf?
+fieldmove_surf_type2,Esse lago está~calmo e raso.~Você deseja usar Surf?
+fieldmove_surf_used,usou~Surf!
+
+fieldmove_dive_down_1,A água parece estar~bem profunda neste ponto.
+fieldmove_dive_down_2,*Você deseja usar Dive?
+
+fieldmove_dive_up_type1,Uma Luz está vindo~da superfície.*Você deseja usar Dive?
+fieldmove_dive_up_type2,A sombra do barco aparece~no fundo do oceano.*Você deseja usar Dive?
+fieldmove_dive_used,usou~Dive!
+							Essa árvore pode ter~um Pokémon em cima.*Você deseja usar Headbutt?
+fieldmove_headbutt_question,This tree could have~a Pokémon in it.*Do you want to~use Headbutt?
+fieldmove_headbutt_used,usou~Headbutt!
+
+fieldmove_waterfall_used,usou~Waterfall.
+
+fieldmove_ride_cannot_walk,Você não pode andar aqui!
+fieldmove_ride_cannot_ride,Você não pode usar Ride aqui!
+fieldmove_ride_used,usou~Ride!
+---
+GameInteractions:
+game_interaction_interact,Interagir
+game_interaction_gamemenu,Menu do Jogo
+game_interaction_pokegear,Pokégear
+game_interaction_pausemenu,Menu de Pausa
+game_interaction_notification,Notificação
+game_notification_accept,Pressione [<system.button(special)>] para aceitar.
+game_notification_dismiss,Pressione [<system.button(special)>] para recusar.
+---
+PressStartScreen:
+start_screen_press,Aperte
+start_screen_tostart,para iniciar.
+---
+Main Menu:
+main_menu_newgame_line1,Novo
+main_menu_newgame_line2,Jogo
+main_menu_options,Opções
+main_menu_savefile_name,Nome do Jogador
+main_menu_savefile_gamemode,Modo de Jogo
+main_menu_savefile_badges,Insígnias
+main_menu_savefile_playtime,Tempo de Jogo
+main_menu_savefile_location,Local
+main_menu_error_gamemode_profile,O modo de jogo escolhido não existe!
+main_menu_error_gamemode_message,O modo de jogo escolhido não existe.~Baixe novamente para jogar nesse Salve.
+main_menu_error_gamejolt_1,Download falhou. Press Aceitar tentar denovo.
+main_menu_error_gamejolt_2,Se o problema persistir,tente novamente mais tarde
+main_menu_error_gamejolt_3,ou fale conosco em nosso servidor do Discord:
+main_menu_error_gamejolt_4,http://www.discord.me/p3d
+main_menu_error_filevalidation,Validação do arquivo falhou!~Baixe novamente os arquivos do jogo para resolver esse problema.
+main_menu_options_language,Idioma
+main_menu_options_audio,Áudio
+main_menu_options_controls,Controles
+main_menu_options_contentpacks_line1,Pacotes
+main_menu_options_contentpacks_line2,de Conteúdo
+
+GameModeMenu:
+gamemode_menu_select1,Selecione o modo de jogo
+gamemode_menu_select2,para começar um novo jogo.
+gamemode_menu_name,Nome
+gamemode_menu_description,Descrição
+gamemode_menu_version,Versão
+gamemode_menu_author,Autor
+gamemode_menu_contentpath,Caminho do Conteúdo
+gamemode_menu_create,Criar
+gamemode_menu_back,Voltar
+---
+JoinServerScreen:
+join_server_screen_title,Entre em um Servidor:
+join_server_screen_local_server_title,Offline
+join_server_screen_local_server_description,Jogue no seu perfil sem entrar em um servidor.
+join_server_screen_button_join,Entrar
+join_server_screen_button_play,Jogar
+join_server_screen_button_refresh,Atualizar
+join_server_screen_button_new,Novo
+join_server_screen_button_add,Adicionar
+join_server_screen_button_edit,Editar
+join_server_screen_button_remove,Remover
+join_server_screen_tooltip_no_players,Sem jogadores no Servidor.
+join_server_screen_tooltip_player_list,Jogadores
+join_server_screen_ping,Ping:
+join_server_screen_server_unavailable,Não deu pra conectar ao servidor.
+join_server_screen_server_online,Servidor online.
+join_server_screen_server_polling,Votação
+join_server_screen_server_full,O Servidor está Cheio.
+join_server_screen_version_mismatch,A versão do jogo não é a mesma do Servidor.
+join_server_screen_no_connection,(Sem Conexão)
+---
+Options Screen:
+option_screen_title,Opções
+option_screen_warning,As opções não foram salvas, escolha "Salvar Opções" abaixo.
+option_screen_backadvice,PRESSIONE [<system.button(OpenMenu)>] PARA VOLTAR
+option_screen_description,Descrição
+
+option_screen_game,Game
+option_screen_game_textspeed,Velocidade do texto
+
+option_screen_game_textspeed_description,A Velocidade em que o texto é escrito.
+option_screen_game_difficulty,Dificuldade
+option_screen_game_difficulty_description,Modo de Dificuldade~Selecie um nivel de Dificuldade.
+option_screen_game_difficulty_easy,Facil
+option_screen_game_difficulty_hard,Difícil
+option_screen_game_difficulty_superhard,Super Difícil
+option_screen_game_viewbobbing,Ver Balanço
+option_screen_game_viewbobbing_description,Liga e Desliga o balançar da Camera.
+
+option_screen_graphics,Graficos
+option_screen_graphics_fov,Campo de Visão
+option_screen_graphics_renderdistance,Distancia Renderizada
+option_screen_graphics_renderdistance_tiny,Muito Curta
+option_screen_graphics_renderdistance_short,Curta
+option_screen_graphics_renderdistance_normal,Normal
+option_screen_graphics_renderdistance_far,Distante
+option_screen_graphics_renderdistance_extreme,Muito Distante
+option_screen_graphics_offset_mapquality,Qualidade do mapa de deslocamento
+option_screen_graphics_offset_mapquality_off,Desligado
+option_screen_graphics_graphics,Graficos
+option_screen_graphics_graphics_fancy,Bonito
+option_screen_graphics_graphics_fast,Rapido
+option_screen_graphics_multisampling,Multi Amostras
+
+option_screen_battle,Battle
+option_screen_battle_3dmodels,Modelos 3D
+option_screen_battle_animations,Animações
+option_screen_battle_battlestyle,Modo de Batalha
+option_screen_battle_battlestyle_shift,Com Trocas
+option_screen_battle_battlestyle_set,Direto
+
+option_screen_controls,Controles
+option_screen_controls_xboxgamepad,Xbox Gamepad
+option_screen_controls_resetkeybindings,Resetar Mapeamento
+option_screen_controls_cameraspeed,Velocidade da camera
+option_screen_controls_cameraspeed_slow,...lesma...
+option_screen_controls_cameraspeed_medium,Padrão
+option_screen_controls_cameraspeed_fast,Super Rapido!
+option_screen_controls_cameraspeed_fastest,VELOCIDADE DA LUZ!
+
+option_screen_audio,Áudio
+option_screen_audio_volume_music,Música
+option_screen_audio_volume_sfx,Efeito Sónoros
+option_screen_audio_muted,Mudo
+
+option_screen_contentpacks_up,Mover Acima
+option_screen_contentpacks_down,Mover Abaixo
+option_screen_contentpacks_information,Informação
+option_screen_contentpacks_songs,Músicas
+option_screen_contentpacks_sounds,Sons
+option_screen_contentpacks_textures,Texturas
+option_screen_contentpacks_name,Nome
+option_screen_contentpacks_version,Versão
+option_screen_contentpacks_by,Por
+option_screen_contentpacks_content,Conteúdo
+option_screen_contentpacks_description,Descrição
+
+option_screen_resetoptions,Resetar Opções
+option_screen_save_options,Salvar Opções
+option_screen_close,Fechar.
+---
+Pausescreen:
+pause_menu_title,Menu de Pausa
+pause_menu_back_to_game,Voltar para o jogo
+pause_menu_disconnect,Desconectar
+pause_menu_quit_to_menu,Sair para o Menu Principal
+pause_menu_autosave_fail,Não da para criar AutoSalve.
+pause_menu_yes,Sim
+pause_menu_no,NÃÃÃÃÃÃÃÃOOOOO
+pause_menu_confirmation,Você deseja realmente sair? Não se esqueça de Salvar antes.
+---
+IngameMenu:
+game_menu_pokedex,Pokédex
+game_menu_party,Pokémon
+game_menu_bag,Mochila
+game_menu_trainer_card,<player.name>
+game_menu_save,Salvar
+game_menu_save_notpossible,Não é possivel salvar nesse momento.
+game_menu_options,Opções
+game_menu_exit,Sair do Menu
+game_menu_end_contest,Terminar Concurso
+---
+NewGameScreen:
+
+new_game_intro_1,Olá!~Desculpe pela espera!*Bem vindo ao mundo~de Pokémon!*Meu nome é Oak.~As pessoas mm chamam de~Professor Pokémon.*Este mundo é habitado~por criaturas que~nós chamamos
+new_game_intro_2,Pokémon.*Pessoas e Pokémons vivem~juntos,dando suporte~ um ao outro.~Algumas pessoas brincam com os Pokémons,~algumas batalham com eles.*Mas não sabemos~tudo sobre os~Pokémons ainda.~Ainda tem muitos~mistérios para resolver.*por isso eu estudo Pokémon todo dia.*Agora,~qual é seu nome mesmo?
+new_game_intro_3,~está pronto?*Sua jornada Pokémon está~prestes a começar.*Você vai ter momentos~divertidos e muitos desafios.~Um mundo onde sonhos e~aventuras com Pokémons o Aguardam!*Vamos lá!*Te vejo mais tarde!
+new_game_intro_weird_name_1,Certo! Então seu nome é~
+new_game_intro_weird_name_2,!*Hmm.. este é um~nome estranho.
+new_game_intro_known_name_1,Certo! Então seu nome é~
+new_game_intro_known_name_2,!*Hmm.. tenho certeza~que ja ouvi esse nome antes.
+new_game_intro_same_name_1,Ei! nos temos o~mesmo nome.*Meu nome também é~
+new_game_intro_same_name_2,!
+new_game_intro_name_1,Certo! Então seu nome é~
+new_game_intro_name_2,!
+new_game_select_skin,Escolha sua Aparência
+---
+MapScreen:
+map_screen_cities,Cidades
+map_screen_routes,Rotas
+map_screen_places,Lugares
+map_screen_roaming,Pokémons na área
+---
+Trainer Card Screen:
+trainer_screen_collected_badges,Insígnias Coletadas
+trainer_screen_badge, Insígnia
+trainer_screen_empty_badge,???
+---
+Save Screen:
+save_screen_name,Nome
+save_screen_badges,Insígnias
+save_screen_money,Dinheiro
+save_screen_time,Tempo
+save_screen_yes,Sim
+save_screen_no,Não
+---
+Apricorn Screen:
+apricorn_screen_apricorns,Bolotas
+apricorn_screen_producing,Estou trabalhando nas pokébolas no momento.~Volte mais tarde.
+apricorn_screen_backadvice,PRESSIONE [<system.button(OpenMenu)>] PARA VOLTAR
+apricorn_screen_choose_apricorns,Escolha as Bolotas para fabricar pokébolas.
+apricorn_screen_ok,OK
+apricorn_screen_clear,Limpar
+apricorn_screen_all,Todas
+apricorn_screen_take,Pegar devolta
+apricorn_screen_ready,Terminei de fazer as pokébolas, aqui está o resultado do meu trabalho:
+apricorn_screen_obtain,obtida(as)
+---
+Donation screen:
+donation_screen_donators,Doadores
+donation_screen_backadvice,aperte [<system.button(OpenMenu)>] para fechar.
+---
+Blackout Screen:
+black_out_screen_line1,Você está sem Pokémons!
+black_out_screen_line2,Você vai ser levado
+black_out_screen_line3,ao Centro Pokémon mais próximo
+black_out_screen_line4,para previnir mais danos
+black_out_screen_line5,a seus Pokémons.
+---
+Credits Screen:
+credits_continue,aperte [<system.button(enter1)>] para continuar.
+---
+Voltorb Flip:
+VoltorbFlip_LV.,NV.
+VoltorbFlip_CurrentCoins_Line1,Moedas encontradas
+VoltorbFlip_CurrentCoins_Line2,está nesse NV.
+VoltorbFlip_TotalCoins_Line1,de <player.name>
+VoltorbFlip_TotalCoins_Line2,Moedas coletadas
+
+VoltorbFlip_MemoButton_Open_Line1,Abrir
+VoltorbFlip_MemoButton_Open_Line2,Memos
+VoltorbFlip_MemoButton_Close_Line1,Fechar
+VoltorbFlip_MemoButton_Close_Line2,Memos
+
+VoltorbFlip_QuitButton,Sair
+
+VoltorbFlip_QuitQuestion_Question_1,Se sair agora, você vai~receber
+VoltorbFlip_QuitQuestion_Question_2,Moeda(as).*Você quer sair?
+VoltorbFlip_QuitQuestion_AnswerYes,Sim
+VoltorbFlip_QuitQuestion_AnswerNo,Não
+
+VoltorbFlip_BeforeNewLevel_Main_Question_1,Play Voltorb Flip Lv.
+VoltorbFlip_BeforeNewLevel_Main_Question_2,?
+VoltorbFlip_BeforeNewLevel_Main_Answer_Play,Jogar
+VoltorbFlip_BeforeNewLevel_Main_Answer_GameInfo,Game Info
+VoltorbFlip_BeforeNewLevel_Main_Answer_Quit,Sair
+VoltorbFlip_BeforeNewLevel_GameInfo_Question,Which set of info?
+VoltorbFlip_BeforeNewLevel_GameInfo_Answer_HowToPlay,Como Jogar
+VoltorbFlip_BeforeNewLevel_GameInfo_Answer_Hint,Dica!
+VoltorbFlip_BeforeNewLevel_GameInfo_Answer_AboutMemos,Sobre Memos
+VoltorbFlip_BeforeNewLevel_GameInfo_Back,Voltar
+
+VoltorbFlip_GameWon_1,Jogo Concluido!~Você encontrou toos~cartões x2 e x3 Escondidos.*<player.name> Recebeu~
+VoltorbFlip_GameWon_2,Moeda(as)!
+
+VoltorbFlip_GameLost,Ah não! Você pegou 0 Moedas!
+
+VoltorbFlip_MaxCoins,Sua Caixa de Moedas~está cheia!
+
+VoltorbFlip_NewLevel_Lower1,Caiu para o Jogo Nv.
+VoltorbFlip_NewLevel_Lower2,!
+VoltorbFlip_NewLevel_Higher1,Avançou para o Jogo Nv.
+VoltorbFlip_NewLevel_Higher2,!
+VoltorbFlip_NewLevel_Ready1,Pronto para Jogar Nv.
+VoltorbFlip_NewLevel_Ready2,!
+
+VoltorbFlip_QuitGame_1,<player.name> Recebeu~
+VoltorbFlip_QuitGame_2,Moeda(as)!
+
+VoltorbFlip_AfterGame_Won1,Você Ganhou
+VoltorbFlip_AfterGame_Won2,Moeda(as)!
+VoltorbFlip_AfterGame_Lost,Que pena, Você não ganhou~nenhuma moeda!*Melhor sorte na proxima!
+
+VoltorbFlip_BeforeGame_NoCoinCase,Você não tem uma Caixa de Moedas!~Volte quando você tiver uma!
+
+VoltorbFlip_Tutorial_HowToPlay_Message,Voltorb Flip é um jogo onde~você vira cartas para encontrar~numeros escondidos debaixo delas.*As cartas escondem~números de 1 á 3...~e Voltorb também.*O primeiro numero que encontrar~te dá aquela quantidade de moedas.*Ai em diante,o proximo número~que encontrar multiplica ~o total de Moedas que você~coletou por aquele número.*se for um 2, seu total vai ~ser multiplicado por "x2".*ser for um3, seu total vai~ser multiplicado por "x3".*Mas se você virar um~Voltorb, é fim de jogo.*Quando isso acontece,você vai perder~todas as moedas que você coletou no nível atual.*Se você escolher "Sair", você vai~retirar do nível.*Se você estiver numa posição~difícil, você pode querer terminar~o jogo cedo.*uma vez encontrando o~cartão 2 e 3 escondidos,~você completa o jogo.*Depois que voce virar~todas essas cartas,então você vai~avançar ao próximo nível.*Quanto mais alto o nivel,~você vai receber~mais moedas. Dê o seu melhor!
+VoltorbFlip_Tutorial_Hint_Message,The numbers at the side~of the board give you a clue~about the numbers hidden on~the backs of the cards.*The larger the number, the~more likely it is that there~are many large numbers hidden~in that row or column.*In the same way, you can tell~how many Voltorb are hidden~in the row or column.*Consider the hidden number~totals and the Voltorb~totals carefully as you~flip over cards.
+VoltorbFlip_Tutorial_AboutMemos_Message,Select "Open Memo" or press~[<system.button(run)>] to open the~Memo Window.*You can mark the cards with~the numbers 1 through 3,~but also with a Voltorb mark.*When you have an idea of the~numbers hidden on the back~of the cards, open the Memo~Window, choose the type of~mark you want to use with~the Mouse Wheel or the~Gamepad's Shoulder Buttons~and then press [<system.button(enter1)>]~while highlighting the card~you want to mark.*If you want to remove a mark,~choose the type of mark you~want to remove with the~Mouse Wheel or the Gamepad's~Shoulder Buttons and then~press [<system.button(back1)>] while~highlighting the card you~want to remove the mark from.*You can also use the~mouse to select a~mark type or a card.
+VoltorbFlip_Tutorial_HowToPlay_Image1,If you flip the cards in this order, you'll collect: 3 x 1 x 2 x 1 x 3... A total of 18 Coins! And then...
+VoltorbFlip_Tutorial_HowToPlay_Image2,If you select "Quit", you'll keep those 18 Coins.
+VoltorbFlip_Tutorial_HowToPlay_Image3,But if you find Voltorb, you'll lose all your Coins!
+VoltorbFlip_Tutorial_Hint_Image,By looking at the numbers on the sides of the cards, you can see the hidden number and Voltorb totals.
+VoltorbFlip_Tutorial_AboutMemos_Image,Select "Open Memo" to open the Memo Window. Select the cards and press [<system.button(enter1)>] to add and [<system.button(back1)>] to remove marks.
+----
+PokedexScreen
+pokedex_seen,Visto:
+pokedex_obtained,Obtido:
+pokedex_available,Disponível:
+pokedex_select,Escolha a Pokédex
+pokedex_habitat_dex_name,Habitat-Dex
+pokedex_habitat_select,Escolha o Habitat
+pokedex_order,Órdem:
+pokedex_order_numeric,Numérica
+pokedex_order_alphabetically,A-Z
+pokedex_order_height,Tamanho
+pokedex_order_weight,Peso
+pokedex_filter,Filtro:
+pokedex_filter_none,Nenhum
+pokedex_filter_name,Nome
+pokedex_filter_type1,Tipo 1
+pokedex_filter_type2,Tipo 2
+pokedex_search_hint_1,Aperte
+pokedex_search_hint_2,no teclado para Pesquisar.
+pokedex_search_no_results,Sem Resultados.
+pokedex_data_species,ESPÉCIES
+pokedex_data_type,TIPO
+pokedex_data_height,ALTURA
+pokedex_data_weight,PESO
+pokedex_data_form_switch_hint,Pressione [Shift] para trocar formas
+pokedex_data_page_details,Detalhes
+pokedex_data_page_habitat,Habitat
+pokedex_data_page_evolution,Evolução
+pokedex_habitat_area_unknown,Área Desconhecida.
+pokedex_evolution_no_evolutions,não evolui.
+----
+Receiving Items:
+item_received_single,Recebeu um(a)
+item_received_multiple,Recebeu 
+item_found,<player.name> encontrou 
+item_stored_in_pocket_single_start,<player.name> guardou no bolso de ~
+item_stored_in_pocket_single_end,.
+item_stored_in_pocket_multiple_start,<player.name> guardou no bolso de ~
+item_stored_in_pocket_multiple_end,.
+
+Berries:
+berry_picked_single_start,<player.name> pegou uma 
+berry_picked_single_end,Berry.
+berry_picked_multiple_start,<player.name> pegou 
+berry_picked_multiple_end,Berries.
+----
+Battle:
+battle_trainer_about_to_send_out_1,está prestes a mandar
+battle_trainer_about_to_send_out_2,! Você deseja trocar de Pokémon?
+battle_choose_pokemon,Escolha o Pokémon
+battle_switch_already_in_battle,ja está~em batalha!
+battle_switch_fainted,Desmaiou!
+battle_switch_egg,Não pode trocar~por Ovo!
+battle_cannot_switch,Não da pra trocar.
+---
+Badges:
+badge_1,Boulder
+badge_2,Cascade
+badge_3,Thunder
+badge_4,Rainbow
+badge_5,Soul
+badge_6,Marsh
+badge_7,Volcano
+badge_8,Earth
+badge_9,Zephyr
+badge_10,Hive
+badge_11,Plain
+badge_12,Fog
+badge_13,Storm
+badge_14,Mineral
+badge_15,Glacier
+badge_16,Rising
+---
+Regions:
+Johto,Johto
+Kanto,Kanto
+Sevii Islands,Ilhas Sevii 
+---
+Places:
+Places_???,???
+
+Towns:
+Places_New Bark Town,New Bark Town
+Places_Cherrygrove City,Cherrygrove City
+Places_Violet City,Violet City
+Places_Azalea Town,Azalea Town
+Places_Goldenrod City,Goldenrod City
+Places_Ecruteak City,Ecruteak City
+Places_Olivine City,Olivine City
+Places_Cianwood City,Cianwood City
+Places_Mahogany Town,Mahogany Town
+Places_Blackthorn City,Blackthorn City
+Places_Pallet Town,Pallet Town
+Places_Viridian City,Viridian City
+Places_Saffron City,Saffron City
+Places_Pewter City,Pewter City
+Places_Cerulean City,Cerulean City
+Places_Celadon City,Celadon City
+Places_Vermilion City,Vermilion City
+Places_Fuchsia City,Fuchsia City
+Places_Cinnabar Island,Ilha de Cinnabar
+Places_Lavender Town,Lavender Town
+Places_One Island,Ilha Um
+Places_Two Island,Ilha Dois
+Places_Three Island,Ilha Três
+Places_Four Island,Ilha Quatro
+Places_Five Island,Ilha Cinco
+Places_Six Island,Ilha Seis
+Places_Seven Island,Ilha Sete
+
+Special Houses:
+Places_Gate,Portão
+Places_Pokemon Center,Centro Pokémon
+Places_Pokemon Mart,Poké Mercado
+Places_Elms lab,Laboratório de Elm
+Places_Oak's lab,Laboratório de Oak
+Places_Azalea Town Gym,Ginásio de Azalea Town
+Places_Violet City Gym,Ginásio de Violet City
+Places_Goldenrod City Gym,Ginásio de Goldenrod City
+Places_Ecruteak City Gym,Ginásio de Ecruteak City
+Places_Cianwood City Gym,Ginásio de Cianwood City
+Places_Olivine City Gym,Ginásio de Olivine City
+Places_Mahogany City Gym,Ginásio de Mahogany City
+Places_Blackthorn City Gym,Ginásio de Blackthorn City
+Places_Your House,Sua Casa
+Places_Your Room,Seu Quarto
+Places_Daycare,Daycare
+Places_Pewter City Gym,Ginásio de Pewter City
+Places_Cerulean City Gym,Ginásio de Cerulean City
+Places_Vermilion City Gym,Ginásio de Vermilion City
+Places_Celadon City Gym,Ginásio de Celadon City
+Places_Fuchsania City Gym,Ginásio de Fuchsania City
+Places_Saffron City Gym,Ginásio de Saffron City
+Places_Cinnabar Gym,Ginásio de Cinnabar
+Places_Viridian City Gym,Ginásio de Viridian City
+Places_Dance Theater,Teatro de Dança
+Places_Lighthouse,O Farol
+Places_Team Rocket HQ,Base da Equipe Rocket
+Places_Radio Tower,Torre de Rádio
+Places_Seaplane Port,Seaplane Porto
+
+Dungeons:
+Places_Ilex Forest,Floresta Ilex
+Places_Dark Cave,Caverna Escura
+Places_Ruins of Alph,Ruinas Alph
+Places_Slowpoke Well,Poço Slowpoke
+Places_Sprout Tower,Torre Sprout
+Places_Union Cave,Caverna Union
+Places_Mt. Mortar,Mt. Mortar
+Places_Bell Tower,Torre Tin
+Places_Tin Tower,Torre Tin
+Places_Tin Tower Peak,Topo da Torre Tin
+Places_Burned Tower,Torre Queimada
+Places_Glitter Lighthouse,Farol Glitter
+Places_Ice Path,Caminho de Gelo
+Places_National Park,Parque Nacional
+Places_Whirl Islands,Ilhas Redemoinho
+Places_Lake of Rage,Lago da Fúria
+Places_Underground,Subterrâneo
+Places_Dragon's Den,Caverna do Dragão
+Places_Tohjo Falls,Cascatas Tohjo
+Places_Victory Road,Estrada da Vitória
+Places_Mt. Silver,Mt. Silver
+Places_Diamond Dive,Diamond Dive
+Places_Indigo Plateau,Indigo Plateau
+Places_Safari Zone,Zona de Safari
+Places_Viridian Forest,Floresta Viridian
+Places_Cerulean Cave,Caverna Cerulean
+Places_Power Plant,Usina Elétrica
+Places_Rock Tunnel,Túnel de Pedra
+Places_Seafoam Islands,Ilhas Seafoam
+Places_Pal Park,Parque Pal
+Places_Diglett's Cave,Caverna Diglett
+Places_Mt. Moon,Mt. Moon
+Places_Mt. Ember,Mt. Ember
+Places_Three Isle Path,Caminho Three Isle
+Places_Berry Forest,Floresta de Berries
+Places_Icefall Cave,Caverna Icefall
+Places_Lost Cave,Caverna Perdida
+Places_Trainer Tower,Torre dos Treinadores
+Places_Altering Cave,Caverna Alterando
+Places_Pattern Bush,Arbusto Padrão
+Places_Dotted Hole,Buraco
+Places_Tanoby Chambers,Câmaras Tanoby
+Places_Tanoby Key,Chave Tanoby
+Places_Monean Chamber,Câmaras Monean
+Places_Liptoo Chamber,Câmaras Liptoo
+Places_Weepth Chamber,Câmaras Weepth
+Places_Dilford Chamber,Câmaras Dilford
+Places_Scrufib Chamber,Câmaras Scrufib
+Places_Rixy Chamber,Câmaras Rixy
+Places_Viapois Chamber,Câmaras Viapois
+Places_Ancient Ruins,Ruínas Ancestrais
+Places_Millennial Star Tower,Torre Estrela Milenar
+Places_Kolben Tower,Torre Kolben
+Places_Faraway Island,Ilhas Distantes
+Places_Underwater Cave,Caverna Subaquática
+Places_Embedded Tower,Torre Embedded
+Places_Liberty Garden,Liberty Garden
+
+Routes:
+Places_Route 1,Rota 1
+Places_Route 2,Rota 2
+Places_Route 3,Rota 3
+Places_Route 4,Rota 4
+Places_Route 5,Rota 5
+Places_Route 6,Rota 6
+Places_Route 7,Rota 7
+Places_Route 8,Rota 8
+Places_Route 9,Rota 9
+Places_Route 10,Rota 10
+Places_Route 11,Rota 11
+Places_Route 12,Rota 12
+Places_Route 13,Rota 13
+Places_Route 14,Rota 14
+Places_Route 15,Rota 15
+Places_Route 16,Rota 16
+Places_Route 17,Rota 17
+Places_Route 18,Rota 18
+Places_Route 19,Rota 19
+Places_Route 20,Rota 20
+Places_Route 21,Rota 21
+Places_Route 22,Rota 22
+Places_Route 23,Rota 23
+Places_Route 24,Rota 24
+Places_Route 25,Rota 25
+Places_Route 26,Rota 26
+Places_Route 27,Rota 27
+Places_Route 28,Rota 28
+Places_Route 29,Rota 29
+Places_Route 30,Rota 30
+Places_Route 31,Rota 31
+Places_Route 32,Rota 32
+Places_Route 33,Rota 33
+Places_Route 34,Rota 34
+Places_Route 35,Rota 35
+Places_Route 36,Rota 36
+Places_Route 37,Rota 37
+Places_Route 38,Rota 38
+Places_Route 39,Rota 39
+Places_Route 40,Rota 40
+Places_Route 41,Rota 41
+Places_Route 42,Rota 42
+Places_Route 43,Rota 43
+Places_Route 44,Rota 44
+Places_Route 45,Rota 45
+Places_Route 46,Rota 46
+Places_Route 47,Rota 47
+Places_Route 48,Rota 48
+Places_Route 49,Rota 49
+Places_Route 50,Rota 50
+
+Places_Treasure Beach,Praia do Tesouro
+Places_Kindle Road,Estrada Acesa
+Places_Cape Brink,Borda do Cabo
+Places_Three Isle Port,Porto da Ilha Três
+Places_Bond Bridge,Ponte do Vínculo
+Places_Five Isle Meadow,Prado da Ilha Cinco
+Places_Memorial Pillar,Pilar Memorial
+Places_Water Labyrinth,Labirinto Aquático
+Places_Resort Gorgeous,Resort Maravilhoso
+Places_Water Path,Caminho D'água
+Places_Green Path,Caminho Verde
+Places_Outcast Island,Ilha Isolada
+Places_Ruin Valley,Vale da Ruína
+Places_Tower Straits,Estreito da Torre
+Places_Canyon Entrance,Entrada do Canyon
+Places_Sevault Canyon,Canyon Sevault
+Places_Tanoby Ruins,Ruinas Tanoby
+Places_Safari Zone Gate,Portão da Zona de Safari
+Places_S.S. Aqua,S.S. Aqua
+Places_Elite 4,Elite dos Quatro
+Places_Indigo Plateau,Indigo Plateau
+Places_Twirl Forest,Floresta Twirl
+Places_Berry Vista,Berry Vista
+Places_Frontier Plaza,Praça Fronteira
+Places_Battle Frontier,Fronteira da Batalha
+Places_Battle Tower,Torre da Batalha
+Places_Battle Factory,Fabrica de Batalha
+Places_Battle Pike,Pique de Batalha
+Places_Battle Hall,Hall de Batalha
+Places_Battle Castle,Castelo de Batalha
+Places_Battle Dome,Domo de Batalha
+Places_Rocket Warehouse,Armazém Rocket
+Places_Secret Laboratory,Laboratório Secreto
+
+
+---
+Item categories:
+item_category_Standard,Itens Padrão/Seguravel
+item_category_Medicine,Medicinas
+item_category_Machines,Maquinas
+item_category_Pokéballs,Pokébolas
+item_category_Plants,Plantas
+item_category_KeyItems,Itens Chave
+item_category_BattleItems,Itens de Batalha
+item_category_Mail,Envelopes
+---
+GameMessages:
+game_message_screenshot,Screenshot salvo como 
+game_message_screenshot_falhou,Não deu pra criar screenshot
+game_message_fullscreen_on,Fullscreen ativado
+game_message_fullscreen_off,Fullscreen desativado
+game_message_third_person_on,Terceira Pessoa
+game_message_third_person_off,Primeira Pessoa
+game_message_free_camera_on,Camera Livre ativada
+game_message_free_camera_off,Camera Livre desativada
+game_message_audio_on,Áudio ligado
+game_message_audio_off,Áudio desligado
+game_message_continue_autosave,Continuando do save state:
+game_message_debug_texture_list_clear,Lista de Texturas limpa
+game_message_sandbox_mode_on,Modo Caixa de Aréia ativado
+game_message_sandbox_mode_off,Modo Caixa de Aréia desativado
+---
+Pokemon:
+pokemon_name_Bulbasaur,Bulbasaur
+pokemon_name_Ivysaur,Ivysaur
+pokemon_name_Venusaur,Venusaur
+pokemon_name_Charmander,Charmander
+pokemon_name_Charmeleon,Charmeleon
+pokemon_name_Charizard,Charizard
+pokemon_name_Squirtle,Squirtle
+pokemon_name_Wartortle,Wartortle
+pokemon_name_Blastoise,Blastoise
+pokemon_name_Caterpie,Caterpie
+pokemon_name_Metapod,Metapod
+pokemon_name_Butterfree,Butterfree
+pokemon_name_Weedle,Weedle
+pokemon_name_Kakuna,Kakuna
+pokemon_name_Beedrill,Beedrill
+pokemon_name_Pidgey,Pidgey
+pokemon_name_Pidgeotto,Pidgeotto
+pokemon_name_Pidgeot,Pidgeot
+pokemon_name_Rattata,Rattata
+pokemon_name_Raticate,Raticate
+pokemon_name_Spearow,Spearow
+pokemon_name_Fearow,Fearow
+pokemon_name_Ekans,Ekans
+pokemon_name_Arbok,Arbok
+pokemon_name_Pikachu,Pikachu
+pokemon_name_Raichu,Raichu
+pokemon_name_Sandshrew,Sandshrew
+pokemon_name_Sandslash,Sandslash
+pokemon_name_Nidoran,Nidoran
+pokemon_name_Nidorina,Nidorina
+pokemon_name_Nidoqueen,Nidoqueen
+pokemon_name_Nidorino,Nidorino
+pokemon_name_Nidoking,Nidoking
+pokemon_name_Clefairy,Clefairy
+pokemon_name_Clefable,Clefable
+pokemon_name_Vulpix,Vulpix
+pokemon_name_Ninetales,Ninetales
+pokemon_name_Jigglypuff,Jigglypuff
+pokemon_name_Wigglytuff,Wigglytuff
+pokemon_name_Zubat,Zubat
+pokemon_name_Golbat,Golbat
+pokemon_name_Oddish,Oddish
+pokemon_name_Gloom,Gloom
+pokemon_name_Vileplume,Vileplume
+pokemon_name_Paras,Paras
+pokemon_name_Parasect,Parasect
+pokemon_name_Venonat,Venonat
+pokemon_name_Venomoth,Venomoth
+pokemon_name_Diglett,Diglett
+pokemon_name_Dugtrio,Dugtrio
+pokemon_name_Meowth,Meowth
+pokemon_name_Persian,Persian
+pokemon_name_Psyduck,Psyduck
+pokemon_name_Golduck,Golduck
+pokemon_name_Mankey,Mankey
+pokemon_name_Primeape,Primeape
+pokemon_name_Growlithe,Growlithe
+pokemon_name_Arcanine,Arcanine
+pokemon_name_Poliwag,Poliwag
+pokemon_name_Poliwhirl,Poliwhirl
+pokemon_name_Poliwrath,Poliwrath
+pokemon_name_Abra,Abra
+pokemon_name_Kadabra,Kadabra
+pokemon_name_Alakazam,Alakazam
+pokemon_name_Machop,Machop
+pokemon_name_Machoke,Machoke
+pokemon_name_Machamp,Machamp
+pokemon_name_Bellsprout,Bellsprout
+pokemon_name_Weepinbell,Weepinbell
+pokemon_name_Victreebel,Victreebel
+pokemon_name_Tentacool,Tentacool
+pokemon_name_Tentacruel,Tentacruel
+pokemon_name_Geodude,Geodude
+pokemon_name_Graveler,Graveler
+pokemon_name_Golem,Golem
+pokemon_name_Ponyta,Ponyta
+pokemon_name_Rapidash,Rapidash
+pokemon_name_Slowpoke,Slowpoke
+pokemon_name_Slowbro,Slowbro
+pokemon_name_Magnemite,Magnemite
+pokemon_name_Magneton,Magneton
+pokemon_name_Farfetch'd,Farfetch'd
+pokemon_name_Doduo,Doduo
+pokemon_name_Dodrio,Dodrio
+pokemon_name_Seel,Seel
+pokemon_name_Dewgong,Dewgong
+pokemon_name_Grimer,Grimer
+pokemon_name_Muk,Muk
+pokemon_name_Shellder,Shellder
+pokemon_name_Cloyster,Cloyster
+pokemon_name_Gastly,Gastly
+pokemon_name_Haunter,Haunter
+pokemon_name_Gengar,Gengar
+pokemon_name_Onix,Onix
+pokemon_name_Drowzee,Drowzee
+pokemon_name_Hypno,Hypno
+pokemon_name_Krabby,Krabby
+pokemon_name_Kingler,Kingler
+pokemon_name_Voltorb,Voltorb
+pokemon_name_Electrode,Electrode
+pokemon_name_Exeggcute,Exeggcute
+pokemon_name_Exeggutor,Exeggutor
+pokemon_name_Cubone,Cubone
+pokemon_name_Marowak,Marowak
+pokemon_name_Hitmonlee,Hitmonlee
+pokemon_name_Hitmonchan,Hitmonchan
+pokemon_name_Lickitung,Lickitung
+pokemon_name_Koffing,Koffing
+pokemon_name_Weezing,Weezing
+pokemon_name_Rhyhorn,Rhyhorn
+pokemon_name_Rhydon,Rhydon
+pokemon_name_Chansey,Chansey
+pokemon_name_Tangela,Tangela
+pokemon_name_Kangaskhan,Kangaskhan
+pokemon_name_Horsea,Horsea
+pokemon_name_Seadra,Seadra
+pokemon_name_Goldeen,Goldeen
+pokemon_name_Seaking,Seaking
+pokemon_name_Staryu,Staryu
+pokemon_name_Starmie,Starmie
+pokemon_name_Mr. Mime,Mr. Mime
+pokemon_name_Scyther,Scyther
+pokemon_name_Jynx,Jynx
+pokemon_name_Electabuzz,Electabuzz
+pokemon_name_Magmar,Magmar
+pokemon_name_Pinsir,Pinsir
+pokemon_name_Tauros,Tauros
+pokemon_name_Magikarp,Magikarp
+pokemon_name_Gyarados,Gyarados
+pokemon_name_Lapras,Lapras
+pokemon_name_Ditto,Ditto
+pokemon_name_Eevee,Eevee
+pokemon_name_Vaporeon,Vaporeon
+pokemon_name_Jolteon,Jolteon
+pokemon_name_Flareon,Flareon
+pokemon_name_Porygon,Porygon
+pokemon_name_Omanyte,Omanyte
+pokemon_name_Omastar,Omastar
+pokemon_name_Kabuto,Kabuto
+pokemon_name_Kabutops,Kabutops
+pokemon_name_Aerodactyl,Aerodactyl
+pokemon_name_Snorlax,Snorlax
+pokemon_name_Articuno,Articuno
+pokemon_name_Zapdos,Zapdos
+pokemon_name_Moltres,Moltres
+pokemon_name_Dratini,Dratini
+pokemon_name_Dragonair,Dragonair
+pokemon_name_Dragonite,Dragonite
+pokemon_name_Mewtwo,Mewtwo
+pokemon_name_Mew,Mew
+pokemon_name_Chikorita,Chikorita
+pokemon_name_Bayleef,Bayleef
+pokemon_name_Meganium,Meganium
+pokemon_name_Cyndaquil,Cyndaquil
+pokemon_name_Quilava,Quilava
+pokemon_name_Typhlosion,Typhlosion
+pokemon_name_Totodile,Totodile
+pokemon_name_Croconaw,Croconaw
+pokemon_name_Feraligatr,Feraligatr
+pokemon_name_Sentret,Sentret
+pokemon_name_Furret,Furret
+pokemon_name_Hoothoot,Hoothoot
+pokemon_name_Noctowl,Noctowl
+pokemon_name_Ledyba,Ledyba
+pokemon_name_Ledian,Ledian
+pokemon_name_Spinarak,Spinarak
+pokemon_name_Ariados,Ariados
+pokemon_name_Crobat,Crobat
+pokemon_name_Chinchou,Chinchou
+pokemon_name_Lanturn,Lanturn
+pokemon_name_Pichu,Pichu
+pokemon_name_Cleffa,Cleffa
+pokemon_name_Igglybuff,Igglybuff
+pokemon_name_Togepi,Togepi
+pokemon_name_Togetic,Togetic
+pokemon_name_Natu,Natu
+pokemon_name_Xatu,Xatu
+pokemon_name_Mareep,Mareep
+pokemon_name_Flaaffy,Flaaffy
+pokemon_name_Ampharos,Ampharos
+pokemon_name_Bellossom,Bellossom
+pokemon_name_Marill,Marill
+pokemon_name_Azumarill,Azumarill
+pokemon_name_Sudowoodo,Sudowoodo
+pokemon_name_Politoed,Politoed
+pokemon_name_Hoppip,Hoppip
+pokemon_name_Skiploom,Skiploom
+pokemon_name_Jumpluff,Jumpluff
+pokemon_name_Aipom,Aipom
+pokemon_name_Sunkern,Sunkern
+pokemon_name_Sunflora,Sunflora
+pokemon_name_Yanma,Yanma
+pokemon_name_Wooper,Wooper
+pokemon_name_Quagsire,Quagsire
+pokemon_name_Espeon,Espeon
+pokemon_name_Umbreon,Umbreon
+pokemon_name_Murkrow,Murkrow
+pokemon_name_Slowking,Slowking
+pokemon_name_Misdreavus,Misdreavus
+pokemon_name_Unown,Unown
+pokemon_name_Wobbuffet,Wobbuffet
+pokemon_name_Girafarig,Girafarig
+pokemon_name_Pineco,Pineco
+pokemon_name_Forretress,Forretress
+pokemon_name_Dunsparce,Dunsparce
+pokemon_name_Gligar,Gligar
+pokemon_name_Steelix,Steelix
+pokemon_name_Snubbull,Snubbull
+pokemon_name_Granbull,Granbull
+pokemon_name_Qwilfish,Qwilfish
+pokemon_name_Scizor,Scizor
+pokemon_name_Shuckle,Shuckle
+pokemon_name_Heracross,Heracross
+pokemon_name_Sneasel,Sneasel
+pokemon_name_Teddiursa,Teddiursa
+pokemon_name_Ursaring,Ursaring
+pokemon_name_Slugma,Slugma
+pokemon_name_Magcargo,Magcargo
+pokemon_name_Swinub,Swinub
+pokemon_name_Piloswine,Piloswine
+pokemon_name_Corsola,Corsola
+pokemon_name_Remoraid,Remoraid
+pokemon_name_Octillery,Octillery
+pokemon_name_Delibird,Delibird
+pokemon_name_Mantine,Mantine
+pokemon_name_Skarmory,Skarmory
+pokemon_name_Houndour,Houndour
+pokemon_name_Houndoom,Houndoom
+pokemon_name_Kingdra,Kingdra
+pokemon_name_Phanpy,Phanpy
+pokemon_name_Donphan,Donphan
+pokemon_name_Porygon2,Porygon2
+pokemon_name_Stantler,Stantler
+pokemon_name_Smeargle,Smeargle
+pokemon_name_Tyrogue,Tyrogue
+pokemon_name_Hitmontop,Hitmontop
+pokemon_name_Smoochum,Smoochum
+pokemon_name_Elekid,Elekid
+pokemon_name_Magby,Magby
+pokemon_name_Miltank,Miltank
+pokemon_name_Blissey,Blissey
+pokemon_name_Raikou,Raikou
+pokemon_name_Entei,Entei
+pokemon_name_Suicune,Suicune
+pokemon_name_Larvitar,Larvitar
+pokemon_name_Pupitar,Pupitar
+pokemon_name_Tyranitar,Tyranitar
+pokemon_name_Lugia,Lugia
+pokemon_name_Ho-oh,Ho-oh
+pokemon_name_Celebi,Celebi
+pokemon_name_Treecko,Treecko
+pokemon_name_Grovyle,Grovyle
+pokemon_name_Sceptile,Sceptile
+pokemon_name_Torchic,Torchic
+pokemon_name_Combusken,Combusken
+pokemon_name_Blaziken,Blaziken
+pokemon_name_Mudkip,Mudkip
+pokemon_name_Marshtomp,Marshtomp
+pokemon_name_Swampert,Swampert
+pokemon_name_Poochyena,Poochyena
+pokemon_name_Mightyena,Mightyena
+pokemon_name_Zigzagoon,Zigzagoon
+pokemon_name_Linoone,Linoone
+pokemon_name_Wurmple,Wurmple
+pokemon_name_Silcoon,Silcoon
+pokemon_name_Beautifly,Beautifly
+pokemon_name_Cascoon,Cascoon
+pokemon_name_Dustox,Dustox
+pokemon_name_Lotad,Lotad
+pokemon_name_Lombre,Lombre
+pokemon_name_Ludicolo,Ludicolo
+pokemon_name_Seedot,Seedot
+pokemon_name_Nuzleaf,Nuzleaf
+pokemon_name_Shiftry,Shiftry
+pokemon_name_Taillow,Taillow
+pokemon_name_Swellow,Swellow
+pokemon_name_Wingull,Wingull
+pokemon_name_Pelipper,Pelipper
+pokemon_name_Ralts,Ralts
+pokemon_name_Kirlia,Kirlia
+pokemon_name_Gardevoir,Gardevoir
+pokemon_name_Surskit,Surskit
+pokemon_name_Masquerain,Masquerain
+pokemon_name_Shroomish,Shroomish
+pokemon_name_Breloom,Breloom
+pokemon_name_Slakoth,Slakoth
+pokemon_name_Vigoroth,Vigoroth
+pokemon_name_Slaking,Slaking
+pokemon_name_Nincada,Nincada
+pokemon_name_Ninjask,Ninjask
+pokemon_name_Shedinja,Shedinja
+pokemon_name_Whismur,Whismur
+pokemon_name_Loudred,Loudred
+pokemon_name_Exploud,Exploud
+pokemon_name_Makuhita,Makuhita
+pokemon_name_Hariyama,Hariyama
+pokemon_name_Azurill,Azurill
+pokemon_name_Nosepass,Nosepass
+pokemon_name_Skitty,Skitty
+pokemon_name_Delcatty,Delcatty
+pokemon_name_Sableye,Sableye
+pokemon_name_Mawile,Mawile
+pokemon_name_Aron,Aron
+pokemon_name_Lairon,Lairon
+pokemon_name_Aggron,Aggron
+pokemon_name_Meditite,Meditite
+pokemon_name_Medicham,Medicham
+pokemon_name_Electrike,Electrike
+pokemon_name_Manectric,Manectric
+pokemon_name_Plusle,Plusle
+pokemon_name_Minun,Minun
+pokemon_name_Volbeat,Volbeat
+pokemon_name_Illumise,Illumise
+pokemon_name_Roselia,Roselia
+pokemon_name_Gulpin,Gulpin
+pokemon_name_Swalot,Swalot
+pokemon_name_Carvanha,Carvanha
+pokemon_name_Sharpedo,Sharpedo
+pokemon_name_Wailmer,Wailmer
+pokemon_name_Wailord,Wailord
+pokemon_name_Numel,Numel
+pokemon_name_Camerupt,Camerupt
+pokemon_name_Torkoal,Torkoal
+pokemon_name_Spoink,Spoink
+pokemon_name_Grumpig,Grumpig
+pokemon_name_Spinda,Spinda
+pokemon_name_Trapinch,Trapinch
+pokemon_name_Vibrava,Vibrava
+pokemon_name_Flygon,Flygon
+pokemon_name_Cacnea,Cacnea
+pokemon_name_Cacturne,Cacturne
+pokemon_name_Swablu,Swablu
+pokemon_name_Altaria,Altaria
+pokemon_name_Zangoose,Zangoose
+pokemon_name_Seviper,Seviper
+pokemon_name_Lunatone,Lunatone
+pokemon_name_Solrock,Solrock
+pokemon_name_Barboach,Barboach
+pokemon_name_Whiscash,Whiscash
+pokemon_name_Corphish,Corphish
+pokemon_name_Crawdaunt,Crawdaunt
+pokemon_name_Baltoy,Baltoy
+pokemon_name_Claydol,Claydol
+pokemon_name_Lileep,Lileep
+pokemon_name_Cradily,Cradily
+pokemon_name_Anorith,Anorith
+pokemon_name_Armaldo,Armaldo
+pokemon_name_Feebas,Feebas
+pokemon_name_Milotic,Milotic
+pokemon_name_Castform,Castform
+pokemon_name_Kecleon,Kecleon
+pokemon_name_Shuppet,Shuppet
+pokemon_name_Banette,Banette
+pokemon_name_Duskull,Duskull
+pokemon_name_Dusclops,Dusclops
+pokemon_name_Tropius,Tropius
+pokemon_name_Chimecho,Chimecho
+pokemon_name_Absol,Absol
+pokemon_name_Wynaut,Wynaut
+pokemon_name_Snorunt,Snorunt
+pokemon_name_Glalie,Glalie
+pokemon_name_Spheal,Spheal
+pokemon_name_Sealeo,Sealeo
+pokemon_name_Walrein,Walrein
+pokemon_name_Clamperl,Clamperl
+pokemon_name_Huntail,Huntail
+pokemon_name_Gorebyss,Gorebyss
+pokemon_name_Relicanth,Relicanth
+pokemon_name_Luvdisc,Luvdisc
+pokemon_name_Bagon,Bagon
+pokemon_name_Shelgon,Shelgon
+pokemon_name_Salamence,Salamence
+pokemon_name_Beldum,Beldum
+pokemon_name_Metang,Metang
+pokemon_name_Metagross,Metagross
+pokemon_name_Regirock,Regirock
+pokemon_name_Regice,Regice
+pokemon_name_Registeel,Registeel
+pokemon_name_Latias,Latias
+pokemon_name_Latios,Latios
+pokemon_name_Kyogre,Kyogre
+pokemon_name_Groudon,Groudon
+pokemon_name_Rayquaza,Rayquaza
+pokemon_name_Jirachi,Jirachi
+pokemon_name_Deoxys,Deoxys
+pokemon_name_Turtwig,Turtwig
+pokemon_name_Grotle,Grotle
+pokemon_name_Torterra,Torterra
+pokemon_name_Chimchar,Chimchar
+pokemon_name_Monferno,Monferno
+pokemon_name_Infernape,Infernape
+pokemon_name_Piplup,Piplup
+pokemon_name_Prinplup,Prinplup
+pokemon_name_Empoleon,Empoleon
+pokemon_name_Starly,Starly
+pokemon_name_Staravia,Staravia
+pokemon_name_Staraptor,Staraptor
+pokemon_name_Bidoof,Bidoof
+pokemon_name_Bibarel,Bibarel
+pokemon_name_Kricketot,Kricketot
+pokemon_name_Kricketune,Kricketune
+pokemon_name_Shinx,Shinx
+pokemon_name_Luxio,Luxio
+pokemon_name_Luxray,Luxray
+pokemon_name_Budew,Budew
+pokemon_name_Roserade,Roserade
+pokemon_name_Cranidos,Cranidos
+pokemon_name_Rampardos,Rampardos
+pokemon_name_Shieldon,Shieldon
+pokemon_name_Bastiodon,Bastiodon
+pokemon_name_Burmy,Burmy
+pokemon_name_Wormadam,Wormadam
+pokemon_name_Mothim,Mothim
+pokemon_name_Combee,Combee
+pokemon_name_Vespiquen,Vespiquen
+pokemon_name_Pachirisu,Pachirisu
+pokemon_name_Buizel,Buizel
+pokemon_name_Floatzel,Floatzel
+pokemon_name_Cherubi,Cherubi
+pokemon_name_Cherrim,Cherrim
+pokemon_name_Shellos,Shellos
+pokemon_name_Gastrodon,Gastrodon
+pokemon_name_Ambipom,Ambipom
+pokemon_name_Drifloon,Drifloon
+pokemon_name_Drifblim,Drifblim
+pokemon_name_Buneary,Buneary
+pokemon_name_Lopunny,Lopunny
+pokemon_name_Mismagius,Mismagius
+pokemon_name_Honchkrow,Honchkrow
+pokemon_name_Glameow,Glameow
+pokemon_name_Purugly,Purugly
+pokemon_name_Chingling,Chingling
+pokemon_name_Stunky,Stunky
+pokemon_name_Skuntank,Skuntank
+pokemon_name_Bronzor,Bronzor
+pokemon_name_Bronzong,Bronzong
+pokemon_name_Bonsly,Bonsly
+pokemon_name_Mime Jr.,Mime Jr.
+pokemon_name_Happiny,Happiny
+pokemon_name_Chatot,Chatot
+pokemon_name_Spiritomb,Spiritomb
+pokemon_name_Gible,Gible
+pokemon_name_Gabite,Gabite
+pokemon_name_Garchomp,Garchomp
+pokemon_name_Munchlax,Munchlax
+pokemon_name_Riolu,Riolu
+pokemon_name_Lucario,Lucario
+pokemon_name_Hippopotas,Hippopotas
+pokemon_name_Hippowdon,Hippowdon
+pokemon_name_Skorupi,Skorupi
+pokemon_name_Drapion,Drapion
+pokemon_name_Croagunk,Croagunk
+pokemon_name_Toxicroak,Toxicroak
+pokemon_name_Carnivine,Carnivine
+pokemon_name_Finneon,Finneon
+pokemon_name_Lumineon,Lumineon
+pokemon_name_Mantyke,Mantyke
+pokemon_name_Snover,Snover
+pokemon_name_Abomasnow,Abomasnow
+pokemon_name_Weavile,Weavile
+pokemon_name_Magnezone,Magnezone
+pokemon_name_Lickilicky,Lickilicky
+pokemon_name_Rhyperior,Rhyperior
+pokemon_name_Tangrowth,Tangrowth
+pokemon_name_Electivire,Electivire
+pokemon_name_Magmortar,Magmortar
+pokemon_name_Togekiss,Togekiss
+pokemon_name_Yanmega,Yanmega
+pokemon_name_Leafeon,Leafeon
+pokemon_name_Glaceon,Glaceon
+pokemon_name_Gliscor,Gliscor
+pokemon_name_Mamoswine,Mamoswine
+pokemon_name_Porygon-Z,Porygon-Z
+pokemon_name_Gallade,Gallade
+pokemon_name_Probopass,Probopass
+pokemon_name_Dusknoir,Dusknoir
+pokemon_name_Froslass,Froslass
+pokemon_name_Rotom,Rotom
+pokemon_name_Uxie,Uxie
+pokemon_name_Mesprit,Mesprit
+pokemon_name_Azelf,Azelf
+pokemon_name_Dialga,Dialga
+pokemon_name_Palkia,Palkia
+pokemon_name_Heatran,Heatran
+pokemon_name_Regigigas,Regigigas
+pokemon_name_Giratina,Giratina
+pokemon_name_Cresselia,Cresselia
+pokemon_name_Phione,Phione
+pokemon_name_Manaphy,Manaphy
+pokemon_name_Darkrai,Darkrai
+pokemon_name_Shaymin,Shaymin
+pokemon_name_Arceus,Arceus
+pokemon_name_Victini,Victini
+pokemon_name_Snivy,Snivy
+pokemon_name_Servine,Servine
+pokemon_name_Serperior,Serperior
+pokemon_name_Tepig,Tepig
+pokemon_name_Pignite,Pignite
+pokemon_name_Emboar,Emboar
+pokemon_name_Oshawott,Oshawott
+pokemon_name_Dewott,Dewott
+pokemon_name_Samurott,Samurott
+pokemon_name_Patrat,Patrat
+pokemon_name_Watchog,Watchog
+pokemon_name_Lillipup,Lillipup
+pokemon_name_Herdier,Herdier
+pokemon_name_Stoutland,Stoutland
+pokemon_name_Purrloin,Purrloin
+pokemon_name_Liepard,Liepard
+pokemon_name_Pansage,Pansage
+pokemon_name_Simisage,Simisage
+pokemon_name_Pansear,Pansear
+pokemon_name_Simisear,Simisear
+pokemon_name_Panpour,Panpour
+pokemon_name_Simipour,Simipour
+pokemon_name_Munna,Munna
+pokemon_name_Musharna,Musharna
+pokemon_name_Pidove,Pidove
+pokemon_name_Tranquill,Tranquill
+pokemon_name_Unfezant,Unfezant
+pokemon_name_Blitzle,Blitzle
+pokemon_name_Zebstrika,Zebstrika
+pokemon_name_Roggenrola,Roggenrola
+pokemon_name_Boldore,Boldore
+pokemon_name_Gigalith,Gigalith
+pokemon_name_Woobat,Woobat
+pokemon_name_Swoobat,Swoobat
+pokemon_name_Drilbur,Drilbur
+pokemon_name_Excadrill,Excadrill
+pokemon_name_Audino,Audino
+pokemon_name_Timburr,Timburr
+pokemon_name_Gurdurr,Gurdurr
+pokemon_name_Conkeldurr,Conkeldurr
+pokemon_name_Tympole,Tympole
+pokemon_name_Palpitoad,Palpitoad
+pokemon_name_Seismitoad,Seismitoad
+pokemon_name_Throh,Throh
+pokemon_name_Sawk,Sawk
+pokemon_name_Sewaddle,Sewaddle
+pokemon_name_Swadloon,Swadloon
+pokemon_name_Leavanny,Leavanny
+pokemon_name_Venipede,Venipede
+pokemon_name_Whirlipede,Whirlipede
+pokemon_name_Scolipede,Scolipede
+pokemon_name_Cottonee,Cottonee
+pokemon_name_Whimsicott,Whimsicott
+pokemon_name_Petilil,Petilil
+pokemon_name_Lilligant,Lilligant
+pokemon_name_Basculin,Basculin
+pokemon_name_Sandile,Sandile
+pokemon_name_Krokorok,Krokorok
+pokemon_name_Krookodile,Krookodile
+pokemon_name_Darumaka,Darumaka
+pokemon_name_Darmanitan,Darmanitan
+pokemon_name_Maractus,Maractus
+pokemon_name_Dwebble,Dwebble
+pokemon_name_Crustle,Crustle
+pokemon_name_Scraggy,Scraggy
+pokemon_name_Scrafty,Scrafty
+pokemon_name_Sigilyph,Sigilyph
+pokemon_name_Yamask,Yamask
+pokemon_name_Cofagrigus,Cofagrigus
+pokemon_name_Tirtouga,Tirtouga
+pokemon_name_Carracosta,Carracosta
+pokemon_name_Archen,Archen
+pokemon_name_Archeops,Archeops
+pokemon_name_Trubbish,Trubbish
+pokemon_name_Garbodor,Garbodor
+pokemon_name_Zorua,Zorua
+pokemon_name_Zoroark,Zoroark
+pokemon_name_Minccino,Minccino
+pokemon_name_Cinccino,Cinccino
+pokemon_name_Gothita,Gothita
+pokemon_name_Gothorita,Gothorita
+pokemon_name_Gothitelle,Gothitelle
+pokemon_name_Solosis,Solosis
+pokemon_name_Duosion,Duosion
+pokemon_name_Reuniclus,Reuniclus
+pokemon_name_Ducklett,Ducklett
+pokemon_name_Swanna,Swanna
+pokemon_name_Vanillite,Vanillite
+pokemon_name_Vanillish,Vanillish
+pokemon_name_Vanilluxe,Vanilluxe
+pokemon_name_Deerling,Deerling
+pokemon_name_Sawsbuck,Sawsbuck
+pokemon_name_Emolga,Emolga
+pokemon_name_Karrablast,Karrablast
+pokemon_name_Escavalier,Escavalier
+pokemon_name_Foongus,Foongus
+pokemon_name_Amoonguss,Amoonguss
+pokemon_name_Frillish,Frillish
+pokemon_name_Jellicent,Jellicent
+pokemon_name_Alomomola,Alomomola
+pokemon_name_Joltik,Joltik
+pokemon_name_Galvantula,Galvantula
+pokemon_name_Ferroseed,Ferroseed
+pokemon_name_Ferrothorn,Ferrothorn
+pokemon_name_Klink,Klink
+pokemon_name_Klang,Klang
+pokemon_name_Klinklang,Klinklang
+pokemon_name_Tynamo,Tynamo
+pokemon_name_Eelektrik,Eelektrik
+pokemon_name_Eelektross,Eelektross
+pokemon_name_Elgyem,Elgyem
+pokemon_name_Beheeyem,Beheeyem
+pokemon_name_Litwick,Litwick
+pokemon_name_Lampent,Lampent
+pokemon_name_Chandelure,Chandelure
+pokemon_name_Axew,Axew
+pokemon_name_Fraxure,Fraxure
+pokemon_name_Haxorus,Haxorus
+pokemon_name_Cubchoo,Cubchoo
+pokemon_name_Beartic,Beartic
+pokemon_name_Cryogonal,Cryogonal
+pokemon_name_Shelmet,Shelmet
+pokemon_name_Accelgor,Accelgor
+pokemon_name_Stunfisk,Stunfisk
+pokemon_name_Mienfoo,Mienfoo
+pokemon_name_Mienshao,Mienshao
+pokemon_name_Druddigon,Druddigon
+pokemon_name_Golett,Golett
+pokemon_name_Golurk,Golurk
+pokemon_name_Pawniard,Pawniard
+pokemon_name_Bisharp,Bisharp
+pokemon_name_Bouffalant,Bouffalant
+pokemon_name_Rufflet,Rufflet
+pokemon_name_Braviary,Braviary
+pokemon_name_Vullaby,Vullaby
+pokemon_name_Mandibuzz,Mandibuzz
+pokemon_name_Heatmor,Heatmor
+pokemon_name_Durant,Durant
+pokemon_name_Deino,Deino
+pokemon_name_Zweilous,Zweilous
+pokemon_name_Hydreigon,Hydreigon
+pokemon_name_Larvesta,Larvesta
+pokemon_name_Volcarona,Volcarona
+pokemon_name_Cobalion,Cobalion
+pokemon_name_Terrakion,Terrakion
+pokemon_name_Virizion,Virizion
+pokemon_name_Tornadus,Tornadus
+pokemon_name_Thundurus,Thundurus
+pokemon_name_Reshiram,Reshiram
+pokemon_name_Zekrom,Zekrom
+pokemon_name_Landorus,Landorus
+pokemon_name_Kyurem,Kyurem
+pokemon_name_Keldeo,Keldeo
+pokemon_name_Meloetta,Meloetta
+pokemon_name_Genesect,Genesect
+pokemon_name_Chespin,Chespin
+pokemon_name_Quilladin,Quilladin
+pokemon_name_Chesnaught,Chesnaught
+pokemon_name_Fennekin,Fennekin
+pokemon_name_Braixen,Braixen
+pokemon_name_Delphox,Delphox
+pokemon_name_Froakie,Froakie
+pokemon_name_Frogadier,Frogadier
+pokemon_name_Greninja,Greninja
+pokemon_name_Bunnelby,Bunnelby
+pokemon_name_Diggersby,Diggersby
+pokemon_name_Fletchling,Fletchling
+pokemon_name_Fletchinder,Fletchinder
+pokemon_name_Talonflame,Talonflame
+pokemon_name_Scatterbug,Scatterbug
+pokemon_name_Spewpa,Spewpa
+pokemon_name_Vivillon,Vivillon
+pokemon_name_Litleo,Litleo
+pokemon_name_Pyroar,Pyroar
+pokemon_name_Flabébé,Flabébé
+pokemon_name_Floette,Floette
+pokemon_name_Florges,Florges
+pokemon_name_Skiddo,Skiddo
+pokemon_name_Gogoat,Gogoat
+pokemon_name_Pancham,Pancham
+pokemon_name_Pangoro,Pangoro
+pokemon_name_Furfrou,Furfrou
+pokemon_name_Espurr,Espurr
+pokemon_name_Meowstic,Meowstic
+pokemon_name_Honedge,Honedge
+pokemon_name_Doublade,Doublade
+pokemon_name_Aegislash,Aegislash
+pokemon_name_Spritzee,Spritzee
+pokemon_name_Aromatisse,Aromatisse
+pokemon_name_Swirlix,Swirlix
+pokemon_name_Slurpuff,Slurpuff
+pokemon_name_Inkay,Inkay
+pokemon_name_Malamar,Malamar
+pokemon_name_Binacle,Binacle
+pokemon_name_Barbaracle,Barbaracle
+pokemon_name_Skrelp,Skrelp
+pokemon_name_Dragalge,Dragalge
+pokemon_name_Clauncher,Clauncher
+pokemon_name_Clawitzer,Clawitzer
+pokemon_name_Helioptile,Helioptile
+pokemon_name_Heliolisk,Heliolisk
+pokemon_name_Tyrunt,Tyrunt
+pokemon_name_Tyrantrum,Tyrantrum
+pokemon_name_Amaura,Amaura
+pokemon_name_Aurorus,Aurorus
+pokemon_name_Sylveon,Sylveon
+pokemon_name_Hawlucha,Hawlucha
+pokemon_name_Dedenne,Dedenne
+pokemon_name_Carbink,Carbink
+pokemon_name_Goomy,Goomy
+pokemon_name_Sliggoo,Sliggoo
+pokemon_name_Goodra,Goodra
+pokemon_name_Klefki,Klefki
+pokemon_name_Phantump,Phantump
+pokemon_name_Trevenant,Trevenant
+pokemon_name_Pumpkaboo,Pumpkaboo
+pokemon_name_Gourgeist,Gourgeist
+pokemon_name_Bergmite,Bergmite
+pokemon_name_Avalugg,Avalugg
+pokemon_name_Noibat,Noibat
+pokemon_name_Noivern,Noivern
+pokemon_name_Xerneas,Xerneas
+pokemon_name_Yveltal,Yveltal
+pokemon_name_Zygarde,Zygarde
+pokemon_name_Diancie,Diancie
+pokemon_name_Hoopa,Hoopa
+pokemon_name_Volcanion,Volcanion
+pokemon_name_Rowlet,Rowlet
+pokemon_name_Dartrix,Dartrix
+pokemon_name_Decidueye,Decidueye
+pokemon_name_Litten,Litten
+pokemon_name_Torracat,Torracat
+pokemon_name_Incineroar,Incineroar
+pokemon_name_Popplio,Popplio
+pokemon_name_Brionne,Brionne
+pokemon_name_Primarina,Primarina
+pokemon_name_Pikipek,Pikipek
+pokemon_name_Trumbeak,Trumbeak
+pokemon_name_Toucannon,Toucannon
+pokemon_name_Yungoos,Yungoos
+pokemon_name_Gumshoos,Gumshoos
+pokemon_name_Grubbin,Grubbin
+pokemon_name_Charjabug,Charjabug
+pokemon_name_Vikavolt,Vikavolt
+pokemon_name_Crabrawler,Crabrawler
+pokemon_name_Crabominable,Crabominable
+pokemon_name_Oricorio,Oricorio
+pokemon_name_Cutiefly,Cutiefly
+pokemon_name_Ribombee,Ribombee
+pokemon_name_Rockruff,Rockruff
+pokemon_name_Lycanroc,Lycanroc
+pokemon_name_Wishiwashi,Wishiwashi
+pokemon_name_Mareanie,Mareanie
+pokemon_name_Toxapex,Toxapex
+pokemon_name_Mudbray,Mudbray
+pokemon_name_Mudsdale,Mudsdale
+pokemon_name_Dewpider,Dewpider
+pokemon_name_Araquanid,Araquanid
+pokemon_name_Fomantis,Fomantis
+pokemon_name_Lurantis,Lurantis
+pokemon_name_Morelull,Morelull
+pokemon_name_Shiinotic,Shiinotic
+pokemon_name_Salandit,Salandit
+pokemon_name_Salazzle,Salazzle
+pokemon_name_Stufful,Stufful
+pokemon_name_Bewear,Bewear
+pokemon_name_Bounsweet,Bounsweet
+pokemon_name_Steenee,Steenee
+pokemon_name_Tsareena,Tsareena
+pokemon_name_Comfey,Comfey
+pokemon_name_Oranguru,Oranguru
+pokemon_name_Passimian,Passimian
+pokemon_name_Wimpod,Wimpod
+pokemon_name_Golisopod,Golisopod
+pokemon_name_Sandygast,Sandygast
+pokemon_name_Palossand,Palossand
+pokemon_name_Pyukumuku,Pyukumuku
+pokemon_name_Type: Null,Type: Null
+pokemon_name_Silvally,Silvally
+pokemon_name_Minior,Minior
+pokemon_name_Komala,Komala
+pokemon_name_Turtonator,Turtonator
+pokemon_name_Togedemaru,Togedemaru
+pokemon_name_Mimikyu,Mimikyu
+pokemon_name_Bruxish,Bruxish
+pokemon_name_Drampa,Drampa
+pokemon_name_Dhelmise,Dhelmise
+pokemon_name_Jangmo-o,Jangmo-o
+pokemon_name_Hakamo-o,Hakamo-o
+pokemon_name_Kommo-o,Kommo-o
+pokemon_name_Tapu Koko,Tapu Koko
+pokemon_name_Tapu Lele,Tapu Lele
+pokemon_name_Tapu Bulu,Tapu Bulu
+pokemon_name_Tapu Fini,Tapu Fini
+pokemon_name_Cosmog,Cosmog
+pokemon_name_Cosmoem,Cosmoem
+pokemon_name_Solgaleo,Solgaleo
+pokemon_name_Lunala,Lunala
+pokemon_name_Nihilego,Nihilego
+pokemon_name_Buzzwole,Buzzwole
+pokemon_name_Pheromosa,Pheromosa
+pokemon_name_Xurkitree,Xurkitree
+pokemon_name_Celesteela,Celesteela
+pokemon_name_Kartana,Kartana
+pokemon_name_Guzzlord,Guzzlord
+pokemon_name_Necrozma,Necrozma
+pokemon_name_Magearna,Magearna
+pokemon_name_Marshadow,Marshadow
+pokemon_name_Poipole,Poipole
+pokemon_name_Naganadel,Naganadel
+pokemon_name_Stakataka,Stakataka
+pokemon_name_Blacephalon,Blacephalon
+pokemon_name_Zeraora,Zeraora
+pokemon_name_Meltan,Meltan
+pokemon_name_Melmetal,Melmetal
+pokemon_name_Grookey,Grookey
+pokemon_name_Thwackey,Thwackey
+pokemon_name_Rillaboom,Rillaboom
+pokemon_name_Scorbunny,Scorbunny
+pokemon_name_Raboot,Raboot
+pokemon_name_Cinderace,Cinderace
+pokemon_name_Sobble,Sobble
+pokemon_name_Drizzile,Drizzile
+pokemon_name_Inteleon,Inteleon
+pokemon_name_Skwovet,Skwovet
+pokemon_name_Greedent,Greedent
+pokemon_name_Rookidee,Rookidee
+pokemon_name_Corvisquire,Corvisquire
+pokemon_name_Corviknight,Corviknight
+pokemon_name_Blipbug,Blipbug
+pokemon_name_Dottler,Dottler
+pokemon_name_Orbeetle,Orbeetle
+pokemon_name_Nickit,Nickit
+pokemon_name_Thievul,Thievul
+pokemon_name_Gossifleur,Gossifleur
+pokemon_name_Eldegoss,Eldegoss
+pokemon_name_Wooloo,Wooloo
+pokemon_name_Dubwool,Dubwool
+pokemon_name_Chewtle,Chewtle
+pokemon_name_Drednaw,Drednaw
+pokemon_name_Yamper,Yamper
+pokemon_name_Boltund,Boltund
+pokemon_name_Rolycoly,Rolycoly
+pokemon_name_Carkol,Carkol
+pokemon_name_Coalossal,Coalossal
+pokemon_name_Applin,Applin
+pokemon_name_Flapple,Flapple
+pokemon_name_Appletun,Appletun
+pokemon_name_Silicobra,Silicobra
+pokemon_name_Sandaconda,Sandaconda
+pokemon_name_Cramorant,Cramorant
+pokemon_name_Arrokuda,Arrokuda
+pokemon_name_Barraskewda,Barraskewda
+pokemon_name_Toxel,Toxel
+pokemon_name_Toxtricity,Toxtricity
+pokemon_name_Sizzlipede,Sizzlipede
+pokemon_name_Centiskorch,Centiskorch
+pokemon_name_Clobbopus,Clobbopus
+pokemon_name_Grapploct,Grapploct
+pokemon_name_Sinistea,Sinistea
+pokemon_name_Polteageist,Polteageist
+pokemon_name_Hatenna,Hatenna
+pokemon_name_Hattrem,Hattrem
+pokemon_name_Hatterene,Hatterene
+pokemon_name_Impidimp,Impidimp
+pokemon_name_Morgrem,Morgrem
+pokemon_name_Grimmsnarl,Grimmsnarl
+pokemon_name_Obstagoon,Obstagoon
+pokemon_name_Perrserker,Perrserker
+pokemon_name_Cursola,Cursola
+pokemon_name_Sirfetch'd,Sirfetch'd
+pokemon_name_Mr. Rime,Mr. Rime
+pokemon_name_Runerigus,Runerigus
+pokemon_name_Milcery,Milcery
+pokemon_name_Alcremie,Alcremie
+pokemon_name_Falinks,Falinks
+pokemon_name_Pincurchin,Pincurchin
+pokemon_name_Snom,Snom
+pokemon_name_Frosmoth,Frosmoth
+pokemon_name_Stonjourner,Stonjourner
+pokemon_name_Eiscue,Eiscue
+pokemon_name_Indeedee,Indeedee
+pokemon_name_Morpeko,Morpeko
+pokemon_name_Cufant,Cufant
+pokemon_name_Copperajah,Copperajah
+pokemon_name_Dracozolt,Dracozolt
+pokemon_name_Arctozolt,Arctozolt
+pokemon_name_Dracovish,Dracovish
+pokemon_name_Arctovish,Arctovish
+pokemon_name_Duraludon,Duraludon
+pokemon_name_Dreepy,Dreepy
+pokemon_name_Drakloak,Drakloak
+pokemon_name_Dragapult,Dragapult
+pokemon_name_Zacian,Zacian
+pokemon_name_Zamazenta,Zamazenta
+pokemon_name_Eternatus,Eternatus
+pokemon_name_Kubfu,Kubfu
+pokemon_name_Urshifu,Urshifu
+pokemon_name_Zarude,Zarude
+pokemon_name_Regieleki,Regieleki
+pokemon_name_Regidrago,Regidrago
+pokemon_name_Glastrier,Glastrier
+pokemon_name_Spectrier,Spectrier
+pokemon_name_Calyrex,Calyrex
+pokemon_name_Wyrdeer,Wyrdeer
+pokemon_name_Kleavor,Kleavor
+pokemon_name_Ursaluna,Ursaluna
+pokemon_name_Basculegion,Basculegion
+pokemon_name_Sneasler,Sneasler
+pokemon_name_Overqwil,Overqwil
+pokemon_name_Enamorus,Enamorus
+--------------
+Item names:
+Balls:
+item_name_1,Bola Mestre
+item_name_2,Bola Ultra
+item_pluralname_2,Bolas Ultra
+item_name_3,Bola Premier
+item_pluralname_3,Bolas Premier
+item_name_4,Bola Ótima
+item_pluralname_4,Bolas Ótimas
+item_name_5,PokéBola
+item_name_45,Bola Estimada
+item_pluralname_45,Bolas Estimadas
+item_name_79,Bola Dive
+item_pluralname_79,Bolas Dive
+item_name_80,Bola Rede
+item_pluralname_80,Bolas Rede
+item_name_129,Bola Ligeira
+item_pluralname_129,Bolas Ligeiras
+item_name_150,Bola Timer
+item_pluralname_150,Bolas Timer
+item_name_157,Bola Pesada
+item_pluralname_157,Bolas Pesadas
+item_name_158,Bola Crepúsculo
+item_pluralname_158,Bolas Crepúsculo
+item_name_159,Bola Nível
+item_pluralname_159,Bolas Nível
+item_name_160,Bola Isca
+item_pluralname_160,Bolas Isca
+item_name_161,Bola Rapida
+item_pluralname_161,Bolas Rapida
+item_name_164,Bola Amizade
+item_pluralname_164,Bolas Amizade
+item_name_165,Bola Lunar
+item_pluralname_165,Bolas Lunar
+item_name_166,Bola do Amor
+item_pluralname_166,Bolas do Amor
+item_name_168,Bola Repetição
+item_pluralname_168,Bolas Repetição
+item_name_174,Bola Luxuosa
+item_pluralname_174,Bolas Luxuosas
+item_name_177,Bola Esportiva
+item_pluralname_177,Bolas Esportiva
+item_name_181,Bola Safari
+item_pluralname_181,Bolas Safari
+item_name_186,Bola Cura
+item_pluralname_186,Bolas Cura
+item_name_188,Bola Ninho
+item_pluralname_188,Bolas Ninho
+
+Key Items:
+item_name_6,Bicicleta
+item_name_41,S.S. Ticket
+item_name_54,Porta Moedas
+item_name_55,Detector de Itens
+item_name_56,Asa de Cristal
+item_name_58,Vara Velha
+item_name_59,Vara Boa
+item_name_61,Super Vara
+item_name_66,Escama Vermelha
+item_name_67,Poção Secreta
+item_name_69,Ovo Misterioso
+item_name_71,Asa de Prata
+item_name_78,Tênis de Corrida
+item_name_115,Bola GS
+item_name_116,Cartão Azul
+item_name_127,Cartão Chave
+item_name_128,Parte de Maquina
+item_name_130,Item Perdido
+item_name_133,Chave do Porão
+item_name_134,Passe
+item_name_175,Regador Squirt
+item_name_178,Asa Arco-Íris
+item_name_241,Charme Oval
+item_name_242,Charme Brilhante
+item_name_265,Passe Tri
+item_name_284,Passe Arco-Íris
+item_name_285,Mapa do Mar Velho
+item_name_286,Pedaço Ancestral
+item_name_292,Mapa do Mar Vazio
+item_name_592,Mapa do Mar da Liberdade
+item_name_576,Mega Bracelete
+item_name_651,Pedra da Luz
+item_name_652,Pedra da Escuridão
+item_name_653,Black Augurite
+
+Technical Machines:
+item_name_191,TM 01
+item_name_192,TM 02
+item_name_193,TM 03
+item_name_194,TM 04
+item_name_195,TM 05
+item_name_196,TM 06
+item_name_197,TM 07
+item_name_198,TM 08
+item_name_199,TM 09
+item_name_200,TM 10
+item_name_201,TM 11
+item_name_202,TM 12
+item_name_203,TM 13
+item_name_204,TM 14
+item_name_205,TM 15
+item_name_206,TM 16
+item_name_207,TM 17
+item_name_208,TM 18
+item_name_209,TM 19
+item_name_210,TM 20
+item_name_211,TM 21
+item_name_212,TM 22
+item_name_213,TM 23
+item_name_214,TM 24
+item_name_215,TM 25
+item_name_216,TM 26
+item_name_217,TM 27
+item_name_218,TM 28
+item_name_219,TM 29
+item_name_220,TM 30
+item_name_221,TM 31
+item_name_222,TM 32
+item_name_223,TM 33
+item_name_224,TM 34
+item_name_225,TM 35
+item_name_226,TM 36
+item_name_227,TM 37
+item_name_228,TM 38
+item_name_229,TM 39
+item_name_230,TM 40
+item_name_231,TM 41
+item_name_232,TM 42
+item_name_233,TM 43
+item_name_234,TM 44
+item_name_235,TM 45
+item_name_236,TM 46
+item_name_237,TM 47
+item_name_238,TM 48
+item_name_239,TM 49
+item_name_240,TM 50
+item_name_351,TM 51
+item_name_352,TM 52
+item_name_353,TM 53
+item_name_354,TM 54
+item_name_355,TM 55
+item_name_356,TM 56
+item_name_357,TM 57
+item_name_358,TM 58
+item_name_359,TM 59
+item_name_360,TM 60
+item_name_361,TM 61
+item_name_362,TM 62
+item_name_363,TM 63
+item_name_364,TM 64
+item_name_365,TM 65
+item_name_366,TM 66
+item_name_367,TM 67
+item_name_368,TM 68
+item_name_369,TM 69
+item_name_370,TM 70
+item_name_371,TM 71
+item_name_372,TM 72
+item_name_373,TM 73
+item_name_374,TM 74
+item_name_375,TM 75
+item_name_376,TM 76
+item_name_377,TM 77
+item_name_378,TM 78
+item_name_379,TM 79
+item_name_380,TM 80
+item_name_381,TM 81
+item_name_382,TM 82
+item_name_383,TM 83
+item_name_384,TM 84
+item_name_385,TM 85
+item_name_386,TM 86
+item_name_387,TM 87
+item_name_388,TM 88
+item_name_389,TM 89
+item_name_390,TM 90
+item_name_391,TM 91
+item_name_392,TM 92
+item_name_393,TM 93
+item_name_394,TM 94
+item_name_395,TM 95
+item_name_396,TM 96
+item_name_397,TM 97
+item_name_398,TM 98
+item_name_399,TM 99
+item_name_400,TM 100
+item_name_401,TM 101
+item_name_402,TM 102
+item_name_403,TM 103
+item_name_404,TM 104
+item_name_405,TM 105
+item_name_406,TM 106
+item_name_407,TM 107
+item_name_408,TM 108
+item_name_409,TM 109
+item_name_410,TM 110
+item_name_411,TM 111
+item_name_412,TM 112
+item_name_413,TM 113
+item_name_414,TM 114
+item_name_415,TM 115
+item_name_416,TM 116
+item_name_417,TM 117
+item_name_418,TM 118
+item_name_419,TM 119
+item_name_420,TM 120
+item_name_421,TM 121
+item_name_422,TM 122
+item_name_423,TM 123
+item_name_424,TM 124
+item_name_425,TM 125
+item_name_426,TM 126
+item_name_427,TM 127
+item_name_428,TM 128
+item_name_429,TM 129
+item_name_430,TM 130
+item_name_431,TM 131
+item_name_432,TM 132
+item_name_433,TM 133
+item_name_434,TM 134
+item_name_435,TM 135
+item_name_436,TM 136
+item_name_437,TM 137
+item_name_438,TM 138
+item_name_439,TM 139
+item_name_440,TM 140
+item_name_441,TM 141
+item_name_442,TM 142
+item_name_443,TM 143
+item_name_444,TM 144
+item_name_445,TM 145
+item_name_446,TM 146
+item_name_447,TM 147
+item_name_448,TM 148
+item_name_449,TM 149
+item_name_450,TM 150
+item_name_451,TM 151
+item_name_452,TM 152
+item_name_453,TM 153
+item_name_454,TM 154
+item_name_455,TM 155
+item_name_456,TM 156
+item_name_457,TM 157
+item_name_458,TM 158
+item_name_459,TM 159
+item_name_460,TM 160
+item_name_461,TM 161
+item_name_462,TM 162
+item_name_463,TM 163
+item_name_464,TM 164
+item_name_465,TM 165
+item_name_466,TM 166
+item_name_467,TM 167
+item_name_468,TM 168
+item_name_469,TM 169
+item_name_470,TM 170
+item_name_471,TM 171
+item_name_472,TM 172
+item_name_473,TM 173
+item_name_474,TM 174
+item_name_475,TM 175
+item_name_476,TM 176
+item_name_477,TM 177
+item_name_478,TM 178
+item_name_479,TM 179
+item_name_480,TM 180
+item_name_481,TM 181
+
+Hidden Machines:
+item_name_247,HM 01
+item_name_244,HM 02
+item_name_245,HM 03
+item_name_246,HM 04
+item_name_243,HM 05
+item_name_248,HM 06
+item_name_249,HM 07
+item_name_250,HM 08
+item_name_251,HM 09
+item_name_252,HM 10
+
+Medicine:
+item_name_7,Lava Cookie
+item_name_9,Antidoto
+item_name_10,Cura Queimadura
+item_pluralname_10,Cura Queimadura
+item_name_11,Cura Gelo
+item_pluralname_11,Cura Gelo
+item_name_12,Despertador
+item_pluralname_12,Despertadores
+item_name_13,Cura Paralisia
+item_pluralname_13,Cura Paralisia
+item_name_14,Restauração Total
+item_pluralname_14,Restaurações Totais
+item_name_15,Poção Máxima
+item_pluralname_15,Poções Máximas
+item_name_16,Hiper Poção
+item_pluralname_16,Hiper Poções
+item_name_17,Super Poção
+item_pluralname_17,Super Poções
+item_name_18,Poção
+item_pluralname_18,Poções
+item_name_21,Elixir Máximo
+item_name_32,Doce Raro
+item_pluralname_32,Doces Raros
+item_name_38,Cura Total
+item_pluralname_38,Curas Totais
+item_name_39,Reviver
+item_pluralname_39,Reviver
+item_name_40,Reviver Máximo
+item_pluralname_40,Reviver Máximos
+item_name_46,Água Fresca
+item_pluralname_46,Águas Frescas
+item_name_47,Refrigerante
+item_name_48,Limonada
+item_name_62,PP Up
+item_name_63,Ether
+item_name_64,Ether Máximo
+item_pluralname_64,Ethers Máximos
+item_name_65,Elixir
+item_pluralname_65,Elixires
+item_name_72,Leite Moo Moo
+item_name_114,Barrinha da Fúria
+item_pluralname_114,Barrinhas da Fúria
+item_name_121,Farinha Energética
+item_pluralname_121,Farinhas Energéticas
+item_name_122,Raíz Energética
+item_pluralname_122,Raízes Energéticas
+item_name_123,Farinha da Cura
+item_pluralname_123,Farinhas da Cura
+item_name_124,Erva Ressucitadora
+item_pluralname_124,Ervas Ressucitadoras
+item_name_139,Suco de Berry
+item_pluralname_139,Sucos de Berry
+item_name_152,Pewter Crunchies
+item_name_156,Cinzas Sagradas
+item_pluralname_156,Cinzas Sagradas
+item_name_266,Fanta
+item_name_502,PP Máximo
+
+Berries:
+item_name_2000,Cheri
+item_name_2001,Chesto
+item_name_2002,Pecha
+item_name_2003,Rawst
+item_name_2004,Aspear
+item_name_2005,Leppa
+item_name_2006,Oran
+item_name_2007,Persim
+item_name_2008,Lum
+item_name_2009,Sitrus
+item_name_2010,Figy
+item_name_2011,Wiki
+item_name_2012,Mago
+item_name_2013,Aguav
+item_name_2014,Iapapa
+item_name_2015,Razz
+item_name_2016,Bluk
+item_name_2017,Nanab
+item_name_2018,Wepear
+item_name_2019,Pinap
+item_name_2020,Pomeg
+item_name_2021,Kelpsy
+item_name_2022,Qualot
+item_name_2023,Hondew
+item_name_2024,Grepa
+item_name_2025,Tamato
+item_name_2026,Cornn
+item_name_2027,Magost
+item_name_2028,Rabuta
+item_name_2029,Nomel
+item_name_2030,Spelon
+item_name_2031,Pamtre
+item_name_2032,Watmel
+item_name_2033,Durin
+item_name_2034,Belue
+item_name_2035,Occa
+item_name_2036,Passho
+item_name_2037,Wacan
+item_name_2038,Rindo
+item_name_2039,Yache
+item_name_2040,Chople
+item_name_2041,Kebia
+item_name_2042,Shuca
+item_name_2043,Coba
+item_name_2044,Payapa
+item_name_2045,Tanga
+item_name_2046,Charti
+item_name_2047,Kasib
+item_name_2048,Haban
+item_name_2049,Colbur
+item_name_2050,Babiri
+item_name_2051,Chilan
+item_name_2052,Liechi
+item_name_2053,Ganlon
+item_name_2054,Salac
+item_name_2055,Petaya
+item_name_2056,Apicot
+item_name_2057,Lansat
+item_name_2058,Starf
+item_name_2059,Enigma
+item_name_2060,Micle
+item_name_2061,Custap
+item_name_2062,Jaboca
+item_name_2063,Rowap
+item_name_2064,Roseli
+item_name_2065,Kee
+item_name_2066,Maranga
+
+Stones:
+item_name_8,Pedra da Lua
+item_pluralname_8,Pedras da Lua
+item_name_22,Pedra do Fogo
+item_pluralname_22,Pedras do Fogo
+item_name_23,Pedra do Trovão
+item_pluralname_23,Pedras Pedra do Trovão
+item_name_24,Pedra D'Água
+item_pluralname_24,Pedras D'Água
+item_name_34,Pedra da Folha
+item_pluralname_34,Pedras da Folha
+item_name_112,Pedra Eterna
+item_pluralname_112,Pedras Eternas
+item_name_169,Pedra do Sol
+item_pluralname_169,Pedras do Sol
+item_name_262,Pedra Grudenta
+item_pluralname_262,Pedras Grudentas
+item_name_593,Pedra de Gelo
+item_pluralname_593,Pedras de Gelo
+item_name_135,Pedra Brilhante
+item_pluralname_135,Pedras Brilhantes
+item_name_136,Pedra do Crepúsculo
+item_pluralname_136,Pedras do Crepúsculo
+item_name_137,Pedra do Amanhecer
+item_pluralname_137,Pedras do Amanhecer
+
+Standard:
+item_name_19,Corda de Escapada
+item_pluralname_19,Cordas de Escapada
+item_name_30,Lucky Punch
+item_name_35,Poeira de Metal
+item_name_36,Nugget
+item_name_37,Poké Boneca
+item_name_57,Divisor de Exp.
+item_name_60,Folha de Prata
+item_pluralname_60,Folhas de Prata
+item_name_70,Espinho Pegajoso
+item_name_73,Garra Ligeira
+item_name_74,Lentes de Aumento
+item_name_75,Folha Dourada
+item_pluralname_75,Folhas Douradas
+item_name_76,Areia Macia
+item_pluralname_76,Areias Macias
+item_name_77,Bico Afiado
+item_name_81,Espinho Venenoso
+item_name_82,Pedra do Rei
+item_name_83,Escama Prisma
+item_pluralname_83,Escamas Prisma
+item_name_84,Pano Ceifador
+item_name_88,Pó de Prata
+item_name_90,Cachecol de Seda
+item_name_91,Amuleto Moeda
+item_name_94,Amuleto Purificador
+item_name_95,Água Mística
+item_name_96,Colher Torcida
+item_name_98,Faixa Preta
+item_name_100,Magmarizer
+item_name_102,Óculos Escuros
+item_name_103,Rabo de Slowpoke
+item_name_104,Laço Rosa
+item_name_105,Graveto
+item_name_106,Bomba de Fumaça
+item_name_107,Gelo Inderretivel
+item_name_108,Imã
+item_name_109,Osso Raro
+item_pluralname_109,Ossos Raros
+item_name_110,Perola
+item_name_111,Perola Grande
+item_pluralname_111,Perolas Grande
+item_name_113,Amuleto Mágico
+item_name_117,Semente Milagroça
+item_name_118,Bastão Grosso
+item_name_119,Faixa de Foco
+item_name_120,Electirizer
+item_name_125,Pedra Dura
+item_name_126,Ovo da Sorte
+item_pluralname_126,Ovos da Sorte
+item_name_131,Poeira Estelar
+item_name_132,Pedaço de Estrela
+item_name_138,Carvão
+item_pluralname_138,Carvões
+item_name_140,Lente de Precisão
+item_name_141,Protetor
+item_name_142,Cauda Atrasada
+item_name_143,Revestida Metalica
+item_name_144,Presa de Dragão
+item_name_145,Incenso Ondas
+item_name_146,Sobras
+item_name_147,Flauta Branca
+item_name_148,Sino Sereno
+item_name_149,Pedaço de Cometa
+item_name_151,Escama de Dragão
+item_name_153,Cogumelo Balm
+item_name_154,Casco Abandonado
+item_name_155,Pó Ligeiro
+item_name_162,Escama do Mar Profundo
+item_name_163,Bola Luz
+item_name_167,Dente do Mar Profundo
+item_name_170,Gene Berserk
+item_name_171,Lentes Longas
+item_name_172,Up-Grade
+item_name_173,Colar de Perolas
+item_name_176,Garra Agarradora
+item_name_179,Pedra Oval
+item_name_180,Pedaço de Tijolo
+item_name_182,Gosma Preta
+item_name_183,Presa Gilete
+item_name_184,Garra Gilete
+item_name_185,Disco Duvidoso
+item_name_187,Capsula de Habilidade
+item_name_189,Nugget Grande
+item_name_190,Escama Coração
+item_name_263,Incenso Estranho
+item_name_264,Incenso Marinho
+item_name_287,Incenso de Rosa
+item_name_288,Incenso Completo
+item_name_289,Incenso Relaxante
+item_name_290,Incenso da Sorte
+item_name_291,Incenso Puro
+item_name_293,Pedra Úmida
+item_name_294,Pedra Quente
+item_name_295,Pedra Macia
+item_name_296,Pedra Gelada
+item_name_297,Barro Claro
+item_name_298,Eviolite
+item_name_299,Incenso de Pedra
+item_name_503,Sachê
+item_name_504,Sonho Chicoteado
+item_name_505,Esfera Toxica
+item_name_506,Esfera da Vida
+item_name_577,Esfera de Fogo
+item_name_578,Faixa da Escolha
+item_name_579,Cachecol da Escolha
+item_name_580,Óculos da Escolha
+item_name_581,Braçadeira Macho
+item_name_582,Peso do Poder
+item_name_583,Braçadeira do Poder
+item_name_584,Cinto do Poder
+item_name_585,Lentes do Poder
+item_name_586,Faixa do Poder
+item_name_587,Tornozeleira do Poder
+item_name_591,Cinto Experiente
+item_name_594,Bola de Neve
+item_name_595,Bateria
+item_name_596,Semente Elétrica
+item_name_597,Semente Gramada
+item_name_598,Semente Nevoada
+item_name_599,Semente Psíquica
+item_name_600,Extensor de Terreno
+item_name_648,Poké Brinquedo
+item_name_649,Cauda Fofa
+item_name_650,Pó Brilhante
+item_name_654,Bloco Peat
+item_name_1996,Drive Quente
+item_name_1997,Drive Frio
+item_name_1998,Drive Encharcado
+item_name_1999,Drive Chocante
+
+Fossils:
+item_name_601,Fóssil Helix Fossil
+item_name_602,Fóssil Domo Fossil
+item_name_603,Amber Antigo
+item_name_604,Fóssil Raiz
+item_name_605,Fóssil Garra
+item_name_606,Fóssil Crânio
+item_name_607,Fóssil Armadura
+item_name_608,Fóssil Cobertura
+item_name_609,Fóssil Pluma
+item_name_610,Fóssil Mandíbula
+item_name_611,Fóssil Velejador
+
+Repels:
+item_name_20,Repelente
+item_name_42,Super Repelente
+item_name_43,Repelente Máximo
+item_pluralname_43,Repelentes Máximos
+
+Vitamins:
+item_name_25,Zinco
+item_name_26,HPUp
+item_name_27,Proteina
+item_name_28,Ferro
+item_name_29,Carboidrato
+item_name_31,Cálcio
+
+XItems:
+item_name_33,XPrecisão
+item_name_44,Dire Hit
+item_name_49,XAtaque
+item_name_50,XSp. Def.
+item_name_51,XDefesa
+item_name_52,XVelocidade
+item_name_53,XSp. Atq.
+item_name_68,Guard Spec
+
+Apricorns:
+item_name_85,Bolota Vermelha
+item_pluralname_85,Bolotas Vermelhas
+item_name_89,Bolota Azul
+item_pluralname_89,Bolotas Azuis
+item_name_92,Bolota Amarela
+item_pluralname_92,Bolotas Amarelas
+item_name_93,Bolota Verde
+item_pluralname_93,Bolotas Verdes
+item_name_97,Bolota Branca
+item_pluralname_97,Bolotas Brancas
+item_name_99,Bolota Preta
+item_pluralname_99,Bolotas Pretas
+item_name_101,Bolota Rosa
+item_pluralname_101,Bolotas Rosa
+
+Plants:
+item_name_86,Pequeno Cogumelo
+item_pluralname_86,Pequenos Cogumelos
+item_name_87,Grande Cogumelo
+item_pluralname_87,Grandes Cogumelos
+item_name_253,Mel
+
+Wings:
+item_name_254,Asa da Saúde
+item_pluralname_254,Asas da Saúde
+item_name_255,Asa Musculosa
+item_pluralname_255,Asas Musculosas
+item_name_256,Asa Resistente
+item_pluralname_256,Asas Resistentes
+item_name_257,Asa Genial
+item_pluralname_257,Asas Geniais
+item_name_258,Asa Esperta
+item_pluralname_258,Asas Espertas
+item_name_259,Asa Veloz
+item_pluralname_259,Asas Velozes
+item_name_260,Asa Bonita
+item_pluralname_260,Asas Bonitas
+item_name_261,Asa Grudenta
+item_pluralname_261,Asas Grudentas
+
+Plates:
+item_name_267,Placa Draconica
+item_name_268,Placa de Temor
+item_name_269,Placa de Terra
+item_name_270,Placa de Punho
+item_name_271,Placa de Chamas
+item_name_272,Placa de Gelo
+item_name_273,Placa de Inseto
+item_name_274,Placa de Ferro
+item_name_275,Placa de Plantas
+item_name_276,Placa da Mente
+item_name_277,Placa de Duende
+item_name_278,Placa do Céu
+item_name_279,Placa Encharcada
+item_name_280,Placa Assustadora
+item_name_281,Placa de Pedra
+item_name_282,Placa Tóxica
+item_name_283,Placa Eletrizante
+
+Mail:
+item_name_300,Grass Mail
+item_name_301,Bead Mail
+item_name_302,Dream Mail
+item_name_303,Fab Mail
+item_name_304,Glitter Mail
+item_name_305,Harbor Mail
+item_name_306,Mech Mail
+item_name_307,Orange Mail
+item_name_308,Retro Mail
+item_name_309,Shadow Mail
+item_name_310,Tropic Mail
+item_name_311,Wave Mail
+item_name_312,Wood Mail
+item_name_313,Air Mail
+item_name_314,Bloom Mail
+item_name_315,Brick Mail
+item_name_316,Bubble Mail
+item_name_317,Flame Mail
+item_name_318,Heart Mail
+item_name_319,Mosaic Mail
+item_name_320,Snow Mail
+item_name_321,Space Mail
+item_name_322,Steel Mail
+item_name_323,Tunnel Mail
+item_name_324,Bridge Mail T
+item_name_325,Bridge Mail D
+item_name_326,Bridge Mail S
+item_name_327,Bridge Mail V
+item_name_328,Bridge Mail M
+item_name_329,Favored Mail
+item_name_330,Thanks Mail
+item_name_331,Inquiry Mail
+item_name_332,Greet Mail
+item_name_333,RSVPMail
+item_name_334,Like Mail
+item_name_335,Reply Mail
+item_name_336,Kolben Mail
+
+Mega Stones:
+item_name_507,Abomasite
+item_name_508,Absolite
+item_name_509,Aerodactylite
+item_name_510,Aggronite
+item_name_511,Alakazite
+item_name_512,Ampharosite
+item_name_513,Banettite
+item_name_514,Blastoisinite
+item_name_515,Blazikenite
+item_name_516,Charizardite X
+item_name_517,Charizardite Y
+item_name_518,Garchompite
+item_name_519,Gardevoirite
+item_name_520,Gengarite
+item_name_521,Gyaradosite
+item_name_522,Heracronite
+item_name_523,Houndoominite
+item_name_524,Kangaskhanite
+item_name_525,Lucarionite
+item_name_526,Manectite
+item_name_527,Mawilite
+item_name_528,Medichamite
+item_name_529,Mewtwonite X
+item_name_530,Mewtwonite Y
+item_name_531,Pinsirite
+item_name_532,Scizorite
+item_name_533,Tyranitarite
+item_name_534,Venusaurite
+item_name_535,Altarianite
+item_name_536,Audinite
+item_name_537,Beedrillite
+item_name_538,Cameruptite
+item_name_539,Diancite
+item_name_540,Galladite
+item_name_541,Glalitite
+item_name_542,Latiasite
+item_name_543,Latiosite
+item_name_544,Lopunnite
+item_name_545,Metagrossite
+item_name_546,Pidgeotite
+item_name_547,Sablenite
+item_name_548,Salamencite
+item_name_549,Sceptilite
+item_name_550,Sharpedonite
+item_name_551,Slowbronite
+item_name_552,Steelixite
+item_name_553,Swampertite
+
+Gems:
+item_name_630,Gema de Fogo
+item_name_631,Gema de Agua
+item_name_632,Gema Eletrica
+item_name_633,Gema de Grama
+item_name_634,Gema de Gelo
+item_name_635,Gema de Luta
+item_name_636,Gema Venenosa
+item_name_637,Gema da Terra
+item_name_638,Gema Voadora
+item_name_639,Gema da Mente
+item_name_640,Gema Inseto
+item_name_641,Gema da Pedra
+item_name_642,Gema Fantasma
+item_name_643,Gema Dragão
+item_name_644,Gema Sombria
+item_name_645,Gema de Aço
+item_name_646,Gema Normal
+item_name_647,Gema de Fada
+
+Memories:
+item_name_660,Memória inseto
+item_name_661,Memória Sombria
+item_name_662,Memória Dragão
+item_name_663,Memória Eletrica
+item_name_664,Memória Fada
+item_name_665,Memória Lutador
+item_name_666,Memória Fogo
+item_name_667,Memória Voador
+item_name_668,Memória Fantasma
+item_name_669,Memória Grama
+item_name_670,Memória Solo
+item_name_671,Memória Gelo
+item_name_672,Memória Veneno
+item_name_673,Memória Psíquica
+item_name_674,Memória de Pedra
+item_name_675,Memória de Aço
+item_name_676,Memória Água
+
+Item Use Text:
+item_cannot_use,Agora não é o momento certo~para usar isso.
+item_6_cannot_walk,Você não pode Andar Aqui!
+item_6_missingskin,Você não pode usar esse item~sem uma skin de bicicleta.*O nome deve ser o mesmo~que o atual,~mas com "_bike" no final.
+item_6_only_custom_gamemodes,Esse item não pode ser usado~nesse modo de jogo.
+
+Key Items:
+item_use_6,<player.name> desmontou~da Biscicleta.
+item_use_54,Suas Moedas:~
+-------------------
+Move Names:
+move_name_1,Pound
+move_name_2,Karate Chop
+move_name_3,Double Slap
+move_name_4,Comet Punch
+move_name_5,Mega Punch
+move_name_6,Pay Day
+move_name_7,Fire Punch
+move_name_8,Ice Punch
+move_name_9,Thunder Punch
+move_name_10,Scratch
+move_name_11,Vice Grip
+move_name_12,Guillotine
+move_name_13,Razor Wind
+move_name_14,Swords Dance
+move_name_15,Cut
+move_name_16,Gust
+move_name_17,Wing Attack
+move_name_18,Whirlwind
+move_name_19,Fly
+move_name_20,Bind
+move_name_21,Slam
+move_name_22,Vine Whip
+move_name_23,Stomp
+move_name_24,Double Kick
+move_name_25,Mega Kick
+move_name_26,Jump Kick
+move_name_27,Rolling Kick
+move_name_28,Sand Attack
+move_name_29,Headbutt
+move_name_30,Horn Attack
+move_name_31,Fury Attack
+move_name_32,Horn Drill
+move_name_33,Tackle
+move_name_34,Body Slam
+move_name_35,Wrap
+move_name_36,Take Down
+move_name_37,Thrash
+move_name_38,Double-Edge
+move_name_39,Tail Whip
+move_name_40,Poison Sting
+move_name_41,Twineedle
+move_name_42,Pin Missile
+move_name_43,Leer
+move_name_44,Bite
+move_name_45,Growl
+move_name_46,Roar
+move_name_47,Sing
+move_name_48,Supersonic
+move_name_49,Sonic Boom
+move_name_51,Acid
+move_name_52,Ember
+move_name_53,Flamethrower
+move_name_54,Mist
+move_name_55,Water Gun
+move_name_56,Hydro Pump
+move_name_57,Surf
+move_name_58,Ice Beam
+move_name_59,Blizzard
+move_name_60,Psybeam
+move_name_61,Bubble Beam
+move_name_62,Aurora Beam
+move_name_63,Hyper Beam
+move_name_64,Peck
+move_name_65,Drill Peck
+move_name_66,Submission
+move_name_67,Low Kick
+move_name_68,Counter
+move_name_69,Seismic Toss
+move_name_70,Strength
+move_name_71,Absorb
+move_name_72,Mega Drain
+move_name_73,Leech Seed
+move_name_74,Growth
+move_name_75,Razor Leaf
+move_name_76,Solar Beam
+move_name_77,Poison Powder
+move_name_78,Stun Spore
+move_name_79,Sleep Powder
+move_name_80,Petal Dance
+move_name_81,String Shot
+move_name_82,Dragon Rage
+move_name_83,Fire Spin
+move_name_84,Thunder Shock
+move_name_85,Thunderbolt
+move_name_86,Thunder Wave
+move_name_87,Thunder
+move_name_88,Rock Throw
+move_name_89,Earthquake
+move_name_90,Fissure
+move_name_91,Dig
+move_name_92,Toxic
+move_name_93,Confusion
+move_name_94,Psychic
+move_name_95,Hypnosis
+move_name_96,Meditate
+move_name_97,Agility
+move_name_98,Quick Attack
+move_name_99,Rage
+move_name_100,Teleport
+move_name_101,Night Shade
+move_name_102,Mimic
+move_name_103,Screech
+move_name_104,Double Team
+move_name_105,Recover
+move_name_106,Harden
+move_name_107,Minimize
+move_name_108,Smokescreen
+move_name_109,Confuse Ray
+move_name_110,Withdraw
+move_name_111,Defense Curl
+move_name_112,Barrier
+move_name_113,Light Screen
+move_name_114,Haze
+move_name_115,Reflect
+move_name_116,Focus Energy
+move_name_117,Bide
+move_name_118,Metronome
+move_name_119,Mirror Move
+move_name_120,Self-Destruct
+move_name_121,Egg Bomb
+move_name_122,Lick
+move_name_123,Smog
+move_name_124,Sludge
+move_name_125,Bone Club
+move_name_126,Fire Blast
+move_name_127,Waterfall
+move_name_128,Clamp
+move_name_129,Swift
+move_name_130,Skull Bash
+move_name_131,Spike Cannon
+move_name_132,Constrict
+move_name_133,Amnesia
+move_name_134,Kinesis
+move_name_135,Soft-Boiled
+move_name_136,High Jump Kick
+move_name_137,Glare
+move_name_138,Dream Eater
+move_name_139,Poison Gas
+move_name_140,Barrage
+move_name_141,Leech Life
+move_name_142,Lovely Kiss
+move_name_143,Sky Attack
+move_name_144,Transform
+move_name_145,Bubble
+move_name_146,Dizzy Punch
+move_name_147,Spore
+move_name_148,Flash
+move_name_149,Psywave
+move_name_150,Splash
+move_name_151,Acid Armor
+move_name_152,Crabhammer
+move_name_153,Explosion
+move_name_154,Fury Swipes
+move_name_155,Bonemerang
+move_name_156,Rest
+move_name_157,Rock Slide
+move_name_158,Hyper Fang
+move_name_159,Sharpen
+move_name_160,Conversion
+move_name_161,Tri Attack
+move_name_162,Super Fang
+move_name_163,Slash
+move_name_164,Substitute
+move_name_165,Struggle
+move_name_166,Sketch
+move_name_167,Triple Kick
+move_name_168,Thief
+move_name_169,Spider Web
+move_name_170,Mind Reader
+move_name_171,Nightmare
+move_name_172,Flame Wheel
+move_name_173,Snore
+move_name_174,Curse
+move_name_175,Flail
+move_name_176,Conversion 2
+move_name_177,Aeroblast
+move_name_178,Cotton Spore
+move_name_179,Reversal
+move_name_180,Spite
+move_name_181,Powder Snow
+move_name_182,Protect
+move_name_183,Mach Punch
+move_name_184,Scary Face
+move_name_185,Feint Attack
+move_name_186,Sweet Kiss
+move_name_187,Belly Drum
+move_name_188,Sludge Bomb
+move_name_189,Mud-Slap
+move_name_190,Octazooka
+move_name_191,Spikes
+move_name_192,Zap Cannon
+move_name_193,Foresight
+move_name_194,Destiny Bond
+move_name_195,Perish Song
+move_name_196,Icy Wind
+move_name_197,Detect
+move_name_198,Bone Rush
+move_name_199,Lock-On
+move_name_200,Outrage
+move_name_201,Sandstorm
+move_name_202,Giga Drain
+move_name_203,Endure
+move_name_204,Charm
+move_name_205,Rollout
+move_name_206,False Swipe
+move_name_207,Swagger
+move_name_208,Milk Drink
+move_name_209,Spark
+move_name_210,Fury Cutter
+move_name_211,Steel Wing
+move_name_212,Mean Look
+move_name_213,Attract
+move_name_214,Sleep Talk
+move_name_215,Heal Bell
+move_name_216,Return
+move_name_217,Present
+move_name_218,Frustration
+move_name_219,Safeguard
+move_name_220,Pain Split
+move_name_221,Sacred Fire
+move_name_222,Magnitude
+move_name_223,Dynamic Punch
+move_name_224,Megahorn
+move_name_225,Dragon Breath
+move_name_226,Baton Pass
+move_name_227,Encore
+move_name_228,Pursuit
+move_name_229,Rapid Spin
+move_name_230,Sweet Scent
+move_name_231,Iron Tail
+move_name_232,Metal Claw
+move_name_233,Vital Throw
+move_name_234,Morning Sun
+move_name_235,Synthesis
+move_name_236,Moonlight
+move_name_237,Hidden Power
+move_name_238,Cross Chop
+move_name_239,Twister
+move_name_240,Rain Dance
+move_name_241,Sunny Day
+move_name_242,Crunch
+move_name_243,Mirror Coat
+move_name_244,Psych Up
+move_name_245,Extreme Speed
+move_name_246,Ancient Power
+move_name_247,Shadow Ball
+move_name_248,Future Sight
+move_name_249,Rock Smash
+move_name_250,Whirlpool
+move_name_251,Beat Up
+move_name_252,Fake Out
+move_name_253,Uproar
+move_name_254,Stockpile
+move_name_255,Spit Up
+move_name_256,Swallow
+move_name_257,Heat Wave
+move_name_258,Hail
+move_name_259,Torment
+move_name_260,Flatter
+move_name_261,Will-O-Wisp
+move_name_262,Memento
+move_name_263,Facade
+move_name_264,Focus Punch
+move_name_265,Smelling Salts
+move_name_267,Nature Power
+move_name_268,Charge
+move_name_269,Taunt
+move_name_271,Trick
+move_name_272,Role Play
+move_name_273,Wish
+move_name_274,Assist
+move_name_275,Ingrain
+move_name_276,Super Power
+move_name_277,Magic Coat
+move_name_278,Recycle
+move_name_279,Revenge
+move_name_280,Brick Break
+move_name_281,Yawn
+move_name_282,Knock Off
+move_name_283,Endeavor
+move_name_284,Eruption
+move_name_285,Skill Swap
+move_name_287,Refresh
+move_name_289,Snatch
+move_name_291,Dive
+move_name_292,Arm Thrust
+move_name_294,Tailglow
+move_name_295,Luster Purge
+move_name_296,Mist Ball
+move_name_297,Feather Dance
+move_name_298,Teeter Dance
+move_name_299,Blaze Kick
+move_name_300,Mud Sport
+move_name_301,Ice Ball
+move_name_302,Needle Arm
+move_name_303,Slack Off
+move_name_304,Hyper Voice
+move_name_305,Poison Fang
+move_name_306,Crush Claw
+move_name_307,Blast Burn
+move_name_308,Hydrocannon
+move_name_309,Meteor Mash
+move_name_310,Astonish
+move_name_311,Weather Ball
+move_name_312,Aromatherapy
+move_name_313,Fake Tears
+move_name_314,Air Cutter
+move_name_315,Overheat
+move_name_316,Odor Sleuth
+move_name_317,Rock Tomb
+move_name_318,Silverwind
+move_name_319,Metal Sound
+move_name_320,Grass Whistle
+move_name_321,Tickle
+move_name_322,Cosmic Power
+move_name_323,Water Spout
+move_name_324,Signal Beam
+move_name_325,Shadow Punch
+move_name_326,Extrasensory
+move_name_327,Sky Uppercut
+move_name_328,Sand Tomb
+move_name_329,Sheer Cold
+move_name_330,Muddywater
+move_name_331,Bullet Seed
+move_name_332,Aerial Ace
+move_name_333,Icicle Spear
+move_name_334,Iron Defense
+move_name_335,Block
+move_name_336,Howl
+move_name_337,Dragon Claw
+move_name_338,Frenzy Plant
+move_name_339,Bulk Up
+move_name_340,Bounce
+move_name_341,Mud Shot
+move_name_342,Poison Tail
+move_name_343,Covet
+move_name_344,Volt Tackle
+move_name_345,Magical Leaf
+move_name_346,Water Sport
+move_name_347,Calm Mind
+move_name_348,Leaf Blade
+move_name_349,Dragon Dance
+move_name_350,Rock Blast
+move_name_351,Shock Wave
+move_name_352,Water Pulse
+move_name_353,Doom Desire
+move_name_354,Psycho Boost
+move_name_355,Roost
+move_name_356,Gravity
+move_name_357,Miracle Eye
+move_name_358,Wake-Up Slap
+move_name_359,Hammer Arm
+move_name_360,Gyro Ball
+move_name_361,Healing Wish
+move_name_362,Brine
+move_name_363,Natural Gift
+move_name_364,Feint
+move_name_365,Pluck
+move_name_366,Tailwind
+move_name_367,Acupressure
+move_name_368,Metal Burst
+move_name_369,U-Turn
+move_name_370,Close Combat
+move_name_371,Payback
+move_name_372,Assurance
+move_name_373,Embargo
+move_name_374,Fling
+move_name_375,Psycho Shift
+move_name_376,Trump Card
+move_name_377,Heal Block
+move_name_378,Wring Out
+move_name_379,Power Trick
+move_name_384,Power Swap
+move_name_385,Guard Swap
+move_name_386,Punishment
+move_name_387,Last Resort
+move_name_388,Worry Seed
+move_name_389,Sucker Punch
+move_name_390,Toxic Spikes
+move_name_391,Heart Swap
+move_name_392,Aqua Ring
+move_name_393,Magnet Rise
+move_name_394,Flare Blitz
+move_name_395,Force Palm
+move_name_396,Aura Sphere
+move_name_397,Rock Polish
+move_name_398,Poison Jab
+move_name_399,Dark Pulse
+move_name_400,Night Slash
+move_name_401,Aqua Tail
+move_name_402,Seed Bomb
+move_name_403,Air Slash
+move_name_404,X-Scissor
+move_name_405,Bug Buzz
+move_name_406,Dragon Pulse
+move_name_407,Dragon Rush
+move_name_408,Power Gem
+move_name_409,Drain Punch
+move_name_410,Vacuum Wave
+move_name_411,Focus Blast
+move_name_412,Energy Ball
+move_name_413,Brave Bird
+move_name_414,Earth Power
+move_name_415,Switcheroo
+move_name_416,Giga Impact
+move_name_417,Nasty Plot
+move_name_418,Bullet Punch
+move_name_419,Avalanche
+move_name_420,Ice Shard
+move_name_421,Shadow Claw
+move_name_422,Thunder Fang
+move_name_423,Ice Fang
+move_name_424,Fire Fang
+move_name_425,Shadow Sneak
+move_name_426,Mud Bomb
+move_name_427,Psycho Cut
+move_name_428,Zen Headbutt
+move_name_429,Mirror Shot
+move_name_430,Flash Cannon
+move_name_431,Rock Climb
+move_name_432,Defog
+move_name_433,Trick Room
+move_name_434,Draco Meteor
+move_name_435,Discharge
+move_name_436,Lava Plume
+move_name_437,Leaf Storm
+move_name_438,Power Whip
+move_name_439,Rock Wrecker
+move_name_440,Crosspoison
+move_name_441,Gunk Shot
+move_name_442,Ironhead
+move_name_443,Magnet Bomb
+move_name_444,Stone Edge
+move_name_445,Captivate
+move_name_446,Stealth Rock
+move_name_447,Grass Knot
+move_name_448,Chatter
+move_name_449,Judgement
+move_name_450,Bug Bite
+move_name_451,Chargebeam
+move_name_452,Wood Hammer
+move_name_453,Aqua Jet
+move_name_454,Attack Order
+move_name_455,Defend Order
+move_name_456,Heal Order
+move_name_457,Head Smash
+move_name_458,Double Hit
+move_name_459,Roar of Time
+move_name_460,Spacial Rend
+move_name_462,Crush Grip
+move_name_463,Magma Storm
+move_name_464,Dark Void
+move_name_465,Seed Flare
+move_name_466,Ominous Wind
+move_name_467,Shadow Force
+move_name_468,Hone Claws
+move_name_473,Psyshock
+move_name_474,Venoshock
+move_name_475,Autotomize
+move_name_479,Smack Down
+move_name_480,Storm Throw
+move_name_481,Flame Burst
+move_name_482,Sludge Wave
+move_name_483,Quiver Dance
+move_name_484,Heavy Slam
+move_name_485,Synchronoise
+move_name_486,Electro Ball
+move_name_488,Flame Charge
+move_name_489,Coil
+move_name_490,Low Sweep
+move_name_491,Acid Spray
+move_name_492,Foul Play
+move_name_493,Simple Beam
+move_name_494,Entrainment
+move_name_496,Round
+move_name_497,Echoed Voice
+move_name_498,Chip Away
+move_name_499,Clear Smog
+move_name_500,Stored Power
+move_name_503,Scald
+move_name_504,Shell Smash
+move_name_505,Heal Pulse
+move_name_506,Hex
+move_name_508,Shift Gear
+move_name_509,Circle Throw
+move_name_510,Incinerate
+move_name_512,Acrobatics
+move_name_513,Reflect Type
+move_name_515,Final Gambit
+move_name_516,Bestow
+move_name_517,Inferno
+move_name_518,Water Pledge
+move_name_519,Fire Pledge
+move_name_520,Grass Pledge
+move_name_521,Volt Switch
+move_name_522,Struggle Bug
+move_name_523,Bulldoze
+move_name_524,Frost Breath
+move_name_525,Dragon Tail
+move_name_526,Work Up
+move_name_527,Electroweb
+move_name_528,Wild Charge
+move_name_529,Drill Run
+move_name_530,Dual Chop
+move_name_531,Heart Stamp
+move_name_532,Horn Leech
+move_name_533,Sacred Sword
+move_name_534,Razor Shell
+move_name_535,Heat Crash
+move_name_536,Leaf Tornado
+move_name_537,Steamroller
+move_name_538,Cotton Guard
+move_name_539,Night Daze
+move_name_540,Psystrike
+move_name_541,Tail Slap
+move_name_542,Hurricane
+move_name_543,Head Charge
+move_name_544,Gear Grind
+move_name_545,Searing Shot
+move_name_546,Techno Blast
+move_name_548,Secret Sword
+move_name_549,Glaciate
+move_name_550,Bolt Strike
+move_name_551,Blue Flare
+move_name_552,Fiery Dance
+move_name_553,Freeze Shock
+move_name_554,Ice Burn
+move_name_555,Snarl
+move_name_556,Icicle Crash
+move_name_557,V-Create
+move_name_558,Fusion Flare
+move_name_559,Fusion Bolt
+move_name_560,Ride
+move_name_564,Sticky Web
+move_name_565,Fell Stinger
+move_name_566,Phantom Force
+move_name_568,Noble Roar
+move_name_570,Parabolic Charge
+move_name_572,Petal Blizzard
+move_name_573,Freeze Dry
+move_name_574,Disarming Voice
+move_name_575,Parting Shot
+move_name_577,Draining Kiss
+move_name_580,Grassy Terrain
+move_name_581,Misty Terrain
+move_name_583,Play Rough
+move_name_584,Fairy Wind
+move_name_585,Moonblast
+move_name_586,Boomburst
+move_name_588,Kings Shield
+move_name_589,Play Nice
+move_name_590,Confide
+move_name_591,Diamond Storm
+move_name_592,Steam Eruption
+move_name_593,Hyperspace Hole
+move_name_594,Water Shuriken
+move_name_595,Mystical Fire
+move_name_598,Eerie Impulse
+move_name_599,Venom Drench
+move_name_601,Geomancy
+move_name_604,Electric Terrain
+move_name_605,Dazzling Gleam
+move_name_606,Celebrate
+move_name_608,Baby-Doll Eyes
+move_name_609,Nuzzle
+move_name_610,Hold Back
+move_name_611,Infestation
+move_name_612,Power-Up Punch
+move_name_613,Oblivion Wing
+move_name_614,Thousand Arrows
+move_name_615,Thousand Waves
+move_name_616,Lands Wrath
+move_name_617,Light Of Ruin
+move_name_618,Origin Pulse
+move_name_619,Precipice Blades
+move_name_620,Dragon Ascent
+move_name_621,Hyperspace Fury
+move_name_659,Shore Up
+move_name_660,First Impression
+move_name_662,Spirit Shackle
+move_name_663,Darkest Lariat
+move_name_664,Sparkling Aria
+move_name_665,Ice Hammer
+move_name_667,High Horsepower
+move_name_668,Strength Sap
+move_name_669,Solar Blade
+move_name_670,Leafage
+move_name_672,Toxic Thread
+move_name_674,Gear Up
+move_name_676,Pollen Puff
+move_name_677,Anchor Shot
+move_name_678,Psychic Terrain
+move_name_679,Lunge
+move_name_680,Fire Lash
+move_name_681,Power Trip
+move_name_682,Burn Up
+move_name_684,Smart Strike
+move_name_686,Revelation Dance
+move_name_688,Trop Kick
+move_name_691,Clanging Scales
+move_name_692,Dragon Hammer
+move_name_693,Brutal Swing
+move_name_705,Fleur Cannon
+move_name_706,Psychic Fangs
+move_name_708,Shadow Bone
+move_name_709,Accelerock
+move_name_710,Liquidation
+move_name_711,Prismatic Laser
+move_name_715,Tearful Look
+move_name_716,Zing Zap
+move_name_717,Natures Madness
+move_name_749,Tar Shot
+move_name_796,Steel Beam
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+Story translation:
+---
+New Bark Town:
+---
+barktown.dat:
+---
+barktown_player_house,Casa de <playername>
