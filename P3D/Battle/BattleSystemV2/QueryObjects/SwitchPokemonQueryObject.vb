@@ -96,7 +96,8 @@
                     Else
                         SoundManager.PlaySound("select")
                         TempScreen.BattleQuery.Clear()
-                        FinishOppSwitch(TempScreen)
+                        FinishOppSwitchAnimation(TempScreen)
+                        FinishOppSwitchEffects(TempScreen)
                         Dim cq1 As ScreenFadeQueryObject = New ScreenFadeQueryObject(ScreenFadeQueryObject.FadeTypes.Vertical, Color.Black, True, 16)
                         Dim cq2 As ScreenFadeQueryObject = New ScreenFadeQueryObject(ScreenFadeQueryObject.FadeTypes.Vertical, Color.Black, False, 16)
                         cq2.PassThis = True
@@ -116,7 +117,8 @@
                     Else
                         SoundManager.PlaySound("select")
                         TempScreen.BattleQuery.Clear()
-                        FinishOppSwitch(TempScreen)
+                        FinishOppSwitchAnimation(TempScreen)
+                        FinishOppSwitchEffects(TempScreen)
                         Dim cq1 As ScreenFadeQueryObject = New ScreenFadeQueryObject(ScreenFadeQueryObject.FadeTypes.Vertical, Color.Black, True, 16)
                         Dim cq2 As ScreenFadeQueryObject = New ScreenFadeQueryObject(ScreenFadeQueryObject.FadeTypes.Vertical, Color.Black, False, 16)
                         cq2.PassThis = True
@@ -138,7 +140,8 @@
                         _chooseIndex = 1
                         SoundManager.PlaySound("select")
                         TempScreen.BattleQuery.Clear()
-                        FinishOppSwitch(TempScreen)
+                        FinishOppSwitchAnimation(TempScreen)
+                        FinishOppSwitchEffects(TempScreen)
                         Dim cq1 As ScreenFadeQueryObject = New ScreenFadeQueryObject(ScreenFadeQueryObject.FadeTypes.Vertical, Color.Black, True, 16)
                         Dim cq2 As ScreenFadeQueryObject = New ScreenFadeQueryObject(ScreenFadeQueryObject.FadeTypes.Vertical, Color.Black, False, 16)
                         cq2.PassThis = True
@@ -152,7 +155,8 @@
             If Controls.Dismiss(True, True, True) = True Then
                 SoundManager.PlaySound("select")
                 TempScreen.BattleQuery.Clear()
-                FinishOppSwitch(TempScreen)
+                FinishOppSwitchAnimation(TempScreen)
+                FinishOppSwitchEffects(TempScreen)
                 Dim cq1 As ScreenFadeQueryObject = New ScreenFadeQueryObject(ScreenFadeQueryObject.FadeTypes.Vertical, Color.Black, True, 16)
                 Dim cq2 As ScreenFadeQueryObject = New ScreenFadeQueryObject(ScreenFadeQueryObject.FadeTypes.Vertical, Color.Black, False, 16)
                 cq2.PassThis = True
@@ -204,9 +208,9 @@
                                     TempScreen.OppFaint = False
                                     TempScreen.OwnStatistics.Switches += 1
                                     TempScreen.BattleQuery.Clear()
-                                    TempScreen.Battle.SwitchOutOwn(TempScreen, PokeIndex, TempScreen.BattleQuery.Count)
-                                    TempScreen.BattleQuery.Reverse()
-                                    FinishOppSwitch(TempScreen)
+                                    FinishOppSwitchAnimation(TempScreen)
+                                    TempScreen.Battle.SwitchOutOwn(TempScreen, PokeIndex, -1)
+                                    FinishOppSwitchEffects(TempScreen)
                                     Dim cq1 As ScreenFadeQueryObject = New ScreenFadeQueryObject(ScreenFadeQueryObject.FadeTypes.Vertical, Color.Black, True, 16)
                                     Dim cq2 As ScreenFadeQueryObject = New ScreenFadeQueryObject(ScreenFadeQueryObject.FadeTypes.Vertical, Color.Black, False, 16)
                                     cq2.PassThis = True
@@ -215,9 +219,9 @@
                                     TempScreen.Battle.StartRound(TempScreen)
                                 Else
                                     TempScreen.BattleQuery.Clear()
-                                    TempScreen.Battle.SwitchOutOwn(TempScreen, PokeIndex, TempScreen.BattleQuery.Count)
-                                    TempScreen.BattleQuery.Reverse()
-                                    FinishOppSwitch(TempScreen)
+                                    FinishOppSwitchAnimation(TempScreen)
+                                    TempScreen.Battle.SwitchOutOwn(TempScreen, PokeIndex, -1)
+                                    FinishOppSwitchEffects(TempScreen)
                                     Dim cq1 As ScreenFadeQueryObject = New ScreenFadeQueryObject(ScreenFadeQueryObject.FadeTypes.Vertical, Color.Black, True, 16)
                                     Dim cq2 As ScreenFadeQueryObject = New ScreenFadeQueryObject(ScreenFadeQueryObject.FadeTypes.Vertical, Color.Black, False, 16)
                                     cq2.PassThis = True
@@ -248,7 +252,7 @@
 
         Dim delay As Single = 2.0F
 
-        Public Sub FinishOppSwitch(BattleScreen As BattleScreen)
+        Public Sub FinishOppSwitchAnimation(BattleScreen As BattleScreen)
             BattleScreen.OppPokemonNPC.Position.Y = 0 + BattleScreen.BattleMapOffset.Y
             BattleScreen.Battle.ChangeCameraAngle(1, False, BattleScreen)
             Dim oppModel As String = BattleScreen.GetModelName(False)
@@ -301,6 +305,9 @@
             End If
             BattleScreen.BattleQuery.Add(BallThrow)
 
+
+        End Sub
+        Public Sub FinishOppSwitchEffects(BattleScreen As BattleScreen)
             With BattleScreen
                 Dim p As Pokemon = .OppPokemon
                 Dim op As Pokemon = .OwnPokemon
