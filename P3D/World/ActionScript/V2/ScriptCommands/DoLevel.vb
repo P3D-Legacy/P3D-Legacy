@@ -65,6 +65,7 @@
                     Screen.Level.WarpData.WarpRotations = 0
                     Screen.Level.WarpData.DoWarpInNextTick = True
                     Screen.Level.WarpData.CorrectCameraYaw = Screen.Camera.Yaw
+                    Screen.Level.WarpData.WarpSound = Nothing
                     IsReady = True
                 Case "setsafari"
                     Screen.Level.IsSafariZone = CBool(argument)

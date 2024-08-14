@@ -652,7 +652,11 @@
         Dim ID As Integer = CInt(GetTag(Tags, "ID"))
         Dim ModelPath As String = ""
         If TagExists(Tags, "ModelPath") = True Then
-            ModelPath = CStr(GetTag(Tags, "ModelPath"))
+            If CStr(GetTag(Tags, "ModelPath")).Contains("<") Then
+                ModelPath = P3D.ScriptVersion2.ScriptCommander.Parse(CStr(GetTag(Tags, "ModelPath"))).ToString()
+            Else
+                ModelPath = CStr(GetTag(Tags, "ModelPath"))
+            End If
         End If
         Dim Movement As String = CStr(GetTag(Tags, "Movement"))
         Dim MoveRectangles As List(Of Rectangle) = CType(GetTag(Tags, "MoveRectangles"), List(Of Rectangle))
@@ -829,7 +833,11 @@
 
         Dim ModelPath As String = ""
         If TagExists(Tags, "ModelPath") = True Then
-            ModelPath = CStr(GetTag(Tags, "ModelPath"))
+            If CStr(GetTag(Tags, "ModelPath")).Contains("<") Then
+                ModelPath = P3D.ScriptVersion2.ScriptCommander.Parse(CStr(GetTag(Tags, "ModelPath"))).ToString()
+            Else
+                ModelPath = CStr(GetTag(Tags, "ModelPath"))
+            End If
         End If
 
         Dim ActionValue As Integer = CInt(GetTag(Tags, "Action"))
