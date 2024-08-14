@@ -27,6 +27,12 @@
                     Return Screen.Level.DayTime
                 Case "environmenttype"
                     Return int(Screen.Level.EnvironmentType)
+                Case "loadoffsetmaps"
+                    If Core.GameOptions.LoadOffsetMaps > 0 Then
+                        ReturnBoolean(True)
+                    Else
+                        ReturnBoolean(False)
+                    End If
             End Select
 
             Return DEFAULTNULL

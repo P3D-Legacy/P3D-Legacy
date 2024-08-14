@@ -222,6 +222,7 @@ Namespace ScriptVersion2
             r(New ScriptCommand("level", "musicloop", "str", "Returns only the name of the current played song, without path and extension.", ",", True))
             r(New ScriptCommand("level", "daytime", "int", "Returns the DayTime of the current map.", ",", True))
             r(New ScriptCommand("level", "environmenttype", "int", "Returns the EnvironmentType of the current map.", ",", True))
+            r(New ScriptCommand("level", "LoadOffsetMaps", "bool", "Returns if OffsetMaps are being loaded (based on the Offset Map Quality option in the Options Menu).", ",", True))
         End Sub
 
         Private Shared Sub DoEntity()
