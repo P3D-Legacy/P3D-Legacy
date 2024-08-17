@@ -740,7 +740,9 @@ Public Class NewMainMenuScreen
     End Sub
 
     Private Sub DismissProfile()
-        _MainProfiles(_selectedProfile).UnSelectProfile()
+        If _menuIndex = 0 Then
+            _MainProfiles(_selectedProfile).UnSelectProfile()
+        End If
     End Sub
 
     Private Sub UpdateScreenOffset()
