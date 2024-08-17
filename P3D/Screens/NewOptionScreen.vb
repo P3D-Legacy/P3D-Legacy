@@ -954,7 +954,7 @@ Public Class NewOptionScreen
 				Me.ControlList.Add(New ScrollBar(New Vector2(Delta_X + 100, Delta_Y + 180), 400, Localization.GetString("option_screen_game_interfacescale", "Interface Scale"), Me.InterfaceScale, 0, 3, AddressOf ChangeInterfaceScale, s, 3))
 
 				Me.ControlList.Add(New ToggleButton(New Vector2(Delta_X + 100, Delta_Y + 240), 3, 64, Localization.GetString("option_screen_game_viewbobbing", "View Bobbing"), Me.ViewBobbing, AddressOf ToggleBobbing, {Localization.GetString("global_off", "Off"), Localization.GetString("global_on", "On")}.ToList(), 4))
-				Me.ControlList.Add(New CommandButton(New Vector2(Delta_X + 530 + 24, Delta_Y + 327), 1, 48, Localization.GetString("global_back", "Back"), AddressOf SwitchToMain, 5))
+				Me.ControlList.Add(New CommandButton(New Vector2(Delta_X + 530 + 24, Delta_Y + 336), 1, 48, Localization.GetString("global_back", "Back"), AddressOf SwitchToMain, 5))
 
 			Case 2 ' "Graphics" from the Options menu.
 				Me.ControlList.Add(New ScrollBar(New Vector2(Delta_X + 100, Delta_Y + 40), 400, Localization.GetString("option_screen_graphics_fov", "Field of View"), CInt(Me.FOV), 45, 120, AddressOf ChangeFOV, 1))
@@ -974,21 +974,21 @@ Public Class NewOptionScreen
 				Me.ControlList.Add(New ToggleButton(New Vector2(Delta_X + 100, Delta_Y + 220), 3, 64, Localization.GetString("option_screen_graphics_graphics", "Graphics"), CBool(Me.GraphicStyle), AddressOf ToggleGraphicsStyle, {Localization.GetString("option_screen_graphics_graphics_fast", "Fast"), Localization.GetString("option_screen_graphics_graphics_fancy", "Fancy")}.ToList(), 4))
 				Me.ControlList.Add(New ToggleButton(New Vector2(Delta_X + 100, Delta_Y + 300), 3, 64, Localization.GetString("option_screen_graphics_multisampling", "Multi Sampling"), Me.PreferMultiSampling, AddressOf ToggleMultiSampling, {"Off", "On"}.ToList(), 5))
 
-				Me.ControlList.Add(New CommandButton(New Vector2(Delta_X + 530 + 24, Delta_Y + 327), 1, 48, Localization.GetString("global_back", "Back"), AddressOf SwitchToMain, 6))
+				Me.ControlList.Add(New CommandButton(New Vector2(Delta_X + 530 + 24, Delta_Y + 336), 1, 48, Localization.GetString("global_back", "Back"), AddressOf SwitchToMain, 6))
 
 			Case 3 ' "Battle" from the Options menu.
 				Me.ControlList.Add(New ToggleButton(New Vector2(Delta_X + 100 + 20, Delta_Y + 100), 2, 64, Localization.GetString("option_screen_battle_3dmodels", "3D Models"), CBool(ShowModels), AddressOf ToggleShowModels, {Localization.GetString("global_off", "Off"), Localization.GetString("global_on", "On")}.ToList(), 1))
 				Me.ControlList.Add(New ToggleButton(New Vector2(Delta_X + 400 + 20, Delta_Y + 100), 2, 64, Localization.GetString("option_screen_battle_animations", "Animations"), CBool(Me.ShowBattleAnimations), AddressOf ToggleAnimations, {Localization.GetString("global_off", "Off"), Localization.GetString("global_on", "On")}.ToList(), 2))
 				Me.ControlList.Add(New ToggleButton(New Vector2(Delta_X + 100 + 20, Delta_Y + 200), 2, 64, Localization.GetString("option_screen_battle_battlestyle", "Battle Style"), CBool(Me.BattleStyle), AddressOf ToggleBattleStyle, {Localization.GetString("option_screen_battle_battlestyle_shift", "Shift"), Localization.GetString("option_screen_battle_battlestyle_set", "Set")}.ToList(), 3))
 
-				Me.ControlList.Add(New CommandButton(New Vector2(Delta_X + 530 + 24, Delta_Y + 327), 1, 48, Localization.GetString("global_back", "Back"), AddressOf SwitchToMain, 4))
+				Me.ControlList.Add(New CommandButton(New Vector2(Delta_X + 530 + 24, Delta_Y + 336), 1, 48, Localization.GetString("global_back", "Back"), AddressOf SwitchToMain, 4))
 
 			Case 4 ' "Controls" from the Options menu.
 				If PreScreen.Identification = Identifications.MainMenuScreen Then
 					Me.ControlList.Add(New ToggleButton(New Vector2(Delta_X + 100, Delta_Y + 100), 5, 64, Localization.GetString("option_screen_controls_xboxgamepad", "Xbox Gamepad"), Me.GamePadEnabled, AddressOf ToggleXBOX360Controller, {"Disabled", "Enabled"}.ToList(), 1))
 					Me.ControlList.Add(New CommandButton(New Vector2(Delta_X + 100, Delta_Y + 200), 3, 64, Localization.GetString("option_screen_controls_resetkeybindings", "Reset Key Bindings"), AddressOf ResetKeyBindings, 2))
 					Me.ControlList.Add(New CommandButton(New Vector2(Delta_X + 90 + 24, Delta_Y + 336), 1, 48, Localization.GetString("global_apply", "Apply"), AddressOf ControlsApply, 3))
-					Me.ControlList.Add(New CommandButton(New Vector2(Delta_X + 530 + 24, Delta_Y + 327), 1, 48, Localization.GetString("global_back", "Back"), AddressOf Close, 4))
+					Me.ControlList.Add(New CommandButton(New Vector2(Delta_X + 530 + 24, Delta_Y + 336), 1, 48, Localization.GetString("global_back", "Back"), AddressOf Close, 4))
 				Else
 					Dim d As New Dictionary(Of Integer, String)
 					d.Add(1, Localization.GetString("option_screen_controls_cameraspeed_slow", "...Slow..."))
@@ -999,7 +999,7 @@ Public Class NewOptionScreen
 					Me.ControlList.Add(New ToggleButton(New Vector2(Delta_X + 100, Delta_Y + 120), 5, 64, Localization.GetString("option_screen_controls_xboxgamepad", "Xbox Gamepad"), Me.GamePadEnabled, AddressOf ToggleXBOX360Controller, {"Disabled", "Enabled"}.ToList(), 2))
 					Me.ControlList.Add(New ToggleButton(New Vector2(Delta_X + 100, Delta_Y + 200), 5, 64, Localization.GetString("option_screen_controls_running", "Running"), Me.RunMode, AddressOf ToggleRunningToggle, {"Hold", "Toggle"}.ToList(), 3))
 					Me.ControlList.Add(New CommandButton(New Vector2(Delta_X + 100, Delta_Y + 280), 3, 64, Localization.GetString("option_screen_controls_resetkeybindings", "Reset Key Bindings"), AddressOf ResetKeyBindings, 4))
-					Me.ControlList.Add(New CommandButton(New Vector2(Delta_X + 530 + 24, Delta_Y + 327), 1, 48, Localization.GetString("global_back", "Back"), AddressOf SwitchToMain, 5))
+					Me.ControlList.Add(New CommandButton(New Vector2(Delta_X + 530 + 24, Delta_Y + 336), 1, 48, Localization.GetString("global_back", "Back"), AddressOf SwitchToMain, 5))
 				End If
 
 			Case 5 ' "Audio" from the Options menu.
@@ -1007,15 +1007,15 @@ Public Class NewOptionScreen
 				Me.ControlList.Add(New ScrollBar(New Vector2(Delta_X + 100, Delta_Y + 120), 400, Localization.GetString("option_screen_audio_volume_sfx", "SoundFX Volume"), Me.Sound, 0, 100, AddressOf ChangeSoundVolume, 2))
 				Me.ControlList.Add(New ToggleButton(New Vector2(Delta_X + 100, Delta_Y + 200), 1, 64, Localization.GetString("option_screen_audio_muted", "Muted"), CBool(Me.Muted), AddressOf ToggleMute, {"No", "Yes"}.ToList(), 3))
 				If PreScreen.Identification = Identifications.MainMenuScreen Then
-					Me.ControlList.Add(New CommandButton(New Vector2(Delta_X + 90 + 24, Delta_Y + 327), 1, 48, Localization.GetString("global_apply", "Apply"), AddressOf AudioSave, 4))
-					Me.ControlList.Add(New CommandButton(New Vector2(Delta_X + 530 + 24, Delta_Y + 327), 1, 48, Localization.GetString("global_back", "Back"), AddressOf Close, 5))
+					Me.ControlList.Add(New CommandButton(New Vector2(Delta_X + 90 + 24, Delta_Y + 336), 1, 48, Localization.GetString("global_apply", "Apply"), AddressOf AudioSave, 4))
+					Me.ControlList.Add(New CommandButton(New Vector2(Delta_X + 530 + 24, Delta_Y + 336), 1, 48, Localization.GetString("global_back", "Back"), AddressOf Close, 5))
 				Else
-					Me.ControlList.Add(New CommandButton(New Vector2(Delta_X + 530 + 24, Delta_Y + 327), 1, 48, Localization.GetString("global_back", "Back"), AddressOf SwitchToMain, 4))
+					Me.ControlList.Add(New CommandButton(New Vector2(Delta_X + 530 + 24, Delta_Y + 336), 1, 48, Localization.GetString("global_back", "Back"), AddressOf SwitchToMain, 4))
 				End If
 
 			Case 6 ' "Language" from the Options menu.
 				Me.ControlList.Add(New CommandButton(New Vector2(Delta_X + 90 + 24, Delta_Y + 336), 1, 48, Localization.GetString("global_apply", "Apply"), AddressOf LanguageApply, 1))
-				Me.ControlList.Add(New CommandButton(New Vector2(Delta_X + 530 + 24, Delta_Y + 327), 1, 48, Localization.GetString("global_back", "Back"), AddressOf Close, 2))
+				Me.ControlList.Add(New CommandButton(New Vector2(Delta_X + 530 + 24, Delta_Y + 336), 1, 48, Localization.GetString("global_back", "Back"), AddressOf Close, 2))
 
 			Case 7 ' "ContentPacks" from the Options menu.
 				Me.ControlList.Add(New CommandButton(New Vector2(Delta_X + 604, Delta_Y + 64), 2, 48, Localization.GetString("option_screen_contentpacks_up"), AddressOf ButtonUp, 1))
@@ -1023,8 +1023,8 @@ Public Class NewOptionScreen
 				Me.ControlList.Add(New ToggleButton(New Vector2(Delta_X + 604, Delta_Y + 176), 2, 48, "", isSelectedEnabled, AddressOf PackEnabledToggle, {Localization.GetString("global_enable"), Localization.GetString("global_disable")}.ToList(), 3))
 				Me.ControlList.Add(New CommandButton(New Vector2(Delta_X + 604, Delta_Y + 232), 2, 48, Localization.GetString("option_screen_contentpacks_information"), AddressOf SwitchToPackInformation, 4))
 
-				Me.ControlList.Add(New CommandButton(New Vector2(Delta_X + 90 + 24, Delta_Y + 327), 1, 48, Localization.GetString("global_apply", "Apply"), AddressOf PacksApply, 5))
-				Me.ControlList.Add(New CommandButton(New Vector2(Delta_X + 310 + 24, Delta_Y + 327), 1, 48, Localization.GetString("global_back", "Back"), AddressOf Close, 6))
+				Me.ControlList.Add(New CommandButton(New Vector2(Delta_X + 90 + 24, Delta_Y + 336), 1, 48, Localization.GetString("global_apply", "Apply"), AddressOf PacksApply, 5))
+				Me.ControlList.Add(New CommandButton(New Vector2(Delta_X + 310 + 24, Delta_Y + 336), 1, 48, Localization.GetString("global_back", "Back"), AddressOf Close, 6))
 
 			Case 8 ' "Information" from the ContentPacks menu.
 				Me.ControlList.Add(New ToggleButton(New Vector2(Delta_X + 90 + 24, Delta_Y + 336), 2, 48, Localization.GetString("global_enabled"), isSelectedEnabled, AddressOf PackEnabledToggle, {Localization.GetString("global_no"), Localization.GetString("global_yes")}.ToList(), 1))
