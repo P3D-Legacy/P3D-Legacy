@@ -718,15 +718,16 @@ Public Class OverworldCamera
                     pressedDirection = 1
                 End If
             End If
-            If (KeyBoardHandler.KeyDown(KeyBindings.BackwardMoveKey) = True Or ControllerHandler.ButtonDown(Buttons.LeftThumbstickDown) = True) And Turning = False Then
-                If _freeCameraMode = True Then
-                    If _moved <= 0F Then
-                        Turn(2)
-                    End If
-                Else
-                    pressedDirection = 2
-                End If
-            End If
+            '// Disable turn around
+            'If (KeyBoardHandler.KeyDown(KeyBindings.BackwardMoveKey) = True Or ControllerHandler.ButtonDown(Buttons.LeftThumbstickDown) = True) And Turning = False Then
+            '    If _freeCameraMode = True Then
+            '        If _moved <= 0F Then
+            '            Turn(2)
+            '        End If
+            '    Else
+            '        pressedDirection = 2
+            '    End If
+            'End If
             If (KeyBoardHandler.KeyDown(KeyBindings.RightMoveKey) = True Or ControllerHandler.ButtonDown(Buttons.RightThumbstickRight) = True) And Turning = False Then
                 If _freeCameraMode = True Then
                     Yaw -= RotationSpeed * 40.0F * ControllerTurnModifier
