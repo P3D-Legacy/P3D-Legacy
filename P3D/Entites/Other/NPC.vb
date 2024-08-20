@@ -420,10 +420,6 @@
                                     Case 3
                                         needFacing = 1
                                 End Select
-                                Dim turns As Integer = needFacing - Screen.Camera.GetPlayerFacingDirection()
-                                If turns < 0 Then
-                                    turns = 4 - turns.ToPositive()
-                                End If
 
                                 CType(Core.CurrentScreen, OverworldScreen).TrainerEncountered = True
                                 If InSightMusic <> "nomusic" And InSightMusic <> "" Then
@@ -445,7 +441,7 @@
                                 End Select
 
                                 Dim s As String = "version=2" & Environment.NewLine &
-                                    "@player.turn(" & turns & ")" & Environment.NewLine
+                                    "@player.turnto(" & needFacing & ")" & Environment.NewLine
 
                                 With CType(Screen.Camera, OverworldCamera)
                                     If CType(Screen.Camera, OverworldCamera).ThirdPerson = True And IsOnScreen() = False Then
