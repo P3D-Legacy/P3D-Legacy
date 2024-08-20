@@ -390,6 +390,7 @@
     Public TempSurfSkin As String = "Hilbert"
     Public TempRideSkin As String = ""
     Public Statistics As String = ""
+    Public CheckForTrainersLater As Boolean = False
 
     'Secure fields:
     Private _name As String = "<player.name>"
@@ -1628,7 +1629,7 @@
     ' - add to the Temp map step count
     ' - track the statistic for walked steps.
 
-    Private _stepEventStartedTrainer As Boolean = False
+    Public _stepEventStartedTrainer As Boolean = False
     Private _stepEventRepelMessage As Boolean = False
     Private _stepEventEggHatched As Boolean = False
 
@@ -1687,13 +1688,17 @@
         End If
     End Sub
 
-    Private Sub StepEventCheckTrainers()
+    Public Sub StepEventCheckTrainers()
         If CanFireStepEvent() = True Then
             Screen.Level.CheckTrainerSights()
             If CurrentScreen.Identification = Screen.Identifications.OverworldScreen Then
                 If CType(CurrentScreen, OverworldScreen).ActionScript.IsReady = False Then
                     _stepEventStartedTrainer = True
                 End If
+            End If
+        Else
+            If Screen.Level.PokemonEncounterData.EncounteredPokemon = True OrElse (CurrentScreen.Identification = Screen.Identifications.OverworldScreen AndAlso CType(CurrentScreen, OverworldScreen).TrainerEncountered = True) Then
+                CheckForTrainersLater = True
             End If
         End If
     End Sub

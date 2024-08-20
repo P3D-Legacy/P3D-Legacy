@@ -473,6 +473,15 @@ Public Class OverworldScreen
             ActionScript.StartScript(AfterRoamingBattleScript, 0,,, "AfterRoamingBattleScript")
             AfterRoamingBattleScript = ""
         End If
+        If Core.Player.CheckForTrainersLater = True Then
+            Screen.Level.CheckTrainerSights()
+            If CurrentScreen.Identification = Screen.Identifications.OverworldScreen Then
+                If CType(CurrentScreen, OverworldScreen).ActionScript.IsReady = False Then
+                    Core.Player._stepEventStartedTrainer = True
+                End If
+            End If
+            Core.Player.CheckForTrainersLater = False
+        End If
     End Sub
 
     ''' <summary>
