@@ -913,6 +913,10 @@
                 _moveMenuItemList.Clear()
                 BattleScreen.ClearMoveMenuTime = False
             End If
+            If _moveMenuIndex > _moveMenuItemList.Count - 1 Then
+                _moveMenuIndex = 0
+                _moveMenuNextIndex = 0
+            End If
 
             If _moveMenuChoseMove = True Then
                 _moveMenuAlpha -= 15
