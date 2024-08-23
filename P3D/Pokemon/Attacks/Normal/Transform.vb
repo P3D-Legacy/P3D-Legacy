@@ -70,7 +70,7 @@
                 op = BattleScreen.OwnPokemon
             End If
 
-            If op.IsTransformed = False Then
+            If op.IsTransformed = False AndAlso p.IsTransformed = False Then
                 'Save old stats:
                 p.OriginalNumber = p.Number
                 p.OriginalType1 = New Element(p.Type1.Type)
