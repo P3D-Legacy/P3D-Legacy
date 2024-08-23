@@ -56,10 +56,10 @@ Public Class Spawner
                     Dim splits() As String = Line.Split(CChar("|"))
 
                     Dim PMethod As Integer = CInt(splits(0))
-                    Dim Pokemon As String = splits(1)
+                    Dim Pokemon As String = P3D.ScriptVersion2.ScriptCommander.Parse(splits(1)).ToString
                     Dim Chance As Integer = CInt(splits(2))
                     Dim DayTime() As String = splits(3).Split(CChar(","))
-                    Dim levelCap As String = splits(4)
+                    Dim levelCap As String = P3D.ScriptVersion2.ScriptCommander.Parse(splits(4)).ToString
 
                     'Optional Season and Weather checks:
                     Dim Weathers() As String = {"-1"}
@@ -191,7 +191,9 @@ Public Class Spawner
                     End If
                 Next
                 If Pokemons(i).Contains("_") Then
-                    PkAD = Pokemons(i).Split(CChar("_"))(1)
+                    PkAD = PokemonForms.GetAdditionalValueFromDataFile(Pokemons(i).Split(CChar("_"))(1))
+                ElseIf Pokemons(i).Contains(";") Then
+                    PkAD = Pokemons(i).Split(CChar(";"))(1)
                 End If
                 p = Pokemon.GetPokemonByID(PkID, PkAD)
                 p.Generate(level, True, PkAD)
