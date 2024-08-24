@@ -4,7 +4,7 @@ version=2
 	:endif
 
 :if:<register.registered(postblueoak)>=false <and> <player.badges>=16
-	@text.show(Hello, you are begining~to hold the air of~a great Champion,~<player.name>.*It is time for your~Pokédex to match~who you are.*Let me see your~Pokédex for a moment.*I will upgrade your~Pokédex with the~National Mode.)
+	@text.show(Hello, you are beginning~to hold the air of~a great Champion,~<player.name>.*It is time for your~Pokédex to match~who you are.*Let me see your~Pokédex for a moment.*I will upgrade your~Pokédex with the~National Mode.)
 	@sound.play(success,1)
 	@text.color(playercolor)
 	@text.show(<player.name> received~the National Pokédex!)
