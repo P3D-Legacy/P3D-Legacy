@@ -507,7 +507,7 @@ nextIndex:
                 CriticalMultiplier *= 2.5F
         End Select
 
-        If Core.Player.Inventory.GetItemAmount(656.ToString) > 0 Then 'Exp. Charm
+        If Core.Player.Inventory.GetItemAmount(657.ToString) > 0 Then 'Catching. Charm
             CriticalMultiplier *= 2.0F
         End If
         Dim CriticalCaptureChance As Integer = CInt(Math.Floor(CriticalMultiplier / 6))

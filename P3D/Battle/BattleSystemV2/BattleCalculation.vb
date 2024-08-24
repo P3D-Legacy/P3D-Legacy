@@ -1066,6 +1066,10 @@
                 End If
             Next
 
+            If Core.Player.Inventory.GetItemAmount(656.ToString) > 0 Then 'Exp. Charm
+                EXP = CInt(EXP * 1.5F)
+            End If
+
             Return EXP
         End Function
 
