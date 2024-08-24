@@ -28922,6 +28922,7 @@
     <Compile Include="Pokemon\Items\Gems\SteelGem.vb" />
     <Compile Include="Pokemon\Items\Gems\WaterGem.vb" />
     <Compile Include="Pokemon\Items\GameModeItem.vb" />
+    <Compile Include="Pokemon\Items\KeyItems\CatchingCharm.vb" />
     <Compile Include="Pokemon\Items\KeyItems\LightStone.vb" />
     <Compile Include="Pokemon\Items\KeyItems\DarkStone.vb" />
     <Compile Include="Pokemon\Items\KeyItems\LibertySeaMap.vb" />
