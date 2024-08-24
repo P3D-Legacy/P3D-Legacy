@@ -43,6 +43,14 @@ version=2
 	:end
 :endif
 
+:if:<Register.Registered(pokedex_sevii)>=true <and> <Register.Registered(ReceivedCatchingCharm)>=false
+	@Text.show(Oh, by the way, my Aide~was supposed to give you~this, but I suppose he~forgot to do so.*Here you go!)
+	@Item.Give(657,1)
+	@Item.MessageGive(657,1)
+	@Register.Register(ReceivedCatchingCharm)
+	@text.show(Having this charm on you~increases the chance to~get a critical catch and~thus your odds of~catching a Pokémon.)
+:endif
+
 #This sets a flag for the evaldist script so that it knows where the call came from:
 @storage.set(str,pallet_oak_scriptcaller,flag)
 @script.start(pallet\evaldist)
