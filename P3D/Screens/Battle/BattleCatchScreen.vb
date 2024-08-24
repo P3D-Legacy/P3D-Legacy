@@ -8,6 +8,7 @@
 
     Dim AnimationIndex As Integer = 0
     Dim InBall As Boolean = False
+    Dim CriticalCapture As Boolean = False
 
     Dim textboxStart As Boolean = False
     Dim showPokedexEntry As Boolean = False
@@ -137,16 +138,26 @@ nextIndex:
                             Dim Shakes As List(Of Boolean) = New List(Of Boolean)
                             For i = 0 To 3
                                 If StayInBall() = True Then
-                                    Select Case i
-                                        Case 0
-                                            Shakes.Add(False)
-                                        Case 1
-                                            Shakes.Add(True)
-                                        Case 2
-                                            Shakes.Add(False)
-                                        Case 3
-                                            InBall = True
-                                    End Select
+                                    If CriticalCapture = True Then
+                                        Select Case i
+                                            Case 0
+                                                Shakes.Add(False)
+                                            Case 1
+                                                InBall = True
+                                                Exit For
+                                        End Select
+                                    Else
+                                        Select Case i
+                                            Case 0
+                                                Shakes.Add(False)
+                                            Case 1
+                                                Shakes.Add(True)
+                                            Case 2
+                                                Shakes.Add(False)
+                                            Case 3
+                                                InBall = True
+                                        End Select
+                                    End If
                                 Else
                                     Exit For
                                     InBall = False
@@ -478,6 +489,31 @@ nextIndex:
 
         If CaptureRate <= 0 Then
             CaptureRate = 1
+        End If
+
+        Dim CriticalMultiplier As Single = CaptureRate
+        Select Case P3D.Pokedex.CountEntries(Core.Player.PokedexData, {2, 3})
+            Case 0 To 30
+                CriticalMultiplier *= 0.0F
+            Case 31 To 150
+                CriticalMultiplier *= 0.5F
+            Case 151 To 300
+                CriticalMultiplier *= 1.0F
+            Case 301 To 450
+                CriticalMultiplier *= 1.5F
+            Case 451 To 600
+                CriticalMultiplier *= 2.0F
+            Case Else 'Larger than 600
+                CriticalMultiplier *= 2.5F
+        End Select
+
+        If Core.Player.Inventory.GetItemAmount(656.ToString) > 0 Then 'Exp. Charm
+            CriticalMultiplier *= 2.0F
+        End If
+        Dim CriticalCaptureChance As Integer = CInt(Math.Floor(CriticalMultiplier / 6))
+        Dim CriticalCheck As Integer = Core.Random.Next(0, 255 + 1)
+        If CriticalCheck < CriticalCaptureChance Then
+            CriticalCapture = True
         End If
 
         Dim B As Integer = CInt(1048560 / Math.Sqrt(Math.Sqrt(16711680 / CaptureRate)))
