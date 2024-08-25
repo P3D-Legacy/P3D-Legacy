@@ -867,7 +867,7 @@
         End Function
 
         Public Function GetMessage(ByVal p As Pokemon) As String
-            Return Me.Message.Replace("<name>", p.GetDisplayName())
+            Return ScriptVersion2.ScriptCommander.Parse(Me.Message.Replace("<name>", p.GetDisplayName())).ToString
         End Function
 
     End Class
