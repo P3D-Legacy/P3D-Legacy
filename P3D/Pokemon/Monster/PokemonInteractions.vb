@@ -49,7 +49,7 @@
         Dim newPosition As New Vector2(0, 1)
 
         Dim s As String = "version=2" & Environment.NewLine &
-            "@pokemon.cry(" & p.Number & ")" & Environment.NewLine
+            "@pokemon.cry(" & PokemonForms.GetPokemonDataFileName(p.Number, p.AdditionalData, True) & ")" & Environment.NewLine
 
         If CType(Screen.Camera, OverworldCamera).ThirdPerson = False Then
             If reaction.HasNotification = True Then
@@ -100,7 +100,7 @@
         Dim item As Item = Item.GetItemByID(PickupItemID)
 
         Dim s As String = "version=2" & Environment.NewLine &
-           "@pokemon.cry(" & p.Number & ")" & Environment.NewLine
+           "@pokemon.cry(" & PokemonForms.GetPokemonDataFileName(p.Number, p.AdditionalData) & ")" & Environment.NewLine
 
         If CType(Screen.Camera, OverworldCamera).ThirdPerson = False Then
             s &= "@camera.activatethirdperson" & Environment.NewLine &
@@ -716,8 +716,8 @@
         Public Notification As MessageBulb.NotificationTypes = MessageBulb.NotificationTypes.AFK
         Public HasNotification As Boolean = True
         Public MapFiles As New List(Of String)
-        Public PokemonIDs As New List(Of Integer)
-        Public ExcludeIDs As New List(Of Integer)
+        Public PokemonIDs As New List(Of String)
+        Public ExcludeIDs As New List(Of String)
         Public Daytime As Integer = -1
         Public Weather As Integer = -1
         Public Season As Integer = -1
@@ -733,15 +733,13 @@
 
             If dataParts(1) <> "-1" Then
                 For Each pokePart As String In dataParts(1).Split(CChar(","))
-                    Dim lReference As List(Of Integer) = PokemonIDs
+                    Dim lReference As List(Of String) = PokemonIDs
                     If pokePart.StartsWith("!") = True Then
                         pokePart = pokePart.Remove(0, 1)
                         lReference = ExcludeIDs
                     End If
-                    If StringHelper.IsNumeric(pokePart) = True Then
-                        If lReference.Contains(CInt(pokePart)) = False Then
-                            lReference.Add(CInt(pokePart))
-                        End If
+                    If lReference.Contains(pokePart) = False Then
+                        lReference.Add(pokePart)
                     End If
                 Next
             End If
@@ -826,13 +824,21 @@
             End If
 
             If PokemonIDs.Count > 0 Then
-                If PokemonIDs.Contains(p.Number) = False Then
+                Dim dexID As String = p.Number.ToString
+                If p.AdditionalData <> "" Then
+                    dexID = PokemonForms.GetPokemonDataFileName(p.Number, p.AdditionalData, True)
+                End If
+                If PokemonIDs.Contains(dexID) = False Then
                     Return False
                 End If
             End If
 
             If ExcludeIDs.Count > 0 Then
-                If ExcludeIDs.Contains(p.Number) = True Then
+                Dim dexID As String = p.Number.ToString
+                If p.AdditionalData <> "" Then
+                    dexID = PokemonForms.GetPokemonDataFileName(p.Number, p.AdditionalData, True)
+                End If
+                If ExcludeIDs.Contains(dexID) = True Then
                     Return False
                 End If
             End If

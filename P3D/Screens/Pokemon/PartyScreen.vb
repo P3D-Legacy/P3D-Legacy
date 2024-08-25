@@ -1077,7 +1077,7 @@ Public Class PartyScreen
 
                 Screen.Level.OwnPlayer.SetTexture(skin, False)
 
-                SoundManager.PlayPokemonCry(PokemonList(_index).Number)
+                SoundManager.PlayPokemonCry(PokemonList(_index).Number, PokemonForms.GetCrySuffix(PokemonList(_index)))
 
                 TextBox.Show(PokemonList(_index).GetDisplayName() & " used~Ride!", {}, True, False)
                 PlayerStatistics.Track("Ride used", 1)

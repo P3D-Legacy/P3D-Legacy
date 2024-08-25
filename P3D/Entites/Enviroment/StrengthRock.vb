@@ -71,7 +71,7 @@
 
             Screen.Level.UsedStrength = True
 
-            SoundManager.PlayPokemonCry(pNumber)
+            SoundManager.PlayPokemonCry(pNumber, PokemonForms.GetCrySuffix(useP))
             Screen.TextBox.Show(pName & " " & Localization.GetString("fieldmove_strength_used", "used~Strength!"), {}, True, False)
             PlayerStatistics.Track("Strength used", 1)
         End If

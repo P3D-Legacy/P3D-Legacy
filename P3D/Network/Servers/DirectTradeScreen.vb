@@ -469,7 +469,7 @@
                     If ownPokemonPosition <= CInt(Core.windowSize.Height / 2 - 128) Then
                         ownPokemonPosition = CInt(Core.windowSize.Height / 2 - 128)
                         tState = 1
-                        SoundManager.PlayPokemonCry(OfferPokemon.Number)
+                        SoundManager.PlayPokemonCry(OfferPokemon.Number, PokemonForms.GetCrySuffix(OfferPokemon))
                     End If
                 End If
             Case 1
@@ -495,7 +495,7 @@
                     If oppPokemonPosition >= CInt(Core.windowSize.Height / 2 - 128) Then
                         oppPokemonPosition = CInt(Core.windowSize.Height / 2 - 128)
                         tState = 4
-                        SoundManager.PlayPokemonCry(TradePokemon.Number)
+                        SoundManager.PlayPokemonCry(TradePokemon.Number, PokemonForms.GetCrySuffix(TradePokemon))
                     End If
                 End If
             Case 4

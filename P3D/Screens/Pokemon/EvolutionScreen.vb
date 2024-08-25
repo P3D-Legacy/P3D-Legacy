@@ -193,7 +193,7 @@
         TextBox.Update()
 
         If evolutionStarted = False Then
-            SoundManager.PlayPokemonCry(currentPokemon.Number)
+            SoundManager.PlayPokemonCry(currentPokemon.Number, PokemonForms.GetCrySuffix(currentPokemon))
             TextBox.Show("What?*" & currentPokemon.GetDisplayName() & " is evolving!", {}, False, False)
             evolutionStarted = True
             For i = 0 To Core.Random.Next(200, 250)

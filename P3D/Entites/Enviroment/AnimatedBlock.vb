@@ -230,7 +230,7 @@
 
                 .UpdateEntity()
 
-                SoundManager.PlayPokemonCry(pokemonNumber)
+                SoundManager.PlayPokemonCry(pokemonNumber, PokemonForms.GetCrySuffix(Core.Player.Pokemons(Core.Player.SurfPokemon)))
 
                 If Screen.Level.IsRadioOn = False OrElse GameJolt.PokegearScreen.StationCanPlay(Screen.Level.SelectedRadioStation) = False Then
                     MusicManager.Play("surf", True)

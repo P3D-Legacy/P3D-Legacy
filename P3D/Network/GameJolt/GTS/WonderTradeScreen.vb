@@ -366,7 +366,7 @@
                         If ownPokemonPosition <= CInt(Core.windowSize.Height / 2 - MathHelper.Min(CInt(SelectedPokemon.GetTexture(True).Height * 3 / 2), 144)) Then
                             ownPokemonPosition = CInt(Core.windowSize.Height / 2 - MathHelper.Min(CInt(SelectedPokemon.GetTexture(True).Height * 3 / 2), 144))
                             tState = 1
-                            SoundManager.PlayPokemonCry(SelectedPokemon.Number)
+                            SoundManager.PlayPokemonCry(SelectedPokemon.Number, PokemonForms.GetCrySuffix(SelectedPokemon))
                         End If
                     End If
                 Case 1
@@ -392,7 +392,7 @@
                         If oppPokemonPosition >= CInt(Core.windowSize.Height / 2 - MathHelper.Min(CInt(WonderTradePokemon.GetTexture(True).Height * 3 / 2), 144)) Then
                             oppPokemonPosition = CInt(Core.windowSize.Height / 2 - MathHelper.Min(CInt(WonderTradePokemon.GetTexture(True).Height * 3 / 2), 144))
                             tState = 4
-                            SoundManager.PlayPokemonCry(WonderTradePokemon.Number)
+                            SoundManager.PlayPokemonCry(WonderTradePokemon.Number, PokemonForms.GetCrySuffix(WonderTradePokemon))
                         End If
                     End If
                 Case 4

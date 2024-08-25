@@ -1138,7 +1138,7 @@
 
                                 Screen.Level.OwnPlayer.SetTexture(skin, False)
 
-                                SoundManager.PlayPokemonCry(Core.Player.Pokemons(Index).Number)
+                                SoundManager.PlayPokemonCry(Core.Player.Pokemons(Index).Number, PokemonForms.GetCrySuffix(Core.Player.Pokemons(Index)))
 
                                 Screen.TextBox.Show(Core.Player.Pokemons(Index).GetDisplayName() & " " & Localization.GetString("fieldmove_ride_used", "used~Ride!"), {}, True, False)
                                 PlayerStatistics.Track("Ride used", 1)
