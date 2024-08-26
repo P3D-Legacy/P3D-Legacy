@@ -182,21 +182,32 @@ Public Class Spawner
                     level = CInt(GameModeManager.GetGameRuleValue("MaxLevel", "100"))
                 End If
 
-                Dim PkID As Integer = CInt(Pokemons(i).Split(CChar("_"))(0))
-                Dim PkAD As String = ""
-                Dim p As Pokemon = Pokemon.GetPokemonByID(PkID)
-                For Each region As String In Screen.Level.RegionalForm.ToLower().Split(CChar(","))
-                    If p.RegionalForms <> Nothing AndAlso p.RegionalForms.ToLower().Contains(region) Then
-                        PkAD = region
+                Dim p As Pokemon
+
+                If Pokemons(i).StartsWith("{") = True Then
+                    Dim data As String = Pokemons(i).Remove(0, Pokemons(i).IndexOf("{"))
+                    p = Pokemon.GetPokemonByData(data.Replace("§", ",").Replace("«", "[").Replace("»", "]"))
+                    p.Level = level
+                    p.CalculateStats()
+                    p.FullRestore()
+                Else
+                    Dim PkID As Integer = CInt(Pokemons(i).Split(CChar("_"))(0))
+                    Dim PkAD As String = ""
+                    p = Pokemon.GetPokemonByID(PkID)
+                    For Each region As String In Screen.Level.RegionalForm.ToLower().Split(CChar(","))
+                        If p.RegionalForms <> Nothing AndAlso p.RegionalForms.ToLower().Contains(region) Then
+                            PkAD = region
+                        End If
+                    Next
+                    If Pokemons(i).Contains("_") Then
+                        PkAD = PokemonForms.GetAdditionalValueFromDataFile(Pokemons(i).Split(CChar("_"))(1))
+                    ElseIf Pokemons(i).Contains(";") Then
+                        PkAD = Pokemons(i).Split(CChar(";"))(1)
                     End If
-                Next
-                If Pokemons(i).Contains("_") Then
-                    PkAD = PokemonForms.GetAdditionalValueFromDataFile(Pokemons(i).Split(CChar("_"))(1))
-                ElseIf Pokemons(i).Contains(";") Then
-                    PkAD = Pokemons(i).Split(CChar(";"))(1)
+                    p = Pokemon.GetPokemonByID(PkID, PkAD)
+                    p.Generate(level, True, PkAD)
+
                 End If
-                p = Pokemon.GetPokemonByID(PkID, PkAD)
-                p.Generate(level, True, PkAD)
                 p.ReloadDefinitions()
                 p.CalculateStats()
 
