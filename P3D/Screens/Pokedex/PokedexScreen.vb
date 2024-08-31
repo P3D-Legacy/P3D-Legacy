@@ -179,18 +179,29 @@ Public Class PokedexHabitatScreen
 
         For Each file As String In System.IO.Directory.GetFiles(GameController.GamePath & GameModeManager.ActiveGameMode.PokeFilePath, "*.*", IO.SearchOption.AllDirectories)
             If file.EndsWith(".poke") = True Then
-                Dim fileName As String = file.Remove(0, (GameController.GamePath & GameModeManager.ActiveGameMode.PokeFilePath & "\").Length - 1)
-                Dim newHabitat As New PokedexScreen.Habitat(file)
-                Dim exists As Boolean = False
-                For Each h As PokedexScreen.Habitat In Me.HabitatList
-                    If h.Name.ToLower() = newHabitat.Name.ToLower() Then
-                        exists = True
-                        h.Merge(newHabitat)
+                Dim DexInclude As Boolean = True
+                Dim data() As String = System.IO.File.ReadAllLines(file)
+                For Each line As String In data
+                    If line.ToLower().StartsWith("dexinclude=") = True Then
+                        DexInclude = CBool(line.Remove(0, 11))
                         Exit For
                     End If
                 Next
-                If exists = False AndAlso Core.Player.PokeFiles.Contains(fileName) = True Then
-                    HabitatList.Add(New PokedexScreen.Habitat(file))
+
+                If DexInclude = True Then
+                    Dim fileName As String = file.Remove(0, (GameController.GamePath & GameModeManager.ActiveGameMode.PokeFilePath & "\").Length - 1)
+                    Dim newHabitat As New PokedexScreen.Habitat(file)
+                    Dim exists As Boolean = False
+                    For Each h As PokedexScreen.Habitat In Me.HabitatList
+                        If h.Name.ToLower() = newHabitat.Name.ToLower() Then
+                            exists = True
+                            h.Merge(newHabitat)
+                            Exit For
+                        End If
+                    Next
+                    If exists = False AndAlso Core.Player.PokeFiles.Contains(fileName) = True Then
+                        HabitatList.Add(New PokedexScreen.Habitat(file))
+                    End If
                 End If
             End If
         Next
