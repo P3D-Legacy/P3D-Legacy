@@ -700,9 +700,9 @@
                     Case "rotation"
                         startRotation = CSng(Value.Replace(".", GameController.DecSeparator))
                     Case "gender"
-                        If Value = "Male" Or Value = "0" Then
+                        If Value.ToLower = "male" Or Value = "0" Then
                             Gender = "Male"
-                        ElseIf Value = "Female" Or Value = "1" Then
+                        ElseIf Value.ToLower = "female" Or Value = "1" Then
                             Gender = "Female"
                         Else
                             Gender = "Other"
@@ -793,7 +793,7 @@
                         SandBoxMode = CBool(Value)
                     Case "earnedachievements"
                         If Value <> "" Then
-                            EarnedAchievements = Value.Split(CChar(",")).ToList()
+                            EarnedAchievements = Value.ToLower.Split(CChar(",")).ToList()
                         End If
                     Case "expall"
                         If Core.Player.Inventory.GetItemAmount(658.ToString) > 0 Then
