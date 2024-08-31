@@ -1707,6 +1707,7 @@ item_name_576,Mega Bracelete
 item_name_651,Pedra da Luz
 item_name_652,Pedra da Escuridão
 item_name_653,Black Augurite
+item_name_658,Exp. para Todos
 
 Technical Machines:
 item_name_191,TM 01
@@ -2422,6 +2423,8 @@ item_6_only_custom_gamemodes,Esse item não pode ser usado~nesse modo de jogo.
 Key Items:
 item_use_6,<player.name> desmontou~da Biscicleta.
 item_use_54,Suas Moedas:~
+item_use_658_enable,O Exp. para Todos foi ativado.
+item_use_658_disable,O Exp para Todos foi desativado.
 -------------------
 Move Names:
 move_name_1,Pound
