@@ -28947,6 +28947,7 @@
     <Compile Include="Pokemon\Items\Standard\ChoiceScarf.vb" />
     <Compile Include="Pokemon\Items\Standard\ChoiceSpecs.vb" />
     <Compile Include="Pokemon\Items\Fossils\HelixFossil.vb" />
+    <Compile Include="Pokemon\Items\KeyItems\ExpAll.vb" />
     <Compile Include="Pokemon\Items\Standard\PeatBlock.vb" />
     <Compile Include="Pokemon\Items\Standard\PsychicSeed.vb" />
     <Compile Include="Pokemon\Items\Standard\MistySeed.vb" />
