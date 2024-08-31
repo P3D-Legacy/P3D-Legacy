@@ -550,7 +550,7 @@ nextIndex:
             Dim LevelUpAmount As Integer = 0
             Dim originalLevel As Integer = Core.Player.Pokemons(PokeIndex).Level
             If Core.Player.Pokemons(PokeIndex).Level < CInt(GameModeManager.GetGameRuleValue("MaxLevel", "100")) Then
-                Dim EXP As Integer = BattleSystem.BattleCalculation.GainExp(Core.Player.Pokemons(PokeIndex), Battlescreen, expPokemon)
+                Dim EXP As Integer = BattleSystem.BattleCalculation.GainExp(Core.Player.Pokemons(PokeIndex), Battlescreen, expPokemon, PokeIndex)
                 Battlescreen.BattleQuery.Add(New BattleSystem.TextQueryObject(Core.Player.Pokemons(PokeIndex).GetDisplayName() & " gained " & EXP & " experience points."))
 
                 Dim moveLevel As Integer = originalLevel

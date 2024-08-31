@@ -8332,8 +8332,14 @@
                 Next
 
                 For i = 0 To Core.Player.Pokemons.Count - 1
-                    If expPokemon.Contains(i) = False And Not Core.Player.Pokemons(i).Item Is Nothing AndAlso Core.Player.Pokemons(i).Item.OriginalName.ToLower() = "exp. share" AndAlso Core.Player.Pokemons(i).Status <> Pokemon.StatusProblems.Fainted AndAlso Core.Player.Pokemons(i).IsEgg() = False Then
-                        expPokemon.Add(i)
+                    If Core.Player.Inventory.GetItemAmount(658.ToString) > 0 And Core.Player.EnableExpAll = True Then
+                        If expPokemon.Contains(i) = False AndAlso Core.Player.Pokemons(i).Status <> Pokemon.StatusProblems.Fainted AndAlso Core.Player.Pokemons(i).IsEgg() = False Then
+                            expPokemon.Add(i)
+                        End If
+                    Else
+                        If expPokemon.Contains(i) = False And Not Core.Player.Pokemons(i).Item Is Nothing AndAlso Core.Player.Pokemons(i).Item.OriginalName.ToLower() = "exp. share" AndAlso Core.Player.Pokemons(i).Status <> Pokemon.StatusProblems.Fainted AndAlso Core.Player.Pokemons(i).IsEgg() = False Then
+                            expPokemon.Add(i)
+                        End If
                     End If
                 Next
 
@@ -8347,7 +8353,7 @@
                     Dim LevelUpAmount As Integer = 0
                     Dim originalLevel As Integer = Core.Player.Pokemons(PokeIndex).Level
                     If Core.Player.Pokemons(PokeIndex).Level < CInt(GameModeManager.GetGameRuleValue("MaxLevel", "100")) Then
-                        Dim EXP As Integer = BattleCalculation.GainExp(Core.Player.Pokemons(PokeIndex), BattleScreen, expPokemon)
+                        Dim EXP As Integer = BattleCalculation.GainExp(Core.Player.Pokemons(PokeIndex), BattleScreen, expPokemon, PokeIndex)
                         BattleScreen.BattleQuery.Add(New TextQueryObject(Core.Player.Pokemons(PokeIndex).GetDisplayName() & " gained " & EXP & " experience points."))
 
                         Dim moveLevel As Integer = originalLevel

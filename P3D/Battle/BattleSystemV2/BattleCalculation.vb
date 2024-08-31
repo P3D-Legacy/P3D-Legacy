@@ -991,7 +991,7 @@
             Return CalculateEffectiveness(move, BattleScreen, p, op, own)
         End Function
 
-        Public Shared Function GainExp(ByVal p As Pokemon, ByVal BattleScreen As BattleScreen, ByVal PokemonList As List(Of Integer)) As Integer
+        Public Shared Function GainExp(ByVal p As Pokemon, ByVal BattleScreen As BattleScreen, ByVal PokemonList As List(Of Integer), ByVal PokeIndex As Integer) As Integer
             Dim op As Pokemon = BattleScreen.OppPokemon
 
             Dim a As Double = 1D
@@ -1036,25 +1036,33 @@
             Dim s As Double = PokemonList.Count
 
             Dim expShares As Integer = 0
-            For Each po As Pokemon In Core.Player.Pokemons
-                If Not po.Item Is Nothing Then
-                    If po.Item.OriginalName.ToLower() = "exp. share" Then
-                        expShares += 1
-                    End If
+            Dim expAllMultiplier As Single = 1
+            If Core.Player.Inventory.GetItemAmount(658.ToString) > 0 And Core.Player.EnableExpAll = True Then
+                s = 1D
+                If BattleScreen.ParticipatedPokemon.Contains(PokeIndex) = False Then
+                    expAllMultiplier = 0.5F
                 End If
-            Next
+            Else
+                For Each po As Pokemon In Core.Player.Pokemons
+                    If Not po.Item Is Nothing Then
+                        If po.Item.OriginalName.ToLower() = "exp. share" Then
+                            expShares += 1
+                        End If
+                    End If
+                Next
 
-            If expShares > 0 Then
-                If Not p.Item Is Nothing Then
-                    If p.Item.OriginalName.ToLower() = "exp. share" Then
-                        s = 2D
-                    Else
-                        s = (PokemonList.Count * 2D) * expShares
+                If expShares > 0 Then
+                    If Not p.Item Is Nothing Then
+                        If p.Item.OriginalName.ToLower() = "exp. share" Then
+                            s = 2D
+                        Else
+                            s = (PokemonList.Count * 2D) * expShares
+                        End If
                     End If
                 End If
             End If
 
-            Dim EXP As Integer = CInt((((a * b * L) / (5 * s)) * (((2 * L + 10) ^ 2.5D) / ((L + Lp + 10) ^ 2.5D)) + 1) * t * e * gm * 1)
+            Dim EXP As Integer = CInt((((a * b * L) / (5 * s)) * (((2 * L + 10) ^ 2.5D) / ((L + Lp + 10) ^ 2.5D)) + 1) * t * e * gm * expAllMultiplier)
 
             If EXP < 2 Then
                 EXP = 2

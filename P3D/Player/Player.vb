@@ -443,6 +443,7 @@
     Public startThirdPerson As Boolean = False
     Public startSurfing As Boolean = False
     Public startRiding As Boolean = False
+    Public EnableExpAll As Boolean = False
 
     Public filePrefix As String = "nilllzz"
     Public newFilePrefix As String = ""
@@ -793,6 +794,10 @@
                     Case "earnedachievements"
                         If Value <> "" Then
                             EarnedAchievements = Value.Split(CChar(",")).ToList()
+                        End If
+                    Case "expall"
+                        If Core.Player.Inventory.GetItemAmount(658.ToString) > 0 Then
+                            EnableExpAll = CBool(Value)
                         End If
                 End Select
             Else
@@ -1262,6 +1267,7 @@
             "Surfing|" & Screen.Level.Surfing.ToNumberString() & Environment.NewLine &
             "BP|" & BP & Environment.NewLine &
             "Coins|" & Coins & Environment.NewLine &
+            "ExpAll|" & EnableExpAll & Environment.NewLine &
             "ShowModels|" & ShowModelsInBattle.ToNumberString() & Environment.NewLine &
             "GTSStars|" & GTSStars & Environment.NewLine &
             "SandBoxMode|" & SandBoxMode.ToNumberString() & Environment.NewLine &

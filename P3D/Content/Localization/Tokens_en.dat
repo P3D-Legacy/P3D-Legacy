@@ -1681,6 +1681,7 @@ item_name_576,Mega Bracelet
 item_name_651,Light Stone
 item_name_652,Dark Stone
 item_name_653,Black Augurite
+item_name_658,Exp. All
 
 Technical Machines:
 item_name_191,TM 01
@@ -2334,6 +2335,8 @@ item_6_only_custom_gamemodes,This item can't be used~on this GameMode.
 Key Items:
 item_use_6,<player.name> stepped~off the Bicycle.
 item_use_54,Your Coins:~
+item_use_658_disable,The Exp. All was turned off.
+item_use_658_enable,The Exp. All was turned on.
 -------------------
 Move Names:
 move_name_1,Pound
