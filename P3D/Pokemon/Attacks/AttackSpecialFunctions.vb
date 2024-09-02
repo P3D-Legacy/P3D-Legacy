@@ -390,6 +390,8 @@
                     End If
 
                     Select Case fMain.ToLower()
+                        Case "flinch"
+                            Flinch(Move, own, BattleScreen, CInt(fSub))
                         Case "randomstatus"
                             Dim chance As Integer = CInt(fSub.GetSplit(0, ","))
                             Dim withoutBadPoison As Boolean = False
@@ -463,6 +465,12 @@
                         End If
                     End If
                 End If
+            End If
+        End Sub
+
+        Private Shared Sub Flinch(ByVal Move As Attack, ByVal own As Boolean, ByVal BattleScreen As BattleScreen, Chance As Integer)
+            If GetEffectChanceResult(Move, Chance) = True Then
+                BattleScreen.Battle.InflictFlinch(Not own, own, BattleScreen, "", "move:" & Move.Name.ToLower())
             End If
         End Sub
 
