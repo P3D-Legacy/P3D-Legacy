@@ -114,6 +114,9 @@
                     result = result.Replace("<rivalname>", Core.Player.RivalName)
                     result = result.Replace("<rival.name>", Core.Player.RivalName)
                 End If
+                If result.Contains("<name>") Then
+                    result = result.Replace("<name>", "//POKEMONNAME//")
+                End If
                 If result.Contains("<") Then
                     result = CStr(ScriptVersion2.ScriptComparer.EvaluateConstruct(result))
                 End If

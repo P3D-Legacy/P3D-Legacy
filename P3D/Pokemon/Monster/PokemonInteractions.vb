@@ -766,7 +766,9 @@
                 Me.HasNotification = False
             Else
                 Me.HasNotification = True
-                Me.Notification = Me.ConvertEmoji(dataParts(7))
+                Dim EmojiText As String = dataParts(7).Replace(">:(", "shouting").Replace("<3", "heart").Replace(":(", "unhappy").Replace(":)", "friendly").Replace(";)", "wink").Replace("/:(", "angry")
+                EmojiText = ScriptVersion2.ScriptCommander.Parse(EmojiText).ToString()
+                Me.Notification = Me.ConvertEmoji(EmojiText)
             End If
 
             Me.Message = dataParts(8)
@@ -783,29 +785,29 @@
                     Return MessageBulb.NotificationTypes.Waiting
                 Case "!"
                     Return MessageBulb.NotificationTypes.Exclamation
-                Case ">:("
+                Case ">:(", "shouting"
                     Return MessageBulb.NotificationTypes.Shouting
                 Case "?"
                     Return MessageBulb.NotificationTypes.Question
                 Case "note"
                     Return MessageBulb.NotificationTypes.Note
-                Case "<3"
+                Case "<3", "heart"
                     Return MessageBulb.NotificationTypes.Heart
-                Case ":("
+                Case ":(", "unhappy"
                     Return MessageBulb.NotificationTypes.Unhappy
                 Case "ball"
                     Return MessageBulb.NotificationTypes.Battle
                 Case ":D"
                     Return MessageBulb.NotificationTypes.Happy
-                Case ":)"
+                Case ":)", "friendly"
                     Return MessageBulb.NotificationTypes.Friendly
                 Case "bad"
                     Return MessageBulb.NotificationTypes.Poisoned
-                Case ";)"
+                Case ";)", "wink"
                     Return MessageBulb.NotificationTypes.Wink
                 Case "afk"
                     Return MessageBulb.NotificationTypes.AFK
-                Case "/:("
+                Case "/:(", "angry"
                     Return MessageBulb.NotificationTypes.Angry
                 Case ":3"
                     Return MessageBulb.NotificationTypes.CatFace
@@ -873,7 +875,7 @@
         End Function
 
         Public Function GetMessage(ByVal p As Pokemon) As String
-            Return ScriptVersion2.ScriptCommander.Parse(Me.Message.Replace("<name>", p.GetDisplayName())).ToString
+            Return ScriptVersion2.ScriptCommander.Parse(Me.Message.Replace("<name>", p.GetDisplayName())).ToString.Replace("//POKEMONNAME//", p.GetDisplayName())
         End Function
 
     End Class
