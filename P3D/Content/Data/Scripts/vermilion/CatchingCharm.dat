@@ -1,0 +1,6 @@
+version=2
+
+:if:<Register.Registered(pokedex_sevii)>=true <and> <Register.Registered(ReceivedCatchingCharm)>=false
+	@Item.Give(657,1)
+	@Register.Register(ReceivedCatchingCharm)
+:endif

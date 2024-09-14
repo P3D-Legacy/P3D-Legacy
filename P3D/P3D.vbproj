@@ -31129,6 +31129,9 @@
     <Content Include="Content\Data\Scripts\trainer\victoryroad\012r.trainer">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\Data\Scripts\vermilion\CatchingCharm.dat">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="Content\Data\Scripts\violet\towertopmap.dat">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
