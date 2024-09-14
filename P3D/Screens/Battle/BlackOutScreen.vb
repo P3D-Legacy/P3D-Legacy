@@ -151,7 +151,8 @@
 
     Public Overrides Sub ChangeTo()
         MusicManager.PlayNoMusic()
-        Core.Player.Inventory.RemoveItem(177.ToString) ' Remove all Park Balls (happens regardless of whether or not the player was currently in the Bug-Catching Contest).
+        Core.Player.Inventory.RemoveItem(177.ToString) ' Remove all Sport Balls (happens regardless of whether or not the player was currently in the Bug-Catching Contest).
+        Core.Player.Inventory.RemoveItem(181.ToString) ' Remove all Safari Balls (happens regardless of whether or not the player was currently in the Safari Zone).
         PlayerStatistics.Track("Blackouts", 1)
     End Sub
 
