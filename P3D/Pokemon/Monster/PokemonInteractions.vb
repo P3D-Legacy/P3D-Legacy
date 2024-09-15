@@ -56,7 +56,7 @@
                 s &= "@camera.activatethirdperson" & Environment.NewLine &
                      "@camera.setposition(" & newPosition.X & ",1," & newPosition.Y & ")" & Environment.NewLine
 
-                s &= "@entity.showmessagebulb(" & CInt(reaction.Notification).ToString() & "|" & cPosition.X + offset.X & "|" & cPosition.Y + 0.7F & "|" & cPosition.Z + offset.Y & ")" & Environment.NewLine
+                s &= "@entity.showmessagebulb(" & CInt(reaction.GetNotification()).ToString() & "|" & cPosition.X + offset.X & "|" & cPosition.Y + 0.7F & "|" & cPosition.Z + offset.Y & ")" & Environment.NewLine
 
                 s &= "@camera.deactivatethirdperson" & Environment.NewLine
             End If
@@ -66,7 +66,7 @@
             If reaction.HasNotification = True Then
                 s &= "@camera.setyaw(" & CType(Screen.Camera, OverworldCamera).GetAimYawFromDirection(Screen.Camera.GetPlayerFacingDirection()) & ")" & Environment.NewLine
                 s &= "@camera.setposition(" & newPosition.X & ",1," & newPosition.Y & ")" & Environment.NewLine
-                s &= "@entity.showmessagebulb(" & CInt(reaction.Notification).ToString() & "|" & cPosition.X + offset.X & "|" & cPosition.Y + 0.7F & "|" & cPosition.Z + offset.Y & ")" & Environment.NewLine
+                s &= "@entity.showmessagebulb(" & CInt(reaction.GetNotification()).ToString() & "|" & cPosition.X + offset.X & "|" & cPosition.Y + 0.7F & "|" & cPosition.Z + offset.Y & ")" & Environment.NewLine
 
                 s &= "@camera.deactivatethirdperson" & Environment.NewLine
             End If
@@ -714,6 +714,7 @@
 
         Public Message As String
         Public Notification As MessageBulb.NotificationTypes = MessageBulb.NotificationTypes.AFK
+        Public EmojiString As String = ""
         Public HasNotification As Boolean = True
         Public MapFiles As New List(Of String)
         Public PokemonIDs As New List(Of String)
@@ -767,8 +768,8 @@
             Else
                 Me.HasNotification = True
                 Dim EmojiText As String = dataParts(7).Replace(">:(", "shouting").Replace("<3", "heart").Replace(":(", "unhappy").Replace(":)", "friendly").Replace(";)", "wink").Replace("/:(", "angry")
-                EmojiText = ScriptVersion2.ScriptCommander.Parse(EmojiText).ToString()
-                Me.Notification = Me.ConvertEmoji(EmojiText)
+                EmojiString = EmojiText
+                Me.Notification = Me.ConvertEmoji(ScriptVersion2.ScriptCommander.Parse(EmojiText).ToString())
             End If
 
             Me.Message = dataParts(8)
@@ -797,7 +798,7 @@
                     Return MessageBulb.NotificationTypes.Unhappy
                 Case "ball"
                     Return MessageBulb.NotificationTypes.Battle
-                Case ":D"
+                Case ":d"
                     Return MessageBulb.NotificationTypes.Happy
                 Case ":)", "friendly"
                     Return MessageBulb.NotificationTypes.Friendly
@@ -878,6 +879,14 @@
             Return ScriptVersion2.ScriptCommander.Parse(Me.Message.Replace("<name>", p.GetDisplayName())).ToString.Replace("//POKEMONNAME//", p.GetDisplayName())
         End Function
 
+        Public Function GetNotification() As MessageBulb.NotificationTypes
+            If EmojiString <> "" AndAlso EmojiString.Contains("<") = True AndAlso EmojiString.Contains(">") = True Then
+                Return ConvertEmoji(ScriptVersion2.ScriptCommander.Parse(Me.EmojiString).ToString)
+            Else
+                Return Me.Notification
+            End If
+
+        End Function
     End Class
 
     Shared PickupIndividualValue As String = "" 'This value holds the individual value of the Pokémon that picked up the item.
