@@ -662,7 +662,7 @@
                     With CType(part.Effect, BasicEffect)
                         Lighting.UpdateLighting(CType(part.Effect, BasicEffect), True)
                         .Alpha = Me.Opacity
-                        .DiffuseColor = Screen.Effect.DiffuseColor
+                        .DiffuseColor = Screen.Effect.DiffuseColor * Me.Shader * Me.Color
 
                         If Not Screen.Level.World Is Nothing Then
                             If Screen.Level.World.EnvironmentType = P3D.World.EnvironmentTypes.Outside Then
