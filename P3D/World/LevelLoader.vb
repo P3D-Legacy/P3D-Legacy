@@ -223,9 +223,7 @@
                             Case TagTypes.NPC
                                 AddNPC(Tags)
                             Case TagTypes.Shader
-                                If loadOffsetMap = False Then
-                                    AddShader(Tags)
-                                End If
+                                AddShader(Tags)
                             Case TagTypes.OffsetMap
                                 If loadOffsetMap = False Or offsetMapLevel <= Core.GameOptions.MaxOffsetLevel Then
                                     AddOffsetMap(Tags)
@@ -250,6 +248,8 @@
             If s.HasBeenApplied = False Then
                 s.ApplyShader(Screen.Level.Entities.ToArray())
                 s.ApplyShader(Screen.Level.Floors.ToArray())
+                s.ApplyShader(Screen.Level.OffsetmapEntities.ToArray())
+                s.ApplyShader(Screen.Level.OffsetmapFloors.ToArray())
             End If
         Next
 
