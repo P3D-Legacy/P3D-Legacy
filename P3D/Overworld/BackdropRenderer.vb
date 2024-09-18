@@ -224,13 +224,20 @@
             If Not Screen.Level.World Is Nothing Then
                 Select Case Screen.Level.World.EnvironmentType
                     Case P3D.World.EnvironmentTypes.Outside
-                        dayColor = SkyDome.GetDaytimeColor(True).ToVector3()
+                        If Core.GameOptions.LightingEnabled = True Then
+                            dayColor = SkyDome.GetDaytimeColor(True).ToVector3()
+                        End If
                     Case P3D.World.EnvironmentTypes.Dark
                         dayColor = New Vector3(0.5F, 0.5F, 0.5F)
                 End Select
             End If
 
-            Return (dayColor * diffuseColor * Lighting.GetEnvironmentColor(1)).ToColor().ToVector4()
+
+            If Core.GameOptions.LightingEnabled = True Then
+                Return (dayColor * diffuseColor * Lighting.GetEnvironmentColor(1)).ToColor().ToVector4()
+            Else
+                Return (dayColor * diffuseColor).ToColor().ToVector4()
+            End If
         End Function
 
     End Class
