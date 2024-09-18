@@ -512,9 +512,11 @@
             Me.Shader = New Vector3(0.5F)
         End If
 
-        For Each s As Vector3 In Me.Shaders
-            Me.Shader *= s
-        Next
+        If Core.GameOptions.LightingEnabled = True Then
+            For Each s As Vector3 In Me.Shaders
+                Me.Shader *= s
+            Next
+        End If
     End Sub
 
     Dim tempCenterVector As Vector3 = Vector3.Zero
@@ -660,10 +662,13 @@
             For Each mesh As ModelMesh In Me.Model.Meshes
                 For Each part As ModelMeshPart In mesh.MeshParts
                     With CType(part.Effect, BasicEffect)
-                        Lighting.UpdateLighting(CType(part.Effect, BasicEffect), True)
+                        Lighting.UpdateLighting(CType(part.Effect, BasicEffect))
                         .Alpha = Me.Opacity
-                        .DiffuseColor = Screen.Effect.DiffuseColor * Me.Shader * Me.Color
-
+                        If Core.GameOptions.LightingEnabled = True Then
+                            .DiffuseColor = Screen.Effect.DiffuseColor * Me.Shader * Me.Color
+                        Else
+                            .DiffuseColor = Screen.Effect.DiffuseColor * Me.Color
+                        End If
                         If Not Screen.Level.World Is Nothing Then
                             If Screen.Level.World.EnvironmentType = P3D.World.EnvironmentTypes.Outside Then
                                 .DiffuseColor *= SkyDome.GetDaytimeColor(True).ToVector3()
