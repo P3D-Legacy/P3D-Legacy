@@ -894,7 +894,7 @@
 
     Public Shared Sub CheckForRandomPickup()
         'Checks if the first Pokémon in the party is following the player:
-        If Screen.Level.ShowOverworldPokemon = True And CBool(GameModeManager.GetGameRuleValue("ShowFollowPokemon", "1")) = True Then
+        If Screen.Level.ShowOverworldPokemon = True And CBool(GameModeManager.GetGameRuleValue("ShowFollowPokemon", "1")) = True AndAlso CBool(GameModeManager.GetGameRuleValue("RandomFollowItemPickup", "1")) = True Then
             'Checks if the player has a Pokémon:
             If Core.Player.Pokemons.Count > 0 And Screen.Level.Surfing = False And Screen.Level.Riding = False And Screen.Level.ShowOverworldPokemon = True And Not Core.Player.GetWalkPokemon() Is Nothing Then
                 If Core.Player.GetWalkPokemon().Status = Pokemon.StatusProblems.None Then
