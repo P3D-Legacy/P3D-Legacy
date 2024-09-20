@@ -105,6 +105,17 @@
                     targetNPC.MoveY = steps
 
                     IsReady = True
+                Case "setscale"
+                    Dim targetNPC As NPC = Screen.Level.GetNPC(int(argument.GetSplit(0)))
+                    Dim ScaleData() As String = argument.Split(CChar(","))
+                    targetNPC.Scale = New Vector3(sng(ScaleData(1).Replace("~", CStr(targetNPC.Scale.X)).Replace(".", GameController.DecSeparator)),
+                                                             sng(ScaleData(2).Replace("~", CStr(targetNPC.Scale.Y)).Replace(".", GameController.DecSeparator)),
+                                                             sng(ScaleData(3).Replace("~", CStr(targetNPC.Scale.Z)).Replace(".", GameController.DecSeparator)))
+
+                    If targetNPC.ModelPath <> "" Then
+                        targetNPC.Scale *= ModelManager.MODELSCALE
+                    End If
+                    IsReady = True
                 Case "moveasync"
                     Dim targetNPC As NPC = Screen.Level.GetNPC(int(argument.GetSplit(0)))
                     Dim steps As Integer = int(argument.GetSplit(1))

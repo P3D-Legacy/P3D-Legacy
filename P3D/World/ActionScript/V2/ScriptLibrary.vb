@@ -607,6 +607,10 @@ Namespace ScriptVersion2
                                              New ScriptArgument("Movement", ScriptArgument.ArgumentTypes.Str, {"Pokeball", "Still", "Looking", "FacePlayer", "Walk", "Straight", "Turning"}, True, "Still")}.ToList(), "Spawns a new NPC with the given conditions."))
             r(New ScriptCommand("npc", "setspeed", {New ScriptArgument("npcID", ScriptArgument.ArgumentTypes.Int),
                                                 New ScriptArgument("speed", ScriptArgument.ArgumentTypes.Sng)}.ToList(), "Sets the speed of an NPC. The default is ""1""."))
+            r(New ScriptCommand("npc", "setscale", {New ScriptArgument("npcID", ScriptArgument.ArgumentTypes.Int),
+                                                          New ScriptArgument("xS", ScriptArgument.ArgumentTypes.Sng),
+                                                          New ScriptArgument("yS", ScriptArgument.ArgumentTypes.Sng),
+                                                          New ScriptArgument("zS", ScriptArgument.ArgumentTypes.Sng)}.ToList(), "Changes the Scale property of the selected NPC."))
 
             ' Constructs:
             r(New ScriptCommand("npc", "position", "sngArr", {New ScriptArgument("npcID", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Returns the position of the selected NPC.", ",", True))
