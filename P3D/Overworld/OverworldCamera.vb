@@ -859,19 +859,30 @@ Public Class OverworldCamera
                 setSurfFalse = True
             End If
         Next
+        Dim PlayerBoundingBox As New BoundingBox(
+                    newPosition + New Vector3(-0.465F),
+                    newPosition + New Vector3(0.465F))
 
         If cannotWalk = False Then
             For Each Entity As Entity In Screen.Level.Entities
-                If Entity.boundingBox.Contains(Position2D) = ContainmentType.Contains Then
-                    If cannotWalk = False Then
+                If Entity.EntityID.ToLower = "npc" Then
+                    If Entity.ViewBox.Contains(PlayerBoundingBox) = ContainmentType.Intersects Then
                         If Entity.Collision = True Then
                             cannotWalk = Entity.WalkAgainstFunction()
                         Else
                             cannotWalk = Entity.WalkIntoFunction()
                         End If
                     End If
-                ElseIf Entity.boundingBox.Contains(New Vector3(Position2D.X, Position2D.Y - 1, Position2D.Z)) = ContainmentType.Contains Then
-                    Entity.WalkOntoFunction()
+                Else
+                    If Entity.boundingBox.Contains(Position2D) = ContainmentType.Contains Then
+                        If Entity.Collision = True Then
+                            cannotWalk = Entity.WalkAgainstFunction()
+                        Else
+                            cannotWalk = Entity.WalkIntoFunction()
+                        End If
+                    ElseIf Entity.boundingBox.Contains(New Vector3(Position2D.X, Position2D.Y - 1, Position2D.Z)) = ContainmentType.Contains Then
+                        Entity.WalkOntoFunction()
+                    End If
                 End If
             Next
         Else
