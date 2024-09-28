@@ -199,8 +199,8 @@
 
     Private Sub DrawQuit()
         Dim pX As Integer = CInt(Core.ScreenSize.Width / 2) - CInt(FontManager.InGameFont.MeasureString(Localization.GetString("pause_menu_confirmation")).X / 2)
-        Core.SpriteBatch.DrawInterfaceString(FontManager.InGameFont, Localization.GetString("pause_menu_confirmation"), New Vector2(CInt(pX - 10 + 2), CInt(160 - FontManager.InGameFont.MeasureString(Localization.GetString("pause_menu_confirmation")).Y / 2) + 2), Color.Black)
-        Core.SpriteBatch.DrawInterfaceString(FontManager.InGameFont, Localization.GetString("pause_menu_confirmation"), New Vector2(CInt(pX - 10), CInt(160 - FontManager.InGameFont.MeasureString(Localization.GetString("pause_menu_confirmation")).Y / 2)), Color.White)
+        Core.SpriteBatch.DrawInterfaceString(FontManager.InGameFont, Localization.GetString("pause_menu_confirmation"), New Vector2(CInt(pX - 10 + 2), CInt(192 - FontManager.InGameFont.MeasureString(Localization.GetString("pause_menu_confirmation")).Y / 2) + 2), Color.Black)
+        Core.SpriteBatch.DrawInterfaceString(FontManager.InGameFont, Localization.GetString("pause_menu_confirmation"), New Vector2(CInt(pX - 10), CInt(192 - FontManager.InGameFont.MeasureString(Localization.GetString("pause_menu_confirmation")).Y / 2)), Color.White)
         Dim FontColor As Color
         Dim FontShadow As Color = New Color(0, 0, 0, 0)
 
