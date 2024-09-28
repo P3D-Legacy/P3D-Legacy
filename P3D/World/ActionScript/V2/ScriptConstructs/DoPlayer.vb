@@ -123,10 +123,14 @@
                     Return ReturnBoolean(Core.Player.HasPokegear)
                 Case "isgamejolt"
                     '<player.isgamejolt([bool_checkban=0])
-                    If argument = "1" Then
-                        ReturnBoolean(Core.Player.IsGameJoltSave = True AndAlso GameJolt.LogInScreen.UserBanned(GameJoltSave.GameJoltID) = False)
+                    If argument <> "" Then
+                        If CBool(argument) = True Then
+                            ReturnBoolean(Core.Player.IsGameJoltSave = True AndAlso GameJolt.LogInScreen.UserBanned(GameJoltSave.GameJoltID) = False)
+                        End If
                     End If
                     Return ReturnBoolean(Core.Player.IsGameJoltSave)
+                Case "lastrestplace"
+                    Return Core.Player.LastRestPlace & "," & Core.Player.LastRestPlacePosition
             End Select
             Return DEFAULTNULL
         End Function

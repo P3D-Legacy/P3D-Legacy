@@ -565,6 +565,7 @@ Namespace ScriptVersion2
             r(New ScriptCommand("player", "gamejoltid", "str", "Returns the player's GameJolt ID.", ",", True))
             r(New ScriptCommand("player", "haspokedex", "bool", "Returns if the player received the Pokédex.", ",", True))
             r(New ScriptCommand("player", "haspokegear", "bool", "Returns if the player received the Pokégear.", ",", True))
+            r(New ScriptCommand("player", "LastRestPlace", "bool", "Returns the last rest location the player has visited in the following format: ""map.dat,x,y,z"".", ",", True))
         End Sub
 
         Private Shared Sub DoNPC()
