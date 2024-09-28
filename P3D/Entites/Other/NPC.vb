@@ -797,39 +797,55 @@
         newPosition = New Vector3(CInt(newPosition.X), CInt(newPosition.Y), CInt(newPosition.Z))
         Dim oldPosition As Vector3 = Me.Position
 
-        Dim interactPlayer As Boolean = False
+        Dim blocked As Boolean = False
 
+        '' check if player or a following Pokémon is not in the way
         If Screen.Camera.IsMoving() = False Then
-            If CInt(Screen.Camera.Position.X) = newPosition.X And CInt(Screen.Camera.Position.Z) = newPosition.Z Then
-                If CInt(Screen.Level.OverworldPokemon.Position.X) = newPosition.X And CInt(Screen.Level.OverworldPokemon.Position.Z) = newPosition.Z Then
-                    interactPlayer = True
+            If CInt(Screen.Camera.Position.X) = newPosition.X And CInt(Screen.Camera.Position.Y) = newPosition.Y And CInt(Screen.Camera.Position.Z) = newPosition.Z Then
+                blocked = True
+            End If
+            If Screen.Level.OverworldPokemon.IsVisible = True Then
+                If CInt(Screen.Level.OverworldPokemon.Position.X) = newPosition.X And CInt(Screen.Level.OverworldPokemon.Position.Y) = newPosition.Y And CInt(Screen.Level.OverworldPokemon.Position.Z) = newPosition.Z Then
+                    blocked = True
                 End If
             End If
         Else
             Dim cameraNewPosition As Vector3 = CType(Screen.Camera, OverworldCamera).LastStepPosition + Screen.Camera.PlannedMovement()
-            If CInt(cameraNewPosition.X) = newPosition.X And CInt(cameraNewPosition.Z) = newPosition.Z Then
-                If CInt(Screen.Level.OverworldPokemon.Position.X) = newPosition.X And CInt(Screen.Level.OverworldPokemon.Position.Z) = newPosition.Z Then
-                    interactPlayer = True
+            Dim cameraOldPosition As Vector3 = CType(Screen.Camera, OverworldCamera).LastStepPosition
+
+            If CInt(cameraNewPosition.X) = newPosition.X And CInt(cameraNewPosition.Y) = newPosition.Y And CInt(cameraNewPosition.Z) = newPosition.Z Then
+                blocked = True
+            End If
+            If Screen.Level.OverworldPokemon.IsVisible = True Then
+                If CInt(Screen.Level.OverworldPokemon.Position.X) = newPosition.X And CInt(Screen.Level.OverworldPokemon.Position.Y) = newPosition.Y And CInt(Screen.Level.OverworldPokemon.Position.Z) = newPosition.Z OrElse
+                CInt(cameraOldPosition.X) = newPosition.X And CInt(cameraOldPosition.Y) = newPosition.Y And CInt(cameraOldPosition.Z) = newPosition.Z Then
+                    blocked = True
                 End If
             End If
         End If
-
         '' check if a NetworkPlayer is not in the way
         For Each Player As NetworkPlayer In Screen.Level.NetworkPlayers
-            If CInt(Player.Position.X) = newPosition.X And CInt(Player.Position.Z) = newPosition.Z Then
-                interactPlayer = True
+            If CInt(Player.Position.X) = newPosition.X And CInt(Player.Position.Y) = newPosition.Y And CInt(Player.Position.Z) = newPosition.Z Then
+                blocked = True
                 Exit For
             End If
         Next
         '' check if a NetworkPokémon is not in the way
         For Each Pokemon As NetworkPokemon In Screen.Level.NetworkPokemon
-            If CInt(Pokemon.Position.X) = newPosition.X And CInt(Pokemon.Position.Z) = newPosition.Z Then
-                interactPlayer = True
+            If CInt(Pokemon.Position.X) = newPosition.X And CInt(Pokemon.Position.Y) = newPosition.Y And CInt(Pokemon.Position.Z) = newPosition.Z Then
+                blocked = True
+                Exit For
+            End If
+        Next
+        '' check if an NPC is not in the way
+        For Each NPC As NPC In Screen.Level.GetNPCs()
+            If CInt(NPC.Position.X) = newPosition.X And CInt(NPC.Position.Y) = newPosition.Y And CInt(NPC.Position.Z) = newPosition.Z And NPC.NPCID <> Me.NPCID Then
+                blocked = True
                 Exit For
             End If
         Next
 
-        If interactPlayer = True Then
+        If blocked = True Then
             Return False
         End If
 
@@ -863,39 +879,38 @@
 
         '' check if player or a following Pokémon is not in the way
         If Screen.Camera.IsMoving() = False Then
-            If CInt(Screen.Camera.Position.X) = newPosition.X And CInt(Screen.Camera.Position.Z) = newPosition.Z Then
+            If CInt(Screen.Camera.Position.X) = newPosition.X And CInt(Screen.Camera.Position.Y) = newPosition.Y And CInt(Screen.Camera.Position.Z) = newPosition.Z Then
                 blocked = True
             End If
-            If CInt(Screen.Level.OverworldPokemon.Position.X) = newPosition.X And CInt(Screen.Level.OverworldPokemon.Position.Z) = newPosition.Z Then
-                blocked = True
+            If Screen.Level.OverworldPokemon.IsVisible = True Then
+                If CInt(Screen.Level.OverworldPokemon.Position.X) = newPosition.X And CInt(Screen.Level.OverworldPokemon.Position.Y) = newPosition.Y And CInt(Screen.Level.OverworldPokemon.Position.Z) = newPosition.Z Then
+                    blocked = True
+                End If
             End If
         Else
-            Dim cameraNewPosition As Vector3 = Screen.Camera.GetForwardMovedPosition()
-            Dim cameraOldPosition As Vector3 = Screen.Camera.GetForwardMovedPosition() - Screen.Camera.GetMoveDirection()
-            If CInt(cameraNewPosition.X) = newPosition.X And CInt(cameraNewPosition.Z) = newPosition.Z Or CInt(cameraOldPosition.X) = newPosition.X And CInt(cameraOldPosition.Z) = newPosition.Z Then
+            Dim cameraNewPosition As Vector3 = CType(Screen.Camera, OverworldCamera).LastStepPosition + Screen.Camera.PlannedMovement()
+            Dim cameraOldPosition As Vector3 = CType(Screen.Camera, OverworldCamera).LastStepPosition
+
+            If CInt(cameraNewPosition.X) = newPosition.X And CInt(cameraNewPosition.Y) = newPosition.Y And CInt(cameraNewPosition.Z) = newPosition.Z Then
                 blocked = True
             End If
-            If CInt(Screen.Level.OverworldPokemon.Position.X) = newPosition.X And CInt(Screen.Level.OverworldPokemon.Position.Z) = newPosition.Z Then
-                blocked = True
+            If Screen.Level.OverworldPokemon.IsVisible = True Then
+                If CInt(Screen.Level.OverworldPokemon.Position.X) = newPosition.X And CInt(Screen.Level.OverworldPokemon.Position.Y) = newPosition.Y And CInt(Screen.Level.OverworldPokemon.Position.Z) = newPosition.Z OrElse
+                CInt(cameraOldPosition.X) = newPosition.X And CInt(cameraOldPosition.Y) = newPosition.Y And CInt(cameraOldPosition.Z) = newPosition.Z Then
+                    blocked = True
+                End If
             End If
         End If
         '' check if a NetworkPlayer is not in the way
         For Each Player As NetworkPlayer In Screen.Level.NetworkPlayers
-            If CInt(Player.Position.X) = newPosition.X And CInt(Player.Position.Z) = newPosition.Z Then
+            If CInt(Player.Position.X) = newPosition.X And CInt(Player.Position.Y) = newPosition.Y And CInt(Player.Position.Z) = newPosition.Z Then
                 blocked = True
                 Exit For
             End If
         Next
         '' check if a NetworkPokémon is not in the way
         For Each Pokemon As NetworkPokemon In Screen.Level.NetworkPokemon
-            If CInt(Pokemon.Position.X) = newPosition.X And CInt(Pokemon.Position.Z) = newPosition.Z Then
-                blocked = True
-                Exit For
-            End If
-        Next
-        '' check if an NPC is not in the way
-        For Each NPC As NPC In Screen.Level.GetNPCs()
-            If CInt(NPC.Position.X) = newPosition.X And CInt(NPC.Position.Z) = newPosition.Z And NPC.NPCID <> Me.NPCID Then
+            If CInt(Pokemon.Position.X) = newPosition.X And CInt(Pokemon.Position.Y) = newPosition.Y And CInt(Pokemon.Position.Z) = newPosition.Z Then
                 blocked = True
                 Exit For
             End If
