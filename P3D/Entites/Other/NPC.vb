@@ -486,7 +486,7 @@
             Me.faceRotation = newHeading
 
             ActivateScript()
-        ElseIf Me.Moved < 0.48F Then
+        ElseIf Me.Moved < 0.3F Then
             Interacted = True
         End If
     End Sub
