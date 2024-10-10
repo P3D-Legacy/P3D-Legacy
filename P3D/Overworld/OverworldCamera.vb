@@ -868,17 +868,25 @@ Public Class OverworldCamera
                 If Entity.EntityID.ToLower = "npc" Then
                     If Entity.ViewBox.Contains(PlayerBoundingBox) = ContainmentType.Intersects Then
                         If Entity.Collision = True Then
-                            cannotWalk = Entity.WalkAgainstFunction()
+                            If Entity.WalkAgainstFunction() = True Then
+                                cannotWalk = True
+                            End If
                         Else
-                            cannotWalk = Entity.WalkIntoFunction()
+                            If Entity.WalkIntoFunction() = True Then
+                                cannotWalk = True
+                            End If
                         End If
                     End If
                 Else
                     If Entity.boundingBox.Contains(Position2D) = ContainmentType.Contains Then
                         If Entity.Collision = True Then
-                            cannotWalk = Entity.WalkAgainstFunction()
+                            If Entity.WalkAgainstFunction() = True Then
+                                cannotWalk = True
+                            End If
                         Else
-                            cannotWalk = Entity.WalkIntoFunction()
+                            If Entity.WalkIntoFunction() = True Then
+                                cannotWalk = True
+                            End If
                         End If
                     ElseIf Entity.boundingBox.Contains(New Vector3(Position2D.X, Position2D.Y - 1, Position2D.Z)) = ContainmentType.Contains Then
                         Entity.WalkOntoFunction()
