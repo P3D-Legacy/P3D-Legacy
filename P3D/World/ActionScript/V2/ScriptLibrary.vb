@@ -492,32 +492,24 @@ Namespace ScriptVersion2
             r(New ScriptCommand("player", "renamerival", "Opens the rival rename screen."))
             r(New ScriptCommand("player", "wearskin", {New ScriptArgument("skin", ScriptArgument.ArgumentTypes.Str)}.ToList(), "Changes the player skin temporarily."))
             r(New ScriptCommand("player", "setskin", {New ScriptArgument("skin", ScriptArgument.ArgumentTypes.Str)}.ToList(), "Changes the player skin permanently."))
-            r(New ScriptCommand("player", "setonlineskin", {New ScriptArgument("gamejoltID", ScriptArgument.ArgumentTypes.Str)}.ToList(), "Changes the player skin to a skin downloaded for the GameJoltID."))
             r(New ScriptCommand("player", "move", {New ScriptArgument("steps", ScriptArgument.ArgumentTypes.Sng)}.ToList(), "Starts the player movement."))
             r(New ScriptCommand("player", "moveasync", {New ScriptArgument("steps", ScriptArgument.ArgumentTypes.Str)}.ToList(), "Starts the async player movement."))
             r(New ScriptCommand("player", "turn", {New ScriptArgument("turns", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Adds to the direction the player faces and starts the turning."))
             r(New ScriptCommand("player", "turnasync", {New ScriptArgument("turns", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Adds to the direction the player faces and starts the async turning."))
             r(New ScriptCommand("player", "turnto", {New ScriptArgument("facing", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Changes the direction the player faces and starts the turning."))
             r(New ScriptCommand("player", "turntoasync", {New ScriptArgument("facing", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Changes the direction the player faces and starts the async turning."))
-            r(New ScriptCommand("player", "warp", {New ScriptArgument("mapfile", ScriptArgument.ArgumentTypes.Str)}.ToList(), "Warps the player to a new map file."))
-            r(New ScriptCommand("player", "warp", {New ScriptArgument("x", ScriptArgument.ArgumentTypes.Sng),
-                                               New ScriptArgument("y", ScriptArgument.ArgumentTypes.Sng),
-                                               New ScriptArgument("z", ScriptArgument.ArgumentTypes.Sng)}.ToList(), "Warps the player to a new location on the map. To get relative coordinates, enter a ""~""."))
-            r(New ScriptCommand("player", "warp", {New ScriptArgument("mapfile", ScriptArgument.ArgumentTypes.Str),
-                                               New ScriptArgument("x", ScriptArgument.ArgumentTypes.Sng),
-                                               New ScriptArgument("y", ScriptArgument.ArgumentTypes.Sng),
-                                               New ScriptArgument("z", ScriptArgument.ArgumentTypes.Sng)}.ToList(), "Warps the player to a new location on a new map. To get relative coordinates, enter a ""~""."))
-            r(New ScriptCommand("player", "warp", {New ScriptArgument("mapfile", ScriptArgument.ArgumentTypes.Str),
-                                               New ScriptArgument("x", ScriptArgument.ArgumentTypes.Sng),
-                                               New ScriptArgument("y", ScriptArgument.ArgumentTypes.Sng),
-                                               New ScriptArgument("z", ScriptArgument.ArgumentTypes.Sng),
-                                               New ScriptArgument("facing", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Warps the player to a new location on a new map and changes the facing afterwards. To get relative coordinates, enter a ""~""."))
+            r(New ScriptCommand("player", "Warp", {New ScriptArgument("MapPath", ScriptArgument.ArgumentTypes.Str, True, "Current map."),
+                                               New ScriptArgument("X", ScriptArgument.ArgumentTypes.Sng, True, "~"),
+                                               New ScriptArgument("Y", ScriptArgument.ArgumentTypes.Sng, True, "~"),
+                                               New ScriptArgument("Z", ScriptArgument.ArgumentTypes.Sng, True, "~"),
+                                               New ScriptArgument("Rotations", ScriptArgument.ArgumentTypes.Int, {"0-3"}, True, "0"),
+                                               New ScriptArgument("WarpSound", ScriptArgument.ArgumentTypes.Int, {"0-3"}, True, "0")}.ToList(), "Warps the player to a new location on a new map and changes the facing afterwards. To get relative coordinates, enter a ""~""."))
             r(New ScriptCommand("player", "stopmovement", "Stops the player movement."))
             r(New ScriptCommand("player", "AddMoney", {New ScriptArgument("amount", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Adds the given amount to the player's money."))
             r(New ScriptCommand("player", "RemoveMoney", {New ScriptArgument("amount", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Removes the given amount from the player's money."))
             r(New ScriptCommand("player", "addcoins", {New ScriptArgument("amount", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Adds the given amount to the player's coins."))
-            r(New ScriptCommand("player", "setspeed", {New ScriptArgument("speed", ScriptArgument.ArgumentTypes.Sng)}.ToList(), "Sets the speed of the player. The default is ""1""."))
-            r(New ScriptCommand("player", "resetspeed", "Resets the walking speed of the player to the default speed, which is ""1""."))
+            r(New ScriptCommand("player", "setspeed", {New ScriptArgument("speed", ScriptArgument.ArgumentTypes.Sng)}.ToList(), "Sets the movement speed of the player. The default is ""1""."))
+            r(New ScriptCommand("player", "resetspeed", "Resets the movement speed of the player to the default speed, which is ""1""."))
             r(New ScriptCommand("player", "setmovement", {New ScriptArgument("x", ScriptArgument.ArgumentTypes.Int),
                                                       New ScriptArgument("y", ScriptArgument.ArgumentTypes.Int),
                                                       New ScriptArgument("z", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Sets the direction the player will move next regardless of facing."))
