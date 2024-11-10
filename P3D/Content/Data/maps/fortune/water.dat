@@ -490,8 +490,8 @@ NPC:
 {"NPC"{NPC[{"Position"{sngArr[7,1,21]}}{"TextureID"{str[littlegirl]}}{"ID"{int[5]}}{"Name"{str[IDlotto]}}{"Action"{int[2]}}{"AdditionalValue"{str[1|trainer\fortune\water\005r]}}{"Rotation"{int[2]}}{"Movement"{str[Still]}}{"MoveRectangles"{recArr[]}}]}}
 {"NPC"{NPC[{"Position"{sngArr[12,1,13]}}{"TextureID"{str[pinkshirtgirl]}}{"ID"{int[6]}}{"Name"{str[IDlotto]}}{"Action"{int[2]}}{"AdditionalValue"{str[3|trainer\fortune\water\006]}}{"Rotation"{int[0]}}{"Movement"{str[Looking]}}{"MoveRectangles"{recArr[]}}]}}
 
-{"NPC"{NPC[{"Position"{sngArr[13,-0.24,35]}}{"TextureID"{str[34]}}{"ID"{int[2]}}{"Name"{str[Swimmer1]}}{"Action"{int[2]}}{"AdditionalValue"{str[3|trainer\fortune\water\004]}}{"Rotation"{int[3]}}{"Movement"{str[Looking]}}{"MoveRectangles"{recArr[]}}]}}
-{"NPC"{NPC[{"Position"{sngArr[14,-0.24,44]}}{"TextureID"{str[35]}}{"ID"{int[3]}}{"Name"{str[Swimmer2]}}{"Action"{int[2]}}{"AdditionalValue"{str[3|trainer\fortune\water\003]}}{"Rotation"{int[3]}}{"Movement"{str[Looking]}}{"MoveRectangles"{recArr[]}}]}}
+{"NPC"{NPC[{"Position"{sngArr[13,-0.24,35]}}{"TextureID"{str[34]}}{"ID"{int[2]}}{"Name"{str[Swimmer1]}}{"Action"{int[2]}}{"AdditionalValue"{str[3|trainer\fortune\water\004|0]}}{"Rotation"{int[3]}}{"Movement"{str[Looking]}}{"MoveRectangles"{recArr[]}}]}}
+{"NPC"{NPC[{"Position"{sngArr[14,-0.24,44]}}{"TextureID"{str[35]}}{"ID"{int[3]}}{"Name"{str[Swimmer2]}}{"Action"{int[2]}}{"AdditionalValue"{str[3|trainer\fortune\water\003|0]}}{"Rotation"{int[3]}}{"Movement"{str[Looking]}}{"MoveRectangles"{recArr[]}}]}}
 
 Signs:
 {"Entity"{ENT[{"EntityID"{str[SignBlock]}}{"Position"{sngArr[8,1,14]}}{"TexturePath"{str[Cherrygrove]}}{"Textures"{recArr[[16,32,16,16][32,32,16,16]]}}{"TextureIndex"{intArr[0,0,1,1,1,1,0,0,1,1]}}{"Collision"{bool[1]}}{"ModelID"{int[4]}}{"Action"{int[0]}}{"AdditionalValue"{str[Wanted!~The Ultimate Horn!]}}{"Rotation"{int[0]}}]}}

@@ -27,6 +27,7 @@
     Public TrainerSight As Integer = 1
     Public TrainerBeaten As Boolean = False
     Public TrainerChecked As Boolean = False
+    Public TrainerCheckCollision As Boolean = True
 
     Dim AnimateIdle As Boolean = True
     Dim AnimationX As Integer = 1
@@ -82,6 +83,9 @@
 
             Me.TrainerSight = CInt(Me.AdditionalValue.GetSplit(0, "|"))
             Me.AdditionalValue = Me.AdditionalValue.GetSplit(1, "|")
+            If Me.AdditionalValue.Split.Count > 2 Then
+                Me.TrainerCheckCollision = CBool(Me.AdditionalValue.GetSplit(2, "|"))
+            End If
         End If
 
         Me.DropUpdateUnlessDrawn = False
@@ -380,91 +384,129 @@
                             distance = distance.ToPositive()
 
                             If distance <= Me.TrainerSight Then
-                                Dim InSightMusic As String = "nomusic"
 
-                                If Me.IsTrainer = True Then
-                                    Dim trainerFilePath As String = GameModeManager.GetScriptPath(Me.AdditionalValue & ".dat")
-                                    Security.FileValidation.CheckFileValid(trainerFilePath, False, "NPC.vb")
+                                Dim canReach As Boolean = True
+                                If TrainerCheckCollision = True Then
+                                    Select Case faceRotation
+                                        Case 0
+                                            For i = CInt(Me.Position.Z - distance) To CInt(Me.Position.Z - 1)
+                                                If CheckCollision(New Vector3(Me.Position.X, Me.Position.Y, i), False) = False Then
+                                                    canReach = False
+                                                    Exit For
+                                                End If
+                                            Next
+                                        Case 2
+                                            For i = CInt(Me.Position.Z + 1) To CInt(Me.Position.Z + distance)
+                                                If CheckCollision(New Vector3(Me.Position.X, Me.Position.Y, i), False) = False Then
+                                                    canReach = False
+                                                    Exit For
+                                                End If
+                                            Next
+                                        Case 1
+                                            For i = CInt(Me.Position.X - distance) To CInt(Me.Position.X - 1)
+                                                If CheckCollision(New Vector3(i, Me.Position.Y, Me.Position.Z), False) = False Then
+                                                    canReach = False
+                                                    Exit For
+                                                End If
+                                            Next
+                                        Case 3
+                                            For i = CInt(Me.Position.X + 1) To CInt(Me.Position.X + distance)
+                                                If CheckCollision(New Vector3(i, Me.Position.Y, Me.Position.Z), False) = False Then
+                                                    canReach = False
+                                                    Exit For
+                                                End If
+                                            Next
+                                    End Select
 
-                                    Dim trainerContent() As String = System.IO.File.ReadAllLines(trainerFilePath)
-                                    For Each line As String In trainerContent
-                                        Dim l As String = line.Trim()
-                                        If l.ToLower.StartsWith("@trainer:") = True Then
-                                            Dim trainerID As String = l.GetSplit(1, ":")
-                                            If Trainer.IsBeaten(trainerID) = True Then
-                                                Exit Sub
-                                            Else
-                                                Dim t As New Trainer(trainerID)
-                                                InSightMusic = t.GetInSightMusic()
-                                            End If
-                                        ElseIf l.ToLower.StartsWith("@battle.starttrainer(") = True Then
-                                            Dim trainerID As String = l.Remove(l.Length - 1, 1).Remove(0, "@battle.starttrainer(".Length)
-                                            If Trainer.IsBeaten(trainerID) = True Then
-                                                Exit Sub
-                                            Else
-                                                Dim t As New Trainer(trainerID)
-                                                InSightMusic = t.GetInSightMusic()
-                                            End If
-                                        End If
-                                    Next
                                 End If
+                                If canReach = True Then
 
-                                Dim needFacing As Integer = 0
-                                Select Case Me.faceRotation
-                                    Case 0
-                                        needFacing = 2
-                                    Case 1
-                                        needFacing = 3
-                                    Case 2
-                                        needFacing = 0
-                                    Case 3
-                                        needFacing = 1
-                                End Select
+                                    Dim InSightMusic As String = "nomusic"
 
-                                CType(Core.CurrentScreen, OverworldScreen).TrainerEncountered = True
-                                If InSightMusic <> "nomusic" And InSightMusic <> "" Then
-                                    MusicManager.Play(InSightMusic, True, 0.0F)
-                                End If
-                                Screen.Camera.StopMovement()
-                                Me.Movement = Movements.Still
+                                    If Me.IsTrainer = True Then
+                                        Dim trainerFilePath As String = GameModeManager.GetScriptPath(Me.AdditionalValue & ".dat")
+                                        Security.FileValidation.CheckFileValid(trainerFilePath, False, "NPC.vb")
 
-                                Dim offset As New Vector2(0, 0)
-                                Select Case Me.faceRotation
-                                    Case 0
-                                        offset.Y = -0.01F
-                                    Case 1
-                                        offset.X = -0.01F
-                                    Case 2
-                                        offset.Y = 0.01F
-                                    Case 3
-                                        offset.X = 0.01F
-                                End Select
-
-                                Dim s As String = "version=2" & Environment.NewLine &
-                                    "@player.turnto(" & needFacing & ")" & Environment.NewLine
-
-                                With CType(Screen.Camera, OverworldCamera)
-                                    If CType(Screen.Camera, OverworldCamera).ThirdPerson = True And IsOnScreen() = False Then
-                                        s &= "@camera.setfocus(npc," & Me.NPCID & ")" & Environment.NewLine
-                                        Dim cPosition = .ThirdPersonOffset.X.ToString() & "," & .ThirdPersonOffset.Y.ToString() & "," & .ThirdPersonOffset.Z.ToString()
-                                        s &= "@sound.play(Emote_Exclamation)" & Environment.NewLine &
-                                             "@entity.showmessagebulb(1|" & Me.Position.X + offset.X & "|" & Me.Position.Y + 0.7F & "|" & Me.Position.Z + offset.Y & ")" & Environment.NewLine &
-                                             "@npc.move(" & Me.NPCID & "," & distance - 1 & ")" & Environment.NewLine &
-                                             "@script.start(" & Me.AdditionalValue & ")" & Environment.NewLine &
-                                             "@camera.resetfocus" & Environment.NewLine &
-                                             "@camera.setposition(" & cPosition & ")" & Environment.NewLine &
-                                             ":end"
-                                    Else
-                                        s &= "@sound.play(Emote_Exclamation)" & Environment.NewLine &
-                                        "@entity.showmessagebulb(1|" & Me.Position.X + offset.X & "|" & Me.Position.Y + 0.7F & "|" & Me.Position.Z + offset.Y & ")" & Environment.NewLine &
-                                        "@npc.move(" & Me.NPCID & "," & distance - 1 & ")" & Environment.NewLine &
-                                        "@script.start(" & Me.AdditionalValue & ")" & Environment.NewLine &
-                                        ":end"
+                                        Dim trainerContent() As String = System.IO.File.ReadAllLines(trainerFilePath)
+                                        For Each line As String In trainerContent
+                                            Dim l As String = line.Trim()
+                                            If l.ToLower.StartsWith("@trainer:") = True Then
+                                                Dim trainerID As String = l.GetSplit(1, ":")
+                                                If Trainer.IsBeaten(trainerID) = True Then
+                                                    Exit Sub
+                                                Else
+                                                    Dim t As New Trainer(trainerID)
+                                                    InSightMusic = t.GetInSightMusic()
+                                                End If
+                                            ElseIf l.ToLower.StartsWith("@battle.starttrainer(") = True Then
+                                                Dim trainerID As String = l.Remove(l.Length - 1, 1).Remove(0, "@battle.starttrainer(".Length)
+                                                If Trainer.IsBeaten(trainerID) = True Then
+                                                    Exit Sub
+                                                Else
+                                                    Dim t As New Trainer(trainerID)
+                                                    InSightMusic = t.GetInSightMusic()
+                                                End If
+                                            End If
+                                        Next
                                     End If
-                                End With
 
-                                CType(Core.CurrentScreen, OverworldScreen).ActionScript.StartScript(s, 2,,, "NPCInSight")
-                                ActionScript.IsInSightScript = True
+                                    Dim needFacing As Integer = 0
+                                    Select Case Me.faceRotation
+                                        Case 0
+                                            needFacing = 2
+                                        Case 1
+                                            needFacing = 3
+                                        Case 2
+                                            needFacing = 0
+                                        Case 3
+                                            needFacing = 1
+                                    End Select
+
+                                    CType(Core.CurrentScreen, OverworldScreen).TrainerEncountered = True
+                                    If InSightMusic <> "nomusic" And InSightMusic <> "" Then
+                                        MusicManager.Play(InSightMusic, True, 0.0F)
+                                    End If
+                                    Screen.Camera.StopMovement()
+                                    Me.Movement = Movements.Still
+
+                                    Dim offset As New Vector2(0, 0)
+                                    Select Case Me.faceRotation
+                                        Case 0
+                                            offset.Y = -0.01F
+                                        Case 1
+                                            offset.X = -0.01F
+                                        Case 2
+                                            offset.Y = 0.01F
+                                        Case 3
+                                            offset.X = 0.01F
+                                    End Select
+
+                                    Dim s As String = "version=2" & Environment.NewLine &
+                                        "@player.turnto(" & needFacing & ")" & Environment.NewLine
+
+                                    With CType(Screen.Camera, OverworldCamera)
+                                        If CType(Screen.Camera, OverworldCamera).ThirdPerson = True And IsOnScreen() = False Then
+                                            s &= "@camera.setfocus(npc," & Me.NPCID & ")" & Environment.NewLine
+                                            Dim cPosition = .ThirdPersonOffset.X.ToString() & "," & .ThirdPersonOffset.Y.ToString() & "," & .ThirdPersonOffset.Z.ToString()
+                                            s &= "@sound.play(Emote_Exclamation)" & Environment.NewLine &
+                                                 "@entity.showmessagebulb(1|" & Me.Position.X + offset.X & "|" & Me.Position.Y + 0.7F & "|" & Me.Position.Z + offset.Y & ")" & Environment.NewLine &
+                                                 "@npc.move(" & Me.NPCID & "," & distance - 1 & ")" & Environment.NewLine &
+                                                 "@script.start(" & Me.AdditionalValue & ")" & Environment.NewLine &
+                                                 "@camera.resetfocus" & Environment.NewLine &
+                                                 "@camera.setposition(" & cPosition & ")" & Environment.NewLine &
+                                                 ":end"
+                                        Else
+                                            s &= "@sound.play(Emote_Exclamation)" & Environment.NewLine &
+                                            "@entity.showmessagebulb(1|" & Me.Position.X + offset.X & "|" & Me.Position.Y + 0.7F & "|" & Me.Position.Z + offset.Y & ")" & Environment.NewLine &
+                                            "@npc.move(" & Me.NPCID & "," & distance - 1 & ")" & Environment.NewLine &
+                                            "@script.start(" & Me.AdditionalValue & ")" & Environment.NewLine &
+                                            ":end"
+                                        End If
+                                    End With
+
+                                    CType(Core.CurrentScreen, OverworldScreen).ActionScript.StartScript(s, 2,,, "NPCInSight")
+                                    ActionScript.IsInSightScript = True
+                                End If
                             End If
                         End If
                     End If
@@ -793,50 +835,53 @@
         End Select
     End Sub
 
-    Private Function CheckCollision(ByVal newPosition As Vector3) As Boolean
+    Private Function CheckCollision(ByVal newPosition As Vector3, Optional CheckPlayer As Boolean = True) As Boolean
         newPosition = New Vector3(CInt(newPosition.X), CInt(newPosition.Y), CInt(newPosition.Z))
         Dim oldPosition As Vector3 = Me.Position
 
         Dim blocked As Boolean = False
 
-        '' check if player or a following Pokémon is not in the way
-        If Screen.Camera.IsMoving() = False Then
-            If CInt(Screen.Camera.Position.X) = newPosition.X And CInt(Screen.Camera.Position.Y) = newPosition.Y And CInt(Screen.Camera.Position.Z) = newPosition.Z Then
-                blocked = True
-            End If
-            If Screen.Level.OverworldPokemon.IsVisible = True Then
-                If CInt(Screen.Level.OverworldPokemon.Position.X) = newPosition.X And CInt(Screen.Level.OverworldPokemon.Position.Y) = newPosition.Y And CInt(Screen.Level.OverworldPokemon.Position.Z) = newPosition.Z Then
+        If CheckPlayer = True Then
+            '' check if player or a following Pokémon is not in the way
+            If Screen.Camera.IsMoving() = False Then
+                If CInt(Screen.Camera.Position.X) = newPosition.X And CInt(Screen.Camera.Position.Y) = newPosition.Y And CInt(Screen.Camera.Position.Z) = newPosition.Z Then
                     blocked = True
                 End If
-            End If
-        Else
-            Dim cameraNewPosition As Vector3 = CType(Screen.Camera, OverworldCamera).LastStepPosition + Screen.Camera.PlannedMovement()
-            Dim cameraOldPosition As Vector3 = CType(Screen.Camera, OverworldCamera).LastStepPosition
+                If Screen.Level.OverworldPokemon.IsVisible = True Then
+                    If CInt(Screen.Level.OverworldPokemon.Position.X) = newPosition.X And CInt(Screen.Level.OverworldPokemon.Position.Y) = newPosition.Y And CInt(Screen.Level.OverworldPokemon.Position.Z) = newPosition.Z Then
+                        blocked = True
+                    End If
+                End If
+            Else
+                Dim cameraNewPosition As Vector3 = CType(Screen.Camera, OverworldCamera).LastStepPosition + Screen.Camera.PlannedMovement()
+                Dim cameraOldPosition As Vector3 = CType(Screen.Camera, OverworldCamera).LastStepPosition
 
-            If CInt(cameraNewPosition.X) = newPosition.X And CInt(cameraNewPosition.Y) = newPosition.Y And CInt(cameraNewPosition.Z) = newPosition.Z Then
-                blocked = True
-            End If
-            If Screen.Level.OverworldPokemon.IsVisible = True Then
-                If CInt(Screen.Level.OverworldPokemon.Position.X) = newPosition.X And CInt(Screen.Level.OverworldPokemon.Position.Y) = newPosition.Y And CInt(Screen.Level.OverworldPokemon.Position.Z) = newPosition.Z OrElse
-                CInt(cameraOldPosition.X) = newPosition.X And CInt(cameraOldPosition.Y) = newPosition.Y And CInt(cameraOldPosition.Z) = newPosition.Z Then
+                If CInt(cameraNewPosition.X) = newPosition.X And CInt(cameraNewPosition.Y) = newPosition.Y And CInt(cameraNewPosition.Z) = newPosition.Z Then
                     blocked = True
                 End If
+                If Screen.Level.OverworldPokemon.IsVisible = True Then
+                    If CInt(Screen.Level.OverworldPokemon.Position.X) = newPosition.X And CInt(Screen.Level.OverworldPokemon.Position.Y) = newPosition.Y And CInt(Screen.Level.OverworldPokemon.Position.Z) = newPosition.Z OrElse
+                 CInt(cameraOldPosition.X) = newPosition.X And CInt(cameraOldPosition.Y) = newPosition.Y And CInt(cameraOldPosition.Z) = newPosition.Z Then
+                        blocked = True
+                    End If
+                End If
             End If
+            '' check if a NetworkPlayer is not in the way
+            For Each Player As NetworkPlayer In Screen.Level.NetworkPlayers
+                If CInt(Player.Position.X) = newPosition.X And CInt(Player.Position.Y) = newPosition.Y And CInt(Player.Position.Z) = newPosition.Z Then
+                    blocked = True
+                    Exit For
+                End If
+            Next
+            '' check if a NetworkPokémon is not in the way
+            For Each Pokemon As NetworkPokemon In Screen.Level.NetworkPokemon
+                If CInt(Pokemon.Position.X) = newPosition.X And CInt(Pokemon.Position.Y) = newPosition.Y And CInt(Pokemon.Position.Z) = newPosition.Z Then
+                    blocked = True
+                    Exit For
+                End If
+            Next
         End If
-        '' check if a NetworkPlayer is not in the way
-        For Each Player As NetworkPlayer In Screen.Level.NetworkPlayers
-            If CInt(Player.Position.X) = newPosition.X And CInt(Player.Position.Y) = newPosition.Y And CInt(Player.Position.Z) = newPosition.Z Then
-                blocked = True
-                Exit For
-            End If
-        Next
-        '' check if a NetworkPokémon is not in the way
-        For Each Pokemon As NetworkPokemon In Screen.Level.NetworkPokemon
-            If CInt(Pokemon.Position.X) = newPosition.X And CInt(Pokemon.Position.Y) = newPosition.Y And CInt(Pokemon.Position.Z) = newPosition.Z Then
-                blocked = True
-                Exit For
-            End If
-        Next
+
         '' check if an NPC is not in the way
         For Each NPC As NPC In Screen.Level.GetNPCs()
             If CInt(NPC.Position.X) = newPosition.X And CInt(NPC.Position.Y) = newPosition.Y And CInt(NPC.Position.Z) = newPosition.Z And NPC.NPCID <> Me.NPCID Then
