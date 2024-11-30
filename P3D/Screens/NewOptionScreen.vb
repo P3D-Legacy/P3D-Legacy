@@ -517,6 +517,8 @@ Public Class NewOptionScreen
 			MusicManager.PlayNoMusic()
 			ContentPackManager.Clear()
 			GameModeManager.ForceWaterSpeed = -1
+			GameModeManager.PokeModelScale = 1
+			GameModeManager.PokeModelRotation = New Vector3(0, 0, 0)
 			For Each s As String In Core.GameOptions.ContentPackNames
 				ContentPackManager.Load(GameController.GamePath & "\ContentPacks\" & s & "\exceptions.dat")
 			Next

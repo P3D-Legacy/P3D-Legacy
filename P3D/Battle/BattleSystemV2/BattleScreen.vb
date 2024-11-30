@@ -254,10 +254,12 @@
             OwnPokemonNPC = CType(Entity.GetNewEntity("NPC", New Vector3(12, OwnEntityOffsetY, 13) + BattleMapOffset, {Nothing}, {0, 0}, False, New Vector3(0), New Vector3(1), BaseModel.BillModel, 0, "", True, New Vector3(1), 1, "", "", New Vector3(0), {PokemonForms.GetOverworldSpriteName(OwnPokemon), 3, WildPokemon.GetDisplayName(), 0, True, "Still", New List(Of Rectangle)}, 1,,, ownModel), NPC)
             OppPokemonNPC = CType(Entity.GetNewEntity("NPC", New Vector3(15, OppEntityOffsetY, 13) + BattleMapOffset, {Nothing}, {0, 0}, False, New Vector3(0), New Vector3(1), BaseModel.BillModel, 0, "", True, New Vector3(1), 1, "", "", New Vector3(0), {PokemonForms.GetOverworldSpriteName(WildPokemon), 1, WildPokemon.GetDisplayName(), 1, True, "Still", New List(Of Rectangle)},,,, oppModel), NPC)
             If ownModel <> "" Then
-                OwnPokemonNPC.Scale = New Vector3(OwnPokemon.GetModelProperties().Item1) * ModelManager.MODELSCALE
+                OwnPokemonNPC.Scale = New Vector3(OwnPokemon.GetModelProperties().Item1) * ModelManager.MODELSCALE * GameModeManager.PokeModelScale
+                OwnPokemonNPC.Rotation = NPC.GetRotationFromInteger(OwnPokemonNPC.faceRotation) + GameModeManager.PokeModelRotation
             End If
             If oppModel <> "" Then
-                OppPokemonNPC.Scale = New Vector3(OppPokemon.GetModelProperties().Item1) * ModelManager.MODELSCALE
+                OppPokemonNPC.Scale = New Vector3(OppPokemon.GetModelProperties().Item1) * ModelManager.MODELSCALE * GameModeManager.PokeModelScale
+                OppPokemonNPC.Rotation = NPC.GetRotationFromInteger(OppPokemonNPC.faceRotation) + GameModeManager.PokeModelRotation
             End If
             Screen.Level.Entities.Add(OwnPokemonNPC)
             Screen.Level.Entities.Add(OppPokemonNPC)
@@ -412,10 +414,12 @@
             OppPokemonNPC = CType(Entity.GetNewEntity("NPC", New Vector3(15, OppEntityOffsetY, 13) + BattleMapOffset, {Nothing}, {0, 0}, False, New Vector3(0), New Vector3(1), BaseModel.BillModel, 0, "", True, New Vector3(1), 1, "", "", New Vector3(0), {PokemonForms.GetOverworldSpriteName(OppPokemon), 1, OppPokemon.GetDisplayName(), 1, True, "Still", New List(Of Rectangle)}, InitiallyVisibleOpp,,, oppModel), NPC)
 
             If ownModel <> "" Then
-                OwnPokemonNPC.Scale = New Vector3(OwnPokemon.GetModelProperties().Item1) * ModelManager.MODELSCALE
+                OwnPokemonNPC.Scale = New Vector3(OwnPokemon.GetModelProperties().Item1) * ModelManager.MODELSCALE * GameModeManager.PokeModelScale
+                OwnPokemonNPC.Rotation = NPC.GetRotationFromInteger(OwnPokemonNPC.faceRotation) + GameModeManager.PokeModelRotation
             End If
             If oppModel <> "" Then
-                OppPokemonNPC.Scale = New Vector3(OppPokemon.GetModelProperties().Item1) * ModelManager.MODELSCALE
+                OppPokemonNPC.Scale = New Vector3(OppPokemon.GetModelProperties().Item1) * ModelManager.MODELSCALE * GameModeManager.PokeModelScale
+                OppPokemonNPC.Rotation = NPC.GetRotationFromInteger(OppPokemonNPC.faceRotation) + GameModeManager.PokeModelRotation
             End If
 
             Screen.Level.Entities.Add(OwnPokemonNPC)
@@ -660,10 +664,12 @@
             OppPokemonNPC = CType(Entity.GetNewEntity("NPC", New Vector3(15, 0 + OppEntityOffsetY, 13) + BattleMapOffset, {Nothing}, {0, 0}, False, New Vector3(0), New Vector3(1), BaseModel.BillModel, 0, "", True, New Vector3(1), 1, "", "", New Vector3(0), {PokemonForms.GetOverworldSpriteName(WildPokemon), 1, WildPokemon.GetDisplayName(), 1, True, "Still", New List(Of Rectangle)},,,, oppModel), NPC)
 
             If ownModel <> "" Then
-                OwnPokemonNPC.Scale = New Vector3(OwnPokemon.GetModelProperties().Item1) * ModelManager.MODELSCALE
+                OwnPokemonNPC.Scale = New Vector3(OwnPokemon.GetModelProperties().Item1) * ModelManager.MODELSCALE * GameModeManager.PokeModelScale
+                OwnPokemonNPC.Rotation = NPC.GetRotationFromInteger(OwnPokemonNPC.faceRotation) + GameModeManager.PokeModelRotation
             End If
             If oppModel <> "" Then
-                OppPokemonNPC.Scale = New Vector3(OppPokemon.GetModelProperties().Item1) * ModelManager.MODELSCALE
+                OppPokemonNPC.Scale = New Vector3(OppPokemon.GetModelProperties().Item1) * ModelManager.MODELSCALE * GameModeManager.PokeModelScale
+                OppPokemonNPC.Rotation = NPC.GetRotationFromInteger(OppPokemonNPC.faceRotation) + GameModeManager.PokeModelRotation
             End If
 
             Screen.Level.Entities.Add(OwnPokemonNPC)
@@ -783,10 +789,12 @@
             OppPokemonNPC = CType(Entity.GetNewEntity("NPC", New Vector3(15, 0 + OppEntityOffsetY, 13) + BattleMapOffset, {Nothing}, {0, 0}, False, New Vector3(0), New Vector3(1), BaseModel.BillModel, 0, "", True, New Vector3(1), 1, "", "", New Vector3(0), {PokemonForms.GetOverworldSpriteName(WildPokemon), 1, WildPokemon.GetDisplayName(), 1, True, "Still", New List(Of Rectangle)},,,, oppModel), NPC)
 
             If ownModel <> "" Then
-                OwnPokemonNPC.Scale = New Vector3(OwnPokemon.GetModelProperties().Item1) * ModelManager.MODELSCALE
+                OwnPokemonNPC.Scale = New Vector3(OwnPokemon.GetModelProperties().Item1) * ModelManager.MODELSCALE * GameModeManager.PokeModelScale
+                OwnPokemonNPC.Rotation = NPC.GetRotationFromInteger(OwnPokemonNPC.faceRotation) + GameModeManager.PokeModelRotation
             End If
             If oppModel <> "" Then
-                OppPokemonNPC.Scale = New Vector3(OppPokemon.GetModelProperties().Item1) * ModelManager.MODELSCALE
+                OppPokemonNPC.Scale = New Vector3(OppPokemon.GetModelProperties().Item1) * ModelManager.MODELSCALE * GameModeManager.PokeModelScale
+                OppPokemonNPC.Rotation = NPC.GetRotationFromInteger(OppPokemonNPC.faceRotation) + GameModeManager.PokeModelRotation
             End If
 
             Screen.Level.Entities.Add(OwnPokemonNPC)

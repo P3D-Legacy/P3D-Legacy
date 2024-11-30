@@ -4,6 +4,8 @@ Public Class GameModeManager
     Private Shared GameModePointer As Integer = 0
     Public Shared Initialized As Boolean = False
     Public Shared ForceWaterSpeed As Integer = -1
+    Public Shared PokeModelScale As Single = 1
+    Public Shared PokeModelRotation As New Vector3(0, 0, 0)
 
     ''' <summary>
     ''' Loads (or reloads) the list of GameModes. The pointer also gets reset.
