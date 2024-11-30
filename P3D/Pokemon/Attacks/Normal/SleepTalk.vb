@@ -56,7 +56,7 @@
         End Sub
 
         Public Overrides Sub MoveHits(own As Boolean, BattleScreen As BattleScreen)
-            Dim disabledMoves() As Integer = {214, 274, 117, 340, 448, 383, 91, 291, 19, 264, 382, 118, 119, 467, 166, 130, 214, 143, 76, 13, 253}
+            Dim disabledMoves() As Integer = {214, 274, 117, 340, 448, 383, 91, 291, 19, 264, 382, 118, 119, 467, 166, 130, 143, 76, 13, 253}
 
             Dim p As Pokemon = BattleScreen.OwnPokemon
             If own = False Then

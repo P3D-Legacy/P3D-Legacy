@@ -1212,15 +1212,19 @@
                 op = BattleScreen.OppPokemon
                 pNPC = BattleScreen.OwnPokemonNPC
                 opNPC = BattleScreen.OppPokemonNPC
-                BattleScreen.FieldEffects.OwnLastMove = moveUsed
+                If Not (own AndAlso BattleScreen.FieldEffects.OwnLastMove IsNot Nothing AndAlso BattleScreen.FieldEffects.OwnLastMove.ID = 214) Then
+                    BattleScreen.FieldEffects.OwnLastMove = moveUsed
+                End If
             Else
                 p = BattleScreen.OppPokemon
                 op = BattleScreen.OwnPokemon
                 pNPC = BattleScreen.OppPokemonNPC
                 opNPC = BattleScreen.OwnPokemonNPC
-                BattleScreen.FieldEffects.OppLastMove = moveUsed
+                If Not (Not own AndAlso BattleScreen.FieldEffects.OppLastMove IsNot Nothing AndAlso BattleScreen.FieldEffects.OppLastMove.ID = 214) Then
+                    BattleScreen.FieldEffects.OppLastMove = moveUsed
+                End If
             End If
-            If WildHasEscaped Then
+                If WildHasEscaped Then
                 WildHasEscaped = False
                 Exit Sub
             End If
@@ -1351,6 +1355,7 @@
                         Exit Sub
                     End If
                 Else
+                    ' If the last move was Sleep Talk, don't do sleep animation
                     If (own AndAlso BattleScreen.FieldEffects.OwnLastMove IsNot Nothing AndAlso BattleScreen.FieldEffects.OwnLastMove.ID = 214) OrElse (Not own AndAlso BattleScreen.FieldEffects.OppLastMove IsNot Nothing AndAlso BattleScreen.FieldEffects.OppLastMove.ID = 214) Then
                         If own Then
                             BattleScreen.FieldEffects.OwnLastMove = moveUsed
@@ -1358,30 +1363,34 @@
                             BattleScreen.FieldEffects.OppLastMove = moveUsed
                         End If
                     Else
-                        If sleepTurns > 0 Then
-                            ChangeCameraAngle(1, own, BattleScreen)
-                            'Sleep Animation
-                            If Core.Player.ShowBattleAnimations <> 0 AndAlso BattleScreen.IsPVPBattle = False Then
-                                Dim SleepAnimation As New AnimationQueryObject(pNPC, Not own)
+                        ' If the used move is not Snore, do sleep animation or wake up
+                        If Not (sleepTurns > 0 AndAlso moveUsed.ID = 173) Then
 
-                                SleepAnimation.AnimationPlaySound("Battle\Effects\Asleep", 0, 0)
-                                Dim SleepEntity1 As Entity = SleepAnimation.SpawnEntity(New Vector3(0, 0.25, 0), TextureManager.GetTexture("Textures\Battle\StatusEffect\Asleep", New Rectangle(0, 0, 16, 16), ""), New Vector3(0.5F), 1, 0, 1)
-                                SleepAnimation.AnimationChangeTexture(SleepEntity1, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Asleep", New Rectangle(0, 16, 16, 16), ""), 1, 1)
-                                SleepAnimation.AnimationMove(SleepEntity1, True, 0, 0.5, 0.25, 0.01, False, False, 0, 0)
+                            If sleepTurns > 0 Then
+                                ChangeCameraAngle(1, own, BattleScreen)
+                                'Sleep Animation
+                                If Core.Player.ShowBattleAnimations <> 0 AndAlso BattleScreen.IsPVPBattle = False Then
+                                    Dim SleepAnimation As New AnimationQueryObject(pNPC, Not own)
 
-                                Dim SleepEntity2 As Entity = SleepAnimation.SpawnEntity(New Vector3(0, 0.25, 0), TextureManager.GetTexture("Textures\Battle\StatusEffect\Asleep", New Rectangle(0, 0, 16, 16), ""), New Vector3(0.5F), 1, 1.5, 1)
+                                    SleepAnimation.AnimationPlaySound("Battle\Effects\Asleep", 0, 0)
+                                    Dim SleepEntity1 As Entity = SleepAnimation.SpawnEntity(New Vector3(0, 0.25, 0), TextureManager.GetTexture("Textures\Battle\StatusEffect\Asleep", New Rectangle(0, 0, 16, 16), ""), New Vector3(0.5F), 1, 0, 1)
+                                    SleepAnimation.AnimationChangeTexture(SleepEntity1, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Asleep", New Rectangle(0, 16, 16, 16), ""), 1, 1)
+                                    SleepAnimation.AnimationMove(SleepEntity1, True, 0, 0.5, 0.25, 0.01, False, False, 0, 0)
 
-                                SleepAnimation.AnimationChangeTexture(SleepEntity2, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Asleep", New Rectangle(0, 16, 16, 16), ""), 2.5, 1)
-                                SleepAnimation.AnimationMove(SleepEntity2, True, 0, 0.5, 0.25, 0.01, False, False, 2, 0)
+                                    Dim SleepEntity2 As Entity = SleepAnimation.SpawnEntity(New Vector3(0, 0.25, 0), TextureManager.GetTexture("Textures\Battle\StatusEffect\Asleep", New Rectangle(0, 0, 16, 16), ""), New Vector3(0.5F), 1, 1.5, 1)
 
-                                BattleScreen.BattleQuery.Add(SleepAnimation)
+                                    SleepAnimation.AnimationChangeTexture(SleepEntity2, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Asleep", New Rectangle(0, 16, 16, 16), ""), 2.5, 1)
+                                    SleepAnimation.AnimationMove(SleepEntity2, True, 0, 0.5, 0.25, 0.01, False, False, 2, 0)
+
+                                    BattleScreen.BattleQuery.Add(SleepAnimation)
+                                Else
+                                    BattleScreen.BattleQuery.Add(New PlaySoundQueryObject("Battle\Effects\Asleep", False))
+                                End If
+                                BattleScreen.BattleQuery.Add(New TextQueryObject(p.GetDisplayName() & " is fast asleep."))
+                                Exit Sub
                             Else
-                                BattleScreen.BattleQuery.Add(New PlaySoundQueryObject("Battle\Effects\Asleep", False))
+                                CureStatusProblem(own, own, BattleScreen, p.GetDisplayName() & " woke up!", "sleepturns")
                             End If
-                            BattleScreen.BattleQuery.Add(New TextQueryObject(p.GetDisplayName() & " is fast asleep."))
-                            Exit Sub
-                        Else
-                            CureStatusProblem(own, own, BattleScreen, p.GetDisplayName() & " woke up!", "sleepturns")
                         End If
                     End If
                 End If
