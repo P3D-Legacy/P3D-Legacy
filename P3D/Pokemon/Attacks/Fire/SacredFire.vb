@@ -37,7 +37,7 @@
             Me.UseEffectiveness = True
             Me.ImmunityAffected = True
             Me.HasSecondaryEffect = True
-            Me.RemovesOwnFrozen = False
+            Me.RemovesOwnFrozen = True
 
             Me.IsHealingMove = False
             Me.IsRecoilMove = False
