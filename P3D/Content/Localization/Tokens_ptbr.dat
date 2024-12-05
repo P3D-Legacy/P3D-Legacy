@@ -2476,6 +2476,7 @@ move_name_46,Roar
 move_name_47,Sing
 move_name_48,Supersonic
 move_name_49,Sonic Boom
+move_name_50,Disable
 move_name_51,Acid
 move_name_52,Ember
 move_name_53,Flamethrower
@@ -2857,7 +2858,7 @@ move_name_438,Power Whip
 move_name_439,Rock Wrecker
 move_name_440,Crosspoison
 move_name_441,Gunk Shot
-move_name_442,Ironhead
+move_name_442,Iron Head
 move_name_443,Magnet Bomb
 move_name_444,Stone Edge
 move_name_445,Captivate
@@ -3039,7 +3040,9 @@ move_name_715,Tearful Look
 move_name_716,Zing Zap
 move_name_717,Natures Madness
 move_name_749,Tar Shot
+move_name_790,Strange Steam
 move_name_796,Steel Beam
+move_name_797,Rage Fist
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------
 Story translation:
 ---

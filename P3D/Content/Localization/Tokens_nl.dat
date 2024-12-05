@@ -314,13 +314,13 @@ save_screen_no,Nee
 ---
 Apricornscherm:
 apricorn_screen_apricorns,Apricorns
-apricorn_screen_producing,Ik ben bezig met het maken van de PokéBalls.~Kom later terug.
+apricorn_screen_producing,Ik ben bezig met het maken van de PokéBallen.~Kom later terug.
 apricorn_screen_backadvice,DRUK OP <system.button(openmenu)> OM TERUG TE GAAN
-apricorn_screen_choose_apricorns,Selecteer de Apricorns waarvan ik PokéBalls moet maken.
+apricorn_screen_choose_apricorns,Selecteer de Apricorns waarvan ik PokéBallen moet maken.
 apricorn_screen_ok,Oké
 apricorn_screen_clear,Wis
 apricorn_screen_take,Neem
-apricorn_screen_ready,Ik heb de PokéBalls voor je gemaakt. Hier is het resultaat van mijn werk:
+apricorn_screen_ready,Ik heb de PokéBallen voor je gemaakt. Hier is het resultaat van mijn werk:
 apricorn_screen_obtain,Ontvangen
 ---
 Donation screen:
@@ -2777,6 +2777,7 @@ move_name_46,Brul
 move_name_47,Zang
 move_name_48,Supersonisch
 move_name_49,Supersone knal
+move_name_50,Ontwapen
 move_name_51,Acid
 move_name_52,Sintel
 move_name_53,Vlammenwerper
@@ -2965,7 +2966,7 @@ move_name_235,Synthesis
 move_name_236,Moonlight
 move_name_237,Hidden Power
 move_name_238,Cross Chop
-move_name_239,Twister
+move_name_239,Cycloon
 move_name_240,Rain Dance
 move_name_241,Sunny Day
 move_name_242,Crunch
@@ -3044,7 +3045,7 @@ move_name_320,Grass Whistle
 move_name_321,Tickle
 move_name_322,Cosmic Power
 move_name_323,Water Spout
-move_name_324,Signal Beam
+move_name_324,Signaalstraal
 move_name_325,Shadow Punch
 move_name_326,Extrasensory
 move_name_327,Sky Uppercut
@@ -3054,7 +3055,7 @@ move_name_330,Muddywater
 move_name_331,Bullet Seed
 move_name_332,Aerial Ace
 move_name_333,Icicle Spear
-move_name_334,Iron Defense
+move_name_334,IJzerwering
 move_name_335,Block
 move_name_336,Howl
 move_name_337,Dragon Claw
@@ -3114,13 +3115,13 @@ move_name_394,Flare Blitz
 move_name_395,Force Palm
 move_name_396,Aura Sphere
 move_name_397,Rock Polish
-move_name_398,Poison Jab
-move_name_399,Dark Pulse
-move_name_400,Night Slash
+move_name_398,Gifstoot
+move_name_399,Duisterpuls
+move_name_400,Nachthak
 move_name_401,Aqua Tail
-move_name_402,Seed Bomb
-move_name_403,Air Slash
-move_name_404,X-Scissor
+move_name_402,Zaadbom
+move_name_403,Luchtklief
+move_name_404,X-schaar
 move_name_405,Bug Buzz
 move_name_406,Dragon Pulse
 move_name_407,Dragon Rush
@@ -3146,7 +3147,7 @@ move_name_426,Mud Bomb
 move_name_427,Psycho Cut
 move_name_428,Zen Headbutt
 move_name_429,Mirror Shot
-move_name_430,Flash Cannon
+move_name_430,Flitskanon
 move_name_431,Rock Climb
 move_name_432,Defog
 move_name_433,Trick Room
@@ -3158,7 +3159,7 @@ move_name_438,Power Whip
 move_name_439,Rock Wrecker
 move_name_440,Crosspoison
 move_name_441,Gunk Shot
-move_name_442,Ironhead
+move_name_442,IJzerkop
 move_name_443,Magnet Bomb
 move_name_444,Stone Edge
 move_name_445,Captivate
@@ -3168,7 +3169,7 @@ move_name_448,Chatter
 move_name_449,Judgement
 move_name_450,Bug Bite
 move_name_451,Chargebeam
-move_name_452,Wood Hammer
+move_name_452,Houthamer
 move_name_453,Aqua Jet
 move_name_454,Attack Order
 move_name_455,Defend Order
@@ -3270,12 +3271,12 @@ move_name_572,Petal Blizzard
 move_name_573,Freeze Dry
 move_name_574,Disarming Voice
 move_name_575,Parting Shot
-move_name_577,Draining Kiss
+move_name_577,Zuigende Kus
 move_name_580,Grassy Terrain
 move_name_581,Misty Terrain
-move_name_583,Play Rough
-move_name_584,Fairy Wind
-move_name_585,Moonblast
+move_name_583,Ruw spel
+move_name_584,Feeënwind
+move_name_585,Maanknal
 move_name_586,Boomburst
 move_name_588,Kings Shield
 move_name_589,Play Nice
@@ -3340,7 +3341,10 @@ move_name_715,Tearful Look
 move_name_716,Zing Zap
 move_name_717,Natures Madness
 move_name_749,Tar Shot
+move_name_790,Vreemde stoom
 move_name_796,Steel Beam
+move_name_797,Woedevuist
+
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------
 Story translation:
 ---
