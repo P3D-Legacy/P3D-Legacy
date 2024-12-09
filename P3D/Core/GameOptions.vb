@@ -139,6 +139,12 @@
                     ContentPackString &= c
                 Next
             End If
+            If Core.windowSize.Width = 0 Then
+                Core.windowSize.Width = 1280
+            End If
+            If Core.windowSize.Height = 0 Then
+                Core.windowSize.Height = 720
+            End If
 
             Dim Data As String = "Music|" & CInt(MusicManager.MasterVolume * 100) & Environment.NewLine &
                 "Sound|" & CInt(SoundManager.Volume * 100) & Environment.NewLine &
@@ -157,7 +163,7 @@
                 "StartedOfflineGame|" & Me.StartedOfflineGame.ToNumberString() & Environment.NewLine &
                 "PreferMultiSampling|" & Core.GraphicsManager.PreferMultiSampling.ToNumberString() & Environment.NewLine &
                 "ContentPacks|" & ContentPackString & Environment.NewLine &
-                "WindowSize|" & Core.windowSize.Width.ToString() & "," & Core.windowSize.Height.ToString().Replace(GameController.DecSeparator, ".") & Environment.NewLine &
+                "WindowSize|" & Core.windowSize.Width.ToString() & "," & Core.windowSize.Height.ToString() & Environment.NewLine &
                 "MaxOffsetLevel|" & Me.MaxOffsetLevel.ToString() & Environment.NewLine &
                 "UpdateDisabled|" & Me.UpdateDisabled.ToNumberString() & Environment.NewLine &
                 "InterfaceScale|" & Me.InterfaceScale.ToString() & Environment.NewLine &
