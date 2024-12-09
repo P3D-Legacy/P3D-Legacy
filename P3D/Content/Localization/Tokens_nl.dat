@@ -145,7 +145,7 @@ main_menu_savefile_playtime,Speeltijd
 main_menu_savefile_location,Locatie
 main_menu_gamejolt_ChangeToMale,Verander naar man
 main_menu_gamejolt_ChangeToFemale,Verander naar vrouw
-main_menu_gamejolt_ChangeToGenderless,Verander naar neutraal
+main_menu_gamejolt_ChangeToGenderless,Verander naar genderneutraal
 main_menu_gamejolt_ResetSave,Herstart opslagbestand
 main_menu_error_gamemode_profile,De vereiste Spelmodus bestaat niet!
 main_menu_error_gamemode_message,De vereiste Spelmodus bestaat niet.~Voeg de Spelmodus opnieuw toe om dit profiel te gebruiken.
