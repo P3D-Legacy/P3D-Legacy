@@ -88,8 +88,8 @@ Public Class JoinServerScreen
 
         Canvas.DrawRectangle(New Rectangle(0, 72, Core.ScreenSize.Width, Core.ScreenSize.Height - 240), New Color(0, 0, 0, 128), True)
 
-        Core.SpriteBatch.DrawInterfaceString(FontManager.MainFont, "Join a server:", New Vector2(CInt(Core.ScreenSize.Width / 2 - FontManager.MainFont.MeasureString("Join A Server").X) + 4, 14 + 4), Color.Black, 0.0F, New Vector2(0), 2.0F, SpriteEffects.None, 0.0F)
-        Core.SpriteBatch.DrawInterfaceString(FontManager.MainFont, "Join a server:", New Vector2(CInt(Core.ScreenSize.Width / 2 - FontManager.MainFont.MeasureString("Join A Server").X), 14), Color.White, 0.0F, New Vector2(0), 2.0F, SpriteEffects.None, 0.0F)
+        Core.SpriteBatch.DrawInterfaceString(FontManager.MainFont, Localization.GetString("join_server_screen_title", "Join a Server:"), New Vector2(CInt(Core.ScreenSize.Width / 2 - FontManager.MainFont.MeasureString(Localization.GetString("join_server_screen_title", "Join a server:")).X) + 4, 14 + 4), Color.Black, 0.0F, New Vector2(0), 2.0F, SpriteEffects.None, 0.0F)
+        Core.SpriteBatch.DrawInterfaceString(FontManager.MainFont, Localization.GetString("join_server_screen_title", "Join a Server:"), New Vector2(CInt(Core.ScreenSize.Width / 2 - FontManager.MainFont.MeasureString(Localization.GetString("join_server_screen_title", "Join a server:")).X), 14), Color.White, 0.0F, New Vector2(0), 2.0F, SpriteEffects.None, 0.0F)
 
         Dim endX As Integer = ServerList.Count - 1
         endX = CInt(MathHelper.Clamp(endX, 0, ServersToDisplay - 1))

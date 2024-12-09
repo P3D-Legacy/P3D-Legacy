@@ -71,7 +71,6 @@ global_pokemon_move_cut,Cut
 global_pokemon_move_teleport,Teleport
 global_pokemon_move_dig,Dig
 global_used,Usou
-global_eggs_cannot_hold,Ovos não podem segurar itens.
 ---
 General:
 HP,HP
@@ -113,8 +112,7 @@ fieldmove_dive_down_2,*Você deseja usar Dive?
 fieldmove_dive_up_type1,Uma Luz está vindo~da superfície.*Você deseja usar Dive?
 fieldmove_dive_up_type2,A sombra do barco aparece~no fundo do oceano.*Você deseja usar Dive?
 fieldmove_dive_used,usou~Dive!
-							Essa árvore pode ter~um Pokémon em cima.*Você deseja usar Headbutt?
-fieldmove_headbutt_question,This tree could have~a Pokémon in it.*Do you want to~use Headbutt?
+fieldmove_headbutt_question,Essa árvore pode ter~um Pokémon em cima.*Você deseja usar Headbutt?
 fieldmove_headbutt_used,usou~Headbutt!
 
 fieldmove_waterfall_used,usou~Waterfall.
@@ -145,6 +143,10 @@ main_menu_savefile_gamemode,Modo de Jogo
 main_menu_savefile_badges,Insígnias
 main_menu_savefile_playtime,Tempo de Jogo
 main_menu_savefile_location,Local
+main_menu_gamejolt_ChangeToMale,Change to male
+main_menu_gamejolt_ChangeToFemale,Change to female
+main_menu_gamejolt_ChangeToGenderless,Change to genderless
+main_menu_gamejolt_ResetSave,Reset save
 main_menu_error_gamemode_profile,O modo de jogo escolhido não existe!
 main_menu_error_gamemode_message,O modo de jogo escolhido não existe.~Baixe novamente para jogar nesse Salve.
 main_menu_error_gamejolt_1,Download falhou. Press Aceitar tentar denovo.
@@ -267,7 +269,7 @@ pause_menu_disconnect,Desconectar
 pause_menu_quit_to_menu,Sair para o Menu Principal
 pause_menu_autosave_fail,Não da para criar AutoSalve.
 pause_menu_yes,Sim
-pause_menu_no,NÃÃÃÃÃÃÃÃOOOOO
+pause_menu_no,Não
 pause_menu_confirmation,Você deseja realmente sair? Não se esqueça de Salvar antes.
 ---
 IngameMenu:
@@ -280,6 +282,22 @@ game_menu_save_notpossible,Não é possivel salvar nesse momento.
 game_menu_options,Opções
 game_menu_exit,Sair do Menu
 game_menu_end_contest,Terminar Concurso
+---
+InventoryScreen:
+inventory_screen_title,Inventory
+inventory_screen_ItemSubtitle_HM,Hidden Machine
+inventory_screen_ItemSubtitle_TM,Technical Machine
+inventory_screen_ItemSubtitle_Standard_Suffix, Item
+inventory_screen_ItemSubtitle_KeyItem,Key Item
+inventory_screen_ItemSubtitle_PokeBall,Poké Ball
+inventory_screen_ItemSubtitle_Plant,Plant
+inventory_screen_ItemSubtitle_BattleItem,Battle Item
+inventory_screen_ItemNotUsableInBattle,This item can't~be used in Battle.
+inventory_screen_TossConfirmation,Are you sure you want to toss~this item?
+inventory_screen_TossAmount,Select the amount to toss.
+inventory_screen_GiveItem_Give,Gave <name> the <newitem>.
+inventory_screen_GiveItem_Switch,Switched <name>'s <olditem> with the <newitem>.
+inventory_screen_EggsCannotHold,Ovos não podem segurar itens.
 ---
 NewGameScreen:
 

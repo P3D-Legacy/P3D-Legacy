@@ -351,7 +351,7 @@ Public Class NewInventoryScreen
         SpriteBatch.Draw(_texture, New Rectangle(halfWidth - 140, halfHeight - 232, 16, 16), New Rectangle(80, 0, 16, 16), mainBackgroundColor)
         SpriteBatch.Draw(_texture, New Rectangle(halfWidth - 124, halfHeight - 216, 16, 16), New Rectangle(80, 0, 16, 16), mainBackgroundColor)
 
-        SpriteBatch.DrawString(FontManager.ChatFont, "Inventory", New Vector2(halfWidth - 390, halfHeight - 228), mainBackgroundColor)
+        SpriteBatch.DrawString(FontManager.ChatFont, Localization.GetString("inventory_screen_title", "Inventory"), New Vector2(halfWidth - 390, halfHeight - 228), mainBackgroundColor)
 
         'Draw background pattern:
         For y = 0 To CInt(_enrollY) Step 16
@@ -519,11 +519,11 @@ Public Class NewInventoryScreen
                         If CType(cItem, GameModeItem).gmIsHM = True Then
                             'JSON stuff
                             'itemSubTitle = _translation.HIDDEN_MACHINE_TITLE(cItem.ItemType.ToString())
-                            itemSubTitle = "Hidden Machine"
+                            itemSubTitle = Localization.GetString("inventory_screen_ItemSubtitle_HM", "Hidden Machine")
                         Else
                             'JSON stuff
                             'itemSubTitle = _translation.TECH_MACHINE_TITLE(cItem.ItemType.ToString())
-                            itemSubTitle = "Technical Machine"
+                            itemSubTitle = Localization.GetString("inventory_screen_ItemSubtitle_TM", "Technical Machine")
                         End If
                     End If
 
@@ -533,14 +533,15 @@ Public Class NewInventoryScreen
 
                     itemTitle = techMachine.Attack.Name
 
-                    If techMachine.IsTM Then
-                        'JSON stuff
-                        'itemSubTitle = _translation.TECH_MACHINE_TITLE(cItem.ItemType.ToString())
-                        itemSubTitle = "Technical Machine"
-                    Else
+                    If techMachine.IsTM = False Then
                         'JSON stuff
                         'itemSubTitle = _translation.HIDDEN_MACHINE_TITLE(cItem.ItemType.ToString())
-                        itemSubTitle = "Hidden Machine"
+                        itemSubTitle = Localization.GetString("inventory_screen_ItemSubtitle_HM", "Hidden Machine")
+                    Else
+                        'JSON stuff
+                        'itemSubTitle = _translation.TECH_MACHINE_TITLE(cItem.ItemType.ToString())
+                        itemSubTitle = Localization.GetString("inventory_screen_ItemSubtitle_TM", "Technical Machine")
+
                     End If
 
                     itemDescription &= Environment.NewLine & techMachine.Attack.Description
@@ -548,23 +549,23 @@ Public Class NewInventoryScreen
             Case Items.ItemTypes.Standard
                 'JSON stuff
                 'itemSubTitle = _translation.STANDARD_ITEM_TITLE(cItem.ItemType.ToString())
-                itemSubTitle = cItem.ItemType.ToString() & " Item"
+                itemSubTitle = cItem.ItemType.ToString() & Localization.GetString("inventory_screen_ItemSubtitle_Standard_Suffix", "Item")
             Case Items.ItemTypes.KeyItems
                 'JSON stuff
                 'itemSubTitle = _translation.KEYITEM_TITLE(cItem.ItemType.ToString())
-                itemSubTitle = "Key Item"
+                itemSubTitle = Localization.GetString("inventory_screen_ItemSubtitle_KeyItem", "Key Item")
             Case Items.ItemTypes.Pokéballs
                 'JSON stuff
                 'itemSubTitle = _translation.POKEBALL_TITLE(cItem.ItemType.ToString())
-                itemSubTitle = "Poké Ball"
+                itemSubTitle = Localization.GetString("inventory_screen_ItemSubtitle_PokeBall", "Poké Ball")
             Case Items.ItemTypes.Plants
                 'JSON stuff
                 'itemSubTitle = _translation.PLANT_TITLE(cItem.ItemType.ToString())
-                itemSubTitle = "Plant"
+                itemSubTitle = Localization.GetString("inventory_screen_ItemSubtitle_Plant", "Plant")
             Case Items.ItemTypes.BattleItems
                 'JSON stuff
                 'itemSubTitle = _translation.BATTLEITEM_TITLE(cItem.ItemType.ToString())
-                itemSubTitle = "Battle Item"
+                itemSubTitle = Localization.GetString("inventory_screen_ItemSubtitle_BattleItem", "Battle Item")
         End Select
 
         infoBatch.DrawString(FontManager.TextFont, itemTitle, New Vector2(80, 20), Color.White, 0F, Vector2.Zero, 2.0F, SpriteEffects.None, 0F)
@@ -911,7 +912,7 @@ Public Class NewInventoryScreen
                         SetInfoSettings()
                         SetItemOptions()
                     Else
-                        TextBox.Show("This item can't~be used in Battle.")
+                        TextBox.Show(Localization.GetString("inventory_screen_ItemNotUsableInBattle", "This item can't~be used in Battle."))
                     End If
                 Else
                     _infoItemOptionSelection = 0
@@ -1019,13 +1020,13 @@ Public Class NewInventoryScreen
     End Sub
 
     Private Sub TossItem(ByVal cItem As Item)
-        Dim text As String = "Are you sure you want to toss~this item?%Yes|No%"
+        Dim text As String = Localization.GetString("inventory_screen_TossConfirmation", "Are you sure you want to toss~this item?") & "%" & Localization.GetString("global_yes", "Yes") & "|" & Localization.GetString("global_no", "No") & "%"
         TextBox.Show(text, AddressOf Me.TossManyItems, False, False, TextBox.DefaultColor)
     End Sub
 
     Private Sub TossManyItems(ByVal result As Integer)
         If result = 0 Then
-            TextBox.Show("Select the amount to toss.", {})
+            TextBox.Show(Localization.GetString("inventory_screen_TossAmount", "Select the amount to toss."), {})
             _tossingItems = True
         End If
     End Sub
@@ -1067,11 +1068,13 @@ Public Class NewInventoryScreen
             If reItem Is Nothing Then
                 'JSON Stuff
                 'ShowMessage(_translation.MESSAGE_GIVE_ITEM(Pokemon.GetDisplayName(), cItem.Name))
-                ShowMessage("Gave " & Pokemon.GetDisplayName() & " a " & cItem.OneLineName() & ".")
+                Dim giveString As String = Localization.GetString("inventory_screen_GiveItem_Give", "Gave <name> the <newitem>.").Replace("<name>", Pokemon.GetDisplayName()).Replace("<newitem>", cItem.OneLineName())
+                ShowMessage(giveString)
             Else
                 'JSON Stuff
                 'ShowMessage(_translation.MESSAGE_SWITCH_ITEM(Pokemon.GetDisplayName(), reItem.Name, cItem.Name))
-                ShowMessage("Switched " & Pokemon.GetDisplayName() & "'s " & reItem.OneLineName() & " with a " & cItem.OneLineName() & ".")
+                Dim switchString As String = Localization.GetString("inventory_screen_GiveItem_Switch", "Switched <name>'s <olditem> with the <newitem>.").Replace("<name>", Pokemon.GetDisplayName()).Replace("<olditem>", reItem.OneLineName()).Replace("<newitem>", cItem.OneLineName())
+                ShowMessage(switchString)
             End If
 
             LoadItems()
@@ -1083,7 +1086,7 @@ Public Class NewInventoryScreen
         Else
             'JSON Stuff
             'ShowMessage(_translation.MESSAGE_EGG_ERROR)
-            ShowMessage("Eggs cannot hold items.")
+            ShowMessage(Localization.GetString("inventory_screen_EggsCannotHold", "Eggs cannot hold items."))
         End If
     End Sub
 
@@ -1203,25 +1206,25 @@ Public Class NewInventoryScreen
             If cItem.CanBeUsed Then
                 'JSON Stuff
                 '_infoItemOptions.Add(_translation.INFO_ITEM_OPTION_USE)
-                _infoItemOptions.Add("Use")
+                _infoItemOptions.Add(Localization.GetString("global_use", "Use"))
                 _infoItemOptionsNormal.Add(INFO_ITEM_OPTION_USE)
             End If
             If cItem.CanBeHeld Then
                 'JSON Stuff
                 ' _infoItemOptions.Add(_translation.INFO_ITEM_OPTION_GIVE)
-                _infoItemOptions.Add("Give")
+                _infoItemOptions.Add(Localization.GetString("global_give", "Give"))
                 _infoItemOptionsNormal.Add(INFO_ITEM_OPTION_GIVE)
             End If
             If cItem.CanBeTossed Then
                 'JSON Stuff
                 '_infoItemOptions.Add(_translation.INFO_ITEM_OPTION_TOSS)
-                _infoItemOptions.Add("Toss")
+                _infoItemOptions.Add(Localization.GetString("global_toss", "Toss"))
                 _infoItemOptionsNormal.Add(INFO_ITEM_OPTION_TOSS)
             End If
         ElseIf _mode = ISelectionScreen.ScreenMode.Selection Then
             'JSON Stuff
             '_infoItemOptions.Add(_translation.INFO_ITEM_OPTION_SELECT)
-            _infoItemOptions.Add("Select")
+            _infoItemOptions.Add(Localization.GetString("global_select", "Select"))
             _infoItemOptionsNormal.Add(INFO_ITEM_OPTION_SELECT)
         End If
     End Sub

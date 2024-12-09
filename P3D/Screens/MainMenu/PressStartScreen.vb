@@ -880,7 +880,7 @@ Public Class NewMainMenuScreen
         If ScaleScreenRec(New Rectangle(r.X, r.Y, 32, 32)).Contains(MouseHandler.MousePosition) = True And GameInstance.IsMouseVisible OrElse Not GameInstance.IsMouseVisible And _GameJoltButtonIndex = 1 Then
             y = 16
 
-            SpriteBatch.DrawInterfaceString(FontManager.InGameFont, "Change to male", New Vector2(r.X + 64 + 4, r.Y + 4), fontColor)
+            SpriteBatch.DrawInterfaceString(FontManager.InGameFont, Localization.GetString("main_menu_gamejolt_ChangeToMale", "Change to male"), New Vector2(r.X + 64 + 4, r.Y + 4), fontColor)
         End If
         SpriteBatch.DrawInterface(_oldMenuTexture, New Rectangle(r.X, r.Y, 32, 32), New Rectangle(144, 32 + y, 16, 16), Color.White)
 
@@ -888,7 +888,7 @@ Public Class NewMainMenuScreen
         If ScaleScreenRec(New Rectangle(r.X, r.Y + 48, 32, 32)).Contains(MouseHandler.MousePosition) = True And GameInstance.IsMouseVisible OrElse Not GameInstance.IsMouseVisible And _GameJoltButtonIndex = 2 Then
             y = 16
 
-            SpriteBatch.DrawInterfaceString(FontManager.InGameFont, "Change to female", New Vector2(r.X + 64 + 4, r.Y + 4 + 48), fontColor)
+            SpriteBatch.DrawInterfaceString(FontManager.InGameFont, Localization.GetString("main_menu_gamejolt_ChangeToFemale", "Change to female"), New Vector2(r.X + 64 + 4, r.Y + 4 + 48), fontColor)
         End If
         SpriteBatch.DrawInterface(_oldMenuTexture, New Rectangle(r.X, r.Y + 48, 32, 32), New Rectangle(160, 32 + y, 16, 16), Color.White)
 
@@ -896,7 +896,7 @@ Public Class NewMainMenuScreen
         If ScaleScreenRec(New Rectangle(r.X, r.Y + 48 + 48, 32, 32)).Contains(MouseHandler.MousePosition) = True And GameInstance.IsMouseVisible OrElse Not GameInstance.IsMouseVisible And _GameJoltButtonIndex = 3 Then
             y = 16
 
-            SpriteBatch.DrawInterfaceString(FontManager.InGameFont, "Change to genderless", New Vector2(r.X + 64 + 4, r.Y + 4 + 48 + 48), fontColor)
+            SpriteBatch.DrawInterfaceString(FontManager.InGameFont, Localization.GetString("main_menu_gamejolt_ChangeToGenderless", "Change to genderless"), New Vector2(r.X + 64 + 4, r.Y + 4 + 48 + 48), fontColor)
         End If
         SpriteBatch.DrawInterface(_oldMenuTexture, New Rectangle(r.X, r.Y + 48 + 48, 32, 32), New Rectangle(208, 32 + y, 16, 16), Color.White)
 
@@ -904,7 +904,7 @@ Public Class NewMainMenuScreen
         If ScaleScreenRec(New Rectangle(r.X, r.Y + 48 + 48 + 48, 32, 32)).Contains(MouseHandler.MousePosition) = True And GameInstance.IsMouseVisible OrElse Not GameInstance.IsMouseVisible And _GameJoltButtonIndex = 4 Then
             y = 16
 
-            SpriteBatch.DrawInterfaceString(FontManager.InGameFont, "Reset save", New Vector2(r.X + 64 + 4, r.Y + 4 + 48 + 48 + 48), fontColor)
+            SpriteBatch.DrawInterfaceString(FontManager.InGameFont, Localization.GetString("main_menu_gamejolt_ResetSave", "Reset save"), New Vector2(r.X + 64 + 4, r.Y + 4 + 48 + 48 + 48), fontColor)
         End If
         SpriteBatch.DrawInterface(_oldMenuTexture, New Rectangle(r.X, r.Y + 48 + 48 + 48, 32, 32), New Rectangle(176, 32 + y, 16, 16), Color.White)
 

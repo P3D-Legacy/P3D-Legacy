@@ -71,7 +71,6 @@ global_pokemon_move_cut,Coupe
 global_pokemon_move_teleport,Teleport
 global_pokemon_move_dig,Tunnel
 global_used,Utilisé
-global_eggs_cannot_hold,Les œufs ne peuvent pas tenir d'objets.
 ---
 General:
 HP,HP
@@ -144,6 +143,10 @@ main_menu_savefile_gamemode,Mode de Jeu
 main_menu_savefile_badges,Badges
 main_menu_savefile_playtime,Temps de jeu
 main_menu_savefile_location,Localisation
+main_menu_gamejolt_ChangeToMale,Change to male
+main_menu_gamejolt_ChangeToFemale,Change to female
+main_menu_gamejolt_ChangeToGenderless,Change to genderless
+main_menu_gamejolt_ResetSave,Reset save
 main_menu_error_gamemode_profile,Le Mode de Jeu requis n'éxiste pas!
 main_menu_error_gamemode_message,Le Mode de Jeu requis n'existe pas.~Le Mode de Jeu est requis pour jouer sur ce profil.
 main_menu_error_gamejolt_1,Le téléchargement a échoué. Appuie sur Accepter pour réessayer.
@@ -278,6 +281,22 @@ game_menu_save_notpossible,Impossible de sauvegarder maintenant!
 game_menu_options,Options
 game_menu_exit,Quitter le Menu
 game_menu_end_contest,End Contest
+---
+InventoryScreen:
+inventory_screen_title,Inventory
+inventory_screen_ItemSubtitle_HM,Hidden Machine
+inventory_screen_ItemSubtitle_TM,Technical Machine
+inventory_screen_ItemSubtitle_Standard_Suffix, Item
+inventory_screen_ItemSubtitle_KeyItem,Key Item
+inventory_screen_ItemSubtitle_PokeBall,Poké Ball
+inventory_screen_ItemSubtitle_Plant,Plant
+inventory_screen_ItemSubtitle_BattleItem,Battle Item
+inventory_screen_ItemNotUsableInBattle,This item can't~be used in Battle.
+inventory_screen_TossConfirmation,Are you sure you want to toss~this item?
+inventory_screen_TossAmount,Select the amount to toss.
+inventory_screen_GiveItem_Give,Gave <name> the <newitem>.
+inventory_screen_GiveItem_Switch,Switched <name>'s <olditem> with the <newitem>.
+inventory_screen_EggsCannotHold,Les œufs ne peuvent pas tenir d'objets.
 ---
 NewGameScreen:
 new_game_intro_1,Bonjour!~Désolé de l'attente!*Bienvenue dans le monde~des POkéMON!*Mon nom est CHEN.~Mais on m'appelle le~PROF.POKéMON*Ce monde est peuplé de créature appelées POKéMON.

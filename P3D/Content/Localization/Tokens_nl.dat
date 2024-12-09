@@ -71,7 +71,6 @@ global_pokemon_move_cut,Snijd
 global_pokemon_move_teleport,Teleporteer
 global_pokemon_move_dig,Graaf
 global_used,Gebruikt
-global_eggs_cannot_hold,Eieren kunnen niets vasthouden.
 ---
 General:
 HP,IP
@@ -144,6 +143,10 @@ main_menu_savefile_gamemode,Spelmodus
 main_menu_savefile_badges,Badges
 main_menu_savefile_playtime,Speeltijd
 main_menu_savefile_location,Locatie
+main_menu_gamejolt_ChangeToMale,Verander naar man
+main_menu_gamejolt_ChangeToFemale,Verander naar vrouw
+main_menu_gamejolt_ChangeToGenderless,Verander naar neutraal
+main_menu_gamejolt_ResetSave,Herstart opslagbestand
 main_menu_error_gamemode_profile,De vereiste Spelmodus bestaat niet!
 main_menu_error_gamemode_message,De vereiste Spelmodus bestaat niet.~Voeg de Spelmodus opnieuw toe om dit profiel te gebruiken.
 main_menu_error_gamejolt_1,Download mislukt. Druk op "Bevestig" om opnieuw te proberen.
@@ -278,6 +281,22 @@ game_menu_save_notpossible,Opslaan is momenteel niet~mogelijk.
 game_menu_options,Opties
 game_menu_exit,Menu Verlaten
 game_menu_end_contest,Stop Wedstrijd
+---
+InventoryScreen:
+inventory_screen_title,Inventaris
+inventory_screen_ItemSubtitle_HM,Verborgen Machine
+inventory_screen_ItemSubtitle_TM,Technische Machine
+inventory_screen_ItemSubtitle_Standard_Suffix, Voorwerp
+inventory_screen_ItemSubtitle_KeyItem,Belangrijk Voorwerp
+inventory_screen_ItemSubtitle_PokeBall,PokéBal
+inventory_screen_ItemSubtitle_Plant,Plant
+inventory_screen_ItemSubtitle_BattleItem,Voorwerp voor Gevecht
+inventory_screen_ItemNotUsableInBattle,Dit voorwerp kan niet tijdens~een gevecht gebruikt worden.
+inventory_screen_TossConfirmation,Weet je zeker dat je dit~voorwerp wilt weggooien?
+inventory_screen_TossAmount,Selecteer aantal om weg te gooien.
+inventory_screen_GiveItem_Give,Gaf <name> een <newitem>.
+inventory_screen_GiveItem_Switch,Wisselde <name>'s <olditem> met een <newitem>.
+inventory_screen_EggsCannotHold,Eieren kunnen geen voorwerpen~vasthouden.
 ---
 NewGameScreen:
 new_game_intro_1,Hello!~Sorry to keep~you waiting!*Welcome to the world~of Pokémon!*My name is Oak.~People call me~Pokémon Prof.*This world is inhabited~by creatures that~we call
@@ -1889,16 +1908,16 @@ item_name_480,TM 180
 item_name_481,TM 181
 
 Hidden Machines:
-item_name_247,HM 01
-item_name_244,HM 02
-item_name_245,HM 03
-item_name_246,HM 04
-item_name_243,HM 05
-item_name_248,HM 06
-item_name_249,HM 07
-item_name_250,HM 08
-item_name_251,HM 09
-item_name_252,HM 10
+item_name_247,VM 01
+item_name_244,VM 02
+item_name_245,VM 03
+item_name_246,VM 04
+item_name_243,VM 05
+item_name_248,VM 06
+item_name_249,VM 07
+item_name_250,VM 08
+item_name_251,VM 09
+item_name_252,VM 10
 
 Medicine:
 item_name_7,Lavakoekje
