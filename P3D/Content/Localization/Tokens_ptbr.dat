@@ -30,6 +30,8 @@ global_play_time,Tempo de Jogo
 global_location,Local
 global_money,Dinheiro
 global_points,Pontos
+global_ot,OT
+global_time,Tempo
 global_name,Nome
 global_order,Ordem
 global_filter,Filtro
@@ -321,6 +323,7 @@ map_screen_places,Lugares
 map_screen_roaming,Pokémons na área
 ---
 Trainer Card Screen:
+trainer_screen_title,Trainer Card
 trainer_screen_collected_badges,Insígnias Coletadas
 trainer_screen_badge, Insígnia
 trainer_screen_empty_badge,???

@@ -30,6 +30,8 @@ global_play_time,Speeltijd
 global_location,Locatie
 global_money,Geld
 global_points,Punten
+global_ot,OT
+global_time,Tijd
 global_name,Naam
 global_order,Volgorde
 global_filter,Filter
@@ -319,6 +321,7 @@ map_screen_places,Plaatsen
 map_screen_roaming,Dwalende Pokémon
 ---
 Trainer Card Screen:
+trainer_screen_title,Trainerkaart
 trainer_screen_collected_badges,Verzamelde badges
 trainer_screen_badge, Badge
 trainer_screen_empty_badge,???

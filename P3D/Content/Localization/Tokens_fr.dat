@@ -30,6 +30,8 @@ global_play_time,Temps de jeu
 global_location,Localisation
 global_money,Argent
 global_points,Points
+global_ot,OT
+global_time,Time
 global_name,Nom
 global_order,Ordre
 global_filter,Filtre
@@ -319,6 +321,7 @@ map_screen_places,Places
 map_screen_roaming,Roaming Pokes
 ---
 Trainer Card Screen:
+trainer_screen_title,Trainer Card
 trainer_screen_collected_badges,Collection de badges
 trainer_screen_badge,Badge
 trainer_screen_empty_badge,???
