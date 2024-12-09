@@ -231,6 +231,7 @@ Public Class NewOptionScreen
 
 		If languageMenuIndex(0) <> currentIndex Then
 			Localization.Load(Languages(languageMenuIndex(0)))
+			InitializeControls()
 		End If
 
 	End Sub
