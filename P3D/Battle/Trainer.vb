@@ -348,25 +348,25 @@ Public Class Trainer
                 Me.VSImagePosition = New Vector2(0, 0)
             Case "orange", "1"
                 Me.VSImagePosition = New Vector2(1, 0)
-            Case "green", "2"
+            Case "lightgreen", "2"
                 Me.VSImagePosition = New Vector2(0, 1)
-            Case "3"
+            Case "gray", "3"
                 Me.VSImagePosition = New Vector2(1, 1)
-            Case "4"
+            Case "violet", "4"
                 Me.VSImagePosition = New Vector2(0, 2)
-            Case "5"
+            Case "green", "5"
                 Me.VSImagePosition = New Vector2(1, 2)
-            Case "6"
+            Case "yellow", "6"
                 Me.VSImagePosition = New Vector2(0, 3)
-            Case "7"
+            Case "brown", "7"
                 Me.VSImagePosition = New Vector2(1, 3)
-            Case "8"
+            Case "lightblue", "8"
                 Me.VSImagePosition = New Vector2(0, 4)
-            Case "9"
+            Case "lightgray", "9"
                 Me.VSImagePosition = New Vector2(1, 4)
             Case "red", "10"
                 Me.VSImagePosition = New Vector2(0, 5)
-            Case "11"
+            Case "empty", "11"
                 Me.VSImagePosition = New Vector2(1, 5)
             Case "battlefrontier"
                 Me.VSImagePosition = New Vector2(0, 0)
@@ -408,7 +408,7 @@ Public Class Trainer
                 Me.BarImagePosition = New Vector2(1, 4)
             Case "red", "10"
                 Me.BarImagePosition = New Vector2(0, 5)
-            Case "11"
+            Case "empty", "11"
                 Me.BarImagePosition = New Vector2(1, 5)
             Case Else
                 If StringHelper.IsNumeric(barType) = True Then
