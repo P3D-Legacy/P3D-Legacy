@@ -29,9 +29,9 @@
                     Return int(Screen.Level.EnvironmentType)
                 Case "loadoffsetmaps"
                     If Core.GameOptions.LoadOffsetMaps > 0 Then
-                        ReturnBoolean(True)
+                        Return ReturnBoolean(True)
                     Else
-                        ReturnBoolean(False)
+                        Return ReturnBoolean(False)
                     End If
             End Select
 
