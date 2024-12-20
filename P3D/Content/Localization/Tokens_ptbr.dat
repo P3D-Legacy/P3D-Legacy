@@ -30,7 +30,7 @@ global_play_time,Tempo de Jogo
 global_location,Local
 global_money,Dinheiro
 global_points,Pontos
-global_ot,OT
+global_ot,TO
 global_time,Tempo
 global_name,Nome
 global_order,Ordem
@@ -91,13 +91,13 @@ Speed,Velocidade
 ---
 Keyboard Keys:
 
-keyboard_key_Up,Up
-keyboard_key_Down,Down
-keyboard_key_Left,Left
-keyboard_key_Right,Right
+keyboard_key_Up,Cima
+keyboard_key_Down,Baixo
+keyboard_key_Left,Esquerda
+keyboard_key_Right,Direita
 keyboard_key_Enter,Enter
-keyboard_key_Space,Space
-keyboard_key_Escape,Escape
+keyboard_key_Space,Espaço
+keyboard_key_Escape,Esc
 keyboard_key_Back,Backspace
 keyboard_key_Tab,Tab
 keyboard_key_Home,Home
@@ -164,10 +164,10 @@ main_menu_savefile_gamemode,Modo de Jogo
 main_menu_savefile_badges,Insígnias
 main_menu_savefile_playtime,Tempo de Jogo
 main_menu_savefile_location,Local
-main_menu_gamejolt_ChangeToMale,Change to male
-main_menu_gamejolt_ChangeToFemale,Change to female
-main_menu_gamejolt_ChangeToGenderless,Change to genderless
-main_menu_gamejolt_ResetSave,Reset save
+main_menu_gamejolt_ChangeToMale,Mudar para Masculino
+main_menu_gamejolt_ChangeToFemale,Mudar para Feminino
+main_menu_gamejolt_ChangeToGenderless,Mudar para Não-Binário
+main_menu_gamejolt_ResetSave,Resetar Salve
 main_menu_error_gamemode_profile,O modo de jogo escolhido não existe!
 main_menu_error_gamemode_message,O modo de jogo escolhido não existe.~Baixe novamente para jogar nesse Salve.
 main_menu_error_gamejolt_1,Download falhou. Press Aceitar tentar denovo.
@@ -188,7 +188,7 @@ gamemode_menu_name,Nome
 gamemode_menu_description,Descrição
 gamemode_menu_version,Versão
 gamemode_menu_author,Autor
-gamemode_menu_contentpath,Caminho do Conteúdo
+gamemode_menu_contentpath,Local do Conteúdo
 gamemode_menu_create,Criar
 gamemode_menu_back,Voltar
 ---
@@ -342,7 +342,7 @@ map_screen_places,Lugares
 map_screen_roaming,Pokémons na área
 ---
 Trainer Card Screen:
-trainer_screen_title,Trainer Card
+trainer_screen_title,Cartão do Treinador
 trainer_screen_collected_badges,Insígnias Coletadas
 trainer_screen_badge, Insígnia
 trainer_screen_empty_badge,???
