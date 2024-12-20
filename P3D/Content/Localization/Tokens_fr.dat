@@ -89,6 +89,25 @@ Special_Defense,Défense spécial
 Sp_Defense,Défense spé.
 Speed,Vitesse
 ---
+Keyboard Keys:
+
+keyboard_key_Up,Up
+keyboard_key_Down,Down
+keyboard_key_Left,Left
+keyboard_key_Right,Right
+keyboard_key_Enter,Enter
+keyboard_key_Space,Space
+keyboard_key_Escape,Escape
+keyboard_key_Back,Backspace
+keyboard_key_Tab,Tab
+keyboard_key_Home,Home
+keyboard_key_End,End
+keyboard_key_Delete,Delete
+keyboard_key_PageUp,Page Up
+keyboard_key_PageDown,Page Down
+keyboard_key_LeftShift,Left Shift
+keyboard_key_RightShift,Right Shift
+---
 FieldMoves:
 
 fieldmove_cut_1,Cet arbre semble pouvoir être ~coupé !

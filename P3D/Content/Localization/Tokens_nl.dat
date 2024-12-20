@@ -89,6 +89,25 @@ Special_Defense,Speciale Verdediging
 Sp_Defense,Sp. Verdediging
 Speed,Snelheid
 ---
+Keyboard Keys:
+
+keyboard_key_Up,Omhoog
+keyboard_key_Down,Omlaag
+keyboard_key_Left,Links
+keyboard_key_Right,Rechts
+keyboard_key_Enter,Enter
+keyboard_key_Space,Spatie
+keyboard_key_Escape,Escape
+keyboard_key_Back,Backspace
+keyboard_key_Tab,Tab
+keyboard_key_Home,Home
+keyboard_key_End,End
+keyboard_key_Delete,Delete
+keyboard_key_PageUp,Page Up
+keyboard_key_PageDown,Page Down
+keyboard_key_LeftShift,L Shift
+keyboard_key_RightShift,R Shift
+---
 FieldMoves:
 
 fieldmove_cut_1,Zo te zien kan deze boom~omgehakt worden!

@@ -130,8 +130,6 @@ Public Class KeyBindings
     ''' <param name="key">The key to get the name for.</param>
     ''' <remarks>Returns String.Empty by default.</remarks>
     Public Shared Function GetKeyName(ByVal key As Keys) As String
-        Return key.ToString()
-
         Select Case key
             Case Keys.A
                 Return "A"
@@ -228,6 +226,8 @@ Public Class KeyBindings
             Case Keys.Right
                 Return "Right"
         End Select
+
+        Return key.ToString()
 
         Return ""
     End Function

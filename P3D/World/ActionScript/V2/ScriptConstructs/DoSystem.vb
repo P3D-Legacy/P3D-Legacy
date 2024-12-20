@@ -74,7 +74,7 @@
                             key = KeyBindings.RunKey
                     End Select
                     If key <> Nothing Then
-                        buttonName = KeyBindings.GetKeyName(key)
+                        buttonName = Localization.GetString("keyboard_key_" & KeyBindings.GetKeyName(key), KeyBindings.GetKeyName(key))
                     End If
                     Return buttonName
                 Case "scripttrigger"
