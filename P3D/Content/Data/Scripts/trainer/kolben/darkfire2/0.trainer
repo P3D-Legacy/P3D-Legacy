@@ -18,6 +18,6 @@ Pokemon5|{"Pokemon"[596]}{"Experience"[205379]}{"Gender"[0]}{"EggSteps"[0]}{"Ite
 Pokemon6|{"Pokemon"[709]}{"Experience"[1000000]}{"Gender"[0]}{"EggSteps"[0]}{"Item"[2009]}{"ItemData"[]}{"NickName"[Trevenant]}{"Level"[80]}{"OT"[00000]}{"Ability"[139]}{"Status"[]}{"Nature"[23]}{"CatchLocation"[]}{"CatchTrainer"[Name]}{"CatchBall"[5]}{"CatchMethod"[]}{"Friendship"[0]}{"isShiny"[0]}{"Attack1"[73,20,20]}{"Attack2"[532,15,15]}{"Attack3"[164,1,1]}{"Attack4"[261,10,10]}{"EVs"[252,4,0,0,252,0]}{"IVs"[31,31,31,31,31,31]}{"AdditionalData"[]}
 Items|14,14,14,14
 Gender|0
-AI|40
+AI|2
 IntroSequence|Green,Violet
 IntroType|11

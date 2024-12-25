@@ -18,6 +18,6 @@ Pokemon5|{"Pokemon"[181]}{"Experience"[1059860]}{"Gender"[0]}{"EggSteps"[0]}{"It
 Pokemon6|{"Pokemon"[663]}{"Experience"[1059860]}{"Gender"[0]}{"EggSteps"[0]}{"Item"[506]}{"ItemData"[]}{"NickName"[Talonflame]}{"Level"[71]}{"OT"[00000]}{"Ability"[177]}{"Status"[]}{"Nature"[13]}{"CatchLocation"[]}{"CatchTrainer"[Jaybird]}{"CatchBall"[5]}{"CatchMethod"[]}{"Friendship"[0]}{"isShiny"[0]}{"Attack1"[394,10,10]}{"Attack2"[413,10,10]}{"Attack3"[369,5,5]}{"Attack4"[355,5,5]}{"EVs"[4,252,0,0,0,252]}{"IVs"[31,31,31,31,31,31]}{"AdditionalData"[]}
 Items|14,14
 Gender|0
-AI|40
+AI|2
 IntroSequence|Green,Violet
 IntroType|11

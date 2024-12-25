@@ -15,6 +15,6 @@ Pokemon2|{"Pokemon"[154]}{"Experience"[246681]}{"Gender"[0]}{"EggSteps"[0]}{"Ite
 Pokemon3|{"Pokemon"[245]}{"Experience"[246681]}{"Gender"[0]}{"EggSteps"[0]}{"Item"[0]}{"ItemData"[]}{"NickName"[Suicune]}{"Level"[40]}{"OT"[00000]}{"Ability"[46]}{"Status"[]}{"Nature"[17]}{"CatchLocation"[]}{"CatchTrainer"[DanielRTRD]}{"CatchBall"[5]}{"CatchMethod"[]}{"Friendship"[0]}{"isShiny"[0]}{"Attack1"[62,20,20]}{"Attack2"[44,25,25]}{"Attack3"[56,5,5]}{"EVs"[252,252,0,0,4,0]}{"IVs"[31,31,31,31,31,31]}{"AdditionalData"[]}
 Items|39,14
 Gender|0
-AI|40
+AI|2
 IntroSequence|Orange,Orange
 IntroType|11

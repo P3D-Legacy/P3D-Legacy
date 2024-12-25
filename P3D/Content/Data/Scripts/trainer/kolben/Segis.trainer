@@ -18,6 +18,6 @@ Pokemon5|{"Pokemon"[230]}{"OriginalNumber"[-1]}{"Experience"[249868]}{"Gender"[1
 Pokemon6|{"Pokemon"[211]}{"OriginalNumber"[-1]}{"Experience"[276111]}{"Gender"[1]}{"EggSteps"[0]}{"Item"[506]}{"ItemData"[]}{"NickName"[Mrs. Puff]}{"Level"[79]}{"OT"[541732]}{"Ability"[33]}{"Status"[]}{"Nature"[3]}{"CatchLocation"[Daycare]}{"CatchTrainer"[Capt_Segis]}{"CatchBall"[181]}{"CatchMethod"[obtained at]}{"Friendship"[255]}{"isShiny"[0]}{"Attack1"[153,5,5]}{"Attack2"[401,10,10]}{"Attack3"[194,5,5]}{"Attack4"[398,20,20]}{"EVs"[0,255,0,0,0,255]}{"IVs"[31,31,27,20,5,29]}{"AdditionalData"[]}{"IDValue"[fgA7lKqmxSl]}
 Items|
 Gender|0
-AI|80
+AI|2
 IntroSequence|Orange,Lightblue
 IntroType|11

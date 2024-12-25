@@ -5,15 +5,15 @@ Namespace BattleSystem
     Public Class TrainerAI
 
         'Trainer AI Levels:---------------------------------------------------------------------------------------------------------------------
-        'Normal Trainers: 0-20 (0 being not very smart trainers like Bugcatchers, 20 being Cooltrainers, get higher levels when rematches occur)
-        '(Johto) Gym Leaders: 10-40 (10 for Falkner, 40 for Clair)
-        '(Kanto) Gym Leaders: All 60
-        'Elite 4: 60
-        'Lance: 100
-        'Elder Li: 10
-        'Rival: 40
-        'Team Rocket Grunts: 5
-        'Team Rocket Admins: 20
+        'Normal Trainers: 0-1 (0 being not very smart trainers like Bugcatchers, 1 being Cooltrainers, get higher levels when rematches occur)
+        '(Johto) Gym Leaders: 0-2 (0 for Falkner, 2 for Clair)
+        '(Kanto) Gym Leaders: All 2
+        'Elite 4: 2
+        'Lance: 2
+        'Elder Li: 0
+        'Rival: 2
+        'Team Rocket Grunts: 0
+        'Team Rocket Admins: 1
 
         Public Shared Function GetAIMove(ByVal BattleScreen As BattleScreen, ByVal OwnStep As Battle.RoundConst) As Battle.RoundConst
             Dim p As Pokemon = BattleScreen.OppPokemon
@@ -123,8 +123,8 @@ Namespace BattleSystem
 
             '-------------------------------------Random move depending on difficulty---------------------------------------------------------'
 
-            'Only applies if trainer has an AI level below 20:
-            If BattleScreen.Trainer.AILevel < 20 Then
+            'Only applies if trainer has an AI level of 0:
+            If BattleScreen.Trainer.AILevel <= 0 Then
                 Dim AvailableAttacks As List(Of Integer) = New List(Of Integer)
                 For i = 0 To m.Count - 1
                     AvailableAttacks.Add(i)
@@ -158,135 +158,135 @@ Namespace BattleSystem
 
             '-------------------------------------Switching-----------------------------------------------------------------------------------'
 
-            'Only applies if trainer has an AI level above or equal 40:
-            'If BattleScreen.Trainer.AILevel >= 40 Then
-            '    If BattleCalculation.CanSwitch(BattleScreen, False) = True Then
-            '        If BattleScreen.Trainer.Pokemons.Count > 0 Then
-            '            Dim living As Integer = 0
-            '            For Each cP As Pokemon In BattleScreen.Trainer.Pokemons
-            '                If cP.HP > 0 And cP.Status <> Pokemon.StatusProblems.Fainted Then
-            '                    living += 1
-            '                End If
-            '            Next
-            '            If living > 1 Then
-            '                'check for opponent moves: if super effective: 1.5x: 25%, 2x: 50%, 4x: 75%: check for pokemon in party that reacts to every move with less the detected effectiveness
-            '                Dim maxOpponentEff As Single = 0.0F
-            '                For Each Attack As BattleSystem.Attack In op.Attacks
-            '                    Dim effectiveness As Single = BattleCalculation.CalculateEffectiveness(Attack.GetAttackByID(Attack.ID), BattleScreen, op, p, True)
-            '                    If effectiveness > maxOpponentEff Then
-            '                        maxOpponentEff = effectiveness
-            '                    End If
-            '                Next
-            '                If maxOpponentEff > 1.0F Then
-            '                    Dim chance As Integer = 0
+            'Only applies if trainer has an AI level above or equal to 2:
+            If BattleScreen.Trainer.AILevel >= 2 Then
+                If BattleCalculation.CanSwitch(BattleScreen, False) = True Then
+                    If BattleScreen.Trainer.Pokemons.Count > 0 Then
+                        Dim living As Integer = 0
+                        For Each cP As Pokemon In BattleScreen.Trainer.Pokemons
+                            If cP.HP > 0 And cP.Status <> Pokemon.StatusProblems.Fainted Then
+                                living += 1
+                            End If
+                        Next
+                        If living > 1 Then
+                            'check for opponent moves: if super effective: 1.5x: 25%, 2x: 50%, 4x: 75%: check for pokemon in party that reacts to every move with less the detected effectiveness
+                            Dim maxOpponentEff As Single = 0.0F
+                            For Each Attack As BattleSystem.Attack In op.Attacks
+                                Dim effectiveness As Single = BattleCalculation.CalculateEffectiveness(Attack.GetAttackByID(Attack.ID), BattleScreen, op, p, True)
+                                If effectiveness > maxOpponentEff Then
+                                    maxOpponentEff = effectiveness
+                                End If
+                            Next
+                            If maxOpponentEff > 1.0F Then
+                                Dim chance As Integer = 0
 
-            '                    Select Case maxOpponentEff
-            '                        Case 1.25F
-            '                            chance = 10
-            '                        Case 1.5F
-            '                            chance = 25
-            '                        Case 2.0F
-            '                            chance = 35
-            '                        Case 4.0F
-            '                            chance = 50
-            '                    End Select
+                                Select Case maxOpponentEff
+                                    Case 1.25F
+                                        chance = 10
+                                    Case 1.5F
+                                        chance = 25
+                                    Case 2.0F
+                                        chance = 35
+                                    Case 4.0F
+                                        chance = 50
+                                End Select
 
-            '                    If RPercent(chance) = True Then
-            '                        Dim lessTeamPs As New List(Of Integer)
+                                If RPercent(chance) = True Then
+                                    Dim lessTeamPs As New List(Of Integer)
 
-            '                        For i = 0 To BattleScreen.Trainer.Pokemons.Count - 1
-            '                            If i <> BattleScreen.OppPokemonIndex Then
-            '                                Dim TeamP As Pokemon = BattleScreen.Trainer.Pokemons(i)
-            '                                If TeamP.HP > 0 And TeamP.Status <> Pokemon.StatusProblems.Fainted Then
-            '                                    Dim alwaysLess As Boolean = True
-            '                                    For Each Attack As BattleSystem.Attack In op.Attacks
-            '                                        Dim effectiveness As Single = BattleCalculation.CalculateEffectiveness(Attack.GetAttackByID(Attack.ID), BattleScreen, op, TeamP, True)
+                                    For i = 0 To BattleScreen.Trainer.Pokemons.Count - 1
+                                        If i <> BattleScreen.OppPokemonIndex Then
+                                            Dim TeamP As Pokemon = BattleScreen.Trainer.Pokemons(i)
+                                            If TeamP.HP > 0 And TeamP.Status <> Pokemon.StatusProblems.Fainted Then
+                                                Dim alwaysLess As Boolean = True
+                                                For Each Attack As BattleSystem.Attack In op.Attacks
+                                                    Dim effectiveness As Single = BattleCalculation.CalculateEffectiveness(Attack.GetAttackByID(Attack.ID), BattleScreen, op, TeamP, True)
 
-            '                                        If effectiveness >= maxOpponentEff Then
-            '                                            alwaysLess = False
-            '                                            Exit For
-            '                                        End If
-            '                                    Next
-            '                                    If alwaysLess = True Then
-            '                                        lessTeamPs.Add(i)
-            '                                    End If
-            '                                End If
-            '                            End If
-            '                        Next
+                                                    If effectiveness >= maxOpponentEff Then
+                                                        alwaysLess = False
+                                                        Exit For
+                                                    End If
+                                                Next
+                                                If alwaysLess = True Then
+                                                    lessTeamPs.Add(i)
+                                                End If
+                                            End If
+                                        End If
+                                    Next
 
-            '                        If lessTeamPs.Count > 0 Then
-            '                            Return ProduceOppStep(lessTeamPs(Core.Random.Next(0, lessTeamPs.Count)))
-            '                        End If
-            '                    End If
-            '                End If
+                                    If lessTeamPs.Count > 0 Then
+                                        Return ProduceOppStep(lessTeamPs(Core.Random.Next(0, lessTeamPs.Count)))
+                                    End If
+                                End If
+                            End If
 
-            '                'check for own moves: if only 0x: check for other pokemon in party (best fitting) and switch in
-            '                Dim only0 As Boolean = True
-            '                For Each Attack As BattleSystem.Attack In p.Attacks
-            '                    Dim effectiveness As Single = BattleCalculation.CalculateEffectiveness(Attack.GetAttackByID(Attack.ID), BattleScreen, p, op, False)
-            '                    If effectiveness <> 0.0F Then
-            '                        only0 = False
-            '                        Exit For
-            '                    End If
-            '                Next
-            '                If only0 = True Then
-            '                    Dim switchList As New List(Of Integer)
-            '                    For i = 0 To BattleScreen.Trainer.Pokemons.Count - 1
-            '                        If i <> BattleScreen.OppPokemonIndex Then
-            '                            Dim TeamP As Pokemon = BattleScreen.Trainer.Pokemons(i)
-            '                            If TeamP.HP > 0 And TeamP.Status <> Pokemon.StatusProblems.Fainted Then
-            '                                switchList.Add(i)
-            '                            End If
-            '                        End If
-            '                    Next
-            '                    If switchList.Count > 0 Then
-            '                        Return ProduceOppStep(switchList(Core.Random.Next(0, switchList.Count)))
-            '                    End If
-            '                End If
+                            'check for own moves: if only 0x: check for other pokemon in party (best fitting) and switch in
+                            Dim only0 As Boolean = True
+                            For Each Attack As BattleSystem.Attack In p.Attacks
+                                Dim effectiveness As Single = BattleCalculation.CalculateEffectiveness(Attack.GetAttackByID(Attack.ID), BattleScreen, p, op, False)
+                                If effectiveness <> 0.0F Then
+                                    only0 = False
+                                    Exit For
+                                End If
+                            Next
+                            If only0 = True Then
+                                Dim switchList As New List(Of Integer)
+                                For i = 0 To BattleScreen.Trainer.Pokemons.Count - 1
+                                    If i <> BattleScreen.OppPokemonIndex Then
+                                        Dim TeamP As Pokemon = BattleScreen.Trainer.Pokemons(i)
+                                        If TeamP.HP > 0 And TeamP.Status <> Pokemon.StatusProblems.Fainted Then
+                                            switchList.Add(i)
+                                        End If
+                                    End If
+                                Next
+                                If switchList.Count > 0 Then
+                                    Return ProduceOppStep(switchList(Core.Random.Next(0, switchList.Count)))
+                                End If
+                            End If
 
-            '                'own pokemon got cursed: 75%
-            '                If BattleScreen.FieldEffects.OppCurse > 0 Then
-            '                    If RPercent(75) = True Then
-            '                        Dim newSwitchIndex As Integer = 0
-            '                        Dim canSwitchTo As New List(Of Integer)
-            '                        For i = 0 To BattleScreen.Trainer.Pokemons.Count - 1
-            '                            Dim TeamP As Pokemon = BattleScreen.Trainer.Pokemons(i)
-            '                            If TeamP.HP > 0 And TeamP.Status <> Pokemon.StatusProblems.Fainted And i <> BattleScreen.OppPokemonIndex Then
-            '                                canSwitchTo.Add(i)
-            '                            End If
-            '                        Next
+                            'own pokemon got cursed: 75%
+                            If BattleScreen.FieldEffects.OppCurse > 0 Then
+                                If RPercent(75) = True Then
+                                    Dim newSwitchIndex As Integer = 0
+                                    Dim canSwitchTo As New List(Of Integer)
+                                    For i = 0 To BattleScreen.Trainer.Pokemons.Count - 1
+                                        Dim TeamP As Pokemon = BattleScreen.Trainer.Pokemons(i)
+                                        If TeamP.HP > 0 And TeamP.Status <> Pokemon.StatusProblems.Fainted And i <> BattleScreen.OppPokemonIndex Then
+                                            canSwitchTo.Add(i)
+                                        End If
+                                    Next
 
-            '                        If canSwitchTo.Count > 0 Then
-            '                            newSwitchIndex = canSwitchTo(Core.Random.Next(0, canSwitchTo.Count))
+                                    If canSwitchTo.Count > 0 Then
+                                        newSwitchIndex = canSwitchTo(Core.Random.Next(0, canSwitchTo.Count))
 
-            '                            Return ProduceOppStep(newSwitchIndex)
-            '                        End If
-            '                    End If
-            '                End If
+                                        Return ProduceOppStep(newSwitchIndex)
+                                    End If
+                                End If
+                            End If
 
-            '                'own pokemon got confused: 50%
-            '                If p.HasVolatileStatus(Pokemon.VolatileStatus.Confusion) = True Then
-            '                    If RPercent(50) = True Then
-            '                        Dim newSwitchIndex As Integer = 0
-            '                        Dim canSwitchTo As New List(Of Integer)
-            '                        For i = 0 To BattleScreen.Trainer.Pokemons.Count - 1
-            '                            Dim TeamP As Pokemon = BattleScreen.Trainer.Pokemons(i)
-            '                            If TeamP.HP > 0 And TeamP.Status <> Pokemon.StatusProblems.Fainted And i <> BattleScreen.OppPokemonIndex Then
-            '                                canSwitchTo.Add(i)
-            '                            End If
-            '                        Next
+                            'own pokemon got confused: 50%
+                            If p.HasVolatileStatus(Pokemon.VolatileStatus.Confusion) = True Then
+                                If RPercent(50) = True Then
+                                    Dim newSwitchIndex As Integer = 0
+                                    Dim canSwitchTo As New List(Of Integer)
+                                    For i = 0 To BattleScreen.Trainer.Pokemons.Count - 1
+                                        Dim TeamP As Pokemon = BattleScreen.Trainer.Pokemons(i)
+                                        If TeamP.HP > 0 And TeamP.Status <> Pokemon.StatusProblems.Fainted And i <> BattleScreen.OppPokemonIndex Then
+                                            canSwitchTo.Add(i)
+                                        End If
+                                    Next
 
-            '                        If canSwitchTo.Count > 0 Then
-            '                            newSwitchIndex = canSwitchTo(Core.Random.Next(0, canSwitchTo.Count))
+                                    If canSwitchTo.Count > 0 Then
+                                        newSwitchIndex = canSwitchTo(Core.Random.Next(0, canSwitchTo.Count))
 
-            '                            Return ProduceOppStep(newSwitchIndex)
-            '                        End If
-            '                    End If
-            '                End If
-            '            End If
-            '        End If
-            '    End If
-            'End If
+                                        Return ProduceOppStep(newSwitchIndex)
+                                    End If
+                                End If
+                            End If
+                        End If
+                    End If
+                End If
+            End If
 
             '-------------------------------------Items---------------------------------------------------------------------------------------'
 
