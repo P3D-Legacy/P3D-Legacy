@@ -143,16 +143,9 @@ Namespace BattleSystem
                         Ready = True
                     End If
                 End While
-                If Core.Player.DifficultyMode = 0 Then
-                    'Chance of 35% that the trainer is using a random move:
-                    If Core.Random.Next(0, 100) < 35 Then
-                        Return ProduceOppStep(m, OppAttackChoice)
-                    End If
-                ElseIf Core.Player.DifficultyMode = 1 Then
-                    'Chance of 18% that the trainer is using a random move:
-                    If Core.Random.Next(0, 100) < 18 Then
-                        Return ProduceOppStep(m, OppAttackChoice)
-                    End If
+                'Chance of 35% that the trainer is using a random move:
+                If Core.Random.Next(0, 100) < 35 Then
+                    Return ProduceOppStep(m, OppAttackChoice)
                 End If
             End If
 
