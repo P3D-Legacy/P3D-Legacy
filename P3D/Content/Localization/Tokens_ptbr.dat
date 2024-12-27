@@ -742,7 +742,7 @@ item_category_BattleItems,Itens de Batalha
 item_category_Mail,Envelopes
 ---
 GameMessages:
-game_message_screenshot,Screenshot salvo como 
+game_message_screenshot,Screenshot salvo como
 game_message_screenshot_falhou,Não deu pra criar screenshot
 game_message_fullscreen_on,Fullscreen ativado
 game_message_fullscreen_off,Fullscreen desativado

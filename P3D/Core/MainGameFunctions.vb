@@ -100,7 +100,7 @@
 
             b.Save(GameController.GamePath & "\screenshots\" & fileName, Drawing.Imaging.ImageFormat.Png)
 
-            Core.GameMessage.SetupText(Localization.GetString("game_message_screenshot") & fileName, FontManager.MainFont, Color.White)
+            Core.GameMessage.SetupText(Localization.GetString("game_message_screenshot") & " " & fileName, FontManager.MainFont, Color.White)
             Core.GameMessage.ShowMessage(12, Core.GraphicsDevice)
         Catch ex As Exception
             Logger.Log(Logger.LogTypes.ErrorMessage, "Basic.vb: " & Localization.GetString("game_message_screenshot_failed") & ". More information: " & ex.Message)

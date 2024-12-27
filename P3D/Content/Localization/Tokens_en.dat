@@ -739,7 +739,7 @@ item_category_BattleItems,Battle Items
 item_category_Mail,Mail
 ---
 GameMessages:
-game_message_screenshot,Screenshot saved as 
+game_message_screenshot,Screenshot saved as
 game_message_screenshot_failed,Cannot create screenshot
 game_message_fullscreen_on,Fullscreen on
 game_message_fullscreen_off,Fullscreen off

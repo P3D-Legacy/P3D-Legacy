@@ -719,7 +719,7 @@ item_category_BattleItems,Battle Items
 item_category_Mail,Mail
 ---
 GameMessages:
-game_message_screenshot,Screenshot wurde gespeichert als 
+game_message_screenshot,Screenshot wurde gespeichert als
 game_message_screenshot_failed,Screenshot konnte nicht erstellt werden!
 game_message_fullscreen_on,Vollbildmodus aktiviert
 game_message_fullscreen_off,Vollbildmodus deaktiviert
