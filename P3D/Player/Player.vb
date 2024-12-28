@@ -151,12 +151,28 @@
         End Set
     End Property
 
+    Public Property ScriptDelayItems() As String
+        Get
+            Return _ScriptDelayItems
+        End Get
+        Set(value As String)
+            _ScriptDelayItems = value
+        End Set
+    End Property
     Public Property ScriptDelaySteps() As Integer
         Get
             Return _ScriptDelaySteps
         End Get
         Set(value As Integer)
             _ScriptDelaySteps = value
+        End Set
+    End Property
+    Public Property ScriptDelayDisplaySteps() As Boolean
+        Get
+            Return _ScriptDelayDisplaySteps
+        End Get
+        Set(value As Boolean)
+            _ScriptDelayDisplaySteps = value
         End Set
     End Property
 
@@ -391,6 +407,7 @@
     Public TempRideSkin As String = ""
     Public Statistics As String = ""
     Public CheckForTrainersLater As Boolean = False
+    Public UsedItemsToCheckScriptDelayFor As New List(Of String)
 
     'Secure fields:
     Private _name As String = "<player.name>"
@@ -410,6 +427,8 @@
     Private _lastSavePlacePosition As String = "1,0.1,3"
     Private _repelSteps As Integer = 0
     Private _ScriptDelaySteps As Integer = 0
+    Private _ScriptDelayItems As String = ""
+    Private _ScriptDelayDisplaySteps As Boolean = False
     Private _saveCreated As String = "Pre 0.21"
     Private _daycareSteps As Integer = 0
     Private _poisonSteps As Integer = 0
@@ -746,8 +765,12 @@
                         End If
                     Case "repelsteps"
                         RepelSteps = CInt(Value)
+                    Case "scriptdelayitems"
+                        ScriptDelayItems = Value
                     Case "scriptdelaysteps"
                         ScriptDelaySteps = CInt(Value)
+                    Case "scriptdelaydisplaysteps"
+                        ScriptDelayDisplaySteps = CBool(Value)
                     Case "lastsaveplace"
                         LastSavePlace = Value
                     Case "lastsaveplaceposition"
@@ -1252,7 +1275,9 @@
             "LastRestPlacePosition|" & LastRestPlacePosition & Environment.NewLine &
             "DiagonalMovement|" & DiagonalMovement.ToNumberString() & Environment.NewLine &
             "RepelSteps|" & RepelSteps.ToString() & Environment.NewLine &
+            "ScriptDelayItems|" & ScriptDelayItems.ToString() & Environment.NewLine &
             "ScriptDelaySteps|" & ScriptDelaySteps.ToString() & Environment.NewLine &
+            "ScriptDelayDisplaySteps|" & ScriptDelayDisplaySteps.ToNumberString() & Environment.NewLine &
             "LastSavePlace|" & LastSavePlace & Environment.NewLine &
             "LastSavePlacePosition|" & LastSavePlacePosition & Environment.NewLine &
             "Difficulty|" & DifficultyMode.ToString() & Environment.NewLine &
@@ -1791,13 +1816,29 @@
             If ScriptDelaySteps <= 0 Then
                 If CurrentScreen.Identification = Screen.Identifications.OverworldScreen Then
                     If CanFireStepEvent() = True Then
-                        If ActionScript.IsRegistered("SCRIPTDELAY") = True Then
-                            Dim registerContent() As Object = ActionScript.GetRegisterValue("SCRIPTDELAY")
+                        Dim Data() As String = Core.Player.RegisterData.Split(CChar(","))
+                        Dim StepDelayRegisterName As String = ""
+                        For Each line As String In Data
+                            If line.StartsWith("[") = True And line.Contains("]") = True And line.EndsWith("]") = False Then
+                                Dim lineName As String = line.Remove(0, line.IndexOf("]") + 1)
+                                Dim delayID As String = ""
+                                If lineName.StartsWith("SCRIPTDELAY_") Then
+                                    Dim registerContent() As Object = ActionScript.GetRegisterValue(lineName)
+                                    Dim delayType As String = CStr(registerContent(0)).GetSplit(0, ";")
+                                    If delayType.ToLower = "steps" Then
+                                        StepDelayRegisterName = lineName
+                                    End If
+                                End If
+                            End If
+                        Next
+                        If StepDelayRegisterName <> "" Then
+                            ScriptDelayDisplaySteps = False
+                            Dim registerContent() As Object = ActionScript.GetRegisterValue(StepDelayRegisterName)
 
                             If registerContent(0) Is Nothing Or registerContent(1) Is Nothing Then
                                 Logger.Log(Logger.LogTypes.Warning, "ScriptComparer.vb: No valid script has been set to be executed.")
-                                ActionScript.UnregisterID("SCRIPTDELAY", "str")
-                                ActionScript.UnregisterID("SCRIPTDELAY")
+                                ActionScript.UnregisterID(StepDelayRegisterName, "str")
+                                ActionScript.UnregisterID(StepDelayRegisterName)
                                 Exit Sub
                             End If
 
@@ -1806,8 +1847,8 @@
                                 Dim DelayValue As String = CStr(registerContent(0)).GetSplit(1, ";")
 
                                 CType(CurrentScreen, OverworldScreen).ActionScript.StartScript(DelayValue, 0, False)
-                                ActionScript.UnregisterID("SCRIPTDELAY", "str")
-                                ActionScript.UnregisterID("SCRIPTDELAY")
+                                ActionScript.UnregisterID(StepDelayRegisterName, "str")
+                                ActionScript.UnregisterID(StepDelayRegisterName)
                             End If
                         End If
                     Else
@@ -1957,6 +1998,72 @@
     End Sub
 
 #End Region
+
+    Public Sub CheckItemCountScriptDelay(itemID As String)
+        Dim ItemDelayList As List(Of String) = Core.Player.ScriptDelayItems.Split(";").ToList
+        For Each entry As String In ItemDelayList
+            If entry.GetSplit(1, ",").ToLower = itemID.ToLower Then
+                Dim inventoryAmount As Integer = Core.Player.Inventory.GetItemAmount(itemID)
+                Dim Match As Boolean = False
+                Select Case entry.GetSplit(2, ",")
+                    Case "=", "equal"
+                        If inventoryAmount = CInt(entry.GetSplit(3, ",")) Then
+                            Match = True
+                        End If
+                    Case "<", "below"
+                        If inventoryAmount < CInt(entry.GetSplit(3, ",")) Then
+                            Match = True
+                        End If
+                    Case "<=", "equalorbelow"
+                        If inventoryAmount <= CInt(entry.GetSplit(3, ",")) Then
+                            Match = True
+                        End If
+                    Case ">", "above"
+                        If inventoryAmount > CInt(entry.GetSplit(3, ",")) Then
+                            Match = True
+                        End If
+                    Case ">=", "equalorabove"
+                        If inventoryAmount >= CInt(entry.GetSplit(3, ",")) Then
+                            Match = True
+                        End If
+                End Select
+
+                If Match = True Then
+                    Dim DelayRegisterName As String = "SCRIPTDELAY_" & entry.GetSplit(0, ",")
+
+                    Dim Data() As String = Core.Player.RegisterData.Split(CChar(","))
+                    ScriptDelayDisplaySteps = False
+                    Dim registerContent() As Object = ActionScript.GetRegisterValue(DelayRegisterName)
+
+                    If registerContent(0) Is Nothing Or registerContent(1) Is Nothing Then
+                        Logger.Log(Logger.LogTypes.Warning, "ScriptComparer.vb: No valid script has been set to be executed.")
+                        ActionScript.UnregisterID(DelayRegisterName, "str")
+                        ActionScript.UnregisterID(DelayRegisterName)
+                    End If
+
+                    Dim DelayType As String = CStr(registerContent(0)).GetSplit(0, ";")
+                    If DelayType.ToLower = "itemcount" Then
+                        Dim DelayValue As String = CStr(registerContent(0)).GetSplit(1, ";")
+
+                        Dim s As Screen = CurrentScreen
+                        While s.Identification <> Screen.Identifications.OverworldScreen And Not s.PreScreen Is Nothing
+                            s = s.PreScreen
+                        End While
+                        If s.Identification = Screen.Identifications.OverworldScreen Then
+                            CType(CurrentScreen, OverworldScreen).ActionScript.StartScript(DelayValue, 0, False)
+
+                            ActionScript.UnregisterID(DelayRegisterName, "str")
+                            ActionScript.UnregisterID(DelayRegisterName)
+                            ItemDelayList.Remove(entry)
+                            Exit For
+                        End If
+                    End If
+                End If
+            End If
+        Next
+        Core.Player.ScriptDelayItems = String.Join(";", ItemDelayList)
+
+    End Sub
 
     Public Sub AddVisitedMap(ByVal mapFile As String)
         Dim maps As List(Of String) = VisitedMaps.Split(CChar(",")).ToList()
@@ -2129,6 +2236,7 @@
         DaycareData = ""
         HallOfFameData = ""
         RoamingPokemonData = ""
+        UsedItemsToCheckScriptDelayFor.Clear()
 
         filePrefix = "nilllzz"
         newFilePrefix = ""

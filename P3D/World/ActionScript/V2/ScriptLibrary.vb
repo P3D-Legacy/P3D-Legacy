@@ -368,11 +368,11 @@ Namespace ScriptVersion2
             r(New ScriptCommand("script", "start", {New ScriptArgument("scriptFile", ScriptArgument.ArgumentTypes.Str)}.ToList(), "Starts a script with the given filename (without file extension)."))
             r(New ScriptCommand("script", "text", {New ScriptArgument("text", ScriptArgument.ArgumentTypes.Str)}.ToList(), "Starts a script with a simple text to display."))
             r(New ScriptCommand("script", "run", {New ScriptArgument("scriptContent", ScriptArgument.ArgumentTypes.Str)}.ToList(), "Runs script content. New lines are represented with ""^""."))
-            r(New ScriptCommand("script", "delay", {New ScriptArgument("scriptPath", ScriptArgument.ArgumentTypes.Str), New ScriptArgument("delayType", ScriptArgument.ArgumentTypes.Str, {"steps"}), New ScriptArgument("delayValue", ScriptArgument.ArgumentTypes.Str)}.ToList(), "Executes a script file after something happened (like having moved a certain amount of steps)."))
-            r(New ScriptCommand("script", "delay", "Clears the register created with @script.delay, preventing the script from being executed."))
+            r(New ScriptCommand("script", "delay", {New ScriptArgument("delayID", ScriptArgument.ArgumentTypes.Str), New ScriptArgument("scriptPath", ScriptArgument.ArgumentTypes.Str), New ScriptArgument("delayType", ScriptArgument.ArgumentTypes.Str, {"steps", "itemcount"}), New ScriptArgument("valueArguments", ScriptArgument.ArgumentTypes.StrArr)}.ToList(), "Executes a script file after something happened (like having moved a certain amount of steps)."))
+            r(New ScriptCommand("script", "cleardelay", {New ScriptArgument("delayID", ScriptArgument.ArgumentTypes.Str)}.ToList(), "Removes the register with the specified identifier (delayID) created with @script.delay, preventing the script from being executed."))
 
             ' Constructs:
-            r(New ScriptCommand("script", "delay", "str,int", {New ScriptArgument("type", ScriptArgument.ArgumentTypes.Str, {"type", "script", "value"})}.ToList(), "Returns the ""type"", ""scriptpath"" or ""value"" of what will trigger the script, like the number of steps.", ",", True))
+            r(New ScriptCommand("script", "delay", "str,int", {New ScriptArgument("delayID", ScriptArgument.ArgumentTypes.Str), New ScriptArgument("returnType", ScriptArgument.ArgumentTypes.Str, {"type", "script", "value"})}.ToList(), "Returns the ""type"", ""scriptpath"" or ""value"" of what will trigger the script, like the number of steps.", ",", True))
         End Sub
 
         Private Shared Sub DoRegister()

@@ -108,6 +108,14 @@
 
     Private Sub ChangeScreen()
         Core.SetScreen(NewScreen)
+        If OldScreen.Identification = Identifications.BattleScreen And CurrentScreen.Identification = Identifications.OverworldScreen Then
+            If Core.Player.UsedItemsToCheckScriptDelayFor.Count > 0 Then
+                For Each itemEntry As String In Core.Player.UsedItemsToCheckScriptDelayFor
+                    Core.Player.CheckItemCountScriptDelay(itemEntry)
+                Next
+                Core.Player.UsedItemsToCheckScriptDelayFor.Clear()
+            End If
+        End If
     End Sub
 
     Public Delegate Sub DoStuff()

@@ -180,6 +180,7 @@
                 ItemID = Me.Item.ID.ToString
             End If
             Core.Player.Inventory.AddItem(ItemID, 1)
+            Core.Player.CheckItemCountScriptDelay(ItemID)
             PlayerStatistics.Track("Items found", 1)
 
             Core.Player.AddPoints(1, "Found an item.")

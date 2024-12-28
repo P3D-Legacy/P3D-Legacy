@@ -12,18 +12,20 @@
 
             Select Case command.ToLower()
                 Case "delay"
-                    If ActionScript.IsRegistered("SCRIPTDELAY") = True Then
+                    Dim args() As String = argument.Split(CChar(","))
 
-                        Dim registerContent() As Object = ActionScript.GetRegisterValue("SCRIPTDELAY")
+                    If ActionScript.IsRegistered("SCRIPTDELAY_" & args(0)) = True Then
+
+                        Dim registerContent() As Object = ActionScript.GetRegisterValue("SCRIPTDELAY_" & args(0))
 
                         If registerContent(0) Is Nothing Or registerContent(1) Is Nothing Then
                             Logger.Log(Logger.LogTypes.Warning, "ScriptComparer.vb: No valid script has been set to be executed.")
-                            ActionScript.UnregisterID("SCRIPTDELAY", "str")
-                            ActionScript.UnregisterID("SCRIPTDELAY")
+                            ActionScript.UnregisterID("SCRIPTDELAY_" & args(0), "str")
+                            ActionScript.UnregisterID("SCRIPTDELAY_" & args(0))
                             Return DefaultNull
                         End If
 
-                        Select Case argument.ToLower
+                        Select Case args(1).ToLower
                             Case "type"
                                 Return CStr(registerContent(0)).GetSplit(0, ";")
                             Case "script"
@@ -33,6 +35,14 @@
                                 Select Case DelayType
                                     Case "steps"
                                         Return Core.Player.ScriptDelaySteps
+                                    Case "itemcount"
+                                        Dim ItemDelayList As List(Of String) = Core.Player.ScriptDelayItems.Split(";").ToList
+                                        For Each entry As String In ItemDelayList
+                                            If entry.GetSplit(0, ",") = args(0) Then
+                                                Return entry.GetSplit(3)
+                                                Exit For
+                                            End If
+                                        Next
                                 End Select
                         End Select
 

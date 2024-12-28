@@ -663,7 +663,7 @@
             _mainMenuItemList.Clear()
             Select Case BattleScreen.BattleMode
                 Case BattleSystem.BattleScreen.BattleModes.Safari
-                    Dim safariBallText As String = "Safari Ball x" & Core.Player.Inventory.GetItemAmount(181.ToString).ToString()
+                    Dim safariBallText As String = Localization.GetString("item_name_181", "Safari Ball") & " x" & Core.Player.Inventory.GetItemAmount(181.ToString).ToString()
                     If Core.Player.Inventory.GetItemAmount(181.ToString) = 0 Then
                         safariBallText = "No Safari Balls."
                     End If
@@ -831,6 +831,8 @@
                 BattleScreen.BattleQuery.Add(BattleScreen.FocusBattle())
                 BattleScreen.BattleQuery.Insert(0, New ToggleMenuQueryObject(True))
                 Core.SetScreen(New BattleCatchScreen(BattleScreen, Item.GetItemByID(181.ToString)))
+
+                Core.Player.UsedItemsToCheckScriptDelayFor.Add("181")
 
                 Dim safariBallText As String = "Safari Ball x" & Core.Player.Inventory.GetItemAmount(181.ToString).ToString()
                 If Core.Player.Inventory.GetItemAmount(181.ToString) = 0 Then

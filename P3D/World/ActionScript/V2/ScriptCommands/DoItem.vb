@@ -36,6 +36,7 @@
                             amount = int(item.MaxStack - Core.Player.Inventory.GetItemAmount(_itemID)).Clamp(0, 999)
                         End If
                         Core.Player.Inventory.AddItem(_itemID, amount)
+                        Core.Player.CheckItemCountScriptDelay(_itemID)
                     End If
                 Case "remove"
                     Dim amount As Integer = 1
@@ -75,6 +76,7 @@
 
                         CanContinue = False
                     End If
+                    Core.Player.CheckItemCountScriptDelay(_itemID)
                 Case "clearitem"
                     If argument <> "" Then
                         Dim ItemID As String = argument
@@ -83,6 +85,7 @@
                         If amount > 0 Then
                             Core.Player.Inventory.RemoveItem(ItemID, amount)
                         End If
+                        Core.Player.CheckItemCountScriptDelay(ItemID)
                     Else
                         Core.Player.Inventory.Clear()
                     End If
@@ -149,6 +152,7 @@
                     Dim itemID As String = argument
                     If Core.Player.Inventory.GetItemAmount(itemID) > 0 Then
                         Item.GetItemByID(itemID).Use()
+                        Core.Player.CheckItemCountScriptDelay(itemID)
                     End If
                 Case "select"
                     Dim allowedPages As Integer()

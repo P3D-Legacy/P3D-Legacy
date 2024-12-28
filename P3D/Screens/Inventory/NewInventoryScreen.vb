@@ -999,6 +999,12 @@ Public Class NewInventoryScreen
                 Case INFO_ITEM_OPTION_USE
                     cItem.Use()
                     LoadItems()
+                    If Me.PreScreen.Identification = Screen.Identifications.BattleScreen Then
+                        Core.Player.UsedItemsToCheckScriptDelayFor.Add(_items(ItemIndex + PageIndex * 10).ItemID)
+                    Else
+                        Core.Player.CheckItemCountScriptDelay(_items(ItemIndex + PageIndex * 10).ItemID)
+                    End If
+
                 Case INFO_ITEM_OPTION_GIVE
                     Dim selScreen = New PartyScreen(Core.CurrentScreen) With {.Mode = ISelectionScreen.ScreenMode.Selection, .CanExit = True}
                     AddHandler selScreen.SelectedObject, AddressOf GiveItemHandler
