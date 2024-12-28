@@ -227,6 +227,8 @@ option_screen_game_difficulty_description,Difficulty mode~Sets the level of diff
 option_screen_game_difficulty_easy,Makkelijk
 option_screen_game_difficulty_hard,Moeilijk
 option_screen_game_difficulty_superhard,Supermoeilijk
+option_screen_game_interfacescale,Interface-schaal
+option_screen_game_interfacescale_automatic,Automatisch
 option_screen_game_viewbobbing,Loopbeweging
 option_screen_game_viewbobbing_description,Turns camera shaking on or off.
 

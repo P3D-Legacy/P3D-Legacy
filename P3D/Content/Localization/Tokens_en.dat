@@ -227,6 +227,8 @@ option_screen_game_difficulty_description,Difficulty mode~Sets the level of diff
 option_screen_game_difficulty_easy,Easy
 option_screen_game_difficulty_hard,Hard
 option_screen_game_difficulty_superhard,Super Hard
+option_screen_game_interfacescale,Interface Scale
+option_screen_game_interfacescale_automatic,Automatic
 option_screen_game_viewbobbing,View Bobbing
 option_screen_game_viewbobbing_description,Turns camera shaking on or off.
 

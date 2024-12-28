@@ -227,6 +227,8 @@ option_screen_game_difficulty_description,Définit le niveau de difficulté.
 option_screen_game_difficulty_easy,Facile
 option_screen_game_difficulty_hard,Difficile
 option_screen_game_difficulty_superhard,Extreme
+option_screen_game_interfacescale,Interface Scale
+option_screen_game_interfacescale_automatic,Automatic
 option_screen_game_viewbobbing,View Bobbing
 option_screen_game_viewbobbing_description,Active ou désactive le tremblement de la caméra.
 
