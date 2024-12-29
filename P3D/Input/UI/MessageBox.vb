@@ -65,17 +65,17 @@
         Public Overrides Sub Draw()
             PreScreen.Draw()
 
-            Dim fontSize As Vector2 = New Vector2(CInt(FontManager.MainFont.MeasureString(_text).X * Scale), CInt(FontManager.MainFont.MeasureString(_text).Y * Scale))
+            Dim fontSize As Vector2 = New Vector2(CInt(FontManager.MainFont.MeasureString(_text).X * Scale * Core.SpriteBatch.InterfaceScale), CInt(FontManager.MainFont.MeasureString(_text).Y * Scale * Core.SpriteBatch.InterfaceScale))
 
             Canvas.DrawRectangle(windowSize, New Color(0, 0, 0, CInt(140 * _fadeIn)))
-            Dim boxRect = New Rectangle(CInt(windowSize.Width / 2 - _width / 2 - (_width / 10)),
-                                               CInt(windowSize.Height / 2 - _height / 2 - (_height / 5) * (1 - _fadeIn)),
+            Dim boxRect = New Rectangle(CInt(ScreenSize.Width / 2 - _width / 2 - (_width / 10)),
+                                               CInt(ScreenSize.Height / 2 - _height / 2 - (_height / 5) * (1 - _fadeIn)),
                                                CInt(_width + (_width / 5)),
                                                CInt(_height + fontSize.Y))
             Canvas.DrawRectangle(boxRect, New Color(_backColor.R, _backColor.G, _backColor.B, CInt(255 * _fadeIn)), True)
 
-            Core.SpriteBatch.DrawString(FontManager.MainFont, _text, New Vector2(CInt(windowSize.Width / 2.0F - fontSize.X / 2.0F + 2 * Scale), CInt(boxRect.Y + (boxRect.Height / 2) - fontSize.Y / 2.0F + 2 * Scale)), New Color(_shadowColor.R, _shadowColor.G, _shadowColor.B, CInt(255 * _fadeIn)), 0F, Vector2.Zero, Scale, SpriteEffects.None, 0F)
-            Core.SpriteBatch.DrawString(FontManager.MainFont, _text, New Vector2(CInt(windowSize.Width / 2.0F - fontSize.X / 2.0F), CInt(boxRect.Y + (boxRect.Height / 2) - fontSize.Y / 2.0F)), New Color(_textColor.R, _textColor.G, _textColor.B, CInt(255 * _fadeIn)), 0F, Vector2.Zero, Scale, SpriteEffects.None, 0F)
+            Core.SpriteBatch.DrawInterfaceString(FontManager.MainFont, _text, New Vector2(CInt(windowSize.Width / 2.0F - fontSize.X / 2.0F + 2 * Scale), CInt(boxRect.Y + (boxRect.Height / 2) - fontSize.Y / 2.0F + 2 * Scale)), New Color(_shadowColor.R, _shadowColor.G, _shadowColor.B, CInt(255 * _fadeIn)), 0F, Vector2.Zero, Scale, SpriteEffects.None, 0F)
+            Core.SpriteBatch.DrawInterfaceString(FontManager.MainFont, _text, New Vector2(CInt(windowSize.Width / 2.0F - fontSize.X / 2.0F), CInt(boxRect.Y + (boxRect.Height / 2) - fontSize.Y / 2.0F)), New Color(_textColor.R, _textColor.G, _textColor.B, CInt(255 * _fadeIn)), 0F, Vector2.Zero, Scale, SpriteEffects.None, 0F)
         End Sub
 
         Public Overrides Sub Update()

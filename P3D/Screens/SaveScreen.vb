@@ -16,12 +16,17 @@
     Dim menuTexture As Texture2D
     Dim _closing As Boolean = False
     Dim _opening As Boolean = True
+    Private target As RenderTarget2D
+    Private target2 As RenderTarget2D
 
     Public Sub New(ByVal currentScreen As Screen)
         Yslide = YslideMAX
 
         Me.Identification = Identifications.SaveScreen
         Me.PreScreen = currentScreen
+
+        target = New RenderTarget2D(GraphicsDevice, 700, 440, False, SurfaceFormat.Color, DepthFormat.Depth24Stencil8)
+        target2 = New RenderTarget2D(GraphicsDevice, Math.Max(1, Core.windowSize.Width), Math.Max(1, Core.windowSize.Height), False, SurfaceFormat.Color, DepthFormat.Depth24Stencil8)
 
         Me.mainTexture = TextureManager.GetTexture("GUI\Menus\Menu")
         Me.menuTexture = TextureManager.GetTexture("GUI\Menus\SaveBook")
@@ -33,16 +38,26 @@
     Public Overrides Sub Draw()
         Me.PreScreen.Draw()
 
-        Dim halfWidth As Integer = CInt(Core.windowSize.Width / 2)
-        Dim halfHeight As Integer = CInt(Core.windowSize.Height / 2)
-
-        Dim Delta_X As Integer = halfWidth - 350
-        Dim Delta_Y As Integer = halfHeight - 220 + Yslide
         If Core.Player.IsGameJoltSave = True Then
             GameJolt.Emblem.Draw(GameJolt.API.username, Core.GameJoltSave.GameJoltID, Core.GameJoltSave.Points, Core.GameJoltSave.Gender, Core.GameJoltSave.Emblem, New Vector2(CSng(Core.windowSize.Width / 2 - 256), 30), 4, Core.GameJoltSave.DownloadedSprite)
         End If
 
-        With Core.SpriteBatch
+        Dim saveBookBatch = New SpriteBatch(GraphicsDevice)
+        Dim renderBatch = New SpriteBatch(GraphicsDevice)
+
+        Dim halfWidth As Integer = CInt(Core.windowSize.Width / 2)
+        Dim halfHeight As Integer = CInt(Core.windowSize.Height / 2)
+
+        Dim Render_X As Integer = halfWidth - 350
+        Dim Render_Y As Integer = halfHeight - 220 + Yslide
+
+        Dim Delta_X As Integer = 0
+        Dim Delta_Y As Integer = 0
+        GraphicsDevice.SetRenderTarget(target)
+        GraphicsDevice.Clear(Color.Transparent)
+
+        saveBookBatch.Begin(SpriteSortMode.Deferred, BlendState.NonPremultiplied, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise)
+        With saveBookBatch
             .Draw(menuTexture, New Rectangle(Delta_X, Delta_Y, 700, 440), Color.White)
 
             If saveSessionFailed = True Then
@@ -128,7 +143,27 @@
                 .DrawString(FontManager.MainFont, Localization.GetString("save_screen_name") & ": " & Core.Player.Name & Environment.NewLine & Environment.NewLine & Localization.GetString("save_screen_badges") & ": " & Core.Player.Badges.Count.ToString() & Environment.NewLine & Environment.NewLine & Localization.GetString("save_screen_money") & ": " & Core.Player.Money & Environment.NewLine & Environment.NewLine & Localization.GetString("save_screen_time") & ": " & TimeHelpers.GetDisplayTime(TimeHelpers.GetCurrentPlayTime(), True), New Vector2(Delta_X + 400, Delta_Y + 215), Color.DarkBlue)
             End If
         End With
-        Screen.ChooseBox.Draw(New Vector2(Delta_X + 115, Delta_Y + 155), False, 1.5F)
+        saveBookBatch.End()
+        GraphicsDevice.SetRenderTarget(target2)
+        GraphicsDevice.Clear(Color.Transparent)
+
+        renderBatch.Begin()
+
+        renderBatch.Draw(target, New Rectangle(CInt(Core.windowSize.Width / 2 - 350 * SpriteBatch.InterfaceScale()), CInt(Core.windowSize.Height / 2 - 220 * SpriteBatch.InterfaceScale() + Yslide), CInt(target.Width * SpriteBatch.InterfaceScale()), CInt(target.Height * SpriteBatch.InterfaceScale())), Nothing, Color.White, 0.0F, Vector2.Zero, SpriteEffects.None, 0F)
+
+        renderBatch.End()
+        GraphicsDevice.SetRenderTarget(Nothing)
+
+        SpriteBatch.Draw(target2, New Vector2(0, 0), Color.White)
+        Dim ChooseBoxPositionOffset As New Vector2(0, 0)
+        Select Case Core.SpriteBatch.InterfaceScale
+            Case 0.5
+                ChooseBoxPositionOffset = New Vector2(-96, 16)
+            Case 2
+                ChooseBoxPositionOffset = New Vector2(-256, -128)
+        End Select
+
+        Screen.ChooseBox.Draw(New Vector2(CInt(Render_X + 115 + Math.Floor(Core.SpriteBatch.InterfaceScale - 1) * ChooseBoxPositionOffset.X), CInt(Render_Y + 155 + Math.Floor(Core.SpriteBatch.InterfaceScale - 1) * ChooseBoxPositionOffset.Y)), False, 1.5F)
     End Sub
 
     Public Overrides Sub Update()

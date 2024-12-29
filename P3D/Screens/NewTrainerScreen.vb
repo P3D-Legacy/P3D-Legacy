@@ -42,7 +42,7 @@
         _paperClipTexture = TextureManager.GetTexture("Textures\UI\TrainerCard\Paperclip")
         _papersTexture = TextureManager.GetTexture("Textures\UI\TrainerCard\Papers")
         target = New RenderTarget2D(GraphicsDevice, _backTexture.Width, _backTexture.Height + _paperClipTexture.Height, False, SurfaceFormat.Color, DepthFormat.Depth24Stencil8)
-        target2 = New RenderTarget2D(GraphicsDevice, Core.windowSize.Width, Core.windowSize.Height, False, SurfaceFormat.Color, DepthFormat.Depth24Stencil8)
+        target2 = New RenderTarget2D(GraphicsDevice, Math.Max(1, Core.windowSize.Width), Math.Max(1, Core.windowSize.Height), False, SurfaceFormat.Color, DepthFormat.Depth24Stencil8)
 
         If Screen.Level.Surfing = True Then
             _charTexture = TextureManager.GetTexture("Textures\NPC\" & Core.Player.TempSurfSkin)
@@ -153,7 +153,7 @@
 
         _cardBatch.Begin()
 
-        _cardBatch.Draw(target, New Rectangle(CInt(Core.ScreenSize.Width / 2 - target.Width / 2) + 42, CInt(60 + _introY), target.Width, target.Height), Nothing, Color.White, _rotation, Vector2.Zero, SpriteEffects.None, 0F)
+        _cardBatch.Draw(target, New Rectangle(CInt(Core.windowSize.Width / 2 - target.Width / 2 * SpriteBatch.InterfaceScale()) + CInt(42 * SpriteBatch.InterfaceScale()), CInt((60 + _introY) * SpriteBatch.InterfaceScale()), CInt(target.Width * SpriteBatch.InterfaceScale()), CInt(target.Height * SpriteBatch.InterfaceScale())), Nothing, Color.White, _rotation, Vector2.Zero, SpriteEffects.None, 0F)
 
         _cardBatch.End()
 
