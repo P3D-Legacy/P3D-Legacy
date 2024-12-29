@@ -118,8 +118,22 @@
             'Draw buttons:
             If _gradientFade = 255 Then
                 If Core.Player.IsGameJoltSave = True Then
-                    GameJolt.Emblem.Draw(GameJolt.API.username, Core.GameJoltSave.GameJoltID, Core.GameJoltSave.Points, Core.GameJoltSave.Gender, Core.GameJoltSave.Emblem, New Vector2(CSng(Core.windowSize.Width / 2 - 256), 30), 4, Core.GameJoltSave.DownloadedSprite)
+                    GameJolt.Emblem.Draw(GameJolt.API.username, Core.GameJoltSave.GameJoltID, Core.GameJoltSave.Points, Core.GameJoltSave.Gender, Core.GameJoltSave.Emblem, New Vector2(CInt(Core.windowSize.Width / 2 - 256), 30), 4, Core.GameJoltSave.DownloadedSprite)
                 End If
+
+                Dim RemainingText As String = ""
+                If Core.Player.ScriptDelayDisplaySteps = True Then
+                    RemainingText &= Localization.GetString("global_steps_left", "Steps left:") & " " & Core.Player.ScriptDelaySteps
+                End If
+                If Screen.Level.IsSafariZone Then
+                    If RemainingText <> "" Then
+                        RemainingText &= Environment.NewLine
+                    End If
+                    RemainingText &= Localization.GetString("global_safari_balls_remaining", "Safari Balls x") & " " & Core.Player.Inventory.GetItemAmount(181.ToString)
+                End If
+                Core.SpriteBatch.DrawString(FontManager.MainFont, RemainingText, New Vector2(CInt(Core.windowSize.Width / 2 - FontManager.MainFont.MeasureString(RemainingText).X) + 4, CInt(Core.windowSize.Height / 2 - 272 - FontManager.MainFont.MeasureString(RemainingText).Y) + 4), Color.Black, 0.0F, Vector2.Zero, 2.0F, SpriteEffects.None, 0.0F)
+                Core.SpriteBatch.DrawString(FontManager.MainFont, RemainingText, New Vector2(CInt(Core.windowSize.Width / 2 - FontManager.MainFont.MeasureString(RemainingText).X), CInt(Core.windowSize.Height / 2 - 272 - FontManager.MainFont.MeasureString(RemainingText).Y)), Color.White, 0.0F, Vector2.Zero, 2.0F, SpriteEffects.None, 0.0F)
+
 
                 For i = 0 To _menuOptions.Count - 1
                     Dim text As String = _menuOptions(i).Replace("|||", "")
