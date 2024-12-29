@@ -321,8 +321,9 @@
 
             If r <> lastRectangle Then
                 lastRectangle = r
-
-                Textures(0) = TextureManager.GetTexture(Me.Texture, r, 1)
+                If Me.Texture IsNot Nothing Then
+                    Textures(0) = TextureManager.GetTexture(Me.Texture, r, 1)
+                End If
             End If
         End If
     End Sub
