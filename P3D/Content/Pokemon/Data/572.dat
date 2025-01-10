@@ -54,4 +54,4 @@ Move|45,387
 Move|49,495
 TradeValue|25
 Item|50,2001
-EvolutionCondition|573,item,135,level
+EvolutionCondition|573,item,135,item
