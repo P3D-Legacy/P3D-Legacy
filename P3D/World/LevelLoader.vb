@@ -644,6 +644,7 @@
             Scale = New Vector3(ScaleList(0), ScaleList(1), ScaleList(2))
         End If
 
+        Dim Collision As Boolean = CBool(GetTag(Tags, "Collision"))
         Dim TextureID As String = CStr(GetTag(Tags, "TextureID"))
         Dim Rotation As Integer = CInt(GetTag(Tags, "Rotation"))
         Dim ActionValue As Integer = CInt(GetTag(Tags, "Action"))
@@ -672,7 +673,7 @@
             AnimateIdle = CBool(GetTag(Tags, "AnimateIdle"))
         End If
 
-        Dim NPC As NPC = CType(Entity.GetNewEntity("NPC", Position, {Nothing}, {0, 0}, True, New Vector3(0), Scale, BaseModel.BillModel, ActionValue, AdditionalValue, True, Shader, -1, MapOrigin, "", Offset, {TextureID, Rotation, Name, ID, AnimateIdle, Movement, MoveRectangles},,,,ModelPath), NPC)
+        Dim NPC As NPC = CType(Entity.GetNewEntity("NPC", Position, {Nothing}, {0, 0}, Collision, New Vector3(0), Scale, BaseModel.BillModel, ActionValue, AdditionalValue, True, Shader, -1, MapOrigin, "", Offset, {TextureID, Rotation, Name, ID, AnimateIdle, Movement, MoveRectangles},,,, ModelPath), NPC)
 
         If loadOffsetMap = False Then
             Screen.Level.Entities.Add(NPC)
