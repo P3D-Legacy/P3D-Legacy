@@ -30,7 +30,7 @@
         Next
 
         GraphicsDevice.RasterizerState = tempRasterizer
-        GraphicsDevice.SamplerStates(0) = Core.sampler
+        GraphicsDevice.SamplerStates(0) = Core.Sampler
     End Sub
 
     Public Class Backdrop

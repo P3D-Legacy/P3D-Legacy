@@ -251,14 +251,23 @@ Public NotInheritable Class BasicEffectWithAlphaTest
 
     Public Sub New(ByVal device As GraphicsDevice)
         MyBase.New(device, File.ReadAllBytes(Path.Combine(Path.GetDirectoryName(AppContext.BaseDirectory), "Content", "Effects", "BasicEffectWithAlphaTest.mgfxdx")))
-        CacheEffectParameters(Nothing)
+        CacheEffectParameters()
         DirectionalLight0.Enabled = True
         SpecularColor = Vector3.One
         SpecularPower = 16
         AlphaCutoff = 0
     End Sub
 
-    Private Sub New(ByVal cloneSource As BasicEffectWithAlphaTest)
+    Public Sub New(ByVal device As GraphicsDevice, ByVal data As Byte())
+        MyBase.New(device, data)
+        CacheEffectParameters()
+        DirectionalLight0.Enabled = True
+        SpecularColor = Vector3.One
+        SpecularPower = 16
+        AlphaCutoff = 0
+    End Sub
+
+    Public Sub New(ByVal cloneSource As BasicEffectWithAlphaTest)
         MyBase.New(cloneSource)
         CacheEffectParameters(cloneSource)
         _lightingEnabled = cloneSource.lightingEnabled
@@ -276,6 +285,74 @@ Public NotInheritable Class BasicEffectWithAlphaTest
         _fogStart = cloneSource.fogStart
         _fogEnd = cloneSource.fogEnd
     End Sub
+
+    Public Sub New(ByVal cloneSource As BasicEffect)
+        MyBase.New(cloneSource.GraphicsDevice, File.ReadAllBytes(Path.Combine(Path.GetDirectoryName(AppContext.BaseDirectory), "Content", "Effects", "BasicEffectWithAlphaTest.mgfxdx")))
+        CacheEffectParameters(cloneSource)
+        DirectionalLight0 = cloneSource.DirectionalLight0
+        DirectionalLight1 = cloneSource.DirectionalLight1
+        DirectionalLight2 = cloneSource.DirectionalLight2
+        World = cloneSource.World
+        View = cloneSource.View
+        Projection = cloneSource.Projection
+        DiffuseColor = cloneSource.DiffuseColor
+        EmissiveColor = cloneSource.EmissiveColor
+        SpecularColor = cloneSource.SpecularColor
+        SpecularPower = cloneSource.SpecularPower
+        Alpha = cloneSource.Alpha
+        LightingEnabled = cloneSource.LightingEnabled
+        PreferPerPixelLighting = cloneSource.PreferPerPixelLighting
+        AmbientLightColor = cloneSource.AmbientLightColor
+        FogEnabled = cloneSource.FogEnabled
+        FogStart = cloneSource.FogStart
+        FogEnd = cloneSource.FogEnd
+        FogColor = cloneSource.FogColor
+        TextureEnabled = cloneSource.TextureEnabled
+        Texture = cloneSource.Texture
+        VertexColorEnabled = cloneSource.VertexColorEnabled
+    End Sub
+
+    Public Widening Shared Operator CType(ByVal effect As BasicEffectWithAlphaTest) As BasicEffect
+        Dim newEffect As New BasicEffect(effect.GraphicsDevice)
+        With newEffect
+            With .DirectionalLight0
+                .Enabled = effect.DirectionalLight0.Enabled
+                .Direction = effect.DirectionalLight0.Direction
+                .DiffuseColor = effect.DirectionalLight0.DiffuseColor
+                .SpecularColor = effect.DirectionalLight0.SpecularColor
+            End With
+            With .DirectionalLight1
+                .Enabled = effect.DirectionalLight1.Enabled
+                .Direction = effect.DirectionalLight1.Direction
+                .DiffuseColor = effect.DirectionalLight1.DiffuseColor
+                .SpecularColor = effect.DirectionalLight1.SpecularColor
+            End With
+            With .DirectionalLight2
+                .Enabled = effect.DirectionalLight2.Enabled
+                .Direction = effect.DirectionalLight2.Direction
+                .DiffuseColor = effect.DirectionalLight2.DiffuseColor
+                .SpecularColor = effect.DirectionalLight2.SpecularColor
+            End With
+            .World = effect.World
+            .View = effect.View
+            .Projection = effect.Projection
+            .DiffuseColor = effect.DiffuseColor
+            .EmissiveColor = effect.EmissiveColor
+            .SpecularColor = effect.SpecularColor
+            .SpecularPower = effect.SpecularPower
+            .Alpha = effect.Alpha
+            .LightingEnabled = effect.LightingEnabled
+            .PreferPerPixelLighting = effect.PreferPerPixelLighting
+            .AmbientLightColor = effect.AmbientLightColor
+            .FogStart = effect.FogStart
+            .FogEnd = effect.FogEnd
+            .FogColor = effect.FogColor
+            .TextureEnabled = effect.TextureEnabled
+            .Texture = effect.Texture
+            .VertexColorEnabled = effect.VertexColorEnabled
+        End With
+        Return newEffect
+    End Operator
 
     Public Overrides Function Clone() As Effect
         Return New BasicEffectWithAlphaTest(Me)
@@ -338,7 +415,43 @@ Public NotInheritable Class BasicEffectWithAlphaTest
         End If
     End Sub
 
+    Private Sub CacheEffectParameters()
+        _textureParam = Parameters("Texture")
+        _diffuseColorParam = Parameters("DiffuseColor")
+        _emissiveColorParam = Parameters("EmissiveColor")
+        _specularColorParam = Parameters("SpecularColor")
+        _specularPowerParam = Parameters("SpecularPower")
+        _eyePositionParam = Parameters("EyePosition")
+        _fogColorParam = Parameters("FogColor")
+        _fogVectorParam = Parameters("FogVector")
+        _worldParam = Parameters("World")
+        _worldInverseTransposeParam = Parameters("WorldInverseTranspose")
+        _worldViewProjParam = Parameters("WorldViewProj")
+        _alphaTestParam = Parameters("AlphaTest")
+        DirectionalLight0 = New DirectionalLight(Parameters("DirLight0Direction"), Parameters("DirLight0DiffuseColor"), Parameters("DirLight0SpecularColor"), Nothing)
+        DirectionalLight1 = New DirectionalLight(Parameters("DirLight1Direction"), Parameters("DirLight1DiffuseColor"), Parameters("DirLight1SpecularColor"), Nothing)
+        DirectionalLight2 = New DirectionalLight(Parameters("DirLight2Direction"), Parameters("DirLight2DiffuseColor"), Parameters("DirLight2SpecularColor"), Nothing)
+    End Sub
+
     Private Sub CacheEffectParameters(ByVal cloneSource As BasicEffectWithAlphaTest)
+        _textureParam = Parameters("Texture")
+        _diffuseColorParam = Parameters("DiffuseColor")
+        _emissiveColorParam = Parameters("EmissiveColor")
+        _specularColorParam = Parameters("SpecularColor")
+        _specularPowerParam = Parameters("SpecularPower")
+        _eyePositionParam = Parameters("EyePosition")
+        _fogColorParam = Parameters("FogColor")
+        _fogVectorParam = Parameters("FogVector")
+        _worldParam = Parameters("World")
+        _worldInverseTransposeParam = Parameters("WorldInverseTranspose")
+        _worldViewProjParam = Parameters("WorldViewProj")
+        _alphaTestParam = Parameters("AlphaTest")
+        DirectionalLight0 = New DirectionalLight(Parameters("DirLight0Direction"), Parameters("DirLight0DiffuseColor"), Parameters("DirLight0SpecularColor"), cloneSource?.DirectionalLight0)
+        DirectionalLight1 = New DirectionalLight(Parameters("DirLight1Direction"), Parameters("DirLight1DiffuseColor"), Parameters("DirLight1SpecularColor"), cloneSource?.DirectionalLight1)
+        DirectionalLight2 = New DirectionalLight(Parameters("DirLight2Direction"), Parameters("DirLight2DiffuseColor"), Parameters("DirLight2SpecularColor"), cloneSource?.DirectionalLight2)
+    End Sub
+
+    Private Sub CacheEffectParameters(ByVal cloneSource As BasicEffect)
         _textureParam = Parameters("Texture")
         _diffuseColorParam = Parameters("DiffuseColor")
         _emissiveColorParam = Parameters("EmissiveColor")

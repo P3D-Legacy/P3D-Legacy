@@ -57,7 +57,7 @@ Public Class ModelManager
         Core.GraphicsDevice.Clear(Color.Transparent)
 
         Core.GraphicsDevice.BlendState = BlendState.Opaque
-        Core.GraphicsDevice.SamplerStates(0) = Core.sampler
+        Core.GraphicsDevice.SamplerStates(0) = Core.Sampler
 
         Dim m As Model = ModelManager.GetModel(modelName)
 

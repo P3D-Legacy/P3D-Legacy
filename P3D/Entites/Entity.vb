@@ -543,7 +543,17 @@
     Public Overridable Sub Draw(ByVal BaseModel As BaseModel, ByVal Textures() As Texture2D, ByVal setRasterizerState As Boolean, Optional Model As Model = Nothing)
         If Visible = True Then
             If Not Model Is Nothing Then
+                For Each modelMesh As ModelMesh In Model.Meshes
+                    For Each modelMeshPart As ModelMeshPart In modelMesh.MeshParts
+                        If modelMeshPart.Effect.GetType() = GetType(BasicEffect)
+                            Dim effect = New BasicEffectWithAlphaTest(CType(modelMeshPart.Effect, BasicEffect))
+                            modelMeshPart.Effect = effect
+                        End If
+                    Next
+                Next
+                Core.GraphicsDevice.SamplerStates(0) = Core.ModelSampler
                 Model.Draw(Me.World, Screen.Camera.View, Screen.Camera.Projection)
+                Core.GraphicsDevice.SamplerStates(0) = Core.Sampler
                 If drawViewBox = True Then
                     BoundingBoxRenderer.Render(ViewBox, Core.GraphicsDevice, Screen.Camera.View, Screen.Camera.Projection, Microsoft.Xna.Framework.Color.Red)
                 End If
@@ -661,25 +671,47 @@
         If Not Me.Model Is Nothing Then
             For Each mesh As ModelMesh In Me.Model.Meshes
                 For Each part As ModelMeshPart In mesh.MeshParts
-                    With CType(part.Effect, BasicEffect)
-                        Lighting.UpdateLighting(CType(part.Effect, BasicEffect))
-                        .Alpha = Me.Opacity
-                        If Core.GameOptions.LightingEnabled = True Then
-                            .DiffuseColor = Screen.Effect.DiffuseColor * Me.Shader * Me.Color
-                        Else
-                            .DiffuseColor = Screen.Effect.DiffuseColor * Me.Color
-                        End If
-                        If Not Screen.Level.World Is Nothing Then
-                            If Screen.Level.World.EnvironmentType = P3D.World.EnvironmentTypes.Outside Then
-                                .DiffuseColor *= SkyDome.GetDaytimeColor(True).ToVector3()
+                    If part.Effect.GetType() = GetType(BasicEffect)
+                        With CType(part.Effect, BasicEffect)
+                            Lighting.UpdateLighting(CType(part.Effect, BasicEffect))
+                            .Alpha = Me.Opacity
+                            If Core.GameOptions.LightingEnabled = True Then
+                                .DiffuseColor = Screen.Effect.DiffuseColor * Me.Shader * Me.Color
+                            Else
+                                .DiffuseColor = Screen.Effect.DiffuseColor * Me.Color
                             End If
-                        End If
+                            If Not Screen.Level.World Is Nothing Then
+                                If Screen.Level.World.EnvironmentType = P3D.World.EnvironmentTypes.Outside Then
+                                    .DiffuseColor *= SkyDome.GetDaytimeColor(True).ToVector3()
+                                End If
+                            End If
 
-                        .FogEnabled = True
-                        .FogColor = Screen.Effect.FogColor
-                        .FogEnd = Screen.Effect.FogEnd
-                        .FogStart = Screen.Effect.FogStart
-                    End With
+                            .FogEnabled = True
+                            .FogColor = Screen.Effect.FogColor
+                            .FogEnd = Screen.Effect.FogEnd
+                            .FogStart = Screen.Effect.FogStart
+                        End With
+                    Else
+                        With CType(part.Effect, BasicEffectWithAlphaTest)
+                            Lighting.UpdateLighting(CType(part.Effect, BasicEffectWithAlphaTest))
+                            .Alpha = Me.Opacity
+                            If Core.GameOptions.LightingEnabled = True Then
+                                .DiffuseColor = Screen.Effect.DiffuseColor * Me.Shader * Me.Color
+                            Else
+                                .DiffuseColor = Screen.Effect.DiffuseColor * Me.Color
+                            End If
+                            If Not Screen.Level.World Is Nothing Then
+                                If Screen.Level.World.EnvironmentType = P3D.World.EnvironmentTypes.Outside Then
+                                    .DiffuseColor *= SkyDome.GetDaytimeColor(True).ToVector3()
+                                End If
+                            End If
+
+                            .FogEnabled = True
+                            .FogColor = Screen.Effect.FogColor
+                            .FogEnd = Screen.Effect.FogEnd
+                            .FogStart = Screen.Effect.FogStart
+                        End With
+                    End If
                 Next
             Next
         End If

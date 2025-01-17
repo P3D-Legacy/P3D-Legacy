@@ -10,7 +10,7 @@
 
 struct VSHWInputInstance
 {
-    float4 Position : POSITION1;
+    float3 Position : POSITION1;
 };
 
 struct VSInput

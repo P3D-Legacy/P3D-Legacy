@@ -69,7 +69,8 @@ VSOutput VSHWBasic(VSInput vin, VSHWInputInstance vhwin)
 {
     VSOutput vout;
     
-    CommonVSOutput cout = ComputeCommonVSOutput(vin.Position + vhwin.Position);
+    ApplyPositionOffset(vin.Position, vhwin.Position);
+    CommonVSOutput cout = ComputeCommonVSOutput(vin.Position);
     SetCommonVSOutputParams;
     
     return vout;
@@ -93,7 +94,8 @@ VSOutputNoFog VSHWBasicNoFog(VSInput vin, VSHWInputInstance vhwin)
 {
     VSOutputNoFog vout;
     
-    CommonVSOutput cout = ComputeCommonVSOutput(vin.Position + vhwin.Position);
+    ApplyPositionOffset(vin.Position, vhwin.Position);
+    CommonVSOutput cout = ComputeCommonVSOutput(vin.Position);
     SetCommonVSOutputParamsNoFog;
     
     return vout;
@@ -119,7 +121,8 @@ VSOutput VSHWBasicVc(VSInputVc vin, VSHWInputInstance vhwin)
 {
     VSOutput vout;
     
-    CommonVSOutput cout = ComputeCommonVSOutput(vin.Position + vhwin.Position);
+    ApplyPositionOffset(vin.Position, vhwin.Position);
+    CommonVSOutput cout = ComputeCommonVSOutput(vin.Position);
     SetCommonVSOutputParams;
     
     vout.Diffuse *= vin.Color;
@@ -147,7 +150,8 @@ VSOutputNoFog VSHWBasicVcNoFog(VSInputVc vin, VSHWInputInstance vhwin)
 {
     VSOutputNoFog vout;
     
-    CommonVSOutput cout = ComputeCommonVSOutput(vin.Position + vhwin.Position);
+    ApplyPositionOffset(vin.Position, vhwin.Position);
+    CommonVSOutput cout = ComputeCommonVSOutput(vin.Position);
     SetCommonVSOutputParamsNoFog;
     
     vout.Diffuse *= vin.Color;
@@ -175,7 +179,8 @@ VSOutputTx VSHWBasicTx(VSInputTx vin, VSHWInputInstance vhwin)
 {
     VSOutputTx vout;
     
-    CommonVSOutput cout = ComputeCommonVSOutput(vin.Position + vhwin.Position);
+    ApplyPositionOffset(vin.Position, vhwin.Position);
+    CommonVSOutput cout = ComputeCommonVSOutput(vin.Position);
     SetCommonVSOutputParams;
     
     vout.TexCoord = vin.TexCoord;
@@ -203,7 +208,8 @@ VSOutputTxNoFog VSHWBasicTxNoFog(VSInputTx vin, VSHWInputInstance vhwin)
 {
     VSOutputTxNoFog vout;
     
-    CommonVSOutput cout = ComputeCommonVSOutput(vin.Position + vhwin.Position);
+    ApplyPositionOffset(vin.Position, vhwin.Position);
+    CommonVSOutput cout = ComputeCommonVSOutput(vin.Position);
     SetCommonVSOutputParamsNoFog;
     
     vout.TexCoord = vin.TexCoord;
@@ -232,7 +238,8 @@ VSOutputTx VSHWBasicTxVc(VSInputTxVc vin, VSHWInputInstance vhwin)
 {
     VSOutputTx vout;
     
-    CommonVSOutput cout = ComputeCommonVSOutput(vin.Position + vhwin.Position);
+    ApplyPositionOffset(vin.Position, vhwin.Position);
+    CommonVSOutput cout = ComputeCommonVSOutput(vin.Position);
     SetCommonVSOutputParams;
     
     vout.TexCoord = vin.TexCoord;
@@ -262,7 +269,8 @@ VSOutputTxNoFog VSHWBasicTxVcNoFog(VSInputTxVc vin, VSHWInputInstance vhwin)
 {
     VSOutputTxNoFog vout;
     
-    CommonVSOutput cout = ComputeCommonVSOutput(vin.Position + vhwin.Position);
+    ApplyPositionOffset(vin.Position, vhwin.Position);
+    CommonVSOutput cout = ComputeCommonVSOutput(vin.Position);
     SetCommonVSOutputParamsNoFog;
     
     vout.TexCoord = vin.TexCoord;
@@ -289,7 +297,8 @@ VSOutput VSHWBasicVertexLighting(VSInputNm vin, VSHWInputInstance vhwin)
 {
     VSOutput vout;
     
-    CommonVSOutput cout = ComputeCommonVSOutputWithLighting(vin.Position + vhwin.Position, vin.Normal, 3);
+    ApplyPositionOffset(vin.Position, vhwin.Position);
+    CommonVSOutput cout = ComputeCommonVSOutputWithLighting(vin.Position, vin.Normal, 3);
     SetCommonVSOutputParams;
     
     return vout;
@@ -315,7 +324,8 @@ VSOutput VSHWBasicVertexLightingVc(VSInputNmVc vin, VSHWInputInstance vhwin)
 {
     VSOutput vout;
     
-    CommonVSOutput cout = ComputeCommonVSOutputWithLighting(vin.Position + vhwin.Position, vin.Normal, 3);
+    ApplyPositionOffset(vin.Position, vhwin.Position);
+    CommonVSOutput cout = ComputeCommonVSOutputWithLighting(vin.Position, vin.Normal, 3);
     SetCommonVSOutputParams;
     
     vout.Diffuse *= vin.Color;
@@ -343,7 +353,8 @@ VSOutputTx VSHWBasicVertexLightingTx(VSInputNmTx vin, VSHWInputInstance vhwin)
 {
     VSOutputTx vout;
     
-    CommonVSOutput cout = ComputeCommonVSOutputWithLighting(vin.Position + vhwin.Position, vin.Normal, 3);
+    ApplyPositionOffset(vin.Position, vhwin.Position);
+    CommonVSOutput cout = ComputeCommonVSOutputWithLighting(vin.Position, vin.Normal, 3);
     SetCommonVSOutputParams;
     
     vout.TexCoord = vin.TexCoord;
@@ -372,7 +383,8 @@ VSOutputTx VSHWBasicVertexLightingTxVc(VSInputNmTxVc vin, VSHWInputInstance vhwi
 {
     VSOutputTx vout;
     
-    CommonVSOutput cout = ComputeCommonVSOutputWithLighting(vin.Position + vhwin.Position, vin.Normal, 3);
+    ApplyPositionOffset(vin.Position, vhwin.Position);
+    CommonVSOutput cout = ComputeCommonVSOutputWithLighting(vin.Position, vin.Normal, 3);
     SetCommonVSOutputParams;
     
     vout.TexCoord = vin.TexCoord;
@@ -399,7 +411,8 @@ VSOutput VSHWBasicOneLight(VSInputNm vin, VSHWInputInstance vhwin)
 {
     VSOutput vout;
     
-    CommonVSOutput cout = ComputeCommonVSOutputWithLighting(vin.Position + vhwin.Position, vin.Normal, 1);
+    ApplyPositionOffset(vin.Position, vhwin.Position);
+    CommonVSOutput cout = ComputeCommonVSOutputWithLighting(vin.Position, vin.Normal, 1);
     SetCommonVSOutputParams;
     
     return vout;
@@ -425,7 +438,8 @@ VSOutput VSHWBasicOneLightVc(VSInputNmVc vin, VSHWInputInstance vhwin)
 {
     VSOutput vout;
     
-    CommonVSOutput cout = ComputeCommonVSOutputWithLighting(vin.Position + vhwin.Position, vin.Normal, 1);
+    ApplyPositionOffset(vin.Position, vhwin.Position);
+    CommonVSOutput cout = ComputeCommonVSOutputWithLighting(vin.Position, vin.Normal, 1);
     SetCommonVSOutputParams;
     
     vout.Diffuse *= vin.Color;
@@ -453,7 +467,8 @@ VSOutputTx VSHWBasicOneLightTx(VSInputNmTx vin, VSHWInputInstance vhwin)
 {
     VSOutputTx vout;
     
-    CommonVSOutput cout = ComputeCommonVSOutputWithLighting(vin.Position + vhwin.Position, vin.Normal, 1);
+    ApplyPositionOffset(vin.Position, vhwin.Position);
+    CommonVSOutput cout = ComputeCommonVSOutputWithLighting(vin.Position, vin.Normal, 1);
     SetCommonVSOutputParams;
     
     vout.TexCoord = vin.TexCoord;
@@ -482,7 +497,8 @@ VSOutputTx VSHWBasicOneLightTxVc(VSInputNmTxVc vin, VSHWInputInstance vhwin)
 {
     VSOutputTx vout;
     
-    CommonVSOutput cout = ComputeCommonVSOutputWithLighting(vin.Position + vhwin.Position, vin.Normal, 1);
+    ApplyPositionOffset(vin.Position, vhwin.Position);
+    CommonVSOutput cout = ComputeCommonVSOutputWithLighting(vin.Position, vin.Normal, 1);
     SetCommonVSOutputParams;
     
     vout.TexCoord = vin.TexCoord;
@@ -511,7 +527,8 @@ VSOutputPixelLighting VSHWBasicPixelLighting(VSInputNm vin, VSHWInputInstance vh
 {
     VSOutputPixelLighting vout;
     
-    CommonVSOutputPixelLighting cout = ComputeCommonVSOutputPixelLighting(vin.Position + vhwin.Position, vin.Normal);
+    ApplyPositionOffset(vin.Position, vhwin.Position);
+    CommonVSOutputPixelLighting cout = ComputeCommonVSOutputPixelLighting(vin.Position, vin.Normal);
     SetCommonVSOutputParamsPixelLighting;
 
     vout.Diffuse = float4(1, 1, 1, DiffuseColor.a);
@@ -540,7 +557,8 @@ VSOutputPixelLighting VSHWBasicPixelLightingVc(VSInputNmVc vin, VSHWInputInstanc
 {
     VSOutputPixelLighting vout;
     
-    CommonVSOutputPixelLighting cout = ComputeCommonVSOutputPixelLighting(vin.Position + vhwin.Position, vin.Normal);
+    ApplyPositionOffset(vin.Position, vhwin.Position);
+    CommonVSOutputPixelLighting cout = ComputeCommonVSOutputPixelLighting(vin.Position, vin.Normal);
     SetCommonVSOutputParamsPixelLighting;
     
     vout.Diffuse.rgb = vin.Color.rgb;
@@ -570,7 +588,8 @@ VSOutputPixelLightingTx VSHWBasicPixelLightingTx(VSInputNmTx vin, VSHWInputInsta
 {
     VSOutputPixelLightingTx vout;
     
-    CommonVSOutputPixelLighting cout = ComputeCommonVSOutputPixelLighting(vin.Position + vhwin.Position, vin.Normal);
+    ApplyPositionOffset(vin.Position, vhwin.Position);
+    CommonVSOutputPixelLighting cout = ComputeCommonVSOutputPixelLighting(vin.Position, vin.Normal);
     SetCommonVSOutputParamsPixelLighting;
     
     vout.Diffuse = float4(1, 1, 1, DiffuseColor.a);
@@ -601,7 +620,8 @@ VSOutputPixelLightingTx VSHWBasicPixelLightingTxVc(VSInputNmTxVc vin, VSHWInputI
 {
     VSOutputPixelLightingTx vout;
     
-    CommonVSOutputPixelLighting cout = ComputeCommonVSOutputPixelLighting(vin.Position + vhwin.Position, vin.Normal);
+    ApplyPositionOffset(vin.Position, vhwin.Position);
+    CommonVSOutputPixelLighting cout = ComputeCommonVSOutputPixelLighting(vin.Position, vin.Normal);
     SetCommonVSOutputParamsPixelLighting;
     
     vout.Diffuse.rgb = vin.Color.rgb;
