@@ -44,7 +44,7 @@
                         End If
                     Next
                 Next
-                Core.GraphicsDevice.SamplerStates(0) = Core.ModelSampler
+                Core.GraphicsDevice.SamplerStates(0) = SamplerState.PointWrap
                 _model.Draw(Me.World, Screen.Camera.View, Screen.Camera.Projection)
                 Core.GraphicsDevice.SamplerStates(0) = Core.Sampler
             End If

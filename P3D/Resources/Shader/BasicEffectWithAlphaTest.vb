@@ -289,9 +289,24 @@ Public NotInheritable Class BasicEffectWithAlphaTest
     Public Sub New(ByVal cloneSource As BasicEffect)
         MyBase.New(cloneSource.GraphicsDevice, File.ReadAllBytes(Path.Combine(Path.GetDirectoryName(AppContext.BaseDirectory), "Content", "Effects", "BasicEffectWithAlphaTest.mgfxdx")))
         CacheEffectParameters(cloneSource)
-        DirectionalLight0 = cloneSource.DirectionalLight0
-        DirectionalLight1 = cloneSource.DirectionalLight1
-        DirectionalLight2 = cloneSource.DirectionalLight2
+        With DirectionalLight0
+            .Direction = cloneSource.DirectionalLight0.Direction
+            .Enabled = cloneSource.DirectionalLight0.Enabled
+            .DiffuseColor = cloneSource.DirectionalLight0.DiffuseColor
+            .SpecularColor = cloneSource.DirectionalLight0.SpecularColor
+        End With
+        With DirectionalLight1
+            .Direction = cloneSource.DirectionalLight1.Direction
+            .Enabled = cloneSource.DirectionalLight1.Enabled
+            .DiffuseColor = cloneSource.DirectionalLight1.DiffuseColor
+            .SpecularColor = cloneSource.DirectionalLight1.SpecularColor
+        End With
+        With DirectionalLight2
+            .Direction = cloneSource.DirectionalLight2.Direction
+            .Enabled = cloneSource.DirectionalLight2.Enabled
+            .DiffuseColor = cloneSource.DirectionalLight2.DiffuseColor
+            .SpecularColor = cloneSource.DirectionalLight2.SpecularColor
+        End With
         World = cloneSource.World
         View = cloneSource.View
         Projection = cloneSource.Projection

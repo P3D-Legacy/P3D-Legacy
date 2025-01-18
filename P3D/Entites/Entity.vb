@@ -551,7 +551,7 @@
                         End If
                     Next
                 Next
-                Core.GraphicsDevice.SamplerStates(0) = Core.ModelSampler
+                Core.GraphicsDevice.SamplerStates(0) = SamplerState.PointWrap
                 Model.Draw(Me.World, Screen.Camera.View, Screen.Camera.Projection)
                 Core.GraphicsDevice.SamplerStates(0) = Core.Sampler
                 If drawViewBox = True Then

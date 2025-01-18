@@ -47,8 +47,6 @@
 
     Public Sampler As SamplerState
 
-    Public ModelSampler As SamplerState
-
     Public BackgroundColor As Color = New Color(173, 216, 255)
 
     Public OffsetMaps As New Dictionary(Of String, List(Of List(Of Entity)))
@@ -91,11 +89,6 @@
         Sampler.Filter = TextureFilter.Point
         Sampler.AddressU = TextureAddressMode.Clamp
         Sampler.AddressV = TextureAddressMode.Clamp
-
-        ModelSampler = New SamplerState()
-        ModelSampler.Filter = TextureFilter.Point
-        ModelSampler.AddressU = TextureAddressMode.Wrap
-        ModelSampler.AddressV = TextureAddressMode.Wrap
 
         ServersManager = New Servers.ServersManager()
 
