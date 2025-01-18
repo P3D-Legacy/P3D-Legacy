@@ -2804,126 +2804,12 @@ Public Class Pokemon
     ''' Returns properties to display models on a 2D GUI. Data structure: scale sng,posX sng,posY sng,posZ sng,roll sng
     ''' </summary>
     Public Function GetModelProperties() As Tuple(Of Single, Single, Single, Single, Single)
-        Dim scale As Single = CSng(0.6 / Me.PokedexEntry.Height)
+        Dim scale As Single = CSng(0.6)
         Dim x As Single = 0.0F
         Dim y As Single = 0.0F
         Dim z As Single = 0.0F
 
         Dim roll As Single = 0.3F
-
-        Select Case Me.Number
-            Case 6
-                scale = 0.55
-            Case 9
-                scale = 0.7F
-            Case 15
-                z = 4.0F
-            Case 19
-                scale = 1.1
-            Case 20
-                scale = 1.3
-            Case 23
-                scale = 1
-            Case 24
-                scale = 0.5
-            Case 41
-                z = 5.0F
-            Case 55
-                scale = 0.7
-            Case 63
-                z = -4.0F
-            Case 74
-                scale = 0.75
-            Case 81
-                z = 6.0F
-            Case 82
-                scale = 0.9
-                z = 6.0F
-            Case 95
-                x = -6
-                scale = 0.3
-            Case 98
-                scale = 1
-            Case 102
-                scale = 0.9
-            Case 103
-                scale = 0.45
-            Case 115
-                scale = 0.45
-            Case 129
-                z = -4.0F
-            Case 130
-                scale = 0.25
-            Case 131
-                z = -8
-            Case 143
-                scale = 0.5
-            Case 144
-                z = -9
-                scale = 0.35
-            Case 147
-                scale = 0.7
-            Case 148
-                x = 5.0F
-                scale = 0.4
-            Case 149, 150
-                scale = 0.42F
-            Case 151
-                z = 5
-            Case 157
-                scale = 0.6
-            Case 160
-                scale = 0.5
-            Case 162
-                scale = 0.8
-            Case 164
-                z = -3
-            Case 168
-                scale = 0.8
-            Case 180
-                scale = 0.5
-            Case 181
-                scale = 0.75
-            Case 184, 185
-                scale = 0.8
-            Case 187
-                scale = 0.65
-            Case 196, 197
-                scale = 0.900000036F
-            Case 206
-                scale = 0.9F
-            Case 208
-                scale = 0.4
-            Case 211
-                z = 5
-            Case 212
-                scale = 0.7
-            Case 214
-                scale = 1.2
-            Case 217
-                scale = 0.55
-            Case 223
-                z = -5
-            Case 229
-                scale = 0.8
-            Case 230
-                scale = 0.6
-                z = 3
-            Case 235
-                scale = 0.7
-            Case 241
-                scale = 0.7
-            Case 247
-                scale = 0.7
-            Case 248
-                scale = 0.6
-            Case 249
-                scale = 0.3
-            Case 250
-                scale = 0.2
-            Case 336
-                scale = 0.8
-        End Select
 
         Return New Tuple(Of Single, Single, Single, Single, Single)(scale, x, y, z, roll)
     End Function
