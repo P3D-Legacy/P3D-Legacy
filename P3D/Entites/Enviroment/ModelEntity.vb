@@ -36,7 +36,17 @@
     Public Overrides Sub Render()
         If Visible = True Then
             If Not _model Is Nothing Then
+                For Each modelMesh As ModelMesh In Model.Meshes
+                    For Each modelMeshPart As ModelMeshPart In modelMesh.MeshParts
+                        If modelMeshPart.Effect.GetType() = GetType(BasicEffect)
+                            Dim effect = New BasicEffectWithAlphaTest(CType(modelMeshPart.Effect, BasicEffect))
+                            modelMeshPart.Effect = effect
+                        End If
+                    Next
+                Next
+                Core.GraphicsDevice.SamplerStates(0) = SamplerState.PointWrap
                 _model.Draw(Me.World, Screen.Camera.View, Screen.Camera.Projection)
+                Core.GraphicsDevice.SamplerStates(0) = Core.Sampler
             End If
 
             If drawViewBox = True Then

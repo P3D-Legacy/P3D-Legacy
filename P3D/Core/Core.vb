@@ -45,7 +45,7 @@
 
     Public GameOptions As GameOptions
 
-    Public sampler As SamplerState
+    Public Sampler As SamplerState
 
     Public BackgroundColor As Color = New Color(173, 216, 255)
 
@@ -85,14 +85,14 @@
 
         GameMessage = New GameMessage(Nothing, New Size(0, 0), New Vector2(0, 0))
 
-        sampler = New SamplerState()
-        sampler.Filter = TextureFilter.Point
-        sampler.AddressU = TextureAddressMode.Clamp
-        sampler.AddressV = TextureAddressMode.Clamp
+        Sampler = New SamplerState()
+        Sampler.Filter = TextureFilter.Point
+        Sampler.AddressU = TextureAddressMode.Clamp
+        Sampler.AddressV = TextureAddressMode.Clamp
 
         ServersManager = New Servers.ServersManager()
 
-        GraphicsDevice.SamplerStates(0) = sampler
+        GraphicsDevice.SamplerStates(0) = Sampler
         KeyboardInput = New KeyboardInput()
 
         If CommandLineArgHandler.NoSplash = True Then
@@ -193,7 +193,7 @@
             FontRenderer.Begin()
             GraphicsDevice.DepthStencilState = DepthStencilState.Default
 
-            GraphicsDevice.SamplerStates(0) = sampler
+            GraphicsDevice.SamplerStates(0) = Sampler
             GraphicsDevice.SamplerStates(0) = SamplerState.PointClamp
             CurrentScreen.Draw()
 

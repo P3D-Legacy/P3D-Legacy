@@ -33,6 +33,12 @@ struct CommonVSOutput
 };
 
 
+void ApplyPositionOffset(inout float4 position, float3 offset)
+{
+    position.xyz += offset.xyz;
+}
+
+
 CommonVSOutput ComputeCommonVSOutput(float4 position)
 {
     CommonVSOutput vout;
