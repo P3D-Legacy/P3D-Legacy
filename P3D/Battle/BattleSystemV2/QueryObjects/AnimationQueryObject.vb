@@ -109,12 +109,18 @@ Namespace BattleSystem
 						Position.X *= -1
 					End If
 					NewPosition = CurrentEntity.Position + Position
+					If CurrentEntity.Model IsNot Nothing Then
+						NewPosition.Y += 0.5F
+					End If
 				Else
 					NewPosition = Position
 				End If
 			Else
 				If CurrentEntity IsNot Nothing Then
 					NewPosition = CurrentEntity.Position
+					If CurrentEntity.Model IsNot Nothing Then
+						NewPosition.Y += 0.5F
+					End If
 				Else
 					NewPosition = New Vector3(0, 0, 0)
 				End If
@@ -183,7 +189,6 @@ Namespace BattleSystem
 			Else
 				Destination = CurrentEntity.Position + New Vector3(DestinationX, DestinationY, DestinationZ)
 			End If
-
 
 			Dim baEntityMove As BAEntityMove = New BAEntityMove(MoveEntity, RemoveEntityAfter, Destination, Speed, SpinX, SpinZ, startDelay, endDelay, SpinXSpeed, SpinZSpeed, MovementCurve, MoveYSpeed)
 			AnimationSequence.Add(baEntityMove)

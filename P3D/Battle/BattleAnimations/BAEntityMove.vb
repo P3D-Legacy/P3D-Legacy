@@ -93,11 +93,6 @@
 
 	Private Sub Move()
 
-		Dim DestinationOffset As Vector3 = New Vector3(0)
-		If TargetEntity.Model IsNot Nothing Then
-			DestinationOffset = New Vector3(0, -0.5, 0)
-		End If
-
 		Select Case MovementCurve
 			Case Curves.EaseIn
 				If EasedIn = False Then
@@ -195,17 +190,17 @@
 		End If
 
 		If MoveDistance.Y > 0.05F Then
-			If StartPosition.Y < Me.Destination.Y + DestinationOffset.Y Then
+			If StartPosition.Y < Me.Destination.Y Then
 				TargetEntity.Position.Y += Me.MoveYSpeed
 
-				If TargetEntity.Position.Y >= Me.Destination.Y + DestinationOffset.Y - 0.05 Then
-					TargetEntity.Position.Y = Me.Destination.Y + DestinationOffset.Y
+				If TargetEntity.Position.Y >= Me.Destination.Y - 0.05 Then
+					TargetEntity.Position.Y = Me.Destination.Y
 				End If
-			ElseIf StartPosition.Y > Me.Destination.Y + DestinationOffset.Y Then
+			ElseIf StartPosition.Y > Me.Destination.Y Then
 				TargetEntity.Position.Y -= Me.MoveYSpeed
 
-				If TargetEntity.Position.Y <= Me.Destination.Y + DestinationOffset.Y + 0.05 Then
-					TargetEntity.Position.Y = Me.Destination.Y + DestinationOffset.Y
+				If TargetEntity.Position.Y <= Me.Destination.Y + 0.05 Then
+					TargetEntity.Position.Y = Me.Destination.Y
 				End If
 			End If
 			MoveDistance.Y -= Me.MoveYSpeed
