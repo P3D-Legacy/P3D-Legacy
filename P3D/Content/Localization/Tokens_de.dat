@@ -1,86 +1,86 @@
 language_name,Deutsch
 =====
 Global:
-global_please_wait,Please wait
-global_loading,Loading
-global_game,Game
-global_login,Log in
-global_male,Male
-global_female,Female
-global_genderless,Genderless
-global_yes,Yes
-global_no,No
-global_accept,Accept
-global_cancel,Cancel
-global_gamemode,GameMode
-global_clear,Clear
-global_save,Save
-global_apply,Apply
-global_close,Close
+global_please_wait,Bitte warten
+global_loading,Lädt
+global_game,Spiel
+global_login,Login
+global_male,Männlich
+global_female,Weiblich
+global_genderless,Geschlechtslos
+global_yes,Ja
+global_no,Nein
+global_accept,Akzeptieren
+global_cancel,Abbrechen
+global_gamemode,Spiel-Modus
+global_clear,Löschen
+global_save,Speichern
+global_apply,Anwenden
+global_close,Schließen
 global_back,Zurück
-global_on,On
-global_off,Off
-global_enabled,Enabled
-global_disabled,Disabled
-global_enable,Enable
-global_disable,Disable
-global_player_name,Player name
+global_on,Ein
+global_off,Aus
+global_enabled,Aktiviert
+global_disabled,Deaktiviert
+global_enable,Aktivieren
+global_disable,Deaktivieren
+global_player_name,Spielername
 global_badges,Orden
 global_play_time,Spielzeit
 global_location,Ort
-global_money,Money
-global_points,Points
+global_money,Geld
+global_points,Punkte
 global_ot,OT
-global_time,Time
+global_time,Zeit
 global_name,Name
-global_order,Order
+global_order,Reihenfolge
 global_filter,Filter
 global_reset,Reset
 global_pokemon_type_normal,Normal
-global_pokemon_type_fire,Fire
-global_pokemon_type_flying,Flying
-global_pokemon_type_fighting,Fighting
-global_pokemon_type_water,Water
-global_pokemon_type_grass,Grass
-global_pokemon_type_poison,Poison
-global_pokemon_type_ground,Ground
-global_pokemon_type_electric,Electric
-global_pokemon_type_psychic,Psychic
-global_pokemon_type_rock,Rock
-global_pokemon_type_ice,Ice
-global_pokemon_type_bug,Bug
-global_pokemon_type_dragon,Dragon
-global_pokemon_type_ghost,Ghost
-global_pokemon_type_dark,Dark
-global_pokemon_type_steel,Steel
-global_pokemon_type_fairy,Fairy
-global_pokemon_type_blank,Blank
-global_true,True
-global_false,False
-global_select,Select
-global_summary,Summary
-global_item,Item
-global_use,Use
-global_give,Give
-global_take,Take
-global_toss,Toss
-global_switch,Switch
-global_pokemon_move_fly,Fly
-global_pokemon_move_rocksmash,Rock Smash
-global_pokemon_move_ride,Ride
-global_pokemon_move_flash,Flash
-global_pokemon_move_cut,Cut
+global_pokemon_type_fire,Feuer
+global_pokemon_type_flying,Flug
+global_pokemon_type_fighting,Kampf
+global_pokemon_type_water,Wasser
+global_pokemon_type_grass,Pflanze
+global_pokemon_type_poison,Gift
+global_pokemon_type_ground,Boden
+global_pokemon_type_electric,Elektro
+global_pokemon_type_psychic,Psycho
+global_pokemon_type_rock,Gestein
+global_pokemon_type_ice,Eis
+global_pokemon_type_bug,Käfer
+global_pokemon_type_dragon,Drache
+global_pokemon_type_ghost,Geist
+global_pokemon_type_dark,Unlicht
+global_pokemon_type_steel,Stahl
+global_pokemon_type_fairy,Fee
+global_pokemon_type_blank,Blanko
+global_true,Wahr
+global_false,Falsch
+global_select,Wählen
+global_summary,Übersicht
+global_item,Artikel
+global_use,Benutzen
+global_give,Geben
+global_take,Nehmen
+global_toss,Werfen
+global_switch,Tauschen
+global_pokemon_move_fly,Fliegen
+global_pokemon_move_rocksmash,Zertrümmerer
+global_pokemon_move_ride,Reiten
+global_pokemon_move_flash,Blitz
+global_pokemon_move_cut,Zerschneider
 global_pokemon_move_teleport,Teleport
-global_pokemon_move_dig,Dig
-global_used,Used
+global_pokemon_move_dig,Schaufler
+global_used,Benutzt
 ---
 General:
 HP,KP
 PP,AP
-Lv.,Lv.
+Lv.,Nv.
 No.,No.
-Level,Level
-MaxHP,Max HP
+Level,Niveau
+MaxHP,Max KP
 Attack,Angriff
 Defense,Verteidigung
 Special_Attack,Spezial Ang.
@@ -2371,11 +2371,11 @@ move_name_11,Vice Grip
 move_name_12,Guillotine
 move_name_13,Razor Wind
 move_name_14,Swords Dance
-move_name_15,Cut
+move_name_15,Zerschneider
 move_name_16,Gust
 move_name_17,Wing Attack
 move_name_18,Whirlwind
-move_name_19,Fly
+move_name_19,Fliegen
 move_name_20,Bind
 move_name_21,Slam
 move_name_22,Vine Whip
@@ -2447,7 +2447,7 @@ move_name_87,Thunder
 move_name_88,Rock Throw
 move_name_89,Earthquake
 move_name_90,Fissure
-move_name_91,Dig
+move_name_91,Schaufler
 move_name_92,Toxic
 move_name_93,Confusion
 move_name_94,Psychic
@@ -2504,7 +2504,7 @@ move_name_144,Transform
 move_name_145,Bubble
 move_name_146,Dizzy Punch
 move_name_147,Spore
-move_name_148,Flash
+move_name_148,Blitz
 move_name_149,Psywave
 move_name_150,Splash
 move_name_151,Acid Armor
@@ -2605,7 +2605,7 @@ move_name_245,Extreme Speed
 move_name_246,Ancient Power
 move_name_247,Shadow Ball
 move_name_248,Future Sight
-move_name_249,Rock Smash
+move_name_249,Zertrümmerer
 move_name_250,Whirlpool
 move_name_251,Beat Up
 move_name_252,Fake Out
