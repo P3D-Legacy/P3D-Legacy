@@ -194,7 +194,7 @@ Public Class NotificationPopup
         Canvas.DrawImageBorder(_background, CInt(_scale), New Rectangle(BackGroundOffsetX, CInt(Me._positionY), CInt(_size.Width * (FrameSizeBack / 3) * _scale), CInt(CInt(_size.Height + BackGroundScaleY) * (FrameSizeBack / 3) * _scale)))
 
         'Draw the icon.
-        Core.SpriteBatch.Draw(_icon, New Rectangle(CInt(BackGroundOffsetX + ((FrameSizeBack / 3 + 3) * _scale) - _icon.Width / 3), CInt(Me._positionY + ((FrameSizeBack / 3 * _size.Height / 2) - FrameSizeBack / 3 * 0.5) * _scale - _icon.Width / 3), CInt(_icon.Width * _scale), CInt(_icon.Height * _scale)), Color.White)
+        Core.SpriteBatch.Draw(_icon, New Rectangle(CInt(BackGroundOffsetX + ((FrameSizeBack / 3 + 3) * _scale) - (_icon.Width / 3 * _scale) + 8 * _scale), CInt(Me._positionY + CInt(CInt(_size.Height + BackGroundScaleY) * (FrameSizeBack / 3) * _scale * 0.5) - (_icon.Height / 2 * _scale)), CInt(_icon.Width * _scale), CInt(_icon.Height * _scale)), Color.White)
 
         Dim TextOffset = CInt(BackGroundOffsetX + FrameSizeBack / 3 * _scale * 4)
         If TextBody <> "" Then
