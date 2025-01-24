@@ -59,7 +59,14 @@ Public Class NotificationPopup
         FrameSizeBack = CInt(BackTexture.Width / 3)
         _background = TextureManager.GetTexture(BackTexture, New Rectangle(CInt(_backgroundIndex.X * FrameSizeBack), CInt(_backgroundIndex.Y * FrameSizeBack), FrameSizeBack, FrameSizeBack))
 
-        _positionY = CInt(0 - _size.Height * (FrameSizeBack / 3) * _scale - (FrameSizeBack / 3 * _scale) - 5)
+        Dim BackGroundScaleY As Integer = 1
+        If SpriteBatch.InterfaceScale > 1 Then
+            BackGroundScaleY = 2
+        ElseIf SpriteBatch.InterfaceScale < 1 Then
+            BackGroundScaleY = -2
+        End If
+
+        _positionY = CInt(0 - CInt(CInt(_size.Height + BackGroundScaleY) * (FrameSizeBack / 3) * _scale) - (FrameSizeBack / 3 * _scale) - 5)
 
         If IconIndex <> -1 Then
             _iconIndex = New Vector2(IconIndex, 0)
@@ -104,9 +111,16 @@ Public Class NotificationPopup
             _started = True
         End If
 
+        Dim BackGroundScaleY As Integer = 1
+        If SpriteBatch.InterfaceScale > 1 Then
+            BackGroundScaleY = 2
+        ElseIf SpriteBatch.InterfaceScale < 1 Then
+            BackGroundScaleY = -2
+        End If
+
         If _waitForInput = True Then
             If Me._positionY < 5.0F Then
-                Me._positionY += CInt(0.7 * (FrameSizeBack / 3 * _scale) / _size.Height)
+                Me._positionY += CInt((0.7 * (FrameSizeBack / 3) / (_size.Height + BackGroundScaleY)) * SpriteBatch.InterfaceScale)
             Else
                 If _soundEffect IsNot "" Then
                     SoundManager.PlaySound("Notifications\" & _soundEffect)
@@ -116,7 +130,7 @@ Public Class NotificationPopup
         Else
             If Date.Now < _delayDate Then
                 If Me._positionY < 5.0F Then
-                    Me._positionY += CInt(0.7 * (FrameSizeBack / 3 * _scale) / _size.Height)
+                    Me._positionY += CInt((0.7 * (FrameSizeBack / 3) / (_size.Height + BackGroundScaleY)) * SpriteBatch.InterfaceScale)
                 Else
                     If _soundEffect IsNot "" Then
                         SoundManager.PlaySound("Notifications\" & _soundEffect)
@@ -124,10 +138,10 @@ Public Class NotificationPopup
                     End If
                 End If
             Else
-                Dim BackY As Integer = CInt(0 - _size.Height * (FrameSizeBack / 3) * _scale - (FrameSizeBack / 3 * _scale) - 5)
+                Dim BackY As Integer = CInt(0 - CInt(CInt(_size.Height + BackGroundScaleY) * (FrameSizeBack / 3) * _scale) - (FrameSizeBack / 3 * _scale) - 5)
                 If Me._interacted = True OrElse _forceAccept = True Then
                     If Me._positionY > BackY Then
-                        Me._positionY -= CInt(1.6 * (FrameSizeBack / 3 * _scale) / _size.Height)
+                        Me._positionY -= CInt((1.6 * (FrameSizeBack / 3) / (_size.Height + BackGroundScaleY)) * SpriteBatch.InterfaceScale)
                         If Me._positionY <= BackY Then
                             Me._positionY = BackY
                             If Me._scriptFile <> "" Then
@@ -138,7 +152,7 @@ Public Class NotificationPopup
                     End If
                 Else
                     If Me._positionY > BackY Then
-                        Me._positionY -= CInt(1.0 * (FrameSizeBack / 3 * _scale) / _size.Height)
+                        Me._positionY -= CInt((1.0 * (FrameSizeBack / 3) / (_size.Height + BackGroundScaleY)) * SpriteBatch.InterfaceScale)
                         If Me._positionY <= BackY Then
                             Me._positionY = BackY
                             Me.IsReady = True
@@ -167,13 +181,20 @@ Public Class NotificationPopup
             _size.Height += 1
         End While
 
-        Dim BackGroundOffsetX As Integer = CInt(Core.windowSize.Width - (_size.Width * (FrameSizeBack / 3) * _scale) - (FrameSizeBack / 3) * 2 - 5)
+        Dim BackGroundOffsetX As Integer = CInt(Core.windowSize.Width - (_size.Width * (FrameSizeBack / 3 * _scale)) - (FrameSizeBack / 3) * _scale - (5 * SpriteBatch.InterfaceScale))
+
+        Dim BackGroundScaleY As Integer = 0
+        If SpriteBatch.InterfaceScale > 1 Then
+            BackGroundScaleY = 2
+        ElseIf SpriteBatch.InterfaceScale < 1 Then
+            BackGroundScaleY = -2
+        End If
 
         'Draw the frame.
-        Canvas.DrawImageBorder(_background, CInt(_scale), New Rectangle(BackGroundOffsetX, CInt(Me._positionY), CInt(_size.Width * (FrameSizeBack / 3) * _scale), CInt(_size.Height * (FrameSizeBack / 3) * _scale)))
+        Canvas.DrawImageBorder(_background, CInt(_scale), New Rectangle(BackGroundOffsetX, CInt(Me._positionY), CInt(_size.Width * (FrameSizeBack / 3) * _scale), CInt(CInt(_size.Height + BackGroundScaleY) * (FrameSizeBack / 3) * _scale)))
 
         'Draw the icon.
-        Core.SpriteBatch.DrawInterface(_icon, New Rectangle(CInt(BackGroundOffsetX + (FrameSizeBack / 3 + 3) * _scale - _icon.Width / 3), CInt(Me._positionY + ((FrameSizeBack / 3 * _size.Height / 2) - FrameSizeBack / 3 * 0.5) * _scale - _icon.Width / 3), CInt(_icon.Width * _scale), CInt(_icon.Height * _scale)), Color.White)
+        Core.SpriteBatch.Draw(_icon, New Rectangle(CInt(BackGroundOffsetX + ((FrameSizeBack / 3 + 3) * _scale) - _icon.Width / 3), CInt(Me._positionY + ((FrameSizeBack / 3 * _size.Height / 2) - FrameSizeBack / 3 * 0.5) * _scale - _icon.Width / 3), CInt(_icon.Width * _scale), CInt(_icon.Height * _scale)), Color.White)
 
         Dim TextOffset = CInt(BackGroundOffsetX + FrameSizeBack / 3 * _scale * 4)
         If TextBody <> "" Then
@@ -194,10 +215,10 @@ Public Class NotificationPopup
         If Me._scriptFile <> "" OrElse _waitForInput = True Then
             InteractText = "[" & Localization.GetString("game_notification_accept") & "]"
         End If
-        Dim InteractOffset As Vector2 = New Vector2(CInt(Core.windowSize.Width - FrameSizeBack / 3 * _scale - FontManager.InGameFont.MeasureString(InteractText).X * _scale / 2), CInt(Me._positionY + _size.Height * (FrameSizeBack / 3) * _scale + 5))
+        Dim InteractOffset As Vector2 = New Vector2(CInt(BackGroundOffsetX + (_size.Width * (FrameSizeBack / 3 * _scale)) - FontManager.InGameFont.MeasureString(InteractText).X * _scale / 2), CInt(Me._positionY + ((CInt(_size.Height + BackGroundScaleY) * (FrameSizeBack / 3 * _scale)) + (5 * _scale))))
 
-        Core.SpriteBatch.DrawInterface(_background, New Rectangle(CInt(InteractOffset.X), CInt(InteractOffset.Y), CInt(FontManager.InGameFont.MeasureString(InteractText).X * _scale / 2), CInt(FontManager.InGameFont.MeasureString(InteractText).Y * _scale / 2)), New Rectangle(CInt(FrameSizeBack / 3), CInt(FrameSizeBack / 3), CInt(FrameSizeBack / 3), CInt(FrameSizeBack / 3)), Color.White)
-        Core.SpriteBatch.DrawString(FontManager.InGameFont, InteractText, New Vector2(CInt(InteractOffset.X), CInt(InteractOffset.Y)), Color.Black)
+        Core.SpriteBatch.Draw(_background, New Rectangle(CInt(InteractOffset.X), CInt(InteractOffset.Y), CInt(FontManager.InGameFont.MeasureString(InteractText).X * _scale / 2), CInt(FontManager.InGameFont.MeasureString(InteractText).Y * _scale / 2)), New Rectangle(CInt(FrameSizeBack / 3), CInt(FrameSizeBack / 3), CInt(FrameSizeBack / 3), CInt(FrameSizeBack / 3)), Color.White)
+        Core.SpriteBatch.DrawString(FontManager.InGameFont, InteractText, New Vector2(CInt(InteractOffset.X), CInt(InteractOffset.Y)), Color.Black, 0.0F, Vector2.Zero, CSng(_scale / 2), SpriteEffects.None, 0.0F)
     End Sub
 
 End Class
