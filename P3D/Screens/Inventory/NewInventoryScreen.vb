@@ -1000,9 +1000,18 @@ Public Class NewInventoryScreen
                     cItem.Use()
                     LoadItems()
                     If Me.PreScreen.Identification = Screen.Identifications.BattleScreen Then
-                        Core.Player.UsedItemsToCheckScriptDelayFor.Add(_items(ItemIndex + PageIndex * 10).ItemID)
+                        If cItem.IsGameModeItem = True Then
+                            Core.Player.UsedItemsToCheckScriptDelayFor.Add(cItem.gmID)
+                        Else
+                            Core.Player.UsedItemsToCheckScriptDelayFor.Add(cItem.ID.ToString)
+                        End If
                     Else
-                        Core.Player.CheckItemCountScriptDelay(_items(ItemIndex + PageIndex * 10).ItemID)
+                        If cItem.IsGameModeItem = True Then
+                            Core.Player.CheckItemCountScriptDelay(cItem.gmID)
+                        Else
+                            Core.Player.CheckItemCountScriptDelay(cItem.ID.ToString)
+                        End If
+
                     End If
 
                 Case INFO_ITEM_OPTION_GIVE
