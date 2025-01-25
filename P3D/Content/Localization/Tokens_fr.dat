@@ -497,8 +497,8 @@ battle_switch_already_in_battle,est déjà en combat!
 battle_switch_fainted,est KO!
 battle_switch_egg,Impossible d'envoyer l'œuf !
 battle_cannot_switch,Impossible de changer.
-battle_cannot_run,Failed to run away.
-battle_cannot_run_ability,Failed to run away because of~
+battle_cannot_run,N'a pas réussi à s'enfuir.
+battle_cannot_run_ability,N'a pas réussi a s'enfuir à cause de~
 ---
 Badges:
 badge_1,Roche
