@@ -256,33 +256,50 @@ Public Class GameModeItem
             End If
 
             If gmTeachMove IsNot Nothing Then
-                SoundManager.PlaySound("PC\LogOn", False)
-                Dim selScreen = New PartyScreen(Core.CurrentScreen, Me, AddressOf Me.UseOnPokemon, "Use " & Me.Name, True) With {.Mode = Screens.UI.ISelectionScreen.ScreenMode.Selection, .CanExit = True}
-                AddHandler selScreen.SelectedObject, AddressOf UseItemhandler
+                If Core.Player.Pokemons.Count > 0 Then
+                    SoundManager.PlaySound("PC\LogOn", False)
+                    Dim selScreen = New PartyScreen(Core.CurrentScreen, Me, AddressOf Me.UseOnPokemon, "Use " & Me.Name, True) With {.Mode = Screens.UI.ISelectionScreen.ScreenMode.Selection, .CanExit = True}
+                    AddHandler selScreen.SelectedObject, AddressOf UseItemhandler
 
-                Core.SetScreen(selScreen)
-                CType(CurrentScreen, PartyScreen).SetupLearnAttack(gmTeachMove, 1, Me)
+                    Core.SetScreen(selScreen)
+                    CType(CurrentScreen, PartyScreen).SetupLearnAttack(gmTeachMove, 1, Me)
+                Else
+                    Screen.TextBox.Show("You don't have any Pokémon.", {}, False, False)
+                End If
             End If
             If gmIsHealingItem = True Then
                 If CBool(GameModeManager.GetGameRuleValue("CanUseHealItems", "1")) = False Then
                     Screen.TextBox.Show("Cannot use heal items.", {}, False, False)
                     Exit Sub
                 End If
-                Dim selScreen = New PartyScreen(Core.CurrentScreen, Me, AddressOf Me.UseOnPokemon, "Use " & Me.Name, True) With {.Mode = Screens.UI.ISelectionScreen.ScreenMode.Selection, .CanExit = True}
-                AddHandler selScreen.SelectedObject, AddressOf UseItemhandler
+                If Core.Player.Pokemons.Count > 0 Then
+                    Dim selScreen = New PartyScreen(Core.CurrentScreen, Me, AddressOf Me.UseOnPokemon, "Use " & Me.Name, True) With {.Mode = Screens.UI.ISelectionScreen.ScreenMode.Selection, .CanExit = True}
+                    AddHandler selScreen.SelectedObject, AddressOf UseItemhandler
 
-                Core.SetScreen(selScreen)
+                    Core.SetScreen(selScreen)
+                Else
+                    Screen.TextBox.Show("You don't have any Pokémon.", {}, False, False)
+                End If
             ElseIf gmCureStatusEffects IsNot Nothing AndAlso gmCureStatusEffects.Count > 0 Then
-                Dim selScreen = New PartyScreen(Core.CurrentScreen, Me, AddressOf Me.UseOnPokemon, "Use " & Me.Name, True) With {.Mode = Screens.UI.ISelectionScreen.ScreenMode.Selection, .CanExit = True}
-                AddHandler selScreen.SelectedObject, AddressOf UseItemhandler
+                If Core.Player.Pokemons.Count > 0 Then
+                    Dim selScreen = New PartyScreen(Core.CurrentScreen, Me, AddressOf Me.UseOnPokemon, "Use " & Me.Name, True) With {.Mode = Screens.UI.ISelectionScreen.ScreenMode.Selection, .CanExit = True}
+                    AddHandler selScreen.SelectedObject, AddressOf UseItemhandler
 
-                Core.SetScreen(selScreen)
+                    Core.SetScreen(selScreen)
+                Else
+                    Screen.TextBox.Show("You don't have any Pokémon.", {}, False, False)
+                End If
             ElseIf gmEvolutionPokemon IsNot Nothing AndAlso gmEvolutionPokemon.Count > 0 Then
-                Dim selScreen = New PartyScreen(Core.CurrentScreen, Me, AddressOf Me.UseOnPokemon, "Use " & Me.Name, True) With {.Mode = Screens.UI.ISelectionScreen.ScreenMode.Selection, .CanExit = True}
-                AddHandler selScreen.SelectedObject, AddressOf UseItemhandler
+                If Core.Player.Pokemons.Count > 0 Then
+                    Dim selScreen = New PartyScreen(Core.CurrentScreen, Me, AddressOf Me.UseOnPokemon, "Use " & Me.Name, True) With {.Mode = Screens.UI.ISelectionScreen.ScreenMode.Selection, .CanExit = True}
+                    AddHandler selScreen.SelectedObject, AddressOf UseItemhandler
 
-                Core.SetScreen(selScreen)
-                CType(CurrentScreen, PartyScreen).EvolutionItemID = Me.gmID
+                    Core.SetScreen(selScreen)
+                    CType(CurrentScreen, PartyScreen).EvolutionItemID = Me.gmID
+
+                Else
+                    Screen.TextBox.Show("You don't have any Pokémon.", {}, False, False)
+                End If
             End If
         Else
             Dim s As Screen = Core.CurrentScreen
