@@ -643,8 +643,10 @@
             ScaleList = CType(GetTag(Tags, "Scale"), List(Of Single))
             Scale = New Vector3(ScaleList(0), ScaleList(1), ScaleList(2))
         End If
-
-        Dim Collision As Boolean = CBool(GetTag(Tags, "Collision"))
+        Dim Collision As Boolean = True
+        If TagExists(Tags, "Collision") = True Then
+            Collision = CBool(GetTag(Tags, "Collision"))
+        End If
         Dim TextureID As String = CStr(GetTag(Tags, "TextureID"))
         Dim Rotation As Integer = CInt(GetTag(Tags, "Rotation"))
         Dim ActionValue As Integer = CInt(GetTag(Tags, "Action"))
