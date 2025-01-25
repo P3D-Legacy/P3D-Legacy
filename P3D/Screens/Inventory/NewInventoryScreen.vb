@@ -568,7 +568,7 @@ Public Class NewInventoryScreen
                 itemSubTitle = Localization.GetString("inventory_screen_ItemSubtitle_BattleItem", "Battle Item")
         End Select
 
-        infoBatch.DrawString(FontManager.TextFont, itemTitle, New Vector2(80, 20), Color.White, 0F, Vector2.Zero, 2.0F, SpriteEffects.None, 0F)
+        infoBatch.DrawString(FontManager.TextFont, itemTitle.Replace("~", " "), New Vector2(80, 20), Color.White, 0F, Vector2.Zero, 2.0F, SpriteEffects.None, 0F)
         infoBatch.DrawString(FontManager.TextFont, itemSubTitle, New Vector2(80, 46), Color.LightGray, 0F, Vector2.Zero, 2.0f, SpriteEffects.None, 0F)
         infoBatch.DrawString(FontManager.TextFont, itemDescription.CropStringToWidth(FontManager.TextFont, 1.0F, 430), New Vector2(28, 84), Color.LightGray, 0F, Vector2.Zero, 1.0F, SpriteEffects.None, 0F)
 
