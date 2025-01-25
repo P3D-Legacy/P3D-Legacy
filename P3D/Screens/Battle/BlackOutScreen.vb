@@ -63,6 +63,8 @@
                         Dim positionString() As String = Core.Player.LastRestPlacePosition.Split(CChar(","))
                         CType(BattleScreen.SavedOverworld.Camera, OverworldCamera).YawLocked = False
                         Screen.Camera.Yaw = MathHelper.Pi
+                        CType(BattleScreen.SavedOverworld.Camera, OverworldCamera).CameraFocusType = OverworldCamera.CameraFocusTypes.Player
+                        CType(BattleScreen.SavedOverworld.Camera, OverworldCamera).CameraFocusID = -1
                         Screen.Camera.Position = New Vector3(CSng(positionString(0).Replace(".", GameController.DecSeparator)), CSng(positionString(1).Replace(".", GameController.DecSeparator)), CSng(positionString(2).Replace(".", GameController.DecSeparator)))
                         CType(BattleScreen.SavedOverworld.OverworldScreen, OverworldScreen).ActionScript.Scripts.Clear()
 
@@ -79,6 +81,8 @@
                         Dim positionString() As String = Core.Player.LastRestPlacePosition.Split(CChar(","))
                         If PreScreen.Identification = Identifications.BattleScreen Then
                             CType(BattleScreen.SavedOverworld.Camera, OverworldCamera).YawLocked = False
+                            CType(BattleScreen.SavedOverworld.Camera, OverworldCamera).CameraFocusType = OverworldCamera.CameraFocusTypes.Player
+                            CType(BattleScreen.SavedOverworld.Camera, OverworldCamera).CameraFocusID = -1
                         Else
                             CType(Screen.Camera, OverworldCamera).YawLocked = False
                         End If
