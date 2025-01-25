@@ -227,8 +227,8 @@ option_screen_game_difficulty_description,Définit le niveau de difficulté.
 option_screen_game_difficulty_easy,Facile
 option_screen_game_difficulty_hard,Difficile
 option_screen_game_difficulty_superhard,Extreme
-option_screen_game_interfacescale,Interface Scale
-option_screen_game_interfacescale_automatic,Automatic
+option_screen_game_interfacescale,Taille de l'interface
+option_screen_game_interfacescale_automatic,Automatique
 option_screen_game_viewbobbing,View Bobbing
 option_screen_game_viewbobbing_description,Active ou désactive le tremblement de la caméra.
 
@@ -497,6 +497,8 @@ battle_switch_already_in_battle,est déjà en combat!
 battle_switch_fainted,est KO!
 battle_switch_egg,Impossible d'envoyer l'œuf !
 battle_cannot_switch,Impossible de changer.
+battle_cannot_run,Failed to run away.
+battle_cannot_run_ability,Failed to run away because of~
 ---
 Badges:
 badge_1,Roche

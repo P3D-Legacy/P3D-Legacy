@@ -497,6 +497,8 @@ battle_switch_already_in_battle,is already~in battle!
 battle_switch_fainted,is fainted!
 battle_switch_egg,Cannot switch in~the egg!
 battle_cannot_switch,Cannot switch out.
+battle_cannot_run,Failed to run away.
+battle_cannot_run_ability,Failed to run away because of~
 ---
 Badges:
 badge_1,Boulder

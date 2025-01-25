@@ -496,6 +496,8 @@ battle_switch_already_in_battle,is al~aan het vechten!
 battle_switch_fainted,is uitgeschakeld!
 battle_switch_egg,Kan geen ei inzetten!
 battle_cannot_switch,Kan niet wisselen.
+battle_cannot_run,Kon niet wegrennen.
+battle_cannot_run_ability,Kon niet wegrennen vanwege~
 ---
 Badges:
 badge_Boulder,Rots

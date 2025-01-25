@@ -817,10 +817,32 @@
                 Battle.Won = True
                 Battle.Fled = True
             Else
-                BattleScreen.BattleQuery.Clear()
-                BattleScreen.BattleQuery.Add(BattleScreen.FocusBattle())
-                BattleScreen.BattleQuery.Insert(0, New ToggleMenuQueryObject(True))
-                BattleScreen.Battle.InitializeRound(BattleScreen, New Battle.RoundConst With {.StepType = Battle.RoundConst.StepTypes.Text, .Argument = "Failed to run away."})
+                Dim Trapped As Boolean = False
+                Dim p As Pokemon = BattleScreen.OwnPokemon
+                Dim op As Pokemon = BattleScreen.OppPokemon
+
+                If op.Ability.Name.ToLower() = "shadow tag" And p.Ability.Name.ToLower() <> "shadow tag" And op.HP > 0 Then
+                    Trapped = True
+                End If
+
+                If op.Ability.Name.ToLower() = "arena trap" And op.HP > 0 And BattleScreen.FieldEffects.IsGrounded(True, BattleScreen) = True Then
+                    Trapped = True
+                End If
+
+                If op.Ability.Name.ToLower() = "magnet pull" And op.HP > 0 Then
+                    If p.Type1.Type = Element.Types.Steel Or p.Type2.Type = Element.Types.Steel Then
+                        Trapped = True
+                    End If
+                End If
+
+                If Trapped = True Then
+                    Screen.TextBox.Show(Localization.GetString("battle_cannot_run_ability", "Failed to run away because of~") & op.Ability.Name & ".", {}, True, False)
+                Else
+                    BattleScreen.BattleQuery.Clear()
+                    BattleScreen.BattleQuery.Add(BattleScreen.FocusBattle())
+                    BattleScreen.BattleQuery.Insert(0, New ToggleMenuQueryObject(True))
+                    BattleScreen.Battle.InitializeRound(BattleScreen, New Battle.RoundConst With {.StepType = Battle.RoundConst.StepTypes.Text, .Argument = Localization.GetString("battle_cannot_run", "Failed to run away.")})
+                End If
             End If
         End Sub
 

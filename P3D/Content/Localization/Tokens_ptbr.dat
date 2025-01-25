@@ -498,6 +498,8 @@ battle_switch_already_in_battle,ja está~em batalha!
 battle_switch_fainted,Desmaiou!
 battle_switch_egg,Não pode trocar~por Ovo!
 battle_cannot_switch,Não da pra trocar.
+battle_cannot_run,Failed to run away.
+battle_cannot_run_ability,Failed to run away because of~
 ---
 Badges:
 badge_1,Boulder
