@@ -31,7 +31,7 @@ Public Class KeyBindings
     Public Shared EnterKey1 As Keys = Keys.Enter
     Public Shared EnterKey2 As Keys = Keys.Space
     Public Shared BackKey1 As Keys = Keys.E
-    Public Shared BackKey2 As Keys = Keys.E
+    Public Shared BackKey2 As Keys = Keys.Back
     Public Shared EscapeKey As Keys = Keys.Escape
 
     Public Shared Sub LoadKeys()
