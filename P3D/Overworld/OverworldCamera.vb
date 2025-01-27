@@ -709,7 +709,7 @@ Public Class OverworldCamera
             ControllerTurnModifier = 0.25F
         End If
         If YawLocked = False And Turning = False Then
-            If (KeyBoardHandler.KeyDown(KeyBindings.LeftMoveKey) = True Or ControllerHandler.ButtonDown(Buttons.RightThumbstickLeft) = True) And Turning = False Then
+            If (KeyBoardHandler.KeyDown(KeyBindings.LeftMoveKey) = True Or ControllerHandler.ButtonDown(Buttons.RightThumbstickLeft) = True Or ControllerHandler.ButtonDown(Buttons.DPadLeft) = True) And Turning = False Then
                 If _freeCameraMode = True Then
                     Yaw += RotationSpeed * 40.0F * ControllerTurnModifier
 
@@ -728,7 +728,7 @@ Public Class OverworldCamera
             '        pressedDirection = 2
             '    End If
             'End If
-            If (KeyBoardHandler.KeyDown(KeyBindings.RightMoveKey) = True Or ControllerHandler.ButtonDown(Buttons.RightThumbstickRight) = True) And Turning = False Then
+            If (KeyBoardHandler.KeyDown(KeyBindings.RightMoveKey) = True Or ControllerHandler.ButtonDown(Buttons.RightThumbstickRight) = True Or ControllerHandler.ButtonDown(Buttons.DPadRight) = True) And Turning = False Then
                 If _freeCameraMode = True Then
                     Yaw -= RotationSpeed * 40.0F * ControllerTurnModifier
 
@@ -748,7 +748,7 @@ Public Class OverworldCamera
 
             ClampYaw()
 
-            If (KeyBoardHandler.KeyDown(KeyBindings.ForwardMoveKey) = True Or ControllerHandler.ButtonDown(Buttons.LeftThumbstickUp) = True) And Turning = False Then
+            If (KeyBoardHandler.KeyDown(KeyBindings.ForwardMoveKey) = True Or ControllerHandler.ButtonDown(Buttons.LeftThumbstickUp) = True Or ControllerHandler.ButtonDown(Buttons.DPadUp) = True) And Turning = False Then
                 MoveForward()
             End If
         End If
