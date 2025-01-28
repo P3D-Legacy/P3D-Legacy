@@ -534,7 +534,7 @@
                             If MouseHandler.IsInRectangle(New Rectangle(Core.windowSize.Width - 255, 116 + Index * 96, 255, 80)) = True Then
                                 If isSelected = True Then
                                     SoundManager.PlaySound("select")
-                                    If Me.Move.Disabled = 0 AndAlso BattleScreen.FieldEffects.OwnEncore = 0 OrElse BattleScreen.FieldEffects.OwnEncoreMove.ID = Move.ID Then
+                                    If Me.Move.Disabled = 0 AndAlso BattleScreen.FieldEffects.OwnEncore = 0 OrElse BattleScreen.FieldEffects.OwnEncoreMove IsNot Nothing AndAlso BattleScreen.FieldEffects.OwnEncoreMove.ID = Move.ID Then
                                         Me.ClickAction(BattleScreen)
                                     End If
                                 Else
