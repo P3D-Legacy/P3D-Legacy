@@ -751,6 +751,8 @@
                         ShowBattleAnimations = CInt(Value)
                     Case "runmode"
                         RunMode = CBool(Value)
+                    Case "runtoggled"
+                        RunToggled = CBool(Value)
                     Case "boxamount"
                         BoxAmount = CInt(Value)
                     Case "lastrestplace"
@@ -1270,6 +1272,7 @@
             "Location|" & Screen.Level.MapName & Environment.NewLine &
             "BattleAnimations|" & ShowBattleAnimations.ToString() & Environment.NewLine &
             "RunMode|" & RunMode.ToNumberString() & Environment.NewLine &
+            "RunToggled|" & RunToggled.ToNumberString() & Environment.NewLine &
             "BoxAmount|" & BoxAmount.ToString() & Environment.NewLine &
             "LastRestPlace|" & LastRestPlace & Environment.NewLine &
             "LastRestPlacePosition|" & LastRestPlacePosition & Environment.NewLine &
