@@ -632,12 +632,22 @@ Namespace ScriptVersion2
         Private Shared Sub DoPokedex()
             ' Commands:
             r(New ScriptCommand("pokedex", "setautodetect", {New ScriptArgument("autodetect", ScriptArgument.ArgumentTypes.Bool)}.ToList(), "Sets if the Pokédex registers seen Pokémon in wild or trainer battles."))
+            r(New ScriptCommand("pokedex", "changeentry", {New ScriptArgument("ID", ScriptArgument.ArgumentTypes.Str), New ScriptArgument("Type", ScriptArgument.ArgumentTypes.Int), New ScriptArgument("ForceChange", ScriptArgument.ArgumentTypes.Bool, True, "false")}.ToList(), "Changes a Pokédex Entry."))
             ' Constructs:
             r(New ScriptCommand("pokedex", "caught", "int", "Returns the amount of Pokémon registered as caught by the player.", "", True))
             r(New ScriptCommand("pokedex", "seen", "int", "Returns the amount of Pokémon registered as seen by the player.", "", True))
             r(New ScriptCommand("pokedex", "shiny", "int", "Returns the amount of Pokémon registered as Shiny by the player.", "", True))
             r(New ScriptCommand("pokedex", "dexcaught", "int", {New ScriptArgument("dexIndex", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Returns the amount of Pokémon registered as caught by the player for a specific Pokédex.", "", True))
             r(New ScriptCommand("pokedex", "dexseen", "int", {New ScriptArgument("dexIndex", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Returns the amount of Pokémon registered as seen by the player for a specific Pokédex.", "", True))
+            r(New ScriptCommand("pokedex", "getheight", "sng", {New ScriptArgument("ID", ScriptArgument.ArgumentTypes.Str)}.ToList(), "Returns the height of the Pokémon.", "", True))
+            r(New ScriptCommand("pokedex", "getweight", "sng", {New ScriptArgument("ID", ScriptArgument.ArgumentTypes.Str)}.ToList(), "Returns the weight of the Pokémon.", "", True))
+            r(New ScriptCommand("pokedex", "getentry", "str", {New ScriptArgument("ID", ScriptArgument.ArgumentTypes.Str)}.ToList(), "Returns the description of the Pokémon.", "", True))
+            r(New ScriptCommand("pokedex", "getspecies", "str", {New ScriptArgument("ID", ScriptArgument.ArgumentTypes.Str)}.ToList(), "Returns the species of the Pokémon.", "", True))
+            r(New ScriptCommand("pokedex", "getname", "str", {New ScriptArgument("ID", ScriptArgument.ArgumentTypes.Str)}.ToList(), "Returns the name of the Pokémon.", "", True))
+            r(New ScriptCommand("pokedex", "getability", "int", {New ScriptArgument("ID", ScriptArgument.ArgumentTypes.Str), New ScriptArgument("requestType", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Returns one of the abilities of the Pokémon based on the requestType. 0 = random 1st or 2nd, 1 = first ability, 2 = second ability, 3 = hidden ability.", "", True))
+            r(New ScriptCommand("pokedex", "pokemoncaught", "bool", {New ScriptArgument("ID", ScriptArgument.ArgumentTypes.Str)}.ToList(), "Returns if the specified Pokémon has been caught.", "", True))
+            r(New ScriptCommand("pokedex", "pokemonseen", "bool", {New ScriptArgument("ID", ScriptArgument.ArgumentTypes.Str)}.ToList(), "Returns if the specified Pokémon has been seen.", "", True))
+
         End Sub
 
         Private Shared Sub DoMath()
