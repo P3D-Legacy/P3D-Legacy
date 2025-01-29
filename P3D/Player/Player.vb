@@ -1252,6 +1252,11 @@
             skin = TempRideSkin
         End If
 
+        Dim runToggle As Boolean = RunToggled
+        If RunMode = False Then
+            runToggle = False
+        End If
+
         Dim Data As String = "Name|" & Name & Environment.NewLine &
             "Position|" & c.Position.X.ToString().Replace(GameController.DecSeparator, ".") & "," & c.Position.Y.ToString.Replace(GameController.DecSeparator, ".") & "," & c.Position.Z.ToString().Replace(GameController.DecSeparator, ".") & Environment.NewLine &
             "MapFile|" & Screen.Level.LevelFile & Environment.NewLine &
@@ -1272,7 +1277,7 @@
             "Location|" & Screen.Level.MapName & Environment.NewLine &
             "BattleAnimations|" & ShowBattleAnimations.ToString() & Environment.NewLine &
             "RunMode|" & RunMode.ToNumberString() & Environment.NewLine &
-            "RunToggled|" & RunToggled.ToNumberString() & Environment.NewLine &
+            "RunToggled|" & runToggle.ToNumberString & Environment.NewLine &
             "BoxAmount|" & BoxAmount.ToString() & Environment.NewLine &
             "LastRestPlace|" & LastRestPlace & Environment.NewLine &
             "LastRestPlacePosition|" & LastRestPlacePosition & Environment.NewLine &
