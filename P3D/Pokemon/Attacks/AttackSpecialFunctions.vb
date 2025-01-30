@@ -235,12 +235,16 @@
                                     If f.Split(CChar(",")).Count > 3 Then
                                         Message = f.GetSplit(3, ",")
                                         If f.Split(CChar(",")).Count > 4 Then
-                                            If CInt(f.GetSplit(4, ",")) > 0 Then
-                                                RaiseAmount = CInt(f.GetSplit(4, ","))
+                                            If f.GetSplit(4, ",") <> "" Then
+                                                If CInt(f.GetSplit(4, ",")) > 0 Then
+                                                    RaiseAmount = CInt(f.GetSplit(4, ","))
+                                                End If
                                             End If
                                             If f.Split(CChar(",")).Count > 5 Then
-                                                If CInt(f.GetSplit(5, ",")) > 0 Then
-                                                    Chance = CInt(f.GetSplit(5, ","))
+                                                If f.GetSplit(5, ",") <> "" Then
+                                                    If CInt(f.GetSplit(5, ",")) > 0 Then
+                                                        Chance = CInt(f.GetSplit(5, ","))
+                                                    End If
                                                 End If
                                                 If f.Split(CChar(",")).Count > 6 Then
                                                     FailMessage = f.GetSplit(6, ",")
@@ -264,11 +268,17 @@
                                         Message = f.GetSplit(3, ",")
                                         If f.Split(CChar(",")).Count > 4 Then
                                             If CInt(f.GetSplit(4, ",")) > 0 Then
-                                                LowerAmount = CInt(f.GetSplit(4, ","))
+                                                If f.GetSplit(4, ",") <> "" Then
+                                                    If CInt(f.GetSplit(4, ",")) > 0 Then
+                                                        LowerAmount = CInt(f.GetSplit(4, ","))
+                                                    End If
+                                                End If
                                             End If
                                             If f.Split(CChar(",")).Count > 5 Then
-                                                If CInt(f.GetSplit(5, ",")) > 0 Then
-                                                    Chance = CInt(f.GetSplit(5, ","))
+                                                If f.GetSplit(5, ",") <> "" Then
+                                                    If CInt(f.GetSplit(5, ",")) > 0 Then
+                                                        Chance = CInt(f.GetSplit(5, ","))
+                                                    End If
                                                 End If
                                                 If f.Split(CChar(",")).Count > 6 Then
                                                     FailMessage = f.GetSplit(6, ",")
