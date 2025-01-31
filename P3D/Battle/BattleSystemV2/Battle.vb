@@ -30,7 +30,45 @@
         ''' <summary>
         ''' Returns the move of a Pokémon with a specified ID.
         ''' </summary>
-        Private Function GetPokemonMoveFromID(ByVal Pokemon As Pokemon, ByVal MoveID As Integer) As Attack
+        Private Function GetPokemonMoveFromID(ByVal Pokemon As Pokemon, ByVal MoveID As Integer, BattleScreen As BattleScreen, own As Boolean) As Attack
+            If own = True Then
+                If BattleScreen.FieldEffects.OwnUsedRandomMove = True Then
+                    For Each a As Attack In Pokemon.Attacks
+                        If a.Name.ToLower = "metronome" OrElse a.IsGameModeMove AndAlso a.gmUseRandomMove = True Then
+                            a.CurrentPP -= 1
+                        End If
+                    Next
+                End If
+                If BattleScreen.FieldEffects.OwnUsedMirrorMove = True Then
+                    For Each a As Attack In Pokemon.Attacks
+                        If a.Name.ToLower = "mirror move" Then
+                            a.CurrentPP -= 1
+                        End If
+                    Next
+                End If
+                If BattleScreen.FieldEffects.OwnUsedRandomMove = True Or BattleScreen.FieldEffects.OwnUsedMirrorMove = True Then
+                    Return Attack.GetAttackByID(MoveID)
+                End If
+            Else
+                If BattleScreen.FieldEffects.OppUsedRandomMove = True Then
+                    For Each a As Attack In Pokemon.Attacks
+                        If a.Name.ToLower = "metronome" OrElse a.IsGameModeMove AndAlso a.gmUseRandomMove = True Then
+                            a.CurrentPP -= 1
+                        End If
+                    Next
+                End If
+                If BattleScreen.FieldEffects.OppUsedMirrorMove = True Then
+                    For Each a As Attack In Pokemon.Attacks
+                        If a.Name.ToLower = "mirror move" Then
+                            a.CurrentPP -= 1
+                        End If
+                    Next
+                End If
+                If BattleScreen.FieldEffects.OppUsedRandomMove = True Or BattleScreen.FieldEffects.OppUsedMirrorMove = True Then
+                    Return Attack.GetAttackByID(MoveID)
+                End If
+            End If
+
             For Each a As Attack In Pokemon.Attacks
                 If a.ID = MoveID Then
                     Return a
@@ -56,7 +94,7 @@
             If BattleScreen.FieldEffects.OwnRolloutCounter > 0 Then
                 SelectedMoveOwn = False
                 DeleteHostQuery(BattleScreen)
-                InitializeRound(BattleScreen, New RoundConst() With {.StepType = RoundConst.StepTypes.Move, .Argument = GetPokemonMoveFromID(BattleScreen.OwnPokemon, 205)})
+                InitializeRound(BattleScreen, New RoundConst() With {.StepType = RoundConst.StepTypes.Move, .Argument = GetPokemonMoveFromID(BattleScreen.OwnPokemon, 205, BattleScreen, True)})
                 Exit Sub
             End If
 
@@ -64,7 +102,7 @@
             If BattleScreen.FieldEffects.OwnIceBallCounter > 0 Then
                 SelectedMoveOwn = False
                 DeleteHostQuery(BattleScreen)
-                InitializeRound(BattleScreen, New RoundConst() With {.StepType = RoundConst.StepTypes.Move, .Argument = GetPokemonMoveFromID(BattleScreen.OwnPokemon, 301)})
+                InitializeRound(BattleScreen, New RoundConst() With {.StepType = RoundConst.StepTypes.Move, .Argument = GetPokemonMoveFromID(BattleScreen.OwnPokemon, 301, BattleScreen, True)})
                 Exit Sub
             End If
 
@@ -72,7 +110,7 @@
             If BattleScreen.FieldEffects.OwnFlyCounter >= 1 Then
                 SelectedMoveOwn = False
                 DeleteHostQuery(BattleScreen)
-                InitializeRound(BattleScreen, New RoundConst() With {.StepType = RoundConst.StepTypes.Move, .Argument = GetPokemonMoveFromID(BattleScreen.OwnPokemon, 19)})
+                InitializeRound(BattleScreen, New RoundConst() With {.StepType = RoundConst.StepTypes.Move, .Argument = GetPokemonMoveFromID(BattleScreen.OwnPokemon, 19, BattleScreen, True)})
                 Exit Sub
             End If
 
@@ -80,7 +118,7 @@
             If BattleScreen.FieldEffects.OwnDigCounter >= 1 Then
                 SelectedMoveOwn = False
                 DeleteHostQuery(BattleScreen)
-                InitializeRound(BattleScreen, New RoundConst() With {.StepType = RoundConst.StepTypes.Move, .Argument = GetPokemonMoveFromID(BattleScreen.OwnPokemon, 91)})
+                InitializeRound(BattleScreen, New RoundConst() With {.StepType = RoundConst.StepTypes.Move, .Argument = GetPokemonMoveFromID(BattleScreen.OwnPokemon, 91, BattleScreen, True)})
                 Exit Sub
             End If
 
@@ -88,7 +126,7 @@
             If BattleScreen.FieldEffects.OwnOutrage >= 1 Then
                 SelectedMoveOwn = False
                 DeleteHostQuery(BattleScreen)
-                InitializeRound(BattleScreen, New RoundConst() With {.StepType = RoundConst.StepTypes.Move, .Argument = GetPokemonMoveFromID(BattleScreen.OwnPokemon, 200)})
+                InitializeRound(BattleScreen, New RoundConst() With {.StepType = RoundConst.StepTypes.Move, .Argument = GetPokemonMoveFromID(BattleScreen.OwnPokemon, 200, BattleScreen, True)})
                 Exit Sub
             End If
 
@@ -96,7 +134,7 @@
             If BattleScreen.FieldEffects.OwnThrash >= 1 Then
                 SelectedMoveOwn = False
                 DeleteHostQuery(BattleScreen)
-                InitializeRound(BattleScreen, New RoundConst() With {.StepType = RoundConst.StepTypes.Move, .Argument = GetPokemonMoveFromID(BattleScreen.OwnPokemon, 37)})
+                InitializeRound(BattleScreen, New RoundConst() With {.StepType = RoundConst.StepTypes.Move, .Argument = GetPokemonMoveFromID(BattleScreen.OwnPokemon, 37, BattleScreen, True)})
                 Exit Sub
             End If
 
@@ -104,7 +142,7 @@
             If BattleScreen.FieldEffects.OwnPetalDance >= 1 Then
                 SelectedMoveOwn = False
                 DeleteHostQuery(BattleScreen)
-                InitializeRound(BattleScreen, New RoundConst() With {.StepType = RoundConst.StepTypes.Move, .Argument = GetPokemonMoveFromID(BattleScreen.OwnPokemon, 80)})
+                InitializeRound(BattleScreen, New RoundConst() With {.StepType = RoundConst.StepTypes.Move, .Argument = GetPokemonMoveFromID(BattleScreen.OwnPokemon, 80, BattleScreen, True)})
                 Exit Sub
             End If
 
@@ -112,7 +150,7 @@
             If BattleScreen.FieldEffects.OwnBounceCounter >= 1 Then
                 SelectedMoveOwn = False
                 DeleteHostQuery(BattleScreen)
-                InitializeRound(BattleScreen, New RoundConst() With {.StepType = RoundConst.StepTypes.Move, .Argument = GetPokemonMoveFromID(BattleScreen.OwnPokemon, 340)})
+                InitializeRound(BattleScreen, New RoundConst() With {.StepType = RoundConst.StepTypes.Move, .Argument = GetPokemonMoveFromID(BattleScreen.OwnPokemon, 340, BattleScreen, True)})
                 Exit Sub
             End If
 
@@ -120,7 +158,7 @@
             If BattleScreen.FieldEffects.OwnDiveCounter >= 1 Then
                 SelectedMoveOwn = False
                 DeleteHostQuery(BattleScreen)
-                InitializeRound(BattleScreen, New RoundConst() With {.StepType = RoundConst.StepTypes.Move, .Argument = GetPokemonMoveFromID(BattleScreen.OwnPokemon, 291)})
+                InitializeRound(BattleScreen, New RoundConst() With {.StepType = RoundConst.StepTypes.Move, .Argument = GetPokemonMoveFromID(BattleScreen.OwnPokemon, 291, BattleScreen, True)})
                 Exit Sub
             End If
 
@@ -128,7 +166,7 @@
             If BattleScreen.FieldEffects.OwnShadowForceCounter = 1 Then
                 SelectedMoveOwn = False
                 DeleteHostQuery(BattleScreen)
-                InitializeRound(BattleScreen, New RoundConst() With {.StepType = RoundConst.StepTypes.Move, .Argument = GetPokemonMoveFromID(BattleScreen.OwnPokemon, 467)})
+                InitializeRound(BattleScreen, New RoundConst() With {.StepType = RoundConst.StepTypes.Move, .Argument = GetPokemonMoveFromID(BattleScreen.OwnPokemon, 467, BattleScreen, True)})
                 Exit Sub
             End If
 
@@ -136,13 +174,13 @@
             If BattleScreen.FieldEffects.OwnPhantomForceCounter = 1 Then
                 SelectedMoveOwn = False
                 DeleteHostQuery(BattleScreen)
-                InitializeRound(BattleScreen, New RoundConst() With {.StepType = RoundConst.StepTypes.Move, .Argument = GetPokemonMoveFromID(BattleScreen.OwnPokemon, 566)})
+                InitializeRound(BattleScreen, New RoundConst() With {.StepType = RoundConst.StepTypes.Move, .Argument = GetPokemonMoveFromID(BattleScreen.OwnPokemon, 566, BattleScreen, True)})
                 Exit Sub
             End If
 
             'If Sky Drop gets programmed, put this in.
             'If BattleScreen.FieldEffects.OwnSkyDropCounter = 1 Then
-            '    InitializeRound(BattleScreen, New RoundConst() With {.StepType = RoundConst.StepTypes.Move, .Argument = GetPokemonMoveFromID(BattleScreen.OwnPokemon, xxx)})
+            '    InitializeRound(BattleScreen, New RoundConst() With {.StepType = RoundConst.StepTypes.Move, .Argument = GetPokemonMoveFromID(BattleScreen.OwnPokemon, xxx, BattleScreen, True)})
             '    Exit Sub
             'End If
 
@@ -150,7 +188,7 @@
             If BattleScreen.FieldEffects.OwnGeomancyCounter = 1 Then
                 SelectedMoveOwn = False
                 DeleteHostQuery(BattleScreen)
-                InitializeRound(BattleScreen, New RoundConst() With {.StepType = RoundConst.StepTypes.Move, .Argument = GetPokemonMoveFromID(BattleScreen.OwnPokemon, 601)})
+                InitializeRound(BattleScreen, New RoundConst() With {.StepType = RoundConst.StepTypes.Move, .Argument = GetPokemonMoveFromID(BattleScreen.OwnPokemon, 601, BattleScreen, True)})
                 Exit Sub
             End If
 
@@ -158,7 +196,7 @@
             If BattleScreen.FieldEffects.OwnSolarBeam >= 1 Then
                 SelectedMoveOwn = False
                 DeleteHostQuery(BattleScreen)
-                InitializeRound(BattleScreen, New RoundConst() With {.StepType = RoundConst.StepTypes.Move, .Argument = GetPokemonMoveFromID(BattleScreen.OwnPokemon, 76)})
+                InitializeRound(BattleScreen, New RoundConst() With {.StepType = RoundConst.StepTypes.Move, .Argument = GetPokemonMoveFromID(BattleScreen.OwnPokemon, 76, BattleScreen, True)})
                 Exit Sub
             End If
 
@@ -166,7 +204,7 @@
             If BattleScreen.FieldEffects.OwnSolarBlade >= 1 Then
                 SelectedMoveOwn = False
                 DeleteHostQuery(BattleScreen)
-                InitializeRound(BattleScreen, New RoundConst() With {.StepType = RoundConst.StepTypes.Move, .Argument = GetPokemonMoveFromID(BattleScreen.OwnPokemon, 669)})
+                InitializeRound(BattleScreen, New RoundConst() With {.StepType = RoundConst.StepTypes.Move, .Argument = GetPokemonMoveFromID(BattleScreen.OwnPokemon, 669, BattleScreen, True)})
                 Exit Sub
             End If
 
@@ -174,7 +212,7 @@
             If BattleScreen.FieldEffects.OwnSkyAttackCounter >= 1 Then
                 SelectedMoveOwn = False
                 DeleteHostQuery(BattleScreen)
-                InitializeRound(BattleScreen, New RoundConst() With {.StepType = RoundConst.StepTypes.Move, .Argument = GetPokemonMoveFromID(BattleScreen.OwnPokemon, 143)})
+                InitializeRound(BattleScreen, New RoundConst() With {.StepType = RoundConst.StepTypes.Move, .Argument = GetPokemonMoveFromID(BattleScreen.OwnPokemon, 143, BattleScreen, True)})
                 Exit Sub
             End If
 
@@ -182,7 +220,7 @@
             If BattleScreen.FieldEffects.OwnSkullBashCounter >= 1 Then
                 SelectedMoveOwn = False
                 DeleteHostQuery(BattleScreen)
-                InitializeRound(BattleScreen, New RoundConst() With {.StepType = RoundConst.StepTypes.Move, .Argument = GetPokemonMoveFromID(BattleScreen.OwnPokemon, 130)})
+                InitializeRound(BattleScreen, New RoundConst() With {.StepType = RoundConst.StepTypes.Move, .Argument = GetPokemonMoveFromID(BattleScreen.OwnPokemon, 130, BattleScreen, True)})
                 Exit Sub
             End If
 
@@ -190,7 +228,7 @@
             If BattleScreen.FieldEffects.OwnRazorWindCounter >= 1 Then
                 SelectedMoveOwn = False
                 DeleteHostQuery(BattleScreen)
-                InitializeRound(BattleScreen, New RoundConst() With {.StepType = RoundConst.StepTypes.Move, .Argument = GetPokemonMoveFromID(BattleScreen.OwnPokemon, 13)})
+                InitializeRound(BattleScreen, New RoundConst() With {.StepType = RoundConst.StepTypes.Move, .Argument = GetPokemonMoveFromID(BattleScreen.OwnPokemon, 13, BattleScreen, True)})
                 Exit Sub
             End If
 
@@ -198,7 +236,7 @@
             If BattleScreen.FieldEffects.OwnUproar >= 1 Then
                 SelectedMoveOwn = False
                 DeleteHostQuery(BattleScreen)
-                InitializeRound(BattleScreen, New RoundConst() With {.StepType = RoundConst.StepTypes.Move, .Argument = GetPokemonMoveFromID(BattleScreen.OwnPokemon, 253)})
+                InitializeRound(BattleScreen, New RoundConst() With {.StepType = RoundConst.StepTypes.Move, .Argument = GetPokemonMoveFromID(BattleScreen.OwnPokemon, 253, BattleScreen, True)})
                 Exit Sub
             End If
 
@@ -206,7 +244,7 @@
             If BattleScreen.FieldEffects.OwnBideCounter > 0 Then
                 SelectedMoveOwn = False
                 DeleteHostQuery(BattleScreen)
-                InitializeRound(BattleScreen, New RoundConst() With {.StepType = RoundConst.StepTypes.Move, .Argument = GetPokemonMoveFromID(BattleScreen.OwnPokemon, 117)})
+                InitializeRound(BattleScreen, New RoundConst() With {.StepType = RoundConst.StepTypes.Move, .Argument = GetPokemonMoveFromID(BattleScreen.OwnPokemon, 117, BattleScreen, True)})
                 Exit Sub
             End If
 
@@ -279,120 +317,120 @@
                 'Rollout
                 If BattleScreen.FieldEffects.OppRolloutCounter > 0 Then
                     SelectedMoveOpp = False
-                    Return New RoundConst() With {.StepType = RoundConst.StepTypes.Move, .Argument = GetPokemonMoveFromID(BattleScreen.OppPokemon, 205)}
+                    Return New RoundConst() With {.StepType = RoundConst.StepTypes.Move, .Argument = GetPokemonMoveFromID(BattleScreen.OppPokemon, 205, BattleScreen, False)}
                 End If
 
                 'IceBall
                 If BattleScreen.FieldEffects.OppIceBallCounter > 0 Then
                     SelectedMoveOpp = False
-                    Return New RoundConst() With {.StepType = RoundConst.StepTypes.Move, .Argument = GetPokemonMoveFromID(BattleScreen.OppPokemon, 301)}
+                    Return New RoundConst() With {.StepType = RoundConst.StepTypes.Move, .Argument = GetPokemonMoveFromID(BattleScreen.OppPokemon, 301, BattleScreen, False)}
                 End If
 
                 'Fly:
                 If BattleScreen.FieldEffects.OppFlyCounter >= 1 Then
                     SelectedMoveOpp = False
-                    Return New RoundConst() With {.StepType = RoundConst.StepTypes.Move, .Argument = GetPokemonMoveFromID(BattleScreen.OppPokemon, 19)}
+                    Return New RoundConst() With {.StepType = RoundConst.StepTypes.Move, .Argument = GetPokemonMoveFromID(BattleScreen.OppPokemon, 19, BattleScreen, False)}
                 End If
 
                 'Dig:
                 If BattleScreen.FieldEffects.OppDigCounter >= 1 Then
                     SelectedMoveOpp = False
-                    Return New RoundConst() With {.StepType = RoundConst.StepTypes.Move, .Argument = GetPokemonMoveFromID(BattleScreen.OppPokemon, 91)}
+                    Return New RoundConst() With {.StepType = RoundConst.StepTypes.Move, .Argument = GetPokemonMoveFromID(BattleScreen.OppPokemon, 91, BattleScreen, False)}
                 End If
 
                 'Outrage:
                 If BattleScreen.FieldEffects.OppOutrage >= 1 Then
                     SelectedMoveOpp = False
-                    Return New RoundConst() With {.StepType = RoundConst.StepTypes.Move, .Argument = GetPokemonMoveFromID(BattleScreen.OppPokemon, 200)}
+                    Return New RoundConst() With {.StepType = RoundConst.StepTypes.Move, .Argument = GetPokemonMoveFromID(BattleScreen.OppPokemon, 200, BattleScreen, False)}
                 End If
 
                 'Thrash:
                 If BattleScreen.FieldEffects.OppThrash >= 1 Then
                     SelectedMoveOpp = False
-                    Return New RoundConst() With {.StepType = RoundConst.StepTypes.Move, .Argument = GetPokemonMoveFromID(BattleScreen.OppPokemon, 37)}
+                    Return New RoundConst() With {.StepType = RoundConst.StepTypes.Move, .Argument = GetPokemonMoveFromID(BattleScreen.OppPokemon, 37, BattleScreen, False)}
                 End If
 
                 'Petal Dance:
                 If BattleScreen.FieldEffects.OppPetalDance >= 1 Then
                     SelectedMoveOpp = False
-                    Return New RoundConst() With {.StepType = RoundConst.StepTypes.Move, .Argument = GetPokemonMoveFromID(BattleScreen.OppPokemon, 80)}
+                    Return New RoundConst() With {.StepType = RoundConst.StepTypes.Move, .Argument = GetPokemonMoveFromID(BattleScreen.OppPokemon, 80, BattleScreen, False)}
                 End If
 
                 'Bounce:
                 If BattleScreen.FieldEffects.OppBounceCounter >= 1 Then
                     SelectedMoveOpp = False
-                    Return New RoundConst() With {.StepType = RoundConst.StepTypes.Move, .Argument = GetPokemonMoveFromID(BattleScreen.OppPokemon, 340)}
+                    Return New RoundConst() With {.StepType = RoundConst.StepTypes.Move, .Argument = GetPokemonMoveFromID(BattleScreen.OppPokemon, 340, BattleScreen, False)}
                 End If
 
                 'Dive:
                 If BattleScreen.FieldEffects.OppDiveCounter = 1 Then
                     SelectedMoveOpp = False
-                    Return New RoundConst() With {.StepType = RoundConst.StepTypes.Move, .Argument = GetPokemonMoveFromID(BattleScreen.OppPokemon, 291)}
+                    Return New RoundConst() With {.StepType = RoundConst.StepTypes.Move, .Argument = GetPokemonMoveFromID(BattleScreen.OppPokemon, 291, BattleScreen, False)}
                 End If
 
                 'Shadow Force:
                 If BattleScreen.FieldEffects.OppShadowForceCounter = 1 Then
                     SelectedMoveOpp = False
-                    Return New RoundConst() With {.StepType = RoundConst.StepTypes.Move, .Argument = GetPokemonMoveFromID(BattleScreen.OppPokemon, 467)}
+                    Return New RoundConst() With {.StepType = RoundConst.StepTypes.Move, .Argument = GetPokemonMoveFromID(BattleScreen.OppPokemon, 467, BattleScreen, False)}
                 End If
 
                 'Phantom Force:
                 If BattleScreen.FieldEffects.OppPhantomForceCounter = 1 Then
                     SelectedMoveOpp = False
-                    Return New RoundConst() With {.StepType = RoundConst.StepTypes.Move, .Argument = GetPokemonMoveFromID(BattleScreen.OppPokemon, 566)}
+                    Return New RoundConst() With {.StepType = RoundConst.StepTypes.Move, .Argument = GetPokemonMoveFromID(BattleScreen.OppPokemon, 566, BattleScreen, False)}
                 End If
 
                 ''Sky Drop:
                 'If BattleScreen.FieldEffects.OppSkyDropCounter = 1 Then
-                '    Return New RoundConst() With {.StepType = RoundConst.StepTypes.Move, .Argument = (19).ToString()}
+                '    Return New RoundConst() With {.StepType = RoundConst.StepTypes.Move, .Argument = (19).ToString(), BattleScreen, False}
                 'End If
 
                 'Geomancy:
                 If BattleScreen.FieldEffects.OppGeomancyCounter = 1 Then
                     SelectedMoveOpp = False
-                    Return New RoundConst() With {.StepType = RoundConst.StepTypes.Move, .Argument = GetPokemonMoveFromID(BattleScreen.OppPokemon, 601)}
+                    Return New RoundConst() With {.StepType = RoundConst.StepTypes.Move, .Argument = GetPokemonMoveFromID(BattleScreen.OppPokemon, 601, BattleScreen, False)}
                 End If
 
                 'Solar Beam:
                 If BattleScreen.FieldEffects.OppSolarBeam >= 1 Then
                     SelectedMoveOpp = False
-                    Return New RoundConst() With {.StepType = RoundConst.StepTypes.Move, .Argument = GetPokemonMoveFromID(BattleScreen.OppPokemon, 76)}
+                    Return New RoundConst() With {.StepType = RoundConst.StepTypes.Move, .Argument = GetPokemonMoveFromID(BattleScreen.OppPokemon, 76, BattleScreen, False)}
                 End If
 
                 'Solar Blade:
                 If BattleScreen.FieldEffects.OppSolarBlade >= 1 Then
                     SelectedMoveOpp = False
-                    Return New RoundConst() With {.StepType = RoundConst.StepTypes.Move, .Argument = GetPokemonMoveFromID(BattleScreen.OppPokemon, 669)}
+                    Return New RoundConst() With {.StepType = RoundConst.StepTypes.Move, .Argument = GetPokemonMoveFromID(BattleScreen.OppPokemon, 669, BattleScreen, False)}
                 End If
 
                 'Sky Attack:
                 If BattleScreen.FieldEffects.OppSkyAttackCounter >= 1 Then
                     SelectedMoveOpp = False
-                    Return New RoundConst() With {.StepType = RoundConst.StepTypes.Move, .Argument = GetPokemonMoveFromID(BattleScreen.OppPokemon, 143)}
+                    Return New RoundConst() With {.StepType = RoundConst.StepTypes.Move, .Argument = GetPokemonMoveFromID(BattleScreen.OppPokemon, 143, BattleScreen, False)}
                 End If
 
                 'Skull Bash:
                 If BattleScreen.FieldEffects.OppSkullBashCounter >= 1 Then
                     SelectedMoveOpp = False
-                    Return New RoundConst() With {.StepType = RoundConst.StepTypes.Move, .Argument = GetPokemonMoveFromID(BattleScreen.OppPokemon, 130)}
+                    Return New RoundConst() With {.StepType = RoundConst.StepTypes.Move, .Argument = GetPokemonMoveFromID(BattleScreen.OppPokemon, 130, BattleScreen, False)}
                 End If
 
                 'RazorWind:
                 If BattleScreen.FieldEffects.OppRazorWindCounter >= 1 Then
                     SelectedMoveOpp = False
-                    Return New RoundConst() With {.StepType = RoundConst.StepTypes.Move, .Argument = GetPokemonMoveFromID(BattleScreen.OppPokemon, 13)}
+                    Return New RoundConst() With {.StepType = RoundConst.StepTypes.Move, .Argument = GetPokemonMoveFromID(BattleScreen.OppPokemon, 13, BattleScreen, False)}
                 End If
 
                 'Uproar:
                 If BattleScreen.FieldEffects.OppUproar >= 1 Then
                     SelectedMoveOpp = False
-                    Return New RoundConst() With {.StepType = RoundConst.StepTypes.Move, .Argument = GetPokemonMoveFromID(BattleScreen.OppPokemon, 253)}
+                    Return New RoundConst() With {.StepType = RoundConst.StepTypes.Move, .Argument = GetPokemonMoveFromID(BattleScreen.OppPokemon, 253, BattleScreen, False)}
                 End If
 
                 'Bide:
                 If BattleScreen.FieldEffects.OppBideCounter > 0 Then
                     SelectedMoveOpp = False
-                    Return New RoundConst() With {.StepType = RoundConst.StepTypes.Move, .Argument = GetPokemonMoveFromID(BattleScreen.OppPokemon, 117)}
+                    Return New RoundConst() With {.StepType = RoundConst.StepTypes.Move, .Argument = GetPokemonMoveFromID(BattleScreen.OppPokemon, 117, BattleScreen, False)}
                 End If
             End If
 
@@ -417,7 +455,7 @@
                         moveID = CInt(inputString)
                     End If
 
-                    Return New RoundConst() With {.StepType = RoundConst.StepTypes.Move, .Argument = GetPokemonMoveFromID(BattleScreen.OppPokemon, moveID)}
+                    Return New RoundConst() With {.StepType = RoundConst.StepTypes.Move, .Argument = GetPokemonMoveFromID(BattleScreen.OppPokemon, moveID, BattleScreen, False)}
                 ElseIf BattleScreen.ReceivedInput.StartsWith("SWITCH|") Then
                     BattleScreen.OppStatistics.Switches += 1
                     Dim switchID As Integer = CInt(BattleScreen.ReceivedInput.Remove(0, 7))
@@ -473,9 +511,30 @@
         Private Function GetAttack(ByVal BattleScreen As BattleScreen, ByVal own As Boolean, ByVal move As Attack) As RoundConst
             'TODO: Reset rage counters
 
+            If own = True Then
+                If BattleScreen.FieldEffects.OwnUsedRandomMove = True AndAlso (move.Name.ToLower() <> "metronome" OrElse move.IsGameModeMove = True AndAlso move.gmUseRandomMove = False) Then
+                    BattleScreen.FieldEffects.OwnUsedRandomMove = False
+                End If
+                If BattleScreen.FieldEffects.OwnUsedMirrorMove = True AndAlso (move.Name.ToLower() <> "mirror move") Then
+                    BattleScreen.FieldEffects.OwnUsedMirrorMove = False
+                End If
+            Else
+                If BattleScreen.FieldEffects.OppUsedRandomMove = True AndAlso (move.Name.ToLower() <> "metronome" OrElse move.IsGameModeMove = True AndAlso move.gmUseRandomMove = False) Then
+                    BattleScreen.FieldEffects.OppUsedRandomMove = False
+                End If
+                If BattleScreen.FieldEffects.OppUsedMirrorMove = True AndAlso (move.Name.ToLower() <> "mirror move") Then
+                    BattleScreen.FieldEffects.OppUsedMirrorMove = False
+                End If
+            End If
+
             If move.IsGameModeMove = True AndAlso move.gmUseRandomMove = True Then
                 If move.CurrentPP > 0 Then
                     move.CurrentPP -= 1
+                End If
+                If own = True Then
+                    BattleScreen.FieldEffects.OwnUsedRandomMove = True
+                Else
+                    BattleScreen.FieldEffects.OppUsedRandomMove = True
                 End If
                 Return New RoundConst() With {.StepType = RoundConst.StepTypes.Move, .Argument = move.GetRandomAttack()}
             Else
@@ -484,7 +543,11 @@
                         If move.CurrentPP > 0 Then
                             move.CurrentPP -= 1
                         End If
-
+                        If own = True Then
+                            BattleScreen.FieldEffects.OwnUsedRandomMove = True
+                        Else
+                            BattleScreen.FieldEffects.OppUsedRandomMove = True
+                        End If
                         Return New RoundConst() With {.StepType = RoundConst.StepTypes.Move, .Argument = Moves.Normal.Metronome.GetMetronomeMove()}
                     Case "mirror move"
                         If move.CurrentPP > 0 Then
@@ -503,6 +566,11 @@
                         End If
 
                         If id <> -1 Then
+                            If own = True Then
+                                BattleScreen.FieldEffects.OwnUsedMirrorMove = True
+                            Else
+                                BattleScreen.FieldEffects.OppUsedMirrorMove = True
+                            End If
                             Return New RoundConst() With {.StepType = RoundConst.StepTypes.Move, .Argument = Attack.GetAttackByID(id)}
                         Else
                             Return New RoundConst() With {.StepType = RoundConst.StepTypes.Text, .Argument = "Mirror Move failed!"}

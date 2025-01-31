@@ -129,6 +129,9 @@
         Public OwnFutureSightTurns As Integer = 0 'Turns until Futuresight hits
         Public OwnFutureSightID As Integer = 0 'Move ID for the Futuresight move
 
+        Public OwnUsedRandomMove As Boolean = False 'Metronome for example
+        Public OwnUsedMirrorMove As Boolean = False
+
         'Opp stuff
         Public OppSpikes As Integer = 0
         Public OppStealthRock As Integer = 0
@@ -252,6 +255,9 @@
         Public OppMagmaStorm As Integer = 0
         Public OppSandTomb As Integer = 0
         Public OppInfestation As Integer = 0
+
+        Public OppUsedRandomMove As Boolean = False
+        Public OppUsedMirrorMove As Boolean = False
 
         Public OppUsedMoves As New List(Of Integer)
 
