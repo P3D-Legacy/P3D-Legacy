@@ -1245,16 +1245,20 @@ Public Class Level
     ''' <summary>
     ''' Checks all NPCs on the map for if the player is in their line of sight.
     ''' </summary>
-    Public Sub CheckTrainerSights()
+    Public Function CheckTrainerSights() As Boolean
+        Dim IsInSight = False
         For Each Entity As Entity In Entities
             If Entity.EntityID = "NPC" Then
                 Dim NPC As NPC = CType(Entity, NPC)
                 If NPC.IsTrainer = True Then
-                    NPC.CheckInSight()
+                    If NPC.CheckInSight() = True Then
+                        IsInSight = True
+                    End If
                 End If
             End If
         Next
-    End Sub
+        Return IsInSight
+    End Function
 
     ''' <summary>
     ''' Determines whether the player can use Ride on this map.

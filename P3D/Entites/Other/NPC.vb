@@ -347,7 +347,7 @@
         End If
     End Sub
 
-    Public Sub CheckInSight()
+    Public Function CheckInSight() As Boolean
         If Me.TrainerSight > -1 And Screen.Level.PokemonEncounterData.EncounteredPokemon = False And Core.CurrentScreen.Identification = Screen.Identifications.OverworldScreen Then
             If CInt(Me.Position.Y) = CInt(Screen.Camera.Position.Y) And Screen.Camera.IsMoving() = False Then
                 If Moved = 0.0F And Me.CanBeRemoved = False Then
@@ -434,7 +434,8 @@
                                             If l.ToLower.StartsWith("@trainer:") = True Then
                                                 Dim trainerID As String = l.GetSplit(1, ":")
                                                 If Trainer.IsBeaten(trainerID) = True Then
-                                                    Exit Sub
+                                                    Return False
+                                                    Exit Function
                                                 Else
                                                     Dim t As New Trainer(trainerID)
                                                     InSightMusic = t.GetInSightMusic()
@@ -442,7 +443,8 @@
                                             ElseIf l.ToLower.StartsWith("@battle.starttrainer(") = True Then
                                                 Dim trainerID As String = l.Remove(l.Length - 1, 1).Remove(0, "@battle.starttrainer(".Length)
                                                 If Trainer.IsBeaten(trainerID) = True Then
-                                                    Exit Sub
+                                                    Return False
+                                                    Exit Function
                                                 Else
                                                     Dim t As New Trainer(trainerID)
                                                     InSightMusic = t.GetInSightMusic()
@@ -507,6 +509,7 @@
 
                                     CType(Core.CurrentScreen, OverworldScreen).ActionScript.StartScript(s, 2,,, "NPCInSight")
                                     ActionScript.IsInSightScript = True
+                                    Return True
                                 End If
                             End If
                         End If
@@ -514,7 +517,9 @@
                 End If
             End If
         End If
-    End Sub
+        Return False
+
+    End Function
 
     Public Overrides Sub ClickFunction()
         If Me.Movement = Movements.Straight Then

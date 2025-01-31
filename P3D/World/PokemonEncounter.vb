@@ -34,6 +34,9 @@ Public Class PokemonEncounter
         With Me._levelReference
 
             If .WalkedSteps > 3 Then ' Three Step Rule - Only after walking 3 steps, try to encounter a wild Pokémon:
+                If Screen.Level.CheckTrainerSights() = True Then
+                    Exit Sub
+                End If
                 ' Compose the correct .poke file from the levelfile, if the pokeFile parameter is empty:
                 If pokeFile = "" Then
                     pokeFile = .LevelFile.Remove(.LevelFile.Length - 4, 4) & ".poke"

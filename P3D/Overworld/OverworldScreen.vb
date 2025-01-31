@@ -281,6 +281,17 @@ Public Class OverworldScreen
             End If
         End If
 
+        If Core.Player.CheckForTrainersLater = True AndAlso Core.CurrentScreen.Identification = Screen.Identifications.OverworldScreen AndAlso CType(CurrentScreen, OverworldScreen).ActionScript.IsReady = True Then
+            Screen.Level.PokemonEncounterData.EncounteredPokemon = False
+            Screen.Level.CheckTrainerSights()
+            If CurrentScreen.Identification = Screen.Identifications.OverworldScreen Then
+                If CType(CurrentScreen, OverworldScreen).ActionScript.IsReady = False Then
+                    Core.Player._stepEventStartedTrainer = True
+                End If
+            End If
+            Core.Player.CheckForTrainersLater = False
+        End If
+
         SkyDome.Update()
         Level.RouteSign.Update()
 
@@ -472,15 +483,6 @@ Public Class OverworldScreen
         If AfterRoamingBattleScript <> "" Then
             ActionScript.StartScript(AfterRoamingBattleScript, 0,,, "AfterRoamingBattleScript")
             AfterRoamingBattleScript = ""
-        End If
-        If Core.Player.CheckForTrainersLater = True Then
-            Screen.Level.CheckTrainerSights()
-            If CurrentScreen.Identification = Screen.Identifications.OverworldScreen Then
-                If CType(CurrentScreen, OverworldScreen).ActionScript.IsReady = False Then
-                    Core.Player._stepEventStartedTrainer = True
-                End If
-            End If
-            Core.Player.CheckForTrainersLater = False
         End If
     End Sub
 
