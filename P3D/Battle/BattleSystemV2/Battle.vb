@@ -473,39 +473,46 @@
         Private Function GetAttack(ByVal BattleScreen As BattleScreen, ByVal own As Boolean, ByVal move As Attack) As RoundConst
             'TODO: Reset rage counters
 
-            Select Case move.Name.ToLower()
-                Case "metronome"
-                    If move.CurrentPP > 0 Then
-                        move.CurrentPP -= 1
-                    End If
-
-                    Return New RoundConst() With {.StepType = RoundConst.StepTypes.Move, .Argument = Moves.Normal.Metronome.GetMetronomeMove()}
-                Case "mirror move"
-                    If move.CurrentPP > 0 Then
-                        move.CurrentPP -= 1
-                    End If
-
-                    Dim id As Integer = -1
-                    If own = True Then
-                        If Not BattleScreen.FieldEffects.OppLastMove Is Nothing AndAlso BattleScreen.FieldEffects.OppLastMove.MirrorMoveAffected = True Then
-                            id = BattleScreen.FieldEffects.OppLastMove.ID
+            If move.IsGameModeMove = True AndAlso move.gmUseRandomMove = True Then
+                If move.CurrentPP > 0 Then
+                    move.CurrentPP -= 1
+                End If
+                Return New RoundConst() With {.StepType = RoundConst.StepTypes.Move, .Argument = move.GetRandomAttack()}
+            Else
+                Select Case move.Name.ToLower()
+                    Case "metronome"
+                        If move.CurrentPP > 0 Then
+                            move.CurrentPP -= 1
                         End If
-                    Else
-                        If Not BattleScreen.FieldEffects.OwnLastMove Is Nothing AndAlso BattleScreen.FieldEffects.OwnLastMove.MirrorMoveAffected = True Then
-                            id = BattleScreen.FieldEffects.OwnLastMove.ID
-                        End If
-                    End If
 
-                    If id <> -1 Then
-                        Return New RoundConst() With {.StepType = RoundConst.StepTypes.Move, .Argument = Attack.GetAttackByID(id)}
-                    Else
-                        Return New RoundConst() With {.StepType = RoundConst.StepTypes.Text, .Argument = "Mirror Move failed!"}
-                    End If
-                Case "struggle"
-                    Return New RoundConst() With {.StepType = RoundConst.StepTypes.Move, .Argument = move}
-                Case Else
-                    Return New RoundConst() With {.StepType = RoundConst.StepTypes.Move, .Argument = move}
-            End Select
+                        Return New RoundConst() With {.StepType = RoundConst.StepTypes.Move, .Argument = Moves.Normal.Metronome.GetMetronomeMove()}
+                    Case "mirror move"
+                        If move.CurrentPP > 0 Then
+                            move.CurrentPP -= 1
+                        End If
+
+                        Dim id As Integer = -1
+                        If own = True Then
+                            If Not BattleScreen.FieldEffects.OppLastMove Is Nothing AndAlso BattleScreen.FieldEffects.OppLastMove.MirrorMoveAffected = True Then
+                                id = BattleScreen.FieldEffects.OppLastMove.ID
+                            End If
+                        Else
+                            If Not BattleScreen.FieldEffects.OwnLastMove Is Nothing AndAlso BattleScreen.FieldEffects.OwnLastMove.MirrorMoveAffected = True Then
+                                id = BattleScreen.FieldEffects.OwnLastMove.ID
+                            End If
+                        End If
+
+                        If id <> -1 Then
+                            Return New RoundConst() With {.StepType = RoundConst.StepTypes.Move, .Argument = Attack.GetAttackByID(id)}
+                        Else
+                            Return New RoundConst() With {.StepType = RoundConst.StepTypes.Text, .Argument = "Mirror Move failed!"}
+                        End If
+                    Case "struggle"
+                        Return New RoundConst() With {.StepType = RoundConst.StepTypes.Move, .Argument = move}
+                    Case Else
+                        Return New RoundConst() With {.StepType = RoundConst.StepTypes.Move, .Argument = move}
+                End Select
+            End If
         End Function
 
         Public SelectedMoveOwn As Boolean = True

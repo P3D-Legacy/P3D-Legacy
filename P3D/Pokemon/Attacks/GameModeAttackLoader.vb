@@ -395,6 +395,23 @@
                                 End If
                             Case "usemoveanims"
                                 move.gmUseMoveAnims = Attack.GetAttackByID(CInt(value))
+                            Case "userandommove"
+                                move.gmUseRandomMove = True
+                                Dim movelist As New List(Of Integer)
+                                If value <> "" Then
+                                    Dim stringList As List(Of String) = value.Split(";").ToList
+                                    For a = 0 To stringList.Count - 1
+                                        movelist.Add(CInt(stringList(a)))
+                                    Next
+                                Else
+                                    Dim forbiddenIDs As List(Of Integer) = {68, 102, 118, 119, 144, 165, 166, 168, 173, 182, 194, 197, 203, 214, 243, 264, 266, 267, 270, 271, 274, 289, 343, 364, 382, 383, 415, 448, 476, 469, 495, 501, 511, 516, 546, 547, 548, 553, 554, 555, 557}.ToList()
+                                    For a = 1 To Attack.MOVE_COUNT + 1
+                                        If forbiddenIDs.Contains(a) = False Then
+                                            movelist.Add(a)
+                                        End If
+                                    Next
+                                End If
+                                move.gmRandomMoveList = moveList
                         End Select
                     End If
                 Next

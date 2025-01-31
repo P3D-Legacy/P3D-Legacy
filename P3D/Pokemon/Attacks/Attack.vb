@@ -201,10 +201,10 @@
         Public TimesToAttack As Integer = 1
         Public gmTimesToAttack As String = "1"
         Public gmUseMoveAnims As Attack = Nothing
+        Public gmUseRandomMove As Boolean = False
+        Public gmRandomMoveList As List(Of Integer)
         Public EffectChances As New List(Of Integer)
         '#End
-
-
 
         '#SpecialDefinitions
         'Damage and effect types
@@ -1906,6 +1906,11 @@
             Return returnMove
         End Function
 
+        Public Function GetRandomAttack() As Attack
+            Dim moveID As Integer = gmRandomMoveList(Core.Random.Next(0, gmRandomMoveList.Count - 1))
+
+            Return Attack.GetAttackByID(moveID)
+        End Function
         Public Function GetEffectChance(ByVal i As Integer, ByVal own As Boolean, ByVal BattleScreen As BattleScreen) As Integer
             Dim _attack As Attack = Me
             If gmCopyMove <> -1 Then
