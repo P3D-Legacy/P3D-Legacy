@@ -62,6 +62,7 @@
                                     move.gmCopyMove = CInt(value)
 
                                     Dim _attack As Attack = Attack.GetAttackByID(move.gmCopyMove)
+                                    move.Type = _attack.Type
                                     move.Power = _attack.Power
                                     move.Accuracy = _attack.Accuracy
                                     move.Name = _attack.Name
