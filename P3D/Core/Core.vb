@@ -174,6 +174,7 @@
 
         MainGameFunctions.FunctionKeys()
         MusicManager.Update()
+        SoundManager.Update()
 
         GameMessage.Update()
 

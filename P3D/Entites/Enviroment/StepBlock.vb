@@ -19,7 +19,16 @@
             Screen.Level.OverworldPokemon.Visible = False
             Screen.Level.OverworldPokemon.warped = True
 
-            SoundManager.PlaySound("jump_ledge", False)
+            Dim delay As Date = Date.Now
+            If Screen.Level.Riding = True Then
+                delay = Date.Now.AddMilliseconds(401)
+            ElseIf Core.Player.IsRunning() = True Then
+                delay = Date.Now.AddMilliseconds(540)
+            Else
+                delay = Date.Now.AddMilliseconds(867)
+            End If
+
+            SoundManager.PlaySound("jump_ledge", False, delay)
 
             Return False
         End If

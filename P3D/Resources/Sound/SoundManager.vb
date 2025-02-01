@@ -7,10 +7,27 @@
     Public Shared Volume As Single = 1.0F
     Public Shared Muted As Boolean = False
 
+    Public Shared DelayedDate As Date = Nothing
+    Public Shared DelayedSound As String = ""
+    Public Shared DelayedStopMusic As Boolean = False
+
     Private Declare Function GetAudioOutputDevices Lib "winmm.dll" Alias "waveOutGetNumDevs" () As Integer
     Private Shared Function HasOutputDeviceAvailable() As Boolean
         Return GetAudioOutputDevices() > 0
     End Function
+
+    Public Shared Sub Update()
+        If DelayedDate <> Nothing AndAlso DelayedSound <> "" Then
+            If Date.Now >= DelayedDate Then
+                PlaySound(DelayedSound, 0.0F, 0.0F, Volume, DelayedStopMusic)
+                DelayedDate = Nothing
+                DelayedSound = ""
+                DelayedStopMusic = False
+            End If
+        End If
+
+    End Sub
+
 
     Private Shared Function AddSound(ByVal Name As String, ByVal forceReplace As Boolean) As Boolean
         Try
@@ -64,9 +81,27 @@
     Public Shared Sub PlaySound(soundFile As String)
         PlaySound(soundFile, 0.0F, 0.0F, Volume, False)
     End Sub
+    Public Shared Sub PlaySound(soundFile As String, Optional delay As Date = Nothing)
+        If delay = Nothing OrElse delay = Date.Now Then
+            PlaySound(soundFile, 0.0F, 0.0F, Volume, False)
+        Else
+            DelayedDate = delay
+            DelayedSound = soundFile
+            DelayedStopMusic = False
+        End If
+    End Sub
 
     Public Shared Sub PlaySound(soundFile As String, stopMusic As Boolean)
         PlaySound(soundFile, 0.0F, 0.0F, Volume, stopMusic)
+    End Sub
+    Public Shared Sub PlaySound(soundFile As String, stopMusic As Boolean, Optional delay As Date = Nothing)
+        If delay = Nothing OrElse delay = Date.Now Then
+            PlaySound(soundFile, 0.0F, 0.0F, Volume, stopMusic)
+        Else
+            DelayedDate = delay
+            DelayedSound = soundFile
+            DelayedStopMusic = stopMusic
+        End If
     End Sub
 
     Public Shared Sub PlaySound(soundFile As String, pitch As Single, pan As Single, volume As Single, stopMusic As Boolean)
