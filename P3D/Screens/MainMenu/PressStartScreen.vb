@@ -596,8 +596,12 @@ Public Class NewMainMenuScreen
                                     ButtonResetSave()
                             End Select
                         End If
-                        If Controls.Dismiss(False, True, True) Then
+                        If Controls.Dismiss(False, True, False) Then
                             SoundManager.PlaySound("select")
+                            DismissProfile()
+                            _GameJoltButtonIndex = 0
+                        End If
+                        If Controls.Dismiss(False, False, True) Then
                             DismissProfile()
                             _GameJoltButtonIndex = 0
                         End If
