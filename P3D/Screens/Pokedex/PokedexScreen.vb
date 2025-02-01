@@ -1087,6 +1087,7 @@ Public Class PokedexScreen
                                 SoundManager.PlaySound("select")
                             End If
                             Me.Visible = False
+                            Exit For
                         End If
                         If New Rectangle(Core.windowSize.Width - 270, 66 * ((i + 1) - Scroll), 256, 64).Contains(MouseHandler.MousePosition) = True And Controls.Accept(True, False, False) = True Then
                             Me.Index = i
