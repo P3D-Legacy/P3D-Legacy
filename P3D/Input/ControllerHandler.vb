@@ -23,10 +23,34 @@
 
     Public Shared Function ButtonPressed(ByVal Button As Microsoft.Xna.Framework.Input.Buttons, ByVal GamePadEnabled As Boolean) As Boolean
         If GamePadEnabled = True Then
-            If OldState.IsButtonDown(Button) = False And NewState.IsButtonDown(Button) = True Then
-                Return True
-            Else
+            Dim leftStickButtons As List(Of Microsoft.Xna.Framework.Input.Buttons) = {Buttons.LeftThumbstickUp, Buttons.LeftThumbstickLeft, Buttons.LeftThumbstickDown, Buttons.LeftThumbstickRight}.ToList
+
+            If leftStickButtons.Contains(Button) = True Then
+                Select Case Button
+                    Case Buttons.LeftThumbstickUp
+                        If LeftThumbstickDirection(OldState, GamePadEnabled) = -1 And LeftThumbstickDirection(NewState, GamePadEnabled) = 0 Then
+                            Return True
+                        End If
+                    Case Buttons.LeftThumbstickLeft
+                        If LeftThumbstickDirection(OldState, GamePadEnabled) = -1 And LeftThumbstickDirection(NewState, GamePadEnabled) = 1 Then
+                            Return True
+                        End If
+                    Case Buttons.LeftThumbstickDown
+                        If LeftThumbstickDirection(OldState, GamePadEnabled) = -1 And LeftThumbstickDirection(NewState, GamePadEnabled) = 2 Then
+                            Return True
+                        End If
+                    Case Buttons.LeftThumbstickRight
+                        If LeftThumbstickDirection(OldState, GamePadEnabled) = -1 And LeftThumbstickDirection(NewState, GamePadEnabled) = 3 Then
+                            Return True
+                        End If
+                End Select
                 Return False
+            Else
+                If OldState.IsButtonDown(Button) = False And NewState.IsButtonDown(Button) = True Then
+                    Return True
+                Else
+                    Return False
+                End If
             End If
         Else
             Return False
@@ -39,16 +63,74 @@
 
     Public Shared Function ButtonDown(ByVal Button As Microsoft.Xna.Framework.Input.Buttons, ByVal GamePadEnabled As Boolean) As Boolean
         If GamePadEnabled = True Then
-            If NewState.IsButtonDown(Button) = True Then
-                Return True
-            Else
+            Dim leftStickButtons As List(Of Microsoft.Xna.Framework.Input.Buttons) = {Buttons.LeftThumbstickUp, Buttons.LeftThumbstickLeft, Buttons.LeftThumbstickDown, Buttons.LeftThumbstickRight}.ToList
+
+            If leftStickButtons.Contains(Button) = True Then
+                Select Case Button
+                    Case Buttons.LeftThumbstickUp
+                        If LeftThumbstickDirection(NewState, GamePadEnabled) = 0 Then
+                            Return True
+                        End If
+                    Case Buttons.LeftThumbstickLeft
+                        If LeftThumbstickDirection(NewState, GamePadEnabled) = 1 Then
+                            Return True
+                        End If
+                    Case Buttons.LeftThumbstickDown
+                        If LeftThumbstickDirection(NewState, GamePadEnabled) = 2 Then
+                            Return True
+                        End If
+                    Case Buttons.LeftThumbstickRight
+                        If LeftThumbstickDirection(NewState, GamePadEnabled) = 3 Then
+                            Return True
+                        End If
+                End Select
                 Return False
+            Else
+                If NewState.IsButtonDown(Button) = True Then
+                    Return True
+                Else
+                    Return False
+                End If
             End If
         Else
             Return False
         End If
     End Function
 
+    Public Shared Function LeftThumbstickAngle(ByVal State As GamePadState, ByVal GamePadEnabled As Boolean) As Integer
+        If GamePadEnabled = True Then
+            If State.ThumbSticks.Left.X <> 0 Or State.ThumbSticks.Left.Y <> 0 Then
+                Return CInt(Math.Atan2(State.ThumbSticks.Left.Y, State.ThumbSticks.Left.X) * 57)
+            End If
+        End If
+        Return 999
+    End Function
+    Public Shared Function LeftThumbstickDirection(ByVal State As GamePadState, ByVal GamePadEnabled As Boolean) As Integer
+        If GamePadEnabled = True AndAlso LeftThumbstickAngle(State, GamePadEnabled) <> 999 Then
+            'Up
+            If LeftThumbstickAngle(State, GamePadEnabled) > 45 AndAlso LeftThumbstickAngle(State, GamePadEnabled) <= 135 Then
+                Return 0
+            End If
+
+            'Left
+            If LeftThumbstickAngle(State, GamePadEnabled) <= -135 AndAlso LeftThumbstickAngle(State, GamePadEnabled) >= -180 OrElse
+            LeftThumbstickAngle(State, GamePadEnabled) > 135 AndAlso LeftThumbstickAngle(State, GamePadEnabled) <= 180 Then
+                Return 1
+            End If
+
+            'Down
+            If LeftThumbstickAngle(State, GamePadEnabled) < -45 AndAlso LeftThumbstickAngle(State, GamePadEnabled) > -135 Then
+                Return 2
+            End If
+
+            'Right
+            If LeftThumbstickAngle(State, GamePadEnabled) >= -45 AndAlso LeftThumbstickAngle(State, GamePadEnabled) < 45 Then
+                Return 3
+            End If
+
+        End If
+        Return -1
+    End Function
     Public Shared Function IsConnected(Optional ByVal index As Integer = 0) As Boolean
         Return (GamePad.GetState(CType(index, PlayerIndex)).IsConnected = True And Core.GameOptions.GamePadEnabled = True)
     End Function
