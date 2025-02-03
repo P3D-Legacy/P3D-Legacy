@@ -1129,6 +1129,7 @@
                     p.RemoveVolatileStatus(Pokemon.VolatileStatus.Confusion)
                 Case 38 'Full Heal
                     Me.CureStatusProblem(False, False, BattleScreen, BattleScreen.Trainer.Name & " used a Full Heal on " & p.GetDisplayName() & "!", "item:fullheal")
+                    p.RemoveVolatileStatus(Pokemon.VolatileStatus.Confusion)
                 Case 9 'Antidote
                     Me.CureStatusProblem(False, False, BattleScreen, BattleScreen.Trainer.Name & " used an Antidote on " & p.GetDisplayName() & "!", "item:antidote")
                 Case 10 'Burn Heal
