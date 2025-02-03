@@ -342,6 +342,7 @@
 
         Private _moveMenuIndex As Integer = 0
         Private _moveMenuNextIndex As Integer = 0
+        Private _moveMenuLastIndex As Integer = 0
         Private _moveMenuItemList As New List(Of MoveMenuItem)
         Private _moveMenuCreatedID As String = ""
         Private _moveMenuAlpha As Integer = 255
@@ -527,6 +528,7 @@
                         If Controls.Accept(False, True, True) = True And isSelected = True Then
                             SoundManager.PlaySound("select")
                             If Me.Move.Disabled = 0 AndAlso BattleScreen.FieldEffects.OwnEncore = 0 OrElse BattleScreen.FieldEffects.OwnEncoreMove.ID = Move.ID Then
+                                BattleScreen.BattleMenu._moveMenuLastIndex = Me.Index
                                 Me.ClickAction(BattleScreen)
                             End If
                         End If
@@ -535,10 +537,12 @@
                                 If isSelected = True Then
                                     SoundManager.PlaySound("select")
                                     If Me.Move.Disabled = 0 AndAlso BattleScreen.FieldEffects.OwnEncore = 0 OrElse BattleScreen.FieldEffects.OwnEncoreMove IsNot Nothing AndAlso BattleScreen.FieldEffects.OwnEncoreMove.ID = Move.ID Then
+                                        BattleScreen.BattleMenu._moveMenuLastIndex = Me.Index
                                         Me.ClickAction(BattleScreen)
                                     End If
                                 Else
                                     BattleScreen.BattleMenu._moveMenuNextIndex = Me.Index
+                                    BattleScreen.BattleMenu._moveMenuLastIndex = Me.Index
                                     BattleScreen.BattleMenu._isRetracting = True
                                 End If
                             End If
@@ -777,7 +781,10 @@
             _retractMenu = True
             _nextMenuState = MenuStates.Moves
             PartyScreen.Selected = -1
-
+            If _moveMenuIndex <> _moveMenuLastIndex Then
+                _moveMenuNextIndex = _moveMenuLastIndex
+                _moveMenuIndex = _moveMenuLastIndex
+            End If
             BattleScreen.BattleQuery.Clear()
             Dim q As New CameraQueryObject(New Vector3(11, 0.5F, 14.0F), New Vector3(11, 0.5F, 14.0F), Screen.Camera.Speed, Screen.Camera.Speed, -(CSng(MathHelper.PiOver4) + 0.3F), -(CSng(MathHelper.PiOver4) + 0.3F), -0.3F, -0.3F, 0.04F, 0.04F)
             BattleScreen.BattleQuery.AddRange({q})
@@ -971,11 +978,21 @@
             Else
                 UseStruggle(BattleScreen)
 
-                If _moveMenuItemList.Count = 0 Or _moveMenuCreatedID <> BattleScreen.OwnPokemon.IndividualValue Or BattleScreen.IsChoiced Then
+                If _moveMenuItemList.Count = 0 Or _moveMenuCreatedID <> BattleScreen.OwnPokemon.IndividualValue Then
                     If _moveMenuCreatedID <> BattleScreen.OwnPokemon.IndividualValue Then
                         _moveMenuIndex = 0
                     End If
                     CreateMoveMenuItems(BattleScreen)
+                    If _moveMenuIndex <> _moveMenuLastIndex Then
+                        _moveMenuNextIndex = _moveMenuLastIndex
+                        _moveMenuIndex = _moveMenuLastIndex
+
+                        If _moveMenuIndex > _moveMenuItemList.Count - 1 Then
+                            _moveMenuNextIndex = 0
+                            _moveMenuIndex = 0
+                            _moveMenuLastIndex = 0
+                        End If
+                    End If
                     _moveMenuCreatedID = BattleScreen.OwnPokemon.IndividualValue
                 End If
                 If _retractMenu = False Then
