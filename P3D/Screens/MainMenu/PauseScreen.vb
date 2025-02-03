@@ -306,6 +306,7 @@
         If JoinServerScreen.Online = True Then
             Core.ServersManager.ServerConnection.Disconnect()
         End If
+        Screen.TextBox.TextColor = TextBox.DefaultColor
         MusicManager.ForceMusic = ""
         World.setDaytime = -1
         World.setSeason = Nothing

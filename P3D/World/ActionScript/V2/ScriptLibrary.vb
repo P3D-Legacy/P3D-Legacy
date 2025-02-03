@@ -155,6 +155,8 @@ Namespace ScriptVersion2
             r(New ScriptCommand("text", "notification", {New ScriptArgument("message", ScriptArgument.ArgumentTypes.Str), New ScriptArgument("delay", ScriptArgument.ArgumentTypes.Int, True, "500"), New ScriptArgument("backgroundindex", ScriptArgument.ArgumentTypes.Int, True, "0"), New ScriptArgument("iconindex", ScriptArgument.ArgumentTypes.Int, True, "0"), New ScriptArgument("soundeffect", ScriptArgument.ArgumentTypes.Str, True), New ScriptArgument("scriptfile", ScriptArgument.ArgumentTypes.Str, True)}.ToList(), "Displays a textbox with the given text."))
             r(New ScriptCommand("text", "debug", {New ScriptArgument("text", ScriptArgument.ArgumentTypes.Str)}.ToList(), "Prints the ""text"" argument to the immediate window console."))
             r(New ScriptCommand("text", "log", {New ScriptArgument("text", ScriptArgument.ArgumentTypes.Str)}.ToList(), "Logs the ""text"" argument into the log.dat file."))
+            r(New ScriptCommand("text", "color", {New ScriptArgument("colorName", ScriptArgument.ArgumentTypes.Str, {"playercolor", "defaultcolor"})}.ToList(), "Changes the font color to a preset. You can also use a VB.NET compatible color in the ""KnownColor"" enum instead."))
+            r(New ScriptCommand("text", "color", {New ScriptArgument("Red", ScriptArgument.ArgumentTypes.Str), New ScriptArgument("Green", ScriptArgument.ArgumentTypes.Str), New ScriptArgument("Blue", ScriptArgument.ArgumentTypes.Str)}.ToList(), "Changes the font color to the specified RGB values."))
         End Sub
 
         Private Shared Sub DoSound()
