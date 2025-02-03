@@ -899,8 +899,8 @@ Public Class Element
                 End If
             End If
         Else
-            If a.gmEffectivenessDefense.ContainsKey(d.Type) Then
-                Return a.gmEffectivenessDefense(d.Type)
+            If a.gmEffectivenessAttack.ContainsKey(d.Type) Then
+                Return a.gmEffectivenessAttack(d.Type)
             End If
         End If
 
