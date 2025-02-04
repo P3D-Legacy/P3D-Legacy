@@ -262,6 +262,9 @@ option_screen_controls_cameraspeed_slow,...Traag...
 option_screen_controls_cameraspeed_medium,Standaard
 option_screen_controls_cameraspeed_fast,Supersnel!
 option_screen_controls_cameraspeed_fastest,LICHTSNELHEID!
+option_screen_controls_running,Rennen
+option_screen_controls_running_hold,Vasthouden
+option_screen_controls_running_toggle,Schakelen
 
 option_screen_audio,Geluid
 option_screen_audio_volume_music,Muziekvolume
