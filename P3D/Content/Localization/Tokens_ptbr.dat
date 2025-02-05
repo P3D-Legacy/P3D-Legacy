@@ -285,7 +285,7 @@ option_screen_contentpacks_description,Descrição
 
 option_screen_resetoptions,Resetar Opções
 option_screen_save_options,Salvar Opções
-option_screen_close,Fechar.
+option_screen_close,Fechar
 ---
 Pausescreen:
 pause_menu_title,Menu de Pausa

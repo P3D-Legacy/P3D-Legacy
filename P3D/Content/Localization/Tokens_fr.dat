@@ -285,7 +285,7 @@ option_screen_contentpacks_description,Description
 
 option_screen_resetoptions,Reset options
 option_screen_save_options,Sauver options
-option_screen_close,Fermer.
+option_screen_close,Fermer
 ---
 Pausescreen:
 pause_menu_title,Menu du jeu

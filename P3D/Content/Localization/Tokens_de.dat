@@ -12,7 +12,7 @@ global_yes,Ja
 global_no,Nein
 global_accept,Akzeptieren
 global_cancel,Abbrechen
-global_gamemode,Spiel-Modus
+global_gamemode,Spielmodus
 global_clear,Löschen
 global_save,Speichern
 global_apply,Anwenden
@@ -32,7 +32,7 @@ global_money,Geld
 global_points,Punkte
 global_ot,OT
 global_time,Zeit
-global_name,Name
+global_name,Nahme
 global_order,Reihenfolge
 global_filter,Filter
 global_reset,Reset
@@ -57,13 +57,13 @@ global_pokemon_type_fairy,Fee
 global_pokemon_type_blank,Blanko
 global_true,Wahr
 global_false,Falsch
-global_select,Wählen
-global_summary,Übersicht
-global_item,Artikel
+global_select,Auswählen
+global_summary,Bericht
+global_item,Item
 global_use,Benutzen
 global_give,Geben
 global_take,Nehmen
-global_toss,Werfen
+global_toss,Wegwerfen
 global_switch,Tauschen
 global_pokemon_move_fly,Fliegen
 global_pokemon_move_rocksmash,Zertrümmerer
@@ -77,21 +77,40 @@ global_used,Benutzt
 General:
 HP,KP
 PP,AP
-Lv.,Nv.
-No.,No.
-Level,Niveau
+Lv.,Lv.
+No.,Nr.
+Level,Level
 MaxHP,Max KP
 Attack,Angriff
 Defense,Verteidigung
-Special_Attack,Spezial Ang.
-Sp_Attack,Sp. Ang.
+Special_Attack,Spezial Angr.
+Sp_Attack,Sp. Angr.
 Special_Defense,Spezial Vert.
 Sp_Defense,Sp. Vert.
 Speed,Initiative
 ---
+Keyboard Keys:
+
+keyboard_key_Up,Up
+keyboard_key_Down,Down
+keyboard_key_Left,Left
+keyboard_key_Right,Right
+keyboard_key_Enter,Enter
+keyboard_key_Space,Space
+keyboard_key_Escape,Escape
+keyboard_key_Back,Backspace
+keyboard_key_Tab,Tab
+keyboard_key_Home,Home
+keyboard_key_End,End
+keyboard_key_Delete,Delete
+keyboard_key_PageUp,Page Up
+keyboard_key_PageDown,Page Down
+keyboard_key_LeftShift,Left Shift
+keyboard_key_RightShift,Right Shift
+---
 FieldMoves:
 
-fieldmove_cut_1,This tree looks like it~can be Cut down!
+fieldmove_cut_1,This tree looks like it can~be Cut down!
 fieldmove_cut_2,*Do you want to use Cut?
 fieldmove_cut_used,used~Cut!
 
@@ -133,22 +152,22 @@ game_notification_accept,Press [<system.button(special)>] to accept.
 game_notification_dismiss,Press [<system.button(special)>] to dismiss.
 ---
 PressStartScreen:
-start_screen_press,Press
-start_screen_tostart,to start.
+start_screen_press,Drücke
+start_screen_tostart,zum Starten.
 ---
 Main Menu:
 main_menu_newgame_line1,Neues
 main_menu_newgame_line2,Spiel
-main_menu_options,Options
-main_menu_savefile_name,Player Name
-main_menu_savefile_gamemode,GameMode
-main_menu_savefile_badges,Badges
-main_menu_savefile_playtime,Play time
-main_menu_savefile_location,Location
-main_menu_gamejolt_ChangeToMale,Change to male
-main_menu_gamejolt_ChangeToFemale,Change to female
-main_menu_gamejolt_ChangeToGenderless,Change to genderless
-main_menu_gamejolt_ResetSave,Reset save
+main_menu_options,Optionen
+main_menu_savefile_name,Spielername
+main_menu_savefile_gamemode,Spielmodus
+main_menu_savefile_badges,Orden
+main_menu_savefile_playtime,Spielzeit
+main_menu_savefile_location,Ort
+main_menu_gamejolt_ChangeToMale,Wechsle zu Männlich
+main_menu_gamejolt_ChangeToFemale,Wechsle zu Weiblich
+main_menu_gamejolt_ChangeToGenderless,Wechsle zu Geschlechtslos
+main_menu_gamejolt_ResetSave,Speilstand zurücksetzen
 main_menu_error_gamemode_profile,The required GameMode does not exist!
 main_menu_error_gamemode_message,The required GameMode does not exist.~Reaquire the GameMode to play on this profile.
 main_menu_error_gamejolt_1,Download failed. Press Accept to try again.
@@ -156,9 +175,9 @@ main_menu_error_gamejolt_2,If the problem persists, please try again later
 main_menu_error_gamejolt_3,or contact us in our Discord server:
 main_menu_error_gamejolt_4,http://www.discord.me/p3d
 main_menu_error_filevalidation,File validation failed!~Redownload the game's files to solve this problem.
-main_menu_options_language,Language
+main_menu_options_language,Sprache
 main_menu_options_audio,Audio
-main_menu_options_controls,Controls
+main_menu_options_controls,Steuerung
 main_menu_options_contentpacks_line1,Content
 main_menu_options_contentpacks_line2,Packs
 
@@ -208,6 +227,8 @@ option_screen_game_difficulty_description,Die Schwierigkeit des Spiels kann hier
 option_screen_game_difficulty_easy,Einfach
 option_screen_game_difficulty_hard,Schwer
 option_screen_game_difficulty_superhard,Superschwer
+option_screen_game_interfacescale,Interface Scale
+option_screen_game_interfacescale_automatic,Automatic
 option_screen_game_viewbobbing,Kamerabewegung
 option_screen_game_viewbobbing_description,Schaltet Kamerabewegung an oder aus.
 
@@ -234,18 +255,21 @@ option_screen_battle_battlestyle_set,Fest
 option_screen_battle_battlestyle_shift,Tausch
 
 option_screen_controls,Controls
-option_screen_controls_xboxgamepad,Xbox Gamepad
-option_screen_controls_resetkeybindings,Reset Key Bindings
+option_screen_controls_xboxgamepad,Xbox Controller
+option_screen_controls_resetkeybindings,Reset Tastenbelegung
 option_screen_controls_cameraspeed,Mausgeschwindigkeit
 option_screen_controls_cameraspeed_slow,...Langsam...
 option_screen_controls_cameraspeed_medium,Standard
 option_screen_controls_cameraspeed_fast,Super schnell!
 option_screen_controls_cameraspeed_fastest,LICHTGESCHWINDIGKEIT!
+option_screen_controls_running,Running
+option_screen_controls_running_hold,Hold
+option_screen_controls_running_toggle,Toggle
 
 option_screen_audio,Audio
 option_screen_audio_volume_music,Musik Lautstärke
-option_screen_audio_volume_sfx,Toneffekte Lautstärke
-option_screen_audio_muted,Gedämpft
+option_screen_audio_volume_sfx,Soundeffekte Lautstärke
+option_screen_audio_muted,Lautlos
 
 option_screen_contentpacks_up,Move Up
 option_screen_contentpacks_down,Move Down
@@ -261,7 +285,7 @@ option_screen_contentpacks_description,Description
 
 option_screen_resetoptions,Einstellungen zurücksetzen.
 option_screen_save_options,Optionen speichern.
-option_screen_close,Schließen.
+option_screen_close,Schließen
 ---
 Pausescreen:
 pause_menu_title,Game menu
@@ -277,7 +301,7 @@ IngameMenu:
 game_menu_pokedex,Pokédex
 game_menu_party,Pokémon
 game_menu_bag,Beutel
-game_menu_trainer_card,<playername>
+game_menu_trainer_card,<Player.Name>
 game_menu_save,Speichern
 game_menu_save_notpossible,Speichern ist im Moment nicht möglich.
 game_menu_options,Optionen
@@ -344,7 +368,7 @@ apricorn_screen_clear,Leeren
 apricorn_screen_all,Alle
 apricorn_screen_take,Nehmen
 apricorn_screen_ready,Ich habe die Pokébälle produziert. Hier ist das Ergebnis:
-apricorn_screen_obtain,erhält
+apricorn_screen_obtain, erhält
 ---
 Donation screen:
 donation_screen_donators,Spender
@@ -364,7 +388,7 @@ Voltorb Flip:
 VoltorbFlip_LV.,LV.
 VoltorbFlip_CurrentCoins_Line1,Coins found
 VoltorbFlip_CurrentCoins_Line2,in this LV.
-VoltorbFlip_TotalCoins_Line1,<player.name>'s
+VoltorbFlip_TotalCoins_Line1,<Player.Name>'s
 VoltorbFlip_TotalCoins_Line2,earned Coins
 
 VoltorbFlip_MemoButton_Open_Line1,Open
@@ -390,7 +414,7 @@ VoltorbFlip_BeforeNewLevel_GameInfo_Answer_Hint,Hint!
 VoltorbFlip_BeforeNewLevel_GameInfo_Answer_AboutMemos,About Memos
 VoltorbFlip_BeforeNewLevel_GameInfo_Back,Back
 
-VoltorbFlip_GameWon_1,Game clear!~You've found all of the~hidden x2 and x3 cards.*<player.name> received~
+VoltorbFlip_GameWon_1,Game clear!~You've found all of the~hidden x2 and x3 cards.*<Player.Name> received~
 VoltorbFlip_GameWon_2,Coin(s)!
 
 VoltorbFlip_GameLost,Oh no! You get 0 Coins!
@@ -404,7 +428,7 @@ VoltorbFlip_NewLevel_Higher2,!
 VoltorbFlip_NewLevel_Ready1,Ready to play Game Lv.
 VoltorbFlip_NewLevel_Ready2,!
 
-VoltorbFlip_QuitGame_1,<player.name> received~
+VoltorbFlip_QuitGame_1,<Player.Name> received~
 VoltorbFlip_QuitGame_2,Coin(s)!
 
 VoltorbFlip_AfterGame_Won1,You've won
@@ -456,16 +480,16 @@ pokedex_evolution_no_evolutions,doesn't evolve.
 Receiving Items:
 item_received_single,Received the~
 item_received_multiple,Received
-item_found,<player.name> found~
-item_stored_in_pocket_single_start,<player.name> stored it in the~
+item_found,<Player.Name> found~
+item_stored_in_pocket_single_start,<Player.Name> stored it in the~
 item_stored_in_pocket_single_end,pocket.
-item_stored_in_pocket_multiple_start,<player.name> stored them~in the
+item_stored_in_pocket_multiple_start,<Player.Name> stored them~in the
 item_stored_in_pocket_multiple_end,pocket.
 
 Berries:
-berry_picked_single_start,<player.name> picked the~
+berry_picked_single_start,<Player.Name> picked the~
 berry_picked_single_end,Berry.
-berry_picked_multiple_start,<player.name> picked the~
+berry_picked_multiple_start,<Player.Name> picked the~
 berry_picked_multiple_end,Berries.
 ----
 Battle:
@@ -734,7 +758,7 @@ game_message_sandbox_mode_off,Sandbox mode off
 game_message_audio_on,Audio on
 game_message_audio_off,Audio off
 game_message_continue_autosave,Continued save state:
-game_message_debug_texture_list_clear,Texture list have cleared
+game_message_debug_texture_list_clear,Texture list was cleared
 ---
 Pokemon:
 pokemon_name_Bulbasaur,Bisasam
@@ -985,7 +1009,7 @@ pokemon_name_Larvitar,Larvitar
 pokemon_name_Pupitar,Pupitar
 pokemon_name_Tyranitar,Despotar
 pokemon_name_Lugia,Lugia
-pokemon_name_Ho-Oh,Ho-Oh
+pokemon_name_Ho-oh,Ho-oh
 pokemon_name_Celebi,Celebi
 pokemon_name_Treecko,Treecko
 pokemon_name_Grovyle,Grovyle
@@ -1143,8 +1167,8 @@ pokemon_name_Luxio,Luxio
 pokemon_name_Luxray,Luxray
 pokemon_name_Budew,Budew
 pokemon_name_Roserade,Roserade
-pokemon_name_Cranidos,Cranidos
-pokemon_name_Rampardos,Rampardos
+pokemon_name_Cranidos,Koknodon
+pokemon_name_Rampardos,Rameidon
 pokemon_name_Shieldon,Shieldon
 pokemon_name_Bastiodon,Bastiodon
 pokemon_name_Burmy,Burmy
@@ -1164,8 +1188,8 @@ pokemon_name_Drifloon,Drifloon
 pokemon_name_Drifblim,Drifblim
 pokemon_name_Buneary,Buneary
 pokemon_name_Lopunny,Lopunny
-pokemon_name_Mismagius,Mismagius
-pokemon_name_Honchkrow,Honchkrow
+pokemon_name_Mismagius,Traunmagil
+pokemon_name_Honchkrow,Kramshef
 pokemon_name_Glameow,Glameow
 pokemon_name_Purugly,Purugly
 pokemon_name_Chingling,Chingling
@@ -1196,19 +1220,19 @@ pokemon_name_Lumineon,Lumineon
 pokemon_name_Mantyke,Mantyke
 pokemon_name_Snover,Snover
 pokemon_name_Abomasnow,Abomasnow
-pokemon_name_Weavile,Weavile
+pokemon_name_Weavile,Snibunna
 pokemon_name_Magnezone,Magnezone
-pokemon_name_Lickilicky,Lickilicky
-pokemon_name_Rhyperior,Rhyperior
+pokemon_name_Lickilicky,Schlurplek
+pokemon_name_Rhyperior,Rihornior
 pokemon_name_Tangrowth,Tangrowth
-pokemon_name_Electivire,Electivire
-pokemon_name_Magmortar,Magmortar
+pokemon_name_Electivire,Elevoltek
+pokemon_name_Magmortar,Magbrant
 pokemon_name_Togekiss,Togekiss
 pokemon_name_Yanmega,Yanmega
-pokemon_name_Leafeon,Leafeon
-pokemon_name_Glaceon,Glaceon
-pokemon_name_Gliscor,Gliscor
-pokemon_name_Mamoswine,Mamoswine
+pokemon_name_Leafeon,Folipurba
+pokemon_name_Glaceon,Glaziola
+pokemon_name_Gliscor,Skorgro
+pokemon_name_Mamoswine,Mamutel
 pokemon_name_Porygon-Z,Porygon-Z
 pokemon_name_Gallade,Gallade
 pokemon_name_Probopass,Probopass
@@ -1435,7 +1459,7 @@ pokemon_name_Tyrunt,Tyrunt
 pokemon_name_Tyrantrum,Tyrantrum
 pokemon_name_Amaura,Amaura
 pokemon_name_Aurorus,Aurorus
-pokemon_name_Sylveon,Sylveon
+pokemon_name_Sylveon,Feelinara
 pokemon_name_Hawlucha,Hawlucha
 pokemon_name_Dedenne,Dedenne
 pokemon_name_Carbink,Carbink
@@ -1449,8 +1473,8 @@ pokemon_name_Pumpkaboo,Pumpkaboo
 pokemon_name_Gourgeist,Gourgeist
 pokemon_name_Bergmite,Bergmite
 pokemon_name_Avalugg,Avalugg
-pokemon_name_Noibat,Noibat
-pokemon_name_Noivern,Noivern
+pokemon_name_Noibat,eF-eM
+pokemon_name_Noivern,UHaFnir
 pokemon_name_Xerneas,Xerneas
 pokemon_name_Yveltal,Yveltal
 pokemon_name_Zygarde,Zygarde
@@ -2355,7 +2379,7 @@ item_6_missingskin,You can't use this item~without a bicycle skin.*Its name shou
 item_6_only_custom_gamemodes,This item can't be used~on this GameMode.
 
 Key Items:
-item_use_6,<player.name> stepped~off the Bicycle.
+item_use_6,<Player.Name> stepped~off the Bicycle.
 item_use_54,Your Coins:~
 -------------------
 Move Names:
