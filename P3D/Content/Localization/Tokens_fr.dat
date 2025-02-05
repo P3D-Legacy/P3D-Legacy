@@ -262,6 +262,9 @@ option_screen_controls_cameraspeed_slow,...Lent...
 option_screen_controls_cameraspeed_medium,Standard
 option_screen_controls_cameraspeed_fast,Super rapide!
 option_screen_controls_cameraspeed_fastest,VITESSE DE LA LUMIERE!
+option_screen_controls_running,Courrir
+option_screen_controls_running_hold,Maintenir
+option_screen_controls_running_toggle,Basculer
 
 option_screen_audio,Audio
 option_screen_audio_volume_music,Volume Musique
