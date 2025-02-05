@@ -278,9 +278,9 @@
 
         If GetPokemon().IsEgg() = False Then
             'Type images draw:
-            Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\Types"), New Rectangle(DeltaX + 96 + 8, DeltaY + 338, 48, 16), GetPokemon().Type1.GetElementImage(), New Color(255, 255, 255, CInt(255 * _fadeIn)))
+            Core.SpriteBatch.Draw(TextureManager.GetTexture(Element.GetElementTexturePath()), New Rectangle(DeltaX + 96 + 8, DeltaY + 338, 48, 16), GetPokemon().Type1.GetElementImage(), New Color(255, 255, 255, CInt(255 * _fadeIn)))
             If GetPokemon().Type2.Type <> Element.Types.Blank Then
-                Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\Types"), New Rectangle(DeltaX + 152, DeltaY + 338, 48, 16), GetPokemon().Type2.GetElementImage(), New Color(255, 255, 255, CInt(255 * _fadeIn)))
+                Core.SpriteBatch.Draw(TextureManager.GetTexture(Element.GetElementTexturePath()), New Rectangle(DeltaX + 152, DeltaY + 338, 48, 16), GetPokemon().Type2.GetElementImage(), New Color(255, 255, 255, CInt(255 * _fadeIn)))
             End If
             'Item:
             If GetPokemon().Item IsNot Nothing Then
@@ -511,7 +511,7 @@
 
                 If .Attacks.Count - 1 >= i Then
                     SpriteBatch.DrawString(FontManager.MainFont, .Attacks(i).Name, New Vector2(pos.X + 24, pos.Y + 8), New Color(0, 0, 0, CInt(220 * _fadeIn * _pageFade)))
-                    Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\Types"), New Rectangle(CInt(pos.X + 26), CInt(pos.Y + 36), 48, 16), .Attacks(i).Type.GetElementImage(), New Color(255, 255, 255, CInt(255 * _fadeIn * _pageFade)))
+                    Core.SpriteBatch.Draw(TextureManager.GetTexture(Element.GetElementTexturePath()), New Rectangle(CInt(pos.X + 26), CInt(pos.Y + 36), 48, 16), .Attacks(i).Type.GetElementImage(), New Color(255, 255, 255, CInt(255 * _fadeIn * _pageFade)))
                     SpriteBatch.DrawString(FontManager.MainFont, "PP " & .Attacks(i).CurrentPP & " / " & .Attacks(i).MaxPP, New Vector2(pos.X + 130, pos.Y + 32), New Color(0, 0, 0, CInt(220 * _fadeIn * _pageFade)))
                 End If
             Next
@@ -536,7 +536,7 @@
 
             'Type:
             SpriteBatch.DrawString(FontManager.MainFont, "Type:", New Vector2(DeltaX + 710, DeltaY + 80), New Color(255, 255, 255, CInt(220 * _interfaceFade * _pageFade * _moveFade)))
-            Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\Types"), New Rectangle(DeltaX + 840, DeltaY + 86, 48, 16), .Attacks(_moveIndex).Type.GetElementImage(), New Color(255, 255, 255, CInt(255 * _fadeIn * _pageFade * _moveFade)))
+            Core.SpriteBatch.Draw(TextureManager.GetTexture(Element.GetElementTexturePath()), New Rectangle(DeltaX + 840, DeltaY + 86, 48, 16), .Attacks(_moveIndex).Type.GetElementImage(), New Color(255, 255, 255, CInt(255 * _fadeIn * _pageFade * _moveFade)))
 
             SpriteBatch.DrawString(FontManager.MainFont, "PP:", New Vector2(DeltaX + 710, DeltaY + 114), New Color(255, 255, 255, CInt(220 * _interfaceFade * _pageFade * _moveFade)))
             SpriteBatch.DrawString(FontManager.MainFont, .Attacks(_moveIndex).CurrentPP & " / " & .Attacks(_moveIndex).MaxPP, New Vector2(DeltaX + 840, DeltaY + 114), New Color(255, 255, 255, CInt(220 * _fadeIn * _pageFade * _moveFade)))

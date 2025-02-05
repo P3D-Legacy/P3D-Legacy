@@ -907,8 +907,16 @@ Public Class Element
         Return 1
     End Function
 
+    Public Shared Function GetElementTexturePath() As String
+        If File.Exists(GameController.GamePath & "\" & GameModeManager.ActiveGameMode.ContentPath & "\GUI\Menus\Types_" & Localization.LanguageSuffix & ".png") Or
+            File.Exists(GameController.GamePath & "\" & GameMode.DefaultContentPath & "\GUI\Menus\Types_" & Localization.LanguageSuffix & ".png") Then
+            Return "GUI\Menus\Types_" & Localization.LanguageSuffix
+        End If
+        Return "GUI\Menus\Types_en"
+    End Function
+
     ''' <summary>
-    ''' Returns the rectangle from the texture "GUI\Menus\Types" that represents the Type of this Element.
+    ''' Returns the rectangle from the texture returned from Element.GetElementTexturePath() that represents the Type of this Element.
     ''' </summary>
     Public Function GetElementImage() As Rectangle
         Dim r As New Rectangle(0, 0, 0, 0)

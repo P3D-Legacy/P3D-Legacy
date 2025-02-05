@@ -2516,7 +2516,7 @@
                     r = New Rectangle(115, 28, 28, 14)
             End Select
 
-            Return TextureManager.GetTexture("GUI\Menus\Types", r, "")
+            Return TextureManager.GetTexture(Element.GetElementTexturePath(), r, "")
         End Function
 
         ''' <summary>

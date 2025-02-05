@@ -487,7 +487,7 @@
                 Core.SpriteBatch.Draw(Me.Texture, New Rectangle(Core.windowSize.Width - (AllExtended + extraExtended), 116 + Index * 96, 80, 80), New Rectangle(16, 16, 16, 16), New Color(BackgroundDrawColor.R, BackgroundDrawColor.G, BackgroundDrawColor.B, 255 - deductAlpha))
                 Core.SpriteBatch.Draw(Me.Texture, New Rectangle(Core.windowSize.Width - (AllExtended + extraExtended) + 80, 116 + Index * 96, AllExtended + extraExtended - 80, 80), New Rectangle(32, 16, 16, 16), New Color(BackgroundDrawColor.R, BackgroundDrawColor.G, BackgroundDrawColor.B, 255 - deductAlpha))
 
-                Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\Types", Me.Move.Type.GetElementImage(), ""), New Rectangle(Core.windowSize.Width - (AllExtended + extraExtended) + 28, 132 + Index * 96, 48, 16), New Color(255, 255, 255, 255 - deductAlpha))
+                Core.SpriteBatch.Draw(TextureManager.GetTexture(Element.GetElementTexturePath(), Me.Move.Type.GetElementImage(), ""), New Rectangle(Core.windowSize.Width - (AllExtended + extraExtended) + 28, 132 + Index * 96, 48, 16), New Color(255, 255, 255, 255 - deductAlpha))
 
                 If isSelected = True Then
                     If Move.Disabled > 0 OrElse BattleScreen.FieldEffects.OwnEncore > 0 AndAlso BattleScreen.FieldEffects.OwnEncoreMove.ID <> Move.ID Then

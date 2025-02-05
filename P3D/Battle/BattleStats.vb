@@ -20,7 +20,7 @@
                 Return Nothing
         End Select
 
-        Return TextureManager.GetTexture("GUI\Menus\Types", r, "")
+        Return TextureManager.GetTexture(Element.GetElementTexturePath(), r, "")
     End Function
 
     Public Shared Function GetStatColor(ByVal Status As Pokemon.StatusProblems) As Color
