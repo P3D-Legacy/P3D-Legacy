@@ -112,6 +112,7 @@ FieldMoves:
 
 fieldmove_cut_1,Zo te zien kan deze boom~omgehakt worden!
 fieldmove_cut_2,*Wil je Snijd gebruiken?
+fieldmove_cut_NothingToCut,Er is hier niets om te~Snijden!
 fieldmove_cut_used,gebruikte~Snijd!
 
 fieldmove_rocksmash_1,Deze steen ziet er~breekbaar uit!
@@ -141,6 +142,16 @@ fieldmove_waterfall_used,gebruikte~Waterval.
 fieldmove_ride_cannot_walk,Je kunt hier niet lopen!
 fieldmove_ride_cannot_ride,Je kunt hier niet Rijden!
 fieldmove_ride_used,gebruikte~Rijd!
+
+fieldmove_flash_AreaLitUp,De omgeving werd verlicht!
+fieldmove_flash_AlreadyLitUp,De omgeving is al verlicht!
+fieldmove_flash_used,gebruikte~Flits!
+
+fieldmove_dig_CannotUse,Kan hier niet Graaf~gebruiken.
+fieldmove_dig_used,gebruikte~Graaf!
+
+fieldmove_teleport_CannotUse,Kan hier niet Teleporteer~gebruiken.
+fieldmove_teleport_used,gebruikte~Teleporteer!
 ---
 GameInteractions:
 game_interaction_interact,Actie
@@ -322,7 +333,15 @@ inventory_screen_TossConfirmation,Weet je zeker dat je dit~voorwerp wilt weggooi
 inventory_screen_TossAmount,Selecteer aantal om weg te gooien.
 inventory_screen_GiveItem_Give,Gaf <name> een <newitem>.
 inventory_screen_GiveItem_Switch,Wisselde <name>'s <olditem> met een <newitem>.
+inventory_screen_GiveItem_TakeMail,Gaf een <newitem> aan <name> en bracht de Brief naar de PC.
+inventory_screen_CannotGiveToPokemon,<newitem> kan niet aan een Pokémon gegeven worden.
 inventory_screen_EggsCannotHold,Eieren kunnen geen voorwerpen~vasthouden.
+---
+PartyScreen:
+party_screen_Unable,Onmogelijk!
+party_screen_Able,Mogelijk!
+party_screen_FieldMove,Veldtechniek
+party_screen_CannotChoosePokemon,Kan deze Pokémon niet~kiezen.
 ---
 NewGameScreen:
 new_game_intro_1,Hello!~Sorry to keep~you waiting!*Welcome to the world~of Pokémon!*My name is Oak.~People call me~Pokémon Prof.*This world is inhabited~by creatures that~we call

@@ -397,9 +397,9 @@ Public Class PartyScreen
             'Able/unable display (when using an Evolution Item)
             Dim ItemLabel As String = ""
             If EvolutionItemID <> "-1" Then
-                ItemLabel = "Unable!"
+                ItemLabel = Localization.GetString("party_screen_Unable", "Unable!")
                 If p.IsEgg() = False And p.CanEvolve(EvolutionCondition.EvolutionTrigger.ItemUse, EvolutionItemID.ToString()) = True Then
-                    ItemLabel = "Able!"
+                    ItemLabel = Localization.GetString("party_screen_Able", "Able!")
                 End If
             End If
 
@@ -408,16 +408,16 @@ Public Class PartyScreen
             'Able/unable display (when using TM/HM)
             Dim AttackLabel As String = ""
             If LearnType > 0 Then
-                AttackLabel = "Unable!"
+                AttackLabel = Localization.GetString("party_screen_Unable", "Unable!")
                 Select Case LearnType
                     Case 1 ' Technical/Hidden Machine
                         If CType(moveLearnArg, Item).IsGameModeItem = True Then
                             If CType(moveLearnArg, GameModeItem).CanTeach(p) = "" Then
-                                AttackLabel = "Able!"
+                                AttackLabel = Localization.GetString("party_screen_Able", "Able!")
                             End If
                         Else
                             If CType(moveLearnArg, Items.TechMachine).CanTeach(p) = "" Then
-                                AttackLabel = "Able!"
+                                AttackLabel = Localization.GetString("party_screen_Able", "Able!")
                             End If
                         End If
                     Case 2 'Learnable Move
@@ -442,7 +442,7 @@ Public Class PartyScreen
                                 End If
                             Next
                             If canLearnMove = True Then
-                                AttackLabel = "Able!"
+                                AttackLabel = Localization.GetString("party_screen_Able", "Able!")
                             End If
                         End If
                 End Select
@@ -632,7 +632,7 @@ Public Class PartyScreen
                     GetPokemonList()
                     _closing = True
                 Else
-                    TextBox.Show("Cannot choose this~Pokémon.")
+                    TextBox.Show(Localization.GetString("party_screen_CannotChoosePokemon", "Cannot choose this~Pokémon."))
                 End If
             Case Localization.GetString("global_summary", "Summary")
                 SetScreen(New SummaryScreen(Me, PokemonList.ToArray(), _index))
@@ -680,14 +680,14 @@ Public Class PartyScreen
             CanUseMove(p, 100, -1) Or
             CanUseMove(p, 91, -1) Then
 
-                items.Add("Field Move")
+                items.Add(Localization.GetString("party_screen_FieldMove", "Field Move"))
             End If
         End If
 
-        items.Add("Switch")
+        items.Add(Localization.GetString("global_switch", "Switch"))
 
         If p.IsEgg() = False Then
-            items.Add("Item")
+            items.Add(Localization.GetString("global_item", "Item"))
         End If
 
         items.Add(Localization.GetString("global_back", "Back"))
@@ -764,12 +764,12 @@ Public Class PartyScreen
         Select Case selectMenu.SelectedItem
             Case Localization.GetString("global_summary", "Summary")
                 SetScreen(New SummaryScreen(Me, PokemonList.ToArray(), _index))
-            Case "Field Move"
+            Case Localization.GetString("party_screen_FieldMove", "Field Move")
                 CreateFieldMoveMenu()
-            Case "Switch"
+            Case Localization.GetString("global_switch", "Switch")
                 _switchIndex = _index
                 _isSwitching = True
-            Case "Item"
+            Case Localization.GetString("global_item", "Item")
                 CreateItemMenu()
         End Select
     End Sub
@@ -824,7 +824,7 @@ Public Class PartyScreen
                     p.Item = Nothing
                 End If
             Case Localization.GetString("global_back", "Back")
-                CreateNormalMenu("Item")
+                CreateNormalMenu(Localization.GetString("global_item", "Item"))
         End Select
     End Sub
 
@@ -850,7 +850,7 @@ Public Class PartyScreen
                 If reItem.IsMail And reItem.AdditionalData <> "" Then
                     Core.Player.Mails.Add(Items.MailItem.GetMailDataFromString(reItem.AdditionalData))
 
-                    message = "Gave " & i.Name & " to " & p.GetDisplayName() & " and took the Mail to the PC."
+                    message = Localization.GetString("inventory_screen_GiveItem_TakeMail", "Gave <newitem> to <name> and took the Mail to the PC.").Replace("<newitem>", i.OneLineName()).Replace("<name>", p.GetDisplayName())
                 Else
                     Dim ReItemID As String
                     If reItem.IsGameModeItem Then
@@ -860,17 +860,17 @@ Public Class PartyScreen
                     End If
                     Core.Player.Inventory.AddItem(ReItemID, 1)
 
-                    message = "Switched " & p.GetDisplayName() & "'s " & i.Name & " with a " & reItem.OneLineName() & "."
+                    message = Localization.GetString("inventory_screen_GiveItem_Switch", "Switched <name>'s <olditem> with the <newitem>.").Replace("<newitem>", i.OneLineName()).Replace("<olditem>", reItem.OneLineName()).Replace("<name>", p.GetDisplayName())
                 End If
             Else
-                message = "Gave " & p.GetDisplayName() & " a " & i.Name & "."
+                message = Localization.GetString("inventory_screen_GiveItem_Give", "Gave <name> the <newitem>.").Replace("<name>", p.GetDisplayName()).Replace("<newitem>", i.OneLineName())
             End If
 
             p.Item = i
 
             ShowMessage(message)
         Else
-            ShowMessage(i.Name & " cannot be given to a Pokémon.")
+            ShowMessage(Localization.GetString("inventory_screen_CannotGiveToPokemon", "<newitem> cannot be given to a Pokémon.").Replace("<newitem>", i.OneLineName()))
         End If
     End Sub
 
@@ -980,18 +980,18 @@ Public Class PartyScreen
         End If
         If Screen.Level.IsDark = True Then
             Dim s As String = "version=2" & Environment.NewLine &
-                              "@text.show(" & PokemonList(_index).GetDisplayName() & " used~Flash!)" & Environment.NewLine &
+                              "@text.show(" & PokemonList(_index).GetDisplayName() & " <system.token(fieldmove_flash_used)>)" & Environment.NewLine &
                               "@environment.toggledarkness" & Environment.NewLine &
                               "@sound.play(FieldMove_Flash)" & Environment.NewLine &
-                              "@text.show(The area got lit up!)" & Environment.NewLine &
+                              "@text.show(<system.token(fieldmove_flash_AreaLitUp)>)" & Environment.NewLine &
                               ":end"
             PlayerStatistics.Track("Flash used", 1)
             CType(Core.CurrentScreen, OverworldScreen).ActionScript.StartScript(s, 2)
         Else
             Dim s As String = "version=2" & Environment.NewLine &
-                "@text.show(" & PokemonList(_index).GetDisplayName() & " used~Flash!)" & Environment.NewLine &
+                "@text.show(" & PokemonList(_index).GetDisplayName() & " <system.token(fieldmove_flash_used)>)" & Environment.NewLine &
                                             "@sound.play(FieldMove_Flash)" & Environment.NewLine &
-                                            "@text.show(The area is already~lit up!)" & Environment.NewLine &
+                                            "@text.show(<system.token(fieldmove_flash_AlreadyLitUp)>)" & Environment.NewLine &
                                             ":end"
             CType(Core.CurrentScreen, OverworldScreen).ActionScript.StartScript(s, 2)
         End If
@@ -1027,13 +1027,13 @@ Public Class PartyScreen
             End If
 
             PlayerStatistics.Track("Cut used", 1)
-            TextBox.Show(PokemonList(_index).GetDisplayName() & "~used Cut!", {}, True, False)
+            TextBox.Show(PokemonList(_index).GetDisplayName() & " " & Localization.GetString("fieldmove_cut_used", "used~Cut!"), {}, True, False)
             PokemonList(_index).PlayCry()
             For Each e As Entity In grassEntities
                 Screen.Level.Entities.Remove(e)
             Next
         Else
-            TextBox.Show("There is nothing~to be Cut!", {}, True, False)
+            TextBox.Show(Localization.GetString("fieldmove_cut_NothingToCut", "There is nothing~to be Cut!"), {}, True, False)
         End If
     End Sub
 
@@ -1079,7 +1079,7 @@ Public Class PartyScreen
 
                 SoundManager.PlayPokemonCry(PokemonList(_index).Number, PokemonForms.GetCrySuffix(PokemonList(_index)))
 
-                TextBox.Show(PokemonList(_index).GetDisplayName() & " used~Ride!", {}, True, False)
+                TextBox.Show(PokemonList(_index).GetDisplayName() & " " & Localization.GetString("fieldmove_ride_used", "used~Ride!"), {}, True, False)
                 PlayerStatistics.Track("Ride used", 1)
 
                 If Screen.Level.IsRadioOn = False OrElse GameJolt.PokegearScreen.StationCanPlay(Screen.Level.SelectedRadioStation) = False Then
@@ -1102,7 +1102,7 @@ Public Class PartyScreen
             Dim setToFirstPerson As Boolean = Not CType(Screen.Camera, OverworldCamera).ThirdPerson
 
             Dim s As String = "version=2
-@text.show(" & PokemonList(_index).GetDisplayName() & " used Dig!)
+@text.show(" & PokemonList(_index).GetDisplayName() & " <system.token(fieldmove_dig_used)>)
 @level.wait(20)
 @camera.activatethirdperson
 @camera.reset
@@ -1138,7 +1138,7 @@ Public Class PartyScreen
                 Screen.Level.OverworldPokemon.Visible = False
             End If
         Else
-            TextBox.Show("Cannot use Dig here.", {}, True, False)
+            TextBox.Show(Localization.GetString("fieldmove_dig_CannotUse", "Cannot use Dig here."), {}, True, False)
         End If
     End Sub
 
@@ -1155,7 +1155,7 @@ Public Class PartyScreen
             Dim yFinish As String = (Screen.Camera.Position.Y + 2.9F).ToString().ReplaceDecSeparator()
 
             Dim s As String = "version=2
-@text.show(" & PokemonList(_index).GetDisplayName() & "~used Teleport!)
+@text.show(" & PokemonList(_index).GetDisplayName() & "<system.token(fieldmove_teleport_used)>)
 @level.wait(20)
 @camera.activatethirdperson
 @camera.reset
@@ -1191,7 +1191,7 @@ Public Class PartyScreen
                 Screen.Level.OverworldPokemon.Visible = False
             End If
         Else
-            TextBox.Show("Cannot use Teleport here.", {}, True, False)
+            TextBox.Show(Localization.GetString("fieldmove_teleport_CannotUse", "Cannot use Teleport here."), {}, True, False)
         End If
     End Sub
 

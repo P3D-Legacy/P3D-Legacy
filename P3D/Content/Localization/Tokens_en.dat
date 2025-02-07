@@ -112,6 +112,7 @@ FieldMoves:
 
 fieldmove_cut_1,This tree looks like it~can be Cut down!
 fieldmove_cut_2,*Do you want to use Cut?
+fieldmove_cut_NothingToCut,There is nothing~to be Cut!
 fieldmove_cut_used,used~Cut!
 
 fieldmove_rocksmash_1,This rock looks like~it can be broken!
@@ -141,6 +142,16 @@ fieldmove_waterfall_used,used~Waterfall.
 fieldmove_ride_cannot_walk,You cannot walk here!
 fieldmove_ride_cannot_ride,You cannot Ride here!
 fieldmove_ride_used,used~Ride!
+
+fieldmove_flash_AreaLitUp,The area got lit up!
+fieldmove_flash_AlreadyLitUp,The area is already~lit up!
+fieldmove_flash_used,used~Flash!
+
+fieldmove_dig_CannotUse,Cannot use Dig here.
+fieldmove_dig_used,used~Dig!
+
+fieldmove_teleport_CannotUse,Cannot use Teleport here.
+fieldmove_teleport_used,used~Teleport!
 ---
 GameInteractions:
 game_interaction_interact,Interact
@@ -322,7 +333,15 @@ inventory_screen_TossConfirmation,Are you sure you want to toss~this item?
 inventory_screen_TossAmount,Select the amount to toss.
 inventory_screen_GiveItem_Give,Gave <name> the <newitem>.
 inventory_screen_GiveItem_Switch,Switched <name>'s <olditem> with the <newitem>.
+inventory_screen_GiveItem_TakeMail,Gave <newitem> to <name> and took the Mail to the PC.
+inventory_screen_CannotGiveToPokemon,<newitem> cannot be given to a Pokémon.
 inventory_screen_EggsCannotHold,Eggs cannot hold items.
+---
+PartyScreen:
+party_screen_Unable,Unable!
+party_screen_Able,Able!
+party_screen_FieldMove,Field Move
+party_screen_CannotChoosePokemon,Cannot choose this~Pokémon.
 ---
 NewGameScreen:
 new_game_intro_1,Hello!~Sorry to keep~you waiting!*Welcome to the world~of Pokémon!*My name is Oak.~People call me~Pokémon Prof.*This world is inhabited~by creatures that~we call
