@@ -112,6 +112,7 @@ FieldMoves:
 
 fieldmove_cut_1,Esta árvore parece que~pode ser cortada!
 fieldmove_cut_2,*Você deseja usar Cut?
+fieldmove_cut_NothingToCut,Não tem nada para ser~cortado!
 fieldmove_cut_used,usou~Cut!
 
 fieldmove_rocksmash_1,Esta pedra parece que~pode ser quebrada!
@@ -141,6 +142,16 @@ fieldmove_waterfall_used,usou~Waterfall.
 fieldmove_ride_cannot_walk,Você não pode andar aqui!
 fieldmove_ride_cannot_ride,Você não pode usar Ride aqui!
 fieldmove_ride_used,usou~Ride!
+
+fieldmove_flash_AreaLitUp,A área foi iluminada!
+fieldmove_flash_AlreadyLitUp,A área ja está iluminada!
+fieldmove_flash_used,usou~Flash!
+
+fieldmove_dig_CannotUse,Não dá para usar Dig aqui.
+fieldmove_dig_used,usou~Dig!
+
+fieldmove_teleport_CannotUse,Não dá para usar Teleport aqui.
+fieldmove_teleport_used,usou~Teleport!
 ---
 GameInteractions:
 game_interaction_interact,Interagir
@@ -323,6 +334,14 @@ inventory_screen_TossAmount,Select the amount to toss.
 inventory_screen_GiveItem_Give,Gave <name> the <newitem>.
 inventory_screen_GiveItem_Switch,Switched <name>'s <olditem> with the <newitem>.
 inventory_screen_EggsCannotHold,Ovos não podem segurar itens.
+inventory_screen_GiveItem_TakeMail,Deu <newitem> para <name> e levou o Mail para o PC.
+inventory_screen_CannotGiveToPokemon,<newitem> não pode ser dado á um Pokémon.
+---
+PartyScreen:
+party_screen_Unable,Incapaz!
+party_screen_Able,Capaz!
+party_screen_FieldMove,Mv. de Campo
+party_screen_CannotChoosePokemon,Não pode escolher este~Pokémon
 ---
 NewGameScreen:
 
