@@ -1791,6 +1791,8 @@
                 End If
             End If
 
+            moveUsed.PreAttack(own, BattleScreen)
+
             Dim substitute As Integer = BattleScreen.FieldEffects.OppSubstitute
             If own = False Then
                 substitute = BattleScreen.FieldEffects.OwnSubstitute
