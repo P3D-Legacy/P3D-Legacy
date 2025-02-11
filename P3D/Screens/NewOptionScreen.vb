@@ -1196,6 +1196,10 @@ Public Class NewOptionScreen
 		End If
 		languageMenuIndex(1) = 0
 		languageMenuIndex(2) = 0
+		If languageMenuIndex(0) > 3 Then
+			languageMenuIndex(2) = languageMenuIndex(0)
+		End If
+		languageMenuIndex(2) = CInt(MathHelper.Clamp(languageMenuIndex(2), 0, Languages.Count - 4))
 		Me._nextIndex = 6
 		ScreenIndex = _nextIndex
 		InitializeControls()
