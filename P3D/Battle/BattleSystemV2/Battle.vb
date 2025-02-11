@@ -2994,6 +2994,13 @@
                 BattleScreen.BattleQuery.Add(New TextQueryObject(message))
             End If
 
+            If own = True AndAlso BattleScreen.FieldEffects.OwnPoisonCounter > 0 Then
+                BattleScreen.FieldEffects.OwnPoisonCounter = 0
+            End If
+            If own = False AndAlso BattleScreen.FieldEffects.OppPoisonCounter > 0 Then
+                BattleScreen.FieldEffects.OppPoisonCounter = 0
+            End If
+
             p.Status = Pokemon.StatusProblems.None
             Return True
         End Function
