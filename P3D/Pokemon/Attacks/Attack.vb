@@ -2261,7 +2261,7 @@
         End Sub
 
         ''' <summary>
-        ''' Event that occurs when the pokemon has falls in love with the opponent.
+        ''' Event that occurs when the pokemon has fallen in love with the opponent.
         ''' </summary>
         ''' <param name="Own">If the own Pokémon is in love.</param>
         ''' <param name="BattleScreen">Reference to the BattleScreen.</param>

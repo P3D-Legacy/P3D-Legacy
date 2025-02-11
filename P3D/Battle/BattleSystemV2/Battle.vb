@@ -1635,8 +1635,6 @@
                 End If
             End If
 
-            moveUsed.PreAttack(own, BattleScreen)
-
             If p.HasVolatileStatus(Pokemon.VolatileStatus.Flinch) = True Then
                 p.RemoveVolatileStatus(Pokemon.VolatileStatus.Flinch)
                 BattleScreen.BattleQuery.Add(New TextQueryObject(p.GetDisplayName() & " flinched and couldn't move!"))
@@ -1692,6 +1690,7 @@
                             BattleScreen.BattleQuery.Add(HeartAnimation)
                         End If
                         BattleScreen.BattleQuery.Add(New TextQueryObject(p.GetDisplayName() & " is in love with " & op.GetDisplayName() & "!"))
+                        moveUsed.IsAttracted(own, BattleScreen)
                         Exit Sub
                     End If
                 End If
