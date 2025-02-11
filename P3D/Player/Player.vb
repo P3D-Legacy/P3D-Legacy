@@ -821,9 +821,7 @@
                             EarnedAchievements = Value.ToLower.Split(CChar(",")).ToList()
                         End If
                     Case "expall"
-                        If Core.Player.Inventory.GetItemAmount(658.ToString) > 0 Then
-                            EnableExpAll = CBool(Value)
-                        End If
+                        EnableExpAll = CBool(Value)
                 End Select
             Else
                 Logger.Log(Logger.LogTypes.Warning, "Player.vb: The line """ & Line & """ is either empty or does not conform the player.dat file rules.")
