@@ -110,28 +110,29 @@ keyboard_key_RightShift,Right Shift
 ---
 FieldMoves:
 
-fieldmove_cut_1,Cet arbre semble pouvoir être ~coupé !
+fieldmove_cut_1,Cet arbre semble pouvoir être~coupé!
 fieldmove_cut_2,*Veux-tu utiliser coupe?
-fieldmove_cut_used, a utilisé ~coupe!
+fieldmove_cut_NothingToCut,There is nothing~to be Cut!
+fieldmove_cut_used, a utilisé~coupe!
 
 fieldmove_rocksmash_1,Ce rocher semble~pouvoir être brisé!
 fieldmove_rocksmash_2,*Veux-tu utiliser Éclate-Roc?
-fieldmove_rocksmash_used,a utilisé ~Éclate-Roc!
+fieldmove_rocksmash_used,a utilisé~Éclate-Roc!
 
-fieldmove_strength_1,Un Pokémon semble pouvoir ~bouger ceci.
+fieldmove_strength_1,Un Pokémon semble pouvoir~bouger ceci.
 fieldmove_strength_2,*Veux-tu utiliser Force?
-fieldmove_strength_used, a utilisé ~Force!
+fieldmove_strength_used, a utilisé~Force!
 
 fieldmove_surf_type0,Tu veux faire du Surf?
 fieldmove_surf_type1,L'eau a l'air calme~et profonde.~Tu veux faire du Surf?
 fieldmove_surf_type2,Ce lac est~calme et peu profond.~Veux-tu faire du surf ?
-fieldmove_surf_used, a utilisé ~Surf!
+fieldmove_surf_used, a utilisé~Surf!
 
-fieldmove_dive_down_1,L'eau semble très profonde ~à cet endroit.
-fieldmove_dive_down_2,*Veux-tu utiliser ~Plongée?
-fieldmove_dive_up_type1,La lumière brille depuis~la surface.*Tu veux ~utiliser Plongée ?
+fieldmove_dive_down_1,L'eau semble très profonde~à cet endroit.
+fieldmove_dive_down_2,*Veux-tu utiliser~Plongée?
+fieldmove_dive_up_type1,La lumière brille depuis~la surface.*Tu veux~utiliser Plongée ?
 fieldmove_dive_up_type2,L'ombre du bateau est projetée sur le fond de l'océan. *Voulez-vous utiliser Plongée ?
-fieldmove_dive_used,a utilisé ~Plongée!
+fieldmove_dive_used,a utilisé~Plongée!
 
 fieldmove_headbutt_question,Cet arbre pourrait contenir~un Pokémon.*Veux-tu~utiliser Coup d'Boule?
 fieldmove_headbutt_used,a utilisé~Coup d'Boule!
@@ -141,6 +142,16 @@ fieldmove_waterfall_used,a utilisé~Cascade.
 fieldmove_ride_cannot_walk,You cannot walk here!
 fieldmove_ride_cannot_ride,You cannot Ride here!
 fieldmove_ride_used,used~Ride!
+
+fieldmove_flash_AreaLitUp,The area got lit up!
+fieldmove_flash_AlreadyLitUp,The area is already~lit up!
+fieldmove_flash_used,used~Flash!
+
+fieldmove_dig_CannotUse,Cannot use Dig here.
+fieldmove_dig_used,used~Dig!
+
+fieldmove_teleport_CannotUse,Cannot use Teleport here.
+fieldmove_teleport_used,used~Teleport!
 ---
 GameInteractions:
 game_interaction_interact,Interact
@@ -323,6 +334,14 @@ inventory_screen_TossAmount,Select the amount to toss.
 inventory_screen_GiveItem_Give,Gave <name> the <newitem>.
 inventory_screen_GiveItem_Switch,Switched <name>'s <olditem> with the <newitem>.
 inventory_screen_EggsCannotHold,Les œufs ne peuvent pas tenir d'objets.
+inventory_screen_GiveItem_TakeMail,Gave <newitem> to <name> and took the Mail to the PC.
+inventory_screen_CannotGiveToPokemon,<newitem> cannot be given to a Pokémon.
+---
+PartyScreen:
+party_screen_Unable,Unable!
+party_screen_Able,Able!
+party_screen_FieldMove,Field Move
+party_screen_CannotChoosePokemon,Cannot choose this~Pokémon.
 ---
 NewGameScreen:
 new_game_intro_1,Bonjour!~Désolé de l'attente!*Bienvenue dans le monde~des POkéMON!*Mon nom est CHEN.~Mais on m'appelle le~PROF.POKéMON*Ce monde est peuplé de créature appelées POKéMON.
@@ -398,7 +417,7 @@ VoltorbFlip_MemoButton_Close_Line2,Memos
 
 VoltorbFlip_QuitButton,Quitter
 
-VoltorbFlip_QuitQuestion_Question_1,Si tu quitte maintenant,tu vas ~recevoir
+VoltorbFlip_QuitQuestion_Question_1,Si tu quitte maintenant,tu vas~recevoir
 VoltorbFlip_QuitQuestion_Question_2,Coin(s).*Veux-tu quitter?
 VoltorbFlip_QuitQuestion_AnswerYes,Oui
 VoltorbFlip_QuitQuestion_AnswerNo,Non
@@ -463,8 +482,7 @@ pokedex_filter_none,Aucun
 pokedex_filter_name,Nom
 pokedex_filter_type1,Type 1
 pokedex_filter_type2,Type 2
-pokedex_search_hint_1,Appuie
-pokedex_search_hint_2,sur le clavier pour rechercher.
+pokedex_search_hint,Press [<system.button(special)>] or Select to search.
 pokedex_search_no_results,Aucun resulat.
 pokedex_data_species,ESPÈCES
 pokedex_data_type,TYPE
@@ -498,7 +516,7 @@ battle_trainer_about_to_send_out_2,! Veux-tu changer de Pokémon ?
 battle_choose_pokemon,Choisi le Pokémon
 battle_switch_already_in_battle,est déjà en combat!
 battle_switch_fainted,est KO!
-battle_switch_egg,Impossible d'envoyer l'œuf !
+battle_switch_egg,Impossible d'envoyer l'œuf!
 battle_cannot_switch,Impossible de changer.
 battle_cannot_run,N'a pas réussi à s'enfuir.
 battle_cannot_run_ability,N'a pas réussi a s'enfuir à cause de~

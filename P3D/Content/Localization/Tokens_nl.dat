@@ -481,8 +481,7 @@ pokedex_filter_none,Geen
 pokedex_filter_name,Naam
 pokedex_filter_type1,Type 1
 pokedex_filter_type2,Type 2
-pokedex_search_hint_1,Druk op
-pokedex_search_hint_2,op het toetsenbord om te zoeken.
+pokedex_search_hint,Druk op [<system.button(special)>] of Select om te zoeken.
 pokedex_search_no_results,Geen zoekresultaten
 pokedex_data_species,SOORT
 pokedex_data_type,TYPE

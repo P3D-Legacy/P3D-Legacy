@@ -482,8 +482,7 @@ pokedex_filter_none,None
 pokedex_filter_name,Name
 pokedex_filter_type1,Type 1
 pokedex_filter_type2,Type 2
-pokedex_search_hint_1,Press
-pokedex_search_hint_2,on the keyboard to search.
+pokedex_search_hint,Press [<system.button(special)>] or Select to search.
 pokedex_search_no_results,No search results.
 pokedex_data_species,SPECIES
 pokedex_data_type,TYPE

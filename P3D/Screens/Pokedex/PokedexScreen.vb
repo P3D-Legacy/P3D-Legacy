@@ -668,8 +668,8 @@ Public Class PokedexScreen
                 End Select
             Next
         End If
-        Core.SpriteBatch.DrawString(FontManager.MainFont, Localization.GetString("pokedex_order", "Order:") & Environment.NewLine & Localization.GetString("pokedex_filter", "Filter:") & Environment.NewLine & Localization.GetString("pokedex_search_hint_1", "Press") & " " & KeyBindings.SpecialKey.ToString & " " & Localization.GetString("pokedex_search_hint_2", "on the keyboard to search."), New Vector2(685, 45), Color.White)
-        Core.SpriteBatch.DrawString(FontManager.MainFont, orderText & Environment.NewLine & filterText, New Vector2(790, 45), Color.Black)
+        Core.SpriteBatch.DrawString(FontManager.MainFont, Localization.GetString("pokedex_order", "Order:") & Environment.NewLine & Localization.GetString("pokedex_filter", "Filter:") & Environment.NewLine & Localization.GetString("pokedex_search_hint", "Press [<system.button(special)>] or Select to search."), New Vector2(685, 45), Color.White)
+        Core.SpriteBatch.DrawString(FontManager.MainFont, orderText & Environment.NewLine & filterText, New Vector2(800, 45), Color.Black)
 
         If menu.Visible = True Then
             menu.Draw()
@@ -868,7 +868,7 @@ Public Class PokedexScreen
                 End If
             End If
 
-            If KeyBoardHandler.KeyPressed(KeyBindings.SpecialKey) = True Or ControllerHandler.ButtonPressed(Buttons.Y) = True Then
+            If KeyBoardHandler.KeyPressed(KeyBindings.SpecialKey) = True Or ControllerHandler.ButtonPressed(Buttons.Back) = True Then
                 Me.menu = New SelectMenu({"Order", "Filter", "Reset", "Back"}.ToList(), 0, AddressOf SelectMenu1, 3)
             End If
 

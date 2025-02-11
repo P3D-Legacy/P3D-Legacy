@@ -483,8 +483,7 @@ pokedex_filter_none,Nenhum
 pokedex_filter_name,Nome
 pokedex_filter_type1,Tipo 1
 pokedex_filter_type2,Tipo 2
-pokedex_search_hint_1,Aperte
-pokedex_search_hint_2,no teclado para Pesquisar.
+pokedex_search_hint,Press [<system.button(special)>] or Select to search.
 pokedex_search_no_results,Sem Resultados.
 pokedex_data_species,ESPÉCIES
 pokedex_data_type,TIPO
