@@ -789,7 +789,7 @@ Public Class PartyScreen
             Case Localization.GetString("global_pokemon_move_dig", "Dig")
                 UseDig()
             Case Localization.GetString("global_back", "Back")
-                CreateNormalMenu("Field Move")
+                CreateNormalMenu(Localization.GetString("party_screen_FieldMove", "Field Move"))
         End Select
     End Sub
 
