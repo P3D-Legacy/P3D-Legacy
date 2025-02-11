@@ -141,6 +141,10 @@ Namespace BattleSystem.Moves.Fairy
             MoveFails(own, BattleScreen)
         End Sub
 
+        Public Overrides Sub IsParalyzed(own As Boolean, BattleScreen As BattleScreen)
+            MoveFails(own, BattleScreen)
+        End Sub
+
         Public Overrides Sub IsAttracted(own As Boolean, BattleScreen As BattleScreen)
             MoveFails(own, BattleScreen)
         End Sub

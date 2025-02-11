@@ -1730,6 +1730,7 @@
                         BattleScreen.BattleQuery.Add(New PlaySoundQueryObject("Battle\Effects\Paralyzed", False))
                     End If
                     BattleScreen.BattleQuery.Add(New TextQueryObject(p.GetDisplayName() & " is fully paralyzed!" & Environment.NewLine & "It cannot move!"))
+                    moveUsed.IsParalyzed(own, BattleScreen)
                     Exit Sub
                 End If
             End If

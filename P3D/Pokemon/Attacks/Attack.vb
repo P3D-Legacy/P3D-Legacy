@@ -2271,7 +2271,17 @@
             End If
             'DO NOTHING
         End Sub
-
+        ''' <summary>
+        ''' Event that occurs when the pokemon can't attack because of paralysis.
+        ''' </summary>
+        ''' <param name="Own">If the own Pokémon is in love.</param>
+        ''' <param name="BattleScreen">Reference to the BattleScreen.</param>
+        Public Overridable Sub IsParalyzed(ByVal own As Boolean, ByVal BattleScreen As BattleScreen)
+            If gmCopyMove <> -1 Then
+                GetAttackByID(gmCopyMove).IsParalyzed(own, BattleScreen)
+            End If
+            'DO NOTHING
+        End Sub
         ''' <summary>
         ''' Event that occurs when a the pokemon has been put to sleep.
         ''' </summary>
