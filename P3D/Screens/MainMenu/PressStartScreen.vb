@@ -211,8 +211,11 @@ Public Class PressStartScreen
         If _fadeInMain = 0F Then
             If IsCurrentScreen() And Core.GameOptions.ShowGUI Then  ' Want to implement fading of text, but core doesn't seem to support this.
                 Dim text As String = String.Empty
+                Dim textSizeUntilButton As New Vector2(0)
                 If ControllerHandler.IsConnected() Then
-                    text = Localization.GetString("start_screen_press", "Press") & "           " & Localization.GetString("start_screen_tostart", "to start.")
+                    text = Localization.GetString("start_screen_press", "Press") & "<button>" & Localization.GetString("start_screen_tostart", "to start.")
+                    textSizeUntilButton = FontManager.InGameFont.MeasureString(text.GetSplit(0, "<button>"))
+                    text = text.Replace("<button>", "           ")
                 Else
                     text = Localization.GetString("start_screen_press", "Press") & " " & KeyBindings.EnterKey1.ToString().ToUpper & " " & Localization.GetString("start_screen_tostart", "to start.")
                     'text = "Press " & KeyBindings.EnterKey1.ToString() & ", " & KeyBindings.EnterKey2.ToString() & ", or primary mouse button to start."
@@ -224,7 +227,7 @@ Public Class PressStartScreen
                                                                                        CInt(windowSize.Height - textSize.Y - 50)), _textColor)
 
                 If ControllerHandler.IsConnected() Then
-                    SpriteBatch.Draw(TextureManager.GetTexture("GUI\GamePad\xboxControllerButtonA"), New Rectangle(CInt(windowSize.Width / 2 - textSize.X / 2 + FontManager.InGameFont.MeasureString("Press" & "  ").X + 2), CInt(windowSize.Height - textSize.Y - 58), 40, 40), Color.White)
+                    SpriteBatch.Draw(TextureManager.GetTexture("GUI\GamePad\xboxControllerButtonA"), New Rectangle(CInt(windowSize.Width / 2 - textSize.X / 2 + textSizeUntilButton.X + FontManager.InGameFont.MeasureString("  ").X + 2), CInt(windowSize.Height - textSize.Y - 58), 40, 40), Color.White)
                 End If
             End If
         End If
