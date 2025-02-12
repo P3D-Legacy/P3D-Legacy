@@ -1737,8 +1737,6 @@ Public Class PokedexViewScreen
             textureColor = New Color(0, 0, 0, 0)
         End If
 
-        Core.SpriteBatch.Draw(Pokemon.GetTexture(Me.FrontView, ShinyView), New Rectangle(CInt(v.X), CInt(v.Y) - yOffset * 2 + 32, MathHelper.Min(Pokemon.GetTexture(Me.FrontView, ShinyView).Width * 4, 512), MathHelper.Min(Pokemon.GetTexture(Me.FrontView, ShinyView).Height * 4, 512)), New Color(textureColor.R, textureColor.G, textureColor.B, textureColor.A))
-
         If fadeMainImage = 255 Then
             Dim mV As Vector2 = Core.GetMiddlePosition(New Size(0, 0))
 
@@ -1777,6 +1775,9 @@ Public Class PokedexViewScreen
                 End If
             End If
         End If
+
+        Core.SpriteBatch.Draw(Pokemon.GetTexture(Me.FrontView, ShinyView), New Rectangle(CInt(v.X), CInt(v.Y) - yOffset * 2 + 32, MathHelper.Min(Pokemon.GetTexture(Me.FrontView, ShinyView).Width * 4, 512), MathHelper.Min(Pokemon.GetTexture(Me.FrontView, ShinyView).Height * 4, 512)), New Color(textureColor.R, textureColor.G, textureColor.B, textureColor.A))
+
     End Sub
 
     Dim Scroll As Integer = 0
@@ -1927,27 +1928,28 @@ Public Class PokedexViewScreen
                 If Me.DexIndex > 0 Then
                     Dim index As Integer = Me.DexIndex - 1
 
-                    Dim pokeID As String = ""
-
-                    If Pokedex.GetEntryType(Core.Player.PokedexData, PokemonForms.GetPokemonDataFileName(PDexScreen.PokemonList(index).Number, PDexScreen.PokemonList(index).AdditionalData, True)) > 0 Then
-                        pokeID = PokemonForms.GetPokemonDataFileName(PDexScreen.PokemonList(index).Number, PDexScreen.PokemonList(index).AdditionalData, True)
-                        While Pokedex.GetEntryType(Core.Player.PokedexData, pokeID) = 0
-                            Dim formEntry As Integer = Pokedex.HasAnyForm(PDexScreen.PokemonList(index).Number)
-                            If formEntry > 0 Then
-                                pokeID = PDexScreen.PokemonList(index).Number.ToString
-                                Exit While
-                            Else
-                                If index > 0 Then
-                                    index -= 1
-                                    pokeID = PokemonForms.GetPokemonDataFileName(PDexScreen.PokemonList(index).Number, PDexScreen.PokemonList(index).AdditionalData, True)
-                                Else
-                                    Exit While
-                                End If
-                            End If
-                        End While
-                    End If
-                    If pokeID <> "" Then
+                    Dim pokeID As String = PokemonForms.GetPokemonDataFileName(PDexScreen.PokemonList(index).Number, PDexScreen.PokemonList(index).AdditionalData, True)
+                    Dim newID As String = ""
+                    While newID = "" AndAlso index > 0
                         If Pokedex.GetEntryType(Core.Player.PokedexData, pokeID) > 0 OrElse Pokedex.HasAnyForm(PDexScreen.PokemonList(index).Number) > 0 Then
+                            newID = pokeID
+                        End If
+                        Dim formEntry As Integer = Pokedex.HasAnyForm(PDexScreen.PokemonList(index).Number)
+                        If formEntry > 0 Then
+                            newID = PDexScreen.PokemonList(index).Number.ToString
+                            Exit While
+                        Else
+                            index -= 1
+                            pokeID = PokemonForms.GetPokemonDataFileName(PDexScreen.PokemonList(index).Number, PDexScreen.PokemonList(index).AdditionalData, True)
+                            If Pokedex.GetEntryType(Core.Player.PokedexData, pokeID) > 0 Then
+                                newID = pokeID
+                                Exit While
+                            End If
+                        End If
+                    End While
+
+                    If newID <> "" Then
+                        If Pokedex.GetEntryType(Core.Player.PokedexData, newID) > 0 OrElse Pokedex.HasAnyForm(PDexScreen.PokemonList(index).Number) > 0 Then
                             vLineLength = 1
                             mLineLength = 1
                             fadeMainImage = 0
@@ -1962,29 +1964,28 @@ Public Class PokedexViewScreen
                 If Me.DexIndex < PDexScreen.PokemonList.count - 1 Then
                     Dim index As Integer = Me.DexIndex + 1
 
-                    Dim pokeID As String = ""
-
-                    If Pokedex.GetEntryType(Core.Player.PokedexData, PokemonForms.GetPokemonDataFileName(PDexScreen.PokemonList(index).Number, PDexScreen.PokemonList(index).AdditionalData, True)) > 0 Then
-                        pokeID = PokemonForms.GetPokemonDataFileName(PDexScreen.PokemonList(index).Number, PDexScreen.PokemonList(index).AdditionalData, True)
-
-                        While Pokedex.GetEntryType(Core.Player.PokedexData, pokeID) = 0
-                            Dim formEntry As Integer = Pokedex.HasAnyForm(PDexScreen.PokemonList(index).Number)
-                            If formEntry > 0 Then
-                                pokeID = PDexScreen.PokemonList(index).Number.ToString
-                                Exit While
-                            Else
-                                If index < PDexScreen.PokemonList.Count - 1 Then
-                                    index += 1
-                                    pokeID = PokemonForms.GetPokemonDataFileName(PDexScreen.PokemonList(index).Number, PDexScreen.PokemonList(index).AdditionalData, True)
-                                Else
-                                    Exit While
-                                End If
-                            End If
-                        End While
-                    End If
-
-                    If pokeID <> "" Then
+                    Dim pokeID As String = PokemonForms.GetPokemonDataFileName(PDexScreen.PokemonList(index).Number, PDexScreen.PokemonList(index).AdditionalData, True)
+                    Dim newID As String = ""
+                    While newID = "" And index < PDexScreen.PokemonList.Count - 1
                         If Pokedex.GetEntryType(Core.Player.PokedexData, pokeID) > 0 OrElse Pokedex.HasAnyForm(PDexScreen.PokemonList(index).Number) > 0 Then
+                            newID = pokeID
+                        End If
+                        Dim formEntry As Integer = Pokedex.HasAnyForm(PDexScreen.PokemonList(index).Number)
+                        If formEntry > 0 Then
+                            newID = PDexScreen.PokemonList(index).Number.ToString
+                            Exit While
+                        Else
+                            index += 1
+                            pokeID = PokemonForms.GetPokemonDataFileName(PDexScreen.PokemonList(index).Number, PDexScreen.PokemonList(index).AdditionalData, True)
+                            If Pokedex.GetEntryType(Core.Player.PokedexData, pokeID) > 0 Then
+                                newID = pokeID
+                                Exit While
+                            End If
+                        End If
+                    End While
+
+                    If newID <> "" Then
+                        If Pokedex.GetEntryType(Core.Player.PokedexData, newID) > 0 OrElse Pokedex.HasAnyForm(PDexScreen.PokemonList(index).Number) > 0 Then
                             vLineLength = 1
                             mLineLength = 1
                             fadeMainImage = 0
@@ -2283,10 +2284,10 @@ Public Class PokedexViewScreen
             End If
         End If
 
-        If Controls.Up(True, False, True, False, False, False) = True Or KeyBoardHandler.KeyPressed(Keys.OemPlus) = True Then
+        If Controls.Up(True, False, True, False, False, False) = True Or ControllerHandler.ButtonPressed(Buttons.RightTrigger) = True Or KeyBoardHandler.KeyPressed(Keys.OemPlus) = True Then
             Me.scale += 0.5F
         End If
-        If Controls.Down(True, False, True, False, False, False) = True Or KeyBoardHandler.KeyPressed(Keys.OemMinus) = True Then
+        If Controls.Down(True, False, True, False, False, False) = True Or ControllerHandler.ButtonPressed(Buttons.LeftTrigger) = True Or KeyBoardHandler.KeyPressed(Keys.OemMinus) = True Then
             Me.scale -= 0.5F
         End If
 
