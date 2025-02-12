@@ -1935,26 +1935,13 @@
                             Dim DexEntryText As String = p.PokedexEntry.Text
                             Dim DexEntrySpecies As String = p.PokedexEntry.Species
 
-                            If Localization.LanguageSuffix <> "en" Then
-                                Dim dexID As String = PokemonForms.GetPokemonDataFileName(p.Number, p.AdditionalData, True)
-                                Dim dexEntryID As String = dexID
-                                Dim idValue As Integer = CInt(dexID.GetSplit(0, ",").GetSplit(0, "_").GetSplit(0, ";"))
-                                Dim adValue As String = ""
-                                If dexID.Contains(";") Then
-                                    If Pokemon.PokemonDataExists(dexEntryID) = False Then
-                                        dexEntryID = dexEntryID.GetSplit(0, ";")
-                                    End If
-                                    adValue = dexID.GetSplit(1, ";")
-                                ElseIf dexID.Contains("_") Then
-                                    adValue = PokemonForms.GetAdditionalValueFromDataFile(dexID)
-                                End If
-                                If Localization.TokenExists("pokemon_desc_" & dexID) = True Then
-                                    DexEntryText = Localization.GetString("pokemon_desc_" & dexID, p.PokedexEntry.Text)
-                                End If
-                                If Localization.TokenExists("pokemon_species_" & dexID) = True Then
-                                    DexEntrySpecies = Localization.GetString("pokemon_species_" & dexID, p.PokedexEntry.Species)
-                                End If
+                            Dim FormName As String = PokemonForms.GetFormName(p)
 
+                            If Localization.TokenExists("pokemon_desc_" & FormName) = True Then
+                                DexEntryText = Localization.GetString("pokemon_desc_" & FormName, p.PokedexEntry.Text)
+                            End If
+                            If Localization.TokenExists("pokemon_species_" & FormName) = True Then
+                                DexEntrySpecies = Localization.GetString("pokemon_species_" & FormName, p.PokedexEntry.Species)
                             End If
 
                             output = "Welcome to the Pokédex Show! Today, we are going to look at the entry of " & p.GetName(True) & "! Its entry reads:~""" & DexEntryText & """~Wow, that is interesting! Also, " & p.GetName(True) & " is " & p.PokedexEntry.Height & "m high and weighs " & p.PokedexEntry.Weight & "kg.~Isn't that amazing?~" & p.GetName(True) & " is part of the " & DexEntrySpecies & " species.~That's all the information we have. Tune in next time!"

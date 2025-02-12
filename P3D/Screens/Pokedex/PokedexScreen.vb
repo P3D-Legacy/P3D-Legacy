@@ -751,8 +751,10 @@ Public Class PokedexScreen
 
             If entryType > 1 Then
                 Dim DexEntrySpecies As String = p.PokedexEntry.Species
-                If Localization.LanguageSuffix <> "en" AndAlso Localization.TokenExists("pokemon_species_" & dexID) = True Then
-                    DexEntrySpecies = Localization.GetString("pokemon_species_" & dexID, p.PokedexEntry.Species)
+                Dim FormName As String = PokemonForms.GetFormName(p)
+
+                If Localization.TokenExists("pokemon_species_" & FormName) = True Then
+                    DexEntrySpecies = Localization.GetString("pokemon_species_" & FormName, p.PokedexEntry.Species)
                 End If
 
                 Core.SpriteBatch.DrawString(FontManager.MainFont, DexEntrySpecies, New Vector2(850, 310), Color.Black)
@@ -767,21 +769,8 @@ Public Class PokedexScreen
 
                 Dim DexEntryText As String = p.PokedexEntry.Text
 
-                If Localization.LanguageSuffix <> "en" Then
-                    Dim dexEntryID As String = dexID
-                    Dim idValue As Integer = CInt(dexID.GetSplit(0, ",").GetSplit(0, "_").GetSplit(0, ";"))
-                    Dim adValue As String = ""
-                    If dexID.Contains(";") Then
-                        If Pokemon.PokemonDataExists(dexEntryID) = False Then
-                            dexEntryID = dexEntryID.GetSplit(0, ";")
-                        End If
-                        adValue = dexID.GetSplit(1, ";")
-                    ElseIf dexID.Contains("_") Then
-                        adValue = PokemonForms.GetAdditionalValueFromDataFile(dexID)
-                    End If
-                    If Localization.TokenExists("pokemon_desc_" & dexID) = True Then
-                        DexEntryText = Localization.GetString("pokemon_desc_" & dexID, p.PokedexEntry.Text)
-                    End If
+                If Localization.TokenExists("pokemon_desc_" & FormName) = True Then
+                    DexEntryText = Localization.GetString("pokemon_desc_" & FormName, p.PokedexEntry.Text)
                 End If
                 Core.SpriteBatch.DrawString(FontManager.MainFont, DexEntryText.CropStringToWidth(FontManager.MainFont, 448), New Vector2(688, 490), Color.Black)
 
@@ -1779,25 +1768,24 @@ Public Class PokedexViewScreen
                 If EntryType > 1 Then
                     Dim DexEntryText As String = Pokemon.PokedexEntry.Text
                     Dim DexEntrySpecies As String = Pokemon.PokedexEntry.Species
-                    If Localization.LanguageSuffix <> "en" Then
-                        Dim dexID As String = PokemonForms.GetPokemonDataFileName(Pokemon.Number, Pokemon.AdditionalData, True)
-                        Dim dexEntryID As String = dexID
-                        Dim idValue As Integer = CInt(dexID.GetSplit(0, ",").GetSplit(0, "_").GetSplit(0, ";"))
-                        Dim adValue As String = ""
-                        If dexID.Contains(";") Then
-                            If Pokemon.PokemonDataExists(dexEntryID) = False Then
-                                dexEntryID = dexEntryID.GetSplit(0, ";")
-                            End If
-                            adValue = dexID.GetSplit(1, ";")
-                        ElseIf dexID.Contains("_") Then
-                            adValue = PokemonForms.GetAdditionalValueFromDataFile(dexID)
+
+                    Dim dexID As String = PokemonForms.GetPokemonDataFileName(Pokemon.Number, Pokemon.AdditionalData, True)
+                    Dim dexEntryID As String = dexID
+                    Dim idValue As Integer = CInt(dexID.GetSplit(0, ",").GetSplit(0, "_").GetSplit(0, ";"))
+                    Dim adValue As String = ""
+                    If dexID.Contains(";") Then
+                        If Pokemon.PokemonDataExists(dexEntryID) = False Then
+                            dexEntryID = dexEntryID.GetSplit(0, ";")
                         End If
-                        If Localization.TokenExists("pokemon_desc_" & dexID) = True Then
-                            DexEntryText = Localization.GetString("pokemon_desc_" & dexID, Pokemon.PokedexEntry.Text)
-                        End If
-                        If Localization.LanguageSuffix <> "en" AndAlso Localization.TokenExists("pokemon_species_" & dexID) = True Then
-                            DexEntrySpecies = Localization.GetString("pokemon_species_" & dexID, Pokemon.PokedexEntry.Species)
-                        End If
+                        adValue = dexID.GetSplit(1, ";")
+                    ElseIf dexID.Contains("_") Then
+                        adValue = PokemonForms.GetAdditionalValueFromDataFile(dexID)
+                    End If
+                    If Localization.TokenExists("pokemon_desc_" & dexID) = True Then
+                        DexEntryText = Localization.GetString("pokemon_desc_" & dexID, Pokemon.PokedexEntry.Text)
+                    End If
+                    If Localization.TokenExists("pokemon_species_" & dexID) = True Then
+                        DexEntrySpecies = Localization.GetString("pokemon_species_" & dexID, Pokemon.PokedexEntry.Species)
                     End If
 
                     Core.SpriteBatch.DrawString(FontManager.MainFont, Pokemon.PokedexEntry.Height & " m", New Vector2(CInt(mV.X + 250), CInt(mV.Y - 152)), Color.Black)

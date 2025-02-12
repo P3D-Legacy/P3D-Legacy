@@ -69,8 +69,11 @@
                     End If
 
                     If Pokemon.PokemonDataExists(dexID) Then
-                        If Localization.LanguageSuffix <> "en" AndAlso Localization.TokenExists("pokemon_desc_" & dexID) = True Then
-                            Return Localization.GetString("pokemon_desc_" & dexID, Pokemon.GetPokemonByID(id, ad).PokedexEntry.Text)
+                        Dim p As Pokemon = Pokemon.GetPokemonByID(id, ad)
+                        Dim FormName As String = PokemonForms.GetFormName(p)
+
+                        If Localization.LanguageSuffix <> "en" AndAlso Localization.TokenExists("pokemon_desc_" & FormName) = True Then
+                            Return Localization.GetString("pokemon_desc_" & FormName, Pokemon.GetPokemonByID(id, ad).PokedexEntry.Text)
                         Else
                             Return Pokemon.GetPokemonByID(id, ad).PokedexEntry.Text
                         End If
