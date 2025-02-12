@@ -1932,7 +1932,32 @@
 
                             Dim p As Pokemon = Pokemon.GetPokemonByID(chosenID, chosenAD)
 
-                            output = "Welcome to the Pokédex Show! Today, we are going to look at the entry of " & p.GetName(True) & "! Its entry reads:~""" & p.PokedexEntry.Text & """~Wow, that is interesting! Also, " & p.GetName(True) & " is " & p.PokedexEntry.Height & "m high and weighs " & p.PokedexEntry.Weight & "kg.~Isn't that amazing?~" & p.GetName(True) & " is part of the " & p.PokedexEntry.Species & " species.~That's all the information we have. Tune in next time!"
+                            Dim DexEntryText As String = p.PokedexEntry.Text
+                            Dim DexEntrySpecies As String = p.PokedexEntry.Species
+
+                            If Localization.LanguageSuffix <> "en" Then
+                                Dim dexID As String = PokemonForms.GetPokemonDataFileName(p.Number, p.AdditionalData, True)
+                                Dim dexEntryID As String = dexID
+                                Dim idValue As Integer = CInt(dexID.GetSplit(0, ",").GetSplit(0, "_").GetSplit(0, ";"))
+                                Dim adValue As String = ""
+                                If dexID.Contains(";") Then
+                                    If Pokemon.PokemonDataExists(dexEntryID) = False Then
+                                        dexEntryID = dexEntryID.GetSplit(0, ";")
+                                    End If
+                                    adValue = dexID.GetSplit(1, ";")
+                                ElseIf dexID.Contains("_") Then
+                                    adValue = PokemonForms.GetAdditionalValueFromDataFile(dexID)
+                                End If
+                                If Localization.TokenExists("pokemon_desc_" & dexID) = True Then
+                                    DexEntryText = Localization.GetString("pokemon_desc_" & dexID, p.PokedexEntry.Text)
+                                End If
+                                If Localization.TokenExists("pokemon_species_" & dexID) = True Then
+                                    DexEntrySpecies = Localization.GetString("pokemon_species_" & dexID, p.PokedexEntry.Species)
+                                End If
+
+                            End If
+
+                            output = "Welcome to the Pokédex Show! Today, we are going to look at the entry of " & p.GetName(True) & "! Its entry reads:~""" & DexEntryText & """~Wow, that is interesting! Also, " & p.GetName(True) & " is " & p.PokedexEntry.Height & "m high and weighs " & p.PokedexEntry.Weight & "kg.~Isn't that amazing?~" & p.GetName(True) & " is part of the " & DexEntrySpecies & " species.~That's all the information we have. Tune in next time!"
                         End If
                     Case "[randompokemon]"
                         Dim levels() As String = {"route29.dat", "route30.dat", "route31.dat", "route32.dat", "route33.dat", "route36.dat", "route37.dat", "route38.dat", "route39.dat", "routes\route34.dat", "routes\route35.dat", "routes\route42.dat", "routes\route43.dat", "routes\route44.dat", "routes\route45.dat", "routes\route46.dat"}

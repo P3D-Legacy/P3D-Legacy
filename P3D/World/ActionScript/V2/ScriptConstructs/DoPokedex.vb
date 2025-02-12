@@ -69,7 +69,11 @@
                     End If
 
                     If Pokemon.PokemonDataExists(dexID) Then
-                        Return Pokemon.GetPokemonByID(id, ad).PokedexEntry.Text
+                        If Localization.LanguageSuffix <> "en" AndAlso Localization.TokenExists("pokemon_desc_" & dexID) = True Then
+                            Return Localization.GetString("pokemon_desc_" & dexID, Pokemon.GetPokemonByID(id, ad).PokedexEntry.Text)
+                        Else
+                            Return Pokemon.GetPokemonByID(id, ad).PokedexEntry.Text
+                        End If
                     End If
                 Case "getcolor"
                     Dim id As Integer = CInt(argument.GetSplit(0, ",").GetSplit(0, "_").GetSplit(0, ";"))
@@ -101,7 +105,11 @@
                     End If
 
                     If Pokemon.PokemonDataExists(dexID) Then
-                        Return Pokemon.GetPokemonByID(id, ad).PokedexEntry.Species
+                        If Localization.LanguageSuffix <> "en" AndAlso Localization.TokenExists("pokemon_species_" & dexID) = True Then
+                            Return Localization.GetString("pokemon_species_" & dexID, Pokemon.GetPokemonByID(id, ad).PokedexEntry.Species)
+                        Else
+                            Return Pokemon.GetPokemonByID(id, ad).PokedexEntry.Species
+                        End If
                     End If
                 Case "getname"
                     Dim id As Integer = CInt(argument.GetSplit(0, ",").GetSplit(0, "_").GetSplit(0, ";"))
