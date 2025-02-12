@@ -171,7 +171,7 @@
                 End If
             Else
                 DrawStringC("Loading" & LoadingDots.Dots, New Vector2(132, 160))
-                DrawStringC("Please wait.", New Vector2(240, 160))
+                DrawStringC(Localization.GetString("global_please_wait", "Please wait") & ".", New Vector2(240, 160))
             End If
 
             Core.SpriteBatch.DrawString(FontManager.MiniFont, "Version " & GTSMainScreen.GTSVersion, New Vector2(4, Core.windowSize.Height - 1 - FontManager.MiniFont.MeasureString("Version " & GTSMainScreen.GTSVersion).Y), Color.DarkGray)

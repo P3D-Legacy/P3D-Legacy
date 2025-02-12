@@ -12,6 +12,7 @@ global_yes,Sim
 global_no,Não
 global_accept,Aceitar
 global_cancel,Cancelar
+global_ok,OK
 global_gamemode,Modo de Jogo
 global_clear,Completo
 global_save,Salvar
@@ -483,7 +484,7 @@ pokedex_filter_none,Nenhum
 pokedex_filter_name,Nome
 pokedex_filter_type1,Tipo 1
 pokedex_filter_type2,Tipo 2
-pokedex_search_hint,Press [<system.button(special)>] or Select to search.
+pokedex_search_hint,Pressione [<system.button(special)>] ou Select para Pesquisar.
 pokedex_search_no_results,Sem Resultados.
 pokedex_data_species,ESPÉCIES
 pokedex_data_type,TIPO

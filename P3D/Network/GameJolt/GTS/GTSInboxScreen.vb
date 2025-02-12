@@ -237,7 +237,7 @@
                 Next
             Else
                 If Searching = True Or Loading = True Then
-                    DrawStringC("Please wait" & LoadingDots.Dots, New Vector2(132, 160))
+                    DrawStringC(Localization.GetString("global_please_wait", "Please wait") & LoadingDots.Dots, New Vector2(132, 160))
                 Else
                     DrawStringC("There are no Pokémon in your inbox.", New Vector2(132, 160))
                 End If

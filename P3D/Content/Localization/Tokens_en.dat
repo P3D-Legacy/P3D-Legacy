@@ -5,6 +5,7 @@ global_please_wait,Please wait
 global_loading,Loading
 global_game,Game
 global_login,Log in
+global_create_account,Create Account
 global_male,Male
 global_female,Female
 global_genderless,Genderless
@@ -12,6 +13,7 @@ global_yes,Yes
 global_no,No
 global_accept,Accept
 global_cancel,Cancel
+global_ok,OK
 global_gamemode,GameMode
 global_clear,Clear
 global_save,Save

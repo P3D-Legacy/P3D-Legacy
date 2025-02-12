@@ -5,6 +5,7 @@ global_please_wait,Even geduld
 global_loading,Laden
 global_game,Spel
 global_login,Log in
+global_create_account,Creëer Account
 global_male,Man
 global_female,Vrouw
 global_genderless,Overig
@@ -12,6 +13,7 @@ global_yes,Ja
 global_no,Nee
 global_accept,Bevestig
 global_cancel,Annuleer
+global_ok,OK
 global_gamemode,Spelmodus
 global_clear,Wis
 global_save,Sla op

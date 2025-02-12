@@ -12,6 +12,7 @@ global_yes,Oui
 global_no,Non
 global_accept,Accepter
 global_cancel,Annuler
+global_ok,OK
 global_gamemode,Mode de Jeu
 global_clear,Clear
 global_save,Sauvegarder

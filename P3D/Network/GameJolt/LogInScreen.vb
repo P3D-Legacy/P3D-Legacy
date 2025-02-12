@@ -22,7 +22,7 @@ Namespace GameJolt
         Dim OkButton As JoltButton
 
         Dim WaitingForResponse As Boolean = False
-        Dim WaitingMessage As String = "Please wait..."
+        Dim WaitingMessage As String = Localization.GetString("global_please_wait", "Please wait") & "..."
         Dim ShowokButton As Boolean = True
         Dim TimeOut As Integer = 0
         Const TimeOutVar As Integer = 500
@@ -47,19 +47,19 @@ Namespace GameJolt
             Token.Size = New Size(400, 30)
             Token.IsPassword = True
 
-            Me.LogInButton = New JoltButton("Log in", FontManager.MainFont, New Color(68, 68, 68), New Color(204, 255, 0))
+            Me.LogInButton = New JoltButton(Localization.GetString("global_login", "Log in"), FontManager.MainFont, New Color(68, 68, 68), New Color(204, 255, 0))
             LogInButton.Size = New Size(90, 30)
             LogInButton.SetDelegate(AddressOf LogIn)
 
-            Me.CloseButton = New JoltButton("Close", FontManager.MainFont, New Color(68, 68, 68), New Color(204, 255, 0))
+            Me.CloseButton = New JoltButton(Localization.GetString("global_close", "Close"), FontManager.MainFont, New Color(68, 68, 68), New Color(204, 255, 0))
             CloseButton.Size = New Size(90, 30)
             CloseButton.SetDelegate(AddressOf Me.Close)
 
-            Me.CreateAccountButton = New JoltButton("Create Account", FontManager.MainFont, New Color(68, 68, 68), New Color(204, 255, 0))
+            Me.CreateAccountButton = New JoltButton(Localization.GetString("global_create_account", "Create Account"), FontManager.MainFont, New Color(68, 68, 68), New Color(204, 255, 0))
             CreateAccountButton.Size = New Size(200, 30)
             CreateAccountButton.SetDelegate(AddressOf Me.CreateAccount)
 
-            Me.OkButton = New JoltButton("OK", FontManager.MainFont, New Color(68, 68, 68), New Color(204, 255, 0))
+            Me.OkButton = New JoltButton(Localization.GetString("global_ok", "OK"), FontManager.MainFont, New Color(68, 68, 68), New Color(204, 255, 0))
             OkButton.Size = New Size(100, 30)
             OkButton.SetDelegate(AddressOf Me.PressOK)
 
@@ -139,7 +139,7 @@ Namespace GameJolt
                     Me.CreateAccountButton.Draw()
                 End If
             Else
-                Core.SpriteBatch.DrawInterfaceString(FontManager.MiniFont, "Please wait" & LoadingDots.Dots, New Vector2(CSng(Core.ScreenSize.Width / 2) - 200, 195), Color.White)
+                Core.SpriteBatch.DrawInterfaceString(FontManager.MiniFont, Localization.GetString("global_please_wait", "Please wait") & LoadingDots.Dots, New Vector2(CSng(Core.ScreenSize.Width / 2) - 200, 195), Color.White)
             End If
         End Sub
 
@@ -319,7 +319,7 @@ Namespace GameJolt
                 UserName.Text = ""
                 Token.Text = ""
 
-                LogInButton.Text = "Log in"
+                LogInButton.Text = Localization.GetString("global_login", "Log in")
 
                 If System.IO.File.Exists(GameController.GamePath & "\Save\gamejoltAcc.dat") = True Then
                     System.IO.File.Delete(GameController.GamePath & "\Save\gamejoltAcc.dat")
@@ -328,7 +328,7 @@ Namespace GameJolt
                 Dim APICall As New APICall(AddressOf VerifyVersion)
                 APICall.GetStorageData("ONLINEVERSION", False)
 
-                WaitingMessage = "Please wait..."
+                WaitingMessage = Localization.GetString("global_please_wait", "Please wait") & "..."
 
                 WaitingForResponse = True
                 ShowokButton = False
@@ -349,7 +349,7 @@ Namespace GameJolt
                     WaitingMessage = "The version of your game does not match with" & Environment.NewLine & "the version required to play online. If you have" & Environment.NewLine & "the lastest version of the game, the game is" & Environment.NewLine & "getting updated right now." & Environment.NewLine & Environment.NewLine & Environment.NewLine & "Your version: " & GameController.GAMEVERSION & Environment.NewLine & "Required version: " & list(1).Value
                     ShowokButton = True
 
-                    LogInButton.Text = "Log in"
+                    LogInButton.Text = Localization.GetString("global_login", "Log in")
                 End If
             End If
         End Sub
@@ -368,7 +368,7 @@ Namespace GameJolt
                 WaitingMessage = "Cannot connect to account!" & Environment.NewLine & "You have to use your Token," & Environment.NewLine & "not your Password."
                 ShowokButton = True
 
-                LogInButton.Text = "Log in"
+                LogInButton.Text = Localization.GetString("global_login", "Log in")
             End If
         End Sub
 

@@ -831,8 +831,8 @@ Public Class NewMainMenuScreen
 
         If IsCurrentScreen() Then
             If _loading Then
-                Dim textSize As Vector2 = FontManager.InGameFont.MeasureString("Please wait..")
-                GetFontRenderer().DrawString(FontManager.InGameFont, "Please wait" & LoadingDots.Dots, New Vector2(windowSize.Width / 2.0F - textSize.X / 2.0F, windowSize.Height / 2.0F - textSize.Y / 2.0F + 100), Color.White)
+                Dim textSize As Vector2 = FontManager.InGameFont.MeasureString(Localization.GetString("global_please_wait", "Please wait") & "...")
+                GetFontRenderer().DrawString(FontManager.InGameFont, Localization.GetString("global_please_wait", "Please wait") & LoadingDots.Dots, New Vector2(windowSize.Width / 2.0F - textSize.X / 2.0F, windowSize.Height / 2.0F - textSize.Y / 2.0F + 100), Color.White)
             Else
                 If GameModeSplash IsNot Nothing Then
                     DrawGameModeSplash()
