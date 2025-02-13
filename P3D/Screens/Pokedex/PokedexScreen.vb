@@ -752,7 +752,9 @@ Public Class PokedexScreen
             If entryType > 1 Then
                 Dim DexEntrySpecies As String = p.PokedexEntry.Species
                 Dim FormName As String = PokemonForms.GetFormName(p)
-
+                If FormName = "" Then
+                    FormName = p.Name
+                End If
                 If Localization.TokenExists("pokemon_species_" & FormName) = True Then
                     DexEntrySpecies = Localization.GetString("pokemon_species_" & FormName, p.PokedexEntry.Species)
                 End If
@@ -1769,28 +1771,21 @@ Public Class PokedexViewScreen
                     Dim DexEntryText As String = Pokemon.PokedexEntry.Text
                     Dim DexEntrySpecies As String = Pokemon.PokedexEntry.Species
 
-                    Dim dexID As String = PokemonForms.GetPokemonDataFileName(Pokemon.Number, Pokemon.AdditionalData, True)
-                    Dim dexEntryID As String = dexID
-                    Dim idValue As Integer = CInt(dexID.GetSplit(0, ",").GetSplit(0, "_").GetSplit(0, ";"))
-                    Dim adValue As String = ""
-                    If dexID.Contains(";") Then
-                        If Pokemon.PokemonDataExists(dexEntryID) = False Then
-                            dexEntryID = dexEntryID.GetSplit(0, ";")
-                        End If
-                        adValue = dexID.GetSplit(1, ";")
-                    ElseIf dexID.Contains("_") Then
-                        adValue = PokemonForms.GetAdditionalValueFromDataFile(dexID)
+                    Dim FormName As String = PokemonForms.GetFormName(Pokemon)
+                    If FormName = "" Then
+                        FormName = Pokemon.Name
                     End If
-                    If Localization.TokenExists("pokemon_desc_" & dexID) = True Then
-                        DexEntryText = Localization.GetString("pokemon_desc_" & dexID, Pokemon.PokedexEntry.Text)
+
+                    If Localization.TokenExists("pokemon_desc_" & FormName) = True Then
+                        DexEntryText = Localization.GetString("pokemon_desc_" & FormName, Pokemon.PokedexEntry.Text)
                     End If
-                    If Localization.TokenExists("pokemon_species_" & dexID) = True Then
-                        DexEntrySpecies = Localization.GetString("pokemon_species_" & dexID, Pokemon.PokedexEntry.Species)
+                    If Localization.TokenExists("pokemon_species_" & FormName) = True Then
+                        DexEntrySpecies = Localization.GetString("pokemon_species_" & FormName, Pokemon.PokedexEntry.Species)
                     End If
 
                     Core.SpriteBatch.DrawString(FontManager.MainFont, Pokemon.PokedexEntry.Height & " m", New Vector2(CInt(mV.X + 250), CInt(mV.Y - 152)), Color.Black)
                     Core.SpriteBatch.DrawString(FontManager.MainFont, Pokemon.PokedexEntry.Weight & " kg", New Vector2(CInt(mV.X + 250), CInt(mV.Y + 128)), Color.Black)
-                    Core.SpriteBatch.DrawString(FontManager.MainFont, Pokemon.PokedexEntry.Species, New Vector2(CInt(mV.X - 248 - FontManager.MainFont.MeasureString(Pokemon.PokedexEntry.Species).X), CInt(mV.Y - 152)), Color.Black)
+                    Core.SpriteBatch.DrawString(FontManager.MainFont, DexEntrySpecies, New Vector2(CInt(mV.X - 248 - FontManager.MainFont.MeasureString(DexEntrySpecies).X), CInt(mV.Y - 152)), Color.Black)
                     If Pokemon.Type2 IsNot Nothing AndAlso Pokemon.Type2.Type <> Element.Types.Blank Then
                         Core.SpriteBatch.Draw(TextureManager.GetTexture(Element.GetElementTexturePath()), New Rectangle(CInt(mV.X - 450), CInt(mV.Y + 123), 96, 32), Pokemon.Type1.GetElementImage(), Color.White)
                         Core.SpriteBatch.Draw(TextureManager.GetTexture(Element.GetElementTexturePath()), New Rectangle(CInt(mV.X - 350), CInt(mV.Y + 123), 96, 32), Pokemon.Type2.GetElementImage(), Color.White)
@@ -1800,8 +1795,8 @@ Public Class PokedexViewScreen
 
 
 
-                    Canvas.DrawRectangle(New Rectangle(CInt(mV.X - FontManager.MainFont.MeasureString(DexEntryText.CropStringToWidth(FontManager.MainFont, 720)).X / 2 - 16), CInt(mV.Y + 192 - 16), CInt(FontManager.MainFont.MeasureString(Pokemon.PokedexEntry.Text.CropStringToWidth(FontManager.MainFont, 720)).X + 32), CInt(FontManager.MainFont.MeasureString(Pokemon.PokedexEntry.Text.CropStringToWidth(FontManager.MainFont, 720)).Y + 32)), New Color(42, 167, 198, 150))
-                    Core.SpriteBatch.DrawString(FontManager.MainFont, DexEntryText.CropStringToWidth(FontManager.MainFont, 720), New Vector2(CInt(mV.X - FontManager.MainFont.MeasureString(Pokemon.PokedexEntry.Text.CropStringToWidth(FontManager.MainFont, 720)).X / 2), CInt(mV.Y + 192)), Color.Black)
+                    Canvas.DrawRectangle(New Rectangle(CInt(mV.X - FontManager.MainFont.MeasureString(DexEntryText.CropStringToWidth(FontManager.MainFont, 720)).X / 2 - 16), CInt(mV.Y + 192 - 16), CInt(FontManager.MainFont.MeasureString(DexEntryText.CropStringToWidth(FontManager.MainFont, 720)).X + 32), CInt(FontManager.MainFont.MeasureString(DexEntryText.CropStringToWidth(FontManager.MainFont, 720)).Y + 32)), New Color(42, 167, 198, 150))
+                    Core.SpriteBatch.DrawString(FontManager.MainFont, DexEntryText.CropStringToWidth(FontManager.MainFont, 720), New Vector2(CInt(mV.X - FontManager.MainFont.MeasureString(DexEntryText.CropStringToWidth(FontManager.MainFont, 720)).X / 2), CInt(mV.Y + 192)), Color.Black)
 
                 Else
                     Core.SpriteBatch.DrawString(FontManager.MainFont, "??? m", New Vector2(CInt(mV.X + 250), CInt(mV.Y - 152)), Color.Black)

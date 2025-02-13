@@ -1936,7 +1936,9 @@
                             Dim DexEntrySpecies As String = p.PokedexEntry.Species
 
                             Dim FormName As String = PokemonForms.GetFormName(p)
-
+                            If FormName = "" Then
+                                FormName = p.Name
+                            End If
                             If Localization.TokenExists("pokemon_desc_" & FormName) = True Then
                                 DexEntryText = Localization.GetString("pokemon_desc_" & FormName, p.PokedexEntry.Text)
                             End If
