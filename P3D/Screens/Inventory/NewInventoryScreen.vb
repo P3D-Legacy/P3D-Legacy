@@ -1083,12 +1083,12 @@ Public Class NewInventoryScreen
             If reItem Is Nothing Then
                 'JSON Stuff
                 'ShowMessage(_translation.MESSAGE_GIVE_ITEM(Pokemon.GetDisplayName(), cItem.Name))
-                Dim giveString As String = Localization.GetString("inventory_screen_GiveItem_Give", "Gave <name> the <newitem>.").Replace("<name>", Pokemon.GetDisplayName()).Replace("<newitem>", cItem.OneLineName())
+                Dim giveString As String = Localization.GetString("inventory_screen_GiveItem_Give", "Gave <name> the <newitem>.").Replace("//POKEMONNAME//", Pokemon.GetDisplayName()).Replace("//NEWITEM//", cItem.OneLineName())
                 ShowMessage(giveString)
             Else
                 'JSON Stuff
                 'ShowMessage(_translation.MESSAGE_SWITCH_ITEM(Pokemon.GetDisplayName(), reItem.Name, cItem.Name))
-                Dim switchString As String = Localization.GetString("inventory_screen_GiveItem_Switch", "Switched <name>'s <olditem> with the <newitem>.").Replace("<name>", Pokemon.GetDisplayName()).Replace("<olditem>", reItem.OneLineName()).Replace("<newitem>", cItem.OneLineName())
+                Dim switchString As String = Localization.GetString("inventory_screen_GiveItem_Switch", "Switched <name>'s <olditem> with the <newitem>.").Replace("//POKEMONNAME//", Pokemon.GetDisplayName()).Replace("//OLDITEM//", reItem.OneLineName()).Replace("//NEWITEM//", cItem.OneLineName())
                 ShowMessage(switchString)
             End If
 

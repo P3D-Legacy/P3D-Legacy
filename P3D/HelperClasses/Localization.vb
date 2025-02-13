@@ -117,6 +117,12 @@
                 If result.Contains("<name>") Then
                     result = result.Replace("<name>", "//POKEMONNAME//")
                 End If
+                If result.Contains("<newitem>") Then
+                    result = result.Replace("<newitem>", "//NEWITEM//")
+                End If
+                If result.Contains("<olditem>") Then
+                    result = result.Replace("<olditem>", "//OLDITEM//")
+                End If
                 If result.Contains("<") Then
                     result = CStr(ScriptVersion2.ScriptComparer.EvaluateConstruct(result))
                 End If
