@@ -318,7 +318,7 @@ Public Class NewInventoryScreen
             Case 0 : TabName = Localization.GetString("item_category_Standard", "Standard")
             Case 1 : TabName = Localization.GetString("item_category_Medicine", "Medicine")
             Case 2 : TabName = Localization.GetString("item_category_Plants", "Plants")
-            Case 3 : TabName = Localization.GetString("item_category_Pokeballs", "Pokéballs")
+            Case 3 : TabName = Localization.GetString("item_category_Pokéballs", "Pokéballs")
             Case 4 : TabName = Localization.GetString("item_category_Machines", "TM/HM")
             Case 5 : TabName = Localization.GetString("item_category_Mail", "Mail")
             Case 6 : TabName = Localization.GetString("item_category_BattleItems", "Battle Items")

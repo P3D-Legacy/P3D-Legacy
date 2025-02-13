@@ -26,7 +26,7 @@ global_enabled,Aktiviert
 global_disabled,Deaktiviert
 global_enable,Aktivieren
 global_disable,Deaktivieren
-global_player_name,Spielername
+global_player_name,Name
 global_badges,Orden
 global_play_time,Spielzeit
 global_location,Ort
@@ -34,7 +34,7 @@ global_money,Geld
 global_points,Punkte
 global_ot,OT
 global_time,Zeit
-global_name,Nahme
+global_name,Name
 global_order,Reihenfolge
 global_filter,Filter
 global_reset,Reset
@@ -172,7 +172,7 @@ Main Menu:
 main_menu_newgame_line1,Neues
 main_menu_newgame_line2,Spiel
 main_menu_options,Optionen
-main_menu_savefile_name,Spielername
+main_menu_savefile_name,Name
 main_menu_savefile_gamemode,Spielmodus
 main_menu_savefile_badges,Orden
 main_menu_savefile_playtime,Spielzeit
@@ -191,12 +191,12 @@ main_menu_error_filevalidation,File validation failed!~Redownload the game's fil
 main_menu_options_language,Sprache
 main_menu_options_audio,Audio
 main_menu_options_controls,Steuerung
-main_menu_options_contentpacks_line1,Content
-main_menu_options_contentpacks_line2,Packs
+main_menu_options_contentpacks_line1,Zusätzliche
+main_menu_options_contentpacks_line2,Inhalte
 
 GameModeMenu:
-gamemode_menu_select1,Select a GameMode
-gamemode_menu_select2,to start the new game with.
+gamemode_menu_select1,Wähle ein Spiel,
+gamemode_menu_select2,mit dem du starten möchtest.
 gamemode_menu_name,Name
 gamemode_menu_description,Description
 gamemode_menu_version,Version
@@ -269,7 +269,7 @@ option_screen_battle_battlestyle_shift,Tausch
 
 option_screen_controls,Controls
 option_screen_controls_xboxgamepad,Xbox Controller
-option_screen_controls_resetkeybindings,Reset Tastenbelegung
+option_screen_controls_resetkeybindings,Tastenbelegung zurücks
 option_screen_controls_cameraspeed,Mausgeschwindigkeit
 option_screen_controls_cameraspeed_slow,...Langsam...
 option_screen_controls_cameraspeed_medium,Standard
@@ -284,20 +284,20 @@ option_screen_audio_volume_music,Musik Lautstärke
 option_screen_audio_volume_sfx,Soundeffekte Lautstärke
 option_screen_audio_muted,Lautlos
 
-option_screen_contentpacks_up,Move Up
-option_screen_contentpacks_down,Move Down
-option_screen_contentpacks_information,Information
+option_screen_contentpacks_up,Nach Oben
+option_screen_contentpacks_down,Nach Unten
+option_screen_contentpacks_information,Informationen
 option_screen_contentpacks_songs,Songs
 option_screen_contentpacks_sounds,Sounds
 option_screen_contentpacks_textures,Textures
 option_screen_contentpacks_name,Name
 option_screen_contentpacks_version,Version
-option_screen_contentpacks_by,By
+option_screen_contentpacks_by,Von
 option_screen_contentpacks_content,Content
-option_screen_contentpacks_description,Description
+option_screen_contentpacks_description,Beschreibung
 
-option_screen_resetoptions,Einstellungen zurücksetzen.
-option_screen_save_options,Optionen speichern.
+option_screen_resetoptions,Zurücksetzen
+option_screen_save_options,Optionen speichern
 option_screen_close,Schließen
 ---
 Pausescreen:
