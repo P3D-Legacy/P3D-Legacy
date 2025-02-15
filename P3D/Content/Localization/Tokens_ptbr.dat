@@ -524,6 +524,8 @@ battle_cannot_switch,Não da pra trocar.
 battle_cannot_run,Não conseguiu fugir.
 battle_cannot_run_ability,Não conseguiu fugir por causa do~
 battle_MoveDisabled,Disabled!
+battle_NoSafariBalls,No Safari Balls.
+battle_NoSportBalls,No Sport Balls.
 battle_ThrowMud,Throw Mud
 battle_ThrowBait,Throw Bait
 battle_Run,Run

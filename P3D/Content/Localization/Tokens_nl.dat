@@ -522,6 +522,9 @@ battle_switch_egg,Kan geen ei inzetten!
 battle_cannot_switch,Kan niet wisselen.
 battle_cannot_run,Kon niet wegrennen.
 battle_cannot_run_ability,Kon niet wegrennen vanwege~
+battle_MoveDisabled,Uitgeschakeld!
+battle_NoSafariBalls,Geen SafariBallen.
+battle_NoSportBalls,Geen SportBallen.
 battle_action_ThrowMud,Gooi Modder
 battle_action_ThrowBait,Gooi Aas
 battle_action_Run,Ren
