@@ -141,8 +141,8 @@
         End If
 
         Dim d As New Dictionary(Of Buttons, String)
-        d.Add(Buttons.A, "Learn")
-        d.Add(Buttons.B, "Close")
+        d.Add(Buttons.A, Localization.GetString("game_interaction_learn", "Learn"))
+        d.Add(Buttons.B, Localization.GetString("game_interaction_close", "Close"))
 
         DrawGamePadControls(d)
     End Sub

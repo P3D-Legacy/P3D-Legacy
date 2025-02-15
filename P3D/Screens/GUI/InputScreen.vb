@@ -180,10 +180,10 @@
         Core.SpriteBatch.DrawString(FontManager.MainFont, "Chars left: " & (MaxChars - Me.CurrentText.Length).ToString(), New Vector2(CInt((Core.windowSize.Width / 2) + 180), 477), Color.Gray)
 
         Dim d As New Dictionary(Of Buttons, String)
-        d.Add(Input.Buttons.A, "Enter")
-        d.Add(Input.Buttons.B, "Delete")
-        d.Add(Input.Buttons.Y, "Confirm")
-        d.Add(Input.Buttons.X, "Clear")
+        d.Add(Input.Buttons.A, Localization.GetString("game_interaction_enter", "Enter"))
+        d.Add(Input.Buttons.B, Localization.GetString("game_interaction_delete", "Delete"))
+        d.Add(Input.Buttons.X, Localization.GetString("game_interaction_confirm", "Confirm"))
+        d.Add(Input.Buttons.Back, Localization.GetString("game_interaction_clear", "Clear"))
         Me.DrawGamePadControls(d)
     End Sub
 
@@ -247,11 +247,11 @@
             End If
         End If
 
-        If ControllerHandler.ButtonPressed(Input.Buttons.X) = True Then
+        If ControllerHandler.ButtonPressed(Input.Buttons.Back) = True Then
             Me.CurrentText = ""
         End If
 
-        If ControllerHandler.ButtonPressed(Input.Buttons.Y) = True Then
+        If ControllerHandler.ButtonPressed(Input.Buttons.X) = True Then
             If Me.ButtonSelector = New Vector2(6, 4) Then
                 Me.Confirm()
             Else

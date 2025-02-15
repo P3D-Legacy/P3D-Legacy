@@ -121,10 +121,10 @@
         End If
 
         Dim d As New Dictionary(Of Buttons, String)
-        d.Add(Input.Buttons.A, "Accept")
-        d.Add(Input.Buttons.B, "Back")
-        d.Add(Input.Buttons.Y, "Edit")
-        d.Add(Input.Buttons.X, "Clear")
+        d.Add(Input.Buttons.A, Localization.GetString("game_interaction_accept", "Accept"))
+        d.Add(Input.Buttons.B, Localization.GetString("game_interaction_back", "Back"))
+        d.Add(Input.Buttons.X, Localization.GetString("game_interaction_edit", "Edit"))
+        d.Add(Input.Buttons.Back, Localization.GetString("game_interaction_clear", "Clear"))
         Me.DrawGamePadControls(d)
     End Sub
 
@@ -182,18 +182,18 @@
         Select Case Index
             Case 0
                 KeyBindings.GetInput(Me.IdentifyName, 30, True, True)
-                If ControllerHandler.ButtonPressed(Buttons.Y) = True Then
+                If ControllerHandler.ButtonPressed(Buttons.X) = True Then
                     Core.SetScreen(New InputScreen(Me, "Pokemon3D server", InputScreen.InputModes.Text, Me.IdentifyName, 30, New List(Of Texture2D), AddressOf Me.AcceptName))
                 End If
-                If ControllerHandler.ButtonPressed(Buttons.X) = True Then
+                If ControllerHandler.ButtonPressed(Buttons.Back) = True Then
                     Me.IdentifyName = ""
                 End If
             Case 1
                 KeyBindings.GetInput(Me.Address, 30, True, True)
-                If ControllerHandler.ButtonPressed(Buttons.Y) = True Then
+                If ControllerHandler.ButtonPressed(Buttons.X) = True Then
                     Core.SetScreen(New InputScreen(Me, "127.0.0.1", InputScreen.InputModes.Text, Me.Address, 30, New List(Of Texture2D), AddressOf Me.AcceptAddress))
                 End If
-                If ControllerHandler.ButtonPressed(Buttons.X) = True Then
+                If ControllerHandler.ButtonPressed(Buttons.Back) = True Then
                     Me.Address = ""
                 End If
         End Select

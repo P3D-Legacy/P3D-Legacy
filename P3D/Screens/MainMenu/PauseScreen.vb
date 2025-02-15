@@ -72,8 +72,8 @@
         End If
 
         Dim d As New Dictionary(Of Buttons, String)
-        d.Add(Buttons.A, "Accept")
-        d.Add(Buttons.B, "Go back")
+        d.Add(Buttons.A, Localization.GetString("game_interaction_accept", "Accept"))
+        d.Add(Buttons.B, Localization.GetString("game_interaction_go_back", "Go Back"))
 
         DrawGamePadControls(d)
     End Sub

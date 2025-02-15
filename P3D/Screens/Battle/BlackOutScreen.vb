@@ -128,7 +128,7 @@
 
         If Me.IsGameOver = True Or Me.ready = True Then
             Dim d As New Dictionary(Of Buttons, String)
-            d.Add(Buttons.A, "Accept")
+            d.Add(Buttons.A, Localization.GetString("game_interaction_accept", "Accept"))
             DrawGamePadControls(d)
         End If
     End Sub

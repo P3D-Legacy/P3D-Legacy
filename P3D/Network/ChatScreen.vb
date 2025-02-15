@@ -89,11 +89,11 @@ Public Class ChatScreen
                 Me.UpdateTabCompletion()
             End If
 
-            If ControllerHandler.ButtonPressed(Buttons.X) = True Then
+            If ControllerHandler.ButtonPressed(Buttons.Back) = True Then
                 Me.currentText = ""
             End If
 
-            If ControllerHandler.ButtonPressed(Buttons.Y) = True Then
+            If ControllerHandler.ButtonPressed(Buttons.X) = True Then
                 Dim t As String = Me.currentText
                 While t.Length > 38
                     t = t.Remove(t.Length - 1, 1)
@@ -640,10 +640,10 @@ Public Class ChatScreen
         End If
 
         Dim d As New Dictionary(Of Buttons, String)
-        d.Add(Input.Buttons.A, "Enter")
-        d.Add(Input.Buttons.B, "Back")
-        d.Add(Input.Buttons.Y, "Edit")
-        d.Add(Input.Buttons.X, "Clear")
+        d.Add(Input.Buttons.A, Localization.GetString("game_interaction_enter", "Enter"))
+        d.Add(Input.Buttons.B, Localization.GetString("game_interaction_back", "Back"))
+        d.Add(Input.Buttons.X, Localization.GetString("game_interaction_edit", "Edit"))
+        d.Add(Input.Buttons.Back, Localization.GetString("game_interaction_clear", "Clear"))
         Me.DrawGamePadControls(d)
     End Sub
 

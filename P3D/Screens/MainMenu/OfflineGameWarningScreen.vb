@@ -30,8 +30,8 @@
         Core.SpriteBatch.DrawString(FontManager.MainFont, t, New Vector2(CSng(Core.windowSize.Width / 2 - 310) + 50, 240), Color.White)
 
         Dim d As New Dictionary(Of Buttons, String)
-        d.Add(Buttons.A, "Accept")
-        d.Add(Buttons.B, "Dismiss")
+        d.Add(Buttons.A, Localization.GetString("game_interaction_accept", "Accept"))
+        d.Add(Buttons.B, Localization.GetString("game_interaction_dismiss", "Dismiss"))
         DrawGamePadControls(d, New Vector2(CSng(Core.windowSize.Width / 2) - 140, 420))
     End Sub
 
