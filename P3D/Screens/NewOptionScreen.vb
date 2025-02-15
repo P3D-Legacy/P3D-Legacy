@@ -351,7 +351,7 @@ Public Class NewOptionScreen
 					packsMenuIndex(2) -= 1
 				End If
 				If SelectPackNoiseDelay = 0 Then
-					SoundManager.PlaySound("select", 0.0F, 0.0F, 0.5F, False)
+					SoundManager.PlaySound("select")
 					SelectPackNoiseDelay = 10
 				End If
 			End If
@@ -363,7 +363,7 @@ Public Class NewOptionScreen
 					packsMenuIndex(2) += 1
 				End If
 				If SelectPackNoiseDelay = 0 Then
-					SoundManager.PlaySound("select", 0.0F, 0.0F, 0.5F, False)
+					SoundManager.PlaySound("select")
 					SelectPackNoiseDelay = 10
 				End If
 			End If
@@ -374,7 +374,7 @@ Public Class NewOptionScreen
 					If MouseHandler.ButtonPressed(MouseHandler.MouseButtons.LeftButton) = True Then
 						packsMenuIndex(0) = i + packsMenuIndex(2)
 						If SelectPackNoiseDelay = 0 Then
-							SoundManager.PlaySound("select", 0.0F, 0.0F, 0.5F, False)
+							SoundManager.PlaySound("select")
 							SelectPackNoiseDelay = 10
 						End If
 					End If
@@ -447,7 +447,9 @@ Public Class NewOptionScreen
 
 	Private Sub UpdatePackInformationMenu()
 		If KeyBoardHandler.KeyPressed(KeyBindings.EscapeKey) Or KeyBoardHandler.KeyPressed(KeyBindings.BackKey1) Or KeyBoardHandler.KeyPressed(KeyBindings.BackKey2) Or MouseHandler.ButtonPressed(MouseHandler.MouseButtons.RightButton) Or ControllerHandler.ButtonPressed(Buttons.B) Then
-			SwitchToContentPacks()
+			If _pageClosing = False And _pageOpening = False Then
+				SwitchToContentPacks()
+			End If
 		End If
 	End Sub
 
