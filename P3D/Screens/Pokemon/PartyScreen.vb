@@ -5,8 +5,9 @@ Public Class PartyScreen
     Implements ISelectionScreen
 
     Dim POKEMON_TITLE As String = "Pokémon"
-
     'Private _translation As Globalization.Classes.LOCAL_PartyScreen
+
+    Public SelectButtonText As String = Localization.GetString("global_select", "Select")
 
     ''' <summary>
     ''' Cursor index -> pointing to Pokémon (0-5).
@@ -577,7 +578,7 @@ Public Class PartyScreen
                         If _switchIndex <> _index Then
                             Dim p1 As Pokemon = PokemonList(_switchIndex)
                             Dim p2 As Pokemon = PokemonList(_index)
-                            SoundManager.PlaySound(Localization.GetString("global_select", "Select"))
+                            SoundManager.PlaySound("Select")
                             PokemonList(_switchIndex) = p2
                             PokemonList(_index) = p1
                         End If
@@ -596,7 +597,7 @@ Public Class PartyScreen
                             used = True
                             ExitedSub(_index)
                         End If
-                        SoundManager.PlaySound(Localization.GetString("global_select", "Select"))
+                        SoundManager.PlaySound("Select")
                         _closing = True
                     End If
                 End If
@@ -615,7 +616,7 @@ Public Class PartyScreen
 
     Private Sub CreateSelectionMenu()
         Dim items As New List(Of String)
-        items.Add(Localization.GetString("global_select", "Select"))
+        items.Add(SelectButtonText)
         items.Add(Localization.GetString("global_summary", "Summary"))
         items.Add(Localization.GetString("global_back", "Back"))
 
@@ -624,7 +625,7 @@ Public Class PartyScreen
 
     Private Sub SelectSelectionMenuItem(ByVal selectMenu As UI.SelectMenu)
         Select Case selectMenu.SelectedItem
-            Case Localization.GetString("global_select", "Select")
+            Case SelectButtonText
                 'When a Pokémon got selected in Selection Mode, raise the selected event and close the screen.
                 If CanChoosePokemon(Me.PokemonList(_index)) = True Then
                     Selected = _index

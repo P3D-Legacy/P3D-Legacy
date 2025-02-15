@@ -343,6 +343,7 @@ PartyScreen:
 party_screen_Unable,Unable!
 party_screen_Able,Able!
 party_screen_FieldMove,Field Move
+party_screen_ChoosePokemon,Wähle ein Pokémon
 party_screen_CannotChoosePokemon,Cannot choose this~Pokémon.
 ---
 NewGameScreen:
@@ -515,13 +516,20 @@ berry_picked_multiple_end,Berries.
 Battle:
 battle_trainer_about_to_send_out_1,is about to send out
 battle_trainer_about_to_send_out_2,! Do you want to switch your Pokémon?
-battle_choose_pokemon,Wähle ein Pokémon
 battle_switch_already_in_battle,is already~in battle!
 battle_switch_fainted,is fainted!
 battle_switch_egg,Cannot switch in~the egg!
 battle_cannot_switch,Cannot switch out.
 battle_cannot_run,Failed to run away.
 battle_cannot_run_ability,Failed to run away because of~
+battle_MoveDisabled,Disabled!
+battle_ThrowMud,Throw Mud
+battle_ThrowBait,Throw Bait
+battle_Run,Run
+battle_Battle,Battle
+battle_Bag,Bag
+battle_Surrender,Surrender
+battle_action_MegaEvolve,Mega Evolve!
 ---
 Badges:
 badge_Boulder,Fels

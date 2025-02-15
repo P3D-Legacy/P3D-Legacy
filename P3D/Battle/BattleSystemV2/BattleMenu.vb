@@ -491,7 +491,7 @@
 
                 If isSelected = True Then
                     If Move.Disabled > 0 OrElse BattleScreen.FieldEffects.OwnEncore > 0 AndAlso BattleScreen.FieldEffects.OwnEncoreMove.ID <> Move.ID Then
-                        Core.SpriteBatch.DrawString(FontManager.MainFont, "Disabled!", New Vector2(CInt(Core.windowSize.Width - (AllExtended + extraExtended) + 28), CInt(152 + Index * 96)), Color.Black)
+                        Core.SpriteBatch.DrawString(FontManager.MainFont, Localization.GetString("battle_MoveDisabled", "Disabled!"), New Vector2(CInt(Core.windowSize.Width - (AllExtended + extraExtended) + 28), CInt(152 + Index * 96)), Color.Black)
                     Else
                         Dim ppColor As Color = GetPPColor()
                         ppColor.A = CByte((extraExtended + AllExtended - deductAlpha).Clamp(0, 255))
@@ -647,7 +647,7 @@
                     TempBattleScreen = BattleScreen
 
                     Player.Temp.PokemonScreenIndex = BattleScreen.OwnPokemonIndex
-                    Dim selScreen = New PartyScreen(Core.CurrentScreen, Item.GetItemByID(5.ToString), AddressOf ShowPokemonMenu, "Choose Pokémon", False) With {.Mode = Screens.UI.ISelectionScreen.ScreenMode.Selection, .CanExit = False}
+                    Dim selScreen = New PartyScreen(Core.CurrentScreen, Item.GetItemByID(5.ToString), AddressOf ShowPokemonMenu, Localization.GetString("party_screen_ChoosePokemon", "Choose Pokémon"), False) With {.Mode = Screens.UI.ISelectionScreen.ScreenMode.Selection, .CanExit = False}
                     AddHandler selScreen.SelectedObject, AddressOf ShowPokemonMenuHandler
 
                     Core.SetScreen(selScreen)
@@ -669,24 +669,24 @@
                 Case BattleSystem.BattleScreen.BattleModes.Safari
                     Dim safariBallText As String = Localization.GetString("item_name_181", "Safari Ball") & " x" & Core.Player.Inventory.GetItemAmount(181.ToString).ToString()
                     If Core.Player.Inventory.GetItemAmount(181.ToString) = 0 Then
-                        safariBallText = "No Safari Balls."
+                        safariBallText = Localization.GetString("battle_NoSafariBalls", "No Safari Balls.")
                     End If
                     _mainMenuItemList.Add(New MainMenuItem(4, safariBallText, 0, AddressOf MainMenuUseSafariBall))
-                    _mainMenuItemList.Add(New MainMenuItem(0, "Throw Mud", 1, AddressOf MainMenuThrowMud))
-                    _mainMenuItemList.Add(New MainMenuItem(0, "Throw Bait", 2, AddressOf MainMenuThrowBait))
+                    _mainMenuItemList.Add(New MainMenuItem(0, Localization.GetString("battle_action_ThrowMud", "Throw Mud"), 1, AddressOf MainMenuThrowMud))
+                    _mainMenuItemList.Add(New MainMenuItem(0, Localization.GetString("battle_action_ThrowBait", "Throw Bait"), 2, AddressOf MainMenuThrowBait))
 
-                    _mainMenuItemList.Add(New MainMenuItem(3, "Run", 3, AddressOf MainMenuRun))
+                    _mainMenuItemList.Add(New MainMenuItem(3, Localization.GetString("battle_action_Run", "Run"), 3, AddressOf MainMenuRun))
 
                 Case BattleSystem.BattleScreen.BattleModes.BugContest
-                    _mainMenuItemList.Add(New MainMenuItem(0, "Battle", 0, AddressOf MainMenuOpenBattleMenu))
+                    _mainMenuItemList.Add(New MainMenuItem(0, Localization.GetString("battle_action_battle", "Battle"), 0, AddressOf MainMenuOpenBattleMenu))
 
-                    Dim sportBallText As String = "Sport Ball x" & Core.Player.Inventory.GetItemAmount(177.ToString).ToString()
+                    Dim sportBallText As String = Localization.GetString("item_name_177", "Sport Ball") & " x" & Core.Player.Inventory.GetItemAmount(177.ToString).ToString()
                     If Core.Player.Inventory.GetItemAmount(177.ToString) = 0 Then
-                        sportBallText = "No Sport Balls."
+                        sportBallText = Localization.GetString("battle_NoSportBalls", "No Sport Balls.")
                     End If
                     _mainMenuItemList.Add(New MainMenuItem(4, sportBallText, 1, AddressOf MainMenuUseSportBall))
                     _mainMenuItemList.Add(New MainMenuItem(1, "Pokémon", 2, AddressOf MainMenuOpenPokemon))
-                    _mainMenuItemList.Add(New MainMenuItem(3, "Run", 3, AddressOf MainMenuRun))
+                    _mainMenuItemList.Add(New MainMenuItem(3, Localization.GetString("battle_action_Run", "Run"), 3, AddressOf MainMenuRun))
 
                 Case BattleSystem.BattleScreen.BattleModes.Standard
                     If BattleScreen.OwnFaint Then
@@ -709,12 +709,12 @@
                         End If
                         BattleScreen.OppFaint = False
                     Else
-                        _mainMenuItemList.Add(New MainMenuItem(0, "Battle", 0, AddressOf MainMenuOpenBattleMenu))
+                        _mainMenuItemList.Add(New MainMenuItem(0, Localization.GetString("battle_action_battle", "Battle"), 0, AddressOf MainMenuOpenBattleMenu))
                         _mainMenuItemList.Add(New MainMenuItem(1, "Pokémon", 1, AddressOf MainMenuOpenPokemon))
-                        _mainMenuItemList.Add(New MainMenuItem(2, "Bag", 2, AddressOf MainMenuOpenBag))
+                        _mainMenuItemList.Add(New MainMenuItem(2, Localization.GetString("battle_action_Bag", "Bag"), 2, AddressOf MainMenuOpenBag))
 
                         If BattleScreen.IsTrainerBattle = False Then
-                            _mainMenuItemList.Add(New MainMenuItem(3, "Run", 3, AddressOf MainMenuRun))
+                            _mainMenuItemList.Add(New MainMenuItem(3, Localization.GetString("battle_action_Run", "Run"), 3, AddressOf MainMenuRun))
                             MainMenuAddMegaEvolution(BattleScreen, 4)
                         Else
                             MainMenuAddMegaEvolution(BattleScreen, 3)
@@ -722,9 +722,9 @@
                     End If
 
                 Case BattleSystem.BattleScreen.BattleModes.PVP
-                    _mainMenuItemList.Add(New MainMenuItem(0, "Battle", 0, AddressOf MainMenuOpenBattleMenu))
+                    _mainMenuItemList.Add(New MainMenuItem(0, Localization.GetString("battle_action_battle", "Battle"), 0, AddressOf MainMenuOpenBattleMenu))
                     _mainMenuItemList.Add(New MainMenuItem(1, "Pokémon", 1, AddressOf MainMenuOpenPokemon))
-                    _mainMenuItemList.Add(New MainMenuItem(3, "Surrender", 2, AddressOf MainMenuOpenBag))
+                    _mainMenuItemList.Add(New MainMenuItem(3, Localization.GetString("battle_action_Surrender", "Surrender"), 2, AddressOf MainMenuOpenBag))
             End Select
         End Sub
 
@@ -758,14 +758,14 @@
                     If Core.Player.Pokemons(PokeIndex).Item.IsGameModeItem = True Then
                         If Core.Player.Pokemons(PokeIndex).Item.gmIsMegaStone = True Then
                             If Core.Player.Pokemons(PokeIndex).Number = CType(Core.Player.Pokemons(PokeIndex).Item, GameModeItem).gmMegaPokemonNumber Then
-                                _mainMenuItemList.Add(New MainMenuItem(5, "Mega Evolve!", Index, AddressOf MainMenuMegaEvolve))
+                                _mainMenuItemList.Add(New MainMenuItem(5, Localization.GetString("battle_action_MegaEvolve", "Mega Evolve!"), Index, AddressOf MainMenuMegaEvolve))
                             End If
                         End If
                     Else
                         If Core.Player.Pokemons(PokeIndex).Item.IsMegaStone = True Then
                             Dim megaStone = CType(Core.Player.Pokemons(PokeIndex).Item, Items.MegaStone)
                             If megaStone.MegaPokemonNumber = Core.Player.Pokemons(PokeIndex).Number Then
-                                _mainMenuItemList.Add(New MainMenuItem(5, "Mega Evolve!", Index, AddressOf MainMenuMegaEvolve))
+                                _mainMenuItemList.Add(New MainMenuItem(5, Localization.GetString("battle_action_MegaEvolve", "Mega Evolve!"), Index, AddressOf MainMenuMegaEvolve))
                             End If
                         End If
                     End If
@@ -794,7 +794,7 @@
             TempBattleScreen = BattleScreen
 
             Player.Temp.PokemonScreenIndex = BattleScreen.OwnPokemonIndex
-            Dim selScreen = New PartyScreen(Core.CurrentScreen, Item.GetItemByID(5.ToString), AddressOf ShowPokemonMenu, "Choose Pokémon", True) With {.Mode = Screens.UI.ISelectionScreen.ScreenMode.Selection, .CanExit = True}
+            Dim selScreen = New PartyScreen(Core.CurrentScreen, Item.GetItemByID(5.ToString), AddressOf ShowPokemonMenu, Localization.GetString("party_screen_ChoosePokemon", "Choose Pokémon"), True) With {.Mode = Screens.UI.ISelectionScreen.ScreenMode.Selection, .CanExit = True}
             AddHandler selScreen.SelectedObject, AddressOf ShowPokemonMenuHandler
 
             Core.SetScreen(selScreen)
@@ -863,9 +863,9 @@
 
                 Core.Player.UsedItemsToCheckScriptDelayFor.Add("181")
 
-                Dim safariBallText As String = "Safari Ball x" & Core.Player.Inventory.GetItemAmount(181.ToString).ToString()
+                Dim safariBallText As String = Localization.GetString("item_name_181", "Safari Ball") & " x" & Core.Player.Inventory.GetItemAmount(181.ToString).ToString()
                 If Core.Player.Inventory.GetItemAmount(181.ToString) = 0 Then
-                    safariBallText = "No Safari Balls."
+                    safariBallText = Localization.GetString("battle_NoSafariBalls", "No Safari Balls.")
                 End If
                 _mainMenuItemList(0).Text = safariBallText
             End If
@@ -955,7 +955,7 @@
                     _moveMenuAlpha = 0
                     If BattleScreen.OwnPokemon.Attacks(_moveMenuIndex).SwapsOutOwnPokemon = True Then
                         If PartyScreen.Selected = -1 Then
-                            Dim selScreen = New PartyScreen(Core.CurrentScreen, Item.GetItemByID(5.ToString), Nothing, "Choose Pokémon", False, False, False) With {.Mode = Screens.UI.ISelectionScreen.ScreenMode.Selection, .CanExit = False}
+                            Dim selScreen = New PartyScreen(Core.CurrentScreen, Item.GetItemByID(5.ToString), Nothing, Localization.GetString("party_screen_ChoosePokemon", "Choose Pokémon"), False, False, False) With {.Mode = Screens.UI.ISelectionScreen.ScreenMode.Selection, .CanExit = False, .SelectButtonText = Localization.GetString("global_switch", "Switch")}
                             AddHandler selScreen.SelectedObject, Nothing
 
                             Core.SetScreen(selScreen)
@@ -1175,7 +1175,7 @@
 
                     If Item.BattleSelectPokemon = True Then
                         'Core.SetScreen(New PartyScreen(Core.CurrentScreen, Item, AddressOf UseItem, "Use " & Item.Name, True))
-                        Dim selScreen = New PartyScreen(Core.CurrentScreen, Item, AddressOf Item.UseOnPokemon, "Use " & Item.Name, True) With {.Mode = Screens.UI.ISelectionScreen.ScreenMode.Selection, .CanExit = True}
+                        Dim selScreen = New PartyScreen(Core.CurrentScreen, Item, AddressOf Item.UseOnPokemon, Localization.GetString("global_use", "Use") & " " & Item.OneLineName(), True) With {.Mode = Screens.UI.ISelectionScreen.ScreenMode.Selection, .CanExit = True}
                         AddHandler selScreen.SelectedObject, AddressOf UseItemHandler
 
                         Core.SetScreen(selScreen)

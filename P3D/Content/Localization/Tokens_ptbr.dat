@@ -342,6 +342,7 @@ PartyScreen:
 party_screen_Unable,Incapaz!
 party_screen_Able,Capaz!
 party_screen_FieldMove,Mv. de Campo
+party_screen_ChoosePokemon,Escolha o Pokémon
 party_screen_CannotChoosePokemon,Não pode escolher este~Pokémon
 ---
 NewGameScreen:
@@ -515,13 +516,20 @@ berry_picked_multiple_end,Berries.
 Battle:
 battle_trainer_about_to_send_out_1,está prestes a mandar
 battle_trainer_about_to_send_out_2,! Você deseja trocar de Pokémon?
-battle_choose_pokemon,Escolha o Pokémon
 battle_switch_already_in_battle,ja está~em batalha!
 battle_switch_fainted,Desmaiou!
 battle_switch_egg,Não pode trocar~por Ovo!
 battle_cannot_switch,Não da pra trocar.
 battle_cannot_run,Não conseguiu fugir.
 battle_cannot_run_ability,Não conseguiu fugir por causa do~
+battle_MoveDisabled,Disabled!
+battle_ThrowMud,Throw Mud
+battle_ThrowBait,Throw Bait
+battle_Run,Run
+battle_Battle,Battle
+battle_Bag,Bag
+battle_Surrender,Surrender
+battle_action_MegaEvolve,Mega Evolve!
 ---
 Badges:
 badge_1,Boulder

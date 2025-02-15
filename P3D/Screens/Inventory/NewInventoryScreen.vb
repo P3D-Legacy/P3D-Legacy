@@ -1015,7 +1015,7 @@ Public Class NewInventoryScreen
                     End If
 
                 Case INFO_ITEM_OPTION_GIVE
-                    Dim selScreen = New PartyScreen(Core.CurrentScreen) With {.Mode = ISelectionScreen.ScreenMode.Selection, .CanExit = True}
+                    Dim selScreen = New PartyScreen(Core.CurrentScreen, cItem, Nothing, Localization.GetString("global_give", "Give") & " " & cItem.OneLineName(), True, True, True, Nothing, False) With {.Mode = ISelectionScreen.ScreenMode.Selection, .CanExit = True, .SelectButtonText = Localization.GetString("global_give", "Give")}
                     AddHandler selScreen.SelectedObject, AddressOf GiveItemHandler
 
                     Core.SetScreen(selScreen)

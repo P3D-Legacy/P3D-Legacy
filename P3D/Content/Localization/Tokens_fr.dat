@@ -342,6 +342,7 @@ PartyScreen:
 party_screen_Unable,Unable!
 party_screen_Able,Able!
 party_screen_FieldMove,Field Move
+party_screen_ChoosePokemon,Choisi le Pokémon
 party_screen_CannotChoosePokemon,Cannot choose this~Pokémon.
 ---
 NewGameScreen:
@@ -514,13 +515,20 @@ berry_picked_multiple_end,Baies.
 Battle:
 battle_trainer_about_to_send_out_1,est sur le point d'envoyer
 battle_trainer_about_to_send_out_2,! Veux-tu changer de Pokémon ?
-battle_choose_pokemon,Choisi le Pokémon
 battle_switch_already_in_battle,est déjà en combat!
 battle_switch_fainted,est KO!
 battle_switch_egg,Impossible d'envoyer l'œuf!
 battle_cannot_switch,Impossible de changer.
 battle_cannot_run,N'a pas réussi à s'enfuir.
 battle_cannot_run_ability,N'a pas réussi a s'enfuir à cause de~
+battle_MoveDisabled,Disabled!
+battle_ThrowMud,Throw Mud
+battle_ThrowBait,Throw Bait
+battle_Run,Run
+battle_Battle,Battle
+battle_Bag,Bag
+battle_Surrender,Surrender
+battle_action_MegaEvolve,Mega Evolve!
 ---
 Badges:
 badge_1,Roche

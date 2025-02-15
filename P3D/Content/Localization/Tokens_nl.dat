@@ -343,6 +343,7 @@ PartyScreen:
 party_screen_Unable,Onmogelijk!
 party_screen_Able,Mogelijk!
 party_screen_FieldMove,Veldtechniek
+party_screen_ChoosePokemon,Kies Pokémon
 party_screen_CannotChoosePokemon,Kan deze Pokémon niet~kiezen.
 ---
 NewGameScreen:
@@ -514,13 +515,19 @@ berry_picked_multiple_end,Bessen.
 Battle:
 battle_trainer_about_to_send_out_1,staat op het punt om
 battle_trainer_about_to_send_out_2,in te zetten om te vechten! Wil je je Pokémon verwisselen met een andere?
-battle_choose_pokemon,Kies Pokémon
 battle_switch_already_in_battle,is al~aan het vechten!
 battle_switch_fainted,is uitgeschakeld!
 battle_switch_egg,Kan geen ei inzetten!
 battle_cannot_switch,Kan niet wisselen.
 battle_cannot_run,Kon niet wegrennen.
 battle_cannot_run_ability,Kon niet wegrennen vanwege~
+battle_action_ThrowMud,Gooi Modder
+battle_action_ThrowBait,Gooi Aas
+battle_action_Run,Ren
+battle_action_Battle,Vecht
+battle_action_Bag,Tas
+battle_action_Surrender,Geef Op
+battle_action_MegaEvolve,Mega-Evolueer!
 ---
 Badges:
 badge_Boulder,Rots
