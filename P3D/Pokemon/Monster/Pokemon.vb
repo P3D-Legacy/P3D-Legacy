@@ -416,9 +416,9 @@ Public Class Pokemon
         End Set
     End Property
 
-    Public Property CatchLocation() As String
+    Public Property CatchLocation(Optional saveGame As Boolean = False) As String
         Get
-            If _catchLocation.StartsWith("<system.token(") AndAlso _catchLocation.EndsWith(")>") Then
+            If saveGame = False AndAlso (_catchLocation.StartsWith("<system.token(") AndAlso _catchLocation.EndsWith(")>") OrElse _catchLocation.StartsWith("[system.token(") AndAlso _catchLocation.EndsWith(")]")) Then
                 Return Localization.GetString(_catchLocation.Remove(_catchLocation.Length - 2, 2).Remove(0, "<system.token(".Length))
             Else
                 Return Me._catchLocation
@@ -429,9 +429,9 @@ Public Class Pokemon
         End Set
     End Property
 
-    Public Property CatchTrainerName() As String
+    Public Property CatchTrainerName(Optional saveGame As Boolean = False) As String
         Get
-            If _catchTrainerName.StartsWith("<system.token(") AndAlso _catchTrainerName.EndsWith(")>") Then
+            If saveGame = False AndAlso (_catchTrainerName.StartsWith("<system.token(") AndAlso _catchTrainerName.EndsWith(")>") OrElse _catchTrainerName.StartsWith("[system.token(") AndAlso _catchTrainerName.EndsWith(")]")) Then
                 Return Localization.GetString(_catchTrainerName.Remove(_catchTrainerName.Length - 2, 2).Remove(0, "<system.token(".Length))
             Else
                 Return Me._catchTrainerName
@@ -442,9 +442,9 @@ Public Class Pokemon
         End Set
     End Property
 
-    Public Property CatchMethod() As String
+    Public Property CatchMethod(Optional saveGame As Boolean = False) As String
         Get
-            If _catchMethod.StartsWith("<system.token(") AndAlso _catchMethod.EndsWith(")>") Then
+            If saveGame = False AndAlso (_catchMethod.StartsWith("<system.token(") AndAlso _catchMethod.EndsWith(")>") OrElse _catchMethod.StartsWith("[system.token(") AndAlso _catchMethod.EndsWith(")]")) Then
                 Return Localization.GetString(_catchMethod.Remove(_catchMethod.Length - 2, 2).Remove(0, "<system.token(".Length))
             Else
                 Return Me._catchMethod
@@ -1973,10 +1973,10 @@ Public Class Pokemon
         "{""Ability""[" & Me.Ability.ID & "]}" &
         "{""Status""[" & SaveStatus & "]}" &
         "{""Nature""[" & Me.Nature & "]}" &
-        "{""CatchLocation""[" & Me.CatchLocation & "]}" &
-        "{""CatchTrainer""[" & Me.CatchTrainerName & "]}" &
+        "{""CatchLocation""[" & Me.CatchLocation(True) & "]}" &
+        "{""CatchTrainer""[" & Me.CatchTrainerName(True) & "]}" &
         "{""CatchBall""[" & Me.CatchBall.ID & "]}" &
-        "{""CatchMethod""[" & Me.CatchMethod & "]}" &
+        "{""CatchMethod""[" & Me.CatchMethod(True) & "]}" &
         "{""Friendship""[" & Me.Friendship & "]}" &
         "{""isShiny""[" & shinyString & "]}" &
         "{""Attack1""[" & A1 & "]}" &

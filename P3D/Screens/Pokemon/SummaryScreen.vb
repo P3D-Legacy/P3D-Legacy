@@ -413,7 +413,7 @@
                 .CatchLocation = "an unknown place"
             End If
 
-            Dim text As String = .CatchMethod.Replace(.CatchMethod(0), Char.ToUpper(.CatchMethod(0))) & " " & .CatchLocation & "."
+            Dim text As String = .CatchMethod.Replace(.CatchMethod(False)(0), Char.ToUpper(.CatchMethod(False)(0))) & " " & .CatchLocation & "."
 
             SpriteBatch.DrawString(FontManager.MainFont, text.CropStringToWidth(FontManager.MainFont, 1.0F, 300), New Vector2(DeltaX + 358, DeltaY + 336 + 128), New Color(255, 255, 255, CInt(220 * _fadeIn * _pageFade)))
 
