@@ -66,6 +66,7 @@ global_give,Donner
 global_take,Prendre
 global_toss,Jeter
 global_switch,Changer
+global_learn,Learn
 global_pokemon_move_fly,Vol
 global_pokemon_move_rocksmash,Éclate-Roc
 global_pokemon_move_ride,Ride

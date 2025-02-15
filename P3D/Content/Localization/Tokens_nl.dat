@@ -67,6 +67,7 @@ global_give,Geef
 global_take,Neem
 global_toss,Gooi weg
 global_switch,Verwissel
+global_learn,Leer
 global_pokemon_move_fly,Vlieg
 global_pokemon_move_rocksmash,Steenknal
 global_pokemon_move_ride,Rijd

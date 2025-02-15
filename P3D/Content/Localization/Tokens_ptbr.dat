@@ -66,6 +66,7 @@ global_give,Dar
 global_take,Pegar
 global_toss,Jogar Fora
 global_switch,Trocar
+global_learn,Learn
 global_pokemon_move_fly,Fly
 global_pokemon_move_rocksmash,Rock Smash
 global_pokemon_move_ride,Ride

@@ -380,6 +380,7 @@
                     Dim canChooseEgg As Boolean = True
                     Dim canChooseFainted As Boolean = True
                     Dim canLearnAttack As Integer = -1
+                    Dim selectButtonText As String = Localization.GetString("global_select", "Select")
 
                     If argument <> "" Then
                         Dim data() As String = argument.Split(CChar(","))
@@ -396,12 +397,15 @@
                         If data.Length > 3 Then
                             canLearnAttack = CInt(data(3))
                         End If
+                        If data.Length > 4 Then
+                            selectButtonText = data(4)
+                        End If
                     End If
 
-                    Dim selScreen = New PartyScreen(Core.CurrentScreen, Item.GetItemByID(5.ToString), Nothing, "Choose Pokémon", canExit, canChooseFainted, canChooseEgg) With {.Mode = Screens.UI.ISelectionScreen.ScreenMode.Selection, .CanExit = canExit}
+                    Dim selScreen = New PartyScreen(Core.CurrentScreen, Item.GetItemByID(5.ToString), Nothing, Localization.GetString("party_screen_ChoosePokemon", "Choose Pokémon"), canExit, canChooseFainted, canChooseEgg) With {.Mode = Screens.UI.ISelectionScreen.ScreenMode.Selection, .CanExit = canExit, .SelectButtonText = selectButtonText}
 
                     If canLearnAttack <> -1 Then
-                        selScreen = New PartyScreen(Core.CurrentScreen, Item.GetItemByID(5.ToString), Nothing, "Learn " & BattleSystem.Attack.GetAttackByID(canLearnAttack).Name, canExit, canChooseFainted, canChooseEgg) With {.Mode = Screens.UI.ISelectionScreen.ScreenMode.Selection, .CanExit = canExit}
+                        selScreen = New PartyScreen(Core.CurrentScreen, Item.GetItemByID(5.ToString), Nothing, Localization.GetString("global_Learn", "Learn") & " " & BattleSystem.Attack.GetAttackByID(canLearnAttack).Name, canExit, canChooseFainted, canChooseEgg) With {.Mode = Screens.UI.ISelectionScreen.ScreenMode.Selection, .CanExit = canExit, .SelectButtonText = selectButtonText}
                         selScreen.SetupLearnAttack(BattleSystem.Attack.GetAttackByID(canLearnAttack), 2, Nothing)
                     End If
                     AddHandler selScreen.SelectedObject, Nothing

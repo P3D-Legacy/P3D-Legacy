@@ -258,7 +258,7 @@ Public Class GameModeItem
             If gmTeachMove IsNot Nothing Then
                 If Core.Player.Pokemons.Count > 0 Then
                     SoundManager.PlaySound("PC\LogOn", False)
-                    Dim selScreen = New PartyScreen(Core.CurrentScreen, Me, AddressOf Me.UseOnPokemon, "Use " & Me.Name, True) With {.Mode = Screens.UI.ISelectionScreen.ScreenMode.Selection, .CanExit = True}
+                    Dim selScreen = New PartyScreen(Core.CurrentScreen, Me, AddressOf Me.UseOnPokemon, Localization.GetString("global_use", "Use") & " " & Me.OneLineName(), True) With {.Mode = Screens.UI.ISelectionScreen.ScreenMode.Selection, .CanExit = True}
                     AddHandler selScreen.SelectedObject, AddressOf UseItemhandler
 
                     Core.SetScreen(selScreen)
@@ -273,7 +273,7 @@ Public Class GameModeItem
                     Exit Sub
                 End If
                 If Core.Player.Pokemons.Count > 0 Then
-                    Dim selScreen = New PartyScreen(Core.CurrentScreen, Me, AddressOf Me.UseOnPokemon, "Use " & Me.Name, True) With {.Mode = Screens.UI.ISelectionScreen.ScreenMode.Selection, .CanExit = True}
+                    Dim selScreen = New PartyScreen(Core.CurrentScreen, Me, AddressOf Me.UseOnPokemon, Localization.GetString("global_use", "Use") & " " & Me.OneLineName(), True) With {.Mode = Screens.UI.ISelectionScreen.ScreenMode.Selection, .CanExit = True}
                     AddHandler selScreen.SelectedObject, AddressOf UseItemhandler
 
                     Core.SetScreen(selScreen)
@@ -282,7 +282,7 @@ Public Class GameModeItem
                 End If
             ElseIf gmCureStatusEffects IsNot Nothing AndAlso gmCureStatusEffects.Count > 0 Then
                 If Core.Player.Pokemons.Count > 0 Then
-                    Dim selScreen = New PartyScreen(Core.CurrentScreen, Me, AddressOf Me.UseOnPokemon, "Use " & Me.Name, True) With {.Mode = Screens.UI.ISelectionScreen.ScreenMode.Selection, .CanExit = True}
+                    Dim selScreen = New PartyScreen(Core.CurrentScreen, Me, AddressOf Me.UseOnPokemon, Localization.GetString("global_use", "Use") & " " & Me.OneLineName(), True) With {.Mode = Screens.UI.ISelectionScreen.ScreenMode.Selection, .CanExit = True}
                     AddHandler selScreen.SelectedObject, AddressOf UseItemhandler
 
                     Core.SetScreen(selScreen)
@@ -291,7 +291,7 @@ Public Class GameModeItem
                 End If
             ElseIf gmEvolutionPokemon IsNot Nothing AndAlso gmEvolutionPokemon.Count > 0 Then
                 If Core.Player.Pokemons.Count > 0 Then
-                    Dim selScreen = New PartyScreen(Core.CurrentScreen, Me, AddressOf Me.UseOnPokemon, "Use " & Me.Name, True) With {.Mode = Screens.UI.ISelectionScreen.ScreenMode.Selection, .CanExit = True}
+                    Dim selScreen = New PartyScreen(Core.CurrentScreen, Me, AddressOf Me.UseOnPokemon, Localization.GetString("global_use", "Use") & " " & Me.OneLineName(), True) With {.Mode = Screens.UI.ISelectionScreen.ScreenMode.Selection, .CanExit = True}
                     AddHandler selScreen.SelectedObject, AddressOf UseItemhandler
 
                     Core.SetScreen(selScreen)

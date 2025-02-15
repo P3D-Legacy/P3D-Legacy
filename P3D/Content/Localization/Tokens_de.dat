@@ -67,6 +67,7 @@ global_give,Geben
 global_take,Nehmen
 global_toss,Wegwerfen
 global_switch,Tauschen
+global_learn,Learn
 global_pokemon_move_fly,Fliegen
 global_pokemon_move_rocksmash,Zertrümmerer
 global_pokemon_move_ride,Reiten
