@@ -966,14 +966,14 @@ Public Class NewOptionScreen
 
 				Dim d As New Dictionary(Of Integer, String)
 				d.Add(0, Localization.GetString("option_screen_graphics_renderdistance_tiny", "Tiny"))
-				d.Add(1, Localization.GetString("option_screen_graphics_renderdistance_small", "Small"))
+				d.Add(1, Localization.GetString("option_screen_graphics_renderdistance_short", "Short"))
 				d.Add(2, Localization.GetString("option_screen_graphics_renderdistance_normal", "Normal"))
 				d.Add(3, Localization.GetString("option_screen_graphics_renderdistance_far", "Far"))
 				d.Add(4, Localization.GetString("option_screen_graphics_renderdistance_extreme", "Extreme"))
 				Me.ControlList.Add(New ScrollBar(New Vector2(Delta_X + 100, Delta_Y + 100), 400, Localization.GetString("option_screen_graphics_renderdistance", "Render Distance"), Me.RenderDistance, 0, 4, AddressOf ChangeRenderDistance, d, 2))
 
 				Dim d1 As New Dictionary(Of Integer, String)
-				d1.Add(0, "Off")
+				d1.Add(0, Localization.GetString("option_screen_graphics_offset_mapquality_off", "Off"))
 				Me.ControlList.Add(New ScrollBar(New Vector2(Delta_X + 100, Delta_Y + 160), 400, Localization.GetString("option_screen_graphics_offset_mapquality", "Offset Map Quality"), Me.LoadOffsetMaps, 0, 100, AddressOf ChangeOffsetMaps, d1, 3))
 
 				Me.ControlList.Add(New ToggleButton(New Vector2(Delta_X + 100, Delta_Y + 220), 3, 64, Localization.GetString("option_screen_graphics_graphics", "Graphics"), CBool(Me.GraphicStyle), AddressOf ToggleGraphicsStyle, {Localization.GetString("option_screen_graphics_graphics_fast", "Fast"), Localization.GetString("option_screen_graphics_graphics_fancy", "Fancy")}.ToList(), 4))
