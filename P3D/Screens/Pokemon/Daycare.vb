@@ -74,7 +74,7 @@
 
             p.Generate(1, True, OptionalAdditionalData)
             p.EggSteps = 1
-            p.SetCatchInfos(Item.GetItemByID(5.ToString), "obtained at")
+            p.SetCatchInfos(Item.GetItemByID(5.ToString), Localization.GetString("CatchMethod_Obtained", "Obtained at"))
             p.CatchBall = Item.GetItemByID(GetEggPokeballID({parent1, parent2}.ToList()))
 
             p.ReloadDefinitions()

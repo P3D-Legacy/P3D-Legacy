@@ -676,7 +676,7 @@
 
                 If isEgg = True Then
                     Pokemon.EggSteps = 1
-                    Pokemon.SetCatchInfos(Item.GetItemByID(5.ToString), "obtained at")
+                    Pokemon.SetCatchInfos(Item.GetItemByID(5.ToString), Localization.GetString("CatchMethod_Obtained", "Obtained at"))
                 Else
                     Pokemon.EggSteps = 0
                 End If
@@ -1128,7 +1128,7 @@
 
                 If isEgg = True Then
                     Pokemon.EggSteps = 1
-                    Pokemon.SetCatchInfos(Item.GetItemByID(5.ToString), "obtained at")
+                    Pokemon.SetCatchInfos(Item.GetItemByID(5.ToString), Localization.GetString("CatchMethod_Obtained", "Obtained at"))
                 Else
                     Pokemon.EggSteps = 0
                 End If

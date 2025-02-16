@@ -138,7 +138,7 @@
                             Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\Menu"), New Rectangle(CInt(Core.windowSize.Width / 2 - 100), 358, 12, 20), New Rectangle(96, 0, 6, 10), Color.White)
                         End If
 
-                        Core.SpriteBatch.DrawString(FontManager.MainFont, "Lv. " & p.Level, New Vector2(CInt(Core.windowSize.Width / 2 - 50), 355), Color.White)
+                        Core.SpriteBatch.DrawString(FontManager.MainFont, Localization.GetString("property_Lv.", "Lv.") & " " & p.Level, New Vector2(CInt(Core.windowSize.Width / 2 - 50), 355), Color.White)
 
                         If p.Item Is Nothing Then
                             Core.SpriteBatch.DrawString(FontManager.MainFont, "None", New Vector2(CInt(Core.windowSize.Width / 2 + 60), 355), Color.White)

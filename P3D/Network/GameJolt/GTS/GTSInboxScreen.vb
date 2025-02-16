@@ -232,7 +232,7 @@
                         Core.SpriteBatch.Draw(D.Pokemon.GetMenuTexture(), New Rectangle(116, Y + 16, 64, 64), C)
 
                         Core.SpriteBatch.DrawString(FontManager.MiniFont, D.Pokemon.GetDisplayName(), New Vector2(198, Y + 37), Color.Black)
-                        Core.SpriteBatch.DrawString(FontManager.MiniFont, "Lv. " & D.Pokemon.Level, New Vector2(360, Y + 37), Color.Black)
+                        Core.SpriteBatch.DrawString(FontManager.MiniFont, Localization.GetString("property_Lv.", "Lv.") & " " & D.Pokemon.Level, New Vector2(360, Y + 37), Color.Black)
                     End If
                 Next
             Else

@@ -66,7 +66,7 @@
 
             If bannedAbilitiesOpp.Contains(op.Ability.Name.ToLower()) = False AndAlso bannedAbilitiesOwn.Contains(p.Ability.Name.ToLower()) = False Then
                 op.Ability = Ability.GetAbilityByID(p.Ability.ID)
-                BattleScreen.BattleQuery.Add(New TextQueryObject(op.GetDisplayName() & " acquired " & op.Ability.Name() & "!"))
+                BattleScreen.BattleQuery.Add(New TextQueryObject(op.GetDisplayName() & " acquired " & Localization.GetString("ability_name_" & op.Ability.ID.ToString, op.Ability.Name()) & "!"))
             Else
                 BattleScreen.BattleQuery.Add(New TextQueryObject(Me.Name & " failed!"))
             End If

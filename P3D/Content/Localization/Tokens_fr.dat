@@ -19,6 +19,7 @@ global_save,Sauvegarder
 global_apply,Appliquer
 global_close,Fermer
 global_back,Retour
+global_quit,Quit
 global_on,On
 global_off,Off
 global_enabled,Activé
@@ -76,20 +77,49 @@ global_pokemon_move_teleport,Teleport
 global_pokemon_move_dig,Tunnel
 global_used,Utilisé
 ---
-General:
-HP,HP
-PP,PP
-Lv.,Lv.
-No.,No.
-Level,Niveau
-MaxHP,Max HP
-Attack,Attaque
-Defense,Defense
-Special_Attack,Attaque spécial
-Sp_Attack,Attaque spé.
-Special_Defense,Défense spécial
-Sp_Defense,Défense spé.
-Speed,Vitesse
+Pokémon & Attack Properties:
+property_HP,HP
+property_PP,PP
+property_Lv.,Lv.
+property_No.,No.
+property_Level,Niveau
+property_MaxHP,Max HP
+property_Attack,Attaque
+property_Defense,Defense
+property_Special_Attack,Attaque spécial
+property_Sp_Attack,Attaque spé.
+property_Special_Defense,Défense spécial
+property_Sp_Defense,Défense spé.
+property_Speed,Vitesse
+property_Ability,Ability
+property_Type,Type
+property_Nature,Nature
+property_DexNo.,Dex No.
+property_IDNo.,ID No.
+property_CatchMethod,Catch Method
+property_ExpPoints,Exp. Points
+property_Category,Category
+property_Power,Power
+property_Accuracy,Accuracy
+---
+Summary Screen:
+
+summary_hint_ViewMoves,View Moves: [<system.button(movebackward)>] / Down
+summary_hint_ViewInfo,View Info: [<system.button(moveforward)>] / Up
+summary_EVsIVs,EVs / IVs
+summary_ExpToNextLv,To Next Lv.
+summary_TheEggWatch,The Egg Watch
+summary_EggHatch_LongTime,It looks like this Egg will take a long time to hatch.
+summary_EggHatch_MediumTime,It's getting warmer and moves a little. It will hatch soon.
+summary_EggHatch_ShortTime,There is strong movement noticeable. It will hatch soon!
+---
+Catch Method & Location:
+
+CatchMethod_Empty,Somehow obtained at
+CatchMethod_Caught,Caught at
+CatchMethod_Obtained,Obtained at
+
+CatchLocation_Empty,an unknown place
 ---
 Keyboard Keys:
 

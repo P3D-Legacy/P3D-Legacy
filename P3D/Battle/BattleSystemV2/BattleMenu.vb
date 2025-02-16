@@ -111,7 +111,7 @@
                 Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Battle\Interface"), New Rectangle(CInt(pos.X) + 14, CInt(pos.Y) + 14, 182, 42), New Rectangle(0, 0, 91, 21), shinyHue)
 
                 'Name:
-                Dim nameInformation As String = p.GetDisplayName() & " Lv. " & p.Level.ToString()
+                Dim nameInformation As String = p.GetDisplayName() & " " & Localization.GetString("property_Lv.", "Lv.") & " " & p.Level.ToString()
 
                 Core.SpriteBatch.DrawString(FontManager.MainFont, nameInformation, New Vector2(pos.X + 2, pos.Y + 2), New Color(0, 0, 0, _moveMenuAlpha))
                 Core.SpriteBatch.DrawString(FontManager.MainFont, nameInformation, New Vector2(pos.X, pos.Y), shinyHue)
@@ -168,7 +168,7 @@
                 Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Battle\Interface"), New Rectangle(CInt(pos.X) + 14, CInt(pos.Y) + 14, 182, 32), New Rectangle(0, 21, 91, 16), shinyHue)
 
                 'Name:
-                Dim nameInformation As String = p.GetDisplayName() & " Lv. " & p.Level.ToString()
+                Dim nameInformation As String = p.GetDisplayName() & " " & Localization.GetString("property_Lv.", "Lv.") & " " & p.Level.ToString()
 
                 Core.SpriteBatch.DrawString(FontManager.MainFont, nameInformation, New Vector2(pos.X + 2, pos.Y + 2), New Color(0, 0, 0, _moveMenuAlpha))
                 Core.SpriteBatch.DrawString(FontManager.MainFont, nameInformation, New Vector2(pos.X, pos.Y), shinyHue)
@@ -843,7 +843,7 @@
                 End If
 
                 If Trapped = True Then
-                    Screen.TextBox.Show(Localization.GetString("battle_cannot_run_ability", "Failed to run away because of~") & op.Ability.Name & ".", {}, True, False)
+                    Screen.TextBox.Show(Localization.GetString("battle_cannot_run_ability", "Failed to run away because of~") & Localization.GetString("ability_name_" & op.Ability.ID.ToString, op.Ability.Name) & ".", {}, True, False)
                 Else
                     BattleScreen.BattleQuery.Clear()
                     BattleScreen.BattleQuery.Add(BattleScreen.FocusBattle())

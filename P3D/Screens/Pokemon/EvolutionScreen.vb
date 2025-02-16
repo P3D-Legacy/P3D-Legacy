@@ -431,10 +431,10 @@
 
         evolvedPokemon.CatchBall = currentPokemon.CatchBall
         If currentPokemon.CatchMethod = "" Then
-            currentPokemon.CatchMethod = "Somehow obtained at"
+            currentPokemon.CatchMethod = Localization.GetString("CatchMethod_Empty", "Somehow obtained at")
         End If
         If currentPokemon.CatchLocation = "" Then
-            currentPokemon.CatchLocation = "an unknown place"
+            currentPokemon.CatchLocation = Localization.GetString("CatchLocation_Empty", "an unknown place")
         End If
         evolvedPokemon.CatchLocation = currentPokemon.CatchLocation
         evolvedPokemon.CatchMethod = currentPokemon.CatchMethod

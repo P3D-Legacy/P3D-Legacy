@@ -332,7 +332,7 @@ nextIndex:
             End If
         End If
 
-        p.SetCatchInfos(Me.Ball, "caught at")
+        p.SetCatchInfos(Me.Ball, Localization.GetString("CatchMethod_Caught", "Caught at"))
 
         MusicManager.Pause()
         MusicManager.Play("wild_defeat", False, 0.0F)

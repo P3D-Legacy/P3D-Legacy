@@ -346,7 +346,7 @@ Public Class PartyScreen
             End Select
 
             'Level:
-            GetFontRenderer().DrawString(FontManager.MainFont, "Lv. " & p.Level.ToString(), New Vector2(position.X + 4, position.Y + 50), New Color(255, 255, 255, CInt(255 * _interfaceFade)))
+            GetFontRenderer().DrawString(FontManager.MainFont, Localization.GetString("property_Lv.", "Lv.") & " " & p.Level.ToString(), New Vector2(position.X + 4, position.Y + 50), New Color(255, 255, 255, CInt(255 * _interfaceFade)))
 
             'HP Bar:
             SpriteBatch.Draw(_menuTexture, New Rectangle(CInt(position.X) + 102, CInt(position.Y) + 32, 111, 15), New Rectangle(16, 32, 74, 10), New Color(255, 255, 255, CInt(255 * _interfaceFade)))

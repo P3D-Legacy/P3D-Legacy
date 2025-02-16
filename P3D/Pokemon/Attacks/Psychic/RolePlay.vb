@@ -65,7 +65,7 @@ Namespace BattleSystem.Moves.Psychic
 
             p.Ability = New Ability(op.Ability.ID, op.Ability.Name, op.Ability.Description)
 
-            BattleScreen.BattleQuery.Add(New TextQueryObject(p.GetDisplayName() & " copies " & op.Ability.Name & " from " & op.GetDisplayName() & "."))
+            BattleScreen.BattleQuery.Add(New TextQueryObject(p.GetDisplayName() & " copies " & Localization.GetString("ability_name_" & op.Ability.ID.ToString, op.Ability.Name) & " from " & op.GetDisplayName() & "."))
         End Sub
 
     End Class
