@@ -982,4 +982,9 @@ endsub:
         End Set
     End Property
 
+    Public Shared Function IsNight() As Boolean
+        Dim currentTime = GetTime()
+        Return currentTime.Equals(DayTimes.Night) Or currentTime.Equals(DayTimes.Morning)
+    End Function
+
 End Class
