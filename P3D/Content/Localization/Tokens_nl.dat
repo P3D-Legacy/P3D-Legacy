@@ -79,6 +79,7 @@ global_pokemon_move_dig,Graaf
 global_used,Gebruikt
 ---
 Pokémon & Attack Properties:
+
 property_HP,IP
 property_PP,KP
 property_No.,Nr.
@@ -92,35 +93,35 @@ property_Sp_Attack,Sp. Aanval
 property_Special_Defense,Speciale Verdediging
 property_Sp_Defense,Sp. Verdediging
 property_Speed,Snelheid
-property_Ability,Ability
+property_Ability,Vaardigheid
 property_Type,Type
-property_Nature,Nature
-property_DexNo.,Dex No.
-property_IDNo.,ID No.
-property_CatchMethod,Catch Method
-property_ExpPoints,Exp. Points
-property_Category,Category
-property_Power,Power
-property_Accuracy,Accuracy
+property_Nature,Karakter
+property_DexNo.,Dex Nr.
+property_IDNo.,ID Nr.
+property_CatchMethod,Vangmethode
+property_ExpPoints,Ervaringspunten
+property_Category,Categorie
+property_Power,Kracht
+property_Accuracy,Nauwkeurigheid
 ---
 Summary Screen:
 
-summary_hint_ViewMoves,View Moves: [<system.button(movebackward)>] / Down
-summary_hint_ViewInfo,View Info: [<system.button(moveforward)>] / Up
-summary_EVsIVs,EVs / IVs
-summary_ExpToNextLv,To Next Lv.
-summary_TheEggWatch,The Egg Watch
-summary_EggHatch_LongTime,It looks like this Egg will take a long time to hatch.
-summary_EggHatch_MediumTime,It's getting warmer and moves a little. It will hatch soon.
-summary_EggHatch_ShortTime,There is strong movement noticeable. It will hatch soon!
+summary_hint_ViewMoves,Bekijk Technieken: [<system.button(movebackward)>] / Omlaag
+summary_hint_ViewInfo,Bekijk Info: [<system.button(moveforward)>] / Omhoog
+summary_EVsIVs,MWs / IWs
+summary_ExpToNextLv,Naar volgende Nv.
+summary_TheEggWatch,De Eierwacht
+summary_EggHatch_LongTime,Het lijkt erop dat het lang zal duren voordat dit Ei uitkomt.
+summary_EggHatch_MediumTime,Het wordt warmer en beweegt een beetje. Het zal binnenkort uitkomen.
+summary_EggHatch_ShortTime,Er is een sterke beweging merkbaar. Het zal snel uitkomen!
 ---
 Catch Method & Location:
 
-CatchMethod_Empty,Somehow obtained at
-CatchMethod_Caught,Caught at
-CatchMethod_Obtained,Obtained at
+CatchMethod_Empty,Zomaar ontvangen bij
+CatchMethod_Caught,Gevangen bij
+CatchMethod_Obtained,Ontvangen bij
 
-CatchLocation_Empty,an unknown place
+CatchLocation_Empty,een onbekende plek
 ---
 Keyboard Keys:
 

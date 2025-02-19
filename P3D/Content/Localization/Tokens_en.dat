@@ -80,6 +80,7 @@ global_used,Used
 global_none,None
 ---
 Pokémon & Attack Properties:
+
 property_HP,HP
 property_PP,PP
 property_No.,No.

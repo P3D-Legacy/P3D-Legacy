@@ -78,6 +78,7 @@ global_pokemon_move_dig,Dig
 global_used,Usou
 ---
 Pokémon & Attack Properties:
+
 property_HP,HP
 property_PP,PP
 property_Lv.,Nv.
