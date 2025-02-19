@@ -99,15 +99,15 @@ property_Nature,Karakter
 property_DexNo.,Dex Nr.
 property_IDNo.,ID Nr.
 property_CatchMethod,Vangmethode
-property_ExpPoints,Ervaringspunten
+property_ExpPoints,Ervaring
 property_Category,Categorie
 property_Power,Kracht
 property_Accuracy,Nauwkeurigheid
 ---
 Summary Screen:
 
-summary_hint_ViewMoves,Bekijk Technieken: [<system.button(movebackward)>] / Omlaag
-summary_hint_ViewInfo,Bekijk Info: [<system.button(moveforward)>] / Omhoog
+summary_hint_ViewMoves,Technieken: [<system.button(movebackward)>] / Omlaag
+summary_hint_ViewInfo,Info: [<system.button(moveforward)>] / Omhoog
 summary_EVsIVs,MWs / IWs
 summary_ExpToNextLv,Naar volgende Nv.
 summary_TheEggWatch,De Eierwacht
