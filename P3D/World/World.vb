@@ -984,7 +984,7 @@ endsub:
 
     Public Shared Function IsNight() As Boolean
         Dim currentTime = GetTime()
-        Return currentTime.Equals(DayTimes.Night) Or currentTime.Equals(DayTimes.Morning)
+        Return currentTime.Equals(DayTimes.Night) Or currentTime.Equals(DayTimes.Evening)
     End Function
 
 End Class
