@@ -1998,7 +1998,11 @@
         Public Overridable Function GetDamage(ByVal Critical As Boolean, ByVal Own As Boolean, ByVal targetPokemon As Boolean, ByVal BattleScreen As BattleScreen, Optional ByVal ExtraParameter As String = "") As Integer
             If gmCopyMove <> -1 Then
                 Dim _attack As Attack = GetAttackByID(gmCopyMove)
-                Return BattleCalculation.CalculateDamage(_attack, Critical, Own, targetPokemon, BattleScreen, ExtraParameter)
+                If _attack.IsGameModeMove = False Then
+                    Return _attack.GetDamage(Critical, Own, targetPokemon, BattleScreen, ExtraParameter)
+                Else
+                    Return BattleCalculation.CalculateDamage(_attack, Critical, Own, targetPokemon, BattleScreen, ExtraParameter)
+                End If
             Else
                 Return BattleCalculation.CalculateDamage(Me, Critical, Own, targetPokemon, BattleScreen, ExtraParameter)
             End If

@@ -267,10 +267,10 @@
         SpriteBatch.DrawString(FontManager.MainFont, Localization.GetString("property_DexNo.", "Dex No."), New Vector2(DeltaX + 10, DeltaY + 426 + 4), New Color(255, 255, 255, CInt(220 * _interfaceFade)))
 
         SpriteBatch.DrawString(FontManager.MainFont, Localization.GetString("global_ot", "OT"), New Vector2(DeltaX + 10, DeltaY + 458 + 4), New Color(255, 255, 255, CInt(220 * _interfaceFade)))
-        SpriteBatch.DrawString(FontManager.MainFont, GetPokemon().CatchTrainerName, New Vector2(DeltaX + 96 + 8, DeltaY + 458 + 4), New Color(255, 255, 255, CInt(220 * _fadeIn)))
+        SpriteBatch.DrawString(FontManager.MainFont, GetPokemon().CatchTrainerName, New Vector2(DeltaX + 96 + 8 + 32, DeltaY + 458 + 4), New Color(255, 255, 255, CInt(220 * _fadeIn)))
 
         SpriteBatch.DrawString(FontManager.MainFont, Localization.GetString("property_IDNo.", "ID No."), New Vector2(DeltaX + 10, DeltaY + 490 + 4), New Color(255, 255, 255, CInt(220 * _interfaceFade)))
-        SpriteBatch.DrawString(FontManager.MainFont, GetPokemon().OT, New Vector2(DeltaX + 96 + 8, DeltaY + 490 + 4), New Color(255, 255, 255, CInt(220 * _fadeIn)))
+        SpriteBatch.DrawString(FontManager.MainFont, GetPokemon().OT, New Vector2(DeltaX + 96 + 8 + 32, DeltaY + 490 + 4), New Color(255, 255, 255, CInt(220 * _fadeIn)))
 
 
 
@@ -278,19 +278,19 @@
 
         If GetPokemon().IsEgg() = False Then
             'Type images draw:
-            Core.SpriteBatch.Draw(TextureManager.GetTexture(Element.GetElementTexturePath()), New Rectangle(DeltaX + 96 + 8, DeltaY + 338, 48, 16), GetPokemon().Type1.GetElementImage(), New Color(255, 255, 255, CInt(255 * _fadeIn)))
+            Core.SpriteBatch.Draw(TextureManager.GetTexture(Element.GetElementTexturePath()), New Rectangle(DeltaX + 96 + 32 + 8, DeltaY + 338, 48, 16), GetPokemon().Type1.GetElementImage(), New Color(255, 255, 255, CInt(255 * _fadeIn)))
             If GetPokemon().Type2.Type <> Element.Types.Blank Then
-                Core.SpriteBatch.Draw(TextureManager.GetTexture(Element.GetElementTexturePath()), New Rectangle(DeltaX + 152, DeltaY + 338, 48, 16), GetPokemon().Type2.GetElementImage(), New Color(255, 255, 255, CInt(255 * _fadeIn)))
+                Core.SpriteBatch.Draw(TextureManager.GetTexture(Element.GetElementTexturePath()), New Rectangle(DeltaX + 152 + 32, DeltaY + 338, 48, 16), GetPokemon().Type2.GetElementImage(), New Color(255, 255, 255, CInt(255 * _fadeIn)))
             End If
             'Item:
             If GetPokemon().Item IsNot Nothing Then
-                SpriteBatch.Draw(GetPokemon().Item.Texture, New Rectangle(DeltaX + 96 + 8, DeltaY + 366, 24, 24), New Color(255, 255, 255, CInt(220 * _fadeIn)))
-                SpriteBatch.DrawString(FontManager.MainFont, GetPokemon().Item.Name, New Vector2(DeltaX + 96 + 8 + 24, DeltaY + 366), New Color(255, 255, 255, CInt(220 * _fadeIn)))
+                SpriteBatch.Draw(GetPokemon().Item.Texture, New Rectangle(DeltaX + 96 + 8 + 32, DeltaY + 366, 24, 24), New Color(255, 255, 255, CInt(220 * _fadeIn)))
+                SpriteBatch.DrawString(FontManager.MainFont, GetPokemon().Item.Name, New Vector2(DeltaX + 96 + 8 + 24 + 32, DeltaY + 366), New Color(255, 255, 255, CInt(220 * _fadeIn)))
             Else
-                SpriteBatch.DrawString(FontManager.MainFont, Localization.GetString("global_none", "None"), New Vector2(DeltaX + 96 + 8, DeltaY + 366), New Color(255, 255, 255, CInt(220 * _fadeIn)))
+                SpriteBatch.DrawString(FontManager.MainFont, Localization.GetString("global_none", "None"), New Vector2(DeltaX + 96 + 8 + 32, DeltaY + 366), New Color(255, 255, 255, CInt(220 * _fadeIn)))
             End If
             'Nature
-            SpriteBatch.DrawString(FontManager.MainFont, GetPokemon().Nature.ToString, New Vector2(DeltaX + 96 + 8, DeltaY + 398), New Color(255, 255, 255, CInt(220 * _fadeIn)))
+            SpriteBatch.DrawString(FontManager.MainFont, GetPokemon().Nature.ToString, New Vector2(DeltaX + 96 + 8 + 32, DeltaY + 398), New Color(255, 255, 255, CInt(220 * _fadeIn)))
             'Get dex no:
             For Each pokedex In Core.Player.Pokedexes
                 If pokedex.IsActivated = True Then
@@ -311,13 +311,13 @@
                 pokedexNo = "0" & pokedexNo
             End While
         Else
-            SpriteBatch.DrawString(FontManager.MainFont, "???", New Vector2(DeltaX + 96 + 8, DeltaY + 330 + 4), New Color(255, 255, 255, CInt(220 * _fadeIn)))
-            SpriteBatch.DrawString(FontManager.MainFont, "???", New Vector2(DeltaX + 96 + 8, DeltaY + 362 + 4), New Color(255, 255, 255, CInt(220 * _fadeIn)))
-            SpriteBatch.DrawString(FontManager.MainFont, "???", New Vector2(DeltaX + 96 + 8, DeltaY + 394 + 4), New Color(255, 255, 255, CInt(220 * _fadeIn)))
+            SpriteBatch.DrawString(FontManager.MainFont, "???", New Vector2(DeltaX + 96 + 8 + 32, DeltaY + 330 + 4), New Color(255, 255, 255, CInt(220 * _fadeIn)))
+            SpriteBatch.DrawString(FontManager.MainFont, "???", New Vector2(DeltaX + 96 + 8 + 32, DeltaY + 362 + 4), New Color(255, 255, 255, CInt(220 * _fadeIn)))
+            SpriteBatch.DrawString(FontManager.MainFont, "???", New Vector2(DeltaX + 96 + 8 + 32, DeltaY + 394 + 4), New Color(255, 255, 255, CInt(220 * _fadeIn)))
         End If
 
         'Pokedex no.
-        SpriteBatch.DrawString(FontManager.MainFont, pokedexNo, New Vector2(DeltaX + 96 + 8, DeltaY + 426 + 4), New Color(255, 255, 255, CInt(220 * _fadeIn)))
+        SpriteBatch.DrawString(FontManager.MainFont, pokedexNo, New Vector2(DeltaX + 96 + 8 + 32, DeltaY + 426 + 4), New Color(255, 255, 255, CInt(220 * _fadeIn)))
     End Sub
 
     Private Sub DrawPage1()
@@ -339,8 +339,10 @@
                 statColor.A = CByte(255 * _interfaceFade * _pageFade)
 
                 Dim yOffset As Integer = 32
+                Dim xOffset As Integer = 80
                 Dim height As Integer = 32
                 If y = 0 Then
+                    xOffset = 4
                     yOffset = 0
                     height = 64
                 End If
@@ -357,13 +359,13 @@
                 ElseIf natureStatMulti < 1.0F Then
                     multiColor = New Color(180, 180, 255, CInt(200 * _fadeIn * _pageFade))
                 End If
-                SpriteBatch.DrawString(FontManager.MainFont, statValues(y), New Vector2(DeltaX + 480 + 32 - 12, DeltaY + 48 + y * 32 + yOffset), multiColor)
+                SpriteBatch.DrawString(FontManager.MainFont, statValues(y), New Vector2(DeltaX + 480 + 32 + xOffset - 12, DeltaY + 48 + y * 32 + yOffset), multiColor)
             Next
 
             Dim pokeInfoTexture = TextureManager.GetTexture("GUI\Menus\PokemonInfo")
 
             'HP Bar:
-            SpriteBatch.Draw(pokeInfoTexture, New Rectangle(DeltaX + 455 - 12, DeltaY + 82, 135, 15), New Rectangle(0, 32, 90, 10), New Color(255, 255, 255, CInt(220 * _interfaceFade * _pageFade)))
+            SpriteBatch.Draw(pokeInfoTexture, New Rectangle(DeltaX + 455 + 56 - 12, DeltaY + 82, 135, 15), New Rectangle(0, 32, 90, 10), New Color(255, 255, 255, CInt(220 * _interfaceFade * _pageFade)))
             '108 pixels:
             Dim hpV As Double = .HP / .MaxHP
             Dim hpWidth As Integer = CInt((104 * _fadeIn) * hpV)
@@ -384,11 +386,11 @@
                 End If
                 drawColor.A = CByte(drawColor.A * _pageFade)
 
-                SpriteBatch.Draw(pokeInfoTexture, New Rectangle(DeltaX + 455 + 24 - 12, DeltaY + 85, 2, 8), New Rectangle(hpColorX, 42, 2, 6), drawColor)
+                SpriteBatch.Draw(pokeInfoTexture, New Rectangle(DeltaX + 455 + 56 + 24 - 12, DeltaY + 85, 2, 8), New Rectangle(hpColorX, 42, 2, 6), drawColor)
 
-                SpriteBatch.Draw(pokeInfoTexture, New Rectangle(DeltaX + 455 + 24 + 2 - 12, DeltaY + 85, hpWidth, 8), New Rectangle(hpColorX + 2, 42, 1, 6), drawColor)
+                SpriteBatch.Draw(pokeInfoTexture, New Rectangle(DeltaX + 455 + 56 + 24 + 2 - 12, DeltaY + 85, hpWidth, 8), New Rectangle(hpColorX + 2, 42, 1, 6), drawColor)
 
-                SpriteBatch.Draw(pokeInfoTexture, New Rectangle(DeltaX + 455 + 24 + 2 - 12 + hpWidth, DeltaY + 85, 2, 8), New Rectangle(hpColorX + 3, 42, 2, 6), drawColor)
+                SpriteBatch.Draw(pokeInfoTexture, New Rectangle(DeltaX + 455 + 56 + 24 + 2 - 12 + hpWidth, DeltaY + 85, 2, 8), New Rectangle(hpColorX + 3, 42, 2, 6), drawColor)
             End If
 
             'Draw Ability
@@ -397,7 +399,7 @@
             Canvas.DrawRectangle(New Rectangle(DeltaX + 350, DeltaY + 394 - 64, 300 + 48, 64 + 12), New Color(0, 0, 0, CInt(70 * _interfaceFade * _pageFade)))
 
             SpriteBatch.DrawString(FontManager.MainFont, Localization.GetString("property_Ability", "Ability"), New Vector2(DeltaX + 360, DeltaY + 366 - 64), New Color(255, 255, 255, CInt(220 * _interfaceFade * _pageFade)))
-            SpriteBatch.DrawString(FontManager.MainFont, Localization.GetString("ability_name_" & .Ability.ID.ToString, .Ability.Name), New Vector2(DeltaX + 440 + 24, DeltaY + 366 - 64), New Color(255, 255, 255, CInt(220 * _fadeIn * _pageFade)))
+            SpriteBatch.DrawString(FontManager.MainFont, Localization.GetString("ability_name_" & .Ability.ID.ToString, .Ability.Name), New Vector2(DeltaX + 360 + FontManager.MainFont.MeasureString(Localization.GetString("property_Ability", "Ability")).X + 24, DeltaY + 366 - 64), New Color(255, 255, 255, CInt(220 * _fadeIn * _pageFade)))
             SpriteBatch.DrawString(FontManager.MainFont, Localization.GetString("ability_desc_" & .Ability.ID.ToString, .Ability.Description).CropStringToWidth(FontManager.MainFont, 1.0F, 300 + 32), New Vector2(DeltaX + 358, DeltaY + 336), New Color(255, 255, 255, CInt(220 * _fadeIn * _pageFade)))
 
             'Catch Method:
@@ -431,7 +433,7 @@
             'EXP:
             Canvas.DrawRectangle(New Rectangle(DeltaX + 734 - 12, DeltaY + 362 + 64, 300 + 24, 32), New Color(0, 0, 0, CInt(100 * _interfaceFade * _pageFade)))
             SpriteBatch.DrawString(FontManager.MainFont, Localization.GetString("property_ExpPoints", "Exp. Points"), New Vector2(DeltaX + 744, DeltaY + 366 + 64), New Color(255, 255, 255, CInt(220 * _interfaceFade * _pageFade)))
-            SpriteBatch.DrawString(FontManager.MainFont, .Experience.ToString(), New Vector2(DeltaX + 898 - 12, DeltaY + 366 + 64), New Color(255, 255, 255, CInt(220 * _fadeIn * _pageFade)))
+            SpriteBatch.DrawString(FontManager.MainFont, .Experience.ToString(), New Vector2(DeltaX + 744 + FontManager.MainFont.MeasureString(Localization.GetString("property_ExpPoints", "Exp. Points")).X + 24, DeltaY + 366 + 64), New Color(255, 255, 255, CInt(220 * _fadeIn * _pageFade)))
 
             If .Level < CInt(GameModeManager.GetGameRuleValue("MaxLevel", "100")) Then
                 Canvas.DrawRectangle(New Rectangle(DeltaX + 734 - 12, DeltaY + 394 + 64, 300 + 24, 64), New Color(0, 0, 0, CInt(70 * _interfaceFade * _pageFade)))
@@ -536,14 +538,14 @@
 
             'Type:
             SpriteBatch.DrawString(FontManager.MainFont, Localization.GetString("property_Type", "Type") & ":", New Vector2(DeltaX + 710, DeltaY + 80), New Color(255, 255, 255, CInt(220 * _interfaceFade * _pageFade * _moveFade)))
-            Core.SpriteBatch.Draw(TextureManager.GetTexture(Element.GetElementTexturePath()), New Rectangle(DeltaX + 840, DeltaY + 86, 48, 16), .Attacks(_moveIndex).Type.GetElementImage(), New Color(255, 255, 255, CInt(255 * _fadeIn * _pageFade * _moveFade)))
+            Core.SpriteBatch.Draw(TextureManager.GetTexture(Element.GetElementTexturePath()), New Rectangle(DeltaX + 840 + 56, DeltaY + 86, 48, 16), .Attacks(_moveIndex).Type.GetElementImage(), New Color(255, 255, 255, CInt(255 * _fadeIn * _pageFade * _moveFade)))
 
             SpriteBatch.DrawString(FontManager.MainFont, Localization.GetString("property_PP", "PP") & ":", New Vector2(DeltaX + 710, DeltaY + 114), New Color(255, 255, 255, CInt(220 * _interfaceFade * _pageFade * _moveFade)))
-            SpriteBatch.DrawString(FontManager.MainFont, .Attacks(_moveIndex).CurrentPP & " / " & .Attacks(_moveIndex).MaxPP, New Vector2(DeltaX + 840, DeltaY + 114), New Color(255, 255, 255, CInt(220 * _fadeIn * _pageFade * _moveFade)))
+            SpriteBatch.DrawString(FontManager.MainFont, .Attacks(_moveIndex).CurrentPP & " / " & .Attacks(_moveIndex).MaxPP, New Vector2(DeltaX + 840 + 56, DeltaY + 114), New Color(255, 255, 255, CInt(220 * _fadeIn * _pageFade * _moveFade)))
 
             'Stats:
             SpriteBatch.DrawString(FontManager.MainFont, Localization.GetString("property_Category", "Category") & ":", New Vector2(DeltaX + 710, DeltaY + 144), New Color(255, 255, 255, CInt(220 * _interfaceFade * _pageFade * _moveFade)))
-            Core.SpriteBatch.Draw(.Attacks(_moveIndex).GetDamageCategoryImage(), New Rectangle(DeltaX + 840, DeltaY + 145, 48, 24), New Color(255, 255, 255, CInt(255 * _fadeIn * _pageFade * _moveFade)))
+            Core.SpriteBatch.Draw(.Attacks(_moveIndex).GetDamageCategoryImage(), New Rectangle(DeltaX + 840 + 56, DeltaY + 145, 48, 24), New Color(255, 255, 255, CInt(255 * _fadeIn * _pageFade * _moveFade)))
 
             SpriteBatch.DrawString(FontManager.MainFont, Localization.GetString("property_Power", "Power") & ":", New Vector2(DeltaX + 710, DeltaY + 176), New Color(255, 255, 255, CInt(220 * _interfaceFade * _pageFade * _moveFade)))
 
@@ -551,7 +553,7 @@
             If .Attacks(_moveIndex).Power <= 0 Then
                 power = "-"
             End If
-            SpriteBatch.DrawString(FontManager.MainFont, power, New Vector2(DeltaX + 840, DeltaY + 176), New Color(255, 255, 255, CInt(220 * _fadeIn * _pageFade * _moveFade)))
+            SpriteBatch.DrawString(FontManager.MainFont, power, New Vector2(DeltaX + 840 + 56, DeltaY + 176), New Color(255, 255, 255, CInt(220 * _fadeIn * _pageFade * _moveFade)))
 
             Dim accuracy As String = .Attacks(_moveIndex).Accuracy.ToString()
             If .Attacks(_moveIndex).Accuracy <= 0 Then
@@ -559,7 +561,7 @@
             End If
 
             SpriteBatch.DrawString(FontManager.MainFont, Localization.GetString("property_Accuracy", "Accuracy") & ":", New Vector2(DeltaX + 710, DeltaY + 208), New Color(255, 255, 255, CInt(220 * _interfaceFade * _pageFade * _moveFade)))
-            SpriteBatch.DrawString(FontManager.MainFont, accuracy, New Vector2(DeltaX + 840, DeltaY + 208), New Color(255, 255, 255, CInt(220 * _fadeIn * _pageFade * _moveFade)))
+            SpriteBatch.DrawString(FontManager.MainFont, accuracy, New Vector2(DeltaX + 840 + 56, DeltaY + 208), New Color(255, 255, 255, CInt(220 * _fadeIn * _pageFade * _moveFade)))
 
             'Description:
             SpriteBatch.DrawString(FontManager.MainFont, .Attacks(_moveIndex).Description.CropStringToWidth(FontManager.MainFont, 300), New Vector2(DeltaX + 720, DeltaY + 240), New Color(255, 255, 255, CInt(220 * _fadeIn * _pageFade * _moveFade)), 0.0F, New Vector2(0), 1.0F, SpriteEffects.None, 0.0F)

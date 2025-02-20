@@ -79,6 +79,7 @@ global_pokemon_move_dig,Schaufler
 global_used,Benutzt
 ---
 Pokémon & Attack Properties:
+
 property_HP,KP
 property_PP,AP
 property_Lv.,Lv.

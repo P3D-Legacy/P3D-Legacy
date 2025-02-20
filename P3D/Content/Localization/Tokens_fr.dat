@@ -78,6 +78,7 @@ global_pokemon_move_dig,Tunnel
 global_used,Utilisé
 ---
 Pokémon & Attack Properties:
+
 property_HP,HP
 property_PP,PP
 property_Lv.,Lv.
