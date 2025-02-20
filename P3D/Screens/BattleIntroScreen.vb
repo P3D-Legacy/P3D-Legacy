@@ -42,7 +42,7 @@
             End If
         End If
 
-        If World.IsNight() Then
+        If ShouldPlayNightTheme() Then
             musicLoop = Screen.Level.CurrentRegion.Split(CChar(","))(0) & "_wild_night_intro"
             'musicLoop = "kanto_wild_intro"
         End If
@@ -65,7 +65,7 @@
                 End If
             End If
 
-            If World.IsNight() Then
+            If ShouldPlayNightTheme() Then
                 MusicLoop = Screen.Level.CurrentRegion.Split(CChar(","))(0) & "_wild_night_intro"
             End If
 
@@ -625,14 +625,14 @@
         ElseIf battleType = BattleIntroScreen.BattleType.SAFARI Then
             fallbackLoopSong = "johto_wild"
             loopSong = Screen.Level.CurrentRegion.Split(CChar(","))(0) & "_wild"
-            If World.IsNight() Then
+            If ShouldPlayNightTheme() Then
                 loopSong = Screen.Level.CurrentRegion.Split(CChar(","))(0) & "_wild_night"
                 fallbackLoopSong = "johto_wild_night"
             End If
         ElseIf battleType = BattleIntroScreen.BattleType.BUG_CATCHING Then
             fallbackLoopSong = "johto_wild"
             loopSong = Screen.Level.CurrentRegion.Split(CChar(","))(0) & "_wild"
-            If World.IsNight() Then
+            If ShouldPlayNightTheme() Then
                 loopSong = Screen.Level.CurrentRegion.Split(CChar(","))(0) & "_wild_night"
                 fallbackLoopSong = "johto_wild_night"
             End If
@@ -643,7 +643,7 @@
         ElseIf battleType = BattleIntroScreen.BattleType.WILD Then
             fallbackLoopSong = "johto_wild"
             loopSong = Screen.Level.CurrentRegion.Split(CChar(","))(0) & "_wild"
-            If World.IsNight() Then
+            If ShouldPlayNightTheme() Then
                 loopSong = Screen.Level.CurrentRegion.Split(CChar(","))(0) & "_wild_night"
                 fallbackLoopSong = "johto_wild_night"
             End If
@@ -659,6 +659,10 @@
 
     Private Function SongOver() As Boolean
         Return startTime + duration < Date.Now
+    End Function
+
+    Private Function ShouldPlayNightTheme() As Boolean
+        Return World.IsNight() And Screen.Level.CurrentRegion = "Johto"
     End Function
 
     'Protected Overrides Sub Finalize()
