@@ -44,7 +44,6 @@
 
         If ShouldPlayNightTheme(musicLoop) Then
             musicLoop = musicLoop & "_night"
-            'musicLoop = "kanto_wild_intro"
         End If
 
         If MusicManager.SongExists(musicLoop) = False Then
@@ -297,7 +296,6 @@
         Dim t1 As Texture2D = TextureManager.GetTexture("GUI\Intro\VSIntro", New Rectangle(CInt(barPosition.X), CInt(barPosition.Y), 128, 64), "")
         Dim t2 As Texture2D = TextureManager.GetTexture("GUI\Intro\VSIntro", New Rectangle(CInt(VSPosition.X), CInt(VSPosition.Y), 64, 64), "")
         Dim t3 As Texture2D = TextureManager.GetTexture(TrainerTexture1, New Rectangle(0, Trainer1FrameSize.Height * 2, Trainer1FrameSize.Width, Trainer1FrameSize.Height))
-
 
         If Trainer.GameJoltID <> "" Then
             If GameJolt.Emblem.HasDownloadedSprite(Trainer.GameJoltID) = True Then
