@@ -267,16 +267,13 @@ option_screen_description,Description
 
 option_screen_game,Game
 option_screen_game_textspeed,Text Speed
-option_screen_game_textspeed_description,The speed the textbox shows up and~displays the text
 option_screen_game_difficulty,Difficulty
-option_screen_game_difficulty_description,Difficulty mode~Sets the level of difficulty.
 option_screen_game_difficulty_easy,Easy
 option_screen_game_difficulty_hard,Hard
 option_screen_game_difficulty_superhard,Super Hard
 option_screen_game_interfacescale,Interface Scale
 option_screen_game_interfacescale_automatic,Automatic
 option_screen_game_viewbobbing,View Bobbing
-option_screen_game_viewbobbing_description,Turns camera shaking on or off.
 
 option_screen_graphics,Graphics
 option_screen_graphics_fov,Field of View
@@ -331,7 +328,7 @@ option_screen_contentpacks_description,Description
 
 option_screen_resetoptions,Reset options
 option_screen_save_options,Save options
-option_screen_close,Close.
+option_screen_close,Close
 ---
 Pausescreen:
 pause_menu_title,Game menu

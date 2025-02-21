@@ -266,16 +266,13 @@ option_screen_description,Description
 
 option_screen_game,Spel
 option_screen_game_textspeed,Tekstsnelheid
-option_screen_game_textspeed_description,The speed the textbox shows up and~displays the text
 option_screen_game_difficulty,Moeilijkheidsgraad
-option_screen_game_difficulty_description,Difficulty mode~Sets the level of difficulty.
 option_screen_game_difficulty_easy,Makkelijk
 option_screen_game_difficulty_hard,Moeilijk
 option_screen_game_difficulty_superhard,Supermoeilijk
 option_screen_game_interfacescale,Interface-schaal
 option_screen_game_interfacescale_automatic,Automatisch
 option_screen_game_viewbobbing,Loopbeweging
-option_screen_game_viewbobbing_description,Turns camera shaking on or off.
 
 option_screen_graphics,Beeld
 option_screen_graphics_fov,Gezichtsveld

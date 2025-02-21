@@ -266,16 +266,13 @@ option_screen_description,Beschreibung
 
 option_screen_game,Spiel
 option_screen_game_textspeed,Textgeschwindigkeit
-option_screen_game_textspeed_description,Die Geschwindigkeit des Textes,~der im Spiel angezeigt wird.
 option_screen_game_difficulty,Schwierigkeit
-option_screen_game_difficulty_description,Die Schwierigkeit des Spiels kann hier eingestellt werden.
 option_screen_game_difficulty_easy,Einfach
 option_screen_game_difficulty_hard,Schwer
 option_screen_game_difficulty_superhard,Superschwer
 option_screen_game_interfacescale,Interface Scale
 option_screen_game_interfacescale_automatic,Automatic
 option_screen_game_viewbobbing,Kamerabewegung
-option_screen_game_viewbobbing_description,Schaltet Kamerabewegung an oder aus.
 
 option_screen_graphics,Grafiken
 option_screen_graphics_fov,FOV
