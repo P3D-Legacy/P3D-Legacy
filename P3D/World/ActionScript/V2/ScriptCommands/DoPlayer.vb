@@ -330,7 +330,9 @@
                     End If
                 Case "money", "addmoney"
                     Core.Player.Money += int(argument)
-
+                    If Core.Player.Money < 0 Then
+                        Core.Player.Money = 0
+                    End If
                     IsReady = True
                 Case "removemoney"
                     Core.Player.Money -= int(argument)
