@@ -293,15 +293,15 @@ option_screen_graphics_multisampling,Muestreo múltiple
 
 option_screen_battle,Batalla
 option_screen_battle_3dmodels,Modelos 3D
-option_screen_battle_animations,Animaciones	 
+option_screen_battle_animations,Animaciones
 option_screen_battle_battlestyle,Estilo de batalla
 option_screen_battle_battlestyle_shift,Cambio
-option_screen_battle_battlestyle_set,Fijo 
+option_screen_battle_battlestyle_set,Fijo
 
 option_screen_controls,Controles
 option_screen_controls_xboxgamepad,Mando de Xbox
 option_screen_controls_resetkeybindings,Restablecer asignaciones de teclas
-option_screen_controls_cameraspeed,Velocidad de la cámara	 
+option_screen_controls_cameraspeed,Velocidad de la cámara
 option_screen_controls_cameraspeed_slow,...Lenta...
 option_screen_controls_cameraspeed_medium,Estándar
 option_screen_controls_cameraspeed_fast,¡Súper rápida!
@@ -311,8 +311,8 @@ option_screen_controls_running_hold,Hold
 option_screen_controls_running_toggle,Toggle
 
 option_screen_audio,Audio
-option_screen_audio_volume_music,Volumen de la música   
-option_screen_audio_volume_sfx,Volumen de los efectos de sonido	 
+option_screen_audio_volume_music,Volumen de la música
+option_screen_audio_volume_sfx,Volumen de los efectos de sonido
 option_screen_audio_muted,Sin sonido
 
 option_screen_contentpacks_up,Mover arriba
@@ -327,9 +327,9 @@ option_screen_contentpacks_by,Por
 option_screen_contentpacks_content,Contenido
 option_screen_contentpacks_description,Descripción
 
-option_screen_resetoptions,Restablecer configuración 
+option_screen_resetoptions,Restablecer configuración
 option_screen_save_options,Guardar opciones 
-option_screen_close,Cerrar 
+option_screen_close,Cerrar
 ---
 Pausescreen:
 pause_menu_title,Menú del juego
@@ -388,24 +388,24 @@ new_game_intro_known_name_2,!* Hm, estoy seguro de que escuché este nombre ante
 new_game_intro_same_name_1,Oye, tenemos los mismos nombres.*Mi nombre también es~
 new_game_intro_same_name_2,!
 new_game_intro_name_1,¡Correcto! Entonces tu nombre es ~
-new_game_intro_name_2,!	
-new_game_select_skin,Seleccione su apariencia  
+new_game_intro_name_2,!
+new_game_select_skin,Seleccione su apariencia
 ---
 MapScreen:
 map_screen_cities,Ciudades
 map_screen_routes,Rutas
 map_screen_places,Lugares
 map_screen_roaming,Pokémons errantes
----             
+---
    
 Trainer Card Screen:
-trainer_screen_title,Tarjeta de Entrenador    
+trainer_screen_title,Tarjeta de Entrenador
 trainer_screen_collected_badges,Medallas obtenidas
-trainer_screen_badge, Medalla 
+trainer_screen_badge, Medalla
 trainer_screen_empty_badge,???
 ---
 Save Screen:
-save_screen_name,Nombre 
+save_screen_name,Nombre
 save_screen_badges,Insignias
 save_screen_money,Dinero
 save_screen_time,Tiempo
@@ -423,7 +423,7 @@ apricorn_screen_all,All
 apricorn_screen_take,Coger
 apricorn_screen_ready,Estoy listo para producir Pokébolas. Aquí está el resultado de mi trabajo:
 apricorn_screen_obtain,obtenido
----     
+--- 
    
 Donation screen:
 donation_screen_donators,Contribuidores
@@ -801,7 +801,7 @@ Item categories:
 item_category_Standard,Estándar
 item_category_Medicine,Medicina
 item_category_Machines,TMs/HMs
-item_category_Pokeballs,PokéBalls
+item_category_Pokéballs,PokéBalls
 item_category_Plants,Bayas
 item_category_KeyItems,Objetos Clave
 item_category_BattleItems,Objetos de Combate
@@ -2103,6 +2103,10 @@ item_name_34,Piedra Hoja
 item_name_112,Piedra Eterna
 item_name_169,Piedra Solar
 item_name_262,Roca Adhesiva
+item_name_593,Piedra hielo
+item_name_135,Piedra Día
+item_name_136,Piedra Noche
+item_name_137,Piedra Alba
 
 Standard:
 item_name_19,Cuerda Escape
@@ -2211,7 +2215,6 @@ item_name_585,Lente recia
 item_name_586,Banda recia
 item_name_587,Franja recia
 item_name_591,Cinta experto
-item_name_593,Piedra hielo
 item_name_594,Bola de nieve
 item_name_595,Pila
 item_name_596,Semilla electro
