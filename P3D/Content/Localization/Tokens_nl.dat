@@ -364,7 +364,7 @@ inventory_screen_ItemSubtitle_Plant,Plant
 inventory_screen_ItemSubtitle_BattleItem,Voorwerp voor Gevecht
 inventory_screen_ItemNotUsableInBattle,Dit voorwerp kan niet tijdens~een gevecht gebruikt worden.
 inventory_screen_TossConfirmation,Weet je zeker dat je dit~voorwerp wilt weggooien?
-inventory_screen_TossAmount,Selecteer aantal om weg te gooien.
+inventory_screen_TossAmount,Selecteer aantal om weg te~gooien.
 inventory_screen_GiveItem_Give,Gaf <name> een <newitem>.
 inventory_screen_GiveItem_Switch,Wisselde <name>'s <olditem> met een <newitem>.
 inventory_screen_GiveItem_TakeMail,Gaf een <newitem> aan <name> en bracht de Brief naar de PC.
