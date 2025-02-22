@@ -124,6 +124,7 @@ Public Class TradeScreen
     End Structure
 
     Private TradeItems As New List(Of TradeItem)
+    Private PossibleStoreItems As New List(Of TradeItem)
     Private CanBuyItems As Boolean = True
     Private CanSellItems As Boolean = True
     Private Currency As Currencies = Currencies.Pokédollar
@@ -162,13 +163,16 @@ Public Class TradeScreen
                                 ResultAmount = ScriptConversion.ToInteger(itemData(1)) - CInt(registerContent(0))
                             End If
                             Me.TradeItems.Add(New TradeItem(itemData(0), ResultAmount, ScriptConversion.ToInteger(itemData(2)), Me.Currency))
+                            Me.PossibleStoreItems.Add(New TradeItem(itemData(0), -1, ScriptConversion.ToInteger(itemData(2)), Me.Currency))
                         End If
                     End If
                 Else
                     Me.TradeItems.Add(New TradeItem(itemData(0), ScriptConversion.ToInteger(itemData(1)), ScriptConversion.ToInteger(itemData(2)), Me.Currency))
+                    Me.PossibleStoreItems.Add(New TradeItem(itemData(0), -1, ScriptConversion.ToInteger(itemData(2)), Me.Currency))
                 End If
             Else
                 Me.TradeItems.Add(New TradeItem(itemData(0), ScriptConversion.ToInteger(itemData(1)), ScriptConversion.ToInteger(itemData(2)), Me.Currency))
+                Me.PossibleStoreItems.Add(New TradeItem(itemData(0), -1, ScriptConversion.ToInteger(itemData(2)), Me.Currency))
             End If
 
         Next
@@ -935,9 +939,16 @@ Public Class TradeScreen
             Else
                 ItemID = i.ID.ToString
             End If
+
             If i.CanBeTraded = True Then
                 If i.ItemType = Me.CurrentCategory Then
-                    SellItemsList.Add(New TradeItem(ItemID, c.Amount, -1, Me.Currency))
+                    Dim price As Integer = -1
+                    For Each sellItem As TradeItem In Me.PossibleStoreItems
+                        If sellItem.ItemID = ItemID Then
+                            price = sellItem.Price
+                        End If
+                    Next
+                    SellItemsList.Add(New TradeItem(ItemID, c.Amount, price, Me.Currency))
                 End If
             End If
         Next
