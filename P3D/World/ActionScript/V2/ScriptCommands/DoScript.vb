@@ -98,22 +98,23 @@
                     Case "cleardelay"
                         If argument <> "" Then
                             Dim registerContent() As Object = ActionScript.GetRegisterValue("SCRIPTDELAY_" & argument)
-                            Dim delayType As String = CStr(registerContent(0)).GetSplit(0, ";")
-                            Select Case delayType.ToLower
-                                Case "steps"
-                                    Core.Player.ScriptDelaySteps = 0
-                                    Core.Player.ScriptDelayDisplaySteps = False
-                                Case "itemcount"
-                                    Dim ItemDelayList As List(Of String) = Core.Player.ScriptDelayItems.Split(",").ToList
-                                    For Each entry As String In ItemDelayList
-                                        If entry.GetSplit(0, ",") = argument Then
-                                            ItemDelayList.Remove(entry)
-                                            Exit For
-                                        End If
-                                    Next
-                                    Core.Player.ScriptDelayItems = String.Join(";", ItemDelayList)
-                            End Select
-
+                            If registerContent(0) IsNot Nothing Then
+                                Dim delayType As String = CStr(registerContent(0)).GetSplit(0, ";")
+                                Select Case delayType.ToLower
+                                    Case "steps"
+                                        Core.Player.ScriptDelaySteps = 0
+                                        Core.Player.ScriptDelayDisplaySteps = False
+                                    Case "itemcount"
+                                        Dim ItemDelayList As List(Of String) = Core.Player.ScriptDelayItems.Split(",").ToList
+                                        For Each entry As String In ItemDelayList
+                                            If entry.GetSplit(0, ",") = argument Then
+                                                ItemDelayList.Remove(entry)
+                                                Exit For
+                                            End If
+                                        Next
+                                        Core.Player.ScriptDelayItems = String.Join(";", ItemDelayList)
+                                End Select
+                            End If
                             ActionScript.UnregisterID("SCRIPTDELAY_" & argument, "str")
                             ActionScript.UnregisterID("SCRIPTDELAY_" & argument)
                         End If
