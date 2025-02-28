@@ -524,7 +524,7 @@ Public Class TradeScreen
                 BuyItemsList.Add(i)
             End If
         Next
-        Me.BuyItemsList = (From i As TradeItem In BuyItemsList Order By i.GetItem().Name).ToList()
+        Me.BuyItemsList = (From i As TradeItem In BuyItemsList Order By i.GetItem().OneLineName).ToList()
     End Sub
 
     Private Sub UpdateBuyItems()
@@ -598,7 +598,7 @@ Public Class TradeScreen
             End If
 
             ' Buy button:
-            If New Rectangle(664 + 64, 484 + 64 + 22, 64 * 3, 64).Contains(MouseHandler.MousePosition) = True Then
+            If New Rectangle(664 + 32, 484 + 64 + 22, 64 * 3, 64).Contains(MouseHandler.MousePosition) = True Then
                 Me.ButtonBuyItemsBuy()
             End If
         End If
@@ -739,7 +739,7 @@ Public Class TradeScreen
             If i <= Me.BuyItemsList.Count - 1 Then
                 Dim p As Integer = i - Scroll
 
-                DrawButton(New Vector2(100, 100 + p * 96), 5, Me.BuyItemsList(i).GetItem().Name, 16, Me.BuyItemsList(i).GetItem().Texture)
+                DrawButton(New Vector2(100, 100 + p * 96), 5, Me.BuyItemsList(i).GetItem().OneLineName, 16, Me.BuyItemsList(i).GetItem().Texture)
             End If
         Next
 
@@ -775,7 +775,7 @@ Public Class TradeScreen
             If selectedItem.Amount > -1 Then
                 bannerText = " | In Stock: " & selectedItem.Amount
             End If
-            Me.DrawBanner(New Vector2(665, 430), 30, "In Inventory: " & amount & bannerText, FontManager.MiniFont, 400)
+            Me.DrawBanner(New Vector2(664, 430), 30, "In Inventory: " & amount & bannerText, FontManager.MainFont, 400)
 
             ' - button:
             Core.SpriteBatch.Draw(texture, New Rectangle(664, 484, 64, 64), New Rectangle(16, 32, 16, 16), Color.White)
@@ -804,12 +804,12 @@ Public Class TradeScreen
                     Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\GamePad\xboxControllerButtonA"), New Rectangle(664 + 12, 484 + 64 + 34, 40, 40), Color.White)
                 End If
 
-                Me.DrawButton(New Vector2(664 + 64, 484 + 64 + 22), 1, "Buy", 64)
+                Me.DrawButton(New Vector2(664 + 32, 484 + 64 + 22), 1, "Buy", 64)
             End If
         End If
 
         ' Current balance:
-        Me.DrawBanner(New Vector2(665, 110), 30, "Current balance: " & GetCurrencyDisplay(), FontManager.MiniFont, 400)
+        Me.DrawBanner(New Vector2(664, 110), 30, "Current balance: " & GetCurrencyDisplay(), FontManager.MainFont, 400)
 
         ' Cursor draw:
         Me.DrawMainCursor()
@@ -952,7 +952,7 @@ Public Class TradeScreen
                 End If
             End If
         Next
-        Me.SellItemsList = (From i As TradeItem In SellItemsList Order By i.GetItem().Name).ToList()
+        Me.SellItemsList = (From i As TradeItem In SellItemsList Order By i.GetItem().OneLineName).ToList()
     End Sub
 
     Private Sub UpdateSellItems()
@@ -1009,7 +1009,7 @@ Public Class TradeScreen
             End If
 
             ' Buy button:
-            If New Rectangle(664 + 64, 484 + 64 + 22, 64 * 3, 64).Contains(MouseHandler.MousePosition) = True Then
+            If New Rectangle(664 + 32, 484 + 64 + 22, 64 * 3, 64).Contains(MouseHandler.MousePosition) = True Then
                 SoundManager.PlaySound("select")
                 Me.ButtonSellItemsSell()
             End If
@@ -1104,7 +1104,7 @@ Public Class TradeScreen
             If i <= Me.SellItemsList.Count - 1 Then
                 Dim p As Integer = i - Scroll
 
-                DrawButton(New Vector2(100, 100 + p * 96), 5, Me.SellItemsList(i).GetItem().Name, 16, Me.SellItemsList(i).GetItem().Texture)
+                DrawButton(New Vector2(100, 100 + p * 96), 5, Me.SellItemsList(i).GetItem().OneLineName, 16, Me.SellItemsList(i).GetItem().Texture)
             End If
         Next
 
@@ -1132,7 +1132,7 @@ Public Class TradeScreen
             While amount.Length < 3
                 amount = "0" & amount
             End While
-            Me.DrawBanner(New Vector2(665, 430), 30, "In Bag " & amount, FontManager.MiniFont, 400)
+            Me.DrawBanner(New Vector2(664, 430), 30, "In Inventory: " & amount, FontManager.MainFont, 400)
 
             ' - button:
             Core.SpriteBatch.Draw(texture, New Rectangle(664, 484, 64, 64), New Rectangle(16, 32, 16, 16), Color.White)
@@ -1161,12 +1161,12 @@ Public Class TradeScreen
                     Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\GamePad\xboxControllerButtonA"), New Rectangle(664 + 12, 484 + 64 + 34, 40, 40), Color.White)
                 End If
 
-                Me.DrawButton(New Vector2(664 + 64, 484 + 64 + 22), 1, "Sell", 64)
+                Me.DrawButton(New Vector2(664 + 32, 484 + 64 + 22), 1, "Sell", 64)
             End If
         End If
 
         ' Current balance:
-        Me.DrawBanner(New Vector2(665, 110), 30, "Current balance: " & GetCurrencyDisplay(), FontManager.MiniFont, 400)
+        Me.DrawBanner(New Vector2(664, 110), 30, "Current balance: " & GetCurrencyDisplay(), FontManager.MainFont, 400)
 
         ' Cursor draw:
         Me.DrawMainCursor()
@@ -1222,11 +1222,11 @@ Public Class TradeScreen
 
         Dim tradeItem As TradeItem = Me.SellItemsList(Me.Scroll + Me.Cursor)
 
-        Dim text As String = "Do you want to sell" & Environment.NewLine & Me.SellItemsAmount & " " & tradeItem.GetItem().Name & "?"
+        Dim text As String = "Do you want to sell" & Environment.NewLine & Me.SellItemsAmount & " " & tradeItem.GetItem().OneLineName & "?"
 
-        Core.SpriteBatch.DrawString(FontManager.MiniFont,
+        Core.SpriteBatch.DrawString(FontManager.MainFont,
                                     text,
-                                    New Vector2(Core.windowSize.Width / 2.0F - FontManager.MiniFont.MeasureString(text).X, Core.windowSize.Height / 2.0F - 170),
+                                    New Vector2(Core.windowSize.Width / 2.0F - FontManager.MainFont.MeasureString(text).X, Core.windowSize.Height / 2.0F - 170),
                                     Color.White, 0.0F, Vector2.Zero, 2.0F, SpriteEffects.None, 0.0F)
 
         DrawButton(New Vector2(Core.windowSize.Width / 2.0F - 192, Core.windowSize.Height / 2.0F - 60), 4, "Sell", 16, Nothing)
@@ -1275,9 +1275,9 @@ Public Class TradeScreen
         Core.SpriteBatch.Draw(Me.texture, New Rectangle(CInt(Position.X) + 64 * (Width + 1), CInt(Position.Y), 64, 64), New Rectangle(16, 16, 16, 16), Color.White, 0.0F, Vector2.Zero, SpriteEffects.FlipHorizontally, 0.0F)
 
         If Image Is Nothing Then
-            Core.SpriteBatch.DrawString(FontManager.MainFont, Text, New Vector2(TextOffset + CInt(Position.X), CInt(Position.Y) + 16), Color.Black, 0.0F, Vector2.Zero, 1.25F, SpriteEffects.None, 0.0F)
+            Core.SpriteBatch.DrawString(FontManager.MainFont, Text, New Vector2(TextOffset + CInt(Position.X), CInt(Position.Y) + 16), Color.Black, 0.0F, Vector2.Zero, 1.0F, SpriteEffects.None, 0.0F)
         Else
-            Core.SpriteBatch.DrawString(FontManager.MainFont, Text, New Vector2(4 + 16 + Image.Width + TextOffset + CInt(Position.X), CInt(Position.Y) + 16), Color.Black, 0.0F, Vector2.Zero, 1.25F, SpriteEffects.None, 0.0F)
+            Core.SpriteBatch.DrawString(FontManager.MainFont, Text, New Vector2(4 + 16 + Image.Width + TextOffset + CInt(Position.X), CInt(Position.Y) + 16), Color.Black, 0.0F, Vector2.Zero, 1.0F, SpriteEffects.None, 0.0F)
             Core.SpriteBatch.Draw(Image, New Rectangle(CInt(Position.X) + TextOffset + 8, CInt(Position.Y) + 19, Image.Width, Image.Height), Color.White)
         End If
     End Sub
@@ -1342,7 +1342,7 @@ Public Class TradeScreen
             Case Currencies.Coins
                 Return GetCurrencyAmount().ToString() & " Coins"
             Case Currencies.Pokédollar
-                Return GetCurrencyAmount().ToString() & " Pokémon Dollars"
+                Return GetCurrencyAmount().ToString() & "$"
         End Select
         Return ""
     End Function
