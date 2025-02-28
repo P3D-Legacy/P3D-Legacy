@@ -71,6 +71,7 @@ Public Class LoopStream
                                 MusicManager._currentSong = NextSong
                                 _enableLooping = NextSong.IsLoop
                             Else
+                                _sourceStream.Dispose()
                                 If MusicManager.GetSong("silence").AudioType = ".ogg" Then
                                     _sourceStream = New VorbisWaveReader(MusicManager.GetSong("silence").Song)
                                 ElseIf MusicManager.GetSong("silence").AudioType = ".mp3" Then
@@ -142,9 +143,6 @@ Public Class MusicManager
     Public Shared _isCurrentlyFading As Boolean = False
     ' NAudio properties
     Public Shared outputDevice As WaveOutEvent
-    Public Shared audioFileOGG As VorbisWaveReader
-    Public Shared audioFileMP3 As Mp3FileReader
-    Public Shared audioFileWMA As MediaFoundationReader
     Public Shared _stream As WaveChannel32
     Public Shared EnableLooping As Boolean = True
 
@@ -368,15 +366,13 @@ Public Class MusicManager
             If _stream IsNot Nothing Then
                 _stream.Dispose()
             End If
+
             If song.AudioType = ".ogg" Then
-                audioFileOGG = New VorbisWaveReader(song.Song)
-                _stream = New NAudio.Wave.WaveChannel32(New LoopStream(audioFileOGG, song.IsLoop))
+                _stream = New NAudio.Wave.WaveChannel32(New LoopStream(New VorbisWaveReader(song.Song), song.IsLoop))
             ElseIf song.AudioType = ".mp3" Then
-                audioFileMP3 = New Mp3FileReader(song.Song)
-                _stream = New NAudio.Wave.WaveChannel32(New LoopStream(audioFileMP3, song.IsLoop))
+                _stream = New NAudio.Wave.WaveChannel32(New LoopStream(New Mp3FileReader(song.Song), song.IsLoop))
             ElseIf song.AudioType = ".wma" Then
-                audioFileWMA = New MediaFoundationReader(song.Song)
-                _stream = New NAudio.Wave.WaveChannel32(New LoopStream(audioFileWMA, song.IsLoop))
+                _stream = New NAudio.Wave.WaveChannel32(New LoopStream(New MediaFoundationReader(song.Song), song.IsLoop))
             End If
             Try
                 outputDevice.Init(_stream)
