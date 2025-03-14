@@ -26,9 +26,9 @@ global_enabled,Activé
 global_disabled,Désactivé
 global_enable,Active
 global_disable,Désactive
-global_player_name,Nom du joueur
+global_player_name,Nom du Joueur
 global_badges,Badges
-global_play_time,Temps de jeu
+global_play_time,Temps de Jeu
 global_location,Localisation
 global_money,Argent
 global_points,Points
@@ -203,11 +203,6 @@ Main Menu:
 main_menu_newgame_line1,Nouvelle
 main_menu_newgame_line2,Partie
 main_menu_options,Options
-main_menu_savefile_name,Nom du joueur
-main_menu_savefile_gamemode,Mode de Jeu
-main_menu_savefile_badges,Badges
-main_menu_savefile_playtime,Temps de jeu
-main_menu_savefile_location,Localisation
 main_menu_gamejolt_ChangeToMale,Change to male
 main_menu_gamejolt_ChangeToFemale,Change to female
 main_menu_gamejolt_ChangeToGenderless,Change to genderless
@@ -259,9 +254,6 @@ join_server_screen_no_connection,(pas de connection)
 ---
 Options Screen:
 option_screen_title,Options
-option_screen_warning,Les options ne sont pas encore sauvegardé. Descend et choisis "Sauver les options".
-option_screen_backadvice,APPUIE SUR [<system.button(OpenMenu)>] POUR SORTIR
-option_screen_description,Description
 
 option_screen_game,Jeu
 option_screen_game_textspeed,Vitesse du texte

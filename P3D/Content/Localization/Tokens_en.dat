@@ -27,7 +27,7 @@ global_enabled,Enabled
 global_disabled,Disabled
 global_enable,Enable
 global_disable,Disable
-global_player_name,Player name
+global_player_name,Player Name
 global_badges,Badges
 global_play_time,Play Time
 global_location,Location
@@ -205,11 +205,6 @@ Main Menu:
 main_menu_newgame_line1,New
 main_menu_newgame_line2,Game
 main_menu_options,Options
-main_menu_savefile_name,Player Name
-main_menu_savefile_gamemode,GameMode
-main_menu_savefile_badges,Badges
-main_menu_savefile_playtime,Play time
-main_menu_savefile_location,Location
 main_menu_gamejolt_ChangeToMale,Change to male
 main_menu_gamejolt_ChangeToFemale,Change to female
 main_menu_gamejolt_ChangeToGenderless,Change to genderless
@@ -261,9 +256,6 @@ join_server_screen_no_connection,(no connection)
 ---
 Options Screen:
 option_screen_title,Options
-option_screen_warning,Options aren't saved yet, scroll down and choose "Save options."
-option_screen_backadvice,PRESS [<system.button(OpenMenu)>] TO GO BACK
-option_screen_description,Description
 
 option_screen_game,Game
 option_screen_game_textspeed,Text Speed

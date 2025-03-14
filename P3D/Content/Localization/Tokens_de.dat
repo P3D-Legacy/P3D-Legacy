@@ -204,11 +204,6 @@ Main Menu:
 main_menu_newgame_line1,Neues
 main_menu_newgame_line2,Spiel
 main_menu_options,Optionen
-main_menu_savefile_name,Name
-main_menu_savefile_gamemode,Spielmodus
-main_menu_savefile_badges,Orden
-main_menu_savefile_playtime,Spielzeit
-main_menu_savefile_location,Ort
 main_menu_gamejolt_ChangeToMale,Wechsle zu Männlich
 main_menu_gamejolt_ChangeToFemale,Wechsle zu Weiblich
 main_menu_gamejolt_ChangeToGenderless,Wechsle zu Geschlechtslos
@@ -260,9 +255,6 @@ join_server_screen_no_connection,(no connection)
 ---
 Options Screen:
 option_screen_title,Optionen
-option_screen_warning,Optionen wurden noch nicht gespeichert, wählen unten "Optionen speichern" aus.
-option_screen_backadvice,[<system.button(OpenMenu)>]: Zurück
-option_screen_description,Beschreibung
 
 option_screen_game,Spiel
 option_screen_game_textspeed,Textgeschwindigkeit

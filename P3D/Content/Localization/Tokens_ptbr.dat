@@ -203,11 +203,6 @@ Main Menu:
 main_menu_newgame_line1,Novo
 main_menu_newgame_line2,Jogo
 main_menu_options,Opções
-main_menu_savefile_name,Nome do Jogador
-main_menu_savefile_gamemode,Modo de Jogo
-main_menu_savefile_badges,Insígnias
-main_menu_savefile_playtime,Tempo de Jogo
-main_menu_savefile_location,Local
 main_menu_gamejolt_ChangeToMale,Mudar para Masculino
 main_menu_gamejolt_ChangeToFemale,Mudar para Feminino
 main_menu_gamejolt_ChangeToGenderless,Mudar para Não-Binário
@@ -259,9 +254,6 @@ join_server_screen_no_connection,(Sem Conexão)
 ---
 Options Screen:
 option_screen_title,Opções
-option_screen_warning,As opções não foram salvas, escolha "Salvar Opções" abaixo.
-option_screen_backadvice,PRESSIONE [<system.button(OpenMenu)>] PARA VOLTAR
-option_screen_description,Descrição
 
 option_screen_game,Game
 option_screen_game_textspeed,Velocidade do texto

@@ -204,11 +204,6 @@ Main Menu:
 main_menu_newgame_line1,Nieuw
 main_menu_newgame_line2,Spel
 main_menu_options,Opties
-main_menu_savefile_name,Spelernaam
-main_menu_savefile_gamemode,Spelmodus
-main_menu_savefile_badges,Badges
-main_menu_savefile_playtime,Speeltijd
-main_menu_savefile_location,Locatie
 main_menu_gamejolt_ChangeToMale,Verander naar man
 main_menu_gamejolt_ChangeToFemale,Verander naar vrouw
 main_menu_gamejolt_ChangeToGenderless,Verander naar genderneutraal
@@ -260,9 +255,6 @@ join_server_screen_no_connection,(geen verbinding)
 ---
 Options Screen:
 option_screen_title,Opties
-option_screen_warning,Opties zijn nog niet opgeslagen, vergeet niet op "Pas toe" te drukken voor je terug gaat.
-option_screen_backadvice,DRUK OP <system.button(openmenu)> OM TERUG TE GAAN
-option_screen_description,Description
 
 option_screen_game,Spel
 option_screen_game_textspeed,Tekstsnelheid

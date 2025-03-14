@@ -962,14 +962,14 @@ Public Class NewMainMenuScreen
                     For i = 0 To tmpProfile.PokemonTextures.Count - 1
                         SpriteBatch.Draw(tmpProfile.PokemonTextures(i), New Rectangle(displayRect.X + 30 + i * 70, displayRect.Y + 70, 64, 64), Color.White)
                     Next
-                    GetFontRenderer().DrawString(FontManager.InGameFont, Localization.GetString("main_menu_savefile_name", "Player Name") & ": " & tmpProfile.Name & Environment.NewLine &
-                                                                            Localization.GetString("main_menu_savefile_gamemode", "GameMode") & ": " & GameModeManager.GetGameMode(tmpProfile.GameMode).Name, New Vector2(displayRect.X + 30, displayRect.Y + 20), Color.White, 0F, Vector2.Zero, 1.0F, SpriteEffects.None, 0F)
-                    GetFontRenderer().DrawString(FontManager.InGameFont, Localization.GetString("main_menu_savefile_badges", "Badges") & ": " & tmpProfile.Badges.ToString() & Environment.NewLine &
-                                                                            Localization.GetString("main_menu_savefile_playtime", "Play time") & ": " & tmpProfile.TimePlayed & Environment.NewLine &
-                                                                            Localization.GetString("main_menu_savefile_location", "Location") & ": " & Localization.GetString("Places_" & tmpProfile.Location, tmpProfile.Location), New Vector2(displayRect.X + 30, displayRect.Y + 150), Color.White, 0F, Vector2.Zero, 1.0F, SpriteEffects.None, 0F)
+                    GetFontRenderer().DrawString(FontManager.InGameFont, Localization.GetString("global_player_name", "Player Name") & ": " & tmpProfile.Name & Environment.NewLine &
+                                                                            Localization.GetString("global_gamemode", "GameMode") & ": " & GameModeManager.GetGameMode(tmpProfile.GameMode).Name, New Vector2(displayRect.X + 30, displayRect.Y + 20), Color.White, 0F, Vector2.Zero, 1.0F, SpriteEffects.None, 0F)
+                    GetFontRenderer().DrawString(FontManager.InGameFont, Localization.GetString("global_badges", "Badges") & ": " & tmpProfile.Badges.ToString() & Environment.NewLine &
+                                                                            Localization.GetString("global_play_time", "Play Time") & ": " & tmpProfile.TimePlayed & Environment.NewLine &
+                                                                            Localization.GetString("global_location", "Location") & ": " & Localization.GetString("Places_" & tmpProfile.Location, tmpProfile.Location), New Vector2(displayRect.X + 30, displayRect.Y + 150), Color.White, 0F, Vector2.Zero, 1.0F, SpriteEffects.None, 0F)
                 Else
-                    GetFontRenderer().DrawString(FontManager.InGameFont, Localization.GetString("main_menu_savefile_name", "Player Name") & ": " & tmpProfile.Name & Environment.NewLine &
-                                                                            Localization.GetString("main_menu_savefile_gamemode", "GameMode") & ": " & tmpProfile.GameMode, New Vector2(displayRect.X + 30, displayRect.Y + 20), Color.White, 0F, Vector2.Zero, 1.0F, SpriteEffects.None, 0F)
+                    GetFontRenderer().DrawString(FontManager.InGameFont, Localization.GetString("global_player_name", "Player Name") & ": " & tmpProfile.Name & Environment.NewLine &
+                                                                            Localization.GetString("global_gamemode", "GameMode") & ": " & tmpProfile.GameMode, New Vector2(displayRect.X + 30, displayRect.Y + 20), Color.White, 0F, Vector2.Zero, 1.0F, SpriteEffects.None, 0F)
 
                     SpriteBatch.Draw(_menuTexture, New Rectangle(displayRect.X + 30, displayRect.Y + 70, 32, 32), New Rectangle(0, 32, 32, 32), Color.White)
                     Dim errorText As String
