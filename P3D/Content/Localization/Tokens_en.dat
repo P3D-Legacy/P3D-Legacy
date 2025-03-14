@@ -336,8 +336,6 @@ pause_menu_back_to_game,Back to game
 pause_menu_disconnect,Disconnect
 pause_menu_quit_to_menu,Quit to menu
 pause_menu_autosave_fail,Cannot create autosave.
-pause_menu_yes,Yes
-pause_menu_no,No
 pause_menu_confirmation,Do you really want to quit? Unsaved progress will be lost.
 ---
 IngameMenu:
@@ -407,8 +405,6 @@ save_screen_name,Name
 save_screen_badges,Badges
 save_screen_money,Money
 save_screen_time,Time
-save_screen_yes,Yes
-save_screen_no,No
 ---
 Apricorn Screen:
 apricorn_screen_apricorns,Apricorns
@@ -452,8 +448,6 @@ VoltorbFlip_QuitButton,Quit
 
 VoltorbFlip_QuitQuestion_Question_1,If you quit now, you will~receive
 VoltorbFlip_QuitQuestion_Question_2,Coin(s).*Will you quit?
-VoltorbFlip_QuitQuestion_AnswerYes,Yes
-VoltorbFlip_QuitQuestion_AnswerNo,No
 
 VoltorbFlip_BeforeNewLevel_Main_Question_1,Play Voltorb Flip Lv.
 VoltorbFlip_BeforeNewLevel_Main_Question_2,?

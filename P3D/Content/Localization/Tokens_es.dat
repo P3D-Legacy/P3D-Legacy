@@ -268,7 +268,7 @@ option_screen_description,Descripción
 
 option_screen_game,Juego
 option_screen_game_textspeed,Velocidad del texto  
-option_screen_game_difficulty,Dificultad   
+option_screen_game_difficulty,Dificultad
 option_screen_game_difficulty_easy,Fácil
 option_screen_game_difficulty_hard,Difícil
 option_screen_game_difficulty_superhard,Muy difícil
@@ -337,8 +337,6 @@ pause_menu_back_to_game,Volver al juego
 pause_menu_disconnect,Desconectar
 pause_menu_quit_to_menu,Salir al menú
 pause_menu_autosave_fail,No se puede crear el guardado automático.
-pause_menu_yes,Sí
-pausa_menú_no,No
 pause_menu_confirmation,¿Realmente quieres salir? El progreso no guardado se perderá.
 ---
 IngameMenu:
@@ -397,7 +395,7 @@ map_screen_routes,Rutas
 map_screen_places,Lugares
 map_screen_roaming,Pokémons errantes
 ---
-   
+
 Trainer Card Screen:
 trainer_screen_title,Tarjeta de Entrenador
 trainer_screen_collected_badges,Medallas obtenidas
@@ -409,8 +407,6 @@ save_screen_name,Nombre
 save_screen_badges,Insignias
 save_screen_money,Dinero
 save_screen_time,Tiempo
-save_screen_yes,Sí
-save_screen_no,No      
 ---
 Apricorn Screen:
 apricorn_screen_apricorns,Albaricoques
@@ -424,7 +420,7 @@ apricorn_screen_take,Coger
 apricorn_screen_ready,Estoy listo para producir Pokébolas. Aquí está el resultado de mi trabajo:
 apricorn_screen_obtain,obtenido
 --- 
-   
+
 Donation screen:
 donation_screen_donators,Contribuidores
 donation_screen_backadvice,Presione [<system.button(OpenMenu)>] para cerrar
@@ -455,8 +451,6 @@ VoltorbFlip_QuitButton,Quit
 
 VoltorbFlip_QuitQuestion_Question_1,If you quit now, you will~receive
 VoltorbFlip_QuitQuestion_Question_2,Coin(s).*Will you quit?
-VoltorbFlip_QuitQuestion_AnswerYes,Yes
-VoltorbFlip_QuitQuestion_AnswerNo,No
 
 VoltorbFlip_BeforeNewLevel_Main_Question_1,Play Voltorb Flip Lv.
 VoltorbFlip_BeforeNewLevel_Main_Question_2,?

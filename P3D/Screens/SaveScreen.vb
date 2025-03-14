@@ -30,7 +30,7 @@
 
         Me.mainTexture = TextureManager.GetTexture("GUI\Menus\Menu")
         Me.menuTexture = TextureManager.GetTexture("GUI\Menus\SaveBook")
-        ChooseBox.Show({Localization.GetString("save_screen_yes"), Localization.GetString("save_screen_no")}, 0, {})
+        ChooseBox.Show({Localization.GetString("global_yes"), Localization.GetString("global_no")}, 0, {})
 
         SaveGameHelpers.ResetSaveCounter()
     End Sub

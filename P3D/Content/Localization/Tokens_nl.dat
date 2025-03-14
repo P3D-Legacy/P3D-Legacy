@@ -335,8 +335,6 @@ pause_menu_back_to_game,Terug naar spel
 pause_menu_disconnect,Verbreek verbinding
 pause_menu_quit_to_menu,Terug naar menu
 pause_menu_autosave_fail,Kan niet automatisch opslaan.
-pause_menu_yes,Ja
-pause_menu_no,Nee
 pause_menu_confirmation,Wil je het spel echt verlaten? Niet-opgeslagen gegevens zullen verloren gaan.
 ---
 IngameMenu:
@@ -406,8 +404,6 @@ save_screen_name,Naam
 save_screen_badges,Badges
 save_screen_money,Geld
 save_screen_time,Tijd
-save_screen_yes,Ja
-save_screen_no,Nee
 ---
 Apricornscherm:
 apricorn_screen_apricorns,Apricorns
@@ -450,8 +446,6 @@ VoltorbFlip_QuitButton,Stop
 
 VoltorbFlip_QuitQuestion_Question_1,Als je nu stopt, ontvang~je
 VoltorbFlip_QuitQuestion_Question_2,Munt(en).*Wil je stoppen?
-VoltorbFlip_QuitQuestion_AnswerYes,Ja
-VoltorbFlip_QuitQuestion_AnswerNo,Nee
 
 VoltorbFlip_BeforeNewLevel_Main_Question_1,Speel Voltorb Flip Niveau
 VoltorbFlip_BeforeNewLevel_Main_Question_2,?

@@ -209,10 +209,10 @@
             Dim x As Integer = 0
             Select Case i
                 Case 0
-                    Text = Localization.GetString("pause_menu_no")
+                    Text = Localization.GetString("global_no")
                     x = -200
                 Case 1
-                    Text = Localization.GetString("pause_menu_yes")
+                    Text = Localization.GetString("global_yes")
                     x = 200
             End Select
 

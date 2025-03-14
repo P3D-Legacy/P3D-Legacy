@@ -335,8 +335,6 @@ pause_menu_back_to_game,Zurück zum Spiel
 pause_menu_disconnect,Verbindung trennen
 pause_menu_quit_to_menu,Zurück zum Hauptmenü
 pause_menu_autosave_fail,Autosave kann nicht erstellt werden.
-pause_menu_yes,Ja
-pause_menu_no,Nein
 pause_menu_confirmation,Wollen Sie wirklich aufgeben? Nicht gespeicherte Fortschritte gehen verloren.
 ---
 IngameMenu:
@@ -406,8 +404,6 @@ save_screen_name,Name
 save_screen_badges,Orden
 save_screen_money,Geld
 save_screen_time,Zeit
-save_screen_yes,Ja
-save_screen_no,Nein
 ---
 Apricorn Screen:
 apricorn_screen_apricorns,Aprikokos
@@ -451,8 +447,6 @@ VoltorbFlip_QuitButton,Quit
 
 VoltorbFlip_QuitQuestion_Question_1,If you quit now, you will~receive
 VoltorbFlip_QuitQuestion_Question_2,Coin(s).*Will you quit?
-VoltorbFlip_QuitQuestion_AnswerYes,Yes
-VoltorbFlip_QuitQuestion_AnswerNo,No
 
 VoltorbFlip_BeforeNewLevel_Main_Question_1,Play Voltorb Flip Lv.
 VoltorbFlip_BeforeNewLevel_Main_Question_2,?

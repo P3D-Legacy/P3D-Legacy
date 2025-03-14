@@ -929,7 +929,7 @@ TryAgain:
                         End If
                     End If
 
-                    Dim QuitQuestionText As String = Localization.GetString("VoltorbFlip_QuitQuestion_Question_1", "If you quit now, you will~receive") & " " & CurrentCoins.ToString & " " & Localization.GetString("VoltorbFlip_QuitQuestion_Question_2", "Coin(s).*Will you quit?") & "%" & Localization.GetString("VoltorbFlip_QuitQuestion_AnswerYes", "Yes") & "|" & Localization.GetString("VoltorbFlip_QuitQuestion_AnswerNo", "No") & "%"
+                    Dim QuitQuestionText As String = Localization.GetString("VoltorbFlip_QuitQuestion_Question_1", "If you quit now, you will~receive") & " " & CurrentCoins.ToString & " " & Localization.GetString("VoltorbFlip_QuitQuestion_Question_2", "Coin(s).*Will you quit?") & "%" & Localization.GetString("global_yes", "Yes") & "|" & Localization.GetString("global_no", "No") & "%"
 
                     'Quiting Voltorb Flip
                     If Controls.Dismiss(False, True, True) AndAlso (GameState = States.Game OrElse GameState = States.Memo) AndAlso Delay = 0 Then

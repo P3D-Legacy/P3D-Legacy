@@ -334,8 +334,6 @@ pause_menu_back_to_game,Voltar para o jogo
 pause_menu_disconnect,Desconectar
 pause_menu_quit_to_menu,Sair para o Menu Principal
 pause_menu_autosave_fail,Não da para criar AutoSalve.
-pause_menu_yes,Sim
-pause_menu_no,Não
 pause_menu_confirmation,Você deseja realmente sair? Não se esqueça de Salvar antes.
 ---
 IngameMenu:
@@ -406,8 +404,6 @@ save_screen_name,Nome
 save_screen_badges,Insígnias
 save_screen_money,Dinheiro
 save_screen_time,Tempo
-save_screen_yes,Sim
-save_screen_no,Não
 ---
 Apricorn Screen:
 apricorn_screen_apricorns,Bolotas
@@ -451,8 +447,6 @@ VoltorbFlip_QuitButton,Sair
 
 VoltorbFlip_QuitQuestion_Question_1,Se sair agora, você vai~receber
 VoltorbFlip_QuitQuestion_Question_2,Moeda(as).*Você quer sair?
-VoltorbFlip_QuitQuestion_AnswerYes,Sim
-VoltorbFlip_QuitQuestion_AnswerNo,Não
 
 VoltorbFlip_BeforeNewLevel_Main_Question_1,Play Voltorb Flip Lv.
 VoltorbFlip_BeforeNewLevel_Main_Question_2,?
