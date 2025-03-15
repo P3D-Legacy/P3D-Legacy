@@ -440,7 +440,7 @@
                 SpriteBatch.DrawString(FontManager.MainFont, Localization.GetString("summary_ExpToNextLv", "To Next Lv."), New Vector2(DeltaX + 744 - 12, DeltaY + 398 + 64), New Color(255, 255, 255, CInt(220 * _interfaceFade * _pageFade)))
 
                 If .NeedExperience(.Level + 1) - .Experience > 0 Then
-                    SpriteBatch.DrawString(FontManager.MainFont, CStr(.NeedExperience(.Level + 1) - .Experience), New Vector2(DeltaX + 898 - 12, DeltaY + 398 + 64), New Color(255, 255, 255, CInt(220 * _fadeIn * _pageFade)))
+                    SpriteBatch.DrawString(FontManager.MainFont, CStr(.NeedExperience(.Level + 1) - .Experience), New Vector2(DeltaX + 744 + FontManager.MainFont.MeasureString(Localization.GetString("summary_ExpToNextLv", "To Next Lv.")).X, DeltaY + 398 + 64), New Color(255, 255, 255, CInt(220 * _fadeIn * _pageFade)))
 
                     'EXP Bar:
                     Dim expV As Double = (.Experience - .NeedExperience(.Level)) / (.NeedExperience(.Level + 1) - .NeedExperience(.Level))
