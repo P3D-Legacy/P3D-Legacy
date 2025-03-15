@@ -1046,6 +1046,9 @@ Public Class StorageSystemScreen
 
     Private Sub TakeItemPokemon()
         Dim id As Integer = CInt(CursorPosition.X) + CInt((CursorPosition.Y - 1) * 6)
+        If GetBox(CurrentBox).IsBattleBox = True Then
+            id = GetBattleBoxID()
+        End If
         If CursorPosition.X = 6 Then
             If Core.Player.Pokemons(CInt(CursorPosition.Y)).Item IsNot Nothing Then
                 If Core.Player.Pokemons(CInt(CursorPosition.Y)).Item.IsMail And Core.Player.Pokemons(CInt(CursorPosition.Y)).Item.AdditionalData <> "" Then
