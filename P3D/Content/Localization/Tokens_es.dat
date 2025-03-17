@@ -525,6 +525,8 @@ item_stored_in_pocket_single_start,<player.name> stored it in the~
 item_stored_in_pocket_single_end,pocket.
 item_stored_in_pocket_multiple_start,<player.name> stored them~in the
 item_stored_in_pocket_multiple_end,pocket.
+item_handed_over_single,<Player.Name> handed over the~
+item_handed_over_multiple,<Player.Name> handed over the~
 
 Berries:
 berry_picked_single_start,<player.name> picked the~

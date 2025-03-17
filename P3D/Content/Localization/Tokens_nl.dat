@@ -520,6 +520,8 @@ item_stored_in_pocket_single_start,<player.name> stopte het weg~in het
 item_stored_in_pocket_single_end,vakje.
 item_stored_in_pocket_multiple_start,<player.name> stopte ze weg~in het
 item_stored_in_pocket_multiple_end,vakje.
+item_handed_over_single,<Player.Name> overhandigde~een
+item_handed_over_multiple,<Player.Name> overhandigde~de
 
 Berries:
 berry_picked_single_start,<player.name> plukte de~
