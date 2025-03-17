@@ -1047,6 +1047,8 @@ nextIndexBackground:
                 World.DrawWeather(Screen.Level.World.CurrentMapWeather)
                 Core.SpriteBatch.Draw(BackgroundTarget, windowSize, Color.White)
                 Core.SpriteBatch.Draw(NPCTarget, windowSize, Color.White)
+                NPCTarget.Dispose()
+                BackgroundTarget.Dispose()
             Else
                 SkyDome.Draw(45.0F)
                 Level.Draw()
@@ -1090,6 +1092,8 @@ nextIndexForeground:
             If DrawColoredScreen = True Then
                 Canvas.DrawRectangle(Core.windowSize, Me.ColorOverlay)
             End If
+            ForegroundAnimationList.Clear()
+            BackgroundAnimationList.Clear()
         End Sub
 
         Public Overrides Sub Update()

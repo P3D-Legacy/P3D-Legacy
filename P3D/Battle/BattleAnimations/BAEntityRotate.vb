@@ -11,9 +11,9 @@
     Dim DoRotation As Vector3 = New Vector3(1.0F)
     Dim AmountRotated As Vector3 = New Vector3(0.0F)
     Dim ReadyAxis As Vector3 = New Vector3(0.0F)
-    Public RemoveEntityAfter As Boolean = False
+    Dim RemoveEntityAfter As Boolean = False
 
-    Public Sub New(ByVal Entity As Entity, ByVal RemoveEntityAfter As Boolean, ByVal RotationSpeedVector As Vector3, ByVal EndRotation As Vector3, ByVal startDelay As Single, ByVal endDelay As Single)
+    Public Sub New(ByRef Entity As Entity, ByVal RemoveEntityAfter As Boolean, ByVal RotationSpeedVector As Vector3, ByVal EndRotation As Vector3, ByVal startDelay As Single, ByVal endDelay As Single)
         MyBase.New(New Vector3(0.0F), TextureManager.DefaultTexture, New Vector3(1.0F), startDelay, endDelay)
         Me.RemoveEntityAfter = RemoveEntityAfter
         Me.RotationSpeedVector = RotationSpeedVector
@@ -24,7 +24,7 @@
         Me.AnimationType = AnimationTypes.Rotation
     End Sub
 
-    Public Sub New(ByVal Entity As Entity, ByVal RemoveEntityAfter As Boolean, ByVal RotationSpeedVector As Vector3, ByVal EndRotation As Vector3, ByVal startDelay As Single, ByVal endDelay As Single, ByVal DoXRotation As Boolean, ByVal DoYRotation As Boolean, ByVal DoZRotation As Boolean)
+    Public Sub New(ByRef Entity As Entity, ByVal RemoveEntityAfter As Boolean, ByVal RotationSpeedVector As Vector3, ByVal EndRotation As Vector3, ByVal startDelay As Single, ByVal endDelay As Single, ByVal DoXRotation As Boolean, ByVal DoYRotation As Boolean, ByVal DoZRotation As Boolean)
         Me.New(Entity, RemoveEntityAfter, RotationSpeedVector, EndRotation, startDelay, endDelay)
 
         If DoXRotation = False Then
@@ -41,7 +41,7 @@
         End If
     End Sub
 
-    Public Sub New(ByVal Entity As Entity, ByVal RemoveEntityAfter As Boolean, ByVal RotationSpeedVector As Vector3, ByVal EndRotation As Vector3, ByVal startDelay As Single, ByVal endDelay As Single, ByVal DoXRotation As Boolean, ByVal DoYRotation As Boolean, ByVal DoZRotation As Boolean, ByVal DoReturn As Boolean)
+    Public Sub New(ByRef Entity As Entity, ByVal RemoveEntityAfter As Boolean, ByVal RotationSpeedVector As Vector3, ByVal EndRotation As Vector3, ByVal startDelay As Single, ByVal endDelay As Single, ByVal DoXRotation As Boolean, ByVal DoYRotation As Boolean, ByVal DoZRotation As Boolean, ByVal DoReturn As Boolean)
         Me.New(Entity, RemoveEntityAfter, RotationSpeedVector, EndRotation, startDelay, endDelay, DoXRotation, DoYRotation, DoZRotation)
 
         Me.DoReturn = DoReturn

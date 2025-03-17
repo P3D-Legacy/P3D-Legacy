@@ -9,7 +9,7 @@
     Dim TurnTime As Single = 0.0F
     Dim TurnDelay As Single = 0.0F
 
-    Public Sub New(ByVal TargetEntity As NPC, ByVal TurnSteps As Integer, ByVal startDelay As Single, ByVal endDelay As Single, Optional ByVal EndFaceRotation As Integer = -1, Optional ByVal TurnSpeed As Integer = 1, Optional ByVal TurnDelay As Single = 0.25F)
+    Public Sub New(ByRef TargetEntity As NPC, ByVal TurnSteps As Integer, ByVal startDelay As Single, ByVal endDelay As Single, Optional ByVal EndFaceRotation As Integer = -1, Optional ByVal TurnSpeed As Integer = 1, Optional ByVal TurnDelay As Single = 0.25F)
         MyBase.New(New Vector3(0.0F), TextureManager.DefaultTexture, New Vector3(1.0F), startDelay, endDelay)
         If EndFaceRotation = -1 Then
             Me.EndFaceRotation = TargetEntity.faceRotation

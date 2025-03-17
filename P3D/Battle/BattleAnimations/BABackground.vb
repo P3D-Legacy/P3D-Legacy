@@ -2,23 +2,20 @@
 
     Inherits BattleAnimation3D
 
-    Public Duration As Single = 2.0F
-    Public FadeInSpeed As Single = 0.01F
-    Public FadeOutSpeed As Single = 0.01F
-    Public BackgroundOpacity As Single = 0.0F
-    Public Texture As Texture2D
-    Public DoTile As Boolean = False
-    Public AnimationWidth As Integer = -1
-    Public AnimationLength As Integer = 1
-    Public AnimationSpeed As Integer = 16
-    Public AfterFadeInOpacity As Single = 1.0F
-    Public FadeProgress As FadeSteps = FadeSteps.FadeIn
-    Private DurationDate As Date
-    Private DurationWhole As Single
-    Private DurationFraction As Single
-    Private BackgroundAnimation As Animation
-    Private CurrentRectangle As New Rectangle(0, 0, 0, 0)
-    Private TextureScale As Integer = 4
+    Dim FadeInSpeed As Single = 0.01F
+    Dim FadeOutSpeed As Single = 0.01F
+    Dim BackgroundOpacity As Single = 0.0F
+    Dim Texture As Texture2D
+    Dim DoTile As Boolean = False
+    Dim AnimationWidth As Integer = -1
+    Dim AfterFadeInOpacity As Single = 1.0F
+    Dim FadeProgress As FadeSteps = FadeSteps.FadeIn
+    Dim DurationDate As Date
+    Dim DurationWhole As Single
+    Dim DurationFraction As Single
+    Dim BackgroundAnimation As Animation
+    Dim CurrentRectangle As New Rectangle(0, 0, 0, 0)
+    Dim TextureScale As Integer = 4
 
     Public Enum FadeSteps As Integer
         FadeIn
@@ -29,13 +26,11 @@
     Public Sub New(ByVal Texture As Texture2D, ByVal startDelay As Single, ByVal endDelay As Single, ByVal Duration As Single, Optional ByVal AfterFadeInOpacity As Single = 1.0F, Optional ByVal FadeInSpeed As Single = 0.125F, Optional ByVal FadeOutSpeed As Single = 0.125F, Optional ByVal DoTile As Boolean = False, Optional ByVal AnimationLength As Integer = 1, Optional ByVal AnimationSpeed As Integer = 2, Optional TextureScale As Integer = 4)
         MyBase.New(New Vector3(0.0F), TextureManager.DefaultTexture, New Vector3(1.0F), startDelay, endDelay)
         Me.Texture = Texture
-        Me.Duration = Duration
         Me.AfterFadeInOpacity = AfterFadeInOpacity
         Me.FadeInSpeed = FadeInSpeed
         Me.FadeOutSpeed = FadeOutSpeed
         Me.DoTile = DoTile
         Me.AnimationWidth = CInt(Texture.Width / AnimationLength)
-        Me.AnimationLength = AnimationLength
         DurationWhole = CSng(Math.Truncate(CDbl(Duration / 6.0F)))
         DurationFraction = CSng((Duration / 6.0F - DurationWhole) * 1000)
         Me.TextureScale = TextureScale

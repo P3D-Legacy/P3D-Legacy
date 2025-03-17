@@ -5,14 +5,16 @@ Namespace BattleSystem
 	Public Class AnimationQueryObject
 		Inherits QueryObject
 
-		Public AnimationStarted As Boolean = False
-		Public AnimationEnded As Boolean = False
-		Public BattleFlipped As Boolean = Nothing
-		Public AnimationSequence As List(Of BattleAnimation3D)
-		Public SpawnedEntities As List(Of Entity)
-		Public CurrentEntity As Entity
-		Public StartPosition As New Vector3(0)
+		Dim AnimationStarted As Boolean = False
+		Dim AnimationEnded As Boolean = False
+		Dim BattleFlipped As Boolean = Nothing
+		Dim AnimationSequence As List(Of BattleAnimation3D)
+		Dim SpawnedEntities As List(Of Entity)
+		Dim CurrentEntity As Entity
 		Public DrawBeforeEntities As Boolean
+
+		Dim Backgrounds As List(Of Entity)
+		Dim RenderObjects As List(Of Entity)
 
 		Public Overrides ReadOnly Property IsReady As Boolean
 			Get
@@ -20,29 +22,30 @@ Namespace BattleSystem
 			End Get
 		End Property
 
-		Public Sub New(ByVal entity As Entity, ByVal BattleFlipped As Boolean, Optional DrawBeforeEntities As Boolean = False)
+		Public Sub New(ByVal Entity As Entity, ByVal BattleFlipped As Boolean, Optional DrawBeforeEntities As Boolean = False)
 			MyBase.New(QueryTypes.MoveAnimation)
 			Me.AnimationSequence = New List(Of BattleAnimation3D)
 			Me.SpawnedEntities = New List(Of Entity)
 			Me.DrawBeforeEntities = DrawBeforeEntities
 			Me.BattleFlipped = BattleFlipped
-			If entity IsNot Nothing Then
-				Me.CurrentEntity = entity
-				Me.StartPosition = entity.Position
+			Me.Backgrounds = New List(Of Entity)
+			Me.RenderObjects = New List(Of Entity)
+
+			If Entity IsNot Nothing Then
+				Me.CurrentEntity = Entity
 			End If
 			AnimationSequenceBegin()
 		End Sub
 		Public Overrides Sub Draw(ByVal BV2Screen As BattleScreen)
-			Dim Backgrounds As New List(Of Entity)
-
-			Dim RenderObjects As New List(Of Entity)
 			For Each a As BattleAnimation3D In Me.AnimationSequence
-				If a.AnimationType = BattleAnimation3D.AnimationTypes.Background Then
+				If Backgrounds.Contains(a) = False AndAlso a.AnimationType = BattleAnimation3D.AnimationTypes.Background Then
 					Backgrounds.Add(a)
 				End If
 			Next
 			For Each entity As BattleAnimation3D In Me.SpawnedEntities
-				RenderObjects.Add(entity)
+				If RenderObjects.Contains(entity) = False Then
+					RenderObjects.Add(entity)
+				End If
 			Next
 			If RenderObjects.Count > 0 Then
 				RenderObjects = (From r In RenderObjects Order By r.CameraDistance Descending).ToList()
@@ -54,6 +57,8 @@ Namespace BattleSystem
 				[Object].UpdateModel()
 				[Object].Render()
 			Next
+			RenderObjects.Clear()
+			Backgrounds.Clear()
 		End Sub
 
 		Public Overrides Sub Update(BV2Screen As BattleScreen)
@@ -98,6 +103,9 @@ Namespace BattleSystem
 		End Sub
 
 		Public Sub AnimationSequenceEnd()
+			SpawnedEntities.Clear()
+			Backgrounds.Clear()
+			RenderObjects.Clear()
 			AnimationEnded = True
 		End Sub
 
@@ -194,7 +202,7 @@ Namespace BattleSystem
 			AnimationSequence.Add(baEntityMove)
 
 		End Sub
-		Public Sub AnimationOscillateMove(ByRef Entity As Entity, ByVal RemoveEntityAfter As Boolean, ByVal Distance As Vector3, ByVal Speed As Single, ByVal BothWays As Boolean, ByVal Duration As Single, ByVal startDelay As Single, ByVal endDelay As Single, Optional MovementCurve As Integer = 0, Optional ReturnToStart As Vector3 = Nothing)
+		Public Sub AnimationOscillateMove(ByVal Entity As Entity, ByVal RemoveEntityAfter As Boolean, ByVal Distance As Vector3, ByVal Speed As Single, ByVal BothWays As Boolean, ByVal Duration As Single, ByVal startDelay As Single, ByVal endDelay As Single, Optional MovementCurve As Integer = 0, Optional ReturnToStart As Vector3 = Nothing)
 			Dim MoveEntity As Entity
 			Dim ReturnPosition As New Vector3(0)
 
@@ -306,7 +314,7 @@ Namespace BattleSystem
 			AnimationSequence.Add(BAEntityFaceRotate)
 
 		End Sub
-		Public Sub AnimationScale(ByVal Entity As Entity, ByVal RemoveEntityAfter As Boolean, ByVal Grow As Boolean, ByVal EndSizeX As Single, ByVal EndSizeY As Single, ByVal EndSizeZ As Single, ByVal SizeSpeed As Single, ByVal startDelay As Single, ByVal endDelay As Single, Optional ByVal Anchors As String = "")
+		Public Sub AnimationScale(ByVal Entity As Entity, ByVal RemoveEntityAfter As Boolean, ByVal Grow As Boolean, ByVal EndSizeX As Single, ByVal EndSizeY As Single, ByVal EndSizeZ As Single, ByVal SizeSpeed As Single, ByVal startDelay As Single, ByVal endDelay As Single, Optional ByVal Anchors As String = "", Optional SpeedMultiplier As Vector3 = Nothing)
 			Dim ScaleEntity As Entity
 			If Entity Is Nothing Then
 				ScaleEntity = CurrentEntity
@@ -322,7 +330,7 @@ Namespace BattleSystem
 
 			Dim Scale As Vector3 = ScaleEntity.Scale
 			Dim EndSize As Vector3 = New Vector3(EndSizeX, EndSizeY, EndSizeZ)
-			Dim baEntityScale As BAEntityScale = New BAEntityScale(ScaleEntity, RemoveEntityAfter, Scale, Grow, EndSize, SizeSpeed, startDelay, endDelay, Anchors)
+			Dim baEntityScale As BAEntityScale = New BAEntityScale(ScaleEntity, RemoveEntityAfter, Scale, Grow, EndSize, SizeSpeed, startDelay, endDelay, Anchors, SpeedMultiplier)
 			AnimationSequence.Add(baEntityScale)
 		End Sub
 

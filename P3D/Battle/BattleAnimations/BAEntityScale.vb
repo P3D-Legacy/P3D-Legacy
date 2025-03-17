@@ -2,16 +2,16 @@
 
     Inherits BattleAnimation3D
 
-    Public Grow As Boolean = False
-    Public EndSize As Vector3
-    Public SizeSpeed As Single = 0.01F
-    Public TargetEntity As Entity
-    Public Anchors As String '1 = Bottom, 2 = Top, 3 = Left, 4 = Right. Combinations are possible.
+    Dim Grow As Boolean = False
+    Dim EndSize As Vector3
+    Dim SizeSpeed As Single = 0.01F
+    Dim TargetEntity As Entity
+    Dim Anchors As String '1 = Bottom, 2 = Top, 3 = Left, 4 = Right. Combinations are possible.
 
-    Public Change As New Vector3(1)
-    Public RemoveEntityAfter As Boolean
+    Dim SpeedMultiplier As Vector3
+    Dim RemoveEntityAfter As Boolean
 
-    Public Sub New(ByVal Entity As Entity, ByVal RemoveEntityAfter As Boolean, ByVal Scale As Vector3, ByVal Grow As Boolean, ByVal EndSize As Vector3, ByVal SizeSpeed As Single, ByVal startDelay As Single, ByVal endDelay As Single, ByVal Anchors As String)
+    Public Sub New(ByRef Entity As Entity, ByVal RemoveEntityAfter As Boolean, ByVal Scale As Vector3, ByVal Grow As Boolean, ByVal EndSize As Vector3, ByVal SizeSpeed As Single, ByVal startDelay As Single, ByVal endDelay As Single, ByVal Anchors As String, Optional SpeedMultiplier As Vector3 = Nothing)
         MyBase.New(New Vector3(0.0F), TextureManager.DefaultTexture, Scale, startDelay, endDelay)
         Me.RemoveEntityAfter = RemoveEntityAfter
         Me.Anchors = Anchors
@@ -19,6 +19,11 @@
         Me.EndSize = EndSize
         Me.SizeSpeed = SizeSpeed
         Me.TargetEntity = Entity
+        If SpeedMultiplier <> Nothing Then
+            Me.SpeedMultiplier = SpeedMultiplier
+        Else
+            Me.SpeedMultiplier = New Vector3(1)
+        End If
 
         Me.AnimationType = AnimationTypes.Size
     End Sub
@@ -26,9 +31,9 @@
     Public Overrides Sub DoActionActive()
         Dim saveScale As Vector3 = TargetEntity.Scale
 
-        Dim changeX As Single = SizeSpeed * Change.X
-        Dim changeY As Single = SizeSpeed * Change.Y
-        Dim changeZ As Single = SizeSpeed * Change.Z
+        Dim changeX As Single = SizeSpeed * SpeedMultiplier.X
+        Dim changeY As Single = SizeSpeed * SpeedMultiplier.Y
+        Dim changeZ As Single = SizeSpeed * SpeedMultiplier.Z
 
         If Grow = True Then
             If TargetEntity.Scale.X < Me.EndSize.X Then
@@ -102,9 +107,6 @@
         End If
     End Sub
 
-    Public Sub SetChange(ByVal changeX As Single, ByVal changeY As Single, ByVal changeZ As Single)
-        Me.Change = New Vector3(changeX, changeY, changeZ)
-    End Sub
     Public Overrides Sub DoRemoveEntity()
         If Me.RemoveEntityAfter = True Then
             TargetEntity.CanBeRemoved = True

@@ -2,18 +2,17 @@
 
     Inherits BattleAnimation3D
 
-    Public TargetEntity As Entity
-    Public TransitionSpeed As Single = 0.01F
-    Public TransitionSpeedOut As Single = 0.01F
-    Public FadeIn As Boolean = False
-    Public ReturnToFromWhenDone As Boolean = False
-    Public RemoveEntityAfter As Boolean = False
-    Public InitialColorSet As Boolean = False
-    Public IsReturning As Boolean = False
-    Public ColorTo As Vector3 = New Vector3(1.0F, 1.0F, 1.0F)
-    Public ColorFrom As Vector3 = New Vector3(1.0F, 1.0F, 1.0F)
+    Dim TargetEntity As Entity
+    Dim TransitionSpeed As Single = 0.01F
+    Dim TransitionSpeedOut As Single = 0.01F
+    Dim ReturnToFromWhenDone As Boolean = False
+    Dim RemoveEntityAfter As Boolean = False
+    Dim InitialColorSet As Boolean = False
+    Dim IsReturning As Boolean = False
+    Dim ColorTo As Vector3 = New Vector3(1.0F, 1.0F, 1.0F)
+    Dim ColorFrom As Vector3 = New Vector3(1.0F, 1.0F, 1.0F)
 
-    Public Sub New(ByVal Entity As Entity, ByVal RemoveEntityAfter As Boolean, ByVal TransitionSpeedIn As Single, ByVal ReturnToFromWhenDone As Boolean, ByVal startDelay As Single, ByVal endDelay As Single, ByVal ColorTo As Vector3, Optional ByVal ColorFrom As Vector3 = Nothing, Optional TransitionSpeedOut As Single = -1)
+    Public Sub New(ByRef Entity As Entity, ByVal RemoveEntityAfter As Boolean, ByVal TransitionSpeedIn As Single, ByVal ReturnToFromWhenDone As Boolean, ByVal startDelay As Single, ByVal endDelay As Single, ByVal ColorTo As Vector3, Optional ByVal ColorFrom As Vector3 = Nothing, Optional TransitionSpeedOut As Single = -1)
         MyBase.New(New Vector3(0.0F), TextureManager.DefaultTexture, New Vector3(1.0F), startDelay, endDelay)
         Me.RemoveEntityAfter = RemoveEntityAfter
         If TransitionSpeedOut = -1 Then

@@ -2,20 +2,19 @@
 
 	Inherits BattleAnimation3D
 
-	Public StartPosition As Vector3
-	Public ReturnToStart As Vector3
-	Public HalfDistance As New Vector3(0.0F)
-	Public DestinationDistance As New Vector3(0.0F)
-	Public CurrentDistance As New Vector3(0.0F)
-	Public MoveSpeed As Single
-	Public MoveBothWays As Boolean = True
-	Public MovementCurve As Integer = 0
-	Public RemoveEntityAfter As Boolean
-	Public Duration As TimeSpan
-	Public ReadyTime As Date
-	Public ReadyAxis As New Vector3(0)
-	Public InterpolationSpeed As Vector3
-	Public InterpolationDirection As Boolean = True
+	Dim StartPosition As Vector3
+	Dim ReturnToStart As Vector3
+	Dim HalfDistance As New Vector3(0.0F)
+	Dim DestinationDistance As New Vector3(0.0F)
+	Dim CurrentDistance As New Vector3(0.0F)
+	Dim MoveSpeed As Single
+	Dim MoveBothWays As Boolean = True
+	Dim MovementCurve As Integer = 0
+	Dim Duration As TimeSpan
+	Dim ReadyTime As Date
+	Dim ReadyAxis As New Vector3(0)
+	Dim InterpolationSpeed As Vector3
+	Dim InterpolationDirection As Boolean = True
 	Public Enum Curves As Integer
 		Linear
 		Smooth

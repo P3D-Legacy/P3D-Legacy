@@ -4,8 +4,8 @@ Public Class BACameraChangeAngle
 
 	Inherits BattleAnimation3D
 
-	Public CameraAngleID As Integer
-	Public BV2Screen As BattleSystem.BattleScreen
+	Dim CameraAngleID As Integer
+	Dim BV2Screen As BattleSystem.BattleScreen
 
 	Public Sub New(ByRef Battlescreen As BattleSystem.BattleScreen, ByVal CameraAngleID As Integer, ByVal startDelay As Single, ByVal endDelay As Single)
 		MyBase.New(New Vector3(0.0F), TextureManager.DefaultTexture, New Vector3(1.0F), startDelay, endDelay)

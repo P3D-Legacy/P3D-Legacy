@@ -2,13 +2,13 @@
 
     Inherits BattleAnimation3D
 
-    Public TargetEntity As Entity
-    Public TransitionSpeed As Single = 0.01F
-    Public FadeIn As Boolean = False
-    Public EndState As Single = 0.0F
-    Public RemoveEntityAfter As Boolean
+    Dim TargetEntity As Entity
+    Dim TransitionSpeed As Single = 0.01F
+    Dim FadeIn As Boolean = False
+    Dim EndState As Single = 0.0F
+    Dim RemoveEntityAfter As Boolean
 
-    Public Sub New(ByVal entity As Entity, ByVal RemoveEntityAfter As Boolean, ByVal TransitionSpeed As Single, ByVal FadeIn As Boolean, ByVal EndState As Single, ByVal startDelay As Single, ByVal endDelay As Single, Optional ByVal StartState As Single = 1.0F)
+    Public Sub New(ByRef entity As Entity, ByVal RemoveEntityAfter As Boolean, ByVal TransitionSpeed As Single, ByVal FadeIn As Boolean, ByVal EndState As Single, ByVal startDelay As Single, ByVal endDelay As Single, Optional ByVal StartState As Single = 1.0F)
         MyBase.New(New Vector3(0.0F), TextureManager.DefaultTexture, New Vector3(1.0F), startDelay, endDelay)
         Me.RemoveEntityAfter = RemoveEntityAfter
         Me.EndState = EndState

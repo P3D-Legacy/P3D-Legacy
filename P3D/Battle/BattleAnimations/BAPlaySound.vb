@@ -2,10 +2,10 @@
 
     Inherits BattleAnimation3D
 
-    Private soundfile As String
-    Private stopMusic As Boolean
-    Private IsPokemon As Boolean
-    Private CrySuffix As String = ""
+    Dim soundfile As String
+    Dim stopMusic As Boolean
+    Dim IsPokemon As Boolean
+    Dim CrySuffix As String = ""
 
 
     Public Sub New(ByVal sound As String, ByVal startDelay As Single, ByVal endDelay As Single, Optional ByVal stopMusic As Boolean = False, Optional ByVal IsPokemon As Boolean = False, Optional ByVal CrySuffix As String = "")

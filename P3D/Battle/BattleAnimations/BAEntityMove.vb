@@ -2,21 +2,21 @@
 
 	Inherits BattleAnimation3D
 
-	Public StartPosition As Vector3
-	Public TargetEntity As Entity
-	Public Destination As Vector3
-	Public MoveDistance As New Vector3(0.0F)
-	Public MoveSpeed As Single
-	Public MoveYSpeed As Single
-	Public InterpolationSpeed As Single
-	Public InterpolationYSpeed As Single
-	Public SpinX As Boolean = False
-	Public SpinZ As Boolean = False
-	Public SpinSpeedX As Single = 0.1F
-	Public SpinSpeedZ As Single = 0.1F
-	Public MovementCurve As Integer = 3
-	Private EasedIn As Boolean = False
-	Private EasedOut As Boolean = False
+	Dim StartPosition As Vector3
+	Dim TargetEntity As Entity
+	Dim Destination As Vector3
+	Dim MoveDistance As New Vector3(0.0F)
+	Dim MoveSpeed As Single
+	Dim MoveYSpeed As Single
+	Dim InterpolationSpeed As Single
+	Dim InterpolationYSpeed As Single
+	Dim SpinX As Boolean = False
+	Dim SpinZ As Boolean = False
+	Dim SpinSpeedX As Single = 0.1F
+	Dim SpinSpeedZ As Single = 0.1F
+	Dim MovementCurve As Integer = 3
+	Dim EasedIn As Boolean = False
+	Dim EasedOut As Boolean = False
 	Public RemoveEntityAfter As Boolean
 	Dim ReadyAxis As Vector3 = New Vector3(0.0F)
 	Public Enum Curves As Integer
