@@ -654,7 +654,7 @@
     End Function
 
     Private Function ShouldPlayNightTheme(dayThemeName As String) As Boolean
-        Return World.IsNight() And MusicManager.SongExists(dayThemeName & "_night")
+        Return World.IsNight() And MusicManager.SongExists(dayThemeName & "_night", False)
     End Function
 
     'Protected Overrides Sub Finalize()

@@ -508,8 +508,8 @@ Public Class MusicManager
 
     End Function
 
-    Public Shared Function SongExists(songName As String) As Boolean
-        Return Not GetSong(songName) Is Nothing
+    Public Shared Function SongExists(songName As String, Optional LogIfNotFound As Boolean = True) As Boolean
+        Return Not GetSong(songName, LogIfNotFound) Is Nothing
     End Function
 
     Private Shared Function GetCurrentSong() As String
@@ -551,7 +551,7 @@ Public Class MusicManager
         End If
     End Function
 
-    Public Shared Function GetSong(songName As String) As SongContainer
+    Public Shared Function GetSong(songName As String, Optional LogIfNotFound As Boolean = True) As SongContainer
         Dim key = GetSongName(songName)
         Dim cContent As ContentManager = ContentPackManager.GetContentManager("Songs\" & key, ".ogg,.mp3,.wma")
         Dim contentSongFilePath = GameController.GamePath & "\" & cContent.RootDirectory & "\Songs\" & key
@@ -587,7 +587,9 @@ Public Class MusicManager
             If GameController.IS_DEBUG_ACTIVE = True Then
                 Logger.Debug("MusicManager.vb: Cannot find music file """ & songName & """. Return nothing.")
             ElseIf songName.Contains("intro\") = False Then
-                Logger.Log(Logger.LogTypes.Warning, "MusicManager.vb: Cannot find music file """ & songName & """. Return nothing.")
+                If LogIfNotFound = True Then
+                    Logger.Log(Logger.LogTypes.Warning, "MusicManager.vb: Cannot find music file """ & songName & """. Return nothing.")
+                End If
             End If
         End If
         Return Nothing
