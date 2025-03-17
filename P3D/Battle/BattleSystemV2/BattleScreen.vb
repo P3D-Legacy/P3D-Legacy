@@ -88,6 +88,9 @@
 
         Public Shared BattleMapOffset As New Vector3(0)
 
+        Public BackgroundTarget As RenderTarget2D
+        Public NPCTarget As RenderTarget2D
+
         Public Overrides Function GetScreenStatus() As String
             Dim pokemonString As String = "OwnPokemon=OWNEMPTY" & Environment.NewLine &
                 "OppPokemon=OPPEMPTY"
@@ -177,6 +180,10 @@
 
             Me.BattleMenu = New BattleMenu()
             BattleMenu.Reset()
+
+            BackgroundTarget = New RenderTarget2D(Core.GraphicsDevice, Core.windowSize.Width, Core.windowSize.Height, False, SurfaceFormat.Color, DepthFormat.Depth24Stencil8)
+            NPCTarget = New RenderTarget2D(Core.GraphicsDevice, Core.windowSize.Width, Core.windowSize.Height, False, SurfaceFormat.Color, DepthFormat.Depth24Stencil8)
+
         End Sub
 
         Public Sub InitializeWild(ByVal WildPokemon As Pokemon, ByVal OverworldScreen As Screen, ByVal defaultMapType As Integer)
@@ -1019,7 +1026,6 @@ nextIndexBackground:
 
                 cQuery.Reverse()
 
-                Dim BackgroundTarget As New RenderTarget2D(Core.GraphicsDevice, Core.windowSize.Width, Core.windowSize.Height, False, SurfaceFormat.Color, DepthFormat.Depth24Stencil8)
                 Core.GraphicsDevice.SetRenderTarget(BackgroundTarget)
                 GraphicsDevice.Clear(Microsoft.Xna.Framework.Color.Transparent)
 
@@ -1028,8 +1034,6 @@ nextIndexBackground:
                 Next
 
                 Core.GraphicsDevice.SetRenderTarget(Nothing)
-
-                Dim NPCTarget As New RenderTarget2D(Core.GraphicsDevice, Core.windowSize.Width, Core.windowSize.Height, False, SurfaceFormat.Color, DepthFormat.Depth24Stencil8)
                 Core.GraphicsDevice.SetRenderTarget(NPCTarget)
                 GraphicsDevice.Clear(Microsoft.Xna.Framework.Color.Transparent)
                 For i = 0 To ForegroundEntities.Count - 1
@@ -1047,8 +1051,6 @@ nextIndexBackground:
                 World.DrawWeather(Screen.Level.World.CurrentMapWeather)
                 Core.SpriteBatch.Draw(BackgroundTarget, windowSize, Color.White)
                 Core.SpriteBatch.Draw(NPCTarget, windowSize, Color.White)
-                NPCTarget.Dispose()
-                BackgroundTarget.Dispose()
             Else
                 SkyDome.Draw(45.0F)
                 Level.Draw()
@@ -1531,6 +1533,9 @@ nextIndex:
             BattleMapOffset = New Vector3(0)
             OwnLeadIndex = 0
             OppLeadIndex = 0
+
+            BackgroundTarget.Dispose()
+            NPCTarget.Dispose()
         End Sub
 
         Public Sub ChangeSavedScreen()
