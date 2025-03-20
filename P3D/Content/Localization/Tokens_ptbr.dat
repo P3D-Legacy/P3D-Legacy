@@ -521,8 +521,8 @@ item_stored_in_pocket_single_start,<player.name> guardou no bolso de ~
 item_stored_in_pocket_single_end,.
 item_stored_in_pocket_multiple_start,<player.name> guardou no bolso de ~
 item_stored_in_pocket_multiple_end,.
-item_handed_over_single,<Player.Name> handed over the~
-item_handed_over_multiple,<Player.Name> handed over the~
+item_handed_over_single,<Player.Name> entregou um(a)~
+item_handed_over_multiple,<Player.Name> entregou os(as)~
 
 Berries:
 berry_picked_single_start,<player.name> pegou uma 
