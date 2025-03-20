@@ -174,7 +174,7 @@ Public Class StorageSystemScreen
     Public Overrides Sub Update()
         TextBox.Update()
 
-        If ControllerHandler.ButtonPressed(Buttons.Y) = True Or KeyBoardHandler.KeyPressed(KeyBindings.SpecialKey) = True Then
+        If ControllerHandler.ButtonPressed(Buttons.Back) = True Or KeyBoardHandler.KeyPressed(KeyBindings.SpecialKey) = True Then
             Core.SetScreen(New StorageSystemFilterScreen(Me))
         End If
 
@@ -217,13 +217,13 @@ Public Class StorageSystemScreen
                 If CursorMoving = True Then
                     MoveCursor()
                 Else
-                    If ControllerHandler.ButtonPressed(Buttons.RightShoulder) = True Or Controls.Right(True, False, True, False, False, False) = True Then
+                    If ControllerHandler.ButtonPressed(Buttons.RightTrigger) = True Or Controls.Right(True, False, True, False, False, False) = True Then
                         Me.CurrentBox += 1
                         If CurrentBox > Me.Boxes.Count - 1 Then
                             CurrentBox = 0
                         End If
                     End If
-                    If ControllerHandler.ButtonPressed(Buttons.LeftShoulder) = True Or Controls.Left(True, False, True, False, False, False) = True Then
+                    If ControllerHandler.ButtonPressed(Buttons.LeftTrigger) = True Or Controls.Left(True, False, True, False, False, False) = True Then
                         Me.CurrentBox -= 1
                         If CurrentBox < 0 Then
                             CurrentBox = Me.Boxes.Count - 1

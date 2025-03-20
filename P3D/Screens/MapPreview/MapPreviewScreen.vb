@@ -194,7 +194,7 @@
         End If
         Core.GameOptions.LoadOffsetMaps = Core.GameOptions.LoadOffsetMaps.Clamp(0, 100)
 
-        If KeyBoardHandler.KeyPressed(Keys.R) = True Or ControllerHandler.ButtonPressed(Buttons.Y) = True Then
+        If KeyBoardHandler.KeyPressed(Keys.R) = True Or ControllerHandler.ButtonPressed(Buttons.Back) = True Then
             Core.OffsetMaps.Clear()
             Level.Load(Level.LevelFile)
         End If

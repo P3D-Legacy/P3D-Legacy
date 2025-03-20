@@ -184,7 +184,7 @@
             End Select
 
             If Me.menuIndex <> MenuScreens.TradeRequest Then
-                If KeyBoardHandler.KeyPressed(KeyBindings.SpecialKey) = True Or ControllerHandler.ButtonPressed(Buttons.Y) = True Then
+                If KeyBoardHandler.KeyPressed(KeyBindings.SpecialKey) = True Or ControllerHandler.ButtonPressed(Buttons.Back) = True Then
                     If Me.menuIndex <> MenuScreens.UserView Then Player.Temp.LastPokegearPage = Me.menuIndex
                     SoundManager.PlaySound("Pokegear\pokegear_off")
                     Core.SetScreen(Me.PreScreen)

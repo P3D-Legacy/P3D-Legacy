@@ -607,7 +607,7 @@ Public Class TradeScreen
             Me.Cursor = Me.BuyItemsList.Count - 1
         End If
 
-        If ControllerHandler.ButtonPressed(Buttons.Y) = True Or KeyBoardHandler.KeyPressed(KeyBindings.SpecialKey) = True Then
+        If ControllerHandler.ButtonPressed(Buttons.Back) = True Or KeyBoardHandler.KeyPressed(KeyBindings.SpecialKey) = True Then
             Me.BuyItemsShowDescription = Not Me.BuyItemsShowDescription
         End If
 
@@ -1015,7 +1015,7 @@ Public Class TradeScreen
             End If
         End If
 
-        If ControllerHandler.ButtonPressed(Buttons.Y) = True Or KeyBoardHandler.KeyPressed(KeyBindings.SpecialKey) = True Then
+        If ControllerHandler.ButtonPressed(Buttons.Back) = True Or KeyBoardHandler.KeyPressed(KeyBindings.SpecialKey) = True Then
             Me.SellItemsShowDescription = Not Me.SellItemsShowDescription
         End If
 

@@ -304,7 +304,7 @@
     End Sub
 
     Private Sub UpdateMenu()
-        If KeyBoardHandler.KeyPressed(KeyBindings.SpecialKey) = True Or ControllerHandler.ButtonPressed(Buttons.Y) = True Then
+        If KeyBoardHandler.KeyPressed(KeyBindings.SpecialKey) = True Or ControllerHandler.ButtonPressed(Buttons.Back) = True Then
             Me.Entries.Reverse()
         End If
 

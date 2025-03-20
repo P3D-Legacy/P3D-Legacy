@@ -880,14 +880,14 @@ TryAgain:
                         End If
 
                         'Cycling through the 4 Memo types (Voltorb, One, Two, Three)
-                        If Controls.Left(True, False, True, False, False, False) = True OrElse ControllerHandler.ButtonPressed(Buttons.LeftShoulder) Then
+                        If Controls.Left(True, False, True, False, False, False) = True OrElse ControllerHandler.ButtonPressed(Buttons.LeftTrigger) Then
                             MemoIndex -= 1
                             If MemoIndex < 0 Then
                                 MemoIndex = 3
                             End If
                             SoundManager.PlaySound("select")
                         End If
-                        If Controls.Right(True, False, True, False, False, False) = True OrElse ControllerHandler.ButtonPressed(Buttons.RightShoulder) Then
+                        If Controls.Right(True, False, True, False, False, False) = True OrElse ControllerHandler.ButtonPressed(Buttons.RightTrigger) Then
                             MemoIndex += 1
                             If MemoIndex > 3 Then
                                 MemoIndex = 0
