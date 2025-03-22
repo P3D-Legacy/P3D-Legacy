@@ -36,11 +36,11 @@ Public Class FontManager
         'if there's a game mode loaded, look in that too for additional fonts
         If Not GameModeManager.ActiveGameMode.DirectoryName = "Kolben" Then
             If Not GameModeManager.ActiveGameMode.ContentPath = "\Content\" Then
-                If System.IO.Directory.Exists(GameController.GamePath & GameModeManager.ActiveGameMode.ContentPath & "\Fonts\BMP") = True Then
-                    For Each s As String In System.IO.Directory.GetFiles(GameController.GamePath & GameModeManager.ActiveGameMode.ContentPath & "\Fonts\BMP")
+                If System.IO.Directory.Exists(GameController.GamePath & GameModeManager.ActiveGameMode.ContentPath & "Fonts\BMP") = True Then
+                    For Each s As String In System.IO.Directory.GetFiles(GameController.GamePath & GameModeManager.ActiveGameMode.ContentPath & "Fonts\BMP")
                         If s.EndsWith(".xnb") = True Then
                             Dim name As String = s.Substring(0, s.Length - 4)
-                            name = name.Substring(GameController.GamePath.Length + "\Fonts\BMP\".Length + GameModeManager.ActiveGameMode.ContentPath.Length)
+                            name = name.Substring(GameController.GamePath.Length + "Fonts\BMP\".Length + GameModeManager.ActiveGameMode.ContentPath.Length)
                             If FontList.ContainsKey(name.ToLower()) = False Then
                                 Dim font As SpriteFont = ContentPackManager.GetContentManager("Fonts\BMP\" & name, ".xnb").Load(Of SpriteFont)("Fonts\BMP\" & name)
                                 FontList.Add(name.ToLower(), New FontContainer(name, font))

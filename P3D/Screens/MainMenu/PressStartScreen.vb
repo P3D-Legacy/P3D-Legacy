@@ -1538,6 +1538,7 @@ Public Class NewMainMenuScreen
                         If _gameModeExists Then
                             GameModeManager.SetGameModePointer(_gameMode)
                             Localization.ReloadGameModeTokens()
+                            FontManager.LoadFonts()
                             Water.ClearAnimationResources()
                             Waterfall.ClearAnimationResources()
                             Water.AddDefaultWaterAnimationResources()
@@ -1744,8 +1745,8 @@ Public Class GameModeSelectionScreen
         End If
         If Controls.Accept(True, True, True) Then
             GameModeManager.SetGameModePointer(_gameModes(_index).DirectoryName)
-            
             Localization.ReloadGameModeTokens()
+            FontManager.LoadFonts()
             SoundManager.PlaySound("select")
             If GameModeManager.ActiveGameMode.IntroType = "0" Then
                 SetScreen(New TransitionScreen(Me.PreScreen, New NewGameScreen(), Color.Black, False))

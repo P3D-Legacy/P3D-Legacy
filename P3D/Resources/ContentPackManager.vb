@@ -84,9 +84,13 @@
 
         Dim gameMode As GameMode = GameModeManager.ActiveGameMode
         If gameMode.ContentPath <> "\Content\" And gameMode.ContentPath <> "" Then
-            Dim gameModePath As String = GameController.GamePath & "\" & gameMode.ContentPath
+            Dim gameModePath As String = GameController.GamePath & gameMode.ContentPath
             For Each fileEnding As String In fileEndings.Split(CChar(","))
                 If System.IO.File.Exists(gameModePath & file & fileEnding) = True Then
+                    Dim RootDirectory As String = gameMode.ContentPath.Remove(0, 1)
+                    If RootDirectory.EndsWith("\") = True Then
+                        RootDirectory = RootDirectory.Remove(RootDirectory.Length - 1, 1)
+                    End If
                     Return New ContentManager(Core.GameInstance.Services, gameMode.ContentPath.Remove(0, 1))
                 End If
             Next
