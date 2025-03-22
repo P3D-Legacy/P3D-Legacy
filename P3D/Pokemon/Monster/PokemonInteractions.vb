@@ -769,7 +769,9 @@
                 Me.HasNotification = True
                 Dim EmojiText As String = dataParts(7).Replace(">:(", "shouting").Replace("<3", "heart").Replace(":(", "unhappy").Replace(":)", "friendly").Replace(";)", "wink").Replace("/:(", "angry")
                 EmojiString = EmojiText
-                Me.Notification = Me.ConvertEmoji(ScriptVersion2.ScriptCommander.Parse(EmojiText).ToString())
+                If Me.EmojiString.Contains("<") = False AndAlso Me.EmojiString.Contains(">") = False Then
+                    Me.Notification = Me.ConvertEmoji(ScriptVersion2.ScriptCommander.Parse(EmojiText).ToString())
+                End If
             End If
 
             Me.Message = dataParts(8)
@@ -881,7 +883,7 @@
 
         Public Function GetNotification() As MessageBulb.NotificationTypes
             If EmojiString <> "" AndAlso EmojiString.Contains("<") = True AndAlso EmojiString.Contains(">") = True Then
-                Return ConvertEmoji(ScriptVersion2.ScriptCommander.Parse(Me.EmojiString).ToString)
+                Return ConvertEmoji(ScriptVersion2.ScriptCommander.Parse(Me.EmojiString).ToString.Replace(">:(", "shouting").Replace("<3", "heart").Replace(":(", "unhappy").Replace(":)", "friendly").Replace(";)", "wink").Replace("/:(", "angry"))
             Else
                 Return Me.Notification
             End If
