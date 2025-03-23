@@ -394,6 +394,7 @@ Public Class NewMainMenuScreen
                                                 Else
                                                     GameModeManager.SetGameModePointer("Kolben")
                                                 End If
+                                                Localization.ReloadGameModeTokens()
                                                 _menuTexture = TextureManager.GetTexture("GUI\Menus\MainMenu")
                                                 _oldMenuTexture = TextureManager.GetTexture("GUI\Menus\Menu")
 
@@ -510,6 +511,7 @@ Public Class NewMainMenuScreen
                                     If _MainProfiles(_selectedProfile)._gameModeExists Then
                                         GameModeManager.SetGameModePointer(_MainProfiles(_selectedProfile)._gameMode)
                                     End If
+                                    Localization.ReloadGameModeTokens()
                                     _menuTexture = TextureManager.GetTexture("GUI\Menus\MainMenu")
                                     _oldMenuTexture = TextureManager.GetTexture("GUI\Menus\Menu")
                                 End If
@@ -521,6 +523,7 @@ Public Class NewMainMenuScreen
                                     If _MainProfiles(_selectedProfile)._gameModeExists Then
                                         GameModeManager.SetGameModePointer(_MainProfiles(_selectedProfile)._gameMode)
                                     End If
+                                    Localization.ReloadGameModeTokens()
                                     _menuTexture = TextureManager.GetTexture("GUI\Menus\MainMenu")
                                     _oldMenuTexture = TextureManager.GetTexture("GUI\Menus\Menu")
                                 End If
@@ -533,6 +536,7 @@ Public Class NewMainMenuScreen
                                     If _MainProfiles(_selectedProfile)._gameModeExists Then
                                         GameModeManager.SetGameModePointer(_MainProfiles(_selectedProfile)._gameMode)
                                     End If
+                                    Localization.ReloadGameModeTokens()
                                     _menuTexture = TextureManager.GetTexture("GUI\Menus\MainMenu")
                                     _oldMenuTexture = TextureManager.GetTexture("GUI\Menus\Menu")
                                 End If
@@ -544,6 +548,7 @@ Public Class NewMainMenuScreen
                                     If _MainProfiles(_selectedProfile)._gameModeExists Then
                                         GameModeManager.SetGameModePointer(_MainProfiles(_selectedProfile)._gameMode)
                                     End If
+                                    Localization.ReloadGameModeTokens()
                                     _menuTexture = TextureManager.GetTexture("GUI\Menus\MainMenu")
                                     _oldMenuTexture = TextureManager.GetTexture("GUI\Menus\Menu")
                                 End If
@@ -1611,6 +1616,7 @@ Public Class GameModeSelectionScreen
         PreScreen = currentScreen
         _gameModes = GameModeManager.GetAllGameModes
         GameModeManager.SetGameModePointer(_gameModes(_index).DirectoryName)
+        Localization.ReloadGameModeTokens()
         _menuTexture = TextureManager.GetTexture("GUI\Menus\MainMenu")
     End Sub
 
@@ -1728,6 +1734,8 @@ Public Class GameModeSelectionScreen
         If _index > 0 AndAlso Controls.Up(True, True, True, True, True, True) Then
             _index -= 1
             GameModeManager.SetGameModePointer(_gameModes(_index).DirectoryName)
+            Localization.ReloadGameModeTokens()
+            FontManager.LoadFonts()
             tempGameModesDisplay = ""
             GameModeSplash = Nothing
             _menuTexture = TextureManager.GetTexture("GUI\Menus\MainMenu")
@@ -1735,6 +1743,8 @@ Public Class GameModeSelectionScreen
         If _index < _gameModes.Length - 1 AndAlso Controls.Down(True, True, True, True, True, True) Then
             _index += 1
             GameModeManager.SetGameModePointer(_gameModes(_index).DirectoryName)
+            Localization.ReloadGameModeTokens()
+            FontManager.LoadFonts()
             tempGameModesDisplay = ""
             GameModeSplash = Nothing
             _menuTexture = TextureManager.GetTexture("GUI\Menus\MainMenu")
