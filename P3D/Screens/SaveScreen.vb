@@ -61,17 +61,17 @@
             .Draw(menuTexture, New Rectangle(Delta_X, Delta_Y, 700, 440), Color.White)
 
             If saveSessionFailed = True Then
-                .DrawString(FontManager.InGameFont, "Saving failed!", New Vector2(Delta_X + 90, Delta_Y + 50), Color.Red)
+                .DrawString(FontManager.InGameFont, Localization.GetString("save_screen_fail_title", "Saving failed!"), New Vector2(Delta_X + 90, Delta_Y + 50), Color.Red)
 
                 If Core.GameOptions.Extras.Contains("Backup Save Feature") Then
                     .DrawString(FontManager.MiniFont,
-                        "Press Dismiss to close this" & Environment.NewLine &
+                        "Press [<system.button(back1)>] to close this" & Environment.NewLine &
                         "screen and try to save again" & Environment.NewLine &
                         "in order to prevent data" & Environment.NewLine &
                         "corruption." & Environment.NewLine & Environment.NewLine & Environment.NewLine &
                         "Your save has been backed" & Environment.NewLine &
                         "up in the event of the" & Environment.NewLine &
-                        "Gamejolt API being down.", New Vector2(Delta_X + 90, Delta_Y + 100), Color.Black)
+                        "Gamejolt API being down.".Replace("<system.button(back1)>", KeyBindings.BackKey1.ToString()), New Vector2(Delta_X + 90, Delta_Y + 100), Color.Black)
                     .DrawString(FontManager.MiniFont,
                         "You may safely quit the" & Environment.NewLine &
                         "game now or try to save" & Environment.NewLine &
@@ -81,52 +81,61 @@
                         "folder", New Vector2(Delta_X + 390, Delta_Y + 100), Color.Black)
                 Else
                     .DrawString(FontManager.MiniFont,
-                        "Press Dismiss to close this" & Environment.NewLine &
-                        "screen and try to save again" & Environment.NewLine &
-                        "in order to prevent data" & Environment.NewLine &
-                        "corruption." & Environment.NewLine & Environment.NewLine & Environment.NewLine &
-                        "If the problem persists, the" & Environment.NewLine &
-                        "GameJolt servers could be" & Environment.NewLine &
-                        "down for maintenance right" & Environment.NewLine &
-                        "now.", New Vector2(Delta_X + 90, Delta_Y + 100), Color.Black)
-                    .DrawString(FontManager.MiniFont, "Please try again later," & Environment.NewLine &
-                        "or contact us here:" & Environment.NewLine & Environment.NewLine &
-                        "Discord server" & Environment.NewLine &
-                        "www.discord.me/p3d" & Environment.NewLine & Environment.NewLine &
-                        "Official Forum" & Environment.NewLine &
-                        "pokemon3d.net/forum/news", New Vector2(Delta_X + 390, Delta_Y + 100), Color.Black)
+                        Localization.GetString("save_screen_fail_message1",
+                        "Press [<system.button(back1)>] to close this~
+                        screen and try to save again~
+                        in order to prevent data~
+                        corruption.
+                        ~~~
+                        If the problem persists, the~
+                        GameJolt servers could be~
+                        down for maintenance right~
+                        now.").Replace("~", Environment.NewLine).Replace("<system.button(back1)>", KeyBindings.BackKey1.ToString()),
+                        New Vector2(Delta_X + 90, Delta_Y + 100), Color.Black)
+                    .DrawString(FontManager.MiniFont, Localization.GetString("save_screen_fail_message2",
+                        "Please try again later,~
+                        or contact us here:
+                        ~~
+                        Discord Server:~
+                        www.discord.me/p3d
+                        ~~
+                        Official News:~
+                        pokemon3d.net/blog").Replace("~", Environment.NewLine),
+                        New Vector2(Delta_X + 390, Delta_Y + 100), Color.Black)
                 End If
 
                 Dim text As String = String.Empty
+                Dim textSizeUntilButton As New Vector2(0)
                 If ControllerHandler.IsConnected() Then
-                    text = "Press      to continue"
+                    text = Localization.GetString("save_screen_press", "Press") & "<button>" & Localization.GetString("save_screen_to_continue", "to continue.")
+                    textSizeUntilButton = FontManager.InGameFont.MeasureString(text.GetSplit(0, "<button>"))
+                    text = text.Replace("<button>", "           ")
                 Else
-                    text = "Press " & KeyBindings.BackKey1.ToString() & " to continue"
+                    text = Localization.GetString("save_screen_press", "Press") & " [" & KeyBindings.BackKey1.ToString() & "] " & Localization.GetString("save_screen_to_continue", "to continue.")
                 End If
 
-                Dim textSize As Vector2 = FontManager.GameJoltFont.MeasureString(text)
+                Dim textSize As Vector2 = FontManager.InGameFont.MeasureString(text)
 
-                GetFontRenderer().DrawString(FontManager.MiniFont, text, New Vector2(Delta_X + 610 - textSize.X / 2.0F,
+                GetFontRenderer().DrawString(FontManager.InGameFont, text, New Vector2(Delta_X + 610 - textSize.X / 2.0F,
                                                                                    Delta_Y + 350 - textSize.Y / 2.0F), Color.DarkBlue)
 
                 If ControllerHandler.IsConnected() Then
-                    SpriteBatch.Draw(TextureManager.GetTexture("GUI\GamePad\xboxControllerButtonB"), New Rectangle(CInt(Delta_X + 610 - textSize.X / 2 + FontManager.MiniFont.MeasureString("Press ").X),
-                                                                                                               CInt(Delta_Y + 350 - textSize.Y / 2), 20, 20), Color.White)
+                    SpriteBatch.Draw(TextureManager.GetTexture("GUI\GamePad\xboxControllerButtonB"), New Rectangle(CInt(Delta_X + 610 - textSize.X / 2 + textSizeUntilButton.X + FontManager.InGameFont.MeasureString("  ").X + 2), CInt(Delta_Y + 350 - textSize.Y / 2), 20, 20), Color.White)
                 End If
 
             Else
                 If ready = True Then
-                    .DrawString(FontManager.InGameFont, "Saved the game.", New Vector2(Delta_X + 90, Delta_Y + 50), Color.DarkBlue)
+                    .DrawString(FontManager.InGameFont, Localization.GetString("save_screen_success", "Saved the game."), New Vector2(Delta_X + 90, Delta_Y + 50), Color.DarkBlue)
                 Else
                     If SaveGameHelpers.GameJoltSaveDone() = False And savingStarted = True Then
                         If SaveGameHelpers.StartedDownloadCheck = True Then
-                            .DrawString(FontManager.InGameFont, "Validating data" & LoadingDots.Dots, New Vector2(Delta_X + 90, Delta_Y + 50), Color.Black)
+                            .DrawString(FontManager.InGameFont, Localization.GetString("save_screen_progress_validating", "Validating data") & LoadingDots.Dots, New Vector2(Delta_X + 90, Delta_Y + 50), Color.Black)
                         Else
-                            .DrawString(FontManager.InGameFont, "Saving, please wait" & LoadingDots.Dots, New Vector2(Delta_X + 77, Delta_Y + 50), Color.Black)
+                            .DrawString(FontManager.InGameFont, Localization.GetString("save_screen_progress_saving", "Saving, please wait") & LoadingDots.Dots, New Vector2(Delta_X + 77, Delta_Y + 50), Color.Black)
                         End If
                     Else
-                        .DrawString(FontManager.InGameFont, "Would you like to", New Vector2(Delta_X + 90, Delta_Y + 50), Color.Black)
-                        .DrawString(FontManager.InGameFont, "save the game?", New Vector2(Delta_X + 90, Delta_Y + 80), Color.Black)
+                        .DrawString(FontManager.InGameFont, Localization.GetString("save_screen_question1", "Would you like to"), New Vector2(Delta_X + 90, Delta_Y + 50), Color.Black)
+                        .DrawString(FontManager.InGameFont, Localization.GetString("save_screen_question2", "save the game?"), New Vector2(Delta_X + 90, Delta_Y + 80), Color.Black)
                     End If
                 End If
 
@@ -140,7 +149,7 @@
                     End If
                 Next
 
-                .DrawString(FontManager.MainFont, Localization.GetString("save_screen_name") & ": " & Core.Player.Name & Environment.NewLine & Environment.NewLine & Localization.GetString("save_screen_badges") & ": " & Core.Player.Badges.Count.ToString() & Environment.NewLine & Environment.NewLine & Localization.GetString("save_screen_money") & ": $" & Core.Player.Money & Environment.NewLine & Environment.NewLine & Localization.GetString("save_screen_time") & ": " & TimeHelpers.GetDisplayTime(TimeHelpers.GetCurrentPlayTime(), True), New Vector2(Delta_X + 400, Delta_Y + 215), Color.DarkBlue)
+                .DrawString(FontManager.MainFont, Localization.GetString("global_name") & ": " & Core.Player.Name & Environment.NewLine & Environment.NewLine & Localization.GetString("global_badges") & ": " & Core.Player.Badges.Count.ToString() & Environment.NewLine & Environment.NewLine & Localization.GetString("global_money") & ": $" & Core.Player.Money & Environment.NewLine & Environment.NewLine & Localization.GetString("global_time") & ": " & TimeHelpers.GetDisplayTime(TimeHelpers.GetCurrentPlayTime(), True), New Vector2(Delta_X + 400, Delta_Y + 215), Color.DarkBlue)
             End If
         End With
         saveBookBatch.End()

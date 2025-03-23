@@ -392,10 +392,16 @@ trainer_screen_badge, Insígnia
 trainer_screen_empty_badge,???
 ---
 Save Screen:
-save_screen_name,Nome
-save_screen_badges,Insígnias
-save_screen_money,Dinheiro
-save_screen_time,Tempo
+save_screen_question1,Would you like to
+save_screen_question2,save the game?
+save_screen_progress_validating,Validating data
+save_screen_progress_saving,Saving, please wait
+save_screen_fail_title,Saving failed!
+save_screen_fail_message1,Press [<system.button(Back1)>] to close this~screen and try to save again~in order to prevent data~corruption.~~~If the problem persists, the~GameJolt servers could be~down for maintenance right~now.
+save_screen_fail_message2,Please try again later,~or contact us here:~~Discord Server:~www.discord.me/p3d~~Official News:~pokemon3d.net/blog
+save_screen_success,Saved the game.
+save_screen_press,Press
+save_screen_to_continue,to continue.
 ---
 Apricorn Screen:
 apricorn_screen_apricorns,Bolotas

@@ -392,10 +392,16 @@ trainer_screen_badge, Badge
 trainer_screen_empty_badge,???
 ---
 Save Screen:
-save_screen_name,Naam
-save_screen_badges,Badges
-save_screen_money,Geld
-save_screen_time,Tijd
+save_screen_question1,Wil je het spel
+save_screen_question2,opslaan?
+save_screen_progress_validating,Data controleren
+save_screen_progress_saving,Opslaan, even geduld
+save_screen_fail_title,Opslaan mislukt!
+save_screen_fail_message1,Druk op [<system.button(Back1)>] om dit scherm te~sluiten en probeer opnieuw op te~slaan om datacorruptie te~voorkomen.~~~Als het opnieuw mislukt,~zijn de GameJolt servers~misschien momenteel offline~voor onderhoud.
+save_screen_fail_message2,Probeer het later nog eens,~of stuur ons hier een~bericht:~Discord Server:~www.discord.me/p3d~~Official News:~pokemon3d.net/blog
+save_screen_success,Spel opgeslagen.
+save_screen_press,Druk op
+save_screen_to_continue,om door te gaan.
 ---
 Apricornscherm:
 apricorn_screen_apricorns,Apricorns
