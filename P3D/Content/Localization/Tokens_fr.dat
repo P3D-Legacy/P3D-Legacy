@@ -192,6 +192,17 @@ game_interaction_gamemenu,Menu du Jeu
 game_interaction_pokegear,Pokégear
 game_interaction_pausemenu,Menu Pause
 game_interaction_notification,Notification
+game_interaction_accept,Accept
+game_interaction_enter,Enter
+game_interaction_confirm,Confirm
+game_interaction_back,Back
+game_interaction_dismiss,Dismiss
+game_interaction_go_back,Go Back
+game_interaction_close,Close
+game_interaction_edit,Edit
+game_interaction_clear,Clear
+game_interaction_delete,Delete
+game_interaction_learn,Learn
 game_notification_accept,Appuie sur <system.button(special)> pour accepter.
 game_notification_dismiss,Appuie sur <system.button(special)> pour refuser.
 ---
@@ -412,7 +423,7 @@ apricorn_screen_clear,Tout enlever
 apricorn_screen_all,Tous
 apricorn_screen_take,Prendre
 apricorn_screen_ready,J'ai fini. Voici le résultat de mon travail:
-apricorn_screen_obtain, obtient
+apricorn_screen_obtain,obtient
 ---
 Donation screen:
 donation_screen_donators,Donateurs
@@ -811,7 +822,7 @@ game_message_sandbox_mode_off,Mode Bac à Sable désactivé
 game_message_audio_on,Audio activé.
 game_message_audio_off,Audio désactivé.
 game_message_continue_autosave,Continued save state:
-game_message_debug_texture_list_clear,Texture list have cleared
+game_message_debug_texture_list_clear,Texture list was cleared
 ---
 Pokemon:
 pokemon_name_Bulbasaur,Bulbizarre

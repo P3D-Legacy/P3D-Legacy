@@ -193,6 +193,17 @@ game_interaction_interact,Interactuar
 game_interaction_gamemenu,Menú del juego
 game_interaction_pokegear,Pokégear
 game_interaction_pausemenu,Menú de pausa
+game_interaction_accept,Accept
+game_interaction_enter,Enter
+game_interaction_confirm,Confirm
+game_interaction_back,Back
+game_interaction_dismiss,Dismiss
+game_interaction_go_back,Go Back
+game_interaction_close,Close
+game_interaction_edit,Edit
+game_interaction_clear,Clear
+game_interaction_delete,Delete
+game_interaction_learn,Learn
 game_interaction_notification,Notificación
 game_notification_accept,Pulsa <system.button(special)> para aceptar.
 game_notification_dismiss,Pulsa <system.button(special)> para descartar.

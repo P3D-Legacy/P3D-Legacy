@@ -406,13 +406,13 @@ save_screen_to_continue,om door te gaan.
 Apricornscherm:
 apricorn_screen_apricorns,Apricorns
 apricorn_screen_producing,Ik ben bezig met het maken van de PokéBallen.~Kom later terug.
-apricorn_screen_backadvice,DRUK OP <system.button(openmenu)> OM TERUG TE GAAN
+apricorn_screen_backadvice,DRUK OP [<system.button(OpenMenu)>] OM TERUG TE GAAN
 apricorn_screen_choose_apricorns,Selecteer de Apricorns waarvan ik PokéBallen moet maken.
 apricorn_screen_ok,Oké
 apricorn_screen_clear,Wis
 apricorn_screen_take,Neem
 apricorn_screen_ready,Ik heb de PokéBallen voor je gemaakt. Hier is het resultaat van mijn werk:
-apricorn_screen_obtain,Ontvangen
+apricorn_screen_obtain,ontving
 ---
 Donation screen:
 donation_screen_donators,Donateurs
