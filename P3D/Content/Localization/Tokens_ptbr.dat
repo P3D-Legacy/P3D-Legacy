@@ -191,17 +191,17 @@ game_interaction_interact,Interagir
 game_interaction_gamemenu,Menu do Jogo
 game_interaction_pokegear,Pokégear
 game_interaction_pausemenu,Menu de Pausa
-game_interaction_accept,Accept
+game_interaction_accept,Aceitar
 game_interaction_enter,Enter
-game_interaction_confirm,Confirm
-game_interaction_back,Back
-game_interaction_dismiss,Dismiss
-game_interaction_go_back,Go Back
-game_interaction_close,Close
-game_interaction_edit,Edit
-game_interaction_clear,Clear
-game_interaction_delete,Delete
-game_interaction_learn,Learn
+game_interaction_confirm,Confirmar
+game_interaction_back,Voltar
+game_interaction_dismiss,Dispensar
+game_interaction_go_back,Voltar
+game_interaction_close,Fechar
+game_interaction_edit,Editar
+game_interaction_clear,Limpar
+game_interaction_delete,Deletar
+game_interaction_learn,Aprender
 game_interaction_notification,Notificação
 game_notification_accept,Pressione [<system.button(special)>] para aceitar.
 game_notification_dismiss,Pressione [<system.button(special)>] para recusar.
@@ -403,16 +403,16 @@ trainer_screen_badge, Insígnia
 trainer_screen_empty_badge,???
 ---
 Save Screen:
-save_screen_question1,Would you like to
-save_screen_question2,save the game?
-save_screen_progress_validating,Validating data
-save_screen_progress_saving,Saving, please wait
-save_screen_fail_title,Saving failed!
-save_screen_fail_message1,Press [<system.button(Back1)>] to close this~screen and try to save again~in order to prevent data~corruption.~~~If the problem persists, the~GameJolt servers could be~down for maintenance right~now.
-save_screen_fail_message2,Please try again later,~or contact us here:~~Discord Server:~www.discord.me/p3d~~Official News:~pokemon3d.net/blog
-save_screen_success,Saved the game.
-save_screen_press,Press
-save_screen_to_continue,to continue.
+save_screen_question1,Você gostaria de
+save_screen_question2,salvar o jogo?
+save_screen_progress_validating,Validando dados
+save_screen_progress_saving,Salvando, Porfavor espere
+save_screen_fail_title,Não deu para Salvar.
+save_screen_fail_message1,Pressione Dispensar para fechar essa~janela e tente salvar denovo~para previnir corrupção de~dados.~~~se o problema persistir, os~servidores da gamejolt podem estar~desligados para manutenção~no momento.
+save_screen_fail_message2,Porfavor tente novamente,~ou entre em contato aqui:~~Discord Servidor:~www.discord.me/p3d~~Official Notícias:~pokemon3d.net/blog
+save_screen_success,O jogo foi salvo.
+save_screen_press,Pressione
+save_screen_to_continue,para continuar.
 ---
 Apricorn Screen:
 apricorn_screen_apricorns,Bolotas
@@ -424,7 +424,7 @@ apricorn_screen_clear,Limpar
 apricorn_screen_all,Todas
 apricorn_screen_take,Pegar devolta
 apricorn_screen_ready,Terminei de fazer as pokébolas, aqui está o resultado do meu trabalho:
-apricorn_screen_obtain,obtida(as)
+apricorn_screen_obtain,obteve
 ---
 Donation screen:
 donation_screen_donators,Doadores
