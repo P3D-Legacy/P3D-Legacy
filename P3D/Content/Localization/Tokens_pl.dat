@@ -39,25 +39,25 @@ global_name,Name
 global_order,Kolejność
 global_filter,Filtruj
 global_reset,Zresetuj
-global_pokemon_type_normal,Normal
-global_pokemon_type_fire,Fire
-global_pokemon_type_flying,Flying
-global_pokemon_type_fighting,Fighting
-global_pokemon_type_water,Water
-global_pokemon_type_grass,Grass
-global_pokemon_type_poison,Poison
-global_pokemon_type_ground,Ground
-global_pokemon_type_electric,Electric
-global_pokemon_type_psychic,Psychic
-global_pokemon_type_rock,Rock
-global_pokemon_type_ice,Ice
-global_pokemon_type_bug,Bug
-global_pokemon_type_dragon,Dragon
-global_pokemon_type_ghost,Ghost
-global_pokemon_type_dark,Dark
-global_pokemon_type_steel,Steel
-global_pokemon_type_fairy,Fairy
-global_pokemon_type_blank,Blank
+global_pokemon_type_normal,Norma
+global_pokemon_type_fire,Ogień
+global_pokemon_type_flying,Lot
+global_pokemon_type_fighting,Walka
+global_pokemon_type_water,Woda
+global_pokemon_type_grass,Trawa
+global_pokemon_type_poison,Trucizna
+global_pokemon_type_ground,Ziemia
+global_pokemon_type_electric,Elektro
+global_pokemon_type_psychic,Psycho
+global_pokemon_type_rock,Kamień
+global_pokemon_type_ice,Lód
+global_pokemon_type_bug,Robak
+global_pokemon_type_dragon,Smok
+global_pokemon_type_ghost,Duck
+global_pokemon_type_dark,Mrok
+global_pokemon_type_steel,Stal
+global_pokemon_type_fairy,Baśń
+global_pokemon_type_blank,Pusty
 global_true,Prawda
 global_false,Fałsz
 global_select,Wybierz
@@ -404,16 +404,16 @@ trainer_screen_badge, Badge
 trainer_screen_empty_badge,???
 ---
 Save Screen:
-save_screen_question1,Would you like to
-save_screen_question2,save the game?
-save_screen_progress_validating,Validating data
-save_screen_progress_saving,Saving, please wait
+save_screen_question1,Czy chciałbyś
+save_screen_question2,zapisać grę?
+save_screen_progress_validating,Trwa walidacja danych
+save_screen_progress_saving,Trwa zapisywanie, proszę czekać
 save_screen_fail_title,Saving failed!
 save_screen_fail_message1,Press [<system.button(back1)>] to close this~screen and try to save again~in order to prevent data~corruption.~~~If the problem persists, the~GameJolt servers could be~down for maintenance right~now.
 save_screen_fail_message2,Please try again later,~or contact us here:~~Discord Server:~www.discord.me/p3d~~Official News:~pokemon3d.net/blog
-save_screen_success,Saved the game.
-save_screen_press,Press
-save_screen_to_continue,to continue.
+save_screen_success,Zapisano grę.
+save_screen_press,Wciśnij
+save_screen_to_continue,, aby kontynuować.
 ---
 Apricorn Screen:
 apricorn_screen_apricorns,Apricorns
@@ -551,6 +551,7 @@ berry_picked_multiple_end,Berries.
 Battle:
 battle_trainer_about_to_send_out_1,is about to send out
 battle_trainer_about_to_send_out_2,! Do you want to switch your Pokémon?
+battle_choose_pokemon,Choose Pokémon
 battle_switch_already_in_battle,is already~in battle!
 battle_switch_fainted,is fainted!
 battle_switch_egg,Cannot switch in~the egg!
@@ -807,8 +808,8 @@ item_category_Machines,TM/HM
 item_category_Pokéballs,Pokéballe
 item_category_Plants,Rośliny
 item_category_KeyItems,Przedmioty kluczowe
-item_category_BattleItems,Battle Items
-item_category_Mail,Mail
+item_category_BattleItems,Przedmioty do walk
+item_category_Mail,Poczta
 ---
 GameMessages:
 game_message_screenshot,Zapisano zrzut ekranu jako

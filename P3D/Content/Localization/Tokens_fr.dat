@@ -548,7 +548,8 @@ berry_picked_multiple_end,Baies.
 ----
 Battle:
 battle_trainer_about_to_send_out_1,est sur le point d'envoyer
-battle_trainer_about_to_send_out_2,! Veux-tu changer de Pokémon ?
+battle_trainer_about_to_send_out_2,! Veux-tu changer de Pokémon?
+battle_choose_pokemon,Choose Pokémon
 battle_switch_already_in_battle,est déjà en combat!
 battle_switch_fainted,est KO!
 battle_switch_egg,Impossible d'envoyer l'œuf!

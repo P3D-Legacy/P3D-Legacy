@@ -13,14 +13,14 @@ global_yes,Ja
 global_no,Nein
 global_accept,Akzeptieren
 global_cancel,Abbrechen
+global_quit,Quit
 global_ok,OK
-global_gamemode,Spielmodus
+global_gamemode,Spiel-Modus
 global_clear,Löschen
 global_save,Speichern
 global_apply,Anwenden
 global_close,Schließen
 global_back,Zurück
-global_quit,Quit
 global_on,Ein
 global_off,Aus
 global_enabled,Aktiviert
@@ -29,7 +29,7 @@ global_enable,Aktivieren
 global_disable,Deaktivieren
 global_player_name,Name
 global_badges,Orden
-global_play_time,Spielzeit
+global_play_time,Zeit
 global_location,Ort
 global_money,Geld
 global_points,Punkte
@@ -77,39 +77,39 @@ global_pokemon_move_cut,Zerschneider
 global_pokemon_move_teleport,Teleport
 global_pokemon_move_dig,Schaufler
 global_used,Benutzt
+global_none,-
 ---
 Pokémon & Attack Properties:
-
 property_HP,KP
 property_PP,AP
 property_Lv.,Lv.
 property_No.,Nr.
 property_Level,Level
 property_MaxHP,Max KP
-property_Attack,Angriff
-property_Defense,Verteidigung
+property_Attack,Angr.
+property_Defense,Vert.
 property_Special_Attack,Spezial Angr.
-property_Sp_Attack,Sp. Angr.
+property_Sp_Attack,Sp.Angr.
 property_Special_Defense,Spezial Vert.
-property_Sp_Defense,Sp. Vert.
-property_Speed,Initiative
-property_Ability,Ability
-property_Type,Type
-property_Nature,Nature
-property_DexNo.,Dex No.
-property_IDNo.,ID No.
-property_CatchMethod,Catch Method
-property_ExpPoints,Exp. Points
-property_Category,Category
-property_Power,Power
-property_Accuracy,Accuracy
+property_Sp_Defense,Sp.Vert.
+property_Speed,Init.
+property_Ability,Fähigk.:
+property_Type,Typ
+property_Nature,Wesen
+property_DexNo.,Nr.
+property_IDNo.,ID
+property_CatchMethod,Fangmethode
+property_ExpPoints,Erfahrung
+property_Category,Kategorie
+property_Power,Stärke
+property_Accuracy,Genauigk.
 ---
 Summary Screen:
 
-summary_hint_ViewMoves,View Moves: [<system.button(movebackward)>] / Down
-summary_hint_ViewInfo,View Info: [<system.button(moveforward)>] / Up
-summary_EVsIVs,EVs / IVs
-summary_ExpToNextLv,To Next Lv.
+summary_hint_ViewMoves,Attacken: [<system.button(movebackward)>] / Nach unten
+summary_hint_ViewInfo,Bericht: [<system.button(moveforward)>] / Nach oben
+summary_EVsIVs,EVs (weiß) / IVs (blau)
+summary_ExpToNextLv,Noch nötig
 summary_TheEggWatch,The Egg Watch
 summary_EggHatch_LongTime,It looks like this Egg will take a long time to hatch.
 summary_EggHatch_MediumTime,It's getting warmer and moves a little. It will hatch soon.
@@ -144,7 +144,7 @@ keyboard_key_RightShift,Right Shift
 ---
 FieldMoves:
 
-fieldmove_cut_1,This tree looks like it can~be Cut down!
+fieldmove_cut_1,Dieser Busch sieht aus, als ob~man ihn zerschneiden könnte!
 fieldmove_cut_2,*Do you want to use Cut?
 fieldmove_cut_NothingToCut,There is nothing~to be Cut!
 fieldmove_cut_used,used~Cut!
@@ -188,9 +188,9 @@ fieldmove_teleport_CannotUse,Cannot use Teleport here.
 fieldmove_teleport_used,used~Teleport!
 ---
 GameInteractions:
-game_interaction_interact,Interact
-game_interaction_gamemenu,Game Menu
-game_interaction_pokegear,Pokégear
+game_interaction_interact,Untersuchen
+game_interaction_gamemenu,Start-Menü
+game_interaction_pokegear,PokéCOM
 game_interaction_pausemenu,Pause Menu
 game_interaction_accept,Accept
 game_interaction_enter,Enter
@@ -203,9 +203,9 @@ game_interaction_edit,Edit
 game_interaction_clear,Clear
 game_interaction_delete,Delete
 game_interaction_learn,Learn
-game_interaction_notification,Notification
-game_notification_accept,Press <system.button(special)> to accept.
-game_notification_dismiss,Press <system.button(special)> to dismiss.
+game_interaction_notification,Nachrichten
+game_notification_accept,Press [<system.button(special)>] to accept.
+game_notification_dismiss,Press [<system.button(special)>] to dismiss.
 ---
 PressStartScreen:
 start_screen_press,Drücke
@@ -233,27 +233,27 @@ main_menu_options_contentpacks_line1,Zusätzliche
 main_menu_options_contentpacks_line2,Inhalte
 
 GameModeMenu:
-gamemode_menu_select1,Wähle ein Spiel,
+gamemode_menu_select1,Wähle einen Spiel-Modus,
 gamemode_menu_select2,mit dem du starten möchtest.
-gamemode_menu_name,Name
-gamemode_menu_description,Description
+gamemode_menu_name,Bezeichnung
+gamemode_menu_description,Beschreibung
 gamemode_menu_version,Version
-gamemode_menu_author,Author
+gamemode_menu_author,Entwickler
 gamemode_menu_contentpath,ContentPath
 gamemode_menu_create,Create
 gamemode_menu_back,Back
 ---
 JoinServerScreen:
-join_server_screen_title,Join a server:
-join_server_screen_local_server_title,Local
-join_server_screen_local_server_description,Single-player: Play on your local computer.
-join_server_screen_button_join,Join
-join_server_screen_button_play,Play
-join_server_screen_button_refresh,Refresh
-join_server_screen_button_new,New
-join_server_screen_button_add,Add
-join_server_screen_button_edit,Edit
-join_server_screen_button_remove,Remove
+join_server_screen_title,Trete einem Server bei:
+join_server_screen_local_server_title,Lokales Spiel
+join_server_screen_local_server_description,Einzel-Spieler: Spiele auf deinem lokalen Computer.
+join_server_screen_button_join,Beitreten
+join_server_screen_button_play,Starten
+join_server_screen_button_refresh,Neu Laden
+join_server_screen_button_new,Neu
+join_server_screen_button_add,Hinzufügen
+join_server_screen_button_edit,Bearbeiten
+join_server_screen_button_remove,Entfernen
 join_server_screen_tooltip_no_players,No players on the server.
 join_server_screen_tooltip_player_list,Player List
 join_server_screen_ping,Ping:
@@ -264,6 +264,7 @@ join_server_screen_server_full,The server is full.
 join_server_screen_version_mismatch,Version doesn't match the server's version.
 join_server_screen_no_connection,(no connection)
 ---
+
 Options Screen:
 option_screen_title,Optionen
 
@@ -271,26 +272,26 @@ option_screen_game,Spiel
 option_screen_game_textspeed,Textgeschwindigkeit
 option_screen_game_difficulty,Schwierigkeit
 option_screen_game_difficulty_easy,Einfach
-option_screen_game_difficulty_hard,Schwer
-option_screen_game_difficulty_superhard,Superschwer
-option_screen_game_interfacescale,Interface Scale
-option_screen_game_interfacescale_automatic,Automatic
-option_screen_game_viewbobbing,Kamerabewegung
+option_screen_game_difficulty_hard,Schwierig
+option_screen_game_difficulty_superhard,Sehr Schwierig
+option_screen_game_interfacescale,Anzeige skalieren
+option_screen_game_interfacescale_automatic,Automatisch
+option_screen_game_viewbobbing,Wippen beim Gehen
 
-option_screen_graphics,Grafiken
-option_screen_graphics_fov,FOV
+option_screen_graphics,Grafik
+option_screen_graphics_fov,Sichtfeld/Blickwinkel
 option_screen_graphics_renderdistance,Sichtweite
-option_screen_graphics_renderdistance_tiny,Winzig
-option_screen_graphics_renderdistance_short,Klein
-option_screen_graphics_renderdistance_normal,Normal
-option_screen_graphics_renderdistance_far,Weit
-option_screen_graphics_renderdistance_extreme,Extrem
-option_screen_graphics_offset_mapquality,Offset-Map Quialität
-option_screen_graphics_offset_mapquality_off,Aus
+option_screen_graphics_renderdistance_tiny,Sehr nah
+option_screen_graphics_renderdistance_short,Näher
+option_screen_graphics_renderdistance_normal,Mittlere Entfernung
+option_screen_graphics_renderdistance_far,Weiter
+option_screen_graphics_renderdistance_extreme,Sehr weit
+option_screen_graphics_offset_mapquality,Qualität angrenzender Orte
+option_screen_graphics_offset_mapquality_off,Keine angrenzenden Orte
 option_screen_graphics_graphics,Grafikqualität
 option_screen_graphics_graphics_fancy,Schön
 option_screen_graphics_graphics_fast,Schnell
-option_screen_graphics_multisampling,Mehrfach-Probenahme
+option_screen_graphics_multisampling,Multisampling
 
 option_screen_battle,Kampf
 option_screen_battle_3dmodels,3D-Modelle
@@ -301,7 +302,7 @@ option_screen_battle_battlestyle_shift,Tausch
 
 option_screen_controls,Controls
 option_screen_controls_xboxgamepad,Xbox Controller
-option_screen_controls_resetkeybindings,Tastenbelegung zurücks
+option_screen_controls_resetkeybindings,Tastenbelegung zurücks.
 option_screen_controls_cameraspeed,Mausgeschwindigkeit
 option_screen_controls_cameraspeed_slow,...Langsam...
 option_screen_controls_cameraspeed_medium,Standard
@@ -322,7 +323,7 @@ option_screen_contentpacks_information,Informationen
 option_screen_contentpacks_songs,Songs
 option_screen_contentpacks_sounds,Sounds
 option_screen_contentpacks_textures,Textures
-option_screen_contentpacks_name,Name
+option_screen_contentpacks_name,Bezeichnung
 option_screen_contentpacks_version,Version
 option_screen_contentpacks_by,Von
 option_screen_contentpacks_content,Content
@@ -333,12 +334,12 @@ option_screen_save_options,Optionen speichern
 option_screen_close,Schließen
 ---
 Pausescreen:
-pause_menu_title,Game menu
-pause_menu_back_to_game,Zurück zum Spiel
+pause_menu_title,Pause Menü
+pause_menu_back_to_game,Weiterspielen
 pause_menu_disconnect,Verbindung trennen
-pause_menu_quit_to_menu,Zurück zum Hauptmenü
+pause_menu_quit_to_menu, Zurück zum Titelbildschirm
 pause_menu_autosave_fail,Autosave kann nicht erstellt werden.
-pause_menu_confirmation,Wollen Sie wirklich aufgeben? Nicht gespeicherte Fortschritte gehen verloren.
+pause_menu_confirmation,Möchtest du ohne Speichern zum Titelbildschirm zurückkehren?
 ---
 IngameMenu:
 game_menu_pokedex,Pokédex
@@ -352,22 +353,22 @@ game_menu_exit,Menü schließen
 game_menu_end_contest,Wettbewerb beenden
 ---
 InventoryScreen:
-inventory_screen_title,Inventory
-inventory_screen_ItemSubtitle_HM,Hidden Machine
-inventory_screen_ItemSubtitle_TM,Technical Machine
+inventory_screen_title,Taschen
+inventory_screen_ItemSubtitle_HM,Versteckte Maschine
+inventory_screen_ItemSubtitle_TM,Technische Maschine
 inventory_screen_ItemSubtitle_Standard_Suffix, Item
-inventory_screen_ItemSubtitle_KeyItem,Key Item
-inventory_screen_ItemSubtitle_PokeBall,Poké Ball
-inventory_screen_ItemSubtitle_Plant,Plant
-inventory_screen_ItemSubtitle_BattleItem,Battle Item
+inventory_screen_ItemSubtitle_KeyItem,Basis-Item
+inventory_screen_ItemSubtitle_PokeBall,Pokéball
+inventory_screen_ItemSubtitle_Plant,Pflanze
+inventory_screen_ItemSubtitle_BattleItem,Kampf-Item
 inventory_screen_ItemNotUsableInBattle,This item can't~be used in Battle.
 inventory_screen_TossConfirmation,Are you sure you want to toss~this item?
 inventory_screen_TossAmount,Select the amount to toss.
-inventory_screen_GiveItem_Give,Gave <name> the <newitem>.
+inventory_screen_GiveItem_Give,<name> trägt jetzt <newitem>.
 inventory_screen_GiveItem_Switch,Switched <name>'s <olditem> with the <newitem>.
 inventory_screen_GiveItem_TakeMail,Gave <newitem> to <name> and took the Mail to the PC.
-inventory_screen_CannotGiveToPokemon,<newitem> cannot be given to a Pokémon.
-inventory_screen_EggsCannotHold,Eggs cannot hold items.
+inventory_screen_CannotGiveToPokemon,<newitem> kann nicht zum Tragen gegeben werden.
+inventory_screen_EggsCannotHold,Ein Ei kann keine Items tragen.
 ---
 PartyScreen:
 party_screen_Unable,Unable!
@@ -394,7 +395,7 @@ MapScreen:
 map_screen_cities,Städte
 map_screen_routes,Routen
 map_screen_places,Orte
-map_screen_roaming,Roaming Pokes
+map_screen_roaming,Wanderpokemon
 ---
 Trainer Card Screen:
 trainer_screen_title,Trainerpass
@@ -408,7 +409,7 @@ save_screen_question2,save the game?
 save_screen_progress_validating,Validating data
 save_screen_progress_saving,Saving, please wait
 save_screen_fail_title,Saving failed!
-save_screen_fail_message1,Press [<system.button(Back1)>] to close this~screen and try to save again~in order to prevent data~corruption.~~~If the problem persists, the~GameJolt servers could be~down for maintenance right~now.
+save_screen_fail_message1,Press [<system.button(back1)>] to close this~screen and try to save again~in order to prevent data~corruption.~~~If the problem persists, the~GameJolt servers could be~down for maintenance right~now.
 save_screen_fail_message2,Please try again later,~or contact us here:~~Discord Server:~www.discord.me/p3d~~Official News:~pokemon3d.net/blog
 save_screen_success,Saved the game.
 save_screen_press,Press
@@ -504,40 +505,40 @@ PokedexScreen
 pokedex_seen,Gesehen:
 pokedex_obtained,Gefangen:
 pokedex_available,Verfügbar:
-pokedex_select,Select a Pokédex
+pokedex_select,Wähle einen Pokédex
 pokedex_habitat_dex_name,Habitat-Dex
-pokedex_habitat_select,Select a Habitat
-pokedex_order,Order:
-pokedex_order_numeric,Numeric
+pokedex_habitat_select,Wähle ein Habitat
+pokedex_order,Sortiert:
+pokedex_order_numeric,Nr.
 pokedex_order_alphabetically,A-Z
-pokedex_order_height,Height
-pokedex_order_weight,Weight
+pokedex_order_height,Größe
+pokedex_order_weight,Gewicht
 pokedex_filter,Filter:
-pokedex_filter_none,None
+pokedex_filter_none,-
 pokedex_filter_name,Name
-pokedex_filter_type1,Type 1
-pokedex_filter_type2,Type 2
-pokedex_search_hint,Press [<system.button(special)>] or Select to search.
-pokedex_search_no_results,No search results.
-pokedex_data_species,SPECIES
-pokedex_data_type,TYPE
-pokedex_data_height,HEIGHT
-pokedex_data_weight,WEIGHT
+pokedex_filter_type1,Typ 1
+pokedex_filter_type2,Typ 2
+pokedex_search_hint,Suche: [<system.button(special)>] oder SELECT
+pokedex_search_no_results,Keine Ergebnisse.
+pokedex_data_species,Spezies
+pokedex_data_type,Typ
+pokedex_data_height,Größe
+pokedex_data_weight,Gewicht
 pokedex_data_form_switch_hint,Press [Shift] to switch forms
 pokedex_data_page_details,Details
 pokedex_data_page_habitat,Habitat
 pokedex_data_page_evolution,Evolution
-pokedex_habitat_area_unknown,Area Unknown.
-pokedex_evolution_no_evolutions,doesn't evolve.
+pokedex_habitat_area_unknown,Gebiet unbekannt.
+pokedex_evolution_no_evolutions,entwickelt sich nicht.
 ----
 Receiving Items:
-item_received_single,Received the~
-item_received_multiple,Received
-item_found,<Player.Name> found~
-item_stored_in_pocket_single_start,<Player.Name> stored it in the~
-item_stored_in_pocket_single_end,pocket.
-item_stored_in_pocket_multiple_start,<Player.Name> stored them~in the
-item_stored_in_pocket_multiple_end,pocket.
+item_received_single,<Player.Name> erhält~
+item_received_multiple,<Player.Name> erhält~
+item_found,<Player.Name> findet~
+item_stored_in_pocket_single_start,<Player.Name> packt das Item in~die 
+item_stored_in_pocket_single_end,Tasche.
+item_stored_in_pocket_multiple_start,<Player.Name> packt die Items in~die
+item_stored_in_pocket_multiple_end,Tasche.
 item_handed_over_single,<Player.Name> handed over the~
 item_handed_over_multiple,<Player.Name> handed over the~
 
@@ -548,8 +549,9 @@ berry_picked_multiple_start,<Player.Name> picked the~
 berry_picked_multiple_end,Berries.
 ----
 Battle:
-battle_trainer_about_to_send_out_1,is about to send out
-battle_trainer_about_to_send_out_2,! Do you want to switch your Pokémon?
+battle_trainer_about_to_send_out_1,wird
+battle_trainer_about_to_send_out_2,in den Kampf schicken!~Möchtest du dein Pokémon wechseln?
+battle_choose_pokemon,Wähle ein Pokémon
 battle_switch_already_in_battle,is already~in battle!
 battle_switch_fainted,is fainted!
 battle_switch_egg,Cannot switch in~the egg!
@@ -561,10 +563,10 @@ battle_NoSafariBalls,No Safari Balls.
 battle_NoSportBalls,No Sport Balls.
 battle_ThrowMud,Throw Mud
 battle_ThrowBait,Throw Bait
-battle_Run,Run
-battle_Battle,Battle
-battle_Bag,Bag
-battle_Surrender,Surrender
+battle_Run,Flucht
+battle_Battle,Kampf
+battle_Bag,Beutel
+battle_Surrender,Aufgeben
 battle_action_MegaEvolve,Mega Evolve!
 ---
 Badges:
@@ -799,17 +801,18 @@ Places_Rocket Warehouse,Rocket Warehouse
 Places_Secret Laboratory,Secret Laboratory
 ---
 Item categories:
-item_category_Standard,Standard
+item_category_Standard,Items
 item_category_Medicine,Medizin
-item_category_Machines,Machinen
+item_category_Machines,TM/VM
 item_category_Pokéballs,Pokébälle
 item_category_Plants,Pflanzen
-item_category_KeyItems,Basisitems
-item_category_BattleItems,Battle Items
-item_category_Mail,Mail
+item_category_KeyItems,Basis-Items
+item_category_BattleItems,Kampf-Items
+item_category_Mail,Briefe
 ---
 GameMessages:
-game_message_screenshot,Screenshot wurde gespeichert als
+# OriginalTranslation: game_message_screenshot,Screenshot wurde in Pokemon3D\Screenshots gespeichert als
+game_message_screenshot,Screenshot wurde im Order "Screenshots" gespeichert als
 game_message_screenshot_failed,Screenshot konnte nicht erstellt werden!
 game_message_fullscreen_on,Vollbildmodus aktiviert
 game_message_fullscreen_off,Vollbildmodus deaktiviert
@@ -1733,11 +1736,11 @@ pokemon_name_Enamorus,Enamorus
 --------------
 Item names:
 Balls:
-item_name_1,Master Ball
-item_name_2,Ultra Ball
-item_name_3,Premier Ball
-item_name_4,Great Ball
-item_name_5,Poké Ball
+item_name_1,Meisterball
+item_name_2,Hyperball
+item_name_3,Premierball
+item_name_4,Superball
+item_name_5,Pokéball
 item_name_45,Cherish Ball
 item_name_79,Dive Ball
 item_name_80,Net Ball
@@ -1771,7 +1774,7 @@ item_name_66,Red Scale
 item_name_67,Secret Potion
 item_name_69,Mystery Egg
 item_name_71,Silver Wing
-item_name_78,Running Shoes
+item_name_78,Turbotreter
 item_name_115,GS Ball
 item_name_116,Blue Card
 item_name_127,Card Key
@@ -1793,6 +1796,7 @@ item_name_576,Mega Bracelet
 item_name_651,Light Stone
 item_name_652,Dark Stone
 item_name_653,Black Augurite
+item_name_658,Exp. All
 
 Technical Machines:
 item_name_191,TM 01
@@ -1978,16 +1982,16 @@ item_name_480,TM 180
 item_name_481,TM 181
 
 Hidden Machines:
-item_name_247,HM 01
-item_name_244,HM 02
-item_name_245,HM 03
-item_name_246,HM 04
-item_name_243,HM 05
-item_name_248,HM 06
-item_name_249,HM 07
-item_name_250,HM 08
-item_name_251,HM 09
-item_name_252,HM 10
+item_name_247,VM 01
+item_name_244,VM 02
+item_name_245,VM 03
+item_name_246,VM 04
+item_name_243,VM 05
+item_name_248,VM 06
+item_name_249,VM 07
+item_name_250,VM 08
+item_name_251,VM 09
+item_name_252,VM 10
 
 Medicine:
 item_name_7,Lava Cookie
@@ -2109,7 +2113,7 @@ item_name_136,Dusk Stone
 item_name_137,Dawn Stone
 
 Standard:
-item_name_19,Escape Rope
+item_name_19,Fluchtseil
 item_name_30,Lucky Punch
 item_name_35,Metal Powder
 item_name_36,Nugget
@@ -2446,624 +2450,626 @@ item_6_only_custom_gamemodes,This item can't be used~on this GameMode.
 Key Items:
 item_use_6,<Player.Name> stepped~off the Bicycle.
 item_use_54,Your Coins:~
+item_use_658_disable,The Exp. All was turned off.
+item_use_658_enable,The Exp. All was turned on.
 -------------------
 Move Names:
-move_name_1,Pound
-move_name_2,Karate Chop
-move_name_3,Double Slap
-move_name_4,Comet Punch
-move_name_5,Mega Punch
-move_name_6,Pay Day
-move_name_7,Fire Punch
-move_name_8,Ice Punch
-move_name_9,Thunder Punch
-move_name_10,Scratch
-move_name_11,Vice Grip
+move_name_1,Pfund
+move_name_2,Karateschlag
+move_name_3,Duplexhieb
+move_name_4,Kometenhieb
+move_name_5,Megahieb
+move_name_6,Zahltag
+move_name_7,Feuerschlag
+move_name_8,Eishieb
+move_name_9,Donnerschlag
+move_name_10,Kratzer
+move_name_11,Klammer
 move_name_12,Guillotine
-move_name_13,Razor Wind
-move_name_14,Swords Dance
+move_name_13,Klingensturm
+move_name_14,Schwerttanz
 move_name_15,Zerschneider
-move_name_16,Gust
-move_name_17,Wing Attack
-move_name_18,Whirlwind
+move_name_16,Windstoß
+move_name_17,Flügelschlag
+move_name_18,Wirbelwind
 move_name_19,Fliegen
-move_name_20,Bind
+move_name_20,Klammergriff
 move_name_21,Slam
-move_name_22,Vine Whip
-move_name_23,Stomp
-move_name_24,Double Kick
-move_name_25,Mega Kick
-move_name_26,Jump Kick
-move_name_27,Rolling Kick
-move_name_28,Sand Attack
-move_name_29,Headbutt
-move_name_30,Horn Attack
-move_name_31,Fury Attack
-move_name_32,Horn Drill
+move_name_22,Rankenhieb
+move_name_23,Stampfer
+move_name_24,Doppelkick
+move_name_25,Megakick
+move_name_26,Sprungkick
+move_name_27,Fegekick
+move_name_28,Sandwirbel
+move_name_29,Kopfnuss
+move_name_30,Hornattacke
+move_name_31,Furienschlag
+move_name_32,Hornbohrer
 move_name_33,Tackle
-move_name_34,Body Slam
-move_name_35,Wrap
-move_name_36,Take Down
-move_name_37,Thrash
-move_name_38,Double-Edge
-move_name_39,Tail Whip
-move_name_40,Poison Sting
-move_name_41,Twineedle
-move_name_42,Pin Missile
-move_name_43,Leer
-move_name_44,Bite
-move_name_45,Growl
-move_name_46,Roar
-move_name_47,Sing
-move_name_48,Supersonic
-move_name_49,Sonic Boom
-move_name_50,Disable
-move_name_51,Acid
-move_name_52,Ember
-move_name_53,Flamethrower
-move_name_54,Mist
-move_name_55,Water Gun
-move_name_56,Hydro Pump
-move_name_57,Surf
-move_name_58,Ice Beam
+move_name_34,Bodyslam
+move_name_35,Wickel
+move_name_36,Bodycheck
+move_name_37,Fuchtler
+move_name_38,Risikotackle
+move_name_39,Rutenschlag
+move_name_40,Giftstachel
+move_name_41,Duonadel
+move_name_42,Nadelrakete
+move_name_43,Silberblick
+move_name_44,Biss
+move_name_45,Heuler
+move_name_46,Brüller
+move_name_47,Gesang
+move_name_48,Superschall
+move_name_49,Ultraschall
+move_name_50,Aussetzer
+move_name_51,Säure
+move_name_52,Glut
+move_name_53,Flammenwurf
+move_name_54,Weißnebel
+move_name_55,Aquaknarre
+move_name_56,Hydropumpe
+move_name_57,Surfer
+move_name_58,Eisstrahl
 move_name_59,Blizzard
-move_name_60,Psybeam
-move_name_61,Bubble Beam
-move_name_62,Aurora Beam
-move_name_63,Hyper Beam
-move_name_64,Peck
-move_name_65,Drill Peck
-move_name_66,Submission
-move_name_67,Low Kick
-move_name_68,Counter
-move_name_69,Seismic Toss
-move_name_70,Strength
-move_name_71,Absorb
-move_name_72,Mega Drain
-move_name_73,Leech Seed
-move_name_74,Growth
-move_name_75,Razor Leaf
-move_name_76,Solar Beam
-move_name_77,Poison Powder
-move_name_78,Stun Spore
-move_name_79,Sleep Powder
-move_name_80,Petal Dance
-move_name_81,String Shot
-move_name_82,Dragon Rage
-move_name_83,Fire Spin
-move_name_84,Thunder Shock
-move_name_85,Thunderbolt
-move_name_86,Thunder Wave
-move_name_87,Thunder
-move_name_88,Rock Throw
-move_name_89,Earthquake
-move_name_90,Fissure
+move_name_60,Psystrahl
+move_name_61,Blubbstrahl
+move_name_62,Aurorastrahl
+move_name_63,Hyperstrahl
+move_name_64,Schnabel
+move_name_65,Bohrschnabel
+move_name_66,Überroller
+move_name_67,Fußkick
+move_name_68,Konter
+move_name_69,Geowurf
+move_name_70,Stärke
+move_name_71,Absorber
+move_name_72,Megasauger
+move_name_73,Egelsamen
+move_name_74,Wachstum
+move_name_75,Rasierblatt
+move_name_76,Solarstrahl
+move_name_77,Giftpuder
+move_name_78,Stachelspore
+move_name_79,Schlafpuder
+move_name_80,Blättertanz
+move_name_81,Fadenschuss
+move_name_82,Drachenwut
+move_name_83,Feuerwirbel
+move_name_84,Donnerschock
+move_name_85,Donnerblitz
+move_name_86,Donnerwelle
+move_name_87,Donner
+move_name_88,Steinwurf
+move_name_89,Erdbeben
+move_name_90,Geofissur
 move_name_91,Schaufler
-move_name_92,Toxic
-move_name_93,Confusion
-move_name_94,Psychic
-move_name_95,Hypnosis
-move_name_96,Meditate
-move_name_97,Agility
-move_name_98,Quick Attack
-move_name_99,Rage
+move_name_92,Toxin
+move_name_93,Konfusion
+move_name_94,Psychokinese
+move_name_95,Hypnose
+move_name_96,Meditation
+move_name_97,Agilität
+move_name_98,Ruckzuckhieb
+move_name_99,Raserei
 move_name_100,Teleport
-move_name_101,Night Shade
-move_name_102,Mimic
-move_name_103,Screech
-move_name_104,Double Team
-move_name_105,Recover
-move_name_106,Harden
-move_name_107,Minimize
-move_name_108,Smokescreen
-move_name_109,Confuse Ray
-move_name_110,Withdraw
-move_name_111,Defense Curl
-move_name_112,Barrier
-move_name_113,Light Screen
-move_name_114,Haze
-move_name_115,Reflect
-move_name_116,Focus Energy
-move_name_117,Bide
-move_name_118,Metronome
-move_name_119,Mirror Move
-move_name_120,Self-Destruct
-move_name_121,Egg Bomb
-move_name_122,Lick
+move_name_101,Nachtnebel
+move_name_102,Mimikry
+move_name_103,Kreideschrei
+move_name_104,Doppelteam
+move_name_105,Genesung
+move_name_106,Härtner
+move_name_107,Komprimator
+move_name_108,Rauchwolke
+move_name_109,Konfustrahl
+move_name_110,Panzerschutz
+move_name_111,Einigler
+move_name_112,Barriere
+move_name_113,Lichtschild
+move_name_114,Dunkelnebel
+move_name_115,Reflektor
+move_name_116,Energiefokus
+move_name_117,Geduld
+move_name_118,Metronom
+move_name_119,Spiegeltrick
+move_name_120,Finale
+move_name_121,Eierbombe
+move_name_122,Schlecker
 move_name_123,Smog
-move_name_124,Sludge
-move_name_125,Bone Club
-move_name_126,Fire Blast
-move_name_127,Waterfall
-move_name_128,Clamp
-move_name_129,Swift
-move_name_130,Skull Bash
-move_name_131,Spike Cannon
-move_name_132,Constrict
-move_name_133,Amnesia
-move_name_134,Kinesis
-move_name_135,Soft-Boiled
-move_name_136,High Jump Kick
-move_name_137,Glare
-move_name_138,Dream Eater
-move_name_139,Poison Gas
-move_name_140,Barrage
-move_name_141,Leech Life
-move_name_142,Lovely Kiss
-move_name_143,Sky Attack
-move_name_144,Transform
-move_name_145,Bubble
-move_name_146,Dizzy Punch
-move_name_147,Spore
+move_name_124,Schlammbad
+move_name_125,Knochenkeule
+move_name_126,Feuersturm
+move_name_127,Kaskade
+move_name_128,Schnapper
+move_name_129,Sternschauer
+move_name_130,Schädelwumme
+move_name_131,Dornkanone
+move_name_132,Umklammerung
+move_name_133,Amnesie
+move_name_134,Psykraft
+move_name_135,Weichei
+move_name_136,Turmkick
+move_name_137,Giftblick
+move_name_138,Traumfresser
+move_name_139,Giftwolke
+move_name_140,Stakkato
+move_name_141,Blutsauger
+move_name_142,Todeskuss
+move_name_143,Himmelsfeger
+move_name_144,Wandler
+move_name_145,Blubber
+move_name_146,Irrschlag
+move_name_147,Pilzspore
 move_name_148,Blitz
-move_name_149,Psywave
-move_name_150,Splash
-move_name_151,Acid Armor
-move_name_152,Crabhammer
+move_name_149,Psywelle
+move_name_150,Platscher
+move_name_151,Säurepanzer
+move_name_152,Krabbhammer
 move_name_153,Explosion
-move_name_154,Fury Swipes
-move_name_155,Bonemerang
-move_name_156,Rest
-move_name_157,Rock Slide
-move_name_158,Hyper Fang
-move_name_159,Sharpen
-move_name_160,Conversion
-move_name_161,Tri Attack
-move_name_162,Super Fang
-move_name_163,Slash
-move_name_164,Substitute
-move_name_165,Struggle
-move_name_166,Sketch
-move_name_167,Triple Kick
-move_name_168,Thief
-move_name_169,Spider Web
-move_name_170,Mind Reader
-move_name_171,Nightmare
-move_name_172,Flame Wheel
-move_name_173,Snore
-move_name_174,Curse
-move_name_175,Flail
-move_name_176,Conversion 2
-move_name_177,Aeroblast
-move_name_178,Cotton Spore
-move_name_179,Reversal
-move_name_180,Spite
-move_name_181,Powder Snow
-move_name_182,Protect
-move_name_183,Mach Punch
-move_name_184,Scary Face
-move_name_185,Feint Attack
-move_name_186,Sweet Kiss
-move_name_187,Belly Drum
-move_name_188,Sludge Bomb
-move_name_189,Mud-Slap
+move_name_154,Kratzfurie
+move_name_155,Knochmerang
+move_name_156,Erholung
+move_name_157,Steinhagel
+move_name_158,Hyperzahn
+move_name_159,Schärfer
+move_name_160,Umwandlung
+move_name_161,Triplette
+move_name_162,Superzahn
+move_name_163,Schlitzer
+move_name_164,Delegator
+move_name_165,Verzweifler
+move_name_166,Nachahmer
+move_name_167,Dreifachkick
+move_name_168,Raub
+move_name_169,Spinnennetz
+move_name_170,Willensleser
+move_name_171,Nachtmahr
+move_name_172,Flammenrad
+move_name_173,Schnarcher
+move_name_174,Fluch
+move_name_175,Dreschflegel
+move_name_176,Umwandlung2
+move_name_177,Luftstoß
+move_name_178,Baumwollsaat
+move_name_179,Gegenschlag
+move_name_180,Groll
+move_name_181,Pulverschnee
+move_name_182,Schutzschild
+move_name_183,Tempohieb
+move_name_184,Grimasse
+move_name_185,Finte
+move_name_186,Bitterkuss
+move_name_187,Bauchtrommel
+move_name_188,Matschbombe
+move_name_189,Lehmschelle
 move_name_190,Octazooka
-move_name_191,Spikes
-move_name_192,Zap Cannon
-move_name_193,Foresight
-move_name_194,Destiny Bond
-move_name_195,Perish Song
-move_name_196,Icy Wind
-move_name_197,Detect
-move_name_198,Bone Rush
-move_name_199,Lock-On
-move_name_200,Outrage
-move_name_201,Sandstorm
-move_name_202,Giga Drain
-move_name_203,Endure
-move_name_204,Charm
-move_name_205,Rollout
-move_name_206,False Swipe
-move_name_207,Swagger
-move_name_208,Milk Drink
-move_name_209,Spark
-move_name_210,Fury Cutter
-move_name_211,Steel Wing
-move_name_212,Mean Look
-move_name_213,Attract
-move_name_214,Sleep Talk
-move_name_215,Heal Bell
-move_name_216,Return
-move_name_217,Present
+move_name_191,Stachler
+move_name_192,Blitzkanone
+move_name_193,Gesichte
+move_name_194,Abgangsbund
+move_name_195,Abgesang
+move_name_196,Eissturm
+move_name_197,Scanner
+move_name_198,Knochenhatz
+move_name_199,Zielschuss
+move_name_200,Wutanfall
+move_name_201,Sandsturm
+move_name_202,Gigasauger
+move_name_203,Ausdauer
+move_name_204,Charme
+move_name_205,Walzer
+move_name_206,Trugschlag
+move_name_207,Angeberei
+move_name_208,Milchgetränk
+move_name_209,Funkensprung
+move_name_210,Zornklinge
+move_name_211,Stahlflügel
+move_name_212,Horrorblick
+move_name_213,Anziehung
+move_name_214,Schlafrede
+move_name_215,Vitalglocke
+move_name_216,Rückkehr
+move_name_217,Geschenk
 move_name_218,Frustration
-move_name_219,Safeguard
-move_name_220,Pain Split
-move_name_221,Sacred Fire
-move_name_222,Magnitude
-move_name_223,Dynamic Punch
-move_name_224,Megahorn
-move_name_225,Dragon Breath
-move_name_226,Baton Pass
-move_name_227,Encore
-move_name_228,Pursuit
-move_name_229,Rapid Spin
-move_name_230,Sweet Scent
-move_name_231,Iron Tail
-move_name_232,Metal Claw
-move_name_233,Vital Throw
-move_name_234,Morning Sun
-move_name_235,Synthesis
-move_name_236,Moonlight
-move_name_237,Hidden Power
-move_name_238,Cross Chop
-move_name_239,Twister
-move_name_240,Rain Dance
-move_name_241,Sunny Day
-move_name_242,Crunch
-move_name_243,Mirror Coat
-move_name_244,Psych Up
-move_name_245,Extreme Speed
-move_name_246,Ancient Power
-move_name_247,Shadow Ball
-move_name_248,Future Sight
+move_name_219,Bodyguard
+move_name_220,Leidteiler
+move_name_221,Läuterfeuer
+move_name_222,Intensität
+move_name_223,Wuchtschlag
+move_name_224,Vielender
+move_name_225,Feuerodem
+move_name_226,Staffette
+move_name_227,Zugabe
+move_name_228,Verfolgung
+move_name_229,Turbodreher
+move_name_230,Lockduft
+move_name_231,Eisenschweif
+move_name_232,Metallklaue
+move_name_233,Überwurf
+move_name_234,Morgengrauen
+move_name_235,Synthese
+move_name_236,Mondschein
+move_name_237,Kraftreserve
+move_name_238,Kreuzhieb
+move_name_239,Windhose
+move_name_240,Regentanz
+move_name_241,Sonnentag
+move_name_242,Knirscher
+move_name_243,Spiegelcape
+move_name_244,Psycho-Plus
+move_name_245,Turbotempo
+move_name_246,Antik-Kraft
+move_name_247,Spukball
+move_name_248,Seher
 move_name_249,Zertrümmerer
 move_name_250,Whirlpool
-move_name_251,Beat Up
-move_name_252,Fake Out
-move_name_253,Uproar
-move_name_254,Stockpile
-move_name_255,Spit Up
-move_name_256,Swallow
-move_name_257,Heat Wave
-move_name_258,Hail
-move_name_259,Torment
-move_name_260,Flatter
-move_name_261,Will-O-Wisp
-move_name_262,Memento
-move_name_263,Facade
-move_name_264,Focus Punch
-move_name_265,Smelling Salts
-move_name_267,Nature Power
-move_name_268,Charge
-move_name_269,Taunt
-move_name_271,Trick
-move_name_272,Role Play
-move_name_273,Wish
-move_name_274,Assist
-move_name_275,Ingrain
-move_name_276,Super Power
-move_name_277,Magic Coat
-move_name_278,Recycle
-move_name_279,Revenge
-move_name_280,Brick Break
-move_name_281,Yawn
-move_name_282,Knock Off
-move_name_283,Endeavor
+move_name_251,Prügler
+move_name_252,Mogelhieb
+move_name_253,Aufruhr
+move_name_254,Horter
+move_name_255,Entfessler
+move_name_256,Verzehrer
+move_name_257,Hitzewelle
+move_name_258,Hagelsturm
+move_name_259,Folterknecht
+move_name_260,Schmeichler
+move_name_261,Irrlicht
+move_name_262,Memento-Mori
+move_name_263,Fassade
+move_name_264,Power-Punch
+move_name_265,Riechsalz
+move_name_267,Natur-Kraft
+move_name_268,Ladevorgang
+move_name_269,Verhöhner
+move_name_271,Trickbetrug
+move_name_272,Rollenspiel (ab VIII)
+move_name_273,Wunschtraum
+move_name_274,Zuschuss
+move_name_275,Verwurzler
+move_name_276,Kraftkoloss
+move_name_277,Magiemantel
+move_name_278,Aufbereitung
+move_name_279,Vergeltung
+move_name_280,Durchbruch
+move_name_281,Gähner
+move_name_282,Abschlag
+move_name_283,Notsituation
 move_name_284,Eruption
-move_name_285,Skill Swap
-move_name_287,Refresh
-move_name_289,Snatch
-move_name_291,Dive
-move_name_292,Arm Thrust
-move_name_294,Tailglow
-move_name_295,Luster Purge
-move_name_296,Mist Ball
-move_name_297,Feather Dance
-move_name_298,Teeter Dance
-move_name_299,Blaze Kick
-move_name_300,Mud Sport
-move_name_301,Ice Ball
-move_name_302,Needle Arm
-move_name_303,Slack Off
-move_name_304,Hyper Voice
-move_name_305,Poison Fang
-move_name_306,Crush Claw
-move_name_307,Blast Burn
-move_name_308,Hydrocannon
-move_name_309,Meteor Mash
-move_name_310,Astonish
-move_name_311,Weather Ball
-move_name_312,Aromatherapy
-move_name_313,Fake Tears
-move_name_314,Air Cutter
-move_name_315,Overheat
-move_name_316,Odor Sleuth
-move_name_317,Rock Tomb
-move_name_318,Silverwind
-move_name_319,Metal Sound
-move_name_320,Grass Whistle
-move_name_321,Tickle
-move_name_322,Cosmic Power
-move_name_323,Water Spout
-move_name_324,Signal Beam
-move_name_325,Shadow Punch
-move_name_326,Extrasensory
-move_name_327,Sky Uppercut
-move_name_328,Sand Tomb
-move_name_329,Sheer Cold
-move_name_330,Muddywater
-move_name_331,Bullet Seed
-move_name_332,Aerial Ace
-move_name_333,Icicle Spear
-move_name_334,Iron Defense
-move_name_335,Block
-move_name_336,Howl
-move_name_337,Dragon Claw
-move_name_338,Frenzy Plant
-move_name_339,Bulk Up
-move_name_340,Bounce
-move_name_341,Mud Shot
-move_name_342,Poison Tail
-move_name_343,Covet
-move_name_344,Volt Tackle
-move_name_345,Magical Leaf
-move_name_346,Water Sport
-move_name_347,Calm Mind
-move_name_348,Leaf Blade
-move_name_349,Dragon Dance
-move_name_350,Rock Blast
-move_name_351,Shock Wave
-move_name_352,Water Pulse
-move_name_353,Doom Desire
-move_name_354,Psycho Boost
-move_name_355,Roost
-move_name_356,Gravity
-move_name_357,Miracle Eye
-move_name_358,Wake-Up Slap
-move_name_359,Hammer Arm
-move_name_360,Gyro Ball
-move_name_361,Healing Wish
-move_name_362,Brine
-move_name_363,Natural Gift
-move_name_364,Feint
-move_name_365,Pluck
-move_name_366,Tailwind
-move_name_367,Acupressure
-move_name_368,Metal Burst
-move_name_369,U-Turn
-move_name_370,Close Combat
-move_name_371,Payback
-move_name_372,Assurance
-move_name_373,Embargo
-move_name_374,Fling
-move_name_375,Psycho Shift
-move_name_376,Trump Card
-move_name_377,Heal Block
-move_name_378,Wring Out
-move_name_379,Power Trick
-move_name_384,Power Swap
-move_name_385,Guard Swap
-move_name_386,Punishment
-move_name_387,Last Resort
-move_name_388,Worry Seed
-move_name_389,Sucker Punch
-move_name_390,Toxic Spikes
-move_name_391,Heart Swap
-move_name_392,Aqua Ring
-move_name_393,Magnet Rise
-move_name_394,Flare Blitz
-move_name_395,Force Palm
-move_name_396,Aura Sphere
-move_name_397,Rock Polish
-move_name_398,Poison Jab
-move_name_399,Dark Pulse
-move_name_400,Night Slash
-move_name_401,Aqua Tail
-move_name_402,Seed Bomb
-move_name_403,Air Slash
-move_name_404,X-Scissor
-move_name_405,Bug Buzz
-move_name_406,Dragon Pulse
-move_name_407,Dragon Rush
-move_name_408,Power Gem
-move_name_409,Drain Punch
-move_name_410,Vacuum Wave
-move_name_411,Focus Blast
-move_name_412,Energy Ball
-move_name_413,Brave Bird
-move_name_414,Earth Power
-move_name_415,Switcheroo
-move_name_416,Giga Impact
-move_name_417,Nasty Plot
-move_name_418,Bullet Punch
-move_name_419,Avalanche
-move_name_420,Ice Shard
-move_name_421,Shadow Claw
-move_name_422,Thunder Fang
-move_name_423,Ice Fang
-move_name_424,Fire Fang
-move_name_425,Shadow Sneak
-move_name_426,Mud Bomb
-move_name_427,Psycho Cut
-move_name_428,Zen Headbutt
-move_name_429,Mirror Shot
-move_name_430,Flash Cannon
-move_name_431,Rock Climb
-move_name_432,Defog
-move_name_433,Trick Room
+move_name_285,Wertewechsel
+move_name_287,Heilung
+move_name_289,Übernahme
+move_name_291,Taucher
+move_name_292,Armstoß
+move_name_294,Schweifglanz
+move_name_295,Scheinwerfer
+move_name_296,Nebelball
+move_name_297,Daunenreigen
+move_name_298,Taumeltanz
+move_name_299,Feuerfeger
+move_name_300,Lehmsuhler
+move_name_301,Frostbeule
+move_name_302,Nietenranke
+move_name_303,Tagedieb
+move_name_304,Schallwelle
+move_name_305,Giftzahn
+move_name_306,Zermalmklaue
+move_name_307,Lohekanonade
+move_name_308,Aquahaubitze
+move_name_309,Sternenhieb
+move_name_310,Erstauner
+move_name_311,Meteorologe
+move_name_312,Aromakur
+move_name_313,Trugträne
+move_name_314,Windschnitt
+move_name_315,Hitzekoller
+move_name_316,Schnüffler
+move_name_317,Felsgrab
+move_name_318,Silberhauch
+move_name_319,Metallsound
+move_name_320,Grasflöte
+move_name_321,Spaßkanone
+move_name_322,Kosmik-Kraft
+move_name_323,Fontränen
+move_name_324,Ampelleuchte
+move_name_325,Finsterfaust
+move_name_326,Sondersensor
+move_name_327,Himmelhieb
+move_name_328,Sandgrab
+move_name_329,Eiseskälte
+move_name_330,Lehmbrühe
+move_name_331,Kugelsaat
+move_name_332,Aero-Ass
+move_name_333,Eisspeer
+move_name_334,Eisenabwehr
+move_name_335,Rückentzug
+move_name_336,Jauler
+move_name_337,Drachenklaue
+move_name_338,Fauna-Statue
+move_name_339,Protzer
+move_name_340,Sprungfeder
+move_name_341,Lehmschuss
+move_name_342,Giftschweif
+move_name_343,Bezirzer
+move_name_344,Volttackle
+move_name_345,Zauberblatt
+move_name_346,Nassmacher
+move_name_347,Gedankengut
+move_name_348,Laubklinge
+move_name_349,Drachentanz
+move_name_350,Felswurf
+move_name_351,Schockwelle
+move_name_352,Aquawelle
+move_name_353,Kismetwunsch
+move_name_354,Psyschub
+move_name_355,Ruheort
+move_name_356,Erdanziehung
+move_name_357,Wunderauge
+move_name_358,Weckruf
+move_name_359,Hammerarm
+move_name_360,Gyroball
+move_name_361,Heilopfer
+move_name_362,Lake
+move_name_363,Beerenkräfte
+move_name_364,Offenlegung
+move_name_365,Pflücker
+move_name_366,Rückenwind
+move_name_367,Akupressur
+move_name_368,Metallstoß
+move_name_369,Kehrtwende
+move_name_370,Nahkampf
+move_name_371,Gegenstoß
+move_name_372,Gewissheit
+move_name_373,Itemsperre
+move_name_374,Schleuder
+move_name_375,Psybann
+move_name_376,Trumpfkarte
+move_name_377,Heilblockade
+move_name_378,Auswringen
+move_name_379,Krafttrick
+move_name_384,Krafttausch
+move_name_385,Schutztausch
+move_name_386,Strafattacke
+move_name_387,Zuflucht
+move_name_388,Sorgensamen
+move_name_389,Tiefschlag
+move_name_390,Giftspitzen
+move_name_391,Statustausch
+move_name_392,Wasserring
+move_name_393,Magnetflug
+move_name_394,Flammenblitz
+move_name_395,Kraftwelle
+move_name_396,Aurasphäre
+move_name_397,Steinpolitur
+move_name_398,Gifthieb
+move_name_399,Finsteraura
+move_name_400,Nachthieb
+move_name_401,Nassschweif
+move_name_402,Samenbomben
+move_name_403,Luftschnitt
+move_name_404,Kreuzschere
+move_name_405,Käfergebrumm
+move_name_406,Drachenpuls
+move_name_407,Drachenstoß
+move_name_408,Juwelenkraft
+move_name_409,Ableithieb
+move_name_410,Vakuumwelle
+move_name_411,Fokusstoß
+move_name_412,Energieball
+move_name_413,Sturzflug
+move_name_414,Erdkräfte
+move_name_415,Wechseldich
+move_name_416,Gigastoß
+move_name_417,Ränkeschmied
+move_name_418,Patronenhieb
+move_name_419,Lawine
+move_name_420,Eissplitter
+move_name_421,Dunkelklaue
+move_name_422,Donnerzahn
+move_name_423,Eiszahn
+move_name_424,Feuerzahn
+move_name_425,Schattenstoß
+move_name_426,Schlammbombe
+move_name_427,Psychoklinge
+move_name_428,Zen-Kopfstoß
+move_name_429,Spiegelsalve
+move_name_430,Lichtkanone
+move_name_431,Kraxler
+move_name_432,Auflockern
+move_name_433,Bizarroraum
 move_name_434,Draco Meteor
-move_name_435,Discharge
-move_name_436,Lava Plume
-move_name_437,Leaf Storm
-move_name_438,Power Whip
-move_name_439,Rock Wrecker
-move_name_440,Crosspoison
-move_name_441,Gunk Shot
-move_name_442,Iron Head
-move_name_443,Magnet Bomb
-move_name_444,Stone Edge
-move_name_445,Captivate
-move_name_446,Stealth Rock
-move_name_447,Grass Knot
-move_name_448,Chatter
-move_name_449,Judgement
-move_name_450,Bug Bite
-move_name_451,Chargebeam
-move_name_452,Wood Hammer
-move_name_453,Aqua Jet
-move_name_454,Attack Order
-move_name_455,Defend Order
-move_name_456,Heal Order
-move_name_457,Head Smash
-move_name_458,Double Hit
-move_name_459,Roar of Time
-move_name_460,Spacial Rend
-move_name_462,Crush Grip
-move_name_463,Magma Storm
-move_name_464,Dark Void
-move_name_465,Seed Flare
-move_name_466,Ominous Wind
-move_name_467,Shadow Force
-move_name_468,Hone Claws
-move_name_473,Psyshock
-move_name_474,Venoshock
-move_name_475,Autotomize
-move_name_479,Smack Down
-move_name_480,Storm Throw
-move_name_481,Flame Burst
-move_name_482,Sludge Wave
-move_name_483,Quiver Dance
-move_name_484,Heavy Slam
-move_name_485,Synchronoise
-move_name_486,Electro Ball
-move_name_488,Flame Charge
-move_name_489,Coil
-move_name_490,Low Sweep
-move_name_491,Acid Spray
-move_name_492,Foul Play
-move_name_493,Simple Beam
-move_name_494,Entrainment
-move_name_496,Round
-move_name_497,Echoed Voice
-move_name_498,Chip Away
-move_name_499,Clear Smog
-move_name_500,Stored Power
-move_name_503,Scald
-move_name_504,Shell Smash
-move_name_505,Heal Pulse
-move_name_506,Hex
-move_name_508,Shift Gear
-move_name_509,Circle Throw
-move_name_510,Incinerate
-move_name_512,Acrobatics
-move_name_513,Reflect Type
-move_name_515,Final Gambit
-move_name_516,Bestow
+move_name_435,Ladungsstoß
+move_name_436,Flammensturm
+move_name_437,Blättersturm
+move_name_438,Blattgeißel
+move_name_439,Felswerfer
+move_name_440,Giftstreich
+move_name_441,Mülltreffer
+move_name_442,Eisenschädel
+move_name_443,Magnetbombe
+move_name_444,Steinkante
+move_name_445,Liebreiz
+move_name_446,Tarnsteine
+move_name_447,Strauchler
+move_name_448,Geschwätz
+move_name_449,Urteilskraft
+move_name_450,Käferbiss
+move_name_451,Ladestrahl
+move_name_452,Holzhammer
+move_name_453,Wasserdüse
+move_name_454,Schlagbefehl
+move_name_455,Blockbefehl
+move_name_456,Heilbefehl
+move_name_457,Kopfstoß
+move_name_458,Doppelschlag
+move_name_459,Zeitenlärm
+move_name_460,Raumschlag
+move_name_462,Quetschgriff
+move_name_463,Lavasturm
+move_name_464,Schlummerort
+move_name_465,Schocksamen
+move_name_466,Unheilböen
+move_name_467,Schemenkraft
+move_name_468,Klauenwetzer
+move_name_473,Psychoschock
+move_name_474,Giftschock
+move_name_475,Autotomie
+move_name_479,Katapult
+move_name_480,Bergsturm
+move_name_481,Funkenflug
+move_name_482,Schlammwoge
+move_name_483,Falterreigen
+move_name_484,Rammboss
+move_name_485,Synchrolärm
+move_name_486,Elektroball
+move_name_488,Nitroladung
+move_name_489,Einrollen
+move_name_490,Fußtritt
+move_name_491,Säurespeier
+move_name_492,Schmarotzer
+move_name_493,Wankelstrahl
+move_name_494,Zwango
+move_name_496,Kanon
+move_name_497,Widerhall
+move_name_498,Zermürben
+move_name_499,Klärsmog
+move_name_500,Kraftvorrat
+move_name_503,Siedewasser
+move_name_504,Hausbruch
+move_name_505,Heilwoge
+move_name_506,Bürde
+move_name_508,Gangwechsel
+move_name_509,Überkopfwurf
+move_name_510,Einäschern
+move_name_512,Akrobatik
+move_name_513,Typenspiegel
+move_name_515,Wagemut
+move_name_516,Offerte
 move_name_517,Inferno
-move_name_518,Water Pledge
-move_name_519,Fire Pledge
-move_name_520,Grass Pledge
-move_name_521,Volt Switch
-move_name_522,Struggle Bug
-move_name_523,Bulldoze
-move_name_524,Frost Breath
-move_name_525,Dragon Tail
-move_name_526,Work Up
-move_name_527,Electroweb
-move_name_528,Wild Charge
-move_name_529,Drill Run
-move_name_530,Dual Chop
-move_name_531,Heart Stamp
-move_name_532,Horn Leech
-move_name_533,Sacred Sword
-move_name_534,Razor Shell
-move_name_535,Heat Crash
-move_name_536,Leaf Tornado
-move_name_537,Steamroller
-move_name_538,Cotton Guard
-move_name_539,Night Daze
-move_name_540,Psystrike
-move_name_541,Tail Slap
-move_name_542,Hurricane
-move_name_543,Head Charge
-move_name_544,Gear Grind
-move_name_545,Searing Shot
-move_name_546,Techno Blast
-move_name_548,Secret Sword
-move_name_549,Glaciate
-move_name_550,Bolt Strike
-move_name_551,Blue Flare
-move_name_552,Fiery Dance
-move_name_553,Freeze Shock
-move_name_554,Ice Burn
-move_name_555,Snarl
-move_name_556,Icicle Crash
-move_name_557,V-Create
-move_name_558,Fusion Flare
-move_name_559,Fusion Bolt
-move_name_560,Ride
-move_name_564,Sticky Web
-move_name_565,Fell Stinger
-move_name_566,Phantom Force
-move_name_568,Noble Roar
-move_name_570,Parabolic Charge
-move_name_572,Petal Blizzard
-move_name_573,Freeze Dry
-move_name_574,Disarming Voice
-move_name_575,Parting Shot
-move_name_577,Draining Kiss
-move_name_580,Grassy Terrain
-move_name_581,Misty Terrain
-move_name_583,Play Rough
-move_name_584,Fairy Wind
-move_name_585,Moonblast
-move_name_586,Boomburst
-move_name_588,King's Shield
-move_name_589,Play Nice
-move_name_590,Confide
-move_name_591,Diamond Storm
-move_name_592,Steam Eruption
-move_name_593,Hyperspace Hole
-move_name_594,Water Shuriken
-move_name_595,Mystical Fire
-move_name_598,Eerie Impulse
-move_name_599,Venom Drench
-move_name_601,Geomancy
-move_name_604,Electric Terrain
-move_name_605,Dazzling Gleam
-move_name_606,Celebrate
-move_name_608,Baby-Doll Eyes
-move_name_609,Nuzzle
-move_name_610,Hold Back
-move_name_611,Infestation
-move_name_612,Power-Up Punch
-move_name_613,Oblivion Wing
-move_name_614,Thousand Arrows
-move_name_615,Thousand Waves
-move_name_616,Lands Wrath
-move_name_617,Light Of Ruin
-move_name_618,Origin Pulse
-move_name_619,Precipice Blades
-move_name_620,Dragon Ascent
-move_name_621,Hyperspace Fury
-move_name_659,Shore Up
-move_name_660,First Impression
-move_name_662,Spirit Shackle
-move_name_663,Darkest Lariat
-move_name_664,Sparkling Aria
-move_name_665,Ice Hammer
-move_name_667,High Horsepower
-move_name_668,Strength Sap
-move_name_669,Solar Blade
-move_name_670,Leafage
-move_name_672,Toxic Thread
-move_name_674,Gear Up
-move_name_676,Pollen Puff
-move_name_677,Anchor Shot
-move_name_678,Psychic Terrain
-move_name_679,Lunge
-move_name_680,Fire Lash
-move_name_681,Power Trip
-move_name_682,Burn Up
-move_name_684,Smart Strike
-move_name_686,Revelation Dance
-move_name_688,Trop Kick
-move_name_691,Clanging Scales
-move_name_692,Dragon Hammer
-move_name_693,Brutal Swing
-move_name_705,Fleur Cannon
-move_name_706,Psychic Fangs
-move_name_708,Shadow Bone
-move_name_709,Accelerock
-move_name_710,Liquidation
-move_name_711,Prismatic Laser
-move_name_715,Tearful Look
-move_name_716,Zing Zap
-move_name_717,Natures Madness
-move_name_749,Tar Shot
-move_name_790,Strange Steam
-move_name_796,Steel Beam
-move_name_797,Rage Fist
+move_name_518,Wassersäulen
+move_name_519,Feuersäulen
+move_name_520,Pflanzsäulen
+move_name_521,Voltwechsel
+move_name_522,Käfertrutz
+move_name_523,Dampfwalze
+move_name_524,Eisesodem
+move_name_525,Drachenrute
+move_name_526,Kraftschub
+move_name_527,Elektronetz
+move_name_528,Stromstoß
+move_name_529,Schlagbohrer
+move_name_530,Doppelhieb
+move_name_531,Herzstempel
+move_name_532,Holzgeweih
+move_name_533,Sanctoklinge
+move_name_534,Kalkklinge
+move_name_535,Brandstempel
+move_name_536,Grasmixer
+move_name_537,Quetschwalze
+move_name_538,Watteschild
+move_name_539,Nachtflut
+move_name_540,Psychostoß
+move_name_541,Kehrschelle
+move_name_542,Orkan
+move_name_543,Steinschädel
+move_name_544,Klikkdiskus
+move_name_545,Flammenball
+move_name_546,Techblaster
+move_name_548,Mystoschwert
+move_name_549,Eiszeit
+move_name_550,Blitzschlag
+move_name_551,Blauflammen
+move_name_552,Feuerreigen
+move_name_553,Frostvolt
+move_name_554,Frosthauch
+move_name_555,Standpauke
+move_name_556,Eiszapfhagel
+move_name_557,V-Generator
+move_name_558,Kreuzflamme
+move_name_559,Kreuzdonner
+move_name_560,Flying Press
+move_name_564,Klebenetz
+move_name_565,Stachelfinale
+move_name_566,Phantomkraft
+move_name_568,Kampfgebrüll
+move_name_570,Parabolladung
+move_name_572,Blütenwirbel
+move_name_573,Gefriertrockner
+move_name_574,Säuselstimme
+move_name_575,Abgangstirade
+move_name_577,Diebeskuss
+move_name_580,Grasfeld
+move_name_581,Nebelfeld
+move_name_583,Knuddler
+move_name_584,Feenbrise
+move_name_585,Mondgewalt
+move_name_586,Überschallknall
+move_name_588,Königsschild
+move_name_589,Kameradschaft
+move_name_590,Vertrauenssache
+move_name_591,Diamantsturm
+move_name_592,Dampfschwall
+move_name_593,Dimensionsloch
+move_name_594,Wasser-Shuriken
+move_name_595,Magieflamme
+move_name_598,Mystowellen
+move_name_599,Giftfalle
+move_name_601,Geokontrolle
+move_name_604,Elektrofeld
+move_name_605,Zauberschein
+move_name_606,Ehrentag
+move_name_608,Kulleraugen
+move_name_609,Wangenrubbler
+move_name_610,Zurückhaltung
+move_name_611,Plage
+move_name_612,Steigerungshieb
+move_name_613,Unheilsschwingen
+move_name_614,Tausend Pfeile
+move_name_615,Tausend Wellen
+move_name_616,Bodengewalt
+move_name_617,Lux Calamitatis
+move_name_618,Ursprungswoge
+move_name_619,Abgrundsklinge
+move_name_620,Zenitstürmer
+move_name_621,Dimensionswahn
+move_name_659,Sandsammler
+move_name_660,Überrumpler
+move_name_662,Schattenfessel
+move_name_663,Dark Lariat
+move_name_664,Schaumserenade
+move_name_665,Eishammer
+move_name_667,Pferdestärke
+move_name_668,Kraftabsorber
+move_name_669,Solarklinge
+move_name_670,Blattwerk
+move_name_672,Giftfaden
+move_name_674,Hilfsmechanik
+move_name_676,Pollenknödel
+move_name_677,Ankerschuss
+move_name_678,Psychofeld
+move_name_679,Anfallen
+move_name_680,Feuerpeitsche
+move_name_681,Überheblichkeit
+move_name_682,Ausbrennen
+move_name_684,Schmalhorn
+move_name_686,Wecktanz
+move_name_688,Tropenkick
+move_name_691,Schuppenrasseln
+move_name_692,Drachenhammer
+move_name_693,Wirbler
+move_name_705,Kanonenbouquet
+move_name_706,Psychobeißer
+move_name_708,Schattenknochen
+move_name_709,Turbofelsen
+move_name_710,Aquadurchstoß
+move_name_711,Prisma-Laser
+move_name_715,Tränendrüse
+move_name_716,Elektropikser
+move_name_717,Naturzorn
+move_name_749,Teerschuss
+move_name_790,Wunderdampf
+move_name_796,Stahlstrahl
+move_name_797,Zornesfaust
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------
 Story translation:
 ---

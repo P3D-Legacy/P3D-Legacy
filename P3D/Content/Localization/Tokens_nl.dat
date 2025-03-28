@@ -538,6 +538,7 @@ berry_picked_multiple_end,Bessen.
 Battle:
 battle_trainer_about_to_send_out_1,staat op het punt om
 battle_trainer_about_to_send_out_2,in te zetten om te vechten! Wil je je Pokémon verwisselen met een andere?
+battle_choose_pokemon,Kies een Pokémon
 battle_switch_already_in_battle,is al~aan het vechten!
 battle_switch_fainted,is uitgeschakeld!
 battle_switch_egg,Kan geen ei inzetten!
@@ -1806,6 +1807,7 @@ item_name_576,Mega-armband
 item_name_651,Lichtsteen
 item_name_652,Duistersteen
 item_name_653,Zwart Auguriet
+item_name_658,Team-ervarings~deler
 
 Technical Machines:
 item_name_191,TM 01
@@ -2828,6 +2830,8 @@ item_6_only_custom_gamemodes,Dit voorwerp kan niet gebruikt~worden in deze SpelM
 Key Items:
 item_use_6,<player.name> stapte~van de fiets af.
 item_use_54,Jouw Munten:~
+item_use_658_disable,De Team-ervaringsdeler is~uitgezet.
+item_use_658_enable,De Team-ervaringsdeler is~aangezet.
 -------------------
 Move Names:
 move_name_1,Stamp
