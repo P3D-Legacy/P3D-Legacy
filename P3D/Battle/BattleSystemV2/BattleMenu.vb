@@ -843,7 +843,7 @@
                 End If
 
                 If Trapped = True Then
-                    Screen.TextBox.Show(Localization.GetString("battle_cannot_run_ability", "Failed to run away because of~") & Localization.GetString("ability_name_" & op.Ability.ID.ToString, op.Ability.Name) & ".", {}, True, False)
+                    Screen.TextBox.Show(Localization.GetString("battle_cannot_run_ability", "Failed to run away because of~") & Localization.GetString("ability_name_" & op.Ability.ID.ToString, op.Ability.Name) & ".", {}, True, True)
                 Else
                     BattleScreen.BattleQuery.Clear()
                     BattleScreen.BattleQuery.Add(BattleScreen.FocusBattle())
