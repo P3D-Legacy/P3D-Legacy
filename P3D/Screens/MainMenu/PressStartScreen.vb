@@ -215,7 +215,7 @@ Public Class PressStartScreen
                 If ControllerHandler.IsConnected() Then
                     text = Localization.GetString("start_screen_press", "Press") & "<button>" & Localization.GetString("start_screen_tostart", "to start.")
                     textSizeUntilButton = FontManager.InGameFont.MeasureString(text.GetSplit(0, "<button>"))
-                    text = text.Replace("<button>", "           ")
+                    text = text.Replace("<button>", "        ")
                 Else
                     text = Localization.GetString("start_screen_press", "Press") & " " & KeyBindings.EnterKey1.ToString().ToUpper & " " & Localization.GetString("start_screen_tostart", "to start.")
                     'text = "Press " & KeyBindings.EnterKey1.ToString() & ", " & KeyBindings.EnterKey2.ToString() & ", or primary mouse button to start."

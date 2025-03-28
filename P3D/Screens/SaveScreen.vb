@@ -109,7 +109,7 @@
                 If ControllerHandler.IsConnected() Then
                     text = Localization.GetString("save_screen_press", "Press") & "<button>" & Localization.GetString("save_screen_to_continue", "to continue.")
                     textSizeUntilButton = FontManager.InGameFont.MeasureString(text.GetSplit(0, "<button>"))
-                    text = text.Replace("<button>", "           ")
+                    text = text.Replace("<button>", "        ")
                 Else
                     text = Localization.GetString("save_screen_press", "Press") & " [" & KeyBindings.BackKey1.ToString() & "] " & Localization.GetString("save_screen_to_continue", "to continue.")
                 End If
