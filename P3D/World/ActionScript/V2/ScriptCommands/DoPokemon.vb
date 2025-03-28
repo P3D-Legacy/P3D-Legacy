@@ -76,7 +76,7 @@
                         End If
                         Dim Level As Integer = int(argument.GetSplit(1))
 
-                        Dim catchMethod As String = "random reason"
+                        Dim catchMethod As String = Localization.GetString("CatchMethod_Empty", "Somehow obtained at")
                         If commas > 1 Then
                             catchMethod = ScriptCommander.Parse(argument.GetSplit(2)).ToString()
                         End If
@@ -86,7 +86,7 @@
                             catchBall = Item.GetItemByID(argument.GetSplit(3))
                         End If
 
-                        Dim catchLocation As String = Screen.Level.MapName
+                        Dim catchLocation As String = Localization.GetString("Places_" & Screen.Level.MapName, Screen.Level.MapName)
                         If commas > 3 Then
                             catchLocation = ScriptCommander.Parse(argument.GetSplit(4)).ToString()
                         End If
@@ -680,6 +680,8 @@
 
                     If argument.GetSplit(1, ",").StartsWith("<system.token(") AndAlso argument.GetSplit(1, ",").EndsWith(")>") Then
                         placeLocalization = Localization.GetString(placeLocalization.Remove(0, "<system.token(".Length).Remove(argument.GetSplit(2).Length - 2, 2))
+                    ElseIf Localization.TokenExists("Places_" & Screen.Level.MapName) = True Then
+                        placeLocalization = Localization.GetString("Places_" & Screen.Level.MapName, Screen.Level.MapName)
                     End If
 
                     If Core.Player.Pokemons.Count - 1 >= Index Then
