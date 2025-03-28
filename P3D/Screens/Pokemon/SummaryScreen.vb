@@ -266,10 +266,10 @@
         SpriteBatch.DrawString(FontManager.MainFont, Localization.GetString("property_Nature", "Nature"), New Vector2(DeltaX + 10, DeltaY + 394 + 4), New Color(255, 255, 255, CInt(220 * _interfaceFade)))
         SpriteBatch.DrawString(FontManager.MainFont, Localization.GetString("property_DexNo.", "Dex No."), New Vector2(DeltaX + 10, DeltaY + 426 + 4), New Color(255, 255, 255, CInt(220 * _interfaceFade)))
 
-        SpriteBatch.DrawString(FontManager.MainFont, Localization.GetString("global_ot", "OT"), New Vector2(DeltaX + 10, DeltaY + 458 + 4), New Color(255, 255, 255, CInt(220 * _interfaceFade)))
+        SpriteBatch.DrawString(FontManager.MainFont, Localization.GetString("property_OT", "OT"), New Vector2(DeltaX + 10, DeltaY + 458 + 4), New Color(255, 255, 255, CInt(220 * _interfaceFade)))
         SpriteBatch.DrawString(FontManager.MainFont, GetPokemon().CatchTrainerName, New Vector2(DeltaX + 96 + 8 + 32, DeltaY + 458 + 4), New Color(255, 255, 255, CInt(220 * _fadeIn)))
 
-        SpriteBatch.DrawString(FontManager.MainFont, Localization.GetString("property_IDNo.", "ID No."), New Vector2(DeltaX + 10, DeltaY + 490 + 4), New Color(255, 255, 255, CInt(220 * _interfaceFade)))
+        SpriteBatch.DrawString(FontManager.MainFont, Localization.GetString("global_IDNo.", "ID No."), New Vector2(DeltaX + 10, DeltaY + 490 + 4), New Color(255, 255, 255, CInt(220 * _interfaceFade)))
         SpriteBatch.DrawString(FontManager.MainFont, GetPokemon().OT, New Vector2(DeltaX + 96 + 8 + 32, DeltaY + 490 + 4), New Color(255, 255, 255, CInt(220 * _fadeIn)))
 
 

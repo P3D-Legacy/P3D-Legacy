@@ -123,7 +123,7 @@
         Dim PropertyOffset As Vector2 = New Vector2(272, 152)
         _textBatch.DrawString(FontManager.MainFont, Localization.GetString("global_name", "Name") & ":", New Vector2(PropertyOffset.X, PropertyOffset.Y), Color.Black, 0F, Vector2.Zero, 1.0F, SpriteEffects.None, 0F)
         _textBatch.DrawString(FontManager.MainFont, Localization.GetString("global_money", "Money") & ":", New Vector2(PropertyOffset.X, PropertyOffset.Y + 32), Color.Black, 0F, Vector2.Zero, 1.0F, SpriteEffects.None, 0F)
-        _textBatch.DrawString(FontManager.MainFont, Localization.GetString("global_ot", "OT") & ":", New Vector2(PropertyOffset.X, PropertyOffset.Y + 32 + 32), Color.Black, 0F, Vector2.Zero, 1.0F, SpriteEffects.None, 0F)
+        _textBatch.DrawString(FontManager.MainFont, Localization.GetString("global_IDNo.", "ID No.") & ":", New Vector2(PropertyOffset.X, PropertyOffset.Y + 32 + 32), Color.Black, 0F, Vector2.Zero, 1.0F, SpriteEffects.None, 0F)
         _textBatch.DrawString(FontManager.MainFont, Localization.GetString("global_time", "Time") & ":", New Vector2(PropertyOffset.X, PropertyOffset.Y + 32 + 32 + 32), Color.Black, 0F, Vector2.Zero, 1.0F, SpriteEffects.None, 0F)
         _textBatch.DrawString(FontManager.MainFont, Localization.GetString("global_points", "Points") & ":", New Vector2(PropertyOffset.X, PropertyOffset.Y + 32 + 32 + 32 + 32), Color.Black, 0F, Vector2.Zero, 1.0F, SpriteEffects.None, 0F)
 

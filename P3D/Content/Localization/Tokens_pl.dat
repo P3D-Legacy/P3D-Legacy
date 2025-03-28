@@ -33,7 +33,7 @@ global_play_time,Czas Gry
 global_location,Lokalizacja
 global_money,Kasa
 global_points,Punkty
-global_ot,OT
+global_IDNo.,Nr ID
 global_time,Czas
 global_name,Name
 global_order,Kolejność
@@ -98,7 +98,7 @@ property_Ability,Ability
 property_Type,Typ
 property_Nature,Nature
 property_DexNo.,Nr Dex
-property_IDNo.,Nr ID
+property_OT,OT
 property_CatchMethod,Catch Method
 property_ExpPoints,Exp. Points
 property_Category,Category

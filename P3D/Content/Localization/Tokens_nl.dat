@@ -33,7 +33,7 @@ global_play_time,Speeltijd
 global_location,Locatie
 global_money,Geld
 global_points,Punten
-global_ot,OT
+global_IDNo.,ID Nr.
 global_time,Tijd
 global_name,Naam
 global_order,Volgorde
@@ -97,7 +97,7 @@ property_Ability,Vaardigheid
 property_Type,Type
 property_Nature,Karakter
 property_DexNo.,Dex Nr.
-property_IDNo.,ID Nr.
+property_OT,OT
 property_CatchMethod,Vangmethode
 property_ExpPoints,Ervaring
 property_Category,Categorie
