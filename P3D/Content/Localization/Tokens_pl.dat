@@ -121,6 +121,7 @@ Catch Method & Location:
 CatchMethod_Empty,Jakoś otrzymano w:
 CatchMethod_Caught,Złapano w:
 CatchMethod_Obtained,Otrzymano w:
+CatchMethod_Appeared,Appeared at
 
 CatchLocation_Empty,nieznanym miejscu
 ---

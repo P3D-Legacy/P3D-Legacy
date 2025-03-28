@@ -31,8 +31,8 @@ Public Class Shedinja
         'Set base infos:
         p.OT = Ninjask.OT
         p.CatchTrainerName = Ninjask.CatchTrainerName
-        p.CatchMethod = "appeared at"
-        p.CatchLocation = Screen.Level.MapName
+        p.CatchMethod = Localization.GetString("CatchMethod_Appeared", "Appeared at")
+        p.CatchLocation = Localization.GetString("Places_" & Screen.Level.MapName, Screen.Level.MapName)
         p.IsShiny = Ninjask.IsShiny
         p.Nature = Ninjask.Nature
 

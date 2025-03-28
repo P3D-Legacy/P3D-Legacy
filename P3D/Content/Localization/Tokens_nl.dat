@@ -120,6 +120,7 @@ Catch Method & Location:
 CatchMethod_Empty,Zomaar ontvangen bij
 CatchMethod_Caught,Gevangen bij
 CatchMethod_Obtained,Ontvangen bij
+CatchMethod_Appeared,Verschenen bij
 
 CatchLocation_Empty,een onbekende plek
 ---

@@ -420,8 +420,6 @@ Public Class Pokemon
         Get
             If _catchLocation.StartsWith("<system.token(") AndAlso _catchLocation.EndsWith(")>") Then
                 Return Localization.GetString(_catchLocation.Remove(_catchLocation.Length - 2, 2).Remove(0, "<system.token(".Length))
-            ElseIf Localization.TokenExists(Localization.GetString("Places_" & _catchLocation, _catchLocation)) Then
-                Return Localization.GetString("Places_" & _catchLocation, _catchLocation)
             Else
                 Return Me._catchLocation
             End If
@@ -2846,7 +2844,7 @@ Public Class Pokemon
     ''' <param name="Ball">The Pokéball this Pokémon got captured in.</param>
     ''' <param name="Method">The capture method.</param>
     Public Sub SetCatchInfos(ByVal Ball As Item, ByVal Method As String)
-        Me.CatchLocation = Screen.Level.MapName
+        Me.CatchLocation = Localization.GetString("Places_" & Screen.Level.MapName, Screen.Level.MapName)
         Me.CatchTrainerName = Core.Player.Name
         Me.OT = Core.Player.OT
 

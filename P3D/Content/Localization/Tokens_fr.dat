@@ -119,6 +119,7 @@ Catch Method & Location:
 CatchMethod_Empty,Somehow obtained at
 CatchMethod_Caught,Caught at
 CatchMethod_Obtained,Obtained at
+CatchMethod_Appeared,Appeared at
 
 CatchLocation_Empty,an unknown place
 ---
