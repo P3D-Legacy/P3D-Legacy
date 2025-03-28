@@ -420,6 +420,8 @@ Public Class Pokemon
         Get
             If _catchLocation.StartsWith("<system.token(") AndAlso _catchLocation.EndsWith(")>") Then
                 Return Localization.GetString(_catchLocation.Remove(_catchLocation.Length - 2, 2).Remove(0, "<system.token(".Length))
+            ElseIf Localization.TokenExists(Localization.GetString("Places_" & _catchLocation, _catchLocation)) Then
+                Return Localization.GetString("Places_" & _catchLocation, _catchLocation)
             Else
                 Return Me._catchLocation
             End If
