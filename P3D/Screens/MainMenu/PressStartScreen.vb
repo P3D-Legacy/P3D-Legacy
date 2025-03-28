@@ -444,6 +444,12 @@ Public Class NewMainMenuScreen
                                         _selectedProfile = x
                                         _sliderTarget = GetSliderTarget(x)
                                         SoundManager.PlaySound("select")
+
+                                        If _MainProfiles(_selectedProfile)._gameModeExists Then
+                                            GameModeManager.SetGameModePointer(_MainProfiles(_selectedProfile)._gameMode)
+                                        Else
+                                            GameModeManager.SetGameModePointer("Kolben")
+                                        End If
                                     End If
                                 Next
                                 For x = 0 To _OptionsProfiles.Count - 1
@@ -475,6 +481,12 @@ Public Class NewMainMenuScreen
                                         _selectedProfile = x
                                         _sliderTarget = GetSliderTarget(x)
                                         SoundManager.PlaySound("select")
+
+                                        If _MainProfiles(_selectedProfile)._gameModeExists Then
+                                            GameModeManager.SetGameModePointer(_MainProfiles(_selectedProfile)._gameMode)
+                                        Else
+                                            GameModeManager.SetGameModePointer("Kolben")
+                                        End If
                                     End If
                                 Next
                                 For x = 0 To _OptionsProfiles.Count - 1
