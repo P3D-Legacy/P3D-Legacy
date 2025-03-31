@@ -774,7 +774,7 @@ Public Class PokedexScreen
                 If Localization.TokenExists("pokemon_desc_" & FormName) = True Then
                     DexEntryText = Localization.GetString("pokemon_desc_" & FormName, p.PokedexEntry.Text)
                 End If
-                Core.SpriteBatch.DrawString(FontManager.MainFont, DexEntryText.CropStringToWidth(FontManager.MainFont, 448), New Vector2(688, 490), Color.Black)
+                Core.SpriteBatch.DrawString(FontManager.MainFont, DexEntryText.CropStringToWidth(FontManager.MainFont, 440), New Vector2(688, 490), Color.Black)
 
                 Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokedexhabitat", New Rectangle(160, 160, 10, 10), ""), New Rectangle(992, 242, 20, 20), Color.White)
 

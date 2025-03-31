@@ -381,7 +381,7 @@ Public Class PartyScreen
             End With
 
             'HP display:
-            GetFontRenderer().DrawString(FontManager.MainFont, p.HP & " / " & p.MaxHP, New Vector2(position.X + 100, position.Y + 50), New Color(255, 255, 255, CInt(255 * _interfaceFade)))
+            GetFontRenderer().DrawString(FontManager.MainFont, p.HP & " / " & p.MaxHP, New Vector2(position.X + 116, position.Y + 50), New Color(255, 255, 255, CInt(255 * _interfaceFade)))
 
             'status condition
             Dim StatusTexture As Texture2D = BattleStats.GetStatImage(p.Status)

@@ -109,7 +109,7 @@
                 If ControllerHandler.IsConnected() Then
                     text = Localization.GetString("save_screen_press", "Press") & "<button>" & Localization.GetString("save_screen_to_continue", "to continue.")
                     textSizeUntilButton = FontManager.InGameFont.MeasureString(text.GetSplit(0, "<button>"))
-                    text = text.Replace("<button>", "        ")
+                    text = text.Replace("<button>", "     ")
                 Else
                     text = Localization.GetString("save_screen_press", "Press") & " [" & KeyBindings.BackKey1.ToString() & "] " & Localization.GetString("save_screen_to_continue", "to continue.")
                 End If
@@ -120,7 +120,7 @@
                                                                                    Delta_Y + 350 - textSize.Y / 2.0F), Color.DarkBlue)
 
                 If ControllerHandler.IsConnected() Then
-                    SpriteBatch.Draw(TextureManager.GetTexture("GUI\GamePad\xboxControllerButtonB"), New Rectangle(CInt(Delta_X + 610 - textSize.X / 2 + textSizeUntilButton.X + FontManager.InGameFont.MeasureString("  ").X + 2), CInt(Delta_Y + 350 - textSize.Y / 2), 20, 20), Color.White)
+                    SpriteBatch.Draw(TextureManager.GetTexture("GUI\GamePad\xboxControllerButtonB"), New Rectangle(CInt(Delta_X + 610 - textSize.X / 2 + textSizeUntilButton.X + FontManager.InGameFont.MeasureString(" ").X + 2), CInt(Delta_Y + 350 - textSize.Y / 2), 20, 20), Color.White)
                 End If
 
             Else

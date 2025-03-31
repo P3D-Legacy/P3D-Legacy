@@ -342,7 +342,7 @@
                 Dim xOffset As Integer = 80
                 Dim height As Integer = 32
                 If y = 0 Then
-                    xOffset = 4
+                    xOffset = 0
                     yOffset = 0
                     height = 64
                 End If
@@ -355,11 +355,11 @@
                 Dim multiColor As Color = New Color(255, 255, 255, CInt(200 * _fadeIn * _pageFade))
 
                 If natureStatMulti > 1.0F Then
-                    multiColor = New Color(255, 180, 180, CInt(200 * _fadeIn * _pageFade))
+                    multiColor = New Color(255, 200, 200, CInt(200 * _fadeIn * _pageFade))
                 ElseIf natureStatMulti < 1.0F Then
-                    multiColor = New Color(180, 180, 255, CInt(200 * _fadeIn * _pageFade))
+                    multiColor = New Color(200, 200, 255, CInt(200 * _fadeIn * _pageFade))
                 End If
-                SpriteBatch.DrawString(FontManager.MainFont, statValues(y), New Vector2(DeltaX + 480 + 32 + xOffset - 12, DeltaY + 48 + y * 32 + yOffset), multiColor)
+                SpriteBatch.DrawString(FontManager.MainFont, statValues(y), New Vector2(DeltaX + 480 + 32 + xOffset - 4, DeltaY + 48 + y * 32 + yOffset), multiColor)
             Next
 
             Dim pokeInfoTexture = TextureManager.GetTexture("GUI\Menus\PokemonInfo")
@@ -432,12 +432,12 @@
 
             'EXP:
             Canvas.DrawRectangle(New Rectangle(DeltaX + 734 - 12, DeltaY + 362 + 64, 300 + 24, 32), New Color(0, 0, 0, CInt(100 * _interfaceFade * _pageFade)))
-            SpriteBatch.DrawString(FontManager.MainFont, Localization.GetString("property_ExpPoints", "Exp. Points"), New Vector2(DeltaX + 744, DeltaY + 366 + 64), New Color(255, 255, 255, CInt(220 * _interfaceFade * _pageFade)))
+            SpriteBatch.DrawString(FontManager.MainFont, Localization.GetString("property_ExpPoints", "Exp. Points"), New Vector2(DeltaX + 734, DeltaY + 366 + 64), New Color(255, 255, 255, CInt(220 * _interfaceFade * _pageFade)))
             SpriteBatch.DrawString(FontManager.MainFont, .Experience.ToString(), New Vector2(DeltaX + 744 + FontManager.MainFont.MeasureString(Localization.GetString("property_ExpPoints", "Exp. Points")).X + 24, DeltaY + 366 + 64), New Color(255, 255, 255, CInt(220 * _fadeIn * _pageFade)))
 
             If .Level < CInt(GameModeManager.GetGameRuleValue("MaxLevel", "100")) Then
                 Canvas.DrawRectangle(New Rectangle(DeltaX + 734 - 12, DeltaY + 394 + 64, 300 + 24, 64), New Color(0, 0, 0, CInt(70 * _interfaceFade * _pageFade)))
-                SpriteBatch.DrawString(FontManager.MainFont, Localization.GetString("summary_ExpToNextLv", "To Next Lv."), New Vector2(DeltaX + 744 - 12, DeltaY + 398 + 64), New Color(255, 255, 255, CInt(220 * _interfaceFade * _pageFade)))
+                SpriteBatch.DrawString(FontManager.MainFont, Localization.GetString("summary_ExpToNextLv", "To Next Lv."), New Vector2(DeltaX + 734, DeltaY + 398 + 64), New Color(255, 255, 255, CInt(220 * _interfaceFade * _pageFade)))
 
                 If .NeedExperience(.Level + 1) - .Experience > 0 Then
                     SpriteBatch.DrawString(FontManager.MainFont, CStr(.NeedExperience(.Level + 1) - .Experience), New Vector2(DeltaX + 744 + FontManager.MainFont.MeasureString(Localization.GetString("summary_ExpToNextLv", "To Next Lv.")).X, DeltaY + 398 + 64), New Color(255, 255, 255, CInt(220 * _fadeIn * _pageFade)))
@@ -495,7 +495,7 @@
 
             'Switch Page Hint
             Canvas.DrawRectangle(New Rectangle(DeltaX + 350, DeltaY + 6, 300 + 24, 32), New Color(0, 0, 0, CInt(50 * _interfaceFade * _pageFade)))
-            SpriteBatch.DrawString(FontManager.MainFont, ScriptVersion2.ScriptCommander.Parse(Localization.GetString("summary_hint_ViewMoves", "View Moves: [<system.button(movebackward)>] / Down")).ToString, New Vector2(DeltaX + 350 + 22, DeltaY + 10), New Color(255, 255, 255, CInt(220 * _interfaceFade * _pageFade)))
+            SpriteBatch.DrawString(FontManager.MainFont, ScriptVersion2.ScriptCommander.Parse(Localization.GetString("summary_hint_ViewMoves", "View Moves: [<system.button(movebackward)>] / Down")).ToString, New Vector2(DeltaX + 350 + 8, DeltaY + 10), New Color(255, 255, 255, CInt(220 * _interfaceFade * _pageFade)))
 
         End With
     End Sub
@@ -568,7 +568,7 @@
 
             'Switch Page Hint
             Canvas.DrawRectangle(New Rectangle(DeltaX + 350, DeltaY + 6, 300 + 24, 32), New Color(0, 0, 0, CInt(50 * _interfaceFade * _pageFade)))
-            SpriteBatch.DrawString(FontManager.MainFont, ScriptVersion2.ScriptCommander.Parse(Localization.GetString("summary_hint_ViewInfo", "View Info: [<system.button(moveforward)>] / Up")).ToString, New Vector2(DeltaX + 350 + 22, DeltaY + 10), New Color(255, 255, 255, CInt(220 * _interfaceFade * _pageFade)))
+            SpriteBatch.DrawString(FontManager.MainFont, ScriptVersion2.ScriptCommander.Parse(Localization.GetString("summary_hint_ViewInfo", "View Info: [<system.button(moveforward)>] / Up")).ToString, New Vector2(DeltaX + 350 + 8, DeltaY + 10), New Color(255, 255, 255, CInt(220 * _interfaceFade * _pageFade)))
 
         End With
     End Sub

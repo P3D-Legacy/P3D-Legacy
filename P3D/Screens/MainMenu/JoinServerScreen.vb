@@ -557,7 +557,7 @@ Public Class JoinServerScreen
         End Function
 
         Public Sub Draw(ByVal startPos As Vector2, ByVal selected As Boolean)
-            Dim width As Integer = 500
+            Dim width As Integer = 608
             startPos.X = CInt(Core.ScreenSize.Width / 2 - width / 2)
             If selected = True Then
                 Canvas.DrawRectangle(New Rectangle(CInt(startPos.X), CInt(startPos.Y), width, 80), New Color(0, 0, 0, 200), True)

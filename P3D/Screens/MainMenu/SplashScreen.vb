@@ -21,6 +21,7 @@ Friend Class SplashScreen
     Private _loadThread As Thread
     Private _startedLoad As Boolean
     Private _game As GameController
+    Private _croppedLicenseText As String = ""
 
     Public Sub New(ByVal GameReference As GameController)
         _game = GameReference
@@ -32,10 +33,11 @@ Friend Class SplashScreen
         CanDrawDebug = False
         MouseVisible = False
         CanGoFullscreen = True
-
         _monoGameLogo = TextureManager.LoadDirect("GUI\Logos\MonoGame.png")
         _licenseFont = Core.Content.Load(Of SpriteFont)("Fonts\BMP\mainFont")
-        _licenseTextSize = _licenseFont.MeasureString(LICENSE_TEXT)
+
+        _croppedLicenseText = LICENSE_TEXT.CropStringToWidth(_licenseFont, MathHelper.Max(Core.windowSize.X - 64, 800))
+        _licenseTextSize = _licenseFont.MeasureString(_croppedLicenseText)
 
         Me.Identification = Identifications.SplashScreen
     End Sub
@@ -46,7 +48,7 @@ Friend Class SplashScreen
         Core.SpriteBatch.Draw(_monoGameLogo, New Vector2(CSng(Core.windowSize.Width / 2 - _monoGameLogo.Width / 2),
                                                          CSng(Core.windowSize.Height / 2 - _monoGameLogo.Height / 2 - 50)), Color.White)
 
-        Core.SpriteBatch.DrawString(_licenseFont, LICENSE_TEXT, New Vector2(CSng(Core.windowSize.Width / 2 - _licenseTextSize.X / 2),
+        Core.SpriteBatch.DrawString(_licenseFont, _croppedLicenseText, New Vector2(CSng(Core.windowSize.Width / 2 - _licenseTextSize.X / 2),
                                                                             CSng(Core.windowSize.Height - _licenseTextSize.Y - 50)), Color.White)
     End Sub
 
