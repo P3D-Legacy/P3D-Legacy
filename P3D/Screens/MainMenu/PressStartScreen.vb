@@ -450,6 +450,9 @@ Public Class NewMainMenuScreen
                                         Else
                                             GameModeManager.SetGameModePointer("Kolben")
                                         End If
+                                        Localization.ReloadGameModeTokens()
+                                        _menuTexture = TextureManager.GetTexture("GUI\Menus\MainMenu")
+                                        _oldMenuTexture = TextureManager.GetTexture("GUI\Menus\Menu")
                                     End If
                                 Next
                                 For x = 0 To _OptionsProfiles.Count - 1
@@ -487,6 +490,9 @@ Public Class NewMainMenuScreen
                                         Else
                                             GameModeManager.SetGameModePointer("Kolben")
                                         End If
+                                        Localization.ReloadGameModeTokens()
+                                        _menuTexture = TextureManager.GetTexture("GUI\Menus\MainMenu")
+                                        _oldMenuTexture = TextureManager.GetTexture("GUI\Menus\Menu")
                                     End If
                                 Next
                                 For x = 0 To _OptionsProfiles.Count - 1
