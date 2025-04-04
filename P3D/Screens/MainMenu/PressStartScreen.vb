@@ -1554,6 +1554,7 @@ Public Class NewMainMenuScreen
                     Else
                         If _gameModeExists Then
                             GameModeManager.SetGameModePointer(_gameMode)
+                            MusicManager.LoadMusic(True)
                             Localization.ReloadGameModeTokens()
                             FontManager.LoadFonts()
                             Water.ClearAnimationResources()
