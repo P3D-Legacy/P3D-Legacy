@@ -678,7 +678,7 @@
                     _mainMenuItemList.Add(New MainMenuItem(3, Localization.GetString("battle_action_Run", "Run"), 3, AddressOf MainMenuRun))
 
                 Case BattleSystem.BattleScreen.BattleModes.BugContest
-                    _mainMenuItemList.Add(New MainMenuItem(0, Localization.GetString("battle_action_battle", "Battle"), 0, AddressOf MainMenuOpenBattleMenu))
+                    _mainMenuItemList.Add(New MainMenuItem(0, Localization.GetString("battle_action_Battle", "Battle"), 0, AddressOf MainMenuOpenBattleMenu))
 
                     Dim sportBallText As String = Localization.GetString("item_name_177", "Sport Ball") & " x" & Core.Player.Inventory.GetItemAmount(177.ToString).ToString()
                     If Core.Player.Inventory.GetItemAmount(177.ToString) = 0 Then
@@ -709,7 +709,7 @@
                         End If
                         BattleScreen.OppFaint = False
                     Else
-                        _mainMenuItemList.Add(New MainMenuItem(0, Localization.GetString("battle_action_battle", "Battle"), 0, AddressOf MainMenuOpenBattleMenu))
+                        _mainMenuItemList.Add(New MainMenuItem(0, Localization.GetString("battle_action_Battle", "Battle"), 0, AddressOf MainMenuOpenBattleMenu))
                         _mainMenuItemList.Add(New MainMenuItem(1, "Pokémon", 1, AddressOf MainMenuOpenPokemon))
                         _mainMenuItemList.Add(New MainMenuItem(2, Localization.GetString("battle_action_Bag", "Bag"), 2, AddressOf MainMenuOpenBag))
 
@@ -722,7 +722,7 @@
                     End If
 
                 Case BattleSystem.BattleScreen.BattleModes.PVP
-                    _mainMenuItemList.Add(New MainMenuItem(0, Localization.GetString("battle_action_battle", "Battle"), 0, AddressOf MainMenuOpenBattleMenu))
+                    _mainMenuItemList.Add(New MainMenuItem(0, Localization.GetString("battle_action_Battle", "Battle"), 0, AddressOf MainMenuOpenBattleMenu))
                     _mainMenuItemList.Add(New MainMenuItem(1, "Pokémon", 1, AddressOf MainMenuOpenPokemon))
                     _mainMenuItemList.Add(New MainMenuItem(3, Localization.GetString("battle_action_Surrender", "Surrender"), 2, AddressOf MainMenuOpenBag))
             End Select
