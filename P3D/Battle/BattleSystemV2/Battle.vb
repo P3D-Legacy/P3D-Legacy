@@ -35,14 +35,20 @@
                 If BattleScreen.FieldEffects.OwnUsedRandomMove = True Then
                     For Each a As Attack In Pokemon.Attacks
                         If a.Name.ToLower = "metronome" OrElse a.IsGameModeMove AndAlso a.gmUseRandomMove = True Then
-                            a.CurrentPP -= 1
+                            If a.CurrentPP > 0 Then
+                                a.CurrentPP -= 1
+                                Exit For
+                            End If
                         End If
                     Next
                 End If
                 If BattleScreen.FieldEffects.OwnUsedMirrorMove = True Then
                     For Each a As Attack In Pokemon.Attacks
                         If a.Name.ToLower = "mirror move" Then
-                            a.CurrentPP -= 1
+                            If a.CurrentPP > 0 Then
+                                a.CurrentPP -= 1
+                                Exit For
+                            End If
                         End If
                     Next
                 End If
@@ -53,14 +59,20 @@
                 If BattleScreen.FieldEffects.OppUsedRandomMove = True Then
                     For Each a As Attack In Pokemon.Attacks
                         If a.Name.ToLower = "metronome" OrElse a.IsGameModeMove AndAlso a.gmUseRandomMove = True Then
-                            a.CurrentPP -= 1
+                            If a.CurrentPP > 0 Then
+                                a.CurrentPP -= 1
+                                Exit For
+                            End If
                         End If
                     Next
                 End If
                 If BattleScreen.FieldEffects.OppUsedMirrorMove = True Then
                     For Each a As Attack In Pokemon.Attacks
                         If a.Name.ToLower = "mirror move" Then
-                            a.CurrentPP -= 1
+                            If a.CurrentPP > 0 Then
+                                a.CurrentPP -= 1
+                                Exit For
+                            End If
                         End If
                     Next
                 End If
@@ -1807,9 +1819,15 @@
             BattleScreen.BattleQuery.Add(New TextQueryObject(p.GetDisplayName() & " used " & moveUsed.Name & "!"))
 
             If moveUsed.DeductPP(own, BattleScreen) = True Then
-                moveUsed.CurrentPP -= 1
-                If op.Ability.Name.ToLower() = "pressure" And moveUsed.CurrentPP > 0 Then
+                If moveUsed.CurrentPP > 0 Then
                     moveUsed.CurrentPP -= 1
+                    If op.Ability.Name.ToLower() = "pressure" And moveUsed.CurrentPP > 0 Then
+                        moveUsed.CurrentPP -= 1
+                    End If
+                Else
+                    BattleScreen.BattleQuery.Add(New TextQueryObject("But it failed..."))
+                    moveUsed.MoveMisses(own, BattleScreen)
+                    Exit Sub
                 End If
             End If
 
