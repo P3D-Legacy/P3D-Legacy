@@ -549,12 +549,14 @@ Public Class PokedexScreen
         If CHabitat Is Nothing Then
             Core.SpriteBatch.DrawString(FontManager.MainFont, Profile.Pokedex.Name, New Vector2(60, 55), Color.White, 0.0F, Vector2.Zero, 1.5F, SpriteEffects.None, 0.0F)
             Core.SpriteBatch.DrawString(FontManager.MainFont, Localization.GetString("pokedex_seen", "Seen:") & " " & Environment.NewLine & Environment.NewLine & Localization.GetString("pokedex_obtained", "Obtained:") & " ", New Vector2(420, 45), Color.White)
-            Core.SpriteBatch.DrawString(FontManager.MainFont, Profile.Seen + Profile.Obtained & Environment.NewLine & Environment.NewLine & Profile.Obtained, New Vector2(540, 45), Color.Black)
+            Dim SeenCaughtTitleWidth As Integer = CInt(FontManager.MainFont.MeasureString(Localization.GetString("pokedex_seen", "Seen:") & " " & Environment.NewLine & Environment.NewLine & Localization.GetString("pokedex_obtained", "Obtained:") & " ").X)
+            Core.SpriteBatch.DrawString(FontManager.MainFont, Profile.Seen + Profile.Obtained & Environment.NewLine & Environment.NewLine & Profile.Obtained, New Vector2(420 + SeenCaughtTitleWidth, 45), Color.Black)
         Else
             Core.SpriteBatch.DrawString(FontManager.MainFont, CHabitat.Name, New Vector2(60, 80), Color.White, 0.0F, Vector2.Zero, 1.5F, SpriteEffects.None, 0.0F)
             Core.SpriteBatch.Draw(CHabitat.Texture, New Rectangle(60, 32, 64, 48), Color.White)
-            Core.SpriteBatch.DrawString(FontManager.MainFont, Localization.GetString("pokedex_available", "Available:") & " " & Environment.NewLine & Environment.NewLine & Localization.GetString("pokedex_obtained", "Obtained:"), New Vector2(420, 45), Color.White)
-            Core.SpriteBatch.DrawString(FontManager.MainFont, CHabitat.PokemonList.Count & Environment.NewLine & Environment.NewLine & CHabitat.PokemonCaught, New Vector2(540, 45), Color.Black)
+            Core.SpriteBatch.DrawString(FontManager.MainFont, Localization.GetString("pokedex_available", "Available:") & Environment.NewLine & Environment.NewLine & Localization.GetString("pokedex_obtained", "Obtained:"), New Vector2(420, 45), Color.White)
+            Dim AvailableObtainedTitleWidth As Integer = CInt(FontManager.MainFont.MeasureString(Localization.GetString("pokedex_available", "Available:") & Environment.NewLine & Environment.NewLine & Localization.GetString("pokedex_obtained", "Obtained:")).X)
+            Core.SpriteBatch.DrawString(FontManager.MainFont, CHabitat.PokemonList.Count & Environment.NewLine & Environment.NewLine & CHabitat.PokemonCaught, New Vector2(420 + AvailableObtainedTitleWidth, 45), Color.Black)
 
             Dim progressTexture As Texture2D = Me.CHabitat.ProgressTexture
             If Not progressTexture Is Nothing Then
@@ -668,8 +670,9 @@ Public Class PokedexScreen
                 End Select
             Next
         End If
+        Dim OrderFilterTitleWidth As Integer = CInt(FontManager.MainFont.MeasureString(Localization.GetString("pokedex_order", "Order:") & Environment.NewLine & Localization.GetString("pokedex_filter", "Filter:")).X)
         Core.SpriteBatch.DrawString(FontManager.MainFont, Localization.GetString("pokedex_order", "Order:") & Environment.NewLine & Localization.GetString("pokedex_filter", "Filter:") & Environment.NewLine & Localization.GetString("pokedex_search_hint", "Press [<system.button(special)>] or Select to search."), New Vector2(685, 45), Color.White)
-        Core.SpriteBatch.DrawString(FontManager.MainFont, orderText & Environment.NewLine & filterText, New Vector2(800, 45), Color.Black)
+        Core.SpriteBatch.DrawString(FontManager.MainFont, orderText & Environment.NewLine & filterText, New Vector2(685 + OrderFilterTitleWidth + CInt(FontManager.MainFont.MeasureString(" ").X), 45), Color.Black)
 
         If menu.Visible = True Then
             menu.Draw()
