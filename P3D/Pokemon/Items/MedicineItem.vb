@@ -37,6 +37,14 @@ Namespace Items
 
                     Return False
                 Else
+                    Dim s As Screen = Core.CurrentScreen
+                    While s.Identification <> Screen.Identifications.BattleScreen AndAlso s.PreScreen IsNot Nothing
+                        s = s.PreScreen
+                    End While
+                    If s.Identification = Screen.Identifications.BattleScreen Then
+                        CType(s, BattleSystem.BattleScreen).BattleMenu.Visible = False
+                    End If
+
                     Dim diff As Integer = Pokemon.MaxHP - Pokemon.HP
                     diff = CInt(MathHelper.Clamp(diff, 1, HP))
 
@@ -73,6 +81,14 @@ Namespace Items
 
                 Return False
             ElseIf Pokemon.Status = P3D.Pokemon.StatusProblems.Poison Or Pokemon.Status = P3D.Pokemon.StatusProblems.BadPoison Then
+                Dim s As Screen = Core.CurrentScreen
+                While s.Identification <> Screen.Identifications.BattleScreen AndAlso s.PreScreen IsNot Nothing
+                    s = s.PreScreen
+                End While
+                If s.Identification = Screen.Identifications.BattleScreen Then
+                    CType(s, BattleSystem.BattleScreen).BattleMenu.Visible = False
+                End If
+
                 Pokemon.Status = P3D.Pokemon.StatusProblems.None
 
                 Screen.TextBox.reDelay = 0.0F
@@ -110,6 +126,14 @@ Namespace Items
 
                 Return False
             ElseIf Pokemon.Status = P3D.Pokemon.StatusProblems.Sleep Then
+                Dim s As Screen = Core.CurrentScreen
+                While s.Identification <> Screen.Identifications.BattleScreen AndAlso s.PreScreen IsNot Nothing
+                    s = s.PreScreen
+                End While
+                If s.Identification = Screen.Identifications.BattleScreen Then
+                    CType(s, BattleSystem.BattleScreen).BattleMenu.Visible = False
+                End If
+
                 Pokemon.Status = P3D.Pokemon.StatusProblems.None
 
                 Screen.TextBox.reDelay = 0.0F
@@ -147,6 +171,14 @@ Namespace Items
 
                 Return False
             ElseIf Pokemon.Status = P3D.Pokemon.StatusProblems.Burn Then
+                Dim s As Screen = Core.CurrentScreen
+                While s.Identification <> Screen.Identifications.BattleScreen AndAlso s.PreScreen IsNot Nothing
+                    s = s.PreScreen
+                End While
+                If s.Identification = Screen.Identifications.BattleScreen Then
+                    CType(s, BattleSystem.BattleScreen).BattleMenu.Visible = False
+                End If
+
                 Pokemon.Status = P3D.Pokemon.StatusProblems.None
 
                 Screen.TextBox.reDelay = 0.0F
@@ -184,6 +216,14 @@ Namespace Items
 
                 Return False
             ElseIf Pokemon.Status = P3D.Pokemon.StatusProblems.Freeze Then
+                Dim s As Screen = Core.CurrentScreen
+                While s.Identification <> Screen.Identifications.BattleScreen AndAlso s.PreScreen IsNot Nothing
+                    s = s.PreScreen
+                End While
+                If s.Identification = Screen.Identifications.BattleScreen Then
+                    CType(s, BattleSystem.BattleScreen).BattleMenu.Visible = False
+                End If
+
                 Pokemon.Status = P3D.Pokemon.StatusProblems.None
 
                 Core.Player.Inventory.RemoveItem(Me.ID.ToString, 1)
@@ -223,6 +263,14 @@ Namespace Items
 
                 Return False
             ElseIf Pokemon.Status = P3D.Pokemon.StatusProblems.Paralyzed Then
+                Dim s As Screen = Core.CurrentScreen
+                While s.Identification <> Screen.Identifications.BattleScreen AndAlso s.PreScreen IsNot Nothing
+                    s = s.PreScreen
+                End While
+                If s.Identification = Screen.Identifications.BattleScreen Then
+                    CType(s, BattleSystem.BattleScreen).BattleMenu.Visible = False
+                End If
+
                 Pokemon.Status = P3D.Pokemon.StatusProblems.None
 
                 Core.Player.Inventory.RemoveItem(Me.ID.ToString, 1)
