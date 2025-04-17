@@ -1490,7 +1490,7 @@
                     truantTurn = BattleScreen.FieldEffects.OppTruantRound
                 End If
                 If truantTurn = 1 Then
-                    BattleScreen.BattleQuery.Add(New TextQueryObject(p.GetDisplayName() & " is loafing around."))
+                    BattleScreen.BattleQuery.Add(New TextQueryObject(p.GetDisplayName() & " is loafing around!"))
                     Exit Sub
                 End If
             End If
@@ -2444,7 +2444,7 @@
                                 BattleScreen.BattleQuery.Add(New TextQueryObject("It's a critical hit!"))
 
                                 If op.Ability.Name.ToLower() = "anger point" And op.StatAttack < 6 And op.HP > 0 Then
-                                    BattleScreen.BattleQuery.Add(New TextQueryObject(op.GetDisplayName() & "s Anger Point maxed it's attack!"))
+                                    BattleScreen.BattleQuery.Add(New TextQueryObject(op.GetDisplayName() & "'s Anger Point maxed it's attack!"))
                                     op.StatAttack = 6
                                 End If
                             End If
@@ -2864,7 +2864,7 @@
                             lastMove = BattleScreen.FieldEffects.OwnLastMove
                         End If
                         If moveUsed.SnatchAffected = True AndAlso Not lastMove Is Nothing AndAlso lastMove.ID = 289 Then 'Snatch
-                            BattleScreen.BattleQuery.Add(New TextQueryObject(op.GetDisplayName() & " snatched the " & p.GetDisplayName() & "'s move!"))
+                            BattleScreen.BattleQuery.Add(New TextQueryObject(op.GetDisplayName() & " snatched " & p.GetDisplayName() & "'s move!"))
 
                             moveUsed.MoveHits(Not own, BattleScreen)
                         Else
@@ -3262,7 +3262,7 @@
                         End If
                         If safeGuard > 0 AndAlso op.Ability.Name.ToLower() <> "infiltrator" Then
                             Me.ChangeCameraAngle(1, own, BattleScreen)
-                            BattleScreen.BattleQuery.Add(New TextQueryObject("Safeguard prevented the freezing."))
+                            BattleScreen.BattleQuery.Add(New TextQueryObject("Safeguard prevented the freeze."))
                             Return False
                         Else
                             'Works!
@@ -3755,7 +3755,7 @@
                                             'Do nothing
                                         Case Else 'Print message given in 'message'
                                             BattleScreen.BattleQuery.Add(New TextQueryObject(message))
-                                            BattleScreen.BattleQuery.Add(New TextQueryObject(p.GetDisplayName() & " is poisoned"))
+                                            BattleScreen.BattleQuery.Add(New TextQueryObject(p.GetDisplayName() & " is poisoned!"))
                                     End Select
                                 End If
                                 If p.Ability.Name.ToLower() = "synchronize" AndAlso from <> own Then
@@ -4223,7 +4223,7 @@
                         mist = BattleScreen.FieldEffects.OppMist
                     End If
                     If mist > 0 And op.Ability.Name.ToLower() <> "infiltrator" Then
-                        BattleScreen.BattleQuery.Add(New TextQueryObject("The Mist prevented the status change!"))
+                        BattleScreen.BattleQuery.Add(New TextQueryObject("The mist prevented the status change!"))
                         Return False
                     End If
                 End If
@@ -5313,7 +5313,7 @@
                                 BattleScreen.BattleQuery.Add(New TextQueryObject(p.GetDisplayName() & " transformed into " & op.GetName & "!"))
                             Else
                                 'Fails
-                                BattleScreen.BattleQuery.Add(New TextQueryObject("imposter failed!"))
+                                BattleScreen.BattleQuery.Add(New TextQueryObject("Imposter failed!"))
                             End If
                     End Select
                 End If
@@ -5845,7 +5845,7 @@
                 If .FieldEffects.OwnSafeguard > 0 Then 'Stop safeguard
                     .FieldEffects.OwnSafeguard -= 1
                     If .FieldEffects.OwnSafeguard = 0 Then
-                        .BattleQuery.Add(New TextQueryObject("The Safeguard effect wore off!"))
+                        .BattleQuery.Add(New TextQueryObject("Own Safeguard effect wore off!"))
                     End If
                 End If
 
@@ -6429,14 +6429,14 @@
                 If .FieldEffects.OwnTaunt > 0 And .OwnPokemon.HP > 0 Then 'Taunt
                     .FieldEffects.OwnTaunt -= 1
                     If .FieldEffects.OwnTaunt = 0 Then
-                        .BattleQuery.Add(New TextQueryObject("The Taunt effect wore off."))
+                        .BattleQuery.Add(New TextQueryObject("Own Taunt effect wore off."))
                     End If
                 End If
 
                 If .FieldEffects.OwnMagnetRise > 0 And .OwnPokemon.HP > 0 Then 'Magnetrise
                     .FieldEffects.OwnMagnetRise -= 1
                     If .FieldEffects.OwnMagnetRise = 0 Then
-                        .BattleQuery.Add(New TextQueryObject("The Magnet Rise effect faded."))
+                        .BattleQuery.Add(New TextQueryObject("Own Magnet Rise effect faded."))
                     End If
                 End If
 
@@ -6740,7 +6740,7 @@
                 If .FieldEffects.OppSafeguard > 0 Then 'Stop safeguard
                     .FieldEffects.OppSafeguard -= 1
                     If .FieldEffects.OppSafeguard = 0 Then
-                        .BattleQuery.Add(New TextQueryObject("The Safeguard effect wore off!"))
+                        .BattleQuery.Add(New TextQueryObject("Opponent's Safeguard effect wore off!"))
                     End If
                 End If
 
@@ -7323,21 +7323,21 @@
                 If .FieldEffects.OppTaunt > 0 And .OppPokemon.HP > 0 Then 'Taunt
                     .FieldEffects.OppTaunt -= 1
                     If .FieldEffects.OppTaunt = 0 Then
-                        .BattleQuery.Add(New TextQueryObject("The opponent's Taunt effect wore off"))
+                        .BattleQuery.Add(New TextQueryObject("Opponent's Taunt effect wore off."))
                     End If
                 End If
 
                 If .FieldEffects.OppMagnetRise > 0 And .OppPokemon.HP > 0 Then 'Magnetrise
                     .FieldEffects.OppMagnetRise -= 1
                     If .FieldEffects.OppMagnetRise = 0 Then
-                        .BattleQuery.Add(New TextQueryObject("The opponent's Magnet Rise effect faded."))
+                        .BattleQuery.Add(New TextQueryObject("Opponent's Magnet Rise effect faded."))
                     End If
                 End If
 
                 If .FieldEffects.OppHealBlock > 0 Then 'Healblock
                     .FieldEffects.OppHealBlock -= 1
                     If .FieldEffects.OppHealBlock = 0 Then
-                        .BattleQuery.Add(New TextQueryObject("The effect of the opponent's Heal Block faded."))
+                        .BattleQuery.Add(New TextQueryObject("The effects of the opponent's Heal Block faded."))
                     End If
                 End If
 
@@ -7853,7 +7853,7 @@
                 If spikeAffected = True Then
                     If .FieldEffects.OppStickyWeb > 0 Then
 
-                        LowerStat(True, True, BattleScreen, "Speed", 1, "Your pokemon was caught in a Sticky Web!", "stickyweb")
+                        LowerStat(True, True, BattleScreen, "Speed", 1, "Your Pokémon was caught in a Sticky Web!", "stickyweb")
 
 
                     End If
@@ -8281,7 +8281,7 @@
                     'Sticky Web
                     If spikeAffected = True Then
                         If .FieldEffects.OwnStickyWeb > 0 Then
-                            LowerStat(False, False, BattleScreen, "Speed", 1, "The opposing pokemon was caught in a Sticky Web!", "stickyweb")
+                            LowerStat(False, False, BattleScreen, "Speed", 1, "The opposing Pokémon was caught in a Sticky Web!", "stickyweb")
                         End If
                     End If
                     If spikeAffected = True Then
