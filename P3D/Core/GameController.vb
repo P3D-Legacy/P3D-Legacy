@@ -83,6 +83,15 @@ Public Class GameController
 
         _componentManager = New ComponentManager()
         GameInstanceProvider.SetInstance(Me)
+
+        If Threading.Thread.CurrentThread.CurrentCulture.Name = "tr-TR" Then
+
+            Globalization.CultureInfo.DefaultThreadCurrentCulture = Globalization.CultureInfo.CreateSpecificCulture("en-US")
+            Globalization.CultureInfo.DefaultThreadCurrentUICulture = Globalization.CultureInfo.CreateSpecificCulture("en-US")
+
+            Threading.Thread.CurrentThread.CurrentCulture = Globalization.CultureInfo.CreateSpecificCulture("en-US")
+            Threading.Thread.CurrentThread.CurrentUICulture = Globalization.CultureInfo.CreateSpecificCulture("en-US")
+        End If
     End Sub
 
     Protected Overrides Sub Initialize()
