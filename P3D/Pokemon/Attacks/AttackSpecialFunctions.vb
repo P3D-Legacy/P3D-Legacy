@@ -231,7 +231,9 @@
                                 Dim FailMessage As String = ""
 
                                 If f.Split(CChar(",")).Count > 2 Then
-                                    Target = CBool(f.GetSplit(2, ","))
+                                    If f.GetSplit(2, ",") <> "" Then
+                                        Target = CBool(f.GetSplit(2, ","))
+                                    End If
                                     If f.Split(CChar(",")).Count > 3 Then
                                         Message = f.GetSplit(3, ",")
                                         If f.Split(CChar(",")).Count > 4 Then
@@ -263,12 +265,14 @@
                                 Dim FailMessage As String = ""
 
                                 If f.Split(CChar(",")).Count > 2 Then
-                                    Target = CBool(f.GetSplit(2, ","))
+                                    If f.GetSplit(2, ",") <> "" Then
+                                        Target = CBool(f.GetSplit(2, ","))
+                                    End If
                                     If f.Split(CChar(",")).Count > 3 Then
                                         Message = f.GetSplit(3, ",")
                                         If f.Split(CChar(",")).Count > 4 Then
-                                            If CInt(f.GetSplit(4, ",")) > 0 Then
-                                                If f.GetSplit(4, ",") <> "" Then
+                                            If f.GetSplit(4, ",") <> "" Then
+                                                If CInt(f.GetSplit(4, ",")) > 0 Then
                                                     If CInt(f.GetSplit(4, ",")) > 0 Then
                                                         LowerAmount = CInt(f.GetSplit(4, ","))
                                                     End If
