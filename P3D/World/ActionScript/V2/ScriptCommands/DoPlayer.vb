@@ -457,6 +457,8 @@
                 Case "showbattleanimations"
                     Core.Player.ShowBattleAnimations = CInt(argument)
                     IsReady = True
+                Case "setdifficulty"
+                    Core.Player.DifficultyMode = CInt(argument).Clamp(0, 2)
                 Case "setgender"
                     Select Case argument
                         Case "0", "Male", "male"
