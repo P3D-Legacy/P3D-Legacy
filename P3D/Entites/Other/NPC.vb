@@ -82,10 +82,10 @@
             Me.IsTrainer = True
 
             Me.TrainerSight = CInt(Me.AdditionalValue.GetSplit(0, "|"))
-            Me.AdditionalValue = Me.AdditionalValue.GetSplit(1, "|")
-            If Me.AdditionalValue.Split.Count > 2 Then
+            If Me.AdditionalValue.Split("|").Count > 2 Then
                 Me.TrainerCheckCollision = CBool(Me.AdditionalValue.GetSplit(2, "|"))
             End If
+            Me.AdditionalValue = Me.AdditionalValue.GetSplit(1, "|")
         End If
 
         Me.DropUpdateUnlessDrawn = False
@@ -489,10 +489,10 @@
 
                                     With CType(Screen.Camera, OverworldCamera)
                                         If CType(Screen.Camera, OverworldCamera).ThirdPerson = True And IsOnScreen() = False Then
-                                            s &= "@camera.setfocus(npc," & Me.NPCID & ")" & Environment.NewLine
-                                            Dim cPosition = .ThirdPersonOffset.X.ToString() & "," & .ThirdPersonOffset.Y.ToString() & "," & .ThirdPersonOffset.Z.ToString()
-                                            s &= "@sound.play(Emote_Exclamation)" & Environment.NewLine &
-                                                 "@entity.showmessagebulb(1|" & Me.Position.X + offset.X & "|" & Me.Position.Y + 0.7F & "|" & Me.Position.Z + offset.Y & ")" & Environment.NewLine &
+                                            Dim cPosition = .ThirdPersonOffset.X.ToString().ReplaceDecSeparator & "," & .ThirdPersonOffset.Y.ToString().ReplaceDecSeparator & "," & .ThirdPersonOffset.Z.ToString().ReplaceDecSeparator
+                                            s &= "@camera.setfocus(npc," & Me.NPCID & ")" & Environment.NewLine &
+                                                 "@sound.play(Emote_Exclamation)" & Environment.NewLine &
+                                                 "@entity.showmessagebulb(1|" & CStr(Me.Position.X + offset.X & "|" & Me.Position.Y + 0.7F & "|" & Me.Position.Z + offset.Y & ")").ReplaceDecSeparator & Environment.NewLine &
                                                  "@npc.move(" & Me.NPCID & "," & distance - 1 & ")" & Environment.NewLine &
                                                  "@script.start(" & Me.AdditionalValue & ")" & Environment.NewLine &
                                                  "@camera.resetfocus" & Environment.NewLine &
@@ -500,7 +500,7 @@
                                                  ":end"
                                         Else
                                             s &= "@sound.play(Emote_Exclamation)" & Environment.NewLine &
-                                            "@entity.showmessagebulb(1|" & Me.Position.X + offset.X & "|" & Me.Position.Y + 0.7F & "|" & Me.Position.Z + offset.Y & ")" & Environment.NewLine &
+                                            "@entity.showmessagebulb(1|" & CStr(Me.Position.X + offset.X & "|" & Me.Position.Y + 0.7F & "|" & Me.Position.Z + offset.Y & ")").ReplaceDecSeparator & Environment.NewLine &
                                             "@npc.move(" & Me.NPCID & "," & distance - 1 & ")" & Environment.NewLine &
                                             "@script.start(" & Me.AdditionalValue & ")" & Environment.NewLine &
                                             ":end"
