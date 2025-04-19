@@ -363,6 +363,14 @@ Public Class PokedexScreen
     Public PokemonList As New List(Of Pokemon)
     Dim menu As SelectMenu
 
+    Public SelectIndexMain As Integer = 0
+    Public OrderIndexMain As Integer = 0
+    Public OrderIndexType As Integer = 0
+    Public FilterIndexMain As Integer = 0
+    Public FilterIndexName As Integer = 0
+    Public FilterIndexType1 As Integer = 0
+    Public FilterIndexType2 As Integer = 0
+
     Public Sub New(ByVal currentScreen As Screen, ByVal Profile As PokedexSelectScreen.PokedexProfile, ByVal Habitat As Habitat)
         Me.Identification = Identifications.PokedexScreen
         Me.PreScreen = currentScreen
@@ -886,7 +894,7 @@ Public Class PokedexScreen
             End If
 
             If KeyBoardHandler.KeyPressed(KeyBindings.SpecialKey) = True Or ControllerHandler.ButtonPressed(Buttons.Back) = True Then
-                Me.menu = New SelectMenu({"Order", "Filter", "Reset", "Back"}.ToList(), 0, AddressOf SelectMenu1, 3)
+                Me.menu = New SelectMenu({"Order", "Filter", "Reset", "Back"}.ToList(), SelectIndexMain, AddressOf SelectMenu1, 3, "selectmain")
             End If
 
             If Controls.Dismiss(True, True, True) = True Then
@@ -940,9 +948,9 @@ Public Class PokedexScreen
     Private Sub SelectMenu1(ByVal s As SelectMenu)
         Select Case s.SelectedItem.ToLower()
             Case "order"
-                Me.menu = New SelectMenu({"Type", "Reverse: " & Me.ReverseOrder.ToString(), "Back"}.ToList(), 0, AddressOf SelectMenuOrder, 2)
+                Me.menu = New SelectMenu({"Type", "Reverse: " & Me.ReverseOrder.ToString(), "Back"}.ToList(), OrderIndexMain, AddressOf SelectMenuOrder, 2, "ordermain")
             Case "filter"
-                Me.menu = New SelectMenu({"Name", "Type1", "Type2", "Clear", "Back"}.ToList(), 0, AddressOf SelectMenuFilter, 4)
+                Me.menu = New SelectMenu({"Name", "Type1", "Type2", "Clear", "Back"}.ToList(), FilterIndexMain, AddressOf SelectMenuFilter, 4, "filtermain")
             Case "reset"
                 Me.Filters.Clear()
                 Me.ReverseOrder = False
@@ -954,16 +962,16 @@ Public Class PokedexScreen
     Private Sub SelectMenuFilter(ByVal s As SelectMenu)
         Select Case s.SelectedItem.ToLower()
             Case "name"
-                Me.menu = New SelectMenu({"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "Back"}.ToList(), 0, AddressOf SelectMenuNameFilter, -1)
+                Me.menu = New SelectMenu({"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "Back"}.ToList(), FilterIndexName, AddressOf SelectMenuNameFilter, -1, "filtername")
             Case "type1"
-                Me.menu = New SelectMenu({"Normal", "Fire", "Fighting", "Water", "Flying", "Grass", "Poison", "Electric", "Ground", "Psychic", "Rock", "Ice", "Bug", "Dragon", "Ghost", "Dark", "Steel", "Fairy", "Blank", "Back"}.ToList(), 0, AddressOf SelectMenuType1Filter, -1)
+                Me.menu = New SelectMenu({"Normal", "Fire", "Fighting", "Water", "Flying", "Grass", "Poison", "Electric", "Ground", "Psychic", "Rock", "Ice", "Bug", "Dragon", "Ghost", "Dark", "Steel", "Fairy", "Blank", "Back"}.ToList(), FilterIndexType1, AddressOf SelectMenuType1Filter, -1, "filtertype1")
             Case "type2"
-                Me.menu = New SelectMenu({"Normal", "Fire", "Fighting", "Water", "Flying", "Grass", "Poison", "Electric", "Ground", "Psychic", "Rock", "Ice", "Bug", "Dragon", "Ghost", "Dark", "Steel", "Fairy", "Blank", "Back"}.ToList(), 0, AddressOf SelectMenuType2Filter, -1)
+                Me.menu = New SelectMenu({"Normal", "Fire", "Fighting", "Water", "Flying", "Grass", "Poison", "Electric", "Ground", "Psychic", "Rock", "Ice", "Bug", "Dragon", "Ghost", "Dark", "Steel", "Fairy", "Blank", "Back"}.ToList(), FilterIndexType2, AddressOf SelectMenuType2Filter, -1, "filtertype2")
             Case "clear"
                 Me.Filters.Clear()
                 Me.SetList()
             Case "back"
-                Me.menu = New SelectMenu({"Order", "Filter", "Reset", "Back"}.ToList(), 0, AddressOf SelectMenu1, 3)
+                Me.menu = New SelectMenu({"Order", "Filter", "Reset", "Back"}.ToList(), SelectIndexMain, AddressOf SelectMenu1, 3, "selectmain")
         End Select
     End Sub
 
@@ -979,7 +987,7 @@ Public Class PokedexScreen
             Filters.Add(New Filter With {.FilterType = FilterType.Type1, .FilterValue = s.SelectedItem})
             SetList()
         Else
-            Me.menu = New SelectMenu({"Name", "Type1", "Type2", "Clear", "Back"}.ToList(), 0, AddressOf SelectMenuFilter, 4)
+            Me.menu = New SelectMenu({"Name", "Type1", "Type2", "Clear", "Back"}.ToList(), FilterIndexMain, AddressOf SelectMenuFilter, 4, "filtermain")
         End If
     End Sub
 
@@ -995,7 +1003,7 @@ Public Class PokedexScreen
             Filters.Add(New Filter With {.FilterType = FilterType.Type2, .FilterValue = s.SelectedItem})
             SetList()
         Else
-            Me.menu = New SelectMenu({"Name", "Type1", "Type2", "Clear", "Back"}.ToList(), 0, AddressOf SelectMenuFilter, 4)
+            Me.menu = New SelectMenu({"Name", "Type1", "Type2", "Clear", "Back"}.ToList(), FilterIndexMain, AddressOf SelectMenuFilter, 4, "filtermain")
         End If
     End Sub
 
@@ -1011,20 +1019,20 @@ Public Class PokedexScreen
             Filters.Add(New Filter With {.FilterType = FilterType.Name, .FilterValue = s.SelectedItem})
             SetList()
         Else
-            Me.menu = New SelectMenu({"Name", "Type1", "Type2", "Clear", "Back"}.ToList(), 0, AddressOf SelectMenuFilter, 4)
+            Me.menu = New SelectMenu({"Name", "Type1", "Type2", "Clear", "Back"}.ToList(), FilterIndexMain, AddressOf SelectMenuFilter, 4, "filtermain")
         End If
     End Sub
 
     Private Sub SelectMenuOrder(ByVal s As SelectMenu)
         Select Case s.SelectedItem.ToLower()
             Case "type"
-                Me.menu = New SelectMenu({"Numeric", "A-Z", "Weight", "Height", "Back"}.ToList(), 0, AddressOf SelectMenuOrderType, 4)
+                Me.menu = New SelectMenu({"Numeric", "A-Z", "Weight", "Height", "Back"}.ToList(), OrderIndexType, AddressOf SelectMenuOrderType, 4, "ordertype")
             Case "reverse: " & Me.ReverseOrder.ToString().ToLower()
                 Me.ReverseOrder = Not Me.ReverseOrder
-                Me.menu = New SelectMenu({"Type", "Reverse: " & Me.ReverseOrder.ToString(), "Back"}.ToList(), 0, AddressOf SelectMenuOrder, 2)
+                Me.menu = New SelectMenu({"Type", "Reverse: " & Me.ReverseOrder.ToString(), "Back"}.ToList(), OrderIndexMain, AddressOf SelectMenuOrder, 2, "ordermain")
                 Me.SetList()
             Case "back"
-                Me.menu = New SelectMenu({"Order", "Filter", "Reset", "Back"}.ToList(), 0, AddressOf SelectMenu1, 3)
+                Me.menu = New SelectMenu({"Order", "Filter", "Reset", "Back"}.ToList(), SelectIndexMain, AddressOf SelectMenu1, 3, "selectmain")
         End Select
     End Sub
 
@@ -1043,7 +1051,7 @@ Public Class PokedexScreen
                 Me.Order = OrderType.Height
                 Me.SetList()
             Case "back"
-                Me.menu = New SelectMenu({"Type", "Reverse: " & Me.ReverseOrder.ToString(), "Back"}.ToList(), 0, AddressOf SelectMenuOrder, 2)
+                Me.menu = New SelectMenu({"Type", "Reverse: " & Me.ReverseOrder.ToString(), "Back"}.ToList(), OrderIndexMain, AddressOf SelectMenuOrder, 2, "ordermain")
         End Select
     End Sub
 
@@ -1053,6 +1061,7 @@ Public Class PokedexScreen
 
         Dim Items As New List(Of String)
         Dim Index As Integer = 0
+        Dim RememberVar As String = ""
         Public Delegate Sub ClickEvent(ByVal s As SelectMenu)
         Dim ClickHandler As ClickEvent = Nothing
         Dim BackIndex As Integer = 0
@@ -1062,11 +1071,14 @@ Public Class PokedexScreen
         Dim t1 As Texture2D
         Dim t2 As Texture2D
 
-        Public Sub New(ByVal Items As List(Of String), ByVal Index As Integer, ByVal ClickHandle As ClickEvent, ByVal BackIndex As Integer)
+        Public Sub New(ByVal Items As List(Of String), ByVal Index As Integer, ByVal ClickHandle As ClickEvent, ByVal BackIndex As Integer, Optional ByRef RememberVar As String = "")
             Me.Items = Items
             Me.Index = Index
             Me.ClickHandler = ClickHandle
             Me.BackIndex = BackIndex
+            If RememberVar <> "" Then
+                Me.RememberVar = RememberVar
+            End If
             If Me.BackIndex < 0 Then
                 Me.BackIndex = Me.Items.Count + Me.BackIndex
             End If
@@ -1085,6 +1097,23 @@ Public Class PokedexScreen
                     Me.Index += 1
                 End If
                 Me.Index = Me.Index.Clamp(0, Me.Items.Count - 1)
+
+                Select Case Me.RememberVar.ToLower
+                    Case "selectmain"
+                        CType(CurrentScreen, PokedexScreen).SelectIndexMain = Me.Index
+                    Case "ordermain"
+                        CType(CurrentScreen, PokedexScreen).OrderIndexMain = Me.Index
+                    Case "ordertype"
+                        CType(CurrentScreen, PokedexScreen).OrderIndexType = Me.Index
+                    Case "filtermain"
+                        CType(CurrentScreen, PokedexScreen).FilterIndexMain = Me.Index
+                    Case "filtername"
+                        CType(CurrentScreen, PokedexScreen).FilterIndexName = Me.Index
+                    Case "filtertype1"
+                        CType(CurrentScreen, PokedexScreen).FilterIndexType1 = Me.Index
+                    Case "filtertype2"
+                        CType(CurrentScreen, PokedexScreen).FilterIndexType2 = Me.Index
+                End Select
 
                 For i = Scroll To Me.Scroll + 8
                     If i <= Me.Items.Count - 1 Then
