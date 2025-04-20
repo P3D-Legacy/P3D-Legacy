@@ -448,13 +448,16 @@
                 Dim Berries() As String = System.IO.File.ReadAllLines(GameModeManager.GetContentFilePath("Data\BerryData.dat"))
 
                 For i = 0 To Berries.Count - 1
-                    s &= Berries(i)
-                    If i < Berries.Count - 1 Then
-                        s &= Environment.NewLine
+                    If Berries(i) <> "" Then
+                        s &= Berries(i)
+                        If i < Berries.Count - 1 Then
+                            s &= Environment.NewLine
+                        End If
                     End If
                 Next
             Else
-                s = "{route29.dat|13,0,5|6|2|0|2012,9,21,4,0,0|1}" & Environment.NewLine &
+                If GameModeManager.ActiveGameMode.IsDefaultGamemode = True Then
+                    s = "{route29.dat|13,0,5|6|2|0|2012,9,21,4,0,0|1}" & Environment.NewLine &
                     "{route29.dat|14,0,5|6|2|0|2012,9,21,4,0,0|1}" & Environment.NewLine &
                     "{route29.dat|15,0,5|6|2|0|2012,9,21,4,0,0|1}" & Environment.NewLine &
                     "{azalea.dat|9,0,3|0|2|0|2012,9,21,4,0,0|1}" & Environment.NewLine &
@@ -480,6 +483,7 @@
                     "{safarizone\main.dat|3,0,11|5|2|0|2012,9,21,4,0,0|1}" & Environment.NewLine &
                     "{safarizone\main.dat|4,0,11|0|2|0|2012,9,21,4,0,0|1}" & Environment.NewLine &
                     "{safarizone\main.dat|5,0,11|6|3|0|2012,9,21,4,0,0|1}"
+                End If
             End If
 
             Return s
