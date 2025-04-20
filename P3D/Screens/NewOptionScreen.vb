@@ -941,7 +941,8 @@ Public Class NewOptionScreen
 				Me.ControlList.Add(New CommandButton(New Vector2(Delta_X + 530 + 24, Delta_Y + 336), 1, 48, Localization.GetString("global_close", "Close"), AddressOf Close, 8))
 
 			Case 1 ' "Game" from the Options menu.
-				Me.ControlList.Add(New ScrollBar(New Vector2(Delta_X + 100, Delta_Y + 60), 400, Localization.GetString("option_screen_game_textspeed", "Text Speed"), Me.TextSpeed, 1, 3, AddressOf ChangeTextspeed, 1))
+				Dim txtspeedD As New Dictionary(Of Integer,String)
+				Me.ControlList.Add(New ScrollBar(New Vector2(Delta_X + 100, Delta_Y + 60), 400, Localization.GetString("option_screen_game_textspeed", "Text Speed"), Me.TextSpeed, 1, 4, AddressOf ChangeTextspeed, 1))
 				If CBool(GameModeManager.GetGameRuleValue("LockDifficulty", "0")) = False Then
 					Dim d As New Dictionary(Of Integer, String)
 					d.Add(0, Localization.GetString("option_screen_game_difficulty_easy", "Easy"))
