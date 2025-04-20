@@ -18,7 +18,7 @@ Public Class SongContainer
 
     Public ReadOnly Property IsLoop() As Boolean
         Get
-            If Me.Song.Contains("intro\") OrElse Me.Song.Contains("_intro") Then
+            If Me.Song.ToLower.Contains("intro\") OrElse Me.Song.ToLower.Contains("_intro") Then
                 Return False
             Else
                 Return True
