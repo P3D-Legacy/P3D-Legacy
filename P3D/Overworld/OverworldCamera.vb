@@ -611,7 +611,7 @@ Public Class OverworldCamera
     End Sub
 
     Private Function GetBobbing() As Single
-        If IsSliding = True OrElse IsMoving = False OrElse Core.GameOptions.ViewBobbing = False Then
+        If ThirdPerson = True OrElse IsSliding = True OrElse IsMoving = False OrElse Core.GameOptions.ViewBobbing = False Then
             Return 0.0F
         End If
         If Screen.Level?.Riding = True Then
