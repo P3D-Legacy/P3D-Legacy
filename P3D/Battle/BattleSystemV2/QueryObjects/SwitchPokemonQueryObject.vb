@@ -95,15 +95,15 @@
                         Core.SetScreen(selScreen)
                     Else
                         SoundManager.PlaySound("select")
-                        TempScreen.BattleQuery.Clear()
-                        FinishOppSwitchAnimation(TempScreen)
-                        FinishOppSwitchEffects(TempScreen)
-                        Dim cq1 As ScreenFadeQueryObject = New ScreenFadeQueryObject(ScreenFadeQueryObject.FadeTypes.Vertical, Color.Black, True, 16)
-                        Dim cq2 As ScreenFadeQueryObject = New ScreenFadeQueryObject(ScreenFadeQueryObject.FadeTypes.Vertical, Color.Black, False, 16)
-                        cq2.PassThis = True
-                        TempScreen.BattleQuery.AddRange({cq1, cq2})
+                        'TempScreen.BattleQuery.Clear()
+                        'FinishOppSwitchAnimation(TempScreen)
+                        'FinishOppSwitchEffects(TempScreen)
+                        'Dim cq1 As ScreenFadeQueryObject = New ScreenFadeQueryObject(ScreenFadeQueryObject.FadeTypes.Vertical, Color.Black, True, 16)
+                        'Dim cq2 As ScreenFadeQueryObject = New ScreenFadeQueryObject(ScreenFadeQueryObject.FadeTypes.Vertical, Color.Black, False, 16)
+                        'cq2.PassThis = True
+                        'TempScreen.BattleQuery.AddRange({cq1, cq2})
                         TempScreen.HasSwitchedOwn = False
-                        TempScreen.Battle.StartRound(TempScreen)
+                        'TempScreen.Battle.StartRound(TempScreen)
                         _ready = True
                     End If
                 End If
@@ -116,15 +116,15 @@
                         Core.SetScreen(selScreen)
                     Else
                         SoundManager.PlaySound("select")
-                        TempScreen.BattleQuery.Clear()
-                        FinishOppSwitchAnimation(TempScreen)
-                        FinishOppSwitchEffects(TempScreen)
-                        Dim cq1 As ScreenFadeQueryObject = New ScreenFadeQueryObject(ScreenFadeQueryObject.FadeTypes.Vertical, Color.Black, True, 16)
-                        Dim cq2 As ScreenFadeQueryObject = New ScreenFadeQueryObject(ScreenFadeQueryObject.FadeTypes.Vertical, Color.Black, False, 16)
-                        cq2.PassThis = True
-                        TempScreen.BattleQuery.AddRange({cq1, cq2})
+                        'TempScreen.BattleQuery.Clear()
+                        'FinishOppSwitchAnimation(TempScreen)
+                        'FinishOppSwitchEffects(TempScreen)
+                        'Dim cq1 As ScreenFadeQueryObject = New ScreenFadeQueryObject(ScreenFadeQueryObject.FadeTypes.Vertical, Color.Black, True, 16)
+                        'Dim cq2 As ScreenFadeQueryObject = New ScreenFadeQueryObject(ScreenFadeQueryObject.FadeTypes.Vertical, Color.Black, False, 16)
+                        'cq2.PassThis = True
+                        'TempScreen.BattleQuery.AddRange({cq1, cq2})
                         TempScreen.HasSwitchedOwn = False
-                        TempScreen.Battle.StartRound(TempScreen)
+                        'TempScreen.Battle.StartRound(TempScreen)
                         _ready = True
                     End If
                 End If
@@ -139,30 +139,30 @@
                     If New Rectangle(Core.windowSize.Width - 213, Core.windowSize.Height - 378, 80, 50).Contains(MouseHandler.MousePosition) Then
                         _chooseIndex = 1
                         SoundManager.PlaySound("select")
-                        TempScreen.BattleQuery.Clear()
-                        FinishOppSwitchAnimation(TempScreen)
-                        FinishOppSwitchEffects(TempScreen)
-                        Dim cq1 As ScreenFadeQueryObject = New ScreenFadeQueryObject(ScreenFadeQueryObject.FadeTypes.Vertical, Color.Black, True, 16)
-                        Dim cq2 As ScreenFadeQueryObject = New ScreenFadeQueryObject(ScreenFadeQueryObject.FadeTypes.Vertical, Color.Black, False, 16)
-                        cq2.PassThis = True
-                        TempScreen.BattleQuery.AddRange({cq1, cq2})
+                        'TempScreen.BattleQuery.Clear()
+                        'FinishOppSwitchAnimation(TempScreen)
+                        'FinishOppSwitchEffects(TempScreen)
+                        'Dim cq1 As ScreenFadeQueryObject = New ScreenFadeQueryObject(ScreenFadeQueryObject.FadeTypes.Vertical, Color.Black, True, 16)
+                        'Dim cq2 As ScreenFadeQueryObject = New ScreenFadeQueryObject(ScreenFadeQueryObject.FadeTypes.Vertical, Color.Black, False, 16)
+                        'cq2.PassThis = True
+                        'TempScreen.BattleQuery.AddRange({cq1, cq2})
                         TempScreen.HasSwitchedOwn = False
-                        TempScreen.Battle.StartRound(TempScreen)
+                        'TempScreen.Battle.StartRound(TempScreen)
                         _ready = True
                     End If
                 End If
             End If
             If Controls.Dismiss(True, True, True) = True Then
                 SoundManager.PlaySound("select")
-                TempScreen.BattleQuery.Clear()
-                FinishOppSwitchAnimation(TempScreen)
-                FinishOppSwitchEffects(TempScreen)
-                Dim cq1 As ScreenFadeQueryObject = New ScreenFadeQueryObject(ScreenFadeQueryObject.FadeTypes.Vertical, Color.Black, True, 16)
-                Dim cq2 As ScreenFadeQueryObject = New ScreenFadeQueryObject(ScreenFadeQueryObject.FadeTypes.Vertical, Color.Black, False, 16)
-                cq2.PassThis = True
-                TempScreen.BattleQuery.AddRange({cq1, cq2})
+                'TempScreen.BattleQuery.Clear()
+                'FinishOppSwitchAnimation(TempScreen)
+                'FinishOppSwitchEffects(TempScreen)
+                'Dim cq1 As ScreenFadeQueryObject = New ScreenFadeQueryObject(ScreenFadeQueryObject.FadeTypes.Vertical, Color.Black, True, 16)
+                'Dim cq2 As ScreenFadeQueryObject = New ScreenFadeQueryObject(ScreenFadeQueryObject.FadeTypes.Vertical, Color.Black, False, 16)
+                'cq2.PassThis = True
+                'TempScreen.BattleQuery.AddRange({cq1, cq2})
                 TempScreen.HasSwitchedOwn = False
-                TempScreen.Battle.StartRound(TempScreen)
+                'TempScreen.Battle.StartRound(TempScreen)
                 _ready = True
             End If
         End Sub
