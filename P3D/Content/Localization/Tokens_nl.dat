@@ -58,8 +58,8 @@ global_pokemon_type_dark,Duister
 global_pokemon_type_steel,Staal
 global_pokemon_type_fairy,Fee
 global_pokemon_type_blank,Blanco
-global_true,Goed
-global_false,Fout
+global_true,Waar
+global_false,Onwaar
 global_select,Kies
 global_summary,Overzicht
 global_item,Voorwerp
