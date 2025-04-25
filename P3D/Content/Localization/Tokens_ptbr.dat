@@ -431,6 +431,11 @@ Donation screen:
 donation_screen_donators,Doadores
 donation_screen_backadvice,aperte [<system.button(OpenMenu)>] para fechar.
 ---
+Rename Screen:
+rename_screen_title_Question,Rename [NAME]?
+rename_screen_title_EnterName,Enter name for [NAME]:
+rename_screen_button_Rename,Rename
+---
 Blackout Screen:
 black_out_screen_line1,Você está sem Pokémons!
 black_out_screen_line2,Você vai ser levado

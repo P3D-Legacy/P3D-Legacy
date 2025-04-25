@@ -84,13 +84,13 @@ Public Class NameObjectScreen
 
         Dim CanvasTexture As Texture2D
         For i = 0 To 1
-            Dim Text As String = "Rename"
+            Dim Text As String = Localization.GetString("rename_screen_button_Rename", "Rename")
             If _askedRename = True Then
-                Text = "OK"
+                Text = Localization.GetString("global_ok", "OK")
             End If
 
             If i = 1 Then
-                Text = "Cancel"
+                Text = Localization.GetString("global_cancel", "Cancel")
             End If
 
             If i = _index Then
@@ -115,8 +115,9 @@ Public Class NameObjectScreen
                 End If
             End If
 
-            Core.SpriteBatch.DrawString(FontManager.InGameFont, "Rename " & Me._defaultName & genderString & "?", New Vector2(CInt(Core.windowSize.Width / 2) - CInt(FontManager.InGameFont.MeasureString("Rename " & Me._defaultName & genderString & "?").X / 2) + 16 + 2, 96 + 2), Color.Black)
-            Core.SpriteBatch.DrawString(FontManager.InGameFont, "Rename " & Me._defaultName & genderString & "?", New Vector2(CInt(Core.windowSize.Width / 2) - CInt(FontManager.InGameFont.MeasureString("Rename " & Me._defaultName & genderString & "?").X / 2) + 16, 96), Color.White)
+            Dim TitleText As String = Localization.GetString("rename_screen_title_Question", "Rename [NAME]?").Replace("[NAME]", Me._defaultName & genderString)
+            Core.SpriteBatch.DrawString(FontManager.InGameFont, TitleText, New Vector2(CInt(Core.windowSize.Width / 2) - CInt(FontManager.InGameFont.MeasureString(TitleText).X / 2) + 16 + 2, 96 + 2), Color.Black)
+            Core.SpriteBatch.DrawString(FontManager.InGameFont, TitleText, New Vector2(CInt(Core.windowSize.Width / 2) - CInt(FontManager.InGameFont.MeasureString(TitleText).X / 2) + 16, 96), Color.White)
 
             ChooseBox.Showing = False
         Else
@@ -130,9 +131,9 @@ Public Class NameObjectScreen
                         genderString = " ♀"
                     End If
                 End If
-
-                Core.SpriteBatch.DrawString(FontManager.InGameFont, "Enter name for " & Me._defaultName & genderString & ":", New Vector2(CInt(Core.windowSize.Width / 2) - CInt(FontManager.InGameFont.MeasureString("Enter name for " & Me._defaultName & genderString & ":").X / 2) + 16 + 2, 96 + 2), Color.Black)
-                Core.SpriteBatch.DrawString(FontManager.InGameFont, "Enter name for " & Me._defaultName & genderString & ":", New Vector2(CInt(Core.windowSize.Width / 2) - CInt(FontManager.InGameFont.MeasureString("Enter name for " & Me._defaultName & genderString & ":").X / 2) + 16, 96), Color.White)
+                Dim TitleText As String = Localization.GetString("rename_screen_title_EnterName", "Enter name for [NAME]:").Replace("[NAME]", Me._defaultName & genderString)
+                Core.SpriteBatch.DrawString(FontManager.InGameFont, TitleText, New Vector2(CInt(Core.windowSize.Width / 2) - CInt(FontManager.InGameFont.MeasureString(TitleText).X / 2) + 16 + 2, 96 + 2), Color.Black)
+                Core.SpriteBatch.DrawString(FontManager.InGameFont, TitleText, New Vector2(CInt(Core.windowSize.Width / 2) - CInt(FontManager.InGameFont.MeasureString(TitleText).X / 2) + 16, 96), Color.White)
 
                 Canvas.DrawRectangle(New Rectangle(CInt(TextboxPosition().X) - 4, CInt(TextboxPosition().Y) - 4, 320 + 8, 32), New Color(101, 142, 255))
                 DrawTextBox()

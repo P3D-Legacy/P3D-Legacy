@@ -432,6 +432,11 @@ Donation screen:
 donation_screen_donators,Donators
 donation_screen_backadvice,Press [<system.button(OpenMenu)>] to close
 ---
+Rename Screen:
+rename_screen_title_Question,Rename [POKEMON]?
+rename_screen_title_EnterName,Enter name for [POKEMON]:
+rename_screen_button_Rename,Rename
+---
 Blackout Screen:
 black_out_screen_line1,You have run out of Pokémon!
 black_out_screen_line2,You will be brought

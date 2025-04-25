@@ -430,10 +430,14 @@ apricorn_screen_take,Coger
 apricorn_screen_ready,Estoy listo para producir Pokébolas. Aquí está el resultado de mi trabajo:
 apricorn_screen_obtain,obtenido
 ---
-
 Donation screen:
 donation_screen_donators,Contribuidores
 donation_screen_backadvice,Presione [<system.button(OpenMenu)>] para cerrar
+---
+Name & Rename Screen:
+rename_screen_title_Question,Rename [NAME]?
+rename_screen_title_EnterName,Enter name for [NAME]:
+rename_screen_button_Rename,Rename
 ---
 Blackout Screen:
 black_out_screen_line1,¡Te has quedado sin Pokémon!

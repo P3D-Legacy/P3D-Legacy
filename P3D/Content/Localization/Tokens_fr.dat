@@ -430,6 +430,11 @@ Donation screen:
 donation_screen_donators,Donateurs
 donation_screen_backadvice,Appuie sur [<system.button(OpenMenu)>] pour fermer
 ---
+Rename Screen:
+rename_screen_title_Question,Rename [NAME]?
+rename_screen_title_EnterName,Enter name for [NAME]:
+rename_screen_button_Rename,Rename
+---
 Blackout Screen:
 black_out_screen_line1,Tu n'as plus de POKéMON en Forme!
 black_out_screen_line2,Tu sera transporter 

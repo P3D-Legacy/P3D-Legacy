@@ -419,6 +419,11 @@ Donation screen:
 donation_screen_donators,Donateurs
 donation_screen_backadvice,Druk op <system.button(OpenMenu)> om te sluiten
 ---
+Rename Screen:
+rename_screen_title_Question,Hernoem [NAME]?
+rename_screen_title_EnterName,Voer naam in voor [NAME]:
+rename_screen_button_Rename,Hernoem
+---
 Blackout Screen:
 black_out_screen_line1,Je hebt geen strijdbare Pokémon meer!
 black_out_screen_line2,Je zult naar het dichtstbijzijnde
