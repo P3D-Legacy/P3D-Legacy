@@ -9,7 +9,7 @@
         Dim _ready As Boolean = False
 
         Dim _textIndex As Integer = 0
-        Dim _textDelay As Single = 0.015F
+        Dim _textDelay As Single = 0.02F
 
         Private ReadOnly Property TextReady() As Boolean
             Get
@@ -50,9 +50,9 @@
 
         Public Overrides Sub Update(BV2Screen As BattleScreen)
             If Me.TextReady = False Then
-                Me._textDelay -= 0.01F
+                Me._textDelay -= 0.1F
                 If Me._textDelay <= 0.0F Then
-                    Me._textDelay = 0.015F
+                    Me._textDelay = GetTextSpeed()
                     Me._textIndex += 1
                 End If
                 If Controls.Accept(True, True) = True And Me._textIndex > 2 Then
@@ -67,7 +67,19 @@
                 End If
             End If
         End Sub
-
+        Private Function GetTextSpeed() As Single
+            Select Case TextBox.TextSpeed
+                Case 1
+                    Return 0.3F
+                Case 2
+                    Return 0.2F
+                Case 3
+                    Return 0.1F
+                Case 4
+                    Return 0.0F
+            End Select
+            Return 0.2F
+        End Function
         Public Overrides Sub Draw(BV2Screen As BattleScreen)
             Dim rec As New Rectangle(100, Core.windowSize.Height - 250, Core.windowSize.Width - 200, 200)
             Dim text As String = Me._text.Substring(0, _textIndex)
