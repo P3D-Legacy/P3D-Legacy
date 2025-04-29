@@ -6,7 +6,7 @@ Namespace Items.XItems
         Inherits XItem
 
         Public Overrides ReadOnly Property PokeDollarPrice As Integer = 350
-        Public Overrides ReadOnly Property Description As String = "An item that boosts the Sp. Atk stat of a Pokémon during a battle. It wears off once the Pokémon is withdrawn."
+        Public Overrides ReadOnly Property Description As String = "An item that boosts the Sp. Atk. stat of a Pokémon during a battle. It wears off once the Pokémon is withdrawn."
 
         Public Sub New()
             _textureRectangle = New Rectangle(144, 48, 24, 24)

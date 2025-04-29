@@ -16,7 +16,7 @@ Namespace BattleSystem.Moves.Dark
             Me.Category = Categories.Status
             Me.ContestCategory = ContestCategories.Cute
             Me.Name = Localization.GetString("move_name_" & Me.ID,"Fake Tears")
-            Me.Description = "The user feigns crying to fluster the target, harshly lowering its Sp. Def stat."
+            Me.Description = "The user feigns crying to fluster the target, harshly lowering its Sp. Def. stat."
             Me.CriticalChance = 0
             Me.IsHMMove = False
             Me.Target = Targets.OneAdjacentTarget

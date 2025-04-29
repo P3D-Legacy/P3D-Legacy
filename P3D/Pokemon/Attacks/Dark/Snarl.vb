@@ -16,7 +16,7 @@
             Me.Category = Categories.Special
             Me.ContestCategory = ContestCategories.Cool
             Me.Name = Localization.GetString("move_name_" & Me.ID,"Snarl")
-            Me.Description = "The user yells as if it is ranting about something, making the target's Sp. Atk stat decrease."
+            Me.Description = "The user yells as if it is ranting about something, making the target's Sp. Atk. stat decrease."
             Me.CriticalChance = 1
             Me.IsHMMove = False
             Me.Target = Targets.OneAdjacentTarget

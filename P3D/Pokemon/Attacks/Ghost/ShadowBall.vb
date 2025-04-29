@@ -16,7 +16,7 @@
             Me.Category = Categories.Special
             Me.ContestCategory = ContestCategories.Smart
             Me.Name = Localization.GetString("move_name_" & Me.ID,"Shadow Ball")
-            Me.Description = "The user hurls a shadowy blob at the target. It may also lower the target's Sp. Def stat."
+            Me.Description = "The user hurls a shadowy blob at the target. It may also lower the target's Sp. Def. stat."
             Me.CriticalChance = 0
             Me.IsHMMove = False
             Me.Target = Targets.OneAdjacentTarget

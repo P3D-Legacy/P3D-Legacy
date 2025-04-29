@@ -16,7 +16,7 @@ Namespace BattleSystem.Moves.Steel
             Me.Category = Categories.Status
             Me.ContestCategory = ContestCategories.Smart
             Me.Name = Localization.GetString("move_name_" & Me.ID,"Metal Sound")
-            Me.Description = "A horrible sound like scraping metal harshly lowers the target's Sp. Def stat."
+            Me.Description = "A horrible sound like scraping metal harshly lowers the target's Sp. Def. stat."
             Me.CriticalChance = 0
             Me.IsHMMove = False
             Me.Target = Targets.AllAdjacentTargets

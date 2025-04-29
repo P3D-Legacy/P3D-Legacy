@@ -16,7 +16,7 @@
             Me.Category = Categories.Status
             Me.ContestCategory = ContestCategories.Cool
             Me.Name = Localization.GetString("move_name_" & Me.ID,"Parting Shot")
-            Me.Description = "With a parting threat, the user lowers the target's Attack and Sp. Atk stats. Then it switches with a party Pokémon."
+            Me.Description = "With a parting threat, the user lowers the target's Attack and Sp. Atk. stats. Then it switches with a party Pokémon."
             Me.CriticalChance = 0
             Me.IsHMMove = False
             Me.Target = Targets.OneAdjacentTarget

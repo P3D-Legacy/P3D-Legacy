@@ -16,7 +16,7 @@ Namespace BattleSystem.Moves.Fairy
             Me.Category = Categories.Special
             Me.ContestCategory = ContestCategories.Cute
             Me.Name = Localization.GetString("move_name_" & Me.ID,"Fleur Cannon")
-            Me.Description = "The user unleashes a strong beam. The attack's recoil harshly lowers the user's Sp. Atk stat."
+            Me.Description = "The user unleashes a strong beam. The attack's recoil harshly lowers the user's Sp. Atk. stat."
             Me.CriticalChance = 1
             Me.IsHMMove = False
             Me.Target = Targets.OneAdjacentTarget

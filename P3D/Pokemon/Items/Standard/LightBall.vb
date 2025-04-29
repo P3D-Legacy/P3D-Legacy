@@ -5,7 +5,7 @@ Namespace Items.Standard
 
         Inherits Item
 
-        Public Overrides ReadOnly Property Description As String = "An item to be held by Pikachu. It's a puzzling orb that boosts its Attack and Sp. Atk stats."
+        Public Overrides ReadOnly Property Description As String = "An item to be held by Pikachu. It's a puzzling orb that boosts its Attack and Sp. Atk. stats."
         Public Overrides ReadOnly Property PokeDollarPrice As Integer = 100
         Public Overrides ReadOnly Property CanBeUsedInBattle As Boolean = False
         Public Overrides ReadOnly Property CanBeUsed As Boolean = False

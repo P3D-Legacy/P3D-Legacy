@@ -16,7 +16,7 @@ Namespace BattleSystem.Moves.Psychic
             Me.Category = Categories.Status
             Me.ContestCategory = ContestCategories.Cute
             Me.Name = Localization.GetString("move_name_" & Me.ID,"Amnesia")
-            Me.Description = "The user temporarily empties its mind to forget its concerns. It sharply raises the user's Sp. Def stat."
+            Me.Description = "The user temporarily empties its mind to forget its concerns. It sharply raises the user's Sp. Def. stat."
             Me.CriticalChance = 0
             Me.IsHMMove = False
             Me.Target = Targets.Self

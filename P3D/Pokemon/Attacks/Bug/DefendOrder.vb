@@ -16,7 +16,7 @@
             Me.Category = Categories.Status
             Me.ContestCategory = ContestCategories.Smart
             Me.Name = Localization.GetString("move_name_" & Me.ID,"Defend Order")
-            Me.Description = "The user calls out its underlings to shield its body, raising its Defense and Sp. Def stats."
+            Me.Description = "The user calls out its underlings to shield its body, raising its Defense and Sp. Def. stats."
             Me.CriticalChance = 0
             Me.IsHMMove = False
             Me.Target = Targets.Self

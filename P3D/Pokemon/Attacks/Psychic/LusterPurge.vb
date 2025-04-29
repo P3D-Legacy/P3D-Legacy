@@ -16,7 +16,7 @@
             Me.Category = Categories.Special
             Me.ContestCategory = ContestCategories.Smart
             Me.Name = Localization.GetString("move_name_" & Me.ID,"Luster Purge")
-            Me.Description = "The user lets loose a damaging burst of light. It may also reduce the target's Sp. Def stat."
+            Me.Description = "The user lets loose a damaging burst of light. It may also reduce the target's Sp. Def. stat."
             Me.CriticalChance = 1
             Me.IsHMMove = False
             Me.Target = Targets.OneAdjacentTarget

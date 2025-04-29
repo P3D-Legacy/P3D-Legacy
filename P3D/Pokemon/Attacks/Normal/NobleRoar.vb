@@ -16,7 +16,7 @@ Namespace BattleSystem.Moves.Normal
             Me.Category = Categories.Status
             Me.ContestCategory = ContestCategories.Cute
             Me.Name = Localization.GetString("move_name_" & Me.ID,"Noble Roar")
-            Me.Description = "Letting out a noble roar, the user intimidates the target and lowers its Attack and Sp. Atk stats."
+            Me.Description = "Letting out a noble roar, the user intimidates the target and lowers its Attack and Sp. Atk. stats."
             Me.CriticalChance = 0
             Me.IsHMMove = False
             Me.Target = Targets.AllAdjacentFoes

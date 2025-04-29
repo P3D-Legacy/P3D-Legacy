@@ -16,7 +16,7 @@
             Me.Category = Categories.Special
             Me.ContestCategory = ContestCategories.Smart
             Me.Name = Localization.GetString("move_name_" & Me.ID,"Psychic")
-            Me.Description = "The target is hit by a strong telekinetic force. It may also reduce the target's Sp.Def stat."
+            Me.Description = "The target is hit by a strong telekinetic force. It may also reduce the target's Sp. Def. stat."
             Me.CriticalChance = 1
             Me.IsHMMove = False
             Me.Target = Targets.OneAdjacentTarget

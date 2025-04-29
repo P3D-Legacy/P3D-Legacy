@@ -16,7 +16,7 @@ Namespace BattleSystem.Moves.Fire
             Me.Category = Categories.Special
             Me.ContestCategory = ContestCategories.Smart
             Me.Name = Localization.GetString("move_name_" & Me.ID,"Overheat")
-            Me.Description = "The user attacks the target at full power. The attack's recoil harshly lowers the user's Sp. Atk stat."
+            Me.Description = "The user attacks the target at full power. The attack's recoil harshly lowers the user's Sp. Atk. stat."
             Me.CriticalChance = 1
             Me.IsHMMove = False
             Me.Target = Targets.OneAdjacentTarget

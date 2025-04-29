@@ -16,7 +16,7 @@
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Tough
             Me.Name = Localization.GetString("move_name_" & Me.ID,"Dig")
-            Me.Description = "The user burrows, then attacks on the second turn. It can also be used to exit dungeons. "
+            Me.Description = "The user burrows, then attacks on the second turn. It can also be used to exit dungeons."
             Me.CriticalChance = 1
             Me.IsHMMove = False
             Me.Target = Targets.AllAdjacentTargets

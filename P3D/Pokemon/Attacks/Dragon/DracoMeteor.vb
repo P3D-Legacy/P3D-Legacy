@@ -16,7 +16,7 @@
             Me.Category = Categories.Special
             Me.ContestCategory = ContestCategories.Beauty
             Me.Name = Localization.GetString("move_name_" & Me.ID,"Draco Meteor")
-            Me.Description = "Comets are summoned down from the sky onto the target. The attack's recoil harshly reduces the user's Sp. Atk stat."
+            Me.Description = "Comets are summoned down from the sky onto the target. The attack's recoil harshly reduces the user's Sp. Atk. stat."
             Me.CriticalChance = 1
             Me.IsHMMove = False
             Me.Target = Targets.OneAdjacentTarget

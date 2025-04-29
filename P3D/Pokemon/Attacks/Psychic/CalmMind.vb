@@ -16,7 +16,7 @@ Namespace BattleSystem.Moves.Psychic
             Me.Category = Categories.Status
             Me.ContestCategory = ContestCategories.Smart
             Me.Name = Localization.GetString("move_name_" & Me.ID,"Calm Mind")
-            Me.Description = "The user quietly focuses its mind and calms its spirit to raise its Sp. Atk and Sp. Def stats."
+            Me.Description = "The user quietly focuses its mind and calms its spirit to raise its Sp. Atk. and Sp. Def. stats."
             Me.CriticalChance = 0
             Me.IsHMMove = False
             Me.Target = Targets.self

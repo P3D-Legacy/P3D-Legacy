@@ -5,7 +5,7 @@ Namespace Abilities
         Inherits Ability
 
         Public Sub New()
-            MyBase.New(172, "Competitive", "Boosts the Sp.Atk stat when a stat is lowered.")
+            MyBase.New(172, "Competitive", "Boosts the Sp. Atk. stat when a stat is lowered.")
         End Sub
 
     End Class

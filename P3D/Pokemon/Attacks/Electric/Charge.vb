@@ -16,7 +16,7 @@
             Me.Category = Categories.Status
             Me.ContestCategory = ContestCategories.Smart
             Me.Name = Localization.GetString("move_name_" & Me.ID,"Charge")
-            Me.Description = "The user boosts the power of the Electric move it uses on the next turn. It also raises the user's Sp. Def stat."
+            Me.Description = "The user boosts the power of the Electric move it uses on the next turn. It also raises the user's Sp. Def. stat."
             Me.CriticalChance = 0
             Me.IsHMMove = False
             Me.Target = Targets.Self

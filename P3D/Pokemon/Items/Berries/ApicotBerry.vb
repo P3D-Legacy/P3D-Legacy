@@ -7,7 +7,7 @@ Namespace Items.Berries
         Public Overrides ReadOnly Property CanBeUsed As Boolean = False
         Public Overrides ReadOnly Property CanBeUsedInBattle As Boolean = False
         Public Sub New()
-            MyBase.New(86400, "A Berry to be consumed by Pokémon. If a Pokémon holds one, its Sp. Def stat will increase when it's in a pinch.", "7.6cm", "Very Hard", 1, 2)
+            MyBase.New(86400, "A Berry to be consumed by Pokémon. If a Pokémon holds one, its Sp. Def. stat will increase when it's in a pinch.", "7.6cm", "Very Hard", 1, 2)
 
             Me.Spicy = 10
             Me.Dry = 30

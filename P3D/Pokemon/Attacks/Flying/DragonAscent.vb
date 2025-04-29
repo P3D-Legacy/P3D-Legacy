@@ -16,7 +16,7 @@
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Beauty
             Me.Name = Localization.GetString("move_name_" & Me.ID,"Dragon Ascent")
-            Me.Description = "After soaring upward, the user attacks its target by dropping out of the sky at high speeds. But it lowers its own Defense and Sp. Def stats in the process."
+            Me.Description = "After soaring upward, the user attacks its target by dropping out of the sky at high speeds. But it lowers its own Defense and Sp. Def. stats in the process."
             Me.CriticalChance = 1
             Me.IsHMMove = False
             Me.Target = Targets.OneFoe
