@@ -423,7 +423,7 @@
             Canvas.DrawRectangle(New Rectangle(DeltaX + 734 - 12, DeltaY + 362 - 64, 300 + 48, 32), New Color(0, 0, 0, CInt(100 * _interfaceFade * _pageFade)))
             Canvas.DrawRectangle(New Rectangle(DeltaX + 734 - 12, DeltaY + 394 - 64, 300 + 48, 64 + 12), New Color(0, 0, 0, CInt(70 * _interfaceFade * _pageFade)))
 
-            SpriteBatch.DrawString(FontManager.MainFont, Localization.GetString("summary_EVsIVs", "EVs / IVs"), New Vector2(DeltaX + 734 + 8, DeltaY + 366 - 64), New Color(255, 255, 255, CInt(220 * _interfaceFade * _pageFade)))
+            SpriteBatch.DrawString(FontManager.MainFont, Localization.GetString("summary_EVsIVs", "EVs (white) / IVs (blue)"), New Vector2(DeltaX + 734 + 8, DeltaY + 366 - 64), New Color(255, 255, 255, CInt(220 * _interfaceFade * _pageFade)))
 
             For i = 0 To 5
                 SpriteBatch.DrawString(FontManager.MainFont, evStats(i).ToString, New Vector2(DeltaX + 734 + 24 + i * 56 - CInt(FontManager.MainFont.MeasureString(evStats(i).ToString).X * 0.5), DeltaY + 336), New Color(255, 255, 255, CInt(220 * _interfaceFade * _pageFade)))
