@@ -664,7 +664,7 @@
 
             If _pageOpening = False And _pageClosing = False And _partyIndex > -1 And _moveSelected = False Then
                 If _party.Length > 1 Then
-                    If Controls.Left(True, True, False, True, False, True) Or ControllerHandler.ButtonPressed(Buttons.LeftShoulder) Then
+                    If Controls.Left(True, True, False, True, True, True) Or ControllerHandler.ButtonPressed(Buttons.LeftShoulder) Then
                         If _partyIndex > 0 Then
                             _partyIndex -= 1
                             GetYOffset()
@@ -673,7 +673,7 @@
                         End If
 
                     End If
-                    If Controls.Right(True, True, False, True, False, True) Or ControllerHandler.ButtonPressed(Buttons.RightShoulder) Then
+                    If Controls.Right(True, True, False, True, True, True) Or ControllerHandler.ButtonPressed(Buttons.RightShoulder) Then
                         If _partyIndex < _party.Count - 1 Then
                             _partyIndex += 1
                             GetYOffset()
