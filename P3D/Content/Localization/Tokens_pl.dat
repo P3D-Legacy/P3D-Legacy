@@ -109,7 +109,7 @@ Summary Screen:
 
 summary_hint_ViewMoves,View Moves: [<system.button(movebackward)>] / Down
 summary_hint_ViewInfo,View Info: [<system.button(moveforward)>] / Up
-summary_EVsIVs,EVs / IVs
+summary_EVsIVs,EVs (white) / IVs (blue)
 summary_ExpToNextLv,To Next Lv.
 summary_TheEggWatch,The Egg Watch
 summary_EggHatch_LongTime,It looks like this Egg will take a long time to hatch.

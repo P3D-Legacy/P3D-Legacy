@@ -108,7 +108,7 @@ Summary Screen:
 
 summary_hint_ViewMoves,Technieken: [<system.button(movebackward)>] / Omlaag
 summary_hint_ViewInfo,Info: [<system.button(moveforward)>] / Omhoog
-summary_EVsIVs,MWs / IWs
+summary_EVsIVs,MWs (wit) / IWs (blauw)
 summary_ExpToNextLv,Tot Nv. Hoger
 summary_TheEggWatch,De Eierwacht
 summary_EggHatch_LongTime,Het lijkt erop dat het lang zal duren voordat dit Ei uitkomt.
