@@ -494,7 +494,7 @@
             Next
 
             'Switch Page Hint
-            Canvas.DrawRectangle(New Rectangle(DeltaX + 350, DeltaY + 6, 300 + 24, 32), New Color(0, 0, 0, CInt(50 * _interfaceFade * _pageFade)))
+            Canvas.DrawRectangle(New Rectangle(DeltaX + 350, DeltaY + 6, 300 + 48, 32), New Color(0, 0, 0, CInt(50 * _interfaceFade * _pageFade)))
             SpriteBatch.DrawString(FontManager.MainFont, ScriptVersion2.ScriptCommander.Parse(Localization.GetString("summary_hint_ViewMoves", "View Moves: [<system.button(movebackward)>] / Down")).ToString, New Vector2(DeltaX + 350 + 8, DeltaY + 10), New Color(255, 255, 255, CInt(220 * _interfaceFade * _pageFade)))
 
         End With
@@ -567,7 +567,7 @@
             SpriteBatch.DrawString(FontManager.MainFont, .Attacks(_moveIndex).Description.CropStringToWidth(FontManager.MainFont, 300), New Vector2(DeltaX + 720, DeltaY + 240), New Color(255, 255, 255, CInt(220 * _fadeIn * _pageFade * _moveFade)), 0.0F, New Vector2(0), 1.0F, SpriteEffects.None, 0.0F)
 
             'Switch Page Hint
-            Canvas.DrawRectangle(New Rectangle(DeltaX + 350, DeltaY + 6, 300 + 24, 32), New Color(0, 0, 0, CInt(50 * _interfaceFade * _pageFade)))
+            Canvas.DrawRectangle(New Rectangle(DeltaX + 350, DeltaY + 6, 300 + 48, 32), New Color(0, 0, 0, CInt(50 * _interfaceFade * _pageFade)))
             SpriteBatch.DrawString(FontManager.MainFont, ScriptVersion2.ScriptCommander.Parse(Localization.GetString("summary_hint_ViewInfo", "View Info: [<system.button(moveforward)>] / Up")).ToString, New Vector2(DeltaX + 350 + 8, DeltaY + 10), New Color(255, 255, 255, CInt(220 * _interfaceFade * _pageFade)))
 
         End With
