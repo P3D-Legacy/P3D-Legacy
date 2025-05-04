@@ -688,11 +688,15 @@
         End If
 
         If Me.hoverText <> "" And Me.pokehoverText <> "" Then
-            Core.SpriteBatch.DrawString(FontManager.MainFont, Localization.GetString("pokemon_name_" & Me.pokehoverText) & " at " & Localization.GetString("Places_" & Me.hoverText), New Vector2(Me.CursorPosition.X + 32 + 2, Me.CursorPosition.Y - 32 + 2), Color.Black)
-            Core.SpriteBatch.DrawString(FontManager.MainFont, Localization.GetString("pokemon_name_" & Me.pokehoverText) & " at " & Localization.GetString("Places_" & Me.hoverText), New Vector2(Me.CursorPosition.X + 32, Me.CursorPosition.Y - 32), Color.White)
+            Dim hoverString As String = Localization.GetString("pokemon_name_" & Me.pokehoverText) & " at " & Localization.GetString("Places_" & Me.hoverText)
+            Core.SpriteBatch.DrawRectangle(New Rectangle(CInt(Me.CursorPosition.X + 32 - 2), CInt(Me.CursorPosition.Y - 32 + 2), CInt(FontManager.MainFont.MeasureString(hoverString).X + 2 + 4), CInt(FontManager.MainFont.MeasureString(hoverString).Y)), New Color(0, 0, 0, 0.6F))
+            Core.SpriteBatch.DrawString(FontManager.MainFont, hoverString, New Vector2(CInt(Me.CursorPosition.X + 32 + 2), CInt(Me.CursorPosition.Y - 32 + 2)), Color.Black)
+            Core.SpriteBatch.DrawString(FontManager.MainFont, hoverString, New Vector2(CInt(Me.CursorPosition.X + 32), CInt(Me.CursorPosition.Y - 32)), Color.White)
         ElseIf Me.hoverText <> "" And Me.pokehoverText = "" Then
-            Core.SpriteBatch.DrawString(FontManager.MainFont, Localization.GetString("Places_" & Me.hoverText), New Vector2(Me.CursorPosition.X + 32 + 2, Me.CursorPosition.Y - 32 + 2), Color.Black)
-            Core.SpriteBatch.DrawString(FontManager.MainFont, Localization.GetString("Places_" & Me.hoverText), New Vector2(Me.CursorPosition.X + 32, Me.CursorPosition.Y - 32), Color.White)
+            Dim hoverString As String = Localization.GetString("Places_" & Me.hoverText)
+            Core.SpriteBatch.DrawRectangle(New Rectangle(CInt(Me.CursorPosition.X + 32 - 2), CInt(Me.CursorPosition.Y - 32 + 2), CInt(FontManager.MainFont.MeasureString(hoverString).X + 2 + 4), CInt(FontManager.MainFont.MeasureString(hoverString).Y)), New Color(0, 0, 0, 0.6F))
+            Core.SpriteBatch.DrawString(FontManager.MainFont, hoverString, New Vector2(Me.CursorPosition.X + 32 + 2, Me.CursorPosition.Y - 32 + 2), Color.Black)
+            Core.SpriteBatch.DrawString(FontManager.MainFont, hoverString, New Vector2(Me.CursorPosition.X + 32, Me.CursorPosition.Y - 32), Color.White)
         End If
 
         Dim regionString As String = Localization.GetString(Me.currentRegion(0).ToString().ToUpper() & Me.currentRegion.Remove(0, 1))
