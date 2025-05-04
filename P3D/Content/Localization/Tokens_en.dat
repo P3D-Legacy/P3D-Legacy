@@ -3076,6 +3076,266 @@ move_name_749,Tar Shot
 move_name_790,Strange Steam
 move_name_796,Steel Beam
 move_name_797,Rage Fist
+------
+Move Descriptions:
+move_desc_1,The target is physically pounded with a long tail or a foreleg, etc.
+move_desc_2,The target is attacked with a sharp chop. Critical hits land more easily.
+move_desc_3,The target is slapped repeatedly, back and forth, two to five times in a row.
+move_desc_4,The target is hit with a flurry of punches that strike two to five times in a row.
+move_desc_5,The target is slugged by a punch thrown with muscle-packed power.
+move_desc_6,Numerous coins are hurled at the target to inflict damage. Money is earned after the battle.
+move_desc_7,The target is punched with a fiery fist. It may also leave the target with a burn.
+move_desc_8,The target is punched with an icy fist. It may also leave the target frozen.
+move_desc_9,The target is punched with an electrified fist. It may also leave the target with paralysis.
+move_desc_10,Hard, pointed, and sharp claws rake the target to inflict damage.
+move_desc_11,The target is gripped and squeezed from both sides to inflict damage.
+move_desc_12,A vicious, tearing attack with big pincers. The target will faint instantly if this attack hits.
+move_desc_13,A two-turn attack. Blades of wind hit opposing Pokémon on the second turn. Critical hits land more easily.
+move_desc_14,A frenetic dance to uplift the fighting spirit. It sharply raises the user’s Attack stat.
+move_desc_15,The target is cut with a scythe or a claw. It can also be used to cut down thin trees.
+move_desc_16,A gust of wind is whipped up by wings and launched at the target to inflict damage.
+move_desc_17,The target is struck with large, imposing wings spread wide to inflict damage.
+move_desc_18,The target is blown away, and a different Pokémon is dragged out. In the wild, this ends a battle against a single Pokémon.
+move_desc_19,The user soars, then strikes its target on the second turn. It can also be used for flying to any familiar town.
+move_desc_20,Things such as long bodies or tentacles are used to bind and squeeze the target for four to five turns.
+move_desc_21,The target is slammed with a long tail, vines, etc., to inflict damage.
+move_desc_22,The target is struck with slender, whiplike vines to inflict damage.
+move_desc_23,The target is stomped with a big foot. It may also make the target flinch.
+move_desc_24,The target is quickly kicked twice in succession using both feet.
+move_desc_25,The target is attacked by a kick launched with muscle-packed power.
+move_desc_26,The user jumps up high, then strikes with a kick. If the kick misses, the user hurts itself.
+move_desc_27,The user lashes out with a quick, spinning kick. It may also make the target flinch.
+move_desc_28,Sand is hurled in the target's face, reducing its accuracy.
+move_desc_29,The user sticks out its head and attacks by charging straight into the target. It may also make the target flinch.
+move_desc_30,The target is jabbed with a sharply pointed horn to inflict damage.
+move_desc_31,The target is jabbed repeatedly with a horn or beak two to five times in a row.
+move_desc_32,The user stabs the target with a horn that rotates like a drill. If it hits, the target faints instantly.
+move_desc_33,A physical attack in which the user charges and slams into the target with its whole body.
+move_desc_34,The user drops onto the target with its full body weight. It may also leave the target with paralysis.
+move_desc_35,A long body or vines are used to wrap and squeeze the target for four to five turns.
+move_desc_36,A reckless, full-body charge attack for slamming into the target. It also damages the user a little.
+move_desc_37,The user rampages and attacks for two to three turns. It then becomes confused, however.
+move_desc_38,A reckless, life-risking tackle. It also damages the user by a fairly large amount, however.
+move_desc_39,The user wags its tail cutely, making opposing Pokémon less wary and lowering their Defense stat.
+move_desc_40,The user stabs the target with a poisonous stinger. This may also poison the target.
+move_desc_41,The user damages the target twice in succession by jabbing it with two spikes. It may also poison the target.
+move_desc_42,Sharp spikes are shot at the target in rapid succession. They hit two to five times in a row.
+move_desc_43,The user gains an intimidating leer with sharp eyes. The opposing team’s Defense stats are reduced.
+move_desc_44,The target is bitten with viciously sharp fangs. It may make the target flinch.
+move_desc_45,The user growls in an endearing way, making the opposing team less wary. The foes' Attack stats are lowered.
+move_desc_46,The target is scared off and a different Pokémon is dragged out. In the wild, this ends a battle against a single Pokémon.
+move_desc_47,A soothing lullaby is sung in a calming voice that puts the target into a deep slumber.
+move_desc_48,The user generates odd sound waves from its body. It may confuse the target.
+move_desc_49,The target is hit with a destructive shock wave that always inflicts 20 HP damage.
+move_desc_50,For four turns, the target will be unable to use whichever move it last used.
+move_desc_51,The opposing team is attacked with a spray of harsh acid. The acid may also lower the targets' Sp. Def. stats.
+move_desc_52,The target is attacked with small flames. It may also leave the target with a burn.
+move_desc_53,The target is scorched with an intense blast of fire. It may also leave the target with a burn.
+move_desc_54,The user cloaks its body with a white mist that prevents any of its stats from being cut for five turns.
+move_desc_55,The target is blasted with a forceful shot of water.
+move_desc_56,The target is blasted by a huge volume of water launched under great pressure.
+move_desc_57,It swamps the area around the user with a giant wave. It can also be used for crossing water.
+move_desc_58,The target is struck with an icy-cold beam of energy. It may also freeze the target solid.
+move_desc_59,A howling blizzard is summoned to strike the opposing team. It may also freeze them solid.
+move_desc_60,The target is attacked with a peculiar ray. It may also cause confusion.
+move_desc_61,A spray of bubbles is forcefully ejected at the opposing team. It may also lower their Speed stats.
+move_desc_62,The target is hit with a rainbow-colored beam. This may also lower the target's Attack stat.
+move_desc_63,The target is attacked with a powerful beam. The user must rest on the next turn to regain its energy.
+move_desc_64,The target is jabbed with a sharply pointed beak or horn.
+move_desc_65,A corkscrewing attack with the sharp beak acting as a drill.
+move_desc_66,The user grabs the target and recklessly dives for the ground. It also hurts the user slightly.
+move_desc_67,A powerful low kick that makes the target fall over. It inflicts greater damage on heavier targets.
+move_desc_68,A retaliation move that counters any physical attack, inflicting double the damage taken.
+move_desc_69,The target is thrown using the power of gravity. It inflicts damage equal to the user's level.
+move_desc_70,The target is slugged with a punch thrown at maximum power. This move can also be used to move boulders.
+move_desc_71,Inflicts damage on the target, then restores the user's HP based on the damage inflicted.
+move_desc_72,A nutrient-draining attack. The user's HP is restored by half the damage taken by the target.
+move_desc_73,A seed is planted on the target. It steals some HP from the target every turn.
+move_desc_74,The user's body grows all at once, raising the Attack and Sp. Atk. stats.
+move_desc_75,Sharp-edged leaves are launched to slash at the opposing team. Critical hits land more easily.
+move_desc_76,A two-turn attack. The user gathers light, then blasts a bundled beam on the second turn.
+move_desc_77,The user scatters a cloud of poisonous dust on the target. It may poison the target.
+move_desc_78,The user scatters a cloud of paralyzing powder. It may leave the target with paralysis.
+move_desc_79,The user scatters a big cloud of sleep-inducing dust around the target.
+move_desc_80,The user attacks the target by scattering petals for two to three turns. The user then becomes confused.
+move_desc_81,The targets are bound with silk blown from the user's mouth. This silk reduces the targets' Speed stat.
+move_desc_82,This attack hits the target with a shock wave of pure rage. This attack always inflicts 40 HP damage.
+move_desc_83,The target becomes trapped within a fierce vortex of fire that rages for four to five turns.
+move_desc_84,A jolt of electricity is hurled at the target to inflict damage. It may also leave the target with paralysis.
+move_desc_85,A strong electric blast is loosed at the target. It may also leave the target with paralysis.
+move_desc_86,A weak electric charge is launched at the target. It causes paralysis if it hits.
+move_desc_87,A wicked thunderbolt is dropped on the target to inflict damage. It may also leave the target with paralysis.
+move_desc_88,The user picks up and throws a small rock at the target to attack.
+move_desc_89,The user sets off an earthquake that strikes those around it.
+move_desc_90,The user opens up a fissure in the ground and drops the target in. The target instantly faints if it hits.
+move_desc_91,The user burrows, then attacks on the second turn. It can also be used to exit dungeons.
+move_desc_92,A move that leaves the target badly poisoned. Its poison damage worsens every turn.
+move_desc_93,The target is hit by a weak telekinetic force. It may also leave the target confused.
+move_desc_94,The target is hit by a strong telekinetic force. It may also reduce the target's Sp.Def stat.
+move_desc_95,The user employs hypnotic suggestion to make the target fall into a deep sleep.
+move_desc_96,The user meditates to awaken the power deep within its body and raise its Attack stat.
+move_desc_97,The user relaxes and lightens its body to move faster. It sharply boosts the Speed stat.
+move_desc_98,The user lunges at the target at a speed that makes it almost invisible. It is sure to strike first.
+move_desc_99,As long as this move is in use, the power of rage raises the Attack stat each time the user is hit in battle.
+move_desc_100,Use it to flee from any wild Pokémon. It can also warp to the last Pokémon Center visited.
+move_desc_101,The user makes the target see a frightening mirage. It inflicts damage matching the user's level.
+move_desc_102,The user copies the target's last move. The move can be used during battle until the Pokémon is switched out.
+move_desc_103,An earsplitting screech harshly reduces the target's Defense stat.
+move_desc_104,By moving rapidly, the user makes illusory copies of itself to raise its evasiveness.
+move_desc_105,Restoring its own cells, the user restores its own HP by half of its max HP.
+move_desc_106,The user stiffens all the muscles in its body to raise its Defense stat.
+move_desc_107,The user compresses its body to make itself look smaller, which sharply raises its evasiveness.
+move_desc_108,The user releases an obscuring cloud of smoke or ink. It reduces the target's accuracy.
+move_desc_109,The target is exposed to a sinister ray that triggers confusion.
+move_desc_110,The user withdraws its body into its hard shell, raising its Defense stat.
+move_desc_111,The user curls up to conceal weak spots and raise its Defense stat.
+move_desc_112,The user throws up a sturdy wall that sharply raises its Defense stat.
+move_desc_113,A wondrous wall of light is put up to suppress damage from special attacks for five turns.
+move_desc_114,The user creates a haze that eliminates every stat change among all the Pokémon engaged in battle.
+move_desc_115,A wondrous wall is put up to suppress damage from physical attacks for five turns.
+move_desc_116,The user takes a deep breath and focuses so that critical hits land more easily.
+move_desc_117,The user endures attacks for two turns, then strikes back to cause double the damage taken.
+move_desc_118,The user waggles a finger and stimulates its brain into randomly using nearly any move.
+move_desc_119,The user counters the target by mimicking the target's last move.
+move_desc_120,The user attacks everything around it by causing an explosion. The user faints upon using this move.
+move_desc_121,A large egg is hurled at the target with maximum force to inflict damage.
+move_desc_122,The target is licked with a long tongue, causing damage. It may also leave the target with paralysis.
+move_desc_123,The target is attacked with a discharge of filthy gases. It may also poison the target.
+move_desc_124,Unsanitary sludge is hurled at the target. It may also poison the target.
+move_desc_125,The user clubs the target with a bone. It may also make the target flinch.
+move_desc_126,The target is attacked with an intense blast of all-consuming fire. It may also leave the target with a burn.
+move_desc_127,The user charges at the target and may make it flinch. It can also be used to climb a waterfall.
+move_desc_128,The target is clamped and squeezed by the user's very thick and sturdy shell for four to five turns.
+move_desc_129,Star-shaped rays are shot at the opposing team. This attack never misses.
+move_desc_130,The user tucks in its head to raise its Defense in the first turn, then rams the target on the next turn.
+move_desc_131,Sharp spikes are shot at the target in rapid succession. They hit two to five times in a row.
+move_desc_132,The target is attacked with long, creeping tentacles or vines. It may also lower the target's Speed stat.
+move_desc_133,The user temporarily empties its mind to forget its concerns. It sharply raises the user's Sp. Def. stat.
+move_desc_134,The user distracts the target by bending a spoon. It lowers the target's accuracy.
+move_desc_135,The user restores its own HP by up to half of its maximum HP. May also be used in the field to heal HP.
+move_desc_136,The target is attacked with a knee kick from a jump. If it misses, the user is hurt instead.
+move_desc_137,The user intimidates the target with the pattern on its belly to cause paralysis.
+move_desc_138,The user eats the dreams of a sleeping target. It absorbs half the damage caused to heal the user's HP.
+move_desc_139,A cloud of poison gas is sprayed in the face of opposing Pokémon. It may poison those hit.
+move_desc_140,Round objects are hurled at the target to strike two to five times in a row.
+move_desc_141,The user drains the target's blood. The user's HP is restored by half the damage taken by the target.
+move_desc_142,With a scary face, the user tries to force a kiss on the target. If it succeeds, the target falls asleep.
+move_desc_143,A second-turn attack move where critical hits land more easily. It may also make the target flinch.
+move_desc_144,The user transforms into a copy of the target right down to having the same move set.
+move_desc_145,A spray of countless bubbles is jetted at the opposing team. It may also lower the targets' Speed stats.
+move_desc_146,The target is hit with rhythmically launched punches. This may also leave the target confused.
+move_desc_147,The user scatters bursts of spores that induce sleep.
+move_desc_148,The user flashes a bright light with enormous speed at the target. It cuts the user's accuracy though.
+move_desc_149,The target is attacked with an odd psychic wave. The attack varies in intensity.
+move_desc_150,The user just flops and splashes around to no effect at all...
+move_desc_151,The user alters its cellular structure to liquefy itself, sharply raising its Defense stat.
+move_desc_152,The target is hammered with a large pincer. Critical hits land more easily.
+move_desc_153,The user explodes to inflict damage on those around it. The user faints upon using this move.
+move_desc_154,The target is raked with sharp claws or scythes for two to five times in quick succession.
+move_desc_155,The user throws the bone it holds. The bone loops to hit the target twice, coming and going.
+move_desc_156,The user goes to sleep for two turns. It fully restores the user’s HP and heals any status problem.
+move_desc_157,Large boulders are hurled at the opposing team to inflict damage. They may also make the targets flinch.
+move_desc_158,The user bites hard on the target with its sharp front fangs. It may also make the target flinch.
+move_desc_159,The user reduces its polygon count to make itself more jagged, raising the Attack stat.
+move_desc_160,The user changes its type to become the same type as the move at the top of the list of moves it knows.
+move_desc_161,The user strikes with a simultaneous three-beam attack. May also burn, freeze, or leave the target with paralysis.
+move_desc_162,The user chomps hard on the target with its sharp front fangs. It cuts the target's HP to half.
+move_desc_163,The target is attacked with a slash of claws or blades. Critical hits land more easily.
+move_desc_164,The user makes a copy of itself using some of its HP. The copy serves as the user’s decoy.
+move_desc_165,An attack that is used in desperation only if the user has no PP. It also hurts the user slightly.
+
+move_desc_167,A consecutive three-kick attack that becomes more powerful with each successive hit.
+
+move_desc_172,The user cloaks itself in fire and charges at the target. It may also leave the target with a burn.
+
+move_desc_177,A vortex of air is shot at the target to inflict damage. Critical hits land more easily.
+move_desc_178,The user releases cotton-like spores that cling to the target, harshly reducing its Speed stat.
+
+move_desc_181,The user attacks with a chilling gust of powdery snow. It may also freeze the targets.
+
+move_desc_183,The user throws a punch at blinding speed. It is certain to strike first.
+move_desc_184,The user frightens the target with a scary face to harshly reduce its Speed stat.
+move_desc_185,The user approaches the target disarmingly, then throws a sucker punch. It hits without fail.
+move_desc_186,The user kisses the target with a sweet, angelic cuteness that causes confusion.
+
+move_desc_188,Unsanitary sludge is hurled at the target. It may also poison the target.
+move_desc_189,The user hurls mud in the target's face to inflict damage and lower its accuracy.
+move_desc_190,The user attacks by spraying ink in the target's face or eyes. It may also lower the target's accuracy.
+
+move_desc_192,The user fires an electric blast like a cannon to inflict damage and cause paralysis.
+
+move_desc_196,The user attacks with a gust of chilled air. It also reduces the targets' Speed stat.
+
+move_desc_198,The user strikes the target with a hard bone two to five times in a row.
+
+move_desc_200,The user rampages and attacks for two to three turns. It then becomes confused, however.
+
+move_desc_202,A nutrient-draining attack. The user's HP is restored by half the damage taken by the target.
+
+move_desc_204,The user gazes at the target rather charmingly, making it less wary. The target's Attack is harshly lowered.
+move_desc_205,The user continually rolls into the target over five turns. It becomes stronger each time it hits.
+move_desc_206,A restrained attack that prevents the target from fainting. The target is left with at least 1 HP.
+
+move_desc_209,The user throws an electrically charged tackle at the target. It may also leave the target with paralysis.
+
+move_desc_211,The target is hit with wings of steel. It may also raise the user's Defense stat.
+
+move_desc_221,The target is razed with a mystical fire of great intensity. It may also leave the target with a burn.
+
+move_desc_223,The user punches the target with full, concentrated power. It confuses the target if it hits.
+move_desc_224,Using its tough and impressive horn, the user rams into the target with no letup.
+move_desc_225,The user exhales a mighty gust that inflicts damage. It may also leave the target with paralysis.
+
+move_desc_230,A sweet scent that lowers the opposing team's evasiveness. It also lures wild Pokémon if used in grass, etc.
+move_desc_231,The target is slammed with a steel-hard tail. It may also lower the target's Defense stat.
+move_desc_232,The target is raked with steel claws. It may also raise the user's Attack stat.
+
+move_desc_234,The user restores its own HP. The amount of HP regained varies with the weather.
+move_desc_235,The user restores its own HP. The amount of HP regained varies with the weather.
+move_desc_236,The user restores its own HP. The amount of HP regained varies with the weather.
+
+move_desc_238,The user delivers a double chop with its forearms crossed. Critical hits land more easily.
+move_desc_239,The user whips up a vicious tornado to tear at the opposing team. It may also make targets flinch.
+
+move_desc_242,The user crunches up the target with sharp fangs. It may also lower the target's Defense stat.
+
+move_desc_245,The user charges the target at blinding speed. This attack always goes before any other move.
+move_desc_246,The user attacks with a prehistoric power. It may also raise all the user's stats at once.
+move_desc_247,The user hurls a shadowy blob at the target. It may also lower the target's Sp. Def. stat.
+
+move_desc_249,The user attacks with a punch that can shatter a rock. It may also lower the target's Defense stat.
+
+move_desc_304,The user lets loose a horribly echoing shout with the power to inflict damage.
+
+move_desc_324,The user attacks with a sinister beam of light. It may also confuse the target.
+
+move_desc_334,The user hardens its body's surface like iron, sharply raising its Defense stat.
+
+move_desc_398,The target is stabbed with a tentacle or arm steeped in poison. It may also poison the target.
+move_desc_399,The user releases a horrible aura imbued with dark thoughts. It may also make the target flinch.
+move_desc_400,The user slashes the target the instant an opportunity arises. Critical hits land more easily.
+
+move_desc_402,The user slams a barrage of hard-shelled seeds on the target from above.
+move_desc_403,The user attacks with a blade of air that slices even the sky. It may also make the target flinch.
+move_desc_404,The user slashes at the target by crossing its scythes or claws as if they were a pair of scissors.
+
+move_desc_406,The target is attacked with a shock wave generated by the user's gaping mouth.
+
+move_desc_416,The user charges at the target using every bit of its power. The user can't move on the next turn.
+
+move_desc_430,The user gathers all its light energy and releases it at once. This may also lower the target's Sp. Def. stat.
+
+move_desc_442,The user slams the target with its steel-hard head. This may also make the target flinch.
+
+move_desc_452,The user slams its rugged body into the target to attack. The user also sustains serious damage.
+
+move_desc_583,The user plays rough with the target and attacks it. This may also lower the target's Attack stat.
+move_desc_584,The user stirs up a fairy wind and strikes the target with it.
+move_desc_585,Borrowing the power of the moon, the user attacks the target. This may also lower the target's Sp. Atk. stat.
+
+move_desc_790,The user attacks the target by emitting steam. This may also confuse the target.
+
+move_desc_797,The user converts its rage into energy to attack. The more times the user has been hit by attacks, the greater the move's power.
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------
 Story translation:
 ---
