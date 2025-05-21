@@ -106,8 +106,8 @@ property_Accuracy,Genauigk.
 ---
 Summary Screen:
 
-summary_hint_ViewMoves,Attacken: [<system.button(movebackward)>] / Nach unten
-summary_hint_ViewInfo,Bericht: [<system.button(moveforward)>] / Nach oben
+summary_hint_ViewMoves,Attacken: [<system.button(movebackward)>]/[↓] Runter
+summary_hint_ViewInfo,Bericht: [<system.button(moveforward)>]/[↑] Hoch
 summary_EVsIVs,EVs (weiß) / IVs (blau)
 summary_ExpToNextLv,Noch nötig
 summary_TheEggWatch,The Egg Watch

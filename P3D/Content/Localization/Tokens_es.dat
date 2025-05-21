@@ -107,8 +107,8 @@ property_Accuracy,Precisión
 ---
 Summary Screen:
 
-summary_hint_ViewMoves,Movimientos: [<system.button(movebackward)>] / Abajo
-summary_hint_ViewInfo,Detalles: [<system.button(moveforward)>] / Arriba
+summary_hint_ViewMoves,Movimientos: [<system.button(movebackward)>]/[↓] Abajo
+summary_hint_ViewInfo,Detalles: [<system.button(moveforward)>]/[↑] Arriba
 summary_EVsIVs,EVs (white) / IVs (blue)
 summary_ExpToNextLv,Próx. Niv.
 summary_TheEggWatch,The Egg Watch

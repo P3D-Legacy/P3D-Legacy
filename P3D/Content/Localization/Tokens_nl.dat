@@ -106,8 +106,8 @@ property_Accuracy,Nauwkeurigheid
 ---
 Summary Screen:
 
-summary_hint_ViewMoves,Technieken: [<system.button(movebackward)>] / Omlaag
-summary_hint_ViewInfo,Info: [<system.button(moveforward)>] / Omhoog
+summary_hint_ViewMoves,Technieken: [<system.button(movebackward)>]/[↓] Omlaag
+summary_hint_ViewInfo,Informatie: [<system.button(moveforward)>]/[↑] Omhoog
 summary_EVsIVs,MWs (wit) / IWs (blauw)
 summary_ExpToNextLv,Tot Nv. Hoger
 summary_TheEggWatch,De Eierwacht
@@ -3456,7 +3456,266 @@ move_name_749,Tar Shot
 move_name_790,Vreemde stoom
 move_name_796,Steel Beam
 move_name_797,Woedevuist
+------
+Move Descriptions:
+move_desc_1,Het doelwit wordt fysiek geraakt met een lange staart of een voorpoot, enz.
+move_desc_2,Het doelwit wordt aangevallen met een scherpe hak. Kritieke treffers komen gemakkelijker aan.
+move_desc_3,Het doelwit wordt herhaaldelijk geslagen, heen en weer, twee tot vijf keer achter elkaar.
+move_desc_4,Het doelwit wordt geraakt met een vlaag van stoten die twee tot vijf keer achter elkaar toeslaan.
+move_desc_5,Het doelwit wordt geraakt door een vuistslag met veel spierkracht.
+move_desc_6,Talrijke munten worden naar het doelwit geslingerd om schade toe te brengen. Na het gevecht wordt er geld verdiend.
+move_desc_7,Het doelwit wordt geslagen met een vurige vuist. Het doelwit kan ook een verbrand raken.
+move_desc_8,Het doelwit wordt geslagen met een ijzige vuist. Het doelwit kan ook bevroren raken.
+move_desc_9,Het doelwit wordt geslagen met een geëlektriseerde vuist. Het kan het doelwit ook verlammen.
+move_desc_10,Harde, puntige en scherpe klauwen snijden het doelwit om schade toe te brengen.
+move_desc_11,Het doelwit wordt van beide kanten vastgegrepen en samengeknepen om schade toe te brengen.
+move_desc_12,Een wrede, scheurende aanval met grote nijptangen. Het doelwit wordt onmiddelijk uitgeschakeld als deze aanval raak is.
+move_desc_13,Een aanval met twee beurten. Windstoten raken Pokémon van de tegenstander in de tweede beurt. Kritieke treffers komen gemakkelijker aan.
+move_desc_14,Een uitzinnige dans om de vechtlust op te wekken. Het verhoogt het Aanval-attribuut van de gebruiker aanzienlijk.
+move_desc_15,Het doelwit wordt gesneden met een zeis of een klauw. Het kan ook worden gebruikt om dunne bomen om te hakken.
+move_desc_16,Een windvlaag wordt opgezweept door vleugels en gelanceerd op het doelwit om schade toe te brengen.
+move_desc_17,Het doelwit wordt geraakt met grote, imposante vleugels die wijd uitgespreid zijn om schade toe te brengen.
+move_desc_18,Het doelwit wordt weggeblazen en er wordt een andere Pokémon uitgesleurd. In het wild beëindigt dit een gevecht tegen één Pokémon.
+move_desc_19,De gebruiker zweeft en treft zijn doelwit in de tweede beurt. Het kan ook worden gebruikt om naar een bekende stad te vliegen.
+move_desc_20,Dingen zoals lange lichamen of tentakels worden gebruikt om het doelwit vier tot vijf beurten lang vast te binden en samen te knijpen.
+move_desc_21,Het doelwit wordt geslagen met een lange staart, lianen, enz. om schade toe te brengen.
+move_desc_22,Het doelwit wordt geslagen met slanke, zweepachtige lianen om schade toe te brengen.
+move_desc_23,Het doelwit wordt vertrapt met een grote voet. Het kan het doelwit ook laten terugdeinzen.
+move_desc_24,Het doelwit wordt snel twee keer achter elkaar geschopt met beide voeten.
+move_desc_25,Het doelwit wordt aangevallen met een krachtvolle trap.
+move_desc_26,De gebruiker springt hoog op en slaat dan toe met een trap. Als de trap mist, verwondt de gebruiker zichzelf.
+move_desc_27,De gebruiker haalt uit met een snelle, draaiende trap. Het kan het doelwit ook laten terugdeinzen.
+move_desc_28,Er wordt zand in het gezicht van het doelwit geslingerd, waardoor het minder nauwkeurig is.
+move_desc_29,De gebruiker steekt zijn hoofd uit en valt aan door recht op het doelwit af te stormen. Het kan het doelwit ook laten terugdeinzen.
+move_desc_30,Het doelwit wordt gestoken met een scherp gepunte hoorn om schade toe te brengen.
+move_desc_31,Het doelwit wordt herhaaldelijk gestoken met een hoorn of snavel, twee tot vijf keer achter elkaar.
+move_desc_32,De gebruiker steekt het doelwit met een hoorn die draait als een boor. Als het raak is, wordt het doelwit onmiddelijk uitgeschakeld.
+move_desc_33,Een fysieke aanval waarbij de gebruiker aanvalt en met zijn hele lichaam op het doelwit inbeukt.
+move_desc_34,De gebruiker laat zich met zijn volle lichaamsgewicht op het doelwit vallen. Het kan het doelwit ook verlammen.
+move_desc_35,Een lang lichaam of lianen worden gebruikt om het doelwit vier tot vijf keer in te pakken en samen te knijpen.
+move_desc_36,Een roekeloze oplaadaanval met het hele lichaam om op het doelwit in te beuken. Het beschadigt de gebruiker ook een beetje.
+move_desc_37,De gebruiker gaat twee tot drie beurten tekeer en valt aan. Daarna raakt hij echter in de war.
+move_desc_38,Een roekeloze, levensgevaarlijke tackle. Het beschadigt de gebruiker echter ook vrij veel.
+move_desc_39,De gebruiker kwispelt schattig met zijn staart, waardoor Pokémon van de tegenstander minder op hun hoede zijn en hun verdedigingsstatus daalt.
+move_desc_40,De gebruiker steekt het doelwit met een giftige angel of stekel. Het kan het doelwit ook vergiftigen.
+move_desc_41,De gebruiker beschadigt het doelwit twee keer achter elkaar door het te steken met twee stekels. Het kan het doelwit ook vergiftigen.
+move_desc_42,Scherpe stekels worden snel achter elkaar naar het doelwit geschoten. Ze raken twee tot vijf keer achter elkaar.
+move_desc_43,De gebruiker krijgt een intimiderende blik met scherpe ogen. De Verdediging-attributen van de tegenpartij worden gereduceerd.
+move_desc_44,Het doelwit wordt gebeten met venijnig scherpe hoektanden. Het kan het doelwit doen terugdeinzen.
+move_desc_45,De gebruiker gromt op een vertederende manier, waardoor de tegenstanders minder op hun hoede zijn. De Aanval-attributen van de tegenstanders worden verlaagd.
+move_desc_46,Het doelwit wordt afgeschrikt en er wordt een andere Pokémon uitgesleept. In het wild eindigt dit een gevecht tegen één Pokémon.
+move_desc_47,Er wordt een rustgevend slaapliedje gezongen met een kalmerende stem die het doelwit in een diepe slaap brengt.
+move_desc_48,De gebruiker genereert vreemde geluidsgolven vanuit zijn lichaam. Het kan het doelwit verwarren.
+move_desc_49,Het doelwit wordt geraakt met een destructieve schokgolf die altijd 20 IP schade toebrengt.
+move_desc_50,Vier beurten lang kan het doelwit de techniek die het als laatste gebruikte niet gebruiken.
+move_desc_51,De tegenpartij wordt aangevallen met een spray van agressief zuur. Het zuur kan ook de Sp. Verdediging-attributen van de tegenstanders verlagen.
+move_desc_52,Het doelwit wordt aangevallen met kleine vlammen. Hierdoor kan het doelwit ook verbrand raken.
+move_desc_53,Het doelwit wordt verschroeid met een intense vuurstraal. Hierdoor kan het doelwit ook verbrand raken.
+move_desc_54,De gebruiker omhult zijn lichaam met een witte mist die voorkomt dat zijn attributen gedurende vijf beurten worden aangetast.
+move_desc_55,Het doelwit wordt bestraald met een krachtig schot water.
+move_desc_56,Het doelwit wordt bestraald door een enorme hoeveelheid water die onder grote druk wordt gelanceerd.
+move_desc_57,Het overspoelt het gebied rond de gebruiker met een gigantische golf. Het kan ook worden gebruikt om water over te steken.
+move_desc_58,Het doelwit wordt getroffen door een ijskoude energiestraal. Het doelwit kan ook bevroren raken.
+move_desc_59,Een gierende sneeuwstorm wordt opgeroepen om de tegenstander te raken. Deze kan de tegenstander ook bevriezen.
+move_desc_60,Het doelwit wordt aangevallen met een vreemde straal. Hierdoor kan de tegenstander ook verward raken.
+move_desc_61,Een nevel van bubbels wordt met kracht op het andere team afgevuurd. Het kan ook hun Snelheid-attributen verlagen.
+move_desc_62,Het doelwit wordt geraakt door een regenboogkleurige straal. Het kan ook het Aanval-attribuut van het doelwit verlagen.
+move_desc_63,Het doelwit wordt aangevallen met een krachtige straal. De gebruiker moet de volgende beurt rusten om zijn energie te herwinnen.
+move_desc_64,Het doelwit wordt gestoken met een scherp gepunte snavel of hoorn.
+move_desc_65,Een kurkentrekkeraanval waarbij de scherpe snavel als boor fungeert.
+move_desc_66,De gebruiker grijpt het doelwit en duikt roekeloos naar de grond. Het doet de gebruiker ook licht pijn.
+move_desc_67,Een krachtige lage trap die het doelwit doet omvallen. Brengt meer schade toe aan zwaardere doelen.
+move_desc_68,Een vergeldingstechniek die tegen elke fysieke aanval ingaat en dubbele schade toebrengt.
+move_desc_69,Het doelwit wordt weggeworpen met behulp van de zwaartekracht. De schade is gelijk aan het niveau van de gebruiker.
+move_desc_70,Het doelwit wordt geraakt met een vuistslag op maximale kracht. Deze techniek kan ook gebruikt worden om rotsblokken te verplaatsen.
+move_desc_71,Brengt schade toe aan het doelwit en herstelt vervolgens de IP van de gebruiker op basis van de toegebrachte schade.
+move_desc_72,Een voedingsstoffen-onttrekkende aanval. De IP van de gebruiker wordt hersteld met de helft van de schade die het doelwit oploopt.
+move_desc_73,Een zaadje wordt op het doelwit geplant. Het onttrekt elke beurt wat IP aan het doelwit.
+move_desc_74,Het lichaam van de gebruiker groeit in één keer, waardoor de Aanval- en Sp. Aanval-attributen verhoogd worden.
+move_desc_75,Scherpgerande bladeren worden gelanceerd om op de tegenstander in te slaan. Kritieke treffers komen gemakkelijker aan.
+move_desc_76,Een aanval met twee beurten. De gebruiker verzamelt licht en vuurt dan een gebundelde straal af tijdens de tweede beurt.
+move_desc_77,De gebruiker verspreidt een wolk giftige stof over het doelwit. Het kan het doelwit vergiftigen.
+move_desc_78,De gebruiker verspreidt een wolk verlammend poeder. Het kan het doelwit verlammen.
+move_desc_79,De gebruiker verstrooit een grote wolk slaapverwekkende stof rond het doelwit.
+move_desc_80,De gebruiker valt het doelwit aan door twee tot drie beurten lang bloemblaadjes te strooien. De gebruiker raakt dan in de war.
+move_desc_81,De doelwitten worden gebonden met zijde die uit de mond van de gebruiker wordt geblazen. Deze zijde verlaagt het Snelheid-attribuut van het doelwit.
+move_desc_82,Deze aanval raakt het doelwit met een schokgolf van pure woede. Deze aanval brengt altijd 40 IP schade toe.
+move_desc_83,Het doelwit raakt gevangen in een woeste draaikolk van vuur die vier tot vijf beurten woedt.
+move_desc_84,Een stroomstoot wordt naar het doelwit geslingerd om schade toe te brengen. Het kan het doelwit ook verlammen.
+move_desc_85,Een sterke elektrische stoot wordt op het doelwit losgelaten. Deze kan het doelwit ook verlammen.
+move_desc_86,Een zwakke elektrische lading wordt op het doelwit gelanceerd. Het veroorzaakt verlamming als het raakt.
+move_desc_87,Een vernietigende bliksemschicht wordt op het doelwit afgevuurd om schade toe te brengen. Het kan het doelwit ook verlammen.
+move_desc_88,De gebruiker pakt een kleine steen op en gooit deze naar het doelwit om aan te vallen.
+move_desc_89,De gebruiker veroorzaakt een aardbeving die iedereen in zijn omgeving treft.
+move_desc_90,De gebruiker maakt een spleet in de grond en laat het doelwit erin vallen. Het doelwit wordt onmiddelijk uitgeschakeld als het wordt geraakt.
+move_desc_91,De gebruiker graaft zich in en valt aan tijdens de tweede beurt. Het kan ook worden gebruikt om grotten en bepaalde andere plekken te verlaten.
+move_desc_92,Een techniek die het doelwit zwaar vergiftigd achterlaat. De gifschade wordt elke beurt erger.
+move_desc_93,Het doelwit wordt geraakt door een zwakke telekinetische kracht. Het doelwit kan ook in de war raken.
+move_desc_94,Het doelwit wordt geraakt door een sterke telekinetische kracht. Het kan ook het Sp. Verdediging-attribuut van het doelwit verlagen.
+move_desc_95,De gebruiker gebruikt hypnotiserende suggesties om het doelwit in een diepe slaap te laten vallen.
+move_desc_96,De gebruiker mediteert om de kracht diep in zijn lichaam te wekken en zijn Aanval-attribuut te verhogen.
+move_desc_97,De gebruiker ontspant en maakt zijn lichaam lichter om sneller te kunnen bewegen. Het Snelheid-attribuut wordt sterk verhoogd.
+move_desc_98,De gebruiker stormt op het doel af met een snelheid die hem bijna onzichtbaar maakt. Hij slaat zeker als eerste toe.
+move_desc_99,Zolang deze techniek in gebruik is, verhoogt de woedekracht het Aanval-attribuut elke keer wanneer de gebruiker wordt geraakt in een gevecht.
+move_desc_100,Gebruik het om te vluchten voor wilde Pokémon. Je kunt er ook mee teleporteren naar het laatst bezochte Pokémon-Centrum.
+move_desc_101,De gebruiker laat het doelwit een angstaanjagende luchtspiegeling zien. Het brengt schade toe die overeenkomt met het level van de gebruiker.
+move_desc_102,De gebruiker kopieert de laatste techniek van het doelwit. De techniek kan tijdens gevechten worden gebruikt totdat de Pokémon is uitgeschakeld.
+move_desc_103,Een oorverdovend gekrijs vermindert hard het Verdediging-attribuut van het doelwit.
+move_desc_104,Door snel te bewegen, maakt de gebruiker schijnbare kopieën van zichzelf om zijn ontwijkingsvermogen te vergroten.
+move_desc_105,Door zijn eigen cellen te herstellen, herstelt de gebruiker zijn eigen IP met de helft van zijn maximale IP.
+move_desc_106,De gebruiker verstijft alle spieren in zijn lichaam om zijn Verdediging-attribuut te verhogen.
+move_desc_107,De gebruiker comprimeert zijn lichaam om zichzelf kleiner te laten lijken, waardoor zijn ontwijkingsvermogen sterk toeneemt.
+move_desc_108,De gebruiker laat een verduisterende wolk van rook of inkt vrij. Het vermindert de nauwkeurigheid van het doelwit.
+move_desc_109,Het doelwit wordt blootgesteld aan een sinistere straal die verwarring veroorzaakt.
+move_desc_110,De gebruiker trekt zijn lichaam terug in zijn harde omhulsel en verhoogt zijn Verdediging-attribuut.
+move_desc_111,De gebruiker krult zich op om zwakke plekken te verbergen en zijn Verdediging-attribuut te verhogen.
+move_desc_112,De gebruiker werpt een stevige muur op die zijn Verdediging-attribuut sterk verhoogt.
+move_desc_113,De gebruiker werpt een wonderbaarlijke muur van licht op om schade van speciale aanvallen vijf beurten lang te onderdrukken.
+move_desc_114,De gebruiker creëert een waas die elke attribuutwijziging van alle Pokémon in de strijd elimineert.
+move_desc_115,Een wonderbaarlijke muur wordt opgetrokken om schade van fysieke aanvallen vijf beurten lang te onderdrukken.
+move_desc_116,De gebruiker haalt diep adem en concentreert zich zodat kritieke treffers gemakkelijker aankomen.
+move_desc_117,De gebruiker verdraagt aanvallen twee beurten lang en slaat dan terug om dubbele schade aan te richten.
+move_desc_118,De gebruiker zwaait met een vinger en stimuleert zijn hersenen om willekeurig bijna elke techniek te gebruiken.
+move_desc_119,De gebruiker countert het doelwit door de laatste techniek van het doelwit na te bootsen.
+move_desc_120,De gebruiker valt alles om zich heen aan door een explosie te veroorzaken. De gebruiker valt flauw als hij deze techniek gebruikt.
+move_desc_121,Een groot ei wordt met maximale kracht naar het doelwit geslingerd om schade toe te brengen.
+move_desc_122,Het doelwit wordt gelikt met een lange tong, wat schade veroorzaakt. Het kan het doelwit ook verlammen.
+move_desc_123,Het doelwit wordt aangevallen met een uitstoot van smerige gassen. Het kan het doelwit ook vergiftigen.
+move_desc_124,Onhygiënisch slijk wordt naar het doelwit geslingerd. Het kan het doelwit ook vergiftigen.
+move_desc_125,De gebruiker slaat het doelwit met een bot. Het kan het doelwit ook doen terugdeinzen.
+move_desc_126,Het doelwit wordt aangevallen met een intense vuurzee. Hierdoor kan het doelwit ook verbrand raken.
+move_desc_127,De gebruiker valt het doelwit aan en kan het laten terugdeinzen. Het kan ook worden gebruikt om een waterval te beklimmen.
+move_desc_128,Het doelwit wordt vier tot vijf keer vastgeklemd en samengeknepen door het zeer dikke en stevige omhulsel van de gebruiker.
+move_desc_129,Stervormige stralen worden naar de tegenstander geschoten. Deze aanval mist nooit.
+move_desc_130,De gebruiker trekt zijn hoofd in om zijn verdediging in de eerste beurt te verhogen en ramt het doelwit in de volgende beurt.
+move_desc_131,Scherpe stekels worden snel achter elkaar op het doel geschoten. Ze raken twee tot vijf keer achter elkaar.
+move_desc_132,Het doelwit wordt aangevallen met lange, kruipende tentakels of lianen. Het kan ook het Snelheid-attribuut van het doelwit verlagen.
+move_desc_133,De gebruiker maakt tijdelijk zijn geest leeg om zijn zorgen te vergeten. Het verhoogt het Sp. Verdediging-attribuut aanzienlijk. 
+move_desc_134,De gebruiker leidt het doelwit af door een lepel te buigen. Het verlaagt de nauwkeurigheid van het doelwit.
+move_desc_135,De gebruiker herstelt zijn eigen IP tot de helft van zijn maximale IP. Kan ook in het veld worden gebruikt om IP te genezen.
+move_desc_136,Het doelwit wordt aangevallen met een knieschop vanuit een sprong. Als deze mist, raakt de gebruiker gewond.
+move_desc_137,De gebruiker intimideert het doelwit met het patroon op zijn buik om verlamming te veroorzaken.
+move_desc_138,De gebruiker eet de dromen van een slapend doelwit. Het absorbeert de helft van de veroorzaakte schade om het IP van de gebruiker te genezen.
+move_desc_139,Een wolk gifgas wordt in het gezicht van de Pokémon van de tegenstander gespoten. Het kan de getroffenen vergiftigen.
+move_desc_140,Ronde voorwerpen worden naar het doelwit geslingerd om twee tot vijf keer achter elkaar toe te slaan.
+move_desc_141,De gebruiker zuigt het bloed van het doelwit af. Het IP van de gebruiker wordt hersteld met de helft van de schade die het doelwit oploopt.
+move_desc_142,Met een eng gezicht probeert de gebruiker het doelwit te dwingen tot een kus. Als dat lukt, valt het doelwit in slaap.
+move_desc_143,Een aanvalstechniek die bij de tweede beurt toeslaat waarbij kritieke treffers gemakkelijker aankomen. Het kan het doelwit ook laten terugdeinzen.
+move_desc_144,De gebruiker verandert in een kopie van het doelwit en heeft zelfs dezelfde technieken.
+move_desc_145,Een spray van ontelbare bubbels wordt naar de tegenpartij gespoten. Het kan ook de Snelheid-attributen van de doelwitten verlagen.
+move_desc_146,Het doelwit wordt geraakt met ritmisch gelanceerde stoten. Het kan het doelwit ook in verwarring brengen.
+move_desc_147,De gebruiker verspreidt uitbarstingen van sporen die slaap veroorzaken.
+move_desc_148,De gebruiker flitst een fel licht met enorme snelheid op het doelwit. Het vermindert echter de nauwkeurigheid van de gebruiker.
+move_desc_149,Het doelwit wordt aangevallen met een vreemde psychische golf. De aanval varieert in intensiteit.
+move_desc_150,De gebruiker dwarrelt en spettert in het rond zonder enig effect...
+move_desc_151,De gebruiker verandert zijn celstructuur om zichzelf vloeibaar te maken, waardoor zijn Verdediging-attribuut sterk wordt verhoogd.
+move_desc_152,Het doelwit wordt geslagen met een grote tang. Kritieke treffers komen gemakkelijker aan.
+move_desc_153,De gebruiker explodeert om schade toe te brengen aan degenen om hem heen. De gebruiker wordt uitgeschakeld als hij deze techniek gebruikt.
+move_desc_154,Het doelwit wordt twee tot vijf keer snel achter elkaar aangevallen met scherpe klauwen of zeisen.
+move_desc_155,De gebruiker gooit het bot dat hij vasthoudt. Het bot maakt een lus om het doelwit twee keer te raken, tijdens het komen en gaan.
+move_desc_156,De gebruiker gaat twee beurten slapen. Het herstelt de IP van de gebruiker volledig en geneest elk statuseffect.
+move_desc_157,Grote rotsblokken worden naar de tegenstander geslingerd om schade toe te brengen. Ze kunnen de doelwitten ook laten terugdeinzen.
+move_desc_158,De gebruiker bijt hard op het doelwit met zijn scherpe hoektanden. Het kan het doelwit ook laten terugdeinzen.
+move_desc_159,De gebruiker vermindert het aantal polygonen om zichzelf scherper te maken, waardoor het Aanval-attribuut stijgt.
+move_desc_160,De gebruiker verandert zijn type om hetzelfde type te worden als de techniek die bovenaan de lijst staat van technieken die hij kent.
+move_desc_161,De gebruiker slaat toe met een gelijktijdige aanval met drie stralen. Kan het doelwit ook verbranden, bevriezen of verlammen.
+move_desc_162,De gebruiker beukt hard op het doelwit met zijn scherpe voortanden. Het halveert de IP van het doelwit.
+move_desc_163,Het doelwit wordt aangevallen met een slag van klauwen of messen. Kritieke treffers komen gemakkelijker aan.
+move_desc_164,De gebruiker maakt een kopie van zichzelf met behulp van een deel van zijn IP. De kopie dient als afleiding voor de gebruiker.
+move_desc_165,Een wanhoopsaanval die alleen wordt gebruikt als de gebruiker geen KP heeft. Het doet de gebruiker ook een beetje pijn.
 
+move_desc_167,Een opeenvolgende aanval met drie schoppen die krachtiger wordt bij elke opeenvolgende treffer.
+
+move_desc_172,De gebruiker hult zichzelf in vuur en valt het doelwit aan. Het kan het doelwit ook verbranden.
+
+move_desc_177,Een draaikolk van lucht wordt naar het doel geschoten om schade toe te brengen. Kritieke treffers komen gemakkelijker aan.
+move_desc_178,De gebruiker verspreidt katoenachtige sporen die zich aan het doelwit vastklampen, waardoor zijn Snelheid-attribuut sterk afneemt.
+
+move_desc_181,De gebruiker valt aan met een ijzingwekkende vlaag poederachtige sneeuw. Het kan het doelwit ook bevriezen.
+
+move_desc_183,De gebruiker geeft een stoot met verblindende snelheid. Hij zal zeker als eerste toeslaan.
+move_desc_184,De gebruiker schrikt het doelwit af met een eng gezicht om zijn Snelheid-attribuut te verlagen.
+move_desc_185,De gebruiker benadert het doelwit ontwapenend en haalt dan uit met een onverwachtse hoek. Deze raakt altijd.
+move_desc_186,De gebruiker kust het doelwit met een zoete, engelachtige schattigheid die verwarring veroorzaakt.
+
+move_desc_188,Onhygiënische smurrie wordt naar het doelwit geslingerd. Het kan het doelwit ook vergiftigen.
+move_desc_189,De gebruiker gooit modder in het gezicht van het doelwit om schade toe te brengen en zijn nauwkeurigheid te verlagen.
+move_desc_190,De gebruiker valt aan door inkt in het gezicht of de ogen van het doelwit te spuiten. Het kan ook de nauwkeurigheid van het doelwit verlagen.
+
+move_desc_192,De gebruiker vuurt een elektrische straal af als een kanon om schade toe te brengen en verlamming te veroorzaken.
+
+move_desc_196,De gebruiker valt aan met een koude windvlaag. Dit vermindert ook de Snelheid-attributen van de doelwitten.
+
+move_desc_198,De gebruiker slaat het doelwit twee tot vijf keer achter elkaar met een hard bot.
+
+move_desc_200,De gebruiker gaat tekeer en valt aan gedurende twee tot drie beurten. Daarna raakt hij echter in de war.
+
+move_desc_202,Een voedingsstoffen-onttrekkende aanval. De IP van de gebruiker wordt hersteld met de helft van de schade die het doelwit oploopt.
+
+move_desc_204,De gebruiker kijkt het doelwit nogal charmant aan, waardoor het minder op zijn hoede is. Het Aanval-attribuut van het doelwit wordt sterk verlaagd.
+move_desc_205,De gebruiker rolt voortdurend tegen het doelwit aan gedurende vijf beurten. Het wordt sterker elke keer dat het raakt.
+move_desc_206,Een terughoudende aanval die voorkomt dat het doelwit uitgeschakeld wordt. Het doelwit houdt minstens 1 IP over.
+
+move_desc_209,De gebruiker maakt een elektrisch geladen tackle tegen het doelwit. Het kan het doelwit ook verlammen.
+
+move_desc_211,Het doelwit wordt geraakt met vleugels van staal. Het kan ook het Verdediging-attribuut van de gebruiker verhogen.
+
+move_desc_221,Het doelwit wordt bestookt met een mystiek vuur van grote intensiteit. Het kan het doelwit ook verbranden.
+
+move_desc_223,De gebruiker stompt het doelwit met volledig geconcentreerde kracht. Het verwart het doelwit als het raakt.
+move_desc_224,Met behulp van zijn stoere en indrukwekkende hoorn ramt de gebruiker op het doelwit in zonder aarzelen.
+move_desc_225,De gebruiker ademt een machtige windvlaag uit die schade toebrengt. Het kan het doelwit ook verlammen.
+
+move_desc_230,Een zoete geur die het ontwijkingsvermogen van de tegenstander vermindert. Het lokt ook wilde Pokémon als het wordt gebruikt in het gras, enz.
+move_desc_231,Het doelwit wordt geslagen met een staalharde staart. Het kan ook het Verdediging-attribuut van het doelwit verlagen.
+move_desc_232,Het doelwit wordt geharkt met stalen klauwen. Het kan ook het Aanval-attribuut van de gebruiker verhogen.
+
+move_desc_234,De gebruiker herstelt zijn eigen IP. De hoeveelheid herwonnen IP varieert met het weer.
+move_desc_235,De gebruiker herstelt zijn eigen IP. De hoeveelheid herwonnen IP varieert met het weer.
+move_desc_236,De gebruiker herstelt zijn eigen IP. De hoeveelheid herwonnen IP varieert met het weer.
+
+move_desc_238,De gebruiker geeft een dubbele slag met gekruiste onderarmen. Kritieke treffers komen gemakkelijker aan.
+move_desc_239,De gebruiker zweept een venijnige tornado op om het andere team aan te vallen. Het kan doelwitten ook laten terugdeinzen.
+
+move_desc_242,De gebruiker vermorzelt het doelwit met scherpe hoektanden. Het kan ook het Verdediging-attribuut van het doelwit verlagen.
+
+move_desc_245,De gebruiker valt het doelwit aan met verblindende snelheid. Deze aanval gaat altijd voor elke andere techniek.
+move_desc_246,De gebruiker valt aan met een prehistorische kracht. Het kan ook alle attributen van de gebruiker in één keer verhogen.
+move_desc_247,De gebruiker slingert een schaduwachtige klodder naar het doelwit. Het kan ook het Sp. Verdediging-attribuut van het doelwit verlagen.
+
+move_desc_249,De gebruiker valt aan met een stoot die een rots kan verbrijzelen. Het kan ook het Verdediging-attribuut van het doelwit verlagen.
+
+move_desc_304,De gebruiker slaakt een afschuwelijk echoënde kreet met het vermogen om schade toe te brengen.
+
+move_desc_324,De gebruiker valt aan met een sinistere lichtstraal. Het kan het doelwit ook verwarren.
+
+move_desc_334,De gebruiker verhardt zijn lichaamsoppervlak alsof het ijzer is, waardoor zijn Verdediging-attribuut sterk toeneemt.
+
+move_desc_398,Het doelwit wordt gestoken met een tentakel of arm doordrenkt met gif. Het kan het doelwit ook vergiftigen.
+move_desc_399,De gebruiker laat een afschuwelijk aura vrij, doordrenkt met duistere gedachten. Het kan het doelwit ook laten terugdeinzen.
+move_desc_400,De gebruiker snijdt het doelwit zodra de kans zich voordoet. Kritieke treffers komen gemakkelijker aan.
+
+move_desc_402,De gebruiker smijt van bovenaf een spervuur van zaden met een harde schaal op het doelwit neer.
+move_desc_403,De gebruiker valt aan met een messcherpe windvlaag die zelfs de lucht doorsnijdt. Het kan het doelwit ook laten terugdeinzen.
+move_desc_404,De gebruiker hakt in op het doelwit door zijn zeisen of klauwen te kruisen als een schaar.
+
+move_desc_406,Het doelwit wordt aangevallen met een schokgolf die wordt opgewekt door de opengesperde mond van de gebruiker.
+
+move_desc_416,De gebruiker valt het doelwit aan met al zijn kracht. De gebruiker kan de volgende beurt geen techniek gebruiken.
+
+move_desc_430,De gebruiker verzamelt al zijn lichtenergie en stoot deze in één keer uit. Dit kan ook het Sp. Verdedigings-attribuut van het doelwit verlagen.
+
+move_desc_442,De gebruiker slaat het doelwit met zijn staalharde hoofd. Dit kan het doelwit ook laten terugdeinzen.
+
+move_desc_452,De gebruiker beukt met zijn robuuste lichaam tegen het doelwit om aan te vallen. De gebruiker loopt ook ernstige schade op.
+
+move_desc_583,De gebruiker speelt ruw met het doelwit en valt het aan. Dit kan ook het Aanval-attribuut van het doelwit verlagen.
+move_desc_584,De gebruiker wekt een feeënwind op en slaat het doelwit ermee.
+move_desc_585,Door de kracht van de maan te gebruiken, valt de gebruiker het doelwit aan. Dit kan ook het Sp. Aanval-attribuut van het doelwit verlagen.
+
+move_desc_790,De gebruiker valt het doelwit aan door stoom uit te stoten. Dit kan het doelwit ook verwarren.
+
+move_desc_797,De gebruiker zet zijn woede om in energie om aan te vallen. Hoe vaker de gebruiker is geraakt door aanvallen, hoe krachtiger de techniek.
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------
 Story translation:
 ---
