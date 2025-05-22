@@ -186,6 +186,9 @@ fieldmove_dig_used,usou~Dig!
 
 fieldmove_teleport_CannotUse,Não dá para usar Teleport aqui.
 fieldmove_teleport_used,usou~Teleport!
+
+fieldmove_fly_CannotUse,You cannot Fly~from here!
+fieldmove_fly_used,used~Fly!
 ---
 GameInteractions:
 game_interaction_interact,Interagir
@@ -398,6 +401,8 @@ map_screen_cities,Cidades
 map_screen_routes,Rotas
 map_screen_places,Lugares
 map_screen_roaming,Pokémons na área
+map_screen_PokemonAtPlace,[NAME] at [PLACE]
+map_screen_RegionSwitchHint,(Press the Shift Key/Shoulder Triggers to switch between regions.)
 ---
 Trainer Card Screen:
 trainer_screen_title,Cartão do Treinador

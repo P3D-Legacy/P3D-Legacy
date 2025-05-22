@@ -1014,7 +1014,7 @@ Public Class PartyScreen
                 Core.SetScreen(New TransitionScreen(Core.CurrentScreen, New MapScreen(Core.CurrentScreen, startRegion, {"Fly", PokemonList(_index)}), Color.White, False))
             End If
         Else
-            TextBox.Show("You cannot Fly~from here!", {}, True, False)
+            TextBox.Show(Localization.GetString("fieldmove_fly_CannotUse", "You cannot Fly~from here!"), {}, True, False)
         End If
     End Sub
 

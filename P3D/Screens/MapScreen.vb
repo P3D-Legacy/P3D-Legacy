@@ -533,7 +533,7 @@
 
     Private Sub UpdateSwitch()
         For i = 0 To 3
-            Dim r As New Rectangle(Core.windowSize.Width - 208, 100 + i * 30, 90, 30)
+            Dim r As New Rectangle(Core.windowSize.Width - 240, 100 + i * 30, 240, 30)
             If Controls.Accept(True, True, True) = True Then
                 If r.Contains(New Point(CInt(MouseHandler.MousePosition.X), CInt(MouseHandler.MousePosition.Y))) = True Then
                     Me.drawObjects(i) = Not Me.drawObjects(i)
@@ -688,7 +688,7 @@
         End If
 
         If Me.hoverText <> "" And Me.pokehoverText <> "" Then
-            Dim hoverString As String = Localization.GetString("pokemon_name_" & Me.pokehoverText) & " at " & Localization.GetString("Places_" & Me.hoverText)
+            Dim hoverString As String = Localization.GetString("map_screen_PokemonAtPlace", "[NAME] at [PLACE]").Replace("[NAME]", Localization.GetString("pokemon_name_" & Me.pokehoverText)).Replace("[PLACE]", Localization.GetString("Places_" & Me.hoverText))
             Core.SpriteBatch.DrawRectangle(New Rectangle(CInt(Me.CursorPosition.X + 32 - 2), CInt(Me.CursorPosition.Y - 32 + 2), CInt(FontManager.MainFont.MeasureString(hoverString).X + 2 + 4), CInt(FontManager.MainFont.MeasureString(hoverString).Y)), New Color(0, 0, 0, 0.6F))
             Core.SpriteBatch.DrawString(FontManager.MainFont, hoverString, New Vector2(CInt(Me.CursorPosition.X + 32 + 2), CInt(Me.CursorPosition.Y - 32 + 2)), Color.Black)
             Core.SpriteBatch.DrawString(FontManager.MainFont, hoverString, New Vector2(CInt(Me.CursorPosition.X + 32), CInt(Me.CursorPosition.Y - 32)), Color.White)
@@ -701,7 +701,7 @@
 
         Dim regionString As String = Localization.GetString(Me.currentRegion(0).ToString().ToUpper() & Me.currentRegion.Remove(0, 1))
         If Me.regions.Count > 1 Then
-            regionString &= " (Press the Shift Key/Shoulder Triggers to switch between regions.)"
+            regionString &= " " & Localization.GetString("map_screen_RegionSwitchHint", "(Press the Shift Key/Shoulder Triggers to switch between regions.)")
         End If
 
         Core.SpriteBatch.DrawString(FontManager.InGameFont, regionString, New Vector2(MapScreen.mapOffsetX + 2, MapScreen.mapOffsetY - 31), Color.Black)
@@ -717,33 +717,33 @@
         If drawObjects(0) = False Then
             r = New Rectangle(116, 0, 12, 12)
         End If
-        Core.SpriteBatch.Draw(Me.objectsTexture, New Rectangle(Core.windowSize.Width - 240, 100, 24, 24), r, New Color(255, 255, 255, 220))
-        Core.SpriteBatch.DrawString(FontManager.MainFont, Localization.GetString("map_screen_cities"), New Vector2(Core.windowSize.Width - 192 + 2, 100 + 2), Color.Black)
-        Core.SpriteBatch.DrawString(FontManager.MainFont, Localization.GetString("map_screen_cities"), New Vector2(Core.windowSize.Width - 192, 100), Color.White)
+        Core.SpriteBatch.Draw(Me.objectsTexture, New Rectangle(Core.windowSize.Width - 256 - 48, 100, 24, 24), r, New Color(255, 255, 255, 220))
+        Core.SpriteBatch.DrawString(FontManager.MainFont, Localization.GetString("map_screen_cities"), New Vector2(Core.windowSize.Width - 256 + 2, 100 + 2), Color.Black)
+        Core.SpriteBatch.DrawString(FontManager.MainFont, Localization.GetString("map_screen_cities"), New Vector2(Core.windowSize.Width - 256, 100), Color.White)
         ' Routes:
         r = New Rectangle(104, 12, 12, 12)
         If drawObjects(1) = False Then
             r = New Rectangle(116, 12, 12, 12)
         End If
-        Core.SpriteBatch.Draw(Me.objectsTexture, New Rectangle(Core.windowSize.Width - 240, 130, 24, 24), r, New Color(255, 255, 255, 220))
-        Core.SpriteBatch.DrawString(FontManager.MainFont, Localization.GetString("map_screen_routes"), New Vector2(Core.windowSize.Width - 192 + 2, 130 + 2), Color.Black)
-        Core.SpriteBatch.DrawString(FontManager.MainFont, Localization.GetString("map_screen_routes"), New Vector2(Core.windowSize.Width - 192, 130), Color.White)
+        Core.SpriteBatch.Draw(Me.objectsTexture, New Rectangle(Core.windowSize.Width - 256 - 48, 130, 24, 24), r, New Color(255, 255, 255, 220))
+        Core.SpriteBatch.DrawString(FontManager.MainFont, Localization.GetString("map_screen_routes"), New Vector2(Core.windowSize.Width - 256 + 2, 130 + 2), Color.Black)
+        Core.SpriteBatch.DrawString(FontManager.MainFont, Localization.GetString("map_screen_routes"), New Vector2(Core.windowSize.Width - 256, 130), Color.White)
         ' Places:
         r = New Rectangle(104, 24, 12, 12)
         If drawObjects(2) = False Then
             r = New Rectangle(116, 24, 12, 12)
         End If
-        Core.SpriteBatch.Draw(Me.objectsTexture, New Rectangle(Core.windowSize.Width - 240, 160, 24, 24), r, New Color(255, 255, 255, 220))
-        Core.SpriteBatch.DrawString(FontManager.MainFont, Localization.GetString("map_screen_places"), New Vector2(Core.windowSize.Width - 192 + 2, 160 + 2), Color.Black)
-        Core.SpriteBatch.DrawString(FontManager.MainFont, Localization.GetString("map_screen_places"), New Vector2(Core.windowSize.Width - 192, 160), Color.White)
+        Core.SpriteBatch.Draw(Me.objectsTexture, New Rectangle(Core.windowSize.Width - 256 - 48, 160, 24, 24), r, New Color(255, 255, 255, 220))
+        Core.SpriteBatch.DrawString(FontManager.MainFont, Localization.GetString("map_screen_places"), New Vector2(Core.windowSize.Width - 256 + 2, 160 + 2), Color.Black)
+        Core.SpriteBatch.DrawString(FontManager.MainFont, Localization.GetString("map_screen_places"), New Vector2(Core.windowSize.Width - 256, 160), Color.White)
         ' Roaming:
         r = New Rectangle(113, 65, 14, 14)
         If drawObjects(3) = False Then
             r = New Rectangle(113, 81, 14, 14)
         End If
-        Core.SpriteBatch.Draw(Me.objectsTexture, New Rectangle(Core.windowSize.Width - 240, 187, 28, 28), r, New Color(255, 255, 255, 220))
-        Core.SpriteBatch.DrawString(FontManager.MainFont, Localization.GetString("map_screen_roaming"), New Vector2(Core.windowSize.Width - 192 + 2, 190 + 2), Color.Black)
-        Core.SpriteBatch.DrawString(FontManager.MainFont, Localization.GetString("map_screen_roaming"), New Vector2(Core.windowSize.Width - 192, 190), Color.White)
+        Core.SpriteBatch.Draw(Me.objectsTexture, New Rectangle(Core.windowSize.Width - 256 - 48, 187, 28, 28), r, New Color(255, 255, 255, 220))
+        Core.SpriteBatch.DrawString(FontManager.MainFont, Localization.GetString("map_screen_roaming"), New Vector2(Core.windowSize.Width - 256 + 2, 190 + 2), Color.Black)
+        Core.SpriteBatch.DrawString(FontManager.MainFont, Localization.GetString("map_screen_roaming"), New Vector2(Core.windowSize.Width - 256, 190), Color.White)
     End Sub
 
     Private Sub DrawCursor()
@@ -775,7 +775,7 @@
         End If
 
         Dim s As String = "version=2" & Environment.NewLine &
-            "@text.show(" & p.GetDisplayName() & " used~Fly.)" & Environment.NewLine
+            "@text.show(" & p.GetDisplayName() & " " & Localization.GetString("fieldmove_fly_used", "used~Fly!") & ")" & Environment.NewLine
 
         If CType(Screen.Camera, OverworldCamera).ThirdPerson = False Then
             s &= "@camera.activateThirdPerson" & Environment.NewLine

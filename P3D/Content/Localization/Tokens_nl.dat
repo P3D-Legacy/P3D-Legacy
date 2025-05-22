@@ -187,6 +187,9 @@ fieldmove_dig_used,gebruikte~Graaf!
 
 fieldmove_teleport_CannotUse,Kan hier niet Teleporteer~gebruiken.
 fieldmove_teleport_used,gebruikte~Teleporteer!
+
+fieldmove_fly_CannotUse,Je kunt niet Vliegen~vanaf hier!
+fieldmove_fly_used,gebruikte~Vlieg!
 ---
 GameInteractions:
 game_interaction_interact,Actie
@@ -387,6 +390,8 @@ map_screen_cities,Steden
 map_screen_routes,Routes
 map_screen_places,Plaatsen
 map_screen_roaming,Dwalende Pokémon
+map_screen_PokemonAtPlace,[NAME] bij [PLACE]
+map_screen_RegionSwitchHint,(Druk op de Shift-toets/Schouderknoppen om tussen regio's te schakelen.)
 ---
 Trainer Card Screen:
 trainer_screen_title,Trainerkaart
