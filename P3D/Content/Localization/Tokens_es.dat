@@ -245,6 +245,8 @@ gamemode_menu_author,Autor
 gamemode_menu_contentpath,Ruta de contenido
 gamemode_menu_create,Crear
 gamemode_menu_back,Volver
+gamemode_name_Kolben,Pokémon 3D
+gamemode_desc_Kolben,The normal GameMode.
 ---
 JoinServerScreen:
 join_server_screen_title,Join a server:

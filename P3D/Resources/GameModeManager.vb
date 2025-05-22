@@ -621,7 +621,7 @@ Public Class GameMode
     End Sub
 
     ''' <summary>
-    ''' Returns the default Kolben Game Mode.
+    ''' Returns the default Kolben GameMode.
     ''' </summary>
     Public Shared Function GetKolbenGameMode() As GameMode
         Dim SkinColors As List(Of Color) = {New Color(248, 176, 32), New Color(248, 216, 88), New Color(56, 88, 200), New Color(216, 96, 112), New Color(56, 88, 152), New Color(239, 90, 156)}.ToList()
@@ -629,7 +629,7 @@ Public Class GameMode
         Dim SkinNames As List(Of String) = {"Ethan", "Lyra", "Nate", "Rosa", "Hilbert", "Hilda"}.ToList()
         Dim SkinGenders As List(Of String) = {"Male", "Female", "Male", "Female", "Male", "Female"}.ToList()
 
-        Dim gameMode As New GameMode("Kolben", "The normal game mode.", GameController.GAMEVERSION, "Kolben Games", "\Content\Data\maps\", "\Content\Data\Scripts\", "\Content\Data\maps\poke\", "\Content\Pokemon\Data\", "\Content\", "\Content\Localization\", New List(Of GameRule), New List(Of GameRule), New List(Of GameRule),
+        Dim gameMode As New GameMode("Kolben", "The normal GameMode.", GameController.GAMEVERSION, "Kolben Games", "\Content\Data\maps\", "\Content\Data\Scripts\", "\Content\Data\maps\poke\", "\Content\Pokemon\Data\", "\Content\", "\Content\Localization\", New List(Of GameRule), New List(Of GameRule), New List(Of GameRule),
                                      "newgame\intro0.dat", New Vector3(1.0F, 0.1F, 3.0F), MathHelper.PiOver2, "Your Room", "", New Color(59, 123, 165), "0", "welcome", "1", SkinColors, SkinFiles, SkinNames, SkinGenders, 8)
 
         gameMode.StartScript = "startscript\main"

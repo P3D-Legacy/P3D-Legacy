@@ -985,14 +985,26 @@ Public Class NewMainMenuScreen
                     For i = 0 To tmpProfile.PokemonTextures.Count - 1
                         SpriteBatch.Draw(tmpProfile.PokemonTextures(i), New Rectangle(displayRect.X + 30 + i * 70, displayRect.Y + 70, 64, 64), Color.White)
                     Next
+                    Dim GameModeNameString As String = GameModeManager.GetGameMode(tmpProfile.GameMode).Name
+                    If Localization.TokenExists("gamemode_name_" & GameModeManager.GetGameMode(tmpProfile.GameMode).DirectoryName) = True Then
+                        GameModeNameString = Localization.GetString("gamemode_name_" & GameModeManager.GetGameMode(tmpProfile.GameMode).DirectoryName)
+                    ElseIf Localization.TokenExists(("gamemode_name_" & GameModeManager.GetGameMode(tmpProfile.GameMode).DirectoryName).ToLower) = True Then
+                        GameModeNameString = Localization.GetString(("gamemode_name_" & GameModeManager.GetGameMode(tmpProfile.GameMode).DirectoryName).ToLower)
+                    End If
                     GetFontRenderer().DrawString(FontManager.InGameFont, Localization.GetString("global_player_name", "Player Name") & ": " & tmpProfile.Name & Environment.NewLine &
-                                                                            Localization.GetString("global_gamemode", "GameMode") & ": " & GameModeManager.GetGameMode(tmpProfile.GameMode).Name, New Vector2(displayRect.X + 30, displayRect.Y + 20), Color.White, 0F, Vector2.Zero, 1.0F, SpriteEffects.None, 0F)
+                                                                            Localization.GetString("global_gamemode", "GameMode") & ": " & Localization.GetString(GameModeNameString), New Vector2(displayRect.X + 30, displayRect.Y + 20), Color.White, 0F, Vector2.Zero, 1.0F, SpriteEffects.None, 0F)
                     GetFontRenderer().DrawString(FontManager.InGameFont, Localization.GetString("global_badges", "Badges") & ": " & tmpProfile.Badges.ToString() & Environment.NewLine &
                                                                             Localization.GetString("global_play_time", "Play Time") & ": " & tmpProfile.TimePlayed & Environment.NewLine &
                                                                             Localization.GetString("global_location", "Location") & ": " & Localization.GetString("Places_" & tmpProfile.Location, tmpProfile.Location), New Vector2(displayRect.X + 30, displayRect.Y + 150), Color.White, 0F, Vector2.Zero, 1.0F, SpriteEffects.None, 0F)
                 Else
+                    Dim GameModeNameString As String = tmpProfile.GameMode
+                    If Localization.TokenExists("gamemode_name_" & tmpProfile.GameMode) = True Then
+                        GameModeNameString = Localization.GetString("gamemode_name_" & tmpProfile.GameMode)
+                    ElseIf Localization.TokenExists(("gamemode_name_" & tmpProfile.GameMode).ToLower) = True Then
+                        GameModeNameString = Localization.GetString(("gamemode_name_" & tmpProfile.GameMode).ToLower)
+                    End If
                     GetFontRenderer().DrawString(FontManager.InGameFont, Localization.GetString("global_player_name", "Player Name") & ": " & tmpProfile.Name & Environment.NewLine &
-                                                                            Localization.GetString("global_gamemode", "GameMode") & ": " & tmpProfile.GameMode, New Vector2(displayRect.X + 30, displayRect.Y + 20), Color.White, 0F, Vector2.Zero, 1.0F, SpriteEffects.None, 0F)
+                                                                            Localization.GetString("global_gamemode", "GameMode") & ": " & Localization.GetString(GameModeNameString), New Vector2(displayRect.X + 30, displayRect.Y + 20), Color.White, 0F, Vector2.Zero, 1.0F, SpriteEffects.None, 0F)
 
                     SpriteBatch.Draw(_menuTexture, New Rectangle(displayRect.X + 30, displayRect.Y + 70, 32, 32), New Rectangle(0, 32, 32, 32), Color.White)
                     Dim errorText As String
@@ -1684,11 +1696,26 @@ Public Class GameModeSelectionScreen
         If tempGameModesDisplay = "" Then
             Dim GameMode As GameMode = GameModeManager.GetGameMode(_gameModes(_index).DirectoryName)
 
-            Dim dispName As String = GameMode.Name
+            Dim GameModeNameString As String = GameMode.Name
+            If Localization.TokenExists("gamemode_name_" & GameMode.DirectoryName) = True Then
+                GameModeNameString = Localization.GetString("gamemode_name_" & GameMode.DirectoryName)
+            ElseIf Localization.TokenExists(("gamemode_name_" & GameMode.DirectoryName).ToLower) = True Then
+                GameModeNameString = Localization.GetString(("gamemode_name_" & GameMode.DirectoryName).ToLower)
+            End If
+
+            Dim dispName As String = GameModeNameString
             If dispName = "Kolben" Then
                 dispName = "Pokémon 3D"
             End If
-            Dim dispDescription As String = GameMode.Description.Replace("~", Environment.NewLine).Replace("*", Environment.NewLine)
+
+            Dim GameModeDescriptionString As String = GameMode.Description
+            If Localization.TokenExists("gamemode_desc_" & GameMode.DirectoryName) = True Then
+                GameModeDescriptionString = Localization.GetString("gamemode_desc_" & GameMode.DirectoryName)
+            ElseIf Localization.TokenExists(("gamemode_desc_" & GameMode.DirectoryName).ToLower) = True Then
+                GameModeDescriptionString = Localization.GetString(("gamemode_desc_" & GameMode.DirectoryName).ToLower)
+            End If
+
+            Dim dispDescription As String = GameModeDescriptionString.Replace("~", Environment.NewLine).Replace("*", Environment.NewLine)
             Dim dispVersion As String = GameMode.Version
             Dim dispAuthor As String = GameMode.Author
 
