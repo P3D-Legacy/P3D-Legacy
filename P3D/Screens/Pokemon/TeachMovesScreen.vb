@@ -121,7 +121,7 @@
 
         Core.SpriteBatch.DrawString(FontManager.MainFont, Pokemon.GetDisplayName() & Environment.NewLine & "Level: " & Pokemon.Level, New Vector2(80, 304), Color.Black)
 
-        Core.SpriteBatch.DrawString(FontManager.MainFont, "Pokémon's moves:", New Vector2(312, 140), Color.Black)
+        Core.SpriteBatch.DrawString(FontManager.MainFont, "Pokémon's moves:", New Vector2(312, 128), Color.Black)
         For i = 0 To Pokemon.Attacks.Count - 1
             If i <= Pokemon.Attacks.Count - 1 Then
                 DrawAttack(312, i, Pokemon.Attacks(i), False)
@@ -129,9 +129,9 @@
         Next
 
         If Me.MovesList.Count = 0 Then
-            Core.SpriteBatch.DrawString(FontManager.MainFont, "The Pokémon cannot learn" & Environment.NewLine & "a new move here.", New Vector2(580, 140), Color.Black)
+            Core.SpriteBatch.DrawString(FontManager.MainFont, "The Pokémon cannot learn" & Environment.NewLine & "a new move here.", New Vector2(580, 128), Color.Black)
         Else
-            Core.SpriteBatch.DrawString(FontManager.MainFont, "Tutor moves (" & MovesList.Count & "):", New Vector2(644, 140), Color.Black)
+            Core.SpriteBatch.DrawString(FontManager.MainFont, "Tutor moves (" & MovesList.Count & "):", New Vector2(644, 128), Color.Black)
 
             For i = scrollIndex To scrollIndex + 3
                 If i <= MovesList.Count - 1 Then
@@ -180,9 +180,9 @@
             End If
 
             If c <> Color.Black Then
-                .DrawString(FontManager.MainFont, Localization.GetString("PP") & " " & A.CurrentPP & " / " & A.MaxPP, New Vector2(p.X + 112 + 2, CInt(p.Y + 58 + 2)), Color.Black)
+                .DrawString(FontManager.MainFont, Localization.GetString("PP") & " " & A.CurrentPP & " / " & A.MaxPP, New Vector2(p.X + 96 + 2, CInt(p.Y + 56 + 2)), Color.Black)
             End If
-            .DrawString(FontManager.MainFont, Localization.GetString("PP") & " " & A.CurrentPP & " / " & A.MaxPP, New Vector2(p.X + 112, CInt(p.Y + 58)), c)
+            .DrawString(FontManager.MainFont, Localization.GetString("PP") & " " & A.CurrentPP & " / " & A.MaxPP, New Vector2(p.X + 96, CInt(p.Y + 56)), c)
 
             .Draw(TextureManager.GetTexture(Element.GetElementTexturePath(), A.Type.GetElementImage(), ""), New Rectangle(CInt(p.X), CInt(p.Y + 54), 48, 16), Color.White)
         End With
