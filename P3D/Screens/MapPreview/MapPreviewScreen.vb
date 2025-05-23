@@ -199,7 +199,7 @@
             Level.Load(Level.LevelFile)
         End If
 
-        If KeyBoardHandler.KeyPressed(Keys.Q) = True Or ControllerHandler.ButtonPressed(Buttons.X) = True Then
+        If KeyBoardHandler.KeyPressed(KeyBindings.SpecialKey) = True Or ControllerHandler.ButtonPressed(Buttons.X) = True Then
             Camera.Position = MapViewModePosition
         End If
     End Sub

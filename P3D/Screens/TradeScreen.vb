@@ -186,7 +186,7 @@ Public Class TradeScreen
         Me.CanBuyItems = canBuy
         Me.CanSellItems = canSell
 
-        Me.Title = "Store"
+        Me.Title = Localization.GetString("shop_screen_title_store", "Store")
 
         Me.CreateMainMenuButtons()
     End Sub
@@ -194,12 +194,12 @@ Public Class TradeScreen
     Private Sub CreateMainMenuButtons()
         If mainMenuButtons.Count = 0 Then
             If CanBuyItems = True Then
-                mainMenuButtons.Add("Buy")
+                mainMenuButtons.Add(Localization.GetString("shop_screen_button_buy", "Buy"))
             End If
             If CanSellItems = True Then
-                mainMenuButtons.Add("Sell")
+                mainMenuButtons.Add(Localization.GetString("shop_screen_button_sell", "Sell"))
             End If
-            mainMenuButtons.Add("Exit")
+            mainMenuButtons.Add(Localization.GetString("shop_screen_button_exit", "Exit"))
         End If
     End Sub
 
@@ -276,7 +276,7 @@ Public Class TradeScreen
     ''' Updates the main screen.
     ''' </summary>
     Private Sub UpdateMain()
-        Me.Title = "Store"
+        Me.Title = Localization.GetString("shop_screen_title_store", "Store")
 
         If Controls.Up(True, True, True, True, True, True) = True Then
             Me.Cursor -= 1
@@ -318,11 +318,11 @@ Public Class TradeScreen
 
     Private Sub ClickMainButton()
         Select Case mainMenuButtons(Me.Cursor)
-            Case "Buy"
+            Case Localization.GetString("shop_screen_button_buy", "Buy")
                 Me.ButtonMainBuy()
-            Case "Sell"
+            Case Localization.GetString("shop_screen_button_sell", "Sell")
                 Me.ButtonMainSell()
-            Case "Exit"
+            Case Localization.GetString("shop_screen_button_exit", "Exit")
                 Me.ButtonMainExit()
         End Select
     End Sub
@@ -396,7 +396,7 @@ Public Class TradeScreen
     End Sub
 
     Private Sub UpdateBuyCategory()
-        Me.Title = "Buy Items"
+        Me.Title = Localization.GetString("shop_screen_title_BuyItems", "Buy Items")
 
         If loadedBuyCategories.Count > 0 Then
             If Controls.Down(True, True, True, True, True, True) = True Then
@@ -473,7 +473,7 @@ Public Class TradeScreen
                 If i <= Me.loadedBuyCategories.Count - 1 Then
                     Dim p As Integer = i - Scroll
 
-                    DrawButton(New Vector2(100, 100 + p * 96), 5, Me.loadedBuyCategories(i).ToString(), 16, GetItemTypeTexture(Me.loadedBuyCategories(i)))
+                    DrawButton(New Vector2(100, 100 + p * 96), 5, Localization.GetString("item_category_" & Me.loadedBuyCategories(i).ToString(), Me.loadedBuyCategories(i).ToString()), 16, GetItemTypeTexture(Me.loadedBuyCategories(i)))
                 End If
             Next
 
@@ -500,7 +500,7 @@ Public Class TradeScreen
 
             Me.DrawMainCursor()
         Else
-            DrawBanner(New Vector2(CSng(Core.windowSize.Width / 2 - 250), CSng(Core.windowSize.Height / 2 - 50)), 100, "There are no items to buy.", FontManager.MainFont, 500)
+            DrawBanner(New Vector2(CSng(Core.windowSize.Width / 2 - 250), CSng(Core.windowSize.Height / 2 - 50)), 100, Localization.GetString("shop_screen_buy_NoItemsToBuy", "There are no items to buy."), FontManager.MainFont, 500)
         End If
     End Sub
 
@@ -528,7 +528,7 @@ Public Class TradeScreen
     End Sub
 
     Private Sub UpdateBuyItems()
-        Me.Title = "Buy " & Me.CurrentCategory.ToString()
+        Me.Title = Localization.GetString("shop_screen_title_BuyCategory", "Buy [CATEGORY]").Replace("[CATEGORY]", Localization.GetString("item_category_" & Me.CurrentCategory.ToString(), Me.CurrentCategory.ToString()))
 
         If Controls.Down(True, True, True, True, True, True) = True Then
             Me.Cursor += 1
@@ -744,6 +744,9 @@ Public Class TradeScreen
         Next
 
         If Me.BuyItemsList.Count > 0 Then
+            Dim DescriptionHint As String = ScriptVersion2.ScriptCommander.Parse(Localization.GetString("shop_screen_buysell_DescriptionHint", "Press [<system.button(special)>] or Select to view the item's description.")).ToString
+            Core.SpriteBatch.DrawString(FontManager.InGameFont, DescriptionHint, New Vector2(128 + 2, Core.windowSize.Width - 128 + 2), Color.Black)
+            Core.SpriteBatch.DrawString(FontManager.InGameFont, DescriptionHint, New Vector2(128, Core.windowSize.Width - 128), Color.White)
 
             While BuyItemsList.Count <= Scroll + Cursor
                 Cursor -= 1
@@ -762,7 +765,7 @@ Public Class TradeScreen
 
             If BuyItemsShowDescription = True Then
                 Canvas.DrawRectangle(New Rectangle(736 + 28, 160 + 28, 200, 200), New Color(0, 0, 0, 200))
-                Dim t As String = selectedItem.GetItem().Description.CropStringToWidth(FontManager.MiniFont, 180)
+                Dim t As String = selectedItem.GetItem().GetDescription().CropStringToWidth(FontManager.MiniFont, 180)
                 SpriteBatch.DrawString(FontManager.MiniFont, t, New Vector2(736 + 30, 160 + 30), Color.White)
             End If
 
@@ -773,9 +776,9 @@ Public Class TradeScreen
             End While
             Dim bannerText As String = ""
             If selectedItem.Amount > -1 Then
-                bannerText = " | In Stock: " & selectedItem.Amount
+                bannerText = " | " & Localization.GetString("shop_screen_buy_InStock", "In Stock:") & " " & selectedItem.Amount
             End If
-            Me.DrawBanner(New Vector2(664, 430), 30, "In Inventory: " & amount & bannerText, FontManager.MainFont, 400)
+            Me.DrawBanner(New Vector2(664, 430), 30, Localization.GetString("shop_screen_buysell_InInventory", "In Inventory:") & " " & amount & bannerText, FontManager.MainFont, 400)
 
             ' - button:
             Core.SpriteBatch.Draw(texture, New Rectangle(664, 484, 64, 64), New Rectangle(16, 32, 16, 16), Color.White)
@@ -795,8 +798,8 @@ Public Class TradeScreen
             Core.SpriteBatch.Draw(texture, New Rectangle(856, 484, 64, 64), New Rectangle(16, 32, 16, 16), Color.White)
             Core.SpriteBatch.DrawString(FontManager.MainFont, "+", New Vector2(856 + 19, 484 + 6), Color.Black, 0.0F, Vector2.Zero, 2.0F, SpriteEffects.None, 0.0F)
 
-            Core.SpriteBatch.DrawString(FontManager.MainFont, "Per Item: " & selectedItem.Price.ToString() & GetCurrencyShort() & Environment.NewLine &
-                                                       "Total: " & (BuyItemsAmount * selectedItem.Price).ToString() & GetCurrencyShort(), New Vector2(930, 490), Color.White)
+            Core.SpriteBatch.DrawString(FontManager.MainFont, Localization.GetString("shop_screen_buysell_PricePerItem", "Per Item:") & " " & selectedItem.Price.ToString() & GetCurrencyShort() & Environment.NewLine &
+                                                       Localization.GetString("shop_screen_buysell_PriceTotal", "Total:") & " " & (BuyItemsAmount * selectedItem.Price).ToString() & GetCurrencyShort(), New Vector2(930, 490), Color.White)
 
             ' Buy button:
             If Me.BuyItemsAmount > 0 Then
@@ -804,12 +807,12 @@ Public Class TradeScreen
                     Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\GamePad\xboxControllerButtonA"), New Rectangle(664 + 12, 484 + 64 + 34, 40, 40), Color.White)
                 End If
 
-                Me.DrawButton(New Vector2(664 + 32, 484 + 64 + 22), 1, "Buy", 64)
+                Me.DrawButton(New Vector2(664 + 32, 484 + 64 + 22), 1, Localization.GetString("shop_screen_button_buy", "Buy"), 64)
             End If
         End If
 
         ' Current balance:
-        Me.DrawBanner(New Vector2(664, 110), 30, "Current balance: " & GetCurrencyDisplay(), FontManager.MainFont, 400)
+        Me.DrawBanner(New Vector2(664, 110), 30, Localization.GetString("shop_screen_buysell_CurrentBalance", "Current balance:") & " " & GetCurrencyDisplay(), FontManager.MainFont, 400)
 
         ' Cursor draw:
         Me.DrawMainCursor()
@@ -834,7 +837,7 @@ Public Class TradeScreen
     End Sub
 
     Private Sub UpdateSellCategory()
-        Me.Title = "Sell Items"
+        Me.Title = Localization.GetString("shop_screen_title_SellItems", "Sell Items")
 
         If Me.loadedSellCategories.Count > 0 Then
             If Controls.Down(True, True, True, True, True, True) = True Then
@@ -911,13 +914,13 @@ Public Class TradeScreen
                 If i <= Me.loadedSellCategories.Count - 1 Then
                     Dim p As Integer = i - Scroll
 
-                    DrawButton(New Vector2(100, 100 + p * 96), 5, Me.loadedSellCategories(i).ToString(), 16, GetItemTypeTexture(Me.loadedSellCategories(i)))
+                    DrawButton(New Vector2(100, 100 + p * 96), 5, Localization.GetString("item_category_" & Me.loadedSellCategories(i).ToString(), Me.loadedSellCategories(i).ToString()), 16, GetItemTypeTexture(Me.loadedSellCategories(i)))
                 End If
             Next
 
             Me.DrawMainCursor()
         Else
-            DrawBanner(New Vector2(CSng(Core.windowSize.Width / 2 - 250), CSng(Core.windowSize.Height / 2 - 50)), 100, "You have no items to sell.", FontManager.MainFont, 500)
+            DrawBanner(New Vector2(CSng(Core.windowSize.Width / 2 - 250), CSng(Core.windowSize.Height / 2 - 50)), 100, Localization.GetString("shop_screen_sell_NoItemsToSell", "You have no items to sell."), FontManager.MainFont, 500)
         End If
     End Sub
 
@@ -956,7 +959,7 @@ Public Class TradeScreen
     End Sub
 
     Private Sub UpdateSellItems()
-        Me.Title = "Sell " & Me.CurrentCategory.ToString()
+        Me.Title = Localization.GetString("shop_screen_title_SellCategory", "Sell [CATEGORY]").Replace("[CATEGORY]", Localization.GetString("item_category_" & Me.CurrentCategory.ToString(), Me.CurrentCategory.ToString()))
 
         If Controls.Down(True, True, True, True, True, True) = True Then
             Me.Cursor += 1
@@ -1109,6 +1112,10 @@ Public Class TradeScreen
         Next
 
         If Me.SellItemsList.Count > 0 Then
+            Dim DescriptionHint As String = ScriptVersion2.ScriptCommander.Parse(Localization.GetString("shop_screen_buysell_DescriptionHint", "Press [<system.button(special)>] or Select to view the item's description.")).ToString
+            Core.SpriteBatch.DrawString(FontManager.InGameFont, DescriptionHint, New Vector2(128 + 2, Core.windowSize.Width - 128 + 2), Color.Black)
+            Core.SpriteBatch.DrawString(FontManager.InGameFont, DescriptionHint, New Vector2(128, Core.windowSize.Width - 128), Color.White)
+
             Dim selectedItem As TradeItem = Me.SellItemsList(Scroll + Cursor)
 
             ' Item preview:
@@ -1123,7 +1130,7 @@ Public Class TradeScreen
 
             If Me.SellItemsShowDescription = True Then
                 Canvas.DrawRectangle(New Rectangle(736 + 28, 160 + 28, 200, 200), New Color(0, 0, 0, 200))
-                Dim t As String = selectedItem.GetItem().Description.CropStringToWidth(FontManager.MiniFont, 180)
+                Dim t As String = selectedItem.GetItem().GetDescription().CropStringToWidth(FontManager.MiniFont, 180)
                 SpriteBatch.DrawString(FontManager.MiniFont, t, New Vector2(736 + 30, 160 + 30), Color.White)
             End If
 
@@ -1132,7 +1139,7 @@ Public Class TradeScreen
             While amount.Length < 3
                 amount = "0" & amount
             End While
-            Me.DrawBanner(New Vector2(664, 430), 30, "In Inventory: " & amount, FontManager.MainFont, 400)
+            Me.DrawBanner(New Vector2(664, 430), 30, Localization.GetString("shop_screen_buysell_InInventory", "In Inventory:") & " " & amount, FontManager.MainFont, 400)
 
             ' - button:
             Core.SpriteBatch.Draw(texture, New Rectangle(664, 484, 64, 64), New Rectangle(16, 32, 16, 16), Color.White)
@@ -1152,8 +1159,8 @@ Public Class TradeScreen
             Core.SpriteBatch.Draw(texture, New Rectangle(856, 484, 64, 64), New Rectangle(16, 32, 16, 16), Color.White)
             Core.SpriteBatch.DrawString(FontManager.MainFont, "+", New Vector2(856 + 19, 484 + 6), Color.Black, 0.0F, Vector2.Zero, 2.0F, SpriteEffects.None, 0.0F)
 
-            Core.SpriteBatch.DrawString(FontManager.MainFont, "Per Item: " & selectedItem.SellPrice().ToString() & GetCurrencyShort() & Environment.NewLine &
-                                                       "Total: " & (SellItemsAmount * selectedItem.SellPrice()).ToString() & GetCurrencyShort(), New Vector2(930, 490), Color.White)
+            Core.SpriteBatch.DrawString(FontManager.MainFont, Localization.GetString("shop_screen_buysell_PricePerItem", "Per Item:") & " " & selectedItem.SellPrice().ToString() & GetCurrencyShort() & Environment.NewLine &
+                                                      Localization.GetString("shop_screen_buysell_PriceTotal", "Total:") & " " & (SellItemsAmount * selectedItem.SellPrice()).ToString() & GetCurrencyShort(), New Vector2(930, 490), Color.White)
 
             ' Sell button:
             If Me.SellItemsAmount > 0 Then
@@ -1161,12 +1168,12 @@ Public Class TradeScreen
                     Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\GamePad\xboxControllerButtonA"), New Rectangle(664 + 12, 484 + 64 + 34, 40, 40), Color.White)
                 End If
 
-                Me.DrawButton(New Vector2(664 + 32, 484 + 64 + 22), 1, "Sell", 64)
+                Me.DrawButton(New Vector2(664 + 32, 484 + 64 + 22), 1, Localization.GetString("shop_screen_button_sell", "Sell"), 64)
             End If
         End If
 
         ' Current balance:
-        Me.DrawBanner(New Vector2(664, 110), 30, "Current balance: " & GetCurrencyDisplay(), FontManager.MainFont, 400)
+        Me.DrawBanner(New Vector2(664, 110), 30, Localization.GetString("shop_screen_buysell_CurrentBalance", "Current balance:") & " " & GetCurrencyDisplay(), FontManager.MainFont, 400)
 
         ' Cursor draw:
         Me.DrawMainCursor()
@@ -1222,15 +1229,19 @@ Public Class TradeScreen
 
         Dim tradeItem As TradeItem = Me.SellItemsList(Me.Scroll + Me.Cursor)
 
-        Dim text As String = "Do you want to sell" & Environment.NewLine & Me.SellItemsAmount & " " & tradeItem.GetItem().OneLineName & "?"
+        Dim itemName As String = tradeItem.GetItem().OneLineName()
+        If Me.SellItemsAmount > 1 Then
+            itemName = tradeItem.GetItem().OneLinePluralName()
+        End If
+        Dim text As String = Localization.GetString("shop_screen_sell_confirmation", "Do you want to sell~[AMOUNT] [ITEM]?").Replace("~", Environment.NewLine).Replace("*", Environment.NewLine).Replace("[AMOUNT]", Me.SellItemsAmount.ToString).Replace("[ITEM]", itemName)
 
         Core.SpriteBatch.DrawString(FontManager.MainFont,
                                     text,
                                     New Vector2(Core.windowSize.Width / 2.0F - FontManager.MainFont.MeasureString(text).X, Core.windowSize.Height / 2.0F - 170),
                                     Color.White, 0.0F, Vector2.Zero, 2.0F, SpriteEffects.None, 0.0F)
 
-        DrawButton(New Vector2(Core.windowSize.Width / 2.0F - 192, Core.windowSize.Height / 2.0F - 60), 4, "Sell", 16, Nothing)
-        DrawButton(New Vector2(Core.windowSize.Width / 2.0F - 192, Core.windowSize.Height / 2.0F + 36), 4, "Cancel", 16, Nothing)
+        DrawButton(New Vector2(Core.windowSize.Width / 2.0F - 192, Core.windowSize.Height / 2.0F - 60), 4, Localization.GetString("shop_screen_button_sell", "Sell"), 16, Nothing)
+        DrawButton(New Vector2(Core.windowSize.Width / 2.0F - 192, Core.windowSize.Height / 2.0F + 36), 4, Localization.GetString("global_cancel", "Cancel"), 16, Nothing)
 
         ' Cursor:
         Dim cPosition As Vector2 = New Vector2(Core.windowSize.Width / 2.0F - 192 + 280, Core.windowSize.Height / 2.0F - 60 + Me.sellItemsConfirmationCursor * 96 - 42)
@@ -1338,11 +1349,11 @@ Public Class TradeScreen
     Private Function GetCurrencyDisplay() As String
         Select Case Me.Currency
             Case Currencies.BattlePoints
-                Return GetCurrencyAmount().ToString() & " Battle Points"
+                Return GetCurrencyAmount().ToString() & " " & Localization.GetString("shop_screen_currency_BattlePoints", "Battle Points")
             Case Currencies.Coins
-                Return GetCurrencyAmount().ToString() & " Coins"
+                Return GetCurrencyAmount().ToString() & " " & Localization.GetString("shop_screen_currency_Coins", "Coins")
             Case Currencies.Pokédollar
-                Return GetCurrencyAmount().ToString() & "$"
+                Return GetCurrencyAmount().ToString() & " " & Localization.GetString("shop_screen_currency_Pokédollars", "$")
         End Select
         Return ""
     End Function
@@ -1350,11 +1361,11 @@ Public Class TradeScreen
     Private Function GetCurrencyShort() As String
         Select Case Me.Currency
             Case Currencies.BattlePoints
-                Return "BP"
+                Return Localization.GetString("shop_screen_currency_short_BattlePoints", "BP")
             Case Currencies.Coins
-                Return "C"
+                Return Localization.GetString("shop_screen_currency_short_Coins", "C")
             Case Currencies.Pokédollar
-                Return "$"
+                Return Localization.GetString("shop_screen_currency_short_Pokédollars", "$")
         End Select
         Return ""
     End Function

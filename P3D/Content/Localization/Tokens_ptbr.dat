@@ -187,8 +187,8 @@ fieldmove_dig_used,usou~Dig!
 fieldmove_teleport_CannotUse,Não dá para usar Teleport aqui.
 fieldmove_teleport_used,usou~Teleport!
 
-fieldmove_fly_CannotUse,You cannot Fly~from here!
-fieldmove_fly_used,used~Fly!
+fieldmove_fly_CannotUse,Não pode usar Fly~desse lugar!
+fieldmove_fly_used,usou~Fly!
 ---
 GameInteractions:
 game_interaction_interact,Interagir
@@ -222,8 +222,8 @@ main_menu_gamejolt_ChangeToMale,Mudar para Masculino
 main_menu_gamejolt_ChangeToFemale,Mudar para Feminino
 main_menu_gamejolt_ChangeToGenderless,Mudar para Não-Binário
 main_menu_gamejolt_ResetSave,Resetar Salve
-main_menu_error_gamemode_profile,O modo de jogo escolhido não existe!
-main_menu_error_gamemode_message,O modo de jogo escolhido não existe.~Baixe novamente para jogar nesse Salve.
+main_menu_error_gamemode_profile,O Modo de Jogo escolhido não existe!
+main_menu_error_gamemode_message,O Modo de Jogo escolhido não existe.~Baixe novamente para jogar nesse Salve.
 main_menu_error_gamejolt_1,Download falhou. Press Aceitar tentar denovo.
 main_menu_error_gamejolt_2,Se o problema persistir,tente novamente mais tarde
 main_menu_error_gamejolt_3,ou fale conosco em nosso servidor do Discord:
@@ -236,7 +236,7 @@ main_menu_options_contentpacks_line1,Pacotes
 main_menu_options_contentpacks_line2,de Conteúdo
 
 GameModeMenu:
-gamemode_menu_select1,Selecione o modo de jogo
+gamemode_menu_select1,Selecione o Modo de Jogo
 gamemode_menu_select2,para começar um novo jogo.
 gamemode_menu_name,Nome
 gamemode_menu_description,Descrição
@@ -246,7 +246,7 @@ gamemode_menu_contentpath,Local do Conteúdo
 gamemode_menu_create,Criar
 gamemode_menu_back,Voltar
 gamemode_name_Kolben,Pokémon 3D
-gamemode_desc_Kolben,The normal GameMode.
+gamemode_desc_Kolben,O Modo de Jogo principal.
 ---
 JoinServerScreen:
 join_server_screen_title,Entre em um Servidor:
@@ -401,8 +401,8 @@ map_screen_cities,Cidades
 map_screen_routes,Rotas
 map_screen_places,Lugares
 map_screen_roaming,Pokémons na área
-map_screen_PokemonAtPlace,[NAME] at [PLACE]
-map_screen_RegionSwitchHint,(Press the Shift Key/Shoulder Triggers to switch between regions.)
+map_screen_PokemonAtPlace,[NAME] em [PLACE]
+map_screen_RegionSwitchHint,(Pressione a Tecla Shift /Gatilhos de ombro para alternar entre Regiões.)
 ---
 Trainer Card Screen:
 trainer_screen_title,Cartão do Treinador
@@ -442,6 +442,31 @@ Rename Screen:
 rename_screen_title_Question,Renomear [NAME]?
 rename_screen_title_EnterName,Escreva um nome para [NAME]:
 rename_screen_button_Rename,Renomear
+---
+Shop Screen:
+shop_screen_title_store,Store
+shop_screen_title_BuyItems,Buy Items
+shop_screen_title_BuyCategory,Buy [CATEGORY]
+shop_screen_title_SellItems,Sell Items
+shop_screen_title_SellCategory,Sell [CATEGORY]
+shop_screen_button_buy,Buy
+shop_screen_button_sell,Sell
+shop_screen_button_exit,Exit
+shop_screen_buy_NoItemsToBuy,There are no items to buy.
+shop_screen_buy_InStock,In Stock:
+shop_screen_sell_NoItemsToSell,You have no items to sell.
+shop_screen_sell_confirmation,Do you want to sell~[AMOUNT] [ITEM]?
+shop_screen_buysell_PricePerItem,Per Item:
+shop_screen_buysell_PriceTotal,Total:
+shop_screen_buysell_InInventory,In Inventory:
+shop_screen_buysell_DescriptionHint,Press [<system.button(special)>] or Select to view the item's description.
+shop_screen_buysell_CurrentBalance,Current Balance:
+shop_screen_currency_BattlePoints,Battle Points
+shop_screen_currency_Coins,Coins
+shop_screen_currency_Pokédollars,$
+shop_screen_currency_short_BattlePoints,BP
+shop_screen_currency_short_Coins,C
+shop_screen_currency_short_Pokédollars,$
 ---
 Blackout Screen:
 black_out_screen_line1,Você está sem Pokémons!
@@ -817,7 +842,7 @@ Places_Secret Laboratory,Laboratório Secreto
 Item categories:
 item_category_Standard,Itens Padrão/Seguravel
 item_category_Medicine,Medicinas
-item_category_Machines,Maquinas
+item_category_Machines,TMs/HMs
 item_category_Pokéballs,Pokébolas
 item_category_Plants,Plantas
 item_category_KeyItems,Itens Chave
@@ -2542,7 +2567,7 @@ Item Use Text:
 item_cannot_use,Agora não é o momento certo~para usar isso.
 item_6_cannot_walk,Você não pode Andar Aqui!
 item_6_missingskin,Você não pode usar esse item~sem uma skin de bicicleta.*O nome deve ser o mesmo~que o atual,~mas com "_bike" no final.
-item_6_only_custom_gamemodes,Esse item não pode ser usado~nesse modo de jogo.
+item_6_only_custom_gamemodes,Esse item não pode ser usado~nesse Modo de Jogo.
 
 Key Items:
 item_use_6,<player.name> desmontou~da Biscicleta.

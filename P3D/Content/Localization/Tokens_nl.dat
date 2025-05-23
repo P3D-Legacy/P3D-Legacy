@@ -431,6 +431,31 @@ rename_screen_title_Question,Hernoem [NAME]?
 rename_screen_title_EnterName,Voer naam in voor [NAME]:
 rename_screen_button_Rename,Hernoem
 ---
+Shop Screen:
+shop_screen_title_store,Winkel
+shop_screen_title_BuyItems,Koop Voorwerpen
+shop_screen_title_BuyCategory,Koop [CATEGORY]
+shop_screen_title_SellItems,Verkoop Voorwerpen
+shop_screen_title_SellCategory,Verkoop [CATEGORY]
+shop_screen_button_buy,Koop
+shop_screen_button_sell,Verkoop
+shop_screen_button_exit,Weg gaan
+shop_screen_buy_NoItemsToBuy,Er zijn geen voorwerpen om te kopen.
+shop_screen_buy_InStock,Op voorraad:
+shop_screen_sell_NoItemsToSell,Je hebt geen voorwerpen om te verkopen.
+shop_screen_sell_confirmation,Wil je [AMOUNT] [ITEM]~verkopen?
+shop_screen_buysell_PricePerItem,Per Voorwerp:
+shop_screen_buysell_PriceTotal,Totaal:
+shop_screen_buysell_InInventory,In Inventaris:
+shop_screen_buysell_DescriptionHint,Druk op [<system.button(special)>] of Select om de beschrijving van het voorwerp te bekijken.
+shop_screen_buysell_CurrentBalance,Huidig Saldo:
+shop_screen_currency_BattlePoints,Gevechtspunten
+shop_screen_currency_Coins,Munten
+shop_screen_currency_Pokédollars,$
+shop_screen_currency_short_BattlePoints,GP
+shop_screen_currency_short_Coins,M
+shop_screen_currency_short_Pokédollars,$
+---
 Blackout Screen:
 black_out_screen_line1,Je hebt geen strijdbare Pokémon meer!
 black_out_screen_line2,Je zult naar het dichtstbijzijnde
@@ -804,7 +829,7 @@ Places_Secret Laboratory,Geheim Laboratorium
 Item categories:
 item_category_Standard,Standaard
 item_category_Medicine,Medicijnen
-item_category_Machines,TM/VM
+item_category_Machines,TMs/VMs
 item_category_Pokéballs,PokéBallen
 item_category_Plants,Planten
 item_category_KeyItems,Belangrijk

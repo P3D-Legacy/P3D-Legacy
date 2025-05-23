@@ -444,6 +444,31 @@ rename_screen_title_Question,Rename [POKEMON]?
 rename_screen_title_EnterName,Enter name for [POKEMON]:
 rename_screen_button_Rename,Rename
 ---
+Shop Screen:
+shop_screen_title_store,Store
+shop_screen_title_BuyItems,Buy Items
+shop_screen_title_BuyCategory,Buy [CATEGORY]
+shop_screen_title_SellItems,Sell Items
+shop_screen_title_SellCategory,Sell [CATEGORY]
+shop_screen_button_buy,Buy
+shop_screen_button_sell,Sell
+shop_screen_button_exit,Exit
+shop_screen_buy_NoItemsToBuy,There are no items to buy.
+shop_screen_buy_InStock,In Stock:
+shop_screen_sell_NoItemsToSell,You have no items to sell.
+shop_screen_sell_confirmation,Do you want to sell~[AMOUNT] [ITEM]?
+shop_screen_buysell_PricePerItem,Per Item:
+shop_screen_buysell_PriceTotal,Total:
+shop_screen_buysell_InInventory,In Inventory:
+shop_screen_buysell_DescriptionHint,Press [<system.button(special)>] or Select to view the item's description.
+shop_screen_buysell_CurrentBalance,Current Balance:
+shop_screen_currency_BattlePoints,Battle Points
+shop_screen_currency_Coins,Coins
+shop_screen_currency_Pokédollars,$
+shop_screen_currency_short_BattlePoints,BP
+shop_screen_currency_short_Coins,C
+shop_screen_currency_short_Pokédollars,$
+---
 Blackout Screen:
 black_out_screen_line1,You have run out of Pokémon!
 black_out_screen_line2,You will be brought
