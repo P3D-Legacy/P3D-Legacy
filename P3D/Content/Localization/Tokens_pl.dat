@@ -6,9 +6,9 @@ global_loading,Ładowanie
 global_game,Gra
 global_login,Zaloguj się
 global_create_account,Załóż Konto
-global_male,Male
-global_female,Female
-global_genderless,Genderless
+global_male,Chłopiec
+global_female,Dziewczynka
+global_genderless,Niebinarne
 global_yes,Tak
 global_no,Nie
 global_accept,Zaakceptuj
@@ -29,7 +29,7 @@ global_enable,Włącz
 global_disable,Wyłącz
 global_player_name,Imię gracza
 global_badges,Odznaki
-global_play_time,Czas Gry
+global_play_time,Czas gry
 global_location,Lokalizacja
 global_money,Kasa
 global_points,Punkty
@@ -99,18 +99,18 @@ property_Type,Typ
 property_Nature,Nature
 property_DexNo.,Nr Dex
 property_OT,OT
-property_CatchMethod,Catch Method
+property_CatchMethod,Metoda złapania
 property_ExpPoints,Exp. Points
-property_Category,Category
-property_Power,Power
-property_Accuracy,Accuracy
+property_Category,Kategoria
+property_Power,Moc
+property_Accuracy,Celność
 ---
 Summary Screen:
 
-summary_hint_ViewMoves,View Moves: [<system.button(movebackward)>]/[↓] Down
-summary_hint_ViewInfo,View Info: [<system.button(moveforward)>]/[↑] Up
+summary_hint_ViewMoves,Zobacz ruchy: [<system.button(movebackward)>]/[↓] Dół
+summary_hint_ViewInfo,Zobacz informacje: [<system.button(moveforward)>]/[↑] Góra
 summary_EVsIVs,EVs (white) / IVs (blue)
-summary_ExpToNextLv,To Next Lv.
+summary_ExpToNextLv,Do następnego pz.
 summary_TheEggWatch,The Egg Watch
 summary_EggHatch_LongTime,It looks like this Egg will take a long time to hatch.
 summary_EggHatch_MediumTime,It's getting warmer and moves a little. It will hatch soon.
@@ -194,9 +194,9 @@ fieldmove_fly_used,used~Fly!
 ---
 GameInteractions:
 game_interaction_interact,Interact
-game_interaction_gamemenu,Menu Gry
+game_interaction_gamemenu,Menu gry
 game_interaction_pokegear,PokéŁącze
-game_interaction_pausemenu,Pause Menu
+game_interaction_pausemenu,Menu pauzy
 game_interaction_accept,Zaakceptuj
 game_interaction_enter,Wprowadź
 game_interaction_confirm,Potwierdź
@@ -218,11 +218,11 @@ start_screen_tostart,, aby zacząć.
 ---
 Main Menu:
 main_menu_newgame_line1,Nowa
-main_menu_newgame_line2,Gra
+main_menu_newgame_line2,gra
 main_menu_options,Opcje
-main_menu_gamejolt_ChangeToMale,Change to male
-main_menu_gamejolt_ChangeToFemale,Change to female
-main_menu_gamejolt_ChangeToGenderless,Change to genderless
+main_menu_gamejolt_ChangeToMale,Zmień na chłopca
+main_menu_gamejolt_ChangeToFemale,Zmień na dziewczynkę
+main_menu_gamejolt_ChangeToGenderless,Zmień na postać niebinarną
 main_menu_gamejolt_ResetSave,Resetuj plik zapisu
 main_menu_error_gamemode_profile,Wymagany tryb gry nie istnieje!
 main_menu_error_gamemode_message,Wymagany tryb gry nie istnieje.~Ponownie pobierz tryb gry, aby grać na tym profilu.
@@ -235,11 +235,11 @@ main_menu_options_language,Język
 main_menu_options_audio,Dźwięk
 main_menu_options_controls,Kontrole
 main_menu_options_contentpacks_line1,Paczki
-main_menu_options_contentpacks_line2,Treści
+main_menu_options_contentpacks_line2,treści
 
 GameModeMenu:
-gamemode_menu_select1,Wybierz tryb gry,
-gamemode_menu_select2,aby zacząć w nim nową grę.
+gamemode_menu_select1,Wybierz tryb gry, aby
+gamemode_menu_select2,zacząć w nim nową grę.
 gamemode_menu_name,Nazwa
 gamemode_menu_description,Opis
 gamemode_menu_version,Wersja
@@ -251,25 +251,25 @@ gamemode_name_Kolben,Pokémon 3D
 gamemode_desc_Kolben,The normal GameMode.
 ---
 JoinServerScreen:
-join_server_screen_title,Join a server:
-join_server_screen_local_server_title,Local
-join_server_screen_local_server_description,Single-player: Play on your local computer.
-join_server_screen_button_join,Join
-join_server_screen_button_play,Play
-join_server_screen_button_refresh,Refresh
-join_server_screen_button_new,New
-join_server_screen_button_add,Add
-join_server_screen_button_edit,Edit
-join_server_screen_button_remove,Remove
-join_server_screen_tooltip_no_players,No players on the server.
-join_server_screen_tooltip_player_list,Player List
+join_server_screen_title,Dołącz do serwera:
+join_server_screen_local_server_title,Lokalnie
+join_server_screen_local_server_description,Jeden gracz: Graj na swoim komputerze.
+join_server_screen_button_join,Dołącz
+join_server_screen_button_play,Zagraj
+join_server_screen_button_refresh,Odśwież
+join_server_screen_button_new,Nowy
+join_server_screen_button_add,Dodaj
+join_server_screen_button_edit,Edytuj
+join_server_screen_button_remove,Usuń
+join_server_screen_tooltip_no_players,Nie ma graczy na serwerze.
+join_server_screen_tooltip_player_list,Lista graczy
 join_server_screen_ping,Ping:
-join_server_screen_server_unavailable,Cannot reach server.
-join_server_screen_server_online,Server online.
+join_server_screen_server_unavailable,Nie można dotrzeć do serwera.
+join_server_screen_server_online,Serwer online.
 join_server_screen_server_polling,Polling
-join_server_screen_server_full,The server is full.
-join_server_screen_version_mismatch,Version doesn't match the server's version.
-join_server_screen_no_connection,(no connection)
+join_server_screen_server_full,Serwer jest pełny.
+join_server_screen_version_mismatch,Wersja nie pasuje do wersji serwera.
+join_server_screen_no_connection,(brak połączenia)
 ---
 Options Screen:
 option_screen_title,Opcje
@@ -540,34 +540,34 @@ VoltorbFlip_Tutorial_Hint_Image,By looking at the numbers on the sides of the ca
 VoltorbFlip_Tutorial_AboutMemos_Image,Select "Open Memo" to open the Memo Window. Select the cards and press [<system.button(enter1)>] to add and [<system.button(back1)>] to remove marks.
 ----
 PokedexScreen
-pokedex_seen,Seen:
-pokedex_obtained,Obtained:
-pokedex_available,Available:
-pokedex_select,Select a Pokédex
-pokedex_habitat_dex_name,Habitat-Dex
-pokedex_habitat_select,Select a Habitat
-pokedex_order,Order:
-pokedex_order_numeric,Numeric
+pokedex_seen,Zobaczyłeś:
+pokedex_obtained,Otrzymałeś:
+pokedex_available,Dostępne:
+pokedex_select,Wybierz Pokédex
+pokedex_habitat_dex_name,Dex Siedlisk
+pokedex_habitat_select,Wybierz siedlisko
+pokedex_order,Kolejność:
+pokedex_order_numeric,Numeryczna
 pokedex_order_alphabetically,A-Z
-pokedex_order_height,Height
-pokedex_order_weight,Weight
-pokedex_filter,Filter:
-pokedex_filter_none,None
-pokedex_filter_name,Name
-pokedex_filter_type1,Type 1
-pokedex_filter_type2,Type 2
-pokedex_search_hint,Press [<system.button(special)>] or Select to search.
-pokedex_search_no_results,No search results.
-pokedex_data_species,SPECIES
-pokedex_data_type,TYPE
-pokedex_data_height,HEIGHT
-pokedex_data_weight,WEIGHT
-pokedex_data_form_switch_hint,Press [Shift] to switch forms
-pokedex_data_page_details,Details
-pokedex_data_page_habitat,Habitat
-pokedex_data_page_evolution,Evolution
-pokedex_habitat_area_unknown,Area Unknown.
-pokedex_evolution_no_evolutions,doesn't evolve.
+pokedex_order_height,Wzrost
+pokedex_order_weight,Waga
+pokedex_filter,Filtr:
+pokedex_filter_none,Brak
+pokedex_filter_name,Nazwa
+pokedex_filter_type1,Typ 1
+pokedex_filter_type2,Typ 2
+pokedex_search_hint,Wciśnij [<system.button(special)>] lub Select, aby szukać.
+pokedex_search_no_results,Brak wyników wyszukiwania.
+pokedex_data_species,GATUNEK
+pokedex_data_type,TYP
+pokedex_data_height,WZROST
+pokedex_data_weight,WAGA
+pokedex_data_form_switch_hint,Wciśnij [Shift], aby zmienić formy
+pokedex_data_page_details,Szczegóły
+pokedex_data_page_habitat,Siedlisko
+pokedex_data_page_evolution,Ewolucja
+pokedex_habitat_area_unknown,Obszar nieznany.
+pokedex_evolution_no_evolutions,nie ewoluuje.
 ----
 Receiving Items:
 item_received_single,Received the~
@@ -853,15 +853,15 @@ GameMessages:
 game_message_screenshot,Zapisano zrzut ekranu jako
 game_message_screenshot_failed,Nie można utworzyć zrzutu ekranu
 game_message_fullscreen_on,Włączono tryb pełnoekranowy
-game_message_fullscreen_off,Fullscreen off
+game_message_fullscreen_off,Wyłączono tryb pełnoekranowy
 game_message_third_person_on,Third person mode on
 game_message_third_person_off,Third person mode off
 game_message_free_camera_on,Free camera mode on
 game_message_free_camera_off,Free camera mode off
-game_message_sandbox_mode_on,Sandbox mode on
-game_message_sandbox_mode_off,Sandbox mode off
-game_message_audio_on,Audio on
-game_message_audio_off,Audio off
+game_message_sandbox_mode_on,Tryb piaskownicy włączony
+game_message_sandbox_mode_off,Tryb piaskownicy wyłączony
+game_message_audio_on,Dźwięk włączony
+game_message_audio_off,Dźwięk wyłączony
 game_message_continue_autosave,Continued save state:
 game_message_debug_texture_list_clear,Texture list was cleared
 ---

@@ -29,7 +29,7 @@ global_enable,Aktivieren
 global_disable,Deaktivieren
 global_player_name,Name
 global_badges,Orden
-global_play_time,Zeit
+global_play_time,Spielzeit
 global_location,Ort
 global_money,Geld
 global_points,Punkte
@@ -106,8 +106,8 @@ property_Accuracy,Genauigk.
 ---
 Summary Screen:
 
-summary_hint_ViewMoves,Attacken: [<system.button(movebackward)>]/[↓] Runter
-summary_hint_ViewInfo,Bericht: [<system.button(moveforward)>]/[↑] Hoch
+summary_hint_ViewMoves,Attacken: [<system.button(movebackward)>]/[↓] Unten
+summary_hint_ViewInfo,Bericht: [<system.button(moveforward)>]/[↑] Oben
 summary_EVsIVs,EVs (weiß) / IVs (blau)
 summary_ExpToNextLv,Noch nötig
 summary_TheEggWatch,The Egg Watch
@@ -849,8 +849,7 @@ item_category_BattleItems,Kampf-Items
 item_category_Mail,Briefe
 ---
 GameMessages:
-# OriginalTranslation: game_message_screenshot,Screenshot wurde in Pokemon3D\Screenshots gespeichert als
-game_message_screenshot,Screenshot wurde im Order "Screenshots" gespeichert als
+game_message_screenshot,Screenshot wurde in Pokemon3D\screenshots gespeichert als
 game_message_screenshot_failed,Screenshot konnte nicht erstellt werden!
 game_message_fullscreen_on,Vollbildmodus aktiviert
 game_message_fullscreen_off,Vollbildmodus deaktiviert
