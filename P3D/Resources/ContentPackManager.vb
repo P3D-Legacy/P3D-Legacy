@@ -3,39 +3,55 @@
     Private Shared TextureReplacements As New Dictionary(Of TextureSource, TextureSource)
     Private Shared FilesExist As New Dictionary(Of String, Boolean)
     Private Shared TextureResolutions As New Dictionary(Of String, Single)
+    Public Shared ScriptTextureReplacements As New Dictionary(Of TextureSource, TextureSource)
 
-    Public Shared Sub Load(ByVal ContentPackFile As String)
+    Public Shared Sub Load(ByVal ContentPackFile As String, Optional IsScriptContent As Boolean = False)
         If System.IO.Directory.Exists(GameController.GamePath & "\ContentPacks") = True Then
             If System.IO.File.Exists(ContentPackFile) = True Then
                 Dim Lines() As String = System.IO.File.ReadAllLines(ContentPackFile)
                 For Each Line As String In Lines
                     Select Case Line.GetSplit(0, "|").ToLower
                         Case "waterspeed"
-                            GameModeManager.ForceWaterSpeed = CInt(Line.GetSplit(1, "|"))
+                            If IsScriptContent = False Then
+                                GameModeManager.ForceWaterSpeed = CInt(Line.GetSplit(1, "|"))
+                            End If
                         Case "pokemodelscale"
-                            GameModeManager.PokeModelScale = CSng(Line.GetSplit(1, "|").Replace(".", GameController.DecSeparator))
+                            If IsScriptContent = False Then
+                                GameModeManager.PokeModelScale = CSng(Line.GetSplit(1, "|").Replace(".", GameController.DecSeparator))
+                            End If
                         Case "pokemodelrotation"
-                            GameModeManager.PokeModelRotation = New Vector3(CSng(Line.GetSplit(1, "|").GetSplit(0).Replace(".", GameController.DecSeparator)), 0, CSng(Line.GetSplit(1, "|").GetSplit(1).Replace(".", GameController.DecSeparator)))
+                            If IsScriptContent = False Then
+                                GameModeManager.PokeModelRotation = New Vector3(CSng(Line.GetSplit(1, "|").GetSplit(0).Replace(".", GameController.DecSeparator)), 0, CSng(Line.GetSplit(1, "|").GetSplit(1).Replace(".", GameController.DecSeparator)))
+                            End If
                         Case Else
                             Select Case Line.CountSplits("|")
                                 Case 2 'ResolutionChange
-                                    Dim TextureName As String = Line.GetSplit(0, "|")
+                                    Dim TextureName As String = ScriptVersion2.ScriptCommander.Parse(Line.GetSplit(0, "|")).ToString
                                     Dim Resolution As Single = CSng(Line.GetSplit(1, "|").Replace(".", GameController.DecSeparator))
 
-                                    If TextureResolutions.ContainsKey(TextureName) = False Then
-                                        TextureResolutions.Add(TextureName, Resolution)
+                                    If IsScriptContent = False Then
+                                        If TextureResolutions.ContainsKey(TextureName) = False Then
+                                            TextureResolutions.Add(TextureName, Resolution)
+                                        End If
                                     End If
+
                                 Case 4 'TextureReplacement
-                                    Dim oldTextureName As String = Line.GetSplit(0, "|")
-                                    Dim newTextureName As String = Line.GetSplit(2, "|")
+                                    Dim oldTextureName As String = ScriptVersion2.ScriptCommander.Parse(Line.GetSplit(0, "|")).ToString
+                                    Dim newTextureName As String = ScriptVersion2.ScriptCommander.Parse(Line.GetSplit(2, "|")).ToString
                                     Dim oRS As String = Line.GetSplit(1, "|") 'oRS = oldRectangleSource
                                     Dim nRS As String = Line.GetSplit(3, "|") 'nRS = newRectangleSource
 
                                     Dim oldTextureSource As New TextureSource(oldTextureName, New Rectangle(CInt(oRS.GetSplit(0)), CInt(oRS.GetSplit(1)), CInt(oRS.GetSplit(2)), CInt(oRS.GetSplit(3))))
                                     Dim newTextureSource As New TextureSource(newTextureName, New Rectangle(CInt(nRS.GetSplit(0)), CInt(nRS.GetSplit(1)), CInt(nRS.GetSplit(2)), CInt(nRS.GetSplit(3))))
 
-                                    If TextureReplacements.ContainsKey(oldTextureSource) = False Then
-                                        TextureReplacements.Add(oldTextureSource, newTextureSource)
+                                    If IsScriptContent = False Then
+                                        If TextureReplacements.ContainsKey(oldTextureSource) = False Then
+                                            TextureReplacements.Add(oldTextureSource, newTextureSource)
+                                        End If
+                                    Else
+                                        If ScriptTextureReplacements.ContainsKey(oldTextureSource) = False Then
+                                            ScriptTextureReplacements.Add(oldTextureSource, newTextureSource)
+                                        End If
                                     End If
                             End Select
                     End Select
@@ -45,12 +61,28 @@
     End Sub
 
     Public Shared Function GetTextureReplacement(ByVal TexturePath As String, ByVal r As Rectangle) As TextureSource
-        Dim TextureSource As New TextureSource(TexturePath, r)
-        For i = 0 To TextureReplacements.Count - 1
-            If TextureReplacements.Keys(i).IsEqual(TextureSource) = True Then
-                Return TextureReplacements.Values(i)
-            End If
-        Next
+        Dim TextureSource As New TextureSource(TexturePath.ToLower, r)
+        If ScriptTextureReplacements.Count > 0 = True Then
+            For i = 0 To ScriptTextureReplacements.Count - 1
+                If ScriptTextureReplacements.Keys(i).IsEqual(TextureSource) = True Then
+                    If TextureReplacements.Count > 0 Then
+                        For j = 0 To TextureReplacements.Count - 1
+                            If TextureReplacements.Keys(j).IsEqual(ScriptTextureReplacements.Values(i)) = True Then
+                                Return TextureReplacements.Values(j)
+                            End If
+                        Next
+                    End If
+                    Return ScriptTextureReplacements.Values(i)
+                End If
+            Next
+        End If
+        If TextureReplacements.Count > 0 Then
+            For i = 0 To TextureReplacements.Count - 1
+                If TextureReplacements.Keys(i).IsEqual(TextureSource) = True Then
+                    Return TextureReplacements.Values(i)
+                End If
+            Next
+        End If
         Return TextureSource
     End Function
 

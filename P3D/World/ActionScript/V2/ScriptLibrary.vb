@@ -224,7 +224,7 @@ Namespace ScriptVersion2
             r(New ScriptCommand("level", "musicloop", "str", "Returns only the name of the current played song, without path and extension.", ",", True))
             r(New ScriptCommand("level", "daytime", "int", "Returns the DayTime of the current map.", ",", True))
             r(New ScriptCommand("level", "environmenttype", "int", "Returns the EnvironmentType of the current map.", ",", True))
-            r(New ScriptCommand("level", "LoadOffsetMaps", "bool", "Returns if OffsetMaps are being loaded (based on the Offset Map Quality option in the Options Menu).", ",", True))
+            r(New ScriptCommand("level", "loadoffsetmaps", "bool", "Returns if OffsetMaps are being loaded (based on the Offset Map Quality option in the Options Menu).", ",", True))
         End Sub
 
         Private Shared Sub DoEntity()
@@ -306,7 +306,7 @@ Namespace ScriptVersion2
             r(New ScriptCommand("inventory", "countitem", "int", {New ScriptArgument("itemID", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Returns the amount of the Item with the given ID in the player's inventory.", ",", True))
             r(New ScriptCommand("inventory", "countitems", "int", "Counts all items in the player's inventory.", ",", True))
             r(New ScriptCommand("inventory", "name", "str", {New ScriptArgument("itemID", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Returns the name of an Item by its ItemID.", ",", True))
-            r(New ScriptCommand("inventory", "ID", "int", {New ScriptArgument("itemName", ScriptArgument.ArgumentTypes.Str)}.ToList(), "Returns the ID of an Item by its Name.", ",", True))
+            r(New ScriptCommand("inventory", "id", "int", {New ScriptArgument("itemName", ScriptArgument.ArgumentTypes.Str)}.ToList(), "Returns the ID of an Item by its Name.", ",", True))
             r(New ScriptCommand("inventory", "selected", "str", "Returns the item ID of the item selected with @item.select.", ",", True))
         End Sub
 
@@ -416,6 +416,14 @@ Namespace ScriptVersion2
         End Sub
 
         Private Shared Sub DoSystem()
+            ' Commands:
+            r(New ScriptCommand("system", "endnewgame", {New ScriptArgument("Map", ScriptArgument.ArgumentTypes.Str),
+                                               New ScriptArgument("X", ScriptArgument.ArgumentTypes.Sng, True, "~"),
+                                               New ScriptArgument("Y", ScriptArgument.ArgumentTypes.Sng, True, "~"),
+                                               New ScriptArgument("Z", ScriptArgument.ArgumentTypes.Sng, True, "~"),
+                                               New ScriptArgument("Rotation", ScriptArgument.ArgumentTypes.Int, {"0-3"}, True, "0")}.ToList(), "Ends the 3D new game intro screen and creates a savefile."))
+            r(New ScriptCommand("system", "replacetextures", {New ScriptArgument("textureReplacementFile", ScriptArgument.ArgumentTypes.Str)}.ToList(), "Loads the given texture replacement file (without file extension)."))
+
             ' Constructs:
             r(New ScriptCommand("system", "random", "int", {New ScriptArgument("min", ScriptArgument.ArgumentTypes.Int, True, "1"),
                                                         New ScriptArgument("max", ScriptArgument.ArgumentTypes.Int, True, "2")}.ToList(), "Generates a random number between min and max, inclusive.", ",", True))
@@ -430,16 +438,16 @@ Namespace ScriptVersion2
             r(New ScriptCommand("system", "sort", "str", {New ScriptArgument("sortMode", ScriptArgument.ArgumentTypes.Str, {"ascending", "descending"}),
                                                          New ScriptArgument("returnIndex", ScriptArgument.ArgumentTypes.Int),
                                                          New ScriptArgument("list", ScriptArgument.ArgumentTypes.Arr)}.ToList(), "Sorts the list after sortmode and returns the item at the given index.", ",", True))
-            r(New ScriptCommand("system", "ScriptTrigger", "string", "Returns what triggered the current script (NPCInSight, NPCInteract, ScriptBlockWalkOn, ScriptBlockInteract, Notification, PhoneReceive, PhoneCall, StartScript, ScriptCommand, StrengthTrigger, MapScript, ChatCommand).", ",", True))
-            r(New ScriptCommand("system", "IsInSightScript", "bool", "Returns if the running script was triggered by the inSight function of an NPC.", ",", True))
+            r(New ScriptCommand("system", "scripttrigger", "string", "Returns what triggered the current script (NPCInSight, NPCInteract, ScriptBlockWalkOn, ScriptBlockInteract, Notification, PhoneReceive, PhoneCall, StartScript, ScriptCommand, StrengthTrigger, MapScript, ChatCommand).", ",", True))
+            r(New ScriptCommand("system", "isinsightscript", "bool", "Returns if the running script was triggered by the inSight function of an NPC.", ",", True))
             r(New ScriptCommand("system", "lastinput", "str", "Returns the last input received from the input screen (@screen.input).", ",", True))
             r(New ScriptCommand("system", "return", "str", "Returns the value set with the "":return"" switch.", ",", True))
             r(New ScriptCommand("system", "isint", "bool", {New ScriptArgument("expression", ScriptArgument.ArgumentTypes.Str)}.ToList(), "Checks if the expression is an integer (Outdated, use <math.isint> instead).", ",", True))
             r(New ScriptCommand("system", "issng", "bool", {New ScriptArgument("expression", ScriptArgument.ArgumentTypes.Str)}.ToList(), "Checks if the expression is a single (Outdated, use <math.issng> instead).", ",", True))
             r(New ScriptCommand("system", "chrw", "str", {New ScriptArgument("charCodes", ScriptArgument.ArgumentTypes.IntArr)}.ToList(), "Converts Unicode CharCodes into a string.", ",", True))
             r(New ScriptCommand("system", "scriptlevel", "int", "Returns the current script level (call depth).", ",", True))
-            r(New ScriptCommand("system", "Language", "str", "Returns the current game language suffix.", ",", True))
-            r(New ScriptCommand("system", "FileExists", "bool", {New ScriptArgument("filePath", ScriptArgument.ArgumentTypes.Str)}.ToList(), "Returns if the specified file (including extension) exists (relative to the GameMode's ContentPath).", ",", True))
+            r(New ScriptCommand("system", "language", "str", "Returns the current game language suffix.", ",", True))
+            r(New ScriptCommand("system", "fileexists", "bool", {New ScriptArgument("filePath", ScriptArgument.ArgumentTypes.Str)}.ToList(), "Returns if the specified file (including extension) exists (relative to the GameMode's ContentPath).", ",", True))
         End Sub
 
         Private Shared Sub DoEnvironment()
@@ -461,9 +469,9 @@ Namespace ScriptVersion2
             r(New ScriptCommand("environment", "setenvironmenttype", {New ScriptArgument("environmenttype", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Sets the ""EnvironmentType"" parameter of the map, which also changes the sky texture and sometimes adds particles. Value can be 0-5."))
             ' Constructs:
             r(New ScriptCommand("environment", "daytime", "str", "Returns the current DayTime of the game.", ",", True))
-            r(New ScriptCommand("environment", "daytimeID", "int", "Returns the current DayTimeID of the game.", ",", True))
+            r(New ScriptCommand("environment", "daytimeid", "int", "Returns the current DayTimeID of the game.", ",", True))
             r(New ScriptCommand("environment", "season", "str", "Returns the current Season of the game.", ",", True))
-            r(New ScriptCommand("environment", "seasonID", "int", "Returns the current SeasonID of the game.", ",", True))
+            r(New ScriptCommand("environment", "seasonid", "int", "Returns the current SeasonID of the game.", ",", True))
             r(New ScriptCommand("environment", "day", "str", "Returns the current day of the week.", ",", True))
             r(New ScriptCommand("environment", "dayofyear", "int", "Returns the current day of the year.", ",", True))
             r(New ScriptCommand("environment", "dayinformation", "str", "Returns the current day of the week and DayTime of the game.", ",", True))
@@ -500,15 +508,15 @@ Namespace ScriptVersion2
             r(New ScriptCommand("player", "turnasync", {New ScriptArgument("turns", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Adds to the direction the player faces and starts the async turning."))
             r(New ScriptCommand("player", "turnto", {New ScriptArgument("facing", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Changes the direction the player faces and starts the turning."))
             r(New ScriptCommand("player", "turntoasync", {New ScriptArgument("facing", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Changes the direction the player faces and starts the async turning."))
-            r(New ScriptCommand("player", "Warp", {New ScriptArgument("MapPath", ScriptArgument.ArgumentTypes.Str, True, "Current map."),
+            r(New ScriptCommand("player", "warp", {New ScriptArgument("MapPath", ScriptArgument.ArgumentTypes.Str, True, "Current map."),
                                                New ScriptArgument("X", ScriptArgument.ArgumentTypes.Sng, True, "~"),
                                                New ScriptArgument("Y", ScriptArgument.ArgumentTypes.Sng, True, "~"),
                                                New ScriptArgument("Z", ScriptArgument.ArgumentTypes.Sng, True, "~"),
                                                New ScriptArgument("Rotations", ScriptArgument.ArgumentTypes.Int, {"0-3"}, True, "0"),
                                                New ScriptArgument("WarpSound", ScriptArgument.ArgumentTypes.Int, {"0-3"}, True, "0")}.ToList(), "Warps the player to a new location on a new map and changes the facing afterwards. To get relative coordinates, enter a ""~""."))
             r(New ScriptCommand("player", "stopmovement", "Stops the player movement."))
-            r(New ScriptCommand("player", "AddMoney", {New ScriptArgument("amount", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Adds the given amount to the player's money."))
-            r(New ScriptCommand("player", "RemoveMoney", {New ScriptArgument("amount", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Removes the given amount from the player's money."))
+            r(New ScriptCommand("player", "addmoney", {New ScriptArgument("amount", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Adds the given amount to the player's money."))
+            r(New ScriptCommand("player", "removemoney", {New ScriptArgument("amount", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Removes the given amount from the player's money."))
             r(New ScriptCommand("player", "addcoins", {New ScriptArgument("amount", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Adds the given amount to the player's coins."))
             r(New ScriptCommand("player", "setspeed", {New ScriptArgument("speed", ScriptArgument.ArgumentTypes.Sng)}.ToList(), "Sets the movement speed of the player. The default is ""1""."))
             r(New ScriptCommand("player", "resetspeed", "Resets the movement speed of the player to the default speed, which is ""1""."))
@@ -516,8 +524,8 @@ Namespace ScriptVersion2
                                                       New ScriptArgument("y", ScriptArgument.ArgumentTypes.Int),
                                                       New ScriptArgument("z", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Sets the direction the player will move next regardless of facing."))
             r(New ScriptCommand("player", "resetmovement", "Resets the player movement to the default movement directions."))
-            r(New ScriptCommand("player", "PreventMovement", "Makes the player unable to move, while still keeping control over the menu, interactions etc."))
-            r(New ScriptCommand("player", "AllowMovement", "Gives the player back their ability to move after using @Player.PreventMovement."))
+            r(New ScriptCommand("player", "preventmovement", "Makes the player unable to move, while still keeping control over the menu, interactions etc."))
+            r(New ScriptCommand("player", "allowmovement", "Gives the player back their ability to move after using @Player.PreventMovement."))
             r(New ScriptCommand("player", "getbadge", {New ScriptArgument("badgeID", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Adds the given Badge to the player's Badges and displays a message."))
             r(New ScriptCommand("player", "removebadge", {New ScriptArgument("badgeID", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Removes the given Badge from the player's Badges."))
             r(New ScriptCommand("player", "addbadge", {New ScriptArgument("badgeID", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Adds the given Badge from the player's Badges."))
@@ -532,10 +540,10 @@ Namespace ScriptVersion2
             r(New ScriptCommand("player", "setrivalskin", {New ScriptArgument("skin", ScriptArgument.ArgumentTypes.Str)}.ToList(), "Sets the rival's skin."))
             r(New ScriptCommand("player", "setgender", {New ScriptArgument("gender", ScriptArgument.ArgumentTypes.Str, {"0-2, Male, Female, Other"})}.ToList(), "Sets the rival's skin."))
             r(New ScriptCommand("player", "setopacity", {New ScriptArgument("opacity", ScriptArgument.ArgumentTypes.Sng)}.ToList(), "Sets the player entity's opacity."))
-            r(New ScriptCommand("player", "SetDifficulty", {New ScriptArgument("difficultyLevel", ScriptArgument.ArgumentTypes.Int, {"0-2"})}.ToList(), "Sets the difficulty level for the player."))
-            r(New ScriptCommand("player", "QuitGame", {New ScriptArgument("doFade", ScriptArgument.ArgumentTypes.Bool, True, "")}.ToList(), "Quits the game and goes back to the Main Menu (with optionally a fade out and in)."))
-            r(New ScriptCommand("player", "DoWalkAnimation", {New ScriptArgument("walkAnimation", ScriptArgument.ArgumentTypes.Bool)}.ToList(), "Enables or disables the player's walking animation when walking or during a @player.move command."))
-            r(New ScriptCommand("player", "RemoveItemData", {New ScriptArgument("levelPath", ScriptArgument.ArgumentTypes.Str), New ScriptArgument("itemIndex", ScriptArgument.ArgumentTypes.Str)}.ToList(), "Makes the specified item index of the specified map spawn again after it has been found."))
+            r(New ScriptCommand("player", "setdifficulty", {New ScriptArgument("difficultyLevel", ScriptArgument.ArgumentTypes.Int, {"0-2"})}.ToList(), "Sets the difficulty level for the player."))
+            r(New ScriptCommand("player", "quitgame", {New ScriptArgument("doFade", ScriptArgument.ArgumentTypes.Bool, True, "")}.ToList(), "Quits the game and goes back to the Main Menu (with optionally a fade out and in)."))
+            r(New ScriptCommand("player", "dowalkanimation", {New ScriptArgument("walkAnimation", ScriptArgument.ArgumentTypes.Bool)}.ToList(), "Enables or disables the player's walking animation when walking or during a @player.move command."))
+            r(New ScriptCommand("player", "removeitemdata", {New ScriptArgument("levelPath", ScriptArgument.ArgumentTypes.Str), New ScriptArgument("itemIndex", ScriptArgument.ArgumentTypes.Str)}.ToList(), "Makes the specified item index of the specified map spawn again after it has been found."))
 
             ' Constructs:
             r(New ScriptCommand("player", "position", "sngarr", {New ScriptArgument("coordinate", ScriptArgument.ArgumentTypes.StrArr, {"x", "y", "z"}, True, "")}.ToList(), "Returns the position of the player. The normal coordinate combination is ""X,Y,Z"".", ",", True))
@@ -561,7 +569,7 @@ Namespace ScriptVersion2
             r(New ScriptCommand("player", "gamejoltid", "str", "Returns the player's GameJolt ID.", ",", True))
             r(New ScriptCommand("player", "haspokedex", "bool", "Returns if the player received the Pokédex.", ",", True))
             r(New ScriptCommand("player", "haspokegear", "bool", "Returns if the player received the Pokégear.", ",", True))
-            r(New ScriptCommand("player", "LastRestPlace", "bool", "Returns the last rest location the player has visited in the following format: ""map.dat,x,y,z"".", ",", True))
+            r(New ScriptCommand("player", "lastrestplace", "bool", "Returns the last rest location the player has visited in the following format: ""map.dat,x,y,z"".", ",", True))
         End Sub
 
         Private Shared Sub DoNPC()
@@ -585,7 +593,7 @@ Namespace ScriptVersion2
                                                 New ScriptArgument("skin", ScriptArgument.ArgumentTypes.Str)}.ToList(), "Sets the skin of the selected NPC."))
             r(New ScriptCommand("npc", "move", {New ScriptArgument("npcID", ScriptArgument.ArgumentTypes.Int),
                                                 New ScriptArgument("steps", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Starts NPC movement of the selected NPC."))
-            r(New ScriptCommand("npc", "setMoveY", {New ScriptArgument("npcID", ScriptArgument.ArgumentTypes.Int),
+            r(New ScriptCommand("npc", "setmovey", {New ScriptArgument("npcID", ScriptArgument.ArgumentTypes.Int),
                                                 New ScriptArgument("distance", ScriptArgument.ArgumentTypes.Sng)}.ToList(), "Sets the distance that the selected NPC should move in the Y direction."))
             r(New ScriptCommand("npc", "moveasync", {New ScriptArgument("npcID", ScriptArgument.ArgumentTypes.Int),
                                                 New ScriptArgument("steps", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Starts async NPC movement of the selected NPC."))
@@ -892,9 +900,9 @@ Namespace ScriptVersion2
                                                              New ScriptArgument("moveIndex", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Returns the name of the move of a Pokémon in the player's party.", ",", True))
             r(New ScriptCommand("pokemon", "levelattacks", "str", {New ScriptArgument("pokemonIndex", ScriptArgument.ArgumentTypes.Int),
                                                              New ScriptArgument("maxLevel", ScriptArgument.ArgumentTypes.Int, True, "-1")}.ToList(), "Returns a list of move IDs separated by commas that a Pokémon in the player's party can learn at or below its current level/the level specified by the maxLevel argument.", ",", True))
-            r(New ScriptCommand("pokemon", "CanLearnAttack", "bool", {New ScriptArgument("pokemonIndex", ScriptArgument.ArgumentTypes.Int),
+            r(New ScriptCommand("pokemon", "canlearnattack", "bool", {New ScriptArgument("pokemonIndex", ScriptArgument.ArgumentTypes.Int),
                                                                       New ScriptArgument("attackID", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Returns if the Pokémon can learn the specified move.", ",", True))
-            r(New ScriptCommand("pokemon", "isShiny", "bool", {New ScriptArgument("pokemonIndex", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Returns if the Pokémon is Shiny.", ",", True))
+            r(New ScriptCommand("pokemon", "isshiny", "bool", {New ScriptArgument("pokemonIndex", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Returns if the Pokémon is Shiny.", ",", True))
             r(New ScriptCommand("pokemon", "nature", "str", {New ScriptArgument("pokemonIndex", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Returns the nature of a Pokémon in the player's party.", ",", True))
             r(New ScriptCommand("pokemon", "ownpokemon", "bool", {New ScriptArgument("pokemonIndex", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Returns if a Pokémon in the player's party was caught by the player.", ",", True))
             r(New ScriptCommand("pokemon", "islegendary", "bool", {New ScriptArgument("pokemonIndex", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Returns if a Pokémon in the player's party is a legendary Pokémon.", ",", True))
@@ -931,9 +939,9 @@ Namespace ScriptVersion2
             r(New ScriptCommand("pokemon", "spawnwild", "pokemonData", "Returns the data for a Pokémon that can spawn in the current location.", ",", True))
             r(New ScriptCommand("pokemon", "spawn", "pokemonData", {New ScriptArgument("pokemonID", ScriptArgument.ArgumentTypes.Int),
                                                                 New ScriptArgument("level", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Returns the data for a Pokémon.", ",", True))
-            r(New ScriptCommand("pokemon", "OTmatch", "bool,int,str", {New ScriptArgument("checkOT", ScriptArgument.ArgumentTypes.Str),
+            r(New ScriptCommand("pokemon", "otmatch", "bool,int,str", {New ScriptArgument("checkOT", ScriptArgument.ArgumentTypes.Str),
                                                            New ScriptArgument("returnType", ScriptArgument.ArgumentTypes.Str, {"has", "id", "number", "name", "maxhits"})}.ToList(), "Returns if the player owns a Pokémon with the given Original Trainer.", ",", True))
-            r(New ScriptCommand("pokemon", "randomOT", "str", "Returns a random OT (5 digit number).", ",", True))
+            r(New ScriptCommand("pokemon", "randomot", "str", "Returns a random OT (5 digit number).", ",", True))
             r(New ScriptCommand("pokemon", "status", "str", {New ScriptArgument("pokemonIndex", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Returns the status condition of a Pokémon in the player's party.", ",", True))
             r(New ScriptCommand("pokemon", "canevolve", {New ScriptArgument("pokemonIndex", ScriptArgument.ArgumentTypes.Int),
                                                   New ScriptArgument("evolutionTrigger", ScriptArgument.ArgumentTypes.Str, {"level", "none", "item", "trade"}, True, "level"),
@@ -942,8 +950,8 @@ Namespace ScriptVersion2
             r(New ScriptCommand("pokemon", "type2", "str", {New ScriptArgument("pokemonIndex", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Returns the second type of a Pokémon in the player's party.", ",", True))
             r(New ScriptCommand("pokemon", "istype", "bool", {New ScriptArgument("pokemonIndex", ScriptArgument.ArgumentTypes.Int),
                                                           New ScriptArgument("type", ScriptArgument.ArgumentTypes.Str)}.ToList(), "Checks if a Pokémon in the player's party has a specific type.", ",", True))
-            r(New ScriptCommand("pokemon", "IsRoaming", "bool", {New ScriptArgument("roamerID", ScriptArgument.ArgumentTypes.Str)}.ToList(), "Checks if the given roaming Pokémon is still active.", ",", True))
-            r(New ScriptCommand("pokemon", "FullyHealed", "bool", {New ScriptArgument("pokemonIndex", ScriptArgument.ArgumentTypes.Str, True, "")}.ToList(), "Checks if a specific Pokémon or all Pokémon in the party are fully healed.", ",", True))
+            r(New ScriptCommand("pokemon", "isroaming", "bool", {New ScriptArgument("roamerID", ScriptArgument.ArgumentTypes.Str)}.ToList(), "Checks if the given roaming Pokémon is still active.", ",", True))
+            r(New ScriptCommand("pokemon", "fullyhealed", "bool", {New ScriptArgument("pokemonIndex", ScriptArgument.ArgumentTypes.Str, True, "")}.ToList(), "Checks if a specific Pokémon or all Pokémon in the party are fully healed.", ",", True))
 
         End Sub
 

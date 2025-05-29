@@ -318,6 +318,7 @@
         Core.OffsetMaps.Clear()
         TextureManager.TextureList.Clear()
         TextureManager.TextureRectList.Clear()
+        ContentPackManager.ScriptTextureReplacements.Clear()
         Whirlpool.LoadedWaterTemp = False
         Core.Player.RunToggled = False
         Core.Player.DoWalkAnimation = True
