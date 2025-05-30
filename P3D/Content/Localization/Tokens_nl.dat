@@ -533,12 +533,14 @@ pokedex_available,Available:
 pokedex_select,Kies een Pokédex
 pokedex_habitat_dex_name,Habitat-Dex
 pokedex_habitat_select,Kies een Habitat
-pokedex_order,Volgorde:
+pokedex_order,Volgorde
+pokedex_order_type,Type
 pokedex_order_numeric,Numeriek
 pokedex_order_alphabetically,A-Z
 pokedex_order_height,Lengte
 pokedex_order_weight,Gewicht
-pokedex_filter,Filter:
+pokedex_order_reverse,Omgekeerd
+pokedex_filter,Filter
 pokedex_filter_none,Geen
 pokedex_filter_name,Naam
 pokedex_filter_type1,Type 1

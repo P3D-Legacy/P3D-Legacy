@@ -545,11 +545,13 @@ pokedex_select,Choisis un Pokédex
 pokedex_habitat_dex_name,Habitat-Dex
 pokedex_habitat_select,Choisis un Habitat
 pokedex_order,Ordre
+pokedex_order_type,Type
 pokedex_order_numeric,Numérique
 pokedex_order_alphabetically,A-Z
 pokedex_order_height,Taille
 pokedex_order_weight,Poids
-pokedex_filter,Filtre:
+pokedex_order_reverse,Reverse
+pokedex_filter,Filtre
 pokedex_filter_none,Aucun
 pokedex_filter_name,Nom
 pokedex_filter_type1,Type 1

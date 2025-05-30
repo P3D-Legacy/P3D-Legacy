@@ -4,6 +4,7 @@
 Public Class Element
 
     Public IsGameModeElement As Boolean = False
+    Public ShowInDexFilters As Boolean = True
 
     ''' <summary>
     ''' The Type an Element can be.

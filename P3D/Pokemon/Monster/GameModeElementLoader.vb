@@ -9,7 +9,7 @@
         Const PATH As String = "Data\Types\"
 
         'List of loaded moves.
-        Shared LoadedElements As New List(Of Element)
+        Public Shared LoadedElements As New List(Of Element)
 
         ''' <summary>
         ''' Load the attack list for the loaded GameMode.
@@ -78,6 +78,8 @@
                                 element.gmMachineTextureSource = value
                             Case "itemtextureoffset"
                                 element.gmMachineTextureRectangle = New Rectangle(CInt(value.GetSplit(0, ",")), CInt(value.GetSplit(1, ",")), 24, 24)
+                            Case "showindexfilters"
+                                element.ShowInDexFilters = CBool(value)
                             Case "effectivenessattack"
                                 Dim data() As String = value.Split(";")
                                 For i = 0 To data.Count - 1
@@ -189,9 +191,6 @@
             If nonCommentLines > 0 Then
                 If setID = True Then
                     If element.Type >= 20 Then
-                        If Localization.TokenExists("element_name_" & element.gmOriginalName.ToString) = True Then
-                            element.gmOriginalName = Localization.GetString("move_name_" & element.gmOriginalName.ToString)
-                        End If
                         For i = 0 To 18
                             If element.gmEffectivenessAttack.ContainsKey(i) = False Then
                                 element.gmEffectivenessAttack.Add(i, 1.0F)

@@ -1,7 +1,7 @@
 # This is an example type for a GameMode.
 # The default GameMode cannot load additional types, however all other GameModes can.
 # The type ID must be set and must lay above 20.
-# Here's a list of all properties that can be set: "ID", "Name", "TypeImageOffset", "ItemTextureSource", "ItemTextureOffset", "EffectivenessAttack", "EffectivenessDefense"
+# Here's a list of all properties that can be set: "ID", "Name", "TypeImageOffset", "ItemTextureSource", "ItemTextureOffset", "EffectivenessAttack", "EffectivenessDefense", "ShowInDexFilters"
 
 # To build your own type for your GameMode, create a new file with the .dat file extension in the Content\Data\Types folder and edit/retype the lines below (be sure to remove the # at the start of each line).
 # Lines that are removed will default to the values below:

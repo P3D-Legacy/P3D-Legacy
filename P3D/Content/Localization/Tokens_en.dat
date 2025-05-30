@@ -546,12 +546,14 @@ pokedex_available,Available:
 pokedex_select,Select a Pokédex
 pokedex_habitat_dex_name,Habitat-Dex
 pokedex_habitat_select,Select a Habitat
-pokedex_order,Order:
+pokedex_order,Order
+pokedex_order_type,Type
 pokedex_order_numeric,Numeric
 pokedex_order_alphabetically,A-Z
 pokedex_order_height,Height
 pokedex_order_weight,Weight
-pokedex_filter,Filter:
+pokedex_order_reverse,Reverse
+pokedex_filter,Filter
 pokedex_filter_none,None
 pokedex_filter_name,Name
 pokedex_filter_type1,Type 1

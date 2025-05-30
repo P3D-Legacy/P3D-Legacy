@@ -546,12 +546,14 @@ pokedex_available,Dostępne:
 pokedex_select,Wybierz Pokédex
 pokedex_habitat_dex_name,Dex Siedlisk
 pokedex_habitat_select,Wybierz siedlisko
-pokedex_order,Kolejność:
+pokedex_order,Kolejność
+pokedex_order_type,Type
 pokedex_order_numeric,Numeryczna
 pokedex_order_alphabetically,A-Z
 pokedex_order_height,Wzrost
 pokedex_order_weight,Waga
-pokedex_filter,Filtr:
+pokedex_order_reverse,Reverse
+pokedex_filter,Filtr
 pokedex_filter_none,Brak
 pokedex_filter_name,Nazwa
 pokedex_filter_type1,Typ 1
