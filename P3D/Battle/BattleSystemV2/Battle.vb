@@ -8390,7 +8390,12 @@
                         Won = True
                         Core.Player.AddPoints(1, "Won against wild Pokémon.")
 
-                        BattleScreen.BattleQuery.Add(New PlayMusicQueryObject("wild_defeat"))
+                        Dim musicLoop As String = Screen.Level.CurrentRegion.Split(CChar(","))(0) & "_wild_defeat"
+                        If MusicManager.SongExists(musicLoop) = False Then
+                            musicLoop = "wild_defeat"
+                        End If
+
+                        BattleScreen.BattleQuery.Add(New PlayMusicQueryObject(musicLoop))
                         ChangeCameraAngle(1, True, BattleScreen)
 
                         GainEXP(BattleScreen)

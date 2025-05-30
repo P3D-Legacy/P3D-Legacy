@@ -335,7 +335,11 @@ nextIndex:
         p.SetCatchInfos(Me.Ball, Localization.GetString("CatchMethod_Caught", "Caught at"))
 
         MusicManager.Pause()
-        MusicManager.Play("wild_defeat", False, 0.0F)
+        Dim musicLoop As String = Screen.Level.CurrentRegion.Split(CChar(","))(0) & "_wild_defeat"
+        If MusicManager.SongExists(musicLoop) = False Then
+            musicLoop = "wild_defeat"
+        End If
+        MusicManager.Play(musicLoop, False, 0.0F)
         SoundManager.PlaySound("success_catch", True)
         TextBox.Show(s, {}, False, False)
 

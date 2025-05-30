@@ -97,7 +97,11 @@
                 If size < 4.0F Then
                     size += 0.08F
                 Else
-                    MusicManager.Play("wild_defeat")
+                    Dim musicLoop As String = Screen.Level.CurrentRegion.Split(CChar(","))(0) & "_wild_defeat"
+                    If MusicManager.SongExists(musicLoop) = False Then
+                        musicLoop = "wild_defeat"
+                    End If
+                    MusicManager.Play(musicLoop)
                     cPokemon.PlayCry()
                     SoundManager.PlaySound("success", True)
                     Stage = 7
