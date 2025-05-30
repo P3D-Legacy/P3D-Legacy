@@ -87,7 +87,7 @@ Namespace BattleSystem.Moves.Rock
                 rollout = BattleScreen.FieldEffects.OppRolloutCounter
             End If
 
-            If rollout = 5 Then
+            If rollout = 4 Then
                 If own = True Then
                     BattleScreen.FieldEffects.OwnRolloutCounter = 0
                 Else
