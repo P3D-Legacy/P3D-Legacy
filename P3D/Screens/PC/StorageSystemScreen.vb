@@ -97,7 +97,7 @@ Public Class StorageSystemScreen
             boxes.Add(i, New Box(i))
         Next
 
-        For Each line As String In Core.Player.BoxData.SplitAtNewline()
+        For Each line In Core.Player.BoxData.SplitAtNewline()
             If Not line.StartsWith("BOX") And line <> "" Then
                 Dim Data = line.Split(",")
 
@@ -208,10 +208,7 @@ Public Class StorageSystemScreen
                 End If
             End If
 
-            StorageSystemScreen.TileOffset += 1
-            If StorageSystemScreen.TileOffset >= 64 Then
-                StorageSystemScreen.TileOffset = 0
-            End If
+            StorageSystemScreen.TileOffset = (StorageSystemScreen.TileOffset + 1) Mod 64
         End If
     End Sub
 
@@ -266,7 +263,7 @@ Public Class StorageSystemScreen
                 End Select
             Case 1, 2, 3, 4, 5
                 If BoxChooseMode And CursorPosition.X < 6 And CursorPosition.Y > 0 Then
-                    Dim id As Integer = CInt(CursorPosition.X) + CInt((CursorPosition.Y - 1) * 6)
+                    Dim id = CInt(CursorPosition.X) + CInt((CursorPosition.Y - 1) * 6)
 
                     If GetBox(id) IsNot Nothing Then
                         Me.CurrentBox = id
@@ -299,74 +296,66 @@ Public Class StorageSystemScreen
 #Region "Backgrounds"
 
     Private Sub WallpaperMain()
-        Dim badges As Integer = Core.Player.Badges.Count
+        Dim badges = Core.Player.Badges.Count
+        Dim package1 = New Dictionary(Of String, Integer)
+        Dim package2 = New Dictionary(Of String, Integer)
+        Dim package3 = New Dictionary(Of String, Integer)
+        Dim package4 = New Dictionary(Of String, Integer)
+        package1.Add("Forest", 0)
+        package1.Add("City", 1)
+        package1.Add("Desert", 2)
+        package1.Add("Savanna", 3)
+        package1.Add("Cave", 8)
+        package1.Add("River", 11)
 
+        package2.Add("Volcano", 5)
+        package2.Add("Snow", 6)
+        package2.Add("Beach", 9)
+        package2.Add("Seafloor", 10)
+        package2.Add("Crag", 4)
+        package2.Add("Steel", 7)
+
+        package3.Add("Volcano 2", 14)
+        package3.Add("City 2", 15)
+        package3.Add("Snow 2", 16)
+        package3.Add("Desert 2", 17)
+        package3.Add("Savanna 2", 18)
+        package3.Add("Steel 2", 19)
+
+        package4.Add("System", 22)
+        package4.Add("Simple", 13)
+        package4.Add("Checks", 12)
+        package4.Add("Seasons", 23)
+        package4.Add("Retro 1", 20)
+        package4.Add("Retro 2", 21)
         If Core.Player.SandBoxMode Or GameController.IS_DEBUG_ACTIVE Then
             badges = 16
         End If
 
         Dim entries = New List(Of MenuEntry)
         Dim cancelIndex = 4
-        entries.Add(New MenuEntry(3, "Package 1", False, AddressOf WallpaperPackage1))
-        If badges > 1 Then entries.Add(New MenuEntry(4, "Package 2", False, AddressOf WallpaperPackage2))
-        If badges > 4 Then entries.Add(New MenuEntry(5, "Package 3", False, AddressOf WallpaperPackage3))
-        If badges > 7 Then entries.Add(New MenuEntry(6, "Package 4", False, AddressOf WallpaperPackage4))
+        entries.Add(New MenuEntry(3, "Package 1", False, Sub() Me.WallpaperList(package1)))
+        If badges > 1 Then entries.Add(New MenuEntry(4, "Package 2", False, Sub() Me.WallpaperList(package2)))
+        If badges > 4 Then entries.Add(New MenuEntry(5, "Package 3", False, Sub() Me.WallpaperList(package3)))
+        If badges > 7 Then entries.Add(New MenuEntry(6, "Package 4", False, Sub() Me.WallpaperList(package4)))
         entries.Add(New MenuEntry(entries.Max(Function(x) x.Index) + 1, "Cancel", True, AddressOf ChooseObject))
         SetupMenu(entries.ToArray(), "Please pick a theme.")
     End Sub
 
-    Private Sub WallpaperPackage1()
-        Dim e As New MenuEntry(3, "Forest", False, AddressOf PickWallpaper, 0)
-        Dim e1 As New MenuEntry(4, "City", False, AddressOf PickWallpaper, 1)
-        Dim e2 As New MenuEntry(5, "Desert", False, AddressOf PickWallpaper, 2)
-        Dim e3 As New MenuEntry(6, "Savanna", False, AddressOf PickWallpaper, 3)
-        Dim e4 As New MenuEntry(7, "Cave", False, AddressOf PickWallpaper, 8)
-        Dim e5 As New MenuEntry(8, "River", False, AddressOf PickWallpaper, 11)
-        Dim e6 As New MenuEntry(9, "Cancel", True, AddressOf WallpaperMain)
-        SetupMenu({e, e1, e2, e3, e4, e5, e6}, "Pick the wallpaper.")
+    Private Sub WallpaperList(package As Dictionary(Of String, Integer))
+        Dim itemList = New List(Of MenuEntry)(package.Count + 1)
+        Dim index = 3
+        For Each wallpaper In package
+            itemList.Add(New MenuEntry(index, wallpaper.Key, False, Sub() GetBox(CurrentBox).Background = wallpaper.Value))
+            index += 1
+        Next
+        itemList.Add(New MenuEntry(index, "Cancel", True, AddressOf WallpaperMain))
+        SetupMenu(itemList.ToArray(), "Pick the wallpaper.")
     End Sub
-
-    Private Sub WallpaperPackage2()
-        Dim e As New MenuEntry(3, "Volcano", False, AddressOf PickWallpaper, 5)
-        Dim e1 As New MenuEntry(4, "Snow", False, AddressOf PickWallpaper, 6)
-        Dim e2 As New MenuEntry(5, "Beach", False, AddressOf PickWallpaper, 9)
-        Dim e3 As New MenuEntry(6, "Seafloor", False, AddressOf PickWallpaper, 10)
-        Dim e4 As New MenuEntry(7, "Crag", False, AddressOf PickWallpaper, 4)
-        Dim e5 As New MenuEntry(8, "Steel", False, AddressOf PickWallpaper, 7)
-        Dim e6 As New MenuEntry(9, "Cancel", True, AddressOf WallpaperMain)
-        SetupMenu({e, e1, e2, e3, e4, e5, e6}, "Pick the wallpaper.")
-    End Sub
-
-    Private Sub WallpaperPackage3()
-        Dim e As New MenuEntry(3, "Volcano 2", False, AddressOf PickWallpaper, 14)
-        Dim e1 As New MenuEntry(4, "City 2", False, AddressOf PickWallpaper, 15)
-        Dim e2 As New MenuEntry(5, "Snow 2", False, AddressOf PickWallpaper, 16)
-        Dim e3 As New MenuEntry(6, "Desert 2", False, AddressOf PickWallpaper, 17)
-        Dim e4 As New MenuEntry(7, "Savanna 2", False, AddressOf PickWallpaper, 18)
-        Dim e5 As New MenuEntry(8, "Steel 2", False, AddressOf PickWallpaper, 19)
-        Dim e6 As New MenuEntry(9, "Cancel", True, AddressOf WallpaperMain)
-        SetupMenu({e, e1, e2, e3, e4, e5, e6}, "Pick the wallpaper.")
-    End Sub
-
-    Private Sub WallpaperPackage4()
-        Dim e As New MenuEntry(3, "System", False, AddressOf PickWallpaper, 22)
-        Dim e1 As New MenuEntry(4, "Simple", False, AddressOf PickWallpaper, 13)
-        Dim e2 As New MenuEntry(5, "Checks", False, AddressOf PickWallpaper, 12)
-        Dim e3 As New MenuEntry(6, "Seasons", False, AddressOf PickWallpaper, 23)
-        Dim e4 As New MenuEntry(7, "Retro 1", False, AddressOf PickWallpaper, 20)
-        Dim e5 As New MenuEntry(8, "Retro 2", False, AddressOf PickWallpaper, 21)
-        Dim e6 As New MenuEntry(9, "Cancel", True, AddressOf WallpaperMain)
-        SetupMenu({e, e1, e2, e3, e4, e5, e6}, "Pick the wallpaper.")
-    End Sub
-
-    Private Sub PickWallpaper(ByVal e As MenuEntry)
-        GetBox(CurrentBox).Background = CInt(e.TAG)
-    End Sub
-
 #End Region
 
     Private Sub GetYOffset(ByVal p As Pokemon)
-        Dim t As Texture2D = p.GetTexture(True)
+        Dim t = p.GetTexture(True)
         Me.yOffset = -1
 
         Dim cArr(t.Width * t.Height - 1) As Color
@@ -382,6 +371,8 @@ Public Class StorageSystemScreen
             If Me.yOffset <> -1 Then Exit For
         Next
     End Sub
+
+    Dim ClickedObject As Boolean = False
 
     Private Sub MoveCursor()
         Dim changedPosition = CursorMovePosition <> CursorAimPosition
@@ -400,8 +391,6 @@ Public Class StorageSystemScreen
             ChooseObject()
         End If
     End Sub
-
-    Dim ClickedObject As Boolean = False
 
     Private Sub ControlCursor()
         Dim PreCursor = CursorPosition
@@ -468,7 +457,7 @@ Public Class StorageSystemScreen
 
         CursorAimPosition = GetAbsoluteCursorPosition(Me.CursorPosition)
 
-        Me.CursorSpeed = CInt(Vector2.Distance(CursorMovePosition, CursorAimPosition) * (30 / 100))
+        Me.CursorSpeed = CInt(Vector2.Distance(CursorMovePosition, CursorAimPosition) * 0.3)
     End Sub
 
     Private Sub CloseScreen()
@@ -504,7 +493,7 @@ Public Class StorageSystemScreen
     Private Shared Function GetBoxSaveData(ByVal boxes As List(Of Box)) As String
         Dim BoxesFull = True
         Dim newData = New List(Of String)
-        For Each b As Box In boxes
+        For Each b In boxes
             If b.IsBattleBox Then Continue For
             newData.Add($"BOX|{b.index}|{b.Name}|{b.Background}")
 
@@ -529,7 +518,7 @@ Public Class StorageSystemScreen
             Next
         End If
 
-        Dim battleBox As Box = boxes.Last
+        Dim battleBox = boxes.Last()
         newData.Add($"BOX|{boxes.Count - 1 + addedBoxes}|{battleBox.Name}|{battleBox.Background}")
 
         For i = 0 To 29
@@ -642,8 +631,7 @@ Public Class StorageSystemScreen
     Private Sub PickupPokemon()
         If CursorPosition.X = 6 Then
             If Core.Player.Pokemons.Count - 1 >= CursorPosition.Y Then
-                Dim l As New List(Of Pokemon)
-                l.AddRange(Core.Player.Pokemons.ToArray())
+                Dim l = New List(Of Pokemon)(Core.Player.Pokemons.ToArray())
                 l.RemoveAt(CInt(CursorPosition.Y))
                 If Me.MovingPokemon IsNot Nothing Then
                     l.Add(Me.MovingPokemon)
@@ -722,8 +710,7 @@ Public Class StorageSystemScreen
         Dim box = GetBox(CurrentBox)
         If box.Pokemon.Count > 29 Then Return
         If Core.Player.Pokemons.Count - 1 < CInt(Me.CursorPosition.Y) Then Return
-        Dim l = New List(Of Pokemon)
-        l.AddRange(Core.Player.Pokemons.ToArray())
+        Dim l = New List(Of Pokemon)(Core.Player.Pokemons.ToArray())
         l.RemoveAt(CInt(CursorPosition.Y))
         Dim hasPokemon = l.Any(Function(p) Not p.IsEgg() And p.Status <> Pokemon.StatusProblems.Fainted And p.HP > 0)
 
@@ -779,8 +766,7 @@ Public Class StorageSystemScreen
         If Me.CursorPosition.X <> 6 Then
             hasPokemon = True
         Else
-            Dim l = New List(Of Pokemon)
-            l.AddRange(Core.Player.Pokemons.ToArray())
+            Dim l = New List(Of Pokemon)(Core.Player.Pokemons.ToArray())
             l.RemoveAt(CInt(CursorPosition.Y))
 
             hasPokemon = l.Any(Function(p) Not p.IsEgg() And p.Status <> Pokemon.StatusProblems.Fainted And p.HP > 0)
@@ -794,8 +780,8 @@ Public Class StorageSystemScreen
             Dim p = If(CursorPosition.X = 6, Core.Player.Pokemons(CInt(CursorPosition.Y)), box.Pokemon(id).GetPokemon())
 
             If Not p.IsEgg() Then
-                Dim e1 As New MenuEntry(3, "No", True, AddressOf SelectPokemon)
-                Dim e As New MenuEntry(4, "Yes", False, AddressOf ConfirmRelease)
+                Dim e1 = New MenuEntry(3, "No", True, AddressOf SelectPokemon)
+                Dim e = New MenuEntry(4, "Yes", False, AddressOf ConfirmRelease)
                 Me.SetupMenu({e1, e}, $"Release {p.GetDisplayName()}?")
             Else
                 Me.SetupMenu({New MenuEntry(3, "OK", True, Nothing)}, "Cannot release an Egg.")
@@ -894,11 +880,11 @@ Public Class StorageSystemScreen
                     If Me.Boxes.Count - 1 < id Then Continue For
                     Dim pCount = BoxPokemonCount(id, True)
 
-                    Dim tCoord = New Vector2(64, 0)
-                    If pCount = 0 Then tCoord = New Vector2(64, 32)
-                    If pCount = 30 Then tCoord = New Vector2(32, 32)
+                    Dim tCoord = New Point(64, 0)
+                    If pCount = 0 Then tCoord = New Point(64, 32)
+                    If pCount = 30 Then tCoord = New Point(32, 32)
 
-                    Core.SpriteBatch.Draw(Me.texture, New Rectangle(50 + x * 100, 200 + y * 84, 64, 64), New Rectangle(CInt(tCoord.X), CInt(tCoord.Y), 32, 32), Color.White)
+                    Core.SpriteBatch.Draw(Me.texture, New Rectangle(50 + x * 100, 200 + y * 84, 64, 64), New Rectangle(tCoord, New Point(32)), Color.White)
                 Next
             Next
             Return
@@ -1083,7 +1069,7 @@ Public Class StorageSystemScreen
 
         Dim roll = propList.Item5
 
-        Dim t As Texture2D = ModelManager.DrawModelToTexture(modelName, renderTarget, position, New Vector3(0.0F, 10.0F, 50.0F), New Vector3(roll + modelRoll, 0, 0), scale, True)
+        Dim t = ModelManager.DrawModelToTexture(modelName, renderTarget, position, New Vector3(0.0F, 10.0F, 50.0F), New Vector3(roll + modelRoll, 0, 0), scale, True)
         Core.SpriteBatch.Draw(t, New Rectangle(192, 72, 1200, 680), Color.White)
     End Sub
 
@@ -1325,7 +1311,6 @@ Public Class StorageSystemScreen
     Class MenuEntry
 
         Public Index As Integer = 0
-        Public TAG As Object = Nothing
 
         Public Text As String = "Menu"
         Public IsBack As Boolean = False
@@ -1336,12 +1321,7 @@ Public Class StorageSystemScreen
         Dim t2 As Texture2D
 
         Public Sub New(ByVal Index As Integer, ByVal text As String, ByVal isBack As Boolean, ByVal ClickHandler As ClickEvent)
-            Me.New(Index, text, isBack, ClickHandler, Nothing)
-        End Sub
-
-        Public Sub New(ByVal Index As Integer, ByVal text As String, ByVal isBack As Boolean, ByVal ClickHandler As ClickEvent, ByVal TAG As Object)
             Me.Index = Index
-            Me.TAG = TAG
 
             Me.Text = text
             Me.IsBack = isBack
@@ -1679,248 +1659,61 @@ Public Class StorageSystemFilterScreen
     Private Sub SelectFilter()
         Dim filterType = Me.mainMenuItems(Me.Scroll + Me.Cursor).ToLower()
         Dim menus = New Dictionary(Of String, Action)
-        menus.Add("pokémon", AddressOf Me.OpenPokemonMenu)
-        menus.Add("type1", AddressOf Me.OpenType1Menu)
-        menus.Add("type2", AddressOf Me.OpenType2Menu)
-        menus.Add("move", AddressOf Me.OpenMoveMenu)
-        menus.Add("ability", AddressOf Me.OpenAbilityMenu)
-        menus.Add("nature", AddressOf Me.OpenNatureMenu)
-        menus.Add("gender", AddressOf Me.OpenGenderMenu)
-        menus.Add("helditem", AddressOf Me.OpenHeldItemMenu)
+        menus.Add("pokémon", Sub() Me.OpenMenu(StorageSystemScreen.FilterTypes.Pokémon, True))
+        menus.Add("type1", Sub() Me.OpenMenu(StorageSystemScreen.FilterTypes.Type1))
+        menus.Add("type2", Sub() Me.OpenMenu(StorageSystemScreen.FilterTypes.Type2))
+        menus.Add("move", Sub() Me.OpenMenu(StorageSystemScreen.FilterTypes.Move, True))
+        menus.Add("ability", Sub() Me.OpenMenu(StorageSystemScreen.FilterTypes.Ability, True))
+        menus.Add("nature", Sub() Me.OpenMenu(StorageSystemScreen.FilterTypes.Nature))
+        menus.Add("gender", Sub() Me.OpenMenu(StorageSystemScreen.FilterTypes.Gender))
+        menus.Add("helditem", Sub() Me.OpenMenu(StorageSystemScreen.FilterTypes.HeldItem))
         If menus.ContainsKey(filterType) Then menus(filterType)()
     End Sub
 
 #Region "Filtering"
-
-    Private Sub OpenPokemonMenu()
+    Private Sub OpenMenu(filterType As StorageSystemScreen.FilterTypes, Optional letterFiltering As Boolean = False)
         Dim l = Me._storageSystemScreen.GetPokemonList(True, False)
-        Dim GetLetter = Function(pokemon As Pokemon) pokemon.GetName()(0).ToString().ToUpper()
-        Dim letters = l.Select(GetLetter).Distinct().ToList()
-
-
-        letters.Sort()
-        letters.Add("Back")
-
-        If GetFilterText("Pokémon") <> "" Then letters.Insert(0, "Clear")
-
-        Me.Menu = New SelectMenu(letters, 0, AddressOf SelectPokemonLetter, -1)
+        Dim GetNames = New Dictionary(Of StorageSystemScreen.FilterTypes, Func(Of IEnumerable(Of String)))
+        GetNames.Add(StorageSystemScreen.FilterTypes.Pokémon, Function() l.Select(Function(pokemon) pokemon.GetName()))
+        GetNames.Add(StorageSystemScreen.FilterTypes.Type1, Function() l.Select(Function(p) $"{p.Type1}"))
+        GetNames.Add(StorageSystemScreen.FilterTypes.Type2, Function() l.Select(Function(p) $"{p.Type2}"))
+        GetNames.Add(StorageSystemScreen.FilterTypes.Move, Function() l.SelectMany(Function(p) p.Attacks).Select(Function(a) a.Name))
+        GetNames.Add(StorageSystemScreen.FilterTypes.Ability, Function() l.Select(Function(p) p.Ability.Name))
+        GetNames.Add(StorageSystemScreen.FilterTypes.Nature, Function() l.Select(Function(p) $"{p.Nature}"))
+        GetNames.Add(StorageSystemScreen.FilterTypes.Gender, Function() l.Select(Function(p) $"{p.Gender}"))
+        GetNames.Add(StorageSystemScreen.FilterTypes.HeldItem, Function() {"Has a Held Item", "Has no Held Item"})
+        Dim names = GetNames(filterType)().Distinct().ToList()
+        names.Sort()
+        Dim letters = If(letterFiltering, names.Select(Function(name) $"{name(0)}".ToUpper()).Distinct.ToList(), Nothing)
+        Dim items = If(letterFiltering, letters, names)
+        Dim OnClick = If(letterFiltering, Sub(s As SelectMenu) Me.SelectLetter(s, names, filterType), Sub(s) Me.SelectType(s, filterType))
+        items.Add("Back")
+        If GetFilterText($"{filterType}") <> "" Then items.Insert(0, "Clear")
+        Me.Menu = New SelectMenu(items, 0, OnClick, -1)
     End Sub
 
-    Private Sub SelectPokemonLetter(ByVal s As SelectMenu)
+    Private Sub SelectLetter(ByVal s As SelectMenu, names As List(Of String), filterType As StorageSystemScreen.FilterTypes)
         If s.SelectedItem = "Back" Then Return
         If s.SelectedItem = "Clear" Then
-            Me.Filters.RemoveAll(Function(filter) filter.FilterType = StorageSystemScreen.FilterTypes.Pokémon)
+            Me.Filters.RemoveAll(Function(filter) filter.FilterType = filterType)
             Return
         End If
         Dim chosenLetter = s.SelectedItem
-
-        Dim l = Me._storageSystemScreen.GetPokemonList(True, False)
-        Dim LetterMatches = Function(name As String) name.ToUpper().StartsWith(chosenLetter)
-        Dim pokemonList = l.Select(Function(p) p.GetName()).Where(LetterMatches).Distinct().ToList()
-
-
-        pokemonList.Sort()
-
-        pokemonList.Add("Back")
-
-        Me.Menu = New SelectMenu(pokemonList, 0, AddressOf SelectPokemon, -1)
+        Dim buttonNames = names.Where(Function(x) x.ToUpper().StartsWith(chosenLetter)).Distinct().ToList()
+        buttonNames.Sort()
+        buttonNames.Add("Back")
+        Me.Menu = New SelectMenu(buttonNames, 0, Sub(x) Me.SelectType(x, filterType, False), -1)
     End Sub
 
-    Private Sub SelectPokemon(ByVal s As SelectMenu)
+    Private Sub SelectType(ByVal s As SelectMenu, filterType As StorageSystemScreen.FilterTypes, Optional backIsRoot As Boolean = True)
         If s.SelectedItem = "Back" Then
-            OpenPokemonMenu()
+            If Not backIsRoot Then Me.OpenMenu(filterType, True)
             Return
         End If
-        Me.Filters.RemoveAll(Function(filter) filter.FilterType = StorageSystemScreen.FilterTypes.Pokémon)
-        Me.Filters.Add(New StorageSystemScreen.Filter() With {.FilterType = StorageSystemScreen.FilterTypes.Pokémon, .FilterValue = s.SelectedItem})
-    End Sub
-
-    Private Sub OpenType1Menu()
-        Dim l = Me._storageSystemScreen.GetPokemonList(True, False)
-        Dim types = l.Select(Function(p) p.Type1.ToString()).Distinct().ToList()
-
-
-        types.Sort()
-        types.Add("Back")
-
-        If GetFilterText("Type1") <> "" Then types.Insert(0, "Clear")
-
-        Me.Menu = New SelectMenu(types, 0, AddressOf SelectType1Type, -1)
-    End Sub
-
-    Private Sub SelectType1Type(ByVal s As SelectMenu)
-        If s.SelectedItem = "Back" Then Return
-        Me.Filters.RemoveAll(Function(filter) filter.FilterType = StorageSystemScreen.FilterTypes.Type1)
+        Me.Filters.RemoveAll(Function(filter) filter.FilterType = filterType)
         If s.SelectedItem = "Clear" Then Return
-
-        Me.Filters.Add(New StorageSystemScreen.Filter() With {.FilterType = StorageSystemScreen.FilterTypes.Type1, .FilterValue = s.SelectedItem})
+        Me.Filters.Add(New StorageSystemScreen.Filter() With {.FilterType = filterType, .FilterValue = s.SelectedItem})
     End Sub
-
-    Private Sub OpenType2Menu()
-        Dim l = Me._storageSystemScreen.GetPokemonList(True, False)
-        Dim types = l.Select(Function(p) p.Type2.ToString()).Distinct.ToList()
-
-
-        types.Sort()
-        types.Add("Back")
-
-        If GetFilterText("Type2") <> "" Then types.Insert(0, "Clear")
-
-        Me.Menu = New SelectMenu(types, 0, AddressOf SelectType2Type, -1)
-    End Sub
-
-    Private Sub SelectType2Type(ByVal s As SelectMenu)
-        If s.SelectedItem = "Back" Then Return
-        Me.Filters.RemoveAll(Function(filter) filter.FilterType = StorageSystemScreen.FilterTypes.Type2)
-        If s.SelectedItem = "Clear" Then Return
-
-        Me.Filters.Add(New StorageSystemScreen.Filter() With {.FilterType = StorageSystemScreen.FilterTypes.Type2, .FilterValue = s.SelectedItem})
-    End Sub
-    Private Sub OpenMoveMenu()
-        Dim l = Me._storageSystemScreen.GetPokemonList(True, False)
-        Dim GetLetter = Function(attack As BattleSystem.Attack) attack.Name(0).ToString().ToUpper()
-        Dim letters = l.SelectMany(Function(p) p.Attacks).Select(GetLetter).Distinct.ToList()
-
-
-        letters.Sort()
-        letters.Add("Back")
-
-        If GetFilterText("Move") <> "" Then letters.Insert(0, "Clear")
-
-        Me.Menu = New SelectMenu(letters, 0, AddressOf SelectMoveLetter, -1)
-    End Sub
-
-    Private Sub SelectMoveLetter(ByVal s As SelectMenu)
-        If s.SelectedItem = "Back" Then Return
-        If s.SelectedItem = "Clear" Then
-            Me.Filters.RemoveAll(Function(filter) filter.FilterType = StorageSystemScreen.FilterTypes.Move)
-            Return
-        End If
-        Dim chosenLetter = s.SelectedItem
-
-        Dim l = Me._storageSystemScreen.GetPokemonList(True, False)
-
-        Dim LetterMatches = Function(name As String) name.ToUpper().StartsWith(chosenLetter)
-        Dim attackList = l.SelectMany(Function(p) p.Attacks).Select(Function(a) a.Name).Where(LetterMatches).Distinct().ToList()
-
-        attackList.Sort()
-
-        attackList.Add("Back")
-
-        Me.Menu = New SelectMenu(attackList, 0, AddressOf SelectMove, -1)
-    End Sub
-
-    Private Sub SelectMove(ByVal s As SelectMenu)
-        If s.SelectedItem = "Back" Then
-            OpenMoveMenu()
-            Return
-        End If
-        Me.Filters.RemoveAll(Function(filter) filter.FilterType = StorageSystemScreen.FilterTypes.Move)
-        Me.Filters.Add(New StorageSystemScreen.Filter() With {.FilterType = StorageSystemScreen.FilterTypes.Move, .FilterValue = s.SelectedItem})
-    End Sub
-
-    Private Sub OpenAbilityMenu()
-        Dim l = Me._storageSystemScreen.GetPokemonList(True, False)
-        Dim GetLetter = Function(pokemon As Pokemon) pokemon.Ability.Name(0).ToString().ToUpper()
-        Dim letters = l.Select(GetLetter).Distinct.ToList()
-
-
-        letters.Sort()
-        letters.Add("Back")
-
-        If GetFilterText("Ability") <> "" Then letters.Insert(0, "Clear")
-
-        Me.Menu = New SelectMenu(letters, 0, AddressOf SelectAbilityLetter, -1)
-    End Sub
-
-    Private Sub SelectAbilityLetter(ByVal s As SelectMenu)
-        If s.SelectedItem = "Back" Then Return
-        If s.SelectedItem = "Clear" Then
-            Me.Filters.RemoveAll(Function(filter) filter.FilterType = StorageSystemScreen.FilterTypes.Ability)
-            Return
-        End If
-        Dim chosenLetter = s.SelectedItem
-
-        Dim l = Me._storageSystemScreen.GetPokemonList(True, False)
-        Dim LetterMatches = Function(name As String) name.ToUpper().StartsWith(chosenLetter)
-        Dim abilityList = l.Select(Function(p) p.Ability.Name).Where(LetterMatches).Distinct().ToList()
-
-
-        abilityList.Sort()
-
-        abilityList.Add("Back")
-
-        Me.Menu = New SelectMenu(abilityList, 0, AddressOf SelectAbility, -1)
-    End Sub
-
-    Private Sub SelectAbility(ByVal s As SelectMenu)
-        If s.SelectedItem = "Back" Then
-            OpenAbilityMenu()
-            Return
-        End If
-        Me.Filters.RemoveAll(Function(filter) filter.FilterType = StorageSystemScreen.FilterTypes.Ability)
-        Me.Filters.Add(New StorageSystemScreen.Filter() With {.FilterType = StorageSystemScreen.FilterTypes.Ability, .FilterValue = s.SelectedItem})
-    End Sub
-
-    Private Sub OpenNatureMenu()
-        Dim l = Me._storageSystemScreen.GetPokemonList(True, False)
-        Dim natures = l.Select(Function(p) p.Nature.ToString()).Distinct.ToList()
-
-
-        natures.Sort()
-        natures.Add("Back")
-
-        If GetFilterText("Nature") <> "" Then natures.Insert(0, "Clear")
-
-        Me.Menu = New SelectMenu(natures, 0, AddressOf SelectNatureType, -1)
-    End Sub
-
-    Private Sub SelectNatureType(ByVal s As SelectMenu)
-        If s.SelectedItem = "Back" Then Return
-        Me.Filters.RemoveAll(Function(filter) filter.FilterType = StorageSystemScreen.FilterTypes.Nature)
-        If s.SelectedItem = "Clear" Then Return
-
-        Me.Filters.Add(New StorageSystemScreen.Filter() With {.FilterType = StorageSystemScreen.FilterTypes.Nature, .FilterValue = s.SelectedItem})
-    End Sub
-
-    Private Sub OpenGenderMenu()
-        Dim l = Me._storageSystemScreen.GetPokemonList(True, False)
-        Dim genders = l.Select(Function(p) p.Gender.ToString()).Distinct.ToList()
-
-
-        genders.Sort()
-        genders.Add("Back")
-
-        If GetFilterText("Gender") <> "" Then genders.Insert(0, "Clear")
-
-        Me.Menu = New SelectMenu(genders, 0, AddressOf SelectGenderType, -1)
-    End Sub
-
-    Private Sub SelectGenderType(ByVal s As SelectMenu)
-        If s.SelectedItem = "Back" Then Return
-        Me.Filters.RemoveAll(Function(filter) filter.FilterType = StorageSystemScreen.FilterTypes.Gender)
-        If s.SelectedItem = "Clear" Then Return
-
-        Me.Filters.Add(New StorageSystemScreen.Filter() With {.FilterType = StorageSystemScreen.FilterTypes.Gender, .FilterValue = s.SelectedItem})
-    End Sub
-
-    Private Sub OpenHeldItemMenu()
-        Dim l = Me._storageSystemScreen.GetPokemonList(True, False)
-        Dim helditems = {"Has a Held Item", "Has no Held Item", "Back"}.ToList()
-
-        If GetFilterText("HeldItem") <> "" Then helditems.Insert(0, "Clear")
-
-        Me.Menu = New SelectMenu(helditems, 0, AddressOf SelectHeldItemType, -1)
-    End Sub
-
-    Private Sub SelectHeldItemType(ByVal s As SelectMenu)
-        If s.SelectedItem = "Back" Then Return
-        Me.Filters.RemoveAll(Function(filter) filter.FilterType = StorageSystemScreen.FilterTypes.HeldItem)
-        If s.SelectedItem = "Clear" Then Return
-
-        Me.Filters.Add(New StorageSystemScreen.Filter() With {.FilterType = StorageSystemScreen.FilterTypes.HeldItem, .FilterValue = s.SelectedItem})
-    End Sub
-
 #End Region
 
 End Class
