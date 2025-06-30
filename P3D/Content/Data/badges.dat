@@ -21,3 +21,6 @@ frontier_1_gold|name=Gold Ability|description=You defeated the Frontier Brain of
 
 frontier_2_silver|name=Silver Knowledge|description=Only few trainers achieved this emblem~which shows what strength lies~inside them.|Texture=GUI\Badges,100,200,50,50
 frontier_2_gold|name=Gold Knowledge|description=This Emblem displays how great you can~interact with Pokémon and how well~you can adapt your strategy to a new situation.|Texture=GUI\Badges,150,200,50,50
+
+frontier_3_silver|name=Silver Luck|description=You have shown great skill at taking~the luck thrown your way, good or bad.|Texture=GUI\Badges,200,200,50,50
+frontier_3_gold|name=Gold Luck|description=Your luck trumped all at the Battle Pike.~You mitigated the worst luck and~doubled down on the best luck.|Texture=GUI\Badges,250,200,50,50
