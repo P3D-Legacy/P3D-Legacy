@@ -3372,6 +3372,418 @@ move_desc_585,Borrowing the power of the moon, the user attacks the target. This
 move_desc_790,The user attacks the target by emitting steam. This may also confuse the target.
 
 move_desc_797,The user converts its rage into energy to attack. The more times the user has been hit by attacks, the greater the move's power.
+-------------------
+Ability Names:
+ability_name_1,Stench
+ability_name_2,Drizzle
+ability_name_3,Speed Boost
+ability_name_4,Battle Armor
+ability_name_5,Sturdy
+ability_name_6,Damp
+ability_name_7,Limber
+ability_name_8,Sand Veil
+ability_name_9,Static
+ability_name_10,Volt Absorb
+ability_name_11,Water Absorb
+ability_name_12,Oblivious
+ability_name_13,Cloud Nine
+ability_name_14,Compoundeyes
+ability_name_15,Insomnia
+ability_name_16,Color Change
+ability_name_17,Immunity
+ability_name_18,Flash Fire
+ability_name_19,Shield Dust
+ability_name_20,Own Tempo
+ability_name_21,Suction Cups
+ability_name_22,Intimidate
+ability_name_23,Shadow Tag
+ability_name_24,Rough Skin
+ability_name_25,Wonder Guard
+ability_name_26,Levitate
+ability_name_27,Effect Spore
+ability_name_28,Synchronize
+ability_name_29,Clear Body
+ability_name_30,Natural Cure
+ability_name_31,Lightningrod
+ability_name_32,Serene Grace
+ability_name_33,Swift Swim
+ability_name_34,Chlorophyll
+ability_name_35,Illuminate
+ability_name_36,Trace
+ability_name_37,Huge Power
+ability_name_38,Poison Point
+ability_name_39,Inner Focus
+ability_name_40,Magma Armor
+ability_name_41,Water Veil
+ability_name_42,Magnet Pull
+ability_name_43,Soundproof
+ability_name_44,Rain Dish
+ability_name_45,Sand Stream
+ability_name_46,Pressure
+ability_name_47,Thick Fat
+ability_name_48,Early Bird
+ability_name_49,Flame Body
+ability_name_50,Run Away
+ability_name_51,Keen Eye
+ability_name_52,Hyper Cutter
+ability_name_53,Pickup
+ability_name_54,Truant
+ability_name_55,Hustle
+ability_name_56,Cute Charm
+ability_name_57,Plus
+ability_name_58,Minus
+ability_name_59,Forecast
+ability_name_60,Sticky Hold
+ability_name_61,Shed Skin
+ability_name_62,Guts
+ability_name_63,Marvel Scale
+ability_name_64,Liquid Ooze
+ability_name_65,Overgrow
+ability_name_66,Blaze
+ability_name_67,Torrent
+ability_name_68,Swarm
+ability_name_69,Rock Head
+ability_name_70,Drought
+ability_name_71,Arena Trap
+ability_name_72,Vital Spirit
+ability_name_73,White Smoke
+ability_name_74,Pure Power
+ability_name_75,Shell Armor
+ability_name_76,Air Lock
+ability_name_77,Tangled Feet
+ability_name_78,Motor Drive
+ability_name_79,Rivalry
+ability_name_80,Steadfast
+ability_name_81,Snow Cloak
+ability_name_82,Gluttony
+ability_name_83,Anger Point
+ability_name_84,Unburden
+ability_name_85,Heatproof
+ability_name_86,Simple
+ability_name_87,Dry Skin
+ability_name_88,Download
+ability_name_89,Iron Fist
+ability_name_90,Poison Heal
+ability_name_91,Adaptability
+ability_name_92,Skill Link
+ability_name_93,Hydration
+ability_name_94,Solar Power
+ability_name_95,Quick Feet
+ability_name_96,Normalize
+ability_name_97,Sniper
+ability_name_98,Magic Guard
+ability_name_99,No Guard
+ability_name_100,Stall
+ability_name_101,Technician
+ability_name_102,Leaf Guard
+ability_name_103,Klutz
+ability_name_104,Mold Breaker
+ability_name_105,Super Luck
+ability_name_106,Aftermath
+ability_name_107,Anticipation
+ability_name_108,Forewarn
+ability_name_109,Unaware
+ability_name_110,Tinted Lens
+ability_name_111,Filter
+ability_name_112,Slow Start
+ability_name_113,Scrappy
+ability_name_114,Storm Drain
+ability_name_115,Ice Body
+ability_name_116,Solid Rock
+ability_name_117,Snow Warning
+ability_name_118,Honey Gather
+ability_name_119,Frisk
+ability_name_120,Reckless
+ability_name_121,Multitype
+ability_name_122,Flower Gift
+ability_name_123,Bad Dreams
+ability_name_124,Pickpocket
+ability_name_125,Sheer Force
+ability_name_126,Contrary
+ability_name_127,Unnerve
+ability_name_128,Defiant
+ability_name_129,Defeatist
+ability_name_130,Cursed Body
+ability_name_131,Healer
+ability_name_132,Friend Guard
+ability_name_133,Weak Armor
+ability_name_134,Heavy Metal
+ability_name_135,Light Metal
+ability_name_136,Multiscale
+ability_name_137,Toxic Boost
+ability_name_138,Flare Boost
+ability_name_139,Harvest
+ability_name_140,Telepathy
+ability_name_141,Moody
+ability_name_142,Overcoat
+ability_name_143,Poison Touch
+ability_name_144,Regenerator
+ability_name_145,Big Pecks
+ability_name_146,Sand Rush
+ability_name_147,Wonder Skin
+ability_name_148,Analytic
+ability_name_149,Illusion
+ability_name_150,Imposter
+ability_name_151,Infiltrator
+ability_name_152,Mummy
+ability_name_153,Moxie
+ability_name_154,Justified
+ability_name_155,Rattled
+ability_name_156,Magic Bounce
+ability_name_157,Sap Sipper
+ability_name_158,Prankster
+ability_name_159,Sand Force
+ability_name_160,Iron Barbs
+ability_name_161,Zen Mode
+ability_name_162,Victory Star
+ability_name_163,Turboblaze
+ability_name_164,Teravolt
+ability_name_165,Aroma Veil
+ability_name_166,Flower Veil
+ability_name_167,Cheek Pouch
+ability_name_168,Protean
+ability_name_169,Fur Coat
+ability_name_170,Magician
+ability_name_171,Bulletproof
+ability_name_172,Competitive
+ability_name_173,Strong Jaw
+ability_name_174,Refrigerate
+ability_name_175,Sweet Veil
+ability_name_176,Stance Change
+ability_name_177,Gale Wings
+ability_name_178,Mega Launcher
+ability_name_179,Grass Pelt
+ability_name_180,Symbiosis
+ability_name_181,Tough Claws
+ability_name_182,Pixilate
+ability_name_183,Gooey
+ability_name_184,Aerilate
+ability_name_185,Parental Bond
+ability_name_186,Dark Aura
+ability_name_187,Fairy Aura
+ability_name_188,Aura Break
+
+ability_name_202,Slush Rush
+
+ability_name_206,Galvanize
+ability_name_207,Surge Surfer
+
+ability_name_221,Tangling Hair
+
+ability_name_223,Power of Alchemy
+
+ability_name_226,Electric Surge
+ability_name_227,Psychic Surge
+ability_name_228,Misty Surge
+ability_name_229,Grassy Surge
+
+ability_name_243,Steam Engine
+-------------------
+Ability Descriptions:
+ability_desc_1,The stench may cause the target to flinch.
+ability_desc_2,The Pokémon makes it rain if it appears in battle.
+ability_desc_3,Its Speed stat is gradually boosted.
+ability_desc_4,The Pokémon is protected against critical hits.
+ability_desc_5,It cannot be knocked out with one hit.
+ability_desc_6,Prevents the use of self-destructing moves.
+ability_desc_7,The Pokémon is protected from paralysis.
+ability_desc_8,Boosts the Pokémon's evasion in a sandstorm.
+ability_desc_9,Contact with the Pokémon may cause paralysis.
+ability_desc_10,Restores HP if hit by an Electric-type move.
+ability_desc_11,Restores HP if hit by a Water-type move.
+ability_desc_12,Prevents it from becoming infatuated.
+ability_desc_13,Eliminates the effects of weather.
+ability_desc_14,The Pokémon's accuracy is boosted.
+ability_desc_15,Prevents the Pokémon from falling asleep.
+ability_desc_16,Changes the Pokémon's type to the foe's move.
+ability_desc_17,Prevents the Pokémon from getting poisoned.
+ability_desc_18,It powers up Fire-type moves if it's hit by one.
+ability_desc_19,Blocks the added effects of attacks taken.
+ability_desc_20,Prevents the Pokémon from becoming confused.
+ability_desc_21,Negates all moves that force switching out.
+ability_desc_22,Lowers the foe's Attack stat.
+ability_desc_23,Prevents the foe from escaping.
+ability_desc_24,Inflicts damage to the attacker on contact.
+ability_desc_25,Only supereffective moves will hit.
+ability_desc_26,Gives full immunity to all Ground-type moves.
+ability_desc_27,Contact may poison or cause paralysis or sleep.
+ability_desc_28,Passes a burn or paralysis to the foe.
+ability_desc_29,Prevents other Pokémon from lowering its stats.
+ability_desc_30,All status problems heal when it switches out.
+ability_desc_31,Draws in all Electric-type moves to up Sp. Attack.
+ability_desc_32,Boosts the likelihood of added effects appearing.
+ability_desc_33,Boosts the Pokémon's Speed in rain.
+ability_desc_34,Boosts the Pokémon's Speed in sunshine.
+ability_desc_35,Raises the likelihood of meeting wild Pokémon.
+ability_desc_36,The Pokémon copies a foe's Ability.
+ability_desc_37,Raises the Pokémon's Attack stat.
+ability_desc_38,Contact with the Pokémon may poison the attacker.
+ability_desc_39,The Pokémon is protected from flinching.
+ability_desc_40,Prevents the Pokémon from becoming frozen.
+ability_desc_41,Prevents the Pokémon from getting a burn.
+ability_desc_42,Prevents Steel-type Pokémon from escaping.
+ability_desc_43,Gives full immunity to all sound-based moves.
+ability_desc_44,The Pokémon gradually regains HP in rain.
+ability_desc_45,The Pokémon summons a sandstorm in battle.
+ability_desc_46,The Pokémon raises the foe's PP usage.
+ability_desc_47,Ups resistance to Fire- and Ice-type moves.
+ability_desc_48,The Pokémon awakens quickly from sleep.
+ability_desc_49,Contact with the Pokémon may burn the attacker.
+ability_desc_50,Enables a sure getaway from wild Pokémon.
+ability_desc_51,Prevents other Pokémon from lowering accuracy.
+ability_desc_52,Prevents other Pokémon from lowering Attack stat.
+ability_desc_53,The Pokémon may pick up items.
+ability_desc_54,Pokémon can't attack on consecutive turns.
+ability_desc_55,Boosts the Attack stat but lowers accuracy.
+ability_desc_56,Contact with the Pokémon may cause infatuation.
+ability_desc_57,Ups Sp. Atk. if another Pokémon has Plus or Minus.
+ability_desc_58,Ups Sp. Atk. if another Pokémon has Plus or Minus.
+ability_desc_59,Castform transforms with the weather.
+ability_desc_60,Protects the Pokémon from item theft.
+ability_desc_61,The Pokémon may heal its own status problems.
+ability_desc_62,Boosts Attack if there is a status problem.
+ability_desc_63,Ups Defense if there is a status problem.
+ability_desc_64,Damages attackers using any draining move.
+ability_desc_65,Powers up Grass-type moves in a pinch.
+ability_desc_66,Powers up Fire-type moves in a pinch.
+ability_desc_67,Powers up Water-type moves in a pinch.
+ability_desc_68,Powers up Bug-type moves in a pinch.
+ability_desc_69,Protects the Pokémon from recoil damage.
+ability_desc_70,Turns the sunlight harsh if it is in battle.
+ability_desc_71,Prevents the foe from fleeing.
+ability_desc_72,Prevents the Pokémon from falling asleep.
+ability_desc_73,Prevents other Pokémon from lowering its stats.
+ability_desc_74,Raises the Pokémon's Attack stat.
+ability_desc_75,The Pokémon is protected against critical hits.
+ability_desc_76,Eliminates the effects of weather.
+ability_desc_77,Raises evasion if the Pokémon is confused.
+ability_desc_78,Raises Speed if hit by an Electric-type move.
+ability_desc_79,Deals more damage to a Pokémon of same gender.
+ability_desc_80,Raises Speed each time the Pokémon flinches.
+ability_desc_81,Raises evasion in a hailstorm.
+ability_desc_82,Encourages the early use of a held Berry.
+ability_desc_83,Maxes Attack after taking a critical hit.
+ability_desc_84,Raises Speed if a held item is used.
+ability_desc_85,Weakens the power of Fire-type moves.
+ability_desc_86,The Pokémon is prone to wild stat changes.
+ability_desc_87,Reduces HP if it is hot. Water restores HP.
+ability_desc_88,Adjusts power according to a foe's defenses.
+ability_desc_89,Boosts the power of punching moves.
+ability_desc_90,Restores HP if the Pokémon is poisoned.
+ability_desc_91,Powers up moves of the same type.
+ability_desc_92,Increases the frequency of multi-strike moves.
+ability_desc_93,Heals status problems if it is raining.
+ability_desc_94,In sunshine boosted but HP decreases.
+ability_desc_95,Boosts Speed if there is a status problem.
+ability_desc_96,All the Pokémon's moves become the Normal type.
+ability_desc_97,Powers up moves if they become critical hits.
+ability_desc_98,The Pokémon only takes damage from attacks.
+ability_desc_99,Ensures attacks by or against the Pokémon land.
+ability_desc_100,The Pokémon moves after all other Pokémon do.
+ability_desc_101,Powers up the Pokémon's weaker moves.
+ability_desc_102,Prevents problems with status in sunny weather.
+ability_desc_103,The Pokémon can't use any held items.
+ability_desc_104,Moves can be used regardless of Abilities.
+ability_desc_105,Heightens the critical- hit ratios of moves.
+ability_desc_106,Damages the attacker landing the finishing hit.
+ability_desc_107,Senses a foe's dangerous moves.
+ability_desc_108,Determines what moves a foe has.
+ability_desc_109,Ignores any stat changes in the Pokémon.
+ability_desc_110,Powers up not very effective moves.
+ability_desc_111,Reduces damage from supereffective attacks.
+ability_desc_112,Temporarily halves Attack and Speed.
+ability_desc_113,Enables moves to hit Ghost-type Pokémon.
+ability_desc_114,Draws in all Water-type moves to up Sp. Attack.
+ability_desc_115,The Pokémon gradually regains HP in a hailstorm.
+ability_desc_116,Reduces damage from supereffective attacks.
+ability_desc_117,The Pokémon summons a hailstorm in battle.
+ability_desc_118,The Pokémon may gather Honey from somewhere.
+ability_desc_119,The Pokémon can check a foe's held item.
+ability_desc_120,Powers up moves that have recoil damage.
+ability_desc_121,Changes type to match the held Plate.
+ability_desc_122,Powers up party Pokémon when it is sunny.
+ability_desc_123,Reduces a sleeping foe's HP.
+ability_desc_124,Steals an item when hit by another Pokémon.
+ability_desc_125,Removes added effects to increase move damage.
+ability_desc_126,Makes stat changes have an opposite effect.
+ability_desc_127,Makes the foe nervous and unable to eat Berries.
+ability_desc_128,When its stats are lowered its Attack increases.
+ability_desc_129,Lowers stats when HP becomes half or less.
+ability_desc_130,May disable a move used on the Pokémon.
+ability_desc_131,May heal an ally's status conditions.
+ability_desc_132,Reduces damage done to allies.
+ability_desc_133,Physical attacks lower Defense and raise Speed.
+ability_desc_134,Doubles the Pokémon's weight.
+ability_desc_135,Halves the Pokémon's weight.
+ability_desc_136,Reduces damage when HP is full.
+ability_desc_137,Powers up physical attacks when poisoned.
+ability_desc_138,Powers up special attacks when burned.
+ability_desc_139,May create another Berry after one is used.
+ability_desc_140,Anticipates an ally's attack and dodges it.
+ability_desc_141,Raises one stat and lowers another.
+ability_desc_142,Protects the Pokémon from damage from weather.
+ability_desc_143,May poison targets when a Pokémon makes contact.
+ability_desc_144,Restores a little HP when withdrawn from battle.
+ability_desc_145,Protects the Pokémon from Defense-lowering attacks.
+ability_desc_146,Boosts the Pokémon's Speed in a sandstorm.
+ability_desc_147,Makes status-changing moves more likely to miss.
+ability_desc_148,Boosts move power when the Pokémon moves last.
+ability_desc_149,Comes out disguised as the Pokémon in back.
+ability_desc_150,It transforms itself into the Pokémon it is facing.
+ability_desc_151,Passes through the foe's barrier and strikes.
+ability_desc_152,Contact with this Pokémon spreads this Ability.
+ability_desc_153,Boosts Attack after knocking out any Pokémon.
+ability_desc_154,Raises Attack when hit by a Dark-type move.
+ability_desc_155,Some move types scare it and boost its Speed.
+ability_desc_156,Reflects status- changing moves.
+ability_desc_157,Boosts Attack when hit by a Grass-type move.
+ability_desc_158,Gives priority to a status move.
+ability_desc_159,Boosts certain moves' power in a sandstorm.
+ability_desc_160,Inflicts damage to the Pokémon on contact.
+ability_desc_161,Changes the Pokémon's shape when HP is halved.
+ability_desc_162,Boosts the accuracy of its allies and itself.
+ability_desc_163,Moves can be used regardless of Abilities.
+ability_desc_164,Moves can be used regardless of Abilities.
+ability_desc_165,Protects allies from attacks that limit their move choices.
+ability_desc_166,Prevents lowering of ally Grass-type Pokémon's stats.
+ability_desc_167,Restores HP as well when the Pokémon eats a Berry.
+ability_desc_168,Changes the Pokémon's type to the same type of the move it is using.
+ability_desc_169,Halves damage from physical moves.
+ability_desc_170,The Pokémon steals the held item of a Pokémon it hits with a move.
+ability_desc_171,Protects the Pokémon from some ball and bomb moves.
+ability_desc_172,Boosts the Sp. Atk. stat when a stat is lowered.
+ability_desc_173,The Pokémon's strong jaw gives it tremendous biting power.
+ability_desc_174,Normal-type moves become Ice-type moves.
+ability_desc_175,Prevents itself and its allies from falling asleep.
+ability_desc_176,The Pokémon changes form depending on how it battles.
+ability_desc_177,Gives priority to Flying-type moves.
+ability_desc_178,Powers up aura and pulse moves.
+ability_desc_179,Boosts the Defense stat in Grassy Terrain.
+ability_desc_180,The Pokémon can pass an item to an ally.
+ability_desc_181,Powers up moves that make direct contact.
+ability_desc_182,Normal-type moves become Fairy-type moves.
+ability_desc_183,Contact with the Pokémon lowers the attacker's Speed stat.
+ability_desc_184,Normal-type moves become Flying-type moves.
+ability_desc_185,Parent and child attack together.
+ability_desc_186,Powers up each Pokémon's Dark-type moves.
+ability_desc_187,Powers up each Pokémon's Fairy-type moves.
+ability_desc_188,The effects of Aura Abilities are reversed.
+
+ability_desc_202,Boosts the Pokémon's Speed stat in a hailstorm.
+
+ability_desc_206,Normal-type moves become Electric-type moves. The power of those moves is boosted a little.
+ability_desc_207,Doubles the Pokémon's Speed stat on Electric Terrain.
+
+ability_desc_221,Contact with the Pokémon lowers the attacker's Speed stat.
+
+ability_desc_223,The Pokémon copies the Ability of a defeated ally.
+
+ability_desc_226,Turns the ground into Electric Terrain when the Pokémon enters a battle.
+ability_desc_227,Turns the ground into Psychic Terrain when the Pokémon enters a battle.
+ability_desc_228,Turns the ground into Misty Terrain when the Pokémon enters a battle.
+ability_desc_229,Turns the ground into Grassy Terrain when the Pokémon enters a battle.
+
+ability_desc_243,Boosts the Pokémon's Speed stat drastically if hit by a Fire- or Water-type move.
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------
 Story translation:
 ---
