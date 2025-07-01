@@ -29980,6 +29980,9 @@
     <Content Include="Content\Data\Scripts\frontier\battlepike\endless\roomevent.dat">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\Data\Scripts\frontier\battlepike\oldmanheal.dat">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="Content\Data\Scripts\kin\berryforestitems\2051.dat">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
