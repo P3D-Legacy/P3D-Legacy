@@ -80,7 +80,11 @@
 
                     CanContinue = False
                 Case "blackout"
-                    Core.SetScreen(New TransitionScreen(Core.CurrentScreen, New BlackOutScreen(Core.CurrentScreen), Color.Black, False))
+                    If Screen.Level.BlackOutScript <> "" Then
+                        CType(CurrentScreen, OverworldScreen).ActionScript.StartScript(Screen.Level.BlackOutScript, 0, False)
+                    Else
+                        Core.SetScreen(New TransitionScreen(Core.CurrentScreen, New BlackOutScreen(Core.CurrentScreen), Color.Black, False))
+                    End If
 
                     IsReady = True
 

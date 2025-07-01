@@ -120,7 +120,11 @@ Public Class PokemonEncounter
         ' If the encounter check is true:
         If Me._levelReference.PokemonEncounterData.EncounteredPokemon = True And Core.CurrentScreen.Identification = Screen.Identifications.OverworldScreen Then
             If Core.Player.Pokemons.Count = 0 Then
-                Core.SetScreen(New TransitionScreen(Core.CurrentScreen, New BlackOutScreen(Core.CurrentScreen), Color.Black, False))
+                If Screen.Level.BlackOutScript <> "" Then
+                    CType(CurrentScreen, OverworldScreen).ActionScript.StartScript(Screen.Level.BlackOutScript, 0, False)
+                Else
+                    Core.SetScreen(New TransitionScreen(Core.CurrentScreen, New BlackOutScreen(Core.CurrentScreen), Color.Black, False))
+                End If
                 Me._levelReference.PokemonEncounterData.EncounteredPokemon = False
                 Exit Sub
             Else

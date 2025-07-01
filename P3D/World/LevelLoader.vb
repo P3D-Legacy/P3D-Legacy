@@ -1037,6 +1037,11 @@
         Else
             Screen.Level.DisableMenus = False
         End If
+        If TagExists(Tags, "BlackOutScript") = True Then
+            Screen.Level.BlackOutScript = CStr(GetTag(Tags, "BlackOutScript"))
+        Else
+            Screen.Level.BlackOutScript = ""
+        End If
         If _reload = False Then
             If TagExists(Tags, "EnvironmentType") = True Then
                 Screen.Level.EnvironmentType = CInt(GetTag(Tags, "EnvironmentType"))
