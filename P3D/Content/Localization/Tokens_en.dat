@@ -3363,6 +3363,8 @@ move_desc_442,The user slams the target with its steel-hard head. This may also 
 
 move_desc_452,The user slams its rugged body into the target to attack. The user also sustains serious damage.
 
+move_desc_577,The user steals the target's energy with a kiss. The user's HP is restored by over half of the damage taken by the target.
+
 move_desc_583,The user plays rough with the target and attacks it. This may also lower the target's Attack stat.
 move_desc_584,The user stirs up a fairy wind and strikes the target with it.
 move_desc_585,Borrowing the power of the moon, the user attacks the target. This may also lower the target's Sp. Atk. stat.
