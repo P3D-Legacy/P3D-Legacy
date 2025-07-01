@@ -261,6 +261,9 @@
 
         Public OppUsedMoves As New List(Of Integer)
 
+        'Global Temporary Variables
+        Public TempTripleKick As Integer = 0 'If Triple Kick is used, this will be increased every time it's hit
+
         'Weather
         Private _weather As BattleWeather.WeatherTypes = BattleWeather.WeatherTypes.Clear
         Public WeatherRounds As Integer = 0
