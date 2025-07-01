@@ -29941,10 +29941,7 @@
     <Content Include="Content\Data\Scripts\frontier\battlepike\challenge\record_machine.dat">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Data\Scripts\frontier\battlepike\challenge\won7.dat">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\Data\Scripts\frontier\battlepike\challenge\wonbrain.dat">
+    <Content Include="Content\Data\Scripts\frontier\battlepike\challenge\won.dat">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Data\Scripts\frontier\battlepike\hint.dat">
@@ -29981,6 +29978,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Data\Scripts\frontier\battlepike\oldmanheal.dat">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Data\Scripts\frontier\battlepike\challenge\lucytalk.dat">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="Content\Data\Scripts\kin\berryforestitems\2051.dat">
