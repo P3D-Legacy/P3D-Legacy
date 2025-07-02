@@ -1139,15 +1139,16 @@ Public Class StorageSystemScreen
     Private Sub ConfirmRelease()
         Dim id As Integer = CInt(CursorPosition.X) + CInt((CursorPosition.Y - 1) * 6)
         If CursorPosition.X = 6 Then
+            Dim s As String = ""
             If Core.Player.Pokemons(CInt(CursorPosition.Y)).Item IsNot Nothing Then
                 If Core.Player.Pokemons(CInt(CursorPosition.Y)).Item.IsMail And Core.Player.Pokemons(CInt(CursorPosition.Y)).Item.AdditionalData <> "" Then
-                    Screen.TextBox.Show("The Mail was taken to your~inbox on your PC.")
+                    s &= "The Mail was taken to your~inbox on your PC."
 
                     Core.Player.Mails.Add(Items.MailItem.GetMailDataFromString(Core.Player.Pokemons(CInt(CursorPosition.Y)).Item.AdditionalData))
 
                     Core.Player.Pokemons(CInt(CursorPosition.Y)).Item = Nothing
                 Else
-                    Screen.TextBox.Show("Taken " & Core.Player.Pokemons(CInt(CursorPosition.Y)).Item.OneLineName() & "~from " & Core.Player.Pokemons(CInt(CursorPosition.Y)).GetDisplayName() & ".")
+                    s &= "Taken " & Core.Player.Pokemons(CInt(CursorPosition.Y)).Item.OneLineName() & "~from " & Core.Player.Pokemons(CInt(CursorPosition.Y)).GetDisplayName() & "."
                     Dim ItemID As String
                     If Core.Player.Pokemons(CInt(CursorPosition.Y)).Item.IsGameModeItem Then
                         ItemID = Core.Player.Pokemons(CInt(CursorPosition.Y)).Item.gmID
@@ -1158,19 +1159,24 @@ Public Class StorageSystemScreen
                     Core.Player.Pokemons(CInt(CursorPosition.Y)).Item = Nothing
                 End If
             End If
-            Screen.TextBox.Show("Goodbye, " & Core.Player.Pokemons(CInt(CursorPosition.Y)).GetDisplayName() & "!")
+            If s <> "" Then
+                s &= "*"
+            End If
+            s &= "Goodbye, " & Core.Player.Pokemons(CInt(CursorPosition.Y)).GetDisplayName() & "!"
+            Screen.TextBox.Show(s)
 
             Core.Player.Pokemons.RemoveAt(CInt(CursorPosition.Y))
         Else
+            Dim s As String = ""
             If GetBox(CurrentBox).Pokemon(id).GetPokemon.Item IsNot Nothing Then
                 If GetBox(CurrentBox).Pokemon(id).GetPokemon.Item.IsMail And GetBox(CurrentBox).Pokemon(id).GetPokemon.Item.AdditionalData <> "" Then
-                    Screen.TextBox.Show("The Mail was taken to your~inbox on your PC.")
+                    s &= "The Mail was taken to your~inbox on your PC."
 
                     Core.Player.Mails.Add(Items.MailItem.GetMailDataFromString(GetBox(CurrentBox).Pokemon(id).GetPokemon.Item.AdditionalData))
 
                     GetBox(CurrentBox).Pokemon(id).GetPokemon.Item = Nothing
                 Else
-                    Screen.TextBox.Show("Taken " & GetBox(CurrentBox).Pokemon(id).GetPokemon.Item.OneLineName() & "~from " & GetBox(CurrentBox).Pokemon(id).GetPokemon.GetDisplayName() & ".")
+                    s &= "Taken " & GetBox(CurrentBox).Pokemon(id).GetPokemon.Item.OneLineName() & "~from " & GetBox(CurrentBox).Pokemon(id).GetPokemon.GetDisplayName() & "."
                     Dim ItemID As String
                     If GetBox(CurrentBox).Pokemon(id).GetPokemon.Item.IsGameModeItem Then
                         ItemID = GetBox(CurrentBox).Pokemon(id).GetPokemon.Item.gmID
@@ -1182,7 +1188,11 @@ Public Class StorageSystemScreen
                 End If
             End If
 
-            Screen.TextBox.Show("Goodbye, " & GetBox(CurrentBox).Pokemon(id).GetPokemon.GetDisplayName() & "!")
+            If s <> "" Then
+                s &= "*"
+            End If
+            s &= "Goodbye, " & GetBox(CurrentBox).Pokemon(id).GetPokemon.GetDisplayName() & "!"
+            Screen.TextBox.Show(s)
             GetBox(CurrentBox).Pokemon.Remove(id)
         End If
     End Sub
