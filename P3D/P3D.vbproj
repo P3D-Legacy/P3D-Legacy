@@ -8042,7 +8042,7 @@
     <Content Include="Content\Data\Scripts\trainer\frontier\battletower\99.trainer">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Data\Scripts\trainer\frontier\battletower\draco.trainer">
+    <Content Include="Content\Data\Scripts\trainer\frontier\battlefactory\draco.trainer">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Data\Scripts\trainer\frontier\battletower\nilllzz.trainer">
@@ -30466,6 +30466,12 @@
     <None Include="Content\Data\Scripts\tohjofalls\jjm.dat">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <Content Include="Content\Data\Scripts\trainer\frontier\battlepike\lucy_silver.trainer">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Data\Scripts\trainer\frontier\battlepike\lucy_gold.trainer">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="Content\Data\Scripts\trainer\gymrematch\agatha.dat">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
