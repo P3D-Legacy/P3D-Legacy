@@ -49,31 +49,31 @@ Public Class KeyBindings
                     key = key.Remove(key.Length - 1, 1)
 
                     Select Case key.ToLower()
-                        Case "forwardmove"
+                        Case "moveforward", "forwardmove"
                             ForwardMoveKey = binding
-                        Case "leftmove"
+                        Case "moveleft", "leftmove"
                             LeftMoveKey = binding
-                        Case "backwardmove"
+                        Case "movebackward", "backwardmove"
                             BackwardMoveKey = binding
-                        Case "rightmove"
+                        Case "moveright", "rightmove"
                             RightMoveKey = binding
                         Case "run"
                             RunKey = binding
-                        Case "inventory", "openmenu"
+                        Case "openmenu", "inventory"
                             OpenInventoryKey = binding
                         Case "chat"
                             ChatKey = binding
-                        Case "special", "pokegear"
+                        Case "special", "phone", "pokegear"
                             SpecialKey = binding
                         Case "muteaudio", "mutemusic"
                             MuteAudioKey = binding
-                        Case "cameraleft"
+                        Case "cameraleft", "left"
                             LeftKey = binding
-                        Case "cameraright"
+                        Case "cameraright", "right"
                             RightKey = binding
-                        Case "cameraup"
+                        Case "cameraup", "up"
                             UpKey = binding
-                        Case "cameradown"
+                        Case "cameradown", "down"
                             DownKey = binding
                         Case "cameralock"
                             CameraLockKey = binding
@@ -238,10 +238,10 @@ Public Class KeyBindings
     Public Shared Sub CreateKeySave(ByVal force As Boolean)
         If IO.Directory.Exists(GameController.GamePath & "\Save") = True Then
             If IO.File.Exists(GameController.GamePath & "\Save\Keyboard.dat") = False Or force = True Then
-                Dim s As String = "[ForwardMove]=W" & Environment.NewLine &
-                "[LeftMove]=" & GetKeyName(Keys.A) & Environment.NewLine &
-                "[BackwardMove]=" & GetKeyName(Keys.S) & Environment.NewLine &
-                "[RightMove]=" & GetKeyName(Keys.D) & Environment.NewLine &
+                Dim s As String = "[MoveForward]=" & GetKeyName(Keys.W) & Environment.NewLine &
+                "[MoveLeft]=" & GetKeyName(Keys.A) & Environment.NewLine &
+                "[MoveBackward]=" & GetKeyName(Keys.S) & Environment.NewLine &
+                "[MoveRight]=" & GetKeyName(Keys.D) & Environment.NewLine &
                 "[Run]=" & GetKeyName(Keys.LeftShift) & Environment.NewLine &
                 "[OpenMenu]=" & GetKeyName(Keys.E) & Environment.NewLine &
                 "[Chat]=" & GetKeyName(Keys.T) & Environment.NewLine &
@@ -276,10 +276,10 @@ Public Class KeyBindings
     ''' </summary>
     Public Shared Sub SaveKeys()
         If IO.Directory.Exists(GameController.GamePath & "\Save") = True Then
-            Dim s As String = "[ForwardMove]=" & GetKeyName(ForwardMoveKey) & Environment.NewLine &
-                "[LeftMove]=" & GetKeyName(LeftMoveKey) & Environment.NewLine &
-                "[BackwardMove]=" & GetKeyName(BackwardMoveKey) & Environment.NewLine &
-                "[RightMove]=" & GetKeyName(RightMoveKey) & Environment.NewLine &
+            Dim s As String = "[MoveForward]=" & GetKeyName(ForwardMoveKey) & Environment.NewLine &
+                "[MoveLeft]=" & GetKeyName(LeftMoveKey) & Environment.NewLine &
+                "[MoveBackward]=" & GetKeyName(BackwardMoveKey) & Environment.NewLine &
+                "[MoveRight]=" & GetKeyName(RightMoveKey) & Environment.NewLine &
                 "[Run]=" & GetKeyName(RunKey) & Environment.NewLine &
                 "[Inventory]=" & GetKeyName(OpenInventoryKey) & Environment.NewLine &
                 "[Chat]=" & GetKeyName(ChatKey) & Environment.NewLine &
