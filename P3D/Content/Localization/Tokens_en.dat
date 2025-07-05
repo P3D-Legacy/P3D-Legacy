@@ -376,6 +376,94 @@ inventory_screen_GiveItem_TakeMail,Gave <newitem> to <name> and took the Mail to
 inventory_screen_CannotGiveToPokemon,<newitem> cannot be given to a Pokémon.
 inventory_screen_EggsCannotHold,Eggs cannot hold items.
 ---
+StorageSystemScreen:
+storage_screen_box_DefaultName,BOX [NUMBER]
+storage_screen_box_BattleBoxName,BATTLE BOX
+
+storage_screen_menu_box_WhatDoYouWant,What do you want to do?
+storage_screen_menu_box_ChooseBox,Choose Box
+storage_screen_menu_box_ChangeMode,Change Mode
+storage_screen_menu_box_Wallpaper,Wallpaper
+
+storage_screen_menu_mode_ChooseModeToUse,Choose a mode to use.
+storage_screen_menu_mode_Withdraw,Withdraw
+storage_screen_menu_mode_Deposit,Deposit
+storage_screen_menu_mode_SingleMove,Single Move
+storage_screen_menu_mode_EasyMove,Easy Move
+
+storage_screen_menu_theme_PickTheme,Please pick a theme.
+storage_screen_menu_theme_Package1,Package 1
+storage_screen_menu_theme_Package2,Package 2
+storage_screen_menu_theme_Package3,Package 3
+storage_screen_menu_theme_Package4,Package 4
+
+storage_screen_menu_wallpaper_PickWallpaper,Pick the wallpaper.
+
+storage_screen_menu_wallpaper_Forest,Forest
+storage_screen_menu_wallpaper_City,City
+storage_screen_menu_wallpaper_Desert,Desert
+storage_screen_menu_wallpaper_Savanna,Savanna
+storage_screen_menu_wallpaper_Cave,Cave
+storage_screen_menu_wallpaper_River,River
+
+storage_screen_menu_wallpaper_Volcano,Volcano
+storage_screen_menu_wallpaper_Snow,Snow
+storage_screen_menu_wallpaper_Beach,Beach
+storage_screen_menu_wallpaper_Seafloor,Seafloor
+storage_screen_menu_wallpaper_Crag,Crag
+storage_screen_menu_wallpaper_Steel,Steel
+
+storage_screen_menu_wallpaper_Volcano2,Volcano 2
+storage_screen_menu_wallpaper_City2,City 2
+storage_screen_menu_wallpaper_Snow2,Snow 2
+storage_screen_menu_wallpaper_Desert2,Desert 2
+storage_screen_menu_wallpaper_Savanna2,Savanna 2
+storage_screen_menu_wallpaper_Steel2,Steel 2
+
+storage_screen_menu_wallpaper_System,System
+storage_screen_menu_wallpaper_Simple ,Simple 
+storage_screen_menu_wallpaper_Checks ,Checks 
+storage_screen_menu_wallpaper_Seasons,Seasons
+storage_screen_menu_wallpaper_Retro1,Retro 1
+storage_screen_menu_wallpaper_Retro2,Retro 2
+
+storage_screen_menu_pokemon_IsSelected,<name> is selected.
+storage_screen_menu_pokemon_Withdraw,Withdraw
+storage_screen_menu_pokemon_Deposit,Deposit
+storage_screen_menu_pokemon_Move,Move
+storage_screen_menu_pokemon_TakeItem,Take Item
+storage_screen_menu_pokemon_Release,Release
+
+storage_screen_pokemon_CannotRemoveLastPokemon,Can't remove last Pokémon from party.
+storage_screen_pokemon_PartyIsFull,Party is full!
+
+storage_screen_pokemon_item_MailWasTaken,The Mail was taken to your~inbox on your PC.
+storage_screen_pokemon_item_TakenItemFromPokemon,Taken <item>~from <name>.
+
+storage_screen_pokemon_release_Question,Release <name>?
+storage_screen_pokemon_release_CannotReleaseEgg,Cannot release an Egg.
+storage_screen_pokemon_release_CannotReleaseLastPokemon,Cannot release the last Pokémon.
+storage_screen_pokemon_release_Goodbye,Goodbye, <name>!
+
+storage_screen_pokemon_summary_Box,Box
+storage_screen_pokemon_summary_Pokemon,Pokémon
+storage_screen_pokemon_summary_Level,Level
+storage_screen_pokemon_summary_Normal,Normal
+storage_screen_pokemon_summary_Shiny,Shiny
+storage_screen_pokemon_summary_Egg,Egg
+storage_screen_pokemon_summary_DexNo,DEX NO.
+storage_screen_pokemon_summary_Level,LEVEL
+storage_screen_pokemon_summary_HP,HP
+storage_screen_pokemon_summary_Attack,ATTACK
+storage_screen_pokemon_summary_Defense,DEFENSE
+storage_screen_pokemon_summary_SpAtk,SP. ATK
+storage_screen_pokemon_summary_SpDef,SP. DEF
+storage_screen_pokemon_summary_Speed,SPEED
+storage_screen_pokemon_summary_Item,ITEM
+
+storage_screen_filter_Hint,Press <system.button(special)> on the keyboard to filter.
+
+---
 PartyScreen:
 party_screen_Unable,Unable!
 party_screen_Able,Able!

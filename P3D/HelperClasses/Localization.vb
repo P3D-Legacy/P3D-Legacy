@@ -123,6 +123,9 @@
                 If result.Contains("<olditem>") Then
                     result = result.Replace("<olditem>", "//OLDITEM//")
                 End If
+                If result.Contains("<item>") Then
+                    result = result.Replace("<item>", "//ITEM//")
+                End If
                 If result.Contains("<") Then
                     result = CStr(ScriptVersion2.ScriptComparer.EvaluateConstruct(result))
                 End If

@@ -243,14 +243,14 @@ Public Class StorageSystemScreen
                     Return
                 End If
                 Dim entries = New List(Of MenuEntry)
-                entries.Add(New MenuEntry(3, "Choose Box", False, Sub() Me.BoxChooseMode = Not Me.BoxChooseMode))
-                entries.Add(New MenuEntry(4, "Change Mode", False, AddressOf Me.ChangemodeMenu))
+                entries.Add(New MenuEntry(3, Localization.GetString("storage_screen_menu_box_ChooseBox", "Choose Box"), False, Sub() Me.BoxChooseMode = Not Me.BoxChooseMode))
+                entries.Add(New MenuEntry(4, Localization.GetString("storage_screen_menu_box_ChangeMode", "Change Mode"), False, AddressOf Me.ChangeModeMenu))
                 If Not GetBox(CurrentBox).IsBattleBox Then
-                    entries.Add(New MenuEntry(5, "Wallpaper", False, AddressOf WallpaperMain))
-                    entries.Add(New MenuEntry(6, "Name", False, AddressOf SelectNameBox))
+                    entries.Add(New MenuEntry(5, Localization.GetString("storage_screen_menu_box_Wallpaper", "Wallpaper"), False, AddressOf WallpaperMain))
+                    entries.Add(New MenuEntry(6, Localization.GetString("global_name", "Name"), False, AddressOf SelectNameBox))
                 End If
-                entries.Add(New MenuEntry(entries.Max(Function(x) x.Index) + 1, "Cancel", True, Nothing))
-                Me.SetupMenu(entries.ToArray(), "What do you want to do?")
+                entries.Add(New MenuEntry(entries.Max(Function(x) x.Index) + 1, Localization.GetString("global_cancel", "Cancel"), True, Nothing))
+                Me.SetupMenu(entries.ToArray(), Localization.GetString("storage_screen_menu_box_WhatDoYouWant", "What do you want to do?"))
             End If
         ElseIf CursorPosition.Y < 6 Then
             If Not BoxChooseMode Or CursorPosition.X > 5 Or CursorPosition.Y < 1 Then
@@ -264,18 +264,18 @@ Public Class StorageSystemScreen
         End If
     End Sub
 
-    Private Sub ChangemodeMenu()
-        Dim e As New MenuEntry(3, "Withdraw", False, Sub() Me.SelectionMode = SelectionModes.Withdraw)
-        Dim e1 As New MenuEntry(4, "Deposit", False, Sub() Me.SelectionMode = SelectionModes.Deposit)
-        Dim e2 As New MenuEntry(5, "Single Move", False, Sub() Me.SelectionMode = SelectionModes.SingleMove)
-        Dim e3 As New MenuEntry(6, "Easy Move", False, Sub() Me.SelectionMode = SelectionModes.EasyMove)
-        Dim e4 As New MenuEntry(7, "Cancel", True, AddressOf Me.ChooseObject)
-        Me.SetupMenu({e, e1, e2, e3, e4}, "Choose a mode to use.")
+    Private Sub ChangeModeMenu()
+        Dim e As New MenuEntry(3, Localization.GetString("storage_screen_menu_mode_Withdraw", "Withdraw"), False, Sub() Me.SelectionMode = SelectionModes.Withdraw)
+        Dim e1 As New MenuEntry(4, Localization.GetString("storage_screen_menu_mode_Deposit", "Deposit"), False, Sub() Me.SelectionMode = SelectionModes.Deposit)
+        Dim e2 As New MenuEntry(5, Localization.GetString("storage_screen_menu_mode_SingleMove", "Single Move"), False, Sub() Me.SelectionMode = SelectionModes.SingleMove)
+        Dim e3 As New MenuEntry(6, Localization.GetString("storage_screen_menu_mode_EasyMove", "Easy Move"), False, Sub() Me.SelectionMode = SelectionModes.EasyMove)
+        Dim e4 As New MenuEntry(7, Localization.GetString("global_cancel", "Cancel"), True, AddressOf Me.ChooseObject)
+        Me.SetupMenu({e, e1, e2, e3, e4}, Localization.GetString("storage_screen_menu_mode_ChooseModeToUse", "Choose a mode to use."))
     End Sub
 
     Private Sub SelectNameBox()
         Dim box = GetBox(CurrentBox)
-        Dim defaultName = $"BOX{box.index + 1}"
+        Dim defaultName = CStr(Localization.GetString("storage_screen_box_DefaultName", "BOX [NUMBER]")).Replace("[NUMBER]", $"{box.index + 1}")
         Dim inputMode = InputScreen.InputModes.Text
         Dim rename = Sub(name As String) box.Name = name
         Dim screen = New InputScreen(Core.CurrentScreen, defaultName, inputMode, box.Name, 11, New List(Of Texture2D), rename)
@@ -290,45 +290,45 @@ Public Class StorageSystemScreen
         Dim package2 = New Dictionary(Of String, Integer)
         Dim package3 = New Dictionary(Of String, Integer)
         Dim package4 = New Dictionary(Of String, Integer)
-        package1.Add("Forest", 0)
-        package1.Add("City", 1)
-        package1.Add("Desert", 2)
-        package1.Add("Savanna", 3)
-        package1.Add("Cave", 8)
-        package1.Add("River", 11)
+        package1.Add(Localization.GetString("storage_screen_menu_wallpaper_Forest", "Forest"), 0)
+        package1.Add(Localization.GetString("storage_screen_menu_wallpaper_City", "City"), 1)
+        package1.Add(Localization.GetString("storage_screen_menu_wallpaper_Desert", "Desert"), 2)
+        package1.Add(Localization.GetString("storage_screen_menu_wallpaper_Savanna", "Savanna"), 3)
+        package1.Add(Localization.GetString("storage_screen_menu_wallpaper_Cave", "Cave"), 8)
+        package1.Add(Localization.GetString("storage_screen_menu_wallpaper_River", "River"), 11)
 
-        package2.Add("Volcano", 5)
-        package2.Add("Snow", 6)
-        package2.Add("Beach", 9)
-        package2.Add("Seafloor", 10)
-        package2.Add("Crag", 4)
-        package2.Add("Steel", 7)
+        package2.Add(Localization.GetString("storage_screen_menu_wallpaper_Volcano", "Volcano"), 5)
+        package2.Add(Localization.GetString("storage_screen_menu_wallpaper_Snow", "Snow"), 6)
+        package2.Add(Localization.GetString("storage_screen_menu_wallpaper_Beach", "Beach"), 9)
+        package2.Add(Localization.GetString("storage_screen_menu_wallpaper_Seafloor", "Seafloor"), 10)
+        package2.Add(Localization.GetString("storage_screen_menu_wallpaper_Crag", "Crag"), 4)
+        package2.Add(Localization.GetString("storage_screen_menu_wallpaper_Steel", "Steel"), 7)
 
-        package3.Add("Volcano 2", 14)
-        package3.Add("City 2", 15)
-        package3.Add("Snow 2", 16)
-        package3.Add("Desert 2", 17)
-        package3.Add("Savanna 2", 18)
-        package3.Add("Steel 2", 19)
+        package3.Add(Localization.GetString("storage_screen_menu_wallpaper_Volcano2", "Volcano 2"), 14)
+        package3.Add(Localization.GetString("storage_screen_menu_wallpaper_City2", "City 2"), 15)
+        package3.Add(Localization.GetString("storage_screen_menu_wallpaper_Snow2", "Snow 2"), 16)
+        package3.Add(Localization.GetString("storage_screen_menu_wallpaper_Desert2", "Desert 2"), 17)
+        package3.Add(Localization.GetString("storage_screen_menu_wallpaper_Savanna2", "Savanna 2"), 18)
+        package3.Add(Localization.GetString("storage_screen_menu_wallpaper_Steel2", "Steel 2"), 19)
 
-        package4.Add("System", 22)
-        package4.Add("Simple", 13)
-        package4.Add("Checks", 12)
-        package4.Add("Seasons", 23)
-        package4.Add("Retro 1", 20)
-        package4.Add("Retro 2", 21)
+        package4.Add(Localization.GetString("storage_screen_menu_wallpaper_System", "System"), 22)
+        package4.Add(Localization.GetString("storage_screen_menu_wallpaper_Simple ", "Simple "), 13)
+        package4.Add(Localization.GetString("storage_screen_menu_wallpaper_Checks ", "Checks "), 12)
+        package4.Add(Localization.GetString("storage_screen_menu_wallpaper_Seasons", "Seasons"), 23)
+        package4.Add(Localization.GetString("storage_screen_menu_wallpaper_Retro1", "Retro 1"), 20)
+        package4.Add(Localization.GetString("storage_screen_menu_wallpaper_Retro2", "Retro 2"), 21)
         If Core.Player.SandBoxMode Or GameController.IS_DEBUG_ACTIVE Then
             badges = 16
         End If
 
         Dim entries = New List(Of MenuEntry)
         Dim cancelIndex = 4
-        entries.Add(New MenuEntry(3, "Package 1", False, Sub() Me.WallpaperList(package1)))
-        If badges > 1 Then entries.Add(New MenuEntry(4, "Package 2", False, Sub() Me.WallpaperList(package2)))
-        If badges > 4 Then entries.Add(New MenuEntry(5, "Package 3", False, Sub() Me.WallpaperList(package3)))
-        If badges > 7 Then entries.Add(New MenuEntry(6, "Package 4", False, Sub() Me.WallpaperList(package4)))
-        entries.Add(New MenuEntry(entries.Max(Function(x) x.Index) + 1, "Cancel", True, AddressOf ChooseObject))
-        SetupMenu(entries.ToArray(), "Please pick a theme.")
+        entries.Add(New MenuEntry(3, Localization.GetString("storage_screen_menu_theme_Package1", "Package 1"), False, Sub() Me.WallpaperList(package1)))
+        If badges > 1 Then entries.Add(New MenuEntry(4, Localization.GetString("storage_screen_menu_theme_Package2", "Package 2"), False, Sub() Me.WallpaperList(package2)))
+        If badges > 4 Then entries.Add(New MenuEntry(5, Localization.GetString("storage_screen_menu_theme_Package3", "Package 3"), False, Sub() Me.WallpaperList(package3)))
+        If badges > 7 Then entries.Add(New MenuEntry(6, Localization.GetString("storage_screen_menu_theme_Package4", "Package 4"), False, Sub() Me.WallpaperList(package4)))
+        entries.Add(New MenuEntry(entries.Max(Function(x) x.Index) + 1, Localization.GetString("global_cancel", "Cancel"), True, AddressOf ChooseObject))
+        SetupMenu(entries.ToArray(), Localization.GetString("storage_screen_menu_theme_PickTheme", "Please pick a theme."))
     End Sub
 
     Private Sub WallpaperList(package As Dictionary(Of String, Integer))
@@ -338,8 +338,8 @@ Public Class StorageSystemScreen
             itemList.Add(New MenuEntry(index, wallpaper.Key, False, Sub() GetBox(CurrentBox).Background = wallpaper.Value))
             index += 1
         Next
-        itemList.Add(New MenuEntry(index, "Cancel", True, AddressOf WallpaperMain))
-        SetupMenu(itemList.ToArray(), "Pick the wallpaper.")
+        itemList.Add(New MenuEntry(index, Localization.GetString("global_cancel", "Cancel"), True, AddressOf WallpaperMain))
+        SetupMenu(itemList.ToArray(), Localization.GetString("storage_screen_menu_wallpaper_PickWallpaper", "Pick the wallpaper."))
     End Sub
 #End Region
 
@@ -590,21 +590,21 @@ Public Class StorageSystemScreen
             Dim entries = New List(Of MenuEntry)
 
             If Me.SelectionMode = SelectionModes.Withdraw Then
-                entries.Add(New MenuEntry(3, "Withdraw", False, AddressOf WithdrawPokemon))
+                entries.Add(New MenuEntry(3, Localization.GetString("storage_screen_menu_pokemon_Withdraw", "Withdraw"), False, AddressOf WithdrawPokemon))
             ElseIf Me.SelectionMode = SelectionModes.Deposit Then
-                entries.Add(New MenuEntry(3, "Deposit", False, AddressOf DepositPokemon))
+                entries.Add(New MenuEntry(3, Localization.GetString("storage_screen_menu_pokemon_Deposit", "Deposit"), False, AddressOf DepositPokemon))
             Else
-                entries.Add(New MenuEntry(3, "Move", False, AddressOf PickupPokemon))
+                entries.Add(New MenuEntry(3, Localization.GetString("storage_screen_menu_pokemon_Move", "Move"), False, AddressOf PickupPokemon))
             End If
 
-            entries.Add(New MenuEntry(4, "Summary", False, AddressOf SummaryPokemon))
+            entries.Add(New MenuEntry(4, Localization.GetString("global_summary", "Summary"), False, AddressOf SummaryPokemon))
 
             Dim itemOffset = If(p.Item IsNot Nothing, 1, 0)
 
-            If p.Item IsNot Nothing Then entries.Add(New MenuEntry(5, "Take Item", False, Sub() TakeItemPokemon()))
-            entries.Add(New MenuEntry(5 + itemOffset, "Release", False, AddressOf ReleasePokemon))
-            entries.Add(New MenuEntry(6 + itemOffset, "Cancel", True, Nothing))
-            SetupMenu(entries.ToArray(), p.GetDisplayName() & " is selected.")
+            If p.Item IsNot Nothing Then entries.Add(New MenuEntry(5, Localization.GetString("storage_screen_menu_pokemon_TakeItem", "Take Item"), False, Sub() TakeItemPokemon()))
+            entries.Add(New MenuEntry(5 + itemOffset, Localization.GetString("storage_screen_menu_pokemon_Release", "Release"), False, AddressOf ReleasePokemon))
+            entries.Add(New MenuEntry(6 + itemOffset, Localization.GetString("global_cancel", "Cancel"), True, Nothing))
+            SetupMenu(entries.ToArray(), Localization.GetString("storage_screen_menu_pokemon_IsSelected", "//POKEMONNAME// is selected.").Replace("//POKEMONNAME//", p.GetDisplayName()))
         End If
     End Sub
 
@@ -619,7 +619,7 @@ Public Class StorageSystemScreen
                 Dim hasPokemon = l.Any(Function(p) Not p.IsEgg() And p.Status <> Pokemon.StatusProblems.Fainted And p.HP > 0)
 
                 If Not hasPokemon Then
-                    SetupMenu({New MenuEntry(3, "OK", True, Nothing)}, "Can't remove last Pokémon from party.")
+                    SetupMenu({New MenuEntry(3, Localization.GetString("global_ok", "OK"), True, Nothing)}, Localization.GetString("storage_screen_pokemon_CannotRemoveLastPokemon", "Can't remove last Pokémon from party."))
                 Else
                     If Me.MovingPokemon IsNot Nothing Then
                         Dim sPokemon = Core.Player.Pokemons(CInt(CursorPosition.Y))
@@ -676,9 +676,8 @@ Public Class StorageSystemScreen
         Dim box = GetBox(CurrentBox)
         Dim id = If(box.IsBattleBox, GetBattleBoxID(), CInt(CursorPosition.X) + CInt((CursorPosition.Y - 1) * 6))
 
-
         If Core.Player.Pokemons.Count > 5 Then
-            SetupMenu({New MenuEntry(3, "OK", True, Nothing)}, "Party is full!")
+            SetupMenu({New MenuEntry(3, Localization.GetString("global_ok", "OK"), True, Nothing)}, Localization.GetString("storage_screen_pokemon_PartyIsFull", "Party is full!"))
         ElseIf box.Pokemon.ContainsKey(id) Then
             Core.Player.Pokemons.Add(box.Pokemon(id).pokemon)
             box.Pokemon.Remove(id)
@@ -695,7 +694,7 @@ Public Class StorageSystemScreen
         Dim hasPokemon = l.Any(Function(p) Not p.IsEgg() And p.Status <> Pokemon.StatusProblems.Fainted And p.HP > 0)
 
         If Not hasPokemon Then
-            SetupMenu({New MenuEntry(3, "OK", True, Nothing)}, "Can't remove last Pokémon from party.")
+            SetupMenu({New MenuEntry(3, Localization.GetString("global_ok", "OK"), True, Nothing)}, Localization.GetString("storage_screen_pokemon_CannotRemoveLastPokemon", "Can't remove last Pokémon from party."))
         Else
             Dim nextIndex = 0
             While box.Pokemon.ContainsKey(nextIndex)
@@ -727,16 +726,14 @@ Public Class StorageSystemScreen
         Dim message = ""
         If pokemon.Item Is Nothing Then Return message
         If pokemon.Item.IsMail And pokemon.Item.AdditionalData <> "" Then
-            message = "The Mail was taken to your~inbox on your PC."
+            message = Localization.GetString("storage_screen_pokemon_item_MailWasTaken", "The Mail was taken to your~inbox on your PC.")
 
             Core.Player.Mails.Add(Items.MailItem.GetMailDataFromString(pokemon.Item.AdditionalData))
-
         Else
-            message = $"Taken {pokemon.Item.OneLineName()}~from {pokemon.GetDisplayName()}."
+            message = Localization.GetString("storage_screen_pokemon_item_TakenItemFromPokemon", "Taken //ITEM//~from //POKEMONNAME//.").Replace("//ITEM//", pokemon.Item.OneLineName()).Replace("//POKEMONNAME//", pokemon.GetDisplayName())
             Dim ItemID = If(pokemon.Item.IsGameModeItem, pokemon.Item.gmID, pokemon.Item.ID.ToString())
 
             Core.Player.Inventory.AddItem(ItemID, 1)
-
         End If
         If logImmediate Then Screen.TextBox.Show(message)
         pokemon.Item = Nothing
@@ -763,14 +760,14 @@ Public Class StorageSystemScreen
             Dim p = If(CursorPosition.X = 6, Core.Player.Pokemons(CInt(CursorPosition.Y)), box.Pokemon(id).pokemon)
 
             If Not p.IsEgg() Then
-                Dim e1 = New MenuEntry(3, "No", True, AddressOf SelectPokemon)
-                Dim e = New MenuEntry(4, "Yes", False, AddressOf ConfirmRelease)
-                Me.SetupMenu({e1, e}, $"Release {p.GetDisplayName()}?")
+                Dim e1 = New MenuEntry(3, Localization.GetString("global_no", "No"), True, AddressOf SelectPokemon)
+                Dim e = New MenuEntry(4, Localization.GetString("global_yes", "Yes"), False, AddressOf ConfirmRelease)
+                Me.SetupMenu({e1, e}, Localization.GetString("storage_screen_pokemon_release_Question", "Release //POKEMONNAME//?").Replace("//POKEMONNAME//", p.GetDisplayName()))
             Else
-                Me.SetupMenu({New MenuEntry(3, "OK", True, Nothing)}, "Cannot release an Egg.")
+                Me.SetupMenu({New MenuEntry(3, Localization.GetString("global_ok", "OK"), True, Nothing)}, Localization.GetString("storage_screen_pokemon_release_CannotReleaseEgg", "Cannot release an Egg."))
             End If
         Else
-            Me.SetupMenu({New MenuEntry(3, "OK", True, Nothing)}, "Cannot release the last Pokémon.")
+            Me.SetupMenu({New MenuEntry(3, Localization.GetString("global_ok", "OK"), True, Nothing)}, Localization.GetString("storage_screen_pokemon_release_CannotReleaseLastPokemon", "Cannot release the last Pokémon."))
         End If
     End Sub
 
@@ -781,7 +778,7 @@ Public Class StorageSystemScreen
         Dim text = ""
         If pokemon.Item IsNot Nothing Then text &= Me.TakeItemPokemon(False)
         If text <> "" Then text &= "*"
-        text &= $"Goodbye, {pokemon.GetDisplayName()}!"
+        text &= Localization.GetString("storage_screen_pokemon_release_Goodbye", "Goodbye, //POKEMONNAME//!".Replace("//POKEMONNAME//", pokemon.GetDisplayName()))
         Screen.TextBox.Show(text)
 
         If CursorPosition.X = 6 Then
@@ -936,7 +933,7 @@ Public Class StorageSystemScreen
                     Me.DrawPokemonIcon(area, wrapper.pokemon, True)
                 Next
             Next
-            Dim text = $"Press {KeyBindings.SpecialKey} on the keyboard to filter."
+            Dim text = Localization.GetString("storage_screen_filter_Hint", "Press <system.button(special)> on the keyboard to filter.")
             Dim textPosition = New Vector2(44, 200 + 5 * 84)
             Dim shadowPosition = textPosition + New Vector2(2)
             Core.SpriteBatch.DrawString(FontManager.MainFont, text, shadowPosition, Color.Black)
@@ -975,13 +972,13 @@ Public Class StorageSystemScreen
 
             Canvas.DrawRectangle(detailsArea, New Color(84, 198, 216, 150))
 
-            Dim levelString = If(minLevel = Integer.MaxValue Or maxLevel = Integer.MinValue, "None", $"{minLevel} - {maxLevel}")
+            Dim levelString = If(minLevel = Integer.MaxValue Or maxLevel = Integer.MinValue, Localization.GetString("global_none", "None"), $"{minLevel} - {maxLevel}")
 
             Dim maxPokemon = If(box.IsBattleBox, 6, 30)
 
-            Dim t = $"Box:  {box.Name}{Environment.NewLine}"
-            t &= $"Pokémon:  {box.Pokemon.Count} / {maxPokemon}{Environment.NewLine}"
-            t &= $"Level:  {levelString}"
+            Dim t = Localization.GetString("storage_screen_pokemon_summary_Box", "Box") & $":  {box.Name}{Environment.NewLine}"
+            t &= Localization.GetString("storage_screen_pokemon_summary_Pokemon", "Pokémon") & $":  {box.Pokemon.Count} / {maxPokemon}{Environment.NewLine}"
+            t &= Localization.GetString("storage_screen_pokemon_summary_Level", "Level") & $":  {levelString}"
 
             Dim infoPosition = New Vector2(665, 415)
             Dim shadowPosition = infoPosition + New Vector2(2)
@@ -1019,7 +1016,7 @@ Public Class StorageSystemScreen
             Canvas.DrawRectangle(overviewArea, backgroundColor)
 
             Dim modelName = p.AnimationName
-            Dim shinyString = If(p.IsShiny, "Shiny", "Normal")
+            Dim shinyString = If(p.IsShiny, Localization.GetString("storage_screen_pokemon_summary_Shiny", "Shiny"), Localization.GetString("storage_screen_pokemon_summary_Normal", "Normal"))
             If Core.Player.ShowModelsInBattle AndAlso ModelManager.ModelExist($"Models\Pokemon\{modelName}\{shinyString}") And Not p.IsEgg() Then
                 Draw3DModel(p, $"Models\Pokemon\{modelName}\{shinyString}")
             Else
@@ -1034,22 +1031,22 @@ Public Class StorageSystemScreen
 
             Dim text = ""
             If p.IsEgg() Then
-                text = "Egg"
+                text = Localization.GetString("storage_screen_pokemon_summary_Egg", "Egg")
             Else
-                Dim itemString = If(p.Item Is Nothing, "None", p.Item.Name)
+                Dim itemString = If(p.Item Is Nothing, Localization.GetString("global_none", "None"), p.Item.Name)
 
                 Dim nameString = If(p.NickName = "", p.GetDisplayName(), $"{p.GetDisplayName()}/{p.GetName}")
 
                 text = $"{nameString}{Environment.NewLine}"
-                text &= $"DEX NO. {p.Number}{Environment.NewLine}"
-                text &= $"LEVEL  {p.Level}{Environment.NewLine}"
-                text &= $"HP  {p.HP} / {p.MaxHP}{Environment.NewLine}"
-                text &= $"ATTACK  {p.Attack}{Environment.NewLine}"
-                text &= $"DEFENSE  {p.Defense}{Environment.NewLine}"
-                text &= $"SP. ATK  {p.SpAttack}{Environment.NewLine}"
-                text &= $"SP. DEF  {p.SpDefense}{Environment.NewLine}"
-                text &= $"SPEED  {p.Speed}{Environment.NewLine}"
-                text &= $"ITEM  {itemString}"
+                text &= Localization.GetString("storage_screen_pokemon_summary_DexNo", "DEX NO.") & $"  {p.Number}{Environment.NewLine}"
+                text &= Localization.GetString("storage_screen_pokemon_summary_Level", "LEVEL") & $"  {p.Level}{Environment.NewLine}"
+                text &= Localization.GetString("storage_screen_pokemon_summary_HP", "HP") & $"  {p.HP} / {p.MaxHP}{Environment.NewLine}"
+                text &= Localization.GetString("storage_screen_pokemon_summary_Attack", "ATTACK") & $"  {p.Attack}{Environment.NewLine}"
+                text &= Localization.GetString("storage_screen_pokemon_summary_Defense", "DEFENSE") & $"  {p.Defense}{Environment.NewLine}"
+                text &= Localization.GetString("storage_screen_pokemon_summary_SpAtk", "SP. ATK") & $"  {p.SpAttack}{Environment.NewLine}"
+                text &= Localization.GetString("storage_screen_pokemon_summary_SpDef", "SP. DEF") & $"  {p.SpDefense}{Environment.NewLine}"
+                text &= Localization.GetString("storage_screen_pokemon_summary_Speed", "SPEED") & $"  {p.Speed}{Environment.NewLine}"
+                text &= Localization.GetString("storage_screen_pokemon_summary_Item", "ITEM") & $"  {itemString}"
             End If
             Dim textPosition = New Vector2(665, 477)
             Dim shadowPosition = textPosition + New Vector2(2)
@@ -1256,7 +1253,7 @@ Public Class StorageSystemScreen
 
         Public Sub New(ByVal index As Integer)
             Me.index = index
-            Me.Name = $"BOX {index + 1}"
+            Me.Name = CStr(Localization.GetString("storage_screen_box_DefaultName", "BOX [NUMBER]")).Replace("[NUMBER]", $"{index + 1}")
             Me.Background = index
         End Sub
 
@@ -1276,7 +1273,7 @@ Public Class StorageSystemScreen
             End Get
             Set(value As Boolean)
                 Me._isBattleBox = value
-                If Me._isBattleBox Then Me.Name = "BATTLE BOX"
+                If Me._isBattleBox Then Me.Name = Localization.GetString("storage_screen_box_BattleBoxName", "BATTLE BOX")
             End Set
         End Property
 
