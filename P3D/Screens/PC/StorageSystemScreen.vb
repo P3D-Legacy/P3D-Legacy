@@ -178,14 +178,12 @@ Public Class StorageSystemScreen
                 If CursorMoving Then
                     MoveCursor()
                 Else
-                    If ControllerHandler.ButtonPressed(Buttons.RightTrigger) Or Controls.Right(True, False, True, False, False, False) Then
-                        Me.CurrentBox += 1
-                        If CurrentBox > Me.Boxes.Count - 1 Then CurrentBox = 0
-                    End If
-                    If ControllerHandler.ButtonPressed(Buttons.LeftTrigger) Or Controls.Left(True, False, True, False, False, False) Then
-                        Me.CurrentBox -= 1
-                        If CurrentBox < 0 Then CurrentBox = Me.Boxes.Count - 1
-                    End If
+                    Dim rightInput = ControllerHandler.ButtonPressed(Buttons.RightTrigger) Or Controls.Right(True, False, True, False, False, False)
+                    Dim leftInput = ControllerHandler.ButtonPressed(Buttons.LeftTrigger) Or Controls.Left(True, False, True, False, False, False)
+                    If leftInput Then Me.CurrentBox -= 1
+                    If rightInput Then Me.CurrentBox += 1
+                    If CurrentBox < 0 Then CurrentBox = Me.Boxes.Count - 1
+                    If CurrentBox > Me.Boxes.Count - 1 Then CurrentBox = 0
 
                     PressNumberButtons()
 
@@ -215,15 +213,13 @@ Public Class StorageSystemScreen
     Private Sub TurnModel()
         If Controls.ShiftDown("L", False) Then modelRoll -= 0.1F
         If Controls.ShiftDown("R", False) Then modelRoll += 0.1F
-
-        If ControllerHandler.ButtonDown(Buttons.RightThumbstickLeft Or Buttons.RightThumbstickRight) Then
-            Dim gPadState = GamePad.GetState(PlayerIndex.One)
-            modelRoll -= gPadState.ThumbSticks.Right.X * 0.1F
-        End If
+        If Not ControllerHandler.ButtonDown(Buttons.RightThumbstickLeft Or Buttons.RightThumbstickRight) Then Return
+        Dim gPadState = GamePad.GetState(PlayerIndex.One)
+        modelRoll -= gPadState.ThumbSticks.Right.X * 0.1F
     End Sub
 
     Private Sub PressNumberButtons()
-        Dim switchTo As Integer = If(KeyBoardHandler.KeyPressed(Keys.D0), 9, -1)
+        Dim switchTo = If(KeyBoardHandler.KeyPressed(Keys.D0), 9, -1)
         If switchTo < 0 Then
             Dim keysPressed = KeyBoardHandler.GetPressedKeys.Where(Function(key) key >= Keys.D1 AndAlso key <= Keys.D9)
             switchTo = If(keysPressed.Count < 1, switchTo, keysPressed.Max() - Keys.D1)
@@ -234,45 +230,38 @@ Public Class StorageSystemScreen
     End Sub
 
     Private Sub ChooseObject()
-        Select Case CursorPosition.Y
-            Case 0
-                Select Case CursorPosition.X
-                    Case 0
-                        Me.CurrentBox -= 1
-                        If CurrentBox < 0 Then CurrentBox = Me.Boxes.Count - 1
-                    Case 1, 2, 3, 4
-                        If Me.BoxChooseMode Then
-                            Me.BoxChooseMode = False
-                            Exit Select
-                        End If
-                        Dim entries = New List(Of MenuEntry)
-                        entries.Add(New MenuEntry(3, "Choose Box", False, Sub() Me.BoxChooseMode = Not Me.BoxChooseMode))
-                        entries.Add(New MenuEntry(4, "Change Mode", False, AddressOf Me.ChangemodeMenu))
-                        Dim battlebox = GetBox(CurrentBox).IsBattleBox
-                        If Not battlebox Then
-                            entries.Add(New MenuEntry(5, "Wallpaper", False, AddressOf WallpaperMain))
-                            entries.Add(New MenuEntry(6, "Name", False, AddressOf SelectNameBox))
-                        End If
-                        entries.Add(New MenuEntry(entries.Max(Function(x) x.Index) + 1, "Cancel", True, Nothing))
-                        Me.SetupMenu(entries.ToArray(), "What do you want to do?")
-                    Case 5
-                        Me.CurrentBox += 1
-                        If CurrentBox > Me.Boxes.Count - 1 Then CurrentBox = 0
-                    Case 6
-                        SelectPokemon()
-                End Select
-            Case 1, 2, 3, 4, 5
-                If BoxChooseMode And CursorPosition.X < 6 And CursorPosition.Y > 0 Then
-                    Dim id = CInt(CursorPosition.X) + CInt((CursorPosition.Y - 1) * 6)
-
-                    If GetBox(id) IsNot Nothing Then
-                        Me.CurrentBox = id
-                        Me.BoxChooseMode = False
-                    End If
-                Else
-                    SelectPokemon()
+        If CursorPosition.Y = 0 Then
+            If CursorPosition.X = 0 Then Me.CurrentBox -= 1
+            If CursorPosition.X = 5 Then Me.CurrentBox += 1
+            If CurrentBox < 0 Then CurrentBox = Me.Boxes.Count - 1
+            If CurrentBox > Me.Boxes.Count - 1 Then CurrentBox = 0
+            If CursorPosition.X = 6 Then
+                SelectPokemon()
+            ElseIf CursorPosition.X > 0 AndAlso CursorPosition.X < 5 Then
+                If Me.BoxChooseMode Then
+                    Me.BoxChooseMode = False
+                    Return
                 End If
-        End Select
+                Dim entries = New List(Of MenuEntry)
+                entries.Add(New MenuEntry(3, "Choose Box", False, Sub() Me.BoxChooseMode = Not Me.BoxChooseMode))
+                entries.Add(New MenuEntry(4, "Change Mode", False, AddressOf Me.ChangemodeMenu))
+                If Not GetBox(CurrentBox).IsBattleBox Then
+                    entries.Add(New MenuEntry(5, "Wallpaper", False, AddressOf WallpaperMain))
+                    entries.Add(New MenuEntry(6, "Name", False, AddressOf SelectNameBox))
+                End If
+                entries.Add(New MenuEntry(entries.Max(Function(x) x.Index) + 1, "Cancel", True, Nothing))
+                Me.SetupMenu(entries.ToArray(), "What do you want to do?")
+            End If
+        ElseIf CursorPosition.Y < 6 Then
+            If Not BoxChooseMode Or CursorPosition.X > 5 Or CursorPosition.Y < 1 Then
+                SelectPokemon()
+                Return
+            End If
+            Dim id = CInt(CursorPosition.X + (CursorPosition.Y - 1) * 6)
+            If GetBox(id) Is Nothing Then Return
+            Me.CurrentBox = id
+            Me.BoxChooseMode = False
+        End If
     End Sub
 
     Private Sub ChangemodeMenu()
@@ -463,30 +452,30 @@ Public Class StorageSystemScreen
     Private Sub CloseScreen()
         If Me.BoxChooseMode Then
             Me.BoxChooseMode = False
-        Else
-            If MovingPokemon IsNot Nothing Then
-                If PickupPlace.X = 6 Then
-                    Core.Player.Pokemons.Add(Me.MovingPokemon)
-                Else
-                    Dim id = CInt(PickupPlace.X) + CInt((PickupPlace.Y - 1) * 6)
-
-                    Dim box = GetBox(PickupBox)
-                    Dim index = If(box.IsBattleBox, box.Pokemon.Count, id)
-                    box.Pokemon.Add(index, New PokemonWrapper(Me.MovingPokemon)) ' Me.MovingPokemon))
-
-                    CurrentBox = PickupBox
-                End If
-                Me.MovingPokemon = Nothing
+            Return
+        End If
+        If MovingPokemon IsNot Nothing Then
+            If PickupPlace.X = 6 Then
+                Core.Player.Pokemons.Add(Me.MovingPokemon)
             Else
-                Player.Temp.StorageSystemCursorPosition = Me.CursorPosition
-                Player.Temp.PCBoxIndex = Me.CurrentBox
-                Player.Temp.PCBoxChooseMode = Me.BoxChooseMode
-                Player.Temp.PCSelectionType = Me.SelectionMode
+                Dim id = CInt(PickupPlace.X) + CInt((PickupPlace.Y - 1) * 6)
 
-                Core.Player.BoxData = GetBoxSaveData(Me.Boxes)
+                Dim box = GetBox(PickupBox)
+                Dim index = If(box.IsBattleBox, box.Pokemon.Count, id)
+                box.Pokemon.Add(index, New PokemonWrapper(Me.MovingPokemon)) ' Me.MovingPokemon))
 
-                Core.SetScreen(New TransitionScreen(Me, Me.PreScreen, Color.Black, False))
+                CurrentBox = PickupBox
             End If
+            Me.MovingPokemon = Nothing
+        Else
+            Player.Temp.StorageSystemCursorPosition = Me.CursorPosition
+            Player.Temp.PCBoxIndex = Me.CurrentBox
+            Player.Temp.PCBoxChooseMode = Me.BoxChooseMode
+            Player.Temp.PCSelectionType = Me.SelectionMode
+
+            Core.Player.BoxData = GetBoxSaveData(Me.Boxes)
+
+            Core.SetScreen(New TransitionScreen(Me, Me.PreScreen, Color.Black, False))
         End If
     End Sub
 
@@ -526,59 +515,50 @@ Public Class StorageSystemScreen
             newData.Add($"{boxes.Count - 1 + addedBoxes},{i},{battleBox.Pokemon(i).PokemonData}")
         Next
 
-        Dim returnData = ""
-        For Each l As String In newData
-            If returnData <> "" Then returnData &= Environment.NewLine
-            returnData &= l
-        Next
-
-        Return returnData
+        Return String.Join(Environment.NewLine, newData)
     End Function
 
     Private Function GetRelativeMousePosition() As Vector2
         For x = 0 To 5
             For y = 0 To 4
-                If New Rectangle(50 + x * 100, 200 + y * 84, 64, 64).Contains(MouseHandler.MousePosition) Then
-                    Return New Vector2(x, y + 1)
-                End If
+                Dim boxTile = New Rectangle(50 + x * 100, 200 + y * 84, 64, 64)
+                If boxTile.Contains(MouseHandler.MousePosition) Then Return New Vector2(x, y + 1)
             Next
         Next
 
         For y = 0 To 5
-            If New Rectangle(Core.windowSize.Width - 260, y * 100 + 50, 128, 80).Contains(MouseHandler.MousePosition) Then
-                Return New Vector2(6, y)
-            End If
+            Dim partyTile = New Rectangle(Core.windowSize.Width - 260, y * 100 + 50, 128, 80)
+            If partyTile.Contains(MouseHandler.MousePosition) Then Return New Vector2(6, y)
         Next
 
-        If New Rectangle(10, 52, 96, 96).Contains(MouseHandler.MousePosition) Then Return New Vector2(0, 0)
-        If New Rectangle(655, 52, 96, 96).Contains(MouseHandler.MousePosition) Then Return New Vector2(5, 0)
-        If New Rectangle(80, 50, 600, 100).Contains(MouseHandler.MousePosition) Then Return New Vector2(1, 0)
+        Dim labelArea = New Rectangle(80, 50, 600, 100)
+        Dim leftArrowArea = New Rectangle(10, 52, 96, 96)
+        Dim rightArrowArea = New Rectangle(655, 52, 96, 96)
+        If labelArea.Contains(MouseHandler.MousePosition) Then Return New Vector2(1, 0)
+        If leftArrowArea.Contains(MouseHandler.MousePosition) Then Return New Vector2(0, 0)
+        If rightArrowArea.Contains(MouseHandler.MousePosition) Then Return New Vector2(5, 0)
 
 
         Return New Vector2(-1)
     End Function
 
     Private Function GetAbsoluteCursorPosition(ByVal relPos As Vector2) As Vector2
-        Select Case relPos.Y
-            Case 0
-                Select Case relPos.X
-                    Case 0
-                        Return New Vector2(60, 20)
-                    Case 1, 2, 3, 4
-                        Return New Vector2(380, 30)
-                    Case 5
-                        Return New Vector2(705, 20)
-                    Case 6
-                        Return New Vector2(Core.windowSize.Width - 200, 20)
-                End Select
-            Case 1, 2, 3, 4, 5
-                Select Case relPos.X
-                    Case 0, 1, 2, 3, 4, 5
-                        Return New Vector2(50 + relPos.X * 100 + 42, 200 + (relPos.Y - 1) * 84 - 42)
-                    Case 6
-                        Return New Vector2(Core.windowSize.Width - 200, 20 + 100 * relPos.Y)
-                End Select
-        End Select
+        If relPos.Y = 0 Then
+            If relPos.X < 0 Or relPos.X > 6 Then Return New Vector2()
+            Dim leftArrow = New Vector2(60, 20)
+            Dim rightArrow = New Vector2(705, 20)
+            Dim label = New Vector2(380, 30)
+            Dim party = New Vector2(Core.windowSize.Width - 200, 20)
+            Dim positions = {leftArrow, label, label, label, label, rightArrow, party}
+            Return positions(CInt(relPos.X))
+        End If
+        If relPos.Y > 0 And relPos.Y < 6 Then
+            Dim boxTile = New Vector2(50 + relPos.X * 100 + 42, 200 + (relPos.Y - 1) * 84 - 42)
+            Dim partyTile = New Vector2(Core.windowSize.Width - 200, 20 + 100 * relPos.Y)
+            If relPos.X >= 0 And relPos.X < 6 Then Return boxTile
+            If relPos.X = 6 Then Return partyTile
+        End If
+        Return New Vector2()
     End Function
 
     Private Function GetBattleBoxID() As Integer
@@ -605,7 +585,7 @@ Public Class StorageSystemScreen
 
 
         If box.Pokemon.ContainsKey(id) And CursorPosition.X < 6 Or CursorPosition.X = 6 And Core.Player.Pokemons.Count - 1 >= CInt(CursorPosition.Y) Then
-            Dim p = If(CursorPosition.X = 6, Core.Player.Pokemons(CInt(CursorPosition.Y)), box.Pokemon(id).GetPokemon())
+            Dim p = If(CursorPosition.X = 6, Core.Player.Pokemons(CInt(CursorPosition.Y)), box.Pokemon(id).pokemon)
 
             Dim entries = New List(Of MenuEntry)
 
@@ -621,7 +601,7 @@ Public Class StorageSystemScreen
 
             Dim itemOffset = If(p.Item IsNot Nothing, 1, 0)
 
-            If p.Item IsNot Nothing Then entries.Add(New MenuEntry(5, "Take Item", False, AddressOf TakeItemPokemon))
+            If p.Item IsNot Nothing Then entries.Add(New MenuEntry(5, "Take Item", False, Sub() TakeItemPokemon()))
             entries.Add(New MenuEntry(5 + itemOffset, "Release", False, AddressOf ReleasePokemon))
             entries.Add(New MenuEntry(6 + itemOffset, "Cancel", True, Nothing))
             SetupMenu(entries.ToArray(), p.GetDisplayName() & " is selected.")
@@ -669,7 +649,7 @@ Public Class StorageSystemScreen
 
             If pokemonExists Then
                 If Me.MovingPokemon Is Nothing Then
-                    Me.MovingPokemon = box.Pokemon(id).GetPokemon()
+                    Me.MovingPokemon = box.Pokemon(id).pokemon
                     box.Pokemon.Remove(id)
 
                     PickupBox = CurrentBox
@@ -677,7 +657,7 @@ Public Class StorageSystemScreen
                     RearrangeBattleBox(box)
                 Else
                     Me.MovingPokemon.FullRestore()
-                    Dim sPokemon = box.Pokemon(id).GetPokemon()
+                    Dim sPokemon = box.Pokemon(id).pokemon
                     box.Pokemon(id) = New PokemonWrapper(Me.MovingPokemon) ' Me.MovingPokemon
                     Me.MovingPokemon = sPokemon
                 End If
@@ -700,7 +680,7 @@ Public Class StorageSystemScreen
         If Core.Player.Pokemons.Count > 5 Then
             SetupMenu({New MenuEntry(3, "OK", True, Nothing)}, "Party is full!")
         ElseIf box.Pokemon.ContainsKey(id) Then
-            Core.Player.Pokemons.Add(box.Pokemon(id).GetPokemon())
+            Core.Player.Pokemons.Add(box.Pokemon(id).pokemon)
             box.Pokemon.Remove(id)
         End If
         RearrangeBattleBox(box)
@@ -735,30 +715,33 @@ Public Class StorageSystemScreen
         Dim box = GetBox(CurrentBox)
         Dim id = If(box.IsBattleBox, GetBattleBoxID(), CInt(CursorPosition.X) + CInt((CursorPosition.Y - 1) * 6))
         Dim pokemonList = box.GetPokemonList()
-        Dim partyIndex = pokemonList.IndexOf(box.Pokemon(id).GetPokemon())
+        Dim partyIndex = pokemonList.IndexOf(box.Pokemon(id).pokemon)
 
         Core.SetScreen(New SummaryScreen(Me, pokemonList.ToArray(), partyIndex))
     End Sub
 
-    Private Sub TakeItemPokemon()
+    Private Function TakeItemPokemon(Optional logImmediate As Boolean = True) As String
         Dim box = GetBox(CurrentBox)
         Dim id = If(box.IsBattleBox, GetBattleBoxID(), CInt(CursorPosition.X) + CInt((CursorPosition.Y - 1) * 6))
-        Dim pokemon = If(CursorPosition.X = 6, Core.Player.Pokemons(CInt(CursorPosition.Y)), box.Pokemon(id).GetPokemon)
-        If pokemon.Item Is Nothing Then Return
+        Dim pokemon = If(CursorPosition.X = 6, Core.Player.Pokemons(CInt(CursorPosition.Y)), box.Pokemon(id).pokemon)
+        Dim message = ""
+        If pokemon.Item Is Nothing Then Return message
         If pokemon.Item.IsMail And pokemon.Item.AdditionalData <> "" Then
-            Screen.TextBox.Show("The Mail was taken to your~inbox on your PC.")
+            message = "The Mail was taken to your~inbox on your PC."
 
             Core.Player.Mails.Add(Items.MailItem.GetMailDataFromString(pokemon.Item.AdditionalData))
 
         Else
-            Screen.TextBox.Show($"Taken {pokemon.Item.OneLineName()}~from {pokemon.GetDisplayName()}.")
+            message = $"Taken {pokemon.Item.OneLineName()}~from {pokemon.GetDisplayName()}."
             Dim ItemID = If(pokemon.Item.IsGameModeItem, pokemon.Item.gmID, pokemon.Item.ID.ToString())
 
             Core.Player.Inventory.AddItem(ItemID, 1)
 
         End If
+        If logImmediate Then Screen.TextBox.Show(message)
         pokemon.Item = Nothing
-    End Sub
+        Return message
+    End Function
 
     Private Sub ReleasePokemon()
         Dim hasPokemon = False
@@ -777,7 +760,7 @@ Public Class StorageSystemScreen
             Dim id = If(box.IsBattleBox, GetBattleBoxID(), CInt(CursorPosition.X) + CInt((CursorPosition.Y - 1) * 6))
 
 
-            Dim p = If(CursorPosition.X = 6, Core.Player.Pokemons(CInt(CursorPosition.Y)), box.Pokemon(id).GetPokemon())
+            Dim p = If(CursorPosition.X = 6, Core.Player.Pokemons(CInt(CursorPosition.Y)), box.Pokemon(id).pokemon)
 
             If Not p.IsEgg() Then
                 Dim e1 = New MenuEntry(3, "No", True, AddressOf SelectPokemon)
@@ -794,22 +777,10 @@ Public Class StorageSystemScreen
     Private Sub ConfirmRelease()
         Dim id = CInt(CursorPosition.X) + CInt((CursorPosition.Y - 1) * 6)
         Dim box = GetBox(CurrentBox)
-        Dim pokemon = If(CursorPosition.X = 6, Core.Player.Pokemons(CInt(CursorPosition.Y)), box.Pokemon(id).GetPokemon())
+        Dim pokemon = If(CursorPosition.X = 6, Core.Player.Pokemons(CInt(CursorPosition.Y)), box.Pokemon(id).pokemon)
         Dim text = ""
-        If pokemon.Item IsNot Nothing Then
-            If pokemon.Item.IsMail And pokemon.Item.AdditionalData <> "" Then
-            text &= "The Mail was taken to your~inbox on your PC."
-
-                Core.Player.Mails.Add(Items.MailItem.GetMailDataFromString(pokemon.Item.AdditionalData))
-
-            Else
-                Dim ItemID = If(pokemon.Item.IsGameModeItem, pokemon.Item.gmID, pokemon.Item.ID.ToString())
-                Core.Player.Inventory.AddItem(ItemID, 1)
-                text &= $"Taken {pokemon.Item.OneLineName()}~from {pokemon.GetDisplayName()}."
-            End If
-            pokemon.Item = Nothing
-        End If
-        If s <> "" Then s &= "*"
+        If pokemon.Item IsNot Nothing Then text &= Me.TakeItemPokemon(False)
+        If text <> "" Then text &= "*"
         text &= $"Goodbye, {pokemon.GetDisplayName()}!"
         Screen.TextBox.Show(text)
 
@@ -842,8 +813,8 @@ Public Class StorageSystemScreen
         DrawTopBar()
         DrawTeamWindow()
 
-        Dim action = If(Me.MenuVisible, CType(AddressOf Me.DrawMenuEntries, Action), AddressOf Me.DrawCursor)
-        action()
+        Dim Draw = If(Me.MenuVisible, CType(AddressOf Me.DrawMenuEntries, Action), AddressOf Me.DrawCursor)
+        Draw()
         TextBox.Draw()
 
     End Sub
@@ -851,7 +822,7 @@ Public Class StorageSystemScreen
     Private Sub DrawTopBar()
         Dim boxIndex = Me.CurrentBox
         If BoxChooseMode Then
-            boxIndex = If(CursorPosition.X < 6 And CursorPosition.Y > 0, CInt(CursorPosition.X) + CInt((CursorPosition.Y - 1) * 6), CurrentBox)
+            boxIndex = If(CursorPosition.X < 6 And CursorPosition.Y > 0, CInt(CursorPosition.X + (CursorPosition.Y - 1) * 6), CurrentBox)
         End If
         Dim b = GetBox(boxIndex)
 
@@ -864,40 +835,71 @@ Public Class StorageSystemScreen
         Canvas.DrawScrollBar(New Vector2(80, 36), Me.Boxes.Count, 1, boxIndex, New Size(600, 14), True, Color.TransparentBlack, cArr(0))
 
 
+        Dim font = FontManager.MainFont
+        Dim textWidth = font.MeasureString(b.Name).X
+        Dim labelPosition = New Vector2(380 - textWidth, 76)
+        Dim labelShadowPosition = labelPosition + New Vector2(4)
 
-        Core.SpriteBatch.DrawString(FontManager.MainFont, b.Name, New Vector2(384 - FontManager.MainFont.MeasureString(b.Name).X, 80), Color.Black, 0.0F, New Vector2(0), 2, SpriteEffects.None, 0.0F)
-        Core.SpriteBatch.DrawString(FontManager.MainFont, b.Name, New Vector2(380 - FontManager.MainFont.MeasureString(b.Name).X, 76), Color.White, 0.0F, New Vector2(0), 2, SpriteEffects.None, 0.0F)
+        Core.SpriteBatch.DrawString(font, b.Name, labelShadowPosition, Color.Black, 0.0F, Vector2.Zero, 2, SpriteEffects.None, 0.0F)
+        Core.SpriteBatch.DrawString(font, b.Name, labelPosition, Color.White, 0.0F, Vector2.Zero, 2, SpriteEffects.None, 0.0F)
 
-        Core.SpriteBatch.Draw(Me.menuTexture, New Rectangle(10, 52, 96, 96), New Rectangle(0, 16, 16, 16), Color.White)
-        Core.SpriteBatch.Draw(Me.menuTexture, New Rectangle(655, 52, 96, 96), New Rectangle(0, 16, 16, 16), Color.White, 0.0F, New Vector2(0), SpriteEffects.FlipHorizontally, 0.0F)
+        Dim textureArea = New Rectangle(0, 16, 16, 16)
+        Dim leftArrowArea = New Rectangle(10, 52, 96, 96)
+        Dim rightArrowArea = New Rectangle(655, 52, 96, 96)
+        Core.SpriteBatch.Draw(Me.menuTexture, leftArrowArea, textureArea, Color.White)
+        Core.SpriteBatch.Draw(Me.menuTexture, rightArrowArea, textureArea, Color.White, 0.0F, Vector2.Zero, SpriteEffects.FlipHorizontally, 0.0F)
+    End Sub
+
+    Private Sub DrawPokemonIcon(area As Rectangle, pokemon As Pokemon, Optional drawItem As Boolean = False, Optional drawShadow As Boolean = False)
+        Dim light = If(IsLit(pokemon), Color.White, New Color(65, 65, 65, 255))
+        Dim texture = pokemon.GetMenuTexture()
+        If drawShadow Then
+            Dim shadowArea = New Rectangle(area.Location + New Point(10, 10), area.Size)
+            Core.SpriteBatch.Draw(texture, shadowArea, New Color(0, 0, 0, 150))
+        End If
+        Core.SpriteBatch.Draw(texture, area, light)
+        If pokemon.IsEgg() Or Not drawItem Or pokemon.Item Is Nothing Then Return
+        Dim itemArea = New Rectangle(area.Location + New Point(32), New Point(24))
+        Core.SpriteBatch.Draw(pokemon.Item.Texture, itemArea, Color.White)
     End Sub
 
     Private Sub DrawMainWindow()
+        Dim backgroundColor = New Color(220, 220, 220)
+        Dim TilePosition = Function(x As Integer, y As Integer) New Point(x, y) * New Point(100, 84) + New Point(50, 200)
         If BoxChooseMode Then
-            Canvas.DrawRectangle(Core.windowSize, New Color(220, 220, 220))
+            Canvas.DrawRectangle(Core.windowSize, backgroundColor)
 
             For x = 0 To 5
                 For y = 0 To 4
                     Dim id = y * 6 + x
 
                     If Me.Boxes.Count - 1 < id Then Continue For
-                    Dim pCount = BoxPokemonCount(id, True)
+                    Dim pBox = Me.GetBox(id)
+                    Dim pCount = If(pBox Is Nothing, 0, pBox.Pokemon.Values.Where(Function(p) IsLit(p.pokemon)).Count())
 
-                    Dim tCoord = New Point(64, 0)
-                    If pCount = 0 Then tCoord = New Point(64, 32)
-                    If pCount = 30 Then tCoord = New Point(32, 32)
+                    Dim empty = New Point(64, 32)
+                    Dim notEmpty = New Point(64, 0)
+                    Dim full = New Point(32, 32)
+                    Dim tCoord = notEmpty
+                    If pCount = 0 Then tCoord = empty
+                    If pCount = 30 Then tCoord = full
 
-                    Core.SpriteBatch.Draw(Me.texture, New Rectangle(50 + x * 100, 200 + y * 84, 64, 64), New Rectangle(tCoord, New Point(32)), Color.White)
+                    Dim tileArea = New Rectangle(TilePosition(x, y), New Point(64))
+                    Dim textureArea = New Rectangle(tCoord, New Point(32))
+                    Core.SpriteBatch.Draw(Me.texture, tileArea, textureArea, Color.White)
                 Next
             Next
             Return
         End If
         Dim box = GetBox(CurrentBox)
+        Dim wrapper As PokemonWrapper = Nothing
+        Dim cArr(0) As Color
+        Dim background = If(box.IsBattleBox, "GUI\Box\Battlebox", $"GUI\Box\{box.Background}")
+        TextureManager.GetTexture(background, New Rectangle(0, 0, 1, 1), "").GetData(cArr, 0, 1)
+        backgroundColor = New Color(cArr(0).R, cArr(0).G, cArr(0).B, 150)
         If box.IsBattleBox Then
             Canvas.DrawGradient(Core.windowSize, New Color(203, 40, 41), New Color(238, 128, 128), False, -1)
 
-            Dim cArr(0) As Color
-            TextureManager.GetTexture("GUI\Box\BattleBox", New Rectangle(0, 0, 1, 1), "").GetData(cArr)
 
             For i = 0 To 5
                 Dim x = i + 2
@@ -906,16 +908,10 @@ Public Class StorageSystemScreen
                     x -= 2
                     y += 1
                 End While
-                Canvas.DrawRectangle(New Rectangle(50 + x * 100, 200 + y * 84, 64, 64), New Color(cArr(0).R, cArr(0).G, cArr(0).B, 150))
-
-                If Not box.Pokemon.ContainsKey(i) Then Continue For
-                Dim pokemon = box.Pokemon(i).GetPokemon()
-                Dim c = If(IsLit(pokemon), Color.White, New Color(65, 65, 65, 255))
-                Dim pokeTexture = pokemon.GetMenuTexture()
-                Dim pokeTextureScale = New Vector2(CSng(32 / pokeTexture.Width) * 2, CSng(32 / pokeTexture.Height) * 2)
-                Core.SpriteBatch.Draw(pokeTexture, New Rectangle(50 + x * 100, 200 + y * 84, CInt(pokeTexture.Width * pokeTextureScale.X), CInt(pokeTexture.Height * pokeTextureScale.Y)), c)
-                If pokemon.Item Is Nothing Or pokemon.IsEgg() Then Continue For
-                Core.SpriteBatch.Draw(pokemon.Item.Texture, New Rectangle(CInt(50 + x * 100 + 32), CInt(200 + y * 84 + 32), 24, 24), Color.White)
+                Dim area = New Rectangle(TilePosition(x, y), New Point(64))
+                Canvas.DrawRectangle(area, backgroundColor)
+                If Not box.Pokemon.TryGetValue(i, wrapper) Then Continue For
+                Me.DrawPokemonIcon(area, wrapper.pokemon, True)
             Next
         Else
             Dim xt = box.Background
@@ -930,26 +926,21 @@ Public Class StorageSystemScreen
                 Next
             Next
 
-            Dim cArr(0) As Color
-            TextureManager.GetTexture("GUI\Box\" & box.Background, New Rectangle(0, 0, 1, 1), "").GetData(cArr)
             For x = 0 To 5
                 For y = 0 To 4
                     Dim id = y * 6 + x
 
-                    Canvas.DrawRectangle(New Rectangle(50 + x * 100, 200 + y * 84, 64, 64), New Color(cArr(0).R, cArr(0).G, cArr(0).B, 150))
-
-                    If Not box.Pokemon.ContainsKey(id) Then Continue For
-                    Dim pokemon = box.Pokemon(id).GetPokemon()
-                    Dim c = If(IsLit(pokemon), Color.White, New Color(65, 65, 65, 255))
-                    Dim pokeTexture = pokemon.GetMenuTexture()
-                    Dim pokeTextureScale = New Vector2(CSng(32 / pokeTexture.Width) * 2, CSng(32 / pokeTexture.Height) * 2)
-                    Core.SpriteBatch.Draw(pokeTexture, New Rectangle(50 + x * 100, 200 + y * 84, CInt(pokeTexture.Width * pokeTextureScale.X), CInt(pokeTexture.Height * pokeTextureScale.Y)), c)
-                    If pokemon.Item Is Nothing Or pokemon.IsEgg() Then Continue For
-                    Core.SpriteBatch.Draw(pokemon.Item.Texture, New Rectangle(CInt(50 + x * 100 + 32), CInt(200 + y * 84 + 32), 24, 24), Color.White)
+                    Dim area = New Rectangle(TilePosition(x, y), New Point(64))
+                    Canvas.DrawRectangle(area, backgroundColor)
+                    If Not box.Pokemon.TryGetValue(id, wrapper) Then Continue For
+                    Me.DrawPokemonIcon(area, wrapper.pokemon, True)
                 Next
             Next
-            Core.SpriteBatch.DrawString(FontManager.MainFont, "Press" & " " & KeyBindings.SpecialKey.ToString & " " & "on the keyboard to filter.", New Vector2(44, 200 + 5 * 84), Color.Black)
-            Core.SpriteBatch.DrawString(FontManager.MainFont, "Press" & " " & KeyBindings.SpecialKey.ToString & " " & "on the keyboard to filter.", New Vector2(44 - 2, 200 + 5 * 84 - 2), Color.White)
+            Dim text = $"Press {KeyBindings.SpecialKey} on the keyboard to filter."
+            Dim textPosition = New Vector2(44, 200 + 5 * 84)
+            Dim shadowPosition = textPosition + New Vector2(2)
+            Core.SpriteBatch.DrawString(FontManager.MainFont, text, shadowPosition, Color.Black)
+            Core.SpriteBatch.DrawString(FontManager.MainFont, text, textPosition, Color.White)
         End If
     End Sub
 
@@ -957,44 +948,45 @@ Public Class StorageSystemScreen
 
     Private Sub DrawPokemonStatus()
         If Me.BoxChooseMode And CursorPosition.X < 6 And CursorPosition.Y > 0 Then
-            Dim box = GetBox(CInt(CursorPosition.X) + CInt((CursorPosition.Y - 1) * 6))
+            Dim box = GetBox(CInt(CursorPosition.X + (CursorPosition.Y - 1) * 6))
 
-            If box IsNot Nothing Then
-                Canvas.DrawRectangle(New Rectangle(660, 200, 200, 200), New Color(84, 198, 216, 150))
+            If box Is Nothing Then Return
+            Dim overviewArea = New Rectangle(660, 200, 200, 200)
+            Dim detailsArea = New Rectangle(660, 410, 200, 210)
+            Canvas.DrawRectangle(overviewArea, New Color(84, 198, 216, 150))
 
-                Dim minLevel = -1
-                Dim maxLevel = -1
+            Dim minLevel = Integer.MaxValue
+            Dim maxLevel = Integer.MinValue
 
-                For x = 0 To 5
-                    For y = 0 To 4
-                        Dim id = y * 6 + x
+            For x = 0 To 5
+                For y = 0 To 4
+                    Dim id = y * 6 + x
 
-                        If Not box.Pokemon.ContainsKey(id) Then Continue For
-                        Dim pokemon = box.Pokemon(id).GetPokemon()
-                        Dim c = If(IsLit(pokemon), Color.White, New Color(65, 65, 65, 255))
+                    Dim wrapper As PokemonWrapper = Nothing
+                    If Not box.Pokemon.TryGetValue(id, wrapper) Then Continue For
+                    Dim position = New Point(x, y) * New Point(32) + New Point(664, 215)
+                    Dim pokemon = wrapper.pokemon
+                    Me.DrawPokemonIcon(New Rectangle(position, New Point(32)), pokemon)
 
-                        Dim pokeTexture = pokemon.GetMenuTexture()
-                        Dim pokeTextureScale = New Vector2(CSng(32 / pokeTexture.Width), CSng(32 / pokeTexture.Height))
-                        Core.SpriteBatch.Draw(pokeTexture, New Rectangle(664 + x * 32, 215 + y * 32, CInt(pokeTexture.Width * pokeTextureScale.X), CInt(pokeTexture.Height * pokeTextureScale.Y)), c)
-
-                        If pokemon.Level < minLevel Or minLevel = -1 Then minLevel = pokemon.Level
-                        If pokemon.Level > maxLevel Or maxLevel = -1 Then maxLevel = pokemon.Level
-                    Next
+                    minLevel = Math.Min(minLevel, pokemon.Level)
+                    maxLevel = Math.Max(maxLevel, pokemon.Level)
                 Next
+            Next
 
-                Canvas.DrawRectangle(New Rectangle(660, 410, 200, 210), New Color(84, 198, 216, 150))
+            Canvas.DrawRectangle(detailsArea, New Color(84, 198, 216, 150))
 
-                Dim levelString = If(minLevel = -1 Or maxLevel = -1, "None", $"{minLevel} - {maxLevel}")
+            Dim levelString = If(minLevel = Integer.MaxValue Or maxLevel = Integer.MinValue, "None", $"{minLevel} - {maxLevel}")
 
-                Dim maxPokemon = If(box.IsBattleBox, 6, 30)
+            Dim maxPokemon = If(box.IsBattleBox, 6, 30)
 
-                Dim t = $"Box:  {box.Name}{Environment.NewLine}"
-                t &= $"Pokémon:  {box.Pokemon.Count} / {maxPokemon}{Environment.NewLine}"
-                t &= $"Level:  {levelString}"
+            Dim t = $"Box:  {box.Name}{Environment.NewLine}"
+            t &= $"Pokémon:  {box.Pokemon.Count} / {maxPokemon}{Environment.NewLine}"
+            t &= $"Level:  {levelString}"
 
-                Core.SpriteBatch.DrawString(FontManager.MainFont, t, New Vector2(667, 417), Color.Black)
-                Core.SpriteBatch.DrawString(FontManager.MainFont, t, New Vector2(665, 415), Color.White)
-            End If
+            Dim infoPosition = New Vector2(665, 415)
+            Dim shadowPosition = infoPosition + New Vector2(2)
+            Core.SpriteBatch.DrawString(FontManager.MainFont, t, shadowPosition, Color.Black)
+            Core.SpriteBatch.DrawString(FontManager.MainFont, t, infoPosition, Color.White)
         Else
             Dim box = GetBox(CurrentBox)
             Dim p = Me.MovingPokemon
@@ -1005,62 +997,64 @@ Public Class StorageSystemScreen
                         p = Core.Player.Pokemons(CInt(CursorPosition.Y))
                     End If
                 Else
-                    Dim id = If(box.IsBattleBox, GetBattleBoxID(), CInt(Me.CursorPosition.X) + CInt((Me.CursorPosition.Y - 1) * 6))
+                    Dim id = If(box.IsBattleBox, GetBattleBoxID(), CInt(Me.CursorPosition.X + (Me.CursorPosition.Y - 1) * 6))
 
 
                     If box.Pokemon.ContainsKey(id) Then
-                        p = box.Pokemon(id).GetPokemon()
+                        p = box.Pokemon(id).pokemon
                     End If
                 End If
             End If
 
-            If p IsNot Nothing Then
-                Dim cArr(0) As Color
+            If p Is Nothing Then Return
+            Dim cArr(0) As Color
 
-                Dim texturePath = If(box.IsBattleBox, "GUI\Box\BattleBox", $"GUI\Box\{box.Background}")
-                TextureManager.GetTexture(texturePath, New Rectangle(0, 0, 1, 1), "").GetData(cArr)
+            Dim texturePath = If(box.IsBattleBox, "GUI\Box\BattleBox", $"GUI\Box\{box.Background}")
+            TextureManager.GetTexture(texturePath, New Rectangle(0, 0, 1, 1), "").GetData(cArr, 0, 1)
 
-                Dim c = If(BoxChooseMode, New Color(84, 198, 216, 150), New Color(cArr(0).R, cArr(0).G, cArr(0).B, 150))
+            Dim overviewArea = New Rectangle(660, 200, 256, 256)
+            Dim detailsArea = New Rectangle(660, 472, 320, 240)
+            Dim backgroundColor = If(BoxChooseMode, New Color(84, 198, 216, 150), New Color(cArr(0).R, cArr(0).G, cArr(0).B, 150))
 
-                Canvas.DrawRectangle(New Rectangle(660, 200, 256, 256), c)
+            Canvas.DrawRectangle(overviewArea, backgroundColor)
 
-                Dim modelName = p.AnimationName
-                Dim shinyString = If(p.IsShiny, "Shiny", "Normal")
-                If Core.Player.ShowModelsInBattle AndAlso ModelManager.ModelExist($"Models\Pokemon\{modelName}\{shinyString}") And Not p.IsEgg() Then
-                    Draw3DModel(p, $"Models\Pokemon\{modelName}\{shinyString}")
-                Else
-                    GetYOffset(p)
-                    Dim texture = p.GetTexture(True)
-                    Dim size = New Point(MathHelper.Min(texture.Width * 3, 288), MathHelper.Min(texture.Height * 3, 288))
-                    Dim position = New Point(792 - CInt(size.X / 2), 192 - yOffset)
-                    Core.SpriteBatch.Draw(texture, New Rectangle(position, size), Color.White)
-                End If
-
-                Canvas.DrawRectangle(New Rectangle(660, 472, 320, 240), c)
-
-                If p.IsEgg() Then
-                    Core.SpriteBatch.DrawString(FontManager.MainFont, "Egg", New Vector2(667, 477 + 2), Color.Black)
-                    Core.SpriteBatch.DrawString(FontManager.MainFont, "Egg", New Vector2(665, 477), Color.White)
-                Else
-                    Dim itemString = If(p.Item Is Nothing, "None", p.Item.Name)
-
-                    Dim nameString = If(p.NickName = "", p.GetDisplayName(), $"{p.GetDisplayName()}/{p.GetName}")
-
-                    Dim t = $"{nameString}{Environment.NewLine}"
-                    t &= $"DEX NO. {p.Number}{Environment.NewLine}"
-                    t &= $"LEVEL  {p.Level}{Environment.NewLine}"
-                    t &= $"HP  {p.HP} / {p.MaxHP}{Environment.NewLine}"
-                    t &= $"ATTACK  {p.Attack}{Environment.NewLine}"
-                    t &= $"DEFENSE  {p.Defense}{Environment.NewLine}"
-                    t &= $"SP. ATK  {p.SpAttack}{Environment.NewLine}"
-                    t &= $"SP. DEF  {p.SpDefense}{Environment.NewLine}"
-                    t &= $"SPEED  {p.Speed}{Environment.NewLine}"
-                    t &= $"ITEM  {itemString}"
-
-                    Core.SpriteBatch.DrawString(FontManager.MainFont, t, New Vector2(667, 477 + 2), Color.Black)
-                    Core.SpriteBatch.DrawString(FontManager.MainFont, t, New Vector2(665, 477), Color.White)
-                End If
+            Dim modelName = p.AnimationName
+            Dim shinyString = If(p.IsShiny, "Shiny", "Normal")
+            If Core.Player.ShowModelsInBattle AndAlso ModelManager.ModelExist($"Models\Pokemon\{modelName}\{shinyString}") And Not p.IsEgg() Then
+                Draw3DModel(p, $"Models\Pokemon\{modelName}\{shinyString}")
+            Else
+                GetYOffset(p)
+                Dim texture = p.GetTexture(True)
+                Dim size = Vector2.Min(New Vector2(texture.Width, texture.Height) * 3, New Vector2(288, 288)).ToPoint()
+                Dim position = New Point(792 - CInt(size.X / 2), 192 - yOffset)
+                Core.SpriteBatch.Draw(texture, New Rectangle(position, size), Color.White)
             End If
+
+            Canvas.DrawRectangle(detailsArea, backgroundColor)
+
+            Dim text = ""
+            If p.IsEgg() Then
+                text = "Egg"
+            Else
+                Dim itemString = If(p.Item Is Nothing, "None", p.Item.Name)
+
+                Dim nameString = If(p.NickName = "", p.GetDisplayName(), $"{p.GetDisplayName()}/{p.GetName}")
+
+                text = $"{nameString}{Environment.NewLine}"
+                text &= $"DEX NO. {p.Number}{Environment.NewLine}"
+                text &= $"LEVEL  {p.Level}{Environment.NewLine}"
+                text &= $"HP  {p.HP} / {p.MaxHP}{Environment.NewLine}"
+                text &= $"ATTACK  {p.Attack}{Environment.NewLine}"
+                text &= $"DEFENSE  {p.Defense}{Environment.NewLine}"
+                text &= $"SP. ATK  {p.SpAttack}{Environment.NewLine}"
+                text &= $"SP. DEF  {p.SpDefense}{Environment.NewLine}"
+                text &= $"SPEED  {p.Speed}{Environment.NewLine}"
+                text &= $"ITEM  {itemString}"
+            End If
+            Dim textPosition = New Vector2(665, 477)
+            Dim shadowPosition = textPosition + New Vector2(2)
+            Core.SpriteBatch.DrawString(FontManager.MainFont, text, shadowPosition, Color.Black)
+            Core.SpriteBatch.DrawString(FontManager.MainFont, text, textPosition, Color.White)
         End If
     End Sub
 
@@ -1072,7 +1066,7 @@ Public Class StorageSystemScreen
 
         Dim roll = propList.Item5
 
-        Dim t = ModelManager.DrawModelToTexture(modelName, renderTarget, position, New Vector3(0.0F, 10.0F, 50.0F), New Vector3(roll + modelRoll, 0, 0), scale, True)
+        Dim t = ModelManager.DrawModelToTexture(modelName, renderTarget, position, New Vector3(0, 10, 50), New Vector3(roll + modelRoll, 0, 0), scale, True)
         Core.SpriteBatch.Draw(t, New Rectangle(192, 72, 1200, 680), Color.White)
     End Sub
 
@@ -1080,48 +1074,39 @@ Public Class StorageSystemScreen
         Canvas.DrawRectangle(New Rectangle(Core.windowSize.Width - 310, 0, 400, Core.windowSize.Height), New Color(84, 198, 216))
 
         For y = -64 To Core.windowSize.Height Step 64
-            Core.SpriteBatch.Draw(Me.menuTexture, New Rectangle(Core.windowSize.Width - 128, y + StorageSystemScreen.TileOffset, 128, 64), New Rectangle(48, 0, 16, 16), Color.White)
+            Dim scrollArea = New Rectangle(Core.windowSize.Width - 128, y + StorageSystemScreen.TileOffset, 128, 64)
+            Dim scrollTextureArea = New Rectangle(48, 0, 16, 16)
+            Core.SpriteBatch.Draw(Me.menuTexture, scrollArea, scrollTextureArea, Color.White)
         Next
         Dim halfHeight = CInt(Core.windowSize.Height / 2)
-        Dim destination = New Rectangle(96, 0, 32, 64)
+        Dim cutoutArea = New Rectangle(Core.windowSize.Width - 430, 0, 128, halfHeight)
+        Dim cutoutTextureArea = New Rectangle(96, 0, 32, 64)
 
-        Core.SpriteBatch.Draw(Me.texture, New Rectangle(Core.windowSize.Width - 430, 0, 128, halfHeight), destination, Color.White)
-        Core.SpriteBatch.Draw(Me.texture, New Rectangle(Core.windowSize.Width - 430, halfHeight, 128, halfHeight), destination, Color.White, 0.0F, New Vector2(0), SpriteEffects.FlipVertically, 0.0F)
+        Core.SpriteBatch.Draw(Me.texture, cutoutArea, cutoutTextureArea, Color.White)
+        cutoutArea.Location += New Point(0, halfHeight)
+        Core.SpriteBatch.Draw(Me.texture, cutoutArea, cutoutTextureArea, Color.White, 0.0F, Vector2.Zero, SpriteEffects.FlipVertically, 0.0F)
 
         For i = 0 To 5
-            Canvas.DrawBorder(2, New Rectangle(Core.windowSize.Width - 260, i * 100 + 50, 128, 80), New Color(42, 167, 198))
+            Dim outlineArea = New Rectangle(Core.windowSize.Width - 260, i * 100 + 50, 128, 80)
+            Canvas.DrawBorder(2, outlineArea, New Color(42, 167, 198))
 
             If Core.Player.Pokemons.Count - 1 < i Then Continue For
             Dim pokemon = Core.Player.Pokemons(i)
-            Dim c As Color = If(IsLit(pokemon), Color.White, New Color(65, 65, 65, 255))
-
-            Dim pokeTexture = pokemon.GetMenuTexture()
-            Dim pokeTextureScale = New Vector2(CSng(32 / pokeTexture.Width), CSng(32 / pokeTexture.Height)) * 2
-            Dim scale = New Vector2(pokeTexture.Width, pokeTexture.Height) * pokeTextureScale
-            Core.SpriteBatch.Draw(pokeTexture, New Rectangle(Core.windowSize.Width - 228, i * 100 + 60, CInt(scale.X), CInt(scale.Y)), c)
-
-            If pokemon.Item Is Nothing Or pokemon.IsEgg Then Continue For
-            Core.SpriteBatch.Draw(pokemon.Item.Texture, New Rectangle(Core.windowSize.Width - 196, i * 100 + 92, 24, 24), Color.White)
+            Dim spriteArea = New Rectangle(Core.windowSize.Width - 228, i * 100 + 60, 64, 64)
+            Me.DrawPokemonIcon(spriteArea, pokemon, True)
         Next
     End Sub
 
     Private Sub DrawCursor()
-        Dim cPosition = If(CursorMoving, CursorMovePosition, GetAbsoluteCursorPosition(Me.CursorPosition))
+        Dim cPosition = If(CursorMoving, CursorMovePosition, GetAbsoluteCursorPosition(Me.CursorPosition)).ToPoint()
 
 
         If Me.MovingPokemon IsNot Nothing Then
-            Dim pokeTexture = Me.MovingPokemon.GetMenuTexture()
-            Dim pokeTextureScale = New Vector2(CSng(32 / pokeTexture.Width), CSng(32 / pokeTexture.Height)) * 2
-            Dim size = New Vector2(pokeTexture.Width, pokeTexture.Height) * pokeTextureScale
-            Core.SpriteBatch.Draw(pokeTexture, New Rectangle(CInt(cPosition.X - 10), CInt(cPosition.Y + 44), CInt(size.X), CInt(size.Y)), New Color(0, 0, 0, 150))
-            Core.SpriteBatch.Draw(pokeTexture, New Rectangle(CInt(cPosition.X - 20), CInt(cPosition.Y + 34), CInt(size.X), CInt(size.Y)), Color.White)
-
-            If Me.MovingPokemon.Item IsNot Nothing And Not Me.MovingPokemon.IsEgg() Then
-                Core.SpriteBatch.Draw(Me.MovingPokemon.Item.Texture, New Rectangle(CInt(cPosition.X - 20) + 32, CInt(cPosition.Y + 34) + 32, 24, 24), Color.White)
-            End If
+            Dim spriteArea = New Rectangle(cPosition + New Point(-20, 34), New Point(64))
+            Me.DrawPokemonIcon(spriteArea, Me.MovingPokemon, True, True)
         End If
 
-        Core.SpriteBatch.Draw(GetCursorTexture(), New Rectangle(CInt(cPosition.X), CInt(cPosition.Y), 64, 64), Color.White)
+        Core.SpriteBatch.Draw(GetCursorTexture(), New Rectangle(cPosition, New Point(64)), Color.White)
     End Sub
 
     Private Sub DrawMenuEntries()
@@ -1217,22 +1202,6 @@ Public Class StorageSystemScreen
         Return GetBox(index, Me.Boxes)
     End Function
 
-    Private Function BoxPokemonCount(ByVal selBox As Integer, ByVal lit As Boolean) As Integer
-        Dim c = 0
-
-        Dim box = GetBox(selBox)
-        If box Is Nothing Then Return c
-        For Each p As PokemonWrapper In box.Pokemon.Values
-            If Not lit Then
-                c += 1
-                Continue For
-            End If
-            If IsLit(p.GetPokemon()) Then c += 1
-        Next
-
-        Return c
-    End Function
-
     Private Sub SetupMenu(ByVal entries() As MenuEntry, ByVal header As String)
         Me.MenuEntries.Clear()
         Me.MenuEntries.AddRange(entries)
@@ -1257,12 +1226,14 @@ Public Class StorageSystemScreen
             Me._pokemonData = p.GetSaveData()
         End Sub
 
-        Public Function GetPokemon() As Pokemon
-            If _loaded Then Return Me._pokemon
-            _loaded = True
-            _pokemon = Pokemon.GetPokemonByData(Me._pokemonData)
-            Return Me._pokemon
-        End Function
+        Public ReadOnly Property pokemon As Pokemon
+            Get
+                If _loaded Then Return Me._pokemon
+                _loaded = True
+                _pokemon = Pokemon.GetPokemonByData(Me._pokemonData)
+                Return Me._pokemon
+            End Get
+        End Property
 
         Public ReadOnly Property PokemonData() As String
             Get
@@ -1296,7 +1267,7 @@ Public Class StorageSystemScreen
         End Property
 
         Public Function GetPokemonList() As List(Of Pokemon)
-            Return Pokemon.Values.Select(Function(x) x.GetPokemon()).ToList()
+            Return Pokemon.Values.Select(Function(x) x.pokemon).ToList()
         End Function
 
         Public Property IsBattleBox() As Boolean
@@ -1349,17 +1320,20 @@ Public Class StorageSystemScreen
         End Sub
 
         Public Sub Draw(ByVal CursorIndex As Integer, ByVal CursorTexture As Texture2D)
-            Dim startPos = New Vector2(Core.windowSize.Width - 270, 66 * Index)
+            Dim startPos = New Point(Core.windowSize.Width - 270, 66 * Index)
 
-            Core.SpriteBatch.Draw(t1, New Rectangle(CInt(startPos.X), CInt(startPos.Y), 64, 64), Color.White)
-            Core.SpriteBatch.Draw(t2, New Rectangle(CInt(startPos.X + 64), CInt(startPos.Y), 64, 64), Color.White)
-            Core.SpriteBatch.Draw(t2, New Rectangle(CInt(startPos.X + 128), CInt(startPos.Y), 64, 64), Color.White)
-            Core.SpriteBatch.Draw(t1, New Rectangle(CInt(startPos.X + 192), CInt(startPos.Y), 64, 64), Nothing, Color.White, 0.0F, New Vector2(0), SpriteEffects.FlipHorizontally, 0.0F)
+            Core.SpriteBatch.Draw(t1, New Rectangle(startPos.X, startPos.Y, 64, 64), Color.White)
+            Core.SpriteBatch.Draw(t2, New Rectangle(startPos.X + 64, startPos.Y, 64, 64), Color.White)
+            Core.SpriteBatch.Draw(t2, New Rectangle(startPos.X + 128, startPos.Y, 64, 64), Color.White)
+            Core.SpriteBatch.Draw(t1, New Rectangle(startPos.X + 192, startPos.Y, 64, 64), Nothing, Color.White, 0.0F, Vector2.Zero, SpriteEffects.FlipHorizontally, 0.0F)
 
-            Core.SpriteBatch.DrawString(FontManager.MainFont, Me.Text, New Vector2(startPos.X + 128 - (FontManager.MainFont.MeasureString(Me.Text).X * 1.4F) / 2, startPos.Y + 15), Color.Black, 0.0F, Vector2.Zero, 1.4F, SpriteEffects.None, 0.0F)
+            Dim font = FontManager.MainFont
+            Dim textSize = font.MeasureString(Me.Text).X * 0.7F
+            Dim position = New Vector2(startPos.X + 128 - textSize, startPos.Y + 15)
+            Core.SpriteBatch.DrawString(font, Me.Text, position, Color.Black, 0.0F, Vector2.Zero, 1.4F, SpriteEffects.None, 0.0F)
 
             If Me.Index <> CursorIndex Then Return
-            Dim cPosition = New Point(CInt(startPos.X) + 128, CInt(startPos.Y) - 40)
+            Dim cPosition = startPos + New Point(128, -40)
             Core.SpriteBatch.Draw(CursorTexture, New Rectangle(cPosition, New Point(64)), Color.White)
         End Sub
 
@@ -1368,7 +1342,7 @@ Public Class StorageSystemScreen
     Public Shared Function GetAllBoxPokemon() As List(Of Pokemon)
         Dim Pokemons = New List(Of Pokemon)
         Dim Data() = Core.Player.BoxData.SplitAtNewline()
-        For Each line As String In Data
+        For Each line In Data
             If Not line.StartsWith("BOX|") Or line = "" Then Continue For
             Dim pokeData = line.Remove(0, line.IndexOf("{"))
             Pokemons.Add(Pokemon.GetPokemonByData(pokeData))
@@ -1380,7 +1354,7 @@ Public Class StorageSystemScreen
         Dim L = New List(Of Pokemon)
         For Each Box In Me.Boxes
             If Not Box.HasPokemon Then Continue For
-            Dim pokemons = Box.Pokemon.Values.Select(Function(x) x.GetPokemon())
+            Dim pokemons = Box.Pokemon.Values.Select(Function(x) x.pokemon)
             L.AddRange(pokemons.Where(Function(pokemon) (lit AndAlso IsLit(pokemon)) Or Not lit))
         Next
 
@@ -1481,17 +1455,20 @@ Public Class StorageSystemFilterScreen
                 If i > Me.Items.Count - 1 Then Continue For
                 Dim Text = Items(i)
 
-                Dim startPos = New Vector2(Core.windowSize.Width - 270, 66 * ((i + 1) - Scroll))
+                Dim startPos = New Point(Core.windowSize.Width - 270, 66 * ((i + 1) - Scroll))
 
-                Core.SpriteBatch.Draw(t1, New Rectangle(CInt(startPos.X), CInt(startPos.Y), 64, 64), Color.White)
-                Core.SpriteBatch.Draw(t2, New Rectangle(CInt(startPos.X + 64), CInt(startPos.Y), 64, 64), Color.White)
-                Core.SpriteBatch.Draw(t2, New Rectangle(CInt(startPos.X + 128), CInt(startPos.Y), 64, 64), Color.White)
-                Core.SpriteBatch.Draw(t1, New Rectangle(CInt(startPos.X + 192), CInt(startPos.Y), 64, 64), Nothing, Color.White, 0.0F, New Vector2(0), SpriteEffects.FlipHorizontally, 0.0F)
+                Core.SpriteBatch.Draw(t1, New Rectangle(startPos.X, startPos.Y, 64, 64), Color.White)
+                Core.SpriteBatch.Draw(t2, New Rectangle(startPos.X + 64, startPos.Y, 64, 64), Color.White)
+                Core.SpriteBatch.Draw(t2, New Rectangle(startPos.X + 128, startPos.Y, 64, 64), Color.White)
+                Core.SpriteBatch.Draw(t1, New Rectangle(startPos.X + 192, startPos.Y, 64, 64), Nothing, Color.White, 0.0F, Vector2.Zero, SpriteEffects.FlipHorizontally, 0.0F)
 
-                Core.SpriteBatch.DrawString(FontManager.MainFont, Text, New Vector2(startPos.X + 128 - (FontManager.MainFont.MeasureString(Text).X * 1.4F) / 2, startPos.Y + 15), Color.Black, 0.0F, Vector2.Zero, 1.4F, SpriteEffects.None, 0.0F)
+                Dim font = FontManager.MainFont
+                Dim textSize = font.MeasureString(Text).X * 0.7F
+                Dim position = New Vector2(startPos.X + 128 - textSize, startPos.Y + 15)
+                Core.SpriteBatch.DrawString(font, Text, position, Color.Black, 0.0F, Vector2.Zero, 1.4F, SpriteEffects.None, 0.0F)
 
                 If Me.Index <> i Then Continue For
-                Dim cPosition = New Point(CInt(startPos.X) + 128, y:=CInt(startPos.Y) - 40)
+                Dim cPosition = startPos + New Point(128, -40)
                 Dim t = TextureManager.GetTexture("GUI\Menus\General", New Rectangle(0, 0, 16, 16), "")
                 Core.SpriteBatch.Draw(t, New Rectangle(cPosition, New Point(64)), Color.White)
             Next
@@ -1545,8 +1522,8 @@ Public Class StorageSystemFilterScreen
         Next
         Dim tones = (A:=New Color(42, 167, 198), B:=New Color(42, 167, 198, 0))
 
-        Canvas.DrawGradient(New Rectangle(0, 0, CInt(Core.windowSize.Width), 200), tones.A, tones.B, False, -1)
-        Canvas.DrawGradient(New Rectangle(0, CInt(Core.windowSize.Height - 200), CInt(Core.windowSize.Width), 200), tones.B, tones.A, False, -1)
+        Canvas.DrawGradient(New Rectangle(0, 0, Core.windowSize.Width, 200), tones.A, tones.B, False, -1)
+        Canvas.DrawGradient(New Rectangle(0, Core.windowSize.Height - 200, Core.windowSize.Width, 200), tones.B, tones.A, False, -1)
 
         Core.SpriteBatch.DrawString(FontManager.MainFont, "Configure the filters:", New Vector2(100, 24), Color.White, 0.0F, Vector2.Zero, 2.0F, SpriteEffects.None, 0.0F)
 
@@ -1575,7 +1552,8 @@ Public Class StorageSystemFilterScreen
     End Sub
 
     Private Function GetFilterText(ByVal filterTypeString As String) As String
-        Dim filter = Me.Filters.Cast(Of StorageSystemScreen.Filter?).FirstOrDefault(Function(f) f.Value.FilterType.ToString().ToLower() = filterTypeString.ToLower())
+        Dim Equals = Function(f As StorageSystemScreen.Filter?) $"{f.Value.FilterType}".ToLower() = filterTypeString.ToLower()
+        Dim filter = Me.Filters.Cast(Of StorageSystemScreen.Filter?).FirstOrDefault(Equals)
         Return If(filter.HasValue, filter.Value.FilterValue, "")
     End Function
 
@@ -1583,7 +1561,7 @@ Public Class StorageSystemFilterScreen
         Dim cPosition = New Point(520, 100 + Me.Cursor * 96 - 42)
 
         Dim t As Texture2D = TextureManager.GetTexture("GUI\Menus\General", New Rectangle(0, 0, 16, 16), "")
-        Core.SpriteBatch.Draw(t, New Rectangle(cPosition, New Point(64, 64)), Color.White)
+        Core.SpriteBatch.Draw(t, New Rectangle(cPosition, New Point(64)), Color.White)
     End Sub
 
     Private Sub ApplyFilters()
