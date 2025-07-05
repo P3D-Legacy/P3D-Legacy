@@ -73,6 +73,8 @@ Public Class Level
     Private _offsetMapEntities As New List(Of Entity)
     Private _offsetMapFloors As New List(Of Entity)
 
+    Public _blackOutScript As String = ""
+
     ' Radio:
     Private _isRadioOn As Boolean = False
     Private _selectedRadioStation As GameJolt.PokegearScreen.RadioStation = Nothing
@@ -244,6 +246,18 @@ Public Class Level
         End Get
         Set(value As List(Of Entity))
             Me._offsetMapFloors = value
+        End Set
+    End Property
+
+    ''' <summary>
+    ''' The script to execute after the player blacks/whites out
+    ''' </summary>
+    Public Property BlackOutScript() As String
+        Get
+            Return Me._blackOutScript
+        End Get
+        Set(value As String)
+            Me._blackOutScript = value
         End Set
     End Property
 

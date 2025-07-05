@@ -80,12 +80,12 @@ global_used,Gebruikt
 ---
 Pokémon & Attack Properties:
 
-property_HP,IP
+property_HP,LP
 property_PP,KP
 property_No.,Nr.
 property_Lv.,Nv.
 property_Level,Niveau
-property_MaxHP,Max IP
+property_MaxHP,Max LP
 property_Attack,Aanval
 property_Defense,Verdediging
 property_Special_Attack,Speciale Aanval
@@ -2497,7 +2497,7 @@ item_pluralname_43,Maximale Afweersers
 
 Vitamins:
 item_name_25,Zink
-item_name_26,IP-Plus
+item_name_26,LP-Plus
 item_name_27,Proteïne
 item_name_28,Ijzer
 item_name_29,Koolhydraat
@@ -2505,7 +2505,7 @@ item_name_31,Calcium
 
 Vitamins (Plural):
 item_pluralname_25,Zinken
-item_pluralname_26,IP-Plussen
+item_pluralname_26,LP-Plussen
 item_pluralname_27,Proteïnes
 item_pluralname_28,Ijzers
 item_pluralname_29,Koolhydraten
@@ -2946,7 +2946,7 @@ move_name_69,Seismische smak
 move_name_70,Kracht
 move_name_71,Absorbeer
 move_name_72,Enorme absorbering
-move_name_73,IP-onttrekkend zaadje
+move_name_73,LP-onttrekkend zaadje
 move_name_74,Groei
 move_name_75,Mesblad
 move_name_76,Zonnestraal
@@ -3540,7 +3540,7 @@ move_desc_45,De gebruiker gromt op een vertederende manier, waardoor de tegensta
 move_desc_46,Het doelwit wordt afgeschrikt en er wordt een andere Pokémon uitgesleept. In het wild eindigt dit een gevecht tegen één Pokémon.
 move_desc_47,Er wordt een rustgevend slaapliedje gezongen met een kalmerende stem die het doelwit in een diepe slaap brengt.
 move_desc_48,De gebruiker genereert vreemde geluidsgolven vanuit zijn lichaam. Het kan het doelwit verwarren.
-move_desc_49,Het doelwit wordt geraakt met een destructieve schokgolf die altijd 20 IP schade toebrengt.
+move_desc_49,Het doelwit wordt geraakt met een destructieve schokgolf die altijd 20 LP schade toebrengt.
 move_desc_50,Vier beurten lang kan het doelwit de techniek die het als laatste gebruikte niet gebruiken.
 move_desc_51,De tegenpartij wordt aangevallen met een spray van agressief zuur. Het zuur kan ook de Sp. Verdediging-attributen van de tegenstanders verlagen.
 move_desc_52,Het doelwit wordt aangevallen met kleine vlammen. Hierdoor kan het doelwit ook verbrand raken.
@@ -3562,9 +3562,9 @@ move_desc_67,Een krachtige lage trap die het doelwit doet omvallen. Brengt meer 
 move_desc_68,Een vergeldingstechniek die tegen elke fysieke aanval ingaat en dubbele schade toebrengt.
 move_desc_69,Het doelwit wordt weggeworpen met behulp van de zwaartekracht. De schade is gelijk aan het niveau van de gebruiker.
 move_desc_70,Het doelwit wordt geraakt met een vuistslag op maximale kracht. Deze techniek kan ook gebruikt worden om rotsblokken te verplaatsen.
-move_desc_71,Brengt schade toe aan het doelwit en herstelt vervolgens de IP van de gebruiker op basis van de toegebrachte schade.
-move_desc_72,Een voedingsstoffen-onttrekkende aanval. De IP van de gebruiker wordt hersteld met de helft van de schade die het doelwit oploopt.
-move_desc_73,Een zaadje wordt op het doelwit geplant. Het onttrekt elke beurt wat IP aan het doelwit.
+move_desc_71,Brengt schade toe aan het doelwit en herstelt vervolgens de LP van de gebruiker op basis van de toegebrachte schade.
+move_desc_72,Een voedingsstoffen-onttrekkende aanval. De LP van de gebruiker wordt hersteld met de helft van de schade die het doelwit oploopt.
+move_desc_73,Een zaadje wordt op het doelwit geplant. Het onttrekt elke beurt wat LP aan het doelwit.
 move_desc_74,Het lichaam van de gebruiker groeit in één keer, waardoor de Aanval- en Sp. Aanval-attributen verhoogd worden.
 move_desc_75,Scherpgerande bladeren worden gelanceerd om op de tegenstander in te slaan. Kritieke treffers komen gemakkelijker aan.
 move_desc_76,Een aanval met twee beurten. De gebruiker verzamelt licht en vuurt dan een gebundelde straal af tijdens de tweede beurt.
@@ -3573,7 +3573,7 @@ move_desc_78,De gebruiker verspreidt een wolk verlammend poeder. Het kan het doe
 move_desc_79,De gebruiker verstrooit een grote wolk slaapverwekkende stof rond het doelwit.
 move_desc_80,De gebruiker valt het doelwit aan door twee tot drie beurten lang bloemblaadjes te strooien. De gebruiker raakt dan in de war.
 move_desc_81,De doelwitten worden gebonden met zijde die uit de mond van de gebruiker wordt geblazen. Deze zijde verlaagt het Snelheid-attribuut van het doelwit.
-move_desc_82,Deze aanval raakt het doelwit met een schokgolf van pure woede. Deze aanval brengt altijd 40 IP schade toe.
+move_desc_82,Deze aanval raakt het doelwit met een schokgolf van pure woede. Deze aanval brengt altijd 40 LP schade toe.
 move_desc_83,Het doelwit raakt gevangen in een woeste draaikolk van vuur die vier tot vijf beurten woedt.
 move_desc_84,Een stroomstoot wordt naar het doelwit geslingerd om schade toe te brengen. Het kan het doelwit ook verlammen.
 move_desc_85,Een sterke elektrische stoot wordt op het doelwit losgelaten. Deze kan het doelwit ook verlammen.
@@ -3596,7 +3596,7 @@ move_desc_101,De gebruiker laat het doelwit een angstaanjagende luchtspiegeling 
 move_desc_102,De gebruiker kopieert de laatste techniek van het doelwit. De techniek kan tijdens gevechten worden gebruikt totdat de Pokémon is uitgeschakeld.
 move_desc_103,Een oorverdovend gekrijs vermindert hard het Verdediging-attribuut van het doelwit.
 move_desc_104,Door snel te bewegen, maakt de gebruiker schijnbare kopieën van zichzelf om zijn ontwijkingsvermogen te vergroten.
-move_desc_105,Door zijn eigen cellen te herstellen, herstelt de gebruiker zijn eigen IP met de helft van zijn maximale IP.
+move_desc_105,Door zijn eigen cellen te herstellen, herstelt de gebruiker zijn eigen LP met de helft van zijn maximale LP.
 move_desc_106,De gebruiker verstijft alle spieren in zijn lichaam om zijn Verdediging-attribuut te verhogen.
 move_desc_107,De gebruiker comprimeert zijn lichaam om zichzelf kleiner te laten lijken, waardoor zijn ontwijkingsvermogen sterk toeneemt.
 move_desc_108,De gebruiker laat een verduisterende wolk van rook of inkt vrij. Het vermindert de nauwkeurigheid van het doelwit.
@@ -3626,13 +3626,13 @@ move_desc_131,Scherpe stekels worden snel achter elkaar op het doel geschoten. Z
 move_desc_132,Het doelwit wordt aangevallen met lange, kruipende tentakels of lianen. Het kan ook het Snelheid-attribuut van het doelwit verlagen.
 move_desc_133,De gebruiker maakt tijdelijk zijn geest leeg om zijn zorgen te vergeten. Het verhoogt het Sp. Verdediging-attribuut aanzienlijk. 
 move_desc_134,De gebruiker leidt het doelwit af door een lepel te buigen. Het verlaagt de nauwkeurigheid van het doelwit.
-move_desc_135,De gebruiker herstelt zijn eigen IP tot de helft van zijn maximale IP. Kan ook in het veld worden gebruikt om IP te genezen.
+move_desc_135,De gebruiker herstelt zijn eigen LP tot de helft van zijn maximale LP. Kan ook in het veld worden gebruikt om LP te genezen.
 move_desc_136,Het doelwit wordt aangevallen met een knieschop vanuit een sprong. Als deze mist, raakt de gebruiker gewond.
 move_desc_137,De gebruiker intimideert het doelwit met het patroon op zijn buik om verlamming te veroorzaken.
-move_desc_138,De gebruiker eet de dromen van een slapend doelwit. Het absorbeert de helft van de veroorzaakte schade om het IP van de gebruiker te genezen.
+move_desc_138,De gebruiker eet de dromen van een slapend doelwit. Het absorbeert de helft van de veroorzaakte schade om het LP van de gebruiker te genezen.
 move_desc_139,Een wolk gifgas wordt in het gezicht van de Pokémon van de tegenstander gespoten. Het kan de getroffenen vergiftigen.
 move_desc_140,Ronde voorwerpen worden naar het doelwit geslingerd om twee tot vijf keer achter elkaar toe te slaan.
-move_desc_141,De gebruiker zuigt het bloed van het doelwit af. Het IP van de gebruiker wordt hersteld met de helft van de schade die het doelwit oploopt.
+move_desc_141,De gebruiker zuigt het bloed van het doelwit af. Het LP van de gebruiker wordt hersteld met de helft van de schade die het doelwit oploopt.
 move_desc_142,Met een eng gezicht probeert de gebruiker het doelwit te dwingen tot een kus. Als dat lukt, valt het doelwit in slaap.
 move_desc_143,Een aanvalstechniek die bij de tweede beurt toeslaat waarbij kritieke treffers gemakkelijker aankomen. Het kan het doelwit ook laten terugdeinzen.
 move_desc_144,De gebruiker verandert in een kopie van het doelwit en heeft zelfs dezelfde technieken.
@@ -3647,15 +3647,15 @@ move_desc_152,Het doelwit wordt geslagen met een grote tang. Kritieke treffers k
 move_desc_153,De gebruiker explodeert om schade toe te brengen aan degenen om hem heen. De gebruiker wordt uitgeschakeld als hij deze techniek gebruikt.
 move_desc_154,Het doelwit wordt twee tot vijf keer snel achter elkaar aangevallen met scherpe klauwen of zeisen.
 move_desc_155,De gebruiker gooit het bot dat hij vasthoudt. Het bot maakt een lus om het doelwit twee keer te raken, tijdens het komen en gaan.
-move_desc_156,De gebruiker gaat twee beurten slapen. Het herstelt de IP van de gebruiker volledig en geneest elk statuseffect.
+move_desc_156,De gebruiker gaat twee beurten slapen. Het herstelt de LP van de gebruiker volledig en geneest elk statuseffect.
 move_desc_157,Grote rotsblokken worden naar de tegenstander geslingerd om schade toe te brengen. Ze kunnen de doelwitten ook laten terugdeinzen.
 move_desc_158,De gebruiker bijt hard op het doelwit met zijn scherpe hoektanden. Het kan het doelwit ook laten terugdeinzen.
 move_desc_159,De gebruiker vermindert het aantal polygonen om zichzelf scherper te maken, waardoor het Aanval-attribuut stijgt.
 move_desc_160,De gebruiker verandert zijn type om hetzelfde type te worden als de techniek die bovenaan de lijst staat van technieken die hij kent.
 move_desc_161,De gebruiker slaat toe met een gelijktijdige aanval met drie stralen. Kan het doelwit ook verbranden, bevriezen of verlammen.
-move_desc_162,De gebruiker beukt hard op het doelwit met zijn scherpe voortanden. Het halveert de IP van het doelwit.
+move_desc_162,De gebruiker beukt hard op het doelwit met zijn scherpe voortanden. Het halveert de LP van het doelwit.
 move_desc_163,Het doelwit wordt aangevallen met een slag van klauwen of messen. Kritieke treffers komen gemakkelijker aan.
-move_desc_164,De gebruiker maakt een kopie van zichzelf met behulp van een deel van zijn IP. De kopie dient als afleiding voor de gebruiker.
+move_desc_164,De gebruiker maakt een kopie van zichzelf met behulp van een deel van zijn LP. De kopie dient als afleiding voor de gebruiker.
 move_desc_165,Een wanhoopsaanval die alleen wordt gebruikt als de gebruiker geen KP heeft. Het doet de gebruiker ook een beetje pijn.
 
 move_desc_167,Een opeenvolgende aanval met drie schoppen die krachtiger wordt bij elke opeenvolgende treffer.
@@ -3684,11 +3684,11 @@ move_desc_198,De gebruiker slaat het doelwit twee tot vijf keer achter elkaar me
 
 move_desc_200,De gebruiker gaat tekeer en valt aan gedurende twee tot drie beurten. Daarna raakt hij echter in de war.
 
-move_desc_202,Een voedingsstoffen-onttrekkende aanval. De IP van de gebruiker wordt hersteld met de helft van de schade die het doelwit oploopt.
+move_desc_202,Een voedingsstoffen-onttrekkende aanval. De LP van de gebruiker wordt hersteld met de helft van de schade die het doelwit oploopt.
 
 move_desc_204,De gebruiker kijkt het doelwit nogal charmant aan, waardoor het minder op zijn hoede is. Het Aanval-attribuut van het doelwit wordt sterk verlaagd.
 move_desc_205,De gebruiker rolt voortdurend tegen het doelwit aan gedurende vijf beurten. Het wordt sterker elke keer dat het raakt.
-move_desc_206,Een terughoudende aanval die voorkomt dat het doelwit uitgeschakeld wordt. Het doelwit houdt minstens 1 IP over.
+move_desc_206,Een terughoudende aanval die voorkomt dat het doelwit uitgeschakeld wordt. Het doelwit houdt minstens 1 LP over.
 
 move_desc_209,De gebruiker maakt een elektrisch geladen tackle tegen het doelwit. Het kan het doelwit ook verlammen.
 
@@ -3704,9 +3704,9 @@ move_desc_230,Een zoete geur die het ontwijkingsvermogen van de tegenstander ver
 move_desc_231,Het doelwit wordt geslagen met een staalharde staart. Het kan ook het Verdediging-attribuut van het doelwit verlagen.
 move_desc_232,Het doelwit wordt geharkt met stalen klauwen. Het kan ook het Aanval-attribuut van de gebruiker verhogen.
 
-move_desc_234,De gebruiker herstelt zijn eigen IP. De hoeveelheid herwonnen IP varieert met het weer.
-move_desc_235,De gebruiker herstelt zijn eigen IP. De hoeveelheid herwonnen IP varieert met het weer.
-move_desc_236,De gebruiker herstelt zijn eigen IP. De hoeveelheid herwonnen IP varieert met het weer.
+move_desc_234,De gebruiker herstelt zijn eigen LP. De hoeveelheid herwonnen LP varieert met het weer.
+move_desc_235,De gebruiker herstelt zijn eigen LP. De hoeveelheid herwonnen LP varieert met het weer.
+move_desc_236,De gebruiker herstelt zijn eigen LP. De hoeveelheid herwonnen LP varieert met het weer.
 
 move_desc_238,De gebruiker geeft een dubbele slag met gekruiste onderarmen. Kritieke treffers komen gemakkelijker aan.
 move_desc_239,De gebruiker zweept een venijnige tornado op om het andere team aan te vallen. Het kan doelwitten ook laten terugdeinzen.
@@ -3742,6 +3742,8 @@ move_desc_430,De gebruiker verzamelt al zijn lichtenergie en stoot deze in één
 move_desc_442,De gebruiker slaat het doelwit met zijn staalharde hoofd. Dit kan het doelwit ook laten terugdeinzen.
 
 move_desc_452,De gebruiker beukt met zijn robuuste lichaam tegen het doelwit om aan te vallen. De gebruiker loopt ook ernstige schade op.
+
+move_desc_577,De gebruiker steelt de energie van het doelwit met een kus. De LP van de gebruiker wordt hersteld met meer dan de helft van de schade die het doelwit heeft opgelopen.
 
 move_desc_583,De gebruiker speelt ruw met het doelwit en valt het aan. Dit kan ook het Aanval-attribuut van het doelwit verlagen.
 move_desc_584,De gebruiker wekt een feeënwind op en slaat het doelwit ermee.

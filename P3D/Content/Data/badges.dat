@@ -17,7 +17,10 @@
 16|Rising|level=100|HM=Waterfall|Texture=GUI\Badges,350,50,50,50|Region=Johto
 
 frontier_1_silver|name=Silver Ability|description=You defeated the Frontier Brain of~Battle Tower and showed him how~you and your Pokémon really are.|Texture=GUI\Badges,0,200,50,50
-frontier_1_gold|name=Gold Ability|description=You defeated the Frontier Brain of~Battle Tower a second time and you've shown~your real strength when it comes to battles.|Texture=GUI\Badges,50,200,50,50
+frontier_1_gold|name=Gold Ability|description=You defeated the Frontier Brain of~Battle Tower a second time and you've shown~your real strength when it comes to battles.|Texture=GUI\Badges,0,250,50,50
 
-frontier_2_silver|name=Silver Knowledge|description=Only few trainers achieved this emblem~which shows what strength lies~inside them.|Texture=GUI\Badges,100,200,50,50
-frontier_2_gold|name=Gold Knowledge|description=This Emblem displays how great you can~interact with Pokémon and how well~you can adapt your strategy to a new situation.|Texture=GUI\Badges,150,200,50,50
+frontier_2_silver|name=Silver Knowledge|description=Only few trainers achieved this emblem~which shows what strength lies~inside them.|Texture=GUI\Badges,50,200,50,50
+frontier_2_gold|name=Gold Knowledge|description=This Emblem displays how great you can~interact with Pokémon and how well~you can adapt your strategy to a new situation.|Texture=GUI\Badges,50,250,50,50
+
+frontier_3_silver|name=Silver Luck|description=You have shown great skill at taking~the luck thrown your way, good or bad.|Texture=GUI\Badges,100,200,50,50
+frontier_3_gold|name=Gold Luck|description=Your luck trumped all at the Battle Pike.~You mitigated the worst luck and~doubled down on the best luck.|Texture=GUI\Badges,100,250,50,50

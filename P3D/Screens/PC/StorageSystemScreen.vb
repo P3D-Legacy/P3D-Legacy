@@ -795,20 +795,23 @@ Public Class StorageSystemScreen
         Dim id = CInt(CursorPosition.X) + CInt((CursorPosition.Y - 1) * 6)
         Dim box = GetBox(CurrentBox)
         Dim pokemon = If(CursorPosition.X = 6, Core.Player.Pokemons(CInt(CursorPosition.Y)), box.Pokemon(id).GetPokemon())
+        Dim text = ""
         If pokemon.Item IsNot Nothing Then
             If pokemon.Item.IsMail And pokemon.Item.AdditionalData <> "" Then
-                Screen.TextBox.Show("The Mail was taken to your~inbox on your PC.")
+            text &= "The Mail was taken to your~inbox on your PC."
 
                 Core.Player.Mails.Add(Items.MailItem.GetMailDataFromString(pokemon.Item.AdditionalData))
 
             Else
-                Screen.TextBox.Show($"Taken {pokemon.Item.OneLineName()}~from {pokemon.GetDisplayName()}.")
                 Dim ItemID = If(pokemon.Item.IsGameModeItem, pokemon.Item.gmID, pokemon.Item.ID.ToString())
                 Core.Player.Inventory.AddItem(ItemID, 1)
+                text &= $"Taken {pokemon.Item.OneLineName()}~from {pokemon.GetDisplayName()}."
             End If
             pokemon.Item = Nothing
         End If
-        Screen.TextBox.Show($"Goodbye, {pokemon.GetDisplayName()}!")
+        If s <> "" Then s &= "*"
+        text &= $"Goodbye, {pokemon.GetDisplayName()}!"
+        Screen.TextBox.Show(text)
 
         If CursorPosition.X = 6 Then
             Core.Player.Pokemons.RemoveAt(CInt(CursorPosition.Y))

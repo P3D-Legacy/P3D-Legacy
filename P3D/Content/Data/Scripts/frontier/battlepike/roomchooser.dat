@@ -1,0 +1,125 @@
+version=2
+#0 = status Condition - skip if all status or faint
+#1 = partial recovery - skip if fully healed
+#2 = single battle
+#3 = full recovery - Skip if fully healed
+#4 = Wild Pokemon
+#5 = Hard Battle+heal - not hinted if no healing needed
+#6 = no event
+#7 = Double Battle - skip if only one mon
+#8 = Lucy
+:if:<register.registered(pikelucynext)>=true
+	@register.change(pikehintspot,3)
+	@register.change(pikehint,4)
+	@register.change(pikehinted,8)
+	@player.move(0)
+	@text.show(I am sorry to say...*A terrifying event,~yes, a horrible one,~is about to befall you...*I urge you to pay the utmost~care and prepare for~the worst...)
+:else
+	@register.change(pikehintspot,<system.random(0,2)>)
+	@register.change(pikehint,<system.random(0,3)>)
+
+	:select:<register.value(pikehint)>
+		:when:0
+			:if:<pokemon.status(0)> = none <and> <pokemon.status(1)> = none <and> <pokemon.status(2)> = none
+				:if:<pokemon.fullyhealed>=true
+					@register.change(pikehinted,0)
+				:else
+					@register.change(pikehinted,<system.random(0,1)>)
+				:endif
+			:else
+				@register.change(pikehinted,1)
+			:endif
+		:when:1
+			:if:<pokemon.fullyhealed>=true
+				@register.change(pikehinted,2)
+			:else
+				@register.change(pikehinted,<system.random(2,3)>)
+			:endif
+		:when:2
+			:if:<pokemon.fullyhealed>=true
+				@register.change(pikehinted,4)
+			:else
+				@register.change(pikehinted,<system.random(4,5)>)
+			:endif
+		:when:3
+			:if:<pokemon.countbattle>=1
+				@register.change(pikehinted,6)
+			:else
+				:if:<system.random(0,3)>=0
+					@register.change(pikehinted,7)
+				:else
+					@register.change(pikehinted,6)
+				:endif
+			:endif
+		:when:4
+			@register.change(pikehinted,8)
+	:endwhen
+	@storage.set(integer,potentialrooms,0)
+	@storage.set(integer,roomcounter,0)
+	:while:<storage.get(integer,roomcounter)><8
+		:select:<storage.get(integer,roomcounter)>
+			:when:0
+				:if:<not><register.value(pikehint)>=0
+					:if:<pokemon.status(0)> = none <and> <pokemon.status(1)> = none <and> <pokemon.status(2)> = none
+						@storage.set(integer,potroom<storage.get(integer,potentialrooms)>,0)
+						@storage.update(integer,potentialrooms,+,1)
+					:endif
+				:endif
+			:when:1
+				:if:<not><register.value(pikehint)>=0
+					:if:<pokemon.fullyhealed>=false
+						@storage.set(integer,potroom<storage.get(integer,potentialrooms)>,1)
+						@storage.update(integer,potentialrooms,+,1)
+					:endif
+				:endif
+			:when:2
+				:if:<not><register.value(pikehint)>=1
+					@storage.set(integer,potroom<storage.get(integer,potentialrooms)>,2)
+					@storage.update(integer,potentialrooms,+,1)
+				:endif
+			:when:3
+				:if:<not><register.value(pikehint)>=1
+					:if:<pokemon.fullyhealed>=false
+						@storage.set(integer,potroom<storage.get(integer,potentialrooms)>,3)
+						@storage.update(integer,potentialrooms,+,1)
+					:endif
+				:endif
+			:when:4
+				:if:<not><register.value(pikehint)>=2
+					@storage.set(integer,potroom<storage.get(integer,potentialrooms)>,4)
+					@storage.update(integer,potentialrooms,+,1)
+				:endif
+			:when:5
+				:if:<not><register.value(pikehint)>=2
+					@storage.set(integer,potroom<storage.get(integer,potentialrooms)>,5)
+					@storage.update(integer,potentialrooms,+,1)
+				:endif
+			:when:6
+				:if:<not><register.value(pikehint)>=3
+					@storage.set(integer,potroom<storage.get(integer,potentialrooms)>,6)
+					@storage.update(integer,potentialrooms,+,1)
+				:endif
+			:when:7
+				:if:<not><register.value(pikehint)>=3
+					:if:<pokemon.countbattle>=1
+						@storage.set(integer,potroom<storage.get(integer,potentialrooms)>,7)
+						@storage.update(integer,potentialrooms,+,1)
+					:endif
+				:endif
+		:endwhen
+		@storage.update(integer,roomcounter,+,1)
+	:endwhile
+:endif
+@storage.set(integer,roomsset,0)
+:while:<storage.get(integer,roomsset)><3
+	:if:<register.registered(pikelucynext)>=true
+		@register.change(pikeroom<storage.get(integer,roomsset)>,8)
+	:else
+		:if:<storage.get(integer,roomsset)> = <register.value(pikehintspot)>
+			@register.change(pikeroom<storage.get(integer,roomsset)>,<register.value(pikehinted)>)
+		:else
+			@register.change(pikeroom<storage.get(integer,roomsset)>,<storage.get(integer,potroom<system.random(0,<math.int(<storage.get(integer,potentialrooms)>-1)>)>)>)
+		:endif
+	:endif
+	@storage.update(integer,roomsset,+,1)
+:endwhile

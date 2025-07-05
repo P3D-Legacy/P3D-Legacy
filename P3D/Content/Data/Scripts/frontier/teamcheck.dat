@@ -1,0 +1,28 @@
+version=2
+@storage.set(integer,checked,0)
+@storage.set(string,pokedupe,0)
+@storage.set(string,itemdupe,0)
+:while:<storage.get(integer,checked)><<storage.get(integer,tocheck)>
+	:select:<pokemon.number(<storage.get(integer,checked)>)>
+		:when:150;151;249;250;251;382;383;384;385;386;483;484;487;489;490;491;492;493;494;643;644;646;647;648;649;716;717;718;719;720;721;789;790;791;792;800;801;802;807;808;809;888;889;890;893;898;1007;1008
+			@text.show(You have a restricted Pokémon on your team, please choose a different Pokémon.)
+			:endscript
+		:when:<storage.get(string,pokedupe)>
+			@text.show(Duplicate Pokémon are not allowed, please choose a different Pokémon.)
+			:endscript
+	:endwhen
+	
+	:if:<pokemon.isegg(<storage.get(integer,checked)>)=true
+		@text.show(Eggs are not allowed, please choose a different Pokémon.)
+		:endscript
+	:endif
+	:select:<pokemon.itemid(<storage.get(integer,checked)>)>
+		:when:<storage.get(string,itemdupe)>
+			@text.show(Duplicate held items are not allowed, please choose a different Pokémon.)
+			:endscript
+	:endwhen
+
+	@storage.set(string,pokedupe,<storage.get(string,pokedupe)>;<pokemon.number(<storage.get(integer,checked)>)>)
+	@storage.set(string,itemdupe,<storage.get(string,itemdupe)>;<pokemon.itemid(<storage.get(integer,checked)>)>)
+	@storage.set(integer,checked,<storage.get(integer,checked)>+1)
+:endwhile

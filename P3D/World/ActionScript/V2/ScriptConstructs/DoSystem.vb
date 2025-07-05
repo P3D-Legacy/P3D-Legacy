@@ -26,25 +26,27 @@
                             key = KeyBindings.BackwardMoveKey
                         Case "moveright"
                             key = KeyBindings.RightMoveKey
+                        Case "run"
+                            key = KeyBindings.RunKey
                         Case "openmenu"
                             key = KeyBindings.OpenInventoryKey
                         Case "chat"
                             key = KeyBindings.ChatKey
-                        Case "special", "phone"
+                        Case "special", "phone", "pokegear"
                             key = KeyBindings.SpecialKey
-                        Case "muteaudio"
+                        Case "muteaudio", "mutemusic"
                             key = KeyBindings.MuteAudioKey
-                        Case "cameraleft"
+                        Case "cameraleft", "left"
                             key = KeyBindings.LeftKey
-                        Case "cameraright"
+                        Case "cameraright", "right"
                             key = KeyBindings.RightKey
-                        Case "cameraup"
+                        Case "cameraup", "up"
                             key = KeyBindings.UpKey
-                        Case "cameradown"
+                        Case "cameradown", "down"
                             key = KeyBindings.DownKey
                         Case "cameralock"
                             key = KeyBindings.CameraLockKey
-                        Case "guicontrol"
+                        Case "guicontrol", "hidegui"
                             key = KeyBindings.GUIControlKey
                         Case "screenshot"
                             key = KeyBindings.ScreenshotKey
@@ -68,10 +70,6 @@
                             key = KeyBindings.OnlineStatusKey
                         Case "lighting"
                             key = KeyBindings.LightKey
-                        Case "hidegui"
-                            key = KeyBindings.GUIControlKey
-                        Case "run"
-                            key = KeyBindings.RunKey
                     End Select
                     If key <> Nothing Then
                         buttonName = Localization.GetString("keyboard_key_" & KeyBindings.GetKeyName(key), KeyBindings.GetKeyName(key))

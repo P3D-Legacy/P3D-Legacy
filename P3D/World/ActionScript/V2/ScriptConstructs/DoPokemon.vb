@@ -493,6 +493,9 @@
                     Dim checkType As String = args(1)
 
                     Return ReturnBoolean(p.IsType(New Element(checkType).Type))
+                Case "ability"
+                    Dim p As Pokemon = Core.Player.Pokemons(int(argument))
+                    Return p.Ability.ID()
                 Case "displayname"
                     Dim index As Integer = int(argument.GetSplit(0))
                     Return Core.Player.Pokemons(index).GetDisplayName()

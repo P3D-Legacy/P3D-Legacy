@@ -1928,7 +1928,11 @@
                                 End If
                             End If
                             If Core.Player.CountFightablePokemon = 0 Then
-                                Core.SetScreen(New TransitionScreen(Core.CurrentScreen, New BlackOutScreen(Core.CurrentScreen), Color.Black, False))
+                                If Screen.Level.BlackOutScript <> "" Then
+                                    CType(CurrentScreen, OverworldScreen).ActionScript.StartScript(Screen.Level.BlackOutScript, 0, False)
+                                Else
+                                    Core.SetScreen(New TransitionScreen(Core.CurrentScreen, New BlackOutScreen(Core.CurrentScreen), Color.Black, False))
+                                End If
                             End If
                         Next
                     End If

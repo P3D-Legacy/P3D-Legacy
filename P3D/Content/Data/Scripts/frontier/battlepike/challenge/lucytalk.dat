@@ -1,0 +1,7 @@
+version=2
+:if:<register.value(pike_room_count_temp)>=28
+	@text.show(...That's all there is... Disappear already...)
+:else
+	@text.show(...You, I won't forget...~...Ever...)
+:endif
+:end

@@ -1,0 +1,5 @@
+name=Skip
+type=Skip
+{0|{"Pokemon"[336]}{"OriginalNumber"[-1]}{"Gender"[0]}{"EggSteps"[0]}{"Item"[0]}{"ItemData"[]}{"NickName"[]}{"Level"[<register.value(wildlevel)>]}{"OT"[00000]}{"Ability"[151]}{"Status"[]}{"Nature"[3]}{"CatchLocation"[Battle Pike]}{"CatchTrainer"[Lucy]}{"CatchBall"[5]}{"CatchMethod"[annoyed]}{"Friendship"[70]}{"isShiny"[0]}{"Attack1"[92]}{"Attack2"[137]}{"Attack3"[188]}{"Attack4"[34]}{"EVs"[88,84,84,84,84,84]}{"IVs"[22,22,22,22,22,22]}{"AdditionalData"[]}|26|-1|<register.value(wildlevel)>,<register.value(wildlevel)>}
+{0|{"Pokemon"[350]}{"OriginalNumber"[-1]}{"Gender"[0]}{"EggSteps"[0]}{"Item"[0]}{"ItemData"[]}{"NickName"[]}{"Level"[<register.value(wildlevel)>]}{"OT"[00000]}{"Ability"[63]}{"Status"[]}{"Nature"[15]}{"CatchLocation"[Battle Pike]}{"CatchTrainer"[Lucy]}{"CatchBall"[5]}{"CatchMethod"[annoyed]}{"Friendship"[70]}{"isShiny"[0]}{"Attack1"[92]}{"Attack2"[95]}{"Attack3"[34]}{"Attack4"[57]}{"EVs"[88,84,84,84,84,84]}{"IVs"[22,22,22,22,22,22]}{"AdditionalData"[]}|26|-1|<register.value(wildlevel)>,<register.value(wildlevel)>}
+{0|<register.value(wildspecial)>|48|-1|<register.value(wildlevel)>,<register.value(wildlevel)>}

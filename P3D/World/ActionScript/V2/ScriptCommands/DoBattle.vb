@@ -52,7 +52,11 @@
 
                         CanContinue = False
                     Else
-                        Core.SetScreen(New TransitionScreen(Core.CurrentScreen, New BlackOutScreen(Core.CurrentScreen), Color.Black, False))
+                        If Screen.Level.BlackOutScript <> "" Then
+                            CType(CurrentScreen, OverworldScreen).ActionScript.StartScript(Screen.Level.BlackOutScript, 0, False)
+                        Else
+                            Core.SetScreen(New TransitionScreen(Core.CurrentScreen, New BlackOutScreen(Core.CurrentScreen), Color.Black, False))
+                        End If
                     End If
                 Case "trainer"
                     If Core.Player.Pokemons.Count > 0 Then
@@ -92,7 +96,11 @@
 
                         CanContinue = False
                     Else
-                        Core.SetScreen(New TransitionScreen(Core.CurrentScreen, New BlackOutScreen(Core.CurrentScreen), Color.Black, False))
+                        If Screen.Level.BlackOutScript <> "" Then
+                            CType(CurrentScreen, OverworldScreen).ActionScript.StartScript(Screen.Level.BlackOutScript, 0, False)
+                        Else
+                            Core.SetScreen(New TransitionScreen(Core.CurrentScreen, New BlackOutScreen(Core.CurrentScreen), Color.Black, False))
+                        End If
                     End If
                 Case "wild"
                     ' ID,    Level,  [shiny],    [musicloop],    [introtype]
@@ -203,7 +211,11 @@
 
                         CanContinue = False
                     Else
-                        Core.SetScreen(New TransitionScreen(Core.CurrentScreen, New BlackOutScreen(Core.CurrentScreen), Color.Black, False))
+                        If Screen.Level.BlackOutScript <> "" Then
+                            CType(CurrentScreen, OverworldScreen).ActionScript.StartScript(Screen.Level.BlackOutScript, 0, False)
+                        Else
+                            Core.SetScreen(New TransitionScreen(Core.CurrentScreen, New BlackOutScreen(Core.CurrentScreen), Color.Black, False))
+                        End If
                     End If
                 Case "setvar"
                     Dim varname As String = argument.GetSplit(0)

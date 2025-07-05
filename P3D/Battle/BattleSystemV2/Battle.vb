@@ -2858,6 +2858,9 @@
                                 End Select
                             End If
                         End If
+                        If BattleScreen.FieldEffects.TempTripleKick > 0 Then
+                            BattleScreen.FieldEffects.TempTripleKick = 0
+                        End If
                     Else 'If not damaging move
                         Dim lastMove As Attack = BattleScreen.FieldEffects.OppLastMove
                         If own = False Then

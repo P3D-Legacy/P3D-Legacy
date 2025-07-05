@@ -1,0 +1,32 @@
+version=2
+:if:<register.registered(pikelucynext)>=true
+	@text.show(From every path I sense a dreadful presence...)
+	:end
+:endif
+
+I beg your pardon, but...~Are you perhaps finding it difficult to choose your path?
+@options.show(Yes,No)
+	:when:No
+		@text.show(I See...~I apologize for my~impertinence...)
+		:end
+	:when:Yes
+		:select:<register.value(pikehintspot)>
+			:when:0
+				@text.show(Ah, let me see...*There is something about~the path on the left...)
+			:when:1
+				@text.show(Ah, let me see...*There is something about~the path in the center...)
+			:when:2
+				@text.show(Ah, let me see...*There is something about~the path on the right...)
+		:endwhen
+		:select:<register.value(pikehint)>
+			:when:0
+				@text.show(For some odd reason,~I felt a wave of nostalgia~coming from it...)
+			:when:1
+				@text.show(Is it...~A Trainer?*I sense the presence~of people...)
+			:when:2
+				@text.show(It seems to have the distinct~aroma of Pokémon wafting~around it...)
+			:when:3
+				@text.show(I seem to have heard~something...*It may have been~whispering...)
+		:endwhen
+:endwhen
+:end

@@ -1405,8 +1405,8 @@ nextIndex:
                                 ItemReturnScript &= "@Sound.Play(item_found)" & Environment.NewLine & "@Text.Show(" & Core.Player.Name & " found~" & p.OriginalItem.Name & "!*" & Core.Player.Inventory.GetMessageReceive(p.OriginalItem, 1)
 
                                 p.OriginalItem = Nothing
-                                End If
                             End If
+                        End If
                     End If
                     p.ResetTemp()
                 Next
@@ -1528,7 +1528,12 @@ nextIndex:
                 FieldEffects.OppRageFistPower = 0
 
                 ResetVars()
-                Core.SetScreen(New TransitionScreen(Me, New BlackOutScreen(Me), Color.Black, False))
+                If SavedOverworld.Level.BlackOutScript <> "" Then
+                    CType(SavedOverworld.OverworldScreen, OverworldScreen).ActionScript.StartScript(SavedOverworld.Level.BlackOutScript, 0, False)
+                    Core.SetScreen(New TransitionScreen(Me, SavedOverworld.OverworldScreen, Color.Black, False, AddressOf ChangeSavedScreen))
+                Else
+                    Core.SetScreen(New TransitionScreen(Me, New BlackOutScreen(Me), Color.Black, False))
+                End If
             End If
             BattleMapOffset = New Vector3(0)
             OwnLeadIndex = 0

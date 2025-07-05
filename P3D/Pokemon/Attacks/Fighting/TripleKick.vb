@@ -52,6 +52,18 @@
             '#End
         End Sub
 
+        Public Overrides Function GetBasePower(ByVal own As Boolean, ByVal BattleScreen As BattleScreen) As Integer
+            Dim TripleKick As Integer = 10
+            Select Case BattleScreen.FieldEffects.TempTripleKick
+                Case 1
+                    TripleKick = 20
+                Case 2
+                    TripleKick = 30
+            End Select
+            BattleScreen.FieldEffects.TempTripleKick += 1
+            Return TripleKick
+        End Function
+
         Public Overrides Function GetTimesToAttack(own As Boolean, BattleScreen As BattleScreen) As Integer
             Dim r As Integer = Core.Random.Next(0, 100)
             If r < 73 Then
