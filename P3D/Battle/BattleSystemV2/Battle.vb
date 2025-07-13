@@ -1881,6 +1881,15 @@
                 DoesNotMiss = True
             End If
 
+            Dim minimize As Integer = BattleScreen.FieldEffects.OppMinimize
+            If own = False Then
+                minimize = BattleScreen.FieldEffects.OwnMinimize
+            End If
+
+            If minimize > 0 AndAlso moveUsed.Name.ToLower = "stomp" Then
+                DoesNotMiss = True
+            End If
+
             'if the target pokemon can't be hit because of a two-turn move (Fly, for example)
             Dim UseTwoTurnCheck As Boolean = True
             If moveUsed.ProtectAffected = False Then
