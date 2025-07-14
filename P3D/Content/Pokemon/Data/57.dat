@@ -45,7 +45,8 @@ Move|17,69
 Move|21,103
 Move|25,372
 Move|28,99
-Move|35,207
+Move|31,207
+Move|35,889
 Move|41,238
 Move|47,37
 Move|53,386
@@ -53,3 +54,4 @@ Move|59,370
 Move|63,515
 Item|5,2044
 TradeValue|30
+EvolutionCondition|979,move,889,Level
