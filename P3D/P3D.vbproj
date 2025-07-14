@@ -28899,6 +28899,7 @@
     <Compile Include="Pokemon\Attacks\Poison\ToxicThread.vb" />
     <Compile Include="Pokemon\Attacks\Poison\VenomDrench.vb" />
     <Compile Include="Pokemon\Attacks\Psychic\PrismaticLaser.vb" />
+    <Compile Include="Pokemon\Attacks\Psychic\PsyshieldBash.vb" />
     <Compile Include="Pokemon\Attacks\Psychic\PsychicFangs.vb" />
     <Compile Include="Pokemon\Attacks\Psychic\HyperspaceHole.vb" />
     <Compile Include="Pokemon\Attacks\Psychic\PsychicTerrain.vb" />
