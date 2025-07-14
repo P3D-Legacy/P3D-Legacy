@@ -1879,12 +1879,16 @@
                     'returnMove = New Moves.Dragon.Eternabeam()
                 Case 796
                     returnMove = New Moves.Steel.SteelBeam()
-                Case 797
-                    returnMove = New Moves.Ghost.RageFist()
-                    'Case 798
+                    'Case 797
                     'Blank
                 Case 828
-                    returnMove = New Moves.Psychic.PsyshieldBash
+                    returnMove = New Moves.Psychic.PsyshieldBash()
+                Case 887
+                    returnMove = New Moves.Normal.HyperDrill()
+                Case 888
+                    returnMove = New Moves.Psychic.TwinBeam()
+                Case 889
+                    returnMove = New Moves.Ghost.RageFist()
                 Case 999
                     If GameController.IS_DEBUG_ACTIVE = True Or Core.Player.SandBoxMode = True Then
                         returnMove = New Moves.Special.TheDerpMove()

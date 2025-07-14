@@ -7,7 +7,7 @@ Namespace BattleSystem.Moves.Ghost
         Public Sub New()
             '#Definitions
             Me.Type = New Element(Element.Types.Ghost)
-            Me.ID = 797
+            Me.ID = 889
             Me.OriginalPP = 10
             Me.CurrentPP = 10
             Me.MaxPP = 10
