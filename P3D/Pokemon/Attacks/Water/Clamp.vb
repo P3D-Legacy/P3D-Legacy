@@ -8,9 +8,9 @@ Namespace BattleSystem.Moves.Water
             '#Definitions
             Me.Type = New Element(Element.Types.Water)
             Me.ID = 128
-            Me.OriginalPP = 10
-            Me.CurrentPP = 10
-            Me.MaxPP = 10
+            Me.OriginalPP = 15
+            Me.CurrentPP = 15
+            Me.MaxPP = 15
             Me.Power = 35
             Me.Accuracy = 85
             Me.Category = Categories.Physical
