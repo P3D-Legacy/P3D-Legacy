@@ -1883,6 +1883,8 @@
                     returnMove = New Moves.Ghost.RageFist()
                     'Case 798
                     'Blank
+                Case 828
+                    returnMove = New Moves.Psychic.PsyshieldBash
                 Case 999
                     If GameController.IS_DEBUG_ACTIVE = True Or Core.Player.SandBoxMode = True Then
                         returnMove = New Moves.Special.TheDerpMove()
