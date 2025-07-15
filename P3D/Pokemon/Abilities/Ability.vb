@@ -555,6 +555,110 @@
                 'Pastel Veil
                 'Case 258
                 'Hunger Switch
+                'Case 259
+                'Quick Draw
+                'Case 260
+                'Unseen Fist
+                'Case 261
+                'Curious Medicine
+                'Case 262
+                'Transistor
+                'Case 263
+                'Dragon's Maw
+                'Case 264
+                'Chilling Neigh
+                'Case 265
+                'Grim Neigh
+                'Case 266
+                'As One
+                'Case 267
+                'As One
+                'Case 268
+                'Lingering Aroma
+                'Case 269
+                'Seed Sower
+                'Case 270
+                'Thermal Exchange
+                'Case 271
+                'Anger Shell
+                'Case 272
+                'Purifying Salt
+                'Case 273
+                'Well-Baked Body
+                'Case 274
+                'Wind Rider
+                'Case 275
+                'Guard Dog
+                'Case 276
+                'Rocky Payload
+                'Case 277
+                'Wind Power
+                'Case 278
+                'Zero to Hero
+                'Case 279
+                'Commander
+                'Case 280
+                'Electromorphosis
+                'Case 281
+                'Protosynthesis
+                'Case 282
+                'Quark Drive
+                'Case 283
+                'Good as Gold
+                'Case 284
+                'Vessel of Ruin
+                'Case 285
+                'Sword of Ruin
+                'Case 286
+                'Tablets of Ruin
+                'Case 287
+                'Beads of Ruin
+                'Case 288
+                'Orichalcum Pulse
+                'Case 289
+                'Hadron Engine
+                'Case 290
+                'Opportunist
+                'Case 291
+                'Cud Chew
+                'Case 292
+                'Sharpness
+                'Case 293
+                'Supreme Overlord
+                'Case 294
+                'Costar
+                'Case 295
+                'Toxic Debris
+                'Case 296
+                'Armor Tail
+                'Case 297
+                'Earth Eater
+                'Case 298
+                'Mycelium Might
+                'Case 299
+                'Hospitality
+                'Case 300
+                'Mind's Eye
+                'Case 301
+                'Embody Aspect
+                'Case 302
+                'Embody Aspect
+                'Case 303
+                'Embody Aspect
+                'Case 304
+                'Embody Aspect
+                'Case 305
+                'Toxic Chain
+                'Case 306
+                'Supersweet Syrup
+                'Case 307
+                'Tera Shift
+                'Case 308
+                'Tera Shell
+                'Case 309
+                'Teraform Zero
+                'Case 310
+                'Poison Puppeteer
             Case Else
                 Return New Abilities.Stench
         End Select
