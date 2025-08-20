@@ -1159,8 +1159,10 @@
                     Return False
                 End If
 
-                If BattleScreen.OppPokemon.Ability.Name.ToLower() = "arena trap" And BattleScreen.OppPokemon.HP > 0 And BattleScreen.FieldEffects.IsGrounded(True, BattleScreen) = True Then
-                    Return False
+                If BattleScreen.OppFaint = False Then
+                    If BattleScreen.OppPokemon.Ability.Name.ToLower() = "arena trap" And BattleScreen.OppPokemon.HP > 0 And BattleScreen.FieldEffects.IsGrounded(True, BattleScreen) = True Then
+                        Return False
+                    End If
                 End If
 
                 If BattleScreen.OppPokemon.Ability.Name.ToLower() = "magnet pull" And BattleScreen.OwnPokemon.IsType(Element.Types.Steel) = True And BattleScreen.OppPokemon.HP > 0 Then
@@ -1201,8 +1203,10 @@
                     Return False
                 End If
 
-                If BattleScreen.OwnPokemon.Ability.Name.ToLower() = "arena trap" And BattleScreen.OwnPokemon.HP > 0 And BattleScreen.FieldEffects.IsGrounded(False, BattleScreen) = True Then
-                    Return False
+                If BattleScreen.OwnFaint = False Then
+                    If BattleScreen.OwnPokemon.Ability.Name.ToLower() = "arena trap" And BattleScreen.OwnPokemon.HP > 0 And BattleScreen.FieldEffects.IsGrounded(False, BattleScreen) = True Then
+                        Return False
+                    End If
                 End If
 
                 If BattleScreen.OwnPokemon.Ability.Name.ToLower() = "magnet pull" And BattleScreen.OppPokemon.IsType(Element.Types.Steel) = True And BattleScreen.OwnPokemon.HP > 0 Then
