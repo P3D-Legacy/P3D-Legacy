@@ -75,6 +75,7 @@ global_pokemon_move_flash,Flash
 global_pokemon_move_cut,Coupe
 global_pokemon_move_teleport,Teleport
 global_pokemon_move_dig,Tunnel
+global_pokemon_move_sweetscent,Doux Parfum
 global_used,Utilisé
 ---
 Pokémon & Attack Properties:
@@ -180,6 +181,9 @@ fieldmove_ride_used,used~Ride!
 fieldmove_flash_AreaLitUp,The area got lit up!
 fieldmove_flash_AlreadyLitUp,The area is already~lit up!
 fieldmove_flash_used,used~Flash!
+
+fieldmove_sweetscent_CannotUse,Cannot use Sweet Scent here.
+fieldmove_sweetscent_used,used~Sweet Scent!
 
 fieldmove_dig_CannotUse,Cannot use Dig here.
 fieldmove_dig_used,used~Dig!

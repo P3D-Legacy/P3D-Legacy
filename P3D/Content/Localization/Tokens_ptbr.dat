@@ -75,6 +75,7 @@ global_pokemon_move_flash,Flash
 global_pokemon_move_cut,Cut
 global_pokemon_move_teleport,Teleport
 global_pokemon_move_dig,Dig
+global_pokemon_move_sweetscent,Sweet Scent
 global_used,Usou
 ---
 Pokémon & Attack Properties:
@@ -180,6 +181,9 @@ fieldmove_ride_used,usou~Ride!
 fieldmove_flash_AreaLitUp,A área foi iluminada!
 fieldmove_flash_AlreadyLitUp,A área ja está iluminada!
 fieldmove_flash_used,usou~Flash!
+
+fieldmove_sweetscent_CannotUse,Não pode usar Sweet Scent nesse lugar.
+fieldmove_sweetscent_used,usou~Sweet Scent!
 
 fieldmove_dig_CannotUse,Não dá para usar Dig aqui.
 fieldmove_dig_used,usou~Dig!

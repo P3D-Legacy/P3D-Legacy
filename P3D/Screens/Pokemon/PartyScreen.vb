@@ -666,7 +666,6 @@ Public Class PartyScreen
         Return True
     End Function
 
-
     Private Sub CreateNormalMenu(ByVal selectedItem As String)
         Dim p As Pokemon = PokemonList(_index)
 
@@ -678,6 +677,7 @@ Public Class PartyScreen
             CanUseMove(p, 560, Badge.HMMoves.Ride) Or
             CanUseMove(p, 148, Badge.HMMoves.Flash) Or
             CanUseMove(p, 15, Badge.HMMoves.Cut) Or
+            CanUseMove(p, 230, -1) Or
             CanUseMove(p, 100, -1) Or
             CanUseMove(p, 91, -1) Then
 
@@ -711,6 +711,11 @@ Public Class PartyScreen
         End If
         If CanUseMove(p, 15, Badge.HMMoves.Cut) Then
             items.Add(Localization.GetString("global_pokemon_move_cut", "Cut"))
+        End If
+        If World.GetWeatherFromWeatherType(Screen.Level.WeatherType) = World.Weathers.Clear OrElse GameController.IS_DEBUG_ACTIVE OrElse Core.Player.SandBoxMode = True Then
+            If CanUseMove(p, 230, -1) Then
+                items.Add(Localization.GetString("global_pokemon_move_sweetscent", "Sweet Scent"))
+            End If
         End If
         If CanUseMove(p, 100, -1) Then
             items.Add(Localization.GetString("global_pokemon_move_teleport", "Teleport"))
@@ -785,6 +790,8 @@ Public Class PartyScreen
                 UseFlash()
             Case Localization.GetString("global_pokemon_move_cut", "Cut")
                 UseCut()
+            Case Localization.GetString("global_pokemon_move_sweetscent", "Sweet Scent")
+                UseSweetScent()
             Case Localization.GetString("global_pokemon_move_teleport", "Teleport")
                 UseTeleport()
             Case Localization.GetString("global_pokemon_move_dig", "Dig")
@@ -974,11 +981,13 @@ Public Class PartyScreen
 
     'TEMPORARY
     Private Sub UseFlash()
+        Dim sc As Screen = CurrentScreen
+        While sc.Identification <> Identifications.OverworldScreen AndAlso sc.PreScreen IsNot Nothing
+            sc = sc.PreScreen
+        End While
         ChooseBox.Showing = False
-        Core.SetScreen(Me.PreScreen)
-        If Core.CurrentScreen.Identification = Identifications.MenuScreen Then
-            Core.SetScreen(Core.CurrentScreen.PreScreen)
-        End If
+        Core.SetScreen(sc)
+
         If Screen.Level.IsDark = True Then
             Dim s As String = "version=2" & Environment.NewLine &
                               "@text.show(" & PokemonList(_index).GetDisplayName() & " <system.token(fieldmove_flash_used)>)" & Environment.NewLine &
@@ -999,13 +1008,14 @@ Public Class PartyScreen
     End Sub
 
     Private Sub UseFly()
-        If Level.CanFly = True Or GameController.IS_DEBUG_ACTIVE = True Or Core.Player.SandBoxMode = True Then
-            ChooseBox.Showing = False
-            Core.SetScreen(Me.PreScreen)
-            If Core.CurrentScreen.Identification = Identifications.MenuScreen Then
-                Core.SetScreen(Core.CurrentScreen.PreScreen)
-            End If
+        Dim sc As Screen = CurrentScreen
+        While sc.Identification <> Identifications.OverworldScreen AndAlso sc.PreScreen IsNot Nothing
+            sc = sc.PreScreen
+        End While
+        ChooseBox.Showing = False
+        Core.SetScreen(sc)
 
+        If Level.CanFly = True Or GameController.IS_DEBUG_ACTIVE = True Or Core.Player.SandBoxMode = True Then
             If Screen.Level.CurrentRegion.Contains(",") = True Then
                 Dim regions As List(Of String) = Screen.Level.CurrentRegion.Split(CChar(",")).ToList()
                 Core.SetScreen(New TransitionScreen(Core.CurrentScreen, New MapScreen(Core.CurrentScreen, regions, 0, {"Fly", PokemonList(_index)}), Color.White, False))
@@ -1019,13 +1029,15 @@ Public Class PartyScreen
     End Sub
 
     Private Sub UseCut()
+        Dim sc As Screen = CurrentScreen
+        While sc.Identification <> Identifications.OverworldScreen AndAlso sc.PreScreen IsNot Nothing
+            sc = sc.PreScreen
+        End While
+        ChooseBox.Showing = False
+        Core.SetScreen(sc)
+
         Dim grassEntities = Grass.GetGrassTilesAroundPlayer(2.4F)
         If grassEntities.Count > 0 Then
-            ChooseBox.Showing = False
-            Core.SetScreen(Me.PreScreen)
-            If Core.CurrentScreen.Identification = Identifications.MenuScreen Then
-                Core.SetScreen(Core.CurrentScreen.PreScreen)
-            End If
 
             PlayerStatistics.Track("Cut used", 1)
             TextBox.Show(PokemonList(_index).GetDisplayName() & " " & Localization.GetString("fieldmove_cut_used", "used~Cut!"), {}, True, False)
@@ -1047,11 +1059,12 @@ Public Class PartyScreen
                 Screen.Level.OwnPlayer.SetTexture(Core.Player.TempRideSkin, True)
                 Core.Player.Skin = Core.Player.TempRideSkin
 
+                Dim sc As Screen = CurrentScreen
+                While sc.Identification <> Identifications.OverworldScreen AndAlso sc.PreScreen IsNot Nothing
+                    sc = sc.PreScreen
+                End While
                 ChooseBox.Showing = False
-                Core.SetScreen(Me.PreScreen)
-                If Core.CurrentScreen.Identification = Identifications.MenuScreen Then
-                    Core.SetScreen(Core.CurrentScreen.PreScreen)
-                End If
+                Core.SetScreen(sc)
 
                 If Screen.Level.IsRadioOn = False OrElse GameJolt.PokegearScreen.StationCanPlay(Screen.Level.SelectedRadioStation) = False Then
                     MusicManager.Play(Level.MusicLoop, True, 0.01F)
@@ -1059,11 +1072,12 @@ Public Class PartyScreen
             End If
         Else
             If Screen.Level.Surfing = False And Screen.Camera.IsMoving() = False And Screen.Camera.Turning = False And Level.CanRide() = True Then
+                Dim sc As Screen = CurrentScreen
+                While sc.Identification <> Identifications.OverworldScreen AndAlso sc.PreScreen IsNot Nothing
+                    sc = sc.PreScreen
+                End While
                 ChooseBox.Showing = False
-                Core.SetScreen(Me.PreScreen)
-                If Core.CurrentScreen.Identification = Identifications.MenuScreen Then
-                    Core.SetScreen(Core.CurrentScreen.PreScreen)
-                End If
+                Core.SetScreen(sc)
 
                 Screen.Level.Riding = True
                 Core.Player.TempRideSkin = Core.Player.Skin
@@ -1087,19 +1101,27 @@ Public Class PartyScreen
                     MusicManager.Play("ride", True)
                 End If
             Else
+                Dim sc As Screen = CurrentScreen
+                While sc.Identification <> Identifications.OverworldScreen AndAlso sc.PreScreen IsNot Nothing
+                    sc = sc.PreScreen
+                End While
+                ChooseBox.Showing = False
+                Core.SetScreen(sc)
+
                 TextBox.Show(Localization.GetString("fieldmove_ride_cannot_ride", "You cannot Ride here!"), {}, True, False)
             End If
         End If
     End Sub
 
     Private Sub UseDig()
-        If Screen.Level.CanDig = True Or GameController.IS_DEBUG_ACTIVE = True Or Core.Player.SandBoxMode = True Then
-            ChooseBox.Showing = False
-            Core.SetScreen(Me.PreScreen)
-            If Core.CurrentScreen.Identification = Identifications.MenuScreen Then
-                Core.SetScreen(Core.CurrentScreen.PreScreen)
-            End If
+        Dim sc As Screen = CurrentScreen
+        While sc.Identification <> Identifications.OverworldScreen AndAlso sc.PreScreen IsNot Nothing
+            sc = sc.PreScreen
+        End While
+        ChooseBox.Showing = False
+        Core.SetScreen(sc)
 
+        If Screen.Level.CanDig = True Or GameController.IS_DEBUG_ACTIVE = True Or Core.Player.SandBoxMode = True Then
             Dim setToFirstPerson As Boolean = Not CType(Screen.Camera, OverworldCamera).ThirdPerson
 
             Dim s As String = "version=2
@@ -1143,20 +1165,65 @@ Public Class PartyScreen
         End If
     End Sub
 
-    Private Sub UseTeleport()
-        If Screen.Level.CanTeleport = True Or GameController.IS_DEBUG_ACTIVE = True Or Core.Player.SandBoxMode = True Then
-            ChooseBox.Showing = False
-            Core.SetScreen(Me.PreScreen)
-            If Core.CurrentScreen.Identification = Identifications.MenuScreen Then
-                Core.SetScreen(Core.CurrentScreen.PreScreen)
+    Private Sub UseSweetScent()
+        Dim s As Screen = CurrentScreen
+        While s.Identification <> Identifications.OverworldScreen AndAlso s.PreScreen IsNot Nothing
+            s = s.PreScreen
+        End While
+        ChooseBox.Showing = False
+        Core.SetScreen(s)
+
+        With Screen.Level
+            Dim pokeFilePath As String = GameModeManager.GetPokeFilePath(.LevelFile.Remove(.LevelFile.Length - 4, 4) & ".poke")
+            If System.IO.File.Exists(pokeFilePath) = True Then
+                .WalkedSteps = 0
+
+                .PokemonEncounterData.Position = .OwnPlayer.Position
+                .PokemonEncounterData.EncounteredPokemon = True
+                If .Surfing = True Then
+                    .PokemonEncounterData.Method = Spawner.EncounterMethods.Surfing
+                Else
+                    .PokemonEncounterData.Method = Spawner.EncounterMethods.Land
+                End If
+
+                .PokemonEncounterData.PokeFile = ""
+
+                Dim p As Pokemon = Spawner.GetPokemon(.LevelFile, .PokemonEncounterData.Method, True, "")
+
+                If Not p Is Nothing Then
+                    TextBox.Show(PokemonList(_index).GetDisplayName() & " " & Localization.GetString("fieldmove_sweetscent_used", "used~Sweet Scent!"))
+
+                    .PokemonEncounter.TriggerBattle()
+                Else
+                    ChooseBox.Showing = False
+                    Core.SetScreen(s)
+                    TextBox.Show(Localization.GetString("fieldmove_sweetscent_CannotUse", "Cannot use Sweet Scent here."), {}, True, False)
+                End If
+
+            Else
+                ChooseBox.Showing = False
+                Core.SetScreen(s)
+                TextBox.Show(Localization.GetString("fieldmove_sweetscent_CannotUse", "Cannot use Sweet Scent here."), {}, True, False)
             End If
+        End With
+
+    End Sub
+    Private Sub UseTeleport()
+        Dim sc As Screen = CurrentScreen
+        While sc.Identification <> Identifications.OverworldScreen AndAlso sc.PreScreen IsNot Nothing
+            sc = sc.PreScreen
+        End While
+        ChooseBox.Showing = False
+        Core.SetScreen(sc)
+
+        If Screen.Level.CanTeleport = True Or GameController.IS_DEBUG_ACTIVE = True Or Core.Player.SandBoxMode = True Then
 
             Dim setToFirstPerson As Boolean = Not CType(Screen.Camera, OverworldCamera).ThirdPerson
 
             Dim yFinish As String = (Screen.Camera.Position.Y + 2.9F).ToString().ReplaceDecSeparator()
 
             Dim s As String = "version=2
-@text.show(" & PokemonList(_index).GetDisplayName() & "<system.token(fieldmove_teleport_used)>)
+@text.show(" & PokemonList(_index).GetDisplayName() & " <system.token(fieldmove_teleport_used)>)
 @level.wait(20)
 @camera.activatethirdperson
 @camera.reset

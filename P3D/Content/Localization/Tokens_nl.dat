@@ -76,6 +76,7 @@ global_pokemon_move_flash,Flits
 global_pokemon_move_cut,Snijd
 global_pokemon_move_teleport,Teleporteer
 global_pokemon_move_dig,Graaf
+global_pokemon_move_sweetscent,Zoete geur
 global_used,Gebruikt
 ---
 Pokémon & Attack Properties:
@@ -181,6 +182,9 @@ fieldmove_ride_used,gebruikte~Rijd!
 fieldmove_flash_AreaLitUp,De omgeving werd verlicht!
 fieldmove_flash_AlreadyLitUp,De omgeving is al verlicht!
 fieldmove_flash_used,gebruikte~Flits!
+
+fieldmove_sweetscent_CannotUse,Kan hier niet Zoete geur~gebruiken.
+fieldmove_sweetscent_used,gebruikte~Zoete geur!
 
 fieldmove_dig_CannotUse,Kan hier niet Graaf~gebruiken.
 fieldmove_dig_used,gebruikte~Graaf!

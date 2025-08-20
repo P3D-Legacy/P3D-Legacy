@@ -76,6 +76,7 @@ global_pokemon_move_flash,Destello
 global_pokemon_move_cut,Corte
 global_pokemon_move_teleport,Teletransporte
 global_pokemon_move_dig,Excavar
+global_pokemon_move_sweetscent,Dulce Aroma
 global_used,Usado
 global_none,Ninguno
 ---
@@ -182,6 +183,9 @@ fieldmove_ride_used,used~Ride!
 fieldmove_flash_AreaLitUp,The area got lit up!
 fieldmove_flash_AlreadyLitUp,The area is already~lit up!
 fieldmove_flash_used,used~Flash!
+
+fieldmove_sweetscent_CannotUse,Cannot use Sweet Scent here.
+fieldmove_sweetscent_used,used~Sweet Scent!
 
 fieldmove_dig_CannotUse,Cannot use Dig here.
 fieldmove_dig_used,used~Dig!
