@@ -56,7 +56,17 @@
 
             Me.EffectChances.Add(20)
         End Sub
-
+        Public Overrides Function GetBasePower(own As Boolean, BattleScreen As BattleScreen) As Integer
+            Dim minimize As Integer = BattleScreen.FieldEffects.OppMinimize
+            If own = False Then
+                minimize = BattleScreen.FieldEffects.OwnMinimize
+            End If
+            If minimize > 0 Then
+                Return Me.Power * 2
+            Else
+                Return Me.Power
+            End If
+        End Function
         Public Overrides Sub MoveHits(own As Boolean, BattleScreen As BattleScreen)
             If Core.Random.Next(0, 100) < Me.GetEffectChance(0, own, BattleScreen) Then
                 BattleScreen.Battle.InflictFlinch(Not own, own, BattleScreen, "", "move:dragonrush")

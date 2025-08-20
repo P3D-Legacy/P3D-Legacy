@@ -58,7 +58,17 @@ Namespace BattleSystem.Moves.Ghost
             Me.AIField1 = AIField.Damage
             Me.AIField2 = AIField.MultiTurn
         End Sub
-
+        Public Overrides Function GetBasePower(own As Boolean, BattleScreen As BattleScreen) As Integer
+            Dim minimize As Integer = BattleScreen.FieldEffects.OppMinimize
+            If own = False Then
+                minimize = BattleScreen.FieldEffects.OwnMinimize
+            End If
+            If minimize > 0 Then
+                Return Me.Power * 2
+            Else
+                Return Me.Power
+            End If
+        End Function
         Public Overrides Function GetUseAccEvasion(own As Boolean, BattleScreen As BattleScreen) As Boolean
             Dim phantomforce As Integer = BattleScreen.FieldEffects.OwnPhantomForceCounter
             If own = False Then

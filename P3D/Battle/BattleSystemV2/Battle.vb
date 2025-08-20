@@ -1886,7 +1886,17 @@
                 minimize = BattleScreen.FieldEffects.OwnMinimize
             End If
 
-            If minimize > 0 AndAlso moveUsed.Name.ToLower = "stomp" Then
+            Dim MinimizeMoveList As String() = {"body slam",
+                                                "stomp",
+                                                "dragon rush",
+                                                "shadow force",
+                                                "steam roller",
+                                                "heat crash",
+                                                "phantom force",
+                                                "flying press"
+                                               }
+
+            If minimize > 0 AndAlso MinimizeMoveList.Contains(moveUsed.Name.ToLower) Then
                 DoesNotMiss = True
             End If
 
