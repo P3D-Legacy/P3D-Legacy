@@ -1571,9 +1571,11 @@ Public Class NewMainMenuScreen
                         SetScreen(New GameModeSelectionScreen(CurrentScreen))
                     Else
                         If _gameModeExists Then
-                            GameModeManager.SetGameModePointer(_gameMode)
+                            If GameModeManager.ActiveGameMode.DirectoryName <> _gameMode Then
+                                GameModeManager.SetGameModePointer(_gameMode)
+                                Localization.ReloadGameModeTokens()
+                            End If
                             MusicManager.LoadMusic(True)
-                            Localization.ReloadGameModeTokens()
                             FontManager.LoadFonts()
                             Water.ClearAnimationResources()
                             Waterfall.ClearAnimationResources()

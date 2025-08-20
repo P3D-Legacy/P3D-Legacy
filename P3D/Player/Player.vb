@@ -562,11 +562,6 @@
         LoadPlayer()
         GameJolt.Emblem.GetAchievedEmblems()
 
-        If GameModeManager.GameModeExists(GameMode) = False Then
-            GameMode = "Kolben"
-        End If
-        GameModeManager.SetGameModePointer(GameMode)
-
         BattleSystem.GameModeElementLoader.Load()
         BattleSystem.GameModeAttackLoader.Load()
         GameModeItemLoader.Load()
@@ -574,8 +569,6 @@
         If IsGameJoltSave = True Then
             SandBoxMode = False
         End If
-
-        Localization.ReloadGameModeTokens()
 
         SmashRock.Load()
         Badge.Load()
