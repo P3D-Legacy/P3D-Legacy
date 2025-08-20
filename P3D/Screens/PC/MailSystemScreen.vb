@@ -433,10 +433,12 @@
                         End If
 
                         Dim text As String = ""
-                        If TakenFromParty = False Then
-                            text = Core.Player.Mails(index - 1).MailText.CropStringToWidth(FontManager.MainFont, 600)
-                        Else
-                            text = TempNewMail.MailText.CropStringToWidth(FontManager.MainFont, 600)
+                        If index <> -1 Then
+                            If TakenFromParty = False Then
+                                text = Core.Player.Mails(index - 1).MailText.CropStringToWidth(FontManager.MainFont, 600)
+                            Else
+                                text = TempNewMail.MailText.CropStringToWidth(FontManager.MainFont, 600)
+                            End If
                         End If
                         Dim yPlus As Integer = CInt(FontManager.MainFont.MeasureString(text).Y)
 
