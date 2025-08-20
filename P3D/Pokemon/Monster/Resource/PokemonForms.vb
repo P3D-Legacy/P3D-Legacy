@@ -392,10 +392,36 @@ Public Class PokemonForms
     ''' <summary>
     ''' Returns the path to the Pokémon's overworld sprite.
     ''' </summary>
-    Public Shared Function GetOverworldSpriteName(ByVal P As Pokemon) As String
-        Dim path As String = "Pokemon\Overworld\Normal\"
-        If P.IsShiny = True Then
-            path = "Pokemon\Overworld\Shiny\"
+    Public Shared Function GetOverworldSpriteName(ByVal P As Pokemon, Optional ByVal UseBattle As Boolean = False) As String
+        Dim path As String = ""
+        Dim UseOverworld As Boolean = True
+        If UseBattle = True Then
+            path = "Pokemon\Battle\Normal\"
+            If P.IsShiny = True Then
+                path = "Pokemon\Battle\Shiny\"
+            End If
+            If GameModeManager.ContentFileExists(path & P.Number.ToString() & GetOverworldAddition(P) & ".png") = True Then
+                UseOverworld = False
+            ElseIf Core.GameOptions.ContentPackNames.Count() > 0 Then
+                For Each c As String In Core.GameOptions.ContentPackNames
+                    Dim contentPath As String = "ContentPacks\" & c & "\Pokemon\Battle\Normal\"
+                    If P.IsShiny = True Then
+                        contentPath = "ContentPacks\" & c & "\Pokemon\Battle\Shiny\"
+                    End If
+
+                    If File.Exists(GameController.GamePath & "\" & contentPath & P.Number.ToString() & GetOverworldAddition(P) & ".png") = True Then
+                        UseOverworld = False
+                        Exit For
+                    End If
+
+                Next
+            End If
+        End If
+        If UseOverworld = True Then
+            path = "Pokemon\Overworld\Normal\"
+            If P.IsShiny = True Then
+                path = "Pokemon\Overworld\Shiny\"
+            End If
         End If
         path &= P.Number.ToString() & GetOverworldAddition(P)
         Return path

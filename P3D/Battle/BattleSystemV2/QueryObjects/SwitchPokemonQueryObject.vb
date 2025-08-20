@@ -257,7 +257,7 @@
             BattleScreen.Battle.ChangeCameraAngle(1, False, BattleScreen)
             Dim oppModel As String = BattleScreen.GetModelName(False)
             If oppModel = "" Then
-                BattleScreen.BattleQuery.Add(New ToggleEntityQueryObject(True, ToggleEntityQueryObject.BattleEntities.OppPokemon, PokemonForms.GetOverworldSpriteName(BattleScreen.OppPokemon), -1, -1, 0, 1))
+                BattleScreen.BattleQuery.Add(New ToggleEntityQueryObject(True, ToggleEntityQueryObject.BattleEntities.OppPokemon, PokemonForms.GetOverworldSpriteName(BattleScreen.OppPokemon, True), -1, -1, 0, 1))
             Else
                 BattleScreen.BattleQuery.Add(New ToggleEntityQueryObject(False, oppModel, -1, -1, 1, 0))
             End If

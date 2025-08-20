@@ -113,7 +113,7 @@
 
         Dim PokemonAddition As String = ""
 
-        If UseTextureID.StartsWith("Pokemon\Overworld\") = True Then
+        If UseTextureID.StartsWith("Pokemon\Overworld\") = True OrElse UseTextureID.StartsWith("Pokemon\Battle\") = True Then
             texturePath = ""
             If StringHelper.IsNumeric(TextureID) = True Then
                 PokemonAddition = PokemonForms.GetDefaultOverworldSpriteAddition(CInt(TextureID))

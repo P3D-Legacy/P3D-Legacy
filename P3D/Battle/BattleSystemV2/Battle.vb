@@ -681,7 +681,7 @@
                 Else
                     BattleScreen.BattleQuery.Add(New PlaySoundQueryObject("Battle\Effects\MegaEvolution", False))
                 End If
-                BattleScreen.BattleQuery.Add(New ToggleEntityQueryObject(own, ToggleEntityQueryObject.BattleEntities.OwnPokemon, PokemonForms.GetOverworldSpriteName(p), 0, 1, -1, -1))
+                BattleScreen.BattleQuery.Add(New ToggleEntityQueryObject(own, ToggleEntityQueryObject.BattleEntities.OwnPokemon, PokemonForms.GetOverworldSpriteName(p, True), 0, 1, -1, -1))
                 BattleScreen.BattleQuery.Add(New TextQueryObject(_base & " has Mega Evolved into " & p.GetName(True) & "!"))
                 TriggerAbilityEffect(BattleScreen, own)
             End If
@@ -1336,7 +1336,7 @@
                         p.ReloadDefinitions()
                         p.CalculateStats()
                         Me.ChangeCameraAngle(1, own, BattleScreen)
-                        BattleScreen.BattleQuery.Add(New ToggleEntityQueryObject(own, ToggleEntityQueryObject.BattleEntities.OwnPokemon, PokemonForms.GetOverworldSpriteName(p), 0, 1, -1, -1))
+                        BattleScreen.BattleQuery.Add(New ToggleEntityQueryObject(own, ToggleEntityQueryObject.BattleEntities.OwnPokemon, PokemonForms.GetOverworldSpriteName(p, True), 0, 1, -1, -1))
                         BattleScreen.BattleQuery.Add(New TextQueryObject(p.GetDisplayName() & " transformed into Blade Forme!"))
                     End If
                 Else
@@ -1345,7 +1345,7 @@
                         p.ReloadDefinitions()
                         p.CalculateStats()
                         Me.ChangeCameraAngle(1, own, BattleScreen)
-                        BattleScreen.BattleQuery.Add(New ToggleEntityQueryObject(own, ToggleEntityQueryObject.BattleEntities.OwnPokemon, PokemonForms.GetOverworldSpriteName(p), 0, 1, -1, -1))
+                        BattleScreen.BattleQuery.Add(New ToggleEntityQueryObject(own, ToggleEntityQueryObject.BattleEntities.OwnPokemon, PokemonForms.GetOverworldSpriteName(p, True), 0, 1, -1, -1))
                         BattleScreen.BattleQuery.Add(New TextQueryObject(p.GetDisplayName() & " transformed into Shield Forme!"))
                     End If
                 End If
@@ -2405,7 +2405,7 @@
                                         BattleScreen.BattleQuery.Add(New TextQueryObject(BattleScreen.OppPokemon.GetDisplayName() & "'s substitute took the damage!"))
                                         If BattleScreen.FieldEffects.OppSubstitute <= 0 Then
                                             BattleScreen.FieldEffects.OppSubstitute = 0
-                                            BattleScreen.BattleQuery.Add(New ToggleEntityQueryObject(False, ToggleEntityQueryObject.BattleEntities.OwnPokemon, PokemonForms.GetOverworldSpriteName(BattleScreen.OppPokemon), 0, 1, -1, -1))
+                                            BattleScreen.BattleQuery.Add(New ToggleEntityQueryObject(False, ToggleEntityQueryObject.BattleEntities.OwnPokemon, PokemonForms.GetOverworldSpriteName(BattleScreen.OppPokemon, True), 0, 1, -1, -1))
                                             BattleScreen.BattleQuery.Add(New TextQueryObject(BattleScreen.OppPokemon.GetDisplayName() & " substitute broke!"))
                                             Exit For
                                         End If
@@ -2414,7 +2414,7 @@
                                         BattleScreen.BattleQuery.Add(New TextQueryObject(BattleScreen.OwnPokemon.GetDisplayName() & "'s substitute took the damage!"))
                                         If BattleScreen.FieldEffects.OwnSubstitute <= 0 Then
                                             BattleScreen.FieldEffects.OwnSubstitute = 0
-                                            BattleScreen.BattleQuery.Add(New ToggleEntityQueryObject(True, ToggleEntityQueryObject.BattleEntities.OwnPokemon, PokemonForms.GetOverworldSpriteName(BattleScreen.OwnPokemon), 0, 1, -1, -1))
+                                            BattleScreen.BattleQuery.Add(New ToggleEntityQueryObject(True, ToggleEntityQueryObject.BattleEntities.OwnPokemon, PokemonForms.GetOverworldSpriteName(BattleScreen.OwnPokemon, True), 0, 1, -1, -1))
                                             BattleScreen.BattleQuery.Add(New TextQueryObject(BattleScreen.OwnPokemon.GetDisplayName() & " substitute broke!"))
                                             Exit For
                                         End If
@@ -5333,7 +5333,7 @@
                                 p.IsTransformed = True
 
                                 'Apply new image to sprite:
-                                BattleScreen.BattleQuery.Add(New ToggleEntityQueryObject(own, ToggleEntityQueryObject.BattleEntities.OwnPokemon, PokemonForms.GetOverworldSpriteName(p), 0, 1, -1, -1))
+                                BattleScreen.BattleQuery.Add(New ToggleEntityQueryObject(own, ToggleEntityQueryObject.BattleEntities.OwnPokemon, PokemonForms.GetOverworldSpriteName(p, True), 0, 1, -1, -1))
                                 BattleScreen.BattleQuery.Add(New TextQueryObject(p.GetDisplayName() & " transformed into " & op.GetName & "!"))
                             Else
                                 'Fails
@@ -7782,7 +7782,7 @@
                 Dim FallOffset = 0.0F
                 Dim ownModel As String = BattleScreen.GetModelName(True)
                 If ownModel = "" Then
-                    BattleScreen.AddToQuery(InsertIndex, New ToggleEntityQueryObject(True, ToggleEntityQueryObject.BattleEntities.OwnPokemon, PokemonForms.GetOverworldSpriteName(BattleScreen.OwnPokemon), 0, 1, -1, -1))
+                    BattleScreen.AddToQuery(InsertIndex, New ToggleEntityQueryObject(True, ToggleEntityQueryObject.BattleEntities.OwnPokemon, PokemonForms.GetOverworldSpriteName(BattleScreen.OwnPokemon, True), 0, 1, -1, -1))
                 Else
                     BattleScreen.AddToQuery(InsertIndex, New ToggleEntityQueryObject(True, ownModel, 1, 0, -1, -1))
                 End If
@@ -8228,7 +8228,7 @@
                     End If
                 End If
                 If oppModel = "" Then
-                    BattleScreen.BattleQuery.Add(New ToggleEntityQueryObject(True, ToggleEntityQueryObject.BattleEntities.OppPokemon, PokemonForms.GetOverworldSpriteName(BattleScreen.OppPokemon), -1, -1, 0, 1))
+                    BattleScreen.BattleQuery.Add(New ToggleEntityQueryObject(True, ToggleEntityQueryObject.BattleEntities.OppPokemon, PokemonForms.GetOverworldSpriteName(BattleScreen.OppPokemon, True), -1, -1, 0, 1))
                 Else
                     BattleScreen.BattleQuery.Add(New ToggleEntityQueryObject(False, oppModel, -1, -1, 1, 0))
                 End If
