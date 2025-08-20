@@ -54,7 +54,7 @@
     End Function
 
     Public Overrides Sub ClickFunction()
-        If Me.TriggerID = 1 Or Me.TriggerID = 2 Then
+        If Screen.TextBox.reDelay = 0.0F AndAlso Me.TriggerID = 1 Or Me.TriggerID = 2 Then
             ActionScript.TempInputDirection = -1
             Me.clickedToActivate = True
             TriggerScript(False)

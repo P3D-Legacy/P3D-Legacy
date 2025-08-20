@@ -522,20 +522,21 @@
     End Function
 
     Public Overrides Sub ClickFunction()
-        If Me.Movement = Movements.Straight Then
-            StraightDirection = Me.faceRotation
-        End If
-
-        If Me.Moved = 0.0F Then
-            Dim newHeading As Integer = Screen.Camera.GetPlayerFacingDirection() - 2
-            If newHeading < 0 Then
-                newHeading += 4
+        If Screen.TextBox.reDelay = 0.0F Then
+            If Me.Movement = Movements.Straight Then
+                StraightDirection = Me.faceRotation
             End If
-            Me.faceRotation = newHeading
+            If Me.Moved = 0.0F Then
+                Dim newHeading As Integer = Screen.Camera.GetPlayerFacingDirection() - 2
+                If newHeading < 0 Then
+                    newHeading += 4
+                End If
+                Me.faceRotation = newHeading
 
-            ActivateScript()
-        ElseIf Me.Moved < 0.3F Then
-            Interacted = True
+                ActivateScript()
+            ElseIf Me.Moved < 0.3F Then
+                Interacted = True
+            End If
         End If
     End Sub
 
