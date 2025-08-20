@@ -2593,7 +2593,9 @@
                                     Case "cute charm"
                                         If moveUsed.MakesContact = True AndAlso p.HasVolatileStatus(Pokemon.VolatileStatus.Infatuation) = False Then
                                             If Core.Random.Next(0, 100) < 30 Then
-                                                InflictInfatuate(own, Not own, BattleScreen, op.GetDisplayName() & "'s Cute Charm affects " & p.GetDisplayName() & "!", "cutecharm")
+                                                If p.Gender <> Pokemon.Genders.Genderless AndAlso op.Gender <> Pokemon.Genders.Genderless AndAlso op.Gender <> p.Gender Then
+                                                    InflictInfatuate(own, Not own, BattleScreen, op.GetDisplayName() & "'s Cute Charm affects " & p.GetDisplayName() & "!", "cutecharm")
+                                                End If
                                             End If
                                         End If
                                     Case "aftermath"
