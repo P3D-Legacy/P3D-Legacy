@@ -56,7 +56,7 @@
         End Sub
 
         Public Overrides Sub MoveHits(own As Boolean, BattleScreen As BattleScreen)
-            If BattleScreen.Battle.LowerStat(Not own, own, BattleScreen, "Speed", 1, "", "move:stringshot") = False Then
+            If BattleScreen.Battle.LowerStat(Not own, own, BattleScreen, "Speed", 2, "", "move:stringshot") = False Then
                 BattleScreen.BattleQuery.Add(New TextQueryObject(Me.Name & " failed!"))
             End If
         End Sub
