@@ -76,6 +76,8 @@ global_pokemon_move_cut,Cut
 global_pokemon_move_teleport,Teleport
 global_pokemon_move_dig,Dig
 global_pokemon_move_sweetscent,Sweet Scent
+global_pokemon_move_milkdrink,Milk Drink
+global_pokemon_move_softboiled,Soft-Boiled
 global_used,Usou
 ---
 Pokémon & Attack Properties:
@@ -182,10 +184,12 @@ fieldmove_flash_AreaLitUp,A área foi iluminada!
 fieldmove_flash_AlreadyLitUp,A área ja está iluminada!
 fieldmove_flash_used,usou~Flash!
 
-fieldmove_milkdrink_ChoosePokemon,Choose Pokémon to Heal
-fieldmove_milkdrink_CannotChoose_FullHP,[POKEMON] has full~HP already.
-fieldmove_milkdrink_CannotChoose_SamePokemon,[POKEMON] cannot~heal itself.
+fieldmove_milkdrink_softboiled_ChoosePokemon,Choose Pokémon to Heal
+fieldmove_milkdrink_softboiled_CannotChoose_FullHP,[POKEMON] has full~HP already.
+fieldmove_milkdrink_softboiled_CannotChoose_SamePokemon,[POKEMON] cannot~heal itself.
+
 fieldmove_milkdrink_used,used~Milk Drink!*Some HP was shared~with [POKEMON]!
+fieldmove_softboiled_used,used~Soft-Boiled!*Some HP was shared~with [POKEMON]!
 
 fieldmove_sweetscent_CannotUse,Não pode usar Sweet Scent nesse lugar.
 fieldmove_sweetscent_used,usou~Sweet Scent!

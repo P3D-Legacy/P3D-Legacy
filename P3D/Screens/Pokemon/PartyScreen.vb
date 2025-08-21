@@ -714,19 +714,22 @@ Public Class PartyScreen
         If CanUseMove(p, 15, Badge.HMMoves.Cut) Then
             items.Add(Localization.GetString("global_pokemon_move_cut", "Cut"))
         End If
+        If CanUseMove(p, 100, -1) Then
+            items.Add(Localization.GetString("global_pokemon_move_teleport", "Teleport"))
+        End If
+        If CanUseMove(p, 91, -1) Then
+            items.Add(Localization.GetString("global_pokemon_move_dig", "Dig"))
+        End If
         If World.GetWeatherFromWeatherType(Screen.Level.WeatherType) = World.Weathers.Clear OrElse GameController.IS_DEBUG_ACTIVE OrElse Core.Player.SandBoxMode = True Then
             If CanUseMove(p, 230, -1) Then
                 items.Add(Localization.GetString("global_pokemon_move_sweetscent", "Sweet Scent"))
             End If
         End If
         If CanUseMove(p, 208, -1) And p.HP > CInt(p.MaxHP * 0.2) Then
-            items.Add(Localization.GetString("global_pokemon_move_drinkmilk", "Drink Milk"))
+            items.Add(Localization.GetString("global_pokemon_move_milkdrink", "Milk Drink"))
         End If
-        If CanUseMove(p, 100, -1) Then
-            items.Add(Localization.GetString("global_pokemon_move_teleport", "Teleport"))
-        End If
-        If CanUseMove(p, 91, -1) Then
-            items.Add(Localization.GetString("global_pokemon_move_dig", "Dig"))
+        If CanUseMove(p, 135, -1) And p.HP > CInt(p.MaxHP * 0.2) Then
+            items.Add(Localization.GetString("global_pokemon_move_softboiled", "Soft-Boiled"))
         End If
 
         items.Add(Localization.GetString("global_back", "Back"))
@@ -795,14 +798,16 @@ Public Class PartyScreen
                 UseFlash()
             Case Localization.GetString("global_pokemon_move_cut", "Cut")
                 UseCut()
-            Case Localization.GetString("global_pokemon_move_sweetscent", "Sweet Scent")
-                UseSweetScent()
-            Case Localization.GetString("global_pokemon_move_drinkmilk", "Drink Milk")
-                UseDrinkMilk()
             Case Localization.GetString("global_pokemon_move_teleport", "Teleport")
                 UseTeleport()
             Case Localization.GetString("global_pokemon_move_dig", "Dig")
                 UseDig()
+            Case Localization.GetString("global_pokemon_move_sweetscent", "Sweet Scent")
+                UseSweetScent()
+            Case Localization.GetString("global_pokemon_move_milkdrink", "Milk Drink")
+                UseMilkDrink()
+            Case Localization.GetString("global_pokemon_move_softboiled", "Soft-Boiled")
+                UseSoftboiled()
             Case Localization.GetString("global_back", "Back")
                 CreateNormalMenu(Localization.GetString("party_screen_FieldMove", "Field Move"))
         End Select
@@ -1172,7 +1177,7 @@ Public Class PartyScreen
         End If
     End Sub
 
-    Private Sub UseDrinkMilk()
+    Private Sub UseMilkDrink()
         FieldMovePokemonIndex = _index
 
         Dim s As Screen = CurrentScreen
@@ -1182,18 +1187,18 @@ Public Class PartyScreen
         ChooseBox.Showing = False
         Core.SetScreen(s)
 
-        Dim selScreen = New PartyScreen(Core.CurrentScreen, Item.GetItemByID(5.ToString), Nothing, Localization.GetString("fieldmove_milkdrink_ChoosePokemon", "Choose Pokémon to Heal"), True, False, False) With {.Mode = Screens.UI.ISelectionScreen.ScreenMode.Selection, .CanExit = True}
-        AddHandler selScreen.SelectedObject, AddressOf UseDrinkMilkHandler
+        Dim selScreen = New PartyScreen(Core.CurrentScreen, Item.GetItemByID(5.ToString), Nothing, Localization.GetString("fieldmove_milkdrink_softboiled_ChoosePokemon", "Choose Pokémon to Heal"), True, False, False) With {.Mode = Screens.UI.ISelectionScreen.ScreenMode.Selection, .CanExit = True}
+        AddHandler selScreen.SelectedObject, AddressOf UseMilkDrinkHandler
 
         Core.SetScreen(selScreen)
 
     End Sub
 
-    Private Sub UseDrinkMilkHandler(ByVal params As Object())
-        UseDrinkMilkOnPokemon(CInt(params(0)))
+    Private Sub UseMilkDrinkHandler(ByVal params As Object())
+        UseMilkDrinkOnPokemon(CInt(params(0)))
     End Sub
 
-    Private Sub UseDrinkMilkOnPokemon(ByVal HealIndex As Integer)
+    Private Sub UseMilkDrinkOnPokemon(ByVal HealIndex As Integer)
         If HealIndex <> FieldMovePokemonIndex Then
             If Core.Player.Pokemons(HealIndex).HP < Core.Player.Pokemons(HealIndex).MaxHP Then
                 SoundManager.PlaySound("Use_Item", False)
@@ -1205,10 +1210,51 @@ Public Class PartyScreen
                     Core.Player.Pokemons(HealIndex).HP = Core.Player.Pokemons(HealIndex).MaxHP
                 End If
             Else
-                TextBox.Show(Localization.GetString("fieldmove_milkdrink_CannotChoose_FullHP", "[POKEMON] has full~HP already.").Replace("[POKEMON]", Core.Player.Pokemons(HealIndex).GetDisplayName()), {}, True, False)
+                TextBox.Show(Localization.GetString("fieldmove_milkdrink_softboiled_CannotChoose_FullHP", "[POKEMON] has full~HP already.").Replace("[POKEMON]", Core.Player.Pokemons(HealIndex).GetDisplayName()), {}, True, False)
             End If
         Else
-            TextBox.Show(Localization.GetString("fieldmove_milkdrink_CannotChoose_SamePokemon", "[POKEMON] cannot~heal itself.").Replace("[POKEMON]", Core.Player.Pokemons(FieldMovePokemonIndex).GetDisplayName()), {}, True, False)
+            TextBox.Show(Localization.GetString("fieldmove_milkdrink_softboiled_CannotChoose_SamePokemon", "[POKEMON] cannot~heal itself.").Replace("[POKEMON]", Core.Player.Pokemons(FieldMovePokemonIndex).GetDisplayName()), {}, True, False)
+        End If
+        FieldMovePokemonIndex = -1
+    End Sub
+
+    Private Sub UseSoftboiled()
+        FieldMovePokemonIndex = _index
+
+        Dim s As Screen = CurrentScreen
+        While s.Identification <> Identifications.OverworldScreen AndAlso s.PreScreen IsNot Nothing
+            s = s.PreScreen
+        End While
+        ChooseBox.Showing = False
+        Core.SetScreen(s)
+
+        Dim selScreen = New PartyScreen(Core.CurrentScreen, Item.GetItemByID(5.ToString), Nothing, Localization.GetString("fieldmove_milkdrink_softboiled_ChoosePokemon", "Choose Pokémon to Heal"), True, False, False) With {.Mode = Screens.UI.ISelectionScreen.ScreenMode.Selection, .CanExit = True}
+        AddHandler selScreen.SelectedObject, AddressOf UseSoftboiledHandler
+
+        Core.SetScreen(selScreen)
+
+    End Sub
+
+    Private Sub UseSoftboiledHandler(ByVal params As Object())
+        UseSoftboiledOnPokemon(CInt(params(0)))
+    End Sub
+
+    Private Sub UseSoftboiledOnPokemon(ByVal HealIndex As Integer)
+        If HealIndex <> FieldMovePokemonIndex Then
+            If Core.Player.Pokemons(HealIndex).HP < Core.Player.Pokemons(HealIndex).MaxHP Then
+                SoundManager.PlaySound("Use_Item", False)
+                TextBox.Show(Core.Player.Pokemons(FieldMovePokemonIndex).GetDisplayName() & " " & Localization.GetString("fieldmove_softboiled_used", "used~Soft-Boiled!*Some HP was shared~with [POKEMON]!").Replace("[POKEMON]", Core.Player.Pokemons(HealIndex).GetDisplayName()))
+                Dim HealHP As Integer = CInt(Core.Player.Pokemons(FieldMovePokemonIndex).MaxHP * 0.2)
+                Core.Player.Pokemons(FieldMovePokemonIndex).HP -= HealHP
+                Core.Player.Pokemons(HealIndex).HP += HealHP
+                If Core.Player.Pokemons(HealIndex).HP > Core.Player.Pokemons(HealIndex).MaxHP Then
+                    Core.Player.Pokemons(HealIndex).HP = Core.Player.Pokemons(HealIndex).MaxHP
+                End If
+            Else
+                TextBox.Show(Localization.GetString("fieldmove_milkdrink_softboiled_CannotChoose_FullHP", "[POKEMON] has full~HP already.").Replace("[POKEMON]", Core.Player.Pokemons(HealIndex).GetDisplayName()), {}, True, False)
+            End If
+        Else
+            TextBox.Show(Localization.GetString("fieldmove_milkdrink_softboiled_CannotChoose_SamePokemon", "[POKEMON] cannot~heal itself.").Replace("[POKEMON]", Core.Player.Pokemons(FieldMovePokemonIndex).GetDisplayName()), {}, True, False)
         End If
         FieldMovePokemonIndex = -1
     End Sub
