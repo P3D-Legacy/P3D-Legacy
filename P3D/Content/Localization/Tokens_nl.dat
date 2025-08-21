@@ -183,6 +183,11 @@ fieldmove_flash_AreaLitUp,De omgeving werd verlicht!
 fieldmove_flash_AlreadyLitUp,De omgeving is al verlicht!
 fieldmove_flash_used,gebruikte~Flits!
 
+fieldmove_milkdrink_ChoosePokemon,Kies Pokémon om te Genezen
+fieldmove_milkdrink_CannotChoose_FullHP,[POKEMON] is al~volledig genezen.
+fieldmove_milkdrink_CannotChoose_SamePokemon,[POKEMON] kan zichzelf~niet genezen.
+fieldmove_milkdrink_used,gebruikte~Melkdrank!*Een kleine hoeveelheid IP~werd gedeeld met [POKEMON]!
+
 fieldmove_sweetscent_CannotUse,Kan hier niet Zoete geur~gebruiken.
 fieldmove_sweetscent_used,gebruikte~Zoete geur!
 

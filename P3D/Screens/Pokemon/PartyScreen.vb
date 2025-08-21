@@ -49,6 +49,7 @@ Public Class PartyScreen
     Private PokemonList As New List(Of Pokemon)
     Private AltPokemonList As New List(Of Pokemon)
 
+    Private FieldMovePokemonIndex As Integer = -1
     Public Shared Selected As Integer = -1
     Public Shared Exited As Boolean = False
 
@@ -677,6 +678,7 @@ Public Class PartyScreen
             CanUseMove(p, 560, Badge.HMMoves.Ride) Or
             CanUseMove(p, 148, Badge.HMMoves.Flash) Or
             CanUseMove(p, 15, Badge.HMMoves.Cut) Or
+            CanUseMove(p, 208, -1) Or
             CanUseMove(p, 230, -1) Or
             CanUseMove(p, 100, -1) Or
             CanUseMove(p, 91, -1) Then
@@ -716,6 +718,9 @@ Public Class PartyScreen
             If CanUseMove(p, 230, -1) Then
                 items.Add(Localization.GetString("global_pokemon_move_sweetscent", "Sweet Scent"))
             End If
+        End If
+        If CanUseMove(p, 208, -1) And p.HP > CInt(p.MaxHP * 0.2) Then
+            items.Add(Localization.GetString("global_pokemon_move_drinkmilk", "Drink Milk"))
         End If
         If CanUseMove(p, 100, -1) Then
             items.Add(Localization.GetString("global_pokemon_move_teleport", "Teleport"))
@@ -792,6 +797,8 @@ Public Class PartyScreen
                 UseCut()
             Case Localization.GetString("global_pokemon_move_sweetscent", "Sweet Scent")
                 UseSweetScent()
+            Case Localization.GetString("global_pokemon_move_drinkmilk", "Drink Milk")
+                UseDrinkMilk()
             Case Localization.GetString("global_pokemon_move_teleport", "Teleport")
                 UseTeleport()
             Case Localization.GetString("global_pokemon_move_dig", "Dig")
@@ -818,7 +825,7 @@ Public Class PartyScreen
                 If p.Item.IsMail And p.Item.AdditionalData <> "" Then
 
                     Core.SetScreen(New TransitionScreen(Core.CurrentScreen, New MailSystemScreen(Core.CurrentScreen, CType(p.Item, Items.MailItem)), Color.Black, False))
-                    
+
                     p.Item = Nothing
                 Else
                     ShowMessage("Taken " & p.Item.OneLineName() & " from " & p.GetDisplayName() & ".")
@@ -1165,6 +1172,47 @@ Public Class PartyScreen
         End If
     End Sub
 
+    Private Sub UseDrinkMilk()
+        FieldMovePokemonIndex = _index
+
+        Dim s As Screen = CurrentScreen
+        While s.Identification <> Identifications.OverworldScreen AndAlso s.PreScreen IsNot Nothing
+            s = s.PreScreen
+        End While
+        ChooseBox.Showing = False
+        Core.SetScreen(s)
+
+        Dim selScreen = New PartyScreen(Core.CurrentScreen, Item.GetItemByID(5.ToString), Nothing, Localization.GetString("fieldmove_milkdrink_ChoosePokemon", "Choose Pokémon to Heal"), True, False, False) With {.Mode = Screens.UI.ISelectionScreen.ScreenMode.Selection, .CanExit = True}
+        AddHandler selScreen.SelectedObject, AddressOf UseDrinkMilkHandler
+
+        Core.SetScreen(selScreen)
+
+    End Sub
+
+    Private Sub UseDrinkMilkHandler(ByVal params As Object())
+        UseDrinkMilkOnPokemon(CInt(params(0)))
+    End Sub
+
+    Private Sub UseDrinkMilkOnPokemon(ByVal HealIndex As Integer)
+        If HealIndex <> FieldMovePokemonIndex Then
+            If Core.Player.Pokemons(HealIndex).HP < Core.Player.Pokemons(HealIndex).MaxHP Then
+                SoundManager.PlaySound("Use_Item", False)
+                TextBox.Show(Core.Player.Pokemons(FieldMovePokemonIndex).GetDisplayName() & " " & Localization.GetString("fieldmove_milkdrink_used", "used~Milk Drink!*Some HP was shared~with [POKEMON]!").Replace("[POKEMON]", Core.Player.Pokemons(HealIndex).GetDisplayName()))
+                Dim HealHP As Integer = CInt(Core.Player.Pokemons(FieldMovePokemonIndex).MaxHP * 0.2)
+                Core.Player.Pokemons(FieldMovePokemonIndex).HP -= HealHP
+                Core.Player.Pokemons(HealIndex).HP += HealHP
+                If Core.Player.Pokemons(HealIndex).HP > Core.Player.Pokemons(HealIndex).MaxHP Then
+                    Core.Player.Pokemons(HealIndex).HP = Core.Player.Pokemons(HealIndex).MaxHP
+                End If
+            Else
+                TextBox.Show(Localization.GetString("fieldmove_milkdrink_CannotChoose_FullHP", "[POKEMON] has full~HP already.").Replace("[POKEMON]", Core.Player.Pokemons(HealIndex).GetDisplayName()), {}, True, False)
+            End If
+        Else
+            TextBox.Show(Localization.GetString("fieldmove_milkdrink_CannotChoose_SamePokemon", "[POKEMON] cannot~heal itself.").Replace("[POKEMON]", Core.Player.Pokemons(FieldMovePokemonIndex).GetDisplayName()), {}, True, False)
+        End If
+        FieldMovePokemonIndex = -1
+    End Sub
+
     Private Sub UseSweetScent()
         Dim s As Screen = CurrentScreen
         While s.Identification <> Identifications.OverworldScreen AndAlso s.PreScreen IsNot Nothing
@@ -1195,14 +1243,10 @@ Public Class PartyScreen
 
                     .PokemonEncounter.TriggerBattle()
                 Else
-                    ChooseBox.Showing = False
-                    Core.SetScreen(s)
                     TextBox.Show(Localization.GetString("fieldmove_sweetscent_CannotUse", "Cannot use Sweet Scent here."), {}, True, False)
                 End If
 
             Else
-                ChooseBox.Showing = False
-                Core.SetScreen(s)
                 TextBox.Show(Localization.GetString("fieldmove_sweetscent_CannotUse", "Cannot use Sweet Scent here."), {}, True, False)
             End If
         End With

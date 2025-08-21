@@ -184,6 +184,11 @@ fieldmove_flash_AreaLitUp,The area got lit up!
 fieldmove_flash_AlreadyLitUp,The area is already~lit up!
 fieldmove_flash_used,used~Flash!
 
+fieldmove_milkdrink_ChoosePokemon,Choose Pokémon to Heal
+fieldmove_milkdrink_CannotChoose_FullHP,[POKEMON] has full~HP already.
+fieldmove_milkdrink_CannotChoose_SamePokemon,[POKEMON] cannot~heal itself.
+fieldmove_milkdrink_used,used~Milk Drink!*Some HP was shared~with [POKEMON]!
+
 fieldmove_sweetscent_CannotUse,Cannot use Sweet Scent here.
 fieldmove_sweetscent_used,used~Sweet Scent!
 
