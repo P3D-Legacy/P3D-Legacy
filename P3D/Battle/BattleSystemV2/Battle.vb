@@ -1642,6 +1642,12 @@
                         Dim damage As Integer = BattleCalculation.CalculateDamage(a, False, True, True, BattleScreen)
                         ReduceHP(damage, own, own, BattleScreen, p.GetDisplayName() & " hurt itself in confusion.", "confusiondamage")
                         moveUsed.HurtItselfInConfusion(own, BattleScreen)
+
+                        If own = True Then
+                            BattleScreen.FieldEffects.OwnLastMoveFailed = True
+                        Else
+                            BattleScreen.FieldEffects.OppLastMoveFailed = True
+                        End If
                         Exit Sub
                     End If
                 End If
@@ -1651,6 +1657,13 @@
                 p.RemoveVolatileStatus(Pokemon.VolatileStatus.Flinch)
                 BattleScreen.BattleQuery.Add(New TextQueryObject(p.GetDisplayName() & " flinched and couldn't move!"))
                 moveUsed.InflictedFlinch(own, BattleScreen)
+
+                If own = True Then
+                    BattleScreen.FieldEffects.OwnLastMoveFailed = True
+                Else
+                    BattleScreen.FieldEffects.OppLastMoveFailed = True
+                End If
+
                 If p.Ability.Name.ToLower() = "steadfast" Then
                     RaiseStat(own, Not own, BattleScreen, "Speed", 1, "", "steadfast")
                 End If
@@ -1678,8 +1691,13 @@
 
                     If fly > 0 Then
                         moveUsed.MoveMisses(own, BattleScreen)
-                    End If
 
+                        If own = True Then
+                            BattleScreen.FieldEffects.OwnLastMoveFailed = True
+                        Else
+                            BattleScreen.FieldEffects.OppLastMoveFailed = True
+                        End If
+                    End If
                     BattleScreen.BattleQuery.Add(New TextQueryObject(p.GetDisplayName() & "'s move was prevented due to Gravity!"))
                     Exit Sub
                 End If
@@ -1703,6 +1721,12 @@
                         End If
                         BattleScreen.BattleQuery.Add(New TextQueryObject(p.GetDisplayName() & " is in love with " & op.GetDisplayName() & "!"))
                         moveUsed.IsAttracted(own, BattleScreen)
+
+                        If own = True Then
+                            BattleScreen.FieldEffects.OwnLastMoveFailed = True
+                        Else
+                            BattleScreen.FieldEffects.OppLastMoveFailed = True
+                        End If
                         Exit Sub
                     End If
                 End If
@@ -1743,6 +1767,12 @@
                     End If
                     BattleScreen.BattleQuery.Add(New TextQueryObject(p.GetDisplayName() & " is fully paralyzed!" & Environment.NewLine & "It cannot move!"))
                     moveUsed.IsParalyzed(own, BattleScreen)
+
+                    If own = True Then
+                        BattleScreen.FieldEffects.OwnLastMoveFailed = True
+                    Else
+                        BattleScreen.FieldEffects.OppLastMoveFailed = True
+                    End If
                     Exit Sub
                 End If
             End If
@@ -1827,6 +1857,12 @@
                 Else
                     BattleScreen.BattleQuery.Add(New TextQueryObject("But it failed..."))
                     moveUsed.MoveMisses(own, BattleScreen)
+
+                    If own = True Then
+                        BattleScreen.FieldEffects.OwnLastMoveFailed = True
+                    Else
+                        BattleScreen.FieldEffects.OppLastMoveFailed = True
+                    End If
                     Exit Sub
                 End If
             End If
@@ -2300,6 +2336,12 @@
                                 If Damage = 0 AndAlso moveUsed.ID = 117 Then
                                     BattleScreen.BattleQuery.Add(New TextQueryObject("But it failed..."))
                                     moveUsed.MoveMisses(own, BattleScreen)
+
+                                    If own = True Then
+                                        BattleScreen.FieldEffects.OwnLastMoveFailed = True
+                                    Else
+                                        BattleScreen.FieldEffects.OppLastMoveFailed = True
+                                    End If
                                     effectiveness = 0
                                     Exit For
                                 End If
@@ -2503,6 +2545,13 @@
                                 If canUseEffect AndAlso multiUseEffect OrElse (multiUseEffect = False AndAlso i = TimesToAttack) Then
                                     If substitute = 0 OrElse moveUsed.IsAffectedBySubstitute = False Then
                                         moveUsed.MoveHits(own, BattleScreen)
+
+                                        If own = True Then
+                                            BattleScreen.FieldEffects.OwnLastMoveFailed = False
+                                        Else
+                                            BattleScreen.FieldEffects.OppLastMoveFailed = False
+                                        End If
+
                                         If op.Status = Pokemon.StatusProblems.Freeze Then
                                             If moveUsed.RemovesOppFrozen = True Then
                                                 CureStatusProblem(Not own, own, BattleScreen, op.GetDisplayName() & " got defrosted by " & moveUsed.Name & ".", "defrostmove")
@@ -2537,6 +2586,12 @@
                                 End If
                             Else
                                 moveUsed.MoveHasNoEffect(own, BattleScreen)
+
+                                If own = True Then
+                                    BattleScreen.FieldEffects.OwnLastMoveFailed = True
+                                Else
+                                    BattleScreen.FieldEffects.OppLastMoveFailed = True
+                                End If
                             End If
 
                             'ABILITY SHIT GOES HERE:
@@ -2891,6 +2946,12 @@
                             BattleScreen.BattleQuery.Add(New TextQueryObject(op.GetDisplayName() & " snatched " & p.GetDisplayName() & "'s move!"))
 
                             moveUsed.MoveHits(Not own, BattleScreen)
+
+                            If own = True Then
+                                BattleScreen.FieldEffects.OwnLastMoveFailed = False
+                            Else
+                                BattleScreen.FieldEffects.OppLastMoveFailed = False
+                            End If
                         Else
                             Dim magicReflect As String = ""
                             If moveUsed.MagicCoatAffected = True Then
@@ -2929,6 +2990,12 @@
                                 Else
                                     If oppSubstitute = 0 Or moveUsed.IsAffectedBySubstitute = False Then
                                         moveUsed.MoveHits(Not own, BattleScreen)
+
+                                        If own = True Then
+                                            BattleScreen.FieldEffects.OwnLastMoveFailed = False
+                                        Else
+                                            BattleScreen.FieldEffects.OppLastMoveFailed = False
+                                        End If
                                     Else
                                         BattleScreen.BattleQuery.Add(New TextQueryObject("The substitute absorbed the move!"))
                                     End If
@@ -2944,9 +3011,21 @@
                                 If effectiveness = 0.0F Then
                                     BattleScreen.BattleQuery.Add(New TextQueryObject("It has no effect..."))
                                     moveUsed.MoveHasNoEffect(own, BattleScreen)
+
+                                    If own = True Then
+                                        BattleScreen.FieldEffects.OwnLastMoveFailed = True
+                                    Else
+                                        BattleScreen.FieldEffects.OppLastMoveFailed = True
+                                    End If
                                 Else
                                     If substitute = 0 Or moveUsed.IsAffectedBySubstitute = False Then
                                         moveUsed.MoveHits(own, BattleScreen)
+
+                                        If own = True Then
+                                            BattleScreen.FieldEffects.OwnLastMoveFailed = False
+                                        Else
+                                            BattleScreen.FieldEffects.OppLastMoveFailed = False
+                                        End If
                                     Else
                                         BattleScreen.BattleQuery.Add(New TextQueryObject("The substitute absorbed the move!"))
                                     End If
@@ -2962,6 +3041,12 @@
                     BattleScreen.BattleQuery.Add(New TextQueryObject("But it missed..."))
                 End If
                 moveUsed.MoveMisses(own, BattleScreen)
+
+                If own = True Then
+                    BattleScreen.FieldEffects.OwnLastMoveFailed = True
+                Else
+                    BattleScreen.FieldEffects.OppLastMoveFailed = True
+                End If
             End If
             ''Own Pokémon Encore
             Dim attackIndex As Integer = -1

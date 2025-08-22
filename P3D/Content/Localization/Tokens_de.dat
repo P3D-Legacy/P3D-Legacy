@@ -3111,6 +3111,7 @@ move_name_692,Drachenhammer
 move_name_693,Wirbler
 move_name_705,Kanonenbouquet
 move_name_706,Psychobeißer
+move_name_707,Fruststampfer
 move_name_708,Schattenknochen
 move_name_709,Turbofelsen
 move_name_710,Aquadurchstoß
@@ -3121,7 +3122,10 @@ move_name_717,Naturzorn
 move_name_749,Teerschuss
 move_name_790,Wunderdampf
 move_name_796,Stahlstrahl
-move_name_797,Zornesfaust
+move_name_828,Barrierenstoß
+move_name_887,Hyperbohrer
+move_name_888,Doppelstrahl
+move_name_889,Zornesfaust
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------
 Story translation:
 ---

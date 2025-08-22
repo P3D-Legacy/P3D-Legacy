@@ -28893,6 +28893,7 @@
     <Compile Include="Pokemon\Attacks\Grass\SolarBlade.vb" />
     <Compile Include="Pokemon\Attacks\Grass\Strength Sap.vb" />
     <Compile Include="Pokemon\Attacks\Grass\WorrySeed.vb" />
+    <Compile Include="Pokemon\Attacks\Ground\StompingTangtrum.vb" />
     <Compile Include="Pokemon\Attacks\Ground\HighHorsepower.vb" />
     <Compile Include="Pokemon\Attacks\Ground\ShoreUp.vb" />
     <Compile Include="Pokemon\Attacks\Ground\PrecipiceBlades.vb" />

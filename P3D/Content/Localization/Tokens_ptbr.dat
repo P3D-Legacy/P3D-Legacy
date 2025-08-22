@@ -3196,6 +3196,7 @@ move_name_692,Dragon Hammer
 move_name_693,Brutal Swing
 move_name_705,Fleur Cannon
 move_name_706,Psychic Fangs
+move_name_707,Stomping Tantrum
 move_name_708,Shadow Bone
 move_name_709,Accelerock
 move_name_710,Liquidation
@@ -3206,7 +3207,10 @@ move_name_717,Natures Madness
 move_name_749,Tar Shot
 move_name_790,Strange Steam
 move_name_796,Steel Beam
-move_name_797,Rage Fist
+move_name_828,Psyshield Bash
+move_name_887,Hyper Drill
+move_name_888,Twin Beam
+move_name_889,Rage Fist
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------
 Story translation:
 ---

@@ -1693,8 +1693,8 @@
                     returnMove = New Moves.Fairy.FleurCannon()
                 Case 706
                     returnMove = New Moves.Psychic.PsychicFangs()
-                    'Case 707
-                    'Stomping Tantrum
+                Case 707
+                    returnMove = New Moves.Ground.StompingTantrum()
                 Case 708
                     returnMove = New Moves.Ghost.ShadowBone()
                 Case 709

@@ -112,6 +112,7 @@
         Public OwnTarShot As Boolean = False 'If own Pokémon is affected by Tar Shot
 
         Public OwnLastMove As Attack = Nothing 'Last move used
+        Public OwnLastMoveFailed As Boolean = False 'keeping track of this for Stomping Tantrum
         Public OwnSpikes As Integer = 0 'Trap move counter
         Public OwnStealthRock As Integer = 0 'Trap move counter
         Public OwnStickyWeb As Integer = 0 'Trap move counter
@@ -141,6 +142,7 @@
         Public OppGuardSpec As Integer = 0
         Public OppTurnCounts As Integer = 0
         Public OppLastMove As Attack = Nothing
+        Public OppLastMoveFailed As Boolean = False
         Public OppLightScreen As Integer = 0
         Public OppReflect As Integer = 0
         Public OppTailWind As Integer = 0
