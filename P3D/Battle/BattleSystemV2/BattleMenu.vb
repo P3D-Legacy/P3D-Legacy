@@ -1198,6 +1198,12 @@
             Dim Item As Item = Item.GetItemByID(TempItemID)
 
             If Item.UseOnPokemon(PokeIndex) = True Then
+                Dim CudChewBerries As String() = {"oran", "sitrus", "figy", "wiki", "mago", "aguav", "iapapa", "liechi", "ganlon", "salac", "petaya", "apicot", "lansat", "starf", "lum", "rawst", "aspear", "cheri", "chesto"}
+                If Core.Player.Pokemons(PokeIndex).Ability.Name.ToLower() = "cud chew" AndAlso Item.IsBerry = True AndAlso CudChewBerries.Contains(Item.Name.ToLower) Then
+                    TempBattleScreen.FieldEffects.OwnCudChewBerry = Item
+                    TempBattleScreen.FieldEffects.OwnCudChewIndex = PokeIndex
+                End If
+
                 TempBattleScreen.BattleQuery.Clear()
                 TempBattleScreen.BattleQuery.Add(TempBattleScreen.FocusBattle())
                 TempBattleScreen.BattleQuery.Insert(0, New ToggleMenuQueryObject(True))

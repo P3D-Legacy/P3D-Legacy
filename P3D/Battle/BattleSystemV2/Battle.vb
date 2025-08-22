@@ -4927,6 +4927,59 @@
             End If
         End Sub
 
+        Public Sub UseEffectBerry(ByVal own As Boolean, ByVal from As Boolean, ByVal BerryItem As Item, ByVal BattleScreen As BattleScreen, ByVal message As String, ByVal cause As String)
+            Dim p As Pokemon = BattleScreen.OwnPokemon
+            Dim op As Pokemon = BattleScreen.OppPokemon
+            If own = False Then
+                p = BattleScreen.OppPokemon
+                op = BattleScreen.OwnPokemon
+            End If
+
+            Select Case BerryItem.Name.ToLower()
+                Case "lum"
+                    If p.Status = Pokemon.StatusProblems.Burn Then
+                        BattleScreen.BattleQuery.Add(New PlaySoundQueryObject("single_heal", False))
+                        CureStatusProblem(own, own, BattleScreen, "The Lum Berry cured the burn of " & p.GetDisplayName() & "!", "berry:lum")
+                    End If
+
+                    If p.Status = Pokemon.StatusProblems.Freeze Then
+                        BattleScreen.BattleQuery.Add(New PlaySoundQueryObject("single_heal", False))
+                        CureStatusProblem(own, own, BattleScreen, "The Lum Berry thraw out " & p.GetDisplayName() & "!", "berry:lum")
+                    End If
+
+                    If p.Status = Pokemon.StatusProblems.Paralyzed Then
+                        BattleScreen.BattleQuery.Add(New PlaySoundQueryObject("single_heal", False))
+                        CureStatusProblem(own, own, BattleScreen, "The Lum Berry cured the paralysis of " & p.GetDisplayName() & "!", "berry:lum")
+                    End If
+
+                    If p.Status = Pokemon.StatusProblems.Sleep Then
+                        BattleScreen.BattleQuery.Add(New PlaySoundQueryObject("single_heal", False))
+                        CureStatusProblem(own, own, BattleScreen, "The Lum Berry woke up " & p.GetDisplayName() & "!", "berry:lum")
+                    End If
+                Case "rawst"
+                    If p.Status = Pokemon.StatusProblems.Burn Then
+                        BattleScreen.BattleQuery.Add(New PlaySoundQueryObject("single_heal", False))
+                        CureStatusProblem(own, own, BattleScreen, "The Rawst Berry cured the burn of " & p.GetDisplayName() & "!", "berry:rawst")
+                    End If
+                Case "aspear"
+                    If p.Status = Pokemon.StatusProblems.Freeze Then
+                        BattleScreen.BattleQuery.Add(New PlaySoundQueryObject("single_heal", False))
+                        CureStatusProblem(own, own, BattleScreen, "The Aspear Berry thraw out " & p.GetDisplayName() & "!", "berry:aspear")
+                    End If
+                Case "cheri"
+                    If p.Status = Pokemon.StatusProblems.Paralyzed Then
+                        BattleScreen.BattleQuery.Add(New PlaySoundQueryObject("single_heal", False))
+                        CureStatusProblem(own, own, BattleScreen, "The Cheri Berry cured the paralysis of " & p.GetDisplayName() & "!", "berry:cheri")
+                    End If
+                Case "chesto"
+                    If p.Status = Pokemon.StatusProblems.Sleep Then
+                        BattleScreen.BattleQuery.Add(New PlaySoundQueryObject("single_heal", False))
+                        CureStatusProblem(own, own, BattleScreen, "The Chesto Berry woke up " & p.GetDisplayName() & "!", "berry:chesto")
+                    End If
+            End Select
+
+        End Sub
+
         Public Sub UseBerry(ByVal own As Boolean, ByVal from As Boolean, ByVal BerryItem As Item, ByVal BattleScreen As BattleScreen, ByVal message As String, ByVal cause As String)
             Dim p As Pokemon = BattleScreen.OwnPokemon
             Dim op As Pokemon = BattleScreen.OppPokemon
@@ -5055,6 +5108,21 @@
             If TestFor = False Then
                 Dim ItemID As Integer = p.Item.ID
                 Dim lostItem As Item = Item.GetItemByID(ItemID.ToString)
+
+                Dim CudChewBerries As String() = {"oran", "sitrus", "figy", "wiki", "mago", "aguav", "iapapa", "liechi", "ganlon", "salac", "petaya", "apicot", "lansat", "starf", "lum", "rawst", "aspear", "cheri", "chesto"}
+                If CudChewBerries.Contains(lostItem.Name.ToLower) Then
+                    If lostItem.IsBerry = True Then
+                        If p.Ability.Name.ToLower() = "cud chew" Then
+                            If own = True Then
+                                BattleScreen.FieldEffects.OwnCudChewBerry = lostItem
+                                BattleScreen.FieldEffects.OwnCudChewIndex = BattleScreen.OwnPokemonIndex
+                            Else
+                                BattleScreen.FieldEffects.OppCudChewBerry = lostItem
+                                BattleScreen.FieldEffects.OppCudChewIndex = BattleScreen.OppPokemonIndex
+                            End If
+                        End If
+                    End If
+                End If
 
                 If from = own Then
                     If own = True Then
@@ -6615,6 +6683,18 @@
                     End If
                 End If
 
+                If .FieldEffects.OwnCudChewIndex <> -1 AndAlso .FieldEffects.OwnCudChewBerry IsNot Nothing Then
+                    .BattleQuery.Add(New TextQueryObject(.OwnPokemon.GetDisplayName() & " regurgitated the " & .FieldEffects.OwnCudChewBerry.Name & " Berry due to Cud Chew!"))
+                    Dim RegularBerries As String() = {"oran", "sitrus", "figy", "wiki", "mago", "aguav", "iapapa", "liechi", "ganlon", "salac", "petaya", "apicot", "lansat", "starf"}
+                    If RegularBerries.Contains(.FieldEffects.OwnCudChewBerry.Name.ToLower) Then
+                        UseBerry(True, True, .FieldEffects.OwnCudChewBerry, BattleScreen, "", "ability:cudchew")
+                    Else
+                        UseEffectBerry(True, True, .FieldEffects.OwnCudChewBerry, BattleScreen, "", "ability:cudchew")
+                    End If
+                    .FieldEffects.OwnCudChewBerry = Nothing
+                    .FieldEffects.OwnCudChewIndex = -1
+                End If
+
                 If .OwnPokemon.HP > 0 Then
                     If .OwnPokemon.Ability.Name.ToLower() = "moody" Then
                         Dim cannotRaise As New List(Of Integer)
@@ -7506,6 +7586,19 @@
                             InflictPoison(False, False, BattleScreen, True, "Toxic Orb inflicts a poisoning!", "toxicorb")
                         End If
                     End If
+                End If
+
+                If .FieldEffects.OppCudChewIndex <> -1 AndAlso .FieldEffects.OppCudChewBerry IsNot Nothing Then
+                    .BattleQuery.Add(New TextQueryObject(.OppPokemon.GetDisplayName() & " regurgitated the " & .FieldEffects.OppCudChewBerry.Name & " Berry due to Cud Chew!"))
+                    Dim RegularBerries As String() = {"oran", "sitrus", "figy", "wiki", "mago", "aguav", "iapapa", "liechi", "ganlon", "salac", "petaya", "apicot", "lansat", "starf"}
+                    If RegularBerries.Contains(.FieldEffects.OppCudChewBerry.Name.ToLower) Then
+                        UseBerry(False, False, .FieldEffects.OppCudChewBerry, BattleScreen, "", "ability:cudchew")
+                    Else
+                        UseEffectBerry(False, False, .FieldEffects.OwnCudChewBerry, BattleScreen, "", "ability:cudchew")
+                    End If
+
+                    .FieldEffects.OppCudChewBerry = Nothing
+                    .FieldEffects.OppCudChewIndex = -1
                 End If
 
                 If .OppPokemon.HP > 0 Then

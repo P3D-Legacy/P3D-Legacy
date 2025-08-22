@@ -619,8 +619,8 @@
                 'Hadron Engine
                 'Case 290
                 'Opportunist
-                'Case 291
-                'Cud Chew
+            Case 291
+                Return New Abilities.CudChew
                 'Case 292
                 'Sharpness
                 'Case 293

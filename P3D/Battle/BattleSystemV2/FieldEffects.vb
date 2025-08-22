@@ -102,6 +102,8 @@
         Public OwnUsedMoves As New List(Of Integer)
         Public OwnMagicCoat As Integer = 0
         Public OwnConsumedItem As Item = Nothing
+        Public OwnCudChewBerry As Item = Nothing 'Cud Chew Ability
+        Public OwnCudChewIndex As Integer = -1
         Public OwnSmacked As Integer = 0 'Smack Down effect condition
         Public OwnPursuit As Boolean = False
         Public OwnMegaEvolved As Boolean = False
@@ -231,6 +233,8 @@
         Public OppPokemonDamagedLastTurn As Boolean = False
         Public OppMagicCoat As Integer = 0
         Public OppConsumedItem As Item = Nothing
+        Public OppCudChewBerry As Item = Nothing
+        Public OppCudChewIndex As Integer = -1
         Public OppSmacked As Integer = 0
         Public OppPursuit As Boolean = False
         Public OppMegaEvolved As Boolean = False
