@@ -133,7 +133,9 @@
         Public OwnFutureSightID As Integer = 0 'Move ID for the Futuresight move
 
         Public OwnUsedRandomMove As Boolean = False 'Metronome for example
+        Public OwnUsedRandomMoveAttack As Attack = Nothing 'for checking the original move's properties
         Public OwnUsedMirrorMove As Boolean = False
+        Public OwnUsedMirrorMoveAttack As Attack = Nothing
 
         'Opp stuff
         Public OppSpikes As Integer = 0
@@ -263,7 +265,9 @@
         Public OppInfestation As Integer = 0
 
         Public OppUsedRandomMove As Boolean = False
+        Public OppUsedRandomMoveAttack As Attack = Nothing
         Public OppUsedMirrorMove As Boolean = False
+        Public OppUsedMirrorMoveAttack As Attack = Nothing
 
         Public OppUsedMoves As New List(Of Integer)
 

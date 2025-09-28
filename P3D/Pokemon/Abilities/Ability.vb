@@ -629,8 +629,8 @@
                 'Costar
                 'Case 295
                 'Toxic Debris
-                'Case 296
-                'Armor Tail
+            Case 296
+                Return New Abilities.ArmorTail
                 'Case 297
                 'Earth Eater
                 'Case 298
