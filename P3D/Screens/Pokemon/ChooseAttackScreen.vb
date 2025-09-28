@@ -71,10 +71,10 @@
         Canvas.DrawRectangle(Core.windowSize, New Color(0, 0, 0, 150))
         Dim CanvasTexture As Texture2D = TextureManager.GetTexture("GUI\Menus\Menu", New Rectangle(0, 0, 48, 48), "")
 
-        Dim p As Vector2 = New Vector2(40, 50)
+        Dim p As Vector2 = New Vector2(96, 96)
 
         If Pokemon.Attacks.Count > 0 Then
-            Canvas.DrawImageBorder(CanvasTexture, 2, New Rectangle(CInt(p.X + 432 - 352 + AttackPos), CInt(p.Y + 18), 320, 384))
+            Canvas.DrawImageBorder(CanvasTexture, 2, New Rectangle(CInt(p.X), CInt(p.Y), 640, 416))
 
             Dim A As BattleSystem.Attack = Pokemon.Attacks(AttackIndex)
 
@@ -87,7 +87,7 @@
                     Dim c As Char = CChar(fullText(i).ToString().Replace("’", "'"))
 
                     If c = CChar(" ") Then
-                        If FontManager.MiniFont.MeasureString(n & c).X > 170 Then
+                        If FontManager.MainFont.MeasureString(n & c).X > 170 Then
                             t &= Environment.NewLine
                             n = ""
                         Else
@@ -110,37 +110,41 @@
                     acc = "-"
                 End If
 
-                .DrawString(FontManager.MiniFont, "Power: " & power & Environment.NewLine & "Accuracy: " & acc & Environment.NewLine & Environment.NewLine & t, New Vector2(CInt(p.X + 432 - 300 + AttackPos), p.Y + 38), Color.Black)
-                .Draw(A.GetDamageCategoryImage(), New Rectangle(CInt(p.X + 432 - 150 + AttackPos), CInt(p.Y + 42), 56, 28), Color.White)
+                .DrawString(FontManager.MainFont, "Power: " & power & Environment.NewLine & "Accuracy: " & acc & Environment.NewLine & Environment.NewLine & t, New Vector2(CInt(p.X + 320 + 48), p.Y + 48), Color.Black)
+                .Draw(A.GetDamageCategoryImage(), New Rectangle(CInt(p.X + 640 - 16 - 56), CInt(p.Y + 48), 56, 28), Color.White)
             End With
 
-            Canvas.DrawImageBorder(CanvasTexture, 2, New Rectangle(CInt(p.X + 80), CInt(p.Y + 18), 320, 384))
-            Canvas.DrawImageBorder(CanvasTexture, 2, New Rectangle(CInt(p.X + 80), CInt(p.Y + 48 + 384), 320, 96))
+            Canvas.DrawImageBorder(CanvasTexture, 2, New Rectangle(CInt(p.X), CInt(p.Y), 320, 416))
 
             For i = 0 To Me.Pokemon.Attacks.Count - 1
-                DrawAttack(i, Me.Pokemon.Attacks(i))
+                DrawAttack(p, i, Me.Pokemon.Attacks(i))
             Next
         End If
     End Sub
 
-    Private Sub DrawAttack(ByVal i As Integer, ByVal A As BattleSystem.Attack)
-        Dim p As New Vector2(140, 80 + i * (64 + 32))
+    Private Sub DrawAttack(ByVal startPosition As Vector2, ByVal i As Integer, ByVal A As BattleSystem.Attack)
+        Dim p As New Vector2(startPosition.X + 16, startPosition.Y + 32 + i * (64 + 32))
 
         If i = 4 Then
             p.Y += 32
         End If
 
         Dim CanvasTexture As Texture2D = TextureManager.GetTexture("GUI\Menus\Menu", New Rectangle(0, 0, 48, 48), "")
+        Dim FontColor As Color = Color.Black
         If Me.AttackIndex = i Then
-            CanvasTexture = TextureManager.GetTexture("GUI\Menus\Menu", New Rectangle(48, 0, 48, 48), "")
+            CanvasTexture = TextureManager.GetTexture("GUI\Menus\Menu", New Rectangle(0, 48, 48, 48), "")
+            FontColor = Color.White
         End If
 
-        Canvas.DrawImageBorder(CanvasTexture, 2, New Rectangle(CInt(p.X) + 12, CInt(p.Y), 256, 64))
+        Canvas.DrawImageBorder(CanvasTexture, 2, New Rectangle(CInt(p.X) + 16, CInt(p.Y), 256, 64))
 
         With Core.SpriteBatch
-            .DrawString(FontManager.MiniFont, A.Name, New Vector2(CInt(p.X) + 30, CInt(p.Y + 26)), Color.Black)
+            If FontColor <> Color.Black Then
+                .DrawString(FontManager.MainFont, A.Name, New Vector2(CInt(p.X) + 34 + 2, CInt(p.Y + 26 + 2)), Color.Black)
+            End If
+            .DrawString(FontManager.MainFont, A.Name, New Vector2(CInt(p.X) + 34, CInt(p.Y + 26)), FontColor)
 
-            Dim c As Color = Color.Black
+            Dim c As Color = FontColor
             Dim per As Integer = CInt((A.CurrentPP / A.MaxPP) * 100)
 
             If per <= 33 And per > 10 Then
@@ -149,9 +153,11 @@
                 c = Color.IndianRed
             End If
 
-            .DrawString(FontManager.MiniFont, "PP " & A.CurrentPP & " / " & A.MaxPP, New Vector2(CInt(p.X) + 160, CInt(p.Y + 58)), c)
-
-            .Draw(TextureManager.GetTexture(Element.GetElementTexturePath(), A.Type.GetElementImage(), ""), New Rectangle(CInt(p.X) + 30, CInt(p.Y + 54), 48, 16), Color.White)
+            If c <> Color.Black Then
+                .DrawString(FontManager.MainFont, Localization.GetString("PP") & " " & A.CurrentPP & " / " & A.MaxPP, New Vector2(p.X + 96 + 2, CInt(p.Y + 56 + 2)), Color.Black)
+            End If
+            .DrawString(FontManager.MainFont, Localization.GetString("PP") & " " & A.CurrentPP & " / " & A.MaxPP, New Vector2(p.X + 96, CInt(p.Y + 56)), c)
+            .Draw(TextureManager.GetTexture(Element.GetElementTexturePath(), A.Type.GetElementImage(), ""), New Rectangle(CInt(p.X + 34), CInt(p.Y + 56), 48, 16), Color.White)
         End With
     End Sub
 

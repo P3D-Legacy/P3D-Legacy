@@ -115,6 +115,49 @@
 
     Public Overrides Sub Draw()
         Me.PreScreen.Draw()
+        Canvas.DrawRectangle(Core.windowSize, New Color(0, 0, 0, 150))
+        If Me.MovesList.Count > 0 Then
+            Canvas.DrawImageBorder(TextureManager.GetTexture(mainTexture, New Rectangle(0, 0, 48, 48)), 2, New Rectangle(60, 100, 864 + 320, 480))
+
+            Dim A As BattleSystem.Attack = MovesList(Me.index)
+
+            With Core.SpriteBatch
+                Dim fullText As String = A.Description
+                Dim t As String = ""
+                Dim i As Integer = 0
+                Dim n As String = ""
+                For i = 0 To fullText.Length - 1
+                    Dim c As Char = CChar(fullText(i).ToString().Replace("’", "'"))
+
+                    If c = CChar(" ") Then
+                        If FontManager.MainFont.MeasureString(n & c).X > 170 Then
+                            t &= Environment.NewLine
+                            n = ""
+                        Else
+                            t &= " "
+                            n &= " "
+                        End If
+                    Else
+                        t &= c
+                        n &= c
+                    End If
+                Next
+
+                Dim power As String = A.Power.ToString()
+                If power = "0" Then
+                    power = "-"
+                End If
+
+                Dim acc As String = A.Accuracy.ToString()
+                If acc = "0" Then
+                    acc = "-"
+                End If
+
+                .DrawString(FontManager.MainFont, "Power: " & power & Environment.NewLine & "Accuracy: " & acc & Environment.NewLine & Environment.NewLine & t, New Vector2(CInt(60 + 864 + 48), 128), Color.Black)
+                .Draw(A.GetDamageCategoryImage(), New Rectangle(CInt(60 + 864 + 320 - 16 - 56), 128, 56, 28), Color.White)
+            End With
+
+        End If
         Canvas.DrawImageBorder(TextureManager.GetTexture(mainTexture, New Rectangle(0, 0, 48, 48)), 2, New Rectangle(60, 100, 864, 480))
 
         Core.SpriteBatch.Draw(Pokemon.GetTexture(True), New Rectangle(176 - MathHelper.Min(CInt(Pokemon.GetTexture(True).Width), 128), 208 - MathHelper.Min(CInt(Pokemon.GetTexture(True).Height), 128), MathHelper.Min(CInt(Pokemon.GetTexture(True).Width * 2), 256), MathHelper.Min(CInt(Pokemon.GetTexture(True).Height * 2), 256)), Color.White)
@@ -180,11 +223,11 @@
             End If
 
             If c <> Color.Black Then
-                .DrawString(FontManager.MainFont, Localization.GetString("PP") & " " & A.CurrentPP & " / " & A.MaxPP, New Vector2(p.X + 96 + 2, CInt(p.Y + 56 + 2)), Color.Black)
+                .DrawString(FontManager.MainFont, Localization.GetString("PP") & " " & A.CurrentPP & " / " & A.MaxPP, New Vector2(p.X + 96 - 34 + 2, CInt(p.Y + 56 + 2)), Color.Black)
             End If
-            .DrawString(FontManager.MainFont, Localization.GetString("PP") & " " & A.CurrentPP & " / " & A.MaxPP, New Vector2(p.X + 96, CInt(p.Y + 56)), c)
+            .DrawString(FontManager.MainFont, Localization.GetString("PP") & " " & A.CurrentPP & " / " & A.MaxPP, New Vector2(p.X + 96 - 34, CInt(p.Y + 56)), c)
 
-            .Draw(TextureManager.GetTexture(Element.GetElementTexturePath(), A.Type.GetElementImage(), ""), New Rectangle(CInt(p.X), CInt(p.Y + 54), 48, 16), Color.White)
+            .Draw(TextureManager.GetTexture(Element.GetElementTexturePath(), A.Type.GetElementImage(), ""), New Rectangle(CInt(p.X), CInt(p.Y + 56), 48, 16), Color.White)
         End With
     End Sub
 
