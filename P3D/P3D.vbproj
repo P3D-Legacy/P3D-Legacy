@@ -28842,6 +28842,7 @@
     <Compile Include="Entities\Environment\HoleBlock.vb" />
     <Compile Include="Overworld\NotificationPopup.vb" />
     <Compile Include="Overworld\RouteSign.vb" />
+    <Compile Include="Pokemon\Abilities\ArmorTail.vb" />
     <Compile Include="Pokemon\Abilities\CudChew.vb" />
     <Compile Include="Pokemon\Abilities\SteamEngine.vb" />
     <Compile Include="Pokemon\Abilities\Aerilate.vb" />
