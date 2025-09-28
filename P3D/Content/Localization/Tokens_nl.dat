@@ -169,7 +169,7 @@ fieldmove_surf_used,gebruikte~Surf!
 fieldmove_dive_down_1,Het water ziet er heel erg~diep uit op deze plek.
 fieldmove_dive_down_2,*Wil je Duik gebruiken?
 fieldmove_dive_up_type1,Licht schijnt naar beneden~vanaf het oppervlak.*Wil je Duik gebruiken?
-fieldmove_dive_up_type2,De schaduw van de boot valt op de oceaanvloer.*Wil je Duik gebruiken?
+fieldmove_dive_up_type2,De schaduw van de boot valt~op de oceaanvloer.*Wil je Duik gebruiken?
 fieldmove_dive_used,gebruikte~Duik!
 
 fieldmove_headbutt_question,Er zou een Pokémon in deze~boom kunnen zitten.*Wil je Kopstoot gebruiken?
@@ -700,7 +700,7 @@ Places_Ilex Forest,Ilex-bos
 Places_Dark Cave,Donkere Grot
 Places_Ruins of Alph,Ruïnes van Alfa
 Places_Slowpoke Well,Slowpokewaterput
-Places_Sprout Tower,Bellsprouttoren
+Places_Sprout Tower,Kiemtoren
 Places_Union Cave,Uniegrot
 Places_Mt. Mortar,Mt. Mortar
 Places_Bell Tower,Beltoren
