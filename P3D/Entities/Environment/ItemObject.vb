@@ -196,18 +196,18 @@
         End If
     End Sub
 
-    Public Shared Function ItemExists(ByVal ItemObject As ItemObject) As Boolean
+    Public Function ItemExists(ByVal ItemObject As ItemObject) As Boolean
         If Core.Player.ItemData <> "" Then
             If Core.Player.ItemData.Contains(",") = True Then
                 Dim IDs() As String = Core.Player.ItemData.ToLower().Split(CChar(","))
 
-                If IDs.Contains((Screen.Level.LevelFile.ToLower() & "|" & ItemObject.ItemID.ToString()).ToLower()) = True Then
+                If IDs.Contains((Screen.Level.LevelFile.ToLower() & "|" & ItemObject.ItemID.ToString()).ToLower()) = True OrElse IDs.Contains((Me.LevelName.ToLower() & "|" & ItemObject.ItemID.ToString()).ToLower()) = True Then
                     Return True
                 Else
                     Return False
                 End If
             Else
-                If Core.Player.ItemData.ToLower() = (Screen.Level.LevelFile.ToLower() & "|" & ItemObject.ItemID.ToString()).ToLower() Then
+                If Core.Player.ItemData.ToLower() = (Screen.Level.LevelFile.ToLower() & "|" & ItemObject.ItemID.ToString()).ToLower() OrElse Core.Player.ItemData.ToLower() = (Me.LevelName.ToLower() & "|" & ItemObject.ItemID.ToString()).ToLower() Then
                     Return True
                 Else
                     Return False
