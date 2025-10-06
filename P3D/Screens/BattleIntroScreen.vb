@@ -252,16 +252,18 @@
             Core.SpriteBatch.Draw(t4, New Rectangle(Core.windowSize.Width - 280, CInt(Core.windowSize.Height / 2 - 105 - (MathHelper.Min(t4.Height * 10, 256) / 2)), MathHelper.Min(t4.Width * 10, 256), MathHelper.Min(t4.Height * 10, 256)), Color.White)
 
             Dim t As String = ReplaceIntroName(Trainer.TrainerType) & " " & ReplaceIntroName(Trainer.Name) & " & " & ReplaceIntroName(Trainer.TrainerType2) & " " & ReplaceIntroName(Trainer.Name2)
+            Core.SpriteBatch.DrawString(FontManager.InGameFont, t, New Vector2(Core.windowSize.Width - FontManager.InGameFont.MeasureString(t).X - 50 + 2, CInt(Core.windowSize.Height / 2 + 20 + 2)), Color.Black)
             Core.SpriteBatch.DrawString(FontManager.InGameFont, t, New Vector2(Core.windowSize.Width - FontManager.InGameFont.MeasureString(t).X - 50, CInt(Core.windowSize.Height / 2 + 20)), Color.White)
 
         Else
             Core.SpriteBatch.Draw(t3, New Rectangle(Core.windowSize.Width - 310, CInt(Core.windowSize.Height / 2 - 105 - (MathHelper.Min(t3.Height * 10, 256) / 2)), MathHelper.Min(t3.Width * 10, 256), MathHelper.Min(t3.Height * 10, 256)), Color.White)
 
             Dim t As String = ReplaceIntroName(Trainer.TrainerType) & " " & ReplaceIntroName(Trainer.Name)
+            Core.SpriteBatch.DrawString(FontManager.InGameFont, t, New Vector2(Core.windowSize.Width - FontManager.InGameFont.MeasureString(t).X - 50 + 2, CInt(Core.windowSize.Height / 2 + 20 + 2)), Color.Black)
             Core.SpriteBatch.DrawString(FontManager.InGameFont, t, New Vector2(Core.windowSize.Width - FontManager.InGameFont.MeasureString(t).X - 50, CInt(Core.windowSize.Height / 2 + 20)), Color.White)
 
         End If
-        Core.SpriteBatch.Draw(t2, New Rectangle(420 - CInt(CInt(1.29 * value) / 3), CInt(Core.windowSize.Height / 2 - 20) - CInt(CInt(1 * value) / 3), CInt(1.12 * CInt(value / 1.5F)), 1 * CInt(value / 1.5F)), Color.White)
+        Core.SpriteBatch.Draw(t2, New Rectangle(480 - CInt(CInt(1.29 * value) / 3), CInt(Core.windowSize.Height / 2 - 20) - CInt(CInt(1 * value) / 3), CInt(1.12 * CInt(value / 1.5F)), 1 * CInt(value / 1.5F)), Color.White)
     End Sub
 
     Private Function ReplaceIntroName(ByVal Name As String) As String
@@ -326,7 +328,7 @@
         Canvas.DrawRectangle(New Rectangle(0, 0, Core.windowSize.Width, blackPosition), Color.Black)
         Canvas.DrawRectangle(New Rectangle(0, Core.windowSize.Height - blackPosition, Core.windowSize.Width, blackPosition), Color.Black)
         Core.SpriteBatch.Draw(t3, New Rectangle(CInt(Core.windowSize.Width - trainerPosition), CInt(Core.windowSize.Height / 2 + 128 - (CInt(MathHelper.Min(t3.Height * 10, 256) * 0.875))), MathHelper.Min(t3.Width * 10, 256), CInt(MathHelper.Min(t3.Height * 10, 256) * 0.875)), New Rectangle(0, 0, t3.Width, CInt(t3.Height * 0.875)), Color.White)
-        Core.SpriteBatch.Draw(t2, New Rectangle(CInt(trainerPosition * 1.5 - 64 * 6), CInt(Core.windowSize.Height / 2) - 192, 64 * 6, 64 * 6), Color.White)
+        Core.SpriteBatch.Draw(t2, New Rectangle(CInt(trainerPosition * 1.5 - 64 * 7), CInt(Core.windowSize.Height / 2) - 192, 64 * 7, 64 * 7), Color.White)
 
         If textPosition > 0 Then
             Dim tWidth As Integer = CInt(FontManager.InGameFont.MeasureString(Trainer.TrainerType).X * 3.0F)
