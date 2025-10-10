@@ -226,8 +226,6 @@ Namespace Items
 
                 Pokemon.Status = P3D.Pokemon.StatusProblems.None
 
-                Core.Player.Inventory.RemoveItem(Me.ID.ToString, 1)
-
                 Screen.TextBox.reDelay = 0.0F
 
                 Dim t As String = "Cures the ice~of " & Pokemon.GetDisplayName() & "."
@@ -272,8 +270,6 @@ Namespace Items
                 End If
 
                 Pokemon.Status = P3D.Pokemon.StatusProblems.None
-
-                Core.Player.Inventory.RemoveItem(Me.ID.ToString, 1)
 
                 Screen.TextBox.reDelay = 0.0F
 
