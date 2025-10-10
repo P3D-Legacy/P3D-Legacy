@@ -752,10 +752,10 @@ Public Class NewInventoryScreen
         'Update the toss amount indicator:
         If _tossingItems Then
             Dim cItem As Item = Item.GetItemByID(_items(ItemIndex + PageIndex * 10).ItemID)
-            If Controls.Right(True, True, True, True) Then
+            If Controls.Right(True, True, True, True) Or Controls.Up(True, True, True, True) Then
                 _tossValue += 1
             End If
-            If Controls.Left(True, True, True, True) Then
+            If Controls.Left(True, True, True, True) Or Controls.Down(True, True, True, True) Then
                 _tossValue -= 1
             End If
 
