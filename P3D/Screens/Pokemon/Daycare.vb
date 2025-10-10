@@ -348,7 +348,15 @@
                 End If
 
                 If Core.Random.Next(0, 100) < 80 Then
-                    p.Ability = female.Ability
+                    If p.NewAbilities.Contains(female.Ability) Then
+                        p.Ability = female.Ability
+                    Else
+                        For a = 0 To female.NewAbilities.Count
+                            If female.Ability.ID = female.NewAbilities(a).ID Then
+                                p.Ability = p.NewAbilities(a)
+                            End If
+                        Next
+                    End If
                 End If
             End If
 
