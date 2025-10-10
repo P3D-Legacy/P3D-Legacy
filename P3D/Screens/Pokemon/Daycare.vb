@@ -363,11 +363,11 @@
             ' Hidden Ability:
             If DittoAsParent <> 0 Then
                 If DittoAsParent = 1 Then
-                    If parent2.IsUsingHiddenAbility = True And p.HasHiddenAbility = True And Core.Random.Next(0, 100) < 80 Then
+                    If parent2.IsUsingHiddenAbility = True And p.HasHiddenAbility = True And Core.Random.Next(0, 100) < 60 Then
                         p.Ability = p.HiddenAbility
                     End If
                 Else
-                    If parent1.IsUsingHiddenAbility = True And p.HasHiddenAbility = True And Core.Random.Next(0, 100) < 80 Then
+                    If parent1.IsUsingHiddenAbility = True And p.HasHiddenAbility = True And Core.Random.Next(0, 100) < 60 Then
                         p.Ability = p.HiddenAbility
                     End If
                 End If
