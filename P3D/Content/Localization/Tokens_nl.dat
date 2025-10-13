@@ -164,6 +164,8 @@ fieldmove_strength_used,gebruikte~Kracht!
 fieldmove_surf_type0,Wil je Surfen?
 fieldmove_surf_type1,Het water ziet er rustig en~diep uit.~Wil je Surfen?
 fieldmove_surf_type2,Dit meer is kalm en ondiep.~Wil je Surfen?
+fieldmove_surf_cannotwhilebike,Je kunt niet Surfen terwijl~je op een Fiets rijdt!
+fieldmove_surf_cannotwhileride,Je kunt niet Surfen terwijl~je op een Pokémon rijdt!
 fieldmove_surf_used,gebruikte~Surf!
 
 fieldmove_dive_down_1,Het water ziet er heel erg~diep uit op deze plek.

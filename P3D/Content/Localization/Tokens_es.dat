@@ -165,6 +165,8 @@ fieldmove_strength_used,used~Strength!
 fieldmove_surf_type0,Do you want to Surf?
 fieldmove_surf_type1,The water looks still~and deep.~Do you want to Surf?
 fieldmove_surf_type2,This lake is~calm and shallow.~Do you want to Surf?
+fieldmove_surf_cannotwhilebicycle,You cannot Surf while riding~a Bicycle!
+fieldmove_surf_cannotwhileride,You cannot Surf while riding~a Pokémon!
 fieldmove_surf_used,used~Surf!
 
 fieldmove_dive_down_1,The water seems to be~really deep at this point.

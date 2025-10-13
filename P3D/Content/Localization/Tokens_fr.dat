@@ -163,6 +163,8 @@ fieldmove_strength_used, a utilisé~Force!
 fieldmove_surf_type0,Tu veux faire du Surf?
 fieldmove_surf_type1,L'eau a l'air calme~et profonde.~Tu veux faire du Surf?
 fieldmove_surf_type2,Ce lac est~calme et peu profond.~Veux-tu faire du surf ?
+fieldmove_surf_cannotwhilebicycle,You cannot Surf while riding~a Bicycle!
+fieldmove_surf_cannotwhileride,You cannot Surf while riding~a Pokémon!
 fieldmove_surf_used, a utilisé~Surf!
 
 fieldmove_dive_down_1,L'eau semble très profonde~à cet endroit.

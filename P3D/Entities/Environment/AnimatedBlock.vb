@@ -151,6 +151,12 @@
 
                         If Screen.Level.Riding = True Then
                             canSurf = False
+                            SoundManager.PlaySound("select")
+                            If Core.Player.Skin.ToLower.Contains("_bike") Then
+                                Screen.TextBox.Show(Localization.GetString("fieldmove_surf_cannotwhilebicycle", "You cannot Surf while riding~a Bicycle!"), {Me}, True, True)
+                            Else
+                                Screen.TextBox.Show(Localization.GetString("fieldmove_surf_cannotwhileride", "You cannot Surf while riding~a Pokémon!"), {Me}, True, True)
+                            End If
                         End If
 
                         If canSurf = True Then
