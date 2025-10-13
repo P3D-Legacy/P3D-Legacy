@@ -67,6 +67,10 @@
             If Not useP Is Nothing Then
                 pName = useP.GetDisplayName()
                 pNumber = useP.Number
+            Else
+                If GameController.IS_DEBUG_ACTIVE = True Or Core.Player.SandBoxMode = True Then
+                    useP = Core.Player.Pokemons(0)
+                End If
             End If
 
             Screen.Level.UsedStrength = True
