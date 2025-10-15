@@ -1,58 +1,58 @@
 # {DexNumber|AdditionalValue|InPartyFormTriggers|FormNamePrefix|FormNameSuffix|DataFileSuffix|MenuIconFile,X_Coordinate,Y_Coordinate|FrontBackSpriteFileSuffix|OverworldSpriteFileSuffix|CryFileSuffix|WildFormTriggers|TypeChange|IncludeBaseFormInDexCount}
 # "InPartyFormTriggers" can take one or an array of the following value types (separated by commas): Gender;GenderID / Season;SeasonID / Environment;EnvironmentType1;EnvironmentType2 (etc.) / Item;ItemID
 # "WildFormTriggers" can take one or an array of the following value types (separated by commas): Random;String1;String2 (etc.) / Random;MinValue-MaxValue / Gender;GenderID / Season;SeasonID / Environment;EnvironmentType1;EnvironmentType2 (etc.)
-{3|mega||Mega ||_mega|Megas,0,0|_mega|_mega||||}
-{6|mega_x||Mega | X|_mega_x|Megas,1,0|_mega_x|_mega_x||||}
-{6|mega_y||Mega | Y|_mega_y|Megas,2,0|_mega_y|_mega_y||||}
-{9|mega||Mega ||_mega|Megas,3,0|_mega|_mega||||}
-{15|mega||Mega ||_mega|Megas,12,1|_mega|_mega||||}
-{18|mega||Mega ||_mega|Megas,13,1|_mega|_mega||||}
-{19|alola||Alolan ||_alola|Regional,0,0|_alola|_alola||||}
-{20|alola||Alolan ||_alola|Regional,1,0|_alola|_alola||||}
-{26|alola||Alolan ||_alola|Regional,2,0|_alola|_alola||||}
-{27|alola||Alolan ||_alola|Regional,3,0|_alola|_alola||||}
-{28|alola||Alolan ||_alola|Regional,4,0|_alola|_alola||||}
-{37|alola||Alolan ||_alola|Regional,5,0|_alola|_alola||||}
-{38|alola||Alolan ||_alola|Regional,6,0|_alola|_alola||||}
-{50|alola||Alolan ||_alola|Regional,7,0|_alola|_alola||||}
-{51|alola||Alolan ||_alola|Regional,8,0|_alola|_alola||||}
-{52|alola||Alolan ||_alola|Regional,9,0|_alola|_alola||||}
-{52|galar||Galarian ||_galar|Regional,0,2|_galar|_galar||||}
-{53|alola||Alolan ||_alola|Regional,10,0|_alola|_alola||||}
-{58|hisui||Hisuian ||_hisui|Regional,0,4|_hisui|_hisui||||}
-{59|hisui||Hisuian ||_hisui|Regional,1,4|_hisui|_hisui||||}
-{65|mega||Mega ||_mega|Megas,4,0|_mega|_mega||||}
-{74|alola||Alolan ||_alola|Regional,11,0|_alola|_alola||||}
-{75|alola||Alolan ||_alola|Regional,12,0|_alola|_alola||||}
-{76|alola||Alolan ||_alola|Regional,13,0|_alola|_alola||||}
-{77|galar||Galarian ||_galar|Regional,1,2|_galar|_galar||||}
-{78|galar||Galarian ||_galar|Regional,2,2|_galar|_galar||||}
-{79|galar||Galarian ||_galar|Regional,3,2|_galar|_galar||||}
-{80|mega||Mega ||_mega|Megas,14,1|_mega|_mega||||}
-{80|galar||Galarian ||_galar|Regional,4,2|_galar|_galar||||}
-{83|galar||Galarian ||_galar|Regional,5,2|_galar|_galar||||}
-{88|alola||Alolan ||_alola|Regional,14,0|_alola|_alola||||}
-{89|alola||Alolan ||_alola|Regional,15,0|_alola|_alola||||}
-{94|mega||Mega ||_mega|Megas,5,0|_mega|_mega||||}
-{100|hisui||Hisuian ||_hisui|Regional,2,4|_hisui|_hisui||||}
-{101|hisui||Hisuian ||_hisui|Regional,3,4|_hisui|_hisui||||}
-{103|alola||Alolan ||_alola|Regional,0,1|_alola|_alola||||}
-{105|alola||Alolan ||_alola|Regional,1,1|_alola|_alola||||}
-{110|galar||Galarian ||_galar|Regional,6,2|_galar|_galar||||}
-{115|mega||Mega ||_mega|Megas,6,0|_mega|_mega||||}
-{122|galar||Galarian ||_galar|Regional,7,2|_galar|_galar||||}
-{127|mega||Mega ||_mega|Megas,7,0|_mega|_mega||||}
-{130|mega||Mega ||_mega|Megas,8,0|_mega|_mega||||}
-{142|mega||Mega ||_mega|Megas,9,0|_mega|_mega||||}
-{144|galar||Galarian ||_galar|Regional,8,2|_galar|_galar||||}
-{145|galar||Galarian ||_galar|Regional,9,2|_galar|_galar||||}
-{146|galar||Galarian ||_galar|Regional,10,2|_galar|_galar||||}
-{150|mega_x||Mega | X|_mega_x|Megas,10,0|_mega_x|_mega_x||||}
-{150|mega_y||Mega | Y|_mega_y|Megas,11,0|_mega_y|_mega_y||||}
-{157|hisui||Hisuian ||_hisui|Regional,4,4|_hisui|_hisui||||}
+{3|mega||Mega ||_mega|Megas,0,0|_mega|_mega|_mega|||}
+{6|mega_x||Mega | X|_mega_x|Megas,1,0|_mega_x|_mega_x|_mega_x|||}
+{6|mega_y||Mega | Y|_mega_y|Megas,2,0|_mega_y|_mega_y|_mega_y|||}
+{9|mega||Mega ||_mega|Megas,3,0|_mega|_mega|_mega|||}
+{15|mega||Mega ||_mega|Megas,12,1|_mega|_mega|_mega|||}
+{18|mega||Mega ||_mega|Megas,13,1|_mega|_mega|_mega|||}
+{19|alola||Alolan ||_alola|Regional,0,0|_alola|_alola|_alola|||}
+{20|alola||Alolan ||_alola|Regional,1,0|_alola|_alola|_alola|||}
+{26|alola||Alolan ||_alola|Regional,2,0|_alola|_alola|_alola|||}
+{27|alola||Alolan ||_alola|Regional,3,0|_alola|_alola|_alola|||}
+{28|alola||Alolan ||_alola|Regional,4,0|_alola|_alola|_alola|||}
+{37|alola||Alolan ||_alola|Regional,5,0|_alola|_alola|_alola|||}
+{38|alola||Alolan ||_alola|Regional,6,0|_alola|_alola|_alola|||}
+{50|alola||Alolan ||_alola|Regional,7,0|_alola|_alola|_alola|||}
+{51|alola||Alolan ||_alola|Regional,8,0|_alola|_alola|_alola|||}
+{52|alola||Alolan ||_alola|Regional,9,0|_alola|_alola|_alola|||}
+{52|galar||Galarian ||_galar|Regional,0,2|_galar|_galar|_galar|||}
+{53|alola||Alolan ||_alola|Regional,10,0|_alola|_alola|_alola|||}
+{58|hisui||Hisuian ||_hisui|Regional,0,4|_hisui|_hisui|_hisui|||}
+{59|hisui||Hisuian ||_hisui|Regional,1,4|_hisui|_hisui|_hisui|||}
+{65|mega||Mega ||_mega|Megas,4,0|_mega|_mega|_mega|||}
+{74|alola||Alolan ||_alola|Regional,11,0|_alola|_alola|_alola|||}
+{75|alola||Alolan ||_alola|Regional,12,0|_alola|_alola|_alola|||}
+{76|alola||Alolan ||_alola|Regional,13,0|_alola|_alola|_alola|||}
+{77|galar||Galarian ||_galar|Regional,1,2|_galar|_galar|_galar|||}
+{78|galar||Galarian ||_galar|Regional,2,2|_galar|_galar|_galar|||}
+{79|galar||Galarian ||_galar|Regional,3,2|_galar|_galar|_galar|||}
+{80|mega||Mega ||_mega|Megas,14,1|_mega|_mega|_mega|||}
+{80|galar||Galarian ||_galar|Regional,4,2|_galar|_galar|_galar|||}
+{83|galar||Galarian ||_galar|Regional,5,2|_galar|_galar|_galar|||}
+{88|alola||Alolan ||_alola|Regional,14,0|_alola|_alola|_alola|||}
+{89|alola||Alolan ||_alola|Regional,15,0|_alola|_alola|_alola|||}
+{94|mega||Mega ||_mega|Megas,5,0|_mega|_mega|_mega|||}
+{100|hisui||Hisuian ||_hisui|Regional,2,4|_hisui|_hisui|_hisui|||}
+{101|hisui||Hisuian ||_hisui|Regional,3,4|_hisui|_hisui|_hisui|||}
+{103|alola||Alolan ||_alola|Regional,0,1|_alola|_alola|_alola|||}
+{105|alola||Alolan ||_alola|Regional,1,1|_alola|_alola|_alola|||}
+{110|galar||Galarian ||_galar|Regional,6,2|_galar|_galar|_galar|||}
+{115|mega||Mega ||_mega|Megas,6,0|_mega|_mega|_mega|||}
+{122|galar||Galarian ||_galar|Regional,7,2|_galar|_galar|_galar|||}
+{127|mega||Mega ||_mega|Megas,7,0|_mega|_mega|_mega|||}
+{130|mega||Mega ||_mega|Megas,8,0|_mega|_mega|_mega|||}
+{142|mega||Mega ||_mega|Megas,9,0|_mega|_mega|_mega|||}
+{144|galar||Galarian ||_galar|Regional,8,2|_galar|_galar|_galar|||}
+{145|galar||Galarian ||_galar|Regional,9,2|_galar|_galar|_galar|||}
+{146|galar||Galarian ||_galar|Regional,10,2|_galar|_galar|_galar|||}
+{150|mega_x||Mega | X|_mega_x|Megas,10,0|_mega_x|_mega_x|_mega_x|||}
+{150|mega_y||Mega | Y|_mega_y|Megas,11,0|_mega_y|_mega_y|_mega_y|||}
+{157|hisui||Hisuian ||_hisui|Regional,4,4|_hisui|_hisui|_hisui|||}
 {172|spiky-eared||Spiky-Eared ||_spiky-eared|OtherForms,0,2|_spiky-eared|_spiky-eared||||}
-{181|mega||Mega ||_mega|Megas,12,0|_mega|_mega||||}
-{199|galar||Galarian ||_galar|Regional,11,2|_galar|_galar||||}
+{181|mega||Mega ||_mega|Megas,12,0|_mega|_mega|_mega|||}
+{199|galar||Galarian ||_galar|Regional,11,2|_galar|_galar|_galar|||}
 {201||||||Unown,0,0|_a|-a||Random;0-27||}
 {201|0|||||Unown,0,0|_a|-a||||1}
 {201|1|||||Unown,1,0|_b|-b||||1}
@@ -82,41 +82,41 @@
 {201|25|||||Unown,9,1|_z|-z||||1}
 {201|26|||||Unown,10,1|_question|-question||||}
 {201|27|||||Unown,11,1|_exclamation|-exclamation||||}
-{208|mega||Mega ||_mega|Megas,15,1|_mega|_mega||||}
-{211|hisui||Hisuian ||_hisui|Regional,5,4|_hisui|_hisui||||}
-{212|mega||Mega ||_mega|Megas,13,0|_mega|_mega||||}
-{214|mega||Mega ||_mega|Megas,14,0|_mega|_mega||||}
-{215|hisui||Hisuian ||_hisui|Regional,6,4|_hisui|_hisui||||}
-{222|galar||Galarian ||_galar|Regional,12,2|_galar|_galar||||}
-{229|mega||Mega ||_mega|Megas,15,0|_mega|_mega||||}
-{248|mega||Mega ||_mega|Megas,0,1|_mega|_mega||||}
-{254|mega||Mega ||_mega|Megas,0,2|_mega|_mega||||}
-{257|mega||Mega ||_mega|Megas,1,1|_mega|_mega||||}
-{260|mega||Mega ||_mega|Megas,1,2|_mega|_mega||||}
-{263|galar||Galarian ||_galar|Regional,13,2|_galar|_galar||||}
-{264|galar||Galarian ||_galar|Regional,14,2|_galar|_galar||||}
-{282|mega||Mega ||_mega|Megas,2,1|_mega|_mega||||}
-{302|mega||Mega ||_mega|Megas,2,2|_mega|_mega||||}
-{303|mega||Mega ||_mega|Megas,3,1|_mega|_mega||||}
-{306|mega||Mega ||_mega|Megas,4,1|_mega|_mega||||}
-{308|mega||Mega ||_mega|Megas,5,1|_mega|_mega||||}
-{310|mega||Mega ||_mega|Megas,6,1|_mega|_mega||||}
-{319|mega||Mega ||_mega|Megas,3,2|_mega|_mega||||}
-{323|mega||Mega ||_mega|Megas,4,2|_mega|_mega||||}
-{334|mega||Mega ||_mega|Megas,5,2|_mega|_mega||||}
-{354|mega||Mega ||_mega|Megas,7,1|_mega|_mega||||}
-{359|mega||Mega ||_mega|Megas,8,1|_mega|_mega||||}
-{362|mega||Mega ||_mega|Megas,6,2|_mega|_mega||||}
-{373|mega||Mega ||_mega|Megas,7,2|_mega|_mega||||}
-{376|mega||Mega ||_mega|Megas,8,2|_mega|_mega||||}
-{380|mega||Mega ||_mega|Megas,9,2|_mega|_mega||||}
-{381|mega||Mega ||_mega|Megas,10,2|_mega|_mega||||}
+{208|mega||Mega ||_mega|Megas,15,1|_mega|_mega|_mega|||}
+{211|hisui||Hisuian ||_hisui|Regional,5,4|_hisui|_hisui|_hisui|||}
+{212|mega||Mega ||_mega|Megas,13,0|_mega|_mega|_mega|||}
+{214|mega||Mega ||_mega|Megas,14,0|_mega|_mega|_mega|||}
+{215|hisui||Hisuian ||_hisui|Regional,6,4|_hisui|_hisui|_hisui|||}
+{222|galar||Galarian ||_galar|Regional,12,2|_galar|_galar|_galar|||}
+{229|mega||Mega ||_mega|Megas,15,0|_mega|_mega|_mega|||}
+{248|mega||Mega ||_mega|Megas,0,1|_mega|_mega|_mega|||}
+{254|mega||Mega ||_mega|Megas,0,2|_mega|_mega|_mega|||}
+{257|mega||Mega ||_mega|Megas,1,1|_mega|_mega|_mega|||}
+{260|mega||Mega ||_mega|Megas,1,2|_mega|_mega|_mega|||}
+{263|galar||Galarian ||_galar|Regional,13,2|_galar|_galar|_galar|||}
+{264|galar||Galarian ||_galar|Regional,14,2|_galar|_galar|_galar|||}
+{282|mega||Mega ||_mega|Megas,2,1|_mega|_mega|_mega|||}
+{302|mega||Mega ||_mega|Megas,2,2|_mega|_mega|_mega|||}
+{303|mega||Mega ||_mega|Megas,3,1|_mega|_mega|_mega|||}
+{306|mega||Mega ||_mega|Megas,4,1|_mega|_mega|_mega|||}
+{308|mega||Mega ||_mega|Megas,5,1|_mega|_mega|_mega|||}
+{310|mega||Mega ||_mega|Megas,6,1|_mega|_mega|_mega|||}
+{319|mega||Mega ||_mega|Megas,3,2|_mega|_mega|_mega|||}
+{323|mega||Mega ||_mega|Megas,4,2|_mega|_mega|_mega|||}
+{334|mega||Mega ||_mega|Megas,5,2|_mega|_mega|_mega|||}
+{354|mega||Mega ||_mega|Megas,7,1|_mega|_mega|_mega|||}
+{359|mega||Mega ||_mega|Megas,8,1|_mega|_mega|_mega|||}
+{362|mega||Mega ||_mega|Megas,6,2|_mega|_mega|_mega|||}
+{373|mega||Mega ||_mega|Megas,7,2|_mega|_mega|_mega|||}
+{376|mega||Mega ||_mega|Megas,8,2|_mega|_mega|_mega|||}
+{380|mega||Mega ||_mega|Megas,9,2|_mega|_mega|_mega|||}
+{381|mega||Mega ||_mega|Megas,10,2|_mega|_mega|_mega|||}
 {382|primal||Primal ||_primal|OtherForms,3,3|_primal|_primal||||}
 {383|primal||Primal ||_primal|OtherForms,4,3|_primal|_primal||||}
-{384|mega||Mega ||_mega|Megas,11,2|_mega|_mega||||}
-{386|attack||||_attack|OtherForms,5,3|_attack|_attack||||1}
-{386|defense||||_defense|OtherForms,6,3|_defense|_defense||||1}
-{386|speed||||_speed|OtherForms,7,3|_speed|_speed||||1}
+{384|mega||Mega ||_mega|Megas,11,2|_mega|_mega|_mega|||}
+{386|attack||||_attack|OtherForms,5,3|_attack|_attack|_attack|||1}
+{386|defense||||_defense|OtherForms,6,3|_defense|_defense|_defense|||1}
+{386|speed||||_speed|OtherForms,7,3|_speed|_speed|_speed|||1}
 {412|plant|||||||||environment;0;5||1}
 {412|sandy|||||OtherForms,0,4|_sandy|_sandy||environment;2;3||1}
 {412|trash|||||OtherForms,1,4|_trash|_trash||environment;1||1}
@@ -129,16 +129,16 @@
 {423|||||||_w|_w||Random;west;east||}
 {423|west||||||_w|_w||||1}
 {423|east|||||OtherForms,6,4|_e|_e||||1}
-{428|mega||Mega ||_mega|Megas,12,2|_mega|_mega||||}
-{445|mega||Mega ||_mega|Megas,9,1|_mega|_mega||||}
-{448|mega||Mega ||_mega|Megas,10,1|_mega|_mega||||}
-{460|mega||Mega ||_mega|Megas,11,1|_mega|_mega||||}
-{475|mega||Mega ||_mega|Megas,13,2|_mega|_mega||||}
-{479|heat||||_heat|OtherForms,9,4|_heat|_heat||||1}
-{479|wash||||_wash|OtherForms,10,4|_wash|_wash||||1}
-{479|frost||||_frost|OtherForms,11,4|_frost|_frost||||1}
-{479|fan||||_fan|OtherForms,12,4|_fan|_fan||||1}
-{479|mow||||_mow|OtherForms,13,4|_mow|_mow||||1}
+{428|mega||Mega ||_mega|Megas,12,2|_mega|_mega|_mega|||}
+{445|mega||Mega ||_mega|Megas,9,1|_mega|_mega|_mega|||}
+{448|mega||Mega ||_mega|Megas,10,1|_mega|_mega|_mega|||}
+{460|mega||Mega ||_mega|Megas,11,1|_mega|_mega|_mega|||}
+{475|mega||Mega ||_mega|Megas,13,2|_mega|_mega|_mega|||}
+{479|heat||||_heat|OtherForms,9,4|_heat|_heat|_heat|||1}
+{479|wash||||_wash|OtherForms,10,4|_wash|_wash|_wash|||1}
+{479|frost||||_frost|OtherForms,11,4|_frost|_frost|_frost|||1}
+{479|fan||||_fan|OtherForms,12,4|_fan|_fan|_fan|||1}
+{479|mow||||_mow|OtherForms,13,4|_mow|_mow|_mow|||1}
 {483|primal||Primal ||_primal|OtherForms,14,26|_primal|_primal||||}
 {493||Item;267||||Arceus,14,0|_dragon|_dragon|||dragon|1}
 {493||Item;268||||Arceus,15,0|_dark|_dark|||dark|1}
@@ -158,17 +158,17 @@
 {493||Item;282||||Arceus,7,0|_poison|_poison|||poison|1}
 {493||Item;283||||Arceus,3,0|_electric|_electric|||electric|1}
 {493||||||Arceus,0,0||||||}
-{503|hisui||Hisuian ||_hisui|Regional,7,4|_hisui|_hisui||||}
-{531|mega||Mega ||_mega|Megas,14,2|_mega|_mega||||}
-{549|hisui||Hisuian ||_hisui|Regional,8,4|_hisui|_hisui||||}
+{503|hisui||Hisuian ||_hisui|Regional,7,4|_hisui|_hisui|_hisui|||}
+{531|mega||Mega ||_mega|Megas,14,2|_mega|_mega|_mega|||}
+{549|hisui||Hisuian ||_hisui|Regional,8,4|_hisui|_hisui|_hisui|||}
 {550||||||||||Random;red;blue||}
-{550|red|||||||||||1}
-{550|blue||||_blue|OtherForms,0,5|_blue|_blue||||1}
-{554|galar||Galarian ||_galar|Regional,15,2|_galar|_galar||||}
-{555|galar||Galarian ||_galar|Regional,0,3|_galar|_galar||||}
-{562|galar||Galarian ||_galar|Regional,1,3|_galar|_galar||||}
-{570|hisui||Hisuian ||_hisui|Regional,9,4|_hisui|_hisui||||}
-{571|hisui||Hisuian ||_hisui|Regional,10,4|_hisui|_hisui||||}
+{550|red||||||||_red|||1}
+{550|blue||||_blue|OtherForms,0,5|_blue|_blue|_blue|||1}
+{554|galar||Galarian ||_galar|Regional,15,2|_galar|_galar|_galar|||}
+{555|galar||Galarian ||_galar|Regional,0,3|_galar|_galar|_galar|||}
+{562|galar||Galarian ||_galar|Regional,1,3|_galar|_galar|_galar|||}
+{570|hisui||Hisuian ||_hisui|Regional,9,4|_hisui|_hisui|_hisui|||}
+{571|hisui||Hisuian ||_hisui|Regional,10,4|_hisui|_hisui|_hisui|||}
 {585||Season;0||||OtherForms,5,5|_wi|_wi||||}
 {585||Season;1|||||_sp|_sp||Season;1||}
 {585||Season;2||||OtherForms,3,5|_su|_su||||}
@@ -177,17 +177,17 @@
 {586||Season;1|||||_sp|_sp||Season;1||}
 {586||Season;2||||OtherForms,6,5|_su|_su||||}
 {586||Season;3||||OtherForms,7,5|_fa|_fa||||}
-{592||Gender;0|||||_m|_m||||}
-{592||Gender;1||||Gender,1,0|_f|_f||||}
-{593||Gender;0|||||_m|_m||||}
-{593||Gender;1||||Gender,2,0|_f|_f||||}
-{618|galar||Galarian ||_galar|Regional,2,3|_galar|_galar||||}
-{628|hisui||Hisuian ||_hisui|Regional,11,4|_hisui|_hisui||||}
+{592||Gender;0|||||_m|_m|_m|||}
+{592||Gender;1||||Gender,1,0|_f|_f|_f|||}
+{593||Gender;0|||||_m|_m|_m|||}
+{593||Gender;1||||Gender,2,0|_f|_f|_f|||}
+{618|galar||Galarian ||_galar|Regional,2,3|_galar|_galar|_galar|||}
+{628|hisui||Hisuian ||_hisui|Regional,11,4|_hisui|_hisui|_hisui|||}
 {641|therian||||_therian|OtherForms,9,5|_therian|_therian||||1}
 {642|therian||||_therian|OtherForms,10,5|_therian|_therian||||1}
 {645|therian||||_therian|OtherForms,11,5|_therian|_therian||||1}
-{646|black||||_black|OtherForms,13,5|_black|_black||||1}
-{646|white||||_white|OtherForms,12,5|_white|_white||||1}
+{646|black||||_black|OtherForms,13,5|_black|_black|_black|||1}
+{646|white||||_white|OtherForms,12,5|_white|_white|_white|||1}
 {665||||||||||Random;archipelago;continental;elegant;fancy;garden;high_planes;icy_snow;jungle;marine;modern;monsoon;ocean;pokeball;polar;river;sandstorm;savanna;sun;tundra||}
 {666||||||Vivillon,0,0|_meadow|_meadow||Random;archipelago;continental;elegant;fancy;garden;high_planes;icy_snow;jungle;marine;modern;monsoon;ocean;pokeball;polar;river;sandstorm;savanna;sun;tundra||}
 {666|archipelago|||||Vivillon,1,0|_archipelago|_archipelago||||1}
@@ -234,9 +234,9 @@
 {678||Gender;0|||||_m|_m||||}
 {678||Gender;1||||Gender,4,0|_f|_f||||}
 {681|blade||||_blade|OtherForms,6,8|_blade|_blade||||1}
-{705|hisui||Hisuian ||_hisui|Regional,12,4|_hisui|_hisui||||}
-{706|hisui||Hisuian ||_hisui|Regional,13,4|_hisui|_hisui||||}
-{713|hisui||Hisuian ||_hisui|Regional,14,4|_hisui|_hisui||||}
-{719|mega||Mega ||_mega|Megas,15,2|_mega|_mega||||}
-{720|unbound||||_unbound|OtherForms,0,9|_unbound|_unbound||||1}
-{724|hisui||Hisuian ||_hisui|Regional,15,4|_hisui|_hisui||||}
+{705|hisui||Hisuian ||_hisui|Regional,12,4|_hisui|_hisui|_hisui|||}
+{706|hisui||Hisuian ||_hisui|Regional,13,4|_hisui|_hisui|_hisui|||}
+{713|hisui||Hisuian ||_hisui|Regional,14,4|_hisui|_hisui|_hisui|||}
+{719|mega||Mega ||_mega|Megas,15,2|_mega|_mega|_mega|||}
+{720|unbound||||_unbound|OtherForms,0,9|_unbound|_unbound|_unbound|||1}
+{724|hisui||Hisuian ||_hisui|Regional,15,4|_hisui|_hisui|_hisui|||}
