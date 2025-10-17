@@ -687,7 +687,9 @@ Public Class PartyScreen
             End If
         End If
 
-        items.Add(Localization.GetString("global_switch", "Switch"))
+        If Screen.Level.IsBugCatchingContest = False Then
+            items.Add(Localization.GetString("global_switch", "Switch"))
+        End If
 
         If p.IsEgg() = False Then
             items.Add(Localization.GetString("global_item", "Item"))

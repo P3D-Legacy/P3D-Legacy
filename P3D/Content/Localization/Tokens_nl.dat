@@ -377,6 +377,7 @@ inventory_screen_GiveItem_Give,Gaf <name> een <newitem>.
 inventory_screen_GiveItem_Switch,Wisselde <name>'s <olditem> met een <newitem>.
 inventory_screen_GiveItem_TakeMail,Gaf een <newitem> aan <name> en bracht de Brief naar de PC.
 inventory_screen_CannotGiveToPokemon,<newitem> kan niet aan een Pokémon gegeven worden.
+inventory_screen_CannotGiveBugContest,Kan geen voorwerp geven aan~deze Pokémon tijdens een~Insecten-Vangwedstrijd.
 inventory_screen_EggsCannotHold,Eieren kunnen geen voorwerpen~vasthouden.
 ---
 PartyScreen:

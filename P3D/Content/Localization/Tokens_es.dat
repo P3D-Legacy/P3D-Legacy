@@ -390,6 +390,7 @@ inventory_screen_GiveItem_Give,Gave <name> the <newitem>.
 inventory_screen_GiveItem_Switch,Switched <name>'s <olditem> with the <newitem>.
 inventory_screen_GiveItem_TakeMail,Gave <newitem> to <name> and took the Mail to the PC.
 inventory_screen_CannotGiveToPokemon,<newitem> cannot be given to a Pokémon.
+inventory_screen_CannotGiveBugContest,Cannot give an item to~this Pokémon during a~Bug-Catching Contest.
 inventory_screen_EggsCannotHold,Los huevos no pueden tener objetos.
 ---
 PartyScreen:

@@ -385,6 +385,7 @@ inventory_screen_TossConfirmation,Are you sure you want to toss~this item?
 inventory_screen_TossAmount,Select the amount to toss.
 inventory_screen_GiveItem_Give,Gave <name> the <newitem>.
 inventory_screen_GiveItem_Switch,Switched <name>'s <olditem> with the <newitem>.
+inventory_screen_CannotGiveBugContest,Cannot give an item to~this Pokémon during a~Bug-Catching Contest.
 inventory_screen_EggsCannotHold,Les œufs ne peuvent pas tenir d'objets.
 inventory_screen_GiveItem_TakeMail,Gave <newitem> to <name> and took the Mail to the PC.
 inventory_screen_CannotGiveToPokemon,<newitem> cannot be given to a Pokémon.

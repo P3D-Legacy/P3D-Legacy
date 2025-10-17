@@ -569,7 +569,7 @@ Public Class NewInventoryScreen
         End Select
 
         infoBatch.DrawString(FontManager.TextFont, itemTitle.Replace("~", " "), New Vector2(80, 20), Color.White, 0F, Vector2.Zero, 2.0F, SpriteEffects.None, 0F)
-        infoBatch.DrawString(FontManager.TextFont, itemSubTitle, New Vector2(80, 46), Color.LightGray, 0F, Vector2.Zero, 2.0f, SpriteEffects.None, 0F)
+        infoBatch.DrawString(FontManager.TextFont, itemSubTitle, New Vector2(80, 46), Color.LightGray, 0F, Vector2.Zero, 2.0F, SpriteEffects.None, 0F)
         infoBatch.DrawString(FontManager.TextFont, itemDescription.CropStringToWidth(FontManager.TextFont, 1.0F, 430), New Vector2(28, 84), Color.LightGray, 0F, Vector2.Zero, 1.0F, SpriteEffects.None, 0F)
 
         For i = 0 To _infoItemOptions.Count - 1
@@ -1056,52 +1056,56 @@ Public Class NewInventoryScreen
         Dim cItem As Item = Item.GetItemByID(_items(ItemIndex + PageIndex * 10).ItemID)
         Dim Pokemon As Pokemon = Core.Player.Pokemons(PokeIndex)
 
-        If Pokemon.IsEgg() = False Then
-            Dim ItemID As String
-            If cItem.IsGameModeItem = True Then
-                ItemID = cItem.gmID
-            Else
-                ItemID = cItem.ID.ToString
-            End If
-
-            Core.Player.Inventory.RemoveItem(ItemID, 1)
-
-            Dim reItem As Item = Nothing
-            If Not Pokemon.Item Is Nothing Then
-                Dim ReItemID As String
-                If Pokemon.Item.IsGameModeItem = True Then
-                    ReItemID = Pokemon.Item.gmID
-                Else
-                    ReItemID = Pokemon.Item.ID.ToString
-                End If
-                reItem = Pokemon.Item
-                Core.Player.Inventory.AddItem(ReItemID, 1)
-            End If
-
-            Pokemon.Item = Item.GetItemByID(ItemID)
-
-            If reItem Is Nothing Then
-                'JSON Stuff
-                'ShowMessage(_translation.MESSAGE_GIVE_ITEM(Pokemon.GetDisplayName(), cItem.Name))
-                Dim giveString As String = Localization.GetString("inventory_screen_GiveItem_Give", "Gave <name> the <newitem>.").Replace("//POKEMONNAME//", Pokemon.GetDisplayName()).Replace("//NEWITEM//", cItem.OneLineName())
-                ShowMessage(giveString)
-            Else
-                'JSON Stuff
-                'ShowMessage(_translation.MESSAGE_SWITCH_ITEM(Pokemon.GetDisplayName(), reItem.Name, cItem.Name))
-                Dim switchString As String = Localization.GetString("inventory_screen_GiveItem_Switch", "Switched <name>'s <olditem> with the <newitem>.").Replace("//POKEMONNAME//", Pokemon.GetDisplayName()).Replace("//OLDITEM//", reItem.OneLineName()).Replace("//NEWITEM//", cItem.OneLineName())
-                ShowMessage(switchString)
-            End If
-
-            LoadItems()
-            If ItemIndex + PageIndex * 10 > _items.Count - 1 Then
-                ItemIndex = 0
-                PageIndex = 0
-                CloseInfoScreen()
-            End If
+        If Screen.Level.IsBugCatchingContest = True AndAlso Pokemon.CatchBall.ID = 177 And PokeIndex = 1 Then
+            ShowMessage(Localization.GetString("inventory_screen_CannotGiveBugContest", "Cannot give an item to~this Pokémon during a~Bug-Catching Contest."))
         Else
-            'JSON Stuff
-            'ShowMessage(_translation.MESSAGE_EGG_ERROR)
-            ShowMessage(Localization.GetString("inventory_screen_EggsCannotHold", "Eggs cannot hold items."))
+            If Pokemon.IsEgg() = False Then
+                Dim ItemID As String
+                If cItem.IsGameModeItem = True Then
+                    ItemID = cItem.gmID
+                Else
+                    ItemID = cItem.ID.ToString
+                End If
+
+                Core.Player.Inventory.RemoveItem(ItemID, 1)
+
+                Dim reItem As Item = Nothing
+                If Not Pokemon.Item Is Nothing Then
+                    Dim ReItemID As String
+                    If Pokemon.Item.IsGameModeItem = True Then
+                        ReItemID = Pokemon.Item.gmID
+                    Else
+                        ReItemID = Pokemon.Item.ID.ToString
+                    End If
+                    reItem = Pokemon.Item
+                    Core.Player.Inventory.AddItem(ReItemID, 1)
+                End If
+
+                Pokemon.Item = Item.GetItemByID(ItemID)
+
+                If reItem Is Nothing Then
+                    'JSON Stuff
+                    'ShowMessage(_translation.MESSAGE_GIVE_ITEM(Pokemon.GetDisplayName(), cItem.Name))
+                    Dim giveString As String = Localization.GetString("inventory_screen_GiveItem_Give", "Gave <name> the <newitem>.").Replace("//POKEMONNAME//", Pokemon.GetDisplayName()).Replace("//NEWITEM//", cItem.OneLineName())
+                    ShowMessage(giveString)
+                Else
+                    'JSON Stuff
+                    'ShowMessage(_translation.MESSAGE_SWITCH_ITEM(Pokemon.GetDisplayName(), reItem.Name, cItem.Name))
+                    Dim switchString As String = Localization.GetString("inventory_screen_GiveItem_Switch", "Switched <name>'s <olditem> with the <newitem>.").Replace("//POKEMONNAME//", Pokemon.GetDisplayName()).Replace("//OLDITEM//", reItem.OneLineName()).Replace("//NEWITEM//", cItem.OneLineName())
+                    ShowMessage(switchString)
+                End If
+
+                LoadItems()
+                If ItemIndex + PageIndex * 10 > _items.Count - 1 Then
+                    ItemIndex = 0
+                    PageIndex = 0
+                    CloseInfoScreen()
+                End If
+            Else
+                'JSON Stuff
+                'ShowMessage(_translation.MESSAGE_EGG_ERROR)
+                ShowMessage(Localization.GetString("inventory_screen_EggsCannotHold", "Eggs cannot hold items."))
+            End If
         End If
     End Sub
 

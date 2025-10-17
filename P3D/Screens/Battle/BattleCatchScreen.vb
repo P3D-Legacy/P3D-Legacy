@@ -349,10 +349,8 @@ nextIndex:
         Dim s As String = ""
 
         If Core.Player.Pokemons.Count < 6 Then
-            If BattleScreen.BattleMode = BattleSystem.BattleScreen.BattleModes.BugContest And Core.Player.Pokemons(Core.Player.Pokemons.Count - 1).CatchBall.ID = 177 And Core.Player.Pokemons.Count > 1 Then
-                Core.Player.Pokemons.RemoveAt(Core.Player.Pokemons.Count - 1)
-            ElseIf BattleScreen.BattleMode = BattleSystem.BattleScreen.BattleModes.BugContest And Core.Player.Pokemons(0).CatchBall.ID = 177 And Core.Player.Pokemons.Count > 1 Then
-                Core.Player.Pokemons.RemoveAt(0)
+            If BattleScreen.BattleMode = BattleSystem.BattleScreen.BattleModes.BugContest AndAlso Core.Player.Pokemons.Count > 1 AndAlso Core.Player.Pokemons(1).CatchBall.ID = 177 Then
+                Core.Player.Pokemons.RemoveAt(1)
             End If
 
             Core.Player.Pokemons.Add(p)

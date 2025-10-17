@@ -389,6 +389,7 @@ inventory_screen_GiveItem_Give,<name> trägt jetzt <newitem>.
 inventory_screen_GiveItem_Switch,Switched <name>'s <olditem> with the <newitem>.
 inventory_screen_GiveItem_TakeMail,Gave <newitem> to <name> and took the Mail to the PC.
 inventory_screen_CannotGiveToPokemon,<newitem> kann nicht zum Tragen gegeben werden.
+inventory_screen_CannotGiveBugContest,Cannot give an item to~this Pokémon during a~Bug-Catching Contest.
 inventory_screen_EggsCannotHold,Ein Ei kann keine Items tragen.
 ---
 PartyScreen:
