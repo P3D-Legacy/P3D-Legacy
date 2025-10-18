@@ -64,12 +64,14 @@
 /processorParam:TextureFormat=Color
 /build:Fonts/BMP/mainFont.png
 
-#begin Fonts/BMP/miniFont.spritefont
-/importer:FontDescriptionImporter
-/processor:FontDescriptionProcessor
+#begin Fonts/BMP/minifont.bmp
+/importer:LocalizedFontTextureImporter
+/processor:LocalizedFontTextureProcessor
+/processorParam:DefaultCharacter=?
+/processorParam:FirstCharacter=
 /processorParam:PremultiplyAlpha=True
-/processorParam:TextureFormat=Compressed
-/build:Fonts/BMP/miniFont.spritefont
+/processorParam:TextureFormat=Color
+/build:Fonts/BMP/minifont.bmp
 
 #begin Fonts/BMP/TextFont.png
 /importer:LocalizedFontTextureImporter

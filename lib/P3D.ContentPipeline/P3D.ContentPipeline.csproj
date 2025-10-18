@@ -47,7 +47,6 @@
     <None Include="App.config" />
     <None Include="Content\Content.mgcb" />
     <None Include="Content\Fonts\BMP\GameJolt.xnb" />
-    <None Include="Content\Fonts\BMP\miniFont.spritefont" />
     <None Include="Content\Models\BattlePike\BattlePike.fbx" />
     <None Include="Content\Models\boat2\Boat.fbx" />
     <None Include="Content\Models\boat\ferry.mtl" />
@@ -83,6 +82,8 @@
     <Content Include="Content\Fonts\BMP\InGame.txt" />
     <Content Include="Content\Fonts\BMP\mainFont.png" />
     <Content Include="Content\Fonts\BMP\mainFont.txt" />
+    <Content Include="Content\Fonts\BMP\minifont.bmp" />
+    <Content Include="Content\Fonts\BMP\minifont.txt" />
     <Content Include="Content\Fonts\BMP\TextFont.png" />
     <Content Include="Content\Fonts\BMP\TextFont.txt" />
     <Content Include="Content\Fonts\BMP\Unown.png" />
