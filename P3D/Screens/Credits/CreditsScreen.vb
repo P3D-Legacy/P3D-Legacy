@@ -53,7 +53,7 @@ Public Class CreditsScreen
     ' The text that shows during the credits:
     ' Shouldn't be more than 23 pages total and no more than 13 people per page
     Private Sub InitializeCreditsPages(ByVal ending As String)
-        CreditsPages.Add(New CreditsPage("Pokémon3D Staff", Color.White, Color.Black))
+        CreditsPages.Add(New CreditsPage("Pokémon 3D Staff", Color.White, Color.Black))
         CreditsPages.Add(New CreditsPage("Pokémon", Color.White, Color.Black, {"made by", "Nintendo", "Game Freak", "The Pokémon Company"}.ToList()))
         If GameModeManager.ActiveGameMode.IsDefaultGamemode = True Then
             CreditsPages.Add(New CreditsPage("Pokémon 3D", Color.White, Color.Black, {"Trademark (TM) 2012 - " & COPYRIGHTYEAR, "made by Kolben Games"}.ToList()))
