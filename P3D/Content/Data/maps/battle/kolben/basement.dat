@@ -8,4 +8,3 @@ Floor:
 
 Ceiling:
 {"EntityField"{ENT[{"Size"{intArr[14,7]}}{"EntityID"{str[AllSidesObject]}}{"Position"{sngArr[7,3,10]}}{"TexturePath"{str[kolben]}}{"Textures"{recArr[[0,16,16,16]]}}{"TextureIndex"{intArr[0,0]}}{"Collision"{bool[1]}}{"ModelID"{int[0]}}{"Action"{int[0]}}{"AdditionalValue"{str[]}}{"Rotation"{int[0]}}]}}
-

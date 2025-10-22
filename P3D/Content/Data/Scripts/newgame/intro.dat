@@ -1,4 +1,4 @@
-﻿Version=2
+Version=2
 
 @camera.set(6,3,7,0,0-0.3)
 @camera.update

@@ -4,7 +4,7 @@ TrainerClass|Gentleman
 Money|3888
 IntroMessage|Today, in addition to our~lesson, we came to see~the chamber.
 OutroMessage|My, how extraordinary.
-DefeatMessage|Ah, so you are studying~Pokémon on your own...*Yes, you certainly are quite~the extraordinary person,~indeed.
+DefeatMessage|Ah, so you are studying~PokÃ©mon on your own...*Yes, you certainly are quite~the extraordinary person,~indeed.
 TextureID|oldhatman
 Region|Sevii Islands
 IniMusic|johto_trainer_intro

@@ -7,4 +7,3 @@ Top:
 
 Ball:
 {"EntityField"{ENT[{"Scale"{sngArr[0.625,0.625,0.625]}}{"Size"{intArr[1,1]}}{"EntityID"{str[WallBill]}}{"Position"{sngArr[0,1.0625,0]}}{"TexturePath"{str[battlepike]}}{"Textures"{recArr[[80,64,10,10]]}}{"TextureIndex"{intArr[0,0,0,0,0,0,0,0,0,0]}}{"Collision"{bool[1]}}{"ModelID"{int[3]}}{"Action"{int[0]}}{"AdditionalValue"{str[]}}{"Rotation"{int[0]}}]}}
-

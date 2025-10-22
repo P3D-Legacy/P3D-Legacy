@@ -1,4 +1,4 @@
-﻿{"Level"{LEV[{"Name"{str[Millennial Star Tower]}}{"MusicLoop"{str[startower]}}{"CurrentRegion"{str[Kanto]}}{"WildPokemon"{bool[1]}}]}}
+{"Level"{LEV[{"Name"{str[Millennial Star Tower]}}{"MusicLoop"{str[startower]}}{"CurrentRegion"{str[Kanto]}}{"WildPokemon"{bool[1]}}]}}
 {"Actions"{LEV[{"CanTeleport"{bool[0]}}{"CanDig"{bool[0]}}{"CanFly"{bool[0]}}{"EnvironmentType"{int[3]}}{"Weather"{int[1]}}]}}
 
 Floor:

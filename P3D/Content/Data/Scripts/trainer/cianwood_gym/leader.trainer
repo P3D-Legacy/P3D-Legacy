@@ -2,7 +2,7 @@
 Name|Chuck
 TrainerClass|Leader
 Money|3000
-IntroMessage|There! Scared now,~are you?*What?~It has nothing to~do with Pokémon?*That's true!*Come on. We shall~do battle!
+IntroMessage|There! Scared now,~are you?*What?~It has nothing to~do with PokÃ©mon?*That's true!*Come on. We shall~do battle!
 OutroMessage|Wha? Huh?~I lost?*How about that!~You're worthy of~the Storm Badge!
 DefeatMessage|WAHAHAHA! I enjoyed~battling you!*But a loss is a~loss!*From now on, I'm~going to train 24~hours a day!
 TextureID|Chuck

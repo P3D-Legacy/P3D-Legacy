@@ -1,4 +1,4 @@
-﻿version=2
+version=2
 @storage.set(string,grottoitemvisible,2)
 @storage.set(string,grottoitemhidden,2)
 @storage.set(string,grottopokemon4,229)

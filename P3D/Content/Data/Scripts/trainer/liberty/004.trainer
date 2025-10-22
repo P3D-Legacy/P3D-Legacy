@@ -2,8 +2,8 @@
 Name|Grunt
 TrainerClass|Team Rocket
 Money|4110
-IntroMessage|We will use this rare~Pokémon and its powers~to do our bidding.
-OutroMessage|Not even the Pokémon around me are doing my bidding!
+IntroMessage|We will use this rare~PokÃ©mon and its powers~to do our bidding.
+OutroMessage|Not even the PokÃ©mon around me are doing my bidding!
 DefeatMessage|Give up, it's still ours!
 TextureID|gruntm
 Region|Sevii Islands

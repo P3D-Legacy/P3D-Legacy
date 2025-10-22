@@ -69,7 +69,7 @@ game_menu_exit,Lukk meny
 ---
 InventoryScreen:
 inventory_menu_bag,Ryggsekk
-inventory_menu_backadvice,TRYKK E FOR Å GÅ TILBAKE
+inventory_menu_backadvice,TRYKK E FOR Å… GÅ… TILBAKE
 inventory_menu_items,Artikler
 inventory_menu_description,Beskrivelse
 ---
@@ -99,7 +99,7 @@ PokedexScreen:
 pokedex_screen_seen,Sett
 pokedex_screen_obtained,Fanget
 pokedex_screen_rare,Sjelden
-pokedex_screen_backadvice,TRYKK E FOR Å GÅ TILBAKE
+pokedex_screen_backadvice,TRYKK E FOR Å… GÅ… TILBAKE
 ---
 PokemonScreen:
 pokemon_screen_choose_a_pokemon,Velg en Pokémon
@@ -126,8 +126,8 @@ pokemon_screen_EMPTY,TOMT
 Pokemon Status Screen:
 All pages:
 poke_status_screen_nature,Nature
-poke_status_screen_backadvice,TRYKK E FOR Å GÅ TILBAKE
-poke_status_screen_closeadvice,TRYKK E FOR Å LUKKE
+poke_status_screen_backadvice,TRYKK E FOR Å… GÅ… TILBAKE
+poke_status_screen_closeadvice,TRYKK E FOR Å… LUKKE
 poke_status_screen_number,# 
 Page 1:
 poke_status_screen_all_exp,All Exp
@@ -153,7 +153,7 @@ trainer_screen_pokedex,Pokédex
 trainer_screen_time,Tid
 trainer_screen_collected_badges,Samlede merker
 trainer_screen_badge, Merke
-trainer_screen_backadvice,TRYKK E FOR Å GÅ TILBAKE
+trainer_screen_backadvice,TRYKK E FOR Å… GÅ… TILBAKE
 trainer_screen_empty_badge,???
 ---
 Save Screen:
@@ -169,7 +169,7 @@ save_screen_success,Lagret spillet.
 Options Screen:
 option_screen_title,Alternativer
 option_screen_warning,Alternativene er ikke lagret ennå, rull ned og velg "Lagre alternativer".
-option_screen_backadvice,TRYKK E FOR Å GÅ TILBAKE
+option_screen_backadvice,TRYKK E FOR Å… GÅ… TILBAKE
 option_screen_description,Beskrivelse
 option_screen_textspeed,Teksthastighet
 option_screen_textspeed_description,Hastigheten tekstboksen vises og~viser teksten
@@ -223,7 +223,7 @@ item_detail_screen_give_item,Gi
 Apricorn Screen:
 apricorn_screen_apricorns,Apricorns
 apricorn_screen_producing,Jeg produserer Pokéballene for øyeblikket.~Kom tilbake senere.
-apricorn_screen_backadvice,TRYKK E FOR Å GÅ TILBAKE
+apricorn_screen_backadvice,TRYKK E FOR Å… GÅ… TILBAKE
 apricorn_screen_choose_apricorns,Vennligst velg Apricorn jeg skal bruke for å produsere Pokéballer.
 apricorn_screen_ok,OK
 apricorn_screen_clear,Tøm
@@ -240,7 +240,7 @@ daycare_screen_lv, / Lv.
 daycare_screen_costs, / Koster:
 daycare_screen_pokedollar, PokéDollar
 daycare_screen_withdraw,Ta ut
-daycare_screen_backadvice,TRYKK E FOR Å GÅ TILBAKE
+daycare_screen_backadvice,TRYKK E FOR Å… GÅ… TILBAKE
 daycare_screen_pokemon_choose_header,Sett inn Pokémon
 Egg,Egg
 ---
@@ -284,7 +284,7 @@ battle_main_wild_appear_2,~dukket opp!
 battle_main_trainer_intro_1, og~
 battle_main_trainer_intro_2, ønsker~å kjempe!
 battle_main_trainer_intro_3, ønsker~å kjempe!
-battle_main_intro_1,GÅ! 
+battle_main_intro_1,GÅ…! 
 battle_main_intro_2,!
 battle_main_trainer_defeat_1,~ble beseiret!
 battle_main_trainer_defeat_2, og~

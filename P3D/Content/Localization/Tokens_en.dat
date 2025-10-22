@@ -3233,7 +3233,7 @@ move_desc_10,Hard, pointed, and sharp claws rake the target to inflict damage.
 move_desc_11,The target is gripped and squeezed from both sides to inflict damage.
 move_desc_12,A vicious, tearing attack with big pincers. The target will faint instantly if this attack hits.
 move_desc_13,A two-turn attack. Blades of wind hit opposing Pokémon on the second turn. Critical hits land more easily.
-move_desc_14,A frenetic dance to uplift the fighting spirit. It sharply raises the user’s Attack stat.
+move_desc_14,A frenetic dance to uplift the fighting spirit. It sharply raises the user's Attack stat.
 move_desc_15,The target is cut with a scythe or a claw. It can also be used to cut down thin trees.
 move_desc_16,A gust of wind is whipped up by wings and launched at the target to inflict damage.
 move_desc_17,The target is struck with large, imposing wings spread wide to inflict damage.
@@ -3262,7 +3262,7 @@ move_desc_39,The user wags its tail cutely, making opposing Pokémon less wary a
 move_desc_40,The user stabs the target with a poisonous stinger. This may also poison the target.
 move_desc_41,The user damages the target twice in succession by jabbing it with two spikes. It may also poison the target.
 move_desc_42,Sharp spikes are shot at the target in rapid succession. They hit two to five times in a row.
-move_desc_43,The user gains an intimidating leer with sharp eyes. The opposing team’s Defense stats are reduced.
+move_desc_43,The user gains an intimidating leer with sharp eyes. The opposing team's Defense stats are reduced.
 move_desc_44,The target is bitten with viciously sharp fangs. It may make the target flinch.
 move_desc_45,The user growls in an endearing way, making the opposing team less wary. The foes' Attack stats are lowered.
 move_desc_46,The target is scared off and a different Pokémon is dragged out. In the wild, this ends a battle against a single Pokémon.
@@ -3375,7 +3375,7 @@ move_desc_152,The target is hammered with a large pincer. Critical hits land mor
 move_desc_153,The user explodes to inflict damage on those around it. The user faints upon using this move.
 move_desc_154,The target is raked with sharp claws or scythes for two to five times in quick succession.
 move_desc_155,The user throws the bone it holds. The bone loops to hit the target twice, coming and going.
-move_desc_156,The user goes to sleep for two turns. It fully restores the user’s HP and heals any status problem.
+move_desc_156,The user goes to sleep for two turns. It fully restores the user's HP and heals any status problem.
 move_desc_157,Large boulders are hurled at the opposing team to inflict damage. They may also make the targets flinch.
 move_desc_158,The user bites hard on the target with its sharp front fangs. It may also make the target flinch.
 move_desc_159,The user reduces its polygon count to make itself more jagged, raising the Attack stat.
@@ -3383,7 +3383,7 @@ move_desc_160,The user changes its type to become the same type as the move at t
 move_desc_161,The user strikes with a simultaneous three-beam attack. May also burn, freeze, or leave the target with paralysis.
 move_desc_162,The user chomps hard on the target with its sharp front fangs. It cuts the target's HP to half.
 move_desc_163,The target is attacked with a slash of claws or blades. Critical hits land more easily.
-move_desc_164,The user makes a copy of itself using some of its HP. The copy serves as the user’s decoy.
+move_desc_164,The user makes a copy of itself using some of its HP. The copy serves as the user's decoy.
 move_desc_165,An attack that is used in desperation only if the user has no PP. It also hurts the user slightly.
 
 move_desc_167,A consecutive three-kick attack that becomes more powerful with each successive hit.

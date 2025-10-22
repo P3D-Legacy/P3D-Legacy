@@ -4,7 +4,7 @@ TrainerClass|Swimmer
 Money|212
 IntroMessage|My boyfriend's always busy,~so I come swimming by myself.
 OutroMessage|Awww, I knew this would happen!
-DefeatMessage|When I can't be with my~boyfriend, I spend time with~the Pokémon he gave me.
+DefeatMessage|When I can't be with my~boyfriend, I spend time with~the PokÃ©mon he gave me.
 TextureID|35
 Region|Sevii Islands
 IniMusic|johto_trainer_intro

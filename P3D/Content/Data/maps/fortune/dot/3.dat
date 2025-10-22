@@ -30,4 +30,3 @@ Warps:
 {"Entity"{ENT[{"EntityID"{str[ScriptBlock]}}{"Position"{sngArr[0,0,4]}}{"TexturePath"{str[Sevii]}}{"Textures"{recArr[[16,128,16,16]]}}{"TextureIndex"{intArr[0,0]}}{"Collision"{bool[0]}}{"ModelID"{int[0]}}{"Action"{int[4]}}{"AdditionalValue"{str[fortune\dot\dropm]}}{"Rotation"{int[0]}}{"Visible"{bool[1]}}]}}
 {"Entity"{ENT[{"EntityID"{str[ScriptBlock]}}{"Position"{sngArr[10,0,4]}}{"TexturePath"{str[Sevii]}}{"Textures"{recArr[[16,128,16,16]]}}{"TextureIndex"{intArr[0,0]}}{"Collision"{bool[0]}}{"ModelID"{int[0]}}{"Action"{int[4]}}{"AdditionalValue"{str[fortune\dot\dropm]}}{"Rotation"{int[0]}}{"Visible"{bool[1]}}]}}
 
-

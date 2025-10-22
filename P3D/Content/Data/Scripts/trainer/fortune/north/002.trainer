@@ -1,8 +1,8 @@
 [TRAINER FORMAT]
 Name|Nicole
-TrainerClass|Swimmer♀
+TrainerClass|Swimmerâ™€
 Money|216
-IntroMessage|It's not so easy sending~Pokémon out while swimming,~you know?
+IntroMessage|It's not so easy sending~PokÃ©mon out while swimming,~you know?
 OutroMessage|I didn't lose to you at swimming.~This doesn't bother me.
 DefeatMessage|Are you headed for the island~up past here?*I didn't see anything~interesting there.
 TextureID|35

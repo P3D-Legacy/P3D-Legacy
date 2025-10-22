@@ -17,4 +17,3 @@ Pokeballs:
 {"NPC"{NPC[{"Scale"{sngArr[0.2,0.2,0.2]}}{"Position"{sngArr[0.14,-1.3,0]}}{"TextureID"{str[Pokeball]}}{"ID"{int[13]}}{"Name"{str[Pokeball]}}{"Action"{int[0]}}{"AdditionalValue"{str[]}}{"Rotation"{int[0]}}{"Movement"{str[Pokeball]}}{"MoveRectangles"{recArr[]}}]}}
 {"NPC"{NPC[{"Scale"{sngArr[0.2,0.2,0.2]}}{"Position"{sngArr[-0.08,-1.3,0.125]}}{"TextureID"{str[Pokeball]}}{"ID"{int[14]}}{"Name"{str[Pokeball]}}{"Action"{int[0]}}{"AdditionalValue"{str[]}}{"Rotation"{int[0]}}{"Movement"{str[Pokeball]}}{"MoveRectangles"{recArr[]}}]}}
 {"NPC"{NPC[{"Scale"{sngArr[0.2,0.2,0.2]}}{"Position"{sngArr[0.14,-1.3,0.125]}}{"TextureID"{str[Pokeball]}}{"ID"{int[15]}}{"Name"{str[Pokeball]}}{"Action"{int[0]}}{"AdditionalValue"{str[]}}{"Rotation"{int[0]}}{"Movement"{str[Pokeball]}}{"MoveRectangles"{recArr[]}}]}}
-

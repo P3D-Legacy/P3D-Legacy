@@ -1,4 +1,4 @@
-﻿{"Level"{LEV[{"Name"{str[Diamond Dive]}}{"MusicLoop"{str[ilex_forest]}}{"CurrentRegion"{str[Johto]}}]}}
+{"Level"{LEV[{"Name"{str[Diamond Dive]}}{"MusicLoop"{str[ilex_forest]}}{"CurrentRegion"{str[Johto]}}]}}
 {"Actions"{LEV[{"CanTeleport"{bool[1]}}{"CanDig"{bool[0]}}{"CanFly"{bool[1]}}{"EnvironmentType"{int[0]}}{"MapScript"{str[diamonddive\dianciemap]}}{"BattleMap"{str[diamonddive\end.dat,11,-4,2]}}{"Weather"{int[0]}}{"Lighting"{int[0]}}]}}
 
 Floor:
@@ -67,4 +67,3 @@ Ext 2:
 {"Entity"{ENT[{"Position"{sngArr[15,2.76,0]}}{"AdditionalValue"{str[diamonddive\exterior\2.dat,79,5,23,0]}}{"EntityID"{str[WarpBlock]}}{"TexturePath"{str[Routes]}}{"Textures"{recArr[[0,240,16,16]]}}{"TextureIndex"{intArr[0,0]}}{"Collision"{bool[1]}}{"ModelID"{int[0]}}{"Action"{int[0]}}{"Visible"{bool[0]}}{"Rotation"{int[0]}}]}}
 
 {"OffsetMap"{MAP[{"Offset"{sngArr[-64,-2,-24]}}{"Map"{str[diamonddive\exterior\2.dat]}}]}}
-

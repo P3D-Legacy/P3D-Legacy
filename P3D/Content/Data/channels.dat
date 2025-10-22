@@ -1,4 +1,4 @@
-﻿listen channels (range)|overwrite channels (range)|channel name|Region|TimeOfDay (range)|Card Requirements (range)|Music|[SPECIAL]/(Script)/Text|CanBeOverwritten|Activation (0=Always,1=LevelChannel)|Activation Register (0=no register)
+listen channels (range)|overwrite channels (range)|channel name|Region|TimeOfDay (range)|Card Requirements (range)|Music|[SPECIAL]/(Script)/Text|CanBeOverwritten|Activation (0=Always,1=LevelChannel)|Activation Register (0=no register)
 
 {4.5|4.5|Pokédex Show|Johto|0,3|RADIO|show_me_around|[POKEDEXENTRY]|1|0|0}
 {4.5|4.5|Pokémon Talk|Johto|1,2|RADIO|oakslab|[RANDOMPOKEMON]|1|0|0}

@@ -239,4 +239,3 @@ Figures:
 {"NPC"{NPC[{"Scale"{sngArr[0.4,0.4,0.4]}}{"Position"{sngArr[11,0.05,16.2]}}{"TextureID"{str[[POKEMON|N]51]}}{"ID"{int[81]}}{"Name"{str[Figure]}}{"Action"{int[0]}}{"AdditionalValue"{str[It's a rare collection~of Pokémon figures.]}}{"Rotation"{int[1]}}{"Movement"{str[Still]}}{"MoveRectangles"{recArr[]}}]}}
 {"NPC"{NPC[{"Scale"{sngArr[0.4,0.4,0.4]}}{"Position"{sngArr[11,0.05,16.8]}}{"TextureID"{str[[POKEMON|N]395]}}{"ID"{int[82]}}{"Name"{str[Figure]}}{"Action"{int[0]}}{"AdditionalValue"{str[It's a rare collection~of Pokémon figures.]}}{"Rotation"{int[1]}}{"Movement"{str[Still]}}{"MoveRectangles"{recArr[]}}]}}
 {"NPC"{NPC[{"Scale"{sngArr[0.4,0.4,0.4]}}{"Position"{sngArr[11,0.05,17.2]}}{"TextureID"{str[[POKEMON|S]181_mega]}}{"ID"{int[83]}}{"Name"{str[Figure]}}{"Action"{int[0]}}{"AdditionalValue"{str[It's a rare collection~of Pokémon figures.]}}{"Rotation"{int[1]}}{"Movement"{str[Still]}}{"MoveRectangles"{recArr[]}}]}}
-

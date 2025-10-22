@@ -1,4 +1,4 @@
-﻿version=2
+version=2
 @text.show(Yeah, I am the designated healer.*Let me heal your Pokémon!)
 @screen.fadeout
 @pokemon.heal

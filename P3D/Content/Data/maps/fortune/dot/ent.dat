@@ -73,4 +73,3 @@ NPC:
 {"NPC"{NPC[{"Position"{sngArr[5,0,5]}}{"TextureID"{str[N]}}{"ID"{int[0]}}{"Name"{str[Father]}}{"Action"{int[1]}}{"AdditionalValue"{str[fortune\dot\n]}}{"Rotation"{int[0]}}{"Movement"{str[Still]}}{"MoveRectangles"{recArr[]}}]}}
 {"NPC"{NPC[{"Position"{sngArr[42,0,40]}}{"TextureID"{str[N]}}{"ID"{int[1]}}{"Name"{str[Father]}}{"Action"{int[1]}}{"AdditionalValue"{str[mtember\n]}}{"AnimateIdle"{bool[1]}}{"Rotation"{int[0]}}{"Movement"{str[Still]}}{"MoveRectangles"{recArr[]}}]}}
 
-

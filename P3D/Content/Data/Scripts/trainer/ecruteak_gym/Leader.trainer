@@ -2,7 +2,7 @@
 Name|Morty
 TrainerClass|Leader
 Money|2300
-IntroMessage|Good of you to~have come.*Here in Ecruteak,~Pokémon have been~revered.*It's said that a~rainbow-colored*Pokémon will come~down to appear*before a truly~powerful trainer.*I believed that~tale, so I have*secretly trained~here all my life.*As a result, I can~now see what~others cannot.*Just a bit more...*With a little~more, I could see*a future in which~I meet the Pokémon~of rainbow colors.*You're going to~help me reach that level!
+IntroMessage|Good of you to~have come.*Here in Ecruteak,~PokÃ©mon have been~revered.*It's said that a~rainbow-colored*PokÃ©mon will come~down to appear*before a truly~powerful trainer.*I believed that~tale, so I have*secretly trained~here all my life.*As a result, I can~now see what~others cannot.*Just a bit more...*With a little~more, I could see*a future in which~I meet the PokÃ©mon~of rainbow colors.*You're going to~help me reach that level!
 OutroMessage|I'm not good~enough yet...*All right. This~Fog Badge is yours.
 DefeatMessage|I see...*Your journey has~taken you to far-~away places.*And you have~witnessed much more~than I.*I envy you for~that...
 TextureID|Morty

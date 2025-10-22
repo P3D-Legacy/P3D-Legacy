@@ -2,9 +2,9 @@
 Name|Falkner
 TrainerClass|Leader
 Money|900
-IntroMessage|I'm Falkner, the~Violet Pokémon Gym~Leader!*People say you can~clip flying-type*Pokémon's wings~with a jolt of~electricity...*I won't allow such~insults to bird~Pokémon!*I'll show you the~real power of the*magnificent bird~Pokémon!
-OutroMessage|...Darn! My Dad's~cherished bird~Pokémon...*All right.~Take this.*It's the official~Pokémon League~Zephyr Badge.
-DefeatMessage|There are Pokémon~Gyms in cities and~towns ahead.*You should test~your skills at~these Gyms.*I'm going to train~harder to become~the greatest bird~master!
+IntroMessage|I'm Falkner, the~Violet PokÃ©mon Gym~Leader!*People say you can~clip flying-type*PokÃ©mon's wings~with a jolt of~electricity...*I won't allow such~insults to bird~PokÃ©mon!*I'll show you the~real power of the*magnificent bird~PokÃ©mon!
+OutroMessage|...Darn! My Dad's~cherished bird~PokÃ©mon...*All right.~Take this.*It's the official~PokÃ©mon League~Zephyr Badge.
+DefeatMessage|There are PokÃ©mon~Gyms in cities and~towns ahead.*You should test~your skills at~these Gyms.*I'm going to train~harder to become~the greatest bird~master!
 TextureID|Falkner
 Region|Johto
 InSightMusic|

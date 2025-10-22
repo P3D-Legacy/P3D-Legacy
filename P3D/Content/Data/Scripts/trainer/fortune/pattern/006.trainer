@@ -2,7 +2,7 @@
 Name|Vance
 TrainerClass|Bug Catcher
 Money|624
-IntroMessage|Yeah, yeah, yeah!~Look at all the bug Pokémon!
+IntroMessage|Yeah, yeah, yeah!~Look at all the bug PokÃ©mon!
 OutroMessage|I got beat while I was still busy celebrating!
 DefeatMessage|I'm going to bring my little~brother here next time.
 TextureID|bugcatcher
