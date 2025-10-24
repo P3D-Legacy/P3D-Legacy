@@ -1,7 +1,7 @@
 {"Level"{LEV[{"Name"{str[Safari Zone]}}{"MusicLoop"{str[safari]}}{"WildPokemon"{bool[1]}}{"OverWorldPokemon"{bool[0]}}{"HiddenAbility"{int[50]}}]}}
 {"Actions"{LEV[{"CanTeleport"{bool[0]}}{"CanDig"{bool[0]}}{"CanFly"{bool[0]}}{"RideType"{int[1]}}{"IsSafariZone"{bool[1]}}{"EnvironmentType"{int[0]}}{"Lighting"{int[2]}}{"Weather"{int[5]}}]}}
 
-{"Floor"{ENT[{"Size"{intArr[25,25]}}{"Position"{intArr[0,0,0]}}{"TexturePath"{str[Routes]}}{"Texture"{rec[240,80,16,16]}}]}}
+{"Floor"{ENT[{"Size"{intArr[27,28]}}{"Position"{intArr[-1,0,-2]}}{"TexturePath"{str[Routes]}}{"Texture"{rec[240,80,16,16]}}]}}
 
 Cacti:
 {"Entity"{ENT[{"EntityID"{str[WallBill]}}{"Scale"{sngArr[1,2,1]}}{"Position"{sngArr[21,0.3,6]}}{"TexturePath"{str[Safari]}}{"Textures"{recArr[[64,32,16,32]]}}{"TextureIndex"{intArr[0,0]}}{"Collision"{bool[1]}}{"ModelID"{int[3]}}{"Action"{int[0]}}{"AdditionalValue"{str[]}}{"Rotation"{int[0]}}]}}
