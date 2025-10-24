@@ -1307,7 +1307,7 @@ Public Class TradeScreen
         Canvas.DrawRectangle(New Rectangle(CInt(Position.X) + Height, CInt(Position.Y), Width - (Height * 2), Height), New Color(42, 167, 198, 150))
         Canvas.DrawGradient(New Rectangle(CInt(Position.X) + (Width - Height), CInt(Position.Y), Height, Height), New Color(42, 167, 198, 150), New Color(42, 167, 198, 0), True, -1)
 
-        Core.SpriteBatch.DrawString(Font, Text, New Vector2(Position.X + Height + 10, Position.Y + textY), Color.White)
+        Core.SpriteBatch.DrawString(Font, Text, New Vector2(CInt(Position.X + (Width / 2) - Font.MeasureString(Text).X / 2), Position.Y + textY), Color.White)
     End Sub
 
     Private Function GetItemTypeTexture(ByVal itemType As Items.ItemTypes) As Texture2D
