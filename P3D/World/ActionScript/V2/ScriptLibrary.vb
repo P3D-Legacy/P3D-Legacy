@@ -518,6 +518,7 @@ Namespace ScriptVersion2
             r(New ScriptCommand("player", "addmoney", {New ScriptArgument("amount", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Adds the given amount to the player's money."))
             r(New ScriptCommand("player", "removemoney", {New ScriptArgument("amount", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Removes the given amount from the player's money."))
             r(New ScriptCommand("player", "addcoins", {New ScriptArgument("amount", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Adds the given amount to the player's coins."))
+            r(New ScriptCommand("player", "removecoins", {New ScriptArgument("amount", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Removes the given amount from the player's coins."))
             r(New ScriptCommand("player", "setspeed", {New ScriptArgument("speed", ScriptArgument.ArgumentTypes.Sng)}.ToList(), "Sets the movement speed of the player. The default is ""1""."))
             r(New ScriptCommand("player", "resetspeed", "Resets the movement speed of the player to the default speed, which is ""1""."))
             r(New ScriptCommand("player", "setmovement", {New ScriptArgument("x", ScriptArgument.ArgumentTypes.Int),
@@ -533,6 +534,7 @@ Namespace ScriptVersion2
             r(New ScriptCommand("player", "removefrontieremblem", {New ScriptArgument("frontierEmblemID", ScriptArgument.ArgumentTypes.Int), New ScriptArgument("SilverOrGold", ScriptArgument.ArgumentTypes.Bool, True, "")}.ToList(), "Removes a frontier emblem from the player's emblems. Second argument can be 0 = silver, 1 = gold. Without it, both silver and gold emblems will be removed."))
             r(New ScriptCommand("player", "achieveemblem", {New ScriptArgument("emblemName", ScriptArgument.ArgumentTypes.Str)}.ToList(), "Makes the player achieve an emblem (GameJolt only)."))
             r(New ScriptCommand("player", "addbp", {New ScriptArgument("amount", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Adds the given amount to the player's Battle Points."))
+            r(New ScriptCommand("player", "removebp", {New ScriptArgument("amount", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Removes the given amount from the player's Battle Points."))
             r(New ScriptCommand("player", "showrod", {New ScriptArgument("rodID", ScriptArgument.ArgumentTypes.Int, {"0-2"})}.ToList(), "Displays a Fishing Rod on the screen."))
             r(New ScriptCommand("player", "hiderod", "Hides the Fishing Rod."))
             r(New ScriptCommand("player", "save", "Saves the game."))
