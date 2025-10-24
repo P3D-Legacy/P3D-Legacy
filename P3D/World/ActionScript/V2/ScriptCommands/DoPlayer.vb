@@ -420,7 +420,14 @@
                     End If
 
                     IsReady = True
-                Case "addcoins"
+                Case "removebp"
+                    Core.Player.BP -= int(argument)
+
+                    If Core.Player.BP < 0 Then
+                        Core.Player.BP = 0
+                    End If
+                    IsReady = True
+                Case "addcoins", "coins"
                     Dim coins As Integer = int(argument)
 
                     If CInt(GameModeManager.GetGameRuleValue("CoinCaseCap", "0")) > 0 AndAlso Core.Player.Coins + coins > CInt(GameModeManager.GetGameRuleValue("CoinCaseCap", "0")) Then
@@ -433,6 +440,13 @@
                         PlayerStatistics.Track("Obtained Coins", coins)
                     End If
 
+                    IsReady = True
+                Case "removecoins"
+                    Core.Player.Coins -= int(argument)
+
+                    If Core.Player.Coins < 0 Then
+                        Core.Player.Coins = 0
+                    End If
                     IsReady = True
                 Case "showrod"
                     If Core.CurrentScreen.Identification = Screen.Identifications.OverworldScreen Then
