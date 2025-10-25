@@ -451,7 +451,7 @@ Backdrops:
 {"Backdrop"{BAC[{"Position"{sngArr[39.5,-0.76,9.5]}}{"Size"{intArr[90,170]}}{"Rotation"{sngArr[0,0,0]}}{"Type"{str[Water]}}{"TexturePath"{str[Village]}}{"Texture"{rec[32,48,16,16]}}]}}
 {"Backdrop"{BAC[{"Position"{sngArr[-0.5,-0.78,53.5]}}{"Size"{intArr[40,170]}}{"Rotation"{sngArr[0,0,0]}}{"Type"{str[Water]}}{"TexturePath"{str[Village]}}{"Texture"{rec[32,48,16,16]}}]}}
 {"Backdrop"{BAC[{"Position"{sngArr[-0.5,-0.78,44.5]}}{"Size"{intArr[40,9]}}{"Rotation"{sngArr[0,0,0]}}{"Type"{str[Water]}}{"TexturePath"{str[Village]}}{"Texture"{rec[32,48,16,16]}}{"Trigger"{str[NotOffset]}}]}}
-{"Backdrop"{BAC[{"Position"{sngArr[-100.5,-0.78,0]}}{"Size"{intArr[100,53.5]}}{"Rotation"{sngArr[0,0,0]}}{"Type"{str[Water]}}{"TexturePath"{str[Village]}}{"Texture"{rec[32,48,16,16]}}{"Trigger"{str[Offset]}}]}}
+{"Backdrop"{BAC[{"Position"{sngArr[-100.5,-0.78,-0.5]}}{"Size"{intArr[96,54]}}{"Rotation"{sngArr[0,0,0]}}{"Type"{str[Water]}}{"TexturePath"{str[Village]}}{"Texture"{rec[32,48,16,16]}}{"Trigger"{str[Offset]}}]}}
 {"Backdrop"{BAC[{"Position"{sngArr[-100.5,-0.78,53.5]}}{"Size"{intArr[100,100]}}{"Rotation"{sngArr[0,0,0]}}{"Type"{str[Water]}}{"TexturePath"{str[Village]}}{"Texture"{rec[32,48,16,16]}}{"Trigger"{str[Offset]}}]}}
 
 {"OffsetMap"{MAP[{"Offset"{sngArr[10,-36]}}{"Map"{str[route39.dat]}}]}}
