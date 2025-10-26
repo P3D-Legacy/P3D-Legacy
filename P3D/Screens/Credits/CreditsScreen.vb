@@ -169,7 +169,7 @@ Public Class CreditsScreen
                 End If
             End If
 
-            Dim ContinueString As String = Localization.GetString("credits_continue", "Press [Enter] to continue.")
+            Dim ContinueString As String = Localization.GetString("credits_continue", "Press [<system.button(enter1)>] to continue.")
             Core.SpriteBatch.DrawString(FontManager.InGameFont, ContinueString, New Vector2(CInt(windowSize.Width / 2 - FontManager.InGameFont.MeasureString(ContinueString).X / 2 + 2), CInt(windowSize.Height - 128 + 2)), New Color(Color.Black, FadeAlpha))
             Core.SpriteBatch.DrawString(FontManager.InGameFont, ContinueString, New Vector2(CInt(windowSize.Width / 2 - FontManager.InGameFont.MeasureString(ContinueString).X / 2), CInt(windowSize.Height - 128)), New Color(Color.White, FadeAlpha))
 

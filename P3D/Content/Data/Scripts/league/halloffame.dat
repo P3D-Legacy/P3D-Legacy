@@ -23,7 +23,9 @@ version=2
 @level.waitforsave
 @sound.play(Save)
 @music.play(silence)
-@screen.credits
+:if:<pokemon.counthalloffame>=1
+	@screen.credits
+:endif
 @music.play(barktown)
 @level.update
 @screen.fadein
