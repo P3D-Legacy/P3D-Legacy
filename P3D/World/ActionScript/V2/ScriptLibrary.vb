@@ -80,65 +80,65 @@ Namespace ScriptVersion2
 
         Private Shared Sub DoFileSystem()
             ' Constructs:
-            r(New ScriptCommand("filesystem", "pathsplit", "str", {New ScriptArgument("index", ScriptArgument.ArgumentTypes.Int),
-                                                               New ScriptArgument("path", ScriptArgument.ArgumentTypes.Str)}.ToList(), "Returns the part of the path that is at the position of index.", ",", True))
-            r(New ScriptCommand("filesystem", "pathsplitcount", "int", {New ScriptArgument("path", ScriptArgument.ArgumentTypes.Str)}.ToList(), "Returns the amount of parts in the given path.", ",", True))
-            r(New ScriptCommand("filesystem", "pathup", "str", {New ScriptArgument("path", ScriptArgument.ArgumentTypes.Str)}.ToList(), "Returns the parent path to the given path if possible.", ",", True))
+            r(New ScriptCommand("FileSystem", "PathSplit", "str", {New ScriptArgument("Index", ScriptArgument.ArgumentTypes.Int),
+                                                               New ScriptArgument("Path", ScriptArgument.ArgumentTypes.Str)}.ToList(), "Returns the part of the path that is at the position of Index.", ",", True))
+            r(New ScriptCommand("FileSystem", "PathSplitCount", "int", {New ScriptArgument("Path", ScriptArgument.ArgumentTypes.Str)}.ToList(), "Returns the amount of parts in the given path.", ",", True))
+            r(New ScriptCommand("FileSystem", "PathUp", "str", {New ScriptArgument("Path", ScriptArgument.ArgumentTypes.Str)}.ToList(), "Returns the parent path to the given path if possible.", ",", True))
         End Sub
 
         Private Shared Sub DoTitle()
             ' Commands:
-            r(New ScriptCommand("title", "add", {New ScriptArgument("text", ScriptArgument.ArgumentTypes.Str, True, "Sample Text"),
-                                              New ScriptArgument("delay", ScriptArgument.ArgumentTypes.Sng, True, "20.0"),
-                                              New ScriptArgument("R", ScriptArgument.ArgumentTypes.Int, True, "255"),
-                                              New ScriptArgument("G", ScriptArgument.ArgumentTypes.Int, True, "255"),
-                                              New ScriptArgument("B", ScriptArgument.ArgumentTypes.Int, True, "255"),
-                                              New ScriptArgument("scale", ScriptArgument.ArgumentTypes.Sng, True, "10.0"),
-                                              New ScriptArgument("isCentered", ScriptArgument.ArgumentTypes.Bool, True, "true"),
-                                              New ScriptArgument("x", ScriptArgument.ArgumentTypes.Sng, True, "0.0"),
-                                              New ScriptArgument("y", ScriptArgument.ArgumentTypes.Sng, True, "0.0")}.ToList(), "Adds a new title for the game to display during gameplay."))
-            r(New ScriptCommand("title", "clear", "Clears all titles that are currently being displayed."))
+            r(New ScriptCommand("Title", "Add", {New ScriptArgument("Text", ScriptArgument.ArgumentTypes.Str, True, "Sample Text"),
+                                              New ScriptArgument("Delay", ScriptArgument.ArgumentTypes.Sng, True, "20.0"),
+                                              New ScriptArgument("ColorR", ScriptArgument.ArgumentTypes.Int, True, "255"),
+                                              New ScriptArgument("ColorG", ScriptArgument.ArgumentTypes.Int, True, "255"),
+                                              New ScriptArgument("ColorB", ScriptArgument.ArgumentTypes.Int, True, "255"),
+                                              New ScriptArgument("Scale", ScriptArgument.ArgumentTypes.Sng, True, "10.0"),
+                                              New ScriptArgument("IsCentered", ScriptArgument.ArgumentTypes.Bool, True, "true"),
+                                              New ScriptArgument("X", ScriptArgument.ArgumentTypes.Sng, True, "0.0"),
+                                              New ScriptArgument("Y", ScriptArgument.ArgumentTypes.Sng, True, "0.0")}.ToList(), "Adds a new title for the game to display during gameplay."))
+            r(New ScriptCommand("Title", "Clear", "Clears all titles that are currently being displayed."))
         End Sub
 
         Private Shared Sub DoCamera()
             ' Commands:
-            r(New ScriptCommand("camera", "set", {New ScriptArgument("x", ScriptArgument.ArgumentTypes.Sng),
-                                              New ScriptArgument("y", ScriptArgument.ArgumentTypes.Sng),
-                                              New ScriptArgument("z", ScriptArgument.ArgumentTypes.Sng),
-                                              New ScriptArgument("yaw", ScriptArgument.ArgumentTypes.Sng),
-                                              New ScriptArgument("pitch", ScriptArgument.ArgumentTypes.Sng)}.ToList(), "Sets the given properties of the camera."))
-            r(New ScriptCommand("camera", "reset", "Resets the camera to the default setting."))
-            r(New ScriptCommand("camera", "setyaw", {New ScriptArgument("yaw", ScriptArgument.ArgumentTypes.Sng)}.ToList(), "Sets the Yaw property of the camera."))
-            r(New ScriptCommand("camera", "setpitch", {New ScriptArgument("pitch", ScriptArgument.ArgumentTypes.Sng)}.ToList(), "Sets the Pitch property of the camera."))
-            r(New ScriptCommand("camera", "setposition", {New ScriptArgument("x", ScriptArgument.ArgumentTypes.Sng),
-                                              New ScriptArgument("y", ScriptArgument.ArgumentTypes.Sng),
-                                              New ScriptArgument("z", ScriptArgument.ArgumentTypes.Sng)}.ToList(), "Sets the Position property of the camera."))
-            r(New ScriptCommand("camera", "setx", {New ScriptArgument("x", ScriptArgument.ArgumentTypes.Sng)}.ToList(), "Sets the X Position property of the camera."))
-            r(New ScriptCommand("camera", "sety", {New ScriptArgument("y", ScriptArgument.ArgumentTypes.Sng)}.ToList(), "Sets the Y Position property of the camera."))
-            r(New ScriptCommand("camera", "setz", {New ScriptArgument("z", ScriptArgument.ArgumentTypes.Sng)}.ToList(), "Sets the Z Position property of the camera."))
-            r(New ScriptCommand("camera", "togglethirdperson", {New ScriptArgument("doUpdate", ScriptArgument.ArgumentTypes.Bool)}.ToList(), "Toggles the third person camera."))
-            r(New ScriptCommand("camera", "activatethirdperson", {New ScriptArgument("doUpdate", ScriptArgument.ArgumentTypes.Bool)}.ToList(), "Activates the third person camera."))
-            r(New ScriptCommand("camera", "deactivatethirdperson", {New ScriptArgument("doUpdate", ScriptArgument.ArgumentTypes.Bool)}.ToList(), "Deactivates the third person camera."))
-            r(New ScriptCommand("camera", "setthirdperson", {New ScriptArgument("thirdPerson", ScriptArgument.ArgumentTypes.Bool),
-                                                         New ScriptArgument("doUpdate", ScriptArgument.ArgumentTypes.Bool)}.ToList(), "Sets the camera to the desired status."))
-            r(New ScriptCommand("camera", "fix", "Fixes the camera to the current position."))
-            r(New ScriptCommand("camera", "defix", "Defixes the camera so that it clips behind the player again."))
-            r(New ScriptCommand("camera", "togglefix", "Sets the fix state of the camera to the opposite of the current state."))
-            r(New ScriptCommand("camera", "update", "Updates the camera."))
-            r(New ScriptCommand("camera", "setfocus", {New ScriptArgument("focusType", ScriptArgument.ArgumentTypes.Str, {"player", "npc", "entity"}),
-                                                   New ScriptArgument("focusID", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Focuses the camera on an object."))
-            r(New ScriptCommand("camera", "setfocustype", {New ScriptArgument("focusType", ScriptArgument.ArgumentTypes.Str, {"player", "npc", "entity"})}.ToList(), "Sets the focus type for the camera."))
-            r(New ScriptCommand("camera", "setfocusid", {New ScriptArgument("focusID", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Sets the ID of the focus target for the camera."))
-            r(New ScriptCommand("camera", "settoplayerfacing", "Sets the Yaw of the camera to accommodate the player's facing."))
+            r(New ScriptCommand("Camera", "ActivateThirdPerson", {New ScriptArgument("UpdateCamera", ScriptArgument.ArgumentTypes.Bool, True, "True")}.ToList(), "Activates the third person camera."))
+            r(New ScriptCommand("Camera", "DeactivateThirdPerson", {New ScriptArgument("UpdateCamera", ScriptArgument.ArgumentTypes.Bool, True, "True")}.ToList(), "Deactivates the third person camera."))
+            r(New ScriptCommand("Camera", "ToggleThirdPerson", {New ScriptArgument("UpdateCamera", ScriptArgument.ArgumentTypes.Bool, True, "True")}.ToList(), "Sets the camera to the opposite of the current perspective mode (first person or third person)."))
+            r(New ScriptCommand("Camera", "SetThirdPerson", {New ScriptArgument("PerspectiveMode", ScriptArgument.ArgumentTypes.Bool),
+                                                         New ScriptArgument("UpdateCamera", ScriptArgument.ArgumentTypes.Bool, True, "True")}.ToList(), "Sets the camera to the desired perspective mode."))
+            r(New ScriptCommand("Camera", "Fix", "Fixes the camera to the current position."))
+            r(New ScriptCommand("Camera", "Defix", "Defixes the camera so that it clips behind the player again."))
+            r(New ScriptCommand("Camera", "ToggleFix", "Sets the fix state of the camera to the opposite of the current state."))
+            r(New ScriptCommand("Camera", "Set", {New ScriptArgument("X", ScriptArgument.ArgumentTypes.Sng),
+                                              New ScriptArgument("Y", ScriptArgument.ArgumentTypes.Sng),
+                                              New ScriptArgument("Z", ScriptArgument.ArgumentTypes.Sng),
+                                              New ScriptArgument("Yaw", ScriptArgument.ArgumentTypes.Sng),
+                                              New ScriptArgument("Pitch", ScriptArgument.ArgumentTypes.Sng)}.ToList(), "Changes the position and rotation of the camera."))
+            r(New ScriptCommand("Camera", "SetPitch", {New ScriptArgument("Pitch", ScriptArgument.ArgumentTypes.Sng)}.ToList(), "Changes the Pitch (vertical) rotation of the camera."))
+            r(New ScriptCommand("Camera", "SetYaw", {New ScriptArgument("Yaw", ScriptArgument.ArgumentTypes.Sng)}.ToList(), "Changes the Yaw (horizontal) rotation of the camera."))
+            r(New ScriptCommand("Camera", "SetPosition", {New ScriptArgument("X", ScriptArgument.ArgumentTypes.Sng),
+                                              New ScriptArgument("Y", ScriptArgument.ArgumentTypes.Sng),
+                                              New ScriptArgument("Z", ScriptArgument.ArgumentTypes.Sng)}.ToList(), "Changes the position of the camera."))
+            r(New ScriptCommand("Camera", "SetX", {New ScriptArgument("X", ScriptArgument.ArgumentTypes.Sng)}.ToList(), "Changes the X-coordinate of the camera (left/right)."))
+            r(New ScriptCommand("Camera", "SetY", {New ScriptArgument("Y", ScriptArgument.ArgumentTypes.Sng)}.ToList(), "Changes the Y-coordinate of the camera (up/down)."))
+            r(New ScriptCommand("Camera", "SetZ", {New ScriptArgument("Z", ScriptArgument.ArgumentTypes.Sng)}.ToList(), "Changes the Z-coordinate of the camera (forward/backward)."))
+            r(New ScriptCommand("Camera", "SetFocus", {New ScriptArgument("FocusType", ScriptArgument.ArgumentTypes.Str, {"Player", "NPC", "Entity"}),
+                                                   New ScriptArgument("FocusID", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Focuses the camera on an object (with the given ID for NPCs & Entities)."))
+            r(New ScriptCommand("Camera", "SetFocusType", {New ScriptArgument("FocusType", ScriptArgument.ArgumentTypes.Str, {"Player", "NPC", "Entity"})}.ToList(), "Sets the focus type for the camera."))
+            r(New ScriptCommand("Camera", "SetFocusID", {New ScriptArgument("FocusID", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Sets the ID of the focus target for the camera."))
+            r(New ScriptCommand("Camera", "SetToPlayerFacing", "Sets the Yaw rotation of the camera to the direction in which the player is facing."))
+            r(New ScriptCommand("Camera", "Reset", "Resets the camera to its default location and rotation."))
+            r(New ScriptCommand("Camera", "Update", "Updates the camera. Used for things like fading the screen during a script or when a property of the camera is changed."))
 
             ' Constructs:
-            r(New ScriptCommand("camera", "isfixed", "bool", "Returns if the camera is fixed to a specific position.", ",", True))
-            r(New ScriptCommand("camera", "x", "sng", "Returns the current X position of the camera.", ",", True))
-            r(New ScriptCommand("camera", "y", "sng", "Returns the current Y position of the camera.", ",", True))
-            r(New ScriptCommand("camera", "z", "sng", "Returns the current Z position of the camera.", ",", True))
-            r(New ScriptCommand("camera", "yaw", "sng", "Returns the current Yaw rotation of the camera.", ",", True))
-            r(New ScriptCommand("camera", "pitch", "sng", "Returns the current Pitch rotation of the camera.", ",", True))
-            r(New ScriptCommand("camera", "thirdperson", "bool", "Returns if the camera is in third person mode.", ",", True))
+            r(New ScriptCommand("Camera", "IsFixed", "bool", "Returns if the camera is fixed to a specific position.", ",", True))
+            r(New ScriptCommand("Camera", "X", "sng", "Returns the current X position of the camera.", ",", True))
+            r(New ScriptCommand("Camera", "Y", "sng", "Returns the current Y position of the camera.", ",", True))
+            r(New ScriptCommand("Camera", "Z", "sng", "Returns the current Z position of the camera.", ",", True))
+            r(New ScriptCommand("Camera", "Pitch", "sng", "Returns the current Pitch (vertical) rotation of the camera.", ",", True))
+            r(New ScriptCommand("Camera", "Yaw", "sng", "Returns the current Yaw (horizontal) rotation of the camera.", ",", True))
+            r(New ScriptCommand("Camera", "ThirdPerson", "bool", "Returns if the camera is in third person mode.", ",", True))
         End Sub
 
         Private Shared Sub DoOptions()
@@ -187,23 +187,25 @@ Namespace ScriptVersion2
 
         Private Shared Sub DoBattle()
             ' Commands:
-            r(New ScriptCommand("battle", "starttrainer", {New ScriptArgument("trainerFile", ScriptArgument.ArgumentTypes.Str)}.ToList(), "Initializes a trainer interaction and checks if the player has already beaten that trainer."))
-            r(New ScriptCommand("battle", "trainer", {New ScriptArgument("trainerFile", ScriptArgument.ArgumentTypes.Str)}.ToList(), "Initializes a trainer battle."))
-            r(New ScriptCommand("battle", "wild", {New ScriptArgument("pokemonData", ScriptArgument.ArgumentTypes.PokemonData),
-                                               New ScriptArgument("musicloop", ScriptArgument.ArgumentTypes.Str, True, "")}.ToList(), "Initializes the battle with a wild Pokémon."))
-            r(New ScriptCommand("battle", "wild", {New ScriptArgument("pokemonID", ScriptArgument.ArgumentTypes.Int),
-                                               New ScriptArgument("level", ScriptArgument.ArgumentTypes.Int),
-                                               New ScriptArgument("shiny", ScriptArgument.ArgumentTypes.Int, True, "-1"),
-                                               New ScriptArgument("musicloop", ScriptArgument.ArgumentTypes.Str, True, ""),
-                                               New ScriptArgument("introtype", ScriptArgument.ArgumentTypes.Int, True, "0-10"),
-                                               New ScriptArgument("gender", ScriptArgument.ArgumentTypes.Int, True, "")}.ToList(), "Initializes the battle with a wild Pokémon."))
-            r(New ScriptCommand("battle", "setvar", {New ScriptArgument("varName", ScriptArgument.ArgumentTypes.Str, {"canrun", "cancatch", "canblackout", "canreceiveexp", "canuseitems", "frontiertrainer", "divebattle", "inversebattle, custombattlemusic, hiddenabilitychance"}),
-                                                 New ScriptArgument("varValue", ScriptArgument.ArgumentTypes.Str)}.ToList(), "Sets a battle value."))
+            r(New ScriptCommand("Battle", "StartTrainer", {New ScriptArgument("TrainerFilePath", ScriptArgument.ArgumentTypes.Str)}.ToList(), "Initializes a trainer interaction and checks the register if the player has already beaten that trainer."))
+            r(New ScriptCommand("Battle", "Trainer", {New ScriptArgument("TrainerFilePath", ScriptArgument.ArgumentTypes.Str)}.ToList(), "Initializes a trainer battle without displaying an intro message or checking the register."))
+            r(New ScriptCommand("Battle", "Wild", {New ScriptArgument("PokémonData", ScriptArgument.ArgumentTypes.PokemonData),
+                                               New ScriptArgument("IntroMusic", ScriptArgument.ArgumentTypes.Str, True, "")}.ToList(), "Initializes a wild battle against the given Pokémon."))
+            r(New ScriptCommand("Battle", "Wild", {New ScriptArgument("PokémonID", ScriptArgument.ArgumentTypes.Int),
+                                               New ScriptArgument("Level", ScriptArgument.ArgumentTypes.Int),
+                                               New ScriptArgument("Shiny", ScriptArgument.ArgumentTypes.Int, True, "-1"),
+                                               New ScriptArgument("IntroMusic", ScriptArgument.ArgumentTypes.Str, True, ""),
+                                               New ScriptArgument("IntroType", ScriptArgument.ArgumentTypes.Int, True, "0-10"),
+                                               New ScriptArgument("Gender", ScriptArgument.ArgumentTypes.Int, True, "")}.ToList(), "Initializes a wild battle against the given Pokémon."))
+            r(New ScriptCommand("Battle", "SetVar", {New ScriptArgument("VarName", ScriptArgument.ArgumentTypes.Str, {"CanRun", "CanCatch", "CanBlackout", "CanReceiveExp", "CanUseItems", "FrontierTrainer", "DiveBattle", "InverseBattle, CustomBattleMusic, HiddenAbilityChance"}),
+                                                 New ScriptArgument("VarValue", ScriptArgument.ArgumentTypes.Str)}.ToList(), "Changes the given battle variable to the given value."))
+            r(New ScriptCommand("Battle", "ResetVars", "Resets the battle variables to their default value."))
             ' Constructs:
-            r(New ScriptCommand("battle", "defeatmessage", "str", {New ScriptArgument("trainerFile", ScriptArgument.ArgumentTypes.Str)}.ToList(), "Returns the defeat message of the trainer loaded from the given ""trainerFile"".", ",", True))
-            r(New ScriptCommand("battle", "intromessage", "str", {New ScriptArgument("trainerFile", ScriptArgument.ArgumentTypes.Str)}.ToList(), "Returns the intro message of the trainer loaded from the given ""trainerFile"".", ",", True))
-            r(New ScriptCommand("battle", "outromessage", "str", {New ScriptArgument("trainerFile", ScriptArgument.ArgumentTypes.Str)}.ToList(), "Returns the outro message of the trainer loaded from the given ""trainerFile"".", ",", True))
-            r(New ScriptCommand("battle", "won", "bool", "Returns ""true"" if the player won the last battle. Returns ""false"" otherwise.", ",", True))
+            r(New ScriptCommand("Battle", "DefeatMessage", "str", {New ScriptArgument("TrainerFilePath", ScriptArgument.ArgumentTypes.Str)}.ToList(), "Returns the defeat message of the trainer loaded from the given ""TrainerFilePath"".", ",", True))
+            r(New ScriptCommand("Battle", "IntroMessage", "str", {New ScriptArgument("TrainerFilePath", ScriptArgument.ArgumentTypes.Str)}.ToList(), "Returns the intro message of the trainer loaded from the given ""TrainerFilePath"".", ",", True))
+            r(New ScriptCommand("Battle", "OutroMessage", "str", {New ScriptArgument("TrainerFilePath", ScriptArgument.ArgumentTypes.Str)}.ToList(), "Returns the outro message of the trainer loaded from the given ""TrainerFilePath"".", ",", True))
+            r(New ScriptCommand("Battle", "Won", "bool", "Returns ""true"" if the player won the last battle. Returns ""false"" otherwise.", ",", True))
+            r(New ScriptCommand("Battle", "Caught", "bool", "Returns ""true"" if the player caught the Pokémon in the last battle. Returns ""false"" otherwise.", ",", True))
         End Sub
 
         Private Shared Sub DoLevel()
@@ -229,53 +231,54 @@ Namespace ScriptVersion2
 
         Private Shared Sub DoEntity()
             ' Commands:
-            r(New ScriptCommand("entity", "showmessagebulb", {New ScriptArgument("bulbID", ScriptArgument.ArgumentTypes.Int, {"0-11"}),
-                                                          New ScriptArgument("x", ScriptArgument.ArgumentTypes.Sng),
-                                                          New ScriptArgument("y", ScriptArgument.ArgumentTypes.Sng),
-                                                          New ScriptArgument("z", ScriptArgument.ArgumentTypes.Sng)}.ToList(), "Displays a message bulb in the world.", "|"))
-            r(New ScriptCommand("entity", "warp", {New ScriptArgument("entityID", ScriptArgument.ArgumentTypes.Int),
-                                                          New ScriptArgument("x", ScriptArgument.ArgumentTypes.Sng),
-                                                          New ScriptArgument("y", ScriptArgument.ArgumentTypes.Sng),
-                                                          New ScriptArgument("z", ScriptArgument.ArgumentTypes.Sng)}.ToList(), "Warps the entity to a new location on the map."))
-            r(New ScriptCommand("entity", "remove", {New ScriptArgument("entityID", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Removes the entity from the map once it updates."))
-            r(New ScriptCommand("entity", "setscale", {New ScriptArgument("entityID", ScriptArgument.ArgumentTypes.Int),
-                                                          New ScriptArgument("xS", ScriptArgument.ArgumentTypes.Sng),
-                                                          New ScriptArgument("yS", ScriptArgument.ArgumentTypes.Sng),
-                                                          New ScriptArgument("zS", ScriptArgument.ArgumentTypes.Sng)}.ToList(), "Changes the Scale property of the selected entity."))
-            r(New ScriptCommand("entity", "setid", {New ScriptArgument("entityID", ScriptArgument.ArgumentTypes.Int),
-                                                New ScriptArgument("newID", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Sets the entity ID of the selected entity to a new ID."))
-            r(New ScriptCommand("entity", "setopacity", {New ScriptArgument("entityID", ScriptArgument.ArgumentTypes.Int),
-                                                     New ScriptArgument("opacity", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Sets the Opacity property of the selected entity. ""opacity"" in %."))
-            r(New ScriptCommand("entity", "setvisible", {New ScriptArgument("entityID", ScriptArgument.ArgumentTypes.Int),
-                                                New ScriptArgument("visible", ScriptArgument.ArgumentTypes.Bool)}.ToList(), "Sets the Visible property of the selected entity."))
-            r(New ScriptCommand("entity", "setadditionalvalue", {New ScriptArgument("entityID", ScriptArgument.ArgumentTypes.Int),
-                                                New ScriptArgument("additionalValue", ScriptArgument.ArgumentTypes.Str)}.ToList(), "Sets the AdditionalValue property of the selected entity."))
-            r(New ScriptCommand("entity", "setcollision", {New ScriptArgument("entityID", ScriptArgument.ArgumentTypes.Int),
-                                                New ScriptArgument("collision", ScriptArgument.ArgumentTypes.Bool)}.ToList(), "Sets the Collision property of the selected entity."))
-            r(New ScriptCommand("entity", "setmodelpath", {New ScriptArgument("entityID", ScriptArgument.ArgumentTypes.Int),
-                                                New ScriptArgument("ModelPath", ScriptArgument.ArgumentTypes.Str)}.ToList(), "Sets the ModelPath property of the selected entity."))
-            r(New ScriptCommand("entity", "settexture", {New ScriptArgument("entityID", ScriptArgument.ArgumentTypes.Int),
-                                                New ScriptArgument("textureIndex", ScriptArgument.ArgumentTypes.Str),
-                                                New ScriptArgument("textureName", ScriptArgument.ArgumentTypes.Str),
-                                                New ScriptArgument("rX", ScriptArgument.ArgumentTypes.Int),
-                                                New ScriptArgument("rY", ScriptArgument.ArgumentTypes.Int),
-                                                New ScriptArgument("rWidth", ScriptArgument.ArgumentTypes.Int),
-                                                New ScriptArgument("rHeight", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Sets the texture in the selected entity's texture array. Argument example: 0,0,[nilllzz,0,10,32,32]"))
-            r(New ScriptCommand("entity", "addtoposition", {New ScriptArgument("entityID", ScriptArgument.ArgumentTypes.Int),
-                                                         New ScriptArgument("x", ScriptArgument.ArgumentTypes.Sng),
-                                                         New ScriptArgument("y", ScriptArgument.ArgumentTypes.Sng),
-                                                         New ScriptArgument("z", ScriptArgument.ArgumentTypes.Sng)}.ToList(), "Adds the given coordinates to the position of the given entity."))
+            r(New ScriptCommand("Entity", "ShowMessageBulb", {New ScriptArgument("BulbID", ScriptArgument.ArgumentTypes.Int, {"0-15"}),
+                                                          New ScriptArgument("X", ScriptArgument.ArgumentTypes.Sng),
+                                                          New ScriptArgument("Y", ScriptArgument.ArgumentTypes.Sng),
+                                                          New ScriptArgument("Z", ScriptArgument.ArgumentTypes.Sng)}.ToList(), "Displays the given Message Bulb at the given position.", "|"))
+            r(New ScriptCommand("Entity", "Warp", {New ScriptArgument("EntityID", ScriptArgument.ArgumentTypes.Int),
+                                                          New ScriptArgument("X", ScriptArgument.ArgumentTypes.Sng),
+                                                          New ScriptArgument("Y", ScriptArgument.ArgumentTypes.Sng),
+                                                          New ScriptArgument("Z", ScriptArgument.ArgumentTypes.Sng)}.ToList(), "Warps the given entity to the given position on the map."))
+            r(New ScriptCommand("Entity", "AddToPosition", {New ScriptArgument("EntityID", ScriptArgument.ArgumentTypes.Int),
+                                                         New ScriptArgument("X", ScriptArgument.ArgumentTypes.Sng),
+                                                         New ScriptArgument("Y", ScriptArgument.ArgumentTypes.Sng),
+                                                         New ScriptArgument("Z", ScriptArgument.ArgumentTypes.Sng)}.ToList(), "Adds the given coordinates to the position of the given entity."))
+            r(New ScriptCommand("Entity", "Remove", {New ScriptArgument("EntityID", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Removes the given entity from the map (when it updates) until the map is loaded again."))
+            r(New ScriptCommand("Entity", "SetID", {New ScriptArgument("OldID", ScriptArgument.ArgumentTypes.Int),
+                                                New ScriptArgument("NewID", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Changes the ID of the given entity."))
+            r(New ScriptCommand("Entity", "SetScale", {New ScriptArgument("EntityID", ScriptArgument.ArgumentTypes.Int),
+                                                          New ScriptArgument("xScale", ScriptArgument.ArgumentTypes.Sng),
+                                                          New ScriptArgument("yScale", ScriptArgument.ArgumentTypes.Sng),
+                                                          New ScriptArgument("zScale", ScriptArgument.ArgumentTypes.Sng)}.ToList(), "Changes the Scale property of the given entity."))
+            r(New ScriptCommand("Entity", "SetOpacity", {New ScriptArgument("EntityID", ScriptArgument.ArgumentTypes.Int),
+                                                     New ScriptArgument("Opacity", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Changes the Opacity (transparency) property of the given entity to the given value (in %)."))
+            r(New ScriptCommand("Entity", "SetVisible", {New ScriptArgument("EntityID", ScriptArgument.ArgumentTypes.Int),
+                                                New ScriptArgument("Visible", ScriptArgument.ArgumentTypes.Bool)}.ToList(), "Changes the whether the entity is visible or not."))
+            r(New ScriptCommand("Entity", "SetAdditionalValue", {New ScriptArgument("EntityID", ScriptArgument.ArgumentTypes.Int),
+                                                New ScriptArgument("AdditionalValue", ScriptArgument.ArgumentTypes.Str)}.ToList(), "Sets the AdditionalValue property of the given entity."))
+            r(New ScriptCommand("Entity", "SetCollision", {New ScriptArgument("EntityID", ScriptArgument.ArgumentTypes.Int),
+                                                New ScriptArgument("Collision", ScriptArgument.ArgumentTypes.Bool)}.ToList(), "Sets the Collision property of the given entity."))
+            r(New ScriptCommand("Entity", "SetTexture", {New ScriptArgument("EntityID", ScriptArgument.ArgumentTypes.Int),
+                                                New ScriptArgument("TextureIndex", ScriptArgument.ArgumentTypes.Str),
+                                                New ScriptArgument("TextureName", ScriptArgument.ArgumentTypes.Str),
+                                                New ScriptArgument("RectangleX", ScriptArgument.ArgumentTypes.Int),
+                                                New ScriptArgument("RectangleY", ScriptArgument.ArgumentTypes.Int),
+                                                New ScriptArgument("RectangleWidth", ScriptArgument.ArgumentTypes.Int),
+                                                New ScriptArgument("RectangleHeight", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Sets the texture in the selected entity's texture array. Example: @Entity.SetTexture(0,0,Routes,112,64,16,32)"))
+            r(New ScriptCommand("Entity", "SetModelPath", {New ScriptArgument("EntityID", ScriptArgument.ArgumentTypes.Int),
+                                                New ScriptArgument("ModelPath", ScriptArgument.ArgumentTypes.Str)}.ToList(), "Sets the ModelPath property of the given entity."))
+
             ' Constructs:
-            r(New ScriptCommand("entity", "visible", "bool", {New ScriptArgument("entityID", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Returns if the selected entity is visible.", ",", True))
-            r(New ScriptCommand("entity", "opacity", "int", {New ScriptArgument("entityID", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Returns the opacity property of the selected entity.", ",", True))
-            r(New ScriptCommand("entity", "position", "sngArr", {New ScriptArgument("entityID", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Returns the position of the selected entity in the pattern ""x,y,z"".", ",", True))
-            r(New ScriptCommand("entity", "positionx", "sng", {New ScriptArgument("entityID", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Returns the X position of the selected entity.", ",", True))
-            r(New ScriptCommand("entity", "positiony", "sng", {New ScriptArgument("entityID", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Returns the Y position of the selected entity.", ",", True))
-            r(New ScriptCommand("entity", "positionz", "sng", {New ScriptArgument("entityID", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Returns the Z position of the selected entity.", ",", True))
-            r(New ScriptCommand("entity", "scale", "sngArr", {New ScriptArgument("entityID", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Returns the scale of the selected entity in the pattern ""x,y,z"".", ",", True))
-            r(New ScriptCommand("entity", "rotation", "sngArr", {New ScriptArgument("entityID", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Returns the rotation of the selected entity in the pattern ""x,y,z"".", ",", True))
-            r(New ScriptCommand("entity", "additionalvalue", "str", {New ScriptArgument("entityID", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Returns the additional value of the selected entity.", ",", True))
-            r(New ScriptCommand("entity", "collision", "bool", {New ScriptArgument("entityID", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Returns the collision property of the selected entity.", ",", True))
+            r(New ScriptCommand("Entity", "Visible", "bool", {New ScriptArgument("EntityID", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Returns the Visible property of the given entity.", ",", True))
+            r(New ScriptCommand("Entity", "Opacity", "int", {New ScriptArgument("EntityID", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Returns the Opacity property of the given entity.", ",", True))
+            r(New ScriptCommand("Entity", "Position", "sngArr", {New ScriptArgument("EntityID", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Returns the Position of the given entity in the pattern ""x,y,z"".", ",", True))
+            r(New ScriptCommand("Entity", "PositionX", "sng", {New ScriptArgument("EntityID", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Returns the X Position of the given entity.", ",", True))
+            r(New ScriptCommand("Entity", "PositionY", "sng", {New ScriptArgument("EntityID", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Returns the Y Position of the given entity.", ",", True))
+            r(New ScriptCommand("Entity", "PositionZ", "sng", {New ScriptArgument("EntityID", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Returns the Z Position of the given entity.", ",", True))
+            r(New ScriptCommand("Entity", "Scale", "sngArr", {New ScriptArgument("EntityID", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Returns the Scale property of the given entity in the pattern ""x,y,z"".", ",", True))
+            r(New ScriptCommand("Entity", "Rotation", "sngArr", {New ScriptArgument("EntityID", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Returns the Rotation property of the given entity in the pattern ""x,y,z"".", ",", True))
+            r(New ScriptCommand("Entity", "AdditionalValue", "str", {New ScriptArgument("EntityID", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Returns the AdditionalValue property of the given entity.", ",", True))
+            r(New ScriptCommand("Entity", "Collision", "bool", {New ScriptArgument("EntityID", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Returns the Collision property of the given entity.", ",", True))
         End Sub
 
         Private Shared Sub DoPhone()
@@ -312,7 +315,7 @@ Namespace ScriptVersion2
 
         Private Shared Sub DoChat()
             ' Commands:
-            r(New ScriptCommand("chat", "clear", "Clears the chat."))
+            r(New ScriptCommand("Chat", "Clear", "Clears the chat."))
         End Sub
 
         Private Shared Sub DoScreen()
@@ -689,44 +692,44 @@ Namespace ScriptVersion2
 
         Private Shared Sub DoDaycare()
             ' Commands:
-            r(New ScriptCommand("daycare", "takeegg", {New ScriptArgument("daycareID", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Removes the Egg from the Day Care and adds it to the player's party."))
-            r(New ScriptCommand("daycare", "takepokemon", {New ScriptArgument("daycareID", ScriptArgument.ArgumentTypes.Int),
-                                                                 New ScriptArgument("pokemonIndex", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Takes a Pokémon from the Day Care to the player's party."))
-            r(New ScriptCommand("daycare", "leavepokemon", {New ScriptArgument("daycareID", ScriptArgument.ArgumentTypes.Int),
-                                                                  New ScriptArgument("PokemonDaycareIndex", ScriptArgument.ArgumentTypes.Int),
-                                                                  New ScriptArgument("pokemonIndex", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Removes a Pokémon from the player's party and fills the given PokemonDaycareIndex with that Pokémon."))
-            r(New ScriptCommand("daycare", "removeegg", {New ScriptArgument("daycareID", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Removes the Egg from the Day Care."))
-            r(New ScriptCommand("daycare", "clean", {New ScriptArgument("daycareID", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Cleans all data for the given Day Care. This doesn't remove the data, just rearranges it."))
-            r(New ScriptCommand("daycare", "call", {New ScriptArgument("daycareID", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Initializes a call with the Day Care. This checks if the Day Care is registered in the Pokégear."))
-            r(New ScriptCommand("daycare", "cleardata", {New ScriptArgument("daycareID", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Clears all the data for one Day Care. That includes the Pokémon stored there and a potential Egg."))
+            r(New ScriptCommand("Daycare", "Clean", {New ScriptArgument("DaycareID", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Cleans all data for the given Daycare. This doesn't remove the data, just rearranges it."))
+            r(New ScriptCommand("Daycare", "ClearData", {New ScriptArgument("DaycareID", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Clears all the data for one Daycare. That includes the Pokémon stored there and a potential Egg."))
+            r(New ScriptCommand("Daycare", "LeavePokémon", {New ScriptArgument("DaycareID", ScriptArgument.ArgumentTypes.Int),
+                                                                  New ScriptArgument("DaycareSlot", ScriptArgument.ArgumentTypes.Int),
+                                                                  New ScriptArgument("PartyIndex", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Removes a Pokémon from the player's party and fills the given Daycare's slot with that Pokémon."))
+            r(New ScriptCommand("Daycare", "RemoveEgg", {New ScriptArgument("DaycareID", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Removes the egg from the given Daycare permanently."))
+            r(New ScriptCommand("Daycare", "TakeEgg", {New ScriptArgument("DaycareID", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Removes the Egg from the Daycare and adds it to the player's party."))
+            r(New ScriptCommand("Daycare", "TakePokémon", {New ScriptArgument("DaycareID", ScriptArgument.ArgumentTypes.Int),
+                                                                 New ScriptArgument("DaycareSlot", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Takes the given Pokémon from the given Daycare to the player's party."))
+            r(New ScriptCommand("Daycare", "Call", {New ScriptArgument("DaycareID", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Initializes a call with the Daycare. This checks if the Daycare is registered in the Pokégear."))
 
             ' Constructs:
-            r(New ScriptCommand("daycare", "pokemonID", "int", {New ScriptArgument("daycareID", ScriptArgument.ArgumentTypes.Int),
-                                                               New ScriptArgument("pokemonIndex", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Returns the Pokémon ID of a Pokémon in the Day Care.", ",", True))
-            r(New ScriptCommand("daycare", "pokemonName", "str", {New ScriptArgument("daycareID", ScriptArgument.ArgumentTypes.Int),
-                                                               New ScriptArgument("pokemonIndex", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Returns the name of a Pokémon in the Day Care.", ",", True))
-            r(New ScriptCommand("daycare", "pokemonSprite", "str", {New ScriptArgument("daycareID", ScriptArgument.ArgumentTypes.Int),
-                                                               New ScriptArgument("pokemonIndex", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Returns the sprite of a Pokémon in the Day Care.", ",", True))
-            r(New ScriptCommand("daycare", "shinyIndicator", "str", {New ScriptArgument("daycareID", ScriptArgument.ArgumentTypes.Int),
-                                                               New ScriptArgument("pokemonIndex", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Returns the Shiny Indicator of a Pokémon in the Day Care (either ""N"" or ""S"").", ",", True))
-            r(New ScriptCommand("daycare", "countpokemon", "int", {New ScriptArgument("daycareID", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Returns the amount of Pokémon in the Day Care.", ",", True))
-            r(New ScriptCommand("daycare", "haspokemon", "bool", {New ScriptArgument("daycareID", ScriptArgument.ArgumentTypes.Int),
-                                                               New ScriptArgument("pokemonIndex", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Returns the Pokémon ID of a Pokémon in the Day Care.", ",", True))
-            r(New ScriptCommand("daycare", "canswim", "bool", {New ScriptArgument("daycareID", ScriptArgument.ArgumentTypes.Int),
-                                                               New ScriptArgument("pokemonIndex", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Returns if the Pokémon in the Day Care can swim.", ",", True))
-            r(New ScriptCommand("daycare", "hasegg", "bool", {New ScriptArgument("daycareID", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Returns if the Day Care has an Egg.", ",", True))
-            r(New ScriptCommand("daycare", "grownlevels", "int", {New ScriptArgument("daycareID", ScriptArgument.ArgumentTypes.Int),
-                                                               New ScriptArgument("pokemonIndex", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Returns the amount of levels the Pokémon has grown in the Day Care.", ",", True))
-            r(New ScriptCommand("daycare", "currentlevel", "int", {New ScriptArgument("daycareID", ScriptArgument.ArgumentTypes.Int),
-                                                               New ScriptArgument("pokemonIndex", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Returns the current level of the Pokémon in the Day Care.", ",", True))
-            r(New ScriptCommand("daycare", "canbreed", "int", {New ScriptArgument("daycareID", ScriptArgument.ArgumentTypes.Int),
-                                                               New ScriptArgument("pokemonIndex", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Returns the chance the Pokémon in the Day Care can breed (in %).", ",", True))
+            r(New ScriptCommand("Daycare", "PokémonID", "int", {New ScriptArgument("DaycareID", ScriptArgument.ArgumentTypes.Int),
+                                                               New ScriptArgument("DaycareSlot", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Returns the Pokémon ID of a Pokémon in the Daycare.", ",", True))
+            r(New ScriptCommand("Daycare", "PokémonName", "str", {New ScriptArgument("DaycareID", ScriptArgument.ArgumentTypes.Int),
+                                                               New ScriptArgument("DaycareSlot", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Returns the name of a Pokémon in the Daycare.", ",", True))
+            r(New ScriptCommand("Daycare", "PokémonSprite", "str", {New ScriptArgument("DaycareID", ScriptArgument.ArgumentTypes.Int),
+                                                               New ScriptArgument("DaycareSlot", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Returns the sprite of a Pokémon in the Daycare.", ",", True))
+            r(New ScriptCommand("Daycare", "ShinyIndicator", "str", {New ScriptArgument("DaycareID", ScriptArgument.ArgumentTypes.Int),
+                                                               New ScriptArgument("DaycareSlot", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Returns the Shiny Indicator of a Pokémon in the Daycare (either ""N"" or ""S"").", ",", True))
+            r(New ScriptCommand("Daycare", "CountPokémon", "int", {New ScriptArgument("DaycareID", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Returns the amount of Pokémon in the Daycare.", ",", True))
+            r(New ScriptCommand("Daycare", "HasPokémon", "bool", {New ScriptArgument("DaycareID", ScriptArgument.ArgumentTypes.Int),
+                                                               New ScriptArgument("DaycareSlot", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Returns whether the given Daycare's slot is occupied.", ",", True))
+            r(New ScriptCommand("Daycare", "CanSwim", "bool", {New ScriptArgument("DaycareID", ScriptArgument.ArgumentTypes.Int),
+                                                               New ScriptArgument("DaycareSlot", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Returns if the Pokémon in the Daycare can swim.", ",", True))
+            r(New ScriptCommand("Daycare", "HasEgg", "bool", {New ScriptArgument("DaycareID", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Returns if the Daycare has an Egg.", ",", True))
+            r(New ScriptCommand("Daycare", "GrownLevels", "int", {New ScriptArgument("DaycareID", ScriptArgument.ArgumentTypes.Int),
+                                                               New ScriptArgument("DaycareSlot", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Returns the amount of levels the Pokémon has grown in the Daycare.", ",", True))
+            r(New ScriptCommand("Daycare", "CurrentLevel", "int", {New ScriptArgument("DaycareID", ScriptArgument.ArgumentTypes.Int),
+                                                               New ScriptArgument("DaycareSlot", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Returns the current level of the Pokémon in the Daycare.", ",", True))
+            r(New ScriptCommand("Daycare", "CanBreed", "int", {New ScriptArgument("DaycareID", ScriptArgument.ArgumentTypes.Int),
+                                                               New ScriptArgument("DaycareSlot", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Returns the chance the Pokémon in the Daycare can breed (in %).", ",", True))
         End Sub
         Private Shared Sub DoOverworldPokemon()
             ' Commands:
-            r(New ScriptCommand("player", "show", "Shows the following Pokémon."))
-            r(New ScriptCommand("player", "hide", "Hides the following Pokémon."))
-            r(New ScriptCommand("player", "toggle", "Toggles the following Pokémon's visibility."))
+            r(New ScriptCommand("Player", "Show", "Shows the following Pokémon."))
+            r(New ScriptCommand("Player", "Hide", "Hides the following Pokémon."))
+            r(New ScriptCommand("Player", "Toggle", "Toggles the following Pokémon's visibility."))
         End Sub
         Private Shared Sub DoPokemon()
             ' Commands:
