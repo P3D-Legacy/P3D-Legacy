@@ -492,6 +492,7 @@ black_out_screen_line4,para previnir mais danos
 black_out_screen_line5,a seus Pokémons.
 ---
 Credits Screen:
+credits_skip,Press [<system.button(enter1)>] to skip to the end.
 credits_continue,aperte [<system.button(enter1)>] para continuar.
 ---
 Voltorb Flip:

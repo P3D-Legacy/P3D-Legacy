@@ -166,13 +166,19 @@
 
                     CanContinue = False
                 Case "credits"
-                    Dim ending As String = "Johto"
+                    Dim Ending As String = "Johto"
+                    Dim CanBeSkipped As Boolean = False
                     If argument <> "" Then
-                        ending = argument
+                        If argument.Split(",").Count > 1 Then
+                            CanBeSkipped = CBool(argument.GetSplit(1))
+                        End If
+                        If argument.GetSplit(0) <> "" Then
+                            Ending = argument.GetSplit(0)
+                        End If
                     End If
 
                     Core.SetScreen(New CreditsScreen(Core.CurrentScreen))
-                    CType(Core.CurrentScreen, CreditsScreen).InitializeScreen(ending)
+                    CType(Core.CurrentScreen, CreditsScreen).InitializeScreen(Ending, CanBeSkipped)
                     IsReady = True
 
                     CanContinue = False

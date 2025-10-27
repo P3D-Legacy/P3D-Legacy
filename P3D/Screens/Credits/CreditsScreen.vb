@@ -10,6 +10,7 @@ Public Class CreditsScreen
     Dim CameraLevels As New List(Of CameraLevel)
     Dim CurrentCameraLevelIndex As Integer = 0
     Dim ExecutedCameraLevel As Boolean = False
+    Dim CanBeSkipped As Boolean = False
 
     Dim TheEnd As Boolean = False
     Dim FadeAlpha As Integer = 0
@@ -21,7 +22,7 @@ Public Class CreditsScreen
         SavedOverworld.SetToCurrentEnvironment()
     End Sub
 
-    Public Sub InitializeScreen(ByVal ending As String)
+    Public Sub InitializeScreen(ByVal ending As String, Optional ByVal CanBeSkipped As Boolean = False)
         Me.Identification = Identifications.CreditsScreen
         Me.CanBePaused = False
         Me.MouseVisible = False
@@ -29,6 +30,7 @@ Public Class CreditsScreen
         Me.CanDrawDebug = True
         Me.CanMuteAudio = True
         Me.CanTakeScreenshot = True
+        Me.CanBeSkipped = CanBeSkipped
 
         Screen.TextBox.Showing = False
         Screen.PokemonImageView.Showing = False
@@ -175,6 +177,19 @@ Public Class CreditsScreen
 
             CreditsPages(CreditsPages.Count - 1).Draw()
         Else
+            If Me.CanBeSkipped = True AndAlso CurrentPageIndex > 2 Then
+                If FadeAlpha < 255 Then
+                    FadeAlpha += 5
+                    If FadeAlpha >= 255 Then
+                        FadeAlpha = 255
+                    End If
+                End If
+
+                Dim SkipString As String = Localization.GetString("credits_skip", "Press [<system.button(enter1)>] to skip to the end.")
+                Core.SpriteBatch.DrawString(FontManager.InGameFont, SkipString, New Vector2(CInt(windowSize.Width / 2 - FontManager.InGameFont.MeasureString(SkipString).X / 2 + 2), CInt(windowSize.Height - 128 + 2)), New Color(Color.Black, FadeAlpha))
+                Core.SpriteBatch.DrawString(FontManager.InGameFont, SkipString, New Vector2(CInt(windowSize.Width / 2 - FontManager.InGameFont.MeasureString(SkipString).X / 2), CInt(windowSize.Height - 128)), New Color(Color.White, FadeAlpha))
+
+            End If
             CreditsPages(CurrentPageIndex).Draw()
         End If
     End Sub
@@ -187,8 +202,16 @@ Public Class CreditsScreen
 
         CreditsPages(CurrentPageIndex).Update()
 
+        Dim NextPageIndex = CurrentPageIndex + 1
+        If Me.CanBeSkipped = True AndAlso CurrentPageIndex > 2 Then
+            If Controls.Accept(True, True) = True Then
+                SoundManager.PlaySound("select")
+                NextPageIndex = CreditsPages.Count - 1
+            End If
+        End If
+
         If CreditsPages(CurrentPageIndex).IsReady = True And TheEnd = False Then
-            CurrentPageIndex += 1
+            CurrentPageIndex = NextPageIndex
             If CurrentPageIndex = CreditsPages.Count - 1 Then
                 TheEnd = True
             End If

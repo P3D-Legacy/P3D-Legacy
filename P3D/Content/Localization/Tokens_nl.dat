@@ -480,6 +480,7 @@ black_out_screen_line4, om verdere schade aan je
 black_out_screen_line5,Pokémon te voorkomen.
 ---
 Credits Screen:
+credits_skip,Druk op [<system.button(enter1)>] om tot het einde door te spoelen.
 credits_continue,Druk op [<system.button(enter1)>] om verder te gaan.
 ---
 Voltorb Flip:

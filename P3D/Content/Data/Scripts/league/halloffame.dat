@@ -24,7 +24,9 @@ version=2
 @sound.play(Save)
 @music.play(silence)
 :if:<pokemon.counthalloffame>=1
-	@screen.credits
+	@screen.credits(Johto,false)
+:else
+	@screen.credits(Johto,true)
 :endif
 @music.play(barktown)
 @level.update

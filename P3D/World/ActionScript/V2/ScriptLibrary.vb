@@ -334,7 +334,7 @@ Namespace ScriptVersion2
             r(New ScriptCommand("screen", "fadeout", {New ScriptArgument("fadeSpeed", ScriptArgument.ArgumentTypes.Int, True, "5")}.ToList(), "Fades the screen to black."))
             r(New ScriptCommand("screen", "fadeoutcolor", {New ScriptArgument("color", ScriptArgument.ArgumentTypes.IntArr, {"0-255"}, True, "0,0,0")}.ToList(), "Sets the color of the screen fade."))
             r(New ScriptCommand("screen", "setfade", {New ScriptArgument("alpha", ScriptArgument.ArgumentTypes.Int, {"0-255"})}.ToList(), "Sets the alpha value of the screen fade."))
-            r(New ScriptCommand("screen", "credits", {New ScriptArgument("ending", ScriptArgument.ArgumentTypes.Str, True, "Johto")}.ToList(), "Displays the credits scene."))
+            r(New ScriptCommand("screen", "Credits", {New ScriptArgument("Ending", ScriptArgument.ArgumentTypes.Str, True, "Johto"), New ScriptArgument("CanBeSkipped", ScriptArgument.ArgumentTypes.Bool, True, "false")}.ToList(), "Displays the credits scene (optionally for a different set of maps/credits, and optionally skippable)."))
             r(New ScriptCommand("screen", "halloffame", {New ScriptArgument("displayEntryIndex", ScriptArgument.ArgumentTypes.Int, True, "")}.ToList(), "Displays the Hall of Fame. If the argument ""displayEntryIndex"" is not empty, it displays only that entry."))
             r(New ScriptCommand("screen", "teachmoves", {New ScriptArgument("pokemonIndex", ScriptArgument.ArgumentTypes.Int),
                                                      New ScriptArgument("moveIDs", ScriptArgument.ArgumentTypes.IntArr, True, "")}.ToList(), "Displays a move learn screen. If the argument ""moveIDs"" is left empty, it defaults to the Pokémon's tutor moves."))

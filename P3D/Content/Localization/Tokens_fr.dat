@@ -491,6 +491,7 @@ black_out_screen_line4,pour soigner les blessures
 black_out_screen_line5,de tes POKéMON.
 ---
 Credits Screen:
+credits_skip,Press [<system.button(enter1)>] to skip to the end.
 credits_continue,Appuie sur [<system.button(enter1)>] pour continuer.
 ---
 Voltorb Flip:
