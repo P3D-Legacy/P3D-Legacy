@@ -34,6 +34,19 @@ Public Class Trainer
 
     Public Shared FrontierTrainer As Integer = -1
 
+    Public BattleStartMessage As String = ""
+    Public BigDamageOwnMessage As New Dictionary(Of Integer, String)
+    Public BigDamageOppMessage As New Dictionary(Of Integer, String)
+    Public FaintedOwnMessage As New Dictionary(Of Integer, String)
+    Public FaintedOppMessage As New Dictionary(Of Integer, String)
+    Public RecallOwnMessage As New Dictionary(Of Integer, String)
+    Public RecallOppMessage As New Dictionary(Of Integer, String)
+    Public SendOutXOwnMessage As New Dictionary(Of Integer, String)
+    Public SendOutXOppMessage As New Dictionary(Of Integer, String)
+    Public SendOutLastOwnMessage As String = ""
+    Public SendOutLastOppMessage As String = ""
+    Public PlayerLossMessage As String = ""
+
     Public Function IsBeaten() As Boolean
         Return ActionScript.IsRegistered("trainer_" & TrainerFile)
     End Function
@@ -128,7 +141,9 @@ Public Class Trainer
                         If Me.Name.Contains(",") = True Then
                             Me.Name2 = Me.Name.GetSplit(1)
                             Me.Name = Me.Name.GetSplit(0)
-
+                            If Me.BattleStartMessage = "" Then
+                                Me.BattleStartMessage = "<Battle.TrainerName(0)> and <Battle.TrainerName(1)> want to battle!"
+                            End If
                             isDoubleTrainerValid += 1
                         End If
                     Case "trainerclass"
@@ -153,6 +168,62 @@ Public Class Trainer
                         End If
                     Case "defeatmessage"
                         Me.DefeatMessage = ScriptCommander.Parse(value).ToString()
+                    Case "battlestartmessage"
+                        Me.BattleStartMessage = ScriptCommander.Parse(value).ToString()
+                    Case "bigdamageownmessage"
+                        Dim instance As Integer = 1
+                        If value.Contains("|") Then
+                            instance = CInt(value.GetSplit(1, "|"))
+                        End If
+                        Me.BigDamageOwnMessage.Add(instance, ScriptCommander.Parse(value.GetSplit(0, "|")).ToString())
+                    Case "bigdamageoppmessage"
+                        Dim instance As Integer = 1
+                        If value.Contains("|") Then
+                            instance = CInt(value.GetSplit(1, "|"))
+                        End If
+                        Me.BigDamageOppMessage.Add(instance, ScriptCommander.Parse(value.GetSplit(0, "|")).ToString())
+                    Case "faintedownmessage"
+                        Dim instance As Integer = 1
+                        If value.Contains("|") Then
+                            instance = CInt(value.GetSplit(1, "|"))
+                        End If
+                        Me.FaintedOwnMessage.Add(instance, ScriptCommander.Parse(value.GetSplit(0, "|")).ToString())
+                    Case "faintedoppmessage"
+                        Dim instance As Integer = 1
+                        If value.Contains("|") Then
+                            instance = CInt(value.GetSplit(1, "|"))
+                        End If
+                        Me.FaintedOppMessage.Add(instance, ScriptCommander.Parse(value.GetSplit(0, "|")).ToString())
+                    Case "recallownmessage"
+                        Dim instance As Integer = 1
+                        If value.Contains("|") Then
+                            instance = CInt(value.GetSplit(1, "|"))
+                        End If
+                        Me.RecallOwnMessage.Add(instance, ScriptCommander.Parse(value.GetSplit(0, "|")).ToString())
+                    Case "recalloppmessage"
+                        Dim instance As Integer = 1
+                        If value.Contains("|") Then
+                            instance = CInt(value.GetSplit(1, "|"))
+                        End If
+                        Me.RecallOppMessage.Add(instance, ScriptCommander.Parse(value.GetSplit(0, "|")).ToString())
+                    Case "sendoutownmessage"
+                        Dim partyID As Integer = 0
+                        If value.Contains("|") Then
+                            partyID = CInt(value.GetSplit(1, "|"))
+                        End If
+                        Me.SendOutXOwnMessage.Add(partyID, ScriptCommander.Parse(value.GetSplit(0, "|")).ToString())
+                    Case "sendoutoppmessage"
+                        Dim partyID As Integer = 0
+                        If value.Contains("|") Then
+                            partyID = CInt(value.GetSplit(1, "|"))
+                        End If
+                        Me.SendOutXOppMessage.Add(partyID, ScriptCommander.Parse(value.GetSplit(0, "|")).ToString())
+                    Case "sendoutlastownmessage"
+                        Me.SendOutLastOwnMessage = ScriptCommander.Parse(value).ToString()
+                    Case "sendoutlastoppmessage"
+                        Me.SendOutLastOppMessage = ScriptCommander.Parse(value).ToString()
+                    Case "playerlossmessage"
+                        Me.PlayerLossMessage = ScriptCommander.Parse(value).ToString()
                     Case "textureid"
                         Me.SpriteName = ScriptCommander.Parse(value).ToString()
                         If Me.SpriteName.Contains(",") = True Then
@@ -202,6 +273,9 @@ Public Class Trainer
                 End Select
             End If
         Next
+        If Me.BattleStartMessage = "" Then
+            Me.BattleStartMessage = "<Battle.TrainerName(0)> wants to battle!"
+        End If
 
         For Each PokeLine As String In PokeLines
             Dim PokeData As String = PokeLine.GetSplit(1, "|")
@@ -230,7 +304,7 @@ Public Class Trainer
                         addLevel = 0
                     End If
 
-                    While level + addLevel > p.Level
+                        While level + addLevel > p.Level
                         p.LevelUp(False)
                         p.Experience = p.NeedExperience(p.Level)
                     End While

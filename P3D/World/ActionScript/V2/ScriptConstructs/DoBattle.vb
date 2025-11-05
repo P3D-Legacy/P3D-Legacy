@@ -27,6 +27,22 @@
                     Return ReturnBoolean(BattleSystem.Battle.Won)
                 Case "caught"
                     Return ReturnBoolean(BattleSystem.Battle.Caught)
+                Case "trainername"
+                    Dim index As Integer = 0
+                    If argument <> "" Then
+                        index = CInt(argument)
+                    End If
+                    If CurrentScreen.Identification = Screen.Identifications.BattleScreen Then
+                        Select Case CInt(argument)
+                            Case 0
+                                Return CType(CurrentScreen, BattleSystem.BattleScreen).Trainer.Name
+                            Case 1
+                                Return CType(CurrentScreen, BattleSystem.BattleScreen).Trainer.Name2
+                            Case Else
+                                Return CType(CurrentScreen, BattleSystem.BattleScreen).Trainer.Name
+                        End Select
+
+                    End If
             End Select
 
             Return DEFAULTNULL

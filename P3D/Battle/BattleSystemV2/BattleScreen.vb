@@ -35,6 +35,16 @@
         Public Shared CustomBattleMusic As String = ""
 
 #End Region
+#Region "TrainerMessageInstances"
+        Public TrainerBigDamageOwn As Integer = 0
+        Public TrainerBigDamageOpp As Integer = 0
+        Public TrainerFaintedOwn As Integer = 0
+        Public TrainerFaintedOpp As Integer = 0
+        Public TrainerRecallOwn As Integer = 0
+        Public TrainerRecallOpp As Integer = 0
+        Public TrainerSendOutOwn As Integer = 1
+        Public TrainerSendOutOpp As Integer = 1
+#End Region
 
         Public Enum BattleModes
             Standard
@@ -459,7 +469,7 @@
             Dim q As CameraQueryObject = New CameraQueryObject(New Vector3(13, 0, 15), New Vector3(21, 0, 15), 0.05F, 0.05F, -0.8F, 1.4F, 0.0F, 0.0F, 0.016F, 0.016F)
             q.PassThis = True
 
-            Dim q1 As TextQueryObject = New TextQueryObject(Trainer.Name & " " & "wants to battle!")
+            Dim q1 As TextQueryObject = New TextQueryObject(Trainer.BattleStartMessage)
             Dim q11 As TextQueryObject = New TextQueryObject(Trainer.Name & ": """ & "Go," & " " & OppPokemon.GetDisplayName() & "!""")
 
             Dim OppAnimationOffsetY As Single = 0.0F
@@ -576,6 +586,18 @@
             Battle.SwitchInOpp(Me, True, OppPokemonIndex)
 
             Me.BattleQuery.AddRange({cq1, q5, cq2})
+
+            If Trainer.SendOutXOppMessage.ContainsKey(1) Then
+                Dim s1 As QueryObject = FocusOppPlayer()
+                Dim s2 As TextQueryObject = New TextQueryObject(Trainer.SendOutXOppMessage(1))
+                Me.BattleQuery.AddRange({s1, s2})
+            End If
+
+            If Trainer.SendOutXOwnMessage.ContainsKey(1) Then
+                Dim s1 As QueryObject = FocusOppPlayer()
+                Dim s2 As TextQueryObject = New TextQueryObject(Trainer.SendOutXOwnMessage(1))
+                Me.BattleQuery.AddRange({s1, s2})
+            End If
 
             For i = 0 To 99
                 InsertCasualCameramove()
@@ -1247,6 +1269,11 @@ nextIndex:
 
         Public Function FocusOwnPlayer() As QueryObject
             Dim q As New CameraQueryObject(New Vector3(11, 0.0F, 13.5F), Screen.Camera.Position, 0.1F, 0.1F, CSng(MathHelper.PiOver4), Screen.Camera.Yaw, -0.1F, Screen.Camera.Pitch, 0.04F, 0.04F)
+            Return q
+        End Function
+
+        Public Function FocusOppPlayer() As QueryObject
+            Dim q As New CameraQueryObject(New Vector3(15, 0.0F, 13.5F), Screen.Camera.Position, 0.1F, 0.1F, CSng(-(MathHelper.Pi * 0.5F)), Screen.Camera.Yaw, -0.1F, Screen.Camera.Pitch, 0.04F, 0.04F)
             Return q
         End Function
 

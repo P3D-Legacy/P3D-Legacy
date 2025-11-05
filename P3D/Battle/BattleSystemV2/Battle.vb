@@ -811,10 +811,10 @@
                     Me.DoAttackRound(BattleScreen, True, ownMove)
                     EndRound(BattleScreen, 1)
 
-                    SwitchOutOpp(BattleScreen, CInt(OppStep.Argument))
+                    SwitchOutOpp(BattleScreen, CInt(OppStep.Argument), "", True)
                     EndRound(BattleScreen, 2)
                 Else
-                    SwitchOutOpp(BattleScreen, CInt(OppStep.Argument))
+                    SwitchOutOpp(BattleScreen, CInt(OppStep.Argument), "", True)
                     EndRound(BattleScreen, 2)
 
                     BattleScreen.FieldEffects.OwnUsedMoves.Add(CType(OwnStep.Argument, Attack).ID)
@@ -896,7 +896,7 @@
                 EndRound(BattleScreen, 1)
 
                 ChangeCameraAngle(2, True, BattleScreen)
-                SwitchOutOpp(BattleScreen, CInt(OppStep.Argument))
+                SwitchOutOpp(BattleScreen, CInt(OppStep.Argument), "", True)
                 EndRound(BattleScreen, 2)
             End If
 
@@ -935,10 +935,10 @@
                         DoAttackRound(BattleScreen, False, oppMove)
                         EndRound(BattleScreen, 2)
 
-                        SwitchOutOwn(BattleScreen, CInt(OwnStep.Argument), -1)
+                        SwitchOutOwn(BattleScreen, CInt(OwnStep.Argument), -1, "", True)
                         EndRound(BattleScreen, 1)
                     Else
-                        SwitchOutOwn(BattleScreen, CInt(OwnStep.Argument), -1)
+                        SwitchOutOwn(BattleScreen, CInt(OwnStep.Argument), -1, "", True)
                         EndRound(BattleScreen, 1)
 
                         Dim oppMove As Attack = CType(OppStep.Argument, Attack)
@@ -962,7 +962,7 @@
             'Switch,Text
             If OwnStep.StepType = RoundConst.StepTypes.Switch And OppStep.StepType = RoundConst.StepTypes.Text Then
                 If BattleCalculation.CanSwitch(BattleScreen, True) = True Then
-                    SwitchOutOwn(BattleScreen, CInt(OwnStep.Argument), -1)
+                    SwitchOutOwn(BattleScreen, CInt(OwnStep.Argument), -1, "", True)
                     EndRound(BattleScreen, 1)
 
                     ChangeCameraAngle(0, True, BattleScreen)
@@ -981,7 +981,7 @@
             'Switch,Item
             If OwnStep.StepType = RoundConst.StepTypes.Switch And OppStep.StepType = RoundConst.StepTypes.Item Then
                 If BattleCalculation.CanSwitch(BattleScreen, True) = True Then
-                    SwitchOutOwn(BattleScreen, CInt(OwnStep.Argument), -1)
+                    SwitchOutOwn(BattleScreen, CInt(OwnStep.Argument), -1, "", True)
                     EndRound(BattleScreen, 1)
 
                     ChangeCameraAngle(2, True, BattleScreen)
@@ -1000,18 +1000,18 @@
             'Switch,Switch
             If OwnStep.StepType = RoundConst.StepTypes.Switch And OppStep.StepType = RoundConst.StepTypes.Switch Then
                 If BattleCalculation.CanSwitch(BattleScreen, True) = True Then
-                    SwitchOutOwn(BattleScreen, CInt(OwnStep.Argument), -1)
+                    SwitchOutOwn(BattleScreen, CInt(OwnStep.Argument), -1, "", True)
                     EndRound(BattleScreen, 1)
 
                     ChangeCameraAngle(2, True, BattleScreen)
-                    SwitchOutOpp(BattleScreen, CInt(OppStep.Argument))
+                    SwitchOutOpp(BattleScreen, CInt(OppStep.Argument), "", True)
                     EndRound(BattleScreen, 2)
                 Else
                     ChangeCameraAngle(0, True, BattleScreen)
                     BattleScreen.BattleQuery.Add(New TextQueryObject(BattleScreen.OwnPokemon.GetDisplayName() & " is trapped!"))
 
                     ChangeCameraAngle(2, True, BattleScreen)
-                    SwitchOutOpp(BattleScreen, CInt(OppStep.Argument))
+                    SwitchOutOpp(BattleScreen, CInt(OppStep.Argument), "", True)
                     EndRound(BattleScreen, 2)
                 End If
             End If
@@ -3128,6 +3128,26 @@
             If Not p.Ability Is Nothing Then
                 p.Ability.EndBattle(p)
             End If
+
+            If BattleScreen.IsTrainerBattle = True Then
+                If own = True Then
+                    BattleScreen.TrainerFaintedOwn += 1
+                    If BattleScreen.Trainer.FaintedOwnMessage.ContainsKey(BattleScreen.TrainerFaintedOwn) Then
+                        Dim s1 As QueryObject = BattleScreen.FocusOppPlayer()
+                        Dim s2 As TextQueryObject = New TextQueryObject(BattleScreen.Trainer.FaintedOwnMessage(BattleScreen.TrainerFaintedOwn))
+                        BattleScreen.BattleQuery.AddRange({s1, s2})
+                        ChangeCameraAngle(1, own, BattleScreen)
+                    End If
+                Else
+                    BattleScreen.TrainerFaintedOpp += 1
+                    If BattleScreen.Trainer.FaintedOppMessage.ContainsKey(BattleScreen.TrainerFaintedOpp) Then
+                        Dim s1 As QueryObject = BattleScreen.FocusOppPlayer()
+                        Dim s2 As TextQueryObject = New TextQueryObject(BattleScreen.Trainer.FaintedOppMessage(BattleScreen.TrainerFaintedOpp))
+                        BattleScreen.BattleQuery.AddRange({s1, s2})
+                        ChangeCameraAngle(1, own, BattleScreen)
+                    End If
+                End If
+            End If
         End Sub
 
 #Region "Applystuff"
@@ -4833,6 +4853,26 @@
 
                 p.HP -= HPAmount
                 p.HP = p.HP.Clamp(0, p.MaxHP)
+
+                If BattleScreen.IsTrainerBattle = True AndAlso cause.Contains("battledamage") = True AndAlso CSng(HPAmount / p.MaxHP * 100) > 60 AndAlso p.HP > 0 Then
+                    If own = True Then
+                        BattleScreen.TrainerBigDamageOwn += 1
+                        If BattleScreen.Trainer.BigDamageOwnMessage.ContainsKey(BattleScreen.TrainerBigDamageOwn) Then
+                            Dim s1 As QueryObject = BattleScreen.FocusOppPlayer()
+                            Dim s2 As TextQueryObject = New TextQueryObject(BattleScreen.Trainer.BigDamageOwnMessage(BattleScreen.TrainerBigDamageOwn))
+                            BattleScreen.BattleQuery.AddRange({s1, s2})
+                            ChangeCameraAngle(1, True, BattleScreen)
+                        End If
+                    Else
+                        BattleScreen.TrainerBigDamageOpp += 1
+                        If BattleScreen.Trainer.BigDamageOppMessage.ContainsKey(BattleScreen.TrainerBigDamageOpp) Then
+                            Dim s1 As QueryObject = BattleScreen.FocusOppPlayer()
+                            Dim s2 As TextQueryObject = New TextQueryObject(BattleScreen.Trainer.BigDamageOppMessage(BattleScreen.TrainerBigDamageOpp))
+                            BattleScreen.BattleQuery.AddRange({s1, s2})
+                            ChangeCameraAngle(2, True, BattleScreen)
+                        End If
+                    End If
+                End If
 
                 Dim ItemID As Integer = -1
                 If Not p.Item Is Nothing Then
@@ -7725,7 +7765,7 @@
 #Region "Switching"
         Dim HasSwitchedInOwn As Boolean = False
         Dim HasSwitchedInOpp As Boolean = False
-        Public Sub SwitchOutOwn(ByVal BattleScreen As BattleScreen, ByVal SwitchInIndex As Integer, ByVal InsertIndex As Integer, Optional ByVal message As String = "")
+        Public Sub SwitchOutOwn(ByVal BattleScreen As BattleScreen, ByVal SwitchInIndex As Integer, ByVal InsertIndex As Integer, Optional ByVal message As String = "", Optional HasSwitched As Boolean = False)
             With BattleScreen
                 If .FieldEffects.OwnConfusionTurns > 0 Then
                     .FieldEffects.TempOwnConfusionTurns = .FieldEffects.OwnConfusionTurns
@@ -7872,7 +7912,7 @@
                     If BattleScreen.OwnFaint Then
                         'Next pokemon sent by the player is decided via menu.
                     Else
-                        SwitchInOwn(BattleScreen, SwitchInIndex, False, InsertIndex, message)
+                        SwitchInOwn(BattleScreen, SwitchInIndex, False, InsertIndex, message, HasSwitched)
                     End If
                 Else
                     If BattleScreen.IsTrainerBattle = True Then
@@ -7906,7 +7946,7 @@
             End If
         End Sub
 
-        Public Sub SwitchInOwn(ByVal BattleScreen As BattleScreen, ByVal NewPokemonIndex As Integer, ByVal FirstTime As Boolean, ByVal InsertIndex As Integer, Optional ByVal message As String = "")
+        Public Sub SwitchInOwn(ByVal BattleScreen As BattleScreen, ByVal NewPokemonIndex As Integer, ByVal FirstTime As Boolean, ByVal InsertIndex As Integer, Optional ByVal message As String = "", Optional HasSwitched As Boolean = False)
             HasSwitchedInOwn = True
             If FirstTime = False Then
                 ChangeCameraAngle(1, True, BattleScreen)
@@ -7955,6 +7995,15 @@
                     BattleScreen.AddToQuery(InsertIndex, BallReturn)
                 End If
 
+                If HasSwitched = True Then
+                    BattleScreen.TrainerRecallOwn += 1
+                    If BattleScreen.Trainer.RecallOwnMessage.ContainsKey(BattleScreen.TrainerRecallOwn) Then
+                        Dim s1 As QueryObject = BattleScreen.FocusOppPlayer()
+                        Dim s2 As TextQueryObject = New TextQueryObject(BattleScreen.Trainer.RecallOwnMessage(BattleScreen.TrainerRecallOwn))
+                        BattleScreen.BattleQuery.AddRange({s1, s2})
+                        ChangeCameraAngle(1, True, BattleScreen)
+                    End If
+                End If
 
                 Dim index As Integer = NewPokemonIndex
                 If index <= -1 Then
@@ -8140,9 +8189,25 @@
                     End If
                 End If
             End With
+            If FirstTime = False Then
+                BattleScreen.TrainerSendOutOwn += 1
+                If Core.Player.CountFightablePokemon > 1 Then
+                    If BattleScreen.Trainer.SendOutXOwnMessage.ContainsKey(BattleScreen.TrainerSendOutOwn) Then
+                        Dim s1 As QueryObject = BattleScreen.FocusOppPlayer()
+                        Dim s2 As TextQueryObject = New TextQueryObject(BattleScreen.Trainer.SendOutXOwnMessage(BattleScreen.TrainerSendOutOwn))
+                        BattleScreen.BattleQuery.AddRange({s1, s2})
+                    End If
+                Else
+                    If BattleScreen.Trainer.SendOutLastOwnMessage <> "" Then
+                        Dim s1 As QueryObject = BattleScreen.FocusOppPlayer()
+                        Dim s2 As TextQueryObject = New TextQueryObject(BattleScreen.Trainer.SendOutLastOwnMessage)
+                        BattleScreen.BattleQuery.AddRange({s1, s2})
+                    End If
+                End If
+            End If
         End Sub
 
-        Public Sub SwitchOutOpp(ByVal BattleScreen As BattleScreen, ByVal index As Integer, Optional ByVal message As String = "")
+        Public Sub SwitchOutOpp(ByVal BattleScreen As BattleScreen, ByVal index As Integer, Optional ByVal message As String = "", Optional HasSwitched As Boolean = False)
             With BattleScreen
                 'Natural cure cures status problems
                 If .OppPokemon.Ability.Name.ToLower() = "natural cure" Then
@@ -8291,7 +8356,7 @@
                     If BattleScreen.IsRemoteBattle And BattleScreen.OppFaint Then
                         'Next pokemon is selected by the opponent.
                     Else
-                        SwitchInOpp(BattleScreen, False, index)
+                        SwitchInOpp(BattleScreen, False, index, HasSwitched)
                     End If
                 Else
                     GainEXP(BattleScreen)
@@ -8363,8 +8428,18 @@
             End If
         End Sub
 
-        Public Sub SwitchInOpp(ByVal BattleScreen As BattleScreen, ByVal FirstTime As Boolean, ByVal index As Integer)
+        Public Sub SwitchInOpp(ByVal BattleScreen As BattleScreen, ByVal FirstTime As Boolean, ByVal index As Integer, Optional HasSwitched As Boolean = False)
             Dim AddSwitch As Boolean = False
+
+            If HasSwitched = True Then
+                BattleScreen.TrainerRecallOpp += 1
+                If BattleScreen.Trainer.RecallOwnMessage.ContainsKey(BattleScreen.TrainerRecallOpp) Then
+                    Dim s1 As QueryObject = BattleScreen.FocusOppPlayer()
+                    Dim s2 As TextQueryObject = New TextQueryObject(BattleScreen.Trainer.RecallOppMessage(BattleScreen.TrainerRecallOwn))
+                    BattleScreen.BattleQuery.AddRange({s1, s2})
+                End If
+            End If
+
             If FirstTime = False Then
                 ChangeCameraAngle(1, False, BattleScreen)
                 HasSwitchedInOpp = True
@@ -8568,6 +8643,22 @@
                     End If
                 End With
             End If
+            If FirstTime = False Then
+                BattleScreen.TrainerSendOutOpp += 1
+                If BattleScreen.Trainer.CountUseablePokemon > 1 Then
+                    If BattleScreen.Trainer.SendOutXOppMessage.ContainsKey(BattleScreen.TrainerSendOutOpp) Then
+                        Dim s1 As QueryObject = BattleScreen.FocusOppPlayer()
+                        Dim s2 As TextQueryObject = New TextQueryObject(BattleScreen.Trainer.SendOutXOppMessage(BattleScreen.TrainerSendOutOpp))
+                        BattleScreen.BattleQuery.AddRange({s1, s2})
+                    End If
+                Else
+                    If BattleScreen.Trainer.SendOutLastOppMessage <> "" Then
+                        Dim s1 As QueryObject = BattleScreen.FocusOppPlayer()
+                        Dim s2 As TextQueryObject = New TextQueryObject(BattleScreen.Trainer.SendOutLastOppMessage)
+                        BattleScreen.BattleQuery.AddRange({s1, s2})
+                    End If
+                End If
+            End If
         End Sub
 
 #End Region
@@ -8657,6 +8748,12 @@
                         BattleScreen.BattleQuery.Add(q)
 
                         BattleScreen.BattleQuery.Add(New TextQueryObject("You lost the battle!"))
+                        If BattleScreen.Trainer.PlayerLossMessage <> "" Then
+                            Dim q1 As New CameraQueryObject(New Vector3(15, 0, 13), Screen.Camera.Position, 0.03F, 0.03F, -(MathHelper.Pi * 0.5F), Screen.Camera.Yaw, 0.0F, Screen.Camera.Pitch, 0.04F, 0.02F)
+                            q1.ApplyCurrentCamera = True
+                            BattleScreen.BattleQuery.Add(q)
+                            BattleScreen.BattleQuery.Add(New TextQueryObject(BattleScreen.Trainer.PlayerLossMessage))
+                        End If
 
                         BattleScreen.BattleQuery.Add(New EndBattleQueryObject(True))
                 End Select
