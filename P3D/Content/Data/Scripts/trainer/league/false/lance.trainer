@@ -5,6 +5,12 @@ Money|5000
 IntroMessage|I've been waiting for you.*<player.name>!*I knew that you,~with your skills,~would eventually reach me here.*There's no need~for words now.*We will battle to~determine who is the~stronger of the two of us.*As the most powerful~trainer and as the~Pokémon League Champion...*I, Lance the dragon master,~accept your challenge!
 OutroMessage|...It's over.*But it's an odd feeling.*I'm not angry that I lost.*In fact,~I feel happy.*Happy that I witnessed the~rise of a great new Champion!
 DefeatMessage|...
+RecallOppMessage|<battle.pokemonname(0)>, I'm pulling you back!|1
+RecallOppMessage|That's it. Come back!|2
+RecallOppMessage|Excellent showing!|3
+SendOutOppMessage|You are brimming with love and trust toward Pokémon!|3
+FaintedOwnMessage|I am still the Champion! I won't hold anything back!|3
+SendOutLastOppMessage|Your strength is truly incredible!
 TextureID|Lance
 Region|Johto
 insightmusic|silence

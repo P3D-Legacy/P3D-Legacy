@@ -206,7 +206,8 @@ Namespace ScriptVersion2
             r(New ScriptCommand("Battle", "OutroMessage", "str", {New ScriptArgument("TrainerFilePath", ScriptArgument.ArgumentTypes.Str)}.ToList(), "Returns the outro message of the trainer loaded from the given ""TrainerFilePath"".", ",", True))
             r(New ScriptCommand("Battle", "Won", "bool", "Returns ""true"" if the player won the last battle. Returns ""false"" otherwise.", ",", True))
             r(New ScriptCommand("Battle", "Caught", "bool", "Returns ""true"" if the player caught the Pokémon in the last battle. Returns ""false"" otherwise.", ",", True))
-            r(New ScriptCommand("Battle", "TrainerName", "str", {New ScriptArgument("TrainerIndex", ScriptArgument.ArgumentTypes.Int, True, "0")}.ToList(), "Returns the name of one trainer that you're currently battling. Can be 0 or 1 for double battles. Only works during battles.", ",", True))
+            r(New ScriptCommand("Battle", "TrainerName", "str", {New ScriptArgument("TrainerIndex", ScriptArgument.ArgumentTypes.Int, True, "0")}.ToList(), "Returns the name of one trainer that you're currently battling. Can be 0 or 1 for double battles.", ",", True))
+            r(New ScriptCommand("Battle", "PokemonName", "str", {New ScriptArgument("OwnOrOppPokemon", ScriptArgument.ArgumentTypes.Int, True, "true")}.ToList(), "Returns the name of a Pokémon currently in battle. True = Your Pokémon, False = Opponent's Pokémon.", ",", True))
         End Sub
 
         Private Shared Sub DoLevel()

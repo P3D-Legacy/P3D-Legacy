@@ -33,7 +33,7 @@
                         index = CInt(argument)
                     End If
                     If CurrentScreen.Identification = Screen.Identifications.BattleScreen Then
-                        Select Case CInt(argument)
+                        Select Case index
                             Case 0
                                 Return CType(CurrentScreen, BattleSystem.BattleScreen).Trainer.Name
                             Case 1
@@ -41,7 +41,19 @@
                             Case Else
                                 Return CType(CurrentScreen, BattleSystem.BattleScreen).Trainer.Name
                         End Select
-
+                    End If
+                Case "pokemonname"
+                    Dim own As Boolean = True
+                    If argument <> "" Then
+                        own = CBool(argument)
+                    End If
+                    If CurrentScreen.Identification = Screen.Identifications.BattleScreen Then
+                        Select Case own
+                            Case True
+                                Return CType(CurrentScreen, BattleSystem.BattleScreen).OwnPokemon.GetDisplayName()
+                            Case False
+                                Return CType(CurrentScreen, BattleSystem.BattleScreen).OppPokemon.GetDisplayName()
+                        End Select
                     End If
             End Select
 
