@@ -67,19 +67,24 @@
                     canForget = True
                 End If
 
+                If Controls.Dismiss() = True Then
+                    Me.AttackIndex = 4
+                    chosen = True
+                End If
+
                 If Controls.Accept() = True Then
                     chosen = True
                 End If
             Else
                 Core.GameInstance.IsMouseVisible = True
 
-                If Controls.Right(True, True, False) = True And canForget = True Then
+                If Controls.Right(True, True, True) = True And canForget = True Then
                     index = 1
                 End If
-                If Controls.Left(True, True, False) = True Then
+                If Controls.Left(True, True, True) = True Then
                     index = 0
                 End If
-
+                Dim accepted As Boolean = False
                 For i = 0 To 1
                     If New Rectangle(CInt(Core.windowSize.Width / 2) - 182 + i * 192, 550, 128 + 32, 64 + 32).Contains(MouseHandler.MousePosition) = True Then
                         index = i
@@ -87,15 +92,17 @@
                         If MouseHandler.ButtonPressed(MouseHandler.MouseButtons.LeftButton) = True Then
                             Select Case index
                                 Case 0
+                                    accepted = True
                                     ClickNo()
                                 Case 1
+                                    accepted = True
                                     ClickYes()
                             End Select
                         End If
                     End If
                 Next
 
-                If Controls.Accept(False, True) = True Then
+                If Controls.Accept(False, True) = True OrElse accepted = False AndAlso Controls.Accept(True, False, False) = True Then
                     Select Case index
                         Case 0
                             ClickNo()
@@ -103,6 +110,10 @@
                             ClickYes()
                     End Select
                 End If
+                If Controls.Dismiss() = True Then
+                    ClickNo()
+                End If
+
             End If
         End If
     End Sub
@@ -117,10 +128,10 @@
             Exit Sub
         End If
 
-        Dim p As Vector2 = New Vector2(40, 50)
+        Dim p As Vector2 = New Vector2(96, 96)
 
         If Pokemon.Attacks.Count > 0 Then
-            Canvas.DrawImageBorder(CanvasTexture, 2, New Rectangle(CInt(p.X + 432 - 352 + AttackPos), CInt(p.Y + 18), 320, 384))
+            Canvas.DrawImageBorder(CanvasTexture, 2, New Rectangle(CInt(p.X), CInt(p.Y), 640, 416))
 
             Dim A As BattleSystem.Attack
             If AttackIndex = 4 Then
@@ -142,17 +153,17 @@
                     acc = "-"
                 End If
 
-                .DrawString(FontManager.MainFont, "Power: " & power & Environment.NewLine & "Accuracy: " & acc & Environment.NewLine & Environment.NewLine & Description, New Vector2(CInt(p.X + 432 - 300 + AttackPos), p.Y + 40), Color.Black)
-                .Draw(A.GetDamageCategoryImage(), New Rectangle(CInt(p.X + 432 - 144 + AttackPos + 24), CInt(p.Y + 40), 56, 28), Color.White)
+                .DrawString(FontManager.MainFont, "Power: " & power & Environment.NewLine & "Accuracy: " & acc & Environment.NewLine & Environment.NewLine & Description, New Vector2(CInt(p.X + 320 + 48), p.Y + 48), Color.Black)
+                .Draw(A.GetDamageCategoryImage(), New Rectangle(CInt(p.X + 640 - 16 - 56), CInt(p.Y + 48), 56, 28), Color.White)
             End With
 
-            Canvas.DrawImageBorder(CanvasTexture, 2, New Rectangle(CInt(p.X + 80), CInt(p.Y + 18), 320, 384))
-            Canvas.DrawImageBorder(CanvasTexture, 2, New Rectangle(CInt(p.X + 80), CInt(p.Y + 48 + 384), 320, 96))
+            Canvas.DrawImageBorder(CanvasTexture, 2, New Rectangle(CInt(p.X), CInt(p.Y), 320, 416))
+            Canvas.DrawImageBorder(CanvasTexture, 2, New Rectangle(CInt(p.X), CInt(p.Y + 416 + 48), 320, 128))
 
             For i = 0 To Me.Pokemon.Attacks.Count - 1
-                DrawAttack(i, Me.Pokemon.Attacks(i))
+                DrawAttack(p, i, Me.Pokemon.Attacks(i))
             Next
-            DrawAttack(4, newAttacks(0))
+            DrawAttack(p, 4, newAttacks(0))
         End If
 
         If chosen = True Then
@@ -178,6 +189,7 @@
             End If
 
             For i = 0 To endIndex
+                Dim FontColor As Color = Color.Black
                 Dim Text As String = "Learn"
                 If AttackIndex = 4 Then
                     Text = "OK"
@@ -189,12 +201,18 @@
 
                 If i = index Then
                     CanvasTexture = TextureManager.GetTexture("GUI\Menus\Menu", New Rectangle(0, 48, 48, 48), "")
+                    FontColor = Color.White
                 Else
                     CanvasTexture = TextureManager.GetTexture("GUI\Menus\Menu", New Rectangle(0, 0, 48, 48), "")
                 End If
 
                 Canvas.DrawImageBorder(CanvasTexture, 2, New Rectangle(CInt(Core.windowSize.Width / 2) - 182 + i * 192 + 22, 550, 128, 64))
-                Core.SpriteBatch.DrawString(FontManager.InGameFont, Text, New Vector2(CInt(Core.windowSize.Width / 2) - 164 + i * 192 + 22, 402 + 180), Color.Black)
+
+                If FontColor <> Color.Black Then
+                    Core.SpriteBatch.DrawString(FontManager.InGameFont, Text, New Vector2(CInt(Core.windowSize.Width / 2) - 164 + i * 192 + 22 + 2, 404 + 180 + 2), Color.Black)
+                End If
+                Core.SpriteBatch.DrawString(FontManager.InGameFont, Text, New Vector2(CInt(Core.windowSize.Width / 2) - 164 + i * 192 + 22, 404 + 180), FontColor)
+
             Next
         End If
 
@@ -210,13 +228,13 @@
         If currentCharIndex > (Pokemon.GetDisplayName() & " ").Length Then
             Dim pokeTexture = Pokemon.GetMenuTexture()
             Dim pokeTextureScale As Vector2 = New Vector2(CSng(32 / pokeTexture.Width), CSng(32 / pokeTexture.Height))
-            Core.SpriteBatch.Draw(pokeTexture, New Rectangle(CInt(FontManager.MainFont.MeasureString(Pokemon.GetDisplayName()).X + 120), 12, CInt(pokeTexture.Width * pokeTextureScale.X), CInt(pokeTexture.Height * pokeTextureScale.Y)), Color.White)
+            Core.SpriteBatch.Draw(pokeTexture, New Rectangle(CInt(FontManager.MainFont.MeasureString(Pokemon.GetDisplayName()).X + 120 + CInt(FontManager.MainFont.MeasureString(" ").X / 2)), 12, CInt(pokeTexture.Width * pokeTextureScale.X), CInt(pokeTexture.Height * pokeTextureScale.Y)), Color.White)
         End If
         If currentCharIndex > (Pokemon.GetDisplayName() & " ").Length + 1 Then
             If currentCharIndex < GetText().Length Then
-                Core.SpriteBatch.DrawString(FontManager.MainFont, ("wants to learn """ & newAttacks(0).Name & """. But " & Pokemon.GetDisplayName() & " can only learn 4 attacks." & Environment.NewLine & "Do you want " & Pokemon.GetDisplayName() & " to forget an attack to learn """ & newAttacks(0).Name & """?").Remove(currentCharIndex - (Pokemon.GetDisplayName() & " ").Length), New Vector2(FontManager.MainFont.MeasureString(Pokemon.GetDisplayName()).X + 152, 20), Color.White)
+                Core.SpriteBatch.DrawString(FontManager.MainFont, (" " & "wants to learn """ & newAttacks(0).Name & """. But " & Pokemon.GetDisplayName() & " can only learn 4 attacks." & Environment.NewLine & " " & "Do you want " & Pokemon.GetDisplayName() & " to forget an attack to learn """ & newAttacks(0).Name & """?").Remove(currentCharIndex - (Pokemon.GetDisplayName() & " ").Length), New Vector2(FontManager.MainFont.MeasureString(Pokemon.GetDisplayName()).X + 152, 20), Color.White)
             Else
-                Core.SpriteBatch.DrawString(FontManager.MainFont, "wants to learn """ & newAttacks(0).Name & """. But " & Pokemon.GetDisplayName() & " can only learn 4 attacks." & Environment.NewLine & "Do you want " & Pokemon.GetDisplayName() & " to forget an attack to learn """ & newAttacks(0).Name & """?", New Vector2(FontManager.MainFont.MeasureString(Pokemon.GetDisplayName()).X + 152, 20), Color.White)
+                Core.SpriteBatch.DrawString(FontManager.MainFont, " " & "wants to learn """ & newAttacks(0).Name & """. But " & Pokemon.GetDisplayName() & " can only learn 4 attacks." & Environment.NewLine & " " & "Do you want " & Pokemon.GetDisplayName() & " to forget an attack to learn """ & newAttacks(0).Name & """?", New Vector2(FontManager.MainFont.MeasureString(Pokemon.GetDisplayName()).X + 152, 20), Color.White)
             End If
         End If
     End Sub
@@ -225,24 +243,29 @@
         Return Pokemon.GetDisplayName() & " wants to learn """ & newAttacks(0).Name & """. But " & Pokemon.GetDisplayName() & " can only learn 4 attacks." & Environment.NewLine & "Do you want " & Pokemon.GetDisplayName() & " to forget an attack to learn """ & newAttacks(0).Name & """?"
     End Function
 
-    Private Sub DrawAttack(ByVal i As Integer, ByVal A As BattleSystem.Attack)
-        Dim p As New Vector2(140, 80 + i * (64 + 32))
+    Private Sub DrawAttack(ByVal StartPosition As Vector2, ByVal i As Integer, ByVal A As BattleSystem.Attack)
+        Dim p As New Vector2(StartPosition.X + 16, StartPosition.Y + 32 + i * (64 + 32))
 
         If i = 4 Then
-            p.Y += 32
+            p.Y += 80
         End If
 
         Dim CanvasTexture As Texture2D = TextureManager.GetTexture("GUI\Menus\Menu", New Rectangle(0, 0, 48, 48), "")
+        Dim FontColor As Color = Color.Black
         If Me.AttackIndex = i Then
-            CanvasTexture = TextureManager.GetTexture("GUI\Menus\Menu", New Rectangle(48, 0, 48, 48), "")
+            CanvasTexture = TextureManager.GetTexture("GUI\Menus\Menu", New Rectangle(0, 48, 48, 48), "")
+            FontColor = Color.White
         End If
 
-        Canvas.DrawImageBorder(CanvasTexture, 2, New Rectangle(CInt(p.X) + 12, CInt(p.Y), 256, 64))
+        Canvas.DrawImageBorder(CanvasTexture, 2, New Rectangle(CInt(p.X) + 16, CInt(p.Y), 256, 64))
 
         With Core.SpriteBatch
-            .DrawString(FontManager.MainFont, A.Name, New Vector2(CInt(p.X) + 30, CInt(p.Y + 26)), Color.Black)
+            If FontColor <> Color.Black Then
+                .DrawString(FontManager.MainFont, A.Name, New Vector2(CInt(p.X) + 34 + 2, CInt(p.Y + 26 + 2)), Color.Black)
+            End If
+            .DrawString(FontManager.MainFont, A.Name, New Vector2(CInt(p.X) + 34, CInt(p.Y + 26)), FontColor)
 
-            Dim c As Color = Color.Black
+            Dim c As Color = FontColor
             Dim per As Integer = CInt((A.CurrentPP / A.MaxPP) * 100)
 
             If per <= 33 And per > 10 Then
@@ -251,10 +274,13 @@
                 c = Color.IndianRed
             End If
 
-            .DrawString(FontManager.MainFont, "PP " & A.CurrentPP & " / " & A.MaxPP, New Vector2(CInt(p.X) + 144, CInt(p.Y + 58)), c)
-
-            .Draw(TextureManager.GetTexture(Element.GetElementTexturePath(), A.Type.GetElementImage(), ""), New Rectangle(CInt(p.X) + 30, CInt(p.Y + 54), 48, 16), Color.White)
+            If c <> Color.Black Then
+                .DrawString(FontManager.MainFont, Localization.GetString("PP") & " " & A.CurrentPP & " / " & A.MaxPP, New Vector2(p.X + 96 + 2, CInt(p.Y + 56 + 2)), Color.Black)
+            End If
+            .DrawString(FontManager.MainFont, Localization.GetString("PP") & " " & A.CurrentPP & " / " & A.MaxPP, New Vector2(p.X + 96, CInt(p.Y + 56)), c)
+            .Draw(TextureManager.GetTexture(Element.GetElementTexturePath(), A.Type.GetElementImage(), ""), New Rectangle(CInt(p.X + 34), CInt(p.Y + 56), 48, 16), Color.White)
         End With
+
     End Sub
 
     Private Sub ClickYes()

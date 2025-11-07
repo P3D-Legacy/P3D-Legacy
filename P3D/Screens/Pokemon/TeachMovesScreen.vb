@@ -122,26 +122,7 @@
             Dim A As BattleSystem.Attack = MovesList(Me.index)
 
             With Core.SpriteBatch
-                Dim fullText As String = A.Description
-                Dim t As String = ""
-                Dim i As Integer = 0
-                Dim n As String = ""
-                For i = 0 To fullText.Length - 1
-                    Dim c As Char = CChar(fullText(i).ToString().Replace("’", "'"))
-
-                    If c = CChar(" ") Then
-                        If FontManager.MainFont.MeasureString(n & c).X > 170 Then
-                            t &= Environment.NewLine
-                            n = ""
-                        Else
-                            t &= " "
-                            n &= " "
-                        End If
-                    Else
-                        t &= c
-                        n &= c
-                    End If
-                Next
+                Dim Description As String = A.Description.Replace("’", "'").CropStringToWidth(FontManager.MainFont, 188)
 
                 Dim power As String = A.Power.ToString()
                 If power = "0" Then
@@ -153,7 +134,7 @@
                     acc = "-"
                 End If
 
-                .DrawString(FontManager.MainFont, "Power: " & power & Environment.NewLine & "Accuracy: " & acc & Environment.NewLine & Environment.NewLine & t, New Vector2(CInt(60 + 864 + 48), 128), Color.Black)
+                .DrawString(FontManager.MainFont, "Power: " & power & Environment.NewLine & "Accuracy: " & acc & Environment.NewLine & Environment.NewLine & Description, New Vector2(CInt(60 + 864 + 48), 128), Color.Black)
                 .Draw(A.GetDamageCategoryImage(), New Rectangle(CInt(60 + 864 + 320 - 16 - 56), 128, 56, 28), Color.White)
             End With
 
