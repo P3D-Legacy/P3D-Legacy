@@ -55,6 +55,35 @@
                                 Return CType(CurrentScreen, BattleSystem.BattleScreen).OppPokemon.GetDisplayName()
                         End Select
                     End If
+                Case "pokemonitem"
+                    Dim own As Boolean = True
+                    If argument <> "" Then
+                        own = CBool(argument)
+                    End If
+                    If CurrentScreen.Identification = Screen.Identifications.BattleScreen Then
+                        Select Case own
+                            Case True
+                                If CType(CurrentScreen, BattleSystem.BattleScreen).OwnPokemon.Item IsNot Nothing Then
+                                    If CType(CurrentScreen, BattleSystem.BattleScreen).OwnPokemon.Item.IsGameModeItem = True Then
+                                        Return CType(CurrentScreen, BattleSystem.BattleScreen).OwnPokemon.Item.gmID
+                                    Else
+                                        Return CType(CurrentScreen, BattleSystem.BattleScreen).OwnPokemon.Item.ID
+                                    End If
+                                Else
+                                    Return -1
+                                End If
+                            Case False
+                                If CType(CurrentScreen, BattleSystem.BattleScreen).OppPokemon.Item IsNot Nothing Then
+                                    If CType(CurrentScreen, BattleSystem.BattleScreen).OppPokemon.Item.IsGameModeItem = True Then
+                                        Return CType(CurrentScreen, BattleSystem.BattleScreen).OppPokemon.Item.gmID
+                                    Else
+                                        Return CType(CurrentScreen, BattleSystem.BattleScreen).OppPokemon.Item.ID
+                                    End If
+                                Else
+                                    Return -1
+                                End If
+                        End Select
+                    End If
             End Select
 
             Return DEFAULTNULL

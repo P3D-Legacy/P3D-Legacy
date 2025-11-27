@@ -208,6 +208,7 @@ Namespace ScriptVersion2
             r(New ScriptCommand("Battle", "Caught", "bool", "Returns ""true"" if the player caught the Pokémon in the last battle. Returns ""false"" otherwise.", ",", True))
             r(New ScriptCommand("Battle", "TrainerName", "str", {New ScriptArgument("TrainerIndex", ScriptArgument.ArgumentTypes.Int, True, "0")}.ToList(), "Returns the name of one trainer that you're currently battling. Can be 0 or 1 for double battles.", ",", True))
             r(New ScriptCommand("Battle", "PokemonName", "str", {New ScriptArgument("OwnOrOppPokemon", ScriptArgument.ArgumentTypes.Int, True, "true")}.ToList(), "Returns the name of a Pokémon currently in battle. True = Your Pokémon, False = Opponent's Pokémon.", ",", True))
+            r(New ScriptCommand("Battle", "PokemonItem", "str", {New ScriptArgument("OwnOrOppPokemon", ScriptArgument.ArgumentTypes.Int, True, "true")}.ToList(), "Returns the Item ID of a Pokémon currently in battle. True = Your Pokémon, False = Opponent's Pokémon.", ",", True))
         End Sub
 
         Private Shared Sub DoLevel()
@@ -338,7 +339,7 @@ Namespace ScriptVersion2
             r(New ScriptCommand("screen", "setfade", {New ScriptArgument("alpha", ScriptArgument.ArgumentTypes.Int, {"0-255"})}.ToList(), "Sets the alpha value of the screen fade."))
             r(New ScriptCommand("screen", "Credits", {New ScriptArgument("Ending", ScriptArgument.ArgumentTypes.Str, True, "Johto"), New ScriptArgument("CanBeSkipped", ScriptArgument.ArgumentTypes.Bool, True, "false")}.ToList(), "Displays the credits scene (optionally for a different set of maps/credits, and optionally skippable)."))
             r(New ScriptCommand("screen", "halloffame", {New ScriptArgument("displayEntryIndex", ScriptArgument.ArgumentTypes.Int, True, "")}.ToList(), "Displays the Hall of Fame. If the argument ""displayEntryIndex"" is not empty, it displays only that entry."))
-            r(New ScriptCommand("screen", "teachmoves", {New ScriptArgument("pokemonIndex", ScriptArgument.ArgumentTypes.Int),
+            r(New ScriptCommand("screen", "teachmoves", {New ScriptArgument("PokémonIndex", ScriptArgument.ArgumentTypes.Int),
                                                      New ScriptArgument("moveIDs", ScriptArgument.ArgumentTypes.IntArr, True, "")}.ToList(), "Displays a move learn screen. If the argument ""moveIDs"" is left empty, it defaults to the Pokémon's tutor moves."))
             r(New ScriptCommand("screen", "mailsystem", "Opens the PC Inbox screen."))
             r(New ScriptCommand("screen", "pvp", "Opens the PvP lobby screen (not finished yet, don't use)."))
@@ -347,7 +348,7 @@ Namespace ScriptVersion2
                                                 New ScriptArgument("currentText", ScriptArgument.ArgumentTypes.Str, True, ""),
                                                 New ScriptArgument("maxChars", ScriptArgument.ArgumentTypes.Int, True, "14")}.ToList(), "Displays the Input screen. The input can be retrieved with <system.lastinput>."))
             r(New ScriptCommand("screen", "mysteryevent", "Opens the Mystery Event screen."))
-            r(New ScriptCommand("screen", "showpokemon", {New ScriptArgument("PokemonID", ScriptArgument.ArgumentTypes.Int),
+            r(New ScriptCommand("screen", "showPokémon", {New ScriptArgument("PokémonID", ScriptArgument.ArgumentTypes.Int),
                                                 New ScriptArgument("Shiny", ScriptArgument.ArgumentTypes.Bool),
                                                 New ScriptArgument("Front", ScriptArgument.ArgumentTypes.Bool)}.ToList(), "Displays a box and an image of the specified Pokemon."))
             r(New ScriptCommand("screen", "showimage", {New ScriptArgument("Texture", ScriptArgument.ArgumentTypes.Str),
@@ -405,19 +406,19 @@ Namespace ScriptVersion2
 
         Private Shared Sub DoStorage()
             ' Commands:
-            r(New ScriptCommand("storage", "set", {New ScriptArgument("type", ScriptArgument.ArgumentTypes.Str, {"pokemon", "item", "string", "integer", "boolean", "single", "str", "int", "bool", "sng"}),
+            r(New ScriptCommand("storage", "set", {New ScriptArgument("type", ScriptArgument.ArgumentTypes.Str, {"Pokémon", "item", "string", "integer", "boolean", "single", "str", "int", "bool", "sng"}),
                                                New ScriptArgument("name", ScriptArgument.ArgumentTypes.Str),
                                                New ScriptArgument("value", ScriptArgument.ArgumentTypes.Str)}.ToList(), "Creates or overwrites a storage with the given name and type."))
             r(New ScriptCommand("storage", "clear", "Clears all storage items."))
-            r(New ScriptCommand("storage", "update", {New ScriptArgument("type", ScriptArgument.ArgumentTypes.Str, {"pokemon", "item", "string", "integer", "boolean", "single", "str", "int", "bool", "sng"}),
+            r(New ScriptCommand("storage", "update", {New ScriptArgument("type", ScriptArgument.ArgumentTypes.Str, {"Pokémon", "item", "string", "integer", "boolean", "single", "str", "int", "bool", "sng"}),
                                                New ScriptArgument("name", ScriptArgument.ArgumentTypes.Str),
                                                New ScriptArgument("operation", ScriptArgument.ArgumentTypes.Str, {"add", "substract", "multiply", "divide"}),
                                                New ScriptArgument("value", ScriptArgument.ArgumentTypes.Str)}.ToList(), "Updates the value in a storage with the given name and type."))
 
             ' Constructs:
-            r(New ScriptCommand("storage", "get", "str", {New ScriptArgument("type", ScriptArgument.ArgumentTypes.Str, {"pokemon", "item", "string", "integer", "boolean", "single", "str", "int", "bool", "sng"}),
+            r(New ScriptCommand("storage", "get", "str", {New ScriptArgument("type", ScriptArgument.ArgumentTypes.Str, {"Pokémon", "item", "string", "integer", "boolean", "single", "str", "int", "bool", "sng"}),
                                                       New ScriptArgument("name", ScriptArgument.ArgumentTypes.Str)}.ToList(), "Returns the value for the storage with the type ""type"" and name ""name"".", ",", True))
-            r(New ScriptCommand("storage", "count", "int", {New ScriptArgument("type", ScriptArgument.ArgumentTypes.Str, {"pokemon", "item", "string", "integer", "boolean", "single", "str", "int", "bool", "sng"})}.ToList(), "Returns the amount of items in the storage for a specific type.", ",", True))
+            r(New ScriptCommand("storage", "count", "int", {New ScriptArgument("type", ScriptArgument.ArgumentTypes.Str, {"Pokémon", "item", "string", "integer", "boolean", "single", "str", "int", "bool", "sng"})}.ToList(), "Returns the amount of items in the storage for a specific type.", ",", True))
         End Sub
 
         Private Shared Sub DoSystem()
@@ -457,21 +458,21 @@ Namespace ScriptVersion2
 
         Private Shared Sub DoEnvironment()
             ' Commands:
-            r(New ScriptCommand("environment", "setweather", {New ScriptArgument("weatherType", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Changes the weather type of the current map."))
-            r(New ScriptCommand("environment", "setregionweather", {New ScriptArgument("weatherID", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Changes the weather of the current region."))
-            r(New ScriptCommand("environment", "resetregionweather", "Resets the weather to be based on the current season."))
-            r(New ScriptCommand("environment", "setseason", {New ScriptArgument("seasonID", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Changes the season. Use -1 as the argument to change back to the default season."))
-            r(New ScriptCommand("environment", "setcanfly", {New ScriptArgument("canfly", ScriptArgument.ArgumentTypes.Bool)}.ToList(), "Sets the ""CanFly"" parameter of the current map."))
-            r(New ScriptCommand("environment", "setcandig", {New ScriptArgument("candig", ScriptArgument.ArgumentTypes.Bool)}.ToList(), "Sets the ""CanDig"" parameter of the current map."))
-            r(New ScriptCommand("environment", "setcanteleport", {New ScriptArgument("canteleport", ScriptArgument.ArgumentTypes.Bool)}.ToList(), "Sets the ""CanTeleport"" parameter of the current map."))
-            r(New ScriptCommand("environment", "setwildpokemongrass", {New ScriptArgument("canencounter", ScriptArgument.ArgumentTypes.Bool)}.ToList(), "Sets the ""WildPokemonGrass"" parameter of the current map."))
-            r(New ScriptCommand("environment", "setwildpokemonwater", {New ScriptArgument("canencounter", ScriptArgument.ArgumentTypes.Bool)}.ToList(), "Sets the ""WildPokemonWater"" parameter of the current map."))
-            r(New ScriptCommand("environment", "setwildpokemoneverywhere", {New ScriptArgument("canencounter", ScriptArgument.ArgumentTypes.Bool)}.ToList(), "Sets the ""WildPokemonFloor"" parameter of the current map."))
-            r(New ScriptCommand("environment", "setisdark", {New ScriptArgument("isDark", ScriptArgument.ArgumentTypes.Bool)}.ToList(), "Sets the ""IsDark"" parameter of the current map."))
-            r(New ScriptCommand("environment", "setrenderdistance", {New ScriptArgument("distance", ScriptArgument.ArgumentTypes.Str, {"0-4", "tiny", "small", "normal", "far", "extreme"})}.ToList(), "Sets the render distance."))
-            r(New ScriptCommand("environment", "toggledarkness", "Toggles the ""IsDark"" parameter of the current map."))
-            r(New ScriptCommand("environment", "setdaytime", {New ScriptArgument("daytime", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Sets the daytime to use for the Outside EnvironmentType (0). Can be 1-4, any other number resets to the default daytime."))
-            r(New ScriptCommand("environment", "setenvironmenttype", {New ScriptArgument("environmenttype", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Sets the ""EnvironmentType"" parameter of the map, which also changes the sky texture and sometimes adds particles. Value can be 0-5."))
+            r(New ScriptCommand("Environment", "SetWeather", {New ScriptArgument("weatherType", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Changes the weather type of the current map."))
+            r(New ScriptCommand("Environment", "SetRegionWeather", {New ScriptArgument("weatherID", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Changes the weather of the current region."))
+            r(New ScriptCommand("Environment", "ResetRegionWeather", "Resets the weather to be based on the current season."))
+            r(New ScriptCommand("Environment", "SetSeason", {New ScriptArgument("seasonID", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Changes the season. Use -1 as the argument to change back to the default season."))
+            r(New ScriptCommand("Environment", "SetCanFly", {New ScriptArgument("canfly", ScriptArgument.ArgumentTypes.Bool)}.ToList(), "Sets the ""CanFly"" parameter of the current map."))
+            r(New ScriptCommand("Environment", "SetCanDig", {New ScriptArgument("candig", ScriptArgument.ArgumentTypes.Bool)}.ToList(), "Sets the ""CanDig"" parameter of the current map."))
+            r(New ScriptCommand("Environment", "SetCanTeleport", {New ScriptArgument("canteleport", ScriptArgument.ArgumentTypes.Bool)}.ToList(), "Sets the ""CanTeleport"" parameter of the current map."))
+            r(New ScriptCommand("Environment", "SetWildPokemonGrass", {New ScriptArgument("canencounter", ScriptArgument.ArgumentTypes.Bool)}.ToList(), "Sets the ""WildPokemonGrass"" parameter of the current map."))
+            r(New ScriptCommand("Environment", "SetWildPokemonWater", {New ScriptArgument("canencounter", ScriptArgument.ArgumentTypes.Bool)}.ToList(), "Sets the ""WildPokemonWater"" parameter of the current map."))
+            r(New ScriptCommand("Environment", "SetWildPokemonEverywhere", {New ScriptArgument("canencounter", ScriptArgument.ArgumentTypes.Bool)}.ToList(), "Sets the ""WildPokemonFloor"" parameter of the current map."))
+            r(New ScriptCommand("Environment", "SetIsDark", {New ScriptArgument("isDark", ScriptArgument.ArgumentTypes.Bool)}.ToList(), "Sets the ""IsDark"" parameter of the current map."))
+            r(New ScriptCommand("Environment", "SetRenderDistance", {New ScriptArgument("distance", ScriptArgument.ArgumentTypes.Str, {"0-4", "tiny", "small", "normal", "far", "extreme"})}.ToList(), "Sets the render distance."))
+            r(New ScriptCommand("Environment", "ToggleDarkness", "Toggles the ""IsDark"" parameter of the current map."))
+            r(New ScriptCommand("Environment", "SetDayTime", {New ScriptArgument("daytime", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Sets the daytime to use for the Outside EnvironmentType (0). Can be 1-4, any other number resets to the default daytime."))
+            r(New ScriptCommand("Environment", "SetEnvironmentType", {New ScriptArgument("environmenttype", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Sets the ""EnvironmentType"" parameter of the map, which also changes the sky texture and sometimes adds particles. Value can be 0-5."))
             ' Constructs:
             r(New ScriptCommand("environment", "daytime", "str", "Returns the current DayTime of the game.", ",", True))
             r(New ScriptCommand("environment", "daytimeid", "int", "Returns the current DayTimeID of the game.", ",", True))
@@ -506,7 +507,7 @@ Namespace ScriptVersion2
             r(New ScriptCommand("player", "receivepokegear", "Makes the Pokégear accessible for the player."))
             r(New ScriptCommand("player", "renamerival", "Opens the rival rename screen."))
             r(New ScriptCommand("player", "wearskin", {New ScriptArgument("skin", ScriptArgument.ArgumentTypes.Str)}.ToList(), "Changes the player skin temporarily."))
-            r(New ScriptCommand("player", "setskin", {New ScriptArgument("skin", ScriptArgument.ArgumentTypes.Str)}.ToList(), "Changes the player skin permanently."))
+            r(New ScriptCommand("player", "Setskin", {New ScriptArgument("skin", ScriptArgument.ArgumentTypes.Str)}.ToList(), "Changes the player skin permanently."))
             r(New ScriptCommand("player", "move", {New ScriptArgument("steps", ScriptArgument.ArgumentTypes.Sng)}.ToList(), "Starts the player movement."))
             r(New ScriptCommand("player", "moveasync", {New ScriptArgument("steps", ScriptArgument.ArgumentTypes.Str)}.ToList(), "Starts the async player movement."))
             r(New ScriptCommand("player", "turn", {New ScriptArgument("turns", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Adds to the direction the player faces and starts the turning."))
@@ -637,7 +638,7 @@ Namespace ScriptVersion2
             r(New ScriptCommand("npc", "additionalvalue", "int", {New ScriptArgument("npcID", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Returns the additional value of the selected NPC.", ",", True))
             r(New ScriptCommand("npc", "movement", "str", {New ScriptArgument("npcID", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Returns the movement type of the selected NPC.", ",", True))
             r(New ScriptCommand("npc", "hasmoverectangles", "bool", {New ScriptArgument("npcID", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Returns if the selected NPC has any movement rectangles.", ",", True))
-            r(New ScriptCommand("npc", "trainertexture", "str", {New ScriptArgument("trainerfile", ScriptArgument.ArgumentTypes.Str)}.ToList(), "Returns the texture name of the given trainer. Trainer file starts at the ""Trainer\"" path and must not have the "".trainer"" extension.", ",", True))
+            r(New ScriptCommand("npc", "trainertexture", "str", {New ScriptArgument("TrainerFilePath", ScriptArgument.ArgumentTypes.Str)}.ToList(), "Returns the texture name of the given trainer. Trainer file starts at the ""Trainer\"" path and must not have the "".trainer"" extension.", ",", True))
         End Sub
 
         Private Shared Sub DoRadio()
@@ -664,8 +665,8 @@ Namespace ScriptVersion2
             r(New ScriptCommand("pokedex", "getspecies", "str", {New ScriptArgument("ID", ScriptArgument.ArgumentTypes.Str)}.ToList(), "Returns the species of the Pokémon.", "", True))
             r(New ScriptCommand("pokedex", "getname", "str", {New ScriptArgument("ID", ScriptArgument.ArgumentTypes.Str)}.ToList(), "Returns the name of the Pokémon.", "", True))
             r(New ScriptCommand("pokedex", "getability", "int", {New ScriptArgument("ID", ScriptArgument.ArgumentTypes.Str), New ScriptArgument("requestType", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Returns one of the abilities of the Pokémon based on the requestType. 0 = random 1st or 2nd, 1 = first ability, 2 = second ability, 3 = hidden ability.", "", True))
-            r(New ScriptCommand("pokedex", "pokemoncaught", "bool", {New ScriptArgument("ID", ScriptArgument.ArgumentTypes.Str)}.ToList(), "Returns if the specified Pokémon has been caught.", "", True))
-            r(New ScriptCommand("pokedex", "pokemonseen", "bool", {New ScriptArgument("ID", ScriptArgument.ArgumentTypes.Str)}.ToList(), "Returns if the specified Pokémon has been seen.", "", True))
+            r(New ScriptCommand("pokedex", "Pokémoncaught", "bool", {New ScriptArgument("ID", ScriptArgument.ArgumentTypes.Str)}.ToList(), "Returns if the specified Pokémon has been caught.", "", True))
+            r(New ScriptCommand("pokedex", "Pokémonseen", "bool", {New ScriptArgument("ID", ScriptArgument.ArgumentTypes.Str)}.ToList(), "Returns if the specified Pokémon has been seen.", "", True))
 
         End Sub
 
@@ -735,41 +736,41 @@ Namespace ScriptVersion2
         End Sub
         Private Shared Sub DoPokemon()
             ' Commands:
-            r(New ScriptCommand("pokemon", "cry", {New ScriptArgument("pokemonID", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Plays the cry of the given Pokémon."))
-            r(New ScriptCommand("pokemon", "remove", {New ScriptArgument("pokemonIndex", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Removes the Pokémon at the given party index."))
-            r(New ScriptCommand("pokemon", "add", {New ScriptArgument("pokemonData", ScriptArgument.ArgumentTypes.PokemonData)}.ToList(), "Adds the Pokémon to the player's party."))
-            r(New ScriptCommand("pokemon", "add", {New ScriptArgument("pokemonID", ScriptArgument.ArgumentTypes.Int),
+            r(New ScriptCommand("Pokémon", "cry", {New ScriptArgument("PokémonID", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Plays the cry of the given Pokémon."))
+            r(New ScriptCommand("Pokémon", "remove", {New ScriptArgument("PokémonIndex", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Removes the Pokémon at the given party index."))
+            r(New ScriptCommand("Pokémon", "add", {New ScriptArgument("PokémonData", ScriptArgument.ArgumentTypes.PokemonData)}.ToList(), "Adds the Pokémon to the player's party."))
+            r(New ScriptCommand("Pokémon", "add", {New ScriptArgument("PokémonID", ScriptArgument.ArgumentTypes.Int),
                                                New ScriptArgument("level", ScriptArgument.ArgumentTypes.Int),
                                                New ScriptArgument("method", ScriptArgument.ArgumentTypes.Str, True, "random reason"),
                                                New ScriptArgument("ballID", ScriptArgument.ArgumentTypes.Int, True, "5"),
                                                New ScriptArgument("location", ScriptArgument.ArgumentTypes.Str, True, "Current location"),
                                                New ScriptArgument("isEgg", ScriptArgument.ArgumentTypes.Bool, True, "false"),
                                                New ScriptArgument("trainerName", ScriptArgument.ArgumentTypes.Str, True, "Current TrainerName")}.ToList(), "Adds the Pokémon with the given arguments to the player's party."))
-            r(New ScriptCommand("pokemon", "setadditionalvalue", {New ScriptArgument("pokemonIndex", ScriptArgument.ArgumentTypes.Int),
+            r(New ScriptCommand("Pokémon", "setadditionalvalue", {New ScriptArgument("PokémonIndex", ScriptArgument.ArgumentTypes.Int),
                                                               New ScriptArgument("data", ScriptArgument.ArgumentTypes.Str)}.ToList(), "Set the additional data for a Pokémon in the player's party."))
-            r(New ScriptCommand("pokemon", "setnickname", {New ScriptArgument("pokemonIndex", ScriptArgument.ArgumentTypes.Int),
+            r(New ScriptCommand("Pokémon", "setnickname", {New ScriptArgument("PokémonIndex", ScriptArgument.ArgumentTypes.Int),
                                                        New ScriptArgument("nickName", ScriptArgument.ArgumentTypes.Str)}.ToList(), "Set the nickname for a Pokémon in the player's party."))
-            r(New ScriptCommand("pokemon", "setstat", {New ScriptArgument("pokemonIndex", ScriptArgument.ArgumentTypes.Int),
+            r(New ScriptCommand("Pokémon", "setstat", {New ScriptArgument("PokémonIndex", ScriptArgument.ArgumentTypes.Int),
                                                    New ScriptArgument("statName", ScriptArgument.ArgumentTypes.Str, {"maxhp", "hp", "chp", "atk", "attack", "def", "defense", "spatk", "specialattack", "spattack", "spdef", "specialdefense", "spdefense", "speed"}),
                                                    New ScriptArgument("statValue", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Set the value of a stat for a Pokémon in the player's party."))
-            r(New ScriptCommand("pokemon", "clear", "Clears the player's party."))
-            r(New ScriptCommand("pokemon", "removeattack", {New ScriptArgument("pokemonIndex", ScriptArgument.ArgumentTypes.Int),
+            r(New ScriptCommand("Pokémon", "clear", "Clears the player's party."))
+            r(New ScriptCommand("Pokémon", "removeattack", {New ScriptArgument("PokémonIndex", ScriptArgument.ArgumentTypes.Int),
                                                         New ScriptArgument("attackIndex", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Removes the move at the given index from a Pokémon in the player's party."))
-            r(New ScriptCommand("pokemon", "removeattackid", {New ScriptArgument("pokemonIndex", ScriptArgument.ArgumentTypes.Int),
+            r(New ScriptCommand("Pokémon", "removeattackid", {New ScriptArgument("PokémonIndex", ScriptArgument.ArgumentTypes.Int),
                                                         New ScriptArgument("attackID", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Removes a move with the given ID from a Pokémon in the player's party if available."))
-            r(New ScriptCommand("pokemon", "clearattacks", {New ScriptArgument("pokemonIndex", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Clears all moves from a Pokémon in the player's party."))
-            r(New ScriptCommand("pokemon", "addattack", {New ScriptArgument("pokemonIndex", ScriptArgument.ArgumentTypes.Int),
+            r(New ScriptCommand("Pokémon", "clearattacks", {New ScriptArgument("PokémonIndex", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Clears all moves from a Pokémon in the player's party."))
+            r(New ScriptCommand("Pokémon", "addattack", {New ScriptArgument("PokémonIndex", ScriptArgument.ArgumentTypes.Int),
                                                      New ScriptArgument("attackID", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Adds the move to a Pokémon in the player's party."))
-            r(New ScriptCommand("pokemon", "setshiny", {New ScriptArgument("pokemonIndex", ScriptArgument.ArgumentTypes.Int),
+            r(New ScriptCommand("Pokémon", "setshiny", {New ScriptArgument("PokémonIndex", ScriptArgument.ArgumentTypes.Int),
                                                     New ScriptArgument("shiny", ScriptArgument.ArgumentTypes.Bool)}.ToList(), "Sets the Shiny value of a Pokémon in the player's party."))
-            r(New ScriptCommand("pokemon", "setshinyall", {New ScriptArgument("shiny", ScriptArgument.ArgumentTypes.Bool)}.ToList(), "Sets the Shiny value of all Pokémon in the player's party."))
-            r(New ScriptCommand("pokemon", "changelevel", {New ScriptArgument("pokemonIndex", ScriptArgument.ArgumentTypes.Int),
+            r(New ScriptCommand("Pokémon", "setshinyall", {New ScriptArgument("shiny", ScriptArgument.ArgumentTypes.Bool)}.ToList(), "Sets the Shiny value of all Pokémon in the player's party."))
+            r(New ScriptCommand("Pokémon", "changelevel", {New ScriptArgument("PokémonIndex", ScriptArgument.ArgumentTypes.Int),
                                                        New ScriptArgument("newLevel", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Sets the level of a Pokémon in the player's party."))
-            r(New ScriptCommand("pokemon", "gainexp", {New ScriptArgument("pokemonIndex", ScriptArgument.ArgumentTypes.Int),
+            r(New ScriptCommand("Pokémon", "gainexp", {New ScriptArgument("PokémonIndex", ScriptArgument.ArgumentTypes.Int),
                                                    New ScriptArgument("expAmount", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Adds Experience to the Experience value of a Pokémon in the player's party."))
-            r(New ScriptCommand("pokemon", "setnature", {New ScriptArgument("pokemonIndex", ScriptArgument.ArgumentTypes.Int),
+            r(New ScriptCommand("Pokémon", "setnature", {New ScriptArgument("PokémonIndex", ScriptArgument.ArgumentTypes.Int),
                                                      New ScriptArgument("natureID", ScriptArgument.ArgumentTypes.Int, {"0-24"})}.ToList(), "Sets the Nature of a Pokémon in the player's party."))
-            r(New ScriptCommand("pokemon", "npctrade", {New ScriptArgument("ownPokemonID", ScriptArgument.ArgumentTypes.Int),
+            r(New ScriptCommand("Pokémon", "npctrade", {New ScriptArgument("ownPokemonID", ScriptArgument.ArgumentTypes.Int),
                                                     New ScriptArgument("oppPokemonID", ScriptArgument.ArgumentTypes.Int),
                                                     New ScriptArgument("level", ScriptArgument.ArgumentTypes.Int),
                                                     New ScriptArgument("genderID", ScriptArgument.ArgumentTypes.Int, {"0-2"}),
@@ -785,80 +786,80 @@ Namespace ScriptVersion2
                                                     New ScriptArgument("message1", ScriptArgument.ArgumentTypes.Str),
                                                     New ScriptArgument("message2", ScriptArgument.ArgumentTypes.Str),
                                                     New ScriptArgument("register", ScriptArgument.ArgumentTypes.Str)}.ToList(), "Trades a Pokémon with an NPC.", "|", False))
-            r(New ScriptCommand("pokemon", "rename", {New ScriptArgument("pokemonIndex", ScriptArgument.ArgumentTypes.Str, {"0-5", "last"}),
+            r(New ScriptCommand("Pokémon", "rename", {New ScriptArgument("PokémonIndex", ScriptArgument.ArgumentTypes.Str, {"0-5", "last"}),
                                                   New ScriptArgument("OTcheck", ScriptArgument.ArgumentTypes.Bool)}.ToList(), "Opens the Name Rater rename feature."))
-            r(New ScriptCommand("pokemon", "read", {New ScriptArgument("pokemonIndex", ScriptArgument.ArgumentTypes.Str, {"[empty],0-5"})}.ToList(), "Displays the reader's dialogue."))
-            r(New ScriptCommand("pokemon", "heal", {New ScriptArgument("pokemonIndicies", ScriptArgument.ArgumentTypes.IntArr)}.ToList(), "Heals the given Pokémon."))
-            r(New ScriptCommand("pokemon", "setfriendship", {New ScriptArgument("pokemonIndex", ScriptArgument.ArgumentTypes.Str),
+            r(New ScriptCommand("Pokémon", "read", {New ScriptArgument("PokémonIndex", ScriptArgument.ArgumentTypes.Str, {"[empty],0-5"})}.ToList(), "Displays the reader's dialogue."))
+            r(New ScriptCommand("Pokémon", "heal", {New ScriptArgument("PokémonIndicies", ScriptArgument.ArgumentTypes.IntArr)}.ToList(), "Heals the given Pokémon."))
+            r(New ScriptCommand("Pokémon", "setfriendship", {New ScriptArgument("PokémonIndex", ScriptArgument.ArgumentTypes.Str),
                                                          New ScriptArgument("friendship", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Sets the friendship value for a Pokémon in the player's party."))
-            r(New ScriptCommand("pokemon", "addfriendship", {New ScriptArgument("pokemonIndex", ScriptArgument.ArgumentTypes.Str),
+            r(New ScriptCommand("Pokémon", "addfriendship", {New ScriptArgument("PokémonIndex", ScriptArgument.ArgumentTypes.Str),
                                                          New ScriptArgument("friendship", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Adds to the frienship value of a Pokémon in the player's party."))
-            r(New ScriptCommand("pokemon", "select", {New ScriptArgument("canExit", ScriptArgument.ArgumentTypes.Bool, True, "false"),
+            r(New ScriptCommand("Pokémon", "select", {New ScriptArgument("canExit", ScriptArgument.ArgumentTypes.Bool, True, "false"),
                                                          New ScriptArgument("canChooseEgg", ScriptArgument.ArgumentTypes.Bool, True, "true"),
                                                          New ScriptArgument("canChooseFainted", ScriptArgument.ArgumentTypes.Bool, True, "true"),
                                                          New ScriptArgument("canlearnAttack", ScriptArgument.ArgumentTypes.Int, True, "-1")}.ToList(), "Opens the Pokémon select screen. If canLearnAttack is set to an attack ID, it will be visible which Pokémon can learn that move."))
-            r(New ScriptCommand("pokemon", "selectmove", {New ScriptArgument("pokemonIndex", ScriptArgument.ArgumentTypes.Int),
+            r(New ScriptCommand("Pokémon", "selectmove", {New ScriptArgument("PokémonIndex", ScriptArgument.ArgumentTypes.Int),
                                                          New ScriptArgument("canChooseHMMove", ScriptArgument.ArgumentTypes.Bool),
                                                          New ScriptArgument("canExit", ScriptArgument.ArgumentTypes.Bool)}.ToList(), "Opens the Move Selection screen."))
-            r(New ScriptCommand("pokemon", "calcstats", {New ScriptArgument("pokemonIndex", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Recalculates the stats for the given Pokémon."))
-            r(New ScriptCommand("pokemon", "learnattack", {New ScriptArgument("pokemonIndex", ScriptArgument.ArgumentTypes.Int),
+            r(New ScriptCommand("Pokémon", "calcstats", {New ScriptArgument("PokémonIndex", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Recalculates the stats for the given Pokémon."))
+            r(New ScriptCommand("Pokémon", "learnattack", {New ScriptArgument("PokémonIndex", ScriptArgument.ArgumentTypes.Int),
                                                        New ScriptArgument("attackID", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Adds the move to the Pokémon's learnset."))
-            r(New ScriptCommand("pokemon", "setgender", {New ScriptArgument("pokemonIndex", ScriptArgument.ArgumentTypes.Int),
+            r(New ScriptCommand("Pokémon", "setgender", {New ScriptArgument("PokémonIndex", ScriptArgument.ArgumentTypes.Int),
                                                        New ScriptArgument("genderID", ScriptArgument.ArgumentTypes.Int, {"0-2"})}.ToList(), "Sets a Pokémon's gender."))
-            r(New ScriptCommand("pokemon", "setability", {New ScriptArgument("pokemonIndex", ScriptArgument.ArgumentTypes.Int),
+            r(New ScriptCommand("Pokémon", "setability", {New ScriptArgument("PokémonIndex", ScriptArgument.ArgumentTypes.Int),
                                                        New ScriptArgument("abilityID", ScriptArgument.ArgumentTypes.Int, {"0-188"})}.ToList(), "Sets the Ability of a Pokémon in the player's party."))
-            r(New ScriptCommand("pokemon", "setev", {New ScriptArgument("pokemonIndex", ScriptArgument.ArgumentTypes.Int),
+            r(New ScriptCommand("Pokémon", "setev", {New ScriptArgument("PokémonIndex", ScriptArgument.ArgumentTypes.Int),
                                                        New ScriptArgument("evStat", ScriptArgument.ArgumentTypes.Str, {"hp", "atk", "attack", "def", "defense", "spatk", "specialattack", "spattack", "spdef", "specialdefense", "spdefense", "speed"}),
                                                        New ScriptArgument("evValue", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Sets the value of the Effort Value stat of a Pokémon in the player's party."))
-            r(New ScriptCommand("pokemon", "setallevs", {New ScriptArgument("pokemonIndex", ScriptArgument.ArgumentTypes.Int),
+            r(New ScriptCommand("Pokémon", "setallevs", {New ScriptArgument("PokémonIndex", ScriptArgument.ArgumentTypes.Int),
                                                       New ScriptArgument("evValue", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Sets the value of all Effort Value stats of a Pokémon in the player's party."))
-            r(New ScriptCommand("pokemon", "addev", {New ScriptArgument("pokemonIndex", ScriptArgument.ArgumentTypes.Int),
+            r(New ScriptCommand("Pokémon", "addev", {New ScriptArgument("PokémonIndex", ScriptArgument.ArgumentTypes.Int),
                                                        New ScriptArgument("evStat", ScriptArgument.ArgumentTypes.Str, {"hp", "atk", "attack", "def", "defense", "spatk", "specialattack", "spattack", "spdef", "specialdefense", "spdefense", "speed"}),
                                                        New ScriptArgument("evValue", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Adds the evValue argument to the Effort Value stat of a Pokémon in the player's party and makes sure it's legal."))
-            r(New ScriptCommand("pokemon", "setiv", {New ScriptArgument("pokemonIndex", ScriptArgument.ArgumentTypes.Int),
+            r(New ScriptCommand("Pokémon", "setiv", {New ScriptArgument("PokémonIndex", ScriptArgument.ArgumentTypes.Int),
                                                        New ScriptArgument("ivStat", ScriptArgument.ArgumentTypes.Str, {"hp", "atk", "attack", "def", "defense", "spatk", "specialattack", "spattack", "spdef", "specialdefense", "spdefense", "speed"}),
                                                        New ScriptArgument("ivValue", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Sets the value of the Individual Value stat of a Pokémon in the player's party."))
-            r(New ScriptCommand("pokemon", "setallivs", {New ScriptArgument("pokemonIndex", ScriptArgument.ArgumentTypes.Int),
+            r(New ScriptCommand("Pokémon", "setallivs", {New ScriptArgument("PokémonIndex", ScriptArgument.ArgumentTypes.Int),
                                                        New ScriptArgument("ivStat", ScriptArgument.ArgumentTypes.Str, {"hp", "atk", "attack", "def", "defense", "spatk", "specialattack", "spattack", "spdef", "specialdefense", "spdefense", "speed"}),
                                                        New ScriptArgument("ivValue", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Sets the value of all Individual Value stats of a Pokémon in the player's party."))
-            r(New ScriptCommand("pokemon", "registerhalloffame", "Registers the current party as new Hall of Fame entry."))
-            r(New ScriptCommand("pokemon", "setot", {New ScriptArgument("pokemonIndex", ScriptArgument.ArgumentTypes.Int),
+            r(New ScriptCommand("Pokémon", "registerhalloffame", "Registers the current party as new Hall of Fame entry."))
+            r(New ScriptCommand("Pokémon", "setot", {New ScriptArgument("PokémonIndex", ScriptArgument.ArgumentTypes.Int),
                                                        New ScriptArgument("newOT", ScriptArgument.ArgumentTypes.Str)}.ToList(), "Sets the Original Trainer of a Pokémon in the player's party."))
-            r(New ScriptCommand("pokemon", "setitem", {New ScriptArgument("pokemonIndex", ScriptArgument.ArgumentTypes.Int),
+            r(New ScriptCommand("Pokémon", "setitem", {New ScriptArgument("PokémonIndex", ScriptArgument.ArgumentTypes.Int),
                                                        New ScriptArgument("itemID", ScriptArgument.ArgumentTypes.Str)}.ToList(), "Sets the item of a Pokémon in the player's party."))
-            r(New ScriptCommand("pokemon", "setitemData", {New ScriptArgument("pokemonIndex", ScriptArgument.ArgumentTypes.Int),
+            r(New ScriptCommand("Pokémon", "setitemData", {New ScriptArgument("PokémonIndex", ScriptArgument.ArgumentTypes.Int),
                                                        New ScriptArgument("itemData", ScriptArgument.ArgumentTypes.Str)}.ToList(), "Sets the data of the item of a Pokémon in the player's party."))
-            r(New ScriptCommand("pokemon", "setcatchtrainer", {New ScriptArgument("pokemonIndex", ScriptArgument.ArgumentTypes.Int),
+            r(New ScriptCommand("Pokémon", "setcatchtrainer", {New ScriptArgument("PokémonIndex", ScriptArgument.ArgumentTypes.Int),
                                                        New ScriptArgument("catchTrainer", ScriptArgument.ArgumentTypes.Str)}.ToList(), "Sets the Catch Trainer of a Pokémon in the player's party."))
-            r(New ScriptCommand("pokemon", "setcatchball", {New ScriptArgument("pokemonIndex", ScriptArgument.ArgumentTypes.Int),
+            r(New ScriptCommand("Pokémon", "setcatchball", {New ScriptArgument("PokémonIndex", ScriptArgument.ArgumentTypes.Int),
                                                        New ScriptArgument("ballID", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Sets the Catch Ball of a Pokémon in the player's party."))
-            r(New ScriptCommand("pokemon", "setcatchmethod", {New ScriptArgument("pokemonIndex", ScriptArgument.ArgumentTypes.Int),
+            r(New ScriptCommand("Pokémon", "setcatchmethod", {New ScriptArgument("PokémonIndex", ScriptArgument.ArgumentTypes.Int),
                                                        New ScriptArgument("method", ScriptArgument.ArgumentTypes.Str)}.ToList(), "Sets the Catch Method of a Pokémon in the player's party."))
-            r(New ScriptCommand("pokemon", "setcatchplace", {New ScriptArgument("pokemonIndex", ScriptArgument.ArgumentTypes.Int),
+            r(New ScriptCommand("Pokémon", "setcatchplace", {New ScriptArgument("PokémonIndex", ScriptArgument.ArgumentTypes.Int),
                                                        New ScriptArgument("location", ScriptArgument.ArgumentTypes.Str)}.ToList(), "Sets the Catch Location of a Pokémon in the player's party."))
-            r(New ScriptCommand("pokemon", "setcatchlocation", {New ScriptArgument("pokemonIndex", ScriptArgument.ArgumentTypes.Int),
+            r(New ScriptCommand("Pokémon", "setcatchlocation", {New ScriptArgument("PokémonIndex", ScriptArgument.ArgumentTypes.Int),
                                                        New ScriptArgument("location", ScriptArgument.ArgumentTypes.Str)}.ToList(), "Sets the Catch Location of a Pokémon in the player's party."))
-            r(New ScriptCommand("pokemon", "setstatus", {New ScriptArgument("pokemonIndex", ScriptArgument.ArgumentTypes.Int),
+            r(New ScriptCommand("Pokémon", "setstatus", {New ScriptArgument("PokémonIndex", ScriptArgument.ArgumentTypes.Int),
                                                        New ScriptArgument("status", ScriptArgument.ArgumentTypes.Str, {"brn", "frz", "prz", "psn", "bpsn", "slp", "fnt"})}.ToList(), "Sets the status of a Pokémon in the player's party. Setting that to ""fnt"" (Fainted) will also set the Pokémon's HP to 0."))
-            r(New ScriptCommand("pokemon", "newroaming", {New ScriptArgument("roamerID", ScriptArgument.ArgumentTypes.Str),
-                                                      New ScriptArgument("pokemonID", ScriptArgument.ArgumentTypes.Str),
+            r(New ScriptCommand("Pokémon", "newroaming", {New ScriptArgument("roamerID", ScriptArgument.ArgumentTypes.Str),
+                                                      New ScriptArgument("PokémonID", ScriptArgument.ArgumentTypes.Str),
                                                       New ScriptArgument("level", ScriptArgument.ArgumentTypes.Int),
                                                       New ScriptArgument("regionID", ScriptArgument.ArgumentTypes.Int),
                                                       New ScriptArgument("startMap", ScriptArgument.ArgumentTypes.Str),
                                                       New ScriptArgument("shiny", ScriptArgument.ArgumentTypes.Bool, True, "-1"),
                                                       New ScriptArgument("scriptPath", ScriptArgument.ArgumentTypes.Str, True)}.ToList(), "Adds a new Roaming Pokémon to the list of Roaming Pokémon.", "|", False))
-            r(New ScriptCommand("pokemon", "evolve", {New ScriptArgument("pokemonIndex", ScriptArgument.ArgumentTypes.Int),
+            r(New ScriptCommand("Pokémon", "evolve", {New ScriptArgument("PokémonIndex", ScriptArgument.ArgumentTypes.Int),
                                                   New ScriptArgument("evolutionTrigger", ScriptArgument.ArgumentTypes.Str, {"level", "none", "item", "trade"}, True, "level"),
                                                   New ScriptArgument("evolutionArgument", ScriptArgument.ArgumentTypes.Str, True, "")}.ToList(), "Tries to evolve a Pokémon with the given conditions."))
-            r(New ScriptCommand("pokemon", "levelup", {New ScriptArgument("pokemonIndex", ScriptArgument.ArgumentTypes.Int),
+            r(New ScriptCommand("Pokémon", "levelup", {New ScriptArgument("PokémonIndex", ScriptArgument.ArgumentTypes.Int),
                                                   New ScriptArgument("levelAmount", ScriptArgument.ArgumentTypes.Int, {"[empty],0 - MaxLevel GameRule"}, True, "1")}.ToList(), "Raises a Pokémon's level by the given amount, checks for learnable level up moves."))
-            r(New ScriptCommand("pokemon", "reload", {New ScriptArgument("pokemonIndex", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Reloads the data for a Pokémon in the player's party to apply changes."))
-            r(New ScriptCommand("pokemon", "clone", {New ScriptArgument("pokemonIndex", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Clones the given Pokémon in the player's party."))
-            r(New ScriptCommand("pokemon", "sendtostorage", {New ScriptArgument("pokemonIndex", ScriptArgument.ArgumentTypes.Int),
+            r(New ScriptCommand("Pokémon", "reload", {New ScriptArgument("PokémonIndex", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Reloads the data for a Pokémon in the player's party to apply changes."))
+            r(New ScriptCommand("Pokémon", "clone", {New ScriptArgument("PokémonIndex", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Clones the given Pokémon in the player's party."))
+            r(New ScriptCommand("Pokémon", "sendtostorage", {New ScriptArgument("PokémonIndex", ScriptArgument.ArgumentTypes.Int),
                                                   New ScriptArgument("boxIndex", ScriptArgument.ArgumentTypes.Int, True, "")}.ToList(), "Sends the given Pokémon to the storage system, in the specified box if given."))
-            r(New ScriptCommand("pokemon", "addtostorage", {New ScriptArgument("boxIndex", ScriptArgument.ArgumentTypes.Int, True, ""),
-                                                  New ScriptArgument("pokemonData", ScriptArgument.ArgumentTypes.PokemonData)}.ToList(), "Adds a Pokémon with the given Pokémon data to the storage system, in the specified box if given."))
-            r(New ScriptCommand("pokemon", "addtostorage", {New ScriptArgument("pokemonID", ScriptArgument.ArgumentTypes.Int),
+            r(New ScriptCommand("Pokémon", "addtostorage", {New ScriptArgument("boxIndex", ScriptArgument.ArgumentTypes.Int, True, ""),
+                                                  New ScriptArgument("PokémonData", ScriptArgument.ArgumentTypes.PokemonData)}.ToList(), "Adds a Pokémon with the given Pokémon data to the storage system, in the specified box if given."))
+            r(New ScriptCommand("Pokémon", "addtostorage", {New ScriptArgument("PokémonID", ScriptArgument.ArgumentTypes.Int),
                                                New ScriptArgument("level", ScriptArgument.ArgumentTypes.Int),
                                                New ScriptArgument("method", ScriptArgument.ArgumentTypes.Str, True, "random reason"),
                                                New ScriptArgument("ballID", ScriptArgument.ArgumentTypes.Int, True, "5"),
@@ -867,98 +868,98 @@ Namespace ScriptVersion2
                                                New ScriptArgument("trainerName", ScriptArgument.ArgumentTypes.Str, True, "Current TrainerName"),
                                                New ScriptArgument("heldItemID", ScriptArgument.ArgumentTypes.Int, True, "0"),
                                                New ScriptArgument("isShiny", ScriptArgument.ArgumentTypes.Bool, True, "false")}.ToList(), "Adds a Pokémon with the given Pokémon properties to the storage system."))
-            r(New ScriptCommand("pokemon", "ride", {New ScriptArgument("pokemonID", ScriptArgument.ArgumentTypes.Int, True, "-1")}.ToList(), "Makes a Pokémon in the player's party use the field move Ride. If the argument is left empty, the first Pokémon who knows Ride gets selected."))
+            r(New ScriptCommand("Pokémon", "ride", {New ScriptArgument("PokémonID", ScriptArgument.ArgumentTypes.Int, True, "-1")}.ToList(), "Makes a Pokémon in the player's party use the field move Ride. If the argument is left empty, the first Pokémon who knows Ride gets selected."))
 
 
             ' Constructs:
-            r(New ScriptCommand("pokemon", "id", "int", {New ScriptArgument("pokemonIndex", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Returns the ID of a Pokémon in the player's party.", ",", True))
-            r(New ScriptCommand("pokemon", "number", "int", {New ScriptArgument("pokemonIndex", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Returns the ID of a Pokémon in the player's party.", ",", True))
-            r(New ScriptCommand("pokemon", "data", "pokemonData", {New ScriptArgument("pokemonIndex", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Returns the save data for a Pokémon in the player's party.", ",", True))
-            r(New ScriptCommand("pokemon", "gender", "int", {New ScriptArgument("pokemonIndex", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Returns the gender for a Pokémon in the player's party.", ",", True))
-            r(New ScriptCommand("pokemon", "genderchance", "int", {New ScriptArgument("pokemonID", ScriptArgument.ArgumentTypes.Str)}.ToList(), "Returns the Male/Female chance (1-100) of a Pokémon as defined by its Data file.", ",", True))
-            r(New ScriptCommand("pokemon", "level", "int", {New ScriptArgument("pokemonIndex", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Returns the level of a Pokémon in the player's party.", ",", True))
-            r(New ScriptCommand("pokemon", "hasfullhp", "bool", {New ScriptArgument("pokemonIndex", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Returns if a Pokémon in the player's party has a full Hit Point count.", ",", True))
-            r(New ScriptCommand("pokemon", "hp", "int", {New ScriptArgument("pokemonIndex", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Returns the Hit Points of a Pokémon in the player's party.", ",", True))
-            r(New ScriptCommand("pokemon", "atk", "int", {New ScriptArgument("pokemonIndex", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Returns the Attack stat of a Pokémon in the player's party.", ",", True))
-            r(New ScriptCommand("pokemon", "def", "int", {New ScriptArgument("pokemonIndex", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Returns the Defense stat of a Pokémon in the player's party.", ",", True))
-            r(New ScriptCommand("pokemon", "spatk", "int", {New ScriptArgument("pokemonIndex", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Returns the Special Attack stat of a Pokémon in the player's party.", ",", True))
-            r(New ScriptCommand("pokemon", "spdef", "int", {New ScriptArgument("pokemonIndex", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Returns the Special Defense stat of a Pokémon in the player's party.", ",", True))
-            r(New ScriptCommand("pokemon", "speed", "int", {New ScriptArgument("pokemonIndex", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Returns the Speed stat of a Pokémon in the player's party.", ",", True))
-            r(New ScriptCommand("pokemon", "maxhp", "int", {New ScriptArgument("pokemonIndex", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Returns the Maximum Hit Points of a Pokémon in the player's party.", ",", True))
-            r(New ScriptCommand("pokemon", "isegg", "bool", {New ScriptArgument("pokemonIndex", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Returns the Pokémon in the players party is an Egg.", ",", True))
-            r(New ScriptCommand("pokemon", "additionaldata", "str", {New ScriptArgument("pokemonIndex", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Returns the additional data for the Pokémon in the player's party.", ",", True))
-            r(New ScriptCommand("pokemon", "mailsendername", "str", {New ScriptArgument("pokemonIndex", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Returns the name of the sender of a mail if there's one on the Pokémon in the player's party.", ",", True))
-            r(New ScriptCommand("pokemon", "mailsenderot", "str", {New ScriptArgument("pokemonIndex", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Returns the OT of the sender of a mail if there's one on the Pokémon in the player's party.", ",", True))
-            r(New ScriptCommand("pokemon", "nickname", "str", {New ScriptArgument("pokemonIndex", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Returns the nickname of a Pokémon in the player's party.", ",", True))
-            r(New ScriptCommand("pokemon", "hasnickname", "bool", {New ScriptArgument("pokemonIndex", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Returns if a Pokémon in the player's party has a nickname.", ",", True))
-            r(New ScriptCommand("pokemon", "name", "str", {New ScriptArgument("pokemonIndex", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Returns the name of a Pokémon in the player's party.", ",", True))
-            r(New ScriptCommand("pokemon", "ot", "str", {New ScriptArgument("pokemonIndex", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Returns the Original Trainer of a Pokémon in the player's party.", ",", True))
-            r(New ScriptCommand("pokemon", "trainer", "str", {New ScriptArgument("pokemonIndex", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Returns the trainer of a Pokémon in the player's party.", ",", True))
-            r(New ScriptCommand("pokemon", "itemid", "int", {New ScriptArgument("pokemonIndex", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Returns the ID of the item of a Pokémon in the player's party.", ",", True))
-            r(New ScriptCommand("pokemon", "friendship", "int", {New ScriptArgument("pokemonIndex", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Returns the friendship value of a Pokémon in the player's party.", ",", True))
-            r(New ScriptCommand("pokemon", "itemname", "str", {New ScriptArgument("pokemonIndex", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Returns the item name of the item of a Pokémon in the player's party.", ",", True))
-            r(New ScriptCommand("pokemon", "catchball", "int", {New ScriptArgument("pokemonIndex", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Returns the ID of the Poké Ball the Pokémon was caught in.", ",", True))
-            r(New ScriptCommand("pokemon", "catchmethod", "str", {New ScriptArgument("pokemonIndex", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Returns the method the Pokémon was caught.", ",", True))
-            r(New ScriptCommand("pokemon", "catchlocation", "str", {New ScriptArgument("pokemonIndex", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Returns the location the Pokémon was caught in.", ",", True))
-            r(New ScriptCommand("pokemon", "hasattack", "bool", {New ScriptArgument("pokemonIndex", ScriptArgument.ArgumentTypes.Int),
+            r(New ScriptCommand("Pokémon", "id", "int", {New ScriptArgument("PokémonIndex", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Returns the ID of a Pokémon in the player's party.", ",", True))
+            r(New ScriptCommand("Pokémon", "number", "int", {New ScriptArgument("PokémonIndex", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Returns the ID of a Pokémon in the player's party.", ",", True))
+            r(New ScriptCommand("Pokémon", "data", "PokémonData", {New ScriptArgument("PokémonIndex", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Returns the save data for a Pokémon in the player's party.", ",", True))
+            r(New ScriptCommand("Pokémon", "gender", "int", {New ScriptArgument("PokémonIndex", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Returns the gender for a Pokémon in the player's party.", ",", True))
+            r(New ScriptCommand("Pokémon", "genderchance", "int", {New ScriptArgument("PokémonID", ScriptArgument.ArgumentTypes.Str)}.ToList(), "Returns the Male/Female chance (1-100) of a Pokémon as defined by its Data file.", ",", True))
+            r(New ScriptCommand("Pokémon", "level", "int", {New ScriptArgument("PokémonIndex", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Returns the level of a Pokémon in the player's party.", ",", True))
+            r(New ScriptCommand("Pokémon", "hasfullhp", "bool", {New ScriptArgument("PokémonIndex", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Returns if a Pokémon in the player's party has a full Hit Point count.", ",", True))
+            r(New ScriptCommand("Pokémon", "hp", "int", {New ScriptArgument("PokémonIndex", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Returns the Hit Points of a Pokémon in the player's party.", ",", True))
+            r(New ScriptCommand("Pokémon", "atk", "int", {New ScriptArgument("PokémonIndex", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Returns the Attack stat of a Pokémon in the player's party.", ",", True))
+            r(New ScriptCommand("Pokémon", "def", "int", {New ScriptArgument("PokémonIndex", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Returns the Defense stat of a Pokémon in the player's party.", ",", True))
+            r(New ScriptCommand("Pokémon", "spatk", "int", {New ScriptArgument("PokémonIndex", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Returns the Special Attack stat of a Pokémon in the player's party.", ",", True))
+            r(New ScriptCommand("Pokémon", "spdef", "int", {New ScriptArgument("PokémonIndex", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Returns the Special Defense stat of a Pokémon in the player's party.", ",", True))
+            r(New ScriptCommand("Pokémon", "speed", "int", {New ScriptArgument("PokémonIndex", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Returns the Speed stat of a Pokémon in the player's party.", ",", True))
+            r(New ScriptCommand("Pokémon", "maxhp", "int", {New ScriptArgument("PokémonIndex", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Returns the Maximum Hit Points of a Pokémon in the player's party.", ",", True))
+            r(New ScriptCommand("Pokémon", "isegg", "bool", {New ScriptArgument("PokémonIndex", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Returns the Pokémon in the players party is an Egg.", ",", True))
+            r(New ScriptCommand("Pokémon", "additionaldata", "str", {New ScriptArgument("PokémonIndex", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Returns the additional data for the Pokémon in the player's party.", ",", True))
+            r(New ScriptCommand("Pokémon", "mailsendername", "str", {New ScriptArgument("PokémonIndex", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Returns the name of the sender of a mail if there's one on the Pokémon in the player's party.", ",", True))
+            r(New ScriptCommand("Pokémon", "mailsenderot", "str", {New ScriptArgument("PokémonIndex", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Returns the OT of the sender of a mail if there's one on the Pokémon in the player's party.", ",", True))
+            r(New ScriptCommand("Pokémon", "nickname", "str", {New ScriptArgument("PokémonIndex", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Returns the nickname of a Pokémon in the player's party.", ",", True))
+            r(New ScriptCommand("Pokémon", "hasnickname", "bool", {New ScriptArgument("PokémonIndex", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Returns if a Pokémon in the player's party has a nickname.", ",", True))
+            r(New ScriptCommand("Pokémon", "name", "str", {New ScriptArgument("PokémonIndex", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Returns the name of a Pokémon in the player's party.", ",", True))
+            r(New ScriptCommand("Pokémon", "ot", "str", {New ScriptArgument("PokémonIndex", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Returns the Original Trainer of a Pokémon in the player's party.", ",", True))
+            r(New ScriptCommand("Pokémon", "trainer", "str", {New ScriptArgument("PokémonIndex", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Returns the trainer of a Pokémon in the player's party.", ",", True))
+            r(New ScriptCommand("Pokémon", "itemid", "int", {New ScriptArgument("PokémonIndex", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Returns the ID of the item of a Pokémon in the player's party.", ",", True))
+            r(New ScriptCommand("Pokémon", "friendship", "int", {New ScriptArgument("PokémonIndex", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Returns the friendship value of a Pokémon in the player's party.", ",", True))
+            r(New ScriptCommand("Pokémon", "itemname", "str", {New ScriptArgument("PokémonIndex", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Returns the item name of the item of a Pokémon in the player's party.", ",", True))
+            r(New ScriptCommand("Pokémon", "catchball", "int", {New ScriptArgument("PokémonIndex", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Returns the ID of the Poké Ball the Pokémon was caught in.", ",", True))
+            r(New ScriptCommand("Pokémon", "catchmethod", "str", {New ScriptArgument("PokémonIndex", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Returns the method the Pokémon was caught.", ",", True))
+            r(New ScriptCommand("Pokémon", "catchlocation", "str", {New ScriptArgument("PokémonIndex", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Returns the location the Pokémon was caught in.", ",", True))
+            r(New ScriptCommand("Pokémon", "hasattack", "bool", {New ScriptArgument("PokémonIndex", ScriptArgument.ArgumentTypes.Int),
                                                              New ScriptArgument("attackID", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Returns if the Pokémon in the player's party knows the specified move.", ",", True))
-            r(New ScriptCommand("pokemon", "countattacks", "int", {New ScriptArgument("pokemonIndex", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Counts the moves the Pokémon knows.", ",", True))
-            r(New ScriptCommand("pokemon", "attackname", "str", {New ScriptArgument("pokemonIndex", ScriptArgument.ArgumentTypes.Int),
+            r(New ScriptCommand("Pokémon", "countattacks", "int", {New ScriptArgument("PokémonIndex", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Counts the moves the Pokémon knows.", ",", True))
+            r(New ScriptCommand("Pokémon", "attackname", "str", {New ScriptArgument("PokémonIndex", ScriptArgument.ArgumentTypes.Int),
                                                              New ScriptArgument("moveIndex", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Returns the name of the move of a Pokémon in the player's party.", ",", True))
-            r(New ScriptCommand("pokemon", "levelattacks", "str", {New ScriptArgument("pokemonIndex", ScriptArgument.ArgumentTypes.Int),
+            r(New ScriptCommand("Pokémon", "levelattacks", "str", {New ScriptArgument("PokémonIndex", ScriptArgument.ArgumentTypes.Int),
                                                              New ScriptArgument("maxLevel", ScriptArgument.ArgumentTypes.Int, True, "-1")}.ToList(), "Returns a list of move IDs separated by commas that a Pokémon in the player's party can learn at or below its current level/the level specified by the maxLevel argument.", ",", True))
-            r(New ScriptCommand("pokemon", "canlearnattack", "bool", {New ScriptArgument("pokemonIndex", ScriptArgument.ArgumentTypes.Int),
+            r(New ScriptCommand("Pokémon", "canlearnattack", "bool", {New ScriptArgument("PokémonIndex", ScriptArgument.ArgumentTypes.Int),
                                                                       New ScriptArgument("attackID", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Returns if the Pokémon can learn the specified move.", ",", True))
-            r(New ScriptCommand("pokemon", "isshiny", "bool", {New ScriptArgument("pokemonIndex", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Returns if the Pokémon is Shiny.", ",", True))
-            r(New ScriptCommand("pokemon", "nature", "str", {New ScriptArgument("pokemonIndex", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Returns the nature of a Pokémon in the player's party.", ",", True))
-            r(New ScriptCommand("pokemon", "ownpokemon", "bool", {New ScriptArgument("pokemonIndex", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Returns if a Pokémon in the player's party was caught by the player.", ",", True))
-            r(New ScriptCommand("pokemon", "islegendary", "bool", {New ScriptArgument("pokemonIndex", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Returns if a Pokémon in the player's party is a legendary Pokémon.", ",", True))
-            r(New ScriptCommand("pokemon", "freeplaceinparty", "bool", "Checks if the player has a free place in their party.", ",", True))
-            r(New ScriptCommand("pokemon", "nopokemon", "bool", "Checks if the player has no Pokémon in their party.", ",", True))
-            r(New ScriptCommand("pokemon", "count", "int", "Returns the amount of Pokémon in the player's party.", ",", True))
-            r(New ScriptCommand("pokemon", "countbattle", "int", "Returns the amount Pokémon that can battle in the player's party.", ",", True))
-            r(New ScriptCommand("pokemon", "has", "bool", {New ScriptArgument("pokemonID", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Returns if the player has the specified Pokémon in their party.", ",", True))
-            r(New ScriptCommand("pokemon", "selected", "int", "Returns the index of the selector in the player's party. (Set with @pokemon.select)", ",", True))
-            r(New ScriptCommand("pokemon", "selectedmove", "int", "Returns the index of the move selected. (Set with @pokemon.selectmove)", ",", True))
-            r(New ScriptCommand("pokemon", "hasegg", "bool", "Returns if the player has an Egg in their party.", ",", True))
-            r(New ScriptCommand("pokemon", "maxpartylevel", "int", "Returns the maximum level a Pokémon has in the player's party.", ",", True))
-            r(New ScriptCommand("pokemon", "evhp", "int", {New ScriptArgument("pokemonIndex", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Returns the Hit Point Effort Values of a Pokémon in the player's party.", ",", True))
-            r(New ScriptCommand("pokemon", "evatk", "int", {New ScriptArgument("pokemonIndex", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Returns the Attack Effort Values of a Pokémon in the player's party.", ",", True))
-            r(New ScriptCommand("pokemon", "evdef", "int", {New ScriptArgument("pokemonIndex", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Returns the Defense Effort Values of a Pokémon in the player's party.", ",", True))
-            r(New ScriptCommand("pokemon", "evspatk", "int", {New ScriptArgument("pokemonIndex", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Returns the Special Attack Effort Values of a Pokémon in the player's party.", ",", True))
-            r(New ScriptCommand("pokemon", "evspdef", "int", {New ScriptArgument("pokemonIndex", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Returns the Special Defense Effort Values of a Pokémon in the player's party.", ",", True))
-            r(New ScriptCommand("pokemon", "evspeed", "int", {New ScriptArgument("pokemonIndex", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Returns the Speed Effort Values of a Pokémon in the player's party.", ",", True))
-            r(New ScriptCommand("pokemon", "ivhp", "int", {New ScriptArgument("pokemonIndex", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Returns the Jit Point Individual Values of a Pokémon in the player's party.", ",", True))
-            r(New ScriptCommand("pokemon", "ivatk", "int", {New ScriptArgument("pokemonIndex", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Returns the Attack Individual Values of a Pokémon in the player's party.", ",", True))
-            r(New ScriptCommand("pokemon", "ivdef", "int", {New ScriptArgument("pokemonIndex", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Returns the Defense Individual Values of a Pokémon in the player's party.", ",", True))
-            r(New ScriptCommand("pokemon", "ivspatk", "int", {New ScriptArgument("pokemonIndex", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Returns the Special Attack Individual Values of a Pokémon in the player's party.", ",", True))
-            r(New ScriptCommand("pokemon", "ivspdef", "int", {New ScriptArgument("pokemonIndex", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Returns the Special Defense Individual Values of a Pokémon in the player's party.", ",", True))
-            r(New ScriptCommand("pokemon", "spawnwild", "pokemonData", "Returns the data for a Pokémon that can spawn in the current location.", ",", True))
-            r(New ScriptCommand("pokemon", "itemdata", "str", {New ScriptArgument("pokemonIndex", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Returns the data of the item of a Pokémon in the player's party.", ",", True))
-            r(New ScriptCommand("pokemon", "countHallofFame", "int", "Counts the Hall of Fame entries.", ",", True))
-            r(New ScriptCommand("pokemon", "learnedTutorMove", "bool", "Returns if a Pokémon just learned a tutor move (from @screen.teachmoves)", ",", True))
-            r(New ScriptCommand("pokemon", "totalexp", "int", {New ScriptArgument("pokemonIndex", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Returns the amount of Experience a Pokémon received.", ",", True))
-            r(New ScriptCommand("pokemon", "needexp", "int", {New ScriptArgument("pokemonIndex", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Returns the amount of Experience a Pokémon needs in order to level up.", ",", True))
-            r(New ScriptCommand("pokemon", "currentexp", "int", {New ScriptArgument("pokemonIndex", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Returns the amount of Experience the Pokémon colleted for its current level.", ",", True))
-            r(New ScriptCommand("pokemon", "generateFrontier", "pokemonData", {New ScriptArgument("level", ScriptArgument.ArgumentTypes.Int),
-                                                                           New ScriptArgument("pokemonClass", ScriptArgument.ArgumentTypes.Int),
+            r(New ScriptCommand("Pokémon", "isshiny", "bool", {New ScriptArgument("PokémonIndex", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Returns if the Pokémon is Shiny.", ",", True))
+            r(New ScriptCommand("Pokémon", "nature", "str", {New ScriptArgument("PokémonIndex", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Returns the nature of a Pokémon in the player's party.", ",", True))
+            r(New ScriptCommand("Pokémon", "ownPokémon", "bool", {New ScriptArgument("PokémonIndex", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Returns if a Pokémon in the player's party was caught by the player.", ",", True))
+            r(New ScriptCommand("Pokémon", "islegendary", "bool", {New ScriptArgument("PokémonIndex", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Returns if a Pokémon in the player's party is a legendary Pokémon.", ",", True))
+            r(New ScriptCommand("Pokémon", "freeplaceinparty", "bool", "Checks if the player has a free place in their party.", ",", True))
+            r(New ScriptCommand("Pokémon", "noPokémon", "bool", "Checks if the player has no Pokémon in their party.", ",", True))
+            r(New ScriptCommand("Pokémon", "count", "int", "Returns the amount of Pokémon in the player's party.", ",", True))
+            r(New ScriptCommand("Pokémon", "countbattle", "int", "Returns the amount Pokémon that can battle in the player's party.", ",", True))
+            r(New ScriptCommand("Pokémon", "has", "bool", {New ScriptArgument("PokémonID", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Returns if the player has the specified Pokémon in their party.", ",", True))
+            r(New ScriptCommand("Pokémon", "selected", "int", "Returns the index of the selector in the player's party. (Set with @pokemon.select)", ",", True))
+            r(New ScriptCommand("Pokémon", "selectedmove", "int", "Returns the index of the move selected. (Set with @pokemon.selectmove)", ",", True))
+            r(New ScriptCommand("Pokémon", "hasegg", "bool", "Returns if the player has an Egg in their party.", ",", True))
+            r(New ScriptCommand("Pokémon", "maxpartylevel", "int", "Returns the maximum level a Pokémon has in the player's party.", ",", True))
+            r(New ScriptCommand("Pokémon", "evhp", "int", {New ScriptArgument("PokémonIndex", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Returns the Hit Point Effort Values of a Pokémon in the player's party.", ",", True))
+            r(New ScriptCommand("Pokémon", "evatk", "int", {New ScriptArgument("PokémonIndex", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Returns the Attack Effort Values of a Pokémon in the player's party.", ",", True))
+            r(New ScriptCommand("Pokémon", "evdef", "int", {New ScriptArgument("PokémonIndex", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Returns the Defense Effort Values of a Pokémon in the player's party.", ",", True))
+            r(New ScriptCommand("Pokémon", "evspatk", "int", {New ScriptArgument("PokémonIndex", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Returns the Special Attack Effort Values of a Pokémon in the player's party.", ",", True))
+            r(New ScriptCommand("Pokémon", "evspdef", "int", {New ScriptArgument("PokémonIndex", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Returns the Special Defense Effort Values of a Pokémon in the player's party.", ",", True))
+            r(New ScriptCommand("Pokémon", "evspeed", "int", {New ScriptArgument("PokémonIndex", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Returns the Speed Effort Values of a Pokémon in the player's party.", ",", True))
+            r(New ScriptCommand("Pokémon", "ivhp", "int", {New ScriptArgument("PokémonIndex", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Returns the Jit Point Individual Values of a Pokémon in the player's party.", ",", True))
+            r(New ScriptCommand("Pokémon", "ivatk", "int", {New ScriptArgument("PokémonIndex", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Returns the Attack Individual Values of a Pokémon in the player's party.", ",", True))
+            r(New ScriptCommand("Pokémon", "ivdef", "int", {New ScriptArgument("PokémonIndex", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Returns the Defense Individual Values of a Pokémon in the player's party.", ",", True))
+            r(New ScriptCommand("Pokémon", "ivspatk", "int", {New ScriptArgument("PokémonIndex", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Returns the Special Attack Individual Values of a Pokémon in the player's party.", ",", True))
+            r(New ScriptCommand("Pokémon", "ivspdef", "int", {New ScriptArgument("PokémonIndex", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Returns the Special Defense Individual Values of a Pokémon in the player's party.", ",", True))
+            r(New ScriptCommand("Pokémon", "spawnwild", "PokémonData", "Returns the data for a Pokémon that can spawn in the current location.", ",", True))
+            r(New ScriptCommand("Pokémon", "itemdata", "str", {New ScriptArgument("PokémonIndex", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Returns the data of the item of a Pokémon in the player's party.", ",", True))
+            r(New ScriptCommand("Pokémon", "countHallofFame", "int", "Counts the Hall of Fame entries.", ",", True))
+            r(New ScriptCommand("Pokémon", "learnedTutorMove", "bool", "Returns if a Pokémon just learned a tutor move (from @screen.teachmoves)", ",", True))
+            r(New ScriptCommand("Pokémon", "totalexp", "int", {New ScriptArgument("PokémonIndex", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Returns the amount of Experience a Pokémon received.", ",", True))
+            r(New ScriptCommand("Pokémon", "needexp", "int", {New ScriptArgument("PokémonIndex", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Returns the amount of Experience a Pokémon needs in order to level up.", ",", True))
+            r(New ScriptCommand("Pokémon", "currentexp", "int", {New ScriptArgument("PokémonIndex", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Returns the amount of Experience the Pokémon colleted for its current level.", ",", True))
+            r(New ScriptCommand("Pokémon", "generateFrontier", "PokémonData", {New ScriptArgument("level", ScriptArgument.ArgumentTypes.Int),
+                                                                           New ScriptArgument("PokémonClass", ScriptArgument.ArgumentTypes.Int),
                                                                            New ScriptArgument("IDList", ScriptArgument.ArgumentTypes.IntArr, True, "")}.ToList(), "Generates a Frontier Pokémon within the set IDList (all Pokémon, if IDList is Nothing).", ",", True))
-            r(New ScriptCommand("pokemon", "spawnwild", "pokemonData", "Returns the data for a Pokémon that can spawn in the current location.", ",", True))
-            r(New ScriptCommand("pokemon", "spawn", "pokemonData", {New ScriptArgument("pokemonID", ScriptArgument.ArgumentTypes.Int),
+            r(New ScriptCommand("Pokémon", "spawnwild", "PokémonData", "Returns the data for a Pokémon that can spawn in the current location.", ",", True))
+            r(New ScriptCommand("Pokémon", "spawn", "PokémonData", {New ScriptArgument("PokémonID", ScriptArgument.ArgumentTypes.Int),
                                                                 New ScriptArgument("level", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Returns the data for a Pokémon.", ",", True))
-            r(New ScriptCommand("pokemon", "otmatch", "bool,int,str", {New ScriptArgument("checkOT", ScriptArgument.ArgumentTypes.Str),
+            r(New ScriptCommand("Pokémon", "otmatch", "bool,int,str", {New ScriptArgument("checkOT", ScriptArgument.ArgumentTypes.Str),
                                                            New ScriptArgument("returnType", ScriptArgument.ArgumentTypes.Str, {"has", "id", "number", "name", "maxhits"})}.ToList(), "Returns if the player owns a Pokémon with the given Original Trainer.", ",", True))
-            r(New ScriptCommand("pokemon", "randomot", "str", "Returns a random OT (5 digit number).", ",", True))
-            r(New ScriptCommand("pokemon", "status", "str", {New ScriptArgument("pokemonIndex", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Returns the status condition of a Pokémon in the player's party.", ",", True))
-            r(New ScriptCommand("pokemon", "canevolve", {New ScriptArgument("pokemonIndex", ScriptArgument.ArgumentTypes.Int),
+            r(New ScriptCommand("Pokémon", "randomot", "str", "Returns a random OT (5 digit number).", ",", True))
+            r(New ScriptCommand("Pokémon", "status", "str", {New ScriptArgument("PokémonIndex", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Returns the status condition of a Pokémon in the player's party.", ",", True))
+            r(New ScriptCommand("Pokémon", "canevolve", {New ScriptArgument("PokémonIndex", ScriptArgument.ArgumentTypes.Int),
                                                   New ScriptArgument("evolutionTrigger", ScriptArgument.ArgumentTypes.Str, {"level", "none", "item", "trade"}, True, "level"),
                                                   New ScriptArgument("evolutionArgument", ScriptArgument.ArgumentTypes.Str, True, "")}.ToList(), "Returns if the Pokémon can be evolved via the given evolution method.", ",", True))
-            r(New ScriptCommand("pokemon", "type1", "str", {New ScriptArgument("pokemonIndex", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Returns the first type of a Pokémon in the player's party.", ",", True))
-            r(New ScriptCommand("pokemon", "type2", "str", {New ScriptArgument("pokemonIndex", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Returns the second type of a Pokémon in the player's party.", ",", True))
-            r(New ScriptCommand("pokemon", "istype", "bool", {New ScriptArgument("pokemonIndex", ScriptArgument.ArgumentTypes.Int),
+            r(New ScriptCommand("Pokémon", "type1", "str", {New ScriptArgument("PokémonIndex", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Returns the first type of a Pokémon in the player's party.", ",", True))
+            r(New ScriptCommand("Pokémon", "type2", "str", {New ScriptArgument("PokémonIndex", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Returns the second type of a Pokémon in the player's party.", ",", True))
+            r(New ScriptCommand("Pokémon", "istype", "bool", {New ScriptArgument("PokémonIndex", ScriptArgument.ArgumentTypes.Int),
                                                           New ScriptArgument("type", ScriptArgument.ArgumentTypes.Str)}.ToList(), "Checks if a Pokémon in the player's party has a specific type.", ",", True))
-            r(New ScriptCommand("pokemon", "isroaming", "bool", {New ScriptArgument("roamerID", ScriptArgument.ArgumentTypes.Str)}.ToList(), "Checks if the given roaming Pokémon is still active.", ",", True))
-            r(New ScriptCommand("pokemon", "fullyhealed", "bool", {New ScriptArgument("pokemonIndex", ScriptArgument.ArgumentTypes.Str, True, "")}.ToList(), "Checks if a specific Pokémon or all Pokémon in the party are fully healed.", ",", True))
+            r(New ScriptCommand("Pokémon", "isroaming", "bool", {New ScriptArgument("roamerID", ScriptArgument.ArgumentTypes.Str)}.ToList(), "Checks if the given roaming Pokémon is still active.", ",", True))
+            r(New ScriptCommand("Pokémon", "fullyhealed", "bool", {New ScriptArgument("PokémonIndex", ScriptArgument.ArgumentTypes.Str, True, "")}.ToList(), "Checks if a specific Pokémon or all Pokémon in the party are fully healed.", ",", True))
 
         End Sub
 
