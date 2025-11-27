@@ -10,7 +10,7 @@ Namespace Abilities
 
         Public Shared Sub Pickup()
             For Each p As Pokemon In Core.Player.Pokemons
-                If p.Ability IsNot Nothing AndAlso p.Ability.Name.ToLower() = "pickup" Then
+                If p.Ability IsNot Nothing AndAlso p.Ability.Name.ToLower() = "pickup" AndAlso p.IsEgg = False Then
                     If p.Item Is Nothing Then
                         Dim chance As Integer = Core.Random.Next(0, 100)
                         Dim itemList As New List(Of Integer)
