@@ -400,6 +400,7 @@
     Public ShowBattleAnimations As Integer = 1
     Public BoxAmount As Integer = 10
     Public DiagonalMovement As Boolean = False
+
     Public DifficultyMode As Integer = 0
     Public BattleStyle As Integer = 0
     Public ShowModelsInBattle As Boolean = True
@@ -1578,13 +1579,22 @@
         End Get
     End Property
 
-    Public ReadOnly Property CanCatchPokémon() As Boolean
+    Public ReadOnly Property CanCatchPokemon() As Boolean
         Get
-            Dim data() As String = BoxData.ToArray("§")
-            If data.Count >= BoxAmount * 30 Then
-                Return False
+            If Core.Player.Pokemons.Count < 6 Then
+                Return True
+            Else
+                Dim Boxes As List(Of StorageSystemScreen.Box) = StorageSystemScreen.LoadBoxes
+
+                Dim BoxWithSpaceExists As Boolean = False
+                For i = 0 To Boxes.Count - 1
+                    If Boxes(i).IsFull = False And Boxes(i).IsBattleBox = False Then
+                        BoxWithSpaceExists = True
+                        Exit For
+                    End If
+                Next
+                Return BoxWithSpaceExists
             End If
-            Return True
         End Get
     End Property
 

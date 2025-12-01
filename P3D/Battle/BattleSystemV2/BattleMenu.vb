@@ -854,20 +854,24 @@
         End Sub
 
         Private Sub MainMenuUseSafariBall(ByVal BattleScreen As BattleScreen)
-            If Core.Player.Inventory.GetItemAmount(181.ToString) > 0 Then
-                Core.Player.Inventory.RemoveItem(181.ToString, 1)
-                BattleScreen.BattleQuery.Clear()
-                BattleScreen.BattleQuery.Add(BattleScreen.FocusBattle())
-                BattleScreen.BattleQuery.Insert(0, New ToggleMenuQueryObject(True))
-                Core.SetScreen(New BattleCatchScreen(BattleScreen, Item.GetItemByID(181.ToString)))
+            If Core.Player.CanCatchPokemon() = True Then
+                If Core.Player.Inventory.GetItemAmount(181.ToString) > 0 Then
+                    Core.Player.Inventory.RemoveItem(181.ToString, 1)
+                    BattleScreen.BattleQuery.Clear()
+                    BattleScreen.BattleQuery.Add(BattleScreen.FocusBattle())
+                    BattleScreen.BattleQuery.Insert(0, New ToggleMenuQueryObject(True))
+                    Core.SetScreen(New BattleCatchScreen(BattleScreen, Item.GetItemByID(181.ToString)))
 
-                Core.Player.UsedItemsToCheckScriptDelayFor.Add("181")
+                    Core.Player.UsedItemsToCheckScriptDelayFor.Add("181")
 
-                Dim safariBallText As String = Localization.GetString("item_name_181", "Safari Ball") & " x" & Core.Player.Inventory.GetItemAmount(181.ToString).ToString()
-                If Core.Player.Inventory.GetItemAmount(181.ToString) = 0 Then
-                    safariBallText = Localization.GetString("battle_NoSafariBalls", "No Safari Balls.")
+                    Dim safariBallText As String = Localization.GetString("item_name_181", "Safari Ball") & " x" & Core.Player.Inventory.GetItemAmount(181.ToString).ToString()
+                    If Core.Player.Inventory.GetItemAmount(181.ToString) = 0 Then
+                        safariBallText = Localization.GetString("battle_NoSafariBalls", "No Safari Balls.")
+                    End If
+                    _mainMenuItemList(0).Text = safariBallText
                 End If
-                _mainMenuItemList(0).Text = safariBallText
+            Else
+                Screen.TextBox.Show(Localization.GetString("battle_NoMoreRoomInPC", "There's no more room for~Pokémon in the PC!"), {}, True, True)
             End If
         End Sub
 
@@ -1150,25 +1154,29 @@
 
             If Item.CanBeUsedInBattle = True Then
                 If Item.IsBall = True Then
-                    Core.Player.Inventory.RemoveItem(itemID.ToString, 1)
-                    If TempBattleScreen.IsTrainerBattle = False Then
-                        If BattleScreen.CanCatch = True Or CBool(GameModeManager.GetGameRuleValue("OnlyCaptureFirst", "0")) = True And Core.Player.PokeFiles.Contains(BattleScreen.TempPokeFile) = False Then
-                            TempBattleScreen.BattleQuery.Clear()
-                            TempBattleScreen.BattleQuery.Add(TempBattleScreen.FocusBattle())
-                            TempBattleScreen.BattleQuery.Insert(0, New ToggleMenuQueryObject(True))
-                            Core.SetScreen(New BattleCatchScreen(TempBattleScreen, Item.GetItemByID(itemID.ToString)))
-                            PlayerStatistics.Track("[4]Poké Balls used", 1)
+                    If Core.Player.CanCatchPokemon = False AndAlso TempBattleScreen.IsTrainerBattle = False Then
+                        Screen.TextBox.Show(Localization.GetString("battle_NoMoreRoomInPC", "There's no more room for~Pokémon in the PC!"), {}, True, True)
+                    Else
+                        Core.Player.Inventory.RemoveItem(itemID.ToString, 1)
+                        If TempBattleScreen.IsTrainerBattle = False Then
+                            If BattleScreen.CanCatch = True Or CBool(GameModeManager.GetGameRuleValue("OnlyCaptureFirst", "0")) = True And Core.Player.PokeFiles.Contains(BattleScreen.TempPokeFile) = False Then
+                                TempBattleScreen.BattleQuery.Clear()
+                                TempBattleScreen.BattleQuery.Add(TempBattleScreen.FocusBattle())
+                                TempBattleScreen.BattleQuery.Insert(0, New ToggleMenuQueryObject(True))
+                                Core.SetScreen(New BattleCatchScreen(TempBattleScreen, Item.GetItemByID(itemID.ToString)))
+                                PlayerStatistics.Track("[4]Poké Balls used", 1)
+                            Else
+                                TempBattleScreen.BattleQuery.Clear()
+                                TempBattleScreen.BattleQuery.Add(TempBattleScreen.FocusBattle())
+                                TempBattleScreen.BattleQuery.Insert(0, New ToggleMenuQueryObject(True))
+                                TempBattleScreen.Battle.InitializeRound(TempBattleScreen, New Battle.RoundConst With {.StepType = Battle.RoundConst.StepTypes.Text, .Argument = "The wild Pokémon blocked the Pokéball!"})
+                            End If
                         Else
                             TempBattleScreen.BattleQuery.Clear()
                             TempBattleScreen.BattleQuery.Add(TempBattleScreen.FocusBattle())
                             TempBattleScreen.BattleQuery.Insert(0, New ToggleMenuQueryObject(True))
-                            TempBattleScreen.Battle.InitializeRound(TempBattleScreen, New Battle.RoundConst With {.StepType = Battle.RoundConst.StepTypes.Text, .Argument = "The wild Pokémon blocked the Pokéball!"})
+                            TempBattleScreen.Battle.InitializeRound(TempBattleScreen, New Battle.RoundConst With {.StepType = Battle.RoundConst.StepTypes.Text, .Argument = "Hey! Don't be a thief!"})
                         End If
-                    Else
-                        TempBattleScreen.BattleQuery.Clear()
-                        TempBattleScreen.BattleQuery.Add(TempBattleScreen.FocusBattle())
-                        TempBattleScreen.BattleQuery.Insert(0, New ToggleMenuQueryObject(True))
-                        TempBattleScreen.Battle.InitializeRound(TempBattleScreen, New Battle.RoundConst With {.StepType = Battle.RoundConst.StepTypes.Text, .Argument = "Hey! Don't be a thief!"})
                     End If
                 Else
                     TempItemID = itemID

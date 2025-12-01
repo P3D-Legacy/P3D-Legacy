@@ -90,7 +90,7 @@ Public Class StorageSystemScreen
         LoadScreen()
     End Sub
 
-    Private Shared Function LoadBoxes() As List(Of Box)
+    Public Shared Function LoadBoxes() As List(Of Box)
         Dim boxes = New Dictionary(Of Integer, Box)
 
         For i = 0 To Core.Player.BoxAmount - 1
@@ -468,8 +468,18 @@ Public Class StorageSystemScreen
             End If
             Me.MovingPokemon = Nothing
         Else
+            If GetBox(Me.CurrentBox).IsBattleBox = True Then
+                For NewBoxIndex = 0 To Boxes.Count - 1
+                    If Boxes(NewBoxIndex).IsFull = False Then
+                        Player.Temp.PCBoxIndex = NewBoxIndex
+                        Exit For
+                    End If
+                Next
+            Else
+                Player.Temp.PCBoxIndex = Me.CurrentBox
+            End If
+
             Player.Temp.StorageSystemCursorPosition = Me.CursorPosition
-            Player.Temp.PCBoxIndex = Me.CurrentBox
             Player.Temp.PCBoxChooseMode = Me.BoxChooseMode
             Player.Temp.PCSelectionType = Me.SelectionMode
 
@@ -499,6 +509,7 @@ Public Class StorageSystemScreen
         If BoxesFull And boxes.Count < 30 Then
             Dim newBoxes = 5.Clamp(1, 30 - boxes.Count)
             addedBoxes = newBoxes
+            Core.Player.BoxAmount = boxes.Count + newBoxes
 
             For i = 0 To newBoxes - 1
                 Dim newBoxID = boxes.Count - 1 + i
@@ -1260,6 +1271,12 @@ Public Class StorageSystemScreen
         Public ReadOnly Property HasPokemon() As Boolean
             Get
                 Return (Pokemon.Count > 0)
+            End Get
+        End Property
+
+        Public ReadOnly Property IsFull() As Boolean
+            Get
+                Return (Pokemon.Count = 30)
             End Get
         End Property
 

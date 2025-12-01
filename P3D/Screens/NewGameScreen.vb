@@ -409,7 +409,7 @@
             "location|" & Me.startLocation & Environment.NewLine &
             "battleAnimations|1" & Environment.NewLine &
             "RunMode|1" & Environment.NewLine &
-            "BoxAmount|5" & Environment.NewLine &
+            "BoxAmount|10" & Environment.NewLine &
             "LastRestPlace|" & startMap & Environment.NewLine &
             "LastRestPlacePosition|" & Me.startPosition.X.ToString().Replace(GameController.DecSeparator, ".") & "," & Me.startPosition.Y.ToString().Replace(GameController.DecSeparator, ".") & "," & Me.startPosition.Z.ToString().Replace(GameController.DecSeparator, ".") & Environment.NewLine &
             "DiagonalMovement|0" & Environment.NewLine &

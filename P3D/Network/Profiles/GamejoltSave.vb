@@ -884,7 +884,7 @@ Namespace GameJolt
                 "location|Your Room" & Environment.NewLine &
                 "battleAnimations|1" & Environment.NewLine &
                 "RunMode|1" & Environment.NewLine &
-                "BoxAmount|5" & Environment.NewLine &
+                "BoxAmount|10" & Environment.NewLine &
                 "LastRestPlace|yourroom.dat" & Environment.NewLine &
                 "LastRestPlacePosition|1,0.1,3" & Environment.NewLine &
                 "DiagonalMovement|0" & Environment.NewLine &

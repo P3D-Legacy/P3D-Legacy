@@ -618,6 +618,7 @@ battle_cannot_switch,Cannot switch out.
 battle_cannot_run,Failed to run away.
 battle_cannot_run_ability,Failed to run away because of~
 battle_MoveDisabled,Disabled!
+battle_NoMoreRoomInPC,There's no more room for~Pokémon in the PC!
 battle_NoSafariBalls,No Safari Balls.
 battle_NoSportBalls,No Sport Balls.
 battle_ThrowMud,Throw Mud
