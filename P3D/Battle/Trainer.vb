@@ -159,7 +159,7 @@ Public Class Trainer
                     Case "intromessage"
                         Me.IntroMessage = ScriptCommander.Parse(value).ToString()
                     Case "outromessage"
-                        Me.OutroMessage = ScriptCommander.Parse(value).ToString()
+                        Me.OutroMessage = value
                         If Me.OutroMessage.Contains("|") = True Then
                             Me.OutroMessage2 = OutroMessage.GetSplit(1, "|")
                             Me.OutroMessage = OutroMessage.GetSplit(0, "|")
@@ -169,61 +169,61 @@ Public Class Trainer
                     Case "defeatmessage"
                         Me.DefeatMessage = ScriptCommander.Parse(value).ToString()
                     Case "battlestartmessage"
-                        Me.BattleStartMessage = ScriptCommander.Parse(value).ToString()
+                        Me.BattleStartMessage = value
                     Case "bigdamageownmessage"
                         Dim instance As Integer = 1
                         If value.Contains("|") Then
                             instance = CInt(value.GetSplit(1, "|"))
                         End If
-                        Me.BigDamageOwnMessage.Add(instance, ScriptCommander.Parse(value.GetSplit(0, "|")).ToString())
+                        Me.BigDamageOwnMessage.Add(instance, value.GetSplit(0, "|"))
                     Case "bigdamageoppmessage"
                         Dim instance As Integer = 1
                         If value.Contains("|") Then
                             instance = CInt(value.GetSplit(1, "|"))
                         End If
-                        Me.BigDamageOppMessage.Add(instance, ScriptCommander.Parse(value.GetSplit(0, "|")).ToString())
+                        Me.BigDamageOppMessage.Add(instance, value.GetSplit(0, "|"))
                     Case "faintedownmessage"
                         Dim instance As Integer = 1
                         If value.Contains("|") Then
                             instance = CInt(value.GetSplit(1, "|"))
                         End If
-                        Me.FaintedOwnMessage.Add(instance, ScriptCommander.Parse(value.GetSplit(0, "|")).ToString())
+                        Me.FaintedOwnMessage.Add(instance, value.GetSplit(0, "|"))
                     Case "faintedoppmessage"
                         Dim instance As Integer = 1
                         If value.Contains("|") Then
                             instance = CInt(value.GetSplit(1, "|"))
                         End If
-                        Me.FaintedOppMessage.Add(instance, ScriptCommander.Parse(value.GetSplit(0, "|")).ToString())
+                        Me.FaintedOppMessage.Add(instance, value.GetSplit(0, "|"))
                     Case "recallownmessage"
                         Dim instance As Integer = 1
                         If value.Contains("|") Then
                             instance = CInt(value.GetSplit(1, "|"))
                         End If
-                        Me.RecallOwnMessage.Add(instance, ScriptCommander.Parse(value.GetSplit(0, "|")).ToString())
+                        Me.RecallOwnMessage.Add(instance, value.GetSplit(0, "|"))
                     Case "recalloppmessage"
                         Dim instance As Integer = 1
                         If value.Contains("|") Then
                             instance = CInt(value.GetSplit(1, "|"))
                         End If
-                        Me.RecallOppMessage.Add(instance, ScriptCommander.Parse(value.GetSplit(0, "|")).ToString())
+                        Me.RecallOppMessage.Add(instance, value.GetSplit(0, "|"))
                     Case "sendoutownmessage"
                         Dim partyID As Integer = 0
                         If value.Contains("|") Then
                             partyID = CInt(value.GetSplit(1, "|"))
                         End If
-                        Me.SendOutXOwnMessage.Add(partyID, ScriptCommander.Parse(value.GetSplit(0, "|")).ToString())
+                        Me.SendOutXOwnMessage.Add(partyID, value.GetSplit(0, "|"))
                     Case "sendoutoppmessage"
                         Dim partyID As Integer = 0
                         If value.Contains("|") Then
                             partyID = CInt(value.GetSplit(1, "|"))
                         End If
-                        Me.SendOutXOppMessage.Add(partyID, ScriptCommander.Parse(value.GetSplit(0, "|")).ToString())
+                        Me.SendOutXOppMessage.Add(partyID, value.GetSplit(0, "|"))
                     Case "sendoutlastownmessage"
-                        Me.SendOutLastOwnMessage = ScriptCommander.Parse(value).ToString()
+                        Me.SendOutLastOwnMessage = value
                     Case "sendoutlastoppmessage"
-                        Me.SendOutLastOppMessage = ScriptCommander.Parse(value).ToString()
+                        Me.SendOutLastOppMessage = value
                     Case "playerlossmessage"
-                        Me.PlayerLossMessage = ScriptCommander.Parse(value).ToString()
+                        Me.PlayerLossMessage = value
                     Case "textureid"
                         Me.SpriteName = ScriptCommander.Parse(value).ToString()
                         If Me.SpriteName.Contains(",") = True Then

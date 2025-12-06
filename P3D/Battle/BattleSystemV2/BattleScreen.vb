@@ -469,7 +469,7 @@
             Dim q As CameraQueryObject = New CameraQueryObject(New Vector3(13, 0, 15), New Vector3(21, 0, 15), 0.05F, 0.05F, -0.8F, 1.4F, 0.0F, 0.0F, 0.016F, 0.016F)
             q.PassThis = True
 
-            Dim q1 As TextQueryObject = New TextQueryObject(Trainer.BattleStartMessage)
+            Dim q1 As TextQueryObject = New TextQueryObject(ScriptVersion2.ScriptCommander.Parse(Trainer.BattleStartMessage).ToString)
             Dim q11 As TextQueryObject = New TextQueryObject(Trainer.Name & ": """ & "Go," & " " & OppPokemon.GetDisplayName() & "!""")
 
             Dim OppAnimationOffsetY As Single = 0.0F
@@ -589,13 +589,13 @@
 
             If Trainer.SendOutXOppMessage.ContainsKey(1) Then
                 Dim s1 As QueryObject = FocusOppPlayer()
-                Dim s2 As TextQueryObject = New TextQueryObject(Trainer.SendOutXOppMessage(1))
+                Dim s2 As TextQueryObject = New TextQueryObject(ScriptVersion2.ScriptCommander.Parse(Trainer.SendOutXOppMessage(1)).ToString)
                 Me.BattleQuery.AddRange({s1, s2})
             End If
 
             If Trainer.SendOutXOwnMessage.ContainsKey(1) Then
                 Dim s1 As QueryObject = FocusOppPlayer()
-                Dim s2 As TextQueryObject = New TextQueryObject(Trainer.SendOutXOwnMessage(1))
+                Dim s2 As TextQueryObject = New TextQueryObject(ScriptVersion2.ScriptCommander.Parse(Trainer.SendOutXOwnMessage(1)).ToString)
                 Me.BattleQuery.AddRange({s1, s2})
             End If
 

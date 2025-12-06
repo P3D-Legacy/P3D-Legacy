@@ -3134,7 +3134,7 @@
                     BattleScreen.TrainerFaintedOwn += 1
                     If BattleScreen.Trainer.FaintedOwnMessage.ContainsKey(BattleScreen.TrainerFaintedOwn) Then
                         Dim s1 As QueryObject = BattleScreen.FocusOppPlayer()
-                        Dim s2 As TextQueryObject = New TextQueryObject(BattleScreen.Trainer.FaintedOwnMessage(BattleScreen.TrainerFaintedOwn))
+                        Dim s2 As TextQueryObject = New TextQueryObject(ScriptVersion2.ScriptCommander.Parse(BattleScreen.Trainer.FaintedOwnMessage(BattleScreen.TrainerFaintedOwn)).ToString)
                         BattleScreen.BattleQuery.AddRange({s1, s2})
                         ChangeCameraAngle(1, own, BattleScreen)
                     End If
@@ -3142,7 +3142,7 @@
                     BattleScreen.TrainerFaintedOpp += 1
                     If BattleScreen.Trainer.FaintedOppMessage.ContainsKey(BattleScreen.TrainerFaintedOpp) Then
                         Dim s1 As QueryObject = BattleScreen.FocusOppPlayer()
-                        Dim s2 As TextQueryObject = New TextQueryObject(BattleScreen.Trainer.FaintedOppMessage(BattleScreen.TrainerFaintedOpp))
+                        Dim s2 As TextQueryObject = New TextQueryObject(ScriptVersion2.ScriptCommander.Parse(BattleScreen.Trainer.FaintedOppMessage(BattleScreen.TrainerFaintedOpp)).ToString)
                         BattleScreen.BattleQuery.AddRange({s1, s2})
                         ChangeCameraAngle(1, own, BattleScreen)
                     End If
@@ -4859,7 +4859,7 @@
                         BattleScreen.TrainerBigDamageOwn += 1
                         If BattleScreen.Trainer.BigDamageOwnMessage.ContainsKey(BattleScreen.TrainerBigDamageOwn) Then
                             Dim s1 As QueryObject = BattleScreen.FocusOppPlayer()
-                            Dim s2 As TextQueryObject = New TextQueryObject(BattleScreen.Trainer.BigDamageOwnMessage(BattleScreen.TrainerBigDamageOwn))
+                            Dim s2 As TextQueryObject = New TextQueryObject(ScriptVersion2.ScriptCommander.Parse(BattleScreen.Trainer.BigDamageOwnMessage(BattleScreen.TrainerBigDamageOwn)).ToString)
                             BattleScreen.BattleQuery.AddRange({s1, s2})
                             ChangeCameraAngle(1, True, BattleScreen)
                         End If
@@ -4867,7 +4867,7 @@
                         BattleScreen.TrainerBigDamageOpp += 1
                         If BattleScreen.Trainer.BigDamageOppMessage.ContainsKey(BattleScreen.TrainerBigDamageOpp) Then
                             Dim s1 As QueryObject = BattleScreen.FocusOppPlayer()
-                            Dim s2 As TextQueryObject = New TextQueryObject(BattleScreen.Trainer.BigDamageOppMessage(BattleScreen.TrainerBigDamageOpp))
+                            Dim s2 As TextQueryObject = New TextQueryObject(ScriptVersion2.ScriptCommander.Parse(BattleScreen.Trainer.BigDamageOppMessage(BattleScreen.TrainerBigDamageOpp)).ToString)
                             BattleScreen.BattleQuery.AddRange({s1, s2})
                             ChangeCameraAngle(2, True, BattleScreen)
                         End If
@@ -7999,7 +7999,7 @@
                     BattleScreen.TrainerRecallOwn += 1
                     If BattleScreen.Trainer.RecallOwnMessage.ContainsKey(BattleScreen.TrainerRecallOwn) Then
                         Dim s1 As QueryObject = BattleScreen.FocusOppPlayer()
-                        Dim s2 As TextQueryObject = New TextQueryObject(BattleScreen.Trainer.RecallOwnMessage(BattleScreen.TrainerRecallOwn))
+                        Dim s2 As TextQueryObject = New TextQueryObject(ScriptVersion2.ScriptCommander.Parse(BattleScreen.Trainer.RecallOwnMessage(BattleScreen.TrainerRecallOwn)).t)
                         BattleScreen.BattleQuery.AddRange({s1, s2})
                         ChangeCameraAngle(1, True, BattleScreen)
                     End If
@@ -8194,13 +8194,13 @@
                 If Core.Player.CountFightablePokemon > 1 Then
                     If BattleScreen.Trainer.SendOutXOwnMessage.ContainsKey(BattleScreen.TrainerSendOutOwn) Then
                         Dim s1 As QueryObject = BattleScreen.FocusOppPlayer()
-                        Dim s2 As TextQueryObject = New TextQueryObject(BattleScreen.Trainer.SendOutXOwnMessage(BattleScreen.TrainerSendOutOwn))
+                        Dim s2 As TextQueryObject = New TextQueryObject(ScriptVersion2.ScriptCommander.Parse(BattleScreen.Trainer.SendOutXOwnMessage(BattleScreen.TrainerSendOutOwn)).ToString)
                         BattleScreen.BattleQuery.AddRange({s1, s2})
                     End If
                 Else
                     If BattleScreen.Trainer.SendOutLastOwnMessage <> "" Then
                         Dim s1 As QueryObject = BattleScreen.FocusOppPlayer()
-                        Dim s2 As TextQueryObject = New TextQueryObject(BattleScreen.Trainer.SendOutLastOwnMessage)
+                        Dim s2 As TextQueryObject = New TextQueryObject(ScriptVersion2.ScriptCommander.Parse(BattleScreen.Trainer.SendOutLastOwnMessage).ToString)
                         BattleScreen.BattleQuery.AddRange({s1, s2})
                     End If
                 End If
@@ -8435,7 +8435,7 @@
                 BattleScreen.TrainerRecallOpp += 1
                 If BattleScreen.Trainer.RecallOwnMessage.ContainsKey(BattleScreen.TrainerRecallOpp) Then
                     Dim s1 As QueryObject = BattleScreen.FocusOppPlayer()
-                    Dim s2 As TextQueryObject = New TextQueryObject(BattleScreen.Trainer.RecallOppMessage(BattleScreen.TrainerRecallOwn))
+                    Dim s2 As TextQueryObject = New TextQueryObject(ScriptVersion2.ScriptCommander.Parse(BattleScreen.Trainer.RecallOppMessage(BattleScreen.TrainerRecallOwn)).ToString)
                     BattleScreen.BattleQuery.AddRange({s1, s2})
                 End If
             End If
@@ -8648,13 +8648,13 @@
                 If BattleScreen.Trainer.CountUseablePokemon > 1 Then
                     If BattleScreen.Trainer.SendOutXOppMessage.ContainsKey(BattleScreen.TrainerSendOutOpp) Then
                         Dim s1 As QueryObject = BattleScreen.FocusOppPlayer()
-                        Dim s2 As TextQueryObject = New TextQueryObject(BattleScreen.Trainer.SendOutXOppMessage(BattleScreen.TrainerSendOutOpp))
+                        Dim s2 As TextQueryObject = New TextQueryObject(ScriptVersion2.ScriptCommander.Parse(BattleScreen.Trainer.SendOutXOppMessage(BattleScreen.TrainerSendOutOpp)).ToString)
                         BattleScreen.BattleQuery.AddRange({s1, s2})
                     End If
                 Else
                     If BattleScreen.Trainer.SendOutLastOppMessage <> "" Then
                         Dim s1 As QueryObject = BattleScreen.FocusOppPlayer()
-                        Dim s2 As TextQueryObject = New TextQueryObject(BattleScreen.Trainer.SendOutLastOppMessage)
+                        Dim s2 As TextQueryObject = New TextQueryObject(ScriptVersion2.ScriptCommander.Parse(BattleScreen.Trainer.SendOutLastOppMessage).ToString)
                         BattleScreen.BattleQuery.AddRange({s1, s2})
                     End If
                 End If
@@ -8734,7 +8734,7 @@
                         BattleScreen.BattleQuery.Add(q)
 
                         BattleScreen.BattleQuery.Add(New TextQueryObject(BattleScreen.Trainer.TrainerType & " " & BattleScreen.Trainer.Name & " was defeated!"))
-                        BattleScreen.BattleQuery.Add(New TextQueryObject(BattleScreen.Trainer.OutroMessage))
+                        BattleScreen.BattleQuery.Add(New TextQueryObject(ScriptVersion2.ScriptCommander.Parse(BattleScreen.Trainer.OutroMessage).ToString))
 
                         If BattleScreen.GetTrainerMoney() > 0 Then
                             BattleScreen.BattleQuery.Add(New TextQueryObject(Core.Player.Name & " got $" & BattleScreen.GetTrainerMoney() & "!"))
@@ -8752,7 +8752,7 @@
                             Dim q1 As New CameraQueryObject(New Vector3(15, 0, 13), Screen.Camera.Position, 0.03F, 0.03F, -(MathHelper.Pi * 0.5F), Screen.Camera.Yaw, 0.0F, Screen.Camera.Pitch, 0.04F, 0.02F)
                             q1.ApplyCurrentCamera = True
                             BattleScreen.BattleQuery.Add(q)
-                            BattleScreen.BattleQuery.Add(New TextQueryObject(BattleScreen.Trainer.PlayerLossMessage))
+                            BattleScreen.BattleQuery.Add(New TextQueryObject(ScriptVersion2.ScriptCommander.Parse(BattleScreen.Trainer.PlayerLossMessage).ToString))
                         End If
 
                         BattleScreen.BattleQuery.Add(New EndBattleQueryObject(True))
