@@ -789,7 +789,7 @@ Public Class StorageSystemScreen
         Dim text = ""
         If pokemon.Item IsNot Nothing Then text &= Me.TakeItemPokemon(False)
         If text <> "" Then text &= "*"
-        text &= Localization.GetString("storage_screen_pokemon_release_Goodbye", "Goodbye, //POKEMONNAME//!".Replace("//POKEMONNAME//", pokemon.GetDisplayName()))
+        text &= Localization.GetString("storage_screen_pokemon_release_Goodbye", "Goodbye, //POKEMONNAME//!").Replace("//POKEMONNAME//", pokemon.GetDisplayName())
         Screen.TextBox.Show(text)
 
         If CursorPosition.X = 6 Then

@@ -38,14 +38,17 @@ version=2
 		:when:<storage.get(str,billspcname)>
 			@sound.play(PC\LogOn)
 			@screen.storagesystem
+			@text.show(Choose a host to~connect to.)
 			@script.start(computer_choose)
 		:when:Mystery Events
 			@sound.play(PC\LogOn)
 			@screen.mysteryevent
+			@text.show(Choose a host to~connect to.)
 			@script.start(computer_choose)
 		:when:Mailbox
 			@sound.play(PC\LogOn)
 			@screen.mailsystem
+			@text.show(Choose a host to~connect to.)
 			@script.start(computer_choose)
 		:when:Prof. Oak's PC
 			@sound.play(PC\LogOn)
@@ -55,10 +58,12 @@ version=2
 		:when:Hall of Fame
 			@sound.play(PC\LogOn)
 			@screen.halloffame
+			@text.show(Choose a host to~connect to.)
 			@script.start(computer_choose)
 		:when:Daily Rewards
 			@sound.play(PC\LogOn)
 			@script.start(startscript\pcreward)
+			@text.show(Choose a host to~connect to.)
 			@script.start(computer_choose)
 		:when:Log off
 			@sound.play(PC\TurnOff)
