@@ -2853,6 +2853,25 @@ Public Class Pokemon
     End Sub
 
     ''' <summary>
+    ''' Sets the catch infos of the Pokémon. Uses the specified map name and player name + OT.
+    ''' </summary>
+    ''' <param name="Ball">The Pokéball this Pokémon got captured in.</param>
+    ''' <param name="Method">The capture method.</param>
+    ''' <param name="MapName">The desired catch location.</param>
+    Public Sub SetCatchInfos(ByVal Ball As Item, ByVal Method As String, Optional ByVal MapName As String = "")
+        If MapName = "" Then
+            Me.CatchLocation = Localization.GetString("Places_" & Screen.Level.MapName, Screen.Level.MapName)
+        Else
+            Me.CatchLocation = Localization.GetString("Places_" & MapName, MapName)
+        End If
+        Me.CatchTrainerName = Core.Player.Name
+        Me.OT = Core.Player.OT
+
+        Me.CatchMethod = Method
+        Me.CatchBall = Ball
+    End Sub
+
+    ''' <summary>
     ''' Checks if the Pokémon is of a certain type.
     ''' </summary>
     ''' <param name="CheckType">The type to check.</param>
