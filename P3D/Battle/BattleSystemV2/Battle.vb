@@ -284,8 +284,10 @@
             SelectedMoveOpp = True
 
             If Not BattleScreen.IsRemoteBattle Then
-                If BattleScreen.HasSwitchedOwn = False Then
-                    StartMultiTurnAction(BattleScreen)
+                If Core.Player.BattleStyle = 1 OrElse BattleScreen.ShiftCanContinue = True Then
+                    If BattleScreen.HasSwitchedOwn = False Then
+                        StartMultiTurnAction(BattleScreen)
+                    End If
                 End If
             End If
 
@@ -5900,6 +5902,9 @@
                             End If
                             If BattleScreen.IsTrainerBattle = True Then
                                 If BattleScreen.Trainer.HasBattlePokemon() = True Then
+                                    If Core.Player.BattleStyle = 0 AndAlso BattleScreen.IsPVPBattle = False Then
+                                        BattleScreen.ShiftCanContinue = False
+                                    End If
                                     BattleScreen.FieldEffects.DefeatedTrainerPokemon = True
                                 End If
                             End If
@@ -5909,10 +5914,8 @@
                             End If
                         End If
 
-
                         Dim cq1 As ScreenFadeQueryObject = New ScreenFadeQueryObject(ScreenFadeQueryObject.FadeTypes.Vertical, Color.Black, True, 16)
                         Dim cq2 As ScreenFadeQueryObject = New ScreenFadeQueryObject(ScreenFadeQueryObject.FadeTypes.Vertical, Color.Black, False, 16)
-
 
                         cq2.PassThis = True
 
@@ -8492,7 +8495,6 @@
                     oppShiny = "S"
                 End If
 
-                Dim oppModel As String = BattleScreen.GetModelName(False)
                 'Switch BattleStyle
 
                 If BattleScreen.FieldEffects.OwnDigCounter = 0 AndAlso BattleScreen.FieldEffects.OwnFlyCounter = 0 AndAlso BattleScreen.FieldEffects.OwnDiveCounter = 0 Then
@@ -8502,6 +8504,9 @@
                         BattleScreen.Battle.ChangeCameraAngle(1, False, BattleScreen)
                     End If
                 End If
+
+                Dim oppModel As String = BattleScreen.GetModelName(False)
+
                 If oppModel = "" Then
                     BattleScreen.BattleQuery.Add(New ToggleEntityQueryObject(True, ToggleEntityQueryObject.BattleEntities.OppPokemon, PokemonForms.GetOverworldSpriteName(BattleScreen.OppPokemon, True), -1, -1, 0, 1))
                 Else
@@ -8643,7 +8648,7 @@
                     End If
                 End With
             End If
-            If FirstTime = False Then
+            If FirstTime = False AndAlso Core.Player.BattleStyle = 1 Then
                 BattleScreen.TrainerSendOutOpp += 1
                 If BattleScreen.Trainer.CountUseablePokemon > 1 Then
                     If BattleScreen.Trainer.SendOutXOppMessage.ContainsKey(BattleScreen.TrainerSendOutOpp) Then

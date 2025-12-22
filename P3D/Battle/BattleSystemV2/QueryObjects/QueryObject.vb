@@ -23,6 +23,7 @@
             PlaySound
             MoveAnimation
             AfterFaint
+            StartRound
         End Enum
 
         Public QueryType As QueryTypes = QueryTypes.CameraMovement
@@ -91,6 +92,8 @@
                             Return TriggerNewRoundPVPQueryObject.FromString(Data)
                         Case "FAINT"
                             Return AfterFaintQueryObject.FromString(Data)
+                        Case "STARTROUND"
+                            Return StartRoundQueryObject.FromString(Data)
                     End Select
                 Catch ex As Exception
                     Logger.Debug("QueryObject.vb: Wrong data received, could not convert to [" & Type & "] query object. Return Nothing.")

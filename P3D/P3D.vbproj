@@ -28838,6 +28838,7 @@
     <Compile Include="Battle\BattleAnimations\BAEntityScale.vb" />
     <Compile Include="Battle\BattleAnimations\BAPlaySound.vb" />
     <Compile Include="Battle\BattleSystemV2\QueryObjects\AnimationQueryObject.vb" />
+    <Compile Include="Battle\BattleSystemV2\QueryObjects\StartRoundQueryObject.vb" />
     <Compile Include="Dialogues\ImageView.vb" />
     <Compile Include="Entities\Environment\HoleBlock.vb" />
     <Compile Include="Overworld\NotificationPopup.vb" />

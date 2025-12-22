@@ -73,6 +73,7 @@
         Public OppTrainer2NPC As NPC
 
         Public HasSwitchedOwn As Boolean = False
+        Public ShiftCanContinue As Boolean = True
 
         Public OwnPokemonIndex As Integer = 0
         Public OppPokemonIndex As Integer = 0
