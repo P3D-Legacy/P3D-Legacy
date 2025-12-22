@@ -3,7 +3,7 @@
 	Inherits BattleAnimation3D
 
 	Dim StartPosition As Vector3
-	Dim ReturnToStart As Vector3
+	Dim ReturnToStart As New Vector3(1)
 	Dim TargetEntity As Entity
 	Dim HalfDistance As New Vector3(0.0F)
 	Dim DestinationDistance As New Vector3(0.0F)

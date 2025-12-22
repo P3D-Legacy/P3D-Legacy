@@ -157,7 +157,7 @@ Namespace BattleSystem
 		Public Sub RemoveEntity(Entity As Entity)
 			SpawnedEntities.Remove(Entity)
 		End Sub
-		Public Sub AnimationChangeTexture(ByVal Entity As Entity, RemoveEntityAfter As Boolean, ByVal Texture As Texture2D, ByVal startDelay As Single, ByVal endDelay As Single)
+		Public Sub AnimationChangeTexture(ByVal Entity As Entity, ByVal RemoveEntityAfter As Boolean, ByVal Texture As Texture2D, ByVal startDelay As Single, ByVal endDelay As Single)
 			Dim TextureChangeEntity As Entity
 
 			If Entity Is Nothing Then
@@ -171,7 +171,7 @@ Namespace BattleSystem
 
 		End Sub
 
-		Public Sub AnimationMove(ByVal Entity As Entity, ByVal RemoveEntityAfter As Boolean, ByVal DestinationX As Single, ByVal DestinationY As Single, ByVal DestinationZ As Single, ByVal Speed As Single, ByVal SpinX As Boolean, ByVal SpinZ As Boolean, ByVal startDelay As Single, ByVal endDelay As Single, Optional ByVal SpinXSpeed As Single = 0.1F, Optional ByVal SpinZSpeed As Single = 0.1F, Optional MoveYSpeed As Single = 0.0F, Optional MovementCurve As Integer = 3)
+		Public Sub AnimationMove(ByVal Entity As Entity, ByVal RemoveEntityAfter As Boolean, ByVal DestinationX As Single, ByVal DestinationY As Single, ByVal DestinationZ As Single, ByVal MoveSpeed As Single, ByVal SpinX As Boolean, ByVal SpinZ As Boolean, ByVal startDelay As Single, ByVal endDelay As Single, Optional ByVal SpinXSpeed As Single = 0.1F, Optional ByVal SpinZSpeed As Single = 0.1F, Optional MoveYSpeed As Single = 0.0F, Optional MovementCurve As Integer = 3)
 			Dim MoveEntity As Entity
 			Dim Destination As Vector3
 
@@ -198,11 +198,11 @@ Namespace BattleSystem
 				Destination = CurrentEntity.Position + New Vector3(DestinationX, DestinationY, DestinationZ)
 			End If
 
-			Dim baEntityMove As BAEntityMove = New BAEntityMove(MoveEntity, RemoveEntityAfter, Destination, Speed, SpinX, SpinZ, startDelay, endDelay, SpinXSpeed, SpinZSpeed, MovementCurve, MoveYSpeed)
+			Dim baEntityMove As BAEntityMove = New BAEntityMove(MoveEntity, RemoveEntityAfter, Destination, MoveSpeed, SpinX, SpinZ, startDelay, endDelay, SpinXSpeed, SpinZSpeed, MovementCurve, MoveYSpeed)
 			AnimationSequence.Add(baEntityMove)
 
 		End Sub
-		Public Sub AnimationOscillateMove(ByVal Entity As Entity, ByVal RemoveEntityAfter As Boolean, ByVal Distance As Vector3, ByVal Speed As Single, ByVal BothWays As Boolean, ByVal Duration As Single, ByVal startDelay As Single, ByVal endDelay As Single, Optional MovementCurve As Integer = 0, Optional ReturnToStart As Vector3 = Nothing)
+		Public Sub AnimationOscillateMove(ByVal Entity As Entity, ByVal RemoveEntityAfter As Boolean, ByVal Distance As Vector3, ByVal MoveSpeed As Single, ByVal BothWays As Boolean, ByVal Duration As Single, ByVal startDelay As Single, ByVal endDelay As Single, Optional MovementCurve As Integer = 0, Optional ReturnToStart As Vector3 = Nothing)
 			Dim MoveEntity As Entity
 			Dim ReturnPosition As New Vector3(0)
 
@@ -221,7 +221,7 @@ Namespace BattleSystem
 			Dim DurationWhole = CSng(Math.Truncate(CDbl(Duration / 6.0F)))
 			Dim DurationFraction = CSng((Duration / 6.0F - DurationWhole) * 1000)
 			Dim DurationTime As TimeSpan = New TimeSpan(0, 0, 0, CInt(DurationWhole), CInt(DurationFraction))
-			Dim baEntityOscillateMove As BAEntityOscillateMove = New BAEntityOscillateMove(MoveEntity, RemoveEntityAfter, Distance, Speed, BothWays, DurationTime, startDelay, endDelay, MovementCurve, ReturnToStart)
+			Dim baEntityOscillateMove As BAEntityOscillateMove = New BAEntityOscillateMove(MoveEntity, RemoveEntityAfter, Distance, MoveSpeed, BothWays, DurationTime, startDelay, endDelay, MovementCurve, ReturnToStart)
 			AnimationSequence.Add(baEntityOscillateMove)
 
 		End Sub
