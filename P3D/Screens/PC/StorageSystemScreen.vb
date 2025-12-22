@@ -117,6 +117,17 @@ Public Class StorageSystemScreen
                 Dim boxData = line.Split("|")
 
                 Dim boxIndex = CInt(boxData(1))
+                If boxIndex > boxes.Count - 1 Then
+                    Dim boxCount = boxes.Count + 5
+                    If boxCount > 30 Then
+                        boxCount = 30
+                    End If
+                    For b = boxes.Count - 1 To boxCount - 1
+                        If boxes.ContainsKey(b) = False Then
+                            boxes.Add(b, New Box(b))
+                        End If
+                    Next
+                End If
                 Dim box As Box = Nothing
 
                 If Not boxes.TryGetValue(boxIndex, box) Then
@@ -507,7 +518,11 @@ Public Class StorageSystemScreen
 
         Dim addedBoxes = 0
         If BoxesFull And boxes.Count < 30 Then
-            Dim newBoxes = 5.Clamp(1, 30 - boxes.Count)
+            Dim newBoxes = 5
+            If boxes.Count + 5 > 30 Then
+                newBoxes = 30 - boxes.Count
+            End If
+
             addedBoxes = newBoxes
             Core.Player.BoxAmount = boxes.Count + newBoxes
 
