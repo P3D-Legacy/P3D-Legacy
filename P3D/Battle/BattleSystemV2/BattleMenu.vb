@@ -560,7 +560,7 @@
             If _retractMenu = False Then
                 If _isRetracting = True Then
                     If _selectedItemExtended > 0 Then
-                        _selectedItemExtended -= 40
+                        _selectedItemExtended -= 60
                         If _selectedItemExtended <= 0 Then
                             _selectedItemExtended = 0
                             _isRetracting = False
@@ -571,10 +571,10 @@
 
                     l_canSelect = False
                 ElseIf _isExtracting = True Then
-                    If _selectedItemExtended < 200 Then
-                        _selectedItemExtended += 40
-                        If _selectedItemExtended >= 200 Then
-                            _selectedItemExtended = 200
+                    If _selectedItemExtended < 240 Then
+                        _selectedItemExtended += 60
+                        If _selectedItemExtended >= 240 Then
+                            _selectedItemExtended = 240
                             _isExtracting = False
                         End If
                     End If
