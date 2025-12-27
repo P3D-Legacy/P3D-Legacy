@@ -229,7 +229,7 @@ Public Class PokedexHabitatScreen
                 Core.SpriteBatch.Draw(Me.texture, New Rectangle(100 + 64 * 9, 100 + p * 96, 64, 64), New Rectangle(16, 16, 16, 16), Color.White, 0.0F, Vector2.Zero, SpriteEffects.FlipHorizontally, 0.0F)
 
                 Core.SpriteBatch.Draw(HabitatList(i).Texture, New Rectangle(120, 108 + p * 96, 64, 48), Color.White)
-                Core.SpriteBatch.DrawString(FontManager.MainFont, HabitatList(i).Name, New Vector2(200, 120 + p * 96), Color.Black, 0.0F, Vector2.Zero, 1.0F, SpriteEffects.None, 0.0F)
+                Core.SpriteBatch.DrawString(FontManager.MainFont, Localization.GetString("Places_" & HabitatList(i).Name, HabitatList(i).Name), New Vector2(200, 120 + p * 96), Color.Black, 0.0F, Vector2.Zero, 1.0F, SpriteEffects.None, 0.0F)
 
                 Dim t As String = HabitatList(i).PokemonCaught.ToString() & "/" & HabitatList(i).PokemonList.Count
                 Core.SpriteBatch.DrawString(FontManager.MainFont, t, New Vector2(680 - CSng((FontManager.MainFont.MeasureString(t).X * 1.0F) / 2.0F), 120 + p * 96), Color.Black, 0.0F, Vector2.Zero, 1.0F, SpriteEffects.None, 0.0F)
@@ -560,7 +560,7 @@ Public Class PokedexScreen
             Dim SeenCaughtTitleWidth As Integer = CInt(FontManager.MainFont.MeasureString(Localization.GetString("pokedex_seen", "Seen:") & " " & Environment.NewLine & Environment.NewLine & Localization.GetString("pokedex_obtained", "Obtained:") & " ").X)
             Core.SpriteBatch.DrawString(FontManager.MainFont, Profile.Seen + Profile.Obtained & Environment.NewLine & Environment.NewLine & Profile.Obtained, New Vector2(420 + SeenCaughtTitleWidth, 45), Color.Black)
         Else
-            Core.SpriteBatch.DrawString(FontManager.MainFont, CHabitat.Name, New Vector2(60, 80), Color.White, 0.0F, Vector2.Zero, 1.5F, SpriteEffects.None, 0.0F)
+            Core.SpriteBatch.DrawString(FontManager.MainFont, Localization.GetString("Places_" & CHabitat.Name, CHabitat.Name), New Vector2(60, 80), Color.White, 0.0F, Vector2.Zero, 1.5F, SpriteEffects.None, 0.0F)
             Core.SpriteBatch.Draw(CHabitat.Texture, New Rectangle(60, 32, 64, 48), Color.White)
             Core.SpriteBatch.DrawString(FontManager.MainFont, Localization.GetString("pokedex_available", "Available:") & Environment.NewLine & Environment.NewLine & Localization.GetString("pokedex_obtained", "Obtained:"), New Vector2(420, 45), Color.White)
             Dim AvailableObtainedTitleWidth As Integer = CInt(FontManager.MainFont.MeasureString(Localization.GetString("pokedex_available", "Available:") & Environment.NewLine & Environment.NewLine & Localization.GetString("pokedex_obtained", "Obtained:")).X)
