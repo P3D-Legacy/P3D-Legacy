@@ -18,6 +18,12 @@
                 Case "replacetextures"
                     Dim path As String = argument
                     ContentPackManager.Load(GameController.GamePath & GameModeManager.ActiveGameMode.ContentPath & "Data\" & argument & ".dat", True)
+                    Screen.Level.WarpData.WarpDestination = Screen.Level.LevelFile
+                    Screen.Level.WarpData.WarpPosition = Screen.Camera.Position
+                    Screen.Level.WarpData.WarpRotations = 0
+                    Screen.Level.WarpData.DoWarpInNextTick = True
+                    Screen.Level.WarpData.CorrectCameraYaw = Screen.Camera.Yaw
+                    Screen.Level.WarpData.WarpSound = Nothing
                     IsReady = True
                 Case Else
                     IsReady = True
