@@ -33,8 +33,16 @@
 
     Public Overrides Sub Update()
         If Me.IsGameOver = True Then
-            If Controls.Accept(True, False) = True Then
+            If Controls.Accept(True, True) = True Then
                 SoundManager.PlaySound("select")
+                If Core.Player.IsGameJoltSave = False Then
+                    If IO.Directory.Exists(GameController.GamePath & "\Save\" & Core.Player.filePrefix) = True Then
+                        IO.Directory.Delete(GameController.GamePath & "\Save\" & Core.Player.filePrefix, True)
+                    End If
+                Else
+                    GameJoltSave.ResetSave()
+                    Core.Player.SaveGame(False)
+                End If
                 Core.SetScreen(New PressStartScreen())
                 Core.Player.loadedSave = False
             End If
