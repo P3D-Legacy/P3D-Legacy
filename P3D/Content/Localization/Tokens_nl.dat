@@ -102,7 +102,7 @@ property_Nature,Karakter
 property_DexNo.,Dex Nr.
 property_OT,OT
 property_CatchMethod,Vangmethode
-property_ExpPoints,Ervaring
+property_ExpPoints,Ervaringspunten
 property_Category,Categorie
 property_Power,Kracht
 property_Accuracy,Nauwkeurigheid
@@ -211,6 +211,17 @@ game_interaction_interact,Actie
 game_interaction_gamemenu,Spelmenu
 game_interaction_pokegear,Pokégear
 game_interaction_pausemenu,Pauzemenu
+game_interaction_accept,Accepteer
+game_interaction_enter,Voer In
+game_interaction_confirm,Bevestig
+game_interaction_back,Terug
+game_interaction_dismiss,Verlaat
+game_interaction_go_back,Ga Terug
+game_interaction_close,Sluit
+game_interaction_edit,Bewerk
+game_interaction_clear,Leegmaken
+game_interaction_delete,Verwijderen
+game_interaction_learn,Leer
 game_interaction_notification,Notificatie
 game_notification_accept,<system.button(special)> om te reageren.
 game_notification_dismiss,<system.button(special)> om weg te halen.
@@ -346,7 +357,7 @@ Pausescreen:
 pause_menu_title,Spelmenu
 pause_menu_back_to_game,Terug naar spel
 pause_menu_disconnect,Verbreek verbinding
-pause_menu_quit_to_menu,Terug naar menu
+pause_menu_quit_to_menu,Terug naar hoofdmenu
 pause_menu_autosave_fail,Kan niet automatisch opslaan.
 pause_menu_confirmation,Wil je het spel echt verlaten? Niet-opgeslagen gegevens zullen verloren gaan.
 ---
@@ -354,7 +365,7 @@ IngameMenu:
 game_menu_pokedex,Pokédex
 game_menu_party,Pokémon
 game_menu_bag,Tas
-game_menu_trainer_card,<player.name>
+game_menu_trainer_card,<Player.Name>
 game_menu_save,Opslaan
 game_menu_save_notpossible,Opslaan is momenteel niet~mogelijk.
 game_menu_options,Opties
@@ -388,18 +399,18 @@ party_screen_ChoosePokemon,Kies Pokémon
 party_screen_CannotChoosePokemon,Kan deze Pokémon niet~kiezen.
 ---
 NewGameScreen:
-new_game_intro_1,Hello!~Sorry to keep~you waiting!*Welcome to the world~of Pokémon!*My name is Oak.~People call me~Pokémon Prof.*This world is inhabited~by creatures that~we call
-new_game_intro_2,Pokémon.*People and Pokémon live~together by supporting~each other.~Some people play with~Pokémon,~some battle with them.*But we don't know~everything about~Pokémon yet.~There are still many~mysteries to solve.*That's why I study~Pokémon every day.*Now, what did you~say your name was?
-new_game_intro_3,~are you ready?*Your very own~Pokémon story is about~to unfold.*You'll face fun~times and tough~challenges.~A world of dreams and~adventures with Pokémon~awaits!*Let's go!*I'll be seeing~you later!
-new_game_intro_weird_name_1,Right! So your name is~
-new_game_intro_weird_name_2,!*Hm that is a~weird name.
-new_game_intro_known_name_1,Right! So your name is~
-new_game_intro_known_name_2,!*Hm I am sure I~heard this name before.
-new_game_intro_same_name_1,Hey we got the~same names.*My name is also~
+new_game_intro_1,Hallo!~Sorry dat je moest wachten!*Welkom in de wereld van~Pokémon!*Mijn naam is Oak.~Mensen noemen mij de Pokémon~Prof.*Deze wereld wordt bewoond~door wezens die wij...
+new_game_intro_2,Pokémon noemen.*Mensen en Pokémon leven~samen door elkaar te~ondersteunen.*Sommige mensen spelen met~Pokémon,anderen vechten~ermee.*Maar we weten nog niet alles~over Pokémon.*Er zijn nog veel mysteries~om op te lossen.*Daarom bestudeer ik elke~dag Pokémon.*Nou, hoe zei je ook alweer~dat je heette?
+new_game_intro_3,~ben je er klaar voor?*Jouw eigen Pokémonverhaal~staat op het punt te~beginnen.*Je zult leuke momenten en~zware uitdagingen tegenkomen.~Een wereld vol dromen en~avonturen met Pokémon~wacht op je!*Laten we gaan!*Ik zie je later!
+new_game_intro_weird_name_1,Goed! Dus jouw naam is~
+new_game_intro_weird_name_2,!*Hm dat is een~rare naam.
+new_game_intro_known_name_1,Goed! Dus jouw naam is~
+new_game_intro_known_name_2,!*Hm ik weet zeker dat ik~die naam eerder heb gehoord.
+new_game_intro_same_name_1,Hé we hebben de zelfde naam.*Mijn naam is ook~
 new_game_intro_same_name_2,!
-new_game_intro_name_1,Right! So your name is~
+new_game_intro_name_1,Goed! Dus jouw naam is~
 new_game_intro_name_2,!
-new_game_select_skin,Select your appearance
+new_game_select_skin,Selecteer hoe je eruit ziet
 ---
 MapScreen:
 map_screen_cities,Steden
@@ -412,7 +423,7 @@ map_screen_RegionSwitchHint,(Druk op de Shift-toets/Schouderknoppen om tussen re
 Trainer Card Screen:
 trainer_screen_title,Trainerkaart
 trainer_screen_collected_badges,Verzamelde badges
-trainer_screen_badge, Badge
+trainer_screen_badge,-Badge
 trainer_screen_empty_badge,???
 ---
 Save Screen:
@@ -427,7 +438,7 @@ save_screen_success,Spel opgeslagen.
 save_screen_press,Druk op
 save_screen_to_continue,om door te gaan.
 ---
-Apricornscherm:
+Apricorn Screen:
 apricorn_screen_apricorns,Apricorns
 apricorn_screen_producing,Ik ben bezig met het maken van de PokéBallen.~Kom later terug.
 apricorn_screen_backadvice,DRUK OP [<system.button(OpenMenu)>] OM TERUG TE GAAN
@@ -476,7 +487,7 @@ Blackout Screen:
 black_out_screen_line1,Je hebt geen strijdbare Pokémon meer!
 black_out_screen_line2,Je zult naar het dichtstbijzijnde
 black_out_screen_line3,PokéCenter gebracht worden
-black_out_screen_line4, om verdere schade aan je
+black_out_screen_line4,om verdere schade aan je
 black_out_screen_line5,Pokémon te voorkomen.
 ---
 Credits Screen:
@@ -487,7 +498,7 @@ Voltorb Flip:
 VoltorbFlip_LV.,NV.
 VoltorbFlip_CurrentCoins_Line1,Munten in dit
 VoltorbFlip_CurrentCoins_Line2,Nv. verzameld
-VoltorbFlip_TotalCoins_Line1,<player.name>'s
+VoltorbFlip_TotalCoins_Line1,<Player.Name>'s
 VoltorbFlip_TotalCoins_Line2,Muntentotaal
 
 VoltorbFlip_MemoButton_Open_Line1,Open
@@ -511,7 +522,7 @@ VoltorbFlip_BeforeNewLevel_GameInfo_Answer_Hint,Hint!
 VoltorbFlip_BeforeNewLevel_GameInfo_Answer_AboutMemos,Over Memos
 VoltorbFlip_BeforeNewLevel_GameInfo_Back,Terug
 
-VoltorbFlip_GameWon_1,Spel voltooid!~Je hebt alle verstopte~x2 en x3 kaarten gevonden.*<player.name> ontving~
+VoltorbFlip_GameWon_1,Spel voltooid!~Je hebt alle verstopte~x2 en x3 kaarten gevonden.*<Player.Name> ontving~
 VoltorbFlip_GameWon_2,Munt(en)!
 
 VoltorbFlip_GameLost,Oh nee! Je ontvangt 0 Munten!
@@ -525,7 +536,7 @@ VoltorbFlip_NewLevel_Higher2,!
 VoltorbFlip_NewLevel_Ready1,Klaar om Spelniveau
 VoltorbFlip_NewLevel_Ready2,~te spelen!
 
-VoltorbFlip_QuitGame_1,<player.name> ontving~
+VoltorbFlip_QuitGame_1,<Player.Name> ontving~
 VoltorbFlip_QuitGame_2,Munt(en)!
 
 VoltorbFlip_AfterGame_Won1,Je hebt
@@ -578,7 +589,7 @@ pokedex_evolution_no_evolutions,evolueert niet.
 Receiving Items:
 item_received_single,Ontving een~
 item_received_multiple,Ontving
-item_found,<player.name> vond~
+item_found,<Player.Name> vond~
 item_stored_in_pocket_single_start,<Player.Name> stopte hem in~het
 item_stored_in_pocket_single_end,~vakje.
 item_stored_in_pocket_multiple_start,<Player.Name> stopte ze weg~in het
@@ -587,9 +598,9 @@ item_handed_over_single,<Player.Name> overhandigde~een
 item_handed_over_multiple,<Player.Name> overhandigde~de
 
 Berries:
-berry_picked_single_start,<player.name> plukte de~
+berry_picked_single_start,<Player.Name> plukte de~
 berry_picked_single_end,Bes.
-berry_picked_multiple_start,<player.name> plukte de~
+berry_picked_multiple_start,<Player.Name> plukte de~
 berry_picked_multiple_end,Bessen.
 ----
 Battle:
@@ -865,6 +876,8 @@ game_message_third_person_on,Weergave in derde persoon
 game_message_third_person_off,Weergave in eerste persoon
 game_message_free_camera_on,Vrije-camera-modus aan
 game_message_free_camera_off,Vrije-camera-modus uit
+game_message_sandbox_mode_on,Zandbak-modus aan
+game_message_sandbox_mode_off,Zandbak-modus uit
 game_message_audio_on,Geluid aan
 game_message_audio_off,Geluid uit
 game_message_continue_autosave,Hervatte opslagbestand:
@@ -1846,7 +1859,7 @@ item_name_71,Zilver~vleugel
 item_name_78,Hardloopschoenen
 item_name_115,GS-Bal
 item_name_116,Blauwe Kaart
-item_name_127,Kaartsleutel
+item_name_127,Sleutelkaart
 item_name_128,Machine~onderdeel
 item_name_130,Verloren~Voorwerp
 item_name_133,Keldersleutel
@@ -2480,7 +2493,7 @@ item_pluralname_1999,Shokschijven
 Fossils:
 item_name_601,Schroeffossiel
 item_name_602,Koepelfossiel
-item_name_603,Oude Amber
+item_name_603,Oud Amber
 item_name_604,Wortelfossiel
 item_name_605,Klauwfossiel
 item_name_606,Schedelfossiel
@@ -2845,7 +2858,7 @@ Memories:
 item_name_660,Insect-~herinnering
 item_name_661,Duister-~herinnering
 item_name_662,Draak-~herinnering
-item_name_663,Elektrisch-~herinnering
+item_name_663,Elektrische~Herinnering
 item_name_664,Feeherinnering
 item_name_665,Vecht-~herinnering
 item_name_666,Vuur-~herinnering
@@ -2855,7 +2868,7 @@ item_name_669,Gras-~herinnering
 item_name_670,Grond-~herinnering
 item_name_671,IJsherinnering
 item_name_672,Gifherinnering
-item_name_673,Psychisch-~herinnering
+item_name_673,Psychische~Herinnering
 item_name_674,Rots-~herinnering
 item_name_675,Staal-~herinnering
 item_name_676,Water-~herinnering
@@ -2864,7 +2877,7 @@ Memories (Plural):
 item_pluralname_660,Insect-herinneringen
 item_pluralname_661,Duister-herinneringen
 item_pluralname_662,Draak-herinneringen
-item_pluralname_663,Elektrisch-herinneringen
+item_pluralname_663,Elektrische Herinneringen
 item_pluralname_664,Feeherinnering
 item_pluralname_665,Vecht-herinneringen
 item_pluralname_666,Vuur-herinneringen
@@ -2874,7 +2887,7 @@ item_pluralname_669,Gras-herinneringen
 item_pluralname_670,Grond-herinneringen
 item_pluralname_671,IJsherinnering
 item_pluralname_672,Gifherinnering
-item_pluralname_673,Psychisch-herinneringen
+item_pluralname_673,Psychische Herinneringen
 item_pluralname_674,Rots-herinneringen
 item_pluralname_675,Staal-herinneringen
 item_pluralname_676,Water-herinneringen
@@ -2886,7 +2899,7 @@ item_6_missingskin,Je kunt dit voorwerp niet~gebruiken zonder een fiets-~karakte
 item_6_only_custom_gamemodes,Dit voorwerp kan niet gebruikt~worden in deze SpelModus.
 
 Key Items:
-item_use_6,<player.name> stapte~van de fiets af.
+item_use_6,<Player.Name> stapte~van de Fiets af.
 item_use_54,Jouw Munten:~
 item_use_658_disable,De Team-ervaringsdeler is~uitgezet.
 item_use_658_enable,De Team-ervaringsdeler is~aangezet.
@@ -3297,7 +3310,7 @@ move_name_412,Energy Ball
 move_name_413,Brave Bird
 move_name_414,Earth Power
 move_name_415,Switcheroo
-move_name_416,Giga Impact
+move_name_416,Giga-impact
 move_name_417,Nasty Plot
 move_name_418,Bullet Punch
 move_name_419,Avalanche
@@ -3442,7 +3455,7 @@ move_name_583,Ruw spel
 move_name_584,Feeënwind
 move_name_585,Maanknal
 move_name_586,Boomburst
-move_name_588,Kings Shield
+move_name_588,King's Shield
 move_name_589,Play Nice
 move_name_590,Confide
 move_name_591,Diamond Storm
@@ -3520,8 +3533,8 @@ move_desc_3,Het doelwit wordt herhaaldelijk geslagen, heen en weer, twee tot vij
 move_desc_4,Het doelwit wordt geraakt met een vlaag van stoten die twee tot vijf keer achter elkaar toeslaan.
 move_desc_5,Het doelwit wordt geraakt door een vuistslag met veel spierkracht.
 move_desc_6,Talrijke munten worden naar het doelwit geslingerd om schade toe te brengen. Na het gevecht wordt er geld verdiend.
-move_desc_7,Het doelwit wordt geslagen met een vurige vuist. Het doelwit kan ook een verbrand raken.
-move_desc_8,Het doelwit wordt geslagen met een ijzige vuist. Het doelwit kan ook bevroren raken.
+move_desc_7,Het doelwit wordt geslagen met een vurige vuist. Het kan het doelwit ook verbranden.
+move_desc_8,Het doelwit wordt geslagen met een ijzige vuist. Het kan het doelwit ook bevriezen.
 move_desc_9,Het doelwit wordt geslagen met een geëlektriseerde vuist. Het kan het doelwit ook verlammen.
 move_desc_10,Harde, puntige en scherpe klauwen snijden het doelwit om schade toe te brengen.
 move_desc_11,Het doelwit wordt van beide kanten vastgegrepen en samengeknepen om schade toe te brengen.
@@ -3565,13 +3578,13 @@ move_desc_48,De gebruiker genereert vreemde geluidsgolven vanuit zijn lichaam. H
 move_desc_49,Het doelwit wordt geraakt met een destructieve schokgolf die altijd 20 LP schade toebrengt.
 move_desc_50,Vier beurten lang kan het doelwit de techniek die het als laatste gebruikte niet gebruiken.
 move_desc_51,De tegenpartij wordt aangevallen met een spray van agressief zuur. Het zuur kan ook de Sp. Verdediging-attributen van de tegenstanders verlagen.
-move_desc_52,Het doelwit wordt aangevallen met kleine vlammen. Hierdoor kan het doelwit ook verbrand raken.
-move_desc_53,Het doelwit wordt verschroeid met een intense vuurstraal. Hierdoor kan het doelwit ook verbrand raken.
+move_desc_52,Het doelwit wordt aangevallen met kleine vlammen. Het kan het doelwit ook verbranden.
+move_desc_53,Het doelwit wordt verschroeid met een intense vuurstraal. Het kan het doelwit ook verbranden.
 move_desc_54,De gebruiker omhult zijn lichaam met een witte mist die voorkomt dat zijn attributen gedurende vijf beurten worden aangetast.
 move_desc_55,Het doelwit wordt bestraald met een krachtig schot water.
 move_desc_56,Het doelwit wordt bestraald door een enorme hoeveelheid water die onder grote druk wordt gelanceerd.
 move_desc_57,Het overspoelt het gebied rond de gebruiker met een gigantische golf. Het kan ook worden gebruikt om water over te steken.
-move_desc_58,Het doelwit wordt getroffen door een ijskoude energiestraal. Het doelwit kan ook bevroren raken.
+move_desc_58,Het doelwit wordt getroffen door een ijskoude energiestraal. Het kan het doelwit ook bevriezen.
 move_desc_59,Een gierende sneeuwstorm wordt opgeroepen om de tegenstander te raken. Deze kan de tegenstander ook bevriezen.
 move_desc_60,Het doelwit wordt aangevallen met een vreemde straal. Hierdoor kan de tegenstander ook verward raken.
 move_desc_61,Een nevel van bubbels wordt met kracht op het andere team afgevuurd. Het kan ook hun Snelheid-attributen verlagen.
@@ -3639,14 +3652,14 @@ move_desc_122,Het doelwit wordt gelikt met een lange tong, wat schade veroorzaak
 move_desc_123,Het doelwit wordt aangevallen met een uitstoot van smerige gassen. Het kan het doelwit ook vergiftigen.
 move_desc_124,Onhygiënisch slijk wordt naar het doelwit geslingerd. Het kan het doelwit ook vergiftigen.
 move_desc_125,De gebruiker slaat het doelwit met een bot. Het kan het doelwit ook doen terugdeinzen.
-move_desc_126,Het doelwit wordt aangevallen met een intense vuurzee. Hierdoor kan het doelwit ook verbrand raken.
+move_desc_126,Het doelwit wordt aangevallen met een intense vuurzee. Het kan het doelwit ook verbranden.
 move_desc_127,De gebruiker valt het doelwit aan en kan het laten terugdeinzen. Het kan ook worden gebruikt om een waterval te beklimmen.
 move_desc_128,Het doelwit wordt vier tot vijf keer vastgeklemd en samengeknepen door het zeer dikke en stevige omhulsel van de gebruiker.
 move_desc_129,Stervormige stralen worden naar de tegenstander geschoten. Deze aanval mist nooit.
 move_desc_130,De gebruiker trekt zijn hoofd in om zijn verdediging in de eerste beurt te verhogen en ramt het doelwit in de volgende beurt.
 move_desc_131,Scherpe stekels worden snel achter elkaar op het doel geschoten. Ze raken twee tot vijf keer achter elkaar.
 move_desc_132,Het doelwit wordt aangevallen met lange, kruipende tentakels of lianen. Het kan ook het Snelheid-attribuut van het doelwit verlagen.
-move_desc_133,De gebruiker maakt tijdelijk zijn geest leeg om zijn zorgen te vergeten. Het verhoogt het Sp. Verdediging-attribuut aanzienlijk. 
+move_desc_133,De gebruiker maakt tijdelijk zijn geest leeg om zijn zorgen te vergeten. Het verhoogt het Sp. Verdediging-attribuut aanzienlijk.
 move_desc_134,De gebruiker leidt het doelwit af door een lepel te buigen. Het verlaagt de nauwkeurigheid van het doelwit.
 move_desc_135,De gebruiker herstelt zijn eigen LP tot de helft van zijn maximale LP. Kan ook in het veld worden gebruikt om LP te genezen.
 move_desc_136,Het doelwit wordt aangevallen met een knieschop vanuit een sprong. Als deze mist, raakt de gebruiker gewond.
@@ -3774,6 +3787,451 @@ move_desc_585,Door de kracht van de maan te gebruiken, valt de gebruiker het doe
 move_desc_790,De gebruiker valt het doelwit aan door stoom uit te stoten. Dit kan het doelwit ook verwarren.
 
 move_desc_797,De gebruiker zet zijn woede om in energie om aan te vallen. Hoe vaker de gebruiker is geraakt door aanvallen, hoe krachtiger de techniek.
+-------------------
+Ability Names:
+ability_name_1,Stank
+ability_name_2,Motregen
+ability_name_3,Snelheidsboost
+ability_name_4,Gevechtspantser
+ability_name_5,Stug
+ability_name_6,Vochtig
+ability_name_7,Lenig
+ability_name_8,Zandsluier
+ability_name_9,Statisch
+ability_name_10,Voltabsorptie
+ability_name_11,Waterabsorptie
+ability_name_12,Onwetend
+ability_name_13,Wolkbreuk
+ability_name_14,Combinatieogen
+ability_name_15,Slapeloos
+ability_name_16,Kleurverandering
+ability_name_17,Immuniteit
+ability_name_18,Flitsvuur
+ability_name_19,Schildstof
+ability_name_20,Eigen Tempo
+ability_name_21,Zuignappen
+ability_name_22,Intimidatie
+ability_name_23,Schaduwgrip
+ability_name_24,Ruwe Huid
+ability_name_25,Wonderwacht
+ability_name_26,Levitatie
+ability_name_27,Effectspoor
+ability_name_28,Synchronisatie
+ability_name_29,Helder Lichaam
+ability_name_30,Natuurlijke Genezing
+ability_name_31,Bliksemafleider
+ability_name_32,Serene Gratie
+ability_name_33,Snelle Zwemmer
+ability_name_34,Chlorofyl
+ability_name_35,Verlichten
+ability_name_36,Opsporen
+ability_name_37,Enorme Kracht
+ability_name_38,Gifpunt
+ability_name_39,Innerlijke Focus
+ability_name_40,Magmapantser
+ability_name_41,Watersluier
+ability_name_42,Magneettrekker
+ability_name_43,Geluidsdicht
+ability_name_44,Regenschotel
+ability_name_45,Zandstroom
+ability_name_46,Druk
+ability_name_47,Dikke Vetlaag
+ability_name_48,Vroege Vogel
+ability_name_49,Vlamlichaam
+ability_name_50,Wegloper
+ability_name_51,Scherp Oog
+ability_name_52,Hyperknipper
+ability_name_53,Oppakken
+ability_name_54,Lui
+ability_name_55,Haast
+ability_name_56,Schattige Charme
+ability_name_57,Plus
+ability_name_58,Min
+ability_name_59,Weersvoorspelling
+ability_name_60,Kleverig
+ability_name_61,Vervellen
+ability_name_62,Doorzetter
+ability_name_63,Wonderschaal
+ability_name_64,Vloeibare Smurrie
+ability_name_65,Overgroei
+ability_name_66,Vuurzee
+ability_name_67,Stroomversnelling
+ability_name_68,Zwerm
+ability_name_69,Steenkop
+ability_name_70,Droogte
+ability_name_71,Arenaval
+ability_name_72,Levensgeest
+ability_name_73,Witte Rook
+ability_name_74,Pure Kracht
+ability_name_75,Schelppantser
+ability_name_76,Luchtvergrendeling
+ability_name_77,Verstrikte Voeten
+ability_name_78,Motoraandrijving
+ability_name_79,Rivaliteit
+ability_name_80,Standvastig
+ability_name_81,Sneeuwmantel
+ability_name_82,Vraatzucht
+ability_name_83,Woedepunt
+ability_name_84,Onbelast
+ability_name_85,Hittebestendig
+ability_name_86,Eenvoud
+ability_name_87,Droge Huid
+ability_name_88,Download
+ability_name_89,IJzeren Vuist
+ability_name_90,Gifgenezing
+ability_name_91,Aanpassingsvermogen
+ability_name_92,Vaardigheidslink
+ability_name_93,Hydratatie
+ability_name_94,Zonne-energie
+ability_name_95,Snelle Voeten
+ability_name_96,Normaliseren
+ability_name_97,Scherpschutter
+ability_name_98,Magische Wacht
+ability_name_99,Geen Wacht
+ability_name_100,Rek
+ability_name_101,Technicus
+ability_name_102,Bladwacht
+ability_name_103,Klungel
+ability_name_104,Vormbreker
+ability_name_105,Supergeluk
+ability_name_106,Nawerking
+ability_name_107,Voorgevoel
+ability_name_108,Voorspeller
+ability_name_109,Onbewust
+ability_name_110,Getinte Lens
+ability_name_111,Filter
+ability_name_112,Langzame Start
+ability_name_113,Stoer
+ability_name_114,Stormafvoer
+ability_name_115,IJslichaam
+ability_name_116,Massief Gesteente
+ability_name_117,Sneeuwaanval
+ability_name_118,Honingzoeker
+ability_name_119,Doorzoeken
+ability_name_120,Roekeloos
+ability_name_121,Meervoudig Type
+ability_name_122,Bloemgeschenk
+ability_name_123,Slechte Dromen
+ability_name_124,Zakkenroller
+ability_name_125,Pure Kracht
+ability_name_126,Tegendraads
+ability_name_127,Zenuwachtig
+ability_name_128,Trotser
+ability_name_129,Defaitistisch
+ability_name_130,Vervloekt Lichaam
+ability_name_131,Genezer
+ability_name_132,Vriendwacht
+ability_name_133,Zwak Pantser
+ability_name_134,Zwaar Metaal
+ability_name_135,Licht Metaal
+ability_name_136,Multischaal
+ability_name_137,Gifboost
+ability_name_138,Vlamboost
+ability_name_139,Oogst
+ability_name_140,Telepathie
+ability_name_141,Stemmingswissel
+ability_name_142,Overjas
+ability_name_143,Gifaanraking
+ability_name_144,Regenerator
+ability_name_145,Grote Bek
+ability_name_146,Zandstorm
+ability_name_147,Wonderhuid
+ability_name_148,Analyticus
+ability_name_149,Illusie
+ability_name_150,Bedrieger
+ability_name_151,Infiltrant
+ability_name_152,Mummie
+ability_name_153,Overmoedig
+ability_name_154,Gerechtvaardigd
+ability_name_155,Schrikachtig
+ability_name_156,Magische Stuiter
+ability_name_157,Sapzuiger
+ability_name_158,Grappenmaker
+ability_name_159,Zandkracht
+ability_name_160,IJzeren Stekels
+ability_name_161,Zenmodus
+ability_name_162,Overwinningsster
+ability_name_163,Turbovlam
+ability_name_164,Teravolt
+ability_name_165,Aromasluier
+ability_name_166,Bloemensluier
+ability_name_167,Wangenzak
+ability_name_168,Veelzijdig
+ability_name_169,Bontjas
+ability_name_170,Magiër
+ability_name_171,Kogelvrij
+ability_name_172,Competitief
+ability_name_173,Sterke Kaak
+ability_name_174,Afkoelen
+ability_name_175,Zoete Sluier
+ability_name_176,Houdingsverandering
+ability_name_177,Windvleugels
+ability_name_178,Megalanceerder
+ability_name_179,Grasvacht
+ability_name_180,Symbiose
+ability_name_181,Scherpe Klauwen
+ability_name_182,Pixilatie
+ability_name_183,Plakkerig
+ability_name_184,Aerilatie
+ability_name_185,Ouderlijke Band
+ability_name_186,Donkeraura
+ability_name_187,Feeënaura
+ability_name_188,Aurabreuk
+
+ability_name_202,Sneeuwstorm
+
+ability_name_206,Galvaniseren
+ability_name_207,Stroomgolfsurfer
+
+ability_name_221,Verstrikkend Haar
+
+ability_name_223,Alchemiekracht
+
+ability_name_226,Elektrische Golf
+ability_name_227,Psychische Golf
+ability_name_228,Mistige Golf
+ability_name_229,Grasgolf
+
+ability_name_243,Stoommotor
+
+ability_name_291,Herkauwer
+
+-------------------
+Ability Descriptions:
+ability_desc_1,De stank kan het doelwit laten terugdeinzen.
+ability_desc_2,De Pokémon laat het regenen wanneer hij het gevecht betreedt.
+ability_desc_3,Het Snelheid-attribuut wordt geleidelijk verhoogd.
+ability_desc_4,De Pokémon is beschermd tegen voltreffers.
+ability_desc_5,Hij kan niet met één klap worden uitgeschakeld.
+ability_desc_6,Voorkomt het gebruik van zelfvernietigende aanvallen.
+ability_desc_7,De Pokémon is beschermd tegen verlamming.
+ability_desc_8,Verhoogt het ontwijkingsvermogen van de Pokémon in een zandstorm.
+ability_desc_9,Contact met de Pokémon kan verlamming veroorzaken.
+ability_desc_10,Herstelt LP wanneer hij geraakt wordt door een Elektrische aanval.
+ability_desc_11,Herstelt LP wanneer hij geraakt wordt door een Water-aanval.
+ability_desc_12,Voorkomt dat hij verliefd wordt.
+ability_desc_13,Elimineert de effecten van het weer.
+ability_desc_14,De nauwkeurigheid van de Pokémon wordt verhoogd.
+ability_desc_15,Voorkomt dat de Pokémon in slaap valt.
+ability_desc_16,Verandert het type van de Pokémon naar dat van de aanval van de tegenstander.
+ability_desc_17,Voorkomt dat de Pokémon vergiftigd raakt.
+ability_desc_18,Versterkt Vuur-aanvallen wanneer hij door één geraakt wordt.
+ability_desc_19,Blokkeert bijkomende effecten van ontvangen aanvallen.
+ability_desc_20,Voorkomt dat de Pokémon verward raakt.
+ability_desc_21,Neutraliseert alle aanvallen die wisselen forceren.
+ability_desc_22,Verlaagt het Aanval-attribuut van de tegenstander.
+ability_desc_23,Voorkomt dat de tegenstander kan ontsnappen.
+ability_desc_24,Veroorzaakt schade bij de aanvaller bij contact.
+ability_desc_25,Alleen supereffectieve aanvallen raken.
+ability_desc_26,Geeft volledige immuniteit tegen alle Grond-aanvallen.
+ability_desc_27,Contact kan vergiftiging, verlamming of slaap veroorzaken.
+ability_desc_28,Geeft verbranding of verlamming door aan de tegenstander.
+ability_desc_29,Voorkomt dat andere Pokémon zijn attributen verlagen.
+ability_desc_30,Alle statusproblemen genezen wanneer hij teruggetrokken wordt.
+ability_desc_31,Trekt alle Elektrische aanvallen aan om het Sp. Aanval-attribuut te verhogen.
+ability_desc_32,Verhoogt de kans op bijkomende effecten.
+ability_desc_33,Verhoogt de Snelheid van de Pokémon wanneer het regent.
+ability_desc_34,Verhoogt de Snelheid van de Pokémon bij zonneschijn.
+ability_desc_35,Vergroot de kans om wilde Pokémon te ontmoeten.
+ability_desc_36,De Pokémon kopieert de Vaardigheid van de tegenstander.
+ability_desc_37,Verhoogt het Aanval-attribuut van de Pokémon.
+ability_desc_38,Contact met de Pokémon kan de aanvaller vergiftigen.
+ability_desc_39,De Pokémon is beschermd tegen terugdeinzen.
+ability_desc_40,Voorkomt dat de Pokémon bevriest.
+ability_desc_41,Voorkomt dat de Pokémon verbrand raakt.
+ability_desc_42,Voorkomt dat Staal-Pokémon kunnen ontsnappen.
+ability_desc_43,Geeft volledige immuniteit tegen geluid-gebaseerde aanvallen.
+ability_desc_44,De Pokémon herstelt geleidelijk LP in regen.
+ability_desc_45,De Pokémon roept een zandstorm op tijdens het gevecht.
+ability_desc_46,De Pokémon verhoogt het KP-verbruik van de tegenstander.
+ability_desc_47,Verhoogt weerstand tegen Vuur- en IJs-aanvallen.
+ability_desc_48,De Pokémon wordt snel wakker wanneer hij in slaap is.
+ability_desc_49,Contact met de Pokémon kan de aanvaller verbranden.
+ability_desc_50,Maakt ontsnappen van wilde Pokémon gegarandeerd.
+ability_desc_51,Voorkomt dat andere Pokémon zijn nauwkeurigheid verlagen.
+ability_desc_52,Voorkomt dat andere Pokémon het Aanval-attribuut verlagen.
+ability_desc_53,De Pokémon kan voorwerpen oprapen.
+ability_desc_54,De Pokémon kan niet twee beurten achter elkaar aanvallen.
+ability_desc_55,Verhoogt het Aanval-attribuut maar verlaagt nauwkeurigheid.
+ability_desc_56,Contact met de Pokémon kan verliefdheid veroorzaken.
+ability_desc_57,Verhoogt het Sp. Aanval-attribuut als een andere Pokémon Plus of Min heeft.
+ability_desc_58,Verhoogt het Sp. Aanval-attribuut als een andere Pokémon Plus of Min heeft.
+ability_desc_59,Castform verandert met het weer.
+ability_desc_60,Beschermt de Pokémon tegen diefstal van voorwerpen.
+ability_desc_61,De Pokémon kan zijn eigen statusproblemen genezen.
+ability_desc_62,Verhoogt het Aanval-attribuut wanneer er een statusprobleem is.
+ability_desc_63,Verhoogt het Verdediging-attribuut wanneer er een statusprobleem is.
+ability_desc_64,Beschadigt aanvallers die energie-aftappende aanvallen gebruiken.
+ability_desc_65,Versterkt Gras-aanvallen in een noodsituatie.
+ability_desc_66,Versterkt Vuur-aanvallen in een noodsituatie.
+ability_desc_67,Versterkt Water-aanvallen in een noodsituatie.
+ability_desc_68,Versterkt Insect-aanvallen in een noodsituatie.
+ability_desc_69,Beschermt de Pokémon tegen terugslagschade.
+ability_desc_70,Maakt zonlicht fel wanneer hij in gevecht is.
+ability_desc_71,Voorkomt dat de tegenstander vlucht.
+ability_desc_72,Voorkomt dat de Pokémon in slaap valt.
+ability_desc_73,Voorkomt dat de attributen van andere Pokémon verlagen.
+ability_desc_74,Verhoogt het Aanval-attribuut van de Pokémon.
+ability_desc_75,De Pokémon is beschermd tegen voltreffers.
+ability_desc_76,Elimineert de effecten van het weer.
+ability_desc_77,Verhoogt ontwijkingsvermogen wanneer de Pokémon verward is.
+ability_desc_78,Verhoogt het Snelheid-attribuut als hij wordt geraakt door een Elektrische aanval.
+ability_desc_79,Veroorzaakt meer schade aan Pokémon van hetzelfde geslacht.
+ability_desc_80,Verhoogt het Snelheid-attribuut elke keer dat de Pokémon terugdeinst.
+ability_desc_81,Verhoogt ontwijkingsvermogen in een hagelbui.
+ability_desc_82,Stimuleert vroeg gebruik van een vastgehouden Bes.
+ability_desc_83,Maximaliseert het Aanval-attribuut na een voltreffer.
+ability_desc_84,Verhoogt het Snelheid-attribuut wanneer een voorwerp wordt gebruikt.
+ability_desc_85,Verzwakt de kracht van Vuur-aanvallen.
+ability_desc_86,De Pokémon is gevoelig voor wilde attribuutveranderingen.
+ability_desc_87,Verlaagt LP bij hitte. Water herstelt LP.
+ability_desc_88,Past kracht aan op basis van de verdediging van de tegenstander.
+ability_desc_89,Versterkt de kracht van stootaanvallen.
+ability_desc_90,Herstelt LP wanneer de Pokémon vergiftigd is.
+ability_desc_91,Versterkt aanvallen van hetzelfde type.
+ability_desc_92,Verhoogt de frequentie van meervoudige aanvallen.
+ability_desc_93,Geneest statusproblemen wanneer het regent.
+ability_desc_94,In zonlicht sterker, maar LP neemt af.
+ability_desc_95,Verhoogt het Snelheid-attribuut wanneer er een statusprobleem is.
+ability_desc_96,Alle aanvallen van de Pokémon worden Normaal-type.
+ability_desc_97,Versterkt aanvallen wanneer ze voltreffers worden.
+ability_desc_98,De Pokémon ontvangt alleen schade van aanvallen.
+ability_desc_99,Zorgt dat aanvallen van of tegen de Pokémon altijd raken.
+ability_desc_100,De Pokémon valt aan na alle andere Pokémon.
+ability_desc_101,Versterkt de zwakkere aanvallen van de Pokémon.
+ability_desc_102,Voorkomt statusproblemen bij zonnig weer.
+ability_desc_103,De Pokémon kan geen vastgehouden voorwerpen gebruiken.
+ability_desc_104,Aanvallen kunnen worden gebruikt ongeacht de aanwezige Vaardigheden.
+ability_desc_105,Verhoogt de kans op voltreffers.
+ability_desc_106,Beschadigt de aanvaller die de laatste klap uitdeelt.
+ability_desc_107,Voelt gevaarlijke aanvallen van de tegenstander aan.
+ability_desc_108,Bepaalt welke aanvallen de tegenstander heeft.
+ability_desc_109,Negeert alle attribuutveranderingen van de Pokémon.
+ability_desc_110,Versterkt aanvallen die normaal niet erg effectief zijn.
+ability_desc_111,Verlaagt schade van supereffectieve aanvallen.
+ability_desc_112,Halveert tijdelijk de Aanval- en Snelheid-attributen.
+ability_desc_113,Maakt het mogelijk om Geest-Pokémon te raken.
+ability_desc_114,Trekt alle Water-aanvallen aan en verhoogt het Sp. Aanval-attribuut.
+ability_desc_115,De Pokémon herstelt geleidelijk LP in een hagelbui.
+ability_desc_116,Verlaagt schade van supereffectieve aanvallen.
+ability_desc_117,De Pokémon roept een hagelbui op in het gevecht.
+ability_desc_118,De Pokémon kan ergens Honing verzamelen.
+ability_desc_119,De Pokémon kan het voorwerp van de tegenstander bekijken.
+ability_desc_120,Versterkt aanvallen die terugslag veroorzaken.
+ability_desc_121,Verandert type om overeen te komen met de vastgehouden Plaat.
+ability_desc_122,Versterkt Pokémon in het team wanneer het zonnig is.
+ability_desc_123,Verlaagt de LP van een slapende tegenstander.
+ability_desc_124,Steelt een voorwerp wanneer het geraakt wordt door een Pokémon.
+ability_desc_125,Verwijdert bijkomende effecten om schade te verhogen.
+ability_desc_126,Draait attribuutveranderingen om.
+ability_desc_127,Maakt de tegenstander nerveus en verhindert het eten van Bessen.
+ability_desc_128,Verhoogt het Aanval-attribuut wanneer attributen worden verlaagd.
+ability_desc_129,Verlaagt attributen wanneer LP op de helft of lager komt.
+ability_desc_130,Kan een aanval uitschakelen die op de Pokémon wordt gebruikt.
+ability_desc_131,Kan de statusproblemen van een bondgenoot genezen.
+ability_desc_132,Verlaagt schade die bondgenoten ontvangen.
+ability_desc_133,Fysieke aanvallen verlagen het Verdediging- en verhogen het Snelheid-attribuut.
+ability_desc_134,Verdubbelt het gewicht van de Pokémon.
+ability_desc_135,Halveert het gewicht van de Pokémon.
+ability_desc_136,Verlaagt schade wanneer LP vol is.
+ability_desc_137,Versterkt fysieke aanvallen wanneer vergiftigd.
+ability_desc_138,Versterkt speciale aanvallen wanneer verbrand.
+ability_desc_139,Kan een nieuwe Bes creëren nadat er één is gebruikt.
+ability_desc_140,Voorziet een aanval van een bondgenoot en ontwijkt deze.
+ability_desc_141,Verhoogt één attribuut en verlaagt een andere.
+ability_desc_142,Beschermt de Pokémon tegen weersschade.
+ability_desc_143,Kan doelen vergiftigen bij contact.
+ability_desc_144,Herstelt een beetje LP wanneer hij uit het gevecht wordt gehaald.
+ability_desc_145,Beschermt tegen aanvallen die het Verdediging-attribuut verlagen.
+ability_desc_146,Verhoogt het Snelheid-attribuut in een zandstorm.
+ability_desc_147,Maakt status-veranderende aanvallen minder accuraat.
+ability_desc_148,Versterkt aanvallen wanneer de Pokémon als laatste aanvalt.
+ability_desc_149,Komt tevoorschijn vermomd als de Pokémon erachter.
+ability_desc_150,Transformeert in de Pokémon waar hij tegenover staat.
+ability_desc_151,Gaat door barrières van de tegenstander heen en valt aan.
+ability_desc_152,Contact met deze Pokémon verspreidt deze Vaardigheid.
+ability_desc_153,Verhoogt het Aanval-attribuut na het uitschakelen van een Pokémon.
+ability_desc_154,Verhoogt het Aanval-attribuut als hij wordt geraakt door een Duister-aanval.
+ability_desc_155,Sommige aanvalstypes maken het bang en verhogen Snelheid.
+ability_desc_156,Kaast status-veranderende aanvallen terug.
+ability_desc_157,Verhoogt het Aanval-attribuut wanneer hij wordt geraakt door een Gras-aanval.
+ability_desc_158,Geeft prioriteit aan een status-veranderende aanval.
+ability_desc_159,Versterkt bepaalde aanvallen in een zandstorm.
+ability_desc_160,Veroorzaakt schade bij contact met de Pokémon.
+ability_desc_161,Verandert vorm wanneer LP halveert.
+ability_desc_162,Verhoogt de nauwkeurigheid van zichzelf en bondgenoten.
+ability_desc_163,Aanvallen kunnen worden gebruikt ongeacht de aanwezige Vaardigheden.
+ability_desc_164,Aanvallen kunnen worden gebruikt ongeacht de aanwezige Vaardigheden.
+ability_desc_165,Beschermt bondgenoten tegen aanvallen die hun aanvalskeuze beperken.
+ability_desc_166,Voorkomt attribuutverlaging bij Gras-Pokémon in het team.
+ability_desc_167,Herstelt ook LP wanneer de Pokémon een Bes eet.
+ability_desc_168,Verandert het type van de Pokémon naar het type van de aanval die hij gebruikt.
+ability_desc_169,Halveert schade van fysieke aanvallen.
+ability_desc_170,Steelt het vastgehouden voorwerp van een Pokémon die hij raakt.
+ability_desc_171,Beschermt tegen bepaalde bal- en bomaanvallen.
+ability_desc_172,Verhoogt Sp. Aanval wanneer een attribuut wordt verlaagd.
+ability_desc_173,De sterke kaak van de Pokémon geeft enorme bijtkracht.
+ability_desc_174,Normaal-aanvallen worden IJs-aanvallen.
+ability_desc_175,Voorkomt dat hijzelf en bondgenoten in slaap vallen.
+ability_desc_176,De Pokémon verandert van vorm afhankelijk van hoe hij vecht.
+ability_desc_177,Geeft prioriteit aan Vlieg-aanvallen.
+ability_desc_178,Versterkt aura- en pulsaanvallen.
+ability_desc_179,Verhoogt het Verdediging-attribuut op Grasterrein.
+ability_desc_180,De Pokémon kan een voorwerp doorgeven aan een bondgenoot.
+ability_desc_181,Versterkt aanvallen die direct contact maken.
+ability_desc_182,Normaal-aanvallen worden Fee-aanvallen.
+ability_desc_183,Contact verlaagt het Snelheid-attribuut van de aanvaller.
+ability_desc_184,Normaal-aanvallen worden Vlieg-aanvallen.
+ability_desc_185,Ouder en kind vallen samen aan.
+ability_desc_186,Versterkt Duister-aanvallen van alle Pokémon.
+ability_desc_187,Versterkt Fee-aanvallen van alle Pokémon.
+ability_desc_188,De effecten van Aura-vaardigheden worden omgekeerd.
+
+ability_desc_202,Verhoogt het Snelheid-attribuut van de Pokémon in een hagelbui.
+
+ability_desc_206,Normaal-aanvallen worden het type Elektrisch en hun kracht wordt licht verhoogd.
+ability_desc_207,Verdubbelt de Snelheid van de Pokémon op Elektrisch Terrein.
+
+ability_desc_221,Contact met de Pokémon verlaagt het Snelheid-attribuut van de aanvaller.
+
+ability_desc_223,De Pokémon kopieert de Vaardigheid van een verslagen bondgenoot.
+
+ability_desc_226,Verandert het terrein in Elektrisch Terrein wanneer de Pokémon het gevecht betreedt.
+ability_desc_227,Verandert het terrein in Psychisch Terrein wanneer de Pokémon het gevecht betreedt.
+ability_desc_228,Verandert het terrein in Mistig Terrein wanneer de Pokémon het gevecht betreedt.
+ability_desc_229,Verandert het terrein in Grasterrein wanneer de Pokémon het gevecht betreedt.
+
+ability_desc_243,Verhoogt het Snelheid-attribuut van de Pokémon drastisch wanneer hij geraakt wordt door een Vuur- of Water-aanval.
+
+-------------------
+Nature Names:
+
+nature_name_Hardy,Robuust
+nature_name_Lonely,Eenzaam
+nature_name_Brave,Moedig
+nature_name_Adamant,Koppig
+nature_name_Naughty,Ondeugend
+nature_name_Bold,Gedurfd
+nature_name_Docile,Volgzaam
+nature_name_Relaxed,Ontspannen
+nature_name_Impish,Ondeugend
+nature_name_Lax,Laks
+nature_name_Timid,Schuchter
+nature_name_Hasty,Overhaast
+nature_name_Serious,Serieus
+nature_name_Jolly,Vrolijk
+nature_name_Naive,Naïef
+nature_name_Modest,Bescheiden
+nature_name_Mild,Mild
+nature_name_Quiet,Stil
+nature_name_Bashful,Verlegen
+nature_name_Rash,Onbezonnen
+nature_name_Calm,Kalm
+nature_name_Gentle,Zachtmoedig
+nature_name_Sassy,Brutaal
+nature_name_Careful,Voorzichtig
+nature_name_Quirky,Eigenzinnig
+
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------
 Story translation:
 ---
@@ -3781,4 +4239,4 @@ New Bark Town:
 ---
 barktown.dat:
 ---
-barktown_player_house,<player.name>'s Huis
+barktown_player_house,<Player.Name>'s Huis

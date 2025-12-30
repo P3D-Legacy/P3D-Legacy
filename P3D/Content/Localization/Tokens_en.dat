@@ -366,7 +366,7 @@ IngameMenu:
 game_menu_pokedex,Pokédex
 game_menu_party,Pokémon
 game_menu_bag,Bag
-game_menu_trainer_card,<player.name>
+game_menu_trainer_card,<Player.Name>
 game_menu_save,Save
 game_menu_save_notpossible,Saving is not possible right now.
 game_menu_options,Options
@@ -588,7 +588,7 @@ Voltorb Flip:
 VoltorbFlip_LV.,LV.
 VoltorbFlip_CurrentCoins_Line1,Coins found
 VoltorbFlip_CurrentCoins_Line2,in this LV.
-VoltorbFlip_TotalCoins_Line1,<player.name>'s
+VoltorbFlip_TotalCoins_Line1,<Player.Name>'s
 VoltorbFlip_TotalCoins_Line2,earned Coins
 
 VoltorbFlip_MemoButton_Open_Line1,Open
@@ -612,7 +612,7 @@ VoltorbFlip_BeforeNewLevel_GameInfo_Answer_Hint,Hint!
 VoltorbFlip_BeforeNewLevel_GameInfo_Answer_AboutMemos,About Memos
 VoltorbFlip_BeforeNewLevel_GameInfo_Back,Back
 
-VoltorbFlip_GameWon_1,Game clear!~You've found all of the~hidden x2 and x3 cards.*<player.name> received~
+VoltorbFlip_GameWon_1,Game clear!~You've found all of the~hidden x2 and x3 cards.*<Player.Name> received~
 VoltorbFlip_GameWon_2,Coin(s)!
 
 VoltorbFlip_GameLost,Oh no! You get 0 Coins!
@@ -626,7 +626,7 @@ VoltorbFlip_NewLevel_Higher2,!
 VoltorbFlip_NewLevel_Ready1,Ready to play Game Lv.
 VoltorbFlip_NewLevel_Ready2,!
 
-VoltorbFlip_QuitGame_1,<player.name> received~
+VoltorbFlip_QuitGame_1,<Player.Name> received~
 VoltorbFlip_QuitGame_2,Coin(s)!
 
 VoltorbFlip_AfterGame_Won1,You've won
@@ -676,21 +676,21 @@ pokedex_data_page_evolution,Evolution
 pokedex_habitat_area_unknown,Area Unknown.
 pokedex_evolution_no_evolutions,doesn't evolve.
 ----
-Receiving Items:
+Receiving and Handing Over Items:
 item_received_single,Received the~
 item_received_multiple,Received
-item_found,<player.name> found~
-item_stored_in_pocket_single_start,<player.name> stored it in the~
+item_found,<Player.Name> found~
+item_stored_in_pocket_single_start,<Player.Name> stored it in the~
 item_stored_in_pocket_single_end,pocket.
-item_stored_in_pocket_multiple_start,<player.name> stored them~in the
+item_stored_in_pocket_multiple_start,<Player.Name> stored them~in the
 item_stored_in_pocket_multiple_end,pocket.
 item_handed_over_single,<Player.Name> handed over the~
 item_handed_over_multiple,<Player.Name> handed over the~
 
 Berries:
-berry_picked_single_start,<player.name> picked the~
+berry_picked_single_start,<Player.Name> picked the~
 berry_picked_single_end,Berry.
-berry_picked_multiple_start,<player.name> picked the~
+berry_picked_multiple_start,<Player.Name> picked the~
 berry_picked_multiple_end,Berries.
 ----
 Battle:
@@ -2594,7 +2594,7 @@ item_6_missingskin,You can't use this item~without a bicycle skin.*Its name shou
 item_6_only_custom_gamemodes,This item can't be used~on this GameMode.
 
 Key Items:
-item_use_6,<player.name> stepped~off the Bicycle.
+item_use_6,<Player.Name> stepped~off the Bicycle.
 item_use_54,Your Coins:~
 item_use_658_disable,The Exp. All was turned off.
 item_use_658_enable,The Exp. All was turned on.
@@ -3896,6 +3896,36 @@ ability_desc_228,Turns the ground into Misty Terrain when the Pokémon enters a 
 ability_desc_229,Turns the ground into Grassy Terrain when the Pokémon enters a battle.
 
 ability_desc_243,Boosts the Pokémon's Speed stat drastically if hit by a Fire- or Water-type move.
+
+-------------------
+Nature Names:
+
+nature_name_Hardy,Hardy
+nature_name_Lonely,Lonely
+nature_name_Brave,Brave
+nature_name_Adamant,Adamant
+nature_name_Naughty,Naughty
+nature_name_Bold,Bold
+nature_name_Docile,Docile
+nature_name_Relaxed,Relaxed
+nature_name_Impish,Impish
+nature_name_Lax,Lax
+nature_name_Timid,Timid
+nature_name_Hasty,Hasty
+nature_name_Serious,Serious
+nature_name_Jolly,Jolly
+nature_name_Naive,Naive
+nature_name_Modest,Modest
+nature_name_Mild,Mild
+nature_name_Quiet,Quiet
+nature_name_Bashful,Bashful
+nature_name_Rash,Rash
+nature_name_Calm,Calm
+nature_name_Gentle,Gentle
+nature_name_Sassy,Sassy
+nature_name_Careful,Careful
+nature_name_Quirky,Quirky
+
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------
 Story translation:
 ---
