@@ -403,9 +403,16 @@ Public Class NewInventoryScreen
 
                         Dim itemLoc = New Vector2(iX * 160 + 32 + XOffset, 48 + iY * 160 + 32)
 
-                        Dim size As Integer = If(i = ItemIndex, 96, 72)
+                        Dim ItemOffset As New Vector2(0)
+                        Dim ItemSize As New Size(cItem.Texture.Width, cItem.Texture.Height)
+                        If ItemSize.Width <> 24 Or ItemSize.Height <> 24 Then
+                            ItemOffset.X = CInt(cItem.Texture.Width - 24)
+                            ItemOffset.Y = CInt(cItem.Texture.Height - 24)
+                        End If
 
-                        itemBatch.Draw(cItem.Texture, New Rectangle(CInt(itemLoc.X) + 48, CInt(itemLoc.Y) + Yoffset, size, size), Nothing, New Color(255, 255, 255, itemPanelAlpha),
+                        Dim size As Integer = If(i = ItemIndex, ItemSize.Width * 4, ItemSize.Width * 3)
+
+                        itemBatch.Draw(cItem.Texture, New Rectangle(CInt(itemLoc.X + 48 - ItemOffset.X), CInt(itemLoc.Y + Yoffset - ItemOffset.Y), size, size), Nothing, New Color(255, 255, 255, itemPanelAlpha),
                                        If(i = ItemIndex, _itemAnimation._shakeV, 0F), New Vector2(cItem.Texture.Width / 2.0F), SpriteEffects.None, 0F)
 
                         Dim nameTextHeight As Integer = 24
@@ -503,7 +510,14 @@ Public Class NewInventoryScreen
         Dim getIndex As Integer = ItemIndex + PageIndex * 10
         Dim cItem As Item = Item.GetItemByID(_items(getIndex).ItemID)
 
-        infoBatch.Draw(cItem.Texture, New Rectangle(24, 24, 48, 48), Color.White)
+        Dim ItemOffset As New Vector2(0)
+        Dim ItemSize As New Size(cItem.Texture.Width, cItem.Texture.Height)
+        If ItemSize.Width <> 24 Or ItemSize.Height <> 24 Then
+            ItemOffset.X = CInt(cItem.Texture.Width - 24)
+            ItemOffset.Y = CInt(cItem.Texture.Height - 24)
+        End If
+
+        infoBatch.Draw(cItem.Texture, New Rectangle(CInt(24 - ItemOffset.X), CInt(24 - ItemOffset.Y), ItemSize.Width * 2, ItemSize.Height * 2), Color.White)
 
         Dim itemTitle As String = cItem.Name
         Dim itemSubTitle As String = cItem.ItemType.ToString()
