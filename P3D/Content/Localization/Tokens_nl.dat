@@ -80,6 +80,7 @@ global_pokemon_move_sweetscent,Zoete geur
 global_pokemon_move_milkdrink,Melkdrank
 global_pokemon_move_softboiled,Zachtgekookt
 global_used,Gebruikt
+global_none,Niets
 ---
 Pokémon & Attack Properties:
 
