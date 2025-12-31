@@ -135,9 +135,9 @@
             End If
 
             If c <> Color.Black Then
-                .DrawString(FontManager.MainFont, Localization.GetString("PP") & " " & A.CurrentPP & " / " & A.MaxPP, New Vector2(p.X + 96 + 2, CInt(p.Y + 56 + 2)), Color.Black)
+                .DrawString(FontManager.MainFont, Localization.GetString("property_PP", "PP") & " " & A.CurrentPP & " / " & A.MaxPP, New Vector2(p.X + 96 + 2, CInt(p.Y + 56 + 2)), Color.Black)
             End If
-            .DrawString(FontManager.MainFont, Localization.GetString("PP") & " " & A.CurrentPP & " / " & A.MaxPP, New Vector2(p.X + 96, CInt(p.Y + 56)), c)
+            .DrawString(FontManager.MainFont, Localization.GetString("property_PP", "PP") & " " & A.CurrentPP & " / " & A.MaxPP, New Vector2(p.X + 96, CInt(p.Y + 56)), c)
             .Draw(TextureManager.GetTexture(Element.GetElementTexturePath(), A.Type.GetElementImage(), ""), New Rectangle(CInt(p.X + 34), CInt(p.Y + 56), 48, 16), Color.White)
         End With
     End Sub

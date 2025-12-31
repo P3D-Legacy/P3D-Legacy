@@ -512,7 +512,7 @@
                 If .Attacks.Count - 1 >= i Then
                     SpriteBatch.DrawString(FontManager.MainFont, .Attacks(i).Name, New Vector2(pos.X + 24, pos.Y + 8), New Color(0, 0, 0, CInt(220 * _fadeIn * _pageFade)))
                     Core.SpriteBatch.Draw(TextureManager.GetTexture(Element.GetElementTexturePath()), New Rectangle(CInt(pos.X + 26), CInt(pos.Y + 36), 48, 16), .Attacks(i).Type.GetElementImage(), New Color(255, 255, 255, CInt(255 * _fadeIn * _pageFade)))
-                    SpriteBatch.DrawString(FontManager.MainFont, "PP " & .Attacks(i).CurrentPP & " / " & .Attacks(i).MaxPP, New Vector2(pos.X + 130, pos.Y + 32), New Color(0, 0, 0, CInt(220 * _fadeIn * _pageFade)))
+                    SpriteBatch.DrawString(FontManager.MainFont, Localization.GetString("property_PP", "PP") & " " & .Attacks(i).CurrentPP & " / " & .Attacks(i).MaxPP, New Vector2(pos.X + 130, pos.Y + 32), New Color(0, 0, 0, CInt(220 * _fadeIn * _pageFade)))
                 End If
             Next
 
