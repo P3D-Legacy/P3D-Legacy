@@ -3481,7 +3481,7 @@ move_desc_585,Borrowing the power of the moon, the user attacks the target. This
 
 move_desc_790,The user attacks the target by emitting steam. This may also confuse the target.
 
-move_desc_797,The user converts its rage into energy to attack. The more times the user has been hit by attacks, the greater the move's power.
+move_desc_889,The user converts its rage into energy to attack. The more times the user has been hit by attacks, the greater the move's power.
 -------------------
 Ability Names:
 ability_name_1,Stench

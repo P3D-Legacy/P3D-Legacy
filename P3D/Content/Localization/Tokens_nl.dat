@@ -423,7 +423,7 @@ map_screen_RegionSwitchHint,(Druk op de Shift-toets/Schouderknoppen om tussen re
 ---
 Trainer Card Screen:
 trainer_screen_title,Trainerkaart
-trainer_screen_collected_badges,Verzamelde badges
+trainer_screen_collected_badges,Verzamelde Badges
 trainer_screen_badge,-Badge
 trainer_screen_empty_badge,???
 ---
@@ -3152,7 +3152,7 @@ move_name_243,Mirror Coat
 move_name_244,Psych Up
 move_name_245,Extreme snelheid
 move_name_246,Oeroude kracht
-move_name_247,Shaduwbal
+move_name_247,Schaduwbal
 move_name_248,Future Sight
 move_name_249,Steenknal
 move_name_250,Whirlpool
@@ -3301,7 +3301,7 @@ move_name_402,Zaadbom
 move_name_403,Luchtklief
 move_name_404,X-schaar
 move_name_405,Bug Buzz
-move_name_406,Dragon Pulse
+move_name_406,Drakenpuls
 move_name_407,Dragon Rush
 move_name_408,Power Gem
 move_name_409,Drain Punch
@@ -3787,7 +3787,7 @@ move_desc_585,Door de kracht van de maan te gebruiken, valt de gebruiker het doe
 
 move_desc_790,De gebruiker valt het doelwit aan door stoom uit te stoten. Dit kan het doelwit ook verwarren.
 
-move_desc_797,De gebruiker zet zijn woede om in energie om aan te vallen. Hoe vaker de gebruiker is geraakt door aanvallen, hoe krachtiger de techniek.
+move_desc_889,De gebruiker zet zijn woede om in energie om aan te vallen. Hoe vaker de gebruiker is geraakt door aanvallen, hoe krachtiger de techniek.
 -------------------
 Ability Names:
 ability_name_1,Stank
