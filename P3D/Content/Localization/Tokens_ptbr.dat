@@ -384,22 +384,22 @@ game_menu_exit,Sair do Menu
 game_menu_end_contest,Terminar Concurso
 ---
 InventoryScreen:
-inventory_screen_title,Inventory
-inventory_screen_ItemSubtitle_HM,Hidden Machine
-inventory_screen_ItemSubtitle_TM,Technical Machine
-inventory_screen_ItemSubtitle_Standard_Suffix, Item
-inventory_screen_ItemSubtitle_KeyItem,Key Item
-inventory_screen_ItemSubtitle_PokeBall,Poké Ball
-inventory_screen_ItemSubtitle_Plant,Plant
-inventory_screen_ItemSubtitle_BattleItem,Battle Item
-inventory_screen_ItemNotUsableInBattle,This item can't~be used in Battle.
-inventory_screen_TossConfirmation,Are you sure you want to toss~this item?
-inventory_screen_TossAmount,Select the amount to toss.
-inventory_screen_GiveItem_Give,Gave <name> the <newitem>.
-inventory_screen_GiveItem_Switch,Switched <name>'s <olditem> with the <newitem>.
-inventory_screen_CannotGiveBugContest,Cannot give an item to~this Pokémon during a~Bug-Catching Contest.
+inventory_screen_title,Inventário
+inventory_screen_ItemSubtitle_HM,Máquina Secreta
+inventory_screen_ItemSubtitle_TM,Máquina de Técnica
+inventory_screen_ItemSubtitle_Standard_Suffix, Itens
+inventory_screen_ItemSubtitle_KeyItem,Itens Chave
+inventory_screen_ItemSubtitle_PokeBall,Poké Bolas
+inventory_screen_ItemSubtitle_Plant,Planta
+inventory_screen_ItemSubtitle_BattleItem,Itens de Batalha
+inventory_screen_ItemNotUsableInBattle,Esse item não pode~ser usado em Batalha.
+inventory_screen_TossConfirmation,Você tem certeza que quer descartar~esse item?
+inventory_screen_TossAmount,Escolha a quantidade a descartar.
+inventory_screen_GiveItem_Give,Deu a <name> um(a) <newitem>.
+inventory_screen_GiveItem_Switch,Trocou o(a) <olditem> de <name> por <newitem>.
+inventory_screen_CannotGiveBugContest,Não pode dar item para~esse Pokémon durante um~Concurso de captura de Insetos.
 inventory_screen_EggsCannotHold,Ovos não podem segurar itens.
-inventory_screen_GiveItem_TakeMail,Deu <newitem> para <name> e levou o Mail para o PC.
+inventory_screen_GiveItem_TakeMail,Deu <newitem> para <name> e mandou a Carta para o PC.
 inventory_screen_CannotGiveToPokemon,<newitem> não pode ser dado á um Pokémon.
 ---
 StorageSystemScreen:
@@ -590,28 +590,28 @@ rename_screen_title_EnterName,Escreva um nome para [NAME]:
 rename_screen_button_Rename,Renomear
 ---
 Shop Screen:
-shop_screen_title_store,Store
-shop_screen_title_BuyItems,Buy Items
-shop_screen_title_BuyCategory,Buy [CATEGORY]
-shop_screen_title_SellItems,Sell Items
-shop_screen_title_SellCategory,Sell [CATEGORY]
-shop_screen_button_buy,Buy
-shop_screen_button_sell,Sell
-shop_screen_button_exit,Exit
-shop_screen_buy_NoItemsToBuy,There are no items to buy.
-shop_screen_buy_InStock,In Stock:
-shop_screen_sell_NoItemsToSell,You have no items to sell.
-shop_screen_sell_confirmation,Do you want to sell~[AMOUNT] [ITEM]?
-shop_screen_buysell_PricePerItem,Per Item:
+shop_screen_title_store,Loja
+shop_screen_title_BuyItems,Comprar Itens
+shop_screen_title_BuyCategory,Comprar [CATEGORY]
+shop_screen_title_SellItems,Vender Itens
+shop_screen_title_SellCategory,Vender [CATEGORY]
+shop_screen_button_buy,Comprar
+shop_screen_button_sell,Vender
+shop_screen_button_exit,Sair
+shop_screen_buy_NoItemsToBuy,Não há itens á venda.
+shop_screen_buy_InStock,Em Estoque:
+shop_screen_sell_NoItemsToSell,Você não tem itens para vender.
+shop_screen_sell_confirmation,Você quer vender~[AMOUNT] [ITEM]?
+shop_screen_buysell_PricePerItem,Por Item:
 shop_screen_buysell_PriceTotal,Total:
-shop_screen_buysell_InInventory,In Inventory:
-shop_screen_buysell_DescriptionHint,Press [<system.button(special)>] or Select to view the item's description.
-shop_screen_buysell_CurrentBalance,Current Balance:
-shop_screen_currency_BattlePoints,Battle Points
-shop_screen_currency_Coins,Coins
+shop_screen_buysell_InInventory,No Inventório:
+shop_screen_buysell_DescriptionHint,Pressione [<system.button(special)>] ou Select para ver a descrição do item.
+shop_screen_buysell_CurrentBalance,Saldo Atual:
+shop_screen_currency_BattlePoints,Pontos de Batalha
+shop_screen_currency_Coins,Moedas
 shop_screen_currency_Pokédollars,$
-shop_screen_currency_short_BattlePoints,BP
-shop_screen_currency_short_Coins,C
+shop_screen_currency_short_BattlePoints,PB
+shop_screen_currency_short_Coins,M
 shop_screen_currency_short_Pokédollars,$
 ---
 Blackout Screen:
@@ -629,8 +629,8 @@ hall_of_fame_screen_type1,Tipo 1
 hall_of_fame_screen_type2,Tipo 2
 ---
 Credits Screen:
-credits_skip,Press [<system.button(enter1)>] to skip to the end.
-credits_continue,aperte [<system.button(enter1)>] para continuar.
+credits_skip,Pressione [<system.button(enter1)>] para pular para o fim.
+credits_continue,Pressione [<system.button(enter1)>] para continuar.
 ---
 Voltorb Flip:
 VoltorbFlip_LV.,NV.
@@ -1004,7 +1004,7 @@ item_category_Pokéballs,Pokébolas
 item_category_Plants,Plantas
 item_category_KeyItems,Itens Chave
 item_category_BattleItems,Itens de Batalha
-item_category_Mail,Envelopes
+item_category_Mail,Cartas
 ---
 GameMessages:
 game_message_screenshot,Screenshot salvo como
