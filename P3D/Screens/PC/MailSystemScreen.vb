@@ -54,6 +54,21 @@
             Me.TempNewMail.MailRead = True
         End If
     End Sub
+    Public Sub New(ByVal currentScreen As Screen, PartyMailItem As GameModeItem)
+        Me.PreScreen = currentScreen
+        Me.Identification = Identifications.MailSystemScreen
+
+        Me.MouseVisible = True
+        Me.CanBePaused = True
+        Me.CanMuteAudio = False
+        Me.CanChat = False
+        If PartyMailItem IsNot Nothing Then
+            Me.TakenFromParty = True
+            Me.index = 1
+            Me.TempNewMail = Items.MailItem.GetMailDataFromString(PartyMailItem.AdditionalData)
+            Me.TempNewMail.MailRead = True
+        End If
+    End Sub
 
     Public Overrides Sub Draw()
 
@@ -895,8 +910,8 @@
 
     Private Sub DrawMenuEntries()
         If Me.MenuHeader <> "" Then
-            Canvas.DrawRectangle(New Rectangle(Core.windowSize.Width - 334, 100, 320, 64), New Color(0, 0, 0, 180))
-            Core.SpriteBatch.DrawString(FontManager.MainFont, MenuHeader, New Vector2(Core.windowSize.Width - 174 - FontManager.MainFont.MeasureString(MenuHeader).X / 2, 120), Color.White)
+            Canvas.DrawRectangle(New Rectangle(CInt(Core.windowSize.Width - 14 - FontManager.MainFont.MeasureString(MenuHeader).X - 16), 100, CInt(FontManager.MainFont.MeasureString(MenuHeader).X + 16), 64), New Color(0, 0, 0, 180))
+            Core.SpriteBatch.DrawString(FontManager.MainFont, MenuHeader, New Vector2(Core.windowSize.Width - 14 - FontManager.MainFont.MeasureString(MenuHeader).X - 8, 120), Color.White)
         End If
 
         For Each e As MenuEntry In Me.MenuEntries

@@ -830,12 +830,14 @@ Public Class PartyScreen
                 Dim p As Pokemon = PokemonList(_index)
 
                 If p.Item.IsMail And p.Item.AdditionalData <> "" Then
-
-                    Core.SetScreen(New TransitionScreen(Core.CurrentScreen, New MailSystemScreen(Core.CurrentScreen, CType(p.Item, Items.MailItem)), Color.Black, False))
-
+                    If p.Item.IsGameModeItem = False Then
+                        Core.SetScreen(New TransitionScreen(Core.CurrentScreen, New MailSystemScreen(Core.CurrentScreen, CType(p.Item, Items.MailItem)), Color.Black, False))
+                    Else
+                        Core.SetScreen(New TransitionScreen(Core.CurrentScreen, New MailSystemScreen(Core.CurrentScreen, CType(p.Item, GameModeItem)), Color.Black, False))
+                    End If
                     p.Item = Nothing
                 Else
-                    ShowMessage("Taken " & p.Item.OneLineName() & " from " & p.GetDisplayName() & ".")
+                    ShowMessage(Localization.GetString("party_screen_TakenItemFromPokemon", "Taken //ITEM//~from //POKEMONNAME//.").Replace("//ITEM//", p.Item.OneLineName()).Replace("//POKEMONNAME//", p.GetDisplayName()))
                     Dim ItemID As String
                     If p.Item.IsGameModeItem Then
                         ItemID = p.Item.gmID

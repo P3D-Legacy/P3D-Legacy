@@ -64,10 +64,17 @@
 
                     If showMessage = True Then
                         Dim Message As String = ""
+                        Dim SpaceAfterStart = ""
                         If amount = 1 Then
-                            Message = Localization.GetString("item_handed_over_single", "<Player.Name> handed over the~") & Item.OneLineName() & "!"
+                            If Localization.GetString("item_handed_over_single", "<Player.Name> handed over the~").Replace("<player.name>", Core.Player.Name).EndsWith("~") = False Then
+                                SpaceAfterStart = " "
+                            End If
+                            Message = Localization.GetString("item_handed_over_single", "<Player.Name> handed over the~") & SpaceAfterStart & Item.OneLineName() & "!"
                         Else
-                            Message = Localization.GetString("item_handed_over_multiple", "<Player.Name> handed over the~") & Item.OneLinePluralName() & "!"
+                            If Localization.GetString("item_handed_over_multiple", "<Player.Name> handed over the~").Replace("<player.name>", Core.Player.Name).EndsWith("~") = False Then
+                                SpaceAfterStart = " "
+                            End If
+                            Message = Localization.GetString("item_handed_over_multiple", "<Player.Name> handed over the~") & SpaceAfterStart & Item.OneLinePluralName() & "!"
                         End If
 
                         Screen.TextBox.reDelay = 0.0F

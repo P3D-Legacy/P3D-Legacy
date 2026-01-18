@@ -1163,14 +1163,14 @@ Public Class StorageSystemScreen
         criteria.Add(FilterTypes.Nature, Function(f) p.Nature.ToString().ToLower() = f.FilterValue.ToLower())
         criteria.Add(FilterTypes.Pokémon, Function(f) p.GetName().ToLower() = f.FilterValue.ToLower())
         criteria.Add(FilterTypes.Move, Function(f) p.Attacks.Any(Function(a) a.Name.ToLower() = f.FilterValue.ToLower()))
-        criteria.Add(FilterTypes.Type1, Function(f) p.Type1.Type = New Element(f.FilterValue).Type)
-        criteria.Add(FilterTypes.Type2, Function(f) p.Type2.Type = New Element(f.FilterValue).Type)
+        criteria.Add(FilterTypes.Type1, Function(f) p.Type1.Type = BattleSystem.GameModeElementLoader.GetElementByName(f.FilterValue).Type)
+        criteria.Add(FilterTypes.Type2, Function(f) p.Type2.Type = BattleSystem.GameModeElementLoader.GetElementByName(f.FilterValue).Type)
         For Each f As Filter In Filters
             Dim check As Func(Of Filter, Boolean) = Nothing
             If criteria.TryGetValue(f.FilterType, check) AndAlso Not criteria(f.FilterType)(f) Then Return False
             If f.FilterType = FilterTypes.HeldItem Then
-                If f.FilterValue = "Has no Held Item" And p.Item IsNot Nothing Then Return False
-                If f.FilterValue = "Has a Held Item" And p.Item Is Nothing Then Return False
+                If f.FilterValue = Localization.GetString("storage_screen_filter_HeldItem_No", "Has no Held Item") And p.Item IsNot Nothing Then Return False
+                If f.FilterValue = Localization.GetString("storage_screen_filter_HeldItem_Yes", "Has a Held Item") And p.Item Is Nothing Then Return False
             End If
         Next
         Return True
@@ -1535,7 +1535,7 @@ Public Class StorageSystemFilterScreen
         Me.CanMuteAudio = True
         Me.CanBePaused = True
 
-        Me.mainMenuItems = {"Pokémon", "Type1", "Type2", "Move", "Ability", "Nature", "Gender", "HeldItem"}.ToList()
+        Me.mainMenuItems = {Localization.GetString("storage_screen_filter_Pokemon", "Pokémon"), Localization.GetString("storage_screen_filter_Type1", "Type1"), Localization.GetString("storage_screen_filter_Type2", "Type2"), Localization.GetString("storage_screen_filter_Move", "Move"), Localization.GetString("storage_screen_filter_Ability", "Ability"), Localization.GetString("storage_screen_filter_Nature", "Nature"), Localization.GetString("storage_screen_filter_Gender", "Gender"), Localization.GetString("storage_screen_filter_HeldItem", "Held Item")}.ToList()
 
         Me.Menu = New SelectMenu({""}.ToList(), 0, Nothing, 0)
         Me.Menu.Visible = False
@@ -1554,7 +1554,7 @@ Public Class StorageSystemFilterScreen
         Canvas.DrawGradient(New Rectangle(0, 0, Core.windowSize.Width, 200), tones.A, tones.B, False, -1)
         Canvas.DrawGradient(New Rectangle(0, Core.windowSize.Height - 200, Core.windowSize.Width, 200), tones.B, tones.A, False, -1)
 
-        Core.SpriteBatch.DrawString(FontManager.MainFont, "Configure the filters:", New Vector2(100, 24), Color.White, 0.0F, Vector2.Zero, 2.0F, SpriteEffects.None, 0.0F)
+        Core.SpriteBatch.DrawString(FontManager.MainFont, Localization.GetString("storage_screen_filter_Title", "Configure the filters:"), New Vector2(100, 24), Color.White, 0.0F, Vector2.Zero, 2.0F, SpriteEffects.None, 0.0F)
 
         For i = Scroll To Scroll + 5
             If i > Me.mainMenuItems.Count - 1 Then Continue For
@@ -1572,7 +1572,7 @@ Public Class StorageSystemFilterScreen
         Next
 
         If Filters.Count > 0 Then
-            Core.SpriteBatch.DrawString(FontManager.MainFont, $"Results: {Environment.NewLine}{Environment.NewLine}Filters: ", New Vector2(90 + 64 * 11, 119), Color.Black)
+            Core.SpriteBatch.DrawString(FontManager.MainFont, $"{Localization.GetString("storage_screen_filter_Results", "Results:")} {Environment.NewLine}{Environment.NewLine}{Localization.GetString("storage_screen_filter_Filters", "Filters:")} ", New Vector2(90 + 64 * 11, 119), Color.Black)
             Core.SpriteBatch.DrawString(FontManager.MainFont, $"{Me.Results}{Environment.NewLine}{Environment.NewLine}{Me.Filters.Count}", New Vector2(190 + 64 * 11, 119), Color.White)
         End If
 
@@ -1669,14 +1669,14 @@ Public Class StorageSystemFilterScreen
     Private Sub SelectFilter()
         Dim filterType = Me.mainMenuItems(Me.Scroll + Me.Cursor).ToLower()
         Dim menus = New Dictionary(Of String, Action)
-        menus.Add("pokémon", Sub() Me.OpenMenu(StorageSystemScreen.FilterTypes.Pokémon, True))
-        menus.Add("type1", Sub() Me.OpenMenu(StorageSystemScreen.FilterTypes.Type1))
-        menus.Add("type2", Sub() Me.OpenMenu(StorageSystemScreen.FilterTypes.Type2))
-        menus.Add("move", Sub() Me.OpenMenu(StorageSystemScreen.FilterTypes.Move, True))
-        menus.Add("ability", Sub() Me.OpenMenu(StorageSystemScreen.FilterTypes.Ability, True))
-        menus.Add("nature", Sub() Me.OpenMenu(StorageSystemScreen.FilterTypes.Nature))
-        menus.Add("gender", Sub() Me.OpenMenu(StorageSystemScreen.FilterTypes.Gender))
-        menus.Add("helditem", Sub() Me.OpenMenu(StorageSystemScreen.FilterTypes.HeldItem))
+        menus.Add(Localization.GetString("storage_screen_filter_Pokemon", "Pokémon").ToLower, Sub() Me.OpenMenu(StorageSystemScreen.FilterTypes.Pokémon, True))
+        menus.Add(Localization.GetString("storage_screen_filter_Type1", "Type1").ToLower, Sub() Me.OpenMenu(StorageSystemScreen.FilterTypes.Type1))
+        menus.Add(Localization.GetString("storage_screen_filter_Type2", "Type2").ToLower, Sub() Me.OpenMenu(StorageSystemScreen.FilterTypes.Type2))
+        menus.Add(Localization.GetString("storage_screen_filter_Move", "Move").ToLower, Sub() Me.OpenMenu(StorageSystemScreen.FilterTypes.Move, True))
+        menus.Add(Localization.GetString("storage_screen_filter_Ability", "Ability").ToLower, Sub() Me.OpenMenu(StorageSystemScreen.FilterTypes.Ability, True))
+        menus.Add(Localization.GetString("storage_screen_filter_Nature", "Nature").ToLower, Sub() Me.OpenMenu(StorageSystemScreen.FilterTypes.Nature))
+        menus.Add(Localization.GetString("storage_screen_filter_Gender", "Gender").ToLower, Sub() Me.OpenMenu(StorageSystemScreen.FilterTypes.Gender))
+        menus.Add(Localization.GetString("storage_screen_filter_HeldItem", "Held Item").ToLower, Sub() Me.OpenMenu(StorageSystemScreen.FilterTypes.HeldItem))
         If menus.ContainsKey(filterType) Then menus(filterType)()
     End Sub
 
@@ -1691,37 +1691,37 @@ Public Class StorageSystemFilterScreen
         GetNames.Add(StorageSystemScreen.FilterTypes.Ability, Function() l.Select(Function(p) p.Ability.Name))
         GetNames.Add(StorageSystemScreen.FilterTypes.Nature, Function() l.Select(Function(p) $"{p.Nature}"))
         GetNames.Add(StorageSystemScreen.FilterTypes.Gender, Function() l.Select(Function(p) $"{p.Gender}"))
-        GetNames.Add(StorageSystemScreen.FilterTypes.HeldItem, Function() {"Has a Held Item", "Has no Held Item"})
+        GetNames.Add(StorageSystemScreen.FilterTypes.HeldItem, Function() {Localization.GetString("storage_screen_filter_HeldItem_Yes", "Has a Held Item"), Localization.GetString("storage_screen_filter_HeldItem_No", "Has no Held Item")})
         Dim names = GetNames(filterType)().Distinct().ToList()
         names.Sort()
         Dim letters = If(letterFiltering, names.Select(Function(name) $"{name(0)}".ToUpper()).Distinct.ToList(), Nothing)
         Dim items = If(letterFiltering, letters, names)
         Dim OnClick = If(letterFiltering, Sub(s As SelectMenu) Me.SelectLetter(s, names, filterType), Sub(s) Me.SelectType(s, filterType))
-        items.Add("Back")
-        If GetFilterText($"{filterType}") <> "" Then items.Insert(0, "Clear")
+        items.Add(Localization.GetString("global_back", Localization.GetString("global_back", "Back")))
+        If GetFilterText($"{filterType}") <> "" Then items.Insert(0, Localization.GetString("global_clear", "Clear"))
         Me.Menu = New SelectMenu(items, 0, OnClick, -1)
     End Sub
 
     Private Sub SelectLetter(ByVal s As SelectMenu, names As List(Of String), filterType As StorageSystemScreen.FilterTypes)
-        If s.SelectedItem = "Back" Then Return
-        If s.SelectedItem = "Clear" Then
+        If s.SelectedItem = Localization.GetString("global_back", "Back") Then Return
+        If s.SelectedItem = Localization.GetString("global_clear", "Clear") Then
             Me.Filters.RemoveAll(Function(filter) filter.FilterType = filterType)
             Return
         End If
         Dim chosenLetter = s.SelectedItem
         Dim buttonNames = names.Where(Function(x) x.ToUpper().StartsWith(chosenLetter)).Distinct().ToList()
         buttonNames.Sort()
-        buttonNames.Add("Back")
+        buttonNames.Add(Localization.GetString("global_back", "Back"))
         Me.Menu = New SelectMenu(buttonNames, 0, Sub(x) Me.SelectType(x, filterType, False), -1)
     End Sub
 
     Private Sub SelectType(ByVal s As SelectMenu, filterType As StorageSystemScreen.FilterTypes, Optional backIsRoot As Boolean = True)
-        If s.SelectedItem = "Back" Then
+        If s.SelectedItem = Localization.GetString("global_back", "Back") Then
             If Not backIsRoot Then Me.OpenMenu(filterType, True)
             Return
         End If
         Me.Filters.RemoveAll(Function(filter) filter.FilterType = filterType)
-        If s.SelectedItem = "Clear" Then Return
+        If s.SelectedItem = Localization.GetString("global_clear", "Clear") Then Return
         Me.Filters.Add(New StorageSystemScreen.Filter() With {.FilterType = filterType, .FilterValue = s.SelectedItem})
     End Sub
 #End Region

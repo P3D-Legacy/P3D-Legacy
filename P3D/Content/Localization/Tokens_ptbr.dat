@@ -14,7 +14,7 @@ global_accept,Aceitar
 global_cancel,Cancelar
 global_ok,OK
 global_gamemode,Modo de Jogo
-global_delete,Delete
+global_delete,Apagar
 global_clear,Completo
 global_save,Salvar
 global_done,Pronto
@@ -402,22 +402,122 @@ inventory_screen_EggsCannotHold,Ovos não podem segurar itens.
 inventory_screen_GiveItem_TakeMail,Deu <newitem> para <name> e levou o Mail para o PC.
 inventory_screen_CannotGiveToPokemon,<newitem> não pode ser dado á um Pokémon.
 ---
-mail_screen_title,Mailbox
-mail_screen_give_mail_to,Give mail to:
-mail_screen_write_new_mail,Write new mail.
-mail_screen_mail_header,Header:
-mail_screen_mail_text,Text:
-mail_screen_mail_signature,Signature:
-mail_screen_mail_ot,Mail OT:
-mail_screen_mail_button_attach,Attach
-mail_screen_mail_button_send_to_pc,Send To PC
-mail_screen_mail_send_to_pc_confirm,Send this mail to PC?
-mail_screen_mail_delete_confirm,Delete this mail?
-mail_screen_mail_deleted_from_mailbox,The mail has been removed from the mailbox.
-mail_screen_mail_added_to_mailbox,The Mail was taken to your inbox on your PC.
-mail_screen_mail_missing_contents,Please fill in the Header, the Message and the Signature.
-mail_screen_mail_attached_mail,Attached the Mail to [POKEMON].
-mail_screen_mail_taken_item_and_attached_mail,Taken [ITEM] from [POKEMON], and attached the Mail to [POKEMON].
+StorageSystemScreen:
+storage_screen_box_DefaultName,CAIXA [NUMBER]
+storage_screen_box_BattleBoxName,CAIXA DE BATALHA
+
+storage_screen_menu_box_WhatDoYouWant,O que você quer fazer?
+storage_screen_menu_box_ChooseBox,Escolher Caixa
+storage_screen_menu_box_ChangeMode,Mudar modo
+storage_screen_menu_box_Wallpaper,Papel de Parede
+
+storage_screen_menu_mode_ChooseModeToUse,Escolha um modo para usar.
+storage_screen_menu_mode_Withdraw,Retirar
+storage_screen_menu_mode_Deposit,Depositar
+storage_screen_menu_mode_SingleMove,Mover Um
+storage_screen_menu_mode_EasyMove,Mover Fácil
+
+storage_screen_menu_theme_PickTheme,Porfavor escolha um Tema.
+storage_screen_menu_theme_Package1,Pacote 1
+storage_screen_menu_theme_Package2,Pacote 2
+storage_screen_menu_theme_Package3,Pacote 3
+storage_screen_menu_theme_Package4,Pacote 4
+
+storage_screen_menu_wallpaper_PickWallpaper,Escolha o Papel de Parede.
+
+storage_screen_menu_wallpaper_Forest,Floresta
+storage_screen_menu_wallpaper_City,Cidade
+storage_screen_menu_wallpaper_Desert,Deserto
+storage_screen_menu_wallpaper_Savanna,Savana
+storage_screen_menu_wallpaper_Cave,Caverna
+storage_screen_menu_wallpaper_River,Rio
+
+storage_screen_menu_wallpaper_Volcano,Vulcão
+storage_screen_menu_wallpaper_Snow,Neve
+storage_screen_menu_wallpaper_Beach,Praia
+storage_screen_menu_wallpaper_Seafloor,Fundo do Mar
+storage_screen_menu_wallpaper_Crag,Penhasco
+storage_screen_menu_wallpaper_Steel,Aço
+
+storage_screen_menu_wallpaper_Volcano2,Vulcão 2
+storage_screen_menu_wallpaper_City2,Cidade 2
+storage_screen_menu_wallpaper_Snow2,Neve 2
+storage_screen_menu_wallpaper_Desert2,Desertp 2
+storage_screen_menu_wallpaper_Savanna2,Savana 2
+storage_screen_menu_wallpaper_Steel2,Aço 2
+
+storage_screen_menu_wallpaper_System,Sistema
+storage_screen_menu_wallpaper_Simple,Simples 
+storage_screen_menu_wallpaper_Checks,Verificações 
+storage_screen_menu_wallpaper_Seasons,Estações
+storage_screen_menu_wallpaper_Retro1,Retro 1
+storage_screen_menu_wallpaper_Retro2,Retro 2
+
+storage_screen_menu_pokemon_IsSelected,<name> foi selecionado.
+storage_screen_menu_pokemon_Withdraw,Retirar
+storage_screen_menu_pokemon_Deposit,Depositar
+storage_screen_menu_pokemon_Move,Mover
+storage_screen_menu_pokemon_TakeItem,Pegar Item
+storage_screen_menu_pokemon_Release,Soltar
+
+storage_screen_pokemon_CannotRemoveLastPokemon,Não pode remover o último Pokémon da sua Equipe.
+storage_screen_pokemon_PartyIsFull,A Equipe está Cheia!
+
+storage_screen_pokemon_item_MailWasTaken,A Carta foi pega de sua~caixa de entrada do seu PC.
+storage_screen_pokemon_item_TakenItemFromPokemon,Pegou <item>~de <name>.
+
+storage_screen_pokemon_release_Question,Soltar <name>?
+storage_screen_pokemon_release_CannotReleaseEgg,Você não pode soltar um Ovo.
+storage_screen_pokemon_release_CannotReleaseLastPokemon,Não pode soltar o ultimo Pokémon.
+storage_screen_pokemon_release_Goodbye,Adeus, <name>!
+
+storage_screen_pokemon_summary_Box,Caixa
+storage_screen_pokemon_summary_Pokemon,Pokémon
+storage_screen_pokemon_summary_Level,Nível
+storage_screen_pokemon_summary_Normal,Normal
+storage_screen_pokemon_summary_Shiny,Shiny
+storage_screen_pokemon_summary_Egg,Ovo
+storage_screen_pokemon_summary_DexNo,DEX Nº.
+storage_screen_pokemon_summary_Level,NÍVEL
+storage_screen_pokemon_summary_HP,HP
+storage_screen_pokemon_summary_Attack,ATAQUE
+storage_screen_pokemon_summary_Defense,DEFESA
+storage_screen_pokemon_summary_SpAtk,SP. ATQ
+storage_screen_pokemon_summary_SpDef,SP. DEF
+storage_screen_pokemon_summary_Speed,VELOCIDADE
+storage_screen_pokemon_summary_Item,ITEM
+
+storage_screen_filter_Hint,Pressione <system.button(special)> no teclado para filtrar.
+storage_screen_filter_Title,Configure the filters:
+storage_screen_filter_Results,Results:
+storage_screen_filter_Filters,Filters:
+storage_screen_filter_Pokemon,Pokémon
+storage_screen_filter_Type1,Type1
+storage_screen_filter_Type2,Type2
+storage_screen_filter_Move,Move
+storage_screen_filter_Ability,Ability
+storage_screen_filter_Nature,Nature
+storage_screen_filter_Gender,Gender
+storage_screen_filter_HeldItem,Held Item
+storage_screen_filter_HeldItem_Yes,Has a Held Item
+storage_screen_filter_HeldItem_No,Has no Held Item
+---
+mail_screen_title,Correio
+mail_screen_give_mail_to,Dar Carta para:
+mail_screen_write_new_mail,Escrever nova Carta.
+mail_screen_mail_header,Cabeçalho:
+mail_screen_mail_text,Texto:
+mail_screen_mail_signature,Assinatura:
+mail_screen_mail_ot,Carta TO:
+mail_screen_mail_button_attach,Anexar
+mail_screen_mail_button_send_to_pc,Enviar para o PC
+mail_screen_mail_send_to_pc_confirm,Enviar essa Carta para o PC?
+mail_screen_mail_delete_confirm,Apagar essa Carta?
+mail_screen_mail_deleted_from_mailbox,A Carta foi removida do Correio.
+mail_screen_mail_added_to_mailbox,A Carta foi entregue a caixa de entrada em seu PC.
+mail_screen_mail_missing_contents,Porfavor preencha o Cabeçalho, a Mensagem e Assinatura.
+mail_screen_mail_attached_mail,Anexou a Carta em [POKEMON].
+mail_screen_mail_taken_item_and_attached_mail,Pegou [ITEM] de [POKEMON], e anexou Carta em [POKEMON].
 ---
 PartyScreen:
 party_screen_Unable,Incapaz!
@@ -425,6 +525,7 @@ party_screen_Able,Capaz!
 party_screen_FieldMove,Mv. de Campo
 party_screen_ChoosePokemon,Escolha o Pokémon
 party_screen_CannotChoosePokemon,Não pode escolher este~Pokémon
+party_screen_TakenItemFromPokemon,Taken <item>~from <name>.
 ---
 NewGameScreen:
 
@@ -521,11 +622,11 @@ black_out_screen_line4,para previnir mais danos
 black_out_screen_line5,a seus Pokémons.
 ---
 Hall of Fame Screen:
-hall_of_fame_screen_title,Hall of Fame
-hall_of_fame_screen_entry_number,Entry No.
-hall_of_fame_screen_entries,Entries:
-hall_of_fame_screen_type1,Type 1
-hall_of_fame_screen_type2,Type 2
+hall_of_fame_screen_title,Hall da Fama
+hall_of_fame_screen_entry_number,Entrada Nº.
+hall_of_fame_screen_entries,Entradas:
+hall_of_fame_screen_type1,Tipo 1
+hall_of_fame_screen_type2,Tipo 2
 ---
 Credits Screen:
 credits_skip,Press [<system.button(enter1)>] to skip to the end.
