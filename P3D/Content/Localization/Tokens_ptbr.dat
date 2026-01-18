@@ -14,8 +14,10 @@ global_accept,Aceitar
 global_cancel,Cancelar
 global_ok,OK
 global_gamemode,Modo de Jogo
+global_delete,Delete
 global_clear,Completo
 global_save,Salvar
+global_done,Pronto
 global_apply,Aplicar
 global_close,Fechar
 global_back,Voltar
@@ -285,16 +287,14 @@ join_server_screen_version_mismatch,A versão do jogo não é a mesma do Servido
 join_server_screen_no_connection,(Sem Conexão)
 ---
 AddServerScreen:
-add_server_screen_title,Add a server:
-add_server_screen_name,Name:
-add_server_screen_address,Address:
-add_server_screen_hint_controller_edit,Press X to edit.
-add_server_screen_button_done,Done
-add_server_screen_button_back,Back
+add_server_screen_title,Adicionar um servidor:
+add_server_screen_name,Nome:
+add_server_screen_address,Endereço:
+add_server_screen_hint_controller_edit,Pressione X para editar.
 add_server_screen_input_name_default,Pokémon 3D Server
-add_server_screen_validation_empty_name,The server name cannot be empty.
-add_server_screen_validation_empty_address,The address cannot be empty.
-add_server_screen_validation_duplicate_server,This server name already exists on the list.
+add_server_screen_validation_empty_name,O nome do servidor não pode ser vazio.
+add_server_screen_validation_empty_address,O endereço não pode ser vazio.
+add_server_screen_validation_duplicate_server,Já existe um servidor com esse nome na lista.
 ---
 Options Screen:
 option_screen_title,Opções
@@ -401,6 +401,23 @@ inventory_screen_CannotGiveBugContest,Cannot give an item to~this Pokémon durin
 inventory_screen_EggsCannotHold,Ovos não podem segurar itens.
 inventory_screen_GiveItem_TakeMail,Deu <newitem> para <name> e levou o Mail para o PC.
 inventory_screen_CannotGiveToPokemon,<newitem> não pode ser dado á um Pokémon.
+---
+mail_screen_title,Mailbox
+mail_screen_give_mail_to,Give mail to:
+mail_screen_write_new_mail,Write new mail.
+mail_screen_mail_header,Header:
+mail_screen_mail_text,Text:
+mail_screen_mail_signature,Signature:
+mail_screen_mail_ot,Mail OT:
+mail_screen_mail_button_attach,Attach
+mail_screen_mail_button_send_to_pc,Send To PC
+mail_screen_mail_send_to_pc_confirm,Send this mail to PC?
+mail_screen_mail_delete_confirm,Delete this mail?
+mail_screen_mail_deleted_from_mailbox,The mail has been removed from the mailbox.
+mail_screen_mail_added_to_mailbox,The Mail was taken to your inbox on your PC.
+mail_screen_mail_missing_contents,Please fill in the Header, the Message and the Signature.
+mail_screen_mail_attached_mail,Attached the Mail to [POKEMON].
+mail_screen_mail_taken_item_and_attached_mail,Taken [ITEM] from [POKEMON], and attached the Mail to [POKEMON].
 ---
 PartyScreen:
 party_screen_Unable,Incapaz!

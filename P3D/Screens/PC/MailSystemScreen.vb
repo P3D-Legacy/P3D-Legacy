@@ -88,7 +88,7 @@
         Canvas.DrawRectangle(New Rectangle(32, 16, 240, 48), New Color(255, 255, 255, 224))
         Canvas.DrawRectangle(New Rectangle(48, 64 - 2, 208, 2), Color.DarkGray)
 
-        Core.SpriteBatch.DrawString(FontManager.MainFont, "Mailbox", New Vector2(56, 24), Color.Black)
+        Core.SpriteBatch.DrawString(FontManager.MainFont, Localization.GetString("mail_screen_title", "Mailbox"), New Vector2(56, 24), Color.Black)
         Canvas.DrawRectangle(New Rectangle(32, 64, 352, 624), New Color(255, 255, 255, 224))
         Canvas.DrawRectangle(New Rectangle(400, 64, 704, 624), New Color(255, 255, 255, 224))
 
@@ -152,7 +152,7 @@
             Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\General", New Rectangle(x, y, 16, 16), ""), New Rectangle(CInt(P.X + 256), CInt(CInt(P.Y)), 64, 64), Nothing, Color.White, 0.0F, New Vector2(0), SpriteEffects.FlipHorizontally, 0.0F)
 
 
-            Core.SpriteBatch.DrawString(FontManager.MainFont, "Write new mail.", New Vector2(CInt(P.X) + 13, CInt(P.Y) + 18), Color.Black)
+            Core.SpriteBatch.DrawString(FontManager.MainFont, Localization.GetString("mail_screen_write_new_mail", "Write new mail."), New Vector2(CInt(P.X) + 13, CInt(P.Y) + 18), Color.Black)
         Else
             Dim item As Item = Item.GetItemByID(mail.MailID.ToString)
 
@@ -207,11 +207,11 @@
                 c = Color.Gray
             End If
 
-            Core.SpriteBatch.DrawString(FontManager.MainFont, "Header: " & mail.MailHeader, New Vector2(480, 92), c)
+            Core.SpriteBatch.DrawString(FontManager.MainFont, Localization.GetString("mail_screen_mail_header", "Header:") & " " & mail.MailHeader, New Vector2(480, 92), c)
 
             Canvas.DrawRectangle(New Rectangle(420, 140, 660, 2), Color.DarkGray)
 
-            Dim text As String = ("Text: (" & mail.MailText.Length & "/" & 200 & ")" & Environment.NewLine & Environment.NewLine & mail.MailText.Replace("<br>", Environment.NewLine)).CropStringToWidth(FontManager.MainFont, 600)
+            Dim text As String = (Localization.GetString("mail_screen_mail_text", "Text:") & " (" & mail.MailText.Length & "/" & 200 & ")" & Environment.NewLine & Environment.NewLine & mail.MailText.Replace("<br>", Environment.NewLine)).CropStringToWidth(FontManager.MainFont, 600)
             If EditMailIndex = 1 Then
                 c = Color.Blue
                 text &= "_"
@@ -227,11 +227,11 @@
             Else
                 c = Color.Gray
             End If
-            Core.SpriteBatch.DrawString(FontManager.MainFont, "Signature: " & mail.MailSignature, New Vector2(430, yPlus + 200), c)
+            Core.SpriteBatch.DrawString(FontManager.MainFont, Localization.GetString("mail_screen_mail_signature", "Signature:") & " " & mail.MailSignature, New Vector2(430, yPlus + 200), c)
 
             Canvas.DrawRectangle(New Rectangle(420, yPlus + 240, 660, 2), Color.DarkGray)
 
-            Core.SpriteBatch.DrawString(FontManager.MainFont, "Mail OT: " & mail.MailSender & " (" & mail.MailOriginalTrainerOT & ")", New Vector2(430, yPlus + 260), Color.Black)
+            Core.SpriteBatch.DrawString(FontManager.MainFont, Localization.GetString("mail_screen_mail_ot", "Mail OT:") & " " & mail.MailSender & " (" & mail.MailOriginalTrainerOT & ")", New Vector2(430, yPlus + 260), Color.Black)
 
             If EditMailIndex = 3 Then
                 Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\General", New Rectangle(80, 72, 16, 16), ""), New Rectangle(440, yPlus + 320, 64, 64), Color.White)
@@ -242,7 +242,7 @@
                 Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\General", New Rectangle(32, 16, 16, 16), ""), New Rectangle(440 + 64, yPlus + 320, 64, 64), Color.White)
                 Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\General", New Rectangle(16, 16, 16, 16), ""), New Rectangle(440 + 128, yPlus + 320, 64, 64), Nothing, Color.White, 0.0F, New Vector2(0), SpriteEffects.FlipHorizontally, 0.0F)
             End If
-            Core.SpriteBatch.DrawString(FontManager.MainFont, "Attach", New Vector2(CInt(534 - FontManager.MainFont.MeasureString("Attach").X / 2), yPlus + CInt(348 - FontManager.MainFont.MeasureString("Attach").Y / 2)), Color.Black)
+            Core.SpriteBatch.DrawString(FontManager.MainFont, Localization.GetString("mail_screen_mail_button_attach", "Attach"), New Vector2(CInt(534 - FontManager.MainFont.MeasureString(Localization.GetString("mail_screen_mail_button_attach", "Attach")).X / 2), yPlus + CInt(348 - FontManager.MainFont.MeasureString(Localization.GetString("mail_screen_mail_button_attach", "Attach")).Y / 2)), Color.Black)
 
             If EditMailIndex = 4 Then
                 Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\General", New Rectangle(80, 72, 16, 16), ""), New Rectangle(640, yPlus + 320, 64, 64), Color.White)
@@ -253,7 +253,7 @@
                 Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\General", New Rectangle(32, 16, 16, 16), ""), New Rectangle(640 + 64, yPlus + 320, 64, 64), Color.White)
                 Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\General", New Rectangle(16, 16, 16, 16), ""), New Rectangle(640 + 128, yPlus + 320, 64, 64), Nothing, Color.White, 0.0F, New Vector2(0), SpriteEffects.FlipHorizontally, 0.0F)
             End If
-            Core.SpriteBatch.DrawString(FontManager.MainFont, "Cancel", New Vector2(CInt(734 - FontManager.MainFont.MeasureString("Cancel").X / 2), yPlus + CInt(348 - FontManager.MainFont.MeasureString("Cancel").Y / 2)), Color.Black)
+            Core.SpriteBatch.DrawString(FontManager.MainFont, Localization.GetString("global_cancel", "Cancel"), New Vector2(CInt(734 - FontManager.MainFont.MeasureString(Localization.GetString("global_cancel", "Cancel")).X / 2), yPlus + CInt(348 - FontManager.MainFont.MeasureString(Localization.GetString("global_cancel", "Cancel")).Y / 2)), Color.Black)
         Else
             Dim mail As Items.MailItem.MailData
             If TakenFromParty = True Then
@@ -278,7 +278,7 @@
 
             Canvas.DrawRectangle(New Rectangle(420, yPlus + 240, 660, 2), Color.DarkGray)
 
-            Core.SpriteBatch.DrawString(FontManager.MainFont, "Mail OT: " & mail.MailSender & " (" & mail.MailOriginalTrainerOT & ")", New Vector2(430, yPlus + 260), Color.Black)
+            Core.SpriteBatch.DrawString(FontManager.MainFont, Localization.GetString("mail_screen_mail_ot", "Mail OT:") & " " & mail.MailSender & " (" & mail.MailOriginalTrainerOT & ")", New Vector2(430, yPlus + 260), Color.Black)
 
             If mail.MailAttachment > -1 Then
                 Canvas.DrawRectangle(New Rectangle(420, yPlus + 300, 660, 2), Color.DarkGray)
@@ -298,7 +298,7 @@
                 Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\General", New Rectangle(32, 16, 16, 16), ""), New Rectangle(440 + 64, yPlus + 320, 64, 64), Color.White)
                 Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\General", New Rectangle(16, 16, 16, 16), ""), New Rectangle(440 + 128, yPlus + 320, 64, 64), Nothing, Color.White, 0.0F, New Vector2(0), SpriteEffects.FlipHorizontally, 0.0F)
             End If
-            Core.SpriteBatch.DrawString(FontManager.MainFont, "Attach", New Vector2(CInt(534 - FontManager.MainFont.MeasureString("Attach").X / 2), yPlus + CInt(348 - FontManager.MainFont.MeasureString("Attach").Y / 2)), Color.Black)
+            Core.SpriteBatch.DrawString(FontManager.MainFont, Localization.GetString("mail_screen_mail_button_attach", "Attach"), New Vector2(CInt(534 - FontManager.MainFont.MeasureString(Localization.GetString("mail_screen_mail_button_attach", "Attach")).X / 2), yPlus + CInt(348 - FontManager.MainFont.MeasureString(Localization.GetString("mail_screen_mail_button_attach", "Attach")).Y / 2)), Color.Black)
 
             If EditMailIndex = 1 Then
                 Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\General", New Rectangle(80, 72, 16, 16), ""), New Rectangle(640, yPlus + 320, 64, 64), Color.White)
@@ -310,9 +310,9 @@
                 Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\General", New Rectangle(16, 16, 16, 16), ""), New Rectangle(640 + 128, yPlus + 320, 64, 64), Nothing, Color.White, 0.0F, New Vector2(0), SpriteEffects.FlipHorizontally, 0.0F)
             End If
             If TakenFromParty = True Then
-                Core.SpriteBatch.DrawString(FontManager.MainFont, "Send To PC", New Vector2(CInt(734 - FontManager.MainFont.MeasureString("Send To PC").X / 2), yPlus + CInt(348 - FontManager.MainFont.MeasureString("Send To PC").Y / 2)), Color.Black)
+                Core.SpriteBatch.DrawString(FontManager.MainFont, Localization.GetString("mail_screen_mail_button_send_to_pc", "Send To PC"), New Vector2(CInt(734 - FontManager.MainFont.MeasureString(Localization.GetString("mail_screen_mail_button_send_to_pc", "Send To PC")).X / 2), yPlus + CInt(348 - FontManager.MainFont.MeasureString(Localization.GetString("mail_screen_mail_button_send_to_pc", "Send To PC")).Y / 2)), Color.Black)
             Else
-                Core.SpriteBatch.DrawString(FontManager.MainFont, "Delete", New Vector2(CInt(734 - FontManager.MainFont.MeasureString("Delete").X / 2), yPlus + CInt(348 - FontManager.MainFont.MeasureString("Delete").Y / 2)), Color.Black)
+                Core.SpriteBatch.DrawString(FontManager.MainFont, Localization.GetString("global_delete", "Delete"), New Vector2(CInt(734 - FontManager.MainFont.MeasureString(Localization.GetString("global_delete", "Delete")).X / 2), yPlus + CInt(348 - FontManager.MainFont.MeasureString(Localization.GetString("global_delete", "Delete")).Y / 2)), Color.Black)
             End If
 
             If TakenFromParty = False Then
@@ -325,7 +325,7 @@
                     Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\General", New Rectangle(32, 16, 16, 16), ""), New Rectangle(840 + 64, yPlus + 320, 64, 64), Color.White)
                     Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\General", New Rectangle(16, 16, 16, 16), ""), New Rectangle(840 + 128, yPlus + 320, 64, 64), Nothing, Color.White, 0.0F, New Vector2(0), SpriteEffects.FlipHorizontally, 0.0F)
                 End If
-                Core.SpriteBatch.DrawString(FontManager.MainFont, "Cancel", New Vector2(CInt(934 - FontManager.MainFont.MeasureString("Cancel").X / 2), yPlus + CInt(348 - FontManager.MainFont.MeasureString("Cancel").Y / 2)), Color.Black)
+                Core.SpriteBatch.DrawString(FontManager.MainFont, Localization.GetString("global_cancel", "Cancel"), New Vector2(CInt(934 - FontManager.MainFont.MeasureString(Localization.GetString("global_cancel", "Cancel")).X / 2), yPlus + CInt(348 - FontManager.MainFont.MeasureString(Localization.GetString("global_cancel", "Cancel")).Y / 2)), Color.Black)
             End If
         End If
     End Sub
@@ -409,19 +409,19 @@
                                         Me.TempNewMail = Core.Player.Mails(Me.index - 1)
                                     End If
                                     SoundManager.PlaySound("select")
-                                    Dim selScreen = New PartyScreen(Me, Item.GetItemByID(TempNewMail.MailID.ToString), AddressOf Me.ChosenPokemon, "Give mail to:", True) With {.Mode = Screens.UI.ISelectionScreen.ScreenMode.Selection, .CanExit = True}
+                                    Dim selScreen = New PartyScreen(Me, Item.GetItemByID(TempNewMail.MailID.ToString), AddressOf Me.ChosenPokemon, Localization.GetString("mail_screen_give_mail_to", "Give mail to:"), True) With {.Mode = Screens.UI.ISelectionScreen.ScreenMode.Selection, .CanExit = True}
                                     AddHandler selScreen.SelectedObject, AddressOf ChosenPokemonHandler
 
                                     Core.SetScreen(selScreen)
                                 Case 1
                                     If TakenFromParty = True Then
-                                        Dim e1 As New MenuEntry(3, "Yes", False, AddressOf SendMailToPC)
-                                        Dim e2 As New MenuEntry(4, "No", True, Nothing)
-                                        SetupMenu({e1, e2}, "Send this mail to PC?")
+                                        Dim e1 As New MenuEntry(3, Localization.GetString("global_yes", "Yes"), False, AddressOf SendMailToPC)
+                                        Dim e2 As New MenuEntry(4, Localization.GetString("global_no", "No"), True, Nothing)
+                                        SetupMenu({e1, e2}, Localization.GetString("mail_screen_mail_send_to_pc_confirm", "Send this mail to PC?"))
                                     Else
-                                        Dim e1 As New MenuEntry(3, "Yes", False, AddressOf DeleteMail)
-                                        Dim e2 As New MenuEntry(4, "No", True, Nothing)
-                                        SetupMenu({e1, e2}, "Delete this mail?")
+                                        Dim e1 As New MenuEntry(3, Localization.GetString("global_yes", "Yes"), False, AddressOf DeleteMail)
+                                        Dim e2 As New MenuEntry(4, Localization.GetString("global_no", "No"), True, Nothing)
+                                        SetupMenu({e1, e2}, Localization.GetString("mail_screen_mail_delete_confirm", "Delete this mail?"))
                                     End If
 
                                 Case 2
@@ -490,7 +490,7 @@
                                         Me.TempNewMail = Core.Player.Mails(Me.index - 1)
                                     End If
                                     SoundManager.PlaySound("select")
-                                    Dim selScreen = New PartyScreen(Me, Item.GetItemByID(TempNewMail.MailID.ToString), AddressOf Me.ChosenPokemon, "Give mail to:", True) With {.Mode = Screens.UI.ISelectionScreen.ScreenMode.Selection, .CanExit = True}
+                                    Dim selScreen = New PartyScreen(Me, Item.GetItemByID(TempNewMail.MailID.ToString), AddressOf Me.ChosenPokemon, Localization.GetString("mail_screen_give_mail_to", "Give mail to:"), True) With {.Mode = Screens.UI.ISelectionScreen.ScreenMode.Selection, .CanExit = True}
                                     AddHandler selScreen.SelectedObject, AddressOf ChosenPokemonHandler
 
                                     Core.SetScreen(selScreen)
@@ -499,13 +499,13 @@
                                     SoundManager.PlaySound("select")
                                     EditMailIndex = 1
                                     If TakenFromParty = True Then
-                                        Dim e1 As New MenuEntry(3, "Yes", False, AddressOf SendMailToPC)
-                                        Dim e2 As New MenuEntry(4, "No", True, Nothing)
-                                        SetupMenu({e1, e2}, "Send this mail to PC?")
+                                        Dim e1 As New MenuEntry(3, Localization.GetString("global_yes", "Yes"), False, AddressOf SendMailToPC)
+                                        Dim e2 As New MenuEntry(4, Localization.GetString("global_no", "No"), True, Nothing)
+                                        SetupMenu({e1, e2}, Localization.GetString("mail_screen_mail_send_to_pc_confirm", "Send this mail to PC?"))
                                     Else
-                                        Dim e1 As New MenuEntry(3, "Yes", False, AddressOf DeleteMail)
-                                        Dim e2 As New MenuEntry(4, "No", True, Nothing)
-                                        SetupMenu({e1, e2}, "Delete this mail?")
+                                        Dim e1 As New MenuEntry(3, Localization.GetString("global_yes", "Yes"), False, AddressOf DeleteMail)
+                                        Dim e2 As New MenuEntry(4, Localization.GetString("global_no", "No"), True, Nothing)
+                                        SetupMenu({e1, e2}, Localization.GetString("mail_screen_mail_delete_confirm", "Delete this mail?"))
                                     End If
                                 End If
                                 If TakenFromParty = False Then
@@ -520,9 +520,9 @@
 
                         If Controls.Dismiss(True, True, True) = True Then
                             If TakenFromParty = True Then
-                                Dim e1 As New MenuEntry(3, "Yes", False, AddressOf SendMailToPC)
-                                Dim e2 As New MenuEntry(4, "No", True, Nothing)
-                                SetupMenu({e1, e2}, "Send this mail to PC?")
+                                Dim e1 As New MenuEntry(3, Localization.GetString("global_yes", "Yes"), False, AddressOf SendMailToPC)
+                                Dim e2 As New MenuEntry(4, Localization.GetString("global_no", "No"), True, Nothing)
+                                SetupMenu({e1, e2}, Localization.GetString("mail_screen_mail_send_to_pc_confirm", "Send this mail to PC?"))
                             Else
                                 SoundManager.PlaySound("select")
                                 Me.index = -1
@@ -669,9 +669,9 @@
                             Case 3
                                 SoundManager.PlaySound("select")
                                 If TempNewMail.MailHeader = "" Or TempNewMail.MailText = "" Or TempNewMail.MailSignature = "" Then
-                                    message = "Please fill in the Header, the Message and the Signature."
+                                    message = Localization.GetString("mail_screen_mail_missing_contents", "Please fill in the Header, the Message and the Signature.")
                                 Else
-                                    Dim selScreen = New PartyScreen(Me, Item.GetItemByID(TempNewMail.MailID.ToString), AddressOf Me.ChosenPokemon, "Give mail to:", True) With {.Mode = Screens.UI.ISelectionScreen.ScreenMode.Selection, .CanExit = True}
+                                    Dim selScreen = New PartyScreen(Me, Item.GetItemByID(TempNewMail.MailID.ToString), AddressOf Me.ChosenPokemon, Localization.GetString("mail_screen_give_mail_to", "Give mail to:"), True) With {.Mode = Screens.UI.ISelectionScreen.ScreenMode.Selection, .CanExit = True}
                                     AddHandler selScreen.SelectedObject, AddressOf ChosenPokemonHandler
 
                                     Core.SetScreen(selScreen)
@@ -683,7 +683,7 @@
                         End Select
                     End If
 
-                    Dim text As String = ("Text: (" & TempNewMail.MailText.Length & "/" & 200 & ")" & Environment.NewLine & Environment.NewLine & TempNewMail.MailText.Replace("<br>", Environment.NewLine)).CropStringToWidth(FontManager.MainFont, 600)
+                    Dim text As String = (Localization.GetString("mail_screen_mail_text", "Text:") & " (" & TempNewMail.MailText.Length & "/" & 200 & ")" & Environment.NewLine & Environment.NewLine & TempNewMail.MailText.Replace("<br>", Environment.NewLine)).CropStringToWidth(FontManager.MainFont, 600)
                     Dim yPlus As Integer = CInt(FontManager.MainFont.MeasureString(text).Y)
 
                     If Controls.Accept(True, False, False) = True Then
@@ -735,9 +735,9 @@
                             Case 3
                                 SoundManager.PlaySound("select")
                                 If TempNewMail.MailHeader = "" Or TempNewMail.MailText = "" Or TempNewMail.MailSignature = "" Then
-                                    message = "Please fill in the Header, the Message and the Signature."
+                                    message = Localization.GetString("mail_screen_mail_missing_contents", "Please fill in the Header, the Message and the Signature.")
                                 Else
-                                    Dim selScreen = New PartyScreen(Me, Item.GetItemByID(TempNewMail.MailID.ToString), AddressOf Me.ChosenPokemon, "Give mail to:", True) With {.Mode = Screens.UI.ISelectionScreen.ScreenMode.Selection, .CanExit = True}
+                                    Dim selScreen = New PartyScreen(Me, Item.GetItemByID(TempNewMail.MailID.ToString), AddressOf Me.ChosenPokemon, Localization.GetString("mail_screen_give_mail_to", "Give mail to:"), True) With {.Mode = Screens.UI.ISelectionScreen.ScreenMode.Selection, .CanExit = True}
                                     AddHandler selScreen.SelectedObject, AddressOf ChosenPokemonHandler
 
                                     Core.SetScreen(selScreen)
@@ -789,14 +789,14 @@
     End Sub
 
     Private Sub ChosenPokemon(ByVal PokeIndex As Integer)
-        Dim text As String = "Attached the Mail to " & Core.Player.Pokemons(PokeIndex).GetDisplayName() & "."
+        Dim text As String = Localization.GetString("mail_screen_mail_attached_mail", "Attached the Mail to [POKEMON].").Replace("[POKEMON]", Core.Player.Pokemons(PokeIndex).GetDisplayName())
         If Not Core.Player.Pokemons(PokeIndex).Item Is Nothing Then
             If Core.Player.Pokemons(PokeIndex).Item.IsGameModeItem Then
                 Core.Player.Inventory.AddItem(Core.Player.Pokemons(PokeIndex).Item.gmID, 1)
             Else
                 Core.Player.Inventory.AddItem(Core.Player.Pokemons(PokeIndex).Item.ID.ToString, 1)
             End If
-            text = "Taken " & Core.Player.Pokemons(PokeIndex).Item.OneLineName() & " from " & Core.Player.Pokemons(PokeIndex).GetDisplayName() & ", and attached the Mail to " & Core.Player.Pokemons(PokeIndex).GetDisplayName() & "."
+            text = Localization.GetString("mail_screen_mail_taken_item_and_attached_mail", "Taken [ITEM] from [POKEMON], and attached the Mail to [POKEMON].").Replace("[POKEMON]", Core.Player.Pokemons(PokeIndex).GetDisplayName()).Replace("[ITEM]", Core.Player.Pokemons(PokeIndex).Item.OneLineName())
         End If
 
         Core.Player.Pokemons(PokeIndex).Item = Item.GetItemByID(TempNewMail.MailID.ToString)
@@ -872,7 +872,7 @@
 
 #Region "DeleteMailMenu"
     Private Sub DeleteMail()
-        Me.message = "The mail has been removed from the mailbox."
+        Me.message = Localization.GetString("mail_screen_mail_deleted_from_mailbox", "The mail has been removed from the mailbox.")
         Core.Player.Mails.RemoveAt(Me.index - 1)
         Me.index = -1
         EditMailIndex = 0
@@ -880,7 +880,7 @@
         selectIndex = selectIndex.Clamp(0, Core.Player.Mails.Count)
     End Sub
     Private Sub SendMailToPC()
-        Me.message = "The Mail was taken to your inbox on your PC."
+        Me.message = Localization.GetString("mail_screen_mail_added_to_mailbox", "The Mail was taken to your inbox on your PC.")
         Core.Player.Mails.Add(TempNewMail)
         ReadyToExit = True
     End Sub

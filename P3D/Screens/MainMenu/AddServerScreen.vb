@@ -99,9 +99,9 @@
             Dim Text As String = ""
             Select Case i
                 Case 0
-                    Text = Localization.GetString("add_server_screen_button_done", "Done")
+                    Text = Localization.GetString("global_done", "Done")
                 Case 1
-                    Text = Localization.GetString("add_server_screen_button_back", "Back")
+                    Text = Localization.GetString("global_back", "Back")
             End Select
 
             If i = Me.ButtonIndex Then

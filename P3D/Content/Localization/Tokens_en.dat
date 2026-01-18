@@ -15,8 +15,10 @@ global_accept,Accept
 global_cancel,Cancel
 global_ok,OK
 global_gamemode,GameMode
+global_delete,Delete
 global_clear,Clear
 global_save,Save
+global_done,Done
 global_apply,Apply
 global_close,Close
 global_back,Back
@@ -291,8 +293,6 @@ add_server_screen_title,Add a server:
 add_server_screen_name,Name:
 add_server_screen_address,Address:
 add_server_screen_hint_controller_edit,Press X to edit.
-add_server_screen_button_done,Done
-add_server_screen_button_back,Back
 add_server_screen_input_name_default,Pokémon 3D Server
 add_server_screen_validation_empty_name,The server name cannot be empty.
 add_server_screen_validation_empty_address,The address cannot be empty.
@@ -490,7 +490,40 @@ storage_screen_pokemon_summary_Speed,SPEED
 storage_screen_pokemon_summary_Item,ITEM
 
 storage_screen_filter_Hint,Press <system.button(special)> on the keyboard to filter.
-
+---
+mail_screen_title,Mailbox
+mail_screen_give_mail_to,Give mail to:
+mail_screen_write_new_mail,Write new mail.
+mail_screen_mail_header,Header:
+mail_screen_mail_text,Text:
+mail_screen_mail_signature,Signature:
+mail_screen_mail_ot,Mail OT:
+mail_screen_mail_button_attach,Attach
+mail_screen_mail_button_send_to_pc,Send To PC
+mail_screen_mail_send_to_pc_confirm,Send this mail to PC?
+mail_screen_mail_delete_confirm,Delete this mail?
+mail_screen_mail_deleted_from_mailbox,The mail has been removed from the mailbox.
+mail_screen_mail_added_to_mailbox,The Mail was taken to your inbox on your PC.
+mail_screen_mail_missing_contents,Please fill in the Header, the Message and the Signature.
+mail_screen_mail_attached_mail,Attached the Mail to [POKEMON].
+mail_screen_mail_taken_item_and_attached_mail,Taken [ITEM] from [POKEMON], and attached the Mail to [POKEMON].
+---
+mail_screen_title,Mailbox
+mail_screen_give_mail_to,Give mail to:
+mail_screen_write_new_mail,Write new mail.
+mail_screen_mail_header,Header:
+mail_screen_mail_text,Text:
+mail_screen_mail_signature,Signature:
+mail_screen_mail_ot,Mail OT:
+mail_screen_mail_button_attach,Attach
+mail_screen_mail_button_send_to_pc,Send To PC
+mail_screen_mail_send_to_pc_confirm,Send this mail to PC?
+mail_screen_mail_delete_confirm,Delete this mail?
+mail_screen_mail_deleted_from_mailbox,The mail has been removed from the mailbox.
+mail_screen_mail_added_to_mailbox,The Mail was taken to your inbox on your PC.
+mail_screen_mail_missing_contents,Please fill in the Header, the Message and the Signature.
+mail_screen_mail_attached_mail,Attached the Mail to [POKEMON].
+mail_screen_mail_taken_item_and_attached_mail,Taken [ITEM] from [POKEMON], and attached the Mail to [POKEMON].
 ---
 PartyScreen:
 party_screen_Unable,Unable!
