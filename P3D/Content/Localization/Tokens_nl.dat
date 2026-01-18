@@ -286,6 +286,18 @@ join_server_screen_server_full,De server is vol.
 join_server_screen_version_mismatch,Versie komt niet overeen met die van de server.
 join_server_screen_no_connection,(geen verbinding)
 ---
+AddServerScreen:
+add_server_screen_title,Voeg een server toe:
+add_server_screen_name,Naam:
+add_server_screen_address,Adres:
+add_server_screen_hint_controller_edit,Druk op X om te bewerken.
+add_server_screen_button_done,Klaar
+add_server_screen_button_back,Terug
+add_server_screen_input_name_default,Pokémon 3D Server
+add_server_screen_validation_empty_name,De servernaam kan niet leeg zijn.
+add_server_screen_validation_empty_address,Het adres kan niet leeg zijn.
+add_server_screen_validation_duplicate_server,Deze servernaam bestaat al in de lijst.
+---
 Options Screen:
 option_screen_title,Opties
 

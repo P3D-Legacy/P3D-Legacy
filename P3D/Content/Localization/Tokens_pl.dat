@@ -286,6 +286,18 @@ join_server_screen_server_full,Serwer jest pełny.
 join_server_screen_version_mismatch,Wersja nie pasuje do wersji serwera.
 join_server_screen_no_connection,(brak połączenia)
 ---
+AddServerScreen:
+add_server_screen_title,Add a server:
+add_server_screen_name,Name:
+add_server_screen_address,Address:
+add_server_screen_hint_controller_edit,Press X to edit.
+add_server_screen_button_done,Done
+add_server_screen_button_back,Back
+add_server_screen_input_name_default,Pokémon 3D Server
+add_server_screen_validation_empty_name,The server name cannot be empty.
+add_server_screen_validation_empty_address,The address cannot be empty.
+add_server_screen_validation_duplicate_server,This server name already exists on the list.
+---
 Options Screen:
 option_screen_title,Opcje
 

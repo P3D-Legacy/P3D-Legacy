@@ -54,9 +54,9 @@
 
         Canvas.DrawRectangle(New Rectangle(0, 75, Core.windowSize.Width, 680 - 240), New Color(0, 0, 0, 128))
 
-        Core.SpriteBatch.DrawString(FontManager.MainFont, "Add a server", New Vector2(CSng(Core.windowSize.Width / 2 - FontManager.MainFont.MeasureString("Add a server").X), 14), Color.White, 0.0F, New Vector2(0), 2.0F, SpriteEffects.None, 0.0F)
+        Core.SpriteBatch.DrawString(FontManager.MainFont, Localization.GetString("add_server_screen_title", "Add a server:"), New Vector2(CSng(Core.windowSize.Width / 2 - FontManager.MainFont.MeasureString(Localization.GetString("add_server_screen_title", "Add a server:")).X), 14), Color.White, 0.0F, New Vector2(0), 2.0F, SpriteEffects.None, 0.0F)
 
-        Core.SpriteBatch.DrawString(FontManager.MainFont, "Name:", New Vector2(CSng(Core.windowSize.Width / 2 - 300), 140), Color.White)
+        Core.SpriteBatch.DrawString(FontManager.MainFont, Localization.GetString("add_server_screen_name", "Name:"), New Vector2(CSng(Core.windowSize.Width / 2 - 300), 140), Color.White)
         Canvas.DrawRectangle(New Rectangle(CInt(Core.windowSize.Width / 2 - 300), 170, 600, 40), New Color(40, 40, 40, 255))
 
         If Index = 0 Then
@@ -69,12 +69,12 @@
         If t.Length < 30 And Index = 0 Then
             t &= "_"
             If Me.IdentifyName = "" And ControllerHandler.IsConnected() = True Then
-                t = "Press Y to edit."
+                t = Localization.GetString("add_server_screen_hint_controller_edit", "Press X to edit.")
             End If
         End If
         Core.SpriteBatch.DrawString(FontManager.MainFont, t, New Vector2(CSng(Core.windowSize.Width / 2 - 294), 175), Color.White)
 
-        Core.SpriteBatch.DrawString(FontManager.MainFont, "Address:", New Vector2(CSng(Core.windowSize.Width / 2 - 300), 270), Color.White)
+        Core.SpriteBatch.DrawString(FontManager.MainFont, Localization.GetString("add_server_screen_address", "Address:"), New Vector2(CSng(Core.windowSize.Width / 2 - 300), 270), Color.White)
         Canvas.DrawRectangle(New Rectangle(CInt(Core.windowSize.Width / 2 - 300), 300, 600, 40), New Color(40, 40, 40, 255))
 
         If Index = 1 Then
@@ -87,7 +87,7 @@
         If t.Length < 30 And Index = 1 Then
             t &= "_"
             If Me.Address = "" And ControllerHandler.IsConnected() = True Then
-                t = "Press Y to edit."
+                t = Localization.GetString("add_server_screen_hint_controller_edit", "Press X to edit.")
             End If
         End If
         Core.SpriteBatch.DrawString(FontManager.MainFont, t, New Vector2(CSng(Core.windowSize.Width / 2 - 294), 305), Color.White)
@@ -99,9 +99,9 @@
             Dim Text As String = ""
             Select Case i
                 Case 0
-                    Text = "Done"
+                    Text = Localization.GetString("add_server_screen_button_done", "Done")
                 Case 1
-                    Text = "Back"
+                    Text = Localization.GetString("add_server_screen_button_back", "Back")
             End Select
 
             If i = Me.ButtonIndex Then
@@ -183,7 +183,7 @@
             Case 0
                 KeyBindings.GetInput(Me.IdentifyName, 30, True, True)
                 If ControllerHandler.ButtonPressed(Buttons.X) = True Then
-                    Core.SetScreen(New InputScreen(Me, "Pokemon3D server", InputScreen.InputModes.Text, Me.IdentifyName, 30, New List(Of Texture2D), AddressOf Me.AcceptName))
+                    Core.SetScreen(New InputScreen(Me, Localization.GetString("add_server_screen_input_name_default", "Pokémon 3D Server"), InputScreen.InputModes.Text, Me.IdentifyName, 30, New List(Of Texture2D), AddressOf Me.AcceptName))
                 End If
                 If ControllerHandler.ButtonPressed(Buttons.Back) = True Then
                     Me.IdentifyName = ""
@@ -227,13 +227,13 @@
 
     Private Function IsValid() As String
         If Me.IdentifyName = "" Then
-            Return "The server name cannot be empty."
+            Return Localization.GetString("add_server_screen_validation_empty_name", "The server name cannot be empty.")
         End If
         If Me.Address = "" Then
-            Return "The address cannot be empty."
+            Return Localization.GetString("add_server_screen_validation_empty_address", "The address cannot be empty.")
         End If
         If Me.ServerNames.Contains(Me.IdentifyName.ToLower()) = True Then
-            Return "This server name already exists on the list."
+            Return Localization.GetString("add_server_screen_validation_duplicate_server", "This server name already exists on the list.")
         End If
 
         Return ""
