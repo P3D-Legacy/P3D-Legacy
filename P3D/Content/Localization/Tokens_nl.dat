@@ -520,6 +520,13 @@ black_out_screen_line3,PokéCenter gebracht worden
 black_out_screen_line4,om verdere schade aan je
 black_out_screen_line5,Pokémon te voorkomen.
 ---
+Hall of Fame Screen:
+hall_of_fame_screen_title,Eregalerij
+hall_of_fame_screen_entry_number,Inschrijving Nr.
+hall_of_fame_screen_entries,Inschrijvingen:
+hall_of_fame_screen_type1,Type 1
+hall_of_fame_screen_type2,Type 2
+---
 Credits Screen:
 credits_skip,Druk op [<system.button(enter1)>] om tot het einde door te spoelen.
 credits_continue,Druk op [<system.button(enter1)>] om verder te gaan.

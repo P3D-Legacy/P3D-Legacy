@@ -70,7 +70,7 @@
                 p.Type1 = newType
                 p.Type2.Type = Element.Types.Blank
 
-                BattleScreen.BattleQuery.Add(New TextQueryObject(p.GetDisplayName() & " transformed into the " & newType.Type.ToString() & " type!"))
+                BattleScreen.BattleQuery.Add(New TextQueryObject(p.GetDisplayName() & " transformed into the " & newType.ToString() & " type!"))
             Else
                 BattleScreen.BattleQuery.Add(New TextQueryObject(Me.Name & " failed!"))
             End If

@@ -975,57 +975,54 @@ Public Class Element
 
     Public Overrides Function ToString() As String
         If IsGameModeElement = False Then
+            Dim TypeName As String = ""
             Select Case Me._type
                 Case Types.Blank
-                    Return "Blank"
+                    TypeName = "Blank"
                 Case Types.Bug
-                    Return "Bug"
+                    TypeName = "Bug"
                 Case Types.Dark
-                    Return "Dark"
+                    TypeName = "Dark"
                 Case Types.Dragon
-                    Return "Dragon"
+                    TypeName = "Dragon"
                 Case Types.Electric
-                    Return "Electric"
+                    TypeName = "Electric"
                 Case Types.Fairy
-                    Return "Fairy"
+                    TypeName = "Fairy"
                 Case Types.Fighting
-                    Return "Fighting"
+                    TypeName = "Fighting"
                 Case Types.Fire
-                    Return "Fire"
+                    TypeName = "Fire"
                 Case Types.Flying
-                    Return "Flying"
+                    TypeName = "Flying"
                 Case Types.Ghost
-                    Return "Ghost"
+                    TypeName = "Ghost"
                 Case Types.Grass
-                    Return "Grass"
+                    TypeName = "Grass"
                 Case Types.Ground
-                    Return "Ground"
+                    TypeName = "Ground"
                 Case Types.Ice
-                    Return "Ice"
+                    TypeName = "Ice"
                 Case Types.Normal
-                    Return "Normal"
+                    TypeName = "Normal"
                 Case Types.Poison
-                    Return "Poison"
+                    TypeName = "Poison"
                 Case Types.Psychic
-                    Return "Psychic"
+                    TypeName = "Psychic"
                 Case Types.Rock
-                    Return "Rock"
+                    TypeName = "Rock"
                 Case Types.Shadow
-                    Return "Shadow"
+                    TypeName = "Shadow"
                 Case Types.Steel
-                    Return "Steel"
+                    TypeName = "Steel"
                 Case Types.Water
-                    Return "Water"
+                    TypeName = "Water"
                 Case Else
-                    Return "Blank"
+                    TypeName = "Blank"
             End Select
+            Return Localization.GetString("global_pokemon_type_" & TypeName.ToLower, TypeName)
         Else
-            If Localization.TokenExists("type_" & gmOriginalName) = True Then
-                Return Localization.GetString("type_" & gmOriginalName, gmOriginalName)
-            Else
-                Return gmOriginalName
-            End If
-
+            Return Localization.GetString("global_pokemon_type_" & gmOriginalName.ToLower, gmOriginalName)
         End If
 
     End Function

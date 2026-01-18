@@ -519,6 +519,13 @@ black_out_screen_line3,au plus proche centre POKéMON
 black_out_screen_line4,pour soigner les blessures
 black_out_screen_line5,de tes POKéMON.
 ---
+Hall of Fame Screen:
+hall_of_fame_screen_title,Hall of Fame
+hall_of_fame_screen_entry_number,Entry No.
+hall_of_fame_screen_entries,Entries:
+hall_of_fame_screen_type1,Type 1
+hall_of_fame_screen_type2,Type 2
+---
 Credits Screen:
 credits_skip,Press [<system.button(enter1)>] to skip to the end.
 credits_continue,Appuie sur [<system.button(enter1)>] pour continuer.

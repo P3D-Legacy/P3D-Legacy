@@ -482,17 +482,25 @@
                     Return ReturnBoolean(p.CanEvolve(trigger, evolutionArg))
                 Case "type1"
                     Dim p As Pokemon = Core.Player.Pokemons(int(argument))
-                    Return p.Type1.ToString()
+                    If p.Type1.IsGameModeElement = False Then
+                        Return p.Type1.Type.ToString
+                    Else
+                        Return p.Type1.gmOriginalName
+                    End If
                 Case "type2"
                     Dim p As Pokemon = Core.Player.Pokemons(int(argument))
-                    Return p.Type2.ToString()
+                    If p.Type2.IsGameModeElement = False Then
+                        Return p.Type2.Type.ToString
+                    Else
+                        Return p.Type2.gmOriginalName
+                    End If
                 Case "istype"
                     Dim args() As String = argument.Split(CChar(","))
 
                     Dim p As Pokemon = Core.Player.Pokemons(int(args(0)))
                     Dim checkType As String = args(1)
 
-                    Return ReturnBoolean(p.IsType(New Element(checkType).Type))
+                    Return ReturnBoolean(p.IsType(BattleSystem.GameModeElementLoader.GetElementByName(checkType).Type))
                 Case "ability"
                     Dim p As Pokemon = Core.Player.Pokemons(int(argument))
                     Return p.Ability.ID()
