@@ -1499,7 +1499,7 @@ Public Class StorageSystemFilterScreen
                 Core.SpriteBatch.DrawString(font, Text, position, Color.Black, 0.0F, Vector2.Zero, 1.3F, SpriteEffects.None, 0.0F)
 
                 If Me.Index <> i Then Continue For
-                Dim cPosition = startPos + New Point(128, -40)
+                Dim cPosition = startPos + New Point(160, -40)
                 Dim t = TextureManager.GetTexture("GUI\Menus\General", New Rectangle(0, 0, 16, 16), "")
                 Core.SpriteBatch.Draw(t, New Rectangle(cPosition, New Point(64)), Color.White)
             Next

@@ -500,7 +500,7 @@ storage_screen_filter_Move,Techniek
 storage_screen_filter_Ability,Vaardigheid
 storage_screen_filter_Nature,Karakter
 storage_screen_filter_Gender,Geslacht
-storage_screen_filter_HeldItem,Voorwerp
+storage_screen_filter_HeldItem,Vastgehouden Voorwerp
 storage_screen_filter_HeldItem_Yes,Houdt iets vast
 storage_screen_filter_HeldItem_No,Houdt niets vast
 ---

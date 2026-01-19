@@ -499,8 +499,8 @@ storage_screen_filter_Ability,Habilidade
 storage_screen_filter_Nature,Natureza
 storage_screen_filter_Gender,Gênero
 storage_screen_filter_HeldItem,Segurando Item
-storage_screen_filter_HeldItem_Yes,Está segurando um Item
-storage_screen_filter_HeldItem_No,Não está segurando um Item
+storage_screen_filter_HeldItem_Yes,Segura um Item
+storage_screen_filter_HeldItem_No,Não segura um Item
 ---
 mail_screen_title,Correio
 mail_screen_give_mail_to,Dar Carta para:
