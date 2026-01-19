@@ -8,7 +8,7 @@ global_login,Log in
 global_create_account,Creëer Account
 global_male,Man
 global_female,Vrouw
-global_genderless,Overig
+global_genderless,Genderloos
 global_yes,Ja
 global_no,Nee
 global_accept,Bevestig
@@ -93,11 +93,11 @@ property_Lv.,Nv.
 property_Level,Niveau
 property_MaxHP,Max LP
 property_Attack,Aanval
-property_Defense,Verdediging
+property_Defense,Weerstand
 property_Special_Attack,Speciale Aanval
 property_Sp_Attack,Sp. Aanval
-property_Special_Defense,Speciale Verdediging
-property_Sp_Defense,Sp. Verdediging
+property_Special_Defense,Speciale Weerstand
+property_Sp_Defense,Sp. Weerstand
 property_Speed,Snelheid
 property_Ability,Vaardigheid
 property_Type,Type
@@ -405,104 +405,104 @@ inventory_screen_CannotGiveBugContest,Kan geen voorwerp geven aan~deze Pokémon 
 inventory_screen_EggsCannotHold,Eieren kunnen geen voorwerpen~vasthouden.
 ---
 StorageSystemScreen:
-storage_screen_box_DefaultName,BOX [NUMBER]
-storage_screen_box_BattleBoxName,BATTLE BOX
+storage_screen_box_DefaultName,OPSLAG [NUMBER]
+storage_screen_box_BattleBoxName,GEVECHT OPSLAG
 
-storage_screen_menu_box_WhatDoYouWant,What do you want to do?
-storage_screen_menu_box_ChooseBox,Choose Box
-storage_screen_menu_box_ChangeMode,Change Mode
-storage_screen_menu_box_Wallpaper,Wallpaper
+storage_screen_menu_box_WhatDoYouWant,Wat wil je doen?
+storage_screen_menu_box_ChooseBox,Kies Opslag
+storage_screen_menu_box_ChangeMode,Verander Modus
+storage_screen_menu_box_Wallpaper,Achtergrond
 
-storage_screen_menu_mode_ChooseModeToUse,Choose a mode to use.
-storage_screen_menu_mode_Withdraw,Withdraw
-storage_screen_menu_mode_Deposit,Deposit
-storage_screen_menu_mode_SingleMove,Single Move
-storage_screen_menu_mode_EasyMove,Easy Move
+storage_screen_menu_mode_ChooseModeToUse,Kies een modus om te gebruiken.
+storage_screen_menu_mode_Withdraw,Haal Op
+storage_screen_menu_mode_Deposit,Deponeer
+storage_screen_menu_mode_SingleMove,Verplaats Enkele
+storage_screen_menu_mode_EasyMove,Verplaats Simpel
 
-storage_screen_menu_theme_PickTheme,Please pick a theme.
-storage_screen_menu_theme_Package1,Package 1
-storage_screen_menu_theme_Package2,Package 2
-storage_screen_menu_theme_Package3,Package 3
-storage_screen_menu_theme_Package4,Package 4
+storage_screen_menu_theme_PickTheme,Kies een thema.
+storage_screen_menu_theme_Package1,Pakket 1
+storage_screen_menu_theme_Package2,Pakket 2
+storage_screen_menu_theme_Package3,Pakket 3
+storage_screen_menu_theme_Package4,Pakket 4
 
-storage_screen_menu_wallpaper_PickWallpaper,Pick the wallpaper.
+storage_screen_menu_wallpaper_PickWallpaper,Kies een achtergrond.
 
-storage_screen_menu_wallpaper_Forest,Forest
-storage_screen_menu_wallpaper_City,City
-storage_screen_menu_wallpaper_Desert,Desert
-storage_screen_menu_wallpaper_Savanna,Savanna
-storage_screen_menu_wallpaper_Cave,Cave
-storage_screen_menu_wallpaper_River,River
+storage_screen_menu_wallpaper_Forest,Bos
+storage_screen_menu_wallpaper_City,Stad
+storage_screen_menu_wallpaper_Desert,Woestijn
+storage_screen_menu_wallpaper_Savanna,Savanne
+storage_screen_menu_wallpaper_Cave,Grot
+storage_screen_menu_wallpaper_River,Rivier
 
-storage_screen_menu_wallpaper_Volcano,Volcano
-storage_screen_menu_wallpaper_Snow,Snow
-storage_screen_menu_wallpaper_Beach,Beach
-storage_screen_menu_wallpaper_Seafloor,Seafloor
-storage_screen_menu_wallpaper_Crag,Crag
-storage_screen_menu_wallpaper_Steel,Steel
+storage_screen_menu_wallpaper_Volcano,Vulkaan
+storage_screen_menu_wallpaper_Snow,Sneeuw
+storage_screen_menu_wallpaper_Beach,Strand
+storage_screen_menu_wallpaper_Seafloor,Zeebodem
+storage_screen_menu_wallpaper_Crag,Rots
+storage_screen_menu_wallpaper_Steel,Staal
 
-storage_screen_menu_wallpaper_Volcano2,Volcano 2
-storage_screen_menu_wallpaper_City2,City 2
-storage_screen_menu_wallpaper_Snow2,Snow 2
-storage_screen_menu_wallpaper_Desert2,Desert 2
-storage_screen_menu_wallpaper_Savanna2,Savanna 2
-storage_screen_menu_wallpaper_Steel2,Steel 2
+storage_screen_menu_wallpaper_Volcano2,Vulkaan 2
+storage_screen_menu_wallpaper_City2,Stad 2
+storage_screen_menu_wallpaper_Snow2,Sneeuw 2
+storage_screen_menu_wallpaper_Desert2,Woestijn 2
+storage_screen_menu_wallpaper_Savanna2,Savanne 2
+storage_screen_menu_wallpaper_Steel2,Staal 2
 
-storage_screen_menu_wallpaper_System,System
-storage_screen_menu_wallpaper_Simple,Simple 
-storage_screen_menu_wallpaper_Checks,Checks 
-storage_screen_menu_wallpaper_Seasons,Seasons
+storage_screen_menu_wallpaper_System,Systeem
+storage_screen_menu_wallpaper_Simple,Simpel
+storage_screen_menu_wallpaper_Checks,Zakelijk
+storage_screen_menu_wallpaper_Seasons,Seizoenen
 storage_screen_menu_wallpaper_Retro1,Retro 1
 storage_screen_menu_wallpaper_Retro2,Retro 2
 
-storage_screen_menu_pokemon_IsSelected,<name> is selected.
-storage_screen_menu_pokemon_Withdraw,Withdraw
-storage_screen_menu_pokemon_Deposit,Deposit
-storage_screen_menu_pokemon_Move,Move
-storage_screen_menu_pokemon_TakeItem,Take Item
-storage_screen_menu_pokemon_Release,Release
+storage_screen_menu_pokemon_IsSelected,<name> is geselecteerd.
+storage_screen_menu_pokemon_Withdraw,Haal Op
+storage_screen_menu_pokemon_Deposit,Deponeer
+storage_screen_menu_pokemon_Move,Verplaats
+storage_screen_menu_pokemon_TakeItem,Neem Voorwerp
+storage_screen_menu_pokemon_Release,Laat Vrij
 
-storage_screen_pokemon_CannotRemoveLastPokemon,Can't remove last Pokémon from party.
-storage_screen_pokemon_PartyIsFull,Party is full!
+storage_screen_pokemon_CannotRemoveLastPokemon,De laatste Pokémon kan niet uit het team worden verwijderd.
+storage_screen_pokemon_PartyIsFull,Geen plek in het team.
 
-storage_screen_pokemon_item_MailWasTaken,The Mail was taken to your~inbox on your PC.
-storage_screen_pokemon_item_TakenItemFromPokemon,Taken <item>~from <name>.
+storage_screen_pokemon_item_MailWasTaken,De Brief is aan het postvak op je PC toegevoegd.
+storage_screen_pokemon_item_TakenItemFromPokemon,Nam een <item>~van <name>.
 
-storage_screen_pokemon_release_Question,Release <name>?
-storage_screen_pokemon_release_CannotReleaseEgg,Cannot release an Egg.
-storage_screen_pokemon_release_CannotReleaseLastPokemon,Cannot release the last Pokémon.
-storage_screen_pokemon_release_Goodbye,Goodbye, <name>!
+storage_screen_pokemon_release_Question,<name> vrijlaten?
+storage_screen_pokemon_release_CannotReleaseEgg,Kan geen Ei vrijlaten.
+storage_screen_pokemon_release_CannotReleaseLastPokemon,Kan de laatste Pokémon niet vrijlaten.
+storage_screen_pokemon_release_Goodbye,Vaarwel, <name>!
 
-storage_screen_pokemon_summary_Box,Box
+storage_screen_pokemon_summary_Box,Opslag
 storage_screen_pokemon_summary_Pokemon,Pokémon
-storage_screen_pokemon_summary_Level,Level
-storage_screen_pokemon_summary_Normal,Normal
-storage_screen_pokemon_summary_Shiny,Shiny
-storage_screen_pokemon_summary_Egg,Egg
-storage_screen_pokemon_summary_DexNo,DEX NO.
-storage_screen_pokemon_summary_Level,LEVEL
-storage_screen_pokemon_summary_HP,HP
-storage_screen_pokemon_summary_Attack,ATTACK
-storage_screen_pokemon_summary_Defense,DEFENSE
-storage_screen_pokemon_summary_SpAtk,SP. ATK
-storage_screen_pokemon_summary_SpDef,SP. DEF
-storage_screen_pokemon_summary_Speed,SPEED
-storage_screen_pokemon_summary_Item,ITEM
+storage_screen_pokemon_summary_Level,Niveau
+storage_screen_pokemon_summary_Normal,Normaal
+storage_screen_pokemon_summary_Shiny,Schitterend
+storage_screen_pokemon_summary_Egg,Ei
+storage_screen_pokemon_summary_DexNo,DEX NR.
+storage_screen_pokemon_summary_LEVEL,NIVEAU
+storage_screen_pokemon_summary_HP,LP
+storage_screen_pokemon_summary_ATTACK,AANVAL
+storage_screen_pokemon_summary_DEFENSE,WEERSTAND
+storage_screen_pokemon_summary_SpATK,SP. AANVAL
+storage_screen_pokemon_summary_SpDEF,SP. WEERSTAND
+storage_screen_pokemon_summary_SPEED,SNELHEID
+storage_screen_pokemon_summary_ITEM,VOORWERP
 
-storage_screen_filter_Hint,Press <system.button(special)> on the keyboard to filter.
-storage_screen_filter_Title,Configure the filters:
-storage_screen_filter_Results,Results:
+storage_screen_filter_Hint,Druk [<system.button(special)>] op het toetsenbord om te filteren.
+storage_screen_filter_Title,Configureer de filters:
+storage_screen_filter_Results,Resultaten:
 storage_screen_filter_Filters,Filters:
 storage_screen_filter_Pokemon,Pokémon
-storage_screen_filter_Type1,Type1
-storage_screen_filter_Type2,Type2
-storage_screen_filter_Move,Move
-storage_screen_filter_Ability,Ability
-storage_screen_filter_Nature,Nature
-storage_screen_filter_Gender,Gender
-storage_screen_filter_HeldItem,Held Item
-storage_screen_filter_HeldItem_Yes,Has a Held Item
-storage_screen_filter_HeldItem_No,Has no Held Item
+storage_screen_filter_Type1,Type 1
+storage_screen_filter_Type2,Type 2
+storage_screen_filter_Move,Techniek
+storage_screen_filter_Ability,Vaardigheid
+storage_screen_filter_Nature,Karakter
+storage_screen_filter_Gender,Geslacht
+storage_screen_filter_HeldItem,Voorwerp
+storage_screen_filter_HeldItem_Yes,Houdt iets vast
+storage_screen_filter_HeldItem_No,Houdt niets vast
 ---
 mail_screen_title,Postvak
 mail_screen_give_mail_to,Geef Brief aan:
@@ -2684,8 +2684,8 @@ XItems:
 item_name_33,X-~Nauwkeurigheid
 item_name_44,Harde Treffer
 item_name_49,X-Aanval
-item_name_50,X-Sp. Verdediging
-item_name_51,X-Verdediging
+item_name_50,X-Sp. Weerstand
+item_name_51,X-Weerstand
 item_name_52,X-Snelheid
 item_name_53,X-Sp. Aanval
 item_name_68,Blokkeerder
@@ -2694,8 +2694,8 @@ XItems (Plural):
 item_pluralname_33,X-Nauwkeurigheids
 item_pluralname_44,Harde Treffers
 item_pluralname_49,X-Aanvals
-item_pluralname_50,X-Sp. Verdedigings
-item_pluralname_51,X-Verdedigings
+item_pluralname_50,X-Sp. Weerstands
+item_pluralname_51,X-Weerstands
 item_pluralname_52,X-Snelheids
 item_pluralname_53,X-Sp. Aanvals
 item_pluralname_68,Blokkeerders
@@ -3153,7 +3153,7 @@ move_name_107,Verklein
 move_name_108,Rookgordijn
 move_name_109,Verwarstraal
 move_name_110,Terugtrekking
-move_name_111,Verdediging
+move_name_111,Weerstand
 move_name_112,Barrière
 move_name_113,Lichtscherm
 move_name_114,Waas
@@ -3703,11 +3703,11 @@ move_desc_35,Een lang lichaam of lianen worden gebruikt om het doelwit vier tot 
 move_desc_36,Een roekeloze oplaadaanval met het hele lichaam om op het doelwit in te beuken. Het beschadigt de gebruiker ook een beetje.
 move_desc_37,De gebruiker gaat twee tot drie beurten tekeer en valt aan. Daarna raakt hij echter in de war.
 move_desc_38,Een roekeloze, levensgevaarlijke tackle. Het beschadigt de gebruiker echter ook vrij veel.
-move_desc_39,De gebruiker kwispelt schattig met zijn staart, waardoor Pokémon van de tegenstander minder op hun hoede zijn en hun verdedigingsstatus daalt.
+move_desc_39,De gebruiker kwispelt schattig met zijn staart, waardoor Pokémon van de tegenstander minder op hun hoede zijn en hun Weerstands-attribuut daalt.
 move_desc_40,De gebruiker steekt het doelwit met een giftige angel of stekel. Het kan het doelwit ook vergiftigen.
 move_desc_41,De gebruiker beschadigt het doelwit twee keer achter elkaar door het te steken met twee stekels. Het kan het doelwit ook vergiftigen.
 move_desc_42,Scherpe stekels worden snel achter elkaar naar het doelwit geschoten. Ze raken twee tot vijf keer achter elkaar.
-move_desc_43,De gebruiker krijgt een intimiderende blik met scherpe ogen. De Verdediging-attributen van de tegenpartij worden gereduceerd.
+move_desc_43,De gebruiker krijgt een intimiderende blik met scherpe ogen. De Weerstand-attributen van de tegenpartij worden gereduceerd.
 move_desc_44,Het doelwit wordt gebeten met venijnig scherpe hoektanden. Het kan het doelwit doen terugdeinzen.
 move_desc_45,De gebruiker gromt op een vertederende manier, waardoor de tegenstanders minder op hun hoede zijn. De Aanval-attributen van de tegenstanders worden verlaagd.
 move_desc_46,Het doelwit wordt afgeschrikt en er wordt een andere Pokémon uitgesleept. In het wild eindigt dit een gevecht tegen één Pokémon.
@@ -3715,7 +3715,7 @@ move_desc_47,Er wordt een rustgevend slaapliedje gezongen met een kalmerende ste
 move_desc_48,De gebruiker genereert vreemde geluidsgolven vanuit zijn lichaam. Het kan het doelwit verwarren.
 move_desc_49,Het doelwit wordt geraakt met een destructieve schokgolf die altijd 20 LP schade toebrengt.
 move_desc_50,Vier beurten lang kan het doelwit de techniek die het als laatste gebruikte niet gebruiken.
-move_desc_51,De tegenpartij wordt aangevallen met een spray van agressief zuur. Het zuur kan ook de Sp. Verdediging-attributen van de tegenstanders verlagen.
+move_desc_51,De tegenpartij wordt aangevallen met een spray van agressief zuur. Het zuur kan ook de Sp. Weerstand-attributen van de tegenstanders verlagen.
 move_desc_52,Het doelwit wordt aangevallen met kleine vlammen. Het kan het doelwit ook verbranden.
 move_desc_53,Het doelwit wordt verschroeid met een intense vuurstraal. Het kan het doelwit ook verbranden.
 move_desc_54,De gebruiker omhult zijn lichaam met een witte mist die voorkomt dat zijn attributen gedurende vijf beurten worden aangetast.
@@ -3758,7 +3758,7 @@ move_desc_90,De gebruiker maakt een spleet in de grond en laat het doelwit erin 
 move_desc_91,De gebruiker graaft zich in en valt aan tijdens de tweede beurt. Het kan ook worden gebruikt om grotten en bepaalde andere plekken te verlaten.
 move_desc_92,Een techniek die het doelwit zwaar vergiftigd achterlaat. De gifschade wordt elke beurt erger.
 move_desc_93,Het doelwit wordt geraakt door een zwakke telekinetische kracht. Het doelwit kan ook in de war raken.
-move_desc_94,Het doelwit wordt geraakt door een sterke telekinetische kracht. Het kan ook het Sp. Verdediging-attribuut van het doelwit verlagen.
+move_desc_94,Het doelwit wordt geraakt door een sterke telekinetische kracht. Het kan ook het Sp. Weerstand-attribuut van het doelwit verlagen.
 move_desc_95,De gebruiker gebruikt hypnotiserende suggesties om het doelwit in een diepe slaap te laten vallen.
 move_desc_96,De gebruiker mediteert om de kracht diep in zijn lichaam te wekken en zijn Aanval-attribuut te verhogen.
 move_desc_97,De gebruiker ontspant en maakt zijn lichaam lichter om sneller te kunnen bewegen. Het Snelheid-attribuut wordt sterk verhoogd.
@@ -3767,16 +3767,16 @@ move_desc_99,Zolang deze techniek in gebruik is, verhoogt de woedekracht het Aan
 move_desc_100,Gebruik het om te vluchten voor wilde Pokémon. Je kunt er ook mee teleporteren naar het laatst bezochte Pokémon-Centrum.
 move_desc_101,De gebruiker laat het doelwit een angstaanjagende luchtspiegeling zien. Het brengt schade toe die overeenkomt met het level van de gebruiker.
 move_desc_102,De gebruiker kopieert de laatste techniek van het doelwit. De techniek kan tijdens gevechten worden gebruikt totdat de Pokémon is uitgeschakeld.
-move_desc_103,Een oorverdovend gekrijs vermindert hard het Verdediging-attribuut van het doelwit.
+move_desc_103,Een oorverdovend gekrijs vermindert hard het Weerstand-attribuut van het doelwit.
 move_desc_104,Door snel te bewegen, maakt de gebruiker schijnbare kopieën van zichzelf om zijn ontwijkingsvermogen te vergroten.
 move_desc_105,Door zijn eigen cellen te herstellen, herstelt de gebruiker zijn eigen LP met de helft van zijn maximale LP.
-move_desc_106,De gebruiker verstijft alle spieren in zijn lichaam om zijn Verdediging-attribuut te verhogen.
+move_desc_106,De gebruiker verstijft alle spieren in zijn lichaam om zijn Weerstand-attribuut te verhogen.
 move_desc_107,De gebruiker comprimeert zijn lichaam om zichzelf kleiner te laten lijken, waardoor zijn ontwijkingsvermogen sterk toeneemt.
 move_desc_108,De gebruiker laat een verduisterende wolk van rook of inkt vrij. Het vermindert de nauwkeurigheid van het doelwit.
 move_desc_109,Het doelwit wordt blootgesteld aan een sinistere straal die verwarring veroorzaakt.
-move_desc_110,De gebruiker trekt zijn lichaam terug in zijn harde omhulsel en verhoogt zijn Verdediging-attribuut.
-move_desc_111,De gebruiker krult zich op om zwakke plekken te verbergen en zijn Verdediging-attribuut te verhogen.
-move_desc_112,De gebruiker werpt een stevige muur op die zijn Verdediging-attribuut sterk verhoogt.
+move_desc_110,De gebruiker trekt zijn lichaam terug in zijn harde omhulsel en verhoogt zijn Weerstand-attribuut.
+move_desc_111,De gebruiker krult zich op om zwakke plekken te verbergen en zijn Weerstand-attribuut te verhogen.
+move_desc_112,De gebruiker werpt een stevige muur op die zijn Weerstand-attribuut sterk verhoogt.
 move_desc_113,De gebruiker werpt een wonderbaarlijke muur van licht op om schade van speciale aanvallen vijf beurten lang te onderdrukken.
 move_desc_114,De gebruiker creëert een waas die elke attribuutwijziging van alle Pokémon in de strijd elimineert.
 move_desc_115,Een wonderbaarlijke muur wordt opgetrokken om schade van fysieke aanvallen vijf beurten lang te onderdrukken.
@@ -3794,10 +3794,10 @@ move_desc_126,Het doelwit wordt aangevallen met een intense vuurzee. Het kan het
 move_desc_127,De gebruiker valt het doelwit aan en kan het laten terugdeinzen. Het kan ook worden gebruikt om een waterval te beklimmen.
 move_desc_128,Het doelwit wordt vier tot vijf keer vastgeklemd en samengeknepen door het zeer dikke en stevige omhulsel van de gebruiker.
 move_desc_129,Stervormige stralen worden naar de tegenstander geschoten. Deze aanval mist nooit.
-move_desc_130,De gebruiker trekt zijn hoofd in om zijn verdediging in de eerste beurt te verhogen en ramt het doelwit in de volgende beurt.
+move_desc_130,De gebruiker trekt zijn hoofd in om zijn weerstand in de eerste beurt te verhogen en ramt het doelwit in de volgende beurt.
 move_desc_131,Scherpe stekels worden snel achter elkaar op het doel geschoten. Ze raken twee tot vijf keer achter elkaar.
 move_desc_132,Het doelwit wordt aangevallen met lange, kruipende tentakels of lianen. Het kan ook het Snelheid-attribuut van het doelwit verlagen.
-move_desc_133,De gebruiker maakt tijdelijk zijn geest leeg om zijn zorgen te vergeten. Het verhoogt het Sp. Verdediging-attribuut aanzienlijk.
+move_desc_133,De gebruiker maakt tijdelijk zijn geest leeg om zijn zorgen te vergeten. Het verhoogt het Sp. Weerstand-attribuut aanzienlijk.
 move_desc_134,De gebruiker leidt het doelwit af door een lepel te buigen. Het verlaagt de nauwkeurigheid van het doelwit.
 move_desc_135,De gebruiker herstelt zijn eigen LP tot de helft van zijn maximale LP. Kan ook in het veld worden gebruikt om LP te genezen.
 move_desc_136,Het doelwit wordt aangevallen met een knieschop vanuit een sprong. Als deze mist, raakt de gebruiker gewond.
@@ -3815,7 +3815,7 @@ move_desc_147,De gebruiker verspreidt uitbarstingen van sporen die slaap veroorz
 move_desc_148,De gebruiker flitst een fel licht met enorme snelheid op het doelwit. Het vermindert echter de nauwkeurigheid van de gebruiker.
 move_desc_149,Het doelwit wordt aangevallen met een vreemde psychische golf. De aanval varieert in intensiteit.
 move_desc_150,De gebruiker dwarrelt en spettert in het rond zonder enig effect...
-move_desc_151,De gebruiker verandert zijn celstructuur om zichzelf vloeibaar te maken, waardoor zijn Verdediging-attribuut sterk wordt verhoogd.
+move_desc_151,De gebruiker verandert zijn celstructuur om zichzelf vloeibaar te maken, waardoor zijn Weerstand-attribuut sterk wordt verhoogd.
 move_desc_152,Het doelwit wordt geslagen met een grote tang. Kritieke treffers komen gemakkelijker aan.
 move_desc_153,De gebruiker explodeert om schade toe te brengen aan degenen om hem heen. De gebruiker wordt uitgeschakeld als hij deze techniek gebruikt.
 move_desc_154,Het doelwit wordt twee tot vijf keer snel achter elkaar aangevallen met scherpe klauwen of zeisen.
@@ -3865,7 +3865,7 @@ move_desc_206,Een terughoudende aanval die voorkomt dat het doelwit uitgeschakel
 
 move_desc_209,De gebruiker maakt een elektrisch geladen tackle tegen het doelwit. Het kan het doelwit ook verlammen.
 
-move_desc_211,Het doelwit wordt geraakt met vleugels van staal. Het kan ook het Verdediging-attribuut van de gebruiker verhogen.
+move_desc_211,Het doelwit wordt geraakt met vleugels van staal. Het kan ook het Weerstand-attribuut van de gebruiker verhogen.
 
 move_desc_221,Het doelwit wordt bestookt met een mystiek vuur van grote intensiteit. Het kan het doelwit ook verbranden.
 
@@ -3874,7 +3874,7 @@ move_desc_224,Met behulp van zijn stoere en indrukwekkende hoorn ramt de gebruik
 move_desc_225,De gebruiker ademt een machtige windvlaag uit die schade toebrengt. Het kan het doelwit ook verlammen.
 
 move_desc_230,Een zoete geur die het ontwijkingsvermogen van de tegenstander vermindert. Het lokt ook wilde Pokémon als het wordt gebruikt in het gras, enz.
-move_desc_231,Het doelwit wordt geslagen met een staalharde staart. Het kan ook het Verdediging-attribuut van het doelwit verlagen.
+move_desc_231,Het doelwit wordt geslagen met een staalharde staart. Het kan ook het Weerstand-attribuut van het doelwit verlagen.
 move_desc_232,Het doelwit wordt geharkt met stalen klauwen. Het kan ook het Aanval-attribuut van de gebruiker verhogen.
 
 move_desc_234,De gebruiker herstelt zijn eigen LP. De hoeveelheid herwonnen LP varieert met het weer.
@@ -3884,19 +3884,19 @@ move_desc_236,De gebruiker herstelt zijn eigen LP. De hoeveelheid herwonnen LP v
 move_desc_238,De gebruiker geeft een dubbele slag met gekruiste onderarmen. Kritieke treffers komen gemakkelijker aan.
 move_desc_239,De gebruiker zweept een venijnige tornado op om het andere team aan te vallen. Het kan doelwitten ook laten terugdeinzen.
 
-move_desc_242,De gebruiker vermorzelt het doelwit met scherpe hoektanden. Het kan ook het Verdediging-attribuut van het doelwit verlagen.
+move_desc_242,De gebruiker vermorzelt het doelwit met scherpe hoektanden. Het kan ook het Weerstand-attribuut van het doelwit verlagen.
 
 move_desc_245,De gebruiker valt het doelwit aan met verblindende snelheid. Deze aanval gaat altijd voor elke andere techniek.
 move_desc_246,De gebruiker valt aan met een prehistorische kracht. Het kan ook alle attributen van de gebruiker in één keer verhogen.
-move_desc_247,De gebruiker slingert een schaduwachtige klodder naar het doelwit. Het kan ook het Sp. Verdediging-attribuut van het doelwit verlagen.
+move_desc_247,De gebruiker slingert een schaduwachtige klodder naar het doelwit. Het kan ook het Sp. Weerstand-attribuut van het doelwit verlagen.
 
-move_desc_249,De gebruiker valt aan met een stoot die een rots kan verbrijzelen. Het kan ook het Verdediging-attribuut van het doelwit verlagen.
+move_desc_249,De gebruiker valt aan met een stoot die een rots kan verbrijzelen. Het kan ook het Weerstand-attribuut van het doelwit verlagen.
 
 move_desc_304,De gebruiker slaakt een afschuwelijk echoënde kreet met het vermogen om schade toe te brengen.
 
 move_desc_324,De gebruiker valt aan met een sinistere lichtstraal. Het kan het doelwit ook verwarren.
 
-move_desc_334,De gebruiker verhardt zijn lichaamsoppervlak alsof het ijzer is, waardoor zijn Verdediging-attribuut sterk toeneemt.
+move_desc_334,De gebruiker verhardt zijn lichaamsoppervlak alsof het ijzer is, waardoor zijn Weerstand-attribuut sterk toeneemt.
 
 move_desc_398,Het doelwit wordt gestoken met een tentakel of arm doordrenkt met gif. Het kan het doelwit ook vergiftigen.
 move_desc_399,De gebruiker laat een afschuwelijk aura vrij, doordrenkt met duistere gedachten. Het kan het doelwit ook laten terugdeinzen.
@@ -3910,7 +3910,7 @@ move_desc_406,Het doelwit wordt aangevallen met een schokgolf die wordt opgewekt
 
 move_desc_416,De gebruiker valt het doelwit aan met al zijn kracht. De gebruiker kan de volgende beurt geen techniek gebruiken.
 
-move_desc_430,De gebruiker verzamelt al zijn lichtenergie en stoot deze in één keer uit. Dit kan ook het Sp. Verdedigings-attribuut van het doelwit verlagen.
+move_desc_430,De gebruiker verzamelt al zijn lichtenergie en stoot deze in één keer uit. Dit kan ook het Sp. Weerstands-attribuut van het doelwit verlagen.
 
 move_desc_442,De gebruiker slaat het doelwit met zijn staalharde hoofd. Dit kan het doelwit ook laten terugdeinzen.
 
@@ -4198,7 +4198,7 @@ ability_desc_59,Castform verandert met het weer.
 ability_desc_60,Beschermt de Pokémon tegen diefstal van voorwerpen.
 ability_desc_61,De Pokémon kan zijn eigen statusproblemen genezen.
 ability_desc_62,Verhoogt het Aanval-attribuut wanneer er een statusprobleem is.
-ability_desc_63,Verhoogt het Verdediging-attribuut wanneer er een statusprobleem is.
+ability_desc_63,Verhoogt het Weerstand-attribuut wanneer er een statusprobleem is.
 ability_desc_64,Beschadigt aanvallers die energie-aftappende aanvallen gebruiken.
 ability_desc_65,Versterkt Gras-aanvallen in een noodsituatie.
 ability_desc_66,Versterkt Vuur-aanvallen in een noodsituatie.
@@ -4223,7 +4223,7 @@ ability_desc_84,Verhoogt het Snelheid-attribuut wanneer een voorwerp wordt gebru
 ability_desc_85,Verzwakt de kracht van Vuur-aanvallen.
 ability_desc_86,De Pokémon is gevoelig voor wilde attribuutveranderingen.
 ability_desc_87,Verlaagt LP bij hitte. Water herstelt LP.
-ability_desc_88,Past kracht aan op basis van de verdediging van de tegenstander.
+ability_desc_88,Past kracht aan op basis van de weerstand van de tegenstander.
 ability_desc_89,Versterkt de kracht van stootaanvallen.
 ability_desc_90,Herstelt LP wanneer de Pokémon vergiftigd is.
 ability_desc_91,Versterkt aanvallen van hetzelfde type.
@@ -4268,7 +4268,7 @@ ability_desc_129,Verlaagt attributen wanneer LP op de helft of lager komt.
 ability_desc_130,Kan een aanval uitschakelen die op de Pokémon wordt gebruikt.
 ability_desc_131,Kan de statusproblemen van een bondgenoot genezen.
 ability_desc_132,Verlaagt schade die bondgenoten ontvangen.
-ability_desc_133,Fysieke aanvallen verlagen het Verdediging- en verhogen het Snelheid-attribuut.
+ability_desc_133,Fysieke aanvallen verlagen het Weerstand- en verhogen het Snelheid-attribuut.
 ability_desc_134,Verdubbelt het gewicht van de Pokémon.
 ability_desc_135,Halveert het gewicht van de Pokémon.
 ability_desc_136,Verlaagt schade wanneer LP vol is.
@@ -4280,7 +4280,7 @@ ability_desc_141,Verhoogt één attribuut en verlaagt een andere.
 ability_desc_142,Beschermt de Pokémon tegen weersschade.
 ability_desc_143,Kan doelen vergiftigen bij contact.
 ability_desc_144,Herstelt een beetje LP wanneer hij uit het gevecht wordt gehaald.
-ability_desc_145,Beschermt tegen aanvallen die het Verdediging-attribuut verlagen.
+ability_desc_145,Beschermt tegen aanvallen die het Weerstand-attribuut verlagen.
 ability_desc_146,Verhoogt het Snelheid-attribuut in een zandstorm.
 ability_desc_147,Maakt status-veranderende aanvallen minder accuraat.
 ability_desc_148,Versterkt aanvallen wanneer de Pokémon als laatste aanvalt.
@@ -4314,7 +4314,7 @@ ability_desc_175,Voorkomt dat hijzelf en bondgenoten in slaap vallen.
 ability_desc_176,De Pokémon verandert van vorm afhankelijk van hoe hij vecht.
 ability_desc_177,Geeft prioriteit aan Vlieg-aanvallen.
 ability_desc_178,Versterkt aura- en pulsaanvallen.
-ability_desc_179,Verhoogt het Verdediging-attribuut op Grasterrein.
+ability_desc_179,Verhoogt het Weerstand-attribuut op Grasterrein.
 ability_desc_180,De Pokémon kan een voorwerp doorgeven aan een bondgenoot.
 ability_desc_181,Versterkt aanvallen die direct contact maken.
 ability_desc_182,Normaal-aanvallen worden Fee-aanvallen.

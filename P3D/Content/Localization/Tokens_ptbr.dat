@@ -478,29 +478,29 @@ storage_screen_pokemon_summary_Normal,Normal
 storage_screen_pokemon_summary_Shiny,Shiny
 storage_screen_pokemon_summary_Egg,Ovo
 storage_screen_pokemon_summary_DexNo,DEX Nº.
-storage_screen_pokemon_summary_Level,NÍVEL
+storage_screen_pokemon_summary_LEVEL,NÍVEL
 storage_screen_pokemon_summary_HP,HP
-storage_screen_pokemon_summary_Attack,ATAQUE
-storage_screen_pokemon_summary_Defense,DEFESA
-storage_screen_pokemon_summary_SpAtk,SP. ATQ
-storage_screen_pokemon_summary_SpDef,SP. DEF
-storage_screen_pokemon_summary_Speed,VELOCIDADE
-storage_screen_pokemon_summary_Item,ITEM
+storage_screen_pokemon_summary_ATTACK,ATAQUE
+storage_screen_pokemon_summary_DEFENSE,DEFESA
+storage_screen_pokemon_summary_SpATK,SP. ATQ
+storage_screen_pokemon_summary_SpDEF,SP. DEF
+storage_screen_pokemon_summary_SPEED,VELOCIDADE
+storage_screen_pokemon_summary_ITEM,ITEM
 
-storage_screen_filter_Hint,Pressione <system.button(special)> no teclado para filtrar.
-storage_screen_filter_Title,Configure the filters:
-storage_screen_filter_Results,Results:
-storage_screen_filter_Filters,Filters:
+storage_screen_filter_Hint,Pressione [<system.button(special)>] no teclado para filtrar.
+storage_screen_filter_Title,Configure os filtros:
+storage_screen_filter_Results,Resultados:
+storage_screen_filter_Filters,Filtros:
 storage_screen_filter_Pokemon,Pokémon
-storage_screen_filter_Type1,Type1
-storage_screen_filter_Type2,Type2
-storage_screen_filter_Move,Move
-storage_screen_filter_Ability,Ability
-storage_screen_filter_Nature,Nature
-storage_screen_filter_Gender,Gender
-storage_screen_filter_HeldItem,Held Item
-storage_screen_filter_HeldItem_Yes,Has a Held Item
-storage_screen_filter_HeldItem_No,Has no Held Item
+storage_screen_filter_Type1,Tipo 1
+storage_screen_filter_Type2,Tipo 2
+storage_screen_filter_Move,Ataque
+storage_screen_filter_Ability,Habilidade
+storage_screen_filter_Nature,Natureza
+storage_screen_filter_Gender,Gênero
+storage_screen_filter_HeldItem,Segurando Item
+storage_screen_filter_HeldItem_Yes,Está segurando um Item
+storage_screen_filter_HeldItem_No,Não está segurando um Item
 ---
 mail_screen_title,Correio
 mail_screen_give_mail_to,Dar Carta para:

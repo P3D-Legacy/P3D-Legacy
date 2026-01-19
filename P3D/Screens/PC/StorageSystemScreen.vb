@@ -1065,14 +1065,14 @@ Public Class StorageSystemScreen
 
                 text = $"{nameString}{Environment.NewLine}"
                 text &= Localization.GetString("storage_screen_pokemon_summary_DexNo", "DEX NO.") & $"  {p.Number}{Environment.NewLine}"
-                text &= Localization.GetString("storage_screen_pokemon_summary_Level", "LEVEL") & $"  {p.Level}{Environment.NewLine}"
+                text &= Localization.GetString("storage_screen_pokemon_summary_LEVEL", "LEVEL") & $"  {p.Level}{Environment.NewLine}"
                 text &= Localization.GetString("storage_screen_pokemon_summary_HP", "HP") & $"  {p.HP} / {p.MaxHP}{Environment.NewLine}"
-                text &= Localization.GetString("storage_screen_pokemon_summary_Attack", "ATTACK") & $"  {p.Attack}{Environment.NewLine}"
-                text &= Localization.GetString("storage_screen_pokemon_summary_Defense", "DEFENSE") & $"  {p.Defense}{Environment.NewLine}"
-                text &= Localization.GetString("storage_screen_pokemon_summary_SpAtk", "SP. ATK") & $"  {p.SpAttack}{Environment.NewLine}"
-                text &= Localization.GetString("storage_screen_pokemon_summary_SpDef", "SP. DEF") & $"  {p.SpDefense}{Environment.NewLine}"
-                text &= Localization.GetString("storage_screen_pokemon_summary_Speed", "SPEED") & $"  {p.Speed}{Environment.NewLine}"
-                text &= Localization.GetString("storage_screen_pokemon_summary_Item", "ITEM") & $"  {itemString}"
+                text &= Localization.GetString("storage_screen_pokemon_summary_ATTACK", "ATTACK") & $"  {p.Attack}{Environment.NewLine}"
+                text &= Localization.GetString("storage_screen_pokemon_summary_DEFENSE", "DEFENSE") & $"  {p.Defense}{Environment.NewLine}"
+                text &= Localization.GetString("storage_screen_pokemon_summary_SpATK", "SP. ATK") & $"  {p.SpAttack}{Environment.NewLine}"
+                text &= Localization.GetString("storage_screen_pokemon_summary_SpDEF", "SP. DEF") & $"  {p.SpDefense}{Environment.NewLine}"
+                text &= Localization.GetString("storage_screen_pokemon_summary_SPEED", "SPEED") & $"  {p.Speed}{Environment.NewLine}"
+                text &= Localization.GetString("storage_screen_pokemon_summary_ITEM", "ITEM") & $"  {itemString}"
             End If
             Dim textPosition = New Vector2(665, 477)
             Dim shadowPosition = textPosition + New Vector2(2)
@@ -1158,13 +1158,13 @@ Public Class StorageSystemScreen
         If Me.Filters.Count < 1 Then Return True
         If p.IsEgg() Then Return False
         Dim criteria = New Dictionary(Of FilterTypes, Func(Of Filter, Boolean))
-        criteria.Add(FilterTypes.Ability, Function(f) p.Ability.Name.ToLower() = f.FilterValue.ToLower())
-        criteria.Add(FilterTypes.Gender, Function(f) p.Gender.ToString().ToLower() = f.FilterValue.ToLower())
-        criteria.Add(FilterTypes.Nature, Function(f) p.Nature.ToString().ToLower() = f.FilterValue.ToLower())
+        criteria.Add(FilterTypes.Ability, Function(f) Localization.GetString("ability_name_" & p.Ability.ID).ToLower() = f.FilterValue.ToLower())
+        criteria.Add(FilterTypes.Gender, Function(f) Localization.GetString("global_" & p.Gender.ToString().ToLower()).ToLower() = f.FilterValue.ToLower())
+        criteria.Add(FilterTypes.Nature, Function(f) Localization.GetString("nature_name_" & p.Nature.ToString()).ToLower() = f.FilterValue.ToLower())
         criteria.Add(FilterTypes.Pokémon, Function(f) p.GetName().ToLower() = f.FilterValue.ToLower())
         criteria.Add(FilterTypes.Move, Function(f) p.Attacks.Any(Function(a) a.Name.ToLower() = f.FilterValue.ToLower()))
-        criteria.Add(FilterTypes.Type1, Function(f) p.Type1.Type = BattleSystem.GameModeElementLoader.GetElementByName(f.FilterValue).Type)
-        criteria.Add(FilterTypes.Type2, Function(f) p.Type2.Type = BattleSystem.GameModeElementLoader.GetElementByName(f.FilterValue).Type)
+        criteria.Add(FilterTypes.Type1, Function(f) p.Type1.ToString.ToLower() = f.FilterValue.ToLower())
+        criteria.Add(FilterTypes.Type2, Function(f) p.Type2.ToString.ToLower() = f.FilterValue.ToLower())
         For Each f As Filter In Filters
             Dim check As Func(Of Filter, Boolean) = Nothing
             If criteria.TryGetValue(f.FilterType, check) AndAlso Not criteria(f.FilterType)(f) Then Return False
@@ -1458,7 +1458,7 @@ Public Class StorageSystemFilterScreen
 
             For i = Scroll To Me.Scroll + 8
                 If i > Me.Items.Count - 1 Then Continue For
-                Dim hovering = New Rectangle(Core.windowSize.Width - 270, 66 * (i + 1 - Scroll), 256, 64).Contains(MouseHandler.MousePosition)
+                Dim hovering = New Rectangle(Core.windowSize.Width - 398, 66 * (i + 1 - Scroll), 320, 64).Contains(MouseHandler.MousePosition)
                 Dim acceptPointer = Controls.Accept(True, False, False) And hovering
                 Dim acceptButtons = Controls.Accept(False, True, True)
                 Dim dismiss = Controls.Dismiss(True, True, True)
@@ -1484,17 +1484,19 @@ Public Class StorageSystemFilterScreen
                 If i > Me.Items.Count - 1 Then Continue For
                 Dim Text = Items(i)
 
-                Dim startPos = New Point(Core.windowSize.Width - 270, 66 * ((i + 1) - Scroll))
+                Dim startPos = New Point(Core.windowSize.Width - 398, 66 * ((i + 1) - Scroll))
 
                 Core.SpriteBatch.Draw(t1, New Rectangle(startPos.X, startPos.Y, 64, 64), Color.White)
                 Core.SpriteBatch.Draw(t2, New Rectangle(startPos.X + 64, startPos.Y, 64, 64), Color.White)
                 Core.SpriteBatch.Draw(t2, New Rectangle(startPos.X + 128, startPos.Y, 64, 64), Color.White)
-                Core.SpriteBatch.Draw(t1, New Rectangle(startPos.X + 192, startPos.Y, 64, 64), Nothing, Color.White, 0.0F, Vector2.Zero, SpriteEffects.FlipHorizontally, 0.0F)
+                Core.SpriteBatch.Draw(t2, New Rectangle(startPos.X + 192, startPos.Y, 64, 64), Color.White)
+                Core.SpriteBatch.Draw(t1, New Rectangle(startPos.X + 256, startPos.Y, 64, 64), Nothing, Color.White, 0.0F, Vector2.Zero, SpriteEffects.FlipHorizontally, 0.0F)
 
                 Dim font = FontManager.MainFont
-                Dim textSize = font.MeasureString(Text).X * 0.7F
-                Dim position = New Vector2(startPos.X + 128 - textSize, startPos.Y + 15)
-                Core.SpriteBatch.DrawString(font, Text, position, Color.Black, 0.0F, Vector2.Zero, 1.4F, SpriteEffects.None, 0.0F)
+                Dim textSize As New Size(CInt(font.MeasureString(Text).X * 1.3 / 2), CInt(font.MeasureString(Text).Y * 1.3 / 2))
+                Dim position = New Vector2(startPos.X + 160 - textSize.Width, startPos.Y + 32 - textSize.Height)
+
+                Core.SpriteBatch.DrawString(font, Text, position, Color.Black, 0.0F, Vector2.Zero, 1.3F, SpriteEffects.None, 0.0F)
 
                 If Me.Index <> i Then Continue For
                 Dim cPosition = startPos + New Point(128, -40)
@@ -1535,7 +1537,7 @@ Public Class StorageSystemFilterScreen
         Me.CanMuteAudio = True
         Me.CanBePaused = True
 
-        Me.mainMenuItems = {Localization.GetString("storage_screen_filter_Pokemon", "Pokémon"), Localization.GetString("storage_screen_filter_Type1", "Type1"), Localization.GetString("storage_screen_filter_Type2", "Type2"), Localization.GetString("storage_screen_filter_Move", "Move"), Localization.GetString("storage_screen_filter_Ability", "Ability"), Localization.GetString("storage_screen_filter_Nature", "Nature"), Localization.GetString("storage_screen_filter_Gender", "Gender"), Localization.GetString("storage_screen_filter_HeldItem", "Held Item")}.ToList()
+        Me.mainMenuItems = {Localization.GetString("storage_screen_filter_Pokemon", "Pokémon"), Localization.GetString("storage_screen_filter_Type1", "Type 1"), Localization.GetString("storage_screen_filter_Type2", "Type 2"), Localization.GetString("storage_screen_filter_Move", "Move"), Localization.GetString("storage_screen_filter_Ability", "Ability"), Localization.GetString("storage_screen_filter_Nature", "Nature"), Localization.GetString("storage_screen_filter_Gender", "Gender"), Localization.GetString("storage_screen_filter_HeldItem", "Held Item")}.ToList()
 
         Me.Menu = New SelectMenu({""}.ToList(), 0, Nothing, 0)
         Me.Menu.Visible = False
@@ -1573,7 +1575,7 @@ Public Class StorageSystemFilterScreen
 
         If Filters.Count > 0 Then
             Core.SpriteBatch.DrawString(FontManager.MainFont, $"{Localization.GetString("storage_screen_filter_Results", "Results:")} {Environment.NewLine}{Environment.NewLine}{Localization.GetString("storage_screen_filter_Filters", "Filters:")} ", New Vector2(90 + 64 * 11, 119), Color.Black)
-            Core.SpriteBatch.DrawString(FontManager.MainFont, $"{Me.Results}{Environment.NewLine}{Environment.NewLine}{Me.Filters.Count}", New Vector2(190 + 64 * 11, 119), Color.White)
+            Core.SpriteBatch.DrawString(FontManager.MainFont, $"{Me.Results}{Environment.NewLine}{Environment.NewLine}{Me.Filters.Count}", New Vector2(288 + 64 * 11, 119), Color.White)
         End If
 
         Dim draw = If(Menu.Visible, CType(AddressOf Menu.Draw, Action), AddressOf DrawCursor)
@@ -1670,8 +1672,8 @@ Public Class StorageSystemFilterScreen
         Dim filterType = Me.mainMenuItems(Me.Scroll + Me.Cursor).ToLower()
         Dim menus = New Dictionary(Of String, Action)
         menus.Add(Localization.GetString("storage_screen_filter_Pokemon", "Pokémon").ToLower, Sub() Me.OpenMenu(StorageSystemScreen.FilterTypes.Pokémon, True))
-        menus.Add(Localization.GetString("storage_screen_filter_Type1", "Type1").ToLower, Sub() Me.OpenMenu(StorageSystemScreen.FilterTypes.Type1))
-        menus.Add(Localization.GetString("storage_screen_filter_Type2", "Type2").ToLower, Sub() Me.OpenMenu(StorageSystemScreen.FilterTypes.Type2))
+        menus.Add(Localization.GetString("storage_screen_filter_Type1", "Type 1").ToLower, Sub() Me.OpenMenu(StorageSystemScreen.FilterTypes.Type1))
+        menus.Add(Localization.GetString("storage_screen_filter_Type2", "Type 2").ToLower, Sub() Me.OpenMenu(StorageSystemScreen.FilterTypes.Type2))
         menus.Add(Localization.GetString("storage_screen_filter_Move", "Move").ToLower, Sub() Me.OpenMenu(StorageSystemScreen.FilterTypes.Move, True))
         menus.Add(Localization.GetString("storage_screen_filter_Ability", "Ability").ToLower, Sub() Me.OpenMenu(StorageSystemScreen.FilterTypes.Ability, True))
         menus.Add(Localization.GetString("storage_screen_filter_Nature", "Nature").ToLower, Sub() Me.OpenMenu(StorageSystemScreen.FilterTypes.Nature))
@@ -1685,12 +1687,12 @@ Public Class StorageSystemFilterScreen
         Dim l = Me._storageSystemScreen.GetPokemonList(True, False)
         Dim GetNames = New Dictionary(Of StorageSystemScreen.FilterTypes, Func(Of IEnumerable(Of String)))
         GetNames.Add(StorageSystemScreen.FilterTypes.Pokémon, Function() l.Select(Function(pokemon) pokemon.GetName()))
-        GetNames.Add(StorageSystemScreen.FilterTypes.Type1, Function() l.Select(Function(p) $"{p.Type1}"))
-        GetNames.Add(StorageSystemScreen.FilterTypes.Type2, Function() l.Select(Function(p) $"{p.Type2}"))
+        GetNames.Add(StorageSystemScreen.FilterTypes.Type1, Function() l.Select(Function(p) $"{p.Type1.ToString}"))
+        GetNames.Add(StorageSystemScreen.FilterTypes.Type2, Function() l.Select(Function(p) $"{p.Type2.ToString}"))
         GetNames.Add(StorageSystemScreen.FilterTypes.Move, Function() l.SelectMany(Function(p) p.Attacks).Select(Function(a) a.Name))
-        GetNames.Add(StorageSystemScreen.FilterTypes.Ability, Function() l.Select(Function(p) p.Ability.Name))
-        GetNames.Add(StorageSystemScreen.FilterTypes.Nature, Function() l.Select(Function(p) $"{p.Nature}"))
-        GetNames.Add(StorageSystemScreen.FilterTypes.Gender, Function() l.Select(Function(p) $"{p.Gender}"))
+        GetNames.Add(StorageSystemScreen.FilterTypes.Ability, Function() l.Select(Function(p) Localization.GetString("ability_name_" & p.Ability.ID)))
+        GetNames.Add(StorageSystemScreen.FilterTypes.Nature, Function() l.Select(Function(p) $"{Localization.GetString("nature_name_" & p.Nature.ToString())}"))
+        GetNames.Add(StorageSystemScreen.FilterTypes.Gender, Function() l.Select(Function(p) $"{Localization.GetString("global_" & p.Gender.ToString().ToLower())}"))
         GetNames.Add(StorageSystemScreen.FilterTypes.HeldItem, Function() {Localization.GetString("storage_screen_filter_HeldItem_Yes", "Has a Held Item"), Localization.GetString("storage_screen_filter_HeldItem_No", "Has no Held Item")})
         Dim names = GetNames(filterType)().Distinct().ToList()
         names.Sort()
