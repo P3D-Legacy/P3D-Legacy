@@ -19,7 +19,7 @@ global_clear,Completo
 global_save,Salvar
 global_done,Pronto
 global_apply,Aplicar
-global_confirm,Confirm
+global_confirm,Confirmar
 global_close,Fechar
 global_back,Voltar
 global_quit,Quit
@@ -592,8 +592,8 @@ rename_screen_button_Rename,Renomear
 ---
 Input Screen:
 input_screen_button_Shift,Shift
-input_screen_button_Default,Default
-input_screen_button_CharactersLeft,Chars left:
+input_screen_button_Default,Padrão
+input_screen_button_CharactersLeft,Letra(as) restam:
 ---
 Shop Screen:
 shop_screen_title_store,Loja
