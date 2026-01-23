@@ -81,7 +81,7 @@
     End Function
 
     Private Shared Function GenerateItemReaction(ByVal p As Pokemon, ByVal cPosition As Vector3, ByVal facing As Integer) As String
-        Dim message As String = "It looks like your Pokémon~holds on to something.*Do you want to~take it?"
+        Dim message As String = Localization.GetString("FollowerInteraction_HeldItem_Question", "It looks like your Pokémon~holds on to something.*Do you want to~take it?")
 
         Dim offset As New Vector2(0, 0)
         Select Case facing
@@ -110,13 +110,13 @@
 
             s &= "@camera.deactivatethirdperson" & Environment.NewLine
             s &= "@text.show(" & message & ")" & Environment.NewLine &
-                "@options.show(Yes,No)" & Environment.NewLine &
-                ":when:Yes" & Environment.NewLine &
-                "@text.show(Your Pokémon handed over~the " & Item.OneLineName() & "!)" & Environment.NewLine &
+                "@options.show(<system.token(global_yes)>,<system.token(global_no)>)" & Environment.NewLine &
+                ":when:<system.token(global_yes)>" & Environment.NewLine &
+                "@text.show(" & Localization.GetString("FollowerInteraction_HeldItem_Answer_Yes", "Your Pokémon handed over~the <item>!").Replace("//ITEM//", item.OneLineName()) & ")" & Environment.NewLine &
                 "@item.give(" & PickupItemID & ",1)" & Environment.NewLine &
                 "@item.messagegive(" & PickupItemID & ",1)" & Environment.NewLine &
-                ":when:No" & Environment.NewLine &
-                "@text.show(Your Pokémon kept~the item happily.)" & Environment.NewLine &
+                ":when:<system.token(global_no)>" & Environment.NewLine &
+                "@text.show(" & Localization.GetString("FollowerInteraction_HeldItem_Answer_No", "Your Pokémon kept~the item happily.") & ")" & Environment.NewLine &
                 "@pokemon.addfriendship(0,10)" & Environment.NewLine &
                 ":endwhen" & Environment.NewLine
         Else
@@ -126,13 +126,13 @@
             s &= "@camera.deactivatethirdperson" & Environment.NewLine
 
             s &= "@text.show(" & message & ")" & Environment.NewLine &
-                "@options.show(Yes,No)" & Environment.NewLine &
-                ":when:Yes" & Environment.NewLine &
-                "@text.show(Your Pokémon handed over~the " & Item.OneLineName() & "!)" & Environment.NewLine &
+                "@options.show(<system.token(global_yes)>,<system.token(global_no)>)" & Environment.NewLine &
+                ":when:<system.token(global_yes)>" & Environment.NewLine &
+                "@text.show(" & Localization.GetString("FollowerInteraction_HeldItem_Answer_Yes", "Your Pokémon handed over~the <item>!").Replace("//ITEM//", item.OneLineName()) & ")" & Environment.NewLine &
                 "@item.give(" & PickupItemID & ",1)" & Environment.NewLine &
                 "@item.messagegive(" & PickupItemID & ",1)" & Environment.NewLine &
-                ":when:No" & Environment.NewLine &
-                "@text.show(Your Pokémon kept~the item happily.)" & Environment.NewLine &
+                ":when:<system.token(global_no)>" & Environment.NewLine &
+                "@text.show(" & Localization.GetString("FollowerInteraction_HeldItem_Answer_No", "Your Pokémon kept~the item happily.") & ")" & Environment.NewLine &
                 "@pokemon.addfriendship(0,10)" & Environment.NewLine &
                 ":endwhen" & Environment.NewLine
             s &= "@camera.activatethirdperson" & Environment.NewLine
@@ -230,39 +230,39 @@
     Private Shared Function GetStatusConditionReaction(ByVal p As Pokemon) As ReactionContainer
         Select Case p.Status
             Case Pokemon.StatusProblems.BadPoison, Pokemon.StatusProblems.Poison
-                Return New ReactionContainer("<name> is shivering~with the effects of being~poisoned.", MessageBulb.NotificationTypes.Poisoned)
+                Return New ReactionContainer(Localization.GetString("FollowerInteraction_StatusEffect_Poison", "<name> is shivering~with the effects of being~poisoned."), MessageBulb.NotificationTypes.Poisoned)
             Case Pokemon.StatusProblems.Burn
-                Return New ReactionContainer("<name>'s burn~looks painful!", MessageBulb.NotificationTypes.Poisoned)
+                Return New ReactionContainer(Localization.GetString("FollowerInteraction_StatusEffect_Burn", "<name>'s burn~looks painful!"), MessageBulb.NotificationTypes.Poisoned)
             Case Pokemon.StatusProblems.Freeze
                 Select Case Core.Random.Next(0, 2)
                     Case 0
-                        Return New ReactionContainer("<name> seems very cold!", MessageBulb.NotificationTypes.Poisoned)
+                        Return New ReactionContainer(Localization.GetString("FollowerInteraction_StatusEffect_Freeze1", "<name> seems very cold!"), MessageBulb.NotificationTypes.Poisoned)
                     Case 1
-                        Return New ReactionContainer(".....Your Pokémon seems~a little cold.", MessageBulb.NotificationTypes.Poisoned)
+                        Return New ReactionContainer(Localization.GetString("FollowerInteraction_StatusEffect_Freeze2", ".....Your Pokémon seems~a little cold."), MessageBulb.NotificationTypes.Poisoned)
                 End Select
             Case Pokemon.StatusProblems.Paralyzed
-                Return New ReactionContainer("<name> is trying~very hard to keep~up with you...", MessageBulb.NotificationTypes.Poisoned)
+                Return New ReactionContainer(Localization.GetString("FollowerInteraction_StatusEffect_Paralyzed", "<name> is trying~very hard to keep~up with you..."), MessageBulb.NotificationTypes.Poisoned)
             Case Pokemon.StatusProblems.Sleep
                 Select Case Core.Random.Next(0, 3)
                     Case 0
-                        Return New ReactionContainer("<name> seems~a little tired.", MessageBulb.NotificationTypes.Poisoned)
+                        Return New ReactionContainer(Localization.GetString("FollowerInteraction_StatusEffect_Sleep1", "<name> seems~a little tired."), MessageBulb.NotificationTypes.Poisoned)
                     Case 1
-                        Return New ReactionContainer("<name> is somehow~fighting off sleep...", MessageBulb.NotificationTypes.Poisoned)
+                        Return New ReactionContainer(Localization.GetString("FollowerInteraction_StatusEffect_Sleep2", "<name> is somehow~fighting off sleep..."), MessageBulb.NotificationTypes.Poisoned)
                     Case 2
-                        Return New ReactionContainer("<name> yawned~very loudly!", MessageBulb.NotificationTypes.Poisoned)
+                        Return New ReactionContainer(Localization.GetString("FollowerInteraction_StatusEffect_Sleep3", "<name> yawned~very loudly!"), MessageBulb.NotificationTypes.Poisoned)
                 End Select
         End Select
-        Return New ReactionContainer("<name> is trying~very hard to keep~up with you...", MessageBulb.NotificationTypes.Poisoned)
+        Return New ReactionContainer(Localization.GetString("FollowerInteraction_StatusEffect_Other", "<name> is trying~very hard to keep~up with you..."), MessageBulb.NotificationTypes.Poisoned)
     End Function
 
     Private Shared Function GetLowHPReaction(ByVal p As Pokemon) As ReactionContainer
         Select Case Core.Random.Next(0, 2)
             Case 0
-                Return New ReactionContainer("<name> is going~to fall down!", MessageBulb.NotificationTypes.Exclamation)
+                Return New ReactionContainer(Localization.GetString("FollowerInteraction_LowHP1", "<name> is going~to fall down!"), MessageBulb.NotificationTypes.Exclamation)
             Case 1
-                Return New ReactionContainer("<name> seems to~be about to fall over!", MessageBulb.NotificationTypes.Exclamation)
+                Return New ReactionContainer(Localization.GetString("FollowerInteraction_LowHP2", "<name> seems to~be about to fall over!"), MessageBulb.NotificationTypes.Exclamation)
         End Select
-        Return New ReactionContainer("<name> seems to~be about to fall over!", MessageBulb.NotificationTypes.Exclamation)
+        Return New ReactionContainer(Localization.GetString("FollowerInteraction_LowHP2", "<name> seems to~be about to fall over!"), MessageBulb.NotificationTypes.Exclamation)
     End Function
 
     Private Shared Function GetSpecialReaction(ByVal p As Pokemon) As ReactionContainer
@@ -293,41 +293,41 @@
         While r Is Nothing
             Select Case Core.Random.Next(0, 17)
                 Case 0
-                    r = New ReactionContainer("<name> is doing~it's best to keep up~with you.", MessageBulb.NotificationTypes.Unhappy)
+                    r = New ReactionContainer(Localization.GetString("FollowerInteraction_Hate1", "<name> is doing~it's best to keep up~with you."), MessageBulb.NotificationTypes.Unhappy)
                 Case 1
-                    r = New ReactionContainer("<name> is somehow~forcing itself to keep going.", MessageBulb.NotificationTypes.Unsure)
+                    r = New ReactionContainer(Localization.GetString("FollowerInteraction_Hate2", "<name> is somehow~forcing itself to keep going."), MessageBulb.NotificationTypes.Unsure)
                 Case 2
-                    r = New ReactionContainer("<name> is staring~patiantly at nothing at all.", MessageBulb.NotificationTypes.Unsure)
+                    r = New ReactionContainer(Localization.GetString("FollowerInteraction_Hate3", "<name> is staring~patiantly at nothing at all."), MessageBulb.NotificationTypes.Unsure)
                 Case 3
-                    r = New ReactionContainer("<name> is staring~intently into the distance.", MessageBulb.NotificationTypes.Waiting)
+                    r = New ReactionContainer(Localization.GetString("FollowerInteraction_Hate4", "<name> is staring~intently into the distance."), MessageBulb.NotificationTypes.Waiting)
                 Case 4
-                    r = New ReactionContainer("<name> is dizzy...", MessageBulb.NotificationTypes.Unhappy)
+                    r = New ReactionContainer(Localization.GetString("FollowerInteraction_Hate5", "<name> is dizzy..."), MessageBulb.NotificationTypes.Unhappy)
                 Case 5
-                    r = New ReactionContainer("<name> is stepping~on your feet!", MessageBulb.NotificationTypes.Waiting)
+                    r = New ReactionContainer(Localization.GetString("FollowerInteraction_Hate6", "<name> is stepping~on your feet!"), MessageBulb.NotificationTypes.Waiting)
                 Case 6
-                    r = New ReactionContainer("<name> seems~unhappy somehow...", MessageBulb.NotificationTypes.Unhappy)
+                    r = New ReactionContainer(Localization.GetString("FollowerInteraction_Hate7", "<name> seems~unhappy somehow..."), MessageBulb.NotificationTypes.Unhappy)
                 Case 7
-                    r = New ReactionContainer("<name> is making~an unhappy face.", MessageBulb.NotificationTypes.Unhappy)
+                    r = New ReactionContainer(Localization.GetString("FollowerInteraction_Hate8", "<name> is making~an unhappy face."), MessageBulb.NotificationTypes.Unhappy)
                 Case 8
-                    r = New ReactionContainer("<name> seems~uneasy and is poking~<player.name>.", MessageBulb.NotificationTypes.Unsure)
+                    r = New ReactionContainer(Localization.GetString("FollowerInteraction_Hate9", "<name> seems~uneasy and is poking~<player.name>."), MessageBulb.NotificationTypes.Unsure)
                 Case 9
-                    r = New ReactionContainer("<name> is making~a face like its angry!", MessageBulb.NotificationTypes.Angry)
+                    r = New ReactionContainer(Localization.GetString("FollowerInteraction_Hate10", "<name> is making~a face like its angry!"), MessageBulb.NotificationTypes.Angry)
                 Case 10
-                    r = New ReactionContainer("<name> seems to be~angry for some reason.", MessageBulb.NotificationTypes.Angry)
+                    r = New ReactionContainer(Localization.GetString("FollowerInteraction_Hate11", "<name> seems to be~angry for some reason."), MessageBulb.NotificationTypes.Angry)
                 Case 11
-                    r = New ReactionContainer("Your Pokémon turned to face~the other way, showing a~defiant expression.", MessageBulb.NotificationTypes.Unsure)
+                    r = New ReactionContainer(Localization.GetString("FollowerInteraction_Hate12", "Your Pokémon turned to face~the other way, showing a~defiant expression."), MessageBulb.NotificationTypes.Unsure)
                 Case 12
-                    r = New ReactionContainer("<name> is looking~down steadily...", MessageBulb.NotificationTypes.Waiting)
+                    r = New ReactionContainer(Localization.GetString("FollowerInteraction_Hate13", "<name> is looking~down steadily..."), MessageBulb.NotificationTypes.Waiting)
                 Case 13
-                    r = New ReactionContainer("Your Pokémon is staring~intently at nothing...", MessageBulb.NotificationTypes.Waiting)
+                    r = New ReactionContainer(Localization.GetString("FollowerInteraction_Hate14", "Your Pokémon is staring~intently at nothing..."), MessageBulb.NotificationTypes.Waiting)
                 Case 14
-                    r = New ReactionContainer("Your Pokémon turned to~face the other way,~showing a defiant expression.", MessageBulb.NotificationTypes.Unhappy)
+                    r = New ReactionContainer(Localization.GetString("FollowerInteraction_Hate15", "Your Pokémon turned to~face the other way,~showing a defiant expression."), MessageBulb.NotificationTypes.Unhappy)
                 Case 15
-                    r = New ReactionContainer("<name> seems~a bit nervous...", MessageBulb.NotificationTypes.Unsure)
+                    r = New ReactionContainer(Localization.GetString("FollowerInteraction_Hate16", "<name> seems~a bit nervous..."), MessageBulb.NotificationTypes.Unsure)
                 Case 16
-                    r = New ReactionContainer("Your Pokémon stumbled~and nearly fell!", MessageBulb.NotificationTypes.Exclamation)
+                    r = New ReactionContainer(Localization.GetString("FollowerInteraction_Hate17", "Your Pokémon stumbled~and nearly fell!"), MessageBulb.NotificationTypes.Exclamation)
                 Case 17
-                    r = New ReactionContainer("<name> is having~a hard time keeping up.", MessageBulb.NotificationTypes.Unsure)
+                    r = New ReactionContainer(Localization.GetString("FollowerInteraction_Hate18", "<name> is having~a hard time keeping up."), MessageBulb.NotificationTypes.Unsure)
             End Select
         End While
 
@@ -339,180 +339,180 @@
         While r Is Nothing
             Select Case Core.Random.Next(0, 53)
                 Case 0
-                    r = New ReactionContainer("<name> is happy~but shy.", MessageBulb.NotificationTypes.Friendly)
+                    r = New ReactionContainer(Localization.GetString("FollowerInteraction_Neutral1", "<name> is happy~but shy."), MessageBulb.NotificationTypes.Friendly)
                 Case 1
-                    r = New ReactionContainer("<name> puts in~extra effort.", MessageBulb.NotificationTypes.Friendly)
+                    r = New ReactionContainer(Localization.GetString("FollowerInteraction_Neutral2", "<name> puts in~extra effort."), MessageBulb.NotificationTypes.Friendly)
                 Case 2
                     If IsOutside() = True Then
-                        r = New ReactionContainer("<name> is smelling~the scents of the~surrounding air.", MessageBulb.NotificationTypes.Friendly)
+                        r = New ReactionContainer(Localization.GetString("FollowerInteraction_Neutral3", "<name> is smelling~the scents of the~surrounding air."), MessageBulb.NotificationTypes.Friendly)
                     End If
                 Case 3
                     If IsOutside() = True Then
-                        r = New ReactionContainer("Your Pokémon has caught~the scent of smoke.", MessageBulb.NotificationTypes.Friendly)
+                        r = New ReactionContainer(Localization.GetString("FollowerInteraction_Neutral4", "Your Pokémon has caught~the scent of smoke."), MessageBulb.NotificationTypes.Friendly)
                     End If
                 Case 4
                     If NPCAround() = True Then
-                        r = New ReactionContainer("<name> greeted everyone!", MessageBulb.NotificationTypes.CatFace)
+                        r = New ReactionContainer(Localization.GetString("FollowerInteraction_Neutral5", "<name> greeted everyone!"), MessageBulb.NotificationTypes.CatFace)
                     End If
                 Case 5
                     If IsOutside() = True Then
-                        r = New ReactionContainer("<name> is wandering~around and listening~to the different sounds.", MessageBulb.NotificationTypes.Note)
+                        r = New ReactionContainer(Localization.GetString("FollowerInteraction_Neutral6", "<name> is wandering~around and listening~to the different sounds."), MessageBulb.NotificationTypes.Note)
                     End If
                 Case 6
-                    r = New ReactionContainer("<name> looks very~interested!", MessageBulb.NotificationTypes.Friendly)
+                    r = New ReactionContainer(Localization.GetString("FollowerInteraction_Neutral7", "<name> looks very~interested!"), MessageBulb.NotificationTypes.Friendly)
                 Case 7
                     If IsOutside() = True Then
-                        r = New ReactionContainer("<name> is steadily~poking at the ground.", MessageBulb.NotificationTypes.Waiting)
+                        r = New ReactionContainer(Localization.GetString("FollowerInteraction_Neutral8", "<name> is steadily~poking at the ground."), MessageBulb.NotificationTypes.Waiting)
                     End If
                 Case 8
-                    r = New ReactionContainer("Your Pokémon is looking~around restlessly.", MessageBulb.NotificationTypes.Note)
+                    r = New ReactionContainer(Localization.GetString("FollowerInteraction_Neutral9", "Your Pokémon is looking~around restlessly."), MessageBulb.NotificationTypes.Note)
                 Case 9
                     If IsOutside() = True Then
-                        r = New ReactionContainer("<name> seems dazzled~after seeing the sky.", MessageBulb.NotificationTypes.Waiting)
+                        r = New ReactionContainer(Localization.GetString("FollowerInteraction_Neutral10", "<name> seems dazzled~after seeing the sky."), MessageBulb.NotificationTypes.Waiting)
                     End If
                 Case 10
-                    r = New ReactionContainer("<name> is gazing~around restlessly!", MessageBulb.NotificationTypes.Waiting)
+                    r = New ReactionContainer(Localization.GetString("FollowerInteraction_Neutral11", "<name> is gazing~around restlessly!"), MessageBulb.NotificationTypes.Waiting)
                 Case 11
                     If TrainerAround() = True Then
-                        r = New ReactionContainer("<name> let out~a battle cry!", MessageBulb.NotificationTypes.Shouting)
+                        r = New ReactionContainer(Localization.GetString("FollowerInteraction_Neutral12", "<name> let out~a battle cry!"), MessageBulb.NotificationTypes.Shouting)
                     End If
                 Case 12
                     If TrainerAround() = True And p.IsType(Element.Types.Fire) = True Then
-                        r = New ReactionContainer("<name> is vigorously~breathing fire!", MessageBulb.NotificationTypes.Exclamation)
+                        r = New ReactionContainer(Localization.GetString("FollowerInteraction_Neutral13", "<name> is vigorously~breathing fire!"), MessageBulb.NotificationTypes.Exclamation)
                     End If
                 Case 13
                     If TrainerAround() = True Or NPCAround() = True Then
-                        r = New ReactionContainer("<name> is on~the lookout!", MessageBulb.NotificationTypes.Exclamation)
+                        r = New ReactionContainer(Localization.GetString("FollowerInteraction_Neutral14", "<name> is on~the lookout!"), MessageBulb.NotificationTypes.Exclamation)
                     End If
                 Case 14
                     If TrainerAround() = True Then
-                        r = New ReactionContainer("<name> roared!", MessageBulb.NotificationTypes.Exclamation)
+                        r = New ReactionContainer(Localization.GetString("FollowerInteraction_Neutral15", "<name> roared!"), MessageBulb.NotificationTypes.Exclamation)
                     End If
                 Case 15
                     If TrainerAround() = True Then
-                        r = New ReactionContainer("<name> let out a roar!", MessageBulb.NotificationTypes.Exclamation)
+                        r = New ReactionContainer(Localization.GetString("FollowerInteraction_Neutral16", "<name> let out a roar!"), MessageBulb.NotificationTypes.Exclamation)
                     End If
                 Case 16
-                    r = New ReactionContainer("<name> is surveying~the area...", MessageBulb.NotificationTypes.Waiting)
+                    r = New ReactionContainer(Localization.GetString("FollowerInteraction_Neutral17", "<name> is surveying~the area..."), MessageBulb.NotificationTypes.Waiting)
                 Case 17
                     If IsInside() = True Then
-                        r = New ReactionContainer("<name> is sniffing~at the floor.", MessageBulb.NotificationTypes.Question)
+                        r = New ReactionContainer(Localization.GetString("FollowerInteraction_Neutral18", "<name> is sniffing~at the floor."), MessageBulb.NotificationTypes.Question)
                     End If
                 Case 18
-                    r = New ReactionContainer("<name> is peering~down.", MessageBulb.NotificationTypes.Question)
+                    r = New ReactionContainer(Localization.GetString("FollowerInteraction_Neutral19", "<name> is peering~down."), MessageBulb.NotificationTypes.Question)
                 Case 19
-                    r = New ReactionContainer("<name> seems~to be wandering around.", MessageBulb.NotificationTypes.Note)
+                    r = New ReactionContainer(Localization.GetString("FollowerInteraction_Neutral20", "<name> seems~to be wandering around."), MessageBulb.NotificationTypes.Note)
                 Case 20
-                    r = New ReactionContainer("<name> is looking~around absentmindedly.", MessageBulb.NotificationTypes.Waiting)
+                    r = New ReactionContainer(Localization.GetString("FollowerInteraction_Neutral21", "<name> is looking~around absentmindedly."), MessageBulb.NotificationTypes.Waiting)
                 Case 21
-                    r = New ReactionContainer("<name> is relaxing~comfortably.", MessageBulb.NotificationTypes.Friendly)
+                    r = New ReactionContainer(Localization.GetString("FollowerInteraction_Neutral22", "<name> is relaxing~comfortably."), MessageBulb.NotificationTypes.Friendly)
                 Case 22
                     If IsInside() = True Then
-                        r = New ReactionContainer("<name> is sniffing~at the floor.", MessageBulb.NotificationTypes.Waiting)
+                        r = New ReactionContainer(Localization.GetString("FollowerInteraction_Neutral23", "<name> is sniffing~at the floor."), MessageBulb.NotificationTypes.Waiting)
                     End If
                 Case 23
                     If IsOutside() = True Then
-                        r = New ReactionContainer("<name> seems to~relax as it hears the~sound of rustling leaves...", MessageBulb.NotificationTypes.Friendly)
+                        r = New ReactionContainer(Localization.GetString("FollowerInteraction_Neutral24", "<name> seems to~relax as it hears the~sound of rustling leaves..."), MessageBulb.NotificationTypes.Friendly)
                     End If
                 Case 24
                     If IsOutside() = True Then
-                        r = New ReactionContainer("<name> seems to~be listening to the~sound of rustling leaves...", MessageBulb.NotificationTypes.Friendly)
+                        r = New ReactionContainer(Localization.GetString("FollowerInteraction_Neutral25", "<name> seems to~be listening to the~sound of rustling leaves..."), MessageBulb.NotificationTypes.Friendly)
                     End If
                 Case 25
                     If WaterAround() = True Then
-                        r = New ReactionContainer("Your Pokémon is playing around~and splashing in the water!", MessageBulb.NotificationTypes.Happy)
+                        r = New ReactionContainer(Localization.GetString("FollowerInteraction_Neutral26", "Your Pokémon is playing around~and splashing in the water!"), MessageBulb.NotificationTypes.Happy)
                     End If
                 Case 26
                     If IsOutside() = True Then
-                        r = New ReactionContainer("<name> is looking~up at the sky.", MessageBulb.NotificationTypes.Waiting)
+                        r = New ReactionContainer(Localization.GetString("FollowerInteraction_Neutral27", "<name> is looking~up at the sky."), MessageBulb.NotificationTypes.Waiting)
                     End If
                 Case 27
                     If IsOutside() = True And World.GetTime() = World.DayTimes.Night And World.GetCurrentRegionWeather() = World.Weathers.Clear Then
-                        r = New ReactionContainer("Your Pokémon is happily~gazing at the beautiful,~starry sky!", MessageBulb.NotificationTypes.Waiting)
+                        r = New ReactionContainer(Localization.GetString("FollowerInteraction_Neutral28", "Your Pokémon is happily~gazing at the beautiful,~starry sky!"), MessageBulb.NotificationTypes.Waiting)
                     End If
                 Case 28
-                    r = New ReactionContainer("<name> seems to be~enjoying this a little bit!", MessageBulb.NotificationTypes.Note)
+                    r = New ReactionContainer(Localization.GetString("FollowerInteraction_Neutral29", "<name> seems to be~enjoying this a little bit!"), MessageBulb.NotificationTypes.Note)
                 Case 29
                     If IsInside() = True Then
-                        r = New ReactionContainer("<name> is looking~up at the ceiling.", MessageBulb.NotificationTypes.Note)
+                        r = New ReactionContainer(Localization.GetString("FollowerInteraction_Neutral30", "<name> is looking~up at the ceiling."), MessageBulb.NotificationTypes.Note)
                     End If
                 Case 30
                     If IsOutside() = True And World.GetTime() = World.DayTimes.Night Then
-                        r = New ReactionContainer("Your Pokémon is staring~spellbound at the night sky!", MessageBulb.NotificationTypes.Friendly)
+                        r = New ReactionContainer(Localization.GetString("FollowerInteraction_Neutral31", "Your Pokémon is staring~spellbound at the night sky!"), MessageBulb.NotificationTypes.Friendly)
                     End If
                 Case 31
-                    r = New ReactionContainer("<name> is in~danger of falling over!", MessageBulb.NotificationTypes.Exclamation)
+                    r = New ReactionContainer(Localization.GetString("FollowerInteraction_Neutral32", "<name> is in~danger of falling over!"), MessageBulb.NotificationTypes.Exclamation)
                 Case 32
                     If p.NickName <> "" Then
-                        r = New ReactionContainer("<name> doesn't~seem to be used to its~own name yet.", MessageBulb.NotificationTypes.Exclamation)
+                        r = New ReactionContainer(Localization.GetString("FollowerInteraction_Neutral33", "<name> doesn't~seem to be used to its~own name yet."), MessageBulb.NotificationTypes.Exclamation)
                     End If
                 Case 33
                     If IsInside() = True Then
-                        r = New ReactionContainer("<name> slipped~on the floor and seems~likely to fall!", MessageBulb.NotificationTypes.Exclamation)
+                        r = New ReactionContainer(Localization.GetString("FollowerInteraction_Neutral34", "<name> slipped~on the floor and seems~likely to fall!"), MessageBulb.NotificationTypes.Exclamation)
                     End If
                 Case 34
                     If TrainerAround() = True Or GrassAround() = True Then
-                        r = New ReactionContainer("<name> feels something~and is howling!", MessageBulb.NotificationTypes.Exclamation)
+                        r = New ReactionContainer(Localization.GetString("FollowerInteraction_Neutral35", "<name> feels something~and is howling!"), MessageBulb.NotificationTypes.Exclamation)
                     End If
                 Case 35
                     If p.HP = p.MaxHP And p.Status = Pokemon.StatusProblems.None Then
-                        r = New ReactionContainer("<name> seems~refreshed!", MessageBulb.NotificationTypes.Friendly)
+                        r = New ReactionContainer(Localization.GetString("FollowerInteraction_Neutral36", "<name> seems~refreshed!"), MessageBulb.NotificationTypes.Friendly)
                     End If
                 Case 36
                     If p.HP = p.MaxHP And p.Status = Pokemon.StatusProblems.None Then
-                        r = New ReactionContainer("<name> feels~refreshed.", MessageBulb.NotificationTypes.Friendly)
+                        r = New ReactionContainer(Localization.GetString("FollowerInteraction_Neutral37", "<name> feels~refreshed."), MessageBulb.NotificationTypes.Friendly)
                     End If
                 Case 37
                     If ItemAround() = True Then
-                        r = New ReactionContainer("<name> seems to~have found something!", MessageBulb.NotificationTypes.Exclamation)
+                        r = New ReactionContainer(Localization.GetString("FollowerInteraction_Neutral38", "<name> seems to~have found something!"), MessageBulb.NotificationTypes.Exclamation)
                     End If
                 Case 38
                     If TrainerAround() = True Or GrassAround() = True Then
-                        r = New ReactionContainer("<name> suddenly~turned around and~started barking!", MessageBulb.NotificationTypes.Exclamation)
+                        r = New ReactionContainer(Localization.GetString("FollowerInteraction_Neutral39", "<name> suddenly~turned around and~started barking!"), MessageBulb.NotificationTypes.Exclamation)
                     End If
                 Case 39
                     If TrainerAround() = True Or GrassAround() = True Then
-                        r = New ReactionContainer("<name> suddenly~turned around!", MessageBulb.NotificationTypes.Exclamation)
+                        r = New ReactionContainer(Localization.GetString("FollowerInteraction_Neutral40", "<name> suddenly~turned around!"), MessageBulb.NotificationTypes.Exclamation)
                     End If
                 Case 40
                     If IsOutside() = True Then
-                        r = New ReactionContainer("<name> looked up~at the sky and shouted loudly!", MessageBulb.NotificationTypes.Exclamation)
+                        r = New ReactionContainer(Localization.GetString("FollowerInteraction_Neutral41", "<name> looked up~at the sky and shouted loudly!"), MessageBulb.NotificationTypes.Exclamation)
                     End If
                 Case 41
-                    r = New ReactionContainer("Your Pokémon was surprised~that you suddenly spoke to it!", MessageBulb.NotificationTypes.Exclamation)
+                    r = New ReactionContainer(Localization.GetString("FollowerInteraction_Neutral42", "Your Pokémon was surprised~that you suddenly spoke to it!"), MessageBulb.NotificationTypes.Exclamation)
                 Case 42
                     If Not p.Item Is Nothing Then
-                        r = New ReactionContainer("<name> almost forgot~it was holding~that " & p.Item.OneLineName() & "!", MessageBulb.NotificationTypes.Question)
+                        r = New ReactionContainer(Localization.GetString("FollowerInteraction_Neutral43", "<name> almost forgot~it was holding~that " & p.Item.OneLineName() & "!"), MessageBulb.NotificationTypes.Question)
                     End If
                 Case 43
                     If IceAround() = True Then
-                        r = New ReactionContainer("Oh!~It's slipping and came~over here for support.", MessageBulb.NotificationTypes.Exclamation)
+                        r = New ReactionContainer(Localization.GetString("FollowerInteraction_Neutral44", "Oh!~It's slipping and came~over here for support."), MessageBulb.NotificationTypes.Exclamation)
                     End If
                 Case 44
                     If IceAround() = True Then
-                        r = New ReactionContainer("Your Pokémon almost slipped~and fell over!", MessageBulb.NotificationTypes.Exclamation)
+                        r = New ReactionContainer(Localization.GetString("FollowerInteraction_Neutral45", "Your Pokémon almost slipped~and fell over!"), MessageBulb.NotificationTypes.Exclamation)
                     End If
                 Case 45
-                    r = New ReactionContainer("<name> sensed something~strange and was surprised!", MessageBulb.NotificationTypes.Question)
+                    r = New ReactionContainer(Localization.GetString("FollowerInteraction_Neutral46", "<name> sensed something~strange and was surprised!"), MessageBulb.NotificationTypes.Question)
                 Case 46
-                    r = New ReactionContainer("Your Pokémon is looking~around restlessly for~something.", MessageBulb.NotificationTypes.Question)
+                    r = New ReactionContainer(Localization.GetString("FollowerInteraction_Neutral47", "Your Pokémon is looking~around restlessly for~something."), MessageBulb.NotificationTypes.Question)
                 Case 47
-                    r = New ReactionContainer("Your Pokémon wasn't watching~where it was going and~ran into you!", MessageBulb.NotificationTypes.Friendly)
+                    r = New ReactionContainer(Localization.GetString("FollowerInteraction_Neutral48", "Your Pokémon wasn't watching~where it was going and~ran into you!"), MessageBulb.NotificationTypes.Friendly)
                 Case 48
                     If ItemAround() = True Then
-                        r = New ReactionContainer("Sniff, sniff!~Is there something nearby?", MessageBulb.NotificationTypes.Question)
+                        r = New ReactionContainer(Localization.GetString("FollowerInteraction_Neutral49", "Sniff, sniff!~Is there something nearby?"), MessageBulb.NotificationTypes.Question)
                     End If
                 Case 49
-                    r = New ReactionContainer("<name> is wandering~around and searching~for something.", MessageBulb.NotificationTypes.Question)
+                    r = New ReactionContainer(Localization.GetString("FollowerInteraction_Neutral50", "<name> is wandering~around and searching~for something."), MessageBulb.NotificationTypes.Question)
                 Case 50
-                    r = New ReactionContainer("<name> is sniffing~at <player.name>.", MessageBulb.NotificationTypes.Friendly)
+                    r = New ReactionContainer(Localization.GetString("FollowerInteraction_Neutral51", "<name> is sniffing~at <player.name>."), MessageBulb.NotificationTypes.Friendly)
                 Case 51
                     If IsOutside() = True And World.GetCurrentRegionWeather() = World.Weathers.Rain And GrassAround() = True Then
-                        r = New ReactionContainer("<name> is taking~shelter in the grass from~the rain!", MessageBulb.NotificationTypes.Waiting)
+                        r = New ReactionContainer(Localization.GetString("FollowerInteraction_Neutral52", "<name> is taking~shelter in the grass from~the rain!"), MessageBulb.NotificationTypes.Waiting)
                     End If
                 Case 52
                     If IsOutside() = True And World.GetCurrentRegionWeather() = World.Weathers.Rain And GrassAround() = True Then
-                        r = New ReactionContainer("<name> is splashing~around in the wet grass!", MessageBulb.NotificationTypes.Note)
+                        r = New ReactionContainer(Localization.GetString("FollowerInteraction_Neutral53", "<name> is splashing~around in the wet grass!"), MessageBulb.NotificationTypes.Note)
                     End If
             End Select
         End While
@@ -525,71 +525,71 @@
             Select Case Core.Random.Next(0, 28)
                 Case 0
                     If IsOutside() = True And World.GetCurrentRegionWeather() = World.Weathers.Clear Then
-                        r = New ReactionContainer("Your Pokémon seems happy~about the great weather!", MessageBulb.NotificationTypes.Happy)
+                        r = New ReactionContainer(Localization.GetString("FollowerInteraction_Like1", "Your Pokémon seems happy~about the great weather!"), MessageBulb.NotificationTypes.Happy)
                     End If
                 Case 1
-                    r = New ReactionContainer("<name> is coming along~happily.", MessageBulb.NotificationTypes.Friendly)
+                    r = New ReactionContainer(Localization.GetString("FollowerInteraction_Like2", "<name> is coming along~happily."), MessageBulb.NotificationTypes.Friendly)
                 Case 2
-                    r = New ReactionContainer("<name> is composed!", MessageBulb.NotificationTypes.Friendly)
+                    r = New ReactionContainer(Localization.GetString("FollowerInteraction_Like3", "<name> is composed!"), MessageBulb.NotificationTypes.Friendly)
                 Case 3
                     If p.HP = p.MaxHP Then
-                        r = New ReactionContainer("<name> is glowing~with health!", MessageBulb.NotificationTypes.Note)
+                        r = New ReactionContainer(Localization.GetString("FollowerInteraction_Like4", "<name> is glowing~with health!"), MessageBulb.NotificationTypes.Note)
                     End If
                 Case 4
-                    r = New ReactionContainer("<name> looks~very happy!", MessageBulb.NotificationTypes.Happy)
+                    r = New ReactionContainer(Localization.GetString("FollowerInteraction_Like5", "<name> looks~very happy!"), MessageBulb.NotificationTypes.Happy)
                 Case 5
                     If p.HP = p.MaxHP Then
-                        r = New ReactionContainer("<name> is full~of life!", MessageBulb.NotificationTypes.Note)
+                        r = New ReactionContainer(Localization.GetString("FollowerInteraction_Like6", "<name> is full~of life!"), MessageBulb.NotificationTypes.Note)
                     End If
                 Case 6
-                    r = New ReactionContainer("<name> is very~eager!", MessageBulb.NotificationTypes.Friendly)
+                    r = New ReactionContainer(Localization.GetString("FollowerInteraction_Like7", "<name> is very~eager!"), MessageBulb.NotificationTypes.Friendly)
                 Case 7
-                    r = New ReactionContainer("<name> gives you~a happy look and a smile!", MessageBulb.NotificationTypes.Happy)
+                    r = New ReactionContainer(Localization.GetString("FollowerInteraction_Like8", "<name> gives you~a happy look and a smile!"), MessageBulb.NotificationTypes.Happy)
                 Case 8
-                    r = New ReactionContainer("<name> seems very~happy to see you!", MessageBulb.NotificationTypes.Friendly)
+                    r = New ReactionContainer(Localization.GetString("FollowerInteraction_Like9", "<name> seems very~happy to see you!"), MessageBulb.NotificationTypes.Friendly)
                 Case 9
-                    r = New ReactionContainer("<name> faced this~way and grinned!", MessageBulb.NotificationTypes.CatFace)
+                    r = New ReactionContainer(Localization.GetString("FollowerInteraction_Like10", "<name> faced this~way and grinned!"), MessageBulb.NotificationTypes.CatFace)
                 Case 10
-                    r = New ReactionContainer("<name> spun around~in a circle!", MessageBulb.NotificationTypes.Note)
+                    r = New ReactionContainer(Localization.GetString("FollowerInteraction_Like11", "<name> spun around~in a circle!"), MessageBulb.NotificationTypes.Note)
                 Case 11
-                    r = New ReactionContainer("<name> is looking~this way and smiling.", MessageBulb.NotificationTypes.Friendly)
+                    r = New ReactionContainer(Localization.GetString("FollowerInteraction_Like12", "<name> is looking~this way and smiling."), MessageBulb.NotificationTypes.Friendly)
                 Case 12
-                    r = New ReactionContainer("<name> is very~eager...", MessageBulb.NotificationTypes.Waiting)
+                    r = New ReactionContainer(Localization.GetString("FollowerInteraction_Like13", "<name> is very~eager..."), MessageBulb.NotificationTypes.Waiting)
                 Case 13
-                    r = New ReactionContainer("<name> is focusing~its attention on you!", MessageBulb.NotificationTypes.Exclamation)
+                    r = New ReactionContainer(Localization.GetString("FollowerInteraction_Like14", "<name> is focusing~its attention on you!"), MessageBulb.NotificationTypes.Exclamation)
                 Case 14
-                    r = New ReactionContainer("<name> focused~with a sharp gaze!", MessageBulb.NotificationTypes.Exclamation)
+                    r = New ReactionContainer(Localization.GetString("FollowerInteraction_Like15", "<name> focused~with a sharp gaze!"), MessageBulb.NotificationTypes.Exclamation)
                 Case 15
-                    r = New ReactionContainer("<name> is looking~at <player.name>'s footprints.", MessageBulb.NotificationTypes.Question)
+                    r = New ReactionContainer(Localization.GetString("FollowerInteraction_Like16", "<name> is looking~at <player.name>'s footprints."), MessageBulb.NotificationTypes.Question)
                 Case 16
-                    r = New ReactionContainer("<name> is staring~straight into <player.name>'s~eyes.", MessageBulb.NotificationTypes.Friendly)
+                    r = New ReactionContainer(Localization.GetString("FollowerInteraction_Like17", "<name> is staring~straight into <player.name>'s~eyes."), MessageBulb.NotificationTypes.Friendly)
                 Case 17
                     If p.BaseSpeed >= 100 Then
-                        r = New ReactionContainer("<name> is showing off~its agility!", MessageBulb.NotificationTypes.Note)
+                        r = New ReactionContainer(Localization.GetString("FollowerInteraction_Like18", "<name> is showing off~its agility!"), MessageBulb.NotificationTypes.Note)
                     End If
                 Case 18
-                    r = New ReactionContainer("<name> is moving~around happily!", MessageBulb.NotificationTypes.Note)
+                    r = New ReactionContainer(Localization.GetString("FollowerInteraction_Like19", "<name> is moving~around happily!"), MessageBulb.NotificationTypes.Note)
                 Case 19
-                    r = New ReactionContainer("<name> is steadily~keeping up with you!", MessageBulb.NotificationTypes.Friendly)
+                    r = New ReactionContainer(Localization.GetString("FollowerInteraction_Like20", "<name> is steadily~keeping up with you!"), MessageBulb.NotificationTypes.Friendly)
                 Case 20
-                    r = New ReactionContainer("<name> seems to~want to play with~<player.name>!", MessageBulb.NotificationTypes.Note)
+                    r = New ReactionContainer(Localization.GetString("FollowerInteraction_Like21", "<name> seems to~want to play with~<player.name>!"), MessageBulb.NotificationTypes.Note)
                 Case 21
-                    r = New ReactionContainer("<name> is singing~and humming.", MessageBulb.NotificationTypes.Note)
+                    r = New ReactionContainer(Localization.GetString("FollowerInteraction_Like22", "<name> is singing~and humming."), MessageBulb.NotificationTypes.Note)
                 Case 22
-                    r = New ReactionContainer("<name> is playfully~nibbling at the ground.", MessageBulb.NotificationTypes.Friendly)
+                    r = New ReactionContainer(Localization.GetString("FollowerInteraction_Like23", "<name> is playfully~nibbling at the ground."), MessageBulb.NotificationTypes.Friendly)
                 Case 23
-                    r = New ReactionContainer("<name> is nipping~at your feet!", MessageBulb.NotificationTypes.Note)
+                    r = New ReactionContainer(Localization.GetString("FollowerInteraction_Like24", "<name> is nipping~at your feet!"), MessageBulb.NotificationTypes.Note)
                 Case 24
                     If p.BaseAttack >= 100 Or p.BaseSpAttack >= 100 Then
-                        r = New ReactionContainer("<name> is working~hard to show off~its mighty power!", MessageBulb.NotificationTypes.Exclamation)
+                        r = New ReactionContainer(Localization.GetString("FollowerInteraction_Like25", "<name> is working~hard to show off~its mighty power!"), MessageBulb.NotificationTypes.Exclamation)
                     End If
                 Case 25
-                    r = New ReactionContainer("<name> is cheerful!", MessageBulb.NotificationTypes.Note)
+                    r = New ReactionContainer(Localization.GetString("FollowerInteraction_Like26", "<name> is cheerful!"), MessageBulb.NotificationTypes.Note)
                 Case 26
-                    r = New ReactionContainer("<name> bumped~into <player.name>!", MessageBulb.NotificationTypes.Exclamation)
+                    r = New ReactionContainer(Localization.GetString("FollowerInteraction_Like27", "<name> bumped~into <player.name>!"), MessageBulb.NotificationTypes.Exclamation)
                 Case 27
                     If IsCave() = True And p.Level < 20 Then
-                        r = New ReactionContainer("<name> is scared~and snuggled up~to <player.name>!", MessageBulb.NotificationTypes.Exclamation)
+                        r = New ReactionContainer(Localization.GetString("FollowerInteraction_Like28", "<name> is scared~and snuggled up~to <player.name>!"), MessageBulb.NotificationTypes.Exclamation)
                     End If
             End Select
         End While
@@ -601,51 +601,51 @@
         While r Is Nothing
             Select Case Core.Random.Next(0, 21)
                 Case 0
-                    r = New ReactionContainer("<name> began poking~you in the stomach!", MessageBulb.NotificationTypes.CatFace)
+                    r = New ReactionContainer(Localization.GetString("FollowerInteraction_Loyal1", "<name> began poking~you in the stomach!"), MessageBulb.NotificationTypes.CatFace)
                 Case 1
-                    r = New ReactionContainer("<name> seems to be~feeling great about~walking with you!", MessageBulb.NotificationTypes.Heart)
+                    r = New ReactionContainer(Localization.GetString("FollowerInteraction_Loyal2", "<name> seems to be~feeling great about~walking with you!"), MessageBulb.NotificationTypes.Heart)
                 Case 2
-                    r = New ReactionContainer("<name> is still~feeling great!", MessageBulb.NotificationTypes.Happy)
+                    r = New ReactionContainer(Localization.GetString("FollowerInteraction_Loyal3", "<name> is still~feeling great!"), MessageBulb.NotificationTypes.Happy)
                 Case 3
-                    r = New ReactionContainer("<name> is poking~at your belly.", MessageBulb.NotificationTypes.Heart)
+                    r = New ReactionContainer(Localization.GetString("FollowerInteraction_Loyal4", "<name> is poking~at your belly."), MessageBulb.NotificationTypes.Heart)
                 Case 4
                     If p.Level > 30 Then
-                        r = New ReactionContainer("<name> looks like~it wants to lead!", MessageBulb.NotificationTypes.Note)
+                        r = New ReactionContainer(Localization.GetString("FollowerInteraction_Loyal5", "<name> looks like~it wants to lead!"), MessageBulb.NotificationTypes.Note)
                     End If
                 Case 5
-                    r = New ReactionContainer("<name> seems to be~very happy!", MessageBulb.NotificationTypes.Happy)
+                    r = New ReactionContainer(Localization.GetString("FollowerInteraction_Loyal6", "<name> seems to be~very happy!"), MessageBulb.NotificationTypes.Happy)
                 Case 6
-                    r = New ReactionContainer("<name> nodded slowly.", MessageBulb.NotificationTypes.Friendly)
+                    r = New ReactionContainer(Localization.GetString("FollowerInteraction_Loyal7", "<name> nodded slowly."), MessageBulb.NotificationTypes.Friendly)
                 Case 7
-                    r = New ReactionContainer("<name> gave you~a sunny look!", MessageBulb.NotificationTypes.Happy)
+                    r = New ReactionContainer(Localization.GetString("FollowerInteraction_Loyal8", "<name> gave you~a sunny look!"), MessageBulb.NotificationTypes.Happy)
                 Case 8
-                    r = New ReactionContainer("<name> is very~composed and sure of itself!", MessageBulb.NotificationTypes.Waiting)
+                    r = New ReactionContainer(Localization.GetString("FollowerInteraction_Loyal9", "<name> is very~composed and sure of itself!"), MessageBulb.NotificationTypes.Waiting)
                 Case 9
                     If p.BaseDefense >= 100 Then
-                        r = New ReactionContainer("<name> is~standing guard!", MessageBulb.NotificationTypes.Exclamation)
+                        r = New ReactionContainer(Localization.GetString("FollowerInteraction_Loyal10", "<name> is~standing guard!"), MessageBulb.NotificationTypes.Exclamation)
                     End If
                 Case 10
-                    r = New ReactionContainer("<name> danced a~wonderful dance!", MessageBulb.NotificationTypes.Note)
+                    r = New ReactionContainer(Localization.GetString("FollowerInteraction_Loyal11", "<name> danced a~wonderful dance!"), MessageBulb.NotificationTypes.Note)
                 Case 11
-                    r = New ReactionContainer("<name> is staring~steadfastly at~<player.name>'s face.", MessageBulb.NotificationTypes.Waiting)
+                    r = New ReactionContainer(Localization.GetString("FollowerInteraction_Loyal12", "<name> is staring~steadfastly at~<player.name>'s face."), MessageBulb.NotificationTypes.Waiting)
                 Case 12
-                    r = New ReactionContainer("<name> is staring~intently at~<player.name>'s face.", MessageBulb.NotificationTypes.Waiting)
+                    r = New ReactionContainer(Localization.GetString("FollowerInteraction_Loyal13", "<name> is staring~intently at~<player.name>'s face."), MessageBulb.NotificationTypes.Waiting)
                 Case 13
-                    r = New ReactionContainer("<name> is concentrating.", MessageBulb.NotificationTypes.Unsure)
+                    r = New ReactionContainer(Localization.GetString("FollowerInteraction_Loyal14", "<name> is concentrating."), MessageBulb.NotificationTypes.Unsure)
                 Case 14
-                    r = New ReactionContainer("<name> faced this~way and nodded.", MessageBulb.NotificationTypes.Friendly)
+                    r = New ReactionContainer(Localization.GetString("FollowerInteraction_Loyal15", "<name> faced this~way and nodded."), MessageBulb.NotificationTypes.Friendly)
                 Case 15
-                    r = New ReactionContainer("<name> suddenly~started walking closer!", MessageBulb.NotificationTypes.Heart)
+                    r = New ReactionContainer(Localization.GetString("FollowerInteraction_Loyal16", "<name> suddenly~started walking closer!"), MessageBulb.NotificationTypes.Heart)
                 Case 16
-                    r = New ReactionContainer("Woah!*<name> is suddenly~playful!", MessageBulb.NotificationTypes.Heart)
+                    r = New ReactionContainer(Localization.GetString("FollowerInteraction_Loyal17", "Woah!*<name> is suddenly~playful!"), MessageBulb.NotificationTypes.Heart)
                 Case 17
-                    r = New ReactionContainer("<name> blushes.", MessageBulb.NotificationTypes.Happy)
+                    r = New ReactionContainer(Localization.GetString("FollowerInteraction_Loyal18", "<name> blushes."), MessageBulb.NotificationTypes.Happy)
                 Case 18
-                    r = New ReactionContainer("Woah!*<name> suddenly started~dancing in happiness!", MessageBulb.NotificationTypes.Note)
+                    r = New ReactionContainer(Localization.GetString("FollowerInteraction_Loyal19", "Woah!*<name> suddenly started~dancing in happiness!"), MessageBulb.NotificationTypes.Note)
                 Case 19
-                    r = New ReactionContainer("<name> is happily~skipping about.", MessageBulb.NotificationTypes.Note)
+                    r = New ReactionContainer(Localization.GetString("FollowerInteraction_Loyal20", "<name> is happily~skipping about."), MessageBulb.NotificationTypes.Note)
                 Case 20
-                    r = New ReactionContainer("Woah!*<name> suddenly~danced in happiness!", MessageBulb.NotificationTypes.Note)
+                    r = New ReactionContainer(Localization.GetString("FollowerInteraction_Loyal21", "Woah!*<name> suddenly~danced in happiness!"), MessageBulb.NotificationTypes.Note)
             End Select
         End While
         Return r
@@ -656,35 +656,35 @@
         While r Is Nothing
             Select Case Core.Random.Next(0, 13)
                 Case 0
-                    r = New ReactionContainer("<name> is jumping~for joy!", MessageBulb.NotificationTypes.Heart)
+                    r = New ReactionContainer(Localization.GetString("FollowerInteraction_Love1", "<name> is jumping~for joy!"), MessageBulb.NotificationTypes.Heart)
                 Case 1
-                    r = New ReactionContainer("Your Pokémon stretched out~its body and is relaxing.", MessageBulb.NotificationTypes.Happy)
+                    r = New ReactionContainer(Localization.GetString("FollowerInteraction_Love2", "Your Pokémon stretched out~its body and is relaxing."), MessageBulb.NotificationTypes.Happy)
                 Case 2
-                    r = New ReactionContainer("<name> is happily~cuddling up to you!", MessageBulb.NotificationTypes.Heart)
+                    r = New ReactionContainer(Localization.GetString("FollowerInteraction_Love3", "<name> is happily~cuddling up to you!"), MessageBulb.NotificationTypes.Heart)
                 Case 3
-                    r = New ReactionContainer("<name> is so happy~that it can't stand still!", MessageBulb.NotificationTypes.Heart)
+                    r = New ReactionContainer(Localization.GetString("FollowerInteraction_Love4", "<name> is so happy~that it can't stand still!"), MessageBulb.NotificationTypes.Heart)
                 Case 4
                     If p.PokedexEntry.Height <= 1.6F Then
-                        r = New ReactionContainer("<name> happily~cuddled up to you!", MessageBulb.NotificationTypes.Heart)
+                        r = New ReactionContainer(Localization.GetString("FollowerInteraction_Love5", "<name> happily~cuddled up to you!"), MessageBulb.NotificationTypes.Heart)
                     End If
                 Case 5
-                    r = New ReactionContainer("<name>'s cheeks are~becoming rosy!", MessageBulb.NotificationTypes.Heart)
+                    r = New ReactionContainer(Localization.GetString("FollowerInteraction_Love6", "<name>'s cheeks are~becoming rosy!"), MessageBulb.NotificationTypes.Heart)
                 Case 6
-                    r = New ReactionContainer("Woah!*<name> suddenly~hugged you!", MessageBulb.NotificationTypes.Heart)
+                    r = New ReactionContainer(Localization.GetString("FollowerInteraction_Love7", "Woah!*<name> suddenly~hugged you!"), MessageBulb.NotificationTypes.Heart)
                 Case 7
                     If p.PokedexEntry.Height <= 0.7F Then
-                        r = New ReactionContainer("<name> is rubbing~against your legs!", MessageBulb.NotificationTypes.Heart)
+                        r = New ReactionContainer(Localization.GetString("FollowerInteraction_Love8", "<name> is rubbing~against your legs!"), MessageBulb.NotificationTypes.Heart)
                     End If
                 Case 8
-                    r = New ReactionContainer("Ah!~<name> cuddles you!", MessageBulb.NotificationTypes.Heart)
+                    r = New ReactionContainer(Localization.GetString("FollowerInteraction_Love9", "Ah!~<name> cuddles you!"), MessageBulb.NotificationTypes.Heart)
                 Case 9
-                    r = New ReactionContainer("<name> is regarding~you with adoration!", MessageBulb.NotificationTypes.Heart)
+                    r = New ReactionContainer(Localization.GetString("FollowerInteraction_Love10", "<name> is regarding~you with adoration!"), MessageBulb.NotificationTypes.Heart)
                 Case 10
-                    r = New ReactionContainer("<name> got~closer to <player.name>!", MessageBulb.NotificationTypes.Heart)
+                    r = New ReactionContainer(Localization.GetString("FollowerInteraction_Love11", "<name> got~closer to <player.name>!"), MessageBulb.NotificationTypes.Heart)
                 Case 11
-                    r = New ReactionContainer("<name> is keeping~close to your feet.", MessageBulb.NotificationTypes.Heart)
+                    r = New ReactionContainer(Localization.GetString("FollowerInteraction_Love12", "<name> is keeping~close to your feet."), MessageBulb.NotificationTypes.Heart)
                 Case 12
-                    r = New ReactionContainer("<name> is jumping~around in a carefree way!", MessageBulb.NotificationTypes.Note)
+                    r = New ReactionContainer(Localization.GetString("FollowerInteraction_Love13", "<name> is jumping~around in a carefree way!"), MessageBulb.NotificationTypes.Note)
             End Select
         End While
         Return r

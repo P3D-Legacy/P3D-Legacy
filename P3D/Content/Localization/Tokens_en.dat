@@ -3974,7 +3974,162 @@ nature_name_Gentle,Gentle
 nature_name_Sassy,Sassy
 nature_name_Careful,Careful
 nature_name_Quirky,Quirky
+-----
+Follower Interactions:
+FollowerInteraction_HeldItem_Question,It looks like your Pokémon~holds on to something.*Do you want to~take it?
+FollowerInteraction_HeldItem_Answer_Yes,Your Pokémon handed over~the <item>!
+FollowerInteraction_HeldItem_Answer_No,Your Pokémon kept~the item happily.
 
+FollowerInteraction_StatusEffect_Poison,<name> is shivering~with the effects of being~poisoned.
+FollowerInteraction_StatusEffect_Burn,<name>'s burn~looks painful!
+FollowerInteraction_StatusEffect_Freeze1,<name> seems very cold!
+FollowerInteraction_StatusEffect_Freeze2,.....Your Pokémon seems~a little cold.
+FollowerInteraction_StatusEffect_Paralyzed,<name> is trying~very hard to keep~up with you...
+FollowerInteraction_StatusEffect_Sleep1,<name> seems~a little tired.
+FollowerInteraction_StatusEffect_Sleep2,<name> is somehow~fighting off sleep...
+FollowerInteraction_StatusEffect_Sleep3,<name> yawned~very loudly!
+FollowerInteraction_StatusEffect_Other,<name> is trying~very hard to keep~up with you...
+
+FollowerInteraction_LowHP1,<name> is going~to fall down!
+FollowerInteraction_LowHP2,<name> seems to~be about to fall over!
+
+FollowerInteraction_Hate1,<name> is doing~it's best to keep up~with you.
+FollowerInteraction_Hate2,<name> is somehow~forcing itself to keep going.
+FollowerInteraction_Hate3,<name> is staring~patiantly at nothing at all.
+FollowerInteraction_Hate4,<name> is staring~intently into the distance.
+FollowerInteraction_Hate5,<name> is dizzy...
+FollowerInteraction_Hate6,<name> is stepping~on your feet!
+FollowerInteraction_Hate7,<name> seems~unhappy somehow...
+FollowerInteraction_Hate8,<name> is making~an unhappy face.
+FollowerInteraction_Hate9,<name> seems~uneasy and is poking~<Player.Name>.
+FollowerInteraction_Hate10,<name> is making~a face like its angry!
+FollowerInteraction_Hate11,<name> seems to be~angry for some reason.
+FollowerInteraction_Hate12,Your Pokémon turned to face~the other way, showing a~defiant expression.
+FollowerInteraction_Hate13,<name> is looking~down steadily...
+FollowerInteraction_Hate14,Your Pokémon is staring~intently at nothing...
+FollowerInteraction_Hate15,Your Pokémon turned to~face the other way,~showing a defiant expression.
+FollowerInteraction_Hate16,<name> seems~a bit nervous...
+FollowerInteraction_Hate17,Your Pokémon stumbled~and nearly fell!
+FollowerInteraction_Hate18,<name> is having~a hard time keeping up.
+
+FollowerInteraction_Neutral1,<name> is happy~but shy.
+FollowerInteraction_Neutral2,<name> puts in~extra effort.
+FollowerInteraction_Neutral3,<name> is smelling~the scents of the~surrounding air.
+FollowerInteraction_Neutral4,Your Pokémon has caught~the scent of smoke.
+FollowerInteraction_Neutral5,<name> greeted everyone!
+FollowerInteraction_Neutral6,<name> is wandering~around and listening~to the different sounds.
+FollowerInteraction_Neutral7,<name> looks very~interested!
+FollowerInteraction_Neutral8,<name> is steadily~poking at the ground.
+FollowerInteraction_Neutral9,Your Pokémon is looking~around restlessly.
+FollowerInteraction_Neutral10,<name> seems dazzled~after seeing the sky.
+FollowerInteraction_Neutral11,<name> is gazing~around restlessly!
+FollowerInteraction_Neutral12,<name> let out~a battle cry!
+FollowerInteraction_Neutral13,<name> is vigorously~breathing fire!
+FollowerInteraction_Neutral14,<name> is on~the lookout!
+FollowerInteraction_Neutral15,<name> roared!
+FollowerInteraction_Neutral16,<name> let out a roar!
+FollowerInteraction_Neutral17,<name> is surveying~the area...
+FollowerInteraction_Neutral18,<name> is sniffing~at the floor.
+FollowerInteraction_Neutral19,<name> is peering~down.
+FollowerInteraction_Neutral20,<name> seems~to be wandering around.
+FollowerInteraction_Neutral21,<name> is looking~around absentmindedly.
+FollowerInteraction_Neutral22,<name> is relaxing~comfortably.
+FollowerInteraction_Neutral23,<name> is sniffing~at the floor.
+FollowerInteraction_Neutral24,<name> seems to~relax as it hears the~sound of rustling leaves...
+FollowerInteraction_Neutral25,<name> seems to~be listening to the~sound of rustling leaves...
+FollowerInteraction_Neutral26,Your Pokémon is playing around~and splashing in the water!
+FollowerInteraction_Neutral27,<name> is looking~up at the sky.
+FollowerInteraction_Neutral28,Your Pokémon is happily~gazing at the beautiful,~starry sky!
+FollowerInteraction_Neutral29,<name> seems to be~enjoying this a little bit!
+FollowerInteraction_Neutral30,<name> is looking~up at the ceiling.
+FollowerInteraction_Neutral31,Your Pokémon is staring~spellbound at the night sky!
+FollowerInteraction_Neutral32,<name> is in~danger of falling over!
+FollowerInteraction_Neutral33,<name> doesn't~seem to be used to its~own name yet.
+FollowerInteraction_Neutral34,<name> slipped~on the floor and seems~likely to fall!
+FollowerInteraction_Neutral35,<name> feels something~and is howling!
+FollowerInteraction_Neutral36,<name> seems~refreshed!
+FollowerInteraction_Neutral37,<name> feels~refreshed.
+FollowerInteraction_Neutral38,<name> seems to~have found something!
+FollowerInteraction_Neutral39,<name> suddenly~turned around and~started barking!
+FollowerInteraction_Neutral40,<name> suddenly~turned around!
+FollowerInteraction_Neutral41,<name> looked up~at the sky and shouted loudly!
+FollowerInteraction_Neutral42,Your Pokémon was surprised~that you suddenly spoke to it!
+FollowerInteraction_Neutral43,<name> almost forgot~it was holding~that " & p.Item.OneLineName() & "!
+FollowerInteraction_Neutral44,Oh!~It's slipping and came~over here for support.
+FollowerInteraction_Neutral45,Your Pokémon almost slipped~and fell over!
+FollowerInteraction_Neutral46,<name> sensed something~strange and was surprised!
+FollowerInteraction_Neutral47,Your Pokémon is looking~around restlessly for~something.
+FollowerInteraction_Neutral48,Your Pokémon wasn't watching~where it was going and~ran into you!
+FollowerInteraction_Neutral49,Sniff, sniff!~Is there something nearby?
+FollowerInteraction_Neutral50,<name> is wandering~around and searching~for something.
+FollowerInteraction_Neutral51,<name> is sniffing~at <player.name>.
+FollowerInteraction_Neutral52,<name> is taking~shelter in the grass from~the rain!
+FollowerInteraction_Neutral53,<name> is splashing~around in the wet grass!
+
+FollowerInteraction_Like1,Your Pokémon seems happy~about the great weather!
+FollowerInteraction_Like2,<name> is coming along~happily.
+FollowerInteraction_Like3,<name> is composed!
+FollowerInteraction_Like4,<name> is glowing~with health!
+FollowerInteraction_Like5,<name> looks~very happy!
+FollowerInteraction_Like6,<name> is full~of life!
+FollowerInteraction_Like7,<name> is very~eager!
+FollowerInteraction_Like8,<name> gives you~a happy look and a smile!
+FollowerInteraction_Like9,<name> seems very~happy to see you!
+FollowerInteraction_Like10,<name> faced this~way and grinned!
+FollowerInteraction_Like11,<name> spun around~in a circle!
+FollowerInteraction_Like12,<name> is looking~this way and smiling.
+FollowerInteraction_Like13,<name> is very~eager...
+FollowerInteraction_Like14,<name> is focusing~its attention on you!
+FollowerInteraction_Like15,<name> focused~with a sharp gaze!
+FollowerInteraction_Like16,<name> is looking~at <player.name>'s footprints.
+FollowerInteraction_Like17,<name> is staring~straight into <player.name>'s~eyes.
+FollowerInteraction_Like18,<name> is showing off~its agility!
+FollowerInteraction_Like19,<name> is moving~around happily!
+FollowerInteraction_Like20,<name> is steadily~keeping up with you!
+FollowerInteraction_Like21,<name> seems to~want to play with~<player.name>!
+FollowerInteraction_Like22,<name> is singing~and humming.
+FollowerInteraction_Like23,<name> is playfully~nibbling at the ground.
+FollowerInteraction_Like24,<name> is nipping~at your feet!
+FollowerInteraction_Like25,<name> is working~hard to show off~its mighty power!
+FollowerInteraction_Like26,<name> is cheerful!
+FollowerInteraction_Like27,<name> bumped~into <player.name>!
+FollowerInteraction_Like28,<name> is scared~and snuggled up~to <player.name>!
+
+FollowerInteraction_Loyal1,<name> began poking~you in the stomach!
+FollowerInteraction_Loyal2,<name> seems to be~feeling great about~walking with you!
+FollowerInteraction_Loyal3,<name> is still~feeling great!
+FollowerInteraction_Loyal4,<name> is poking~at your belly.
+FollowerInteraction_Loyal5,<name> looks like~it wants to lead!
+FollowerInteraction_Loyal6,<name> seems to be~very happy!
+FollowerInteraction_Loyal7,<name> nodded slowly.
+FollowerInteraction_Loyal8,<name> gave you~a sunny look!
+FollowerInteraction_Loyal9,<name> is very~composed and sure of itself!
+FollowerInteraction_Loyal10,<name> is~standing guard!
+FollowerInteraction_Loyal11,<name> danced a~wonderful dance!
+FollowerInteraction_Loyal12,<name> is staring~steadfastly at~<player.name>'s face.
+FollowerInteraction_Loyal13,<name> is staring~intently at~<player.name>'s face.
+FollowerInteraction_Loyal14,<name> is concentrating.
+FollowerInteraction_Loyal15,<name> faced this~way and nodded.
+FollowerInteraction_Loyal16,<name> suddenly~started walking closer!
+FollowerInteraction_Loyal17,Woah!*<name> is suddenly~playful!
+FollowerInteraction_Loyal18,<name> blushes.
+FollowerInteraction_Loyal19,Woah!*<name> suddenly started~dancing in happiness!
+FollowerInteraction_Loyal20,<name> is happily~skipping about.
+FollowerInteraction_Loyal21,Woah!*<name> suddenly~danced in happiness!
+
+FollowerInteraction_Love1,<name> is jumping~for joy!
+FollowerInteraction_Love2,Your Pokémon stretched out~its body and is relaxing.
+FollowerInteraction_Love3,<name> is happily~cuddling up to you!
+FollowerInteraction_Love4,<name> is so happy~that it can't stand still!
+FollowerInteraction_Love5,<name> happily~cuddled up to you!
+FollowerInteraction_Love6,<name>'s cheeks are~becoming rosy!
+FollowerInteraction_Love7,Woah!*<name> suddenly~hugged you!
+FollowerInteraction_Love8,<name> is rubbing~against your legs!
+FollowerInteraction_Love9,Ah!~<name> cuddles you!
+FollowerInteraction_Love10,<name> is regarding~you with adoration!
+FollowerInteraction_Love11,<name> got~closer to <player.name>!
+FollowerInteraction_Love12,<name> is keeping~close to your feet.
+FollowerInteraction_Love13,<name> is jumping~around in a carefree way!
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------
 Story translation:
 ---
