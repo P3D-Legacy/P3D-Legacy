@@ -21,6 +21,7 @@ global_clear,Löschen
 global_save,Speichern
 global_done,Done
 global_apply,Anwenden
+global_confirm,Confirm
 global_close,Schließen
 global_back,Zurück
 global_on,Ein
@@ -588,6 +589,11 @@ Rename Screen:
 rename_screen_title_Question,Rename [NAME]?
 rename_screen_title_EnterName,Enter name for [NAME]:
 rename_screen_button_Rename,Rename
+---
+Input Screen:
+input_screen_button_Shift,Shift
+input_screen_button_Default,Default
+input_screen_button_CharactersLeft,Chars left:
 ---
 Shop Screen:
 shop_screen_title_store,Store

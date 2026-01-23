@@ -20,6 +20,7 @@ global_clear,Borrar
 global_save,Guardar
 global_done,Done
 global_apply,Aplicar
+global_confirm,Confirm
 global_close,Cerrar
 global_back,Volver
 global_quit,Salir
@@ -591,6 +592,11 @@ Name & Rename Screen:
 rename_screen_title_Question,Rename [NAME]?
 rename_screen_title_EnterName,Enter name for [NAME]:
 rename_screen_button_Rename,Rename
+---
+Input Screen:
+input_screen_button_Shift,Shift
+input_screen_button_Default,Default
+input_screen_button_CharactersLeft,Chars left:
 ---
 Shop Screen:
 shop_screen_title_store,Store

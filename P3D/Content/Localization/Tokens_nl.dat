@@ -20,6 +20,7 @@ global_clear,Wis
 global_save,Sla op
 globel_done,Klaar
 global_apply,Pas toe
+global_confirm,Confirm
 global_close,Sluit
 global_back,Terug
 global_quit,Verlaat
@@ -588,6 +589,11 @@ Rename Screen:
 rename_screen_title_Question,Hernoem [NAME]?
 rename_screen_title_EnterName,Voer naam in voor [NAME]:
 rename_screen_button_Rename,Hernoem
+---
+Input Screen:
+input_screen_button_Shift,Shift
+input_screen_button_Default,Standaard
+input_screen_button_CharactersLeft,Letters over:
 ---
 Shop Screen:
 shop_screen_title_store,Winkel

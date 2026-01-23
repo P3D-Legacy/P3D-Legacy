@@ -70,10 +70,10 @@
                 Me.InitializeNumbers()
         End Select
 
-        Buttons.Add(New InputButton("Shift", New Vector2(0, 4), InputButton.ButtonModes.CapsLock, 2))
-        Buttons.Add(New InputButton("Delete", New Vector2(2, 4), InputButton.ButtonModes.Delete, 2))
-        Buttons.Add(New InputButton("Default", New Vector2(4, 4), InputButton.ButtonModes.Default, 2))
-        Buttons.Add(New InputButton("Confirm", New Vector2(6, 4), InputButton.ButtonModes.Enter, 2))
+        Buttons.Add(New InputButton(Localization.GetString("input_screen_button_Shift", "Shift"), New Vector2(0, 4), InputButton.ButtonModes.CapsLock, 2))
+        Buttons.Add(New InputButton(Localization.GetString("global_delete", "Delete"), New Vector2(2, 4), InputButton.ButtonModes.Delete, 2))
+        Buttons.Add(New InputButton(Localization.GetString("input_screen_button_Default", "Default"), New Vector2(4, 4), InputButton.ButtonModes.Default, 2))
+        Buttons.Add(New InputButton(Localization.GetString("global_confirm", "Confirm"), New Vector2(6, 4), InputButton.ButtonModes.Enter, 2))
     End Sub
 
     Private Sub InitializeText()
@@ -177,7 +177,7 @@
             b.Draw(New Vector2(CSng((Core.windowSize.Width / 2) - ((13 * 64) / 2)), 200), Me.ButtonSelector)
         Next
 
-        Core.SpriteBatch.DrawString(FontManager.MainFont, "Chars left: " & (MaxChars - Me.CurrentText.Length).ToString(), New Vector2(CInt((Core.windowSize.Width / 2) + 180), 477), Color.Gray)
+        Core.SpriteBatch.DrawString(FontManager.MainFont, Localization.GetString("input_screen_button_CharactersLeft", "Chars left:") & " " & (MaxChars - Me.CurrentText.Length).ToString(), New Vector2(CInt((Core.windowSize.Width / 2) + 180), 477), Color.Gray)
 
         Dim d As New Dictionary(Of Buttons, String)
         d.Add(Input.Buttons.A, Localization.GetString("game_interaction_enter", "Enter"))
