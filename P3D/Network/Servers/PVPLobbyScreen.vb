@@ -65,7 +65,7 @@
             Core.ServersManager.ServerConnection.SendPackage(New Servers.Package(Servers.Package.PackageTypes.BattleRequest, Core.ServersManager.ID, Servers.Package.ProtocolTypes.TCP, PartnerNetworkID.ToString()))
         End If
 
-        Me.menuItems = {"Start Battle!", "Choose Team", "Quit"}.ToList()
+        Me.menuItems = {Localization.GetString("pvp_screen_button_StartBattle", "Start Battle!"), Localization.GetString("pvp_screen_button_ChooseTeam", "Choose Team"), Localization.GetString("global_quit", "Quit")}.ToList()
         Me.BattleBoxPokemon = StorageSystemScreen.GetBattleBoxPokemon()
         Core.StartThreadedSub(AddressOf DownloadOnlineSprite)
     End Sub
@@ -82,13 +82,13 @@
     Public Overrides Sub Draw()
         Canvas.DrawGradient(Core.windowSize, New Color(10, 145, 227), New Color(6, 77, 139), False, -1)
         Canvas.DrawGradient(New Rectangle(0, 0, CInt(Core.windowSize.Width), 65), New Color(0, 24, 114), New Color(13, 138, 228), False, -1)
-        Core.SpriteBatch.DrawString(FontManager.MainFont, "Versus Battle", New Vector2(CSng(Core.windowSize.Width / 2 - FontManager.MainFont.MeasureString("Versus Battle").X / 2), 20), New Color(196, 231, 255))
+        Core.SpriteBatch.DrawString(FontManager.MainFont, Localization.GetString("pvp_screen_title", "Versus Battle"), New Vector2(CSng(Core.windowSize.Width / 2 - FontManager.MainFont.MeasureString(Localization.GetString("pvp_screen_title", "Versus Battle")).X / 2), 20), New Color(196, 231, 255))
         Canvas.DrawRectangle(New Rectangle(0, 65, Core.windowSize.Width, 1), New Color(0, 24, 114))
 
         Select Case ScreenState
             Case ScreenStates.Idle
                 If WaitingForPlayer = True Then
-                    Dim t As String = "Waiting for other player" & LoadingDots.Dots
+                    Dim t As String = Localization.GetString("pvp_screen_status_WaitingForOtherPlayer", "Waiting for other player") & LoadingDots.Dots
                     Core.SpriteBatch.DrawString(FontManager.MainFont, t, New Vector2(CSng(Core.windowSize.Width / 2 - FontManager.MainFont.MeasureString(t).X / 2), CSng(Core.windowSize.Height / 2 - 10)), Color.White)
                 Else
                     Me.DrawIdle()
@@ -120,11 +120,11 @@
                     End If
                 Next
                 If partnerOnServer = False Then
-                    DisconnectMessage = "The other player disconnected." & Environment.NewLine & Environment.NewLine & "Press any key to exit."
+                    DisconnectMessage = Localization.GetString("pvp_screen_status_Disconnected_OtherPlayer", "The other player disconnected.") & Environment.NewLine & Environment.NewLine & Localization.GetString("pvp_screen_PressAnyKeyToExit", "Press any key to exit.")
                     ScreenState = ScreenStates.Stopped
                 End If
             Else
-                DisconnectMessage = "You got disconnected from the server." & Environment.NewLine & Environment.NewLine & "Press any key to exit."
+                DisconnectMessage = Localization.GetString("pvp_screen_status_Disconnected_ThisPlayer", "You got disconnected from the server.") & Environment.NewLine & Environment.NewLine & Localization.GetString("pvp_screen_PressAnyKeyToExit", "Press any key to exit.")
                 ScreenState = ScreenStates.Stopped
             End If
         End If
@@ -180,12 +180,12 @@
 
         'Menu:
         If ReceivedBattleOffer = True Then
-            Dim s As String = "Your opponent wants to" & Environment.NewLine & "battle with this setup."
+            Dim s As String = Localization.GetString("pvp_screen_status_AcceptBattle_OtherPlayer", "Your opponent wants to~battle with this setup.").Replace("~", Environment.NewLine).Replace("*", Environment.NewLine)
             Canvas.DrawRectangle(New Rectangle(CInt(Core.windowSize.Width / 2 - (64 * 5) / 2), 100, 64 * 5, 64), New Color(255, 255, 255, 150))
             Core.SpriteBatch.DrawString(FontManager.MainFont, s, New Vector2(CInt(Core.windowSize.Width / 2 - FontManager.MainFont.MeasureString(s).X / 2), 104), Color.Black)
         Else
             If SentBattleOffer = True Then
-                Dim s As String = "You want to battle" & Environment.NewLine & "with this setup."
+                Dim s As String = Localization.GetString("pvp_screen_status_AcceptBattle_ThisPlayer", "You want to battle~with this setup.").Replace("~", Environment.NewLine).Replace("*", Environment.NewLine)
                 Canvas.DrawRectangle(New Rectangle(CInt(Core.windowSize.Width / 2 - (64 * 5) / 2), 100, 64 * 5, 64), New Color(255, 255, 255, 150))
                 Core.SpriteBatch.DrawString(FontManager.MainFont, s, New Vector2(CInt(Core.windowSize.Width / 2 - FontManager.MainFont.MeasureString(s).X / 2), 104), Color.Black)
             End If
@@ -331,7 +331,7 @@
 
     Private Sub StartBattle()
         If Not Me.OwnTeam Is Nothing And Not OppTeam Is Nothing Then
-            Dim selScreen = New PartyScreen(Core.CurrentScreen, Item.GetItemByID(5.ToString), AddressOf LeadPickedStart, "Choose your Lead", True, True, False, _pokemonList:=OwnTeam) With {.Mode = Screens.UI.ISelectionScreen.ScreenMode.Selection, .CanExit = True}
+            Dim selScreen = New PartyScreen(Core.CurrentScreen, Item.GetItemByID(5.ToString), AddressOf LeadPickedStart, Localization.GetString("pvp_screen_ChooseYourLeadBattler", "Choose your Lead"), True, True, False, _pokemonList:=OwnTeam) With {.Mode = Screens.UI.ISelectionScreen.ScreenMode.Selection, .CanExit = True}
             AddHandler selScreen.SelectedObject, AddressOf LeadPickedStartHandler
 
             Core.SetScreen(selScreen)
@@ -356,7 +356,7 @@
                     s = s.PreScreen
                 End While
                 Core.SetScreen(s)
-                TextBox.Show("Game versions don't match.")
+                TextBox.Show(Localization.GetString("pvp_screen_GameVersionsMismatch", "Game versions don't match."))
             End If
         Else
             SentBattleOffer = True
@@ -376,7 +376,7 @@
     Dim ChooseTeamCursor As Integer = 0
 
     Private Sub DrawChooseTeam()
-        Dim t As String = "Choose your team:"
+        Dim t As String = Localization.GetString("pvp_screen_ChooseYourTeam", "Choose your Team")
         Core.SpriteBatch.DrawString(FontManager.MainFont, t, New Vector2(CSng(Core.windowSize.Width / 2 - FontManager.MainFont.MeasureString(t).X / 2), 100), Color.White)
 
         Dim startPos As New Vector2(CSng(Core.windowSize.Width / 2) - 400, 300)
@@ -399,7 +399,7 @@
                 Core.SpriteBatch.Draw(pokeTexture, New Rectangle(CInt(startPos.X) + x * 140 + 32 - CInt(pokeTexture.Width - 32), y * 100 + CInt(startPos.Y) + 10, CInt(pokeTexture.Width * pokeTextureScale.X), CInt(pokeTexture.Height * pokeTextureScale.Y)), Color.White)
             End If
 
-            Core.SpriteBatch.DrawString(FontManager.MainFont, "Battle Box", New Vector2(CInt(startPos.X) + 80, CInt(startPos.Y) - 45), Color.White)
+            Core.SpriteBatch.DrawString(FontManager.MainFont, Localization.GetString("pvp_screen_BattleBox", "Battle Box"), New Vector2(CInt(startPos.X) + 80, CInt(startPos.Y) - 45), Color.White)
         Next
 
         startPos = New Vector2(CSng(Core.windowSize.Width / 2) + 130, 300)
@@ -421,7 +421,7 @@
                 Core.SpriteBatch.Draw(pokeTexture, New Rectangle(CInt(startPos.X) + x * 140 + 32 - CInt(pokeTexture.Width - 32), y * 100 + CInt(startPos.Y) + 10, CInt(pokeTexture.Width * pokeTextureScale.X), CInt(pokeTexture.Height * pokeTextureScale.Y)), Color.White)
             End If
 
-            Core.SpriteBatch.DrawString(FontManager.MainFont, "Team", New Vector2(CInt(startPos.X) + 106, CInt(startPos.Y) - 45), Color.White)
+            Core.SpriteBatch.DrawString(FontManager.MainFont, Localization.GetString("pvp_screen_Team", "Team"), New Vector2(CInt(startPos.X) + 106, CInt(startPos.Y) - 45), Color.White)
         Next
 
         DrawChooseTeamCursor()
@@ -537,7 +537,7 @@
     Public Shared Sub OtherPlayerQuits()
         If IsLobbyScreen() = True Then
             ScreenState = ScreenStates.Stopped
-            DisconnectMessage = "The other player quit the battle." & Environment.NewLine & Environment.NewLine & "Press any key to exit."
+            DisconnectMessage = Localization.GetString("pvp_screen_status_Quit_OtherPlayer", "The other player quit the battle.") & Environment.NewLine & Environment.NewLine & Localization.GetString("pvp_screen_PressAnyKeyToExit", "Press any key to exit.")
         End If
     End Sub
 
@@ -619,7 +619,7 @@
 
         Dim t As New Trainer()
         t.Pokemons = OppTeam
-        t.TrainerType = "Pokémon Trainer"
+        t.TrainerType = Localization.GetString("TrainerClass_PokémonTrainer", "Pokémon Trainer")
         t.DoubleTrainer = False
         t.Name = tempPlayer.Name
         t.Money = 0
@@ -735,16 +735,16 @@
     Private Sub DrawBattleResults()
         If Not BattleResults Is Nothing Then
             'Draw Result:
-            Dim resultText As String = "You Won the Battle!"
-            Dim resultStateText As String = "Won"
+            Dim resultText As String = Localization.GetString("pvp_screen_result_Title", "You [RESULT] the Battle!").Replace("[RESULT]", Localization.GetString("pvp_screen_result_Won", "Won"))
+            Dim resultStateText As String = Localization.GetString("pvp_screen_result_Won", "Won")
             Dim resultColor As Color = Color.Orange
             If BattleResults.Won = False Then
-                resultText = "You Lost the Battle!"
-                resultStateText = "Lost"
+                resultText = Localization.GetString("pvp_screen_result_Title", "You [RESULT] the Battle!").Replace("[RESULT]", Localization.GetString("pvp_screen_result_Lost", "Lost"))
+                resultStateText = Localization.GetString("pvp_screen_result_Lost", "Lost")
                 resultColor = Color.LightBlue
             End If
             Core.SpriteBatch.DrawString(FontManager.MainFont, resultText, New Vector2(Core.windowSize.Width / 2.0F - FontManager.MainFont.MeasureString(resultText).X / 2.0F, 120), Color.White)
-            Core.SpriteBatch.DrawString(FontManager.MainFont, resultStateText, New Vector2(Core.windowSize.Width / 2.0F - FontManager.MainFont.MeasureString(resultText).X / 2.0F + FontManager.MainFont.MeasureString("You ").X, 120), resultColor)
+            Core.SpriteBatch.DrawString(FontManager.MainFont, resultStateText, New Vector2(Core.windowSize.Width / 2.0F - FontManager.MainFont.MeasureString(resultText).X / 2.0F + FontManager.MainFont.MeasureString(Localization.GetString("pvp_screen_result_Title", "You [RESULT] the Battle!").GetSplit(0, "[RESULT]")).X, 120), resultColor)
 
             'Own side:
             Canvas.DrawRectangle(New Rectangle(100, 200, 300, 64), New Color(177, 228, 247, 200))
@@ -780,13 +780,13 @@
 
             'Draw Own Statistics:
             With BattleResults.OwnStatistics
-                Dim s1 As String = "Turns:" & Environment.NewLine &
-                                   "     Moves:" & Environment.NewLine &
-                                   "     Switches:" & Environment.NewLine & Environment.NewLine &
-                                   "Super Effective:" & Environment.NewLine &
-                                   "Not very Effective:" & Environment.NewLine &
-                                   "No Effect:" & Environment.NewLine & Environment.NewLine &
-                                   "Critical Hits:"
+                Dim s1 As String = Localization.GetString("pvp_screen_result_Turns", "Turns:") & Environment.NewLine &
+                                   "     " & Localization.GetString("pvp_screen_result_Moves", "Moves:") & Environment.NewLine &
+                                   "     " & Localization.GetString("pvp_screen_result_Switches", "Switches:") & Environment.NewLine & Environment.NewLine &
+                                   Localization.GetString("pvp_screen_result_SuperEffective", "Super Effective:") & Environment.NewLine &
+                                   Localization.GetString("pvp_screen_result_NotVeryEffective", "Not very Effective:") & Environment.NewLine &
+                                   Localization.GetString("pvp_screen_result_NoEffect", "No Effect:") & Environment.NewLine & Environment.NewLine &
+                                   Localization.GetString("pvp_screen_result_CriticalHits", "Critical Hits:")
                 Dim s2 As String = .Turns & Environment.NewLine &
                                    .Moves & Environment.NewLine &
                                    .Switches & Environment.NewLine & Environment.NewLine &
@@ -796,7 +796,7 @@
                                    .Critical
 
                 Core.SpriteBatch.DrawString(FontManager.MainFont, s1, New Vector2(40, 340), Color.White, 0.0F, Vector2.Zero, 1.0F, SpriteEffects.None, 0.0F)
-                Core.SpriteBatch.DrawString(FontManager.MainFont, s2, New Vector2(304, 340), Color.LightBlue, 0.0F, Vector2.Zero, 1.0F, SpriteEffects.None, 0.0F)
+                Core.SpriteBatch.DrawString(FontManager.MainFont, s2, New Vector2(40 + FontManager.MainFont.MeasureString(s1).X + 32, 340), Color.LightBlue, 0.0F, Vector2.Zero, 1.0F, SpriteEffects.None, 0.0F)
             End With
 
             'Draw Pokémon left:
@@ -813,7 +813,7 @@
                 End If
             Next
 
-            Dim pokeLeft As String = countOwnPokemon.ToString & " VS " & countOppPokemon.ToString()
+            Dim pokeLeft As String = countOwnPokemon.ToString & " " & Localization.GetString("pvp_screen_result_Versus", "VS") & " " & countOppPokemon.ToString()
             Core.SpriteBatch.DrawString(FontManager.MainFont, pokeLeft, New Vector2(Core.windowSize.Width / 2.0F - FontManager.MainFont.MeasureString(pokeLeft).X * 2.0F, 240), Color.White, 0.0F, Vector2.Zero, 4.0F, SpriteEffects.None, 0.0F)
 
             'Opp Side:
@@ -867,13 +867,13 @@
 
             'Draw Opp Statistics:
             With BattleResults.OppStatistics
-                Dim s1 As String = "Turns:" & Environment.NewLine &
-                                   "     Moves:" & Environment.NewLine &
-                                   "     Switches:" & Environment.NewLine & Environment.NewLine &
-                                   "Super Effective:" & Environment.NewLine &
-                                   "Not very Effective:" & Environment.NewLine &
-                                   "No Effect:" & Environment.NewLine & Environment.NewLine &
-                                   "Critical Hits:"
+                Dim s1 As String = Localization.GetString("pvp_screen_result_Turns", "Turns:") & Environment.NewLine &
+                                   "     " & Localization.GetString("pvp_screen_result_Moves", "Moves:") & Environment.NewLine &
+                                   "     " & Localization.GetString("pvp_screen_result_Switches", "Switches:") & Environment.NewLine & Environment.NewLine &
+                                   Localization.GetString("pvp_screen_result_SuperEffective", "Super Effective:") & Environment.NewLine &
+                                   Localization.GetString("pvp_screen_result_NotVeryEffective", "Not very Effective:") & Environment.NewLine &
+                                   Localization.GetString("pvp_screen_result_NoEffect", "No Effect:") & Environment.NewLine & Environment.NewLine &
+                                   Localization.GetString("pvp_screen_result_CriticalHits", "Critical Hits:")
                 Dim s2 As String = .Turns & Environment.NewLine &
                                    .Moves & Environment.NewLine &
                                    .Switches & Environment.NewLine & Environment.NewLine &
@@ -883,7 +883,7 @@
                                    .Critical
 
                 Core.SpriteBatch.DrawString(FontManager.MainFont, s1, New Vector2(Core.windowSize.Width - 360, 340), Color.White, 0.0F, Vector2.Zero, 1.0F, SpriteEffects.None, 0.0F)
-                Core.SpriteBatch.DrawString(FontManager.MainFont, s2, New Vector2(Core.windowSize.Width - 56, 340), Color.LightBlue, 0.0F, Vector2.Zero, 1.0F, SpriteEffects.None, 0.0F)
+                Core.SpriteBatch.DrawString(FontManager.MainFont, s2, New Vector2(Core.windowSize.Width - 360 + FontManager.MainFont.MeasureString(s1).X + 32, 340), Color.LightBlue, 0.0F, Vector2.Zero, 1.0F, SpriteEffects.None, 0.0F)
             End With
 
         End If

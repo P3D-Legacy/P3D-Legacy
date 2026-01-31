@@ -407,7 +407,7 @@ inventory_screen_EggsCannotHold,Eieren kunnen geen voorwerpen~vasthouden.
 ---
 StorageSystemScreen:
 storage_screen_box_DefaultName,OPSLAG [NUMBER]
-storage_screen_box_BattleBoxName,GEVECHT OPSLAG
+storage_screen_box_BattleBoxName,GEVECHTSOPSLAG
 
 storage_screen_menu_box_WhatDoYouWant,Wat wil je doen?
 storage_screen_menu_box_ChooseBox,Kies Opslag
@@ -623,17 +623,52 @@ shop_screen_currency_short_Pokédollars,$
 Trade Screen:
 trade_screen_trade_SendingPokemon,[YOURPOKEMON] naar [OTHERPLAYER] aan het sturen.~Vaarwel, [YOURPOKEMON]!
 trade_screen_trade_ReceivedPokemon,[OTHERPLAYER] stuurde [THEIRPOKEMON] naar jou.
+
 trade_screen_button_ConfirmTrade,Ruil
 trade_screen_button_ChoosePokemon,Kies Pokémon
 trade_screen_button_CancelTrade,Ruil Annuleren
+
 trade_screen_status_WaitingForOtherPlayer,Aan het wachten op de andere speler
 trade_screen_status_Quit_OtherPlayer,De andere speler annuleerde de ruil.
 trade_screen_status_Disconnected_OtherPlayer,De andere speler verbrak de verbinding.
 trade_screen_status_Disconnected_ThisPlayer,Je bent de verbinding met de server verloren.
 trade_screen_status_AcceptTrade_OtherPlayer,Je ruilpartner~accepteert deze ruil.
 trade_screen_status_AcceptTrade_ThisPlayer,Jij hebt deze~ruil geaccepteerd.
+
 trade_screen_PressAnyKeyToExit,Druk op een toets om terug te gaan.
 trade_screen_ChoosePokemonForTrade,Kies Pokémon voor Ruil
+---
+PVP Screen:
+pvp_screen_button_StartBattle,Begin Gevecht!
+pvp_screen_button_ChooseTeam,Kies Team
+pvp_screen_title,Versus-gevecht
+pvp_screen_status_WaitingForOtherPlayer,Aan het wachten op de andere speler
+pvp_screen_status_Quit_OtherPlayer,De andere speler annuleerde het gevecht.
+pvp_screen_status_Disconnected_OtherPlayer,De andere speler verbrak de verbinding.
+pvp_screen_status_Disconnected_ThisPlayer,Je bent de verbinding met de server verloren.
+pvp_screen_status_AcceptBattle_OtherPlayer,Je tegenstander wil vechten~met deze opstelling.
+pvp_screen_status_AcceptBattle_ThisPlayer,Jij wil vechten met~deze opstelling.
+
+pvp_screen_result_Title,Jij [RESULT] het Gevecht!
+pvp_screen_result_Won,Won
+pvp_screen_result_Lost,Verloor
+
+pvp_screen_result_Turns,Beurten:
+pvp_screen_result_Moves,Technieken:
+pvp_screen_result_Switches,Wissels:
+pvp_screen_result_SuperEffective,Supereffectief:
+pvp_screen_result_NotVeryEffective,Niet erg Effectief:
+pvp_screen_result_NoEffect,Geen Effect:
+pvp_screen_result_CriticalHits,Voltreffers:
+pvp_screen_result_Versus,VS
+
+pvp_screen_PressAnyKeyToExit,Druk op een toets om terug te gaan.
+pvp_screen_ChooseYourLeadBattler,Kies je Leider
+pvp_screen_ChooseYourTeam,Kies je Team
+pvp_screen_BattleBox,Gevechtsopslag
+pvp_screen_Team,Team
+pvp_screen_GameVersionsMismatch,Spelversies zijn niet hetzelfde.
+
 ---
 Blackout Screen:
 black_out_screen_line1,Je hebt geen strijdbare Pokémon meer!

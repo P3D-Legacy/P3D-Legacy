@@ -626,17 +626,52 @@ shop_screen_currency_short_Pokédollars,$
 Trade Screen:
 trade_screen_trade_SendingPokemon,Sending [YOURPOKEMON] to [OTHERPLAYER].~Good-bye, [YOURPOKEMON]!
 trade_screen_trade_ReceivedPokemon,[OTHERPLAYER] sent over [THEIRPOKEMON].
+
 trade_screen_button_ConfirmTrade,Trade
 trade_screen_button_ChoosePokemon,Choose Pokémon
 trade_screen_button_CancelTrade,Cancel Trade
+
 trade_screen_status_WaitingForOtherPlayer,Waiting for other player
 trade_screen_status_Quit_OtherPlayer,The other player quit the trade.
 trade_screen_status_Disconnected_OtherPlayer,The other player disconnected.
 trade_screen_status_Disconnected_ThisPlayer,You got disconnected from the server.
 trade_screen_status_AcceptTrade_OtherPlayer,Your trade partner~accepts this trade.
 trade_screen_status_AcceptTrade_ThisPlayer,You accepted~this trade.
+
 trade_screen_PressAnyKeyToExit,Press any key to exit.
 trade_screen_ChoosePokemonForTrade,Choose Pokémon for Trade
+---
+PVP Screen:
+pvp_screen_button_StartBattle,Start Battle!
+pvp_screen_button_ChooseTeam,Choose Team
+pvp_screen_title,Versus Battle
+pvp_screen_status_WaitingForOtherPlayer,Waiting for other player
+pvp_screen_status_Quit_OtherPlayer,The other player quit the battle.
+pvp_screen_status_Disconnected_OtherPlayer,The other player disconnected.
+pvp_screen_status_Disconnected_ThisPlayer,You got disconnected from the server.
+pvp_screen_status_AcceptBattle_OtherPlayer,Your opponent wants to~battle with this setup.
+pvp_screen_status_AcceptBattle_ThisPlayer,You want to battle~with this setup.
+
+pvp_screen_result_Title,You [RESULT] the Battle!
+pvp_screen_result_Won,Won
+pvp_screen_result_Lost,Lost
+
+pvp_screen_result_Turns,Turns:
+pvp_screen_result_Moves,Moves:
+pvp_screen_result_Switches,Switches:
+pvp_screen_result_SuperEffective,Super Effective:
+pvp_screen_result_NotVeryEffective,Not very Effective:
+pvp_screen_result_NoEffect,No Effect:
+pvp_screen_result_CriticalHits,Critical Hits:
+pvp_screen_result_Versus,VS
+
+pvp_screen_PressAnyKeyToExit,Press any key to exit.
+pvp_screen_ChooseYourLeadBattler,Choose your Lead
+pvp_screen_ChooseYourTeam,Choose your Team
+pvp_screen_BattleBox,Battle Box
+pvp_screen_Team,Team
+pvp_screen_GameVersionsMismatch,Game versions don't match.
+
 ---
 Blackout Screen:
 black_out_screen_line1,¡Te has quedado sin Pokémon!
