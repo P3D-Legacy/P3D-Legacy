@@ -1,10 +1,10 @@
 [TRAINER FORMAT]
 Name|Imani
-TrainerClass|Pokéfan
+TrainerClass|Poké Fan
 Money|0
 IntroMessage|Won't you join~our Pokémon Fan Club?
-OutroMessage|Join us!~Become a Pokéfan like me!
-DefeatMessage|Join us!~Become a Pokéfan like me!
+OutroMessage|Join us!~Become a Poké Fan like me!
+DefeatMessage|Join us!~Become a Poké Fan like me!
 TextureID|battletower\13
 Region|Johto
 IniMusic|Johto_trainer_intro

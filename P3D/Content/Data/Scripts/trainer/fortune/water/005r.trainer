@@ -4,7 +4,7 @@ TrainerClass|Twins,
 Money|1320
 IntroMessage|
 OutroMessage|Mia: You're mean!~You're bad for winning!
-DefeatMessage|Mia: Ohh...~I'm sorry, My PokÃ©mon...
+DefeatMessage|Mia: Ohh...~I'm sorry, My Pokémon...
 TextureID|littlegirl,littlegirl
 Region|Sevii Islands
 IniMusic|johto_trainer_intro

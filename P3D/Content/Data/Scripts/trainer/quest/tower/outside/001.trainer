@@ -2,9 +2,9 @@
 Name|Rody
 TrainerClass|Psychic
 Money|1060
-IntroMessage|Somewhere on this island,~peculiar PokÃ©mon are sleeping.
+IntroMessage|Somewhere on this island,~peculiar Pokémon are sleeping.
 OutroMessage|What an amazing trainer!
-DefeatMessage|Somewhere on this island,~peculiar PokÃ©mon are sleeping.*Could it be that they're~waiting for you?
+DefeatMessage|Somewhere on this island,~peculiar Pokémon are sleeping.*Could it be that they're~waiting for you?
 TextureID|29
 Region|Sevii Islands
 IniMusic|johto_trainer_intro

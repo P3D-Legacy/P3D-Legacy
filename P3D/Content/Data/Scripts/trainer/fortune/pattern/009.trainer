@@ -2,8 +2,8 @@
 Name|Jonah
 TrainerClass|Bug Catcher
 Money|600
-IntroMessage|You know, it just doesn't feel~right if I don't use bug~PokÃ©mon.
-OutroMessage|It's okay, losing is a fun part of PokÃ©mon's appeal, too.
+IntroMessage|You know, it just doesn't feel~right if I don't use bug~Pokémon.
+OutroMessage|It's okay, losing is a fun part of Pokémon's appeal, too.
 DefeatMessage|By the way, "appeal" is a weird~word, if you think about it.*Like, is it like an orange peel?~Or like a ringing bell?
 TextureID|bugcatcher
 Region|Sevii Islands

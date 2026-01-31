@@ -251,7 +251,12 @@
             Core.SpriteBatch.Draw(t3, New Rectangle(Core.windowSize.Width - 540, CInt(Core.windowSize.Height / 2 - 105 - (MathHelper.Min(t3.Height * 10, 256) / 2)), MathHelper.Min(t3.Width * 10, 256), MathHelper.Min(t3.Height * 10, 256)), Color.White)
             Core.SpriteBatch.Draw(t4, New Rectangle(Core.windowSize.Width - 280, CInt(Core.windowSize.Height / 2 - 105 - (MathHelper.Min(t4.Height * 10, 256) / 2)), MathHelper.Min(t4.Width * 10, 256), MathHelper.Min(t4.Height * 10, 256)), Color.White)
 
-            Dim t As String = ReplaceIntroName(Trainer.TrainerType) & " " & ReplaceIntroName(Trainer.Name) & " & " & ReplaceIntroName(Trainer.TrainerType2) & " " & ReplaceIntroName(Trainer.Name2)
+            Dim SecondTrainerSpace As String = " "
+            If Trainer.TrainerType2 = "" Then
+                SecondTrainerSpace = ""
+            End If
+
+            Dim t As String = ReplaceIntroName(Trainer.TrainerType) & " " & ReplaceIntroName(Trainer.Name) & " & " & ReplaceIntroName(Trainer.TrainerType2) & SecondTrainerSpace & ReplaceIntroName(Trainer.Name2)
             Core.SpriteBatch.DrawString(FontManager.InGameFont, t, New Vector2(Core.windowSize.Width - FontManager.InGameFont.MeasureString(t).X - 50 + 2, CInt(Core.windowSize.Height / 2 + 20 + 2)), Color.Black)
             Core.SpriteBatch.DrawString(FontManager.InGameFont, t, New Vector2(Core.windowSize.Width - FontManager.InGameFont.MeasureString(t).X - 50, CInt(Core.windowSize.Height / 2 + 20)), Color.White)
 

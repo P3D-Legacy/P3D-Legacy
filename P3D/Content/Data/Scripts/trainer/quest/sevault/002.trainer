@@ -2,9 +2,9 @@
 Name|Evan
 TrainerClass|Tamer
 Money|2200
-IntroMessage|It doesn't matter if you happen~to have the strongest~PokÃ©mon...*It doesn't mean a thing if you~don't know how to use them~properly!
+IntroMessage|It doesn't matter if you happen~to have the strongest~Pokémon...*It doesn't mean a thing if you~don't know how to use them~properly!
 OutroMessage|You're a master at this.
-DefeatMessage|You see them every so often,~trainers with awesome PokÃ©mon~who have no idea what to do.*Before training PokÃ©mon,~trainers themselves need to~grow up.
+DefeatMessage|You see them every so often,~trainers with awesome Pokémon~who have no idea what to do.*Before training Pokémon,~trainers themselves need to~grow up.
 TextureID|9
 Region|Sevii Islands
 IniMusic|johto_trainer_intro

@@ -2,7 +2,7 @@
 Name|Grunt
 TrainerClass|Team Rocket
 Money|3072
-IntroMessage|So you're not moving?*I have rare PokÃ©mon~and I'm really angry now.*I'll take it out on you!
+IntroMessage|So you're not moving?*I have rare Pokémon~and I'm really angry now.*I'll take it out on you!
 OutroMessage|...Huh?
 DefeatMessage|
 TextureID|gruntm

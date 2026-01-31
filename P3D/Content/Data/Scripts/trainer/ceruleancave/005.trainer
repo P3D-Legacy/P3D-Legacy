@@ -4,7 +4,7 @@ TrainerClass|Team Rocket
 Money|2160
 IntroMessage|The boss is going~to capture the strongest~Pokémon alive!*If I beat you~maybe he will~let me touch it?
 OutroMessage|There goes that dream...
-DefeatMessage|Before I joined Team Rocket~I was known as a PokéManiac.
+DefeatMessage|Before I joined Team Rocket~I was known as a Poké Maniac.
 TextureID|GruntM
 Region|Kanto
 insightmusic|johto_rocket_encounter

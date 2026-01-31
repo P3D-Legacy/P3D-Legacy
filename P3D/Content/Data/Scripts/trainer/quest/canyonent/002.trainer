@@ -4,7 +4,7 @@ TrainerClass|Juggler
 Money|2080
 IntroMessage|Howdy!~Are you a member of my fan~club?
 OutroMessage|Oh, so you're not a fan...*Well, I can change that.~Let me sing for you!
-DefeatMessage|Lalalah...~My PokÃ©mon, I send them out,~all the girls scream and shout!
+DefeatMessage|Lalalah...~My Pokémon, I send them out,~all the girls scream and shout!
 TextureID|27
 Region|Sevii Islands
 IniMusic|johto_trainer_intro

@@ -1,10 +1,10 @@
 [TRAINER FORMAT]
 Name|Bethany
-TrainerClass|PokÃ©mon Breeder
+TrainerClass|Pokémon Breeder
 Money|1540
-IntroMessage|I'm curious, how do you raise~your PokÃ©mon?
-OutroMessage|You raise your PokÃ©mon with a whole lot of love!
-DefeatMessage|In the same way your mother~raised you full of love,~you should raise your PokÃ©mon.
+IntroMessage|I'm curious, how do you raise~your Pokémon?
+OutroMessage|You raise your Pokémon with a whole lot of love!
+DefeatMessage|In the same way your mother~raised you full of love,~you should raise your Pokémon.
 TextureID|1
 Region|Sevii Islands
 IniMusic|johto_trainer_intro

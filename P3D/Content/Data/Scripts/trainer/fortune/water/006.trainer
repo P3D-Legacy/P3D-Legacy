@@ -4,7 +4,7 @@ TrainerClass|Aroma Lady
 Money|1456
 IntroMessage|I let a pleasant breeze lead me~all the way here.
 OutroMessage|Giggle... You're so cute when you're determined.
-DefeatMessage|I want to go to the woods over~there, but...*There are lots of Bug PokÃ©mon.~They scare me a little.
+DefeatMessage|I want to go to the woods over~there, but...*There are lots of Bug Pokémon.~They scare me a little.
 TextureID|PinkShirtGirl
 Region|Sevii Islands
 IniMusic|johto_trainer_intro

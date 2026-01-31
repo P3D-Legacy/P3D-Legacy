@@ -2,8 +2,8 @@
 Name|Brock
 TrainerClass|Leader
 Money|6480
-IntroMessage|Brock: Wow, it's not often~that we get a challenger~from Johto.*I'm Brock, the~Pewter Gym Leader.*I'm an expert in rock~type PokÃ©mon.*My PokÃ©mon are impervious~to most physical attacks.*You'll have a hard time~inflicting any damage.*Come on!
-OutroMessage|Brock: Your PokÃ©mon's powerful~attacks overcame my rock-hard defense...*You're stronger than~I expected.*Go ahead --~take the Boulder Badge.
+IntroMessage|Brock: Wow, it's not often~that we get a challenger~from Johto.*I'm Brock, the~Pewter Gym Leader.*I'm an expert in rock~type Pokémon.*My Pokémon are impervious~to most physical attacks.*You'll have a hard time~inflicting any damage.*Come on!
+OutroMessage|Brock: Your Pokémon's powerful~attacks overcame my rock-hard defense...*You're stronger than~I expected.*Go ahead --~take the Boulder Badge.
 DefeatMessage|Brock: The world is huge.*There are still many~strong trainers like you.*Just wait and see.*I'm going to become~a lot stronger too!
 TextureID|Brock
 Region|Kanto

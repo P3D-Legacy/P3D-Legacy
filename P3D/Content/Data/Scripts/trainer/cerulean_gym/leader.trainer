@@ -2,7 +2,7 @@
 Name|Misty
 TrainerClass|Leader
 Money|6480
-IntroMessage|Misty: I was expecting~you, you pest!*You may have a lot~of Johto Gym Badges,~but you'd better not~take me too lightly.*My water type~PokÃ©mon are tough!
+IntroMessage|Misty: I was expecting~you, you pest!*You may have a lot~of Johto Gym Badges,~but you'd better not~take me too lightly.*My water type~Pokémon are tough!
 OutroMessage|Misty: You really are good...~I will admit that you are skilled...~Here you go.~It's the Cascade Badge.
 DefeatMessage|Misty: Are there many~strong trainers in Johto?*Like you, I mean.*I'm going to travel one day,~so I can battle some~skilled trainers.
 TextureID|Misty

@@ -2,7 +2,7 @@
 Name|Grunt
 TrainerClass|Team Rocket
 Money|3200
-IntroMessage|We've finally hit gold with~a rare PokÃ©mon!*I won't let you interrupt~our operation in the basement!
+IntroMessage|We've finally hit gold with~a rare Pokémon!*I won't let you interrupt~our operation in the basement!
 OutroMessage|I've never been this disappointed in my life...
 DefeatMessage|The others won't be as easy!
 TextureID|gruntm
