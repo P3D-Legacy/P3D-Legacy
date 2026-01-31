@@ -120,11 +120,11 @@
         'Menu:
         If ReceivedTradeOffer = True Then
             Canvas.DrawRectangle(New Rectangle(CInt(Core.windowSize.Width / 2 - (64 * 4) / 2), 100, 64 * 4, 64), New Color(255, 255, 255, 150))
-            Core.SpriteBatch.DrawString(FontManager.MainFont, Localization.GetString("trade_screen_status_AcceptTrade_OtherPlayer", "Your trade partner~accepts this trade.").Replace("~", Environment.NewLine), New Vector2(CInt(Core.windowSize.Width / 2 - (64 * 4) / 2) + 4, 104), Color.Black)
+            Core.SpriteBatch.DrawString(FontManager.MainFont, Localization.GetString("trade_screen_status_AcceptTrade_OtherPlayer", "Your trade partner~accepts this trade.").Replace("~", Environment.NewLine).Replace("*", Environment.NewLine), New Vector2(CInt(Core.windowSize.Width / 2 - (64 * 4) / 2) + 4, 104), Color.Black)
         Else
             If SentTradeOffer = True Then
                 Canvas.DrawRectangle(New Rectangle(CInt(Core.windowSize.Width / 2 - (64 * 4) / 2), 100, 64 * 4, 64), New Color(255, 255, 255, 150))
-                Core.SpriteBatch.DrawString(FontManager.MainFont, Localization.GetString("trade_screen_status_AcceptTrade_ThisPlayer", "You accepted~this trade.").Replace("~", Environment.NewLine), New Vector2(CInt(Core.windowSize.Width / 2 - (64 * 4) / 2) + 4, 104), Color.Black)
+                Core.SpriteBatch.DrawString(FontManager.MainFont, Localization.GetString("trade_screen_status_AcceptTrade_ThisPlayer", "You accepted~this trade.").Replace("~", Environment.NewLine).Replace("*", Environment.NewLine), New Vector2(CInt(Core.windowSize.Width / 2 - (64 * 4) / 2) + 4, 104), Color.Black)
             End If
         End If
 
@@ -437,7 +437,7 @@
                     End If
                 Next
 
-                Dim t As String = Localization.GetString("trade_screen_trade_SendingPokemon", "Sending [YOURPOKEMON] to [OTHERPLAYER].~Good-bye, [YOURPOKEMON]!").Replace("[YOURPOKEMON]", OfferPokemon.GetDisplayName()).Replace("[OTHERPLAYER]", p.Name)
+                Dim t As String = Localization.GetString("trade_screen_trade_SendingPokemon", "Sending [YOURPOKEMON] to [OTHERPLAYER].~Good-bye, [YOURPOKEMON]!").Replace("[YOURPOKEMON]", OfferPokemon.GetDisplayName()).Replace("[OTHERPLAYER]", p.Name).Replace("~", Environment.NewLine).Replace("*", Environment.NewLine)
 
                 Core.SpriteBatch.DrawString(FontManager.MainFont, t, New Vector2(CInt(Core.windowSize.Width / 2 - FontManager.MainFont.MeasureString(t).X / 2), CInt(Core.windowSize.Height / 2 + 192)), Color.White)
             Case 2
