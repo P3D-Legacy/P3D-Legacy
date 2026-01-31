@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Harold
-TrainerClass|Swimmer♂
+TrainerClass|<system.token(TrainerClass_Swimmer_Male)>
 Money|416
 IntroMessage|Have you ever gone swimming~in the sea at night?
 OutroMessage|Glub...

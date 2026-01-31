@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Kelton
-TrainerClass|Collector
+TrainerClass|<system.token(TrainerClass_Collector)>
 Money|0
 IntroMessage|Can I have a moment?~I'm trying to write some e-mail.
 OutroMessage|What do you think you're doing?~I want to go already.

@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Samir
-TrainerClass|Swimmer♂
+TrainerClass|<system.token(TrainerClass_Swimmer_Male)>
 Money|220
 IntroMessage|What, you're suggesting that~you're sick of seeing Swimmers~like me?*Aww, don't be hatin'!
 OutroMessage|Oh, no, no, no.

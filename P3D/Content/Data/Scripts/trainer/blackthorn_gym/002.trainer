@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Fran
-TrainerClass|Ace Trainer
+TrainerClass|<system.token(TrainerClass_AceTrainer)>
 Money|1776
 IntroMessage|I can't allow a~nameless trainer~past me!*Clair would be~livid if I did!
 OutroMessage|Awww... I lost...

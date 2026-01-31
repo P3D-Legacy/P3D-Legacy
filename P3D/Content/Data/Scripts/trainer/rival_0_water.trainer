@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|???
-TrainerClass|Trainer
+TrainerClass|<system.token(TrainerClass_Trainer)>
 Money|300
 IntroMessage|...
 OutroMessage|...

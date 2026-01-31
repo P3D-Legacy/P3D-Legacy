@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Teru
-TrainerClass|Super Nerd
+TrainerClass|<system.token(TrainerClass_SuperNerd)>
 Money|288
 IntroMessage|Do you consider~type alignments in~battle?*If you know your~type advantages,*you'll do better~in battle.
 OutroMessage|Ow, ow, ow!

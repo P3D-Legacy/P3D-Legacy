@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Alonso
-TrainerClass|Dragon Tamer
+TrainerClass|<system.token(TrainerClass_DragonTamer)>
 Money|0
 IntroMessage|Fuhahaha!~Your next challenge is me!
 OutroMessage|Fuhahaha!~Let us meet again!

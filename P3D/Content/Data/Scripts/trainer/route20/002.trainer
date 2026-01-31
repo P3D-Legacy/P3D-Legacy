@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Nicole
-TrainerClass|Swimmer♀
+TrainerClass|<system.token(TrainerClass_Swimmer_Female)>
 Money|1040
 IntroMessage|I feel so much lighter~in water.
 OutroMessage|Oh, no!

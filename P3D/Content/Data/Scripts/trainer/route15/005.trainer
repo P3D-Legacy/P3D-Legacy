@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Colette
-TrainerClass|Teacher
+TrainerClass|<system.token(TrainerClass_Teacher)>
 Money|3960
 IntroMessage|Have you forgotten anything?
 OutroMessage|Kyaaah!

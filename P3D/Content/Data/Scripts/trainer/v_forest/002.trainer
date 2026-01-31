@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Ellis
-TrainerClass|Bug Catcher
+TrainerClass|<system.token(TrainerClass_BugCatcher)>
 Money|736
 IntroMessage|I'm sure that there's~nothing more efficient and~beautiful in this world~than Bug-type Pokémon.
 OutroMessage|You were very efficient....

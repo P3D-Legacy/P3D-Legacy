@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Parry
-TrainerClass|Hiker
+TrainerClass|<system.token(TrainerClass_Hiker)>
 Money|960
 IntroMessage|My Pokémon is~power packed!
 OutroMessage|Wahahah! I'm the~big loser!

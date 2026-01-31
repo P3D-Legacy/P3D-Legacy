@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Linden
-TrainerClass|Scientist
+TrainerClass|<system.token(TrainerClass_Scientist)>
 Money|1600
 IntroMessage|Blaine may have lost~his Gym, but he never~gives up.*His perseverance is what~motivates me!
 OutroMessage|Argh... I can't do anything here!

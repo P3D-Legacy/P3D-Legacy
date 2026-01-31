@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Clifford
-TrainerClass|Gentleman
+TrainerClass|<system.token(TrainerClass_Gentleman)>
 Money|3888
 IntroMessage|Today, in addition to our~lesson, we came to see~the chamber.
 OutroMessage|My, how extraordinary.

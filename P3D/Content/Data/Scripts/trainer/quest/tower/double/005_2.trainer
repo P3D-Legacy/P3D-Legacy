@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Anne,Jos
-TrainerClass|Double Team,
+TrainerClass|<system.token(TrainerClass_DoubleTeam)>,
 Money|0
 IntroMessage|Here goes!! Get ready to lose!
 OutroMessage|Lost?! You must be joking!|Unbelievable...

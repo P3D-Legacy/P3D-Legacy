@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Rico
-TrainerClass|Jogger
+TrainerClass|<system.token(TrainerClass_Jogger)>
 Money|0
 IntroMessage|Hiya.~Nice to meet ya.
 OutroMessage|All right.~Thanks for coming by.

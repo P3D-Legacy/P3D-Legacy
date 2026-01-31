@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Dan
-TrainerClass|Jogger
+TrainerClass|<system.token(TrainerClass_Jogger)>
 Money|0
 IntroMessage|Hey, I have a son~somewhere around here. 
 OutroMessage|Ga! Oh well.~My son, Hunter, would beat you.

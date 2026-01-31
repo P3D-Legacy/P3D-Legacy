@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Calvin
-TrainerClass|Poké Maniac
+TrainerClass|<system.token(TrainerClass_PokéManiac)>
 Money|1560
 IntroMessage|I came all the way~here to conduct my~Pokémon research.*Let me demonstrate~my findings in a~real battle!
 OutroMessage|You demonstrated~on me!

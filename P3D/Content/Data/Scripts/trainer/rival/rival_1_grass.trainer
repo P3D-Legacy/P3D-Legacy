@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|<rival.name>
-TrainerClass|Rival
+TrainerClass|<system.token(TrainerClass_Rival)>
 Money|960
 IntroMessage|...
 OutroMessage|Humph! Useless~Pokémon!*Listen, you. You~only won because~my Pokémon were~weak.

@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Glenn
-TrainerClass|Biker
+TrainerClass|<system.token(TrainerClass_Biker)>
 Money|1536
 IntroMessage|Hey!~Want to have a speed battle?
 OutroMessage|Yikes!~You've got awesome Torque!

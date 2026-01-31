@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Claudia
-TrainerClass|Idol
+TrainerClass|<system.token(TrainerClass_Idol)>
 Money|0
 IntroMessage|Let's enjoy ourselves.~I hate anything to do with pain!
 OutroMessage|Yowch! Watch it!~You play too rough!

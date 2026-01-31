@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Jasper
-TrainerClass|Psychic
+TrainerClass|<system.token(TrainerClass_Psychic)>
 Money|0
 IntroMessage|Come to know defeat...~Learn what it means to battle...
 OutroMessage|The defeated merely slink away...

@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Jamison
-TrainerClass|Collector
+TrainerClass|<system.token(TrainerClass_Collector)>
 Money|0
 IntroMessage|Hey, there!~Check this out! My rare Pokémon!
 OutroMessage|Aiyah! Hey! Wait!~No! Stop! Don't touch!

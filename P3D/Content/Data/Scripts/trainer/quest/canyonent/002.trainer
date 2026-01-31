@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Mason
-TrainerClass|Juggler
+TrainerClass|<system.token(TrainerClass_Juggler)>
 Money|2080
 IntroMessage|Howdy!~Are you a member of my fan~club?
 OutroMessage|Oh, so you're not a fan...*Well, I can change that.~Let me sing for you!

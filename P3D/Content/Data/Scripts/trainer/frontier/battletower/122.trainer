@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Kolton
-TrainerClass|Psychic
+TrainerClass|<system.token(TrainerClass_Psychic)>
 Money|0
 IntroMessage|Look into my eyes!
 OutroMessage|My power of suggestion~failed to charm you!

@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Barney
-TrainerClass|Fisher
+TrainerClass|<system.token(TrainerClass_Fisher)>
 Money|1800
 IntroMessage|What's most important~in our everyday lives?
 OutroMessage|The answer is coming up next!

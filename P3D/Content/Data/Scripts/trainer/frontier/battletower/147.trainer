@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Bradly
-TrainerClass|Pokémon Ranger
+TrainerClass|<system.token(TrainerClass_PokémonRanger)>
 Money|0
 IntroMessage|My love of nature and~Pokémon made a Ranger out of me!
 OutroMessage|Ooh... I still love to~battle, too.

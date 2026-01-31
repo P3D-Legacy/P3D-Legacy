@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Winston
-TrainerClass|Ruin Maniac
+TrainerClass|<system.token(TrainerClass_RuinManiac)>
 Money|0
 IntroMessage|Exploring relics isn't~all fun and games!
 OutroMessage|Danger lurks everywhere~in ruins!

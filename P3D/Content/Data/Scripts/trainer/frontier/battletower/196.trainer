@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Tyron
-TrainerClass|Policeman
+TrainerClass|<system.token(TrainerClass_Policeman)>
 Money|0
 IntroMessage|You're under arrest!
 OutroMessage|Officer down!

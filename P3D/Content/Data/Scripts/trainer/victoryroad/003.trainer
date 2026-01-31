@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Daisuke
-TrainerClass|Black Belt
+TrainerClass|<system.token(TrainerClass_BlackBelt)>
 Money|1032
 IntroMessage|This here is Victory Road.~It's the final test~for trainers!
 OutroMessage|Atcho!

@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Grunt
-TrainerClass|Team Rocket
+TrainerClass|<system.token(TrainerClass_TeamRocket)>
 Money|5040
 IntroMessage|Victini is capable of~potent fire attacks.*We need to exploit its energy!
 OutroMessage|You're just a kid, how is this possible?

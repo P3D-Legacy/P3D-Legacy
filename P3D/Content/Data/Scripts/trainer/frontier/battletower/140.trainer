@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Benito
-TrainerClass|Clown
+TrainerClass|<system.token(TrainerClass_Clown)>
 Money|0
 IntroMessage|Everybody gather around for~my stupendicular Pokémon show!
 OutroMessage|Nrrgh... I am not amused.

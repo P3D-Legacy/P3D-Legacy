@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Reena
-TrainerClass|Ace Trainer
+TrainerClass|<system.token(TrainerClass_AceTrainer)>
 Money|2256
 IntroMessage|You shouldn't~underestimate the*wild Pokémon in~these parts.
 OutroMessage|Oh! You're much~too strong!

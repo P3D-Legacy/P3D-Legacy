@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Cassie
-TrainerClass|Beauty
+TrainerClass|<system.token(TrainerClass_Beauty)>
 Money|3872
 IntroMessage|I'm trying to forget my woes.*Lets battle!
 OutroMessage|My heart weeps...

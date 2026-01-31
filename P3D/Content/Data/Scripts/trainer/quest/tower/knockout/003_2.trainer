@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Natalia
-TrainerClass|Aroma Lady
+TrainerClass|<system.token(TrainerClass_AromaLady)>
 Money|0
 IntroMessage|This sweet scent, you like it?
 OutroMessage|That wasn't good?

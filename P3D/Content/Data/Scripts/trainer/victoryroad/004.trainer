@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Nelson
-TrainerClass|Juggler
+TrainerClass|<system.token(TrainerClass_Juggler)>
 Money|1640
 IntroMessage|Another tough looking kid?
 OutroMessage|You got me!

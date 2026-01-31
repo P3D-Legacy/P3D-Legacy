@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Cortney
-TrainerClass|Ace Trainer
+TrainerClass|<system.token(TrainerClass_AceTrainer)>
 Money|0
 IntroMessage|Ok, bring it!
 OutroMessage|Hoh! You are tough!~Give me a rematch!

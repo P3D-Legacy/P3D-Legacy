@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Grady
-TrainerClass|Gentleman
+TrainerClass|<system.token(TrainerClass_Gentleman)>
 Money|0
 IntroMessage|Hmhm... I must say I~like the look in your eyes.
 OutroMessage|Your eyes shine brighter than~any big gemstone I keep at home!

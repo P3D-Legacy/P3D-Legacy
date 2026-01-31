@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Claros
-TrainerClass|Psychic
+TrainerClass|<system.token(TrainerClass_Psychic)>
 Money|0
 IntroMessage|Twirl, twirl, twirl...
 OutroMessage|Ooorgh...~My head's spinning...

@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Eusine
-TrainerClass|Mystical Man
+TrainerClass|<system.token(TrainerClass_MysticalMan)>
 Money|2500
 IntroMessage|Eusine: Yo,~<player.name>.*Wasn't that*Suicune just now?*I only caught a~quick glimpse, but~I thought I saw~Suicune running on~the waves.*Suicune is beautiful~and grand.*And it races~through towns and*roads at simply~awesome speeds.*It's wonderful...*I want to see~Suicune up close...*I've decided...*I'll battle you as~a trainer to earn~Suicune's respect!*Come on, <player.name>.~Let's battle now!
 OutroMessage|I hate to admit~it, but you win.

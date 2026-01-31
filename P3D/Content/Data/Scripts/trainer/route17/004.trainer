@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Jacob
-TrainerClass|Biker
+TrainerClass|<system.token(TrainerClass_Biker)>
 Money|1536
 IntroMessage|Modding my bike costs~a bunch of money!*I need a job!
 OutroMessage|Oh, no!~How could I lose?

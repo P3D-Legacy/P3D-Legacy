@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Kennedy
-TrainerClass|Gentleman
+TrainerClass|<system.token(TrainerClass_Gentleman)>
 Money|0
 IntroMessage|Fwahahaha!~You've come a long way!
 OutroMessage|Fwahahaha! You're blessed~to have your friends!

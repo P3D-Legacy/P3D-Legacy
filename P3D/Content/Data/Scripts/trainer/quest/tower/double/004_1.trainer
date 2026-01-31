@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Isac,Mag
-TrainerClass|Double Team,
+TrainerClass|<system.token(TrainerClass_DoubleTeam)>,
 Money|0
 IntroMessage|Our earthquake will~make you shaky!
 OutroMessage|I'm all shaky...|Huh? You left me feeling shaky.

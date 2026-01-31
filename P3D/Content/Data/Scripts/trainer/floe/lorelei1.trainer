@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Lorelei
-TrainerClass|Pokémon Trainer
+TrainerClass|<system.token(TrainerClass_PokémonTrainer)>
 Money|6240
 IntroMessage|
 OutroMessage|No wonder you beat the Elite Four, your strength is astounding!

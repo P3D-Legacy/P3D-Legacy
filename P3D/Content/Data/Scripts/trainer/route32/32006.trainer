@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Justin
-TrainerClass|Fisherman
+TrainerClass|<system.token(TrainerClass_Fisher)>man
 Money|200
 IntroMessage|My Pokémon?~Freshly caught!
 OutroMessage|Splash?

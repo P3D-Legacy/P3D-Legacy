@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Allyson
-TrainerClass|School Kid
+TrainerClass|<system.token(TrainerClass_School Kid)>
 Money|0
 IntroMessage|My teacher gave me~advice on battling.
 OutroMessage|Aww, my teacher was wrong!~None of it worked!

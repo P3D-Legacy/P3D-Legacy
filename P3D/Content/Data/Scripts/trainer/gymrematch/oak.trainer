@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Oak
-TrainerClass|Professor
+TrainerClass|<system.token(TrainerClass_Professor)>
 Money|9120
 IntroMessage|Oh, so here you are.*I focus on research~nowadays, but I've~been a strong trainer~in the past.*Let's see if I can~still cut it.
 OutroMessage|Wonderful!*I wouldn't expect~any less from a~Pokémon Champion.

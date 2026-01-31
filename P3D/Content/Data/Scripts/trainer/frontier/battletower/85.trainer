@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Keon
-TrainerClass|Jogger
+TrainerClass|<system.token(TrainerClass_Jogger)>
 Money|0
 IntroMessage|I run a marathon every morning!~It's great!
 OutroMessage|So I lost!~I can still run great marathons!

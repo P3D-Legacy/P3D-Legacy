@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Red
-TrainerClass|Pokémon Trainer
+TrainerClass|<system.token(TrainerClass_PokémonTrainer)>
 Money|16800
 IntroMessage|..............~..............
 OutroMessage|...

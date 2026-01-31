@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Irving
-TrainerClass|Black Belt
+TrainerClass|<system.token(TrainerClass_BlackBelt)>
 Money|0
 IntroMessage|Hi! Little kid!~A battle, please!
 OutroMessage|Little kid!~I'm really upset over this!

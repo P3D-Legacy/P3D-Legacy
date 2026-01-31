@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Krise
-TrainerClass|Lass
+TrainerClass|<system.token(TrainerClass_Lass)>
 Money|840
 IntroMessage|Hello? Why are you~staring at me?*Oh, a battle?
 OutroMessage|...Hmmm...

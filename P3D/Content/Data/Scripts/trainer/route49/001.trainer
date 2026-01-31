@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Breny
-TrainerClass|Swimmer♂
+TrainerClass|<system.token(TrainerClass_Swimmer_Male)>
 Money|184
 IntroMessage|There is a weird current~over there that looks~dangerous to cross.
 OutroMessage|You're dangerous to cross!

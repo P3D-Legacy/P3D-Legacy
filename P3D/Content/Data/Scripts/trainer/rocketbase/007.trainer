@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Mitch
-TrainerClass|Scientist
+TrainerClass|<system.token(TrainerClass_Scientist)>
 Money|2400
 IntroMessage|I don't care that~Pokémon are hurt~by our experiment.
 OutroMessage|Thinking is my~strong suit, not~battling.

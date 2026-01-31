@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Cruz
-TrainerClass|Veteran
+TrainerClass|<system.token(TrainerClass_Veteran)>
 Money|0
 IntroMessage|My career as a Trainer dates~back 75 years.~You think you can win?
 OutroMessage|My history of glory...

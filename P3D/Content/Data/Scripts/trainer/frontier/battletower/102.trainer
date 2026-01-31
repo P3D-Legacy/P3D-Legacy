@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Kaden
-TrainerClass|Cyclist
+TrainerClass|<system.token(TrainerClass_Cyclist)>
 Money|0
 IntroMessage|Gear change!~We're attacking at top speed!
 OutroMessage|Kaboom!

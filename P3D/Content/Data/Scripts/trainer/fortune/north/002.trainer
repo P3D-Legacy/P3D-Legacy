@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Nicole
-TrainerClass|Swimmer♀
+TrainerClass|<system.token(TrainerClass_Swimmer_Female)>
 Money|216
 IntroMessage|It's not so easy sending~Pokémon out while swimming,~you know?
 OutroMessage|I didn't lose to you at swimming.~This doesn't bother me.

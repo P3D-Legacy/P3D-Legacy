@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Grunt
-TrainerClass|Team Rocket
+TrainerClass|<system.token(TrainerClass_TeamRocket)>
 Money|720
 IntroMessage|It's my turn!~There's no escape!
 OutroMessage|Surveillance cams~are in the Pokémon~statues.*We'll keep appearing~until you trip~a secret switch.

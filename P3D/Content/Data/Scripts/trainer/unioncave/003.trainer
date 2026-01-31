@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Bill
-TrainerClass|Firebreather
+TrainerClass|<system.token(TrainerClass_Firebreather)>
 Money|288
 IntroMessage|Zubat's Supersonic~keeps confusing~my Pokémon.*I'm seriously upset~about that!
 OutroMessage|I flamed out!

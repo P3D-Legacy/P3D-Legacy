@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Nestor
-TrainerClass|Camper
+TrainerClass|<system.token(TrainerClass_Camper)>
 Money|0
 IntroMessage|Huh? Where is everyone?
 OutroMessage|I came to camp, but I think~I got separated from my friends...

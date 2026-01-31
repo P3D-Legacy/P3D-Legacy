@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Ross
-TrainerClass|Scientist
+TrainerClass|<system.token(TrainerClass_Scientist)>
 Money|2200
 IntroMessage|I used to work for~Silph, but now I*run research for~Team Rocket.*A meddlesome child~like you needs to~be punished.
 OutroMessage|A mere tactical~error cost me...

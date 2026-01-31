@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Camben
-TrainerClass|Engineer
+TrainerClass|<system.token(TrainerClass_Engineer)>
 Money|0
 IntroMessage|Lalala let's sing about~electic power!
 OutroMessage|Electric! It's about wireless link.

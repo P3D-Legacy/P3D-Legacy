@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Ray
-TrainerClass|Firebreather
+TrainerClass|<system.token(TrainerClass_Firebreather)>
 Money|246
 IntroMessage|If it's light, a~cave isn't scary.*If you're strong,~Pokémon aren't~scary.
 OutroMessage|Flash!

@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Jocelyn
-TrainerClass|Crush Girl
+TrainerClass|<system.token(TrainerClass_CrushGirl)>
 Money|1272
 IntroMessage|I've been in training~so I can mend my~broken heart...*It toughened me up~physically at least!*Hi-yah!
 OutroMessage|I think I tried~to overdo it...

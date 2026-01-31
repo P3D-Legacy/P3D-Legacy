@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Gordon
-TrainerClass|Youngster
+TrainerClass|<system.token(TrainerClass_Youngster)>
 Money|160
 IntroMessage|I found some good~Pokémon in the grass!*I think they'll do~it for me!
 OutroMessage|Darn. I thought I~could win.

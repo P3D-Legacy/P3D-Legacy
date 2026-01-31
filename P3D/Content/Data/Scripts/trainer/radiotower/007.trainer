@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Marc
-TrainerClass|Scientist
+TrainerClass|<system.token(TrainerClass_Scientist)>
 Money|2700
 IntroMessage|An unknown child~wandering here?*Who are you?
 OutroMessage|Tch! I took you~too lightly!

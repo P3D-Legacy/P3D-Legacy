@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Beverly
-TrainerClass|Poké Fan
+TrainerClass|<system.token(TrainerClass_PokéFan)>
 Money|80*(20+(<player.badges>*2))
 IntroMessage|My Pokémon are so~cute. Let me show~them off to you.
 OutroMessage|Maybe I can't beat~you in battle...*But mine look a~lot nicer.

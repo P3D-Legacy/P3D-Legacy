@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Shane
-TrainerClass|Poké Maniac
+TrainerClass|<system.token(TrainerClass_PokéManiac)>
 Money|960
 IntroMessage|HEY!*This is my secret~place! Get lost,~you outsider!
 OutroMessage|I should have used~my Moon Stone...

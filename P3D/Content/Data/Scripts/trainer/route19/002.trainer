@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Tucker
-TrainerClass|Swimmer♂
+TrainerClass|<system.token(TrainerClass_Swimmer_Male)>
 Money|432
 IntroMessage|Pant, pant...~Just...~a little...~farther...~to...~Fuchsia...
 OutroMessage|I'm drowning!

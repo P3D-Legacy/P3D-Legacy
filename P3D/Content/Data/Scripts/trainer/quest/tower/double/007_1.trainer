@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Axe,Ren
-TrainerClass|Sis and Bro,
+TrainerClass|<system.token(TrainerClass_SisAndBro)>,
 Money|0
 IntroMessage|Its going to get awfully cold.
 OutroMessage|I am hungry for any hot eats.|I can't win in this sheer cold...

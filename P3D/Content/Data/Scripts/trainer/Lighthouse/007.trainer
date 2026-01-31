@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Connie
-TrainerClass|Lass
+TrainerClass|<system.token(TrainerClass_Lass)>
 Money|504
 IntroMessage|Jasmine is this~city's Gym Leader.*I mean to bring~her back with me.*Nobody had better~get in my way!
 OutroMessage|Aaack! My Pokémon!

@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Alize
-TrainerClass|Pokémon Breeder
+TrainerClass|<system.token(TrainerClass_PokémonBreeder)>
 Money|1400
 IntroMessage|This is an excellent~environment for raising~Pokémon.
 OutroMessage|Your Pokémon are growing~up admirably well!

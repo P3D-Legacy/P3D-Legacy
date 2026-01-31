@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Regina
-TrainerClass|Ace Trainer
+TrainerClass|<system.token(TrainerClass_AceTrainer)>
 Money|0
 IntroMessage|Snow is wonderful!~Everything becomes white.
 OutroMessage|I'm whiting out...

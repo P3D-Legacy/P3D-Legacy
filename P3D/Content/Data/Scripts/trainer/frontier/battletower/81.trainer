@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Don
-TrainerClass|Hiker
+TrainerClass|<system.token(TrainerClass_Hiker)>
 Money|0
 IntroMessage|You should aspire to the~Hiker's way of life!
 OutroMessage|Now, come on now! You should~look up to the way I live!

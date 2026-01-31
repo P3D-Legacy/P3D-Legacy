@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Benny
-TrainerClass|Bug Catcher
+TrainerClass|<system.token(TrainerClass_BugCatcher)>
 Money|192
 IntroMessage|Bug Pokémon evolve~young. So they get*stronger that much~faster.
 OutroMessage|Just evolving~isn't enough!

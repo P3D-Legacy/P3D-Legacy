@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Jackie
-TrainerClass|Gentleman
+TrainerClass|<system.token(TrainerClass_Gentleman)>
 Money|0
 IntroMessage|When I was your age,~I was quite the daredevil,~I must say.
 OutroMessage|I daresay, you're quite~the daredevil yourself!

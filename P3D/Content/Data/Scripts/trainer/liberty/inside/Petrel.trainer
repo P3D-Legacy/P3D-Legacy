@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Petrel
-TrainerClass|Rocket Boss
+TrainerClass|<system.token(TrainerClass_RocketBoss)>
 Money|8000
 IntroMessage|Ahem, why are you here?*I thought you were done~with us in the Radio Tower!*Listen, I'm a nice guy that~only does what's necessary.*Victini is a really valuable~Pokémon that grants victory~to whoever controls it.*We could use some victory~after our previous failures.*I don't care about Team Rocket~as an organization anymore.~As long as I have the manpower~to capture rare Pokémon,~I'll make my goal a reality!*I won't let you get in my~way this time!
 OutroMessage|That's why I needed Victini.

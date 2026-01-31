@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Dion
-TrainerClass|Bug Catcher
+TrainerClass|<system.token(TrainerClass_BugCatcher)>
 Money|800
 IntroMessage|Shh!~Be quiet!*I am trying to catch~bug Pokémon!
 OutroMessage|You scared them away!

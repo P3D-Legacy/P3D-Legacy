@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Alaina
-TrainerClass|Ace Trainer
+TrainerClass|<system.token(TrainerClass_AceTrainer)>
 Money|0
 IntroMessage|Don't you think this~coat is cute?*It limits my movements,~though.
 OutroMessage|I feel snowed under...

@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Emanuel
-TrainerClass|Gentleman
+TrainerClass|<system.token(TrainerClass_Gentleman)>
 Money|0
 IntroMessage|Hmm? are you skilled?
 OutroMessage|You truly are a master trainer.

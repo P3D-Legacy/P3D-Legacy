@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Darkfire
-TrainerClass|Developer
+TrainerClass|<system.token(TrainerClass_Developer)>
 Money|6000
 IntroMessage|
 OutroMessage|

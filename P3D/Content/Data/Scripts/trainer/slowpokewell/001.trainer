@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Grunt
-TrainerClass|Team Rocket
+TrainerClass|<system.token(TrainerClass_TeamRocket)>
 Money|360
 IntroMessage|Darn! I was standing~guard up top*when some old coot~yelled at me.*He startled me so~much that I fell~down here.*I think I'll vent~my anger by taking~it out on you!
 OutroMessage|Arrgh! This is NOT~my day!

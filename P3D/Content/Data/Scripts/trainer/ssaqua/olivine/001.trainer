@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Edward
-TrainerClass|Gentleman
+TrainerClass|<system.token(TrainerClass_Gentleman)>
 Money|3096
 IntroMessage|Oh, no.~I've lost something~that's very important.
 OutroMessage|I...~I can't find it...

@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Wilton
-TrainerClass|Fisher
+TrainerClass|<system.token(TrainerClass_Fisher)>
 Money|1120
 IntroMessage|Aack! You made me~lose a Poliwag!*What are you going~to do about it?
 OutroMessage|Just forget about it.

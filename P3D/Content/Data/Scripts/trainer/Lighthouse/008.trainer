@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Terrell
-TrainerClass|Sailor
+TrainerClass|<system.token(TrainerClass_Sailor)>
 Money|800
 IntroMessage|Sailors are both~kind and strong.~How about you?
 OutroMessage|You are both kind~and strong...

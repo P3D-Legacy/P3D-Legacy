@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Tisha
-TrainerClass|Swimmer♀
+TrainerClass|<system.token(TrainerClass_Swimmer_Female)>
 Money|212
 IntroMessage|Oh, no, don't come here!~Please, stay away from me!
 OutroMessage|Okay, you've won!*Now will you please go away?

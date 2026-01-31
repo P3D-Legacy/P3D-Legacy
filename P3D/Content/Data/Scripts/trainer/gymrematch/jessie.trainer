@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Jessie,James
-TrainerClass|Team Rocket Agents
+TrainerClass|<system.token(TrainerClass_TeamRocket_Agents)>
 Money|9792
 IntroMessage|Jessie: Prepare for trouble!*James: Make it double!*Meowth: Meowth!~That's right!
 OutroMessage|Argh!~Why are twerps like~you so strong?

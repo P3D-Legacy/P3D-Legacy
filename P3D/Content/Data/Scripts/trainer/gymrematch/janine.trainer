@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Janine
-TrainerClass|Leader
+TrainerClass|<system.token(TrainerClass_Leader)>
 Money|7500
 IntroMessage|I can't use my~ninja technique,~but I won't let you win!
 OutroMessage|I lost today,~but I'll win next~time!

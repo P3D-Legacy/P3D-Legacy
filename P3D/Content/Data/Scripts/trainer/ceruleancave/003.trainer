@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Grunt
-TrainerClass|Team Rocket
+TrainerClass|<system.token(TrainerClass_TeamRocket)>
 Money|2160
 IntroMessage|The wild Pokémon are~really strong here.*Just getting here made~my Pokémon much stronger~than when you beat~me in the Warehouse.
 OutroMessage|I was stronger right?

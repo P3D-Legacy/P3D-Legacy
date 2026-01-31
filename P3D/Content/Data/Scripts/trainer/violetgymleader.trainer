@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Falkner
-TrainerClass|Leader
+TrainerClass|<system.token(TrainerClass_Leader)>
 Money|900
 IntroMessage|I'm Falkner, the~Violet Pokémon Gym~Leader!*People say you can~clip flying-type*Pokémon's wings~with a jolt of~electricity...*I won't allow such~insults to bird~Pokémon!*I'll show you the~real power of the*magnificent bird~Pokémon!
 OutroMessage|...Darn! My Dad's~cherished bird~Pokémon...*All right.~Take this.*It's the official~Pokémon League~Zephyr Badge.

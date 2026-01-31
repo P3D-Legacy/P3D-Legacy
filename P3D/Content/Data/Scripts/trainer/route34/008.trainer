@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Jenn
-TrainerClass|Ace Trainer
+TrainerClass|<system.token(TrainerClass_AceTrainer)>
 Money|1248
 IntroMessage|You can't beat Irene~and go unpunished!
 OutroMessage|Ohhhh! He's too strong!

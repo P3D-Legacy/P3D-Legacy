@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Barry
-TrainerClass|Camper
+TrainerClass|<system.token(TrainerClass_Camper)>
 Money|1060
 IntroMessage|Wahahaha!*You betcha!~I'm Janine!
 OutroMessage|My disguise was right on!~Dang!

@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Dan
-TrainerClass|Biker
+TrainerClass|<system.token(TrainerClass_Biker)>
 Money|1504
 IntroMessage|Parara parapara para-parara!*My horn's got a great~melody to it, don't~you think?
 OutroMessage|Paaraaraaaaa...

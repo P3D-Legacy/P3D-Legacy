@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Kelly
-TrainerClass|Ace Trainer
+TrainerClass|<system.token(TrainerClass_AceTrainer)>
 Money|1296
 IntroMessage|What is your~battle strategy?*It is foolish to~use strong moves~indiscriminately.
 OutroMessage|Fine. I lost.

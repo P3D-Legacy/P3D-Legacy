@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Dallin
-TrainerClass|Ace Trainer
+TrainerClass|<system.token(TrainerClass_AceTrainer)>
 Money|0
 IntroMessage|You're no good at all.~I'd better teach you.
 OutroMessage|You've got good skills.~You tried hard, too.*Excellent!

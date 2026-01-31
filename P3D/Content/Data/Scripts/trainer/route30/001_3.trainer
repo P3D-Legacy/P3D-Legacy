@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Joey
-TrainerClass|Youngster
+TrainerClass|<system.token(TrainerClass_Youngster)>
 Money|544
 IntroMessage|I just lost, so~I'm trying to find~more Pokémon.*Wait! You look~weak! Come on,~let's battle!
 OutroMessage|Ugh. I don't have~any more Pokémon.

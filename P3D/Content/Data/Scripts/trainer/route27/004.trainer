@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Brian
-TrainerClass|Ace Trainer
+TrainerClass|<system.token(TrainerClass_AceTrainer)>
 Money|1680
 IntroMessage|Hm? You're good,~aren't you?
 OutroMessage|Just as I thought!

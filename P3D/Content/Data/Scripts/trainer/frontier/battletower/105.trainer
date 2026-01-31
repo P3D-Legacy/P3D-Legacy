@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Kolby
-TrainerClass|Black Belt
+TrainerClass|<system.token(TrainerClass_BlackBelt)>
 Money|0
 IntroMessage|I only know how to go at~full power, even against~a younger opponent!
 OutroMessage|Please! Let me call you~Master <player.name> from now on!

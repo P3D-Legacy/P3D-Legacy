@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Alton
-TrainerClass|Rancher
+TrainerClass|<system.token(TrainerClass_Rancher)>
 Money|0
 IntroMessage|Little boy?~Little girl?*Doesn't matter which.~Let's do this!
 OutroMessage|Little boy?~Little girl?*Doesn't matter which,~but you're sure tough!

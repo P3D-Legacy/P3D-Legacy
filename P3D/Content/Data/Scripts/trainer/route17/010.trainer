@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Teddy
-TrainerClass|Biker
+TrainerClass|<system.token(TrainerClass_Biker)>
 Money|1632
 IntroMessage|Hey, that's a cool Pokémon~you're riding!
 OutroMessage|Great job!

@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Proton
-TrainerClass|Executive
+TrainerClass|<system.token(TrainerClass_Executive)>
 Money|2592
 IntroMessage|Stop! I'm known as~the Team Rocket~fortress!*You're not taking~another step!
 OutroMessage|The fortress came down!

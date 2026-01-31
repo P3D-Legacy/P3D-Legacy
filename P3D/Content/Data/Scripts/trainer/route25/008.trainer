@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Kevin
-TrainerClass|Ace Trainer
+TrainerClass|<system.token(TrainerClass_AceTrainer)>
 Money|2332
 IntroMessage|But after seeing~how you battle,~I want to see how I will fare.*How about it?~Let me take you on.
 OutroMessage|I've never had a battle~this good!

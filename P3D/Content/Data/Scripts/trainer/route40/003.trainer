@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Paula
-TrainerClass|Swimmer♀
+TrainerClass|<system.token(TrainerClass_Swimmer_Female)>
 Money|380
 IntroMessage|No inner tube for~me.*I'm hanging onto~a sea Pokémon!
 OutroMessage|Ooh, I'm feeling~dizzy!

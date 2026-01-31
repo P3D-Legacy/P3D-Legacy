@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Leslie
-TrainerClass|Veteran
+TrainerClass|<system.token(TrainerClass_Veteran)>
 Money|0
 IntroMessage|Are you prepared?
 OutroMessage|I tip my hat to you.

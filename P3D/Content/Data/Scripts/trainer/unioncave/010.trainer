@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Nick
-TrainerClass|Ace Trainer
+TrainerClass|<system.token(TrainerClass_AceTrainer)>
 Money|1248
 IntroMessage|There are two~kinds of people.*Those who have~style, and those~who don't.*What kind of~person are you?
 OutroMessage|You've got~dazzling style!

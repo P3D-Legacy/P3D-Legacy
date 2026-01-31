@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Darin
-TrainerClass|Ace Trainer
+TrainerClass|<system.token(TrainerClass_AceTrainer)>
 Money|1776
 IntroMessage|You! How dare you~enter uninvided!
 OutroMessage|S-strong!

@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Valerie
-TrainerClass|Beauty
+TrainerClass|<system.token(TrainerClass_Beauty)>
 Money|1496
 IntroMessage|Hi! Aren't you a~cute trainer!*May I see your~Pokémon?
 OutroMessage|I'm glad I got to~see your Pokémon!

@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Blake
-TrainerClass|Ace Trainer
+TrainerClass|<system.token(TrainerClass_AceTrainer)>
 Money|1488
 IntroMessage|You look pretty~strong.~Let me battle you!
 OutroMessage|Yow!

@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Zeke
-TrainerClass|Biker
+TrainerClass|<system.token(TrainerClass_Biker)>
 Money|1504
 IntroMessage|We're the Kanto~Pokémon federation!*Right on!
 OutroMessage|Yikes!~Sorry!

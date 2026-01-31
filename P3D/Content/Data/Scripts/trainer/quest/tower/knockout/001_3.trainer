@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Gabriel
-TrainerClass|Cue Ball
+TrainerClass|<system.token(TrainerClass_CueBall)>
 Money|0
 IntroMessage|Yahoo!~Here I come to swarm you!
 OutroMessage|What was that?

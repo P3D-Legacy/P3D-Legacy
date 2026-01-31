@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Antony
-TrainerClass|Veteran
+TrainerClass|<system.token(TrainerClass_Veteran)>
 Money|0
 IntroMessage|Let me make one thing clear...~You aren't capable of beating me.
 OutroMessage|How could this be...?~Only that girl with the*inner tube has beaten me...

@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Alexis
-TrainerClass|Tuber
+TrainerClass|<system.token(TrainerClass_Tuber)>
 Money|200
 IntroMessage|Yay, yay!~Pokémon!
 OutroMessage|What happens now?

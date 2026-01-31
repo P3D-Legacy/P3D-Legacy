@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Leland
-TrainerClass|Camper
+TrainerClass|<system.token(TrainerClass_Camper)>
 Money|0
 IntroMessage|I don't think I have any~chance of winning,*but sure, I'll battle.
 OutroMessage|I knew I'd lose.~I'm so sorry for this.

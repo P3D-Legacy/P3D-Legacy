@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Amira
-TrainerClass|Tuber
+TrainerClass|<system.token(TrainerClass_Tuber)>
 Money|200
 IntroMessage|My mommy said that I~can't swim without my~float ring.
 OutroMessage|Waaah!~Waaah!

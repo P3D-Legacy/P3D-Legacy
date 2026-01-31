@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Erika
-TrainerClass|Leader
+TrainerClass|<system.token(TrainerClass_Leader)>
 Money|6900
 IntroMessage|Hello...~Lovely weather,~isn't it?*It's so pleasant...*...I'm afraid I may doze off...*My name is Erika.*I am the Leader of Celadon Gym.*...Oh?~All the way from Johto,~you say? How nice...*Oh. I'm sorry,~I didn't realize that~you wished to challenge me.*Very well,~but I shall not lose.
 OutroMessage|Oh!~I concede defeat.*You are remarkably strong.*I must confer on you~the Rainbow Badge.

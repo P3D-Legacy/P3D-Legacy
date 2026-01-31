@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Mikaela
-TrainerClass|Parasol Lady
+TrainerClass|<system.token(TrainerClass_ParasolLady)>
 Money|0
 IntroMessage|Look! This is my favorite~parasol!*Oh, and my fabulous Pokémon!
 OutroMessage|I'm only showing you!~You can't have any!

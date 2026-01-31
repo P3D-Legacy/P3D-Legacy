@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Kuni
-TrainerClass|Kimono Girl
+TrainerClass|<system.token(TrainerClass_KimonoGirl)>
 Money|1224
 IntroMessage|Oh, you're a cute~trainer. Would you~like to battle?
 OutroMessage|You are stronger~than you look.

@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Stacey
-TrainerClass|Bug Catcher
+TrainerClass|<system.token(TrainerClass_BugCatcher)>
 Money|960
 IntroMessage|Wow, that's a huge Pokémon!*......what kind of trainer?
 OutroMessage|I couldn't catch it!

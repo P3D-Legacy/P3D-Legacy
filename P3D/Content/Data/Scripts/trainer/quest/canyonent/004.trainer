@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Madeline
-TrainerClass|Pokémon Ranger
+TrainerClass|<system.token(TrainerClass_PokémonRanger)>
 Money|1980
 IntroMessage|I punish people who abuse~Pokémon!
 OutroMessage|You don't seem to be a problem trainer.

@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Ted
-TrainerClass|Camper
+TrainerClass|<system.token(TrainerClass_Camper)>
 Money|340
 IntroMessage|I'm raising a Poké-~mon too!*Will you battle~with me?
 OutroMessage|Wha...?

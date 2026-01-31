@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Grunt
-TrainerClass|Team Rocket
+TrainerClass|<system.token(TrainerClass_TeamRocket)>
 Money|3200
 IntroMessage|A meddling brat?*I'll show you why I was~picked for this mission!
 OutroMessage|No! My brilliant career!

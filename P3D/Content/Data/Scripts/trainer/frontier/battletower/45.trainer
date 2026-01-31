@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Gerard
-TrainerClass|Waiter
+TrainerClass|<system.token(TrainerClass_Waiter)>
 Money|0
 IntroMessage|For battles and order taking,~speed is essential!
 OutroMessage|Food is like battling.~Serve it while it's hot!

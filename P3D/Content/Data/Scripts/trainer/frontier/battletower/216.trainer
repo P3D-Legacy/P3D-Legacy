@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Blair
-TrainerClass|Pokémon Breeder
+TrainerClass|<system.token(TrainerClass_PokémonBreeder)>
 Money|0
 IntroMessage|Let me introduce to you~my cherished partners!
 OutroMessage|Awawa...~My partners...

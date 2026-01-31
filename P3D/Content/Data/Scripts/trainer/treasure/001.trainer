@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Amara
-TrainerClass|Swimmer♀
+TrainerClass|<system.token(TrainerClass_Swimmer_Female)>
 Money|204
 IntroMessage|Lying back,~rocked by the waves...*It's exquisite.
 OutroMessage|I lost...~It feels awful.

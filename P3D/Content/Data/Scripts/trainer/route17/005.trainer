@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Ernest
-TrainerClass|Biker
+TrainerClass|<system.token(TrainerClass_Biker)>
 Money|1600
 IntroMessage|Vroom vroom!~Baribaribaribari!*What do you think of~my engine imitations?
 OutroMessage|Hnff..Hnff...~I'm out of breath...

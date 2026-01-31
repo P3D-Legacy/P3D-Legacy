@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Erik
-TrainerClass|Hiker
+TrainerClass|<system.token(TrainerClass_Hiker)>
 Money|864
 IntroMessage|Be prepared for~anything!*Let me see if your~Pokémon have been~raised properly!
 OutroMessage|Oh, I lost that!

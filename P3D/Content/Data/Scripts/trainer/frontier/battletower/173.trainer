@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Daulton
-TrainerClass|Bug Catcher
+TrainerClass|<system.token(TrainerClass_BugCatcher)>
 Money|0
 IntroMessage|The way of the~Bug Catcher!*Bear witness to it!
 OutroMessage|All hail Bug Catchers!

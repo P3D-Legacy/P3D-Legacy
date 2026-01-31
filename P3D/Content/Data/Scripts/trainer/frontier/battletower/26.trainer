@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Rick
-TrainerClass|Tuber
+TrainerClass|<system.token(TrainerClass_Tuber)>
 Money|0
 IntroMessage|Go, go, go!~Go, my Pokémon!
 OutroMessage|Good effort!~Way to go, my Pokémon!

@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Layton
-TrainerClass|Ruin Maniac
+TrainerClass|<system.token(TrainerClass_RuinManiac)>
 Money|2496
 IntroMessage|Have you noticed something odd~about these parts?
 OutroMessage|Have you taken a good look around your feet?

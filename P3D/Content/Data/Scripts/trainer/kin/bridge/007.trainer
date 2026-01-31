@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Nikki
-TrainerClass|Aroma Lady
+TrainerClass|<system.token(TrainerClass_AromaLady)>
 Money|1456
 IntroMessage|The salty tang of the sea...~It tickles my heart.
 OutroMessage|...Sniff, sniff...~Something smells unpleasant...

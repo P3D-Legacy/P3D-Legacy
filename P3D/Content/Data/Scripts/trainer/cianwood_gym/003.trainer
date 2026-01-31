@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Nob
-TrainerClass|Black Belt
+TrainerClass|<system.token(TrainerClass_BlackBelt)>
 Money|600
 IntroMessage|Words are useless.~Let your fists do~the talking!
 OutroMessage|...

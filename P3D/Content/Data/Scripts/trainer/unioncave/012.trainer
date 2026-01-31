@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Emma
-TrainerClass|Ace Trainer
+TrainerClass|<system.token(TrainerClass_AceTrainer)>
 Money|1344
 IntroMessage|If the Pokémon I~liked were there,~I'd go anywhere.*That's what a real~trainer does.
 OutroMessage|I'd rather pet my~babies than this!

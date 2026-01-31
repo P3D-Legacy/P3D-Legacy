@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Yvette
-TrainerClass|Idol
+TrainerClass|<system.token(TrainerClass_Idol)>
 Money|0
 IntroMessage|You're sure you~can handle me?*I'm an ultrastellar talent.
 OutroMessage|You're in the~miracle-star class!

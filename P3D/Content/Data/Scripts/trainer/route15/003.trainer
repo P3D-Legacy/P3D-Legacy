@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Hillary
-TrainerClass|Teacher
+TrainerClass|<system.token(TrainerClass_Teacher)>
 Money|3816
 IntroMessage|On sunny days, I think~that the kids would~rather be playing in~the school yard than~studying in class.
 OutroMessage|I didn't want to lose...

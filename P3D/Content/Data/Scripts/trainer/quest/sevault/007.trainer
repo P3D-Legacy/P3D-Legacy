@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Michelle
-TrainerClass|Ace Trainer
+TrainerClass|<system.token(TrainerClass_AceTrainer)>
 Money|2196
 IntroMessage|I was given the best possible~education to become this~strong.*I don't want to lose to anyone!
 OutroMessage|Thank you, I feel like I've been set free by losing to you.

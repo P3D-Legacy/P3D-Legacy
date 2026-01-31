@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Joy,Meg
-TrainerClass|Twins,Twins
+TrainerClass|<system.token(TrainerClass_Twins)>,Twins
 Money|1248
 IntroMessage|
 OutroMessage|Meg: Ohh... Joy!|Joy: Ohh... Meg!

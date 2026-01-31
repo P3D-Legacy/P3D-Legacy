@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Troy
-TrainerClass|Sage
+TrainerClass|<system.token(TrainerClass_Sage)>
 Money|224
 IntroMessage|Let me see how~much you trust~your Pokémon.
 OutroMessage|Yes, your trust is~real!

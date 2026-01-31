@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Grunt
-TrainerClass|Team Rocket
+TrainerClass|<system.token(TrainerClass_TeamRocket)>
 Money|440
 IntroMessage|Stop taking Tails?*Yeah, just try to~defeat all of us!
 OutroMessage|You rotten brat!

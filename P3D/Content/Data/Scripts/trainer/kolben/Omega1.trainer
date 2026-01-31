@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Omega
-TrainerClass|Pokémon Trainer
+TrainerClass|<system.token(TrainerClass_PokémonTrainer)>
 Money|1337
 IntroMessage|
 OutroMessage|Oke.

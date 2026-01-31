@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Anthony
-TrainerClass|Hiker
+TrainerClass|<system.token(TrainerClass_Hiker)>
 Money|32*(24+(<player.badges>*2))
 IntroMessage|I came through the~tunnel, but I*still have plenty~of energy left.
 OutroMessage|Whoa, boy! You've~got more zip.

@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Petrel
-TrainerClass|Executive
+TrainerClass|<system.token(TrainerClass_Executive)>
 Money|2160
 IntroMessage|Wrong!~I'm an imposter!*I pretended to be~the real thing to*prepare for our~takeover.*Do you want to~know where we hid~the real Director?*Sure, I'll tell~you. But only if~you can beat me!
 OutroMessage|OK, OK. I'll tell~you where he is.

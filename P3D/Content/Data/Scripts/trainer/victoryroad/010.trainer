@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Colby
-TrainerClass|Ace Trainer
+TrainerClass|<system.token(TrainerClass_AceTrainer)>
 Money|1548
 IntroMessage|Only the chosen~can pass here!
 OutroMessage|I don't believe it!

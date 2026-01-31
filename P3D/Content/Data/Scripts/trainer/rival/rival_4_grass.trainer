@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|<rival.name>
-TrainerClass|Rival
+TrainerClass|<system.token(TrainerClass_Rival)>
 Money|2280
 IntroMessage|Hold it.*...Are you going to~take the Pokémon~League challenge?*...Don't make me laugh.*You're so much~weaker than I am.*I'm not like I was before.*I now have the~best and strongest*Pokémon with me.~I'm invincible!*<player.name>~I challenge you!
 OutroMessage|...I couldn't win...*I gave it everything~I had....*What you possess,~and I lack...*I'm beginning to~understand what*that dragon master~said to me...

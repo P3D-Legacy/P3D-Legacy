@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Daisy
-TrainerClass|Painter
+TrainerClass|<system.token(TrainerClass_Painter)>
 Money|880
 IntroMessage|With these hands,~I will create my victory!
 OutroMessage|The shame of this... I'm red-faced...

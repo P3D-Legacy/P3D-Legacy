@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Goon
-TrainerClass|Biker
+TrainerClass|<system.token(TrainerClass_Biker)>
 Money|1040
 IntroMessage|Heh, I like your guts.~You'll be losing~money to me, but...
 OutroMessage|Wha...~What is this kid?!

@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Marina
-TrainerClass|Lady
+TrainerClass|<system.token(TrainerClass_Lady)>
 Money|0
 IntroMessage|How boring...
 OutroMessage|That was a good way to~waste some time.

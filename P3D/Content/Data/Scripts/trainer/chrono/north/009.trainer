@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Lawson
-TrainerClass|Ruin Maniac
+TrainerClass|<system.token(TrainerClass_RuinManiac)>
 Money|2400
 IntroMessage|Aiyeeeeeh!*I thought this was an~ancient ruin, but it's~teeming with ghosts!
 OutroMessage|Aiyeeeeeh!~Mercy!

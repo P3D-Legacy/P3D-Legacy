@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Lauric
-TrainerClass|Psychic
+TrainerClass|<system.token(TrainerClass_Psychic)>
 Money|1000
 IntroMessage|There is a mysterious power~at work in this cave.
 OutroMessage|If you don't go into the right tunnel, you won't get ahead.

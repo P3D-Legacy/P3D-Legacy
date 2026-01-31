@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Vincent
-TrainerClass|Guitarist
+TrainerClass|<system.token(TrainerClass_Guitarist)>
 Money|1008
 IntroMessage|Lt. Surge recognized my potential~with electric Pokémon.*Think you can beat me?
 OutroMessage|Ooh, how shocking!

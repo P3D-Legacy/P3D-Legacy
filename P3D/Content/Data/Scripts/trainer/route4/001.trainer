@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Hope
-TrainerClass|Picnicker
+TrainerClass|<system.token(TrainerClass_Picnicker)>
 Money|980
 IntroMessage|I have a feeling~that I can win.*Let's see if I'm right!
 OutroMessage|Aww, you are too strong.

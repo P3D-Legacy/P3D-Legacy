@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Ann,Anne
-TrainerClass|Twins,
+TrainerClass|<system.token(TrainerClass_Twins)>,
 Money|320
 IntroMessage|
 OutroMessage|Nnn... A~little too strong.|Nnn... A~little too strong.

@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Mymo
-TrainerClass|Swimmer♂‚
+TrainerClass|<system.token(TrainerClass_Swimmer_Male)>‚
 Money|216
 IntroMessage|Gasp... Gasp...*I swam here from Six Isle~Port in one go.
 OutroMessage|Gasp...~Gasp...

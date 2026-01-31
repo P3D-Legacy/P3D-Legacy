@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Everett
-TrainerClass|School Kid
+TrainerClass|<system.token(TrainerClass_School Kid)>
 Money|0
 IntroMessage|Uh... Wroar!
 OutroMessage|OK, so willpower doesn't~cut it on its own.

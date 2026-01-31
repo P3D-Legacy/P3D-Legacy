@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Sonia
-TrainerClass|Pokémon Breeder
+TrainerClass|<system.token(TrainerClass_PokémonBreeder)>
 Money|0
 IntroMessage|Will you have a look at~the Pokémon I've raised?
 OutroMessage|Cut a girl some slack!

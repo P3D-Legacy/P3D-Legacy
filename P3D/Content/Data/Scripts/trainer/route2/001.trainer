@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Ed
-TrainerClass|Bug Catcher
+TrainerClass|<system.token(TrainerClass_BugCatcher)>
 Money|720
 IntroMessage|If you walk in tall~grass wearing shorts,~do you get nicks and cuts?
 OutroMessage|Ouch, ouch, ouch!

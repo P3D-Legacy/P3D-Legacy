@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Merle
-TrainerClass|Scientist
+TrainerClass|<system.token(TrainerClass_Scientist)>
 Money|2544
 IntroMessage|Oh, you look~easily defeated!
 OutroMessage|I-I didn't win.

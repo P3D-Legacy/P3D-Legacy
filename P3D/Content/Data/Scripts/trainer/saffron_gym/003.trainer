@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Jared
-TrainerClass|Psychic
+TrainerClass|<system.token(TrainerClass_Psychic)>
 Money|1632
 IntroMessage|The Fighting Dojo~next door was once~this city's Gym.
 OutroMessage|I was no match...

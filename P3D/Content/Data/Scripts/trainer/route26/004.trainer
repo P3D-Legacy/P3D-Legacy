@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Gaven
-TrainerClass|Ace Trainer
+TrainerClass|<system.token(TrainerClass_AceTrainer)>
 Money|1680
 IntroMessage|By experiencing~tough battles, you~gain power.
 OutroMessage|Gaah! Life is even~tougher!

@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Mark
-TrainerClass|King of the Squirrels
+TrainerClass|<system.token(TrainerClass_KingOfTheSquirrels)>
 Money|0
 IntroMessage|Hello everybody, my~name is markiplier. And~welcome to a battle~with me!
 OutroMessage|Thank you so much for~that battle. And as always:*I will see you,~in the next battle.~Bye, Bye.

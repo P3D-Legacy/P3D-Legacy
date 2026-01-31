@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Jesse
-TrainerClass|Clown
+TrainerClass|<system.token(TrainerClass_Clown)>
 Money|0
 IntroMessage|Hehehehe...
 OutroMessage|Sob, sob, sob...

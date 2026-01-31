@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Miu,Mia
-TrainerClass|Twins,
+TrainerClass|<system.token(TrainerClass_Twins)>,
 Money|1320
 IntroMessage|
 OutroMessage|Miu: Oh, no!~Mommy!

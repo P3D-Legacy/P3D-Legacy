@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Albert
-TrainerClass|Ace Trainer
+TrainerClass|<system.token(TrainerClass_AceTrainer)>
 Money|0
 IntroMessage|Let's have an exciting~time here.
 OutroMessage|You're strong. That was wild and exciting.

@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Brant
-TrainerClass|Roughneck
+TrainerClass|<system.token(TrainerClass_Roughneck)>
 Money|0
 IntroMessage|Father... Mother...~Please watch over me...
 OutroMessage|Father... Mother...~Please forgive me...

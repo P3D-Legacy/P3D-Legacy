@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Evan
-TrainerClass|Tamer
+TrainerClass|<system.token(TrainerClass_Tamer)>
 Money|2200
 IntroMessage|It doesn't matter if you happen~to have the strongest~Pokémon...*It doesn't mean a thing if you~don't know how to use them~properly!
 OutroMessage|You're a master at this.

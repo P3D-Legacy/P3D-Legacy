@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Mikey
-TrainerClass|Youngster
+TrainerClass|<system.token(TrainerClass_Youngster)>
 Money|64
 IntroMessage|You're a Pokémon~trainer, right?*Then you have to~battle!
 OutroMessage|That's strange.~I won before.

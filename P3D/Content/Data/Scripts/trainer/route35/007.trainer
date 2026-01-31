@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Irwin
-TrainerClass|Juggler
+TrainerClass|<system.token(TrainerClass_Juggler)>
 Money|40*(4*<player.badges>+1)
 IntroMessage|Behold my graceful~Ball dexterity!
 OutroMessage|Whew! That was a~jolt!

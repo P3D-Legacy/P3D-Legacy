@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Antwan
-TrainerClass|Worker
+TrainerClass|<system.token(TrainerClass_Worker)>
 Money|0
 IntroMessage|It was me who put up the~ buildings around these parts.
 OutroMessage|My dream is to make a~building taller than a mountain!

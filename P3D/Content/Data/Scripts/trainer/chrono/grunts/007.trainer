@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Grunt
-TrainerClass|Team Rocket
+TrainerClass|<system.token(TrainerClass_TeamRocket)>
 Money|2000
 IntroMessage|The Boss told me this~Pokémon is really strong!
 OutroMessage|Was the boss wrong?

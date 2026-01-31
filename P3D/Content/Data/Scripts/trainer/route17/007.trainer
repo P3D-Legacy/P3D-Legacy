@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Theron
-TrainerClass|Biker
+TrainerClass|<system.token(TrainerClass_Biker)>
 Money|1600
 IntroMessage|I'll toughen you up.~Now you come along with me.
 OutroMessage|All right, thanks!

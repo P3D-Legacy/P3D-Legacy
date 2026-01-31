@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Emilee
-TrainerClass|Pokémon Breeder
+TrainerClass|<system.token(TrainerClass_PokémonBreeder)>
 Money|0
 IntroMessage|It's no good to be~too harsh...*But pampering is~also out...
 OutroMessage|Balance is key for~raising good Pokémon.

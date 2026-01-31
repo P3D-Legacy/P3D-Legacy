@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Carla
-TrainerClass|Idol
+TrainerClass|<system.token(TrainerClass_Idol)>
 Money|0
 IntroMessage|Watch me!~All eyes on me!
 OutroMessage|I became an idol because~I wanted everyone to see me!

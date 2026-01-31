@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Andrew
-TrainerClass|Poké Maniac
+TrainerClass|<system.token(TrainerClass_PokéManiac)>
 Money|1440
 IntroMessage|Who's there?*Leave me and my~Pokémon alone!
 OutroMessage|Go...~Go away.

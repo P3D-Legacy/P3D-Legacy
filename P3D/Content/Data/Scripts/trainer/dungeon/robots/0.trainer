@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|#503<storage.get(string,robotnum)>
-TrainerClass|Automaton
+TrainerClass|<system.token(TrainerClass_Automaton)>
 Money|3000
 IntroMessage|Click*Creeeeeeak*WHIIIIIIR
 OutroMessage|WHIIIIIiiiiiir.....

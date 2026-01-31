@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Brianne
-TrainerClass|Socialite
+TrainerClass|<system.token(TrainerClass_Socialite)>
 Money|0
 IntroMessage|Being rich doesn't shield~me from having worries...
 OutroMessage|Lavish parties day after day...~It gets rather tiresome, I must say.

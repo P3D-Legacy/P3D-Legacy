@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Ciara
-TrainerClass|School Kid
+TrainerClass|<system.token(TrainerClass_School Kid)>
 Money|0
 IntroMessage|Why are we battling?~I don't get it.
 OutroMessage|Why did you win?~What happens now?

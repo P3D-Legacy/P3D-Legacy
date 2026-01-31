@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Zuki
-TrainerClass|Kimono Girl
+TrainerClass|<system.token(TrainerClass_KimonoGirl)>
 Money|1224
 IntroMessage|Isn't my barrette~pretty?*Oh. A Pokémon~battle?
 OutroMessage|I don't have any~Pokémon left.

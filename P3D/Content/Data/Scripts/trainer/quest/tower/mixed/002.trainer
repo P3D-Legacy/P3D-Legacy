@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Lorenzo
-TrainerClass|Psychic
+TrainerClass|<system.token(TrainerClass_Psychic)>
 Money|0
 IntroMessage|This power is now complete!
 OutroMessage|Here it is! Kinesis! ...What?

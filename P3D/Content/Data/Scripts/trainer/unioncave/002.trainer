@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Russell
-TrainerClass|Hiker
+TrainerClass|<system.token(TrainerClass_Hiker)>
 Money|256
 IntroMessage|You're headed to~Azalea, are you?*Let my Pokémon see~if you are good~enough to battle.
 OutroMessage|Oh, oh, oh!

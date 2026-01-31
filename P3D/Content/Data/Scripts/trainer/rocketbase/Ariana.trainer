@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Ariana
-TrainerClass|Executive
+TrainerClass|<system.token(TrainerClass_Executive)>
 Money|1800
 IntroMessage|As the interim~boss in place of*Giovanni, I'll~show you how wrong*it is to meddle~with Team Rocket!
 OutroMessage|Tch, you really~are strong.*It's too bad.*If you were to~join Team Rocket~you could become~an Executive.

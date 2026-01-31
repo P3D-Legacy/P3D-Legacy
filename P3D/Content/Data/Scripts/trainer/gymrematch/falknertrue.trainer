@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Falkner
-TrainerClass|Leader
+TrainerClass|<system.token(TrainerClass_Leader)>
 Money|7000
 IntroMessage|Hi!~I've been waiting for you!*It's a pleasure to be~able to battle you again!
 OutroMessage|Mmm...~It's still a long~way to become the~best Trainer...

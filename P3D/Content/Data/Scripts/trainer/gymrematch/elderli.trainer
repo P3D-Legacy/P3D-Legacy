@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Li
-TrainerClass|Elder
+TrainerClass|<system.token(TrainerClass_Elder)>
 Money|2080
 IntroMessage|Not long ago, we~battled, and you were a~mere rookie trainer.*Show me how much~you've grown.
 OutroMessage|Excellent!*You bring out the best~in your Pokémon.

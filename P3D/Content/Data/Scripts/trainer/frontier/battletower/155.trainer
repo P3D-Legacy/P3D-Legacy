@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Codie
-TrainerClass|Dragon Tamer
+TrainerClass|<system.token(TrainerClass_DragonTamer)>
 Money|0
 IntroMessage|Oh, wow!~Rare Pokémon!
 OutroMessage|Tch.~Couldn't fool you.

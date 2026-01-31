@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Jerrod
-TrainerClass|Scientist
+TrainerClass|<system.token(TrainerClass_Scientist)>
 Money|0
 IntroMessage|Steadily and surely. You~build from the little things up.
 OutroMessage|But I did things steadily~and surely...

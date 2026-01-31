@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Ezra
-TrainerClass|Rancher
+TrainerClass|<system.token(TrainerClass_Rancher)>
 Money|0
 IntroMessage|All right, take a run at me!~My barrel chest can take it!
 OutroMessage|Ooh... Ow... That hurt...~It's like you broke my barrel chest...

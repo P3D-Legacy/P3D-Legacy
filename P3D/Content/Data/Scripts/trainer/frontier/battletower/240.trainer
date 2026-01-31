@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Mayra
-TrainerClass|Socialite
+TrainerClass|<system.token(TrainerClass_Socialite)>
 Money|0
 IntroMessage|Oh, my,~a mere child.
 OutroMessage|Children these days...~Quite exuberant, methinks.

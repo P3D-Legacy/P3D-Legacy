@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Pryce
-TrainerClass|Leader
+TrainerClass|<system.token(TrainerClass_Leader)>
 Money|3100
 IntroMessage|Pokémon have many~experiences in*their lives, just~like we do.*I, too, have seen~and suffered much~in my life.*Since I am your~elder, let me show~you what I mean.*I have been with~Pokémon since~before you were born.*I do not lose easily*I, Pryce--the~winter trainer--*shall demonstrate~my power!
 OutroMessage|Ah, I am impressed~by your prowess.*With your strong~will, I know you*will overcome all~life's obstacles.*You are worthy of~the Glacier Badge!

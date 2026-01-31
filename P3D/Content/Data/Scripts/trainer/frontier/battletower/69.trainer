@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Alena
-TrainerClass|Beauty
+TrainerClass|<system.token(TrainerClass_Beauty)>
 Money|0
 IntroMessage|Let's get this session on!
 OutroMessage|This may hurt a little bit,~but we'll be done quick.*Hold still!

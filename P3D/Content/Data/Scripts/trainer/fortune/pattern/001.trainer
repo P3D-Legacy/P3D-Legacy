@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Cordell
-TrainerClass|Youngster
+TrainerClass|<system.token(TrainerClass_Youngster)>
 Money|800
 IntroMessage|I bet you think I'm just some~guy, don't you, eh?
 OutroMessage|I bet you think I'm weak, don't you, eh?

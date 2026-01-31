@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Chuck
-TrainerClass|Leader
+TrainerClass|<system.token(TrainerClass_Leader)>
 Money|3000
 IntroMessage|There! Scared now,~are you?*What?~It has nothing to~do with Pokémon?*That's true!*Come on. We shall~do battle!
 OutroMessage|Wha? Huh?~I lost?*How about that!~You're worthy of~the Storm Badge!

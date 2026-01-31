@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Raymond
-TrainerClass|Fisherman
+TrainerClass|<system.token(TrainerClass_Fisher)>man
 Money|880
 IntroMessage|No matter what I do~all I catch are~the same Pokémon!
 OutroMessage|My line's all~tangled up...

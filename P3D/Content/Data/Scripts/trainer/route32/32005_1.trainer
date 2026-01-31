@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Ralph
-TrainerClass|Fisherman
+TrainerClass|<system.token(TrainerClass_Fisher)>man
 Money|920
 IntroMessage|I'm a good angler,~but an even better~trainer!
 OutroMessage|Tch! I tried to~rush things...

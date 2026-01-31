@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Giovanni
-TrainerClass|Rocket Boss
+TrainerClass|<system.token(TrainerClass_RocketBoss)>
 Money|11160
 IntroMessage|
 OutroMessage|What in the world are you?

@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Blaine
-TrainerClass|Leader
+TrainerClass|<system.token(TrainerClass_Leader)>
 Money|7080
 IntroMessage|Blaine: Hey, you!~My Gym on Cinnabar Island~was burned down by~the eruption!*But I will not give up!*Take a look at~this cave.*We have turned it~into a Gym, and I am still~acting as a Gym Leader!*I will give you the~Gym Badge if you~manage to defeat me!*Are you ready?*Here we go!
 OutroMessage|My spirit has not been defeated!

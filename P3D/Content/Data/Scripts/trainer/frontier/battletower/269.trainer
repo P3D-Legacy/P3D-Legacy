@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Andreas
-TrainerClass|Hiker
+TrainerClass|<system.token(TrainerClass_Hiker)>
 Money|0
 IntroMessage|I hiked all the way~here to see my boy!
 OutroMessage|ein scherz hat einen Mann kaputtgeschlagen!

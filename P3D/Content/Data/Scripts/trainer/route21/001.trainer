@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Nikki
-TrainerClass|Swimmer♀
+TrainerClass|<system.token(TrainerClass_Swimmer_Female)>
 Money|1000
 IntroMessage|If I win, you have to~help me with my suntan~lotion!
 OutroMessage|I'm worried about sunburn...

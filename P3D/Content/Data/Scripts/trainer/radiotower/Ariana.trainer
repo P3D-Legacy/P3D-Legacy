@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Ariana
-TrainerClass|Executive
+TrainerClass|<system.token(TrainerClass_Executive)>
 Money|2304
 IntroMessage|Remember me from~the Hideout in~Mahogany Town?*I lost then, but I~won't this time.
 OutroMessage|This can't be~happening!*I fought hard, but~I still lost...

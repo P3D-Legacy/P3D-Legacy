@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Elmer
-TrainerClass|Rich Boy
+TrainerClass|<system.token(TrainerClass_RichBoy)>
 Money|0
 IntroMessage|There isn't anything that~I can't buy.*Money can buy battles!
 OutroMessage|I'll give you my allowance~if you'll let me win.

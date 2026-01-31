@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Petrel
-TrainerClass|Executive
+TrainerClass|<system.token(TrainerClass_Executive)>
 Money|1584
 IntroMessage|What? Who are you?~This is the office*of our leader,~Giovanni.*Since disbanding~Team Rocket three*years ago, he has~been in training.*But we're certain~he will be back*some day to assume~command again.*That's why we're~standing guard.*I won't let anyone~disturb this place!
 OutroMessage|I... I couldn't do a thing...*Giovanni, please~forgive me...

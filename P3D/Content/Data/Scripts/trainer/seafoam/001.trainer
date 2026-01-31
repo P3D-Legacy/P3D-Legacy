@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Cady
-TrainerClass|Skier
+TrainerClass|<system.token(TrainerClass_Skier)>
 Money|1696
 IntroMessage|To beat the cold,~try warm clothes and~a hot drink!
 OutroMessage|Argh, all the way out here!

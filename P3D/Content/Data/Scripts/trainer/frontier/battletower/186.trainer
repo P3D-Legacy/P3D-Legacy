@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Jim
-TrainerClass|Collector
+TrainerClass|<system.token(TrainerClass_Collector)>
 Money|0
 IntroMessage|Allow me to examine your~prowess as a collector.
 OutroMessage|That's quite the collection.~I'm willing to relieve you of the lot.

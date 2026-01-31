@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Noland
-TrainerClass|Hiker
+TrainerClass|<system.token(TrainerClass_Hiker)>
 Money|1376
 IntroMessage|Are you alone?*Then let's battle!
 OutroMessage|That's too much to handle!

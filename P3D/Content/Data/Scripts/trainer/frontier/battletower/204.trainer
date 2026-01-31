@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Markell
-TrainerClass|Guitarist
+TrainerClass|<system.token(TrainerClass_Guitarist)>
 Money|0
 IntroMessage|Pokémon are for adults,~too... Let me show you...
 OutroMessage|Though it cuts me deep,~it's a man's lot in life*to endure the pain...

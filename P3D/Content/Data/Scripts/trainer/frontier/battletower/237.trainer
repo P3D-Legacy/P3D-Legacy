@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Krisy
-TrainerClass|Battle Girl
+TrainerClass|<system.token(TrainerClass_BattleGirl)>
 Money|0
 IntroMessage|Shaah!
 OutroMessage|Hawah!

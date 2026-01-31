@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Blue
-TrainerClass|Leader
+TrainerClass|<system.token(TrainerClass_Leader)>
 Money|8000
 IntroMessage|Good!*Thanks for coming~to lose to me!
 OutroMessage|Just as I expected!*No wonder you've~become the Champion...

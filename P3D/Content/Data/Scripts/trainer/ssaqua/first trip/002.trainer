@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Lyle
-TrainerClass|Firebreather
+TrainerClass|<system.token(TrainerClass_Firebreather)>
 Money|1968
 IntroMessage|I'm going to Kanto to~put on fire-breathing~shows!
 OutroMessage|Fizzle...~The flame's tiny...

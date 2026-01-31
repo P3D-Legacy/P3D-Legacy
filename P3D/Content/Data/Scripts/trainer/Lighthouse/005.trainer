@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Kent
-TrainerClass|Sailor
+TrainerClass|<system.token(TrainerClass_Sailor)>
 Money|800
 IntroMessage|Jasmine must be~worried sick about~the Pokémon here.*She won't even~smile these days.
 OutroMessage|I can't manage a~smile either...

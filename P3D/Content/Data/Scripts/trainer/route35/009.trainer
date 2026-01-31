@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Bryan
-TrainerClass|Bird Keeper
+TrainerClass|<system.token(TrainerClass_BirdKeeper)>
 Money|336
 IntroMessage|What kinds of Pokéball~do you use?
 OutroMessage|Yikes! Not fast~enough!

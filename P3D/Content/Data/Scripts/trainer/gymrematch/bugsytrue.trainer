@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Bugsy
-TrainerClass|Leader
+TrainerClass|<system.token(TrainerClass_Leader)>
 Money|7100
 IntroMessage|Good to see you again!*Behold my bug research!
 OutroMessage|You must have studied~a lot about Pokémon!

@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Toby
-TrainerClass|Bird Keeper
+TrainerClass|<system.token(TrainerClass_BirdKeeper)>
 Money|408
 IntroMessage|Fly high into the~sky, my beloved~bird Pokémon!
 OutroMessage|I feel like just~flying away now.

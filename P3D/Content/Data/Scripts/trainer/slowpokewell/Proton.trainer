@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Proton
-TrainerClass|Executive
+TrainerClass|<system.token(TrainerClass_Executive)>
 Money|480
 IntroMessage|What do you want?*If you interrupt~our work, don't~expect any mercy!
 OutroMessage|You did OK today,~brat, but wait~'til next time!

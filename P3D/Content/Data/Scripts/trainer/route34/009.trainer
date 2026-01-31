@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Kate
-TrainerClass|Ace Trainer
+TrainerClass|<system.token(TrainerClass_AceTrainer)>
 Money|1344
 IntroMessage|You sure were~mean to my~little sisters!
 OutroMessage|No! I can't~believe I lost.

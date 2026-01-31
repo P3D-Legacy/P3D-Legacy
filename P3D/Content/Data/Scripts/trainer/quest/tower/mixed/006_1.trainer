@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Chelsea
-TrainerClass|Pokémon Ranger
+TrainerClass|<system.token(TrainerClass_PokémonRanger)>
 Money|0
 IntroMessage|The green world is~important isn't it?
 OutroMessage|Be kind to the green world.

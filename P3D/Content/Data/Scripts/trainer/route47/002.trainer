@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Grant
-TrainerClass|Camper
+TrainerClass|<system.token(TrainerClass_Camper)>
 Money|336
 IntroMessage|Hello!
 OutroMessage|I lost?!

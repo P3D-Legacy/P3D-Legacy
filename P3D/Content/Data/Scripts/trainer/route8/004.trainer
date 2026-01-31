@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Harris
-TrainerClass|Biker
+TrainerClass|<system.token(TrainerClass_Biker)>
 Money|1568
 IntroMessage|The cops shut down~our underground path!*That really fries me!
 OutroMessage|F-Forgive me!

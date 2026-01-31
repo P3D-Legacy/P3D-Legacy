@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Gloria
-TrainerClass|School Kid
+TrainerClass|<system.token(TrainerClass_School Kid)>
 Money|0
 IntroMessage|When I grow up, I'm going~to be a Pokémon professor!
 OutroMessage|Er-hem! Er-hem!~Seems I've much to learn still!

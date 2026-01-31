@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Susie
-TrainerClass|Swimmer♀
+TrainerClass|<system.token(TrainerClass_Swimmer_Female)>
 Money|440
 IntroMessage|You look so ele-~gant, riding your~Pokémon.
 OutroMessage|I'm crushed...

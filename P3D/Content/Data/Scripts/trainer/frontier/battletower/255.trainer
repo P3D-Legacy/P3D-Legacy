@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Lyle
-TrainerClass|Cyclist
+TrainerClass|<system.token(TrainerClass_Cyclist)>
 Money|0
 IntroMessage|Varrroooom!~Watch me go full throttle!
 OutroMessage|Vrrr... Vrruuu...~I'm flat out of gas...

@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Jane
-TrainerClass|Ace Trainer
+TrainerClass|<system.token(TrainerClass_AceTrainer)>
 Money|0
 IntroMessage|My papa and mama are~high-skill Trainers, too.
 OutroMessage|Papa, Mama!~I'm so sorry!

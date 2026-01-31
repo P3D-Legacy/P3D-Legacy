@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Sherman
-TrainerClass|Jogger
+TrainerClass|<system.token(TrainerClass_Jogger)>
 Money|0
 IntroMessage|Ready, Start!
 OutroMessage|Waah! Wait for me!

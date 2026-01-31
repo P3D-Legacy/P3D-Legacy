@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Hugh
-TrainerClass|Sailor
+TrainerClass|<system.token(TrainerClass_Sailor)>
 Money|0
 IntroMessage|Come on! Take a run at me!~I can take it!
 OutroMessage|Good job!~Way to overcome my size!

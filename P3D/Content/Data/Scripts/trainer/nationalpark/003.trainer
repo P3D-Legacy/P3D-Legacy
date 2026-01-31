@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Jack
-TrainerClass|School Kid
+TrainerClass|<system.token(TrainerClass_School Kid)>
 Money|480
 IntroMessage|The world of~Pokémon is deep.*There are still~lots of things we~don't know.*But I know more~than you do!
 OutroMessage|Wha-wha-what?

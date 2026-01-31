@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Bryce
-TrainerClass|Camper
+TrainerClass|<system.token(TrainerClass_Camper)>
 Money|1020
 IntroMessage|You know, everything tastes~great when you're out~in the wild.
 OutroMessage|Awww, blown!

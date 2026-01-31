@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Ben
-TrainerClass|Youngster
+TrainerClass|<system.token(TrainerClass_Youngster)>
 Money|0
 IntroMessage|Hey, rookie!~Bring it on!
 OutroMessage|Bleah!~You're just a rookie!

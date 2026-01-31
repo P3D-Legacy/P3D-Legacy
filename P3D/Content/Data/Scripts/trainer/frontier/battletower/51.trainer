@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Jaleel
-TrainerClass|Bug Catcher
+TrainerClass|<system.token(TrainerClass_BugCatcher)>
 Money|0
 IntroMessage|Where can I find a giant~HERACROSS?
 OutroMessage|If only I had a giant~HERACROSS...

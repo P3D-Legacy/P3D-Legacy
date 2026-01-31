@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Cybil
-TrainerClass|Ace Trainer
+TrainerClass|<system.token(TrainerClass_AceTrainer)>
 Money|1200
 IntroMessage|You look strong.*Good trainers seek~tough opponents~instinctively.
 OutroMessage|Nope! This won't~do at all.

@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Jonah
-TrainerClass|Bug Catcher
+TrainerClass|<system.token(TrainerClass_BugCatcher)>
 Money|600
 IntroMessage|You know, it just doesn't feel~right if I don't use bug~Pokémon.
 OutroMessage|It's okay, losing is a fun part of Pokémon's appeal, too.

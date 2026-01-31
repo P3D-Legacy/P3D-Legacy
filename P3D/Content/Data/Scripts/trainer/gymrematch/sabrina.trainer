@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Sabrina
-TrainerClass|Leader
+TrainerClass|<system.token(TrainerClass_Leader)>
 Money|7500
 IntroMessage|I knew you'd come!*I had a feeling.*What?~We promised each~other, so it's~no surprise?*Well, you may be right.
 OutroMessage|I know...~you will meet with~me here again sometime.

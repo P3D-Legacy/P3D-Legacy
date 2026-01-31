@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Nikki
-TrainerClass|Aroma Lady
+TrainerClass|<system.token(TrainerClass_AromaLady)>
 Money|0
 IntroMessage|You're going to lose,~but you'll get to enjoy a nice aroma!
 OutroMessage|Kiiiih!~I am so angry!

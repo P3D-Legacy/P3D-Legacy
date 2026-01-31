@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Santos
-TrainerClass|Veteran
+TrainerClass|<system.token(TrainerClass_Veteran)>
 Money|0
 IntroMessage|This is it! Over the top!~Everyone charge!
 OutroMessage|Retreat! Sound the retreat!

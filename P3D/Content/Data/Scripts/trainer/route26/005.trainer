@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Jake
-TrainerClass|Ace Trainer
+TrainerClass|<system.token(TrainerClass_AceTrainer)>
 Money|1680
 IntroMessage|I'm making my final~preparations for the~Pokémon League.
 OutroMessage|I blew it!

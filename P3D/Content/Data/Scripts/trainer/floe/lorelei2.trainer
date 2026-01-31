@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Lorelei
-TrainerClass|Pokémon Trainer
+TrainerClass|<system.token(TrainerClass_PokémonTrainer)>
 Money|9120
 IntroMessage|
 OutroMessage|If we keep battling we will keep getting stronger!

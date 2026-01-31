@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Jon,Eve
-TrainerClass|Young Couple,
+TrainerClass|<system.token(TrainerClass_YoungCouple)>,
 Money|3080
 IntroMessage|
 OutroMessage|Jon: When I'm with Eve, it doesn't feel like I've lost!

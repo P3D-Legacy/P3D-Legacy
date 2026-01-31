@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Eva
-TrainerClass|Battle Girl
+TrainerClass|<system.token(TrainerClass_BattleGirl)>
 Money|0
 IntroMessage|En garde!
 OutroMessage|Urgh... I won't forget this!

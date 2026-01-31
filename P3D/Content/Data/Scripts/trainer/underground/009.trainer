@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Grunt
-TrainerClass|Team Rocket
+TrainerClass|<system.token(TrainerClass_TeamRocket)>
 Money|1000
 IntroMessage|How did you get~this far?*I guess it can't be helped. I'll~dispose of you.
 OutroMessage|I got disposed of...

@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Jacki
-TrainerClass|Lady
+TrainerClass|<system.token(TrainerClass_Lady)>
 Money|10400
 IntroMessage|I am visiting my~friend's retreat,~if you must know.
 OutroMessage|Oh, my, so strong.

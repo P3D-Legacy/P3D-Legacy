@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Will
-TrainerClass|Ninja Boy
+TrainerClass|<system.token(TrainerClass_NinjaBoy)>
 Money|0
 IntroMessage|I shall become a real~ninja when I grow up!
 OutroMessage|So, what's a real ninja~supposed to do?

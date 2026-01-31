@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Shirley
-TrainerClass|Teacher
+TrainerClass|<system.token(TrainerClass_Teacher)>
 Money|3240
 IntroMessage|Dont lay a finger~on my students!
 OutroMessage|Aaaack!

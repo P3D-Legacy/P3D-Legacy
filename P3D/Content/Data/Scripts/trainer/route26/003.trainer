@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Joyce
-TrainerClass|Ace Trainer
+TrainerClass|<system.token(TrainerClass_AceTrainer)>
 Money|1536
 IntroMessage|Since you've come this~far, you must be good.*I'm going to give this~battle everything I've got!
 OutroMessage|NO! I don't~believe this!

@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Roxanne
-TrainerClass|Skier
+TrainerClass|<system.token(TrainerClass_Skier)>
 Money|2016
 IntroMessage|To get to Pryce,~our Gym Leader,*you need to think~before you skate.
 OutroMessage|I wouldn't lose to~you in skiing!

@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Ford
-TrainerClass|Swimmer♂
+TrainerClass|<system.token(TrainerClass_Swimmer_Male)>
 Money|176
 IntroMessage|Careful where you touch!
 OutroMessage|You were careful....

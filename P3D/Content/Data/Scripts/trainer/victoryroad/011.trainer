@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Caroline
-TrainerClass|Ace Trainer
+TrainerClass|<system.token(TrainerClass_AceTrainer)>
 Money|1512
 IntroMessage|I'll show you just how~good you are. Not!
 OutroMessage|I'm furious!

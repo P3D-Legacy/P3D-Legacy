@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Liz
-TrainerClass|Picnicker
+TrainerClass|<system.token(TrainerClass_Picnicker)>
 Money|(28+(<player.badges>*2))*20
 IntroMessage|Uh-huh. Yeah, and~you know...*Pardon? Battle?~I'm on the phone.*Oh, all right. But~make it fast.
 OutroMessage|Take it easy!~That's mean!

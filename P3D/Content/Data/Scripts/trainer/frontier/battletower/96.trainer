@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Codey
-TrainerClass|Cameraman
+TrainerClass|<system.token(TrainerClass_Cameraman)>
 Money|0
 IntroMessage|Zoom in on you!
 OutroMessage|Zoom out, fade...

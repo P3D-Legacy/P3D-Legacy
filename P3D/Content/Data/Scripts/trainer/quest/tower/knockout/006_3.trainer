@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Zackery
-TrainerClass|Scientist
+TrainerClass|<system.token(TrainerClass_Scientist)>
 Money|0
 IntroMessage|Lalala let's sing about~electric power!
 OutroMessage|Electric! Flash flash flash!!

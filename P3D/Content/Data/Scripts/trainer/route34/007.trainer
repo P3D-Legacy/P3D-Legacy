@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Irene
-TrainerClass|Ace Trainer
+TrainerClass|<system.token(TrainerClass_AceTrainer)>
 Money|1152
 IntroMessage|Kyaaah!~Someone found us!
 OutroMessage|Ohhhh! He's too strong!

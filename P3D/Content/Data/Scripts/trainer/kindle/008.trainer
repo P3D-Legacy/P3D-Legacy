@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Hugh
-TrainerClass|Black Belt
+TrainerClass|<system.token(TrainerClass_BlackBelt)>
 Money|1248
 IntroMessage|Dress appropriately~for battle!*Lose that frivolous outfit!
 OutroMessage|Why me?!

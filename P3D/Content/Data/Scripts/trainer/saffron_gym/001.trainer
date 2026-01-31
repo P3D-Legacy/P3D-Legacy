@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Doris
-TrainerClass|Medium
+TrainerClass|<system.token(TrainerClass_Medium)>
 Money|2080
 IntroMessage|Fufufufu...~I see it clearly.*I can see into your soul!
 OutroMessage|Though I read you, I still lost...

@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Stewart
-TrainerClass|Psychic
+TrainerClass|<system.token(TrainerClass_Psychic)>
 Money|0
 IntroMessage|...
 OutroMessage|I focused my mind in silence...

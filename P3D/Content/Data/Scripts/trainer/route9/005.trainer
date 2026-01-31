@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Sidney
-TrainerClass|Hiker
+TrainerClass|<system.token(TrainerClass_Hiker)>
 Money|1568
 IntroMessage|I'll tell you a secret.*But first, we battle!
 OutroMessage|Oh, dang!~I lost that.

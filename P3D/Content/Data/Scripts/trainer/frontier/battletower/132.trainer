@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Kylee
-TrainerClass|Pokémon Breeder
+TrainerClass|<system.token(TrainerClass_PokémonBreeder)>
 Money|0
 IntroMessage|Nice to meet you!~Underestimate me at your peril!
 OutroMessage|I guess I underestimated you...

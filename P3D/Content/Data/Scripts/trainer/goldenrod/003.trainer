@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Isaac
-TrainerClass|Poké Maniac
+TrainerClass|<system.token(TrainerClass_PokéManiac)>
 Money|720
 IntroMessage|My Pokémon just~got haircuts!*I'll show you how~strong they are!
 OutroMessage|Aiyeeee!

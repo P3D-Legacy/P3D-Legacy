@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Charlotte
-TrainerClass|Lady
+TrainerClass|<system.token(TrainerClass_Lady)>
 Money|0
 IntroMessage|Hello there I am a Pokémon lady.
 OutroMessage|You're better than a Pokémon lady.

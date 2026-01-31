@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Grunt
-TrainerClass|Team Rocket
+TrainerClass|<system.token(TrainerClass_TeamRocket)>
 Money|4930
 IntroMessage|The lighthouse and every last~corner of this island are now~property of Team Rocket!
 OutroMessage|We're not giving it back.

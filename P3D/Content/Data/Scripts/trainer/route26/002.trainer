@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Richard
-TrainerClass|Psychic
+TrainerClass|<system.token(TrainerClass_Psychic)>
 Money|1152
 IntroMessage|Look at all~those Badges!~I'm impressed.*But you're not~satisfied by just~collecting them, right?
 OutroMessage|Good battle!

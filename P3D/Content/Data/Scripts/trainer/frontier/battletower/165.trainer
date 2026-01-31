@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Floyd
-TrainerClass|School Kid
+TrainerClass|<system.token(TrainerClass_School Kid)>
 Money|0
 IntroMessage|Allow me to study you.
 OutroMessage|I get it now.*In that situation,~I should have used that move.

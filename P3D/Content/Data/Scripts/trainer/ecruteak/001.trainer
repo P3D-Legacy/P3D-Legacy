@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Naoko
-TrainerClass|Kimono Girl
+TrainerClass|<system.token(TrainerClass_KimonoGirl)>
 Money|1224
 IntroMessage|You have lovely~Pokémon. May I see~them in battle?
 OutroMessage|Oh you are very~strong.

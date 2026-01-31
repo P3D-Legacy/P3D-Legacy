@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Martha
-TrainerClass|Picnicker
+TrainerClass|<system.token(TrainerClass_Picnicker)>
 Money|0
 IntroMessage|I'll teach you what's~fun about battling.
 OutroMessage|Oh, my, that was inspiring!~You're the greatest!

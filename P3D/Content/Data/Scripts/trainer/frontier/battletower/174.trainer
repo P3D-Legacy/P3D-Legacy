@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Elisha
-TrainerClass|Ninja Boy
+TrainerClass|<system.token(TrainerClass_NinjaBoy)>
 Money|0
 IntroMessage|Feast your eyes on secret~techniques of the ancients!
 OutroMessage|That's my cue to~disappear in a puff of smoke.

@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Bridget
-TrainerClass|Lass
+TrainerClass|<system.token(TrainerClass_Lass)>
 Money|360
 IntroMessage|I like cute Pokémon better than~strong Pokémon.*But I have strong~and cute Pokémon!
 OutroMessage|Oh, no, no, no.

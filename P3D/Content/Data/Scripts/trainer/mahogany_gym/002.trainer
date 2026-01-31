@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Clarissa
-TrainerClass|Skier
+TrainerClass|<system.token(TrainerClass_Skier)>
 Money|2016
 IntroMessage|Check out my~parallel turn!
 OutroMessage|Nope! you made me~wipe out!

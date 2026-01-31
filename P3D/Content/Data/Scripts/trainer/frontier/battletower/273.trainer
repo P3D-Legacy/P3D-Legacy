@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Dalvin
-TrainerClass|Guitarist
+TrainerClass|<system.token(TrainerClass_Guitarist)>
 Money|0
 IntroMessage|Listen!~This is my chorus group.*Me and my Pokémon!
 OutroMessage|Oh, wait! We're~not done singing!

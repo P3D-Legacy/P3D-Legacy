@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Dean
-TrainerClass|Camper
+TrainerClass|<system.token(TrainerClass_Camper)>
 Money|864
 IntroMessage|I came to explore Rock Tunnel.
 OutroMessage|Whoa! Danger, man.

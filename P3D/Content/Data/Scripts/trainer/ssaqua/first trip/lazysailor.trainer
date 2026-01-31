@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Stanly
-TrainerClass|Sailor
+TrainerClass|<system.token(TrainerClass_Sailor)>
 Money|1720
 IntroMessage|Yeah,~I'm a sailor all right.*I wasn't goofing off!*This cabin was vacant,~so I just took a quick nap!*Ah, forget it!*Let's battle!
 OutroMessage|Sorry!~It's all my fault!

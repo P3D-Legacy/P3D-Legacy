@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Kenyon
-TrainerClass|Bug Catcher
+TrainerClass|<system.token(TrainerClass_BugCatcher)>
 Money|0
 IntroMessage|I'll snag you with my net!
 OutroMessage|Hey! Don't run away!

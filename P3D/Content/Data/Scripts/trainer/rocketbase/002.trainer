@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Jed
-TrainerClass|Scientist
+TrainerClass|<system.token(TrainerClass_Scientist)>
 Money|2000
 IntroMessage|This was once a~ninja hideout.*There are traps to~confound intruders~like you.
 OutroMessage|I get it...

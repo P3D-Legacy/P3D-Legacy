@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Linda
-TrainerClass|Lass
+TrainerClass|<system.token(TrainerClass_Lass)>
 Money|1224
 IntroMessage|Fooled you!~Hahaha!
 OutroMessage|Ooh... I lost...~You're not weak...

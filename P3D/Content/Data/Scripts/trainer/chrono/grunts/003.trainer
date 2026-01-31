@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Grunt
-TrainerClass|Team Rocket
+TrainerClass|<system.token(TrainerClass_TeamRocket)>
 Money|1960
 IntroMessage|Hey brat!*This is no~place for kids!
 OutroMessage|I just got~beaten by a kid?!

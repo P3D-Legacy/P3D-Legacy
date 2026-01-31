@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Earl
-TrainerClass|Hiker
+TrainerClass|<system.token(TrainerClass_Hiker)>
 Money|1944
 IntroMessage|Tell me, where are the~mountains around these parts?
 OutroMessage|I lost my way while I was busy battling!

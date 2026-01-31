@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Mik,Kia
-TrainerClass|Crush Kin,
+TrainerClass|<system.token(TrainerClass_CrushKin)>,
 Money|2592
 IntroMessage|
 OutroMessage|Mik: Whoa~That's too much!|Kia: Huh?!~I can't believe it!

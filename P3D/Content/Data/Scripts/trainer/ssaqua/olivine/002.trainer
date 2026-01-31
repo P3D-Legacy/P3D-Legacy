@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Sean
-TrainerClass|Ace Trainer
+TrainerClass|<system.token(TrainerClass_AceTrainer)>
 Money|2160
 IntroMessage|I'm going to Kanto~to test my skills.
 OutroMessage|I wanted to win!

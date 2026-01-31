@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Destin
-TrainerClass|Youngster
+TrainerClass|<system.token(TrainerClass_Youngster)>
 Money|800
 IntroMessage|I'm a good runner.~I'm really fast!
 OutroMessage|Oops! I rushed things!

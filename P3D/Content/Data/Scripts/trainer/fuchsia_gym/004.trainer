@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Alice
-TrainerClass|Lass
+TrainerClass|<system.token(TrainerClass_Lass)>
 Money|1224
 IntroMessage|Fufufu!*I'm Janine, the Gym Leader!*No, I'm not!~Gotcha, sucker!
 OutroMessage|I had you fooled...

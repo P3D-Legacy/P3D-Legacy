@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Kenti
-TrainerClass|Swimmer♀
+TrainerClass|<system.token(TrainerClass_Swimmer_Female)>
 Money|500
 IntroMessage|Have you heard about~how coral reefs are~endangered?
 OutroMessage|I'm  really concerned for the coral reefs.

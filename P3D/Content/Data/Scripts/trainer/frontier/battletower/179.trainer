@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Kyla
-TrainerClass|Idol
+TrainerClass|<system.token(TrainerClass_Idol)>
 Money|0
 IntroMessage|You can shake hands with me!~It would be quite the honor~for you!
 OutroMessage|My management team will have~something to say about this!

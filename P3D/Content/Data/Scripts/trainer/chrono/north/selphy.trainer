@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Selphy
-TrainerClass|Lady
+TrainerClass|<system.token(TrainerClass_Lady)>
 Money|10600
 IntroMessage|W-what do you intend~to do with me?
 OutroMessage|Oh... I was afraid that you meant to harm me.

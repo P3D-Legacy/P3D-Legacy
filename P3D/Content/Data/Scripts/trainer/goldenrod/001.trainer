@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Eric
-TrainerClass|Super Nerd
+TrainerClass|<system.token(TrainerClass_SuperNerd)>
 Money|352
 IntroMessage|I got booted out~of the Game Corner.*I was trying to~cheat using my~Pokémon...
 OutroMessage|...Grumble...

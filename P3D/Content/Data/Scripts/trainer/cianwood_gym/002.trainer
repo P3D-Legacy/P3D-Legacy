@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Lao
-TrainerClass|Black Belt
+TrainerClass|<system.token(TrainerClass_BlackBelt)>
 Money|648
 IntroMessage|We martial artists~fear nothing!
 OutroMessage|That's shocking!

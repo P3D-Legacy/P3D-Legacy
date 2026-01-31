@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Tom
-TrainerClass|Super Nerd
+TrainerClass|<system.token(TrainerClass_SuperNerd)>
 Money|1440
 IntroMessage|Hm...~You've got many gym badges.
 OutroMessage|Just as I thought...~You're tough!

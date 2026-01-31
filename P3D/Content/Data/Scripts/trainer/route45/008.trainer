@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Quentin
-TrainerClass|Camper
+TrainerClass|<system.token(TrainerClass_Camper)>
 Money|600
 IntroMessage|I'm really, really~tough!
 OutroMessage|I was tough at the~Battle Frontier...

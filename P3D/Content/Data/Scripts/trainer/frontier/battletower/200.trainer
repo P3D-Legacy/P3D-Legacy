@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Justyn
-TrainerClass|Camper
+TrainerClass|<system.token(TrainerClass_Camper)>
 Money|0
 IntroMessage|The indefatigable Camper makes~his stand!
 OutroMessage|I wish I could become your devotee.

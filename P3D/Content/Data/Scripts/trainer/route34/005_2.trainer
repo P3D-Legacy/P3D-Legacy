@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Todd
-TrainerClass|Camper
+TrainerClass|<system.token(TrainerClass_Camper)>
 Money|576
 IntroMessage|I'm confident in~my ability to~raise Pokémon.*Want to see?
 OutroMessage|I didn't do a~good enough job?

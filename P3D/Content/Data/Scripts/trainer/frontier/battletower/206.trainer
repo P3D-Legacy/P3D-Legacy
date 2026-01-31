@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Maranda
-TrainerClass|Idol
+TrainerClass|<system.token(TrainerClass_Idol)>
 Money|0
 IntroMessage|For work, I sometimes get~to be a Swimmer or a Beauty.
 OutroMessage|But the real me...~I'm still a Lass in a miniskirt!

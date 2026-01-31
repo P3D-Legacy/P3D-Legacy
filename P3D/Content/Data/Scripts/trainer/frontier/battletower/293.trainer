@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Madelyn
-TrainerClass|Parasol Lady
+TrainerClass|<system.token(TrainerClass_ParasolLady)>
 Money|0
 IntroMessage|This is for keeping~the sun off.
 OutroMessage|I don't want to~roast my skin.

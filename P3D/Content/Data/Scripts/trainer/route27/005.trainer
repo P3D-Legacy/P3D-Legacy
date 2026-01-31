@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Gilbert
-TrainerClass|Psychic
+TrainerClass|<system.token(TrainerClass_Psychic)>
 Money|1088
 IntroMessage|Don't say a thing!*Let me guess what~you're thinking.*Mmmmmmm...*I got it! You're~on the Pokémon~League challenge!
 OutroMessage|You're too much!

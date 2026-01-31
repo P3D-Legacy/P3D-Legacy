@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Aiden
-TrainerClass|Biker
+TrainerClass|<system.token(TrainerClass_Biker)>
 Money|1600
 IntroMessage|Hey who told you you could~ride up and down this road?
 OutroMessage|Crash!

@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Franklin
-TrainerClass|Psychic
+TrainerClass|<system.token(TrainerClass_Psychic)>
 Money|1696
 IntroMessage|Psychic power is the~power of your soul.
 OutroMessage|Your soul has more power than mine!

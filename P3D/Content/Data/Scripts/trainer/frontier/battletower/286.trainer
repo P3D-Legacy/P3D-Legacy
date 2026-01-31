@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Zimmerman
-TrainerClass|Policeman
+TrainerClass|<system.token(TrainerClass_Policeman)>
 Money|0
 IntroMessage|Hello, you there!~Yes, you!*Hold up.~Hold it, I say!
 OutroMessage|You don't seem suspicious.~I almost pulled my weapon out.

@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Kira
-TrainerClass|Pokémon Ranger
+TrainerClass|<system.token(TrainerClass_PokémonRanger)>
 Money|0
 IntroMessage|If I win, your name gets~put in my victory notebook!
 OutroMessage|Darn,~I'll go write someone else's.

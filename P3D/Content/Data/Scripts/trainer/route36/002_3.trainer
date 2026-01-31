@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Alan
-TrainerClass|School Kid
+TrainerClass|<system.token(TrainerClass_School Kid)>
 Money|32*(30+(<player.badges>*2))
 IntroMessage|Thanks to my studies,~I'm ready for any~Pokémon!
 OutroMessage|Oops! Computation~error?

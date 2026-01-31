@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Rory
-TrainerClass|Cameraman
+TrainerClass|<system.token(TrainerClass_Cameraman)>
 Money|0
 IntroMessage|OK, everyone!~Big smiles!
 OutroMessage|That's a great smile! Your victory~pose is picture perfect, too!

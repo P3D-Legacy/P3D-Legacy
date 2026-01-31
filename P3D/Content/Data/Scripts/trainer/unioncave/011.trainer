@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Gwen
-TrainerClass|Ace Trainer
+TrainerClass|<system.token(TrainerClass_AceTrainer)>
 Money|246
 IntroMessage|I'm in training.~Care for a round?
 OutroMessage|Aww, no! You're~too good for me.

@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Chow
-TrainerClass|Sage
+TrainerClass|<system.token(TrainerClass_Sage)>
 Money|96
 IntroMessage|We stand guard in~this tower.*Here, we express~our gratitude to~honor all Pokémon.
 OutroMessage|Th-Thank you!

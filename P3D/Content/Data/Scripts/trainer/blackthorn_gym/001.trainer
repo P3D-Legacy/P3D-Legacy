@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Paul
-TrainerClass|Ace Trainer
+TrainerClass|<system.token(TrainerClass_AceTrainer)>
 Money|1632
 IntroMessage|Your first battle~against dragons?*I'll show you how~tough they are!
 OutroMessage|My dragon Pokémon lost?

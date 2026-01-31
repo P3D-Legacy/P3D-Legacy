@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Jonah
-TrainerClass|Fisher
+TrainerClass|<system.token(TrainerClass_Fisher)>
 Money|1560
 IntroMessage|Even though we're out on~the sea, I can't fish!~This is boring!~Let's battle!
 OutroMessage|I...~I'm not bored anymore...

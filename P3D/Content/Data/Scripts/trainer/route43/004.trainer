@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Brent
-TrainerClass|Poké Maniac
+TrainerClass|<system.token(TrainerClass_PokéManiac)>
 Money|1140
 IntroMessage|Hey! Do you have~any rare Pokémon?
 OutroMessage|Oh, my poor Pokémon!~Darlings!

@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Sid
-TrainerClass|Camper
+TrainerClass|<system.token(TrainerClass_Camper)>
 Money|846
 IntroMessage|Hey, you!~Don't litter!
 OutroMessage|I was just pointing out...

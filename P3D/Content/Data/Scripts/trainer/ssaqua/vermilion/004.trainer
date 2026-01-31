@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Clyde
-TrainerClass|Guitarist
+TrainerClass|<system.token(TrainerClass_Guitarist)>
 Money|1408
 IntroMessage|I'm going to audition~my songs at~Goldenrod's Radio Station.
 OutroMessage|Yowza!~Total distortion!

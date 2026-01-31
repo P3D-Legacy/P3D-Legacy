@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Paxton
-TrainerClass|Biker
+TrainerClass|<system.token(TrainerClass_Biker)>
 Money|1320
 IntroMessage|I've been watching you,~and I'd say you've done enough.*What are you, their~friend or something?*Then I guess you'll be~battling me in their place.
 OutroMessage|All right, enough!*We'll leave like you wanted!*We'll be happy to see the~last of this boring island!

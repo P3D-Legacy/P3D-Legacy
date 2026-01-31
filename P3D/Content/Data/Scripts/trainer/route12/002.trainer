@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Martin
-TrainerClass|Fisher
+TrainerClass|<system.token(TrainerClass_Fisher)>
 Money|1880
 IntroMessage|Patience is the key to~both fishing and Pokémon.
 OutroMessage|Ouch!

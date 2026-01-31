@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Vance
-TrainerClass|Bug Catcher
+TrainerClass|<system.token(TrainerClass_BugCatcher)>
 Money|624
 IntroMessage|Yeah, yeah, yeah!~Look at all the bug Pokémon!
 OutroMessage|I got beat while I was still busy celebrating!

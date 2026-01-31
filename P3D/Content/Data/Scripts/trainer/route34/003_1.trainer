@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Gina
-TrainerClass|Picnicker
+TrainerClass|<system.token(TrainerClass_Picnicker)>
 Money|368
 IntroMessage|Are you a trainer?*Let's have a~practice battle.
 OutroMessage|Oh, no! I just~can't win...

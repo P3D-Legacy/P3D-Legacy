@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Corey
-TrainerClass|Burglar
+TrainerClass|<system.token(TrainerClass_Burglar)>
 Money|3520
 IntroMessage|Yeehaw!~Lucky!
 OutroMessage|How unlucky!~I lost!

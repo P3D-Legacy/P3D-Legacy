@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Jin
-TrainerClass|Sage
+TrainerClass|<system.token(TrainerClass_Sage)>
 Money|192
 IntroMessage|I train to find~enlightenment in Pokémon!
 OutroMessage|Beaten by a mere~child!

@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Ronald
-TrainerClass|Boarder
+TrainerClass|<system.token(TrainerClass_Boarder)>
 Money|1728
 IntroMessage|I'll freeze your~Pokémon, so you~can't do a thing!
 OutroMessage|Darn... I couldn't~do a thing.

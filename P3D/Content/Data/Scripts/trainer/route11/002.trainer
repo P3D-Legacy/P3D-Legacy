@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Jason
-TrainerClass|Youngster
+TrainerClass|<system.token(TrainerClass_Youngster)>
 Money|768
 IntroMessage|It itches and tickles~a bit when I wear shorts~in the grass.
 OutroMessage|Aiyaaah!~I got stomped!

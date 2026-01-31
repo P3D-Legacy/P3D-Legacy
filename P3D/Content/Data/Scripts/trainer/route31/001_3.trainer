@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Wade
-TrainerClass|Bug Catcher
+TrainerClass|<system.token(TrainerClass_BugCatcher)>
 Money|464
 IntroMessage|I caught a bunch~of Pokémon. Let me~battle with you!
 OutroMessage|Awwww...

@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Liliana
-TrainerClass|Idol
+TrainerClass|<system.token(TrainerClass_Idol)>
 Money|0
 IntroMessage|I'm too into battling...~They might fire me as an idol...
 OutroMessage|I can't help myself.~No one can keep me from battling.

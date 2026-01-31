@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Rob
-TrainerClass|Bug Catcher
+TrainerClass|<system.token(TrainerClass_BugCatcher)>
 Money|752
 IntroMessage|My bug Pokémon are tough.*Prepare to lose!
 OutroMessage|I was whipped...

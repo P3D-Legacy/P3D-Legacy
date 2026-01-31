@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Mariana
-TrainerClass|Cyclist
+TrainerClass|<system.token(TrainerClass_Cyclist)>
 Money|0
 IntroMessage|It's my dream to~cycle with my boyfriend.
 OutroMessage|I wish I had a boyfriend!

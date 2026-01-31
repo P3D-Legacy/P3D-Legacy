@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Alfred
-TrainerClass|Gentleman
+TrainerClass|<system.token(TrainerClass_Gentleman)>
 Money|72*(24+(<player.badges>*2))
 IntroMessage|Hm? This is no~place for playing.
 OutroMessage|Ah! I can see that~you're serious.

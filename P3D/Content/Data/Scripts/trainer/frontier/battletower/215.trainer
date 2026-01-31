@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Sophie
-TrainerClass|Cowgirl
+TrainerClass|<system.token(TrainerClass_Cowgirl)>
 Money|0
 IntroMessage|We're going for the win!~Hey-ho, let's go!
 OutroMessage|Aww, we lost...~Sniffle...

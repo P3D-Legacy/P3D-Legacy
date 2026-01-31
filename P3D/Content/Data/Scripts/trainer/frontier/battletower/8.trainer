@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Lamont
-TrainerClass|School Kid
+TrainerClass|<system.token(TrainerClass_School Kid)>
 Money|0
 IntroMessage|I study every day because~I want to work all over the world.
 OutroMessage|I need to study up on~Pokémon battles.

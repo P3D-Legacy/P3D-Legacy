@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Cole
-TrainerClass|Youngster
+TrainerClass|<system.token(TrainerClass_Youngster)>
 Money|0
 IntroMessage|Ahaha, you're not going~anywhere!
 OutroMessage|Hiyah!! Done in totally!!

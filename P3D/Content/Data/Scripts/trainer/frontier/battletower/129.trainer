@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Lester
-TrainerClass|Pokémon Breeder
+TrainerClass|<system.token(TrainerClass_PokémonBreeder)>
 Money|0
 IntroMessage|Raising Pokémon takes a~lot of honest effort!
 OutroMessage|Urgwah! Look what~you've done to my Pokémon!

@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Grunt
-TrainerClass|Team Rocket
+TrainerClass|<system.token(TrainerClass_TeamRocket)>
 Money|360
 IntroMessage|Quit taking Slowpoketails?*If we obeyed you,~Team Rocket's rep~would be ruined!
 OutroMessage|Just...~Too strong...

@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Vance
-TrainerClass|Bird Keeper
+TrainerClass|<system.token(TrainerClass_BirdKeeper)>
 Money|24*(24+(<player.badges>*2))
 IntroMessage|Do you know about~the legendary bird~Pokémon?
 OutroMessage|Whew! You're hot~stuff.

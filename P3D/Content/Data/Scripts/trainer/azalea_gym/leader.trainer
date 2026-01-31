@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Bugsy
-TrainerClass|Leader
+TrainerClass|<system.token(TrainerClass_Leader)>
 Money|1600
 IntroMessage|I'm Bugsy!~I never lose when*it comes to bug~Pokémon.*My research is~going to make me*the authority on~bug Pokémon!*Let me demonstrate~what I've learned from my~studies.
 OutroMessage|Whoa, amazing!~You're an expert~on Pokémon!*My research isn't~complete yet.*OK, you win. Take~this Badge.

@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Violet
-TrainerClass|Aroma Lady
+TrainerClass|<system.token(TrainerClass_AromaLady)>
 Money|1428
 IntroMessage|Where are you off~to in such a hurry?
 OutroMessage|You're raising some wonderful Pokémon.

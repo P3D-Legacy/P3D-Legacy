@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Kim
-TrainerClass|Picnicker
+TrainerClass|<system.token(TrainerClass_Picnicker)>
 Money|300
 IntroMessage|Are you going to~the Gym? Me too!
 OutroMessage|Oh. I couldn't~win...

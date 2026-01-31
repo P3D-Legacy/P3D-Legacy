@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Nicolas
-TrainerClass|Black Belt
+TrainerClass|<system.token(TrainerClass_BlackBelt)>
 Money|0
 IntroMessage|This is where you stop!
 OutroMessage|Why couldn't I beat you?

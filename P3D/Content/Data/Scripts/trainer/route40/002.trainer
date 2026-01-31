@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Elaine
-TrainerClass|Swimmer♀
+TrainerClass|<system.token(TrainerClass_Swimmer_Female)>
 Money|420
 IntroMessage|Are you going to ~Cianwood?*How about a quick~battle first?
 OutroMessage|I lost that one!

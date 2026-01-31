@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Albert
-TrainerClass|Youngster
+TrainerClass|<system.token(TrainerClass_Youngster)>
 Money|128
 IntroMessage|I haven't seen you~around before.*So you think you~are pretty tough?
 OutroMessage|You're strong!

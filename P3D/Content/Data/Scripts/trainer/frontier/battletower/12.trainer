@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Milton
-TrainerClass|Rich Boy
+TrainerClass|<system.token(TrainerClass_RichBoy)>
 Money|0
 IntroMessage|It's fine, fine.~No need to say a word.
 OutroMessage|It's fine, fine...~No need to say a word...

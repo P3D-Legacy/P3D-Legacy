@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Pierre
-TrainerClass|Pokémon Breeder
+TrainerClass|<system.token(TrainerClass_PokémonBreeder)>
 Money|0
 IntroMessage|...They're Pokémon I've~raised with my father...
 OutroMessage|Dad, I can't...~I need to raise them some more...

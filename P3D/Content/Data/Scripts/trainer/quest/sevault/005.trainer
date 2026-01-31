@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Cyndy
-TrainerClass|Crush Girl
+TrainerClass|<system.token(TrainerClass_CrushGirl)>
 Money|1296
 IntroMessage|My conditioning's in top form!
 OutroMessage|Huh?~Something's not right...

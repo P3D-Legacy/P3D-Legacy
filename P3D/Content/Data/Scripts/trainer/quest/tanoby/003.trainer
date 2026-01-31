@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Edna
-TrainerClass|Painter
+TrainerClass|<system.token(TrainerClass_Painter)>
 Money|880
 IntroMessage|Clifford is teaching me how to~paint.
 OutroMessage|We might get in trouble for being noisy here.

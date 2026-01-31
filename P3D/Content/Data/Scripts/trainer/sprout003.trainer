@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Edmond
-TrainerClass|Sage
+TrainerClass|<system.token(TrainerClass_Sage)>
 Money|96
 IntroMessage|...Sway like leaves in~the wind...
 OutroMessage|Oh, I'm weak!

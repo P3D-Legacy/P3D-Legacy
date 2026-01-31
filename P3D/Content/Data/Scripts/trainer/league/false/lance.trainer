@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Lance
-TrainerClass|Champion
+TrainerClass|<system.token(TrainerClass_Champion)>
 Money|5000
 IntroMessage|I've been waiting for you.*<player.name>!*I knew that you,~with your skills,~would eventually reach me here.*There's no need~for words now.*We will battle to~determine who is the~stronger of the two of us.*As the most powerful~trainer and as the~Pokémon League Champion...*I, Lance the dragon master,~accept your challenge!
 OutroMessage|...It's over.*But it's an odd feeling.*I'm not angry that I lost.*In fact,~I feel happy.*Happy that I witnessed the~rise of a great new Champion!

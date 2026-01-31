@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Mia,Miu
-TrainerClass|Twins,
+TrainerClass|<system.token(TrainerClass_Twins)>,
 Money|1320
 IntroMessage|
 OutroMessage|Mia: You're mean!~You're bad for winning!

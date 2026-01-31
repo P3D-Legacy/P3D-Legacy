@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Lowell
-TrainerClass|Scientist
+TrainerClass|<system.token(TrainerClass_Scientist)>
 Money|1600
 IntroMessage|A white lab coat~is a researcher's life.~We may be living in~a cave like this,~but we never forget~to do the laundry.
 OutroMessage|It's pure white in my head!

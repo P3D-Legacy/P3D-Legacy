@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Auston
-TrainerClass|PI
+TrainerClass|<system.token(TrainerClass_PI)>
 Money|0
 IntroMessage|What's your motive?~What brought you here?
 OutroMessage|Play it again.

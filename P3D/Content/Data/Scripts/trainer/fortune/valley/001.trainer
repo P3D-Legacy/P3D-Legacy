@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Hector
-TrainerClass|Poké Maniac
+TrainerClass|<system.token(TrainerClass_PokéManiac)>
 Money|2640
 IntroMessage|I'm pretty familiar with the~land around these parts.
 OutroMessage|You don't need to be so pushy. I'll be happy to tell you.

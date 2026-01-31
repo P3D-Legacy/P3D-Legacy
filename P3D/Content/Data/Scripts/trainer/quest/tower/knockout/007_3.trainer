@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Shania
-TrainerClass|Tuber
+TrainerClass|<system.token(TrainerClass_Tuber)>
 Money|0
 IntroMessage|A Pokémon heroine that's~what I am.
 OutroMessage|Why?! You should not lie.

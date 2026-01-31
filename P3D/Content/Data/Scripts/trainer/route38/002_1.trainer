@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Dana
-TrainerClass|Lass
+TrainerClass|<system.token(TrainerClass_Lass)>
 Money|840
 IntroMessage|You seem to be ~good at Pokémon.*If you are, how~about giving me~some advice?
 OutroMessage|I see. So you can~battle that way.

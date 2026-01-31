@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Houston
-TrainerClass|Camper
+TrainerClass|<system.token(TrainerClass_Camper)>
 Money|0
 IntroMessage|Oh! You have a Pokegear too?
 OutroMessage|I was fooling around with~my Pokegear, and I lost...

@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Ryan
-TrainerClass|Ace Trainer
+TrainerClass|<system.token(TrainerClass_AceTrainer)>
 Money|1296
 IntroMessage|What are your thoughts~on raising Pokémon?
 OutroMessage|You've won my~respect.

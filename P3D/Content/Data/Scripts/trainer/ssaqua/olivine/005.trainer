@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Rodney
-TrainerClass|Psychic
+TrainerClass|<system.token(TrainerClass_Psychic)>
 Money|1376
 IntroMessage|Ssh!*My brain is picking~up radio signals!
 OutroMessage|...I hear something!

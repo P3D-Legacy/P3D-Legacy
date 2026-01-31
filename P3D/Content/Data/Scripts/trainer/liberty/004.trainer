@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Grunt
-TrainerClass|Team Rocket
+TrainerClass|<system.token(TrainerClass_TeamRocket)>
 Money|4110
 IntroMessage|We will use this rare~Pokémon and its powers~to do our bidding.
 OutroMessage|Not even the Pokémon around me are doing my bidding!

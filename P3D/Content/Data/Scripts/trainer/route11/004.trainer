@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Fidel
-TrainerClass|Psychic
+TrainerClass|<system.token(TrainerClass_Psychic)>
 Money|1568
 IntroMessage|I can see it...*Everything to see~about you...
 OutroMessage|I couldn't predict that...

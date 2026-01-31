@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Agatha
-TrainerClass|Pokémon Trainer
+TrainerClass|<system.token(TrainerClass_PokémonTrainer)>
 Money|9120
 IntroMessage|There you are, kid!*Prove once again if~that old duff is~a good trainer scout.
 OutroMessage|Not bad!*You display the~strength of a real~trainer.

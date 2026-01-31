@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Bethany
-TrainerClass|Pokémon Breeder
+TrainerClass|<system.token(TrainerClass_PokémonBreeder)>
 Money|1540
 IntroMessage|I'm curious, how do you raise~your Pokémon?
 OutroMessage|You raise your Pokémon with a whole lot of love!

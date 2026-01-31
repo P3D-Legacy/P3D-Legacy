@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Irvin
-TrainerClass|Guitarist
+TrainerClass|<system.token(TrainerClass_Guitarist)>
 Money|0
 IntroMessage|Let's get this session on!
 OutroMessage|My dream of a world tour...~It seems so far away...

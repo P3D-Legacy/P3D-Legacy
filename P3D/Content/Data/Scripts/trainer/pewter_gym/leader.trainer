@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Brock
-TrainerClass|Leader
+TrainerClass|<system.token(TrainerClass_Leader)>
 Money|6480
 IntroMessage|Brock: Wow, it's not often~that we get a challenger~from Johto.*I'm Brock, the~Pewter Gym Leader.*I'm an expert in rock~type Pokémon.*My Pokémon are impervious~to most physical attacks.*You'll have a hard time~inflicting any damage.*Come on!
 OutroMessage|Brock: Your Pokémon's powerful~attacks overcame my rock-hard defense...*You're stronger than~I expected.*Go ahead --~take the Boulder Badge.

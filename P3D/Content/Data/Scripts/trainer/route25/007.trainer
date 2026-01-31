@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Pat
-TrainerClass|Super Nerd
+TrainerClass|<system.token(TrainerClass_SuperNerd)>
 Money|1632
 IntroMessage|Mufufu...~I have nothing to do~with the six-pack trainers.*I waited here to beat~you when you were tired~out by the all the battles.
 OutroMessage|Aren't you tired at all?

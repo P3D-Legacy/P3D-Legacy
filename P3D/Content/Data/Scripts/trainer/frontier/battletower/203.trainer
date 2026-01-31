@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Kyra
-TrainerClass|Picnicker
+TrainerClass|<system.token(TrainerClass_Picnicker)>
 Money|0
 IntroMessage|Win or lose,~let's not bear any grudges.
 OutroMessage|Oh, you! Don't~ever forget this!

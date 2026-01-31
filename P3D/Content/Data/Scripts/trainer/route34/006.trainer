@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Keith
-TrainerClass|Policeman
+TrainerClass|<system.token(TrainerClass_Policeman)>
 Money|680
 IntroMessage|Who goes there?~What are you up to?
 OutroMessage|You're a tough~little guy.

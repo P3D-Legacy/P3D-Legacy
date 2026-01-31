@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Goon
-TrainerClass|Biker
+TrainerClass|<system.token(TrainerClass_Biker)>
 Money|1060
 IntroMessage|We invited the boss out here,~but you had to mess it up!*You embarrassed us, man!
 OutroMessage|... ... ...     ... ... ...

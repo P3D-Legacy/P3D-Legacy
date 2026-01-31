@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Margot
-TrainerClass|Cowgirl
+TrainerClass|<system.token(TrainerClass_Cowgirl)>
 Money|0
 IntroMessage|Your ride ends here.
 OutroMessage|Too much for me to~handle!

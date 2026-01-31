@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Vance
-TrainerClass|School Kid
+TrainerClass|<system.token(TrainerClass_School Kid)>
 Money|0
 IntroMessage|You learn too!
 OutroMessage|The joy of victory!

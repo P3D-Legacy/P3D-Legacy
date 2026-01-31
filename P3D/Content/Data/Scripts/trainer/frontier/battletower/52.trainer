@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Colt
-TrainerClass|Ninja Boy
+TrainerClass|<system.token(TrainerClass_NinjaBoy)>
 Money|0
 IntroMessage|Prepare to lose!
 OutroMessage|I lie shattered...

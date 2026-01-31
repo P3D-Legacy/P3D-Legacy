@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Joana
-TrainerClass|Lass
+TrainerClass|<system.token(TrainerClass_Lass)>
 Money|848
 IntroMessage|I love bug Pokémon.~That's why I'm here all the time.*Am I the only girl like that?
 OutroMessage|I lost, but I'm still laughing.~Am I the only girl like that?

@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Michael
-TrainerClass|Hiker
+TrainerClass|<system.token(TrainerClass_Hiker)>
 Money|800
 IntroMessage|Yo! You're spunky!~But you know what?*When it comes to~sheer spunkiness,~I'm the man!
 OutroMessage|My Pokémon weren't~spunky enough!1

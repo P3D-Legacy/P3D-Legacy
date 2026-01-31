@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Daryl
-TrainerClass|Hiker
+TrainerClass|<system.token(TrainerClass_Hiker)>
 Money|2052
 IntroMessage|A battle with you, so high up!
 OutroMessage|Oh, the heartbreak of losing so easily to you!

@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Karen
-TrainerClass|Elite Four
+TrainerClass|<system.token(TrainerClass_EliteFour)>
 Money|8120
 IntroMessage|I am Karen of~the Elite Four.*You're <player.name>?*How amusing.*I love Dark-type Pokémon.*I find their wild, tough*image to be so appealing.*And they're so strong.*Think you can take them?*Just try to entertain me.*Let's go!
 OutroMessage|Well, aren't you good.~I like that in a Trainer.

@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Blaine
-TrainerClass|Leader
+TrainerClass|<system.token(TrainerClass_Leader)>
 Money|7600
 IntroMessage|You keep your word.*That's a good thing,~kiddo!
 OutroMessage|Waaah!*If I had known this~Club was going to~be available,~I wouldn't have~needed to rebuild~my Gym.*Wait!*I still did,~didn't I?

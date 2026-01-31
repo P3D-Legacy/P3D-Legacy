@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Jacyln
-TrainerClass|Beauty
+TrainerClass|<system.token(TrainerClass_Beauty)>
 Money|0
 IntroMessage|Well...~Those are rare Pokémon..
 OutroMessage|Oh, you're a Trainer?~You're not a Pokémon?

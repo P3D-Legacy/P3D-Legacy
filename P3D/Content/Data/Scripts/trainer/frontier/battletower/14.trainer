@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Jaden
-TrainerClass|Rich Boy
+TrainerClass|<system.token(TrainerClass_RichBoy)>
 Money|0
 IntroMessage|Hmm. So, you're good, huh?
 OutroMessage|Hmm. So, you are good. Hmm.

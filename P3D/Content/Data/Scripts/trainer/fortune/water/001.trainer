@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Edward
-TrainerClass|Juggler
+TrainerClass|<system.token(TrainerClass_Juggler)>
 Money|2040
 IntroMessage|I'm practicing in secret so~no one can see me.
 OutroMessage|Nobody saw me losing, right?

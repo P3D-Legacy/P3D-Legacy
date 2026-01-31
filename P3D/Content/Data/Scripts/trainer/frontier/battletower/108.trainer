@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Melinda
-TrainerClass|Battle Girl
+TrainerClass|<system.token(TrainerClass_BattleGirl)>
 Money|0
 IntroMessage|Hey! Come on!
 OutroMessage|You're not bad, you.

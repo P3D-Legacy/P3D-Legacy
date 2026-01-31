@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Randall
-TrainerClass|Swimmer♂
+TrainerClass|<system.token(TrainerClass_Swimmer_Male)>
 Money|144
 IntroMessage|Hey, you're young~and fit!*Don't ride your~Pokémon! Swim!
 OutroMessage|Uh-oh. I lost...

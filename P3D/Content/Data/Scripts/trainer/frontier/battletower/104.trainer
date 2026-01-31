@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Karissa
-TrainerClass|Cyclist
+TrainerClass|<system.token(TrainerClass_Cyclist)>
 Money|0
 IntroMessage|Let's get this session on!
 OutroMessage|I'd rather cycle casually~than go full speed.

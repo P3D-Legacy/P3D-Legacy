@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Jessy
-TrainerClass|Hiker
+TrainerClass|<system.token(TrainerClass_Hiker)>
 Money|0
 IntroMessage|Waah! Wait!~Wait a second!*My mind's not into this yet!
 OutroMessage|Huh? Hah? It's over already?~What? I lost, you say?

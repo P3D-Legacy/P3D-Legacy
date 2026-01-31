@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Lorena
-TrainerClass|Battle Girl
+TrainerClass|<system.token(TrainerClass_BattleGirl)>
 Money|0
 IntroMessage|It's been five years since~I took to the mountains.*My hair's grown wild!
 OutroMessage|Another five years...?

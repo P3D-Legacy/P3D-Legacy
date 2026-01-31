@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Will
-TrainerClass|Elite Four
+TrainerClass|<system.token(TrainerClass_EliteFour)>
 Money|4200
 IntroMessage|Welcome to the Pokémon~League, <player.name>.*Allow me to introduce myself.*I am Will.*I have trained all~around the world, making~my psychic Pokémon powerful.*And, at last, I've~been accepted into~the Elite Four.*I can only keep~getting better!*Losing is not an option!
 OutroMessage|I... I can't...~believe it...

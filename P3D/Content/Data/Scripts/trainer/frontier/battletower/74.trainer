@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Jimmie
-TrainerClass|Guitarist
+TrainerClass|<system.token(TrainerClass_Guitarist)>
 Money|0
 IntroMessage|You should put your feelings~into songs with sincerity, man.
 OutroMessage|The way I feel now is~kind of folksy.

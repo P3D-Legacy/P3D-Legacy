@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Kae,Thom
-TrainerClass|Double Team,Double Team
+TrainerClass|<system.token(TrainerClass_DoubleTeam)>,Double Team
 Money|6000
 IntroMessage|
 OutroMessage|Our Team failed?!|What power!

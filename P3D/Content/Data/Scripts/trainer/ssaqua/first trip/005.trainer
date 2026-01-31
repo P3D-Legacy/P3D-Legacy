@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Fritz
-TrainerClass|Juggler
+TrainerClass|<system.token(TrainerClass_Juggler)>
 Money|1560
 IntroMessage|Urrf...*I'm seasick!
 OutroMessage|I can't move anymore...

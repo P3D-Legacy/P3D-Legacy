@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Pryce
-TrainerClass|Leader
+TrainerClass|<system.token(TrainerClass_Leader)>
 Money|4600
 IntroMessage|Finally.~No need for words.*A Pokémon battle is~the way for us~to communicate.
 OutroMessage|Mmm... Impressive!

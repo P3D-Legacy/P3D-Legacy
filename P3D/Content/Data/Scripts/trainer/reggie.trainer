@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Reggie Fils-Aime
-TrainerClass|President
+TrainerClass|<system.token(TrainerClass_President)>
 Money|12000
 IntroMessage|My body...~My body is ready!*Come on,~let's battle!
 OutroMessage|Still ready.

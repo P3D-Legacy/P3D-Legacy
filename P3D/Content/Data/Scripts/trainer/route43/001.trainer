@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Spencer
-TrainerClass|Camper
+TrainerClass|<system.token(TrainerClass_Camper)>
 Money|380
 IntroMessage|I can do so much~with my Pokémon--~it's super-fun!
 OutroMessage|Losing isn't fun~at all...

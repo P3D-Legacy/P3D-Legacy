@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Eusine
-TrainerClass|Mystical Man
+TrainerClass|<system.token(TrainerClass_MysticalMan)>
 Money|6700
 IntroMessage|<player.name>, I~knew we'd see each~other again.*Let us not waste~any time.
 OutroMessage|<player.name>...*So you win one~more time...

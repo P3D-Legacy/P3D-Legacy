@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Grunt
-TrainerClass|Team Rocket
+TrainerClass|<system.token(TrainerClass_TeamRocket)>
 Money|2736
 IntroMessage|Our objective is in sight.*We can't have you~interfering now!
 OutroMessage|I hope I delayed~you enough...

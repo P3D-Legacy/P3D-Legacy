@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Daniel
-TrainerClass|Hiker
+TrainerClass|<system.token(TrainerClass_Hiker)>
 Money|352
 IntroMessage|Whoa! What a~surprise!*I didn't expect to~see anyone here!
 OutroMessage|Whoa! I'm beaten~big time!

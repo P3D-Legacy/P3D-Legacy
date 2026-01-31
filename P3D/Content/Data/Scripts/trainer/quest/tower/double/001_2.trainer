@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Kira,Jen
-TrainerClass|Twins,
+TrainerClass|<system.token(TrainerClass_Twins)>,
 Money|0
 IntroMessage|Let's try hard!
 OutroMessage|Waaah!|Waaah!

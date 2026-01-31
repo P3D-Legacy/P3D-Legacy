@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Darrian
-TrainerClass|Pokémon Ranger
+TrainerClass|<system.token(TrainerClass_PokémonRanger)>
 Money|0
 IntroMessage|Win or lose,~a battle happens only once!
 OutroMessage|I have no regrets!

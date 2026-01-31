@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Lt. Surge
-TrainerClass|Leader
+TrainerClass|<system.token(TrainerClass_Leader)>
 Money|6360
 IntroMessage|Surge: Hey, you little tyke!*I have to hand it to you.*It may not be very~smart to challenge me,~but it takes guts!*When it comes to electric~Pokémon, I'm number one!*I've never lost~on the battlefield.*I'll zap you just like~I did to my enemies in war!
 OutroMessage|Surge: Arrrgh!~You are strong!*OK, kid.~You get the Thunder Badge!

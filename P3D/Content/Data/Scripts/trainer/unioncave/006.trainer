@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Leonard
-TrainerClass|Hiker
+TrainerClass|<system.token(TrainerClass_Hiker)>
 Money|800
 IntroMessage|What do you know!~A visitor!
 OutroMessage|Wahahaha! You're a~feisty one!

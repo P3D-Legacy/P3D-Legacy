@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Joy
-TrainerClass|Pokémon Ranger
+TrainerClass|<system.token(TrainerClass_PokémonRanger)>
 Money|0
 IntroMessage|A battle with me?~I don't know what~you're talking about.
 OutroMessage|Boo! Boo!~This is not right!

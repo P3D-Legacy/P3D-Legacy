@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Sammy
-TrainerClass|Cameraman
+TrainerClass|<system.token(TrainerClass_Cameraman)>
 Money|0
 IntroMessage|This camera is pretty hefty,~actually.
 OutroMessage|Oof... I'm feeling groggy...

@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Whitney
-TrainerClass|Leader
+TrainerClass|<system.token(TrainerClass_Leader)>
 Money|2000
 IntroMessage|Hi! I'm Whitney!*Everyone was into~Pokémon, so I got~into it too!*Pokémon are~super-cute!*You want to battle?~I'm warning you~-- I'm good!
 OutroMessage|Sob...*...Waaaaaaah!~You're mean!*You shouldn't be~so serious! You,~you, child, you!

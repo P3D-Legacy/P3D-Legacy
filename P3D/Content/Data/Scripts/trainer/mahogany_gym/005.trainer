@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Brad
-TrainerClass|Boarder
+TrainerClass|<system.token(TrainerClass_Boarder)>
 Money|1872
 IntroMessage|This Gym has a~slippery floor.*It's fun, isn't it?*But hey--we're~not playing games here!
 OutroMessage|Do you see how~serious we are?

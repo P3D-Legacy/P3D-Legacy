@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Doug
-TrainerClass|Bug Catcher
+TrainerClass|<system.token(TrainerClass_BugCatcher)>
 Money|784
 IntroMessage|Why don't girls~like bug Pokémon?
 OutroMessage|No good!

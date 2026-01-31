@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Jeffrey
-TrainerClass|Sage
+TrainerClass|<system.token(TrainerClass_Sage)>
 Money|704
 IntroMessage|I spent the spring~with my Pokémon.*Then summer, fall~and winter...*Then spring came~again. We have*lived together~for a long time.
 OutroMessage|Wins and losses, I~experienced both.

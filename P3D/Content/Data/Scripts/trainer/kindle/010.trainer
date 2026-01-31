@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Sharon
-TrainerClass|Crush Girl
+TrainerClass|<system.token(TrainerClass_CrushGirl)>
 Money|1248
 IntroMessage|Could you help me~out with my training?
 OutroMessage|You were a cut above me.

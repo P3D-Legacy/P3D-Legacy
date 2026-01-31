@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Sheldon
-TrainerClass|Rancher
+TrainerClass|<system.token(TrainerClass_Rancher)>
 Money|0
 IntroMessage|Smell that? That's the~smell of hay clinging to my body.
 OutroMessage|This smell I have is the sweet~scent of hay that Pokémon surely love.

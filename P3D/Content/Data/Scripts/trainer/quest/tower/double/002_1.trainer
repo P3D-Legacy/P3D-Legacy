@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Jo,Haley
-TrainerClass|Crush Kin,
+TrainerClass|<system.token(TrainerClass_CrushKin)>,
 Money|0
 IntroMessage|You, you, you better not win.
 OutroMessage|Wimpy... we were weak...|That was so terrible!

@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Ian
-TrainerClass|Youngster
+TrainerClass|<system.token(TrainerClass_Youngster)>
 Money|592
 IntroMessage|I'm the best in my~class at Pokémon.
 OutroMessage|No! there are~better trainers...

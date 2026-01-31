@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Julia
-TrainerClass|Beauty
+TrainerClass|<system.token(TrainerClass_Beauty)>
 Money|4488
 IntroMessage|Were you looking at~these flowers or at me?
 OutroMessage|How annoying!

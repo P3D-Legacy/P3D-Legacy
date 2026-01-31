@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Stacy
-TrainerClass|Beauty
+TrainerClass|<system.token(TrainerClass_Beauty)>
 Money|0
 IntroMessage|Lately, I've had a~lot to worry about...
 OutroMessage|You just added to my worries...

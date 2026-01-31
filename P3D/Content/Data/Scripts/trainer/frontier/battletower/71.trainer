@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Kierra
-TrainerClass|Aroma Lady
+TrainerClass|<system.token(TrainerClass_AromaLady)>
 Money|0
 IntroMessage|Sniff...
 OutroMessage|Do you have some cologne on?~You smell sort of nice!

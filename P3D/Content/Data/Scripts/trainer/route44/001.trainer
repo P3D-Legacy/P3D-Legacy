@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Phil
-TrainerClass|Psychic
+TrainerClass|<system.token(TrainerClass_Psychic)>
 Money|832
 IntroMessage|I'm gonna win~for sure!
 OutroMessage|Arrgh... That's a~shocking loss...

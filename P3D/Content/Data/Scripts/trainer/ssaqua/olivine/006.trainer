@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Shawn
-TrainerClass|Super Nerd
+TrainerClass|<system.token(TrainerClass_SuperNerd)>
 Money|1376
 IntroMessage|What kinds of Pokéballs~do you have with you?
 OutroMessage|Wait!Stop!~Dont!Please!

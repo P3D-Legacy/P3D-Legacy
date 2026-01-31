@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Trace
-TrainerClass|Ruin Maniac
+TrainerClass|<system.token(TrainerClass_RuinManiac)>
 Money|0
 IntroMessage|Win! That's what I'll~do again today!*I'll win tomorrow, too!
 OutroMessage|Nooooo! No way!~I didn't lose!

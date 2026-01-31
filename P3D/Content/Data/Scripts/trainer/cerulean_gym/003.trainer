@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Diana
-TrainerClass|Swimmer♀
+TrainerClass|<system.token(TrainerClass_Swimmer_Female)>
 Money|1040
 IntroMessage|Sorry about being away.~Let's get on with it.
 OutroMessage|I give up!~You are the winner!

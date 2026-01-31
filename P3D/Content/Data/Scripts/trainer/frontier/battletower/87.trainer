@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Kade
-TrainerClass|Worker
+TrainerClass|<system.token(TrainerClass_Worker)>
 Money|0
 IntroMessage|Out of the way!~I've got deliveries to make!
 OutroMessage|All the delivering I do every day...~I've got deep muscle pain!

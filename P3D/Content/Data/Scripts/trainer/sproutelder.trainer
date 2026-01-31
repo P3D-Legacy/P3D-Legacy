@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Li
-TrainerClass|Elder
+TrainerClass|<system.token(TrainerClass_Elder)>
 Money|320
 IntroMessage|So good of you to~come here!*Sprout Tower is a~place of training.*People and Pokémon~test their bonds*to build a bright~future together.*I am the final~test.*Allow me to check~the ties between*your Pokémon and~you!
 OutroMessage|Ah, excellent!

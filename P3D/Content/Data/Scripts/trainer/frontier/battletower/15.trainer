@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Camille
-TrainerClass|Lady
+TrainerClass|<system.token(TrainerClass_Lady)>
 Money|0
 IntroMessage|Oh, yes. I shall attack now.
 OutroMessage|Oh, how disappointing.

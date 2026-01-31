@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Greg
-TrainerClass|Psychic
+TrainerClass|<system.token(TrainerClass_Psychic)>
 Money|544
 IntroMessage|Pokémon can't do a~thing if they are~asleep.*I'll show you how~scary that is!
 OutroMessage|I lost. That's~pretty sad...

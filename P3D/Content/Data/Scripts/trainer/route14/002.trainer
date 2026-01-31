@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Roy
-TrainerClass|Bird Keeper
+TrainerClass|<system.token(TrainerClass_BirdKeeper)>
 Money|1298
 IntroMessage|My dream is to fly with~my beloved bird Pokémon.
 OutroMessage|I can dream, but I can't ever fly...

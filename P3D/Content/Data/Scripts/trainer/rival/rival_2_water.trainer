@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|<rival.name>
-TrainerClass|Rival
+TrainerClass|<system.token(TrainerClass_Rival)>
 Money|1320
 IntroMessage|...
 OutroMessage|Humph!*This is why I hate~battling wimps.*There's no challenge in it.

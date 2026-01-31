@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Josie
-TrainerClass|Reporter
+TrainerClass|<system.token(TrainerClass_Reporter)>
 Money|0
 IntroMessage|My Pokémon have a different~taste from the usual bunch.
 OutroMessage|Did you notice the difference?~My party is refreshingly dry.

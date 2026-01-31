@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Rhett
-TrainerClass|Dragon Tamer
+TrainerClass|<system.token(TrainerClass_DragonTamer)>
 Money|0
 IntroMessage|See it! Feel it!~The ultimate power...~Probably!
 OutroMessage|The title of the ultimate probably!~I confer it on you!

@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Warren
-TrainerClass|Youngster
+TrainerClass|<system.token(TrainerClass_Youngster)>
 Money|800
 IntroMessage|Hmmm...*I don't know what to do...
 OutroMessage|I knew it!

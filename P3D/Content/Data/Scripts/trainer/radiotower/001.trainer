@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Grunt
-TrainerClass|Team Rocket
+TrainerClass|<system.token(TrainerClass_TeamRocket)>
 Money|960
 IntroMessage|We've finally~taken over the~Radio Tower!*Now everyone will~get to experience*the true terror of~Team Rocket!
 OutroMessage|Too strong! We~must watch you...

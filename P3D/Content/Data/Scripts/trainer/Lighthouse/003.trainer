@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Theo
-TrainerClass|Bird Keeper
+TrainerClass|<system.token(TrainerClass_BirdKeeper)>
 Money|360
 IntroMessage|Why are you here?~Are you just going~to gawk? I suggest~that you leave!
 OutroMessage|You really are~concerned...

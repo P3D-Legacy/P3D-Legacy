@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Cyrus
-TrainerClass|Pokémon Ranger
+TrainerClass|<system.token(TrainerClass_PokémonRanger)>
 Money|0
 IntroMessage|Hi! Have you ever considered~a career as a Ranger?
 OutroMessage|Yes, you've got the mettle.~Being a Ranger is a lot of fun!

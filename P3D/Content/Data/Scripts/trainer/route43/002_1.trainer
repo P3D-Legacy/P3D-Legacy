@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Tiffany
-TrainerClass|Picnicker
+TrainerClass|<system.token(TrainerClass_Picnicker)>
 Money|760
 IntroMessage|Are you going to~Lake of Rage too?*Let's play for a~little while!
 OutroMessage|I played too much!

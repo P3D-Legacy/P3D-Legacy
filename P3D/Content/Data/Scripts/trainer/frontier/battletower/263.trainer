@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Ryne
-TrainerClass|Jogger
+TrainerClass|<system.token(TrainerClass_Jogger)>
 Money|0
 IntroMessage|Can you explain~why I'm here?
 OutroMessage|Why am I battling here?

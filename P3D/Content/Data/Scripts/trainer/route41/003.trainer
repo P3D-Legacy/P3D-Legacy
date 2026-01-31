@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Kara
-TrainerClass|Swimmer♀
+TrainerClass|<system.token(TrainerClass_Swimmer_Female)>
 Money|400
 IntroMessage|If you need to~rest, just tread~water.*You'll get your~wind back, so you~can keep on going~strong.
 OutroMessage|Oh! You have more~energy than I do.

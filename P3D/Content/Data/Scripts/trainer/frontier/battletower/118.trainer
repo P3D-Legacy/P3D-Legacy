@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Kate
-TrainerClass|Socialite
+TrainerClass|<system.token(TrainerClass_Socialite)>
 Money|0
 IntroMessage|Oh, my...~Such an adorable Trainer...
 OutroMessage|I see...~You're more than simply adorable.

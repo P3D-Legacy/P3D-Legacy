@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Tornado9797
-TrainerClass|Moderator
+TrainerClass|<system.token(TrainerClass_Moderator)>
 Money|3142
 IntroMessage|
 OutroMessage|Nice work!~You took on my future Gym Leader team!

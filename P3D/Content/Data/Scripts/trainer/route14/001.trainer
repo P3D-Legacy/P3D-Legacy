@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Carter
-TrainerClass|Poké Fan
+TrainerClass|<system.token(TrainerClass_PokéFan)>
 Money|3680
 IntroMessage|Let me tell you,~I had a hard time~catching my prized Pokémon.
 OutroMessage|Awaaah!

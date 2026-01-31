@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Abigail
-TrainerClass|Tuber
+TrainerClass|<system.token(TrainerClass_Tuber)>
 Money|212
 IntroMessage|I'm beginning to~get a sunburn...
 OutroMessage|Oh, you're so awful...

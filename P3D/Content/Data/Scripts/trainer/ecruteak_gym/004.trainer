@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Martha
-TrainerClass|Medium
+TrainerClass|<system.token(TrainerClass_Medium)>
 Money|800
 IntroMessage|I shall win!
 OutroMessage|I, I, I lost!

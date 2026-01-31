@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Aliyan
-TrainerClass|Psychic
+TrainerClass|<system.token(TrainerClass_Psychic)>
 Money|0
 IntroMessage|Take it all!
 OutroMessage|Gah!

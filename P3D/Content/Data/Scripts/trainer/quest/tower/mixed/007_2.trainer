@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Rene,Ric
-TrainerClass|Crush Kin,
+TrainerClass|<system.token(TrainerClass_CrushKin)>,
 Money|0
 IntroMessage|My big brother is really~awesome!
 OutroMessage|My big brother isn't awesome?|Huh? I am not very awesome?

@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Nils
-TrainerClass|Tower Tycoon
+TrainerClass|<system.token(TrainerClass_TowerTycoon)>
 Money|0
 IntroMessage|Lass uns loslegen!
 OutroMessage|

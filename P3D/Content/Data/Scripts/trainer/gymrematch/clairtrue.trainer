@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Clair
-TrainerClass|Leader
+TrainerClass|<system.token(TrainerClass_Leader)>
 Money|7700
 IntroMessage|...You are here.*Now let's battle!
 OutroMessage|Way to go.*... Now give it your all!

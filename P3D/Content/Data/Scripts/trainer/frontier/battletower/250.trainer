@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Barrett
-TrainerClass|Cameraman
+TrainerClass|<system.token(TrainerClass_Cameraman)>
 Money|0
 IntroMessage|Stare...
 OutroMessage|You're cool, all right.~I had to stare.

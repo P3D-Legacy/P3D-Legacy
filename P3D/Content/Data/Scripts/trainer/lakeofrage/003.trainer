@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Lois
-TrainerClass|Ace Trainer
+TrainerClass|<system.token(TrainerClass_AceTrainer)>
 Money|1200
 IntroMessage|What happened to~the red Gyarados?*It's gone?*Oh, darn. I came~here for nothing?*I know--let's battle!
 OutroMessage|Good going!

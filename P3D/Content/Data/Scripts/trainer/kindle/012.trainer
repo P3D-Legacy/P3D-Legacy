@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Maria
-TrainerClass|Swimmer♀
+TrainerClass|<system.token(TrainerClass_Swimmer_Female)>
 Money|208
 IntroMessage|The weather's gorgeous!~Perfect for a battle!
 OutroMessage|Aiyeeeaah!

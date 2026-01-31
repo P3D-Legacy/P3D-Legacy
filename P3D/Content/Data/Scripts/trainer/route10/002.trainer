@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Jim
-TrainerClass|Hiker
+TrainerClass|<system.token(TrainerClass_Hiker)>
 Money|1600
 IntroMessage|Hahahah!
 OutroMessage|hahaha-hachoo!

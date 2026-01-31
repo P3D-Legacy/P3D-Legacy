@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Aimee
-TrainerClass|Tuber
+TrainerClass|<system.token(TrainerClass_Tuber)>
 Money|0
 IntroMessage|Splish, splash!
 OutroMessage|Flip, flop!

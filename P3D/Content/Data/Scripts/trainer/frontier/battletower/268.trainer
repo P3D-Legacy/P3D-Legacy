@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Aldo
-TrainerClass|Hiker
+TrainerClass|<system.token(TrainerClass_Hiker)>
 Money|0
 IntroMessage|Hahah! Howdy!
 OutroMessage|Thanks for your time!

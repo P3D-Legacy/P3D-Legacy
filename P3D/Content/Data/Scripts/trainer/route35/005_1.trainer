@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Walt
-TrainerClass|Firebreather
+TrainerClass|<system.token(TrainerClass_Firebreather)>
 Money|<player.badges>*4*48
 IntroMessage|I'm practicing my~fire breathing.
 OutroMessage|Ow! I scorched the~tip of my nose!

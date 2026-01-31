@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Cara
-TrainerClass|Ace Trainer
+TrainerClass|<system.token(TrainerClass_AceTrainer)>
 Money|1680
 IntroMessage|You shouldn't be in here!
 OutroMessage|Oh yikes, I lost!

@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Briana
-TrainerClass|Swimmer♀
+TrainerClass|<system.token(TrainerClass_Swimmer_Female)>
 Money|1000
 IntroMessage|Don't let my elegant~swimming unnerve you.
 OutroMessage|Ooh, you calmly disposed of me...

@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Naomi
-TrainerClass|Ace Trainer
+TrainerClass|<system.token(TrainerClass_AceTrainer)>
 Money|1512
 IntroMessage|I wonder if you are good~enough for me?
 OutroMessage|I lost out...

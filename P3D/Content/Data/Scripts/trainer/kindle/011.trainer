@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Finn
-TrainerClass|Swimmer♂
+TrainerClass|<system.token(TrainerClass_Swimmer_Male)>
 Money|212
 IntroMessage|Seen from here, Mt. Ember~towers into the sky.
 OutroMessage|Well, aren't you tough?

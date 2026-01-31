@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Markey
-TrainerClass|Biker
+TrainerClass|<system.token(TrainerClass_Biker)>
 Money|1664
 IntroMessage|Hey, hey, hey!*You're in my way!~IN MY WAY!!
 OutroMessage|I lost.~I lost!

@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Codi
-TrainerClass|PI
+TrainerClass|<system.token(TrainerClass_PI)>
 Money|0
 IntroMessage|A battle isn't~something you can calculate.
 OutroMessage|What'd I say, huh?~You lose when you lose.

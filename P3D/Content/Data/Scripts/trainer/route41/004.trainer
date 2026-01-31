@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Kirk
-TrainerClass|Swimmer♂
+TrainerClass|<system.token(TrainerClass_Swimmer_Male)>
 Money|180
 IntroMessage|The waves are wild~here.*They tire you out~while you swim.
 OutroMessage|I'm beat!

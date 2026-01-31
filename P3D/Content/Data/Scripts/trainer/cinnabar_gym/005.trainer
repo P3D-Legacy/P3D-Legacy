@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Waldo
-TrainerClass|Super Nerd
+TrainerClass|<system.token(TrainerClass_SuperNerd)>
 Money|2544
 IntroMessage|I am in the middle~of collecting battle~records.*Can you help me?
 OutroMessage|I'm not done measuring data!

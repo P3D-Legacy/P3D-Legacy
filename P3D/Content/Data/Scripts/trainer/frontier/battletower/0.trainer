@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Llyod
-TrainerClass|Youngster
+TrainerClass|<system.token(TrainerClass_Youngster)>
 Money|0
 IntroMessage|Here I come!
 OutroMessage|Bleah!

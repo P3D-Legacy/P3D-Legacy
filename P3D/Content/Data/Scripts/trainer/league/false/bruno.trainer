@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Bruno
-TrainerClass|Elite Four
+TrainerClass|<system.token(TrainerClass_EliteFour)>
 Money|4600
 IntroMessage|I am Bruno of~the Elite Four.*I always train to~the extreme because I~believe in our potential.*That is how we~became strong.~Can you withstand our power?*Hm? I see no~fear in you.*You look determined.*Perfect for battle!*Ready, <player.name>?*You will bow down to~our overwhelming power!*Hoo hah!
 OutroMessage|Why? How could we lose?

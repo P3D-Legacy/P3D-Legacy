@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Gillian
-TrainerClass|Lady
+TrainerClass|<system.token(TrainerClass_Lady)>
 Money|10400
 IntroMessage|I'm thinking of~having a pool made~ specially for Pokémon.
 OutroMessage|Oh, my goodness gracious!

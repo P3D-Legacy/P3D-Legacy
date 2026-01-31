@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Owen
-TrainerClass|Super Nerd
+TrainerClass|<system.token(TrainerClass_SuperNerd)>
 Money|0
 IntroMessage|Here it is thunder wave~dont wrap me!
 OutroMessage|Wrap bind electric whirlwind spiraling around.

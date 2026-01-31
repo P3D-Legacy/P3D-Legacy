@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Nathan
-TrainerClass|Psychic
+TrainerClass|<system.token(TrainerClass_Psychic)>
 Money|832
 IntroMessage|Hmmm... This is a~strange place.
 OutroMessage|...

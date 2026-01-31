@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Duff,Eda
-TrainerClass|Young Couple,
+TrainerClass|<system.token(TrainerClass_YoungCouple)>,
 Money|2816
 IntroMessage|
 OutroMessage|That was a~wonderful battle!|We lost!

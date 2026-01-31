@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Draco
-TrainerClass|Factory Head
+TrainerClass|<system.token(TrainerClass_FactoryHead)>
 Money|0
 IntroMessage|Good day there, mate.~My name is Draco Houston.*I am the Factory Head~and I am going to~use rental Pokémon,~just as you do.
 OutroMessage|Good job, mate.

@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Grunt
-TrainerClass|Team Rocket
+TrainerClass|<system.token(TrainerClass_TeamRocket)>
 Money|4930
 IntroMessage|We will liberate Victini~from its confinement and~use its power to make a~fortune!
 OutroMessage|You're sabotaging our prosperity plan!

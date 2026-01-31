@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Gregory
-TrainerClass|Gentleman
+TrainerClass|<system.token(TrainerClass_Gentleman)>
 Money|8400
 IntroMessage|You're here to~defeat Lt. Surge?*Not if I can help it!
 OutroMessage|Sorry I failed you,~Lt. Surge, sir!

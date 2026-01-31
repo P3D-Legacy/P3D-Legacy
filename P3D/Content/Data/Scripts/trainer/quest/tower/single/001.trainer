@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Alberto
-TrainerClass|Sailor
+TrainerClass|<system.token(TrainerClass_Sailor)>
 Money|0
 IntroMessage|Let's get with it right away.
 OutroMessage|It's all over... I surrender.

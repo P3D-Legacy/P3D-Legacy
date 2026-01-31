@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Ellen
-TrainerClass|Lass
+TrainerClass|<system.token(TrainerClass_Lass)>
 Money|1215
 IntroMessage|I'm second.~Now it's serious!
 OutroMessage|How could I lose?

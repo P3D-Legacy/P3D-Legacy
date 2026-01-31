@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Rody
-TrainerClass|Psychic
+TrainerClass|<system.token(TrainerClass_Psychic)>
 Money|1060
 IntroMessage|Somewhere on this island,~peculiar Pokémon are sleeping.
 OutroMessage|What an amazing trainer!

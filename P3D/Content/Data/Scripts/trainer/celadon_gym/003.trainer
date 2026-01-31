@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Tanya
-TrainerClass|Picnicker
+TrainerClass|<system.token(TrainerClass_Picnicker)>
 Money|1060
 IntroMessage|Oh, a battle?*That's kind of scary, but OK!
 OutroMessage|Oh, that's it?

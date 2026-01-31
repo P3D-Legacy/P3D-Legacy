@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Rich
-TrainerClass|Scientist
+TrainerClass|<system.token(TrainerClass_Scientist)>
 Money|3000
 IntroMessage|Most excellent.*This Radio Tower~will fulfill our~grand design.
 OutroMessage|Hmmm...*All grand plans~come with snags.

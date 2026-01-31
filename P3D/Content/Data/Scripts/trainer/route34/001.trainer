@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Samuel
-TrainerClass|Youngster
+TrainerClass|<system.token(TrainerClass_Youngster)>
 Money|128
 IntroMessage|This is where I do~my training!
 OutroMessage|What happened?

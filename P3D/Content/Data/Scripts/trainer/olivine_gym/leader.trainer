@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Jasmine
-TrainerClass|Leader
+TrainerClass|<system.token(TrainerClass_Leader)>
 Money|3500
 IntroMessage|...Thank you for~your help at the~Lighthouse...*But this is different.~Please allow me to~introduce myself.*I am Jasmine, a~Gym Leader. I use~the steel-type.*...Do you know about~the steel-type?*It's a type that~was only recently~discovered.*...Um... May I begin?
 OutroMessage|...You are a better~trainer than me,*in both skill and~kindness.*In accordance with~League rules, I*confer upon you~this Badge.

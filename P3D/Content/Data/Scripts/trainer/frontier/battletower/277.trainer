@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Aidan
-TrainerClass|Roughneck
+TrainerClass|<system.token(TrainerClass_Roughneck)>
 Money|0
 IntroMessage|Can't rightly say I much~like battling, I tell you.
 OutroMessage|Grr... I'm so~angry I could cry...

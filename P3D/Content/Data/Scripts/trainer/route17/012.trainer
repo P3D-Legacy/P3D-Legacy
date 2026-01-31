@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Charles
-TrainerClass|Biker
+TrainerClass|<system.token(TrainerClass_Biker)>
 Money|1504
 IntroMessage|We're fearless highway stars!
 OutroMessage|Arrrgh!~Crash and burn!

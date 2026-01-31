@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Shawna
-TrainerClass|Cowgirl
+TrainerClass|<system.token(TrainerClass_Cowgirl)>
 Money|0
 IntroMessage|Hey! You there, Trainer!~You and me, we're battling!
 OutroMessage|Unbelievable!

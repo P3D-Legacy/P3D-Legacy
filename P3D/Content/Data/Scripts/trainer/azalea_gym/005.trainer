@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Josh
-TrainerClass|Bug Catcher
+TrainerClass|<system.token(TrainerClass_BugCatcher)>
 Money|208
 IntroMessage|You saved all the~Slowpoke? Whew,*you're mighty.*But my grown up~Pokémon are pretty*tough too!
 OutroMessage|Urrggh!

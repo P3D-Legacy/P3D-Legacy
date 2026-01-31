@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Nya,Lex
-TrainerClass|Double Team,
+TrainerClass|<system.token(TrainerClass_DoubleTeam)>,
 Money|2736
 IntroMessage|
 OutroMessage|Nya: Oh, no...~I'm so sorry, I...

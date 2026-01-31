@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Grace
-TrainerClass|Medium
+TrainerClass|<system.token(TrainerClass_Medium)>
 Money|800
 IntroMessage|Stumped by our in-~visible floor?*Defeat me if you~want a hint!
 OutroMessage|Wha-what?

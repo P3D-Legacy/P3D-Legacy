@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Ping
-TrainerClass|Sage
+TrainerClass|<system.token(TrainerClass_Sage)>
 Money|512
 IntroMessage|Can you inflict~any damage on our~Pokémon?
 OutroMessage|Ah! Well done!

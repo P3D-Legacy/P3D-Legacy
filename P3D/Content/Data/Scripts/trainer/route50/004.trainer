@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Clivin
-TrainerClass|Swimmer♂
+TrainerClass|<system.token(TrainerClass_Swimmer_Male)>
 Money|200
 IntroMessage|Are you who I'm~supposed to meet?
 OutroMessage|No its definitely not you!

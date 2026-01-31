@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Olivia
-TrainerClass|Beauty
+TrainerClass|<system.token(TrainerClass_Beauty)>
 Money|1672
 IntroMessage|Don't you think my~Pokémon and I are~beautiful?
 OutroMessage|We drink Moomoo~Milk every day.

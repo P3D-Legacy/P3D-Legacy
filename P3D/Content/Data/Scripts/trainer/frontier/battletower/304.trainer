@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Masuda
-TrainerClass|Guitarist
+TrainerClass|<system.token(TrainerClass_Guitarist)>
 Money|0
 IntroMessage|This music is fantastic,~isn't it?
 OutroMessage|I am still jamming.

@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Celina
-TrainerClass|Ace Trainer
+TrainerClass|<system.token(TrainerClass_AceTrainer)>
 Money|0
 IntroMessage|You need to be~serious with me!
 OutroMessage|OK...~Quite remarkable...

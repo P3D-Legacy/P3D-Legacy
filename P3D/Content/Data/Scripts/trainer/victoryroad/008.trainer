@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Dawson
-TrainerClass|Poké Maniac
+TrainerClass|<system.token(TrainerClass_PokéManiac)>
 Money|1920
 IntroMessage|If you can get through~here, you can go meet~the Elite Four.
 OutroMessage|You've already met them?!

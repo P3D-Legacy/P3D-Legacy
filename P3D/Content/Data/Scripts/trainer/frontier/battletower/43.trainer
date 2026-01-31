@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Darin
-TrainerClass|Waiter
+TrainerClass|<system.token(TrainerClass_Waiter)>
 Money|0
 IntroMessage|May I take your order,~please?
 OutroMessage|Ah, an excellent choice.~A win served fresh.

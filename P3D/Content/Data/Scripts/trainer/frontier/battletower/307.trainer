@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Ivan
-TrainerClass|Dancer
+TrainerClass|<system.token(TrainerClass_Dancer)>
 Money|0
 IntroMessage|We can dance if we want to~We can leave~your friends behind.*Cause your friends don't~dance and if they don't~dance, well they're~no friends of mine.
 OutroMessage|I left the real one~far behind...

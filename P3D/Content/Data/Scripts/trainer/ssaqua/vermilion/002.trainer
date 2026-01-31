@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Ethan
-TrainerClass|Poké Maniac
+TrainerClass|<system.token(TrainerClass_PokéManiac)>
 Money|2520
 IntroMessage|Do you know Lily?~She's a hot DJ in Kanto.
 OutroMessage|Gyaaah!

@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Grunt
-TrainerClass|Team Rocket
+TrainerClass|<system.token(TrainerClass_TeamRocket)>
 Money|920
 IntroMessage|We're Team Rocket,~the exploiters of~Pokémon!*We love being evil!*Scared?
 OutroMessage|You think you're a hero?

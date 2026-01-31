@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Rex
-TrainerClass|Poké Fan
+TrainerClass|<system.token(TrainerClass_PokéFan)>
 Money|3600
 IntroMessage|My Phanpy is the~cutest in the world.
 OutroMessage|My Phanpy!

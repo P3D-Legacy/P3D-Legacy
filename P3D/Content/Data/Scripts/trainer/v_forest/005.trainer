@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Dane
-TrainerClass|Bug Catcher
+TrainerClass|<system.token(TrainerClass_BugCatcher)>
 Money|768
 IntroMessage|Welcome to Viridian Forest.*Enjoy my Bug-type Pokémon!
 OutroMessage|You enjoyed it too much....

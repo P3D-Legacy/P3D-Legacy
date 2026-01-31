@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Gregory
-TrainerClass|Juggler
+TrainerClass|<system.token(TrainerClass_Juggler)>
 Money|1920
 IntroMessage|Is Victory Road too tough?
 OutroMessage|Well done!

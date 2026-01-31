@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Ray,Tyra
-TrainerClass|Double Team,Double Team
+TrainerClass|<system.token(TrainerClass_DoubleTeam)>,Double Team
 Money|2160
 IntroMessage|Together, the two of us~are destined for greatness!
 OutroMessage|Oh, but...|Ludicrous! This can't be!

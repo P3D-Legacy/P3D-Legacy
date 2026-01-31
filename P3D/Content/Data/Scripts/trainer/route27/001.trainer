@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Megan
-TrainerClass|Ace Trainer
+TrainerClass|<system.token(TrainerClass_AceTrainer)>
 Money|1536
 IntroMessage|It's rare to see~anyone come here.*Are you training~on your own?
 OutroMessage|Oh! You're really strong!

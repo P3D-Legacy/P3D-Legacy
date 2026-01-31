@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Kiyo
-TrainerClass|Karate King
+TrainerClass|<system.token(TrainerClass_KarateKing)>
 Money|816
 IntroMessage|Hey!*I am the Karate King!*I train alone here~in the dark!*You!~Battle with me!*HWAAARGGH!
 OutroMessage|Waaaarggh!~I'm beaten!

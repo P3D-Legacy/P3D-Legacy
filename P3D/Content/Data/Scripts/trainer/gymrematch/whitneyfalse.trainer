@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Whitney
-TrainerClass|Leader
+TrainerClass|<system.token(TrainerClass_Leader)>
 Money|4200
 IntroMessage|I never break~my promises!*Are you ready?
 OutroMessage|You really are strong!*But I won't lose~next time!

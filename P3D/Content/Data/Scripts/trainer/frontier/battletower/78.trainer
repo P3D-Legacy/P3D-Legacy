@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Kerry
-TrainerClass|Sailor
+TrainerClass|<system.token(TrainerClass_Sailor)>
 Money|0
 IntroMessage|I'm the Sailor among Sailors!~I was born on the high seas!
 OutroMessage|Urp... Gweh...~So, when I get up on land,*I get no-motion sickness...

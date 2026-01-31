@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Carissa
-TrainerClass|Waitress
+TrainerClass|<system.token(TrainerClass_Waitress)>
 Money|0
 IntroMessage|My job is about serving~others.*But don't expect me~to serve here.
 OutroMessage|Why couldn't you serve me?~You won't make friends that way!

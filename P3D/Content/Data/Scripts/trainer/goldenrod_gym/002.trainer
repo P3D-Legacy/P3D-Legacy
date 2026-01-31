@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Samantha
-TrainerClass|Beauty
+TrainerClass|<system.token(TrainerClass_Beauty)>
 Money|1408
 IntroMessage|Give it your best~shot, or I'll take~you down!
 OutroMessage|No! Oh, Meowth,~I'm so sorry!

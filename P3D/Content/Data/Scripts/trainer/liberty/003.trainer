@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Grunt
-TrainerClass|Team Rocket
+TrainerClass|<system.token(TrainerClass_TeamRocket)>
 Money|4110
 IntroMessage|Team Rocket is much more~than an organization, it's~an idea.*We're everywhere!
 OutroMessage|Our philosophy has failed us...

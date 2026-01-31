@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Breana
-TrainerClass|Pokémon Ranger
+TrainerClass|<system.token(TrainerClass_PokémonRanger)>
 Money|0
 IntroMessage|It's my sworn duty to~protect nature and the Pokémon~in it.
 OutroMessage|It's a rewarding career.~How does it sound to you?

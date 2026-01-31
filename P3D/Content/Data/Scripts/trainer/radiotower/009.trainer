@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Grunt
-TrainerClass|Team Rocket
+TrainerClass|<system.token(TrainerClass_TeamRocket)>
 Money|880
 IntroMessage|You plan to rescue~the Director?*That won't be~possible because I'm~going to beat you!
 OutroMessage|No! Unbelievable!

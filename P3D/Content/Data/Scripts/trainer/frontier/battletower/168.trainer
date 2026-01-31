@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Quinten
-TrainerClass|Rich Boy
+TrainerClass|<system.token(TrainerClass_RichBoy)>
 Money|0
 IntroMessage|Ultimately,~Pokémon is just another brand.*You know who'll win,~right?
 OutroMessage|But how... My...~The Pokémon I've raised...

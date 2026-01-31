@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Erin
-TrainerClass|Picnicker
+TrainerClass|<system.token(TrainerClass_Picnicker)>
 Money|960
 IntroMessage|I raise Pokémon~too!~Will you battle~with me?
 OutroMessage|Oh, rats!

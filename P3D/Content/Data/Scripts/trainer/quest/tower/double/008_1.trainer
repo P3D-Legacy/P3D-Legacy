@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Geb,Megan
-TrainerClass|Double Team,
+TrainerClass|<system.token(TrainerClass_DoubleTeam)>,
 Money|0
 IntroMessage|You're our opponent?~Pushover hahaha.
 OutroMessage|You're serious aren't you friend?|My word this is just incredible.

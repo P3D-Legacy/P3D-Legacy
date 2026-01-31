@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Riley
-TrainerClass|Camper
+TrainerClass|<system.token(TrainerClass_Camper)>
 Money|1100
 IntroMessage|This is a good spot.~I'll pitch my tent here.
 OutroMessage|Wimped out...

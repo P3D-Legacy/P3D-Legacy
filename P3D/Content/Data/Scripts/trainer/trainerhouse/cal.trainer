@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Cal
-TrainerClass|Pokémon Trainer
+TrainerClass|<system.token(TrainerClass_PokémonTrainer)>
 Money|3000
 IntroMessage|I was selected to be~the challenger here until~real masters arrive!
 OutroMessage|You are really strong!

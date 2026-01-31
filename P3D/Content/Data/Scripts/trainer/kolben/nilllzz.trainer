@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Nilllzz
-TrainerClass|Developer
+TrainerClass|<system.token(TrainerClass_Developer)>
 Money|1000
 IntroMessage|
 OutroMessage|Quack?

@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Ernest
-TrainerClass|Sailor
+TrainerClass|<system.token(TrainerClass_Sailor)>
 Money|720
 IntroMessage|I wanted to battle~Jasmine, but she's~not up to it now.~So, how about you?
 OutroMessage|Whoa, whoa. You're~overwhelming!

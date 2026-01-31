@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Daniela
-TrainerClass|Battle Girl
+TrainerClass|<system.token(TrainerClass_BattleGirl)>
 Money|0
 IntroMessage|In love and in battles,~I've never tasted defeat!
 OutroMessage|So, I lost. I don't care!~I have a date soon, so I don't care!

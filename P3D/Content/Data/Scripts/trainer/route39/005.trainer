@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Jaime
-TrainerClass|Poké Fan
+TrainerClass|<system.token(TrainerClass_PokéFan)>
 Money|1280
 IntroMessage|You came at just~the right time.*Let's battle.
 OutroMessage|Oh, how disappointing...

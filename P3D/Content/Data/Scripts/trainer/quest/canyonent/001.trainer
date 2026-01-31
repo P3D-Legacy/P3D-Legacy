@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Miah
-TrainerClass|Aroma Lady
+TrainerClass|<system.token(TrainerClass_AromaLady)>
 Money|1540
 IntroMessage|Kyahaha!~I'll flick you away~effortlessly!
 OutroMessage|Tch!~Too strong for me!

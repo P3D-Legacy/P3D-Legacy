@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Arnold
-TrainerClass|Fisher
+TrainerClass|<system.token(TrainerClass_Fisher)>
 Money|1676
 IntroMessage|I'm bored by fishing.~Let's battle!
 OutroMessage|Utter failure...

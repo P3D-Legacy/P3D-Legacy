@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Allen
-TrainerClass|Ace Trainer
+TrainerClass|<system.token(TrainerClass_AceTrainer)>
 Money|1296
 IntroMessage|I can tell you're~a good trainer by~looking at you.*I'm good at Pokémon,~and I can see~that you are too.
 OutroMessage|Tch! It's a total~loss on my part.

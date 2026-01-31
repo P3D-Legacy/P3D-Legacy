@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Allie
-TrainerClass|Bird Keeper
+TrainerClass|<system.token(TrainerClass_BirdKeeper)>
 Money|0
 IntroMessage|There's lots in life that~doesn't go the way you want.
 OutroMessage|See....?

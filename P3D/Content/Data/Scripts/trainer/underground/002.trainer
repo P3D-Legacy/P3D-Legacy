@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Grunt
-TrainerClass|Team Rocket
+TrainerClass|<system.token(TrainerClass_TeamRocket)>
 Money|1000
 IntroMessage|Open one shutter,~another closes.~Bet you can't get~where you want!
 OutroMessage|Drat! I was sunk~by indecision!

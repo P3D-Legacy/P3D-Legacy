@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Kaila
-TrainerClass|Waitress
+TrainerClass|<system.token(TrainerClass_Waitress)>
 Money|0
 IntroMessage|Hello.~Whatcha having?
 OutroMessage|Be seeing ya!

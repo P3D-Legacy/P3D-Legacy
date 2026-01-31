@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Ruth
-TrainerClass|Poké Kid
+TrainerClass|<system.token(TrainerClass_PokéKid)>
 Money|0
 IntroMessage|My mommy made this~outfit for me.
 OutroMessage|My mommy is really good at~sewing.

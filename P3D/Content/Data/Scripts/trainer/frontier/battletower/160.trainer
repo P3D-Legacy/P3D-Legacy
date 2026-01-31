@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Reese
-TrainerClass|Youngster
+TrainerClass|<system.token(TrainerClass_Youngster)>
 Money|0
 IntroMessage|I'm the one!*Number one out of all~the kids in shorts!
 OutroMessage|Darn...~I'm number one...

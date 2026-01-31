@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Victoria
-TrainerClass|Beauty
+TrainerClass|<system.token(TrainerClass_Beauty)>
 Money|1496
 IntroMessage|Oh, you are a cute~little trainer!*I like you, but I~won't hold back!
 OutroMessage|Let's see... Oops,~it's over?

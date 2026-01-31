@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Morty
-TrainerClass|Leader
+TrainerClass|<system.token(TrainerClass_Leader)>
 Money|4300
 IntroMessage|I was just talking~about you...*Let's battle!
 OutroMessage|I've lost again...*You may have something~more than just strength.

@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Denise
-TrainerClass|Swimmer♀
+TrainerClass|<system.token(TrainerClass_Swimmer_Female)>
 Money|212
 IntroMessage|My boyfriend's always busy,~so I come swimming by myself.
 OutroMessage|Awww, I knew this would happen!

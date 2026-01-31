@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Faye
-TrainerClass|Beauty
+TrainerClass|<system.token(TrainerClass_Beauty)>
 Money|2024
 IntroMessage|My Pokémon love it~by the beach!
 OutroMessage|I hope they still like the beach...

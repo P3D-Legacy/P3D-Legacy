@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Ellen
-TrainerClass|Tuber
+TrainerClass|<system.token(TrainerClass_Tuber)>
 Money|0
 IntroMessage|The beach sand is so hot!~It makes me go, "Ouch, ouch,~ouch!"
 OutroMessage|Ouch, ouch, ouch!

@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Brandon
-TrainerClass|Ruin Maniac
+TrainerClass|<system.token(TrainerClass_RuinManiac)>
 Money|2640
 IntroMessage|Do you know anything about~this stone chamber?
 OutroMessage|That was uncalled for.~You don't have to be so rough.

@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Celina
-TrainerClass|Painter
+TrainerClass|<system.token(TrainerClass_Painter)>
 Money|880
 IntroMessage|Excuse me!~I'm trying to paint.
 OutroMessage|This loss...~I feel like I'm whiting out...

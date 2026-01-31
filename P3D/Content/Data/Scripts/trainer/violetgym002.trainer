@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Rod
-TrainerClass|Bird Keeper
+TrainerClass|<system.token(TrainerClass_BirdKeeper)>
 Money|168
 IntroMessage|The keyword is~guts!*Those here are~training night and~day to become bird~Pokémon masters.*Come on!
 OutroMessage|Gaaah!

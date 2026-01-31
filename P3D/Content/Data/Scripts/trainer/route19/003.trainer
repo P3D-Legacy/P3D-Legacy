@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Dawn
-TrainerClass|Swimmer♀
+TrainerClass|<system.token(TrainerClass_Swimmer_Female)>
 Money|1080
 IntroMessage|I'm disgusted by wimpy people!
 OutroMessage|I could beat you at swimming...

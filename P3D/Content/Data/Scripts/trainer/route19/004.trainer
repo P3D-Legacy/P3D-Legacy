@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Jerome
-TrainerClass|Swimmer♂
+TrainerClass|<system.token(TrainerClass_Swimmer_Male)>
 Money|384
 IntroMessage|Swimming?~I'm lousy at it.~I'm just splashing around in~these shallow waters.
 OutroMessage|I thought I could win.

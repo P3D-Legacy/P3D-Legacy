@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Jayson
-TrainerClass|Firebreather
+TrainerClass|<system.token(TrainerClass_Firebreather)>
 Money|2256
 IntroMessage|Ah!*The weather's as~fine as ever.
 OutroMessage|Its getting dark now...

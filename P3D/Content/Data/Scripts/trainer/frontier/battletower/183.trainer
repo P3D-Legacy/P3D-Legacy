@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Camden
-TrainerClass|Fisherman
+TrainerClass|<system.token(TrainerClass_Fisher)>man
 Money|0
 IntroMessage|When you get as good as me,~you can win easily,~even if asleep.
 OutroMessage|Sssnore...

@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Erich
-TrainerClass|Dragon Tamer
+TrainerClass|<system.token(TrainerClass_DragonTamer)>
 Money|0
 IntroMessage|The credo of the~Dragon Tamer!~Number one!
 OutroMessage|Even in defeat, roar!~Roar with your dragon!

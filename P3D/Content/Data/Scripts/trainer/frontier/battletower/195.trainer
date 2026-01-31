@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Stetson
-TrainerClass|Hiker
+TrainerClass|<system.token(TrainerClass_Hiker)>
 Money|0
 IntroMessage|My favorite drink is Moomoo Milk.~Got some?
 OutroMessage|Gwaah! Moomoo Milk!~Bring me some Moomoo Milk!

@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|<rival.name>
-TrainerClass|Rival
+TrainerClass|<system.token(TrainerClass_Rival)>
 Money|4000
 IntroMessage|...
 OutroMessage|... OK.~I lost...

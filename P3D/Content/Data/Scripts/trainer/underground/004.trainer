@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Eddie
-TrainerClass|Burglar
+TrainerClass|<system.token(TrainerClass_Burglar)>
 Money|2112
 IntroMessage|They ditched this~project before~they finished.*I'm searching for~leftover loot.
 OutroMessage|Over the top!

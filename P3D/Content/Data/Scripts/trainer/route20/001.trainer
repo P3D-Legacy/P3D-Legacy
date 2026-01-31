@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Cameron
-TrainerClass|Swimmer♂
+TrainerClass|<system.token(TrainerClass_Swimmer_Male)>
 Money|432
 IntroMessage|I guess it's impossible to~swim all the way to Johto.
 OutroMessage|Aiyah!

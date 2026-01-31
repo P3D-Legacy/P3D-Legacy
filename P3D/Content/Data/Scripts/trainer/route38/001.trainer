@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Harry
-TrainerClass|Sailor
+TrainerClass|<system.token(TrainerClass_Sailor)>
 Money|760
 IntroMessage|I've been over-~seas, so I know~about all sorts of~Pokémon!
 OutroMessage|Your skill is~world class!

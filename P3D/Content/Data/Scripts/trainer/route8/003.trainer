@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Dwayne
-TrainerClass|Biker
+TrainerClass|<system.token(TrainerClass_Biker)>
 Money|1440
 IntroMessage|We're the~Kanto Pokémon~federation trainer group.*We'll drive you~under our wheels!
 OutroMessage|S-Sorry!

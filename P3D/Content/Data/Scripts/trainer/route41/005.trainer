@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Denise
-TrainerClass|Swimmer♀
+TrainerClass|<system.token(TrainerClass_Swimmer_Female)>
 Money|440
 IntroMessage|The weather is so~beautiful, I'm in~a daze!
 OutroMessage|Ohhh!

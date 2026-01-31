@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Mike
-TrainerClass|Hiker
+TrainerClass|<system.token(TrainerClass_Hiker)>
 Money|0
 IntroMessage|My Pokémon are full of power!
 OutroMessage|You got me with your fake out.

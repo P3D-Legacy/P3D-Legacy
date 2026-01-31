@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Preston
-TrainerClass|Gentleman
+TrainerClass|<system.token(TrainerClass_Gentleman)>
 Money|1296
 IntroMessage|I travel the world~to train my Poké-~mon. I wish to~battle with you.
 OutroMessage|...sigh... I must~train some more...

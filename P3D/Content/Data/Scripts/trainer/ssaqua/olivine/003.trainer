@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Carol
-TrainerClass|Ace Trainer
+TrainerClass|<system.token(TrainerClass_AceTrainer)>
 Money|2160
 IntroMessage|I'm training to~become the champ!
 OutroMessage|What's so different between us?

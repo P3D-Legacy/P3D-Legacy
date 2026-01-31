@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Grunt
-TrainerClass|Team Rocket
+TrainerClass|<system.token(TrainerClass_TeamRocket)>
 Money|920
 IntroMessage|I've been given~strict orders.*I'm to crush anyone~who challenges~Team Rocket!
 OutroMessage|What?!

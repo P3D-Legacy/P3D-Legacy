@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Claire
-TrainerClass|Picnicker
+TrainerClass|<system.token(TrainerClass_Picnicker)>
 Money|1000
 IntroMessage|My lunch filled us up,~so will you battle us~for some exercise?
 OutroMessage|That made me all sweaty.

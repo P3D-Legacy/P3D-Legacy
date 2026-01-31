@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Valeria
-TrainerClass|Reporter
+TrainerClass|<system.token(TrainerClass_Reporter)>
 Money|0
 IntroMessage|Hello there, Trainer!~Please battle with me!
 OutroMessage|I appreciate the lesson!

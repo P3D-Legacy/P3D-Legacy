@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Clyde
-TrainerClass|Psychic
+TrainerClass|<system.token(TrainerClass_Psychic)>
 Money|0
 IntroMessage|Behold you shall!~Psychic-mystifying power!
 OutroMessage|No, but...~Psychic-mystifying power...

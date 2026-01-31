@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Wai
-TrainerClass|Black Belt
+TrainerClass|<system.token(TrainerClass_BlackBelt)>
 Money|1056
 IntroMessage|I'm building up my~legs by bracing against~the ship's rocking!
 OutroMessage|Rocked and rolled over!

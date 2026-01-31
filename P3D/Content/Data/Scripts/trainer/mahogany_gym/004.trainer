@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Douglas
-TrainerClass|Boarder
+TrainerClass|<system.token(TrainerClass_Boarder)>
 Money|1728
 IntroMessage|I know Pryce's secret.
 OutroMessage|OK. I'll tell you~Pryce's secret.

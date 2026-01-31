@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Garrett
-TrainerClass|Tuber
+TrainerClass|<system.token(TrainerClass_Tuber)>
 Money|208
 IntroMessage|I took a break from~swimming, only to have~you challenge me?
 OutroMessage|Hey, what the...~You're good, you!

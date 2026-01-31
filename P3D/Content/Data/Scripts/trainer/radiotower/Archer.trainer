@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Archer
-TrainerClass|Executive
+TrainerClass|<system.token(TrainerClass_Executive)>
 Money|2520
 IntroMessage|Oh? You managed to~get this far?*You must be quite~the trainer.*We intend to take~over this Radio*Station and~announce our comeback.*That should bring~our boss Giovanni*back from his solo~training.*We are going to~regain our former glory.*I won't allow you~to interfere with~our plans.
 OutroMessage|NO! Forgive me,~Giovanni!

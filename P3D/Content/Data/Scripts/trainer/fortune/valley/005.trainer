@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Larry
-TrainerClass|Ruin Maniac
+TrainerClass|<system.token(TrainerClass_RuinManiac)>
 Money|2640
 IntroMessage|It's been said that there are~mysterious stones on this~island.*I suspect it has something to~do with the ruins here.
 OutroMessage|Oh, interesting.

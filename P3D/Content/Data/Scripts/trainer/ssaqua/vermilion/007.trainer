@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Kenneth
-TrainerClass|Sailor
+TrainerClass|<system.token(TrainerClass_Sailor)>
 Money|1520
 IntroMessage|I'm a sailor moon!*But I'm training Pokémon,~so I can become the Champ!
 OutroMessage|My lack of training is obvious...

@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Huey
-TrainerClass|Sailor
+TrainerClass|<system.token(TrainerClass_Sailor)>
 Money|800
 IntroMessage|Men of the sea are~always spoiling~for a good fight!
 OutroMessage|Urf!~I lose!

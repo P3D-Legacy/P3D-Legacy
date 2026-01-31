@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Gunner
-TrainerClass|Psychic
+TrainerClass|<system.token(TrainerClass_Psychic)>
 Money|0
 IntroMessage|My family will show you~a good time!
 OutroMessage|My beloved family...

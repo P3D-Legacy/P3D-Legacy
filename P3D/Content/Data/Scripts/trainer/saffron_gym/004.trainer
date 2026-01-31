@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Rebecca
-TrainerClass|Medium
+TrainerClass|<system.token(TrainerClass_Medium)>
 Money|2040
 IntroMessage|The power of all those~you defeated comes to me!
 OutroMessage|Strong...~Far too strong...

@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Abner
-TrainerClass|Bug Catcher
+TrainerClass|<system.token(TrainerClass_BugCatcher)>
 Money|704
 IntroMessage|There are many people out~there that prefer solid bug~Pokémon over~squishy bug Pokémon.
 OutroMessage|Thank you for~your hard work,~my lovely Pokémon...

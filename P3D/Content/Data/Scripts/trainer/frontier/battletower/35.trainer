@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Viv
-TrainerClass|Idol
+TrainerClass|<system.token(TrainerClass_Idol)>
 Money|0
 IntroMessage|Thanks for supporting me!
 OutroMessage|What a horrible way to~treat an idol...

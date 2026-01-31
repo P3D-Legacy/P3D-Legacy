@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Lori
-TrainerClass|Swimmer♀
+TrainerClass|<system.token(TrainerClass_Swimmer_Female)>
 Money|1040
 IntroMessage|What an impressive~collection of Gym badges.*We should battle!
 OutroMessage|No!

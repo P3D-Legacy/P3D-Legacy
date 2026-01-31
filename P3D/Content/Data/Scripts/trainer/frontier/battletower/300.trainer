@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Orteil
-TrainerClass|Clicker
+TrainerClass|<system.token(TrainerClass_Clicker)>
 Money|0
 IntroMessage|Anti matter does exist.~Does it really?
 OutroMessage|Smash em!

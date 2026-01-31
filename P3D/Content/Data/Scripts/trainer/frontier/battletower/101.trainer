@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Cordell
-TrainerClass|Cyclist
+TrainerClass|<system.token(TrainerClass_Cyclist)>
 Money|0
 IntroMessage|Come on! We'll run! Together!
 OutroMessage|Wait! Don't leave me behind!

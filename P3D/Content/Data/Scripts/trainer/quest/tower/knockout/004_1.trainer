@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Brennan
-TrainerClass|Sailor
+TrainerClass|<system.token(TrainerClass_Sailor)>
 Money|0
 IntroMessage|Take things easy...~That's important.
 OutroMessage|Oops you got an easy win.

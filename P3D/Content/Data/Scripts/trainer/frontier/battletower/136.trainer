@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Royce
-TrainerClass|Roughneck
+TrainerClass|<system.token(TrainerClass_Roughneck)>
 Money|0
 IntroMessage|Battles achieve nothing!~Take my hand!*It's about love!
 OutroMessage|Battling is futile!~Take my hand!*It's about love!

@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Grunt
-TrainerClass|Team Rocket
+TrainerClass|<system.token(TrainerClass_TeamRocket)>
 Money|5040
 IntroMessage|I'm the last line of defense.*I won't go easy on you.
 OutroMessage|Busted!

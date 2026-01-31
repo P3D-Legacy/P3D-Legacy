@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Arnie
-TrainerClass|Bug Catcher
+TrainerClass|<system.token(TrainerClass_BugCatcher)>
 Money|16*(4*<player.badges>+5)
 IntroMessage|I'll go anywhere~if bug Pokémon~appear there.
 OutroMessage|I see. So you~battle this way.

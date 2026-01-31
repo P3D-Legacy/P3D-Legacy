@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Mag,Isac
-TrainerClass|Double Team,
+TrainerClass|<system.token(TrainerClass_DoubleTeam)>,
 Money|0
 IntroMessage|My Pokémon doesn't get~all shaky.
 OutroMessage|Huh? You left me feeling shaky.|I'm all shaky...

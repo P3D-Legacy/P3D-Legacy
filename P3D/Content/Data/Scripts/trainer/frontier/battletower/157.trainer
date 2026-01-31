@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Lincoln
-TrainerClass|Ace Trainer
+TrainerClass|<system.token(TrainerClass_AceTrainer)>
 Money|0
 IntroMessage|My ace Pokémon are on the go!
 OutroMessage|I like the sense you show!

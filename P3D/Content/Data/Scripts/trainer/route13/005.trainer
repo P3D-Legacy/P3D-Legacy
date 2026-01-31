@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Kenny
-TrainerClass|Hiker
+TrainerClass|<system.token(TrainerClass_Hiker)>
 Money|1440
 IntroMessage|I should go to Rock Tunnel~to get myself an Onix.
 OutroMessage|I lost...

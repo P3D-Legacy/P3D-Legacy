@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Jeff
-TrainerClass|Sailor
+TrainerClass|<system.token(TrainerClass_Sailor)>
 Money|1680
 IntroMessage|Nothing beats a battle~when I'm on my break.
 OutroMessage|Win or lose,~my break's over!

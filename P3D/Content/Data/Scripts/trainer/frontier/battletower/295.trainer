@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Noelle
-TrainerClass|Beauty
+TrainerClass|<system.token(TrainerClass_Beauty)>
 Money|0
 IntroMessage|Ready?
 OutroMessage|Bye.

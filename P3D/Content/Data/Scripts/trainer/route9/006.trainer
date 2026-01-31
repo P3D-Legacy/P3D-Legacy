@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Heidi
-TrainerClass|Picnicker
+TrainerClass|<system.token(TrainerClass_Picnicker)>
 Money|940
 IntroMessage|Have you ever~been to a picnic?*They are so much fun!
 OutroMessage|Ohhh!

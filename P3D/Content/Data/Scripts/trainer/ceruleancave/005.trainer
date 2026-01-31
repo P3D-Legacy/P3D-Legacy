@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Grunt
-TrainerClass|Team Rocket
+TrainerClass|<system.token(TrainerClass_TeamRocket)>
 Money|2160
 IntroMessage|The boss is going~to capture the strongest~Pokémon alive!*If I beat you~maybe he will~let me touch it?
 OutroMessage|There goes that dream...

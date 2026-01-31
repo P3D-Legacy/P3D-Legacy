@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|William
-TrainerClass|Poké Fan
+TrainerClass|<system.token(TrainerClass_PokéFan)>
 Money|1120
 IntroMessage|We adore our Pokémon,~even if they~dislike us.*That's what being~a fan is about.
 OutroMessage|M-my Pokémon.

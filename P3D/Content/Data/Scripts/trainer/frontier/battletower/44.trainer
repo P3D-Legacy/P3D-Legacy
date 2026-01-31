@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Duane
-TrainerClass|Waiter
+TrainerClass|<system.token(TrainerClass_Waiter)>
 Money|0
 IntroMessage|What I really hoped~to become was a cook.
 OutroMessage|I just find it hard~talking to strangers.

@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Quinn
-TrainerClass|Ace Trainer
+TrainerClass|<system.token(TrainerClass_AceTrainer)>
 Money|2544
 IntroMessage|You there!~Want to battle?
 OutroMessage|Down and out...

@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Sharon
-TrainerClass|Picnicker
+TrainerClass|<system.token(TrainerClass_Picnicker)>
 Money|960
 IntroMessage|Um...~I..
 OutroMessage|...

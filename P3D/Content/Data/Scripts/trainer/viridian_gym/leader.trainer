@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Blue
-TrainerClass|Leader
+TrainerClass|<system.token(TrainerClass_Leader)>
 Money|10000
 IntroMessage|Blue: Yo!~Finally got here, huh?~I wasn't in the mood~at Cinnabar, but now~I'm ready to battle you.*...*You're telling me you~conquered all the~Gyms in Johto?*Hahaha!*Heh!*Johto's Gyms are that~pathetic?~Hey, don't worry about it.*I'll know if you~are good or not by~battling you right now.
 OutroMessage|This is the real power of Johto...

@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Jerry
-TrainerClass|Camper
+TrainerClass|<system.token(TrainerClass_Camper)>
 Money|1040
 IntroMessage|The trainers of this Gym~use rock-type Pokémon.*The rock-type has high~defense.*Battles could end up~going a long time.*Are you ready for this?
 OutroMessage|I have to win these battles...

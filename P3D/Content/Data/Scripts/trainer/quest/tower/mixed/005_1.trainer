@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Kipp,Kat
-TrainerClass|Sis and Bro,
+TrainerClass|<system.token(TrainerClass_SisAndBro)>,
 Money|0
 IntroMessage|Fufufu... we never lose!
 OutroMessage|What huh? Are you joking?|Sigh... That's how it goes.

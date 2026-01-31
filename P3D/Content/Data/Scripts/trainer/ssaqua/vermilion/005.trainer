@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Jeremy
-TrainerClass|Poké Fan
+TrainerClass|<system.token(TrainerClass_PokéFan)>
 Money|3040
 IntroMessage|What do you think?~My Pokémon are beautiful,yes?
 OutroMessage|Oh, no!~My beautiful Pokémon!

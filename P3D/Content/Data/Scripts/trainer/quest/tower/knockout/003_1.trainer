@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Camryn
-TrainerClass|Picnicker
+TrainerClass|<system.token(TrainerClass_Picnicker)>
 Money|0
 IntroMessage|Let's battle I won't lose!
 OutroMessage|Oh? ......... Did I lose?

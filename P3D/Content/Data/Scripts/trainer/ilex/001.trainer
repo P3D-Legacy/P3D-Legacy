@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Akemi
-TrainerClass|Kimono Girl
+TrainerClass|<system.token(TrainerClass_KimonoGirl)>
 Money|3960
 IntroMessage|I must challenge you!*Show me if you have~some of that same grace~in battle!
 OutroMessage|Oh, you truly demonstrate a passion for Pokémon.

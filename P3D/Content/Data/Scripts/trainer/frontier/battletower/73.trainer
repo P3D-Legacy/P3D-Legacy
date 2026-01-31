@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Herbert
-TrainerClass|Guitarist
+TrainerClass|<system.token(TrainerClass_Guitarist)>
 Money|0
 IntroMessage|Let my guitar howl!~Hear me scream!
 OutroMessage|Giyaaaah!

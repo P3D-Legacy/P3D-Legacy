@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Kaden
-TrainerClass|Fisherman
+TrainerClass|<system.token(TrainerClass_Fisher)>man
 Money|0
 IntroMessage|My fishing fashion~appeal is fantastic.
 OutroMessage|Uh-oh... I see I lost.

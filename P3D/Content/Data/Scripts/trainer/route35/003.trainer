@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Brooke
-TrainerClass|Picnicker
+TrainerClass|<system.token(TrainerClass_Picnicker)>
 Money|320
 IntroMessage|My boyfriend's~weak, so I can't~rely on him.
 OutroMessage|Oh my, you are~so strong!

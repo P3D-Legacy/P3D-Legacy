@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Janine
-TrainerClass|Leader
+TrainerClass|<system.token(TrainerClass_Leader)>
 Money|6600
 IntroMessage|Fufufufu...*I'm sorry to disappoint you...*I'm only joking!*I'm the real deal!*Janine of Fuchsia Gym,~that's me!
 OutroMessage|You're a tough one.*You definitely won...*Here's the Soul Badge.~Take it.

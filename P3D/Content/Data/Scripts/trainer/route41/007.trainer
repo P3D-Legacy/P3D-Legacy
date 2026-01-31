@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Wendy
-TrainerClass|Swimmer♀
+TrainerClass|<system.token(TrainerClass_Swimmer_Female)>
 Money|420
 IntroMessage|At night, Staryu~gather near the~water's surface.
 OutroMessage|Oh, dear...

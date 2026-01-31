@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Vaughn
-TrainerClass|Black Belt
+TrainerClass|<system.token(TrainerClass_BlackBelt)>
 Money|0
 IntroMessage|The ultimate of my technique!~Experience it in its entirety!
 OutroMessage|I've fallen in defeat?~Gw-gwaaah!

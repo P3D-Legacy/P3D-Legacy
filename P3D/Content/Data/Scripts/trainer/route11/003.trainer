@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Owen
-TrainerClass|Youngster
+TrainerClass|<system.token(TrainerClass_Youngster)>
 Money|800
 IntroMessage|There's no cheating in Pokémon.*Lets keep it fair and square!
 OutroMessage|Huh?~How did this happen?

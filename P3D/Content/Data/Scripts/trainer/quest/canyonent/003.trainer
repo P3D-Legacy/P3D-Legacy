@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Nicolas
-TrainerClass|Pokémon Ranger
+TrainerClass|<system.token(TrainerClass_PokémonRanger)>
 Money|1980
 IntroMessage|This island is too spread out...~It's not easy patrolling~the place.
 OutroMessage|Uh-huh...

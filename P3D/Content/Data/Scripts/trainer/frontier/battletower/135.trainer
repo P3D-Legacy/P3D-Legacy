@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Donnell
-TrainerClass|Roughneck
+TrainerClass|<system.token(TrainerClass_Roughneck)>
 Money|0
 IntroMessage|If you want to run~home to mommy,~here's you chance, punk!
 OutroMessage|Waah! I want my mommy!

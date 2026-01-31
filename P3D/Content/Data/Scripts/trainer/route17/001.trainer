@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Dale
-TrainerClass|Biker
+TrainerClass|<system.token(TrainerClass_Biker)>
 Money|1664
 IntroMessage|You're gonna lose!~I've got a hunch!
 OutroMessage|Maybe my hunch~was a little off...

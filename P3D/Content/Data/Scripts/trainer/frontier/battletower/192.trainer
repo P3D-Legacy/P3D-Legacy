@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Bernard
-TrainerClass|Sailor
+TrainerClass|<system.token(TrainerClass_Sailor)>
 Money|0
 IntroMessage|Looking out over the~sea's breaking waves...*It revives memories.
 OutroMessage|Wroaaaar! Mommy!

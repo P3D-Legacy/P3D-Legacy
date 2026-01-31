@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Scott
-TrainerClass|Fisherman
+TrainerClass|<system.token(TrainerClass_Fisher)>man
 Money|1360
 IntroMessage|I'm feeling great today!*I feel like I~could boot even~the League Champ!
 OutroMessage|NO! Not in this battle!

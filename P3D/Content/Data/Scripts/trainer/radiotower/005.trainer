@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Grunt
-TrainerClass|Team Rocket
+TrainerClass|<system.token(TrainerClass_TeamRocket)>
 Money|1000
 IntroMessage|Three years ago,~Team Rocket was~forced to disband.*But we're making a~comeback here!
 OutroMessage|Gwah! Don't get cute!

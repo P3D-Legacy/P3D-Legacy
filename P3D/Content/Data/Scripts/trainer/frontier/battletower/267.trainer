@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Kegan
-TrainerClass|Sailor
+TrainerClass|<system.token(TrainerClass_Sailor)>
 Money|0
 IntroMessage|Huh? You're my opponent?~This is kind of unnerving...
 OutroMessage|See, I told you...~I thought you were tough.

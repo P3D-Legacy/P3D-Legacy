@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Jimmy
-TrainerClass|Youngster
+TrainerClass|<system.token(TrainerClass_Youngster)>
 Money|768
 IntroMessage|I can run like the wind!
 OutroMessage|Blown away!

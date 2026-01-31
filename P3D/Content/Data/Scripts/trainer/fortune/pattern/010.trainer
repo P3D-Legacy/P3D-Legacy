@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Allison
-TrainerClass|Pokémon Breeder
+TrainerClass|<system.token(TrainerClass_PokémonBreeder)>
 Money|1456
 IntroMessage|I'm working to preserve the~natural ecology of Pokémon~here.
 OutroMessage|Oh, for someone so young, you are tremendous!

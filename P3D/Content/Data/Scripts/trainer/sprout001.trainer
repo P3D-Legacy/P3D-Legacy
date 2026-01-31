@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Nico
-TrainerClass|Sage
+TrainerClass|<system.token(TrainerClass_Sage)>
 Money|96
 IntroMessage|A flexible pillar protects the~tower, even from earthquakes.
 OutroMessage|I fought hard but~I'm too weak.

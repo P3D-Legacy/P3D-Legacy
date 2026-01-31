@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Bryce
-TrainerClass|Boarder
+TrainerClass|<system.token(TrainerClass_Boarder)>
 Money|1600
 IntroMessage|What did you come~all the way out here~for, I wonder?
 OutroMessage|I lost all the~way out here...

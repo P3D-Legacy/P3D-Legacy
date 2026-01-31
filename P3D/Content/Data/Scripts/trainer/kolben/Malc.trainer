@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Malcaroni
-TrainerClass|Moderator
+TrainerClass|<system.token(TrainerClass_Moderator)>
 Money|1000
 IntroMessage|
 OutroMessage|HEHEHEHEHE

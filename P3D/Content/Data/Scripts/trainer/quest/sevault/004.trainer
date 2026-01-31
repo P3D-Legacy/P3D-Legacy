@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Katelyn
-TrainerClass|Pokémon Ranger
+TrainerClass|<system.token(TrainerClass_PokémonRanger)>
 Money|2088
 IntroMessage|Those shoes you have are~pretty snazzy.
 OutroMessage|You're hot stuff in spite of your cute looks.

@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Mia
-TrainerClass|Parasol Lady
+TrainerClass|<system.token(TrainerClass_ParasolLady)>
 Money|0
 IntroMessage|If you were the weather,~what would you be now?
 OutroMessage|I'm feeling fogbound...

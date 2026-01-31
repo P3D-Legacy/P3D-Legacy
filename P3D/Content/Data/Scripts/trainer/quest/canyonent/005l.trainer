@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Eve,Jon
-TrainerClass|Young Couple,
+TrainerClass|<system.token(TrainerClass_YoungCouple)>,
 Money|3080
 IntroMessage|
 OutroMessage|Eve: Me and Jon, we lost.~Ehehe.

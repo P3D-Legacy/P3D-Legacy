@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Benjamin
-TrainerClass|Hiker
+TrainerClass|<system.token(TrainerClass_Hiker)>
 Money|512
 IntroMessage|Ah, it's good to~be outside!~I feel so free!
 OutroMessage|Ooh, I'm feeling~dizzy!

@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Trever
-TrainerClass|Ninja Boy
+TrainerClass|<system.token(TrainerClass_NinjaBoy)>
 Money|0
 IntroMessage|Behold my fearsome~ninja technique!
 OutroMessage|You didn't fall for my~fake ninja boasting!

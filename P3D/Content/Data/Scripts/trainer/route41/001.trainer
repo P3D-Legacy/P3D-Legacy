@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Charlie
-TrainerClass|Swimmer♂
+TrainerClass|<system.token(TrainerClass_Swimmer_Male)>
 Money|152
 IntroMessage|The water's warm~here. I'm loose~and limber.*Sure, I'll take~you on!
 OutroMessage|Yikes! I've got~prune skin!

@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|<rival.name>
-TrainerClass|Rival
+TrainerClass|<system.token(TrainerClass_Rival)>
 Money|1920
 IntroMessage|I saw you, so I~tailed you.*I don't need you~underfoot while I~take care of Team Rocket.*...Wait a second.~You beat me before,~didn't you?*That was just a fluke.*But I repay my~debts!
 OutroMessage|...Why...~Why do I lose?*I've assembled the~toughest Pokémon.*I didn't ease up~on the gas.*So why do I lose?

@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Tracy
-TrainerClass|Poké Kid
+TrainerClass|<system.token(TrainerClass_PokéKid)>
 Money|0
 IntroMessage|A battle, you say?~I'm never losing to you!
 OutroMessage|Urk...~We lost...

@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Logan
-TrainerClass|Pokémon Ranger
+TrainerClass|<system.token(TrainerClass_PokémonRanger)>
 Money|1980
 IntroMessage|An active volcano~is one that's erupting~or about to.
 OutroMessage|Whew... That was hot!*Sweat's erupting from me!

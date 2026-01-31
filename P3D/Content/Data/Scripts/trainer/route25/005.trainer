@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Lloyd
-TrainerClass|Camper
+TrainerClass|<system.token(TrainerClass_Camper)>
 Money|980
 IntroMessage|Okay! I'm No. 5.~I will stomp you!
 OutroMessage|Whoa! Too much.

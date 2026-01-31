@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Aric
-TrainerClass|Bug Catcher
+TrainerClass|<system.token(TrainerClass_BugCatcher)>
 Money|0
 IntroMessage|Crunch-crunch...~Crunch-crunch...
 OutroMessage|What am I standing on?~Busted Poke Balls?

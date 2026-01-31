@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Madison
-TrainerClass|Hiker
+TrainerClass|<system.token(TrainerClass_Hiker)>
 Money|0
 IntroMessage|Yahoo!
 OutroMessage|Gweff! Hack! Hack!~Hollering choked me up!

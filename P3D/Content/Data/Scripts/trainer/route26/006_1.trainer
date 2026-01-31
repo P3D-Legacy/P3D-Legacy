@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Beth
-TrainerClass|Ace Trainer
+TrainerClass|<system.token(TrainerClass_AceTrainer)>
 Money|2256
 IntroMessage|I lost to a trainer~named <rival.name>.*He was really~strong, but...*It was as if he~absolutely had to~win at any cost.*I felt sorry for~his Pokémon.
 OutroMessage|Pokémon aren't~tools of war.

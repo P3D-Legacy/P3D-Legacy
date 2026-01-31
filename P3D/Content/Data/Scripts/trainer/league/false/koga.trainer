@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Koga
-TrainerClass|Elite Four
+TrainerClass|<system.token(TrainerClass_EliteFour)>
 Money|4400
 IntroMessage|Fwahahahaha!*I am Koga of~the Elite Four.*I live in shadows,~a ninja!*My intricate style will~confound and destroy you!*Confusion,~sleep,~poison...*Prepare to be the victim~of my sinister technique!*Fwahahahaha!*Pokémon is not merely*about brute force--*you shall see soon enough!
 OutroMessage|Ah!~You have proven your worth!

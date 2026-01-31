@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Enethil
-TrainerClass|Moderator
+TrainerClass|<system.token(TrainerClass_Moderator)>
 Money|5000
 IntroMessage|
 OutroMessage|Out of pokémon already?

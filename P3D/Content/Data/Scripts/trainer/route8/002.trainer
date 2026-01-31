@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Sam
-TrainerClass|Super Nerd
+TrainerClass|<system.token(TrainerClass_SuperNerd)>
 Money|1568
 IntroMessage|How does the~Magnet Train work?
 OutroMessage|I just wanted to~see the Magnet Train...

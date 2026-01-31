@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Marquez
-TrainerClass|Guitarist
+TrainerClass|<system.token(TrainerClass_Guitarist)>
 Money|0
 IntroMessage|What I have here~isn't really a guitar.
 OutroMessage|This here is a~keyboard synth.

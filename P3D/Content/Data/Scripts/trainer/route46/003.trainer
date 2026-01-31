@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Bailey
-TrainerClass|Hiker
+TrainerClass|<system.token(TrainerClass_Hiker)>
 Money|416
 IntroMessage|Awright! I'll show~you the power of~mountain Pokémon!
 OutroMessage|Mercy! You showed~me your power!

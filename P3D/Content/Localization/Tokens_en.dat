@@ -4388,8 +4388,114 @@ FollowerInteraction_MtSilver_CharmanderAndEvos,<name> blew out~a plume of fire a
 FollowerInteraction_MtSilver_SquirtleAndEvos,<name> shoot out~a jet of water and~looked eager!
 FollowerInteraction_MtSilver_EeveeOrPichuAndEvos,<name> is trembling~with eagerness!
 FollowerInteraction_MtSilver_LaprasSnorlax,<name> is feeling~very eager!
-
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------
+Trainer Classes:
+
+TrainerClass_AceTrainer,Ace Trainer
+TrainerClass_AromaLady,Aroma Lady
+TrainerClass_Automaton,Automaton
+TrainerClass_BattleGirl,Battle Girl
+TrainerClass_Beauty,Beauty
+TrainerClass_Biker,Biker
+TrainerClass_BirdKeeper,Bird Keeper
+TrainerClass_BlackBelt,Black Belt
+TrainerClass_Boarder,Boarder
+TrainerClass_BugCatcher,Bug Catcher
+TrainerClass_Burglar,Burglar
+TrainerClass_Cameraman,Cameraman
+TrainerClass_Camper,Camper
+TrainerClass_Captain,Captain
+TrainerClass_Champion,Champion
+TrainerClass_Clicker,Clicker
+TrainerClass_Clown,Clown
+TrainerClass_Collector,Collector
+TrainerClass_Cowgirl,Cowgirl
+TrainerClass_CrushGirl,Crush Girl
+TrainerClass_CrushKin,Crush Kin
+TrainerClass_CueBall,Cue Ball
+TrainerClass_Cyclist,Cyclist
+TrainerClass_Dancer,Dancer
+TrainerClass_Developer,Developer
+TrainerClass_Dinnerbone,Dinnerbone
+TrainerClass_DoubleTeam,Double Team
+TrainerClass_DragonTamer,Dragon Tamer
+TrainerClass_Drummer,Drummer
+TrainerClass_Elder,Elder
+TrainerClass_EliteFour,Elite Four
+TrainerClass_Engineer,Engineer
+TrainerClass_Executive,Executive
+TrainerClass_FactoryHead,Factory Head
+TrainerClass_Firebreather,Firebreather
+TrainerClass_Fisher,Fisher
+TrainerClass_Fisherman,Fisherman
+TrainerClass_Gentleman,Gentleman
+TrainerClass_Guitarist,Guitarist
+TrainerClass_Hiker,Hiker
+TrainerClass_Idol,Idol
+TrainerClass_Jogger,Jogger
+TrainerClass_Juggler,Juggler
+TrainerClass_KarateKing,Karate King
+TrainerClass_KimonoGirl,Kimono Girl
+TrainerClass_KingOfTheSquirrels,King of the Squirrels
+TrainerClass_Lady,Lady
+TrainerClass_Lass,Lass
+TrainerClass_Leader,Leader
+TrainerClass_Medium,Medium
+TrainerClass_Moderator,Moderator
+TrainerClass_MysticalMan,Mystical Man
+TrainerClass_NinjaBoy,Ninja Boy
+TrainerClass_Painter,Painter
+TrainerClass_ParasolLady,Parasol Lady
+TrainerClass_PI,PI
+TrainerClass_Picnicker,Picnicker
+TrainerClass_PokéManiac,PokéManiac
+TrainerClass_PokémonBreeder,Pokémon Breeder
+TrainerClass_PokémonRanger,Pokémon Ranger
+TrainerClass_PokémonTrainer,Pokémon Trainer
+TrainerClass_PokéFan,Poké Fan
+TrainerClass_PokéKid,Poké Kid
+TrainerClass_PokéManiac,Poké Maniac
+TrainerClass_PokémonBreeder,Pokémon Breeder
+TrainerClass_PokémonRanger,Pokémon Ranger
+TrainerClass_PokémonTrainer,Pokémon Trainer
+TrainerClass_Policeman,Policeman
+TrainerClass_President,President
+TrainerClass_Professor,Professor
+TrainerClass_Programmer,Programmer
+TrainerClass_Psychic,Psychic
+TrainerClass_Rancher,Rancher
+TrainerClass_Reporter,Reporter
+TrainerClass_RichBoy,Rich Boy
+TrainerClass_Rival,Rival
+TrainerClass_RocketBoss,Rocket Boss
+TrainerClass_Roughneck,Roughneck
+TrainerClass_RuinManiac,Ruin Maniac
+TrainerClass_Sage,Sage
+TrainerClass_Sailor,Sailor
+TrainerClass_School Kid,School Kid
+TrainerClass_Scientist,Scientist
+TrainerClass_SisAndBro,Sis and Bro
+TrainerClass_Skier,Skier
+TrainerClass_Socialite,Socialite
+TrainerClass_SuperNerd,Super Nerd
+TrainerClass_Swimmer_Male,Swimmer♂
+TrainerClass_Swimmer_Female,Swimmer♀
+TrainerClass_Tamer,Tamer
+TrainerClass_Teacher,Teacher
+TrainerClass_TeamRocket_Agents,Team Rocket_Agents
+TrainerClass_TeamRocket,Team Rocket
+TrainerClass_TowerTycoon,Tower Tycoon
+TrainerClass_Trainer,Trainer
+TrainerClass_Tuber,Tuber
+TrainerClass_Twins,Twins
+TrainerClass_Veteran,Veteran
+TrainerClass_Waiter,Waiter
+TrainerClass_Waitress,Waitress
+TrainerClass_Worker,Worker
+TrainerClass_YoungCouple,Young Couple
+TrainerClass_Youngster,Youngster
+
+-----
 Story translation:
 ---
 New Bark Town:

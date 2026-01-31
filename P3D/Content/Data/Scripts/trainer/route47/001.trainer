@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Devin
-TrainerClass|Hiker
+TrainerClass|<system.token(TrainerClass_Hiker)>
 Money|608
 IntroMessage|Before a battle,~you should always~greet with a laugh!
 OutroMessage|Oh, I lost that!

@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Duncan
-TrainerClass|Burglar
+TrainerClass|<system.token(TrainerClass_Burglar)>
 Money|2024
 IntroMessage|Fork over your~goodies!
 OutroMessage|Mercy!

@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Grunt
-TrainerClass|Team Rocket
+TrainerClass|<system.token(TrainerClass_TeamRocket)>
 Money|960
 IntroMessage|Don't I think~Pokémon are cute?*I'll think my~Pokémon are cute--*after they beat~yours!
 OutroMessage|Oh, no! They're so~useless!

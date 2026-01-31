@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Joel
-TrainerClass|Biker
+TrainerClass|<system.token(TrainerClass_Biker)>
 Money|1600
 IntroMessage|Wow.~That's a cool Pokémon!
 OutroMessage|But you don't~just look cool...

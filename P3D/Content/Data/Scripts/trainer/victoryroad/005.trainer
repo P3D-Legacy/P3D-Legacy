@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Vincent
-TrainerClass|Tamer
+TrainerClass|<system.token(TrainerClass_Tamer)>
 Money|1760
 IntroMessage|Come on!~I'll whip you!
 OutroMessage|I got whipped!

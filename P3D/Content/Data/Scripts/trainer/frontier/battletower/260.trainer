@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Sidney
-TrainerClass|Idol
+TrainerClass|<system.token(TrainerClass_Idol)>
 Money|0
 IntroMessage|You're serious? A battle?~And that's against me?
 OutroMessage|Double wow!

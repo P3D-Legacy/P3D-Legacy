@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Layne
-TrainerClass|Worker
+TrainerClass|<system.token(TrainerClass_Worker)>
 Money|0
 IntroMessage|Why, sure! Sounds great!~We have to do this!
 OutroMessage|A battle while working...~It's a good way to take a break.

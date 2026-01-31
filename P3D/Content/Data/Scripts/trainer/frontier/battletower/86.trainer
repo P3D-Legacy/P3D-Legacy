@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Jovan
-TrainerClass|Jogger
+TrainerClass|<system.token(TrainerClass_Jogger)>
 Money|0
 IntroMessage|I'll run on the spot while~battling for the good of my health.
 OutroMessage|Gasp! My ankle!~I rolled my ankle!

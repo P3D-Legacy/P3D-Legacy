@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Harvey
-TrainerClass|Pokémon Breeder
+TrainerClass|<system.token(TrainerClass_PokémonBreeder)>
 Money|0
 IntroMessage|Winning and losing isn't~all there is to battling.
 OutroMessage|The effort you put~in is what's important.

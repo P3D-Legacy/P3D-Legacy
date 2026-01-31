@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Elliot
-TrainerClass|Camper
+TrainerClass|<system.token(TrainerClass_Camper)>
 Money|300
 IntroMessage|I'm gonna show my~girlfriend I'm hot~stuff!
 OutroMessage|I wish you would~have lost for me...

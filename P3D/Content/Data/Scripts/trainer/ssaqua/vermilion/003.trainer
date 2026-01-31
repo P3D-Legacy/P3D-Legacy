@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Ken
-TrainerClass|Bug Catcher
+TrainerClass|<system.token(TrainerClass_BugCatcher)>
 Money|672
 IntroMessage|I'm visiting my grandma~to catch me some bugs!
 OutroMessage|Ooh, wow.~You're tough!

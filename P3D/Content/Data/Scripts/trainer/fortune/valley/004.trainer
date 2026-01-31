@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Foster
-TrainerClass|Ruin Maniac
+TrainerClass|<system.token(TrainerClass_RuinManiac)>
 Money|2736
 IntroMessage|I'm curious, what compelled you~to come here?
 OutroMessage|It's been so long since I battled, My instincts are off.

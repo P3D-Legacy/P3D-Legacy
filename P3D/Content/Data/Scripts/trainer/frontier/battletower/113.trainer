@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Pamela
-TrainerClass|Battle Girl
+TrainerClass|<system.token(TrainerClass_BattleGirl)>
 Money|0
 IntroMessage|Did I catch you smirking~at my eight-pack abs?
 OutroMessage|Musculature is the ultimate beauty!

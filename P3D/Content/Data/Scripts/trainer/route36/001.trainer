@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Mark
-TrainerClass|Psychic
+TrainerClass|<system.token(TrainerClass_Psychic)>
 Money|544
 IntroMessage|I'm going to read~your thoughts!
 OutroMessage|I misread you!

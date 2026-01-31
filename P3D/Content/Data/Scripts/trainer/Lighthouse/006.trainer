@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Denis
-TrainerClass|Bird Keeper
+TrainerClass|<system.token(TrainerClass_BirdKeeper)>
 Money|432
 IntroMessage|We're pretty high~up here. My bird~Pokémon are in~prime form.
 OutroMessage|Oops...They crashed...

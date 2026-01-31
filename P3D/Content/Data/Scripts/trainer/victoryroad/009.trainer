@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Alexa
-TrainerClass|Ace Trainer
+TrainerClass|<system.token(TrainerClass_AceTrainer)>
 Money|1512
 IntroMessage|Trainers live to seek~stronger opponents.
 OutroMessage|Oh! So strong!

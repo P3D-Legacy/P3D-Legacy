@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Johanna
-TrainerClass|Reporter
+TrainerClass|<system.token(TrainerClass_Reporter)>
 Money|0
 IntroMessage|Now how should I conduct~this offensive?
 OutroMessage|Oh, you're finished~and content?*OK, another time, then.

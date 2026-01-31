@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Kari
-TrainerClass|Idol
+TrainerClass|<system.token(TrainerClass_Idol)>
 Money|0
 IntroMessage|I fight so I can see~my kid, Ben!
 OutroMessage|Wah! I'll have you know~my son is Darkfire!

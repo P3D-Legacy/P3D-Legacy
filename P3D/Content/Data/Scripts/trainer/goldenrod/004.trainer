@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Donald
-TrainerClass|Poké Maniac
+TrainerClass|<system.token(TrainerClass_PokéManiac)>
 Money|600
 IntroMessage|I think you have~some rare Pokémon~with you.*Let me see them!
 OutroMessage|Gaah! I lost!~That makes me mad!

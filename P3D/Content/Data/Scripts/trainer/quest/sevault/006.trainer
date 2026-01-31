@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Leroy
-TrainerClass|Ace Trainer
+TrainerClass|<system.token(TrainerClass_AceTrainer)>
 Money|2196
 IntroMessage|You look strong.~Let me battle you, please!
 OutroMessage|I knew it!~You're as tough as I thought!

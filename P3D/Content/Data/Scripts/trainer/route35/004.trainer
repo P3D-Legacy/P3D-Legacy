@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Ivan
-TrainerClass|Camper
+TrainerClass|<system.token(TrainerClass_Camper)>
 Money|280
 IntroMessage|I've been getting~Pokémon data off~my radio. I think~I'm good.
 OutroMessage|I give!

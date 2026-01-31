@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Clair
-TrainerClass|Leader
+TrainerClass|<system.token(TrainerClass_Leader)>
 Money|4000
 IntroMessage|I am Clair.*The world's best~dragon master.*I can hold my own~against even the*Pokémon League's~Elite Four.*Do you still want~to take me on?*...Fine.~Let's do it!*As a Gym Leader,~I will use my full*power against any~opponent!
 OutroMessage|I lost?*I don't believe~it. There must be~some mistake...

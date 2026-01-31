@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Rocky
-TrainerClass|Ruin Maniac
+TrainerClass|<system.token(TrainerClass_RuinManiac)>
 Money|0
 IntroMessage|My mom and I travel around in~search of lost treasures.
 OutroMessage|You sure seem to~be hectic.

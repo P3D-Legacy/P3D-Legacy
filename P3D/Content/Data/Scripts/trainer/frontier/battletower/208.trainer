@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Ted
-TrainerClass|Poké Fan
+TrainerClass|<system.token(TrainerClass_PokéFan)>
 Money|0
 IntroMessage|I'll put an end to this!~With my favorite Pokémon!
 OutroMessage|Why? Why?!~Why did I lose?!

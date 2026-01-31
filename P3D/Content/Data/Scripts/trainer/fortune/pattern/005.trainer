@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Nash
-TrainerClass|Youngster
+TrainerClass|<system.token(TrainerClass_Youngster)>
 Money|832
 IntroMessage|Look, look! there are funny~patterns on the ground.
 OutroMessage|Super awesome!

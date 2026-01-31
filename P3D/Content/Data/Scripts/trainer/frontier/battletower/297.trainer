@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Nadia
-TrainerClass|Aroma Lady
+TrainerClass|<system.token(TrainerClass_AromaLady)>
 Money|0
 IntroMessage|Smelling sweet scents~makes me so drowsy...
 OutroMessage|Yawn...~Oh, really? I lost?

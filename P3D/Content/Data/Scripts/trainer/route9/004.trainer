@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Tim
-TrainerClass|Hiker
+TrainerClass|<system.token(TrainerClass_Hiker)>
 Money|1472
 IntroMessage|She'll be coming 'round~Mt. Silver when she comes...*Mt. Silver is in Johto, Right?
 OutroMessage|I was too busy singing...

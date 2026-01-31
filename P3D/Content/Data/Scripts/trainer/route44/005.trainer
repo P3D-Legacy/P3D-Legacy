@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Zach
-TrainerClass|Poké Maniac
+TrainerClass|<system.token(TrainerClass_PokéManiac)>
 Money|1620
 IntroMessage|I'll do anything~to get my hands on~rare Pokémon!
 OutroMessage|Oooh, you Pokémon are~so appealing.

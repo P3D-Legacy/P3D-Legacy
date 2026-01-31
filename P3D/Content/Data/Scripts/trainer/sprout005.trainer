@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Neal
-TrainerClass|Sage
+TrainerClass|<system.token(TrainerClass_Sage)>
 Money|192
 IntroMessage|The Elder's HM~lights even pitch black~darkness.
 OutroMessage|It is my head that~is bright!

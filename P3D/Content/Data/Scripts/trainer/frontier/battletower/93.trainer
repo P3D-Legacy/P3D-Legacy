@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Annie
-TrainerClass|Cowgirl
+TrainerClass|<system.token(TrainerClass_Cowgirl)>
 Money|0
 IntroMessage|These here are my Pokémon.~I raised them with my ma and pa.
 OutroMessage|Well, I'll be!~We lost that one!

@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Dalia
-TrainerClass|Lass
+TrainerClass|<system.token(TrainerClass_Lass)>
 Money|816
 IntroMessage|Take a deep breath.~Isn't the air delicious?
 OutroMessage|If you'd like, I can teach you how to breathe properly.

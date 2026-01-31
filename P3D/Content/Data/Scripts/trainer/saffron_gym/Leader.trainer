@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Sabrina
-TrainerClass|Leader
+TrainerClass|<system.token(TrainerClass_Leader)>
 Money|6800
 IntroMessage|I knew you were coming...*Three years ago I had a~vision of your arrival.*You're after my Badge.*I don't enjoy battling, but~it's my duty as a Leader to~confer Badges on anyone who~has proven themself worthy.*Since you wish it,~I will show you my~psychic powers!
 OutroMessage|Your power...~It far exceeds what I foresaw...*Maybe it isn't possible to fully~predict what the future holds...*Ok, you win.*You earned yourself the Marsh Badge.

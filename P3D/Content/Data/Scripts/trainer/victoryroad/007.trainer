@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|George
-TrainerClass|Ace Trainer
+TrainerClass|<system.token(TrainerClass_AceTrainer)>
 Money|1512
 IntroMessage|I heard rumors of another~child prodigy.
 OutroMessage|The rumors were true!

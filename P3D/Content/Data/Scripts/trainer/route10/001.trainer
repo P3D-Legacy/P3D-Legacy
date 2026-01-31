@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Robert
-TrainerClass|Poké Fan
+TrainerClass|<system.token(TrainerClass_PokéFan)>
 Money|3840
 IntroMessage|You like Pokémon,~don't you?*Me too!
 OutroMessage|I have to say~that's my loss.

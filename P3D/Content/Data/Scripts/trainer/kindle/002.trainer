@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Tanya
-TrainerClass|Crush Girl
+TrainerClass|<system.token(TrainerClass_CrushGirl)>
 Money|1272
 IntroMessage|There isn't a~day in which we~don't train.
 OutroMessage|I'm such a fool...

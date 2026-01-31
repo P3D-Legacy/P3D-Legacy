@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Hugh
-TrainerClass|Super Nerd
+TrainerClass|<system.token(TrainerClass_SuperNerd)>
 Money|1248
 IntroMessage|Yo! Markus!
 OutroMessage|Sorry, my mistake.

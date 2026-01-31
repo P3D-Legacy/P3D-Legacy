@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Timothy
-TrainerClass|Hiker
+TrainerClass|<system.token(TrainerClass_Hiker)>
 Money|864
 IntroMessage|Why do I climb~mountains?*Because they're~there.*Why do I train~Pokémon?*Because they're~there!
 OutroMessage|Losses...~They're there too!

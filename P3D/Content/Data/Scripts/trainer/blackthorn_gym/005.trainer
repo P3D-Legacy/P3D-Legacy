@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Lola
-TrainerClass|Ace Trainer
+TrainerClass|<system.token(TrainerClass_AceTrainer)>
 Money|1728
 IntroMessage|Dragons are sacred~Pokémon.*They are full of~life energy.*If you're not~serious, you won't~be able to beat them.
 OutroMessage|Way to go!

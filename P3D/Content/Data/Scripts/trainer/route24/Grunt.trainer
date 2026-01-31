@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Grunt
-TrainerClass|Team Rocket
+TrainerClass|<system.token(TrainerClass_TeamRocket)>
 Money|2200
 IntroMessage|Hey, kid!*Me am a Team Rocket~member kind of guy!*Come from another country,~a trainer number one, me!*Think I did,~if stop the energy,~be big panic for here people!*Secret is my mission,~so tell you I not!*But!*If win you do versus me,~a man I be and mine~secret to you I tell.*Hey, kid!~Battle begin we do!
 OutroMessage|Ayieeeh!*No, no, no,~believe it I can't!*Strong very much be you!*Match I am not to you!

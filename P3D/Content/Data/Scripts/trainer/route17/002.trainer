@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Reese
-TrainerClass|Biker
+TrainerClass|<system.token(TrainerClass_Biker)>
 Money|1600
 IntroMessage|Hey, you!~You're from Johto, huh?
 OutroMessage|Whoa, you're kickin'!

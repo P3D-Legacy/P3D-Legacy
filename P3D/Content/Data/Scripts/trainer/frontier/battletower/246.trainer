@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Kelby
-TrainerClass|Waiter
+TrainerClass|<system.token(TrainerClass_Waiter)>
 Money|0
 IntroMessage|Hoy! You look pretty tough.~This is gonna be fun!
 OutroMessage|Yup, you sure are tough.~Keep it up!
