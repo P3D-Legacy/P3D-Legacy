@@ -4,268 +4,268 @@
 #empty values are marked as "-1".
 #Pokémon names are substituted (get it?) as "<name>".
 
-{yourroom.dat|-1|-1|-1|-1|-1|100|...|<name> is sniffing~around the room.}
-{yourroom.dat|-1|-1|-1|-1|-1|100|note|<name> sings happily.}
-{barktown0.dat|-1|-1|-1|-1|-1|100|:D|<name> greeted your~mom.}
-{barktown.dat|-1|-1|-1|-1|-1|100|!|Your Pokémon has a~flower petal on its face!}
-{barktown.dat|-1|-1|-1|-1|-1|100|<3|Your Pokémon stares~at the sky and feels~the breeze!}
-{barktown.dat,yourroom.dat,barktown0.dat|-1|-1|-1|-1|-1|100|:)|Your Pokémon stretched~out and relaxed!}
-{elmlab.dat|-1|-1|-1|-1|-1|100|:)|<name> is fidgeting~in front of everyone.}
+{yourroom.dat|-1|-1|-1|-1|-1|100|...|<system.token(FollowerInteraction_NewBarkTown_YourHouse_PlayerRoom1)>}
+{yourroom.dat|-1|-1|-1|-1|-1|100|note|<system.token(FollowerInteraction_NewBarkTown_YourHouse_PlayerRoom2)>}
+{barktown0.dat|-1|-1|-1|-1|-1|100|:D|<system.token(FollowerInteraction_NewBarkTown_YourHouse_LivingRoom)>}
+{barktown.dat|-1|-1|-1|-1|-1|100|!|<system.token(FollowerInteraction_NewBarkTown_Outside1)>}
+{barktown.dat|-1|-1|-1|-1|-1|100|<3|<system.token(FollowerInteraction_NewBarkTown_Outside2)>}
+{barktown.dat,yourroom.dat,barktown0.dat|-1|-1|-1|-1|-1|100|:)|<system.token(FollowerInteraction_NewBarkTown_Relaxed)>}
+{elmlab.dat|-1|-1|-1|-1|-1|100|:)|<system.token(FollowerInteraction_NewBarkTown_ElmLab)>}
 
-{route29.dat,route30.dat,route31.dat,route32.dat|152,153,154|-1|-1|-1|-1|100|:)|<name> is waving~its leaf around.}
-{route29.dat,route30.dat,route31.dat,route32.dat|152,153,154|-1|-1|-1|-1|100|:)|<name> is making~its leaf twitch.}
-{route29.dat,route30.dat,route31.dat,route32.dat|155,156,157|-1|-1|-1|-1|100|:)|<name> blew out~a couple of fireballs.}
-{route29.dat,route30.dat,route31.dat,route32.dat|155,156,157|-1|-1|-1|-1|100|:)|<name> blew out~a fireball.}
-{route29.dat,route30.dat,route31.dat,route32.dat|158,159,160|-1|-1|-1|-1|100|:)|<name> is moving~its jaw.}
-{route29.dat,route30.dat,route31.dat,route32.dat|158,159,160|-1|-1|-1|-1|100|:)|<name> is opening~and closing its mouth.}
+{route29.dat,route30.dat,route31.dat,route32.dat|152,153,154|-1|-1|-1|-1|100|:)|<system.token(FollowerInteraction_Routes29-32_ChikoritaAndEvos1)>}
+{route29.dat,route30.dat,route31.dat,route32.dat|152,153,154|-1|-1|-1|-1|100|:)|<system.token(FollowerInteraction_Routes29-32_ChikoritaAndEvos2)>}
+{route29.dat,route30.dat,route31.dat,route32.dat|155,156,157|-1|-1|-1|-1|100|:)|<system.token(FollowerInteraction_Routes29-32_CyndaquilAndEvos1)>}
+{route29.dat,route30.dat,route31.dat,route32.dat|155,156,157|-1|-1|-1|-1|100|:)|<system.token(FollowerInteraction_Routes29-32_CyndaquilAndEvos2)>}
+{route29.dat,route30.dat,route31.dat,route32.dat|158,159,160|-1|-1|-1|-1|100|:)|<system.token(FollowerInteraction_Routes29-32_TotodileAndEvos1)>}
+{route29.dat,route30.dat,route31.dat,route32.dat|158,159,160|-1|-1|-1|-1|100|:)|<system.token(FollowerInteraction_Routes29-32_TotodileAndEvos2)>}
 
-{cherrygrove.dat|-1|-1|-1|-1|-1|100|:)|<name> is smelling~the scents of the~surrounding air.}
-{cherrygrove.dat|-1|-1|-1|-1|-1|100|:)|Your Pokémon is~smelling the scent of~the flowers.}
-{cherrygrove.dat,olivine.dat,vermilion\main.dat,cianwood.dat|-1|-1|-1|-1|-1|100|:)|<name> is staring~at the sea.}
-{cherrygrove.dat,olivine.dat,vermilion\main.dat,cianwood.dat|-1|-1|-1|-1|-1|100|:)|<name> is listening~to the sound of~the waves.}
+{cherrygrove.dat|-1|-1|-1|-1|-1|100|:)|<system.token(FollowerInteraction_CherrygroveCity1)>}
+{cherrygrove.dat|-1|-1|-1|-1|-1|100|:)|<system.token(FollowerInteraction_CherrygroveCity2)>}
+{cherrygrove.dat,olivine.dat,vermilion\main.dat,cianwood.dat|-1|-1|-1|-1|-1|100|:)|<system.token(FollowerInteraction_CitiesWithOcean1)>}
+{cherrygrove.dat,olivine.dat,vermilion\main.dat,cianwood.dat|-1|-1|-1|-1|-1|100|:)|<system.token(FollowerInteraction_CitiesWithOcean2)>}
 
-{darkcave\darkcave0.dat,darkcave\darkcave1.dat|-1|-1|-1|-1|Ice|100|:3|<name> is cheerful~that it's become~a bit cold!}
+{darkcave\darkcave0.dat,darkcave\darkcave1.dat|-1|-1|-1|-1|Ice|100|:3|<system.token(FollowerInteraction_DarkCaveIcePokemon)>}
 
-{violet\school.dat|-1|-1|-1|-1|-1|100|...|<name> stares intently~at the blackboard, but~doesn't seem to get it.}
-{violet\002.dat|-1|-1|-1|-1|-1|100|:D|<name> greeted~Strawberry, the Pidgey.}
-{violet\sprouttowerf1.dat,violet\sprouttowerf2.dat,violet\sprouttowerf3.dat|69|-1|-1|-1|-1|100|:)|<name> swayed and~danced around as~it pleased.}
-{violet\sprouttowerf1.dat,violet\sprouttowerf2.dat,violet\sprouttowerf3.dat|69,70,71|-1|-1|-1|-1|100|:)|<name> swayed around,~dancing in a strange manner.}
-{violet\sprouttowerf1.dat,violet\sprouttowerf2.dat,violet\sprouttowerf3.dat|-1|-1|-1|-1|-1|100|:)|<name> is dancing~around the pillar.}
-{gyms\violet_gym.dat|-1|-1|-1|-1|Electric,Ice,Rock|100|>:(|<name> is very eager~to battle!}
-{gyms\violet_gym.dat|-1|-1|-1|-1|Electric,Ice,Rock|100|>:(|<name> is composed~and very sure of itself.}
+{violet\school.dat|-1|-1|-1|-1|-1|100|...|<system.token(FollowerInteraction_VioletCity_School)>}
+{violet\002.dat|-1|-1|-1|-1|-1|100|:D|<system.token(FollowerInteraction_VioletCity_StrawberryPidgeyHouse)>}
+{violet\sprouttowerf1.dat,violet\sprouttowerf2.dat,violet\sprouttowerf3.dat|69|-1|-1|-1|-1|100|:)|<system.token(FollowerInteraction_VioletCity_SproutTower_Bellsprout)>}
+{violet\sprouttowerf1.dat,violet\sprouttowerf2.dat,violet\sprouttowerf3.dat|69,70,71|-1|-1|-1|-1|100|:)|<system.token(FollowerInteraction_VioletCity_SproutTower_BellsproutAndEvos)>}
+{violet\sprouttowerf1.dat,violet\sprouttowerf2.dat,violet\sprouttowerf3.dat|-1|-1|-1|-1|-1|100|:)|<system.token(FollowerInteraction_VioletCity_SproutTower_OtherPokemon)>}
+{gyms\violet_gym.dat|-1|-1|-1|-1|Electric,Ice,Rock|100|>:(|<system.token(FollowerInteraction_Gyms_HasTypeAdvantage1)>}
+{gyms\violet_gym.dat|-1|-1|-1|-1|Electric,Ice,Rock|100|>:(|<system.token(FollowerInteraction_Gyms_HasTypeAdvantage2)>}
 
-{alph\alph01.dat,alph\alph02.dat,alph\alph03.dat,alph\alph04.dat,alph\alph05.dat,alph\alph06.dat,alph\alphhouse.dat,alph\deepruins.dat,alph\ruinsofalph.dat|201|-1|-1|-1|-1|100|...|A strange sound is coming~from <name>!}
-{alph\alph01.dat,alph\alph02.dat,alph\alph03.dat,alph\alph04.dat,alph\alph05.dat,alph\alph06.dat,alph\alphhouse.dat,alph\deepruins.dat,alph\ruinsofalph.dat|201|-1|-1|-1|-1|100|...|<name> started spinning~around in circles.}
-{alph\alph01.dat,alph\alph02.dat,alph\alph03.dat,alph\alph04.dat,alph\alph05.dat,alph\alph06.dat,alph\alphhouse.dat,alph\deepruins.dat,alph\ruinsofalph.dat|201|-1|-1|-1|-1|100|...|<name> is growling~in a way that sounds~almost like speech...}
-{alph\alph01.dat,alph\alph02.dat,alph\alph03.dat,alph\alph04.dat,alph\alph05.dat,alph\alph06.dat,alph\alphhouse.dat,alph\deepruins.dat,alph\ruinsofalph.dat|201|-1|-1|-1|-1|100|...|Your Pokémon isn’t moving.}
-{alph\alph01.dat,alph\alph02.dat,alph\alph03.dat,alph\alph04.dat,alph\alph05.dat,alph\alph06.dat,alph\alphhouse.dat,alph\deepruins.dat,alph\ruinsofalph.dat|201|-1|-1|-1|-1|100|note|Your Pokémon seems to be~singing something?}
-{alph\alph01.dat,alph\alph02.dat,alph\alph03.dat,alph\alph04.dat,alph\alph05.dat,alph\alph06.dat,alph\alphhouse.dat,alph\deepruins.dat,alph\ruinsofalph.dat|-1|-1|-1|-1|-1|100|note|<name> is wandering~around and listening to~the different sounds.}
-{alph\alph01.dat,alph\alph02.dat,alph\alph03.dat,alph\alph04.dat,alph\alph05.dat,alph\alph06.dat,alph\alphhouse.dat,alph\deepruins.dat,alph\ruinsofalph.dat|-1|-1|-1|-1|-1|100|...|<name> looks very~interested.}
-{alph\alph01.dat,alph\alph02.dat,alph\alph03.dat,alph\alph04.dat,alph\alph05.dat,alph\alph06.dat,alph\alphhouse.dat,alph\deepruins.dat,alph\ruinsofalph.dat|-1|-1|-1|-1|-1|100|...|Your Pokémon is staring~intently at nothing.}
+{alph\alph01.dat,alph\alph02.dat,alph\alph03.dat,alph\alph04.dat,alph\alph05.dat,alph\alph06.dat,alph\alphhouse.dat,alph\deepruins.dat,alph\ruinsofalph.dat|201|-1|-1|-1|-1|100|...|<system.token(FollowerInteraction_RuinsOfAlph_Unown1)>}	
+{alph\alph01.dat,alph\alph02.dat,alph\alph03.dat,alph\alph04.dat,alph\alph05.dat,alph\alph06.dat,alph\alphhouse.dat,alph\deepruins.dat,alph\ruinsofalph.dat|201|-1|-1|-1|-1|100|...|<system.token(FollowerInteraction_RuinsOfAlph_Unown2)>}	
+{alph\alph01.dat,alph\alph02.dat,alph\alph03.dat,alph\alph04.dat,alph\alph05.dat,alph\alph06.dat,alph\alphhouse.dat,alph\deepruins.dat,alph\ruinsofalph.dat|201|-1|-1|-1|-1|100|...|<system.token(FollowerInteraction_RuinsOfAlph_Unown3)>}	
+{alph\alph01.dat,alph\alph02.dat,alph\alph03.dat,alph\alph04.dat,alph\alph05.dat,alph\alph06.dat,alph\alphhouse.dat,alph\deepruins.dat,alph\ruinsofalph.dat|201|-1|-1|-1|-1|100|...|<system.token(FollowerInteraction_RuinsOfAlph_Unown4)>}	
+{alph\alph01.dat,alph\alph02.dat,alph\alph03.dat,alph\alph04.dat,alph\alph05.dat,alph\alph06.dat,alph\alphhouse.dat,alph\deepruins.dat,alph\ruinsofalph.dat|201|-1|-1|-1|-1|100|note|<system.token(FollowerInteraction_RuinsOfAlph_Unown5)>}
+{alph\alph01.dat,alph\alph02.dat,alph\alph03.dat,alph\alph04.dat,alph\alph05.dat,alph\alph06.dat,alph\alphhouse.dat,alph\deepruins.dat,alph\ruinsofalph.dat|-1|-1|-1|-1|-1|100|note|<system.token(FollowerInteraction_RuinsOfAlph_OtherPokemon1)>}
+{alph\alph01.dat,alph\alph02.dat,alph\alph03.dat,alph\alph04.dat,alph\alph05.dat,alph\alph06.dat,alph\alphhouse.dat,alph\deepruins.dat,alph\ruinsofalph.dat|-1|-1|-1|-1|-1|100|...|<system.token(FollowerInteraction_RuinsOfAlph_OtherPokemon2)>}
+{alph\alph01.dat,alph\alph02.dat,alph\alph03.dat,alph\alph04.dat,alph\alph05.dat,alph\alph06.dat,alph\alphhouse.dat,alph\deepruins.dat,alph\ruinsofalph.dat|-1|-1|-1|-1|-1|100|...|<system.token(FollowerInteraction_RuinsOfAlph_OtherPokemon3)>}
 
-{route33.dat|152,153,154|-1|-1|-1|-1|100|note|<name> is dancing~and splashing around!}
-{route33.dat|155,156,157|-1|-1|-1|-1|100|!|<name> seems to be~very surprised that~it’s raining!}
-{route33.dat|158,159,160|-1|-1|-1|-1|100|:)|<name> is looking~up with its mouth~wide open.}
-{route33.dat|-1|-1|-1|-1|Grass|100|:)|<name> is very~happy about the rain!}
-{route33.dat|-1|-1|-1|-1|Water|100|:)|<name> seems to~be happy about the rain!}
-{route33.dat|-1|-1|-1|-1|Fire,Rock,Ground|100|:/|<name> is making~an unhappy face....}
+{route33.dat|152,153,154|-1|-1|-1|-1|100|note|<system.token(FollowerInteraction_Routes33_ChikoritaAndEvos)>}
+{route33.dat|155,156,157|-1|-1|-1|-1|100|!|<system.token(FollowerInteraction_Routes33_CyndaquilAndEvos)>}
+{route33.dat|158,159,160|-1|-1|-1|-1|100|:)|<system.token(FollowerInteraction_Routes33_TotodileAndEvos)>}
+{route33.dat|-1|-1|-1|-1|Grass|100|:)|<system.token(FollowerInteraction_Routes33_OtherPokemon_Grass)>}
+{route33.dat|-1|-1|-1|-1|Water|100|:)|<system.token(FollowerInteraction_Routes33_OtherPokemon_Water)>}
+{route33.dat|-1|-1|-1|-1|Fire,Rock,Ground|100|:/|<system.token(FollowerInteraction_Routes33_OtherPokemon_FireRockGround)>}
 
-{azalea.dat|-1|-1|-1|-1|Fire|100|:)|Your <name> is~hot and cheerful!}
-{azalea.dat|-1|-1|-1|-1|Water|100|:)|Your <name> is~hot and cheerful!}
-{azalea.dat|-1|-1|-1|-1|-1|100|!|Your Pokémon has caught~the scent of smoke.}
-{azalea.dat|-1|-1|-1|-1|-1|100|:D|<name> greeted the~Slowpoke.}
-{azalea\kurt.dat|-1|-1|-1|-1|-1|100|...|Your Pokémon is staring~at the various items.}
-{azalea\0.dat|-1|-1|-1|-1|-1|100|:D|<name> greeted the~Farfetch'd.}
+{azalea.dat|-1|-1|-1|-1|Fire|100|:)|<system.token(FollowerInteraction_AzaleaTown_Outside_FirePokemon)>}
+{azalea.dat|-1|-1|-1|-1|Water|100|:)|<system.token(FollowerInteraction_AzaleaTown_Outside_WaterPokemon)>}
+{azalea.dat|-1|-1|-1|-1|-1|100|!|<system.token(FollowerInteraction_AzaleaTown_Outside1)>}
+{azalea.dat|-1|-1|-1|-1|-1|100|:D|<system.token(FollowerInteraction_AzaleaTown_Outside2)>}
+{azalea\kurt.dat|-1|-1|-1|-1|-1|100|...|<system.token(FollowerInteraction_AzaleaTown_KurtHouse)>}
+{azalea\0.dat|-1|-1|-1|-1|-1|100|:D|<system.token(FollowerInteraction_AzaleaTown_CharcoalHouse)>}
 
-{gyms\azalea_gym.dat|167,168|-1|-1|-1|-1|100|...|<name> began to~scuttle around!}
-{gyms\azalea_gym.dat|-1|-1|-1|-1|Electric,Ice,Rock|100|>:(|<name> is very eager~to battle!}
-{gyms\azalea_gym.dat|-1|-1|-1|-1|Electric,Ice,Rock|100|>:(|<name> is composed~and very sure of itself.}
+{gyms\azalea_gym.dat|167,168|-1|-1|-1|-1|100|...|<system.token(FollowerInteraction_AzaleaTown_Gym_SpinarakAriados)>}
+{gyms\azalea_gym.dat|-1|-1|-1|-1|Electric,Ice,Rock|100|>:(|<system.token(FollowerInteraction_Gyms_HasTypeAdvantage1)>}
+{gyms\azalea_gym.dat|-1|-1|-1|-1|Electric,Ice,Rock|100|>:(|<system.token(FollowerInteraction_Gyms_HasTypeAdvantage2)>}
 
-{slowpokewell\slowpokewell1f.dat,slowpokewell\slowpokewellb1f.dat|79,80,199|-1|-1|-1|-1|100|:D|<name> seems~very happy!}
-{slowpokewell\slowpokewell1f.dat,slowpokewell\slowpokewellb1f.dat|-1|-1|-1|-1|Fire|100|...|<name> doesn't like~splashing around on~the ground...}
-{slowpokewell\slowpokewell1f.dat,slowpokewell\slowpokewellb1f.dat|-1|-1|-1|-1|Fire|100|:/|<name> seems very~unhappy to be wet...}
-{slowpokewell\slowpokewell1f.dat,slowpokewell\slowpokewellb1f.dat|-1|-1|-1|-1|Water|100|:)|<name> seems very~happy and is jumping around!}
-{slowpokewell\slowpokewell1f.dat,slowpokewell\slowpokewellb1f.dat|-1|-1|-1|-1|Water|100|:)|<name> is cautious~about the confined~area!} 
-{slowpokewell\slowpokewell1f.dat,slowpokewell\slowpokewellb1f.dat|-1|-1|-1|-1|-1|100|:D|<name> greeted the~Slowpoke.}
+{slowpokewell\slowpokewell1f.dat,slowpokewell\slowpokewellb1f.dat|79,80,199|-1|-1|-1|-1|100|:D|<system.token(FollowerInteraction_SlowpokeWell_SlowpokeAndEvos)>}
+{slowpokewell\slowpokewell1f.dat,slowpokewell\slowpokewellb1f.dat|-1|-1|-1|-1|Fire|100|...|<system.token(FollowerInteraction_SlowpokeWell_FirePokemon1)>}
+{slowpokewell\slowpokewell1f.dat,slowpokewell\slowpokewellb1f.dat|-1|-1|-1|-1|Fire|100|:/|<system.token(FollowerInteraction_SlowpokeWell_FirePokemon2)>}
+{slowpokewell\slowpokewell1f.dat,slowpokewell\slowpokewellb1f.dat|-1|-1|-1|-1|Water|100|:)|<system.token(FollowerInteraction_SlowpokeWell_WaterPokemon1)>}
+{slowpokewell\slowpokewell1f.dat,slowpokewell\slowpokewellb1f.dat|-1|-1|-1|-1|Water|100|:)|<system.token(FollowerInteraction_SlowpokeWell_WaterPokemon2)>} 
+{slowpokewell\slowpokewell1f.dat,slowpokewell\slowpokewellb1f.dat|-1|-1|-1|-1|-1|100|:D|<system.token(FollowerInteraction_SlowpokeWell_OtherPokemon)>}
 
-{v_forest\main.dat,ilexforest.dat|-1|-1|-1|-1|-1|100|...|<name> is looking~around restlessly at~the forest.}
-{v_forest\main.dat,ilexforest.dat|-1|-1|-1|-1|-1|100|:)|<name> is wandering~around enjoying the~forest scenery.}
-{ilexforest.dat|-1|-1|-1|-1|-1|100|...|<name> felt curious~about the shrine.}
-{ilexforest.dat|83|-1|-1|-1|-1|100|note|<name> is dancing~around happily!}
-{ilexforest.dat|83|-1|-1|-1|-1|100|note|<name> is happily~waving its stick around~and singing!}
-{ilexforest.dat|172|-1|-1|-1|-1|100|...|<name> is looking~around for something.}
-{ilexforest.dat|251|-1|-1|-1|-1|100|note|<name> danced happily!}
-{ilexforest.dat|251|-1|-1|-1|-1|100|note|<name> danced~beautifully!}
-{ilexforest.dat|214|-1|-1|-1|-1|100|...|<name> is clinging~to the tree!}
-{ilexforest.dat|285,286|-1|-1|-1|-1|100|<3|<name> sent a~ring-shaped cloud of~spores in the air!}
+{v_forest\main.dat,ilexforest.dat|-1|-1|-1|-1|-1|100|...|<system.token(FollowerInteraction_Forests1)>}
+{v_forest\main.dat,ilexforest.dat|-1|-1|-1|-1|-1|100|:)|<system.token(FollowerInteraction_Forests2)>}
+{ilexforest.dat|-1|-1|-1|-1|-1|100|...|		<system.token(FollowerInteraction_IlexForest_OtherPokemon)>}
+{ilexforest.dat|83|-1|-1|-1|-1|100|note|	<system.token(FollowerInteraction_IlexForest_Farfecthd1)>}
+{ilexforest.dat|83|-1|-1|-1|-1|100|note|	<system.token(FollowerInteraction_IlexForest_Farfecthd2)>}
+{ilexforest.dat|172|-1|-1|-1|-1|100|...|	<system.token(FollowerInteraction_IlexForest_Pichu)>}
+{ilexforest.dat|251|-1|-1|-1|-1|100|note|	<system.token(FollowerInteraction_IlexForest_Celebi1)>}
+{ilexforest.dat|251|-1|-1|-1|-1|100|note|	<system.token(FollowerInteraction_IlexForest_Celebi2)>}
+{ilexforest.dat|214|-1|-1|-1|-1|100|...|	<system.token(FollowerInteraction_IlexForest_Heracross)>}
+{ilexforest.dat|285,286|-1|-1|-1|-1|100|<3|	<system.token(FollowerInteraction_IlexForest_ShroomishBreloom)>}
 
-{route36.dat|185|-1|-1|-1|-1|100|...|<name> is staying~completely still -- ~imitating a tree!}
+{route36.dat|185|-1|-1|-1|-1|100|...|<system.token(FollowerInteraction_Route36_Sudowoodo)>}
 
-{goldenrod.dat|-1|-1|-1|-1|-1|100|...|<name> is gazing~restlessly at the~buildings.}
-{goldenrod\underground0.dat,goldenrod\underground1.dat,goldenrod\underground2.dat,goldenrod\underground3.dat|-1|-1|-1|-1|-1|100|...|<name> is poking~at garbage.}
-{goldenrod\mart.dat|-1|-1|-1|-1|-1|100|!|<name> is feeling~nervous and a touch~claustrophobic.}
-{gyms\goldenrod_gym.dat|35|-1|-1|-1|-1|100|:)|<name> is~very happy!}
-{gyms\goldenrod_gym.dat|35,36,173|-1|-1|-1|-1|100|note|<name> is waggling~a finger and dancing!}
-{gyms\goldenrod_gym.dat|-1|-1|-1|-1|Fighting|100|>:(|<name> is very eager~to battle!}
-{gyms\goldenrod_gym.dat|-1|-1|-1|-1|Fighting|100|>:(|<name> is composed~and very sure of itself.}
+{goldenrod.dat|-1|-1|-1|-1|-1|100|...|<system.token(FollowerInteraction_GoldenrodCity_Outside)>}
+{goldenrod\underground0.dat,goldenrod\underground1.dat,goldenrod\underground2.dat,goldenrod\underground3.dat|-1|-1|-1|-1|-1|100|...|<system.token(FollowerInteraction_GoldenrodCity_Underground)>}
+{goldenrod\mart.dat|-1|-1|-1|-1|-1|100|!|<system.token(FollowerInteraction_GoldenrodCity_PokeMart)>}
+{gyms\goldenrod_gym.dat|35|-1|-1|-1|-1|100|:)|<system.token(FollowerInteraction_GoldenrodCity_Gym_Clefairy)>}
+{gyms\goldenrod_gym.dat|35,36,173|-1|-1|-1|-1|100|note|<system.token(FollowerInteraction_GoldenrodCity_Gym_ClefairyAndEvos)>}
+{gyms\goldenrod_gym.dat|-1|-1|-1|-1|Fighting|100|>:(|<system.token(FollowerInteraction_Gyms_HasTypeAdvantage1)>}
+{gyms\goldenrod_gym.dat|-1|-1|-1|-1|Fighting|100|>:(|<system.token(FollowerInteraction_Gyms_HasTypeAdvantage2)>}
 
-{goldenrod\radiotower\1f.dat,goldenrod\radiotower\2f.dat,goldenrod\radiotower\3f.dat,goldenrod\radiotower\4f.dat,goldenrod\radiotower\5f.dat|-1|-1|-1|-1|Electric|100|!|<name> seems  to be~getting an electrifying feeling!}
-{goldenrod\radiotower\1f.dat,goldenrod\radiotower\2f.dat,goldenrod\radiotower\3f.dat,goldenrod\radiotower\4f.dat,goldenrod\radiotower\5f.dat|-1|-1|-1|-1|Ghost|100|!|Your <name> is feeling~alert because of something!}
+{goldenrod\radiotower\1f.dat,goldenrod\radiotower\2f.dat,goldenrod\radiotower\3f.dat,goldenrod\radiotower\4f.dat,goldenrod\radiotower\5f.dat|-1|-1|-1|-1|Electric|100|!|<system.token(FollowerInteraction_GoldenrodCity_RadioTower_ElectricPokemon)>}
+{goldenrod\radiotower\1f.dat,goldenrod\radiotower\2f.dat,goldenrod\radiotower\3f.dat,goldenrod\radiotower\4f.dat,goldenrod\radiotower\5f.dat|-1|-1|-1|-1|Ghost|100|!|<system.token(FollowerInteraction_GoldenrodCity_RadioTower_GhostPokemon)>}
 
-{nationalpark\nationalpark0.dat,nationalpark\contest.dat|-1|-1|-1|-1|Bug|100|!|<name> is getting~a little excited.}
-{nationalpark\nationalpark0.dat,nationalpark\contest.dat,ilexforest.dat,v_forest\main.dat,ecruteak.dat|-1|-1|-1|-1|-1|100|:)|<name> seems to~relax as it hears~the sound of rustling~leaves...}
+{nationalpark\nationalpark0.dat,nationalpark\contest.dat|-1|-1|-1|-1|Bug|100|!|<system.token(FollowerInteraction_NationalPark_BugPokemon)>}
+{nationalpark\nationalpark0.dat,nationalpark\contest.dat,ilexforest.dat,v_forest\main.dat,ecruteak.dat|-1|-1|-1|-1|-1|100|:)|<system.token(FollowerInteraction_NationalParkForestsAndEcruteakCity)>}
 
-{ecruteak.dat|-1|-1|-1|-1|-1|100|:)|<name> is playing~around in the~fallen leaves.}
-{ecruteak\dance_theater.dat|172|-1|-1|-1|-1|100|note|<name> danced along~with the Kimono Girls!}
-{ecruteak\dance_theater.dat|182|-1|-1|-1|-1|100|note|<name> danced better~than the Kimono Girls!}
-{ecruteak\dance_theater.dat|122,439|-1|-1|-1|-1|100|note|<name> is dancing~in the same manner as~the Kimono Girls!}
-{gyms\ecruteak_gym.dat|-1|-1|-1|-1|Dark,Ghost|100|>:(|<name> is very eager~to battle!}
-{gyms\ecruteak_gym.dat|-1|-1|-1|-1|Dark,Ghost|100|>:(|<name> is composed~and very sure of itself.}
+{ecruteak.dat|-1|-1|-1|-1|-1|100|:)|<system.token(FollowerInteraction_EcruteakCity_Outside)>}
+{ecruteak\dance_theater.dat|172|-1|-1|-1|-1|100|note|<system.token(FollowerInteraction_EcruteakCity_DanceTheater_Pichu)>}
+{ecruteak\dance_theater.dat|182|-1|-1|-1|-1|100|note|<system.token(FollowerInteraction_EcruteakCity_DanceTheater_Bellossom)>}
+{ecruteak\dance_theater.dat|122,439|-1|-1|-1|-1|100|note|<system.token(FollowerInteraction_EcruteakCity_DanceTheater_MimeJrMrMime)>}
+{gyms\ecruteak_gym.dat|-1|-1|-1|-1|Dark,Ghost|100|>:(|<system.token(FollowerInteraction_Gyms_HasTypeAdvantage1)>}
+{gyms\ecruteak_gym.dat|-1|-1|-1|-1|Dark,Ghost|100|>:(|<system.token(FollowerInteraction_Gyms_HasTypeAdvantage2)>}
 
-{burnedtower\burnedtower1f.dat,burnedtower\b1f.dat|243,244,245,250|-1|-1|-1|-1|100|!|<name> shook the~tower with its voice!}
-{burnedtower\burnedtower1f.dat,burnedtower\b1f.dat|243,244,245,250|-1|-1|-1|-1|100|>:(|<name> howled loudly!}
-{burnedtower\burnedtower1f.dat,burnedtower\b1f.dat|-1|-1|-1|-1|-1|100|...|<name> is staring~at the crumbling floor.}
-{burnedtower\burnedtower1f.dat|-1|-1|-1|-1|-1|100|!|<name> seems to be~concerned about the~room below!}
-{ecruteak\tintower1f.dat,ecruteak\tintower2f.dat,ecruteak\tintower3f.dat,ecruteak\tintower4f.dat,ecruteak\tintower5f.dat,ecruteak\tintower6f.dat,ecruteak\tintower7f.dat,ecruteak\tintower8f.dat,ecruteak\tintower9f.dat,ecruteak\tintower10f.dat|250|-1|-1|-1|-1|100|!|<name> is looking~to the sky and shouting!}
-{ecruteak\tintower1f.dat,ecruteak\tintower2f.dat,ecruteak\tintower3f.dat,ecruteak\tintower4f.dat,ecruteak\tintower5f.dat,ecruteak\tintower6f.dat,ecruteak\tintower7f.dat,ecruteak\tintower8f.dat,ecruteak\tintower9f.dat,ecruteak\tintower10f.dat|250|-1|-1|-1|-1|100|!|<name> shook the tower~with its cry!}
+{burnedtower\burnedtower1f.dat,burnedtower\b1f.dat|243,244,245,250|-1|-1|-1|-1|100|!|<system.token(FollowerInteraction_BurnedTower_LegendaryDogsAndHo-oh)>}
+{burnedtower\burnedtower1f.dat,burnedtower\b1f.dat|243,244,245|-1|-1|-1|-1|100|>:(|<system.token(FollowerInteraction_BurnedTower_LegendaryDogs)>}
+{burnedtower\burnedtower1f.dat,burnedtower\b1f.dat|250|-1|-1|-1|-1|100|>:(|<system.token(FollowerInteraction_BurnedTower_Ho-oh)>}
+{burnedtower\burnedtower1f.dat,burnedtower\b1f.dat|-1|-1|-1|-1|-1|100|...|<system.token(FollowerInteraction_BurnedTower_OtherPokemon1)>}
+{burnedtower\burnedtower1f.dat|-1|-1|-1|-1|-1|100|!|<system.token(FollowerInteraction_BurnedTower_OtherPokemon2)>}
+{ecruteak\tintower1f.dat,ecruteak\tintower2f.dat,ecruteak\tintower3f.dat,ecruteak\tintower4f.dat,ecruteak\tintower5f.dat,ecruteak\tintower6f.dat,ecruteak\tintower7f.dat,ecruteak\tintower8f.dat,ecruteak\tintower9f.dat,ecruteak\tintower10f.dat|250|-1|-1|-1|-1|100|!|<system.token(FollowerInteraction_BurnedTower_TinTower_Ho-oh1)>}
+{ecruteak\tintower1f.dat,ecruteak\tintower2f.dat,ecruteak\tintower3f.dat,ecruteak\tintower4f.dat,ecruteak\tintower5f.dat,ecruteak\tintower6f.dat,ecruteak\tintower7f.dat,ecruteak\tintower8f.dat,ecruteak\tintower9f.dat,ecruteak\tintower10f.dat|250|-1|-1|-1|-1|100|!|<system.token(FollowerInteraction_BurnedTower_TinTower_Ho-oh2)>}
 
-{route39.dat|128|-1|-1|-1|-1|100|!|<name> suddenly roared!}
-{route39.dat|241|-1|-1|-1|-1|100|:)|<name> seems to~be very happy!}
-{route39.dat|241|-1|-1|-1|-1|100|note|<name> is so happy,~it started rolling around.}
+{route39.dat|128|-1|-1|-1|-1|100|!|<system.token(FollowerInteraction_Route39_Tauros)>}
+{route39.dat|241|-1|-1|-1|-1|100|:)|<system.token(FollowerInteraction_Route39_Miltank1)>}
+{route39.dat|241|-1|-1|-1|-1|100|note|<system.token(FollowerInteraction_Route39_Miltank2)>}
 
-{lighthouse\lighthouse0.dat|179,180,181|-1|-1|-1|-1|100|note|<name> sparkled~in concert with Amphy!}
-{lighthouse\lighthouse0.dat|-1|-1|-1|-1|-1|100|:D|<name> greeted Amphy.}
-{lighthouse\lighthouse0.dat|-1|-1|-1|-1|-1|100|:D|<name> seems interested~in Amphy...}
+{lighthouse\lighthouse0.dat|179,180,181|-1|-1|-1|-1|100|note|<system.token(FollowerInteraction_Lighthouse_MareepAndEvos)>}
+{lighthouse\lighthouse0.dat|-1|-1|-1|-1|-1|100|:D|<system.token(FollowerInteraction_Lighthouse_OtherPokemon1)>}
+{lighthouse\lighthouse0.dat|-1|-1|-1|-1|-1|100|:D|<system.token(FollowerInteraction_Lighthouse_OtherPokemon2)>}
 
-{olivine\cafe.dat|-1|-1|-1|-1|-1|100|...|Your Pokémon is~drooling a little.}
-{gyms\olivine_gym.dat|-1|-1|-1|-1|Fighting,Fire,Ground|100|>:(|<name> is very eager~to battle!}
-{gyms\olivine_gym.dat|-1|-1|-1|-1|Fighting,Fire,Ground|100|>:(|<name> is composed~and very sure of itself.}
+{olivine\cafe.dat|-1|-1|-1|-1|-1|100|...|<system.token(FollowerInteraction_OlivineCity_Cafe)>}
+{gyms\olivine_gym.dat|-1|-1|-1|-1|Fighting,Fire,Ground|100|>:(|<system.token(FollowerInteraction_Gyms_HasTypeAdvantage1)>}
+{gyms\olivine_gym.dat|-1|-1|-1|-1|Fighting,Fire,Ground|100|>:(|<system.token(FollowerInteraction_Gyms_HasTypeAdvantage2)>}
 
-{cianwood.dat,routes\route41.dat,routes\route40.dat|-1|-1|-1|-1|-1|100|:)|<name> is looking~at your footprints~in the sand!}
-{cianwood.dat,routes\route41.dat,routes\route40.dat|-1|-1|-1|-1|-1|100|...|<name> is blowing~sand in the air!}
-{cianwood.dat|98,99|-1|-1|-1|-1|100|?|<name> moved sideways!}
-{gyms\cianwood_gym.dat|-1|-1|-1|-1|Fairy,Flying,Psychic|100|>:(|<name> is very eager~to battle!}
-{gyms\cianwood_gym.dat|-1|-1|-1|-1|Fairy,Flying,Psychic|100|>:(|<name> is composed~and very sure of itself.}
+{cianwood.dat,routes\route41.dat,routes\route40.dat|-1|-1|-1|-1|-1|100|:)|<system.token(FollowerInteraction_CianwoodCityRoute40and41_1)>}
+{cianwood.dat,routes\route41.dat,routes\route40.dat|-1|-1|-1|-1|-1|100|...|<system.token(FollowerInteraction_CianwoodCityRoute40and41_2)>}
+{cianwood.dat|98,99|-1|-1|-1|-1|100|?|<system.token(FollowerInteraction_CianwoodCity_KrabbyKingler)>}
+{gyms\cianwood_gym.dat|-1|-1|-1|-1|Fairy,Flying,Psychic|100|>:(|<system.token(FollowerInteraction_Gyms_HasTypeAdvantage1)>}
+{gyms\cianwood_gym.dat|-1|-1|-1|-1|Fairy,Flying,Psychic|100|>:(|<system.token(FollowerInteraction_Gyms_HasTypeAdvantage2)>}
 
-{routes\route40.dat|60,61,62,186|-1|-1|-1|-1|100|note|<name> swung its~belly around.}
+{routes\route40.dat|60,61,62,186|-1|-1|-1|-1|100|note|<system.token(FollowerInteraction_Route40_PoliwagAndEvos)>}
 
-{whirlislands\1fne.dat,whirlislands\1fnw.dat,whirlislands\1fse.dat,whirlislands\1fsw.dat,whirlislands\bf1main.dat,whirlislands\lugia.dat,whirlislands\sc1.dat,whirlislands\sc2.dat,whirlislands\sc3.dat,whirlislands\sc4.dat,whirlislands\wfall.dat|60,61,62,186|-1|-1|-1|-1|100|note|<name> swung its~belly around.}
-{whirlislands\1fne.dat,whirlislands\1fnw.dat,whirlislands\1fse.dat,whirlislands\1fsw.dat,whirlislands\bf1main.dat,whirlislands\lugia.dat,whirlislands\sc1.dat,whirlislands\sc2.dat,whirlislands\sc3.dat,whirlislands\sc4.dat,whirlislands\wfall.dat|249|-1|-1|-1|-1|100|!|<name> moved its~long body and let out~a great big roar!}
-{whirlislands\1fne.dat,whirlislands\1fnw.dat,whirlislands\1fse.dat,whirlislands\1fsw.dat,whirlislands\bf1main.dat,whirlislands\lugia.dat,whirlislands\sc1.dat,whirlislands\sc2.dat,whirlislands\sc3.dat,whirlislands\sc4.dat,whirlislands\wfall.dat|-1|-1|-1|-1|Water|100|:3|<name> seems to~be all wet.}
+{whirlislands\1fne.dat,whirlislands\1fnw.dat,whirlislands\1fse.dat,whirlislands\1fsw.dat,whirlislands\bf1main.dat,whirlislands\lugia.dat,whirlislands\sc1.dat,whirlislands\sc2.dat,whirlislands\sc3.dat,whirlislands\sc4.dat,whirlislands\wfall.dat|60,61,62,186|-1|-1|-1|-1|100|note|<system.token(FollowerInteraction_WhirlIslands_PoliwagAndEvos)>}
+{whirlislands\1fne.dat,whirlislands\1fnw.dat,whirlislands\1fse.dat,whirlislands\1fsw.dat,whirlislands\bf1main.dat,whirlislands\lugia.dat,whirlislands\sc1.dat,whirlislands\sc2.dat,whirlislands\sc3.dat,whirlislands\sc4.dat,whirlislands\wfall.dat|249|-1|-1|-1|-1|100|!|<system.token(FollowerInteraction_WhirlIslands_Lugia)>}
+{whirlislands\1fne.dat,whirlislands\1fnw.dat,whirlislands\1fse.dat,whirlislands\1fsw.dat,whirlislands\bf1main.dat,whirlislands\lugia.dat,whirlislands\sc1.dat,whirlislands\sc2.dat,whirlislands\sc3.dat,whirlislands\sc4.dat,whirlislands\wfall.dat|-1|-1|-1|-1|Water|100|:3|<system.token(FollowerInteraction_WhirlIslands_WaterPokemon)>}
 
-{routes\route42.dat|-1|-1|-1|-1|Rock|100|:)|<name> is looking~at the mountain as if~anticipating climbing it.}
-{routes\route42.dat|-1|-1|-1|-1|-1|100|...|Your Pokémon is staring~intently at the mountain~peak.}
+{routes\route42.dat|-1|-1|-1|-1|Rock|100|:)|<system.token(FollowerInteraction_Route42_RockPokemon)>}
+{routes\route42.dat|-1|-1|-1|-1|-1|100|...|<system.token(FollowerInteraction_Route42_OtherPokemon)>}
 
-{mtmortar\mtmortarmain.dat|-1|-1|-1|-1|-1|100|...|<name> is listening~to the sound of the waterfall}
+{mtmortar\mtmortarmain.dat|-1|-1|-1|-1|-1|100|...|<system.token(FollowerInteraction_MtMortar)>}
 
-{routes\route47\1.dat,routes\route47\2.dat,routes\route47\3.dat|132|-1|-1|-1|-1|100|!|...Oh?~<name>'s appearance...~Didn't change!}
-{routes\route47\1.dat,routes\route47\2.dat,routes\route47\3.dat|-1|-1|-1|-1|Flying|100|note|<name> is flying~through the sky with~grace!}
+{routes\route47\1.dat,routes\route47\2.dat,routes\route47\3.dat|132|-1|-1|-1|-1|100|!|<system.token(FollowerInteraction_Route47_Ditto)>}
+{routes\route47\1.dat,routes\route47\2.dat,routes\route47\3.dat|-1|-1|-1|-1|Flying|100|note|<system.token(FollowerInteraction_Route47_FlyingPokemon)>}
 
-{routes\route47\1.dat,routes\route47\2.dat,routes\route47\3.dat,routes\route48.dat|-1|-1|-1|-1|-1|100|...|<name> is steadily~observing the flow of~the river!}
-{routes\route48.dat|-1|-1|-1|-1|-1|100|!|<name> is trying~not to look down!}
+{routes\route47\1.dat,routes\route47\2.dat,routes\route47\3.dat,routes\route48.dat|-1|-1|-1|-1|-1|100|...|<system.token(FollowerInteraction_Route47and48)>}
+{routes\route48.dat|-1|-1|-1|-1|-1|100|!|<system.token(FollowerInteraction_Route48)>}
 
-{lakeofrage\0.dat|129|-1|-1|-1|-1|100|!|<name> is leaping~around more than usual!}
-{lakeofrage\0.dat|130|-1|-1|-1|-1|100|>:(|<name> howled~very loudly!}
-{lakeofrage\0.dat|-1|-1|-1|-1|Fire,Rock|100|:/|<name> is making~an unhappy face...}
+{lakeofrage\0.dat|129|-1|-1|-1|-1|100|!|<system.token(FollowerInteraction_LakeOfRage_Magikarp)>}
+{lakeofrage\0.dat|130|-1|-1|-1|-1|100|>:(|<system.token(FollowerInteraction_LakeOfRage_Gyarados)>}
+{lakeofrage\0.dat|-1|-1|-1|-1|Fire,Rock|100|:/|<system.token(FollowerInteraction_LakeOfRage_FireRockPokemon)>}
 
-{rocketbase\rocketbase1.dat,rocketbase\rocketbase2.dat,rocketbase\rocketbase3.dat|100,101|-1|-1|-1|-1|100|!|<name> is trembling!}
-{rocketbase\rocketbase1.dat,rocketbase\rocketbase2.dat,rocketbase\rocketbase3.dat|-1|-1|-1|-1|-1|100|:/|<name> is nervous.}
-{rocketbase\rocketbase1.dat,rocketbase\rocketbase2.dat,rocketbase\rocketbase3.dat|-1|-1|-1|-1|-1|100|...|<name> seems to~be hearing a strange~sound.}
-{rocketbase\rocketbase1.dat|-1|-1|-1|-1|-1|100|>:(|<name> is hostile~towards the statues!}
+{rocketbase\rocketbase1.dat,rocketbase\rocketbase2.dat,rocketbase\rocketbase3.dat|100,101|-1|-1|-1|-1|100|!|<system.token(FollowerInteraction_RocketBase_VoltorbElectrode)>}
+{rocketbase\rocketbase1.dat,rocketbase\rocketbase2.dat,rocketbase\rocketbase3.dat|-1|-1|-1|-1|-1|100|:/|<system.token(FollowerInteraction_RocketBase_OtherPokemon1)>}
+{rocketbase\rocketbase1.dat,rocketbase\rocketbase2.dat,rocketbase\rocketbase3.dat|-1|-1|-1|-1|-1|100|...|<system.token(FollowerInteraction_RocketBase_OtherPokemon2)>}
+{rocketbase\rocketbase1.dat|-1|-1|-1|-1|-1|100|>:(|<system.token(FollowerInteraction_RocketBase_RoomWithStatues)>}
 
-{icepath\1f.dat,icepath\2f.dat,icepath\3f.dat,icepath\4f.dat,seafoam\bf1.dat,seafoam\bf2.dat,seafoam\bf3.dat,seafoam\bf4.dat|131|-1|-1|-1|-1|100|:)|Woah! A cold wind suddenly~blew! And now it looks~happy?}
-{icepath\1f.dat,icepath\2f.dat,icepath\3f.dat,icepath\4f.dat,seafoam\bf1.dat,seafoam\bf2.dat,seafoam\bf3.dat,seafoam\bf4.dat|-1|-1|-1|-1|-1|100|!|Your Pokémon seems~surprised to touch ice!}
-{gyms\mahogany_gym.dat,icepath\1f.dat,icepath\2f.dat,icepath\3f.dat,icepath\4f.dat,seafoam\bf1.dat,seafoam\bf2.dat,seafoam\bf3.dat,seafoam\bf4.dat|-1|-1|-1|-1|Ice|100|note|<name> is cheerful~because of the cold!}
-{gyms\mahogany_gym.dat,icepath\1f.dat,icepath\2f.dat,icepath\3f.dat,icepath\4f.dat,seafoam\bf1.dat,seafoam\bf2.dat,seafoam\bf3.dat,seafoam\bf4.dat|-1|-1|-1|-1|Ice|100|:3|<name> is cheering~happily because of~the cold!}
-{gyms\mahogany_gym.dat,icepath\1f.dat,icepath\2f.dat,icepath\3f.dat,icepath\4f.dat,seafoam\bf1.dat,seafoam\bf2.dat,seafoam\bf3.dat,seafoam\bf4.dat|-1|-1|-1|-1|Ice|100|:)|<name> just looks~so very happy!}
-{gyms\mahogany_gym.dat,icepath\1f.dat,icepath\2f.dat,icepath\3f.dat,icepath\4f.dat,seafoam\bf1.dat,seafoam\bf2.dat,seafoam\bf3.dat,seafoam\bf4.dat|-1|-1|-1|-1|Grass|100|:/|<name> seems unhappy~about the cold...}
-{gyms\mahogany_gym.dat,icepath\1f.dat,icepath\2f.dat,icepath\3f.dat,icepath\4f.dat,seafoam\bf1.dat,seafoam\bf2.dat,seafoam\bf3.dat,seafoam\bf4.dat|-1|-1|-1|-1|Grass|100|:(|<name> made its body~slightly smaller because~of the cold...}
-{gyms\mahogany_gym.dat,icepath\1f.dat,icepath\2f.dat,icepath\3f.dat,icepath\4f.dat,seafoam\bf1.dat,seafoam\bf2.dat,seafoam\bf3.dat,seafoam\bf4.dat|-1|-1|-1|-1|Ground,Flying|100|:/|<name> constantly~shivers.}
-{gyms\mahogany_gym.dat,icepath\1f.dat,icepath\2f.dat,icepath\3f.dat,icepath\4f.dat,seafoam\bf1.dat,seafoam\bf2.dat,seafoam\bf3.dat,seafoam\bf4.dat|-1|-1|-1|-1|-1|100|...|<name> is walking~along cautiously.}
-{gyms\mahogany_gym.dat,icepath\1f.dat,icepath\2f.dat,icepath\3f.dat,icepath\4f.dat,seafoam\bf1.dat|-1|-1|-1|-1|-1|100|:D|Your Pokémon seems~to be enjoying sliding~around!}
-{gyms\mahogany_gym.dat|-1|-1|-1|-1|Fighting,Fire,Rock,Steel|100|>:(|<name> is very eager~to battle!}
-{gyms\mahogany_gym.dat|-1|-1|-1|-1|Fighting,Fire,Rock,Steel|100|>:(|<name> is composed~and very sure of itself.}
+{icepath\1f.dat,icepath\2f.dat,icepath\3f.dat,icepath\4f.dat,seafoam\bf1.dat,seafoam\bf2.dat,seafoam\bf3.dat,seafoam\bf4.dat|131|-1|-1|-1|-1|100|:)|<system.token(FollowerInteraction_IcePathSeafoamIslands_Lapras)>}
+{icepath\1f.dat,icepath\2f.dat,icepath\3f.dat,icepath\4f.dat,seafoam\bf1.dat,seafoam\bf2.dat,seafoam\bf3.dat,seafoam\bf4.dat|-1|-1|-1|-1|-1|100|!|<system.token(FollowerInteraction_IcePathSeafoamIslands_OtherPokemon)>}
+{gyms\mahogany_gym.dat,icepath\1f.dat,icepath\2f.dat,icepath\3f.dat,icepath\4f.dat,seafoam\bf1.dat,seafoam\bf2.dat,seafoam\bf3.dat,seafoam\bf4.dat|-1|-1|-1|-1|Ice|100|note|<system.token(FollowerInteraction_IcePathSeafoamIslandsMahoganyTownGym_IcePokemon1)>}
+{gyms\mahogany_gym.dat,icepath\1f.dat,icepath\2f.dat,icepath\3f.dat,icepath\4f.dat,seafoam\bf1.dat,seafoam\bf2.dat,seafoam\bf3.dat,seafoam\bf4.dat|-1|-1|-1|-1|Ice|100|:3|<system.token(FollowerInteraction_IcePathSeafoamIslandsMahoganyTownGym_IcePokemon2)>}
+{gyms\mahogany_gym.dat,icepath\1f.dat,icepath\2f.dat,icepath\3f.dat,icepath\4f.dat,seafoam\bf1.dat,seafoam\bf2.dat,seafoam\bf3.dat,seafoam\bf4.dat|-1|-1|-1|-1|Ice|100|:)|<system.token(FollowerInteraction_IcePathSeafoamIslandsMahoganyTownGym_IcePokemon3)>}
+{gyms\mahogany_gym.dat,icepath\1f.dat,icepath\2f.dat,icepath\3f.dat,icepath\4f.dat,seafoam\bf1.dat,seafoam\bf2.dat,seafoam\bf3.dat,seafoam\bf4.dat|-1|-1|-1|-1|Grass|100|:/|<system.token(FollowerInteraction_IcePathSeafoamIslandsMahoganyTownGym_GrassPokemon1)>}
+{gyms\mahogany_gym.dat,icepath\1f.dat,icepath\2f.dat,icepath\3f.dat,icepath\4f.dat,seafoam\bf1.dat,seafoam\bf2.dat,seafoam\bf3.dat,seafoam\bf4.dat|-1|-1|-1|-1|Grass|100|:(|<system.token(FollowerInteraction_IcePathSeafoamIslandsMahoganyTownGym_GrassPokemon2)>}
+{gyms\mahogany_gym.dat,icepath\1f.dat,icepath\2f.dat,icepath\3f.dat,icepath\4f.dat,seafoam\bf1.dat,seafoam\bf2.dat,seafoam\bf3.dat,seafoam\bf4.dat|-1|-1|-1|-1|Ground,Flying|100|:/|<system.token(FollowerInteraction_IcePathSeafoamIslandsMahoganyTownGym_GroundFlyingPokemon)>}
+{gyms\mahogany_gym.dat,icepath\1f.dat,icepath\2f.dat,icepath\3f.dat,icepath\4f.dat,seafoam\bf1.dat,seafoam\bf2.dat,seafoam\bf3.dat,seafoam\bf4.dat|-1|-1|-1|-1|-1|100|...|<system.token(FollowerInteraction_IcePathSeafoamIslandsMahoganyTownGym_OtherPokemon)>}
+{gyms\mahogany_gym.dat,icepath\1f.dat,icepath\2f.dat,icepath\3f.dat,icepath\4f.dat,seafoam\bf1.dat|-1|-1|-1|-1|-1|100|:D|<system.token(FollowerInteraction_MahoganyTownGym)>}
+{gyms\mahogany_gym.dat|-1|-1|-1|-1|Fighting,Fire,Rock,Steel|100|>:(|<system.token(FollowerInteraction_Gyms_HasTypeAdvantage1)>}
+{gyms\mahogany_gym.dat|-1|-1|-1|-1|Fighting,Fire,Rock,Steel|100|>:(|<system.token(FollowerInteraction_Gyms_HasTypeAdvantage2)>}
 
-{dragonsden\0.dat,dragonsden\1.dat,dragonsden\main.dat,dragonsden\shrine.dat|-1|-1|-1|-1|Dragon|100|!|<name> suddenly barked!}
-{dragonsden\0.dat,dragonsden\1.dat,dragonsden\main.dat,dragonsden\shrine.dat|-1|-1|-1|-1|Dragon|100|!|<name> looks excited!}
-{dragonsden\0.dat,dragonsden\1.dat,dragonsden\main.dat,dragonsden\shrine.dat|-1|-1|-1|-1|Dragon|100|!|<name> suddenly howled!}
-{dragonsden\0.dat,dragonsden\1.dat,dragonsden\main.dat,dragonsden\shrine.dat|-1|-1|-1|-1|Dragon|100|!|<name> is staring~into <player.name>'s eyes.}
-{dragonsden\0.dat,dragonsden\1.dat,dragonsden\main.dat,dragonsden\shrine.dat|-1|-1|-1|-1|Dragon|100|...|<name> is growling~softly.}
+{dragonsden\0.dat,dragonsden\1.dat,dragonsden\main.dat,dragonsden\shrine.dat|-1|-1|-1|-1|Dragon|100|!|<system.token(FollowerInteraction_DragonsDen_DragonPokemon1)>}
+{dragonsden\0.dat,dragonsden\1.dat,dragonsden\main.dat,dragonsden\shrine.dat|-1|-1|-1|-1|Dragon|100|!|<system.token(FollowerInteraction_DragonsDen_DragonPokemon2)>}
+{dragonsden\0.dat,dragonsden\1.dat,dragonsden\main.dat,dragonsden\shrine.dat|-1|-1|-1|-1|Dragon|100|!|<system.token(FollowerInteraction_DragonsDen_DragonPokemon3)>}
+{dragonsden\0.dat,dragonsden\1.dat,dragonsden\main.dat,dragonsden\shrine.dat|-1|-1|-1|-1|Dragon|100|!|<system.token(FollowerInteraction_DragonsDen_DragonPokemon4)>}
+{dragonsden\0.dat,dragonsden\1.dat,dragonsden\main.dat,dragonsden\shrine.dat|-1|-1|-1|-1|Dragon|100|...|<system.token(FollowerInteraction_DragonsDen_DragonPokemon5)>}
 
-{blackthorn.dat|-1|-1|-1|-1|-1|100|...|Your Pokémon is staring~intently at the mountain~peak.}
-{gyms\blackthorn_gym_1.dat,gyms\blackthorn_gym_2.dat|-1|-1|-1|-1|Dragon,Fairy,Ice|100|>:(|<name> is very eager~to battle!}
-{gyms\blackthorn_gym_1.dat,gyms\blackthorn_gym_2.dat|-1|-1|-1|-1|Dragon,Fairy,Ice|100|>:(|<name> is composed~and very sure of itself.}
-{gyms\blackthorn_gym_1.dat,gyms\blackthorn_gym_2.dat|-1|-1|-1|-1|Fire|100|:)|<name> seems to be~enjoying the heat.}
+{blackthorn.dat|-1|-1|-1|-1|-1|100|...|<system.token(FollowerInteraction_BlackthornCity_Outside)>}
+{gyms\blackthorn_gym_1.dat,gyms\blackthorn_gym_2.dat|-1|-1|-1|-1|Dragon,Fairy,Ice|100|>:(|<system.token(FollowerInteraction_Gyms_HasTypeAdvantage1)>}
+{gyms\blackthorn_gym_1.dat,gyms\blackthorn_gym_2.dat|-1|-1|-1|-1|Dragon,Fairy,Ice|100|>:(|<system.token(FollowerInteraction_Gyms_HasTypeAdvantage2)>}
+{gyms\blackthorn_gym_1.dat,gyms\blackthorn_gym_2.dat|-1|-1|-1|-1|Fire|100|:)|<system.token(FollowerInteraction_BlackthornCity_Gym_FirePokemon)>}
 
-{victoryroad\1.dat,victoryroad\2.dat,victoryroad\3.dat|-1|-1|-1|-1|-1|100|>:(|<name> is focused~with a sharp gaze!}
-{victoryroad\1.dat,victoryroad\2.dat,victoryroad\3.dat|154|-1|-1|-1|-1|100|!|<name> turned its~head and let out a fighting~yell!}
-{victoryroad\1.dat,victoryroad\2.dat,victoryroad\3.dat|157|-1|-1|-1|-1|100|!|<name> emitted fire~and shouted!}
-{victoryroad\1.dat,victoryroad\2.dat,victoryroad\3.dat|160|-1|-1|-1|-1|100|!|<name> is swinging its~arms around and shouting!}
+{victoryroad\1.dat,victoryroad\2.dat,victoryroad\3.dat|154|-1|-1|-1|-1|100|!|<system.token(FollowerInteraction_VictoryRoad_Meganium)>}
+{victoryroad\1.dat,victoryroad\2.dat,victoryroad\3.dat|157|-1|-1|-1|-1|100|!|<system.token(FollowerInteraction_VictoryRoad_Typhlosion)>}
+{victoryroad\1.dat,victoryroad\2.dat,victoryroad\3.dat|160|-1|-1|-1|-1|100|!|<system.token(FollowerInteraction_VictoryRoad_Feraligatr)>}
+{victoryroad\1.dat,victoryroad\2.dat,victoryroad\3.dat|-1|-1|-1|-1|-1|100|>:(|<system.token(FollowerInteraction_VictoryRoad_OtherPokemon)>}
 
-{pallet\main.dat|-1|-1|-1|-1|-1|100|note|Your Pokémon seems to be~smelling a nostalgically familiar~scent...}
+{pallet\main.dat|-1|-1|-1|-1|-1|100|note|<system.token(FollowerInteraction_PalletTown)>}
 
-{routes\route1.dat,routes\route2.dat,routes\route3.dat,routes\route4.dat|1,2,3|-1|-1|-1|-1|100|:3|<name> wiggled~its vine!}
-{routes\route1.dat,routes\route2.dat,routes\route3.dat,routes\route4.dat|4,5,6|-1|-1|-1|-1|100|!|<name> flared~its fiery tail!}
-{routes\route1.dat,routes\route2.dat,routes\route3.dat,routes\route4.dat|7,8,9|-1|-1|-1|-1|100|?|<name> slid~around in its shell!}
+{routes\route1.dat,routes\route2.dat,routes\route3.dat,routes\route4.dat|1,2,3|-1|-1|-1|-1|100|:3|<system.token(FollowerInteraction_Route1-4_BulbasaurAndEvos)>}
+{routes\route1.dat,routes\route2.dat,routes\route3.dat,routes\route4.dat|4,5,6|-1|-1|-1|-1|100|!|<system.token(FollowerInteraction_Route1-4_CharmanderAndEvos)>}
+{routes\route1.dat,routes\route2.dat,routes\route3.dat,routes\route4.dat|7,8,9|-1|-1|-1|-1|100|?|<system.token(FollowerInteraction_Route1-4_SquirtleAndEvos)>}
 
-{indigo\outside.dat|-1|-1|-1|-1|-1|100|...|<name> is staring~straight at the~Pokémon League.}
+{indigo\outside.dat|-1|-1|-1|-1|-1|100|...|<system.token(FollowerInteraction_IndigoPlateau)>}
 
-{cherrygrove_mart.dat,azalea\mart.dat,violet_mart.dat,goldenrod\mart.dat,ecruteak\mart.dat,olivine\mart.dat,blackthorn\mart.dat,viridian\mart.dat,pewter\mart.dat,cerulean\mart.dat,vermilion\mart.dat,saffron\mart.dat,lavender\mart.dat,fuchsia\mart.dat,celadon\mart.dat|-1|-1|-1|-1|-1|100|...|Your Pokémon is~surveying the shelves~restlessly.}
+{cherrygrove_mart.dat,azalea\mart.dat,violet_mart.dat,goldenrod\mart.dat,ecruteak\mart.dat,olivine\mart.dat,blackthorn\mart.dat,viridian\mart.dat,pewter\mart.dat,cerulean\mart.dat,vermilion\mart.dat,saffron\mart.dat,lavender\mart.dat,fuchsia\mart.dat,celadon\mart.dat|-1|-1|-1|-1|-1|100|...|<system.token(FollowerInteraction_PokeMarts)>}
 
-{ssaqua\firsttrip\main.dat,ssaqua\olivine\main.dat,ssaqua\vermilion\main.dat|-1|-1|-1|-1|-1|100|:)|<name> is swaying~with the ship!}
-{ssaqua\firsttrip\main.dat,ssaqua\olivine\main.dat,ssaqua\vermilion\main.dat|-1|-1|-1|-1|-1|100|:D|<name> seems happy~at the sight of water~on the window!}
-{ssaqua\firsttrip\main.dat,ssaqua\olivine\main.dat,ssaqua\vermilion\main.dat|-1|-1|-1|-1|-1|100|...|<name> doesn't~want to get off the~boat yet!}
+{ssaqua\firsttrip\main.dat,ssaqua\olivine\main.dat,ssaqua\vermilion\main.dat|-1|-1|-1|-1|-1|100|:)|<system.token(FollowerInteraction_SSAqua1)>}
+{ssaqua\firsttrip\main.dat,ssaqua\olivine\main.dat,ssaqua\vermilion\main.dat|-1|-1|-1|-1|-1|100|:D|<system.token(FollowerInteraction_SSAqua2)>}
+{ssaqua\firsttrip\main.dat,ssaqua\olivine\main.dat,ssaqua\vermilion\main.dat|-1|-1|-1|-1|-1|100|...|<system.token(FollowerInteraction_SSAqua3)>}
 
-{gyms\viridian_gym.dat|-1|-1|-1|-1|-1|100|>:(|<name> is very eager~to battle!}
-{gyms\viridian_gym.dat|-1|-1|-1|-1|-1|100|>:(|<name> is composed~and very sure of itself.}
+{gyms\viridian_gym.dat|-1|-1|-1|-1|-1|100|>:(|<system.token(FollowerInteraction_Gyms_HasTypeAdvantage1)>}
+{gyms\viridian_gym.dat|-1|-1|-1|-1|-1|100|>:(|<system.token(FollowerInteraction_Gyms_HasTypeAdvantage2)>}
 
-{v_forest\main.dat|25,26,172|-1|-1|-1|-1|100|note|<name> danced around~happily!}
-{v_forest\main.dat|214|-1|-1|-1|-1|100|...|<name> is clinging~to the tree!}
-{v_forest\main.dat|285,286|-1|-1|-1|-1|100|<3|<name> sent a~ring-shaped cloud of~spores in the air!}
+{v_forest\main.dat|25,26,172|-1|-1|-1|-1|100|note|<system.token(FollowerInteraction_ViridianForest_PichuAndEvos)>}
+{v_forest\main.dat|214|-1|-1|-1|-1|100|...|<system.token(FollowerInteraction_ViridianForest_Heracross)>}
+{v_forest\main.dat|285,286|-1|-1|-1|-1|100|<3|<system.token(FollowerInteraction_ViridianForest_ShroomishBreloom)>}
 
-{gyms\pewter_gym.dat|-1|-1|-1|-1|Fighting,Grass,Ground,Steel,Water|100|>:(|<name> is very eager~to battle!}
-{gyms\pewter_gym.dat|-1|-1|-1|-1|Fighting,Grass,Ground,Steel,Water|100|>:(|<name> is composed~and very sure of itself.}
+{gyms\pewter_gym.dat|-1|-1|-1|-1|Fighting,Grass,Ground,Steel,Water|100|>:(|<system.token(FollowerInteraction_Gyms_HasTypeAdvantage1)>}
+{gyms\pewter_gym.dat|-1|-1|-1|-1|Fighting,Grass,Ground,Steel,Water|100|>:(|<system.token(FollowerInteraction_Gyms_HasTypeAdvantage2)>}
 
-{mtmoon\square.dat|173,35,36|0|-1|-1|-1|100|...|<name> is looking~up at the sky.}
-{mtmoon\main.dat,mtmoon\square.dat,mtmoon\north.dat,mtmoon\south.dat|173,35,36|0|-1|-1|-1|100|note|<name> suddenly~started dancing!}
+{mtmoon\main.dat,mtmoon\square.dat,mtmoon\north.dat,mtmoon\south.dat|173,35,36|0|-1|-1|-1|100|note|<system.token(FollowerInteraction_MtMoon_CleffaAndEvos)>}
+{mtmoon\square.dat|173,35,36|0|-1|-1|-1|100|...|<system.token(FollowerInteraction_MtMoonSquare_CleffaAndEvos)>}
 
-{gyms\cerulean_gym.dat|129|-1|-1|-1|-1|100|:)|<name> is~jumping energetically!}
-{gyms\cerulean_gym.dat|129|-1|-1|-1|-1|100|:)|<name> is~jumping energetically!}
-{gyms\cerulean_gym.dat|175|-1|-1|-1|-1|100|...|<name> suddenly~began crying softly!}
-{gyms\cerulean_gym.dat|-1|-1|-1|-1|-1|100|:D|<name> is running~along the side of~the pool!}
-{gyms\cerulean_gym.dat|-1|-1|-1|-1|Grass,Electric|100|>:(|<name> is very eager~to battle!}
-{gyms\cerulean_gym.dat|-1|-1|-1|-1|Grass,Electric|100|>:(|<name> is composed~and very sure of itself.}
+{gyms\cerulean_gym.dat|129|-1|-1|-1|-1|100|:)|<system.token(FollowerInteraction_CeruleanCity_Gym_Magikarp)>}
+{gyms\cerulean_gym.dat|175|-1|-1|-1|-1|100|...|<system.token(FollowerInteraction_CeruleanCity_Gym_Togepi)>}
+{gyms\cerulean_gym.dat|-1|-1|-1|-1|-1|100|:D|<system.token(FollowerInteraction_CeruleanCity_Gym_OtherPokemon)>}
+{gyms\cerulean_gym.dat|-1|-1|-1|-1|Grass,Electric|100|>:(|<system.token(FollowerInteraction_Gyms_HasTypeAdvantage1)>}
+{gyms\cerulean_gym.dat|-1|-1|-1|-1|Grass,Electric|100|>:(|<system.token(FollowerInteraction_Gyms_HasTypeAdvantage2)>}
 
-{ceruleancave\1f.dat,ceruleancave\2f.dat,ceruleancave\bf1.dat|150,151|-1|-1|-1|-1|100|!|<name>~suddenly shouted!}
-{ceruleancave\1f.dat,ceruleancave\2f.dat,ceruleancave\bf1.dat|150,151|-1|-1|-1|-1|100|>:(|<name> looked~up at the ceiling~and howled!}
-{ceruleancave\1f.dat,ceruleancave\2f.dat,ceruleancave\bf1.dat|150|-1|-1|-1|-1|100|:)|<name>~slapped at the ground!}
-{ceruleancave\1f.dat,ceruleancave\2f.dat,ceruleancave\bf1.dat|151|-1|-1|-1|-1|100|:3|<name> suddenly~started spinning around!}
+{ceruleancave\1f.dat,ceruleancave\2f.dat,ceruleancave\bf1.dat|150,151|-1|-1|-1|-1|100|!|<system.token(FollowerInteraction_CeruleanCave_MewAndMewtwo1)>}
+{ceruleancave\1f.dat,ceruleancave\2f.dat,ceruleancave\bf1.dat|150,151|-1|-1|-1|-1|100|>:(|<system.token(FollowerInteraction_CeruleanCave_MewAndMewtwo2)>}
+{ceruleancave\1f.dat,ceruleancave\2f.dat,ceruleancave\bf1.dat|150|-1|-1|-1|-1|100|:)|<system.token(FollowerInteraction_CeruleanCave_Mewtwo)>}
+{ceruleancave\1f.dat,ceruleancave\2f.dat,ceruleancave\bf1.dat|151|-1|-1|-1|-1|100|:3|<system.token(FollowerInteraction_CeruleanCave_Mew)>}
 
-{routes\route10\powerplant.dat|172,25,26|-1|-1|-1|-1|100|:)|<name> seems to~be very happy!}
-{routes\route10\powerplant.dat|172,25,26|-1|-1|-1|-1|100|note|<name> had fun~dancing a dance!}
-{routes\route10\powerplant.dat|172,25,26|-1|-1|-1|-1|100|note|<name> is so happy,~it began to dance!}
-{routes\route10\powerplant.dat|172,25,26|-1|-1|-1|-1|100|note|<name> is so happy,~it started dancing!}
-{routes\route10\powerplant.dat|-1|-1|-1|-1|-1|100|note|<name> seems to want to~touch the machine!}
+{routes\route10\powerplant.dat|172,25,26|-1|-1|-1|-1|100|:)|<system.token(FollowerInteraction_PowerPlant_PichuAndEvos1)>}
+{routes\route10\powerplant.dat|172,25,26|-1|-1|-1|-1|100|note|<system.token(FollowerInteraction_PowerPlant_PichuAndEvos2)>}
+{routes\route10\powerplant.dat|172,25,26|-1|-1|-1|-1|100|note|<system.token(FollowerInteraction_PowerPlant_PichuAndEvos3)>}
+{routes\route10\powerplant.dat|172,25,26|-1|-1|-1|-1|100|note|<system.token(FollowerInteraction_PowerPlant_PichuAndEvos4)>}
+{routes\route10\powerplant.dat|-1|-1|-1|-1|-1|100|note|<system.token(FollowerInteraction_PowerPlant_OtherPokemon)>}
 
-{rocktunnel\bf1.dat,rocktunnel\bf2.dat|95,208|-1|-1|-1|-1|100|:3|<name> is happily~digging into the ground!}
-{rocktunnel\bf1.dat,rocktunnel\bf2.dat|95,208|-1|-1|-1|-1|100|:)|<name> is happily~digging itself into~the ground!}
-{rocktunnel\bf1.dat,rocktunnel\bf2.dat|95,208|-1|-1|-1|-1|100|:3|<name> is having fun~rolling around!}
-{rocktunnel\bf1.dat,rocktunnel\bf2.dat|95,208|-1|-1|-1|-1|100|note|<name> started~grinding at the rocks!}
-{rocktunnel\bf1.dat,rocktunnel\bf2.dat|95,208|-1|-1|-1|-1|100|note|<name> is having~fun hitting rocks together!}
-{rocktunnel\bf1.dat,rocktunnel\bf2.dat|95,208|-1|-1|-1|-1|100|note|<name> started~pounding the ground flat!}
+{rocktunnel\bf1.dat,rocktunnel\bf2.dat|95,208|-1|-1|-1|-1|100|:3|<system.token(FollowerInteraction_RockTunnel_OnixSteelix1)>}
+{rocktunnel\bf1.dat,rocktunnel\bf2.dat|95,208|-1|-1|-1|-1|100|:)|<system.token(FollowerInteraction_RockTunnel_OnixSteelix2)>}
+{rocktunnel\bf1.dat,rocktunnel\bf2.dat|95,208|-1|-1|-1|-1|100|:3|<system.token(FollowerInteraction_RockTunnel_OnixSteelix3)>}
+{rocktunnel\bf1.dat,rocktunnel\bf2.dat|95,208|-1|-1|-1|-1|100|note|<system.token(FollowerInteraction_RockTunnel_OnixSteelix4)>}
+{rocktunnel\bf1.dat,rocktunnel\bf2.dat|95,208|-1|-1|-1|-1|100|note|<system.token(FollowerInteraction_RockTunnel_OnixSteelix5)>}
+{rocktunnel\bf1.dat,rocktunnel\bf2.dat|95,208|-1|-1|-1|-1|100|note|<system.token(FollowerInteraction_RockTunnel_OnixSteelix6)>}
 
-{gyms\vermilion_gym.dat|-1|-1|-1|-1|Ground|100|>:(|<name> is very eager~to battle!}
-{gyms\vermilion_gym.dat|-1|-1|-1|-1|Ground|100|>:(|<name> is composed~and very sure of itself.}
+{gyms\vermilion_gym.dat|-1|-1|-1|-1|Ground|100|>:(|<system.token(FollowerInteraction_Gyms_HasTypeAdvantage1)>}
+{gyms\vermilion_gym.dat|-1|-1|-1|-1|Ground|100|>:(|<system.token(FollowerInteraction_Gyms_HasTypeAdvantage2)>}
 
-{diglettscave\main.dat|50,51|-1|-1|-1|-1|100|note|Your Pokémon is stretching~out its body and is relaxing!}
+{diglettscave\main.dat|50,51|-1|-1|-1|-1|100|note|<system.token(FollowerInteraction_DiglettsCave_DiglettDugtrio)>}
 
-{saffron\copycat1.dat,saffron\copycat2.dat|122,439|-1|-1|-1|-1|100|:3|<name> mimicked~<player.name>.}
-{saffron\psychic.dat|-1|-1|-1|-1|Psychic|100|...|......~......~......~<name>~silently nodded!}
-{saffron\silph.dat|137,233,474|-1|-1|-1|-1|:D|<name> is moving~around energetically.}
-{gyms\saffron_gym.dat|-1|-1|-1|-1|Bug,Dark,Ghost|100|>:(|<name> is very eager~to battle!}
-{gyms\saffron_gym.dat|-1|-1|-1|-1|Bug,Dark,Ghost|100|>:(|<name> is composed~and very sure of itself.}
-{saffron\rotomroom.dat|479|-1|-1|-1|-1|100|:)|<name> is happily~zapping and jumping~in circles!}
-{saffron\rotomroom.dat|479|-1|-1|-1|-1|100|:3|<name> is having~fun dancing a lively jig!}
+{saffron\copycat1.dat,saffron\copycat2.dat|122,439|-1|-1|-1|-1|100|:3|<system.token(FollowerInteraction_SaffronCity_CopycatHouse_MimeJrMrMime)>}
+{saffron\psychic.dat|-1|-1|-1|-1|Psychic|100|...|<system.token(FollowerInteraction_SaffronCity_MrPsychicHouse_PsychicPokemon)>}
+{saffron\silph.dat|137,233,474|-1|-1|-1|-1|:D|<system.token(FollowerInteraction_SaffronCity_SilphCo_PorygonAndEvos)>}
+{gyms\saffron_gym.dat|-1|-1|-1|-1|Bug,Dark,Ghost|100|>:(|<system.token(FollowerInteraction_Gyms_HasTypeAdvantage1)>}
+{gyms\saffron_gym.dat|-1|-1|-1|-1|Bug,Dark,Ghost|100|>:(|<system.token(FollowerInteraction_Gyms_HasTypeAdvantage2)>}
+{saffron\rotomroom.dat|479|-1|-1|-1|-1|100|:)|<system.token(FollowerInteraction_SaffronCity_RotomRoom_Rotom1)>}
+{saffron\rotomroom.dat|479|-1|-1|-1|-1|100|:3|<system.token(FollowerInteraction_SaffronCity_RotomRoom_Rotom2)>}
 
-{celadon\main.dat,celadon\center.dat,celadon\mart.dat,celadon\condo1.dat,celadon\condo2.dat,celadon\condo3.dat,celadon\condo4.dat,celadon\diner.dat,saffron\silph.dat|137,233,474|-1|-1|-1|-1|...|<name> stammered~something...}
-{gyms\celadon_gym.dat|114,465|-1|-1|-1|-1|100|:3|<name> is~extending its vines and~wrapping itself in them!~Seems like fun!}
-{gyms\celadon_gym.dat|-1|-1|-1|-1|Water,Grass|100|:)|<name> seems happy~to have taken a shower!}
-{gyms\celadon_gym.dat|-1|-1|-1|-1|Fire|100|:(|<name> seems unhappy~to have taken a shower...}
-{gyms\celadon_gym.dat|-1|-1|-1|-1|Bug,Fire,Flying,Ice,Poison|100|>:(|<name> is very eager~to battle!}
-{gyms\celadon_gym.dat|-1|-1|-1|-1|Bug,Fire,Flying,Ice,Poison|100|>:(|<name> is composed~and very sure of itself.}
+{celadon\main.dat,celadon\center.dat,celadon\mart.dat,celadon\condo1.dat,celadon\condo2.dat,celadon\condo3.dat,celadon\condo4.dat,celadon\diner.dat,saffron\silph.dat|137,233,474|-1|-1|-1|-1|...|<system.token(FollowerInteraction_CeladonCityAndSilphCo_Porygon)>}
+{gyms\celadon_gym.dat|114,465|-1|-1|-1|-1|100|:3|<system.token(FollowerInteraction_CeladonCity_Gym_TangelaTangrowth)>}
+{gyms\celadon_gym.dat|-1|-1|-1|-1|Water,Grass|100|:)|<system.token(FollowerInteraction_CeladonCity_Gym_WaterAndGrassPokemon)>}
+{gyms\celadon_gym.dat|-1|-1|-1|-1|Fire|100|:(|<system.token(FollowerInteraction_CeladonCity_Gym_FirePokemon)>}
+{gyms\celadon_gym.dat|-1|-1|-1|-1|Bug,Fire,Flying,Ice,Poison|100|>:(|<system.token(FollowerInteraction_Gyms_HasTypeAdvantage1)>}
+{gyms\celadon_gym.dat|-1|-1|-1|-1|Bug,Fire,Flying,Ice,Poison|100|>:(|<system.token(FollowerInteraction_Gyms_HasTypeAdvantage2)>}
 
-{lavender\main.dat|-1|-1|-1|-1|Ghost|100|...|<name> is having~fun swaying back and forth.}
-{lavender\main.dat|-1|-1|-1|-1|-1|100|...|<name> is feeling~an unusual presence.}
+{lavender\main.dat|-1|-1|-1|-1|Ghost|100|...|<system.token(FollowerInteraction_LavenderTown_GhostPokemon)>}
+{lavender\main.dat|-1|-1|-1|-1|-1|100|...|<system.token(FollowerInteraction_LavenderTown_OtherPokemon)>}
 
-{fuchsia\main.dat|128|-1|-1|-1|-1|100|:)|<name> started~breathing roughly through~its nose in excitement!}
-{gyms\fuchsia_gym.dat|-1|-1|-1|-1|Ground,Psychic|100|>:(|<name> is very eager~to battle!}
-{gyms\fuchsia_gym.dat|-1|-1|-1|-1|Ground,Psychic|100|>:(|<name> is composed~and very sure of itself.}
+{fuchsia\main.dat|128|-1|-1|-1|-1|100|:)|<system.token(FollowerInteraction_FuchsiaCity_Tauros)>}
+{gyms\fuchsia_gym.dat|-1|-1|-1|-1|Ground,Psychic|100|>:(|<system.token(FollowerInteraction_Gyms_HasTypeAdvantage1)>}
+{gyms\fuchsia_gym.dat|-1|-1|-1|-1|Ground,Psychic|100|>:(|<system.token(FollowerInteraction_Gyms_HasTypeAdvantage2)>}
 
-{gyms\cinnabar_gym.dat|-1|-1|-1|-1|Ground,Rock,Water|100|>:(|<name> is very eager~to battle!}
-{gyms\fuchsia_gym.dat|-1|-1|-1|-1|Ground,Psychic|100|>:(|<name> is composed~and very sure of itself.}
+{gyms\cinnabar_gym.dat|-1|-1|-1|-1|Ground,Rock,Water|100|>:(|<system.token(FollowerInteraction_Gyms_HasTypeAdvantage1)>}
+{gyms\fuchsia_gym.dat|-1|-1|-1|-1|Ground,Psychic|100|>:(|<system.token(FollowerInteraction_Gyms_HasTypeAdvantage2)>}
 
-{mtsilver\1f.dat,mtsilver\2f.dat,mtsilver\3f.dat,mtsilver\peak.dat,mtsilver\side.dat,mtsilver\snow.dat,mtsilver\expert.dat,mtsilver\moltres.dat|1,2,3|-1|-1|-1|-1|100|!|<name> sent out~a bundle of leaves and~looked eager!}
-{mtsilver\1f.dat,mtsilver\2f.dat,mtsilver\3f.dat,mtsilver\peak.dat,mtsilver\side.dat,mtsilver\snow.dat,mtsilver\expert.dat,mtsilver\moltres.dat|4,5,6|-1|-1|-1|-1|100|!|<name> blew out~a plume of fire and~looked eager!}
-{mtsilver\1f.dat,mtsilver\2f.dat,mtsilver\3f.dat,mtsilver\peak.dat,mtsilver\side.dat,mtsilver\snow.dat,mtsilver\expert.dat,mtsilver\moltres.dat|7,8,9|-1|-1|-1|-1|100|!|<name> shoot out~a jet of water and~looked eager!}
-{mtsilver\1f.dat,mtsilver\2f.dat,mtsilver\3f.dat,mtsilver\peak.dat,mtsilver\side.dat,mtsilver\snow.dat,mtsilver\expert.dat,mtsilver\moltres.dat|25,26,172,133|-1|-1|-1|-1|100|!|<name> is trembling~with eagerness!}
-{mtsilver\1f.dat,mtsilver\2f.dat,mtsilver\3f.dat,mtsilver\peak.dat,mtsilver\side.dat,mtsilver\snow.dat,mtsilver\expert.dat,mtsilver\moltres.dat|143,131|-1|-1|-1|-1|100|!|<name> is feeling~very eager!}
+{mtsilver\1f.dat,mtsilver\2f.dat,mtsilver\3f.dat,mtsilver\peak.dat,mtsilver\side.dat,mtsilver\snow.dat,mtsilver\expert.dat,mtsilver\moltres.dat|1,2,3|-1|-1|-1|-1|100|!|<system.token(FollowerInteraction_MtSilver_BulbasaurAndEvos)>}		
+{mtsilver\1f.dat,mtsilver\2f.dat,mtsilver\3f.dat,mtsilver\peak.dat,mtsilver\side.dat,mtsilver\snow.dat,mtsilver\expert.dat,mtsilver\moltres.dat|4,5,6|-1|-1|-1|-1|100|!|<system.token(FollowerInteraction_MtSilver_CharmanderAndEvos)>}		
+{mtsilver\1f.dat,mtsilver\2f.dat,mtsilver\3f.dat,mtsilver\peak.dat,mtsilver\side.dat,mtsilver\snow.dat,mtsilver\expert.dat,mtsilver\moltres.dat|7,8,9|-1|-1|-1|-1|100|!|<system.token(FollowerInteraction_MtSilver_SquirtleAndEvos)>}		
+{mtsilver\1f.dat,mtsilver\2f.dat,mtsilver\3f.dat,mtsilver\peak.dat,mtsilver\side.dat,mtsilver\snow.dat,mtsilver\expert.dat,mtsilver\moltres.dat|25,26,172,133|-1|-1|-1|-1|100|!|<system.token(FollowerInteraction_MtSilver_EeveeOrPichuAndEvos)>}	
+{mtsilver\1f.dat,mtsilver\2f.dat,mtsilver\3f.dat,mtsilver\peak.dat,mtsilver\side.dat,mtsilver\snow.dat,mtsilver\expert.dat,mtsilver\moltres.dat|143,131|-1|-1|-1|-1|100|!|<system.token(FollowerInteraction_MtSilver_LaprasSnorlax)>}			

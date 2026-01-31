@@ -3276,6 +3276,7 @@ move_name_888,Double Laser
 move_name_889,Poing de Colère
 -----
 Follower Interactions:
+[Generic]
 FollowerInteraction_HeldItem_Question,It looks like your Pokémon~holds on to something.*Do you want to~take it?
 FollowerInteraction_HeldItem_Answer_Yes,Your Pokémon handed over~the <item>!
 FollowerInteraction_HeldItem_Answer_No,Your Pokémon kept~the item happily.
@@ -3430,6 +3431,242 @@ FollowerInteraction_Love10,<name> is regarding~you with adoration!
 FollowerInteraction_Love11,<name> got~closer to <player.name>!
 FollowerInteraction_Love12,<name> is keeping~close to your feet.
 FollowerInteraction_Love13,<name> is jumping~around in a carefree way!
+
+[GameMode Related]
+FollowerInteraction_NewBarkTown_YourHouse_PlayerRoom1,<name> is sniffing~around the room.
+FollowerInteraction_NewBarkTown_YourHouse_PlayerRoom2,<name> sings happily.
+FollowerInteraction_NewBarkTown_YourHouse_LivingRoom,<name> greeted your~mom.
+FollowerInteraction_NewBarkTown_Outside1,Your Pokémon has a~flower petal on its face!
+FollowerInteraction_NewBarkTown_Outside2,Your Pokémon stares~at the sky and feels~the breeze!
+FollowerInteraction_NewBarkTown_Relaxed,Your Pokémon stretched~out and relaxed!
+FollowerInteraction_NewBarkTown_ElmLab,<name> is fidgeting~in front of everyone.
+
+FollowerInteraction_Routes29-32_ChikoritaAndEvos1,<name> is waving~its leaf around.
+FollowerInteraction_Routes29-32_ChikoritaAndEvos2,<name> is making~its leaf twitch.
+FollowerInteraction_Routes29-32_CyndaquilAndEvos1,<name> blew out~a couple of fireballs.
+FollowerInteraction_Routes29-32_CyndaquilAndEvos2,<name> blew out~a fireball.
+FollowerInteraction_Routes29-32_TotodileAndEvos1,<name> is moving~its jaw.
+FollowerInteraction_Routes29-32_TotodileAndEvos2,<name> is opening~and closing its mouth.
+
+FollowerInteraction_CherrygroveCity1,<name> is smelling~the scents of the~surrounding air.
+FollowerInteraction_CherrygroveCity2,Your Pokémon is~smelling the scent of~the flowers.
+
+FollowerInteraction_CitiesWithOcean1,<name> is staring~at the sea.
+FollowerInteraction_CitiesWithOcean2,<name> is listening~to the sound of~the waves.
+
+FollowerInteraction_DarkCaveIcePokemon,<name> is cheerful~that it's become~a bit cold!
+
+FollowerInteraction_VioletCity_School,<name> stares intently~at the blackboard, but~doesn't seem to get it.
+FollowerInteraction_VioletCity_StrawberryPidgeyHouse,<name> greeted~Strawberry, the Pidgey.
+FollowerInteraction_VioletCity_SproutTower_Bellsprout,<name> swayed and~danced around as~it pleased.
+FollowerInteraction_VioletCity_SproutTower_BellsproutAndEvos,<name> swayed around,~dancing in a strange manner.
+FollowerInteraction_VioletCity_SproutTower_OtherPokemon,<name> swayed around,~dancing in a strange manner.
+
+FollowerInteraction_Gyms_HasTypeAdvantage1,<name> is very eager~to battle!
+FollowerInteraction_Gyms_HasTypeAdvantage2,<name> is composed~and very sure of itself.
+
+FollowerInteraction_RuinsOfAlph_Unown1,A strange sound is coming~from <name>!
+FollowerInteraction_RuinsOfAlph_Unown2,<name> started spinning~around in circles.
+FollowerInteraction_RuinsOfAlph_Unown3,<name> is growling~in a way that sounds~almost like speech...
+FollowerInteraction_RuinsOfAlph_Unown4,Your Pokémon isn’t moving.
+FollowerInteraction_RuinsOfAlph_Unown5,Your Pokémon seems to be~singing something?
+FollowerInteraction_RuinsOfAlph_OtherPokemon1,<name> is wandering~around and listening to~the different sounds.
+FollowerInteraction_RuinsOfAlph_OtherPokemon2,<name> looks very~interested.
+FollowerInteraction_RuinsOfAlph_OtherPokemon3,Your Pokémon is staring~intently at nothing.
+
+FollowerInteraction_Routes33_ChikoritaAndEvos,<name> is dancing~and splashing around!
+FollowerInteraction_Routes33_CyndaquilAndEvos,<name> seems to be~very surprised that~it’s raining!
+FollowerInteraction_Routes33_TotodileAndEvos,<name> is looking~up with its mouth~wide open.
+FollowerInteraction_Routes33_OtherPokemon_Grass,<name> is very~happy about the rain!
+FollowerInteraction_Routes33_OtherPokemon_Water,<name> seems to~be happy about the rain!
+FollowerInteraction_Routes33_OtherPokemon_FireRockGround,<name> is making~an unhappy face....
+
+FollowerInteraction_AzaleaTown_Outside_FirePokemon,Your <name> is~hot and cheerful!
+FollowerInteraction_AzaleaTown_Outside_WaterPokemon,Your <name> is~hot and cheerful!
+FollowerInteraction_AzaleaTown_Outside1,Your Pokémon has caught~the scent of smoke.
+FollowerInteraction_AzaleaTown_Outside2,<name> greeted the~Slowpoke.
+FollowerInteraction_AzaleaTown_KurtHouse,Your Pokémon is staring~at the various items.
+FollowerInteraction_AzaleaTown_CharcoalHouse,<name> greeted the~Farfetch'd.
+FollowerInteraction_AzaleaTown_Gym_SpinarakAriados,<name> began to~scuttle around!
+
+FollowerInteraction_SlowpokeWell_SlowpokeAndEvos,<name> seems~very happy!
+FollowerInteraction_SlowpokeWell_FirePokemon1,<name> doesn't like~splashing around on~the ground...
+FollowerInteraction_SlowpokeWell_FirePokemon2,<name> seems very~unhappy to be wet...
+FollowerInteraction_SlowpokeWell_WaterPokemon1,<name> seems very~happy and is jumping around!
+FollowerInteraction_SlowpokeWell_WaterPokemon2,<name> is cautious~about the confined~area!
+FollowerInteraction_SlowpokeWell_OtherPokemon,<name> greeted the~Slowpoke.
+
+FollowerInteraction_Forests1,<name> is looking~around restlessly at~the forest.
+FollowerInteraction_Forests2,<name> is wandering~around enjoying the~forest scenery.
+
+FollowerInteraction_IlexForest_OtherPokemon,<name> felt curious~about the shrine.
+FollowerInteraction_IlexForest_Farfecthd1,<name> is dancing~around happily!
+FollowerInteraction_IlexForest_Farfecthd2,<name> is happily~waving its stick around~and singing!
+FollowerInteraction_IlexForest_Pichu,<name> is looking~around for something.
+FollowerInteraction_IlexForest_Celebi1,<name> danced happily!
+FollowerInteraction_IlexForest_Celebi2,<name> danced~beautifully!
+FollowerInteraction_IlexForest_Heracross,<name> is clinging~to the tree!
+FollowerInteraction_IlexForest_ShroomishBreloom,<name> sent a~ring-shaped cloud of~spores in the air!
+
+FollowerInteraction_Route36_Sudowoodo,<name> is staying~completely still -- ~imitating a tree!
+
+FollowerInteraction_GoldenrodCity_Outside,<name> is gazing~restlessly at the~buildings.
+FollowerInteraction_GoldenrodCity_Underground,<name> is poking~at garbage.
+FollowerInteraction_GoldenrodCity_PokeMart,<name> is feeling~nervous and a touch~claustrophobic.
+FollowerInteraction_GoldenrodCity_Gym_Clefairy,<name> is~very happy!
+FollowerInteraction_GoldenrodCity_Gym_ClefairyAndEvos,<name> is waggling~a finger and dancing!
+FollowerInteraction_GoldenrodCity_RadioTower_ElectricPokemon,<name> seems to be~getting an electrifying feeling!
+FollowerInteraction_GoldenrodCity_RadioTower_GhostPokemon,Your <name> is feeling~alert because of something!
+
+FollowerInteraction_NationalPark_BugPokemon,<name> is getting~a little excited.
+FollowerInteraction_NationalParkForestsAndEcruteakCity,<name> seems to~relax as it hears~the sound of rustling~leaves...
+
+FollowerInteraction_EcruteakCity_Outside,<name> is playing~around in the~fallen leaves.
+FollowerInteraction_EcruteakCity_DanceTheater_Pichu,<name> danced along~with the Kimono Girls!
+FollowerInteraction_EcruteakCity_DanceTheater_Bellossom,<name> danced better~than the Kimono Girls!
+FollowerInteraction_EcruteakCity_DanceTheater_MimeJrMrMime,<name> is dancing~in the same manner as~the Kimono Girls!
+
+FollowerInteraction_BurnedTower_LegendaryDogsAndHo-oh,<name> shook the~tower with its voice!
+FollowerInteraction_BurnedTower_LegendaryDogs,<name> howled loudly!
+FollowerInteraction_BurnedTower_Ho-oh,<name> shouted loudly!
+FollowerInteraction_BurnedTower_OtherPokemon1,<name> is staring~at the crumbling floor.
+FollowerInteraction_BurnedTower_OtherPokemon2,<name> seems to be~concerned about the~room below!
+FollowerInteraction_BurnedTower_TinTower_Ho-oh1,<name> is looking~to the sky and shouting!
+FollowerInteraction_BurnedTower_TinTower_Ho-oh2,<name> shook the tower~with its cry!
+
+FollowerInteraction_Route39_Tauros,<name> suddenly roared!
+FollowerInteraction_Route39_Miltank1,<name> seems to~be very happy!
+FollowerInteraction_Route39_Miltank2,<name> is so happy,~it started rolling around.
+
+FollowerInteraction_Lighthouse_MareepAndEvos,<name> sparkled~in concert with Amphy!
+FollowerInteraction_Lighthouse_OtherPokemon1,<name> greeted Amphy.
+FollowerInteraction_Lighthouse_OtherPokemon2,<name> seems interested~in Amphy...
+
+FollowerInteraction_OlivineCity_Cafe,Your Pokémon is~drooling a little.
+
+FollowerInteraction_CianwoodCityRoute40and41_1,<name> is looking~at your footprints~in the sand!
+FollowerInteraction_CianwoodCityRoute40and41_2,<name> is blowing~sand in the air!
+FollowerInteraction_CianwoodCity_KrabbyKingler,<name> moved sideways!
+
+FollowerInteraction_Route40_PoliwagAndEvos,<name> swung its~belly around.
+
+FollowerInteraction_WhirlIslands_PoliwagAndEvos,<name> swung its~belly around.
+FollowerInteraction_WhirlIslands_Lugia,<name> moved its~long body and let out~a great big roar!
+FollowerInteraction_WhirlIslands_WaterPokemon,<name> seems to~be all wet.
+
+FollowerInteraction_Route42_RockPokemon,<name> is looking~at the mountain as if~anticipating climbing it.
+FollowerInteraction_Route42_OtherPokemon,Your Pokémon is staring~intently at the mountain~peak.
+
+FollowerInteraction_MtMortar,<name> is listening~to the sound of the waterfall.
+
+FollowerInteraction_Route47_Ditto,...Oh?~<name>'s appearance...~Didn't change!
+FollowerInteraction_Route47_FlyingPokemon,<name> is flying~through the sky with~grace!
+
+FollowerInteraction_Route47and48,<name> is steadily~observing the flow of~the river!
+FollowerInteraction_Route48,<name> is trying~not to look down!
+
+FollowerInteraction_LakeOfRage_Magikarp,<name> is leaping~around more than usual!
+FollowerInteraction_LakeOfRage_Gyarados,<name> howled~very loudly!
+FollowerInteraction_LakeOfRage_FireRockPokemon,<name> is making~an unhappy face...
+
+FollowerInteraction_RocketBase_VoltorbElectrode,<name> is trembling!
+FollowerInteraction_RocketBase_OtherPokemon1,<name> is nervous.
+FollowerInteraction_RocketBase_OtherPokemon2,<name> seems to~be hearing a strange~sound.
+FollowerInteraction_RocketBase_RoomWithStatues,<name> is hostile~towards the statues!
+
+FollowerInteraction_IcePathSeafoamIslands_Lapras,Woah! A cold wind suddenly~blew! And now it looks~happy?
+FollowerInteraction_IcePathSeafoamIslands_OtherPokemon,Your Pokémon seems~surprised to touch ice!
+
+FollowerInteraction_IcePathSeafoamIslandsMahoganyTownGym_IcePokemon1,<name> is cheerful~because of the cold!
+FollowerInteraction_IcePathSeafoamIslandsMahoganyTownGym_IcePokemon2,<name> is cheering~happily because of~the cold!
+FollowerInteraction_IcePathSeafoamIslandsMahoganyTownGym_IcePokemon3,<name> just looks~so very happy!
+FollowerInteraction_IcePathSeafoamIslandsMahoganyTownGym_GrassPokemon1,<name> seems unhappy~about the cold...
+FollowerInteraction_IcePathSeafoamIslandsMahoganyTownGym_GrassPokemon2,<name> made its body~slightly smaller because~of the cold...
+FollowerInteraction_IcePathSeafoamIslandsMahoganyTownGym_GroundFlyingPokemon,<name> constantly~shivers.
+FollowerInteraction_IcePathSeafoamIslandsMahoganyTownGym_OtherPokemon,<name> is walking~along cautiously.
+
+FollowerInteraction_MahoganyTownGym,Your Pokémon seems~to be enjoying sliding~around!
+
+FollowerInteraction_DragonsDen_DragonPokemon1,<name> suddenly barked!
+FollowerInteraction_DragonsDen_DragonPokemon2,<name> looks excited!
+FollowerInteraction_DragonsDen_DragonPokemon3,<name> suddenly howled!
+FollowerInteraction_DragonsDen_DragonPokemon4,<name> is staring~into <player.name>'s eyes.
+FollowerInteraction_DragonsDen_DragonPokemon5,<name> is growling~softly.
+
+FollowerInteraction_BlackthornCity_Outside,Your Pokémon is staring~intently at the mountain~peak.
+FollowerInteraction_BlackthornCity_Gym_FirePokemon,<name> seems to be~enjoying the heat.
+
+FollowerInteraction_VictoryRoad_Meganium,<name> turned its~head and let out a fighting~yell!
+FollowerInteraction_VictoryRoad_Typhlosion,<name> emitted fire~and shouted!
+FollowerInteraction_VictoryRoad_Feraligatr,<name> is swinging its~arms around and shouting!
+FollowerInteraction_VictoryRoad_OtherPokemon,<name> is focused~with a sharp gaze!
+
+FollowerInteraction_PalletTown,Your Pokémon seems to be~smelling a nostalgically familiar~scent...
+
+FollowerInteraction_Route1-4_BulbasaurAndEvos,<name> wiggled~its vine!
+FollowerInteraction_Route1-4_CharmanderAndEvos,<name> flared~its fiery tail!
+FollowerInteraction_Route1-4_SquirtleAndEvos,<name> slid~around in its shell!
+
+FollowerInteraction_IndigoPlateau,<name> is staring~straight at the~Pokémon League.
+
+FollowerInteraction_PokeMarts,Your Pokémon is~surveying the shelves~restlessly.
+
+FollowerInteraction_SSAqua1,<name> is swaying~with the ship!
+FollowerInteraction_SSAqua2,<name> seems happy~at the sight of water~on the window!
+FollowerInteraction_SSAqua3,<name> doesn't~want to get off the~boat yet!
+
+FollowerInteraction_ViridianForest_PichuAndEvos,<name> danced around~happily!
+FollowerInteraction_ViridianForest_Heracross,<name> is clinging~to the tree!
+FollowerInteraction_ViridianForest_ShroomishBreloom,<name> sent a~ring-shaped cloud of~spores in the air!
+
+FollowerInteraction_MtMoon_CleffaAndEvos,<name> suddenly~started dancing!
+FollowerInteraction_MtMoonSquare_CleffaAndEvos,<name> is looking~up at the sky.
+
+FollowerInteraction_CeruleanCity_Gym_Magikarp,<name> is~jumping energetically!
+FollowerInteraction_CeruleanCity_Gym_Togepi,<name> suddenly~began crying softly!
+FollowerInteraction_CeruleanCity_Gym_OtherPokemon,<name> is running~along the side of~the pool!
+
+FollowerInteraction_CeruleanCave_MewAndMewtwo1,<name>~suddenly shouted!
+FollowerInteraction_CeruleanCave_MewAndMewtwo2,<name> looked~up at the ceiling~and howled!
+FollowerInteraction_CeruleanCave_Mewtwo,<name>~slapped at the ground!
+FollowerInteraction_CeruleanCave_Mew,<name> suddenly~started spinning around!
+
+FollowerInteraction_PowerPlant_PichuAndEvos1,<name> seems to~be very happy!
+FollowerInteraction_PowerPlant_PichuAndEvos2,<name> had fun~dancing a dance!
+FollowerInteraction_PowerPlant_PichuAndEvos3,<name> is so happy,~it began to dance!
+FollowerInteraction_PowerPlant_PichuAndEvos4,<name> is so happy,~it started dancing!
+FollowerInteraction_PowerPlant_OtherPokemon,<name> seems to want to~touch the machine!
+
+FollowerInteraction_RockTunnel_OnixSteelix1,<name> is happily~digging into the ground!
+FollowerInteraction_RockTunnel_OnixSteelix2,<name> is happily~digging itself into~the ground!
+FollowerInteraction_RockTunnel_OnixSteelix3,<name> is having fun~rolling around!
+FollowerInteraction_RockTunnel_OnixSteelix4,<name> started~grinding at the rocks!
+FollowerInteraction_RockTunnel_OnixSteelix5,<name> is having~fun hitting rocks together!
+FollowerInteraction_RockTunnel_OnixSteelix6,<name> started~pounding the ground flat!
+
+FollowerInteraction_DiglettsCave_DiglettDugtrio,Your Pokémon is stretching~out its body and is relaxing!
+
+FollowerInteraction_SaffronCity_CopycatHouse_MimeJrMrMime,<name> mimicked~<player.name>.
+FollowerInteraction_SaffronCity_MrPsychicHouse_PsychicPokemon,......~......~......~<name>~silently nodded!
+FollowerInteraction_SaffronCity_SilphCo_PorygonAndEvos,<name> is moving~around energetically.
+FollowerInteraction_SaffronCity_RotomRoom_Rotom1,<name> is happily~zapping and jumping~in circles!
+FollowerInteraction_SaffronCity_RotomRoom_Rotom2,<name> is having~fun dancing a lively jig!
+
+FollowerInteraction_CeladonCityAndSilphCo_Porygon,<name> stammered~something...
+FollowerInteraction_CeladonCity_Gym_TangelaTangrowth,<name> is~extending its vines and~wrapping itself in them!~Seems like fun!
+FollowerInteraction_CeladonCity_Gym_WaterAndGrassPokemon,<name> seems happy~to have taken a shower!
+FollowerInteraction_CeladonCity_Gym_FirePokemon,<name> seems unhappy~to have taken a shower...
+
+FollowerInteraction_LavenderTown_GhostPokemon,<name> is having~fun swaying back and forth.
+FollowerInteraction_LavenderTown_OtherPokemon,<name> is feeling~an unusual presence.
+
+FollowerInteraction_FuchsiaCity_Tauros,<name> started~breathing roughly through~its nose in excitement!
+
+FollowerInteraction_MtSilver_BulbasaurAndEvos,<name> sent out~a bundle of leaves and~looked eager!
+FollowerInteraction_MtSilver_CharmanderAndEvos,<name> blew out~a plume of fire and~looked eager!
+FollowerInteraction_MtSilver_SquirtleAndEvos,<name> shoot out~a jet of water and~looked eager!
+FollowerInteraction_MtSilver_EeveeOrPichuAndEvos,<name> is trembling~with eagerness!
+FollowerInteraction_MtSilver_LaprasSnorlax,<name> is feeling~very eager!
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------
 Story translation:
 ---
