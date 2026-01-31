@@ -631,7 +631,6 @@ trade_screen_status_Quit_OtherPlayer,The other player quit the trade.
 trade_screen_status_Disconnected_OtherPlayer,The other player disconnected.
 trade_screen_status_Disconnected_ThisPlayer,You got disconnected from the server.
 trade_screen_status_AcceptTrade_OtherPlayer,Your trade partner~accepts this trade.
-trade_screen_status_AcceptTrade_OtherPlayer,Your trade partner~accepts this trade.
 trade_screen_status_AcceptTrade_ThisPlayer,You accepted~this trade.
 trade_screen_PressAnyKeyToExit,Press any key to exit.
 trade_screen_ChoosePokemonForTrade,Choose Pokémon for Trade

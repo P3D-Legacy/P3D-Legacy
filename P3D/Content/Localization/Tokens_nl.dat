@@ -621,20 +621,20 @@ shop_screen_currency_short_Coins,M
 shop_screen_currency_short_Pokédollars,$
 ---
 Trade Screen:
-trade_screen_trade_SendingPokemon,Sending [YOURPOKEMON] to [OTHERPLAYER].~Good-bye, [YOURPOKEMON]!
-trade_screen_trade_ReceivedPokemon,[OTHERPLAYER] sent over [THEIRPOKEMON].
-trade_screen_button_ConfirmTrade,Trade
-trade_screen_button_ChoosePokemon,Choose Pokémon
-trade_screen_button_CancelTrade,Cancel Trade
-trade_screen_status_WaitingForOtherPlayer,Waiting for other player
-trade_screen_status_Quit_OtherPlayer,The other player quit the trade.
-trade_screen_status_Disconnected_OtherPlayer,The other player disconnected.
-trade_screen_status_Disconnected_ThisPlayer,You got disconnected from the server.
+trade_screen_trade_SendingPokemon,[YOURPOKEMON] naar [OTHERPLAYER] aan het sturen.~Vaarwel, [YOURPOKEMON]!
+trade_screen_trade_ReceivedPokemon,[OTHERPLAYER] stuurde [THEIRPOKEMON] naar jou.
+trade_screen_button_ConfirmTrade,Ruil
+trade_screen_button_ChoosePokemon,Kies Pokémon
+trade_screen_button_CancelTrade,Ruil Annuleren
+trade_screen_status_WaitingForOtherPlayer,Aan het wachten op de andere speler
+trade_screen_status_Quit_OtherPlayer,De andere speler annuleerde de ruil.
+trade_screen_status_Disconnected_OtherPlayer,De andere speler verbrak de verbinding.
+trade_screen_status_Disconnected_ThisPlayer,Je bent de verbinding met de server verloren.
 trade_screen_status_AcceptTrade_OtherPlayer,Your trade partner~accepts this trade.
 trade_screen_status_AcceptTrade_OtherPlayer,Your trade partner~accepts this trade.
 trade_screen_status_AcceptTrade_ThisPlayer,You accepted~this trade.
 trade_screen_PressAnyKeyToExit,Press any key to exit.
-trade_screen_ChoosePokemonForTrade,Choose Pokémon for Trade
+trade_screen_ChoosePokemonForTrade,Kies Pokémon voor Trade
 ---
 Blackout Screen:
 black_out_screen_line1,Je hebt geen strijdbare Pokémon meer!
