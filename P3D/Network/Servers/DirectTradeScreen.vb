@@ -53,7 +53,7 @@
             Core.ServersManager.ServerConnection.SendPackage(New Servers.Package(Servers.Package.PackageTypes.TradeRequest, Core.ServersManager.ID, Servers.Package.ProtocolTypes.TCP, PartnerNetworkID.ToString()))
         End If
 
-        Me.menuItems = {"Trade", "Choose Pokémon", "Cancel Trade"}.ToList()
+        Me.menuItems = {Localization.GetString("trade_screen_button_ConfirmTrade", "Trade"), Localization.GetString("trade_screen_button_ChoosePokemon", "Choose Pokémon"), Localization.GetString("trade_screen_button_CancelTrade", "Cancel Trade")}.ToList()
         Core.StartThreadedSub(AddressOf DownloadOnlineSprite)
     End Sub
 
@@ -72,7 +72,7 @@
         Select Case ScreenState
             Case ScreenStates.Idle
                 If WaitingForPlayer = True Then
-                    Core.SpriteBatch.DrawString(FontManager.MainFont, "Waiting for other player" & LoadingDots.Dots, New Vector2(100), Color.White)
+                    Core.SpriteBatch.DrawString(FontManager.MainFont, Localization.GetString("trade_screen_status_WaitingForOtherPlayer", "Waiting for other player") & LoadingDots.Dots, New Vector2(100), Color.White)
                 Else
                     Me.DrawIdle()
                 End If
@@ -109,22 +109,22 @@
 
             Canvas.DrawRectangle(New Rectangle(100, CInt(100 + RectangleSize.Height + 48), RectangleSize.Width, 128), New Color(255, 255, 255, 150))
 
-            Dim itemString As String = "none"
+            Dim itemString As String = Localization.GetString("global_none", "None")
             If Not Me.OfferPokemon.Item Is Nothing Then
-                itemString = OfferPokemon.Item.Name
+                itemString = OfferPokemon.Item.OneLineName
             End If
 
-            Core.SpriteBatch.DrawString(FontManager.MainFont, OfferPokemon.GetDisplayName() & Environment.NewLine & "Level: " & OfferPokemon.Level & Environment.NewLine & "OT: " & OfferPokemon.OT & " / " & OfferPokemon.CatchTrainerName & Environment.NewLine & "Item: " & itemString, New Vector2(100 + 16, CInt(100 + RectangleSize.Height + 48) + 16), Color.Black)
+            Core.SpriteBatch.DrawString(FontManager.MainFont, OfferPokemon.GetDisplayName() & Environment.NewLine & Localization.GetString("property_Level", "Level") & ": " & OfferPokemon.Level & Environment.NewLine & Localization.GetString("property_OT", "OT") & ": " & OfferPokemon.OT & " / " & OfferPokemon.CatchTrainerName & Environment.NewLine & Localization.GetString("global_item", "Item") & ": " & itemString, New Vector2(100 + 16, CInt(100 + RectangleSize.Height + 48) + 16), Color.Black)
         End If
 
         'Menu:
         If ReceivedTradeOffer = True Then
             Canvas.DrawRectangle(New Rectangle(CInt(Core.windowSize.Width / 2 - (64 * 4) / 2), 100, 64 * 4, 64), New Color(255, 255, 255, 150))
-            Core.SpriteBatch.DrawString(FontManager.MainFont, "Your trade partner" & Environment.NewLine & "accepts this trade.", New Vector2(CInt(Core.windowSize.Width / 2 - (64 * 4) / 2) + 4, 104), Color.Black)
+            Core.SpriteBatch.DrawString(FontManager.MainFont, Localization.GetString("trade_screen_status_AcceptTrade_OtherPlayer", "Your trade partner~accepts this trade.").Replace("~", Environment.NewLine), New Vector2(CInt(Core.windowSize.Width / 2 - (64 * 4) / 2) + 4, 104), Color.Black)
         Else
             If SentTradeOffer = True Then
                 Canvas.DrawRectangle(New Rectangle(CInt(Core.windowSize.Width / 2 - (64 * 4) / 2), 100, 64 * 4, 64), New Color(255, 255, 255, 150))
-                Core.SpriteBatch.DrawString(FontManager.MainFont, "You accepted" & Environment.NewLine & "this trade.", New Vector2(CInt(Core.windowSize.Width / 2 - (64 * 4) / 2) + 4, 104), Color.Black)
+                Core.SpriteBatch.DrawString(FontManager.MainFont, Localization.GetString("trade_screen_status_AcceptTrade_ThisPlayer", "You accepted~this trade.").Replace("~", Environment.NewLine), New Vector2(CInt(Core.windowSize.Width / 2 - (64 * 4) / 2) + 4, 104), Color.Black)
             End If
         End If
 
@@ -189,12 +189,12 @@
 
             Canvas.DrawRectangle(New Rectangle(CInt(Core.windowSize.Width - 100 - RectangleSize.Width), CInt(100 + RectangleSize.Height + 48), RectangleSize.Width, 128), New Color(255, 255, 255, 150))
 
-            Dim itemString As String = "none"
+            Dim itemString As String = Localization.GetString("global_none", "None")
             If Not TradePokemon.Item Is Nothing Then
-                itemString = TradePokemon.Item.Name
+                itemString = TradePokemon.Item.OneLineName
             End If
 
-            Core.SpriteBatch.DrawString(FontManager.MainFont, TradePokemon.GetDisplayName() & Environment.NewLine & "Level: " & TradePokemon.Level & Environment.NewLine & "OT: " & TradePokemon.OT & " / " & TradePokemon.CatchTrainerName & Environment.NewLine & "Item: " & itemString, New Vector2(CInt(Core.windowSize.Width - 100 - RectangleSize.Width) + 16, CInt(100 + RectangleSize.Height + 48) + 16), Color.Black)
+            Core.SpriteBatch.DrawString(FontManager.MainFont, TradePokemon.GetDisplayName() & Environment.NewLine & Localization.GetString("property_Level", "Level") & ": " & TradePokemon.Level & Environment.NewLine & Localization.GetString("property_OT", "OT") & ": " & TradePokemon.OT & " / " & TradePokemon.CatchTrainerName & Environment.NewLine & Localization.GetString("global_item", "Item") & ": " & itemString, New Vector2(CInt(Core.windowSize.Width - 100 - RectangleSize.Width) + 16, CInt(100 + RectangleSize.Height + 48) + 16), Color.Black)
         End If
     End Sub
 
@@ -217,11 +217,11 @@
                     End If
                 Next
                 If partnerOnServer = False Then
-                    DisconnectMessage = "The other player disconnected." & Environment.NewLine & Environment.NewLine & "Press any key to exit."
+                    DisconnectMessage = Localization.GetString("trade_screen_status_Disconnected_OtherPlayer", "The other player disconnected.") & Environment.NewLine & Environment.NewLine & Localization.GetString("trade_screen_PressAnyKeyToExit", "Press any key to exit.")
                     ScreenState = ScreenStates.Stopped
                 End If
             Else
-                DisconnectMessage = "You got disconnected from the server." & Environment.NewLine & Environment.NewLine & "Press any key to exit."
+                DisconnectMessage = Localization.GetString("trade_screen_status_Disconnected_ThisPlayer", "You got disconnected from the server.") & Environment.NewLine & Environment.NewLine & Localization.GetString("trade_screen_PressAnyKeyToExit", "Press any key to exit.")
                 ScreenState = ScreenStates.Stopped
             End If
         End If
@@ -293,7 +293,7 @@
             Case 0
                 Me.StartTrade()
             Case 1
-                Dim selScreen = New PartyScreen(Core.CurrentScreen, Item.GetItemByID(5.ToString), AddressOf SelectPokemonForTrade, "Choose Pokémon for Trade", True, False, False) With {.Mode = Screens.UI.ISelectionScreen.ScreenMode.Selection, .CanExit = True}
+                Dim selScreen = New PartyScreen(Core.CurrentScreen, Item.GetItemByID(5.ToString), AddressOf SelectPokemonForTrade, Localization.GetString("trade_screen_ChoosePokemonForTrade", "Choose Pokémon for Trade"), True, False, False) With {.Mode = Screens.UI.ISelectionScreen.ScreenMode.Selection, .CanExit = True}
                 AddHandler selScreen.SelectedObject, AddressOf SelectPokemonForTradeHandler
 
                 Core.SetScreen(selScreen)
@@ -352,7 +352,7 @@
     Public Shared Sub OtherPlayerQuits()
         If IsTradeScreen() = True Then
             ScreenState = ScreenStates.Stopped
-            DisconnectMessage = "The other player quit the trade." & Environment.NewLine & Environment.NewLine & "Press any key to exit."
+            DisconnectMessage = Localization.GetString("trade_screen_status_Quit_OtherPlayer", "The other player quit the trade.") & Environment.NewLine & Environment.NewLine & Localization.GetString("trade_screen_PressAnyKeyToExit", "Press any key to exit.")
         End If
     End Sub
 
@@ -437,7 +437,7 @@
                     End If
                 Next
 
-                Dim t As String = "Sending " & OfferPokemon.GetDisplayName() & " to " & p.Name & "." & Environment.NewLine & "Good-bye, " & OfferPokemon.GetDisplayName() & "!"
+                Dim t As String = Localization.GetString("trade_screen_trade_SendingPokemon", "Sending [YOURPOKEMON] to [OTHERPLAYER].~Good-bye, [YOURPOKEMON]!").Replace("[YOURPOKEMON]", OfferPokemon.GetDisplayName()).Replace("[OTHERPLAYER]", p.Name)
 
                 Core.SpriteBatch.DrawString(FontManager.MainFont, t, New Vector2(CInt(Core.windowSize.Width / 2 - FontManager.MainFont.MeasureString(t).X / 2), CInt(Core.windowSize.Height / 2 + 192)), Color.White)
             Case 2
@@ -455,7 +455,7 @@
                     End If
                 Next
 
-                Dim t As String = p.Name & " sent over " & TradePokemon.GetDisplayName() & "."
+                Dim t As String = Localization.GetString("trade_screen_trade_ReceivedPokemon", "[OTHERPLAYER] sent over [THEIRPOKEMON].").Replace("[OTHERPLAYER]", p.Name).Replace("[THEIRPOKEMON]", TradePokemon.GetDisplayName())
 
                 Core.SpriteBatch.DrawString(FontManager.MainFont, t, New Vector2(CInt(Core.windowSize.Width / 2 - FontManager.MainFont.MeasureString(t).X / 2), CInt(Core.windowSize.Height / 2 + 192)), Color.White)
         End Select

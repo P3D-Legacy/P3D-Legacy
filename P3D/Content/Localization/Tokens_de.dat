@@ -620,6 +620,22 @@ shop_screen_currency_short_BattlePoints,BP
 shop_screen_currency_short_Coins,C
 shop_screen_currency_short_Pokédollars,$
 ---
+Trade Screen:
+trade_screen_trade_SendingPokemon,Sending [YOURPOKEMON] to [OTHERPLAYER].~Good-bye, [YOURPOKEMON]!
+trade_screen_trade_ReceivedPokemon,[OTHERPLAYER] sent over [THEIRPOKEMON].
+trade_screen_button_ConfirmTrade,Trade
+trade_screen_button_ChoosePokemon,Choose Pokémon
+trade_screen_button_CancelTrade,Cancel Trade
+trade_screen_status_WaitingForOtherPlayer,Waiting for other player
+trade_screen_status_Quit_OtherPlayer,The other player quit the trade.
+trade_screen_status_Disconnected_OtherPlayer,The other player disconnected.
+trade_screen_status_Disconnected_ThisPlayer,You got disconnected from the server.
+trade_screen_status_AcceptTrade_OtherPlayer,Your trade partner~accepts this trade.
+trade_screen_status_AcceptTrade_OtherPlayer,Your trade partner~accepts this trade.
+trade_screen_status_AcceptTrade_ThisPlayer,You accepted~this trade.
+trade_screen_PressAnyKeyToExit,Press any key to exit.
+trade_screen_ChoosePokemonForTrade,Choose Pokémon for Trade
+---
 Blackout Screen:
 black_out_screen_line1,You have run out of Pokémon!
 black_out_screen_line2,You will be brought
