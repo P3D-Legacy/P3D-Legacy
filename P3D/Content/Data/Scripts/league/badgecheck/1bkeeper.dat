@@ -5,7 +5,7 @@ version=2
 	@register.register(badgecheck1)
 :else
 	@Text.show(I am sorry you aren't~qualified to pass here.)
-	@player.turn(1)
+	@player.turnto(3)
 	@player.move(1)
 :endif
 :end

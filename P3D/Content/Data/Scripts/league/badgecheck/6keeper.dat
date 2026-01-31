@@ -13,7 +13,7 @@ version=2
 		@register.register(badgecheck6-14)
 	:else
 		@Text.show(I am sorry you aren't~qualified to pass here.)
-		@player.turn(1)
+		@player.turnto(1)
 		@player.move(1)
 	:endif
 :endif
