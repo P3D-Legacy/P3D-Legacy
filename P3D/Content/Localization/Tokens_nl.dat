@@ -4427,7 +4427,7 @@ nature_name_Careful,Voorzichtig
 nature_name_Quirky,Eigenzinnig
 
 -----
-Follower Interactions:
+Follower Pokémon Interactions:
 [Generic]
 FollowerInteraction_HeldItem_Question,It looks like your Pokémon~holds on to something.*Do you want to~take it?
 FollowerInteraction_HeldItem_Answer_Yes,Your Pokémon handed over~the <item>!

@@ -1,45 +1,263 @@
 language_name,Svenska
+=====
+Global:
+global_please_wait,Please wait
+global_loading,Loading
+global_game,Game
+global_login,Log in
+global_create_account,Create Account
+global_male,Male
+global_female,Female
+global_genderless,Genderless
+global_yes,Ja
+global_no,Nej
+global_accept,Accept
+global_cancel,Avbryt
+global_ok,OK
+global_gamemode,Spelläge
+global_delete,Ta bort
+global_clear,Clear
+global_save,Save
+global_done,Done
+global_apply,Applicera
+global_confirm,Confirm
+global_close,Close
+global_back,Tillbaka
+global_quit,Quit
+global_on,On
+global_off,Off
+global_enabled,Aktiverad
+global_disabled,Deaktivoitu
+global_enable,Aktivera
+global_disable,Deaktivera
+global_player_name,Spelarens namn
+global_badges,Märken
+global_play_time,Play Time
+global_location,Plats
+global_money,Pengar
+global_points,Poäng
+global_IDNo.,ID No.
+global_time,Tid
+global_name,Namn
+global_order,Order
+global_filter,Filter
+global_reset,Reset
+global_pokemon_type_normal,Normal
+global_pokemon_type_fire,Fire
+global_pokemon_type_flying,Flying
+global_pokemon_type_fighting,Fighting
+global_pokemon_type_water,Water
+global_pokemon_type_grass,Grass
+global_pokemon_type_poison,Poison
+global_pokemon_type_ground,Ground
+global_pokemon_type_electric,Electric
+global_pokemon_type_psychic,Psychic
+global_pokemon_type_rock,Rock
+global_pokemon_type_ice,Ice
+global_pokemon_type_bug,Bug
+global_pokemon_type_dragon,Dragon
+global_pokemon_type_ghost,Ghost
+global_pokemon_type_dark,Dark
+global_pokemon_type_steel,Steel
+global_pokemon_type_fairy,Fairy
+global_pokemon_type_blank,Blank
+global_true,True
+global_false,False
+global_select,Select
+global_summary,Sammanfattning
+global_item,Objekt
+global_use,Använd
+global_give,Ge
+global_take,Ta
+global_toss,Kasta
+global_switch,Byt
+global_learn,Learn
+global_pokemon_move_fly,Fly
+global_pokemon_move_rocksmash,Rock Smash
+global_pokemon_move_ride,Ride
+global_pokemon_move_flash,Flash
+global_pokemon_move_cut,Cut
+global_pokemon_move_teleport,Teleport
+global_pokemon_move_dig,Dig
+global_pokemon_move_sweetscent,Sweet Scent
+global_pokemon_move_milkdrink,Milk Drink
+global_pokemon_move_softboiled,Soft-Boiled
+global_used,Used
+global_none,None
 ---
-MainMenuScreen:
-main_menu_continue,Fortsätt
-main_menu_load_game,Ladda spel
-main_menu_new_game,Nytt spel
-main_menu_quit_game,Avsluta spel
-LoadScreen:
-load_menu_name,Namn
-load_menu_badges,Märken
-load_menu_location,Plats
-load_menu_time,Tid
-load_menu_back,Tillbaka
-load_menu_load,Ladda
-load_menu_delete,Ta bort
-load_menu_gamemode,Spelläge
-DeleteScreen:
-delete_menu_delete_confirm,Vill du verkligen to bort sparningen
-delete_menu_delete,Ta bort
-delete_menu_cancel,Avbryt
-LanguageScreen:
-language_menu_apply,Applicera
-language_menu_back,Tillbaka
-PacksScreen:
-pack_menu_up,Upp
-pack_menu_down,Ned
-pack_menu_toggle_on,Aktivera
-pack_menu_toggle_off,Deaktivera
-pack_menu_information,Informastion
-pack_menu_enabled,Aktiverad
-pack_menu_apply,Applicera
-pack_menu_back,Tillbaka
-pack_menu_songs,Låtar
-pack_menu_sounds,Ljuder
-pack_menu_textures,Textur
-pack_menu_name,Namn
-pack_menu_version,Versjon
-pack_menu_by,Av
-pack_menu_content,Innehåll
-pack_menu_description,Beskrivning
+Pokémon & Attack Properties:
+
+property_HP,HP
+property_PP,PP
+property_No.,Nr.
+property_Lv.,Nivå
+property_Level,Nivå
+property_MaxHP,Max HP
+property_Attack,Attack
+property_Defense,Försvar
+property_Special_Attack,Special Attack
+property_Sp_Attack,Sp. Attack
+property_Special_Defense,Special Försvar
+property_Sp_Defense,Sp. Försvar
+property_Speed,Hastighet
+property_Ability,Förmåga
+property_Type,Typ
+property_Nature,Beteende
+property_DexNo.,Dex Nr.
+property_OT,OT
+property_CatchMethod,Fångstmetod
+property_ExpPoints,Exp. Poäng
+property_Category,Kategori
+property_Power,Kraft
+property_Accuracy,Träffchans
 ---
+Summary Screen:
+
+summary_hint_ViewMoves,Drag sida: [<system.button(movebackward)>]/[↓] Ned
+summary_hint_ViewInfo,Detalj sida: [<system.button(moveforward)>]/[↑] Upp
+summary_EVsIVs,EVs (white) / IVs (blue)
+summary_ExpToNextLv,Till nästa nivå
+summary_TheEggWatch,The Egg Watch
+summary_EggHatch_LongTime,It looks like this Egg will take a long time to hatch.
+summary_EggHatch_MediumTime,It's getting warmer and moves a little. It will hatch soon.
+summary_EggHatch_ShortTime,There is strong movement noticeable. It will hatch soon!
+---
+Catch Method & Location:
+
+CatchMethod_Empty,Somehow obtained at
+CatchMethod_Caught,Caught at
+CatchMethod_Obtained,Obtained at
+CatchMethod_Appeared,Appeared at
+
+CatchLocation_Empty,an unknown place
+---
+Keyboard Keys:
+
+keyboard_key_Up,Up
+keyboard_key_Down,Down
+keyboard_key_Left,Left
+keyboard_key_Right,Right
+keyboard_key_Enter,Enter
+keyboard_key_Space,Space
+keyboard_key_Escape,Escape
+keyboard_key_Back,Backspace
+keyboard_key_Tab,Tab
+keyboard_key_Home,Home
+keyboard_key_End,End
+keyboard_key_Delete,Delete
+keyboard_key_PageUp,Page Up
+keyboard_key_PageDown,Page Down
+keyboard_key_LeftShift,Left Shift
+keyboard_key_RightShift,Right Shift
+---
+FieldMoves:
+
+fieldmove_cut_1,This tree looks like it~can be Cut down!
+fieldmove_cut_2,*Do you want to use Cut?
+fieldmove_cut_NothingToCut,There is nothing~to be Cut!
+fieldmove_cut_used,used~Cut!
+
+fieldmove_rocksmash_1,This rock looks like~it can be broken!
+fieldmove_rocksmash_2,*Do you want to~use Rock Smash?
+fieldmove_rocksmash_used,used~Rock Smash!
+
+fieldmove_strength_1,A Pokémon may be able~to move this.
+fieldmove_strength_2,*Do you want to use Strength?
+fieldmove_strength_used,used~Strength!
+
+fieldmove_surf_type0,Do you want to Surf?
+fieldmove_surf_type1,The water looks still~and deep.~Do you want to Surf?
+fieldmove_surf_type2,This lake is~calm and shallow.~Do you want to Surf?
+fieldmove_surf_cannotwhilebicycle,You cannot Surf while riding~a Bicycle!
+fieldmove_surf_cannotwhileride,You cannot Surf while riding~a Pokémon!
+fieldmove_surf_used,used~Surf!
+
+fieldmove_dive_down_1,The water seems to be~really deep at this point.
+fieldmove_dive_down_2,*Do you want to~use Dive?
+fieldmove_dive_up_type1,Light shines down from~the surface.*Do you want to~use Dive?
+fieldmove_dive_up_type2,The boat's shadow is cast~upon the ocean floor.*Do you want to~use Dive?
+fieldmove_dive_used,used~Dive!
+
+fieldmove_headbutt_question,This tree could have~a Pokémon in it.*Do you want to~use Headbutt?
+fieldmove_headbutt_used,used~Headbutt!
+
+fieldmove_waterfall_used,used~Waterfall.
+
+fieldmove_ride_cannot_walk,You cannot walk here!
+fieldmove_ride_cannot_ride,You cannot Ride here!
+fieldmove_ride_used,used~Ride!
+
+fieldmove_flash_AreaLitUp,The area got lit up!
+fieldmove_flash_AlreadyLitUp,The area is already~lit up!
+fieldmove_flash_used,used~Flash!
+
+fieldmove_milkdrink_softboiled_ChoosePokemon,Choose Pokémon to Heal
+fieldmove_milkdrink_softboiled_CannotChoose_FullHP,[POKEMON] has full~HP already.
+fieldmove_milkdrink_softboiled_CannotChoose_SamePokemon,[POKEMON] cannot~heal itself.
+
+fieldmove_milkdrink_used,used~Milk Drink!*Some HP was shared~with [POKEMON]!
+fieldmove_softboiled_used,used~Soft-Boiled!*Some HP was shared~with [POKEMON]!
+
+fieldmove_sweetscent_CannotUse,Cannot use Sweet Scent here.
+fieldmove_sweetscent_used,used~Sweet Scent!
+
+fieldmove_dig_CannotUse,Cannot use Dig here.
+fieldmove_dig_used,used~Dig!
+
+fieldmove_teleport_CannotUse,Cannot use Teleport here.
+fieldmove_teleport_used,used~Teleport!
+
+fieldmove_fly_CannotUse,You cannot Fly~from here!
+fieldmove_fly_used,used~Fly!
+---
+GameInteractions:
+game_interaction_interact,Interact
+game_interaction_gamemenu,Game Menu
+game_interaction_pokegear,Pokégear
+game_interaction_pausemenu,Pause Menu
+game_interaction_accept,Accept
+game_interaction_enter,Enter
+game_interaction_confirm,Confirm
+game_interaction_back,Tillbaka
+game_interaction_dismiss,Dismiss
+game_interaction_go_back,Go Back
+game_interaction_close,Close
+game_interaction_edit,Edit
+game_interaction_clear,Clear
+game_interaction_delete,Ta bort
+game_interaction_learn,Learn
+game_interaction_notification,Notification
+game_notification_accept,Press <system.button(special)> to accept.
+game_notification_dismiss,Press <system.button(special)> to dismiss.
+---
+PressStartScreen:
+start_screen_press,Press
+start_screen_tostart,to start.
+---
+Main Menu:
+main_menu_newgame_line1,Nytt
+main_menu_newgame_line2,spel
+main_menu_options,Alternativ
+main_menu_gamejolt_ChangeToMale,Change to male
+main_menu_gamejolt_ChangeToFemale,Change to female
+main_menu_gamejolt_ChangeToGenderless,Change to genderless
+main_menu_gamejolt_ResetSave,Reset save
+main_menu_error_gamemode_profile,The required GameMode does not exist!
+main_menu_error_gamemode_message,The required GameMode does not exist.~Reaquire the GameMode to play on this profile.
+main_menu_error_gamejolt_1,Download failed. Press Accept to try again.
+main_menu_error_gamejolt_2,If the problem persists, please try again later
+main_menu_error_gamejolt_3,or contact us in our Discord server:
+main_menu_error_gamejolt_4,http://www.discord.me/p3d
+main_menu_error_filevalidation,File validation failed!~Redownload the game's files to solve this problem.
+main_menu_options_language,Language
+main_menu_options_audio,Audio
+main_menu_options_controls,Controls
+main_menu_options_contentpacks_line1,Content
+main_menu_options_contentpacks_line2,Packs
+
 GameModeMenu:
+gamemode_menu_select1,Select a GameMode
+gamemode_menu_select2,to start the new game with.
 gamemode_menu_name,Namn
 gamemode_menu_description,Beskrivning
 gamemode_menu_version,Versjon
@@ -47,6 +265,107 @@ gamemode_menu_author,Författar
 gamemode_menu_contentpath,Innehåll Filsökväg
 gamemode_menu_create,Laga
 gamemode_menu_back,Tillbaka
+gamemode_name_Kolben,Pokémon 3D
+gamemode_desc_Kolben,The normal GameMode.
+---
+JoinServerScreen:
+join_server_screen_title,Join a server:
+join_server_screen_local_server_title,Local
+join_server_screen_local_server_description,Single-player: Play on your local computer.
+join_server_screen_button_join,Anslut
+join_server_screen_button_play,Play
+join_server_screen_button_refresh,Refresh
+join_server_screen_button_new,New
+join_server_screen_button_add,Add
+join_server_screen_button_edit,Edit
+join_server_screen_button_remove,Remove
+join_server_screen_tooltip_no_players,No players on the server.
+join_server_screen_tooltip_player_list,Player List
+join_server_screen_ping,Ping:
+join_server_screen_server_unavailable,Cannot reach server.
+join_server_screen_server_online,Server online.
+join_server_screen_server_polling,Polling
+join_server_screen_server_full,The server is full.
+join_server_screen_version_mismatch,Version doesn't match the server's version.
+join_server_screen_no_connection,(no connection)
+---
+AddServerScreen:
+add_server_screen_title,Add a server:
+add_server_screen_name,Namn:
+add_server_screen_address,Address:
+add_server_screen_hint_controller_edit,Press X to edit.
+add_server_screen_input_name_default,Pokémon 3D Server
+add_server_screen_validation_empty_name,The server name cannot be empty.
+add_server_screen_validation_empty_address,The address cannot be empty.
+add_server_screen_validation_duplicate_server,This server name already exists on the list.
+---
+Options Screen:
+option_screen_title,Options
+
+option_screen_game,Game
+option_screen_game_textspeed,Textfart
+option_screen_game_difficulty,Svårighetsgrad
+option_screen_game_difficulty_easy,Lätt
+option_screen_game_difficulty_hard,Svårt
+option_screen_game_difficulty_superhard,Super svårt
+option_screen_game_interfacescale,Interface Scale
+option_screen_game_interfacescale_automatic,Automatic
+option_screen_game_viewbobbing,Visa bobbing
+
+option_screen_graphics,Grafik
+option_screen_graphics_fov,Synfält
+option_screen_graphics_renderdistance,Ritat avstånd
+option_screen_graphics_renderdistance_tiny,Liten
+option_screen_graphics_renderdistance_short,Kort
+option_screen_graphics_renderdistance_normal,Normal
+option_screen_graphics_renderdistance_far,Långt
+option_screen_graphics_renderdistance_extreme,Extremt
+option_screen_graphics_offset_mapquality,Offset kartkvalitét
+option_screen_graphics_offset_mapquality_off,Av
+option_screen_graphics_graphics,Grafik
+option_screen_graphics_graphics_fancy,Vackert
+option_screen_graphics_graphics_fast,Snabbt
+option_screen_graphics_multisampling,Multi Sampling
+
+option_screen_battle,Battle
+option_screen_battle_3dmodels,3D Models
+option_screen_battle_animations,Animaatiot
+option_screen_battle_battlestyle,Stridsstil
+option_screen_battle_battlestyle_shift,Skiftande
+option_screen_battle_battlestyle_set,Fast
+
+option_screen_controls,Controls
+option_screen_controls_xboxgamepad,Xbox Gamepad
+option_screen_controls_resetkeybindings,Reset Key Bindings
+option_screen_controls_cameraspeed,Kamerahastighet
+option_screen_controls_cameraspeed_slow,...Slow...
+option_screen_controls_cameraspeed_medium,Standard
+option_screen_controls_cameraspeed_fast,Super fast!
+option_screen_controls_cameraspeed_fastest,SPEED OF LIGHT!
+option_screen_controls_running,Running
+option_screen_controls_running_hold,Hold
+option_screen_controls_running_toggle,Toggle
+
+option_screen_audio,Audio
+option_screen_audio_volume_music,Musikvolym
+option_screen_audio_volume_sfx,Ljudeffekters volym
+option_screen_audio_muted,Dämpad
+
+option_screen_contentpacks_up,Upp
+option_screen_contentpacks_down,Ned
+option_screen_contentpacks_information,Informastion
+option_screen_contentpacks_songs,Låtar
+option_screen_contentpacks_sounds,Ljuder
+option_screen_contentpacks_textures,Textur
+option_screen_contentpacks_name,Namn
+option_screen_contentpacks_version,Versjon
+option_screen_contentpacks_by,Av
+option_screen_contentpacks_content,Innehåll
+option_screen_contentpacks_description,Beskrivning
+
+option_screen_resetoptions,Återställ alternativ
+option_screen_save_options,Spara alternativ
+option_screen_close,Stäng
 ---
 Pausescreen:
 pause_menu_title,Spel meny
@@ -54,213 +373,303 @@ pause_menu_back_to_game,Tillbaka till spelet
 pause_menu_disconnect,Koppla bort
 pause_menu_quit_to_menu,Avsluta till huvudmenyn
 pause_menu_autosave_fail,Kan inte skapa automatisk sparning.
-pause_menu_yes,Ja
-pause_menu_no,Nej
 pause_menu_confirmation,Vill du verkligen sluta? O sparade framsteg kommer att gå förlorade.
 ---
 IngameMenu:
 game_menu_pokedex,Pokédex
 game_menu_party,Pokémon
 game_menu_bag,Ryggsäck
-game_menu_trainer_card,<playername>
+game_menu_trainer_card,<Player.Name>
 game_menu_save,Spara
+game_menu_save_notpossible,Saving is not possible right now.
 game_menu_options,Alternativ
 game_menu_exit,Avsluta menyn
+game_menu_end_contest,End Contest
 ---
 InventoryScreen:
-inventory_menu_bag,Ryggsäck
-inventory_menu_backadvice,TRYCK E FÖR ATT GÅ TILLBAKA
-inventory_menu_items,Objekt
-inventory_menu_description,Beskrivning
+inventory_screen_title,Ryggsäck
+inventory_screen_ItemSubtitle_HM,Hidden Machine
+inventory_screen_ItemSubtitle_TM,Technical Machine
+inventory_screen_ItemSubtitle_Standard_Suffix, Item
+inventory_screen_ItemSubtitle_KeyItem,Key Item
+inventory_screen_ItemSubtitle_PokeBall,Poké Ball
+inventory_screen_ItemSubtitle_Plant,Plant
+inventory_screen_ItemSubtitle_BattleItem,Battle Item
+inventory_screen_ItemNotUsableInBattle,This item can't~be used in Battle.
+inventory_screen_TossConfirmation,Are you sure you want to toss~this item?
+inventory_screen_TossAmount,Select the amount to toss.
+inventory_screen_GiveItem_Give,Gave <name> the <newitem>.
+inventory_screen_GiveItem_Switch,Switched <name>'s <olditem> with the <newitem>.
+inventory_screen_GiveItem_TakeMail,Gave <newitem> to <name> and took the Mail to the PC.
+inventory_screen_CannotGiveToPokemon,<newitem> cannot be given to a Pokémon.
+inventory_screen_CannotGiveBugContest,Cannot give an item to~this Pokémon during a~Bug-Catching Contest.
+inventory_screen_EggsCannotHold,Eggs cannot hold items.
+---
+StorageSystemScreen:
+storage_screen_box_DefaultName,BOX [NUMBER]
+storage_screen_box_BattleBoxName,BATTLE BOX
+
+storage_screen_menu_box_WhatDoYouWant,What do you want to do?
+storage_screen_menu_box_ChooseBox,Choose Box
+storage_screen_menu_box_ChangeMode,Change Mode
+storage_screen_menu_box_Wallpaper,Wallpaper
+
+storage_screen_menu_mode_ChooseModeToUse,Choose a mode to use.
+storage_screen_menu_mode_Withdraw,Withdraw
+storage_screen_menu_mode_Deposit,Deposit
+storage_screen_menu_mode_SingleMove,Single Move
+storage_screen_menu_mode_EasyMove,Easy Move
+
+storage_screen_menu_theme_PickTheme,Please pick a theme.
+storage_screen_menu_theme_Package1,Package 1
+storage_screen_menu_theme_Package2,Package 2
+storage_screen_menu_theme_Package3,Package 3
+storage_screen_menu_theme_Package4,Package 4
+
+storage_screen_menu_wallpaper_PickWallpaper,Pick the wallpaper.
+
+storage_screen_menu_wallpaper_Forest,Forest
+storage_screen_menu_wallpaper_City,City
+storage_screen_menu_wallpaper_Desert,Desert
+storage_screen_menu_wallpaper_Savanna,Savanna
+storage_screen_menu_wallpaper_Cave,Cave
+storage_screen_menu_wallpaper_River,River
+
+storage_screen_menu_wallpaper_Volcano,Volcano
+storage_screen_menu_wallpaper_Snow,Snow
+storage_screen_menu_wallpaper_Beach,Beach
+storage_screen_menu_wallpaper_Seafloor,Seafloor
+storage_screen_menu_wallpaper_Crag,Crag
+storage_screen_menu_wallpaper_Steel,Steel
+
+storage_screen_menu_wallpaper_Volcano2,Volcano 2
+storage_screen_menu_wallpaper_City2,City 2
+storage_screen_menu_wallpaper_Snow2,Snow 2
+storage_screen_menu_wallpaper_Desert2,Desert 2
+storage_screen_menu_wallpaper_Savanna2,Savanna 2
+storage_screen_menu_wallpaper_Steel2,Steel 2
+
+storage_screen_menu_wallpaper_System,System
+storage_screen_menu_wallpaper_Simple,Simple
+storage_screen_menu_wallpaper_Checks,Checks
+storage_screen_menu_wallpaper_Seasons,Seasons
+storage_screen_menu_wallpaper_Retro1,Retro 1
+storage_screen_menu_wallpaper_Retro2,Retro 2
+
+storage_screen_menu_pokemon_IsSelected,<name> is selected.
+storage_screen_menu_pokemon_Withdraw,Withdraw
+storage_screen_menu_pokemon_Deposit,Deposit
+storage_screen_menu_pokemon_Move,Move
+storage_screen_menu_pokemon_TakeItem,Take Item
+storage_screen_menu_pokemon_Release,Release
+
+storage_screen_pokemon_CannotRemoveLastPokemon,Can't remove last Pokémon from party.
+storage_screen_pokemon_PartyIsFull,Party is full!
+
+storage_screen_pokemon_item_MailWasTaken,The Mail was taken to your~inbox on your PC.
+storage_screen_pokemon_item_TakenItemFromPokemon,Tog <item>~från <name>.
+
+storage_screen_pokemon_release_Question,Release <name>?
+storage_screen_pokemon_release_CannotReleaseEgg,Cannot release an Egg.
+storage_screen_pokemon_release_CannotReleaseLastPokemon,Cannot release the last Pokémon.
+storage_screen_pokemon_release_Goodbye,Goodbye, <name>!
+
+storage_screen_pokemon_summary_Box,Box
+storage_screen_pokemon_summary_Pokemon,Pokémon
+storage_screen_pokemon_summary_Level,Level
+storage_screen_pokemon_summary_Normal,Normal
+storage_screen_pokemon_summary_Shiny,Shiny
+storage_screen_pokemon_summary_Egg,Egg
+storage_screen_pokemon_summary_DexNo,DEX NO.
+storage_screen_pokemon_summary_LEVEL,LEVEL
+storage_screen_pokemon_summary_HP,HP
+storage_screen_pokemon_summary_ATTACK,ATTACK
+storage_screen_pokemon_summary_DEFENSE,DEFENSE
+storage_screen_pokemon_summary_SpATK,SP. ATK
+storage_screen_pokemon_summary_SpDEF,SP. DEF
+storage_screen_pokemon_summary_SPEED,SPEED
+storage_screen_pokemon_summary_ITEM,OBJEKT
+
+storage_screen_filter_Hint,Press <system.button(special)> on the keyboard to filter.
+storage_screen_filter_Title,Configure the filters:
+storage_screen_filter_Results,Results:
+storage_screen_filter_Filters,Filters:
+storage_screen_filter_Pokemon,Pokémon
+storage_screen_filter_Type1,Type 1
+storage_screen_filter_Type2,Type 2
+storage_screen_filter_Move,Move
+storage_screen_filter_Ability,Förmåga
+storage_screen_filter_Nature,Beteende
+storage_screen_filter_Gender,Gender
+storage_screen_filter_HeldItem,Held Item
+storage_screen_filter_HeldItem_Yes,Has a Held Item
+storage_screen_filter_HeldItem_No,Has no Held Item
+---
+mail_screen_title,Mailbox
+mail_screen_give_mail_to,Give Mail to:
+mail_screen_write_new_mail,Write new Mail.
+mail_screen_mail_header,Header:
+mail_screen_mail_text,Text:
+mail_screen_mail_signature,Signature:
+mail_screen_mail_ot,Mail OT:
+mail_screen_mail_button_attach,Attach
+mail_screen_mail_button_send_to_pc,Send To PC
+mail_screen_mail_send_to_pc_confirm,Send this Mail to PC?
+mail_screen_mail_delete_confirm,Delete this Mail?
+mail_screen_mail_deleted_from_mailbox,The Mail has been removed from the Mailbox.
+mail_screen_mail_added_to_mailbox,The Mail was taken to your inbox on your PC.
+mail_screen_mail_missing_contents,Please fill in the Header, the Message and the Signature.
+mail_screen_mail_attached_mail,Attached the Mail to [POKEMON].
+mail_screen_mail_taken_item_and_attached_mail,Taken [ITEM] from [POKEMON], and attached the Mail to [POKEMON].
+---
+PartyScreen:
+party_screen_Unable,Unable!
+party_screen_Able,Able!
+party_screen_FieldMove,Field Move
+party_screen_ChoosePokemon,Välj Pokémon
+party_screen_CannotChoosePokemon,Cannot choose this~Pokémon.
+party_screen_TakenItemFromPokemon,Tog <item>~från <name>.
 ---
 NewGameScreen:
-new_game_oak_1,Hej!~Ursäkta att låta dig vänta!*Välkommen till världen~av Pokemon!*Mitt namn är Oak.~Folk kallar mig för ~Pokémon professorn.*Denna värld är bebodd~av varselser som vi kallar för
-new_game_oak_2,Pokémon.*Folk och Pokémon lever~tillsammans genom att~stötta varandra.~Vissa folk leker med Pokémon,~andra strider med dem.*Men vi vet inte allt om~Pokémon än.~Det är fortfarande många~mysterier kvar att lösa.*Därför studerar jag Pokémon~varje dag.*Nu så, vad sade du~ditt namn var?
-new_game_oak_3,~är du redo?*Ditt helt egna~Pokémon äventyr är påväg~att börja.*Du kommer ha roliga~tider och utsättas för ~svåra utmaningar.~En värld av drömmar och~äventyr med Pokémon~väntar!*Låt oss börja!*Jag kommer se~dig senare!
-new_game_oak_weird_name_1,Okay! Så ditt namn är~
-new_game_oak_weird_name_2,!*Hmm, det är ett~udda namn.
-new_game_oak_known_name_1,Okay! Så ditt namn är~
-new_game_oak_known_name_2,!*Hmm, jag är säker jag~har hört detta namn innan.
-new_game_oak_same_name_1,Åh, vi har~samma namn.*Mitt namn är också~
-new_game_oak_same_name_2,!
-new_game_oak_name_1,Okay! Så ditt namn är~
-new_game_oak_name_2,!
-new_game_your_name,Ditt namn
-new_game_choose_skin,Välj utseende
-new_game_name_too_short,Det här namnet är för kort.
+new_game_intro_1,Hej!~Ursäkta att låta dig vänta!*Välkommen till världen~av Pokemon!*Mitt namn är Oak.~Folk kallar mig för ~Pokémon professorn.*Denna värld är bebodd~av varselser som vi kallar för
+new_game_intro_2,Pokémon.*Folk och Pokémon lever~tillsammans genom att~stötta varandra.~Vissa folk leker med Pokémon,~andra strider med dem.*Men vi vet inte allt om~Pokémon än.~Det är fortfarande många~mysterier kvar att lösa.*Därför studerar jag Pokémon~varje dag.*Nu så, vad sade du~ditt namn var?
+new_game_intro_3,~är du redo?*Ditt helt egna~Pokémon äventyr är påväg~att börja.*Du kommer ha roliga~tider och utsättas för ~svåra utmaningar.~En värld av drömmar och~äventyr med Pokémon~väntar!*Låt oss börja!*Jag kommer se~dig senare!
+new_game_intro_weird_name_1,Okay! Så ditt namn är~
+new_game_intro_weird_name_2,!*Hmm, det är ett~udda namn.
+new_game_intro_known_name_1,Okay! Så ditt namn är~
+new_game_intro_known_name_2,!*Hmm, jag är säker jag~har hört detta namn innan.
+new_game_intro_same_name_1,Åh, vi har~samma namn.*Mitt namn är också~
+new_game_intro_same_name_2,!
+new_game_intro_name_1,Okay! Så ditt namn är~
+new_game_intro_name_2,!
+new_game_select_skin,Välj utseende
 ---
 MapScreen:
 map_screen_cities,Städer
 map_screen_routes,Rutter
 map_screen_places,Platser
 map_screen_roaming,Roaming Pokes
----
-PokedexScreen:
-pokedex_screen_seen,Sedda
-pokedex_screen_obtained,Införskaffade
-pokedex_screen_rare,Sällsynta
-pokedex_screen_backadvice,TRYCK E FÖR ATT GÅ TILLBAKA
----
-PokemonScreen:
-pokemon_screen_choose_a_pokemon,Välj en Pokémon
-pokemon_screen_backadvice,TRYCK E FÖR ATT GÅ TILLBAKA
-pokemon_screen_item_give,Ge
-pokemon_screen_item_take,Ta
-pokemon_screen_item_back,Tillbaka
-pokemon_screen_doesnt_hold_item,~håller inte ett objekt.
-pokemon_screen_take_item_1,Tog 
-pokemon_screen_take_item_2, från~
-pokemon_screen_take_item_3,~och lade det i~
-pokemon_screen_take_item_4, fickan!
-pokemon_screen_give_item_1,gav 
-pokemon_screen_give_item_2, till~
-pokemon_screen_give_item_3,
-pokemon_screen_give_item_4,~och lade 
-pokemon_screen_give_item_5,~tillbaka till lagret.
-pokemon_screen_summary,Sammanfattning
-pokemon_screen_switch,Byt
-pokemon_screen_item,Objekt
-pokemon_screen_back,Tillbaka
-pokemon_screen_EMPTY,TOM
----
-Pokemon Status Screen:
-All pages:
-poke_status_screen_nature,Beteende
-poke_status_screen_backadvice,TRYCK E FÖR ATT GÅ TILLBAKA
-poke_status_screen_closeadvice,TRYCK E FÖR ATT STÄNGA
-poke_status_screen_number,# 
-Page 1:
-poke_status_screen_all_exp,All exp
-poke_status_screen_nxt_lv,Nästa Lv.
-poke_status_screen_stats_page,Statistik sida
-Page 2:
-poke_status_screen_OT,OT
-poke_status_screen_Item,Objekt
-poke_status_screen_no_item,inget objekt
-poke_status_screen_ability,Förmåga
-poke_status_screen_details_page,Detalj sida
-Page 3:
-poke_status_screen_power,Kraft
-poke_status_screen_accuracy,Träffchans
-poke_status_screen_moves_page,Drag sida
+map_screen_PokemonAtPlace,[NAME] at [PLACE]
+map_screen_RegionSwitchHint,(Press the Shift Key/Shoulder Triggers to switch between regions.)
 ---
 Trainer Card Screen:
-trainer_screen_trainer_card,Tränarkort
-trainer_screen_name,Namn
-trainer_screen_points,Poäng
-trainer_screen_money,Pengar
-trainer_screen_pokedex,Pokédex
-trainer_screen_time,Tid
+trainer_screen_title,Tränarkort
 trainer_screen_collected_badges,Samlade märken
-trainer_screen_badge,märke
-trainer_screen_backadvice,TRYCK E FÖR ATT GÅ TILLBAKA
+trainer_screen_badge, märke
 trainer_screen_empty_badge,???
 ---
 Save Screen:
-save_screen_title,Vill du spara spelet?
-save_screen_name,Namn
-save_screen_badges,Märken
-save_screen_money,Pengar
-save_screen_time,Tid
-save_screen_yes,Ja
-save_screen_no,Nej
+save_screen_question1,Vill du spara
+save_screen_question2,spelet?
+save_screen_progress_validating,Validating data
+save_screen_progress_saving,Saving, please wait
+save_screen_fail_title,Saving failed!
+save_screen_fail_message1,Press [<system.button(back1)>] to close this~screen and try to save again~in order to prevent data~corruption.~~~If the problem persists, the~GameJolt servers could be~down for maintenance right~now.
+save_screen_fail_message2,Please try again later,~or contact us here:~~Discord Server:~www.discord.me/p3d~~Official News:~pokemon3d.net/blog
 save_screen_success,Sparade spelet.
----
-Options Screen:
-option_screen_title,Alternativ
-option_screen_warning,Alternativen är inte sparade än, scrolla ned och välj "Spara alternativ."
-option_screen_backadvice,TRYCK E FÖR ATT GÅ TILLBAKA
-option_screen_description,Beskrivning
-option_screen_textspeed,Textfart
-option_screen_textspeed_description,Hastigheten som textboxen dyker upp och~visar texten
-option_screen_fov,FOV
-option_screen_fov_description,Synfältet. Ju högre värdet är,~desto mer kan du se.~Varning: För höga värden kan skapa lagg på större kartor.
-option_screen_mousespeed,Mushastighet
-option_screen_mousespeed_description,Mushastigheten sätter hastigheten på musen~som kan rotera din vy.
-option_screen_volume,Volym
-option_screen_volume_description,Volymen av bakgrundsmusiken.~Denna funktion är för alla sparade spel.
-option_screen_render_distance,Ritat avstånd
-option_screen_render_distance_tiny,Liten
-option_screen_render_distance_short,Kort
-option_screen_render_distance_normal,Normal
-option_screen_render_distance_far,Långt
-option_screen_render_distance_extreme,Extremt
-option_screen_render_distance_description,Det ritade avståndet bestämmer,~hur långt du kan se.~Genom att sänka värdet, kan du förbättra din FPS.
-option_screen_graphics,Grafik
-option_screen_graphics_fancy,Vackert
-option_screen_graphics_fast,Snabbt
-option_screen_graphics_description,Påverkar om vissa objekt ritas ut~eller inte. Genom att sänka värdet, kan du förbättra din FPS.~Denna funktion är för alla sparade spel.
-option_screen_offset_map_quality,Offset kartkvalitét
-option_screen_offset_map_off,Av
-option_screen_offset_map_quality_description,Sätter kvalitén över offset kartan.~Detaljerna och uppdaterings frekvenserna av offset kartor kan öka med detta värde.~Sätt värdet till 0 för att förhindra spelet från att ladda offset kartor.
-option_screen_animations_in_battle,Animeringar i strid
-option_screen_animations_in_battle_no,Nej
-option_screen_animations_in_battle_attacks_off,Attacker av
-option_screen_animations_in_battle_yes,Ja
-option_screen_animations_in_battle_description,Bestämmer om spelet visar stridsanimationer.
-option_screen_difficulty,Svårighetsgrad
-option_screen_difficulty_description,Svårighetsgrad~Sätter hur svårt spelet skall vara.
-option_screen_battle_style,Stridsstil
-option_screen_battle_style_shift,Skiftande
-option_screen_battle_style_set,Fast
-option_screen_battle_style_description,Stridsstil~Fast: Du blir inte frågad om du vill byta ut din Pokémon~Skiftande: Du kan byta ut din Pokémon efter du har besegrat en utmanare.
-option_screen_view_bobbing,Visa bobbing
-option_screen_view_bobbing_description,Slår kamera skakar på eller av.
-option_screen_reset_options,Återställ alternativ.
-option_screen_reset_options_description,Återställer alla alternativ.
-option_screen_save_options,Spara alternativ.
-option_screen_save_options_description,Sparar alternativen och stänger menyn.
-option_screen_close_menu,Stäng meny.
-option_screen_close_menu_description,Stänger menyn och sparar inte~någon ändring.
----
-Item Detail Screen:
-item_detail_screen_use,Använd
-item_detail_screen_give,Ge
-item_detail_screen_trash,Kasta
-item_detail_screen_back,Tillbaka
-item_detail_screen_give_item,Ge 
+save_screen_press,Press
+save_screen_to_continue,to continue.
 ---
 Apricorn Screen:
 apricorn_screen_apricorns,Apricorns
 apricorn_screen_producing,Jag producerar Pokébollarna för tillfället.~Kom tillbaka senare.
-apricorn_screen_backadvice,TRYCK E FÖR ATT GÅ TILLBAKA
+apricorn_screen_backadvice,TRYCK [<system.button(OpenMenu)>] ÖR ATT GÅ TILLBAKA
 apricorn_screen_choose_apricorns,Var god välj Apricorns som jag kan ta för att göra Pokébollar.
 apricorn_screen_ok,OK
 apricorn_screen_clear,Töm
+apricorn_screen_all,Kaikki
 apricorn_screen_take,Ta
 apricorn_screen_ready,Jag är redo att producera Pokébollar. Här är resultatet av mitt jobb:
-apricorn_screen_obtain, Införskaffad
----
-Daycare Screen:
-daycare_screen_daycare,Dagis
-daycare_screen_money, / Pengar: 
-daycare_screen_deposit,Sätt in
-daycare_screen_grown,Vuxit: 
-daycare_screen_lv, / Lv. 
-daycare_screen_costs, / Kostar:
-daycare_screen_pokedollar, PokéDollar
-daycare_screen_withdraw,Ta ut
-daycare_screen_backadvice,TRYCK E FÖR ATT GÅ TILLBAKA
-daycare_screen_pokemon_choose_header,Sätt in Pokémon
-Egg,Ägg
----
-Network Screen:
-network_screen_isonline,Du är redan i ett co-op spel! Var god stäng anslutningen~för att öppna ett nytt spel eller ansluta igen!~~~Tryck E för att gå tillbaka!
-network_screen_header,Co-Op Spelsätt
-network_screen_main_header,Du kan antingen gå med i ett spel eller vara en värd~för en ny server för att spela med en vän.
-network_screen_main_join,Anslut
-network_screen_main_host,Bli värd
-network_screen_main_close,Stäng
-network_screen_join_header,Anslut till ett spel:~Ange IP- addressen av den som är värd för spelet.
-network_screen_join_cancel,Avbryt
-network_screen_join_join,Anslut
-network_screen_host_header,Var värd:~Du är på väg att öppna ditt spel~för andra spelare i ditt nätverk.
-network_screen_host_cancel,Avbryt
-network_screen_host_host,Bli värd
+apricorn_screen_obtain,Införskaffad
 ---
 Donation screen:
 donation_screen_donators,Donatorer
-donation_screen_backadvice,Tryck E för att stänga
+donation_screen_backadvice,Tryck [<system.button(OpenMenu)>] för att stänga
+---
+Rename Screen:
+rename_screen_title_Question,Rename [NAME]?
+rename_screen_title_EnterName,Enter name for [NAME]:
+rename_screen_button_Rename,Rename
+---
+Input Screen:
+input_screen_button_Shift,Shift
+input_screen_button_Default,Default
+input_screen_button_CharactersLeft,Chars left:
+---
+Shop Screen:
+shop_screen_title_store,Store
+shop_screen_title_BuyItems,Buy Items
+shop_screen_title_BuyCategory,Buy [CATEGORY]
+shop_screen_title_SellItems,Sell Items
+shop_screen_title_SellCategory,Sell [CATEGORY]
+shop_screen_button_buy,Buy
+shop_screen_button_sell,Sell
+shop_screen_button_exit,Exit
+shop_screen_buy_NoItemsToBuy,There are no items to buy.
+shop_screen_buy_InStock,In Stock:
+shop_screen_sell_NoItemsToSell,You have no items to sell.
+shop_screen_sell_confirmation,Do you want to sell~[AMOUNT] [ITEM]?
+shop_screen_buysell_PricePerItem,Per Item:
+shop_screen_buysell_PriceTotal,Total:
+shop_screen_buysell_InInventory,In Inventory:
+shop_screen_buysell_DescriptionHint,Press [<system.button(special)>] or Select to view the item's description.
+shop_screen_buysell_CurrentBalance,Current Balance:
+shop_screen_currency_BattlePoints,Battle Points
+shop_screen_currency_Coins,Coins
+shop_screen_currency_Pokédollars,$
+shop_screen_currency_short_BattlePoints,BP
+shop_screen_currency_short_Coins,C
+shop_screen_currency_short_Pokédollars,$
+---
+Trade Screen:
+trade_screen_trade_SendingPokemon,Sending [YOURPOKEMON] to [OTHERPLAYER].~Good-bye, [YOURPOKEMON]!
+trade_screen_trade_ReceivedPokemon,[OTHERPLAYER] sent over [THEIRPOKEMON].
+
+trade_screen_button_ConfirmTrade,Trade
+trade_screen_button_ChoosePokemon,Välj Pokémon
+trade_screen_button_CancelTrade,Cancel Trade
+
+trade_screen_status_WaitingForOtherPlayer,Waiting for other player
+trade_screen_status_Quit_OtherPlayer,The other player quit the trade.
+trade_screen_status_Disconnected_OtherPlayer,The other player disconnected.
+trade_screen_status_Disconnected_ThisPlayer,You got disconnected from the server.
+trade_screen_status_AcceptTrade_OtherPlayer,Your trade partner~accepts this trade.
+trade_screen_status_AcceptTrade_ThisPlayer,You accepted~this trade.
+
+trade_screen_PressAnyKeyToExit,Press any key to exit.
+trade_screen_ChoosePokemonForTrade,Choose Pokémon for Trade
+---
+PVP Screen:
+pvp_screen_button_StartBattle,Start Battle!
+pvp_screen_button_ChooseTeam,Choose Team
+pvp_screen_title,Versus Battle
+pvp_screen_status_WaitingForOtherPlayer,Waiting for other player
+pvp_screen_status_Quit_OtherPlayer,The other player quit the battle.
+pvp_screen_status_Disconnected_OtherPlayer,The other player disconnected.
+pvp_screen_status_Disconnected_ThisPlayer,You got disconnected from the server.
+pvp_screen_status_AcceptBattle_OtherPlayer,Your opponent wants to~battle with this setup.
+pvp_screen_status_AcceptBattle_ThisPlayer,You want to battle~with this setup.
+
+pvp_screen_result_Title,You [RESULT] the Battle!
+pvp_screen_result_Won,Won
+pvp_screen_result_Lost,Lost
+
+pvp_screen_result_Turns,Turns:
+pvp_screen_result_Moves,Moves:
+pvp_screen_result_Switches,Switches:
+pvp_screen_result_SuperEffective,Super Effective:
+pvp_screen_result_NotVeryEffective,Not very Effective:
+pvp_screen_result_NoEffect,No Effect:
+pvp_screen_result_CriticalHits,Critical Hits:
+pvp_screen_result_Versus,VS
+
+pvp_screen_PressAnyKeyToExit,Press any key to exit.
+pvp_screen_ChooseYourLeadBattler,Choose your Lead
+pvp_screen_ChooseYourTeam,Choose your Team
+pvp_screen_BattleBox,Battle Box
+pvp_screen_Team,Team
+pvp_screen_GameVersionsMismatch,Game versions don't match.
+
 ---
 Blackout Screen:
 black_out_screen_line1,Du har slut på Pokémon!
@@ -269,64 +678,165 @@ black_out_screen_line3,till det närmaste PokéCentret
 black_out_screen_line4,för att förhindra ytterligare skada
 black_out_screen_line5,på dina Pokémon.
 ---
+Hall of Fame Screen:
+hall_of_fame_screen_title,Hall of Fame
+hall_of_fame_screen_entry_number,Entry No.
+hall_of_fame_screen_entries,Entries:
+hall_of_fame_screen_type1,Type 1
+hall_of_fame_screen_type2,Type 2
+---
+Credits Screen:
+credits_skip,Press [<system.button(enter1)>] to skip to the end.
+credits_continue,Press [<system.button(enter1)>] to continue.
+---
+Voltorb Flip:
+VoltorbFlip_LV.,LV.
+VoltorbFlip_CurrentCoins_Line1,Coins found
+VoltorbFlip_CurrentCoins_Line2,in this LV.
+VoltorbFlip_TotalCoins_Line1,<Player.Name>'s
+VoltorbFlip_TotalCoins_Line2,earned Coins
+
+VoltorbFlip_MemoButton_Open_Line1,Open
+VoltorbFlip_MemoButton_Open_Line2,Memos
+VoltorbFlip_MemoButton_Close_Line1,Close
+VoltorbFlip_MemoButton_Close_Line2,Memos
+
+VoltorbFlip_QuitButton,Quit
+
+VoltorbFlip_QuitQuestion_Question_1,If you quit now, you will~receive
+VoltorbFlip_QuitQuestion_Question_2,Coin(s).*Will you quit?
+
+VoltorbFlip_BeforeNewLevel_Main_Question_1,Play Voltorb Flip Lv.
+VoltorbFlip_BeforeNewLevel_Main_Question_2,?
+VoltorbFlip_BeforeNewLevel_Main_Answer_Play,Play
+VoltorbFlip_BeforeNewLevel_Main_Answer_GameInfo,Game Info
+VoltorbFlip_BeforeNewLevel_Main_Answer_Quit,Quit
+VoltorbFlip_BeforeNewLevel_GameInfo_Question,Which set of info?
+VoltorbFlip_BeforeNewLevel_GameInfo_Answer_HowToPlay,How to Play
+VoltorbFlip_BeforeNewLevel_GameInfo_Answer_Hint,Hint!
+VoltorbFlip_BeforeNewLevel_GameInfo_Answer_AboutMemos,About Memos
+VoltorbFlip_BeforeNewLevel_GameInfo_Back,Tillbaka
+
+VoltorbFlip_GameWon_1,Game clear!~You've found all of the~hidden x2 and x3 cards.*<Player.Name> received~
+VoltorbFlip_GameWon_2,Coin(s)!
+
+VoltorbFlip_GameLost,Oh no! You get 0 Coins!
+
+VoltorbFlip_MaxCoins,Your Coin Case can't fit~any more Coin(s)!
+
+VoltorbFlip_NewLevel_Lower1,Dropped to Game Lv.
+VoltorbFlip_NewLevel_Lower2,!
+VoltorbFlip_NewLevel_Higher1,Advanced to Game Lv.
+VoltorbFlip_NewLevel_Higher2,!
+VoltorbFlip_NewLevel_Ready1,Ready to play Game Lv.
+VoltorbFlip_NewLevel_Ready2,!
+
+VoltorbFlip_QuitGame_1,<Player.Name> received~
+VoltorbFlip_QuitGame_2,Coin(s)!
+
+VoltorbFlip_AfterGame_Won1,You've won
+VoltorbFlip_AfterGame_Won2,Coin(s)!
+VoltorbFlip_AfterGame_Lost,Too bad, you didn't win~any Coins!*Better luck next time!
+
+VoltorbFlip_BeforeGame_NoCoinCase,You don't have a Coin Case!~Come back when you have one!
+
+VoltorbFlip_Tutorial_HowToPlay_Message,Voltorb Flip is a game in which~you flip over cards to find~numbers hidden beneath them.*The cards are hiding the~numbers 1 through 3...~and Voltorb as well.*The first number you flip over~will give you that many Coins.*From then on, the next number~you find will multiply the~total amount of Coins you've~collected by that number.*If it's a 2, your total will~be multiplied by "x2".*If it's a 3, your total will~be multiplied by "x3".*But if you flip over a~Voltorb, it's game over.*When that happens, you'll lose~all the Coins you've collected~in the current level.*If you select "Quit", you'll~withdraw from the level.*If you get to a difficult~spot, you might want to end~the game early.*Once you've found all the~hidden 2 and 3 cards,~you've cleared the game.*Once you've flipped over~all these cards, then you'll~advance to the next level.*As you move up in levels,~you will be able to receive~more Coins. Do your best!
+VoltorbFlip_Tutorial_Hint_Message,The numbers at the side~of the board give you a clue~about the numbers hidden on~the backs of the cards.*The larger the number, the~more likely it is that there~are many large numbers hidden~in that row or column.*In the same way, you can tell~how many Voltorb are hidden~in the row or column.*Consider the hidden number~totals and the Voltorb~totals carefully as you~flip over cards.
+VoltorbFlip_Tutorial_AboutMemos_Message,Select "Open Memo" or press~[<system.button(run)>] to open the~Memo Window.*You can mark the cards with~the numbers 1 through 3,~but also with a Voltorb mark.*When you have an idea of the~numbers hidden on the back~of the cards, open the Memo~Window, choose the type of~mark you want to use with~the Mouse Wheel or the~Gamepad's Shoulder Buttons~and then press [<system.button(enter1)>]~while highlighting the card~you want to mark.*If you want to remove a mark,~choose the type of mark you~want to remove with the~Mouse Wheel or the Gamepad's~Shoulder Buttons and then~press [<system.button(back1)>] while~highlighting the card you want~to remove the mark from.*You can also use the~mouse to select a~mark type or a card.
+VoltorbFlip_Tutorial_HowToPlay_Image1,If you flip the cards in this order, you'll collect: 3 x 1 x 2 x 1 x 3...~A total of 18 Coins! And then...
+VoltorbFlip_Tutorial_HowToPlay_Image2,If you select "Quit", you'll keep those 18 Coins.
+VoltorbFlip_Tutorial_HowToPlay_Image3,But if you find Voltorb, you'll lose all your Coins!
+VoltorbFlip_Tutorial_Hint_Image,By looking at the numbers on the sides of the cards, you can see the hidden number and Voltorb totals.
+VoltorbFlip_Tutorial_AboutMemos_Image,Select "Open Memo" to open the Memo Window. Select the cards and press [<system.button(enter1)>] to add and [<system.button(back1)>] to remove marks.
+----
+PokedexScreen
+pokedex_seen,Sedda:
+pokedex_obtained,Införskaffade:
+pokedex_available,Saatavilla:
+pokedex_select,Select a Pokédex
+pokedex_habitat_dex_name,Habitat-Dex
+pokedex_habitat_select,Select a Habitat
+pokedex_order,Order
+pokedex_order_type,Type
+pokedex_order_numeric,Numeric
+pokedex_order_alphabetically,A-Z
+pokedex_order_height,Height
+pokedex_order_weight,Weight
+pokedex_order_reverse,Reverse
+pokedex_filter,Filter
+pokedex_filter_none,None
+pokedex_filter_name,Namn
+pokedex_filter_type1,Type 1
+pokedex_filter_type2,Type 2
+pokedex_search_hint,Press [<system.button(special)>] or Select to search.
+pokedex_search_no_results,No search results.
+pokedex_data_species,SPECIES
+pokedex_data_type,TYPE
+pokedex_data_height,HEIGHT
+pokedex_data_weight,WEIGHT
+pokedex_data_form_switch_hint,Press [Shift] to switch forms
+pokedex_data_page_details,Details
+pokedex_data_page_habitat,Habitat
+pokedex_data_page_evolution,Evolution
+pokedex_habitat_area_unknown,Area Unknown.
+pokedex_evolution_no_evolutions,doesn't evolve.
+----
+Receiving and Handing Over Items:
+item_received_single,Received the~
+item_received_multiple,Received
+item_found,<Player.Name> found~
+item_stored_in_pocket_single_start,<Player.Name> stored it in the~
+item_stored_in_pocket_single_end,pocket.
+item_stored_in_pocket_multiple_start,<Player.Name> stored them~in the
+item_stored_in_pocket_multiple_end,pocket.
+item_handed_over_single,<Player.Name> handed over the~
+item_handed_over_multiple,<Player.Name> handed over the~
+
+Berries:
+berry_picked_single_start,<Player.Name> picked the~
+berry_picked_single_end,Berry.
+berry_picked_multiple_start,<Player.Name> picked the~
+berry_picked_multiple_end,Berries.
+----
 Battle:
----
-main:
-battle_main_trainer_sent_out_1, ~skickade ut 
-battle_main_trainer_sent_out_2,.
-battle_main_trainer_sent_out_3, är på väg~att skicka ut 
-battle_main_trainer_sent_out_4,!*Vill du byta ut din Pokémon?
-battle_main_trainer_sent_out_5,Ja
-battle_main_trainer_sent_out_6,Nej
-battle_main_choose_pokemon,Välj Pokémon
-battle_main_wild_appear_1,En vild 
-battle_main_wild_appear_2,~dök upp!
-battle_main_trainer_intro_1, och~
-battle_main_trainer_intro_2, vill~strida!
-battle_main_trainer_intro_3, vill~strida!
-battle_main_intro_1,KÖR! 
-battle_main_intro_2,!
-battle_main_trainer_defeat_1,~blev besegrad!
-battle_main_trainer_defeat_2, och 
-battle_main_trainer_defeat_3,~blev besegrad!
-battle_main_trainer_defeat_4, fick 
-battle_main_trainer_defeat_5,~PokéDollar för att du vann!
----
-attackTurn:
-battle_attack_poison_damage,~blev skadad av gift!
-battle_attack_curse_damage,~är drabbad av förbannelsen!
-battle_attack_fire_damage,~blev skadad av dess brännskada!
-battle_attack_trainer_item_1, Använde en~
-battle_attack_trainer_item_2,!
-battle_attack_asleep, sover.
-battle_attack_woke_up, vaknade!
-battle_attack_paralyzed, är paralyserad!~Den kan inte röra sig!
-battle_attack_frozen_free, är inte~längre frusen!
-battle_attack_frozen, har~fryst fast!
-battle_attack_flinched, ryggade~tillbaka!
-battle_attack_no_longer_confused, är inte~längre förvirrad!
-battle_attack_confused, är~förvirrad.
-battle_attack_hit_self_confusion, slår sig själv~i förvirring!
-battle_attack_no_PP_left, har~ingen PP kvar!*
-battle_attack_used, använd 
+battle_trainer_about_to_send_out_1,är på väg~att skicka ut
+battle_trainer_about_to_send_out_2,!*Vill du byta ut din Pokémon?
+battle_choose_pokemon,Välj Pokémon
+battle_switch_already_in_battle,is already~in battle!
+battle_switch_fainted,is fainted!
+battle_switch_egg,Cannot switch in~the egg!
+battle_cannot_switch,Cannot switch out.
+battle_cannot_run,Failed to run away.
+battle_cannot_run_ability,Failed to run away because of~
+battle_MoveDisabled,Disabled!
+battle_NoMoreRoomInPC,There's no more room for~Pokémon in the PC!
+battle_NoSafariBalls,No Safari Balls.
+battle_NoSportBalls,No Sport Balls.
+battle_ThrowMud,Throw Mud
+battle_ThrowBait,Throw Bait
+battle_Run,Run
+battle_Battle,Battle
+battle_Bag,Bag
+battle_Surrender,Surrender
+battle_action_MegaEvolve,Mega Evolve!
 ---
 Badges:
-badge_Boulder,Boulder
-badge_Cascade,Cascade
-badge_Thunder,Thunder
-badge_Rainbow,Rainbow
-badge_Soul,Soul
-badge_Marsh,Marsh
-badge_Volcano,Volcano
-badge_Earth,Earth
-badge_Zephyr,Zephyr
-badge_Hive,Hive
-badge_Plain,Plain
-badge_Fog,Fog
-badge_Storm,Storm
-badge_Mineral,Mineral
-badge_Glacier,Glacier
-badge_Rising,Rising
+badge_1,Boulder
+badge_2,Cascade
+badge_3,Thunder
+badge_4,Rainbow
+badge_5,Soul
+badge_6,Marsh
+badge_7,Volcano
+badge_8,Earth
+badge_9,Zephyr
+badge_10,Hive
+badge_11,Plain
+badge_12,Fog
+badge_13,Storm
+badge_14,Mineral
+badge_15,Glacier
+badge_16,Rising
 ---
 Regions:
 Johto,Johto
@@ -386,7 +896,7 @@ Places_Pewter City Gym,Pewter Stadens Gym
 Places_Cerulean City Gym,Cerulean Stadens Gym
 Places_Vermilion City Gym,Vermilion Stadens Gym
 Places_Celadon City Gym,Celadon Stadens Gym
-Places_Fuchsania City Gym,Fuchsania Stadens Gym
+Places_Fuchsia City Gym,Fuchsania Stadens Gym
 Places_Saffron City Gym,Saffron Stadens Gym
 Places_Cinnabar Gym,Cinnabar Gym
 Places_Viridian City Gym,Viridian Stadens Gym
@@ -394,6 +904,7 @@ Places_Dance Theater,Dansteater
 Places_Lighthouse,Fyr
 Places_Team Rocket HQ,Team Rocket HQ
 Places_Radio Tower,Radio Torn
+Places_Seaplane Port,Seaplane Port
 
 Dungeons:
 Places_Ilex Forest,Ilex Skogen
@@ -417,6 +928,7 @@ Places_Dragon's Den,Draknäste
 Places_Tohjo Falls,Tohjo Falls
 Places_Victory Road,Segervägen
 Places_Mt. Silver,Mt. Silver
+Places_Diamond Dive,Diamond Dive
 Places_Indigo Plateau,Indigo Platå
 Places_Safari Zone,Safari Zon
 Places_Viridian Forest,Viridian Skog
@@ -451,6 +963,7 @@ Places_Kolben Tower,Kolben Tornet
 Places_Faraway Island,Avlägsen Ö
 Places_Underwater Cave,Undervattensgrotta
 Places_Embedded Tower,Inbäddat torn
+Places_Liberty Garden,Liberty Garden
 
 Routes:
 Places_Route 1,Rutt 1
@@ -501,6 +1014,8 @@ Places_Route 45,Rutt 45
 Places_Route 46,Rutt 46
 Places_Route 47,Rutt 47
 Places_Route 48,Rutt 48
+Places_Route 49,Rutt 49
+Places_Route 50,Rutt 50
 
 Places_Treasure Beach,Treasure Beach
 Places_Kindle Road,Kindle Road
@@ -512,9 +1027,10 @@ Places_Memorial Pillar,Memorial Pillar
 Places_Water Labyrinth,Water Labyrinth
 Places_Resort Gorgeous,Resort Gorgeous
 Places_Water Path,Water Path
-Places_Grass Path,Grass Path
+Places_Green Path,Green Path
 Places_Outcast Island,Outcast Island
 Places_Ruin Valley,Ruin Valley
+Places_Tower Straits,Tower Straits
 Places_Canyon Entrance,Canyon Entrance
 Places_Sevault Canyon,Sevault Canyon
 Places_Tanoby Ruins,Tanoby Ruins
@@ -524,9 +1040,14 @@ Places_Elite 4,Elite 4
 Places_Indigo Plateau,Indigo Plateau
 Places_Twirl Forest,Twirl Forest
 Places_Berry Vista,Berry Vista
+Places_Frontier Plaza,Frontier Plaza
 Places_Battle Frontier,Battle Frontier
 Places_Battle Tower,Battle Tower
 Places_Battle Factory,Battle Factory
+Places_Battle Pike,Battle Pike
+Places_Battle Hall,Battle Hall
+Places_Battle Castle,Battle Castle
+Places_Battle Dome,Battle Dome
 Places_Rocket Warehouse,Rocket Warehouse
 Places_Secret Laboratory,Secret Laboratory
 
@@ -550,35 +1071,12 @@ game_message_third_person_on,Tredje person på.
 game_message_third_person_off,Tredje person av.
 game_message_free_camera_on,Fri kamera på
 game_message_free_camera_off,Fri kamera av
+game_message_sandbox_mode_on,Sandlådeläge aktiveraff
+game_message_sandbox_mode_off,Sandlådeläge avstängt
 game_message_audio_on,Audio på
 game_message_audio_off,Audio av
 game_message_continue_autosave,Fortsatt sparat spel:
----
-Online:
-game_message_close_connection,Du stängde co-op spelet.
-game_message_disconncet,Du kopplade ifrån dig från värden.
-game_message_cannot_connect_client_1,Kan inte koppla upp mot värden (
-game_message_cannot_connect_client_2,)!
-game_message_client_connect_1,Du anslöt till spelet (
-game_message_client_connect_2,)!
-game_message_client_host_closed_1,Värden (
-game_message_client_host_closed_2,) har stängt ned uppkopplingen.
-game_message_client_outdated_newer_version,Du har en ouppdaterad eller nyare version av spelet.
-game_message_host_session_started,Du (värd) startade en Co-Op session.
-game_message_host_outdated_newer_version,Klienten har en ouppdaterad eller nyare version av spelet!
-game_message_host_client_accept,En klient anslöt till spelet!
-game_message_host_client_disconnect,Klienten stängde ned sin uppkoppling! Co-Op sessionen har blivit nedstängd.
----
-General:
-HP,HP
-PP,PP
-Lv.,Lv.
-Level,Level
-Attack,Attack
-Defense,Försvar
-Special_Attack,Special Attack
-Special_Defense,Special Försvar
-Speed,Hastighet
+game_message_debug_texture_list_clear,Texturlistan har rensats
 ---
 Pokemon:
 pokemon_name_Bulbasaur,Bulbasaur
@@ -608,16 +1106,17 @@ pokemon_name_Arbok,Arbok
 pokemon_name_Pikachu,Pikachu
 pokemon_name_Raichu,Raichu
 pokemon_name_Sandshrew,Sandshrew
-pokemon_name_Sandshlash,Sandslash
-pokemon_name_Nidoran,Nidoran
+pokemon_name_Sandslash,Sandslash
+pokemon_name_Nidoran♀,Nidoran♀
 pokemon_name_Nidorina,Nidorina
 pokemon_name_Nidoqueen,Nidoqueen
+pokemon_name_Nidoran♂,Nidoran♂
 pokemon_name_Nidorino,Nidorino
 pokemon_name_Nidoking,Nidoking
 pokemon_name_Clefairy,Clefairy
 pokemon_name_Clefable,Clefable
 pokemon_name_Vulpix,Vulpix
-pokemon_name_Ninetails,Ninetails
+pokemon_name_Ninetales,Ninetales
 pokemon_name_Jigglypuff,Jigglypuff
 pokemon_name_Wigglytuff,Wigglytuff
 pokemon_name_Zubat,Zubat
@@ -696,7 +1195,7 @@ pokemon_name_Chansey,Chansey
 pokemon_name_Tangela,Tangela
 pokemon_name_Kangaskhan,Kangaskhan
 pokemon_name_Horsea,Horsea
-pokemon_name_Seedra,Seedra
+pokemon_name_Seadra,Seadra
 pokemon_name_Goldeen,Goldeen
 pokemon_name_Seaking,Seaking
 pokemon_name_Staryu,Staryu
@@ -829,13 +1328,3213 @@ pokemon_name_Larvitar,Larvitar
 pokemon_name_Pupitar,Pupitar
 pokemon_name_Tyranitar,Tyranitar
 pokemon_name_Lugia,Lugia
-pokemon_name_Ho-Oh,Ho-Oh
+pokemon_name_Ho-oh,Ho-oh
 pokemon_name_Celebi,Celebi
+pokemon_name_Treecko,Treecko
+pokemon_name_Grovyle,Grovyle
+pokemon_name_Sceptile,Sceptile
+pokemon_name_Torchic,Torchic
+pokemon_name_Combusken,Combusken
+pokemon_name_Blaziken,Blaziken
+pokemon_name_Mudkip,Mudkip
+pokemon_name_Marshtomp,Marshtomp
+pokemon_name_Swampert,Swampert
+pokemon_name_Poochyena,Poochyena
+pokemon_name_Mightyena,Mightyena
+pokemon_name_Zigzagoon,Zigzagoon
+pokemon_name_Linoone,Linoone
+pokemon_name_Wurmple,Wurmple
+pokemon_name_Silcoon,Silcoon
+pokemon_name_Beautifly,Beautifly
+pokemon_name_Cascoon,Cascoon
+pokemon_name_Dustox,Dustox
+pokemon_name_Lotad,Lotad
+pokemon_name_Lombre,Lombre
+pokemon_name_Ludicolo,Ludicolo
+pokemon_name_Seedot,Seedot
+pokemon_name_Nuzleaf,Nuzleaf
+pokemon_name_Shiftry,Shiftry
+pokemon_name_Taillow,Taillow
+pokemon_name_Swellow,Swellow
+pokemon_name_Wingull,Wingull
+pokemon_name_Pelipper,Pelipper
+pokemon_name_Ralts,Ralts
+pokemon_name_Kirlia,Kirlia
+pokemon_name_Gardevoir,Gardevoir
+pokemon_name_Surskit,Surskit
+pokemon_name_Masquerain,Masquerain
+pokemon_name_Shroomish,Shroomish
+pokemon_name_Breloom,Breloom
+pokemon_name_Slakoth,Slakoth
+pokemon_name_Vigoroth,Vigoroth
+pokemon_name_Slaking,Slaking
+pokemon_name_Nincada,Nincada
+pokemon_name_Ninjask,Ninjask
+pokemon_name_Shedinja,Shedinja
+pokemon_name_Whismur,Whismur
+pokemon_name_Loudred,Loudred
+pokemon_name_Exploud,Exploud
+pokemon_name_Makuhita,Makuhita
+pokemon_name_Hariyama,Hariyama
+pokemon_name_Azurill,Azurill
+pokemon_name_Nosepass,Nosepass
+pokemon_name_Skitty,Skitty
+pokemon_name_Delcatty,Delcatty
+pokemon_name_Sableye,Sableye
+pokemon_name_Mawile,Mawile
+pokemon_name_Aron,Aron
+pokemon_name_Lairon,Lairon
+pokemon_name_Aggron,Aggron
+pokemon_name_Meditite,Meditite
+pokemon_name_Medicham,Medicham
+pokemon_name_Electrike,Electrike
+pokemon_name_Manectric,Manectric
+pokemon_name_Plusle,Plusle
+pokemon_name_Minun,Minun
+pokemon_name_Volbeat,Volbeat
+pokemon_name_Illumise,Illumise
+pokemon_name_Roselia,Roselia
+pokemon_name_Gulpin,Gulpin
+pokemon_name_Swalot,Swalot
+pokemon_name_Carvanha,Carvanha
+pokemon_name_Sharpedo,Sharpedo
+pokemon_name_Wailmer,Wailmer
+pokemon_name_Wailord,Wailord
+pokemon_name_Numel,Numel
+pokemon_name_Camerupt,Camerupt
+pokemon_name_Torkoal,Torkoal
+pokemon_name_Spoink,Spoink
+pokemon_name_Grumpig,Grumpig
+pokemon_name_Spinda,Spinda
+pokemon_name_Trapinch,Trapinch
+pokemon_name_Vibrava,Vibrava
+pokemon_name_Flygon,Flygon
+pokemon_name_Cacnea,Cacnea
+pokemon_name_Cacturne,Cacturne
+pokemon_name_Swablu,Swablu
+pokemon_name_Altaria,Altaria
+pokemon_name_Zangoose,Zangoose
+pokemon_name_Seviper,Seviper
+pokemon_name_Lunatone,Lunatone
+pokemon_name_Solrock,Solrock
+pokemon_name_Barboach,Barboach
+pokemon_name_Whiscash,Whiscash
+pokemon_name_Corphish,Corphish
+pokemon_name_Crawdaunt,Crawdaunt
+pokemon_name_Baltoy,Baltoy
+pokemon_name_Claydol,Claydol
+pokemon_name_Lileep,Lileep
+pokemon_name_Cradily,Cradily
+pokemon_name_Anorith,Anorith
+pokemon_name_Armaldo,Armaldo
+pokemon_name_Feebas,Feebas
+pokemon_name_Milotic,Milotic
+pokemon_name_Castform,Castform
+pokemon_name_Kecleon,Kecleon
+pokemon_name_Shuppet,Shuppet
+pokemon_name_Banette,Banette
+pokemon_name_Duskull,Duskull
+pokemon_name_Dusclops,Dusclops
+pokemon_name_Tropius,Tropius
+pokemon_name_Chimecho,Chimecho
+pokemon_name_Absol,Absol
+pokemon_name_Wynaut,Wynaut
+pokemon_name_Snorunt,Snorunt
+pokemon_name_Glalie,Glalie
+pokemon_name_Spheal,Spheal
+pokemon_name_Sealeo,Sealeo
+pokemon_name_Walrein,Walrein
+pokemon_name_Clamperl,Clamperl
+pokemon_name_Huntail,Huntail
+pokemon_name_Gorebyss,Gorebyss
+pokemon_name_Relicanth,Relicanth
+pokemon_name_Luvdisc,Luvdisc
+pokemon_name_Bagon,Bagon
+pokemon_name_Shelgon,Shelgon
+pokemon_name_Salamence,Salamence
+pokemon_name_Beldum,Beldum
+pokemon_name_Metang,Metang
+pokemon_name_Metagross,Metagross
+pokemon_name_Regirock,Regirock
+pokemon_name_Regice,Regice
+pokemon_name_Registeel,Registeel
+pokemon_name_Latias,Latias
+pokemon_name_Latios,Latios
+pokemon_name_Kyogre,Kyogre
+pokemon_name_Groudon,Groudon
+pokemon_name_Rayquaza,Rayquaza
+pokemon_name_Jirachi,Jirachi
+pokemon_name_Deoxys,Deoxys
+pokemon_name_Turtwig,Turtwig
+pokemon_name_Grotle,Grotle
+pokemon_name_Torterra,Torterra
+pokemon_name_Chimchar,Chimchar
+pokemon_name_Monferno,Monferno
+pokemon_name_Infernape,Infernape
+pokemon_name_Piplup,Piplup
+pokemon_name_Prinplup,Prinplup
+pokemon_name_Empoleon,Empoleon
+pokemon_name_Starly,Starly
+pokemon_name_Staravia,Staravia
+pokemon_name_Staraptor,Staraptor
+pokemon_name_Bidoof,Bidoof
+pokemon_name_Bibarel,Bibarel
+pokemon_name_Kricketot,Kricketot
+pokemon_name_Kricketune,Kricketune
+pokemon_name_Shinx,Shinx
+pokemon_name_Luxio,Luxio
+pokemon_name_Luxray,Luxray
+pokemon_name_Budew,Budew
+pokemon_name_Roserade,Roserade
+pokemon_name_Cranidos,Cranidos
+pokemon_name_Rampardos,Rampardos
+pokemon_name_Shieldon,Shieldon
+pokemon_name_Bastiodon,Bastiodon
+pokemon_name_Burmy,Burmy
+pokemon_name_Wormadam,Wormadam
+pokemon_name_Mothim,Mothim
+pokemon_name_Combee,Combee
+pokemon_name_Vespiquen,Vespiquen
+pokemon_name_Pachirisu,Pachirisu
+pokemon_name_Buizel,Buizel
+pokemon_name_Floatzel,Floatzel
+pokemon_name_Cherubi,Cherubi
+pokemon_name_Cherrim,Cherrim
+pokemon_name_Shellos,Shellos
+pokemon_name_Gastrodon,Gastrodon
+pokemon_name_Ambipom,Ambipom
+pokemon_name_Drifloon,Drifloon
+pokemon_name_Drifblim,Drifblim
+pokemon_name_Buneary,Buneary
+pokemon_name_Lopunny,Lopunny
+pokemon_name_Mismagius,Mismagius
+pokemon_name_Honchkrow,Honchkrow
+pokemon_name_Glameow,Glameow
+pokemon_name_Purugly,Purugly
+pokemon_name_Chingling,Chingling
+pokemon_name_Stunky,Stunky
+pokemon_name_Skuntank,Skuntank
+pokemon_name_Bronzor,Bronzor
+pokemon_name_Bronzong,Bronzong
+pokemon_name_Bonsly,Bonsly
+pokemon_name_Mime Jr.,Mime Jr.
+pokemon_name_Happiny,Happiny
+pokemon_name_Chatot,Chatot
+pokemon_name_Spiritomb,Spiritomb
+pokemon_name_Gible,Gible
+pokemon_name_Gabite,Gabite
+pokemon_name_Garchomp,Garchomp
+pokemon_name_Munchlax,Munchlax
+pokemon_name_Riolu,Riolu
+pokemon_name_Lucario,Lucario
+pokemon_name_Hippopotas,Hippopotas
+pokemon_name_Hippowdon,Hippowdon
+pokemon_name_Skorupi,Skorupi
+pokemon_name_Drapion,Drapion
+pokemon_name_Croagunk,Croagunk
+pokemon_name_Toxicroak,Toxicroak
+pokemon_name_Carnivine,Carnivine
+pokemon_name_Finneon,Finneon
+pokemon_name_Lumineon,Lumineon
+pokemon_name_Mantyke,Mantyke
+pokemon_name_Snover,Snover
+pokemon_name_Abomasnow,Abomasnow
+pokemon_name_Weavile,Weavile
+pokemon_name_Magnezone,Magnezone
+pokemon_name_Lickilicky,Lickilicky
+pokemon_name_Rhyperior,Rhyperior
+pokemon_name_Tangrowth,Tangrowth
+pokemon_name_Electivire,Electivire
+pokemon_name_Magmortar,Magmortar
+pokemon_name_Togekiss,Togekiss
+pokemon_name_Yanmega,Yanmega
+pokemon_name_Leafeon,Leafeon
+pokemon_name_Glaceon,Glaceon
+pokemon_name_Gliscor,Gliscor
+pokemon_name_Mamoswine,Mamoswine
+pokemon_name_Porygon-Z,Porygon-Z
+pokemon_name_Gallade,Gallade
+pokemon_name_Probopass,Probopass
+pokemon_name_Dusknoir,Dusknoir
+pokemon_name_Froslass,Froslass
+pokemon_name_Rotom,Rotom
+pokemon_name_Uxie,Uxie
+pokemon_name_Mesprit,Mesprit
+pokemon_name_Azelf,Azelf
+pokemon_name_Dialga,Dialga
+pokemon_name_Palkia,Palkia
+pokemon_name_Heatran,Heatran
+pokemon_name_Regigigas,Regigigas
+pokemon_name_Giratina,Giratina
+pokemon_name_Cresselia,Cresselia
+pokemon_name_Phione,Phione
+pokemon_name_Manaphy,Manaphy
+pokemon_name_Darkrai,Darkrai
+pokemon_name_Shaymin,Shaymin
+pokemon_name_Arceus,Arceus
+pokemon_name_Victini,Victini
+pokemon_name_Snivy,Snivy
+pokemon_name_Servine,Servine
+pokemon_name_Serperior,Serperior
+pokemon_name_Tepig,Tepig
+pokemon_name_Pignite,Pignite
+pokemon_name_Emboar,Emboar
+pokemon_name_Oshawott,Oshawott
+pokemon_name_Dewott,Dewott
+pokemon_name_Samurott,Samurott
+pokemon_name_Patrat,Patrat
+pokemon_name_Watchog,Watchog
+pokemon_name_Lillipup,Lillipup
+pokemon_name_Herdier,Herdier
+pokemon_name_Stoutland,Stoutland
+pokemon_name_Purrloin,Purrloin
+pokemon_name_Liepard,Liepard
+pokemon_name_Pansage,Pansage
+pokemon_name_Simisage,Simisage
+pokemon_name_Pansear,Pansear
+pokemon_name_Simisear,Simisear
+pokemon_name_Panpour,Panpour
+pokemon_name_Simipour,Simipour
+pokemon_name_Munna,Munna
+pokemon_name_Musharna,Musharna
+pokemon_name_Pidove,Pidove
+pokemon_name_Tranquill,Tranquill
+pokemon_name_Unfezant,Unfezant
+pokemon_name_Blitzle,Blitzle
+pokemon_name_Zebstrika,Zebstrika
+pokemon_name_Roggenrola,Roggenrola
+pokemon_name_Boldore,Boldore
+pokemon_name_Gigalith,Gigalith
+pokemon_name_Woobat,Woobat
+pokemon_name_Swoobat,Swoobat
+pokemon_name_Drilbur,Drilbur
+pokemon_name_Excadrill,Excadrill
+pokemon_name_Audino,Audino
+pokemon_name_Timburr,Timburr
+pokemon_name_Gurdurr,Gurdurr
+pokemon_name_Conkeldurr,Conkeldurr
+pokemon_name_Tympole,Tympole
+pokemon_name_Palpitoad,Palpitoad
+pokemon_name_Seismitoad,Seismitoad
+pokemon_name_Throh,Throh
+pokemon_name_Sawk,Sawk
+pokemon_name_Sewaddle,Sewaddle
+pokemon_name_Swadloon,Swadloon
+pokemon_name_Leavanny,Leavanny
+pokemon_name_Venipede,Venipede
+pokemon_name_Whirlipede,Whirlipede
+pokemon_name_Scolipede,Scolipede
+pokemon_name_Cottonee,Cottonee
+pokemon_name_Whimsicott,Whimsicott
+pokemon_name_Petilil,Petilil
+pokemon_name_Lilligant,Lilligant
+pokemon_name_Basculin,Basculin
+pokemon_name_Sandile,Sandile
+pokemon_name_Krokorok,Krokorok
+pokemon_name_Krookodile,Krookodile
+pokemon_name_Darumaka,Darumaka
+pokemon_name_Darmanitan,Darmanitan
+pokemon_name_Maractus,Maractus
+pokemon_name_Dwebble,Dwebble
+pokemon_name_Crustle,Crustle
+pokemon_name_Scraggy,Scraggy
+pokemon_name_Scrafty,Scrafty
+pokemon_name_Sigilyph,Sigilyph
+pokemon_name_Yamask,Yamask
+pokemon_name_Cofagrigus,Cofagrigus
+pokemon_name_Tirtouga,Tirtouga
+pokemon_name_Carracosta,Carracosta
+pokemon_name_Archen,Archen
+pokemon_name_Archeops,Archeops
+pokemon_name_Trubbish,Trubbish
+pokemon_name_Garbodor,Garbodor
+pokemon_name_Zorua,Zorua
+pokemon_name_Zoroark,Zoroark
+pokemon_name_Minccino,Minccino
+pokemon_name_Cinccino,Cinccino
+pokemon_name_Gothita,Gothita
+pokemon_name_Gothorita,Gothorita
+pokemon_name_Gothitelle,Gothitelle
+pokemon_name_Solosis,Solosis
+pokemon_name_Duosion,Duosion
+pokemon_name_Reuniclus,Reuniclus
+pokemon_name_Ducklett,Ducklett
+pokemon_name_Swanna,Swanna
+pokemon_name_Vanillite,Vanillite
+pokemon_name_Vanillish,Vanillish
+pokemon_name_Vanilluxe,Vanilluxe
+pokemon_name_Deerling,Deerling
+pokemon_name_Sawsbuck,Sawsbuck
+pokemon_name_Emolga,Emolga
+pokemon_name_Karrablast,Karrablast
+pokemon_name_Escavalier,Escavalier
+pokemon_name_Foongus,Foongus
+pokemon_name_Amoonguss,Amoonguss
+pokemon_name_Frillish,Frillish
+pokemon_name_Jellicent,Jellicent
+pokemon_name_Alomomola,Alomomola
+pokemon_name_Joltik,Joltik
+pokemon_name_Galvantula,Galvantula
+pokemon_name_Ferroseed,Ferroseed
+pokemon_name_Ferrothorn,Ferrothorn
+pokemon_name_Klink,Klink
+pokemon_name_Klang,Klang
+pokemon_name_Klinklang,Klinklang
+pokemon_name_Tynamo,Tynamo
+pokemon_name_Eelektrik,Eelektrik
+pokemon_name_Eelektross,Eelektross
+pokemon_name_Elgyem,Elgyem
+pokemon_name_Beheeyem,Beheeyem
+pokemon_name_Litwick,Litwick
+pokemon_name_Lampent,Lampent
+pokemon_name_Chandelure,Chandelure
+pokemon_name_Axew,Axew
+pokemon_name_Fraxure,Fraxure
+pokemon_name_Haxorus,Haxorus
+pokemon_name_Cubchoo,Cubchoo
+pokemon_name_Beartic,Beartic
+pokemon_name_Cryogonal,Cryogonal
+pokemon_name_Shelmet,Shelmet
+pokemon_name_Accelgor,Accelgor
+pokemon_name_Stunfisk,Stunfisk
+pokemon_name_Mienfoo,Mienfoo
+pokemon_name_Mienshao,Mienshao
+pokemon_name_Druddigon,Druddigon
+pokemon_name_Golett,Golett
+pokemon_name_Golurk,Golurk
+pokemon_name_Pawniard,Pawniard
+pokemon_name_Bisharp,Bisharp
+pokemon_name_Bouffalant,Bouffalant
+pokemon_name_Rufflet,Rufflet
+pokemon_name_Braviary,Braviary
+pokemon_name_Vullaby,Vullaby
+pokemon_name_Mandibuzz,Mandibuzz
+pokemon_name_Heatmor,Heatmor
+pokemon_name_Durant,Durant
+pokemon_name_Deino,Deino
+pokemon_name_Zweilous,Zweilous
+pokemon_name_Hydreigon,Hydreigon
+pokemon_name_Larvesta,Larvesta
+pokemon_name_Volcarona,Volcarona
+pokemon_name_Cobalion,Cobalion
+pokemon_name_Terrakion,Terrakion
+pokemon_name_Virizion,Virizion
+pokemon_name_Tornadus,Tornadus
+pokemon_name_Thundurus,Thundurus
+pokemon_name_Reshiram,Reshiram
+pokemon_name_Zekrom,Zekrom
+pokemon_name_Landorus,Landorus
+pokemon_name_Kyurem,Kyurem
+pokemon_name_Keldeo,Keldeo
+pokemon_name_Meloetta,Meloetta
+pokemon_name_Genesect,Genesect
+pokemon_name_Chespin,Chespin
+pokemon_name_Quilladin,Quilladin
+pokemon_name_Chesnaught,Chesnaught
+pokemon_name_Fennekin,Fennekin
+pokemon_name_Braixen,Braixen
+pokemon_name_Delphox,Delphox
+pokemon_name_Froakie,Froakie
+pokemon_name_Frogadier,Frogadier
+pokemon_name_Greninja,Greninja
+pokemon_name_Bunnelby,Bunnelby
+pokemon_name_Diggersby,Diggersby
+pokemon_name_Fletchling,Fletchling
+pokemon_name_Fletchinder,Fletchinder
+pokemon_name_Talonflame,Talonflame
+pokemon_name_Scatterbug,Scatterbug
+pokemon_name_Spewpa,Spewpa
+pokemon_name_Vivillon,Vivillon
+pokemon_name_Litleo,Litleo
+pokemon_name_Pyroar,Pyroar
+pokemon_name_Flabébé,Flabébé
+pokemon_name_Floette,Floette
+pokemon_name_Florges,Florges
+pokemon_name_Skiddo,Skiddo
+pokemon_name_Gogoat,Gogoat
+pokemon_name_Pancham,Pancham
+pokemon_name_Pangoro,Pangoro
+pokemon_name_Furfrou,Furfrou
+pokemon_name_Espurr,Espurr
+pokemon_name_Meowstic,Meowstic
+pokemon_name_Honedge,Honedge
+pokemon_name_Doublade,Doublade
+pokemon_name_Aegislash,Aegislash
+pokemon_name_Spritzee,Spritzee
+pokemon_name_Aromatisse,Aromatisse
+pokemon_name_Swirlix,Swirlix
+pokemon_name_Slurpuff,Slurpuff
+pokemon_name_Inkay,Inkay
+pokemon_name_Malamar,Malamar
+pokemon_name_Binacle,Binacle
+pokemon_name_Barbaracle,Barbaracle
+pokemon_name_Skrelp,Skrelp
+pokemon_name_Dragalge,Dragalge
+pokemon_name_Clauncher,Clauncher
+pokemon_name_Clawitzer,Clawitzer
+pokemon_name_Helioptile,Helioptile
+pokemon_name_Heliolisk,Heliolisk
+pokemon_name_Tyrunt,Tyrunt
+pokemon_name_Tyrantrum,Tyrantrum
+pokemon_name_Amaura,Amaura
+pokemon_name_Aurorus,Aurorus
+pokemon_name_Sylveon,Sylveon
+pokemon_name_Hawlucha,Hawlucha
+pokemon_name_Dedenne,Dedenne
+pokemon_name_Carbink,Carbink
+pokemon_name_Goomy,Goomy
+pokemon_name_Sliggoo,Sliggoo
+pokemon_name_Goodra,Goodra
+pokemon_name_Klefki,Klefki
+pokemon_name_Phantump,Phantump
+pokemon_name_Trevenant,Trevenant
+pokemon_name_Pumpkaboo,Pumpkaboo
+pokemon_name_Gourgeist,Gourgeist
+pokemon_name_Bergmite,Bergmite
+pokemon_name_Avalugg,Avalugg
+pokemon_name_Noibat,Noibat
+pokemon_name_Noivern,Noivern
+pokemon_name_Xerneas,Xerneas
+pokemon_name_Yveltal,Yveltal
+pokemon_name_Zygarde,Zygarde
+pokemon_name_Diancie,Diancie
+pokemon_name_Hoopa,Hoopa
+pokemon_name_Volcanion,Volcanion
+pokemon_name_Rowlet,Rowlet
+pokemon_name_Dartrix,Dartrix
+pokemon_name_Decidueye,Decidueye
+pokemon_name_Litten,Litten
+pokemon_name_Torracat,Torracat
+pokemon_name_Incineroar,Incineroar
+pokemon_name_Popplio,Popplio
+pokemon_name_Brionne,Brionne
+pokemon_name_Primarina,Primarina
+pokemon_name_Pikipek,Pikipek
+pokemon_name_Trumbeak,Trumbeak
+pokemon_name_Toucannon,Toucannon
+pokemon_name_Yungoos,Yungoos
+pokemon_name_Gumshoos,Gumshoos
+pokemon_name_Grubbin,Grubbin
+pokemon_name_Charjabug,Charjabug
+pokemon_name_Vikavolt,Vikavolt
+pokemon_name_Crabrawler,Crabrawler
+pokemon_name_Crabominable,Crabominable
+pokemon_name_Oricorio,Oricorio
+pokemon_name_Cutiefly,Cutiefly
+pokemon_name_Ribombee,Ribombee
+pokemon_name_Rockruff,Rockruff
+pokemon_name_Lycanroc,Lycanroc
+pokemon_name_Wishiwashi,Wishiwashi
+pokemon_name_Mareanie,Mareanie
+pokemon_name_Toxapex,Toxapex
+pokemon_name_Mudbray,Mudbray
+pokemon_name_Mudsdale,Mudsdale
+pokemon_name_Dewpider,Dewpider
+pokemon_name_Araquanid,Araquanid
+pokemon_name_Fomantis,Fomantis
+pokemon_name_Lurantis,Lurantis
+pokemon_name_Morelull,Morelull
+pokemon_name_Shiinotic,Shiinotic
+pokemon_name_Salandit,Salandit
+pokemon_name_Salazzle,Salazzle
+pokemon_name_Stufful,Stufful
+pokemon_name_Bewear,Bewear
+pokemon_name_Bounsweet,Bounsweet
+pokemon_name_Steenee,Steenee
+pokemon_name_Tsareena,Tsareena
+pokemon_name_Comfey,Comfey
+pokemon_name_Oranguru,Oranguru
+pokemon_name_Passimian,Passimian
+pokemon_name_Wimpod,Wimpod
+pokemon_name_Golisopod,Golisopod
+pokemon_name_Sandygast,Sandygast
+pokemon_name_Palossand,Palossand
+pokemon_name_Pyukumuku,Pyukumuku
+pokemon_name_Type: Null,Type: Null
+pokemon_name_Silvally,Silvally
+pokemon_name_Minior,Minior
+pokemon_name_Komala,Komala
+pokemon_name_Turtonator,Turtonator
+pokemon_name_Togedemaru,Togedemaru
+pokemon_name_Mimikyu,Mimikyu
+pokemon_name_Bruxish,Bruxish
+pokemon_name_Drampa,Drampa
+pokemon_name_Dhelmise,Dhelmise
+pokemon_name_Jangmo-o,Jangmo-o
+pokemon_name_Hakamo-o,Hakamo-o
+pokemon_name_Kommo-o,Kommo-o
+pokemon_name_Tapu Koko,Tapu Koko
+pokemon_name_Tapu Lele,Tapu Lele
+pokemon_name_Tapu Bulu,Tapu Bulu
+pokemon_name_Tapu Fini,Tapu Fini
+pokemon_name_Cosmog,Cosmog
+pokemon_name_Cosmoem,Cosmoem
+pokemon_name_Solgaleo,Solgaleo
+pokemon_name_Lunala,Lunala
+pokemon_name_Nihilego,Nihilego
+pokemon_name_Buzzwole,Buzzwole
+pokemon_name_Pheromosa,Pheromosa
+pokemon_name_Xurkitree,Xurkitree
+pokemon_name_Celesteela,Celesteela
+pokemon_name_Kartana,Kartana
+pokemon_name_Guzzlord,Guzzlord
+pokemon_name_Necrozma,Necrozma
+pokemon_name_Magearna,Magearna
+pokemon_name_Marshadow,Marshadow
+pokemon_name_Poipole,Poipole
+pokemon_name_Naganadel,Naganadel
+pokemon_name_Stakataka,Stakataka
+pokemon_name_Blacephalon,Blacephalon
+pokemon_name_Zeraora,Zeraora
+pokemon_name_Meltan,Meltan
+pokemon_name_Melmetal,Melmetal
+pokemon_name_Grookey,Grookey
+pokemon_name_Thwackey,Thwackey
+pokemon_name_Rillaboom,Rillaboom
+pokemon_name_Scorbunny,Scorbunny
+pokemon_name_Raboot,Raboot
+pokemon_name_Cinderace,Cinderace
+pokemon_name_Sobble,Sobble
+pokemon_name_Drizzile,Drizzile
+pokemon_name_Inteleon,Inteleon
+pokemon_name_Skwovet,Skwovet
+pokemon_name_Greedent,Greedent
+pokemon_name_Rookidee,Rookidee
+pokemon_name_Corvisquire,Corvisquire
+pokemon_name_Corviknight,Corviknight
+pokemon_name_Blipbug,Blipbug
+pokemon_name_Dottler,Dottler
+pokemon_name_Orbeetle,Orbeetle
+pokemon_name_Nickit,Nickit
+pokemon_name_Thievul,Thievul
+pokemon_name_Gossifleur,Gossifleur
+pokemon_name_Eldegoss,Eldegoss
+pokemon_name_Wooloo,Wooloo
+pokemon_name_Dubwool,Dubwool
+pokemon_name_Chewtle,Chewtle
+pokemon_name_Drednaw,Drednaw
+pokemon_name_Yamper,Yamper
+pokemon_name_Boltund,Boltund
+pokemon_name_Rolycoly,Rolycoly
+pokemon_name_Carkol,Carkol
+pokemon_name_Coalossal,Coalossal
+pokemon_name_Applin,Applin
+pokemon_name_Flapple,Flapple
+pokemon_name_Appletun,Appletun
+pokemon_name_Silicobra,Silicobra
+pokemon_name_Sandaconda,Sandaconda
+pokemon_name_Cramorant,Cramorant
+pokemon_name_Arrokuda,Arrokuda
+pokemon_name_Barraskewda,Barraskewda
+pokemon_name_Toxel,Toxel
+pokemon_name_Toxtricity,Toxtricity
+pokemon_name_Sizzlipede,Sizzlipede
+pokemon_name_Centiskorch,Centiskorch
+pokemon_name_Clobbopus,Clobbopus
+pokemon_name_Grapploct,Grapploct
+pokemon_name_Sinistea,Sinistea
+pokemon_name_Polteageist,Polteageist
+pokemon_name_Hatenna,Hatenna
+pokemon_name_Hattrem,Hattrem
+pokemon_name_Hatterene,Hatterene
+pokemon_name_Impidimp,Impidimp
+pokemon_name_Morgrem,Morgrem
+pokemon_name_Grimmsnarl,Grimmsnarl
+pokemon_name_Obstagoon,Obstagoon
+pokemon_name_Perrserker,Perrserker
+pokemon_name_Cursola,Cursola
+pokemon_name_Sirfetch'd,Sirfetch'd
+pokemon_name_Mr. Rime,Mr. Rime
+pokemon_name_Runerigus,Runerigus
+pokemon_name_Milcery,Milcery
+pokemon_name_Alcremie,Alcremie
+pokemon_name_Falinks,Falinks
+pokemon_name_Pincurchin,Pincurchin
+pokemon_name_Snom,Snom
+pokemon_name_Frosmoth,Frosmoth
+pokemon_name_Stonjourner,Stonjourner
+pokemon_name_Eiscue,Eiscue
+pokemon_name_Indeedee,Indeedee
+pokemon_name_Morpeko,Morpeko
+pokemon_name_Cufant,Cufant
+pokemon_name_Copperajah,Copperajah
+pokemon_name_Dracozolt,Dracozolt
+pokemon_name_Arctozolt,Arctozolt
+pokemon_name_Dracovish,Dracovish
+pokemon_name_Arctovish,Arctovish
+pokemon_name_Duraludon,Duraludon
+pokemon_name_Dreepy,Dreepy
+pokemon_name_Drakloak,Drakloak
+pokemon_name_Dragapult,Dragapult
+pokemon_name_Zacian,Zacian
+pokemon_name_Zamazenta,Zamazenta
+pokemon_name_Eternatus,Eternatus
+pokemon_name_Kubfu,Kubfu
+pokemon_name_Urshifu,Urshifu
+pokemon_name_Zarude,Zarude
+pokemon_name_Regieleki,Regieleki
+pokemon_name_Regidrago,Regidrago
+pokemon_name_Glastrier,Glastrier
+pokemon_name_Spectrier,Spectrier
+pokemon_name_Calyrex,Calyrex
+pokemon_name_Wyrdeer,Wyrdeer
+pokemon_name_Kleavor,Kleavor
+pokemon_name_Ursaluna,Ursaluna
+pokemon_name_Basculegion,Basculegion
+pokemon_name_Sneasler,Sneasler
+pokemon_name_Overqwil,Overqwil
+pokemon_name_Enamorus,Enamorus
+--------------
+Item names:
+Balls:
+item_name_1,Master Ball
+item_name_2,Ultra Ball
+item_name_3,Premier Ball
+item_name_4,Great Ball
+item_name_5,Poké Ball
+item_name_45,Cherish Ball
+item_name_79,Dive Ball
+item_name_80,Net Ball
+item_name_129,Quick Ball
+item_name_150,Timer Ball
+item_name_157,Heavy Ball
+item_name_158,Dusk Ball
+item_name_159,Level Ball
+item_name_160,Lure Ball
+item_name_161,Fast Ball
+item_name_164,Friend Ball
+item_name_165,Moon Ball
+item_name_166,Love Ball
+item_name_168,Repeat Ball
+item_name_174,Luxury Ball
+item_name_177,Sport Ball
+item_name_181,Safari Ball
+item_name_186,Heal Ball
+item_name_188,Nest Ball
+
+Key Items:
+item_name_6,Bicycle
+item_name_41,S.S. Ticket
+item_name_54,Coin Case
+item_name_55,Item Finder
+item_name_56,Crystal Wing
+item_name_58,Old Rod
+item_name_59,Good Rod
+item_name_61,Super Rod
+item_name_66,Red Scale
+item_name_67,Secret Potion
+item_name_69,Mystery Egg
+item_name_71,Silver Wing
+item_name_78,Running Shoes
+item_name_115,GS Ball
+item_name_116,Blue Card
+item_name_127,Card Key
+item_name_128,Machine Part
+item_name_130,Lost Item
+item_name_133,Basement Key
+item_name_134,Pass
+item_name_175,Squirt Bottle
+item_name_178,Rainbow Wing
+item_name_241,Oval Charm
+item_name_242,Shiny Charm
+item_name_265,Tri Pass
+item_name_284,Rainbow Pass
+item_name_285,Old Sea Map
+item_name_286,Ancient Shard
+item_name_292,Empty Sea Map
+item_name_592,Liberty Sea Map
+item_name_576,Mega Bracelet
+item_name_651,Light Stone
+item_name_652,Dark Stone
+item_name_653,Black Augurite
+item_name_658,Exp. All
+
+Technical Machines:
+item_name_191,TM 01
+item_name_192,TM 02
+item_name_193,TM 03
+item_name_194,TM 04
+item_name_195,TM 05
+item_name_196,TM 06
+item_name_197,TM 07
+item_name_198,TM 08
+item_name_199,TM 09
+item_name_200,TM 10
+item_name_201,TM 11
+item_name_202,TM 12
+item_name_203,TM 13
+item_name_204,TM 14
+item_name_205,TM 15
+item_name_206,TM 16
+item_name_207,TM 17
+item_name_208,TM 18
+item_name_209,TM 19
+item_name_210,TM 20
+item_name_211,TM 21
+item_name_212,TM 22
+item_name_213,TM 23
+item_name_214,TM 24
+item_name_215,TM 25
+item_name_216,TM 26
+item_name_217,TM 27
+item_name_218,TM 28
+item_name_219,TM 29
+item_name_220,TM 30
+item_name_221,TM 31
+item_name_222,TM 32
+item_name_223,TM 33
+item_name_224,TM 34
+item_name_225,TM 35
+item_name_226,TM 36
+item_name_227,TM 37
+item_name_228,TM 38
+item_name_229,TM 39
+item_name_230,TM 40
+item_name_231,TM 41
+item_name_232,TM 42
+item_name_233,TM 43
+item_name_234,TM 44
+item_name_235,TM 45
+item_name_236,TM 46
+item_name_237,TM 47
+item_name_238,TM 48
+item_name_239,TM 49
+item_name_240,TM 50
+item_name_351,TM 51
+item_name_352,TM 52
+item_name_353,TM 53
+item_name_354,TM 54
+item_name_355,TM 55
+item_name_356,TM 56
+item_name_357,TM 57
+item_name_358,TM 58
+item_name_359,TM 59
+item_name_360,TM 60
+item_name_361,TM 61
+item_name_362,TM 62
+item_name_363,TM 63
+item_name_364,TM 64
+item_name_365,TM 65
+item_name_366,TM 66
+item_name_367,TM 67
+item_name_368,TM 68
+item_name_369,TM 69
+item_name_370,TM 70
+item_name_371,TM 71
+item_name_372,TM 72
+item_name_373,TM 73
+item_name_374,TM 74
+item_name_375,TM 75
+item_name_376,TM 76
+item_name_377,TM 77
+item_name_378,TM 78
+item_name_379,TM 79
+item_name_380,TM 80
+item_name_381,TM 81
+item_name_382,TM 82
+item_name_383,TM 83
+item_name_384,TM 84
+item_name_385,TM 85
+item_name_386,TM 86
+item_name_387,TM 87
+item_name_388,TM 88
+item_name_389,TM 89
+item_name_390,TM 90
+item_name_391,TM 91
+item_name_392,TM 92
+item_name_393,TM 93
+item_name_394,TM 94
+item_name_395,TM 95
+item_name_396,TM 96
+item_name_397,TM 97
+item_name_398,TM 98
+item_name_399,TM 99
+item_name_400,TM 100
+item_name_401,TM 101
+item_name_402,TM 102
+item_name_403,TM 103
+item_name_404,TM 104
+item_name_405,TM 105
+item_name_406,TM 106
+item_name_407,TM 107
+item_name_408,TM 108
+item_name_409,TM 109
+item_name_410,TM 110
+item_name_411,TM 111
+item_name_412,TM 112
+item_name_413,TM 113
+item_name_414,TM 114
+item_name_415,TM 115
+item_name_416,TM 116
+item_name_417,TM 117
+item_name_418,TM 118
+item_name_419,TM 119
+item_name_420,TM 120
+item_name_421,TM 121
+item_name_422,TM 122
+item_name_423,TM 123
+item_name_424,TM 124
+item_name_425,TM 125
+item_name_426,TM 126
+item_name_427,TM 127
+item_name_428,TM 128
+item_name_429,TM 129
+item_name_430,TM 130
+item_name_431,TM 131
+item_name_432,TM 132
+item_name_433,TM 133
+item_name_434,TM 134
+item_name_435,TM 135
+item_name_436,TM 136
+item_name_437,TM 137
+item_name_438,TM 138
+item_name_439,TM 139
+item_name_440,TM 140
+item_name_441,TM 141
+item_name_442,TM 142
+item_name_443,TM 143
+item_name_444,TM 144
+item_name_445,TM 145
+item_name_446,TM 146
+item_name_447,TM 147
+item_name_448,TM 148
+item_name_449,TM 149
+item_name_450,TM 150
+item_name_451,TM 151
+item_name_452,TM 152
+item_name_453,TM 153
+item_name_454,TM 154
+item_name_455,TM 155
+item_name_456,TM 156
+item_name_457,TM 157
+item_name_458,TM 158
+item_name_459,TM 159
+item_name_460,TM 160
+item_name_461,TM 161
+item_name_462,TM 162
+item_name_463,TM 163
+item_name_464,TM 164
+item_name_465,TM 165
+item_name_466,TM 166
+item_name_467,TM 167
+item_name_468,TM 168
+item_name_469,TM 169
+item_name_470,TM 170
+item_name_471,TM 171
+item_name_472,TM 172
+item_name_473,TM 173
+item_name_474,TM 174
+item_name_475,TM 175
+item_name_476,TM 176
+item_name_477,TM 177
+item_name_478,TM 178
+item_name_479,TM 179
+item_name_480,TM 180
+item_name_481,TM 181
+
+Hidden Machines:
+item_name_247,HM 01
+item_name_244,HM 02
+item_name_245,HM 03
+item_name_246,HM 04
+item_name_243,HM 05
+item_name_248,HM 06
+item_name_249,HM 07
+item_name_250,HM 08
+item_name_251,HM 09
+item_name_252,HM 10
+
+Medicine:
+item_name_7,Lava Cookie
+item_name_9,Antidote
+item_name_10,Burn Heal
+item_name_11,Ice Heal
+item_name_12,Awakening
+item_name_13,Paralyze Heal
+item_name_14,Full Restore
+item_name_15,Max Potion
+item_name_16,Hyper Potion
+item_name_17,Super Potion
+item_name_18,Potion
+item_name_21,Max Elixir
+item_name_32,Rare Candy
+item_name_38,Full Heal
+item_name_39,Revive
+item_name_40,Max Revive
+item_name_46,Fresh Water
+item_name_47,Soda Pop
+item_name_48,Lemonade
+item_name_62,PPUp
+item_name_63,Ether
+item_name_64,Max Ether
+item_name_65,Elixir
+item_name_72,Moo Moo Milk
+item_name_114,Rage Candy Bar
+item_name_121,Energy Powder
+item_name_122,Energy Root
+item_name_123,Heal Powder
+item_name_124,Revival Herb
+item_name_139,Berry Juice
+item_name_152,Pewter Crunchies
+item_name_156,Sacred Ash
+item_name_266,Fanta
+item_name_502,PPMax
+
+Berries:
+item_name_2000,Cheri
+item_name_2001,Chesto
+item_name_2002,Pecha
+item_name_2003,Rawst
+item_name_2004,Aspear
+item_name_2005,Leppa
+item_name_2006,Oran
+item_name_2007,Persim
+item_name_2008,Lum
+item_name_2009,Sitrus
+item_name_2010,Figy
+item_name_2011,Wiki
+item_name_2012,Mago
+item_name_2013,Aguav
+item_name_2014,Iapapa
+item_name_2015,Razz
+item_name_2016,Bluk
+item_name_2017,Nanab
+item_name_2018,Wepear
+item_name_2019,Pinap
+item_name_2020,Pomeg
+item_name_2021,Kelpsy
+item_name_2022,Qualot
+item_name_2023,Hondew
+item_name_2024,Grepa
+item_name_2025,Tamato
+item_name_2026,Cornn
+item_name_2027,Magost
+item_name_2028,Rabuta
+item_name_2029,Nomel
+item_name_2030,Spelon
+item_name_2031,Pamtre
+item_name_2032,Watmel
+item_name_2033,Durin
+item_name_2034,Belue
+item_name_2035,Occa
+item_name_2036,Passho
+item_name_2037,Wacan
+item_name_2038,Rindo
+item_name_2039,Yache
+item_name_2040,Chople
+item_name_2041,Kebia
+item_name_2042,Shuca
+item_name_2043,Coba
+item_name_2044,Payapa
+item_name_2045,Tanga
+item_name_2046,Charti
+item_name_2047,Kasib
+item_name_2048,Haban
+item_name_2049,Colbur
+item_name_2050,Babiri
+item_name_2051,Chilan
+item_name_2052,Liechi
+item_name_2053,Ganlon
+item_name_2054,Salac
+item_name_2055,Petaya
+item_name_2056,Apicot
+item_name_2057,Lansat
+item_name_2058,Starf
+item_name_2059,Enigma
+item_name_2060,Micle
+item_name_2061,Custap
+item_name_2062,Jaboca
+item_name_2063,Rowap
+item_name_2064,Roseli
+item_name_2065,Kee
+item_name_2066,Maranga
+
+Stones:
+item_name_8,Moon Stone
+item_name_22,Fire Stone
+item_name_23,Thunder Stone
+item_name_24,Water Stone
+item_name_34,Leaf Stone
+item_name_112,Everstone
+item_name_169,Sun Stone
+item_name_262,Sticky Rock
+item_name_593,Ice Stone
+item_name_135,Shiny Stone
+item_name_136,Dusk Stone
+item_name_137,Dawn Stone
+
+Standard:
+item_name_19,Escape Rope
+item_name_30,Lucky Punch
+item_name_35,Metal Powder
+item_name_36,Nugget
+item_name_37,Poké Doll
+item_name_57,Exp. Share
+item_name_60,Silver Leaf
+item_name_70,Sticky Barb
+item_name_73,Quick Claw
+item_name_74,Zoom Lens
+item_name_75,Gold Leaf
+item_name_76,Soft Sand
+item_name_77,Sharp Beak
+item_name_81,Poison Barb
+item_name_82,King's Rock
+item_name_83,Prism Scale
+item_name_84,Reaper Cloth
+item_name_88,Silver Powder
+item_name_90,Silk Scarf
+item_name_91,Amulet Coin
+item_name_94,Cleanse Tag
+item_name_95,Mystic Water
+item_name_96,Twisted Spoon
+item_name_98,Black Belt
+item_name_100,Magmarizer
+item_name_102,Black Glasses
+item_name_103,Slowpoke Tail
+item_name_104,Pink Bow
+item_name_105,Stick
+item_name_106,Smoke Ball
+item_name_107,Nevermelt Ice
+item_name_108,Magnet
+item_name_109,Rare Bone
+item_name_110,Pearl
+item_name_111,Big Pearl
+item_name_113,Spell Tag
+item_name_117,Miracle Seed
+item_name_118,Thick Club
+item_name_119,Focus Band
+item_name_120,Electirizer
+item_name_125,Hard Stone
+item_name_126,Lucky Egg
+item_name_131,Stardust
+item_name_132,Star Piece
+item_name_138,Charcoal
+item_name_140,Scope Lens
+item_name_141,Protector
+item_name_142,Lagging Tail
+item_name_143,Metal Coat
+item_name_144,Dragon Fang
+item_name_145,Wave Incense
+item_name_146,Leftovers
+item_name_147,White Flute
+item_name_148,Soothe Bell
+item_name_149,Comet Shard
+item_name_151,Dragon Scale
+item_name_153,Balm Mushroom
+item_name_154,Shed Shell
+item_name_155,Quick Powder
+item_name_162,Deep Sea Scale
+item_name_163,Light Ball
+item_name_167,Deep Sea Tooth
+item_name_170,Berserk Gene
+item_name_171,Wide Lens
+item_name_172,Up-Grade
+item_name_173,Pearl String
+item_name_176,Grip Claw
+item_name_179,Oval Stone
+item_name_180,Brick Piece
+item_name_182,Black Sludge
+item_name_183,Razor Fang
+item_name_184,Razor Claw
+item_name_185,Dubious Disc
+item_name_187,Ability Capsule
+item_name_189,Big Nugget
+item_name_190,Heart Scale
+item_name_263,Odd Incense
+item_name_264,Sea Incense
+item_name_287,Rose Incence
+item_name_288,Full Incense
+item_name_289,Lax Incense
+item_name_290,Luck Incense
+item_name_291,Pure Incense
+item_name_293,Damp Rock
+item_name_294,Heat Rock
+item_name_295,Smooth Rock
+item_name_296,Icy Rock
+item_name_297,Light Clay
+item_name_298,Eviolite
+item_name_299,Rock Incense
+item_name_503,Sachet
+item_name_504,Whipped Dream
+item_name_505,Toxic Orb
+item_name_506,Life Orb
+item_name_577,Flame Orb
+item_name_578,Choice Band
+item_name_579,Choice Scarf
+item_name_580,Choice Specs
+item_name_581,Macho Brace
+item_name_582,Power Weight
+item_name_583,Power Bracer
+item_name_584,Power Belt
+item_name_585,Power Lens
+item_name_586,Power Band
+item_name_587,Power Anklet
+item_name_591,Expert Belt
+item_name_594,Snowball
+item_name_595,Cell Battery
+item_name_596,Electric Seed
+item_name_597,Grassy Seed
+item_name_598,Misty Seed
+item_name_599,Psychic Seed
+item_name_600,Terrain Extender
+item_name_648,Poké Toy
+item_name_649,Fluffy Tail
+item_name_650,Bright Powder
+item_name_654,Peat Block
+item_name_1996,Burn Drive
+item_name_1997,Chill Drive
+item_name_1998,Douse Drive
+item_name_1999,Shock Drive
+
+Fossils:
+item_name_601,Helix Fossil
+item_name_602,Dome Fossil
+item_name_603,Old Amber
+item_name_604,Root Fossil
+item_name_605,Claw Fossil
+item_name_606,Skull Fossil
+item_name_607,Armor Fossil
+item_name_608,Cover Fossil
+item_name_609,Plume Fossil
+item_name_610,Jaw Fossil
+item_name_611,Sail Fossil
+
+Repels:
+item_name_20,Repel
+item_name_42,Super Repel
+item_name_43,Max Repel
+
+Vitamins:
+item_name_25,Zinc
+item_name_26,HPUp
+item_name_27,Protein
+item_name_28,Iron
+item_name_29,Carbos
+item_name_31,Calcium
+
+XItems:
+item_name_33,XAccuracy
+item_name_44,Dire Hit
+item_name_49,XAttack
+item_name_50,XSp. Def.
+item_name_51,XDefend
+item_name_52,XSpeed
+item_name_53,XSp. Atk.
+item_name_68,Guard Spec
+
+Apricorns:
+item_name_85,Red Apricorn
+item_name_89,Blu Apricorn
+item_name_92,Ylw Apricorn
+item_name_93,Grn Apricorn
+item_name_97,Wht Apricorn
+item_name_99,Blk Apricorn
+item_name_101,Pnk Apricorn
+
+Plants:
+item_name_86,Tiny Mushroom
+item_name_87,Big Mushroom
+item_name_253,Honey
+
+Wings:
+item_name_254,Health Wing
+item_name_255,Muscle Wing
+item_name_256,Resist Wing
+item_name_257,Genius Wing
+item_name_258,Clever Wing
+item_name_259,Swift Wing
+item_name_260,Pretty Wing
+item_name_261,Sticky Wing
+
+Plates:
+item_name_267,Draco Plate
+item_name_268,Dread Plate
+item_name_269,Earth Plate
+item_name_270,Fist Plate
+item_name_271,Flame Plate
+item_name_272,Icicle Plate
+item_name_273,Insect Plate
+item_name_274,Iron Plate
+item_name_275,Meadow Plate
+item_name_276,Mind Plate
+item_name_277,Pixie Plate
+item_name_278,Sky Plate
+item_name_279,Splash Plate
+item_name_280,Spooky Plate
+item_name_281,Stone Plate
+item_name_282,Toxic Plate
+item_name_283,Zap Plate
+
+Mail:
+item_name_300,Grass Mail
+item_name_301,Bead Mail
+item_name_302,Dream Mail
+item_name_303,Fab Mail
+item_name_304,Glitter Mail
+item_name_305,Harbor Mail
+item_name_306,Mech Mail
+item_name_307,Orange Mail
+item_name_308,Retro Mail
+item_name_309,Shadow Mail
+item_name_310,Tropic Mail
+item_name_311,Wave Mail
+item_name_312,Wood Mail
+item_name_313,Air Mail
+item_name_314,Bloom Mail
+item_name_315,Brick Mail
+item_name_316,Bubble Mail
+item_name_317,Flame Mail
+item_name_318,Heart Mail
+item_name_319,Mosaic Mail
+item_name_320,Snow Mail
+item_name_321,Space Mail
+item_name_322,Steel Mail
+item_name_323,Tunnel Mail
+item_name_324,Bridge Mail T
+item_name_325,Bridge Mail D
+item_name_326,Bridge Mail S
+item_name_327,Bridge Mail V
+item_name_328,Bridge Mail M
+item_name_329,Favored Mail
+item_name_330,Thanks Mail
+item_name_331,Inquiry Mail
+item_name_332,Greet Mail
+item_name_333,RSVPMail
+item_name_334,Like Mail
+item_name_335,Reply Mail
+item_name_336,Kolben Mail
+
+Mega Stones:
+item_name_507,Abomasite
+item_name_508,Absolite
+item_name_509,Aerodactylite
+item_name_510,Aggronite
+item_name_511,Alakazite
+item_name_512,Ampharosite
+item_name_513,Banettite
+item_name_514,Blastoisinite
+item_name_515,Blazikenite
+item_name_516,Charizardite X
+item_name_517,Charizardite Y
+item_name_518,Garchompite
+item_name_519,Gardevoirite
+item_name_520,Gengarite
+item_name_521,Gyaradosite
+item_name_522,Heracronite
+item_name_523,Houndoominite
+item_name_524,Kangaskhanite
+item_name_525,Lucarionite
+item_name_526,Manectite
+item_name_527,Mawilite
+item_name_528,Medichamite
+item_name_529,Mewtwonite X
+item_name_530,Mewtwonite Y
+item_name_531,Pinsirite
+item_name_532,Scizorite
+item_name_533,Tyranitarite
+item_name_534,Venusaurite
+item_name_535,Altarianite
+item_name_536,Audinite
+item_name_537,Beedrillite
+item_name_538,Cameruptite
+item_name_539,Diancite
+item_name_540,Galladite
+item_name_541,Glalitite
+item_name_542,Latiasite
+item_name_543,Latiosite
+item_name_544,Lopunnite
+item_name_545,Metagrossite
+item_name_546,Pidgeotite
+item_name_547,Sablenite
+item_name_548,Salamencite
+item_name_549,Sceptilite
+item_name_550,Sharpedonite
+item_name_551,Slowbronite
+item_name_552,Steelixite
+item_name_553,Swampertite
+
+Gems:
+item_name_630,Fire Gem
+item_name_631,Water Gem
+item_name_632,Electric Gem
+item_name_633,Grass Gem
+item_name_634,Ice Gem
+item_name_635,Fighting Gem
+item_name_636,Poison Gem
+item_name_637,Ground Gem
+item_name_638,Flying Gem
+item_name_639,Psychic Gem
+item_name_640,Bug Gem
+item_name_641,Rock Gem
+item_name_642,Ghost Gem
+item_name_643,Dragon Gem
+item_name_644,Dark Gem
+item_name_645,Steel Gem
+item_name_646,Normal Gem
+item_name_647,Fairy Gem
+
+Memories:
+item_name_660,Bug Memory
+item_name_661,Dark Memory
+item_name_662,Dragon Memory
+item_name_663,Electric Memory
+item_name_664,Fairy Memory
+item_name_665,Fighting Memory
+item_name_666,Fire Memory
+item_name_667,Flying Memory
+item_name_668,Ghost Memory
+item_name_669,Grass Memory
+item_name_670,Ground Memory
+item_name_671,Ice Memory
+item_name_672,Poison Memory
+item_name_673,Psychic Memory
+item_name_674,Rock Memory
+item_name_675,Steel Memory
+item_name_676,Water Memory
+
+Item Use Text:
+item_cannot_use,Now is not the time~to use that.
+item_6_cannot_walk,You cannot walk here!
+item_6_missingskin,You can't use this item~without a bicycle skin.*Its name should be the~same as your current one,~but with "_bike" at the end.
+item_6_only_custom_gamemodes,This item can't be used~on this GameMode.
+
+Key Items:
+item_use_6,<Player.Name> stepped~off the Bicycle.
+item_use_54,Your Coins:~
+item_use_658_disable,The Exp. All was turned off.
+item_use_658_enable,The Exp. All was turned on.
+-------------------
+Move Names:
+move_name_1,Pound
+move_name_2,Karate Chop
+move_name_3,Double Slap
+move_name_4,Comet Punch
+move_name_5,Mega Punch
+move_name_6,Pay Day
+move_name_7,Fire Punch
+move_name_8,Ice Punch
+move_name_9,Thunder Punch
+move_name_10,Scratch
+move_name_11,Vice Grip
+move_name_12,Guillotine
+move_name_13,Razor Wind
+move_name_14,Swords Dance
+move_name_15,Cut
+move_name_16,Gust
+move_name_17,Wing Attack
+move_name_18,Whirlwind
+move_name_19,Fly
+move_name_20,Bind
+move_name_21,Slam
+move_name_22,Vine Whip
+move_name_23,Stomp
+move_name_24,Double Kick
+move_name_25,Mega Kick
+move_name_26,Jump Kick
+move_name_27,Rolling Kick
+move_name_28,Sand Attack
+move_name_29,Headbutt
+move_name_30,Horn Attack
+move_name_31,Fury Attack
+move_name_32,Horn Drill
+move_name_33,Tackle
+move_name_34,Body Slam
+move_name_35,Wrap
+move_name_36,Take Down
+move_name_37,Thrash
+move_name_38,Double-Edge
+move_name_39,Tail Whip
+move_name_40,Poison Sting
+move_name_41,Twineedle
+move_name_42,Pin Missile
+move_name_43,Leer
+move_name_44,Bite
+move_name_45,Growl
+move_name_46,Roar
+move_name_47,Sing
+move_name_48,Supersonic
+move_name_49,Sonic Boom
+move_name_50,Disable
+move_name_51,Acid
+move_name_52,Ember
+move_name_53,Flamethrower
+move_name_54,Mist
+move_name_55,Water Gun
+move_name_56,Hydro Pump
+move_name_57,Surf
+move_name_58,Ice Beam
+move_name_59,Blizzard
+move_name_60,Psybeam
+move_name_61,Bubble Beam
+move_name_62,Aurora Beam
+move_name_63,Hyper Beam
+move_name_64,Peck
+move_name_65,Drill Peck
+move_name_66,Submission
+move_name_67,Low Kick
+move_name_68,Counter
+move_name_69,Seismic Toss
+move_name_70,Strength
+move_name_71,Absorb
+move_name_72,Mega Drain
+move_name_73,Leech Seed
+move_name_74,Growth
+move_name_75,Razor Leaf
+move_name_76,Solar Beam
+move_name_77,Poison Powder
+move_name_78,Stun Spore
+move_name_79,Sleep Powder
+move_name_80,Petal Dance
+move_name_81,String Shot
+move_name_82,Dragon Rage
+move_name_83,Fire Spin
+move_name_84,Thunder Shock
+move_name_85,Thunderbolt
+move_name_86,Thunder Wave
+move_name_87,Thunder
+move_name_88,Rock Throw
+move_name_89,Earthquake
+move_name_90,Fissure
+move_name_91,Dig
+move_name_92,Toxic
+move_name_93,Confusion
+move_name_94,Psychic
+move_name_95,Hypnosis
+move_name_96,Meditate
+move_name_97,Agility
+move_name_98,Quick Attack
+move_name_99,Rage
+move_name_100,Teleport
+move_name_101,Night Shade
+move_name_102,Mimic
+move_name_103,Screech
+move_name_104,Double Team
+move_name_105,Recover
+move_name_106,Harden
+move_name_107,Minimize
+move_name_108,Smokescreen
+move_name_109,Confuse Ray
+move_name_110,Withdraw
+move_name_111,Defense Curl
+move_name_112,Barrier
+move_name_113,Light Screen
+move_name_114,Haze
+move_name_115,Reflect
+move_name_116,Focus Energy
+move_name_117,Bide
+move_name_118,Metronome
+move_name_119,Mirror Move
+move_name_120,Self-Destruct
+move_name_121,Egg Bomb
+move_name_122,Lick
+move_name_123,Smog
+move_name_124,Sludge
+move_name_125,Bone Club
+move_name_126,Fire Blast
+move_name_127,Waterfall
+move_name_128,Clamp
+move_name_129,Swift
+move_name_130,Skull Bash
+move_name_131,Spike Cannon
+move_name_132,Constrict
+move_name_133,Amnesia
+move_name_134,Kinesis
+move_name_135,Soft-Boiled
+move_name_136,High Jump Kick
+move_name_137,Glare
+move_name_138,Dream Eater
+move_name_139,Poison Gas
+move_name_140,Barrage
+move_name_141,Leech Life
+move_name_142,Lovely Kiss
+move_name_143,Sky Attack
+move_name_144,Transform
+move_name_145,Bubble
+move_name_146,Dizzy Punch
+move_name_147,Spore
+move_name_148,Flash
+move_name_149,Psywave
+move_name_150,Splash
+move_name_151,Acid Armor
+move_name_152,Crabhammer
+move_name_153,Explosion
+move_name_154,Fury Swipes
+move_name_155,Bonemerang
+move_name_156,Rest
+move_name_157,Rock Slide
+move_name_158,Hyper Fang
+move_name_159,Sharpen
+move_name_160,Conversion
+move_name_161,Tri Attack
+move_name_162,Super Fang
+move_name_163,Slash
+move_name_164,Substitute
+move_name_165,Struggle
+move_name_166,Sketch
+move_name_167,Triple Kick
+move_name_168,Thief
+move_name_169,Spider Web
+move_name_170,Mind Reader
+move_name_171,Nightmare
+move_name_172,Flame Wheel
+move_name_173,Snore
+move_name_174,Curse
+move_name_175,Flail
+move_name_176,Conversion 2
+move_name_177,Aeroblast
+move_name_178,Cotton Spore
+move_name_179,Reversal
+move_name_180,Spite
+move_name_181,Powder Snow
+move_name_182,Protect
+move_name_183,Mach Punch
+move_name_184,Scary Face
+move_name_185,Feint Attack
+move_name_186,Sweet Kiss
+move_name_187,Belly Drum
+move_name_188,Sludge Bomb
+move_name_189,Mud-Slap
+move_name_190,Octazooka
+move_name_191,Spikes
+move_name_192,Zap Cannon
+move_name_193,Foresight
+move_name_194,Destiny Bond
+move_name_195,Perish Song
+move_name_196,Icy Wind
+move_name_197,Detect
+move_name_198,Bone Rush
+move_name_199,Lock-On
+move_name_200,Outrage
+move_name_201,Sandstorm
+move_name_202,Giga Drain
+move_name_203,Endure
+move_name_204,Charm
+move_name_205,Rollout
+move_name_206,False Swipe
+move_name_207,Swagger
+move_name_208,Milk Drink
+move_name_209,Spark
+move_name_210,Fury Cutter
+move_name_211,Steel Wing
+move_name_212,Mean Look
+move_name_213,Attract
+move_name_214,Sleep Talk
+move_name_215,Heal Bell
+move_name_216,Return
+move_name_217,Present
+move_name_218,Frustration
+move_name_219,Safeguard
+move_name_220,Pain Split
+move_name_221,Sacred Fire
+move_name_222,Magnitude
+move_name_223,Dynamic Punch
+move_name_224,Megahorn
+move_name_225,Dragon Breath
+move_name_226,Baton Pass
+move_name_227,Encore
+move_name_228,Pursuit
+move_name_229,Rapid Spin
+move_name_230,Sweet Scent
+move_name_231,Iron Tail
+move_name_232,Metal Claw
+move_name_233,Vital Throw
+move_name_234,Morning Sun
+move_name_235,Synthesis
+move_name_236,Moonlight
+move_name_237,Hidden Power
+move_name_238,Cross Chop
+move_name_239,Twister
+move_name_240,Rain Dance
+move_name_241,Sunny Day
+move_name_242,Crunch
+move_name_243,Mirror Coat
+move_name_244,Psych Up
+move_name_245,Extreme Speed
+move_name_246,Ancient Power
+move_name_247,Shadow Ball
+move_name_248,Future Sight
+move_name_249,Rock Smash
+move_name_250,Whirlpool
+move_name_251,Beat Up
+move_name_252,Fake Out
+move_name_253,Uproar
+move_name_254,Stockpile
+move_name_255,Spit Up
+move_name_256,Swallow
+move_name_257,Heat Wave
+move_name_258,Hail
+move_name_259,Torment
+move_name_260,Flatter
+move_name_261,Will-O-Wisp
+move_name_262,Memento
+move_name_263,Facade
+move_name_264,Focus Punch
+move_name_265,Smelling Salts
+move_name_267,Nature Power
+move_name_268,Charge
+move_name_269,Taunt
+move_name_271,Trick
+move_name_272,Role Play
+move_name_273,Wish
+move_name_274,Assist
+move_name_275,Ingrain
+move_name_276,Super Power
+move_name_277,Magic Coat
+move_name_278,Recycle
+move_name_279,Revenge
+move_name_280,Brick Break
+move_name_281,Yawn
+move_name_282,Knock Off
+move_name_283,Endeavor
+move_name_284,Eruption
+move_name_285,Skill Swap
+move_name_287,Refresh
+move_name_289,Snatch
+move_name_291,Dive
+move_name_292,Arm Thrust
+move_name_294,Tailglow
+move_name_295,Luster Purge
+move_name_296,Mist Ball
+move_name_297,Feather Dance
+move_name_298,Teeter Dance
+move_name_299,Blaze Kick
+move_name_300,Mud Sport
+move_name_301,Ice Ball
+move_name_302,Needle Arm
+move_name_303,Slack Off
+move_name_304,Hyper Voice
+move_name_305,Poison Fang
+move_name_306,Crush Claw
+move_name_307,Blast Burn
+move_name_308,Hydrocannon
+move_name_309,Meteor Mash
+move_name_310,Astonish
+move_name_311,Weather Ball
+move_name_312,Aromatherapy
+move_name_313,Fake Tears
+move_name_314,Air Cutter
+move_name_315,Overheat
+move_name_316,Odor Sleuth
+move_name_317,Rock Tomb
+move_name_318,Silverwind
+move_name_319,Metal Sound
+move_name_320,Grass Whistle
+move_name_321,Tickle
+move_name_322,Cosmic Power
+move_name_323,Water Spout
+move_name_324,Signal Beam
+move_name_325,Shadow Punch
+move_name_326,Extrasensory
+move_name_327,Sky Uppercut
+move_name_328,Sand Tomb
+move_name_329,Sheer Cold
+move_name_330,Muddywater
+move_name_331,Bullet Seed
+move_name_332,Aerial Ace
+move_name_333,Icicle Spear
+move_name_334,Iron Defense
+move_name_335,Block
+move_name_336,Howl
+move_name_337,Dragon Claw
+move_name_338,Frenzy Plant
+move_name_339,Bulk Up
+move_name_340,Bounce
+move_name_341,Mud Shot
+move_name_342,Poison Tail
+move_name_343,Covet
+move_name_344,Volt Tackle
+move_name_345,Magical Leaf
+move_name_346,Water Sport
+move_name_347,Calm Mind
+move_name_348,Leaf Blade
+move_name_349,Dragon Dance
+move_name_350,Rock Blast
+move_name_351,Shock Wave
+move_name_352,Water Pulse
+move_name_353,Doom Desire
+move_name_354,Psycho Boost
+move_name_355,Roost
+move_name_356,Gravity
+move_name_357,Miracle Eye
+move_name_358,Wake-Up Slap
+move_name_359,Hammer Arm
+move_name_360,Gyro Ball
+move_name_361,Healing Wish
+move_name_362,Brine
+move_name_363,Natural Gift
+move_name_364,Feint
+move_name_365,Pluck
+move_name_366,Tailwind
+move_name_367,Acupressure
+move_name_368,Metal Burst
+move_name_369,U-Turn
+move_name_370,Close Combat
+move_name_371,Payback
+move_name_372,Assurance
+move_name_373,Embargo
+move_name_374,Fling
+move_name_375,Psycho Shift
+move_name_376,Trump Card
+move_name_377,Heal Block
+move_name_378,Wring Out
+move_name_379,Power Trick
+move_name_384,Power Swap
+move_name_385,Guard Swap
+move_name_386,Punishment
+move_name_387,Last Resort
+move_name_388,Worry Seed
+move_name_389,Sucker Punch
+move_name_390,Toxic Spikes
+move_name_391,Heart Swap
+move_name_392,Aqua Ring
+move_name_393,Magnet Rise
+move_name_394,Flare Blitz
+move_name_395,Force Palm
+move_name_396,Aura Sphere
+move_name_397,Rock Polish
+move_name_398,Poison Jab
+move_name_399,Dark Pulse
+move_name_400,Night Slash
+move_name_401,Aqua Tail
+move_name_402,Seed Bomb
+move_name_403,Air Slash
+move_name_404,X-Scissor
+move_name_405,Bug Buzz
+move_name_406,Dragon Pulse
+move_name_407,Dragon Rush
+move_name_408,Power Gem
+move_name_409,Drain Punch
+move_name_410,Vacuum Wave
+move_name_411,Focus Blast
+move_name_412,Energy Ball
+move_name_413,Brave Bird
+move_name_414,Earth Power
+move_name_415,Switcheroo
+move_name_416,Giga Impact
+move_name_417,Nasty Plot
+move_name_418,Bullet Punch
+move_name_419,Avalanche
+move_name_420,Ice Shard
+move_name_421,Shadow Claw
+move_name_422,Thunder Fang
+move_name_423,Ice Fang
+move_name_424,Fire Fang
+move_name_425,Shadow Sneak
+move_name_426,Mud Bomb
+move_name_427,Psycho Cut
+move_name_428,Zen Headbutt
+move_name_429,Mirror Shot
+move_name_430,Flash Cannon
+move_name_431,Rock Climb
+move_name_432,Defog
+move_name_433,Trick Room
+move_name_434,Draco Meteor
+move_name_435,Discharge
+move_name_436,Lava Plume
+move_name_437,Leaf Storm
+move_name_438,Power Whip
+move_name_439,Rock Wrecker
+move_name_440,Crosspoison
+move_name_441,Gunk Shot
+move_name_442,Iron Head
+move_name_443,Magnet Bomb
+move_name_444,Stone Edge
+move_name_445,Captivate
+move_name_446,Stealth Rock
+move_name_447,Grass Knot
+move_name_448,Chatter
+move_name_449,Judgement
+move_name_450,Bug Bite
+move_name_451,Chargebeam
+move_name_452,Wood Hammer
+move_name_453,Aqua Jet
+move_name_454,Attack Order
+move_name_455,Defend Order
+move_name_456,Heal Order
+move_name_457,Head Smash
+move_name_458,Double Hit
+move_name_459,Roar of Time
+move_name_460,Spacial Rend
+move_name_462,Crush Grip
+move_name_463,Magma Storm
+move_name_464,Dark Void
+move_name_465,Seed Flare
+move_name_466,Ominous Wind
+move_name_467,Shadow Force
+move_name_468,Hone Claws
+move_name_473,Psyshock
+move_name_474,Venoshock
+move_name_475,Autotomize
+move_name_479,Smack Down
+move_name_480,Storm Throw
+move_name_481,Flame Burst
+move_name_482,Sludge Wave
+move_name_483,Quiver Dance
+move_name_484,Heavy Slam
+move_name_485,Synchronoise
+move_name_486,Electro Ball
+move_name_488,Flame Charge
+move_name_489,Coil
+move_name_490,Low Sweep
+move_name_491,Acid Spray
+move_name_492,Foul Play
+move_name_493,Simple Beam
+move_name_494,Entrainment
+move_name_496,Round
+move_name_497,Echoed Voice
+move_name_498,Chip Away
+move_name_499,Clear Smog
+move_name_500,Stored Power
+move_name_503,Scald
+move_name_504,Shell Smash
+move_name_505,Heal Pulse
+move_name_506,Hex
+move_name_508,Shift Gear
+move_name_509,Circle Throw
+move_name_510,Incinerate
+move_name_512,Acrobatics
+move_name_513,Reflect Type
+move_name_515,Final Gambit
+move_name_516,Bestow
+move_name_517,Inferno
+move_name_518,Water Pledge
+move_name_519,Fire Pledge
+move_name_520,Grass Pledge
+move_name_521,Volt Switch
+move_name_522,Struggle Bug
+move_name_523,Bulldoze
+move_name_524,Frost Breath
+move_name_525,Dragon Tail
+move_name_526,Work Up
+move_name_527,Electroweb
+move_name_528,Wild Charge
+move_name_529,Drill Run
+move_name_530,Dual Chop
+move_name_531,Heart Stamp
+move_name_532,Horn Leech
+move_name_533,Sacred Sword
+move_name_534,Razor Shell
+move_name_535,Heat Crash
+move_name_536,Leaf Tornado
+move_name_537,Steamroller
+move_name_538,Cotton Guard
+move_name_539,Night Daze
+move_name_540,Psystrike
+move_name_541,Tail Slap
+move_name_542,Hurricane
+move_name_543,Head Charge
+move_name_544,Gear Grind
+move_name_545,Searing Shot
+move_name_546,Techno Blast
+move_name_548,Secret Sword
+move_name_549,Glaciate
+move_name_550,Bolt Strike
+move_name_551,Blue Flare
+move_name_552,Fiery Dance
+move_name_553,Freeze Shock
+move_name_554,Ice Burn
+move_name_555,Snarl
+move_name_556,Icicle Crash
+move_name_557,V-Create
+move_name_558,Fusion Flare
+move_name_559,Fusion Bolt
+move_name_560,Ride
+move_name_564,Sticky Web
+move_name_565,Fell Stinger
+move_name_566,Phantom Force
+move_name_568,Noble Roar
+move_name_570,Parabolic Charge
+move_name_572,Petal Blizzard
+move_name_573,Freeze Dry
+move_name_574,Disarming Voice
+move_name_575,Parting Shot
+move_name_577,Draining Kiss
+move_name_580,Grassy Terrain
+move_name_581,Misty Terrain
+move_name_583,Play Rough
+move_name_584,Fairy Wind
+move_name_585,Moonblast
+move_name_586,Boomburst
+move_name_588,King's Shield
+move_name_589,Play Nice
+move_name_590,Confide
+move_name_591,Diamond Storm
+move_name_592,Steam Eruption
+move_name_593,Hyperspace Hole
+move_name_594,Water Shuriken
+move_name_595,Mystical Fire
+move_name_598,Eerie Impulse
+move_name_599,Venom Drench
+move_name_601,Geomancy
+move_name_604,Electric Terrain
+move_name_605,Dazzling Gleam
+move_name_606,Celebrate
+move_name_608,Baby-Doll Eyes
+move_name_609,Nuzzle
+move_name_610,Hold Back
+move_name_611,Infestation
+move_name_612,Power-Up Punch
+move_name_613,Oblivion Wing
+move_name_614,Thousand Arrows
+move_name_615,Thousand Waves
+move_name_616,Lands Wrath
+move_name_617,Light Of Ruin
+move_name_618,Origin Pulse
+move_name_619,Precipice Blades
+move_name_620,Dragon Ascent
+move_name_621,Hyperspace Fury
+move_name_659,Shore Up
+move_name_660,First Impression
+move_name_662,Spirit Shackle
+move_name_663,Darkest Lariat
+move_name_664,Sparkling Aria
+move_name_665,Ice Hammer
+move_name_667,High Horsepower
+move_name_668,Strength Sap
+move_name_669,Solar Blade
+move_name_670,Leafage
+move_name_672,Toxic Thread
+move_name_674,Gear Up
+move_name_676,Pollen Puff
+move_name_677,Anchor Shot
+move_name_678,Psychic Terrain
+move_name_679,Lunge
+move_name_680,Fire Lash
+move_name_681,Power Trip
+move_name_682,Burn Up
+move_name_684,Smart Strike
+move_name_686,Revelation Dance
+move_name_688,Trop Kick
+move_name_691,Clanging Scales
+move_name_692,Dragon Hammer
+move_name_693,Brutal Swing
+move_name_705,Fleur Cannon
+move_name_706,Psychic Fangs
+move_name_707,Stomping Tantrum
+move_name_708,Shadow Bone
+move_name_709,Accelerock
+move_name_710,Liquidation
+move_name_711,Prismatic Laser
+move_name_715,Tearful Look
+move_name_716,Zing Zap
+move_name_717,Natures Madness
+move_name_749,Tar Shot
+move_name_790,Strange Steam
+move_name_796,Steel Beam
+move_name_828,Psyshield Bash
+move_name_887,Hyper Drill
+move_name_888,Twin Beam
+move_name_889,Rage Fist
+------
+Move Descriptions:
+move_desc_1,The target is physically pounded with a long tail or a foreleg, etc.
+move_desc_2,The target is attacked with a sharp chop. Critical hits land more easily.
+move_desc_3,The target is slapped repeatedly, back and forth, two to five times in a row.
+move_desc_4,The target is hit with a flurry of punches that strike two to five times in a row.
+move_desc_5,The target is slugged by a punch thrown with muscle-packed power.
+move_desc_6,Numerous coins are hurled at the target to inflict damage. Money is earned after the battle.
+move_desc_7,The target is punched with a fiery fist. It may also leave the target with a burn.
+move_desc_8,The target is punched with an icy fist. It may also leave the target frozen.
+move_desc_9,The target is punched with an electrified fist. It may also leave the target with paralysis.
+move_desc_10,Hard, pointed, and sharp claws rake the target to inflict damage.
+move_desc_11,The target is gripped and squeezed from both sides to inflict damage.
+move_desc_12,A vicious, tearing attack with big pincers. The target will faint instantly if this attack hits.
+move_desc_13,A two-turn attack. Blades of wind hit opposing Pokémon on the second turn. Critical hits land more easily.
+move_desc_14,A frenetic dance to uplift the fighting spirit. It sharply raises the user's Attack stat.
+move_desc_15,The target is cut with a scythe or a claw. It can also be used to cut down thin trees.
+move_desc_16,A gust of wind is whipped up by wings and launched at the target to inflict damage.
+move_desc_17,The target is struck with large, imposing wings spread wide to inflict damage.
+move_desc_18,The target is blown away, and a different Pokémon is dragged out. In the wild, this ends a battle against a single Pokémon.
+move_desc_19,The user soars, then strikes its target on the second turn. It can also be used for flying to any familiar town.
+move_desc_20,Things such as long bodies or tentacles are used to bind and squeeze the target for four to five turns.
+move_desc_21,The target is slammed with a long tail, vines, etc., to inflict damage.
+move_desc_22,The target is struck with slender, whiplike vines to inflict damage.
+move_desc_23,The target is stomped with a big foot. It may also make the target flinch.
+move_desc_24,The target is quickly kicked twice in succession using both feet.
+move_desc_25,The target is attacked by a kick launched with muscle-packed power.
+move_desc_26,The user jumps up high, then strikes with a kick. If the kick misses, the user hurts itself.
+move_desc_27,The user lashes out with a quick, spinning kick. It may also make the target flinch.
+move_desc_28,Sand is hurled in the target's face, reducing its accuracy.
+move_desc_29,The user sticks out its head and attacks by charging straight into the target. It may also make the target flinch.
+move_desc_30,The target is jabbed with a sharply pointed horn to inflict damage.
+move_desc_31,The target is jabbed repeatedly with a horn or beak two to five times in a row.
+move_desc_32,The user stabs the target with a horn that rotates like a drill. If it hits, the target faints instantly.
+move_desc_33,A physical attack in which the user charges and slams into the target with its whole body.
+move_desc_34,The user drops onto the target with its full body weight. It may also leave the target with paralysis.
+move_desc_35,A long body or vines are used to wrap and squeeze the target for four to five turns.
+move_desc_36,A reckless, full-body charge attack for slamming into the target. It also damages the user a little.
+move_desc_37,The user rampages and attacks for two to three turns. It then becomes confused, however.
+move_desc_38,A reckless, life-risking tackle. It also damages the user by a fairly large amount, however.
+move_desc_39,The user wags its tail cutely, making opposing Pokémon less wary and lowering their Defense stat.
+move_desc_40,The user stabs the target with a poisonous stinger. This may also poison the target.
+move_desc_41,The user damages the target twice in succession by jabbing it with two spikes. It may also poison the target.
+move_desc_42,Sharp spikes are shot at the target in rapid succession. They hit two to five times in a row.
+move_desc_43,The user gains an intimidating leer with sharp eyes. The opposing team's Defense stats are reduced.
+move_desc_44,The target is bitten with viciously sharp fangs. It may make the target flinch.
+move_desc_45,The user growls in an endearing way, making the opposing team less wary. The foes' Attack stats are lowered.
+move_desc_46,The target is scared off and a different Pokémon is dragged out. In the wild, this ends a battle against a single Pokémon.
+move_desc_47,A soothing lullaby is sung in a calming voice that puts the target into a deep slumber.
+move_desc_48,The user generates odd sound waves from its body. It may confuse the target.
+move_desc_49,The target is hit with a destructive shock wave that always inflicts 20 HP damage.
+move_desc_50,For four turns, the target will be unable to use whichever move it last used.
+move_desc_51,The opposing team is attacked with a spray of harsh acid. The acid may also lower the targets' Sp. Def. stats.
+move_desc_52,The target is attacked with small flames. It may also leave the target with a burn.
+move_desc_53,The target is scorched with an intense blast of fire. It may also leave the target with a burn.
+move_desc_54,The user cloaks its body with a white mist that prevents any of its stats from being cut for five turns.
+move_desc_55,The target is blasted with a forceful shot of water.
+move_desc_56,The target is blasted by a huge volume of water launched under great pressure.
+move_desc_57,It swamps the area around the user with a giant wave. It can also be used for crossing water.
+move_desc_58,The target is struck with an icy-cold beam of energy. It may also freeze the target solid.
+move_desc_59,A howling blizzard is summoned to strike the opposing team. It may also freeze them solid.
+move_desc_60,The target is attacked with a peculiar ray. It may also cause confusion.
+move_desc_61,A spray of bubbles is forcefully ejected at the opposing team. It may also lower their Speed stats.
+move_desc_62,The target is hit with a rainbow-colored beam. This may also lower the target's Attack stat.
+move_desc_63,The target is attacked with a powerful beam. The user must rest on the next turn to regain its energy.
+move_desc_64,The target is jabbed with a sharply pointed beak or horn.
+move_desc_65,A corkscrewing attack with the sharp beak acting as a drill.
+move_desc_66,The user grabs the target and recklessly dives for the ground. It also hurts the user slightly.
+move_desc_67,A powerful low kick that makes the target fall over. It inflicts greater damage on heavier targets.
+move_desc_68,A retaliation move that counters any physical attack, inflicting double the damage taken.
+move_desc_69,The target is thrown using the power of gravity. It inflicts damage equal to the user's level.
+move_desc_70,The target is slugged with a punch thrown at maximum power. This move can also be used to move boulders.
+move_desc_71,Inflicts damage on the target, then restores the user's HP based on the damage inflicted.
+move_desc_72,A nutrient-draining attack. The user's HP is restored by half the damage taken by the target.
+move_desc_73,A seed is planted on the target. It steals some HP from the target every turn.
+move_desc_74,The user's body grows all at once, raising the Attack and Sp. Atk. stats.
+move_desc_75,Sharp-edged leaves are launched to slash at the opposing team. Critical hits land more easily.
+move_desc_76,A two-turn attack. The user gathers light, then blasts a bundled beam on the second turn.
+move_desc_77,The user scatters a cloud of poisonous dust on the target. It may poison the target.
+move_desc_78,The user scatters a cloud of paralyzing powder. It may leave the target with paralysis.
+move_desc_79,The user scatters a big cloud of sleep-inducing dust around the target.
+move_desc_80,The user attacks the target by scattering petals for two to three turns. The user then becomes confused.
+move_desc_81,The targets are bound with silk blown from the user's mouth. This silk reduces the targets' Speed stat.
+move_desc_82,This attack hits the target with a shock wave of pure rage. This attack always inflicts 40 HP damage.
+move_desc_83,The target becomes trapped within a fierce vortex of fire that rages for four to five turns.
+move_desc_84,A jolt of electricity is hurled at the target to inflict damage. It may also leave the target with paralysis.
+move_desc_85,A strong electric blast is loosed at the target. It may also leave the target with paralysis.
+move_desc_86,A weak electric charge is launched at the target. It causes paralysis if it hits.
+move_desc_87,A wicked thunderbolt is dropped on the target to inflict damage. It may also leave the target with paralysis.
+move_desc_88,The user picks up and throws a small rock at the target to attack.
+move_desc_89,The user sets off an earthquake that strikes those around it.
+move_desc_90,The user opens up a fissure in the ground and drops the target in. The target instantly faints if it hits.
+move_desc_91,The user burrows, then attacks on the second turn. It can also be used to exit dungeons.
+move_desc_92,A move that leaves the target badly poisoned. Its poison damage worsens every turn.
+move_desc_93,The target is hit by a weak telekinetic force. It may also leave the target confused.
+move_desc_94,The target is hit by a strong telekinetic force. It may also reduce the target's Sp.Def stat.
+move_desc_95,The user employs hypnotic suggestion to make the target fall into a deep sleep.
+move_desc_96,The user meditates to awaken the power deep within its body and raise its Attack stat.
+move_desc_97,The user relaxes and lightens its body to move faster. It sharply boosts the Speed stat.
+move_desc_98,The user lunges at the target at a speed that makes it almost invisible. It is sure to strike first.
+move_desc_99,As long as this move is in use, the power of rage raises the Attack stat each time the user is hit in battle.
+move_desc_100,Use it to flee from any wild Pokémon. It can also warp to the last Pokémon Center visited.
+move_desc_101,The user makes the target see a frightening mirage. It inflicts damage matching the user's level.
+move_desc_102,The user copies the target's last move. The move can be used during battle until the Pokémon is switched out.
+move_desc_103,An earsplitting screech harshly reduces the target's Defense stat.
+move_desc_104,By moving rapidly, the user makes illusory copies of itself to raise its evasiveness.
+move_desc_105,Restoring its own cells, the user restores its own HP by half of its max HP.
+move_desc_106,The user stiffens all the muscles in its body to raise its Defense stat.
+move_desc_107,The user compresses its body to make itself look smaller, which sharply raises its evasiveness.
+move_desc_108,The user releases an obscuring cloud of smoke or ink. It reduces the target's accuracy.
+move_desc_109,The target is exposed to a sinister ray that triggers confusion.
+move_desc_110,The user withdraws its body into its hard shell, raising its Defense stat.
+move_desc_111,The user curls up to conceal weak spots and raise its Defense stat.
+move_desc_112,The user throws up a sturdy wall that sharply raises its Defense stat.
+move_desc_113,A wondrous wall of light is put up to suppress damage from special attacks for five turns.
+move_desc_114,The user creates a haze that eliminates every stat change among all the Pokémon engaged in battle.
+move_desc_115,A wondrous wall is put up to suppress damage from physical attacks for five turns.
+move_desc_116,The user takes a deep breath and focuses so that critical hits land more easily.
+move_desc_117,The user endures attacks for two turns, then strikes back to cause double the damage taken.
+move_desc_118,The user waggles a finger and stimulates its brain into randomly using nearly any move.
+move_desc_119,The user counters the target by mimicking the target's last move.
+move_desc_120,The user attacks everything around it by causing an explosion. The user faints upon using this move.
+move_desc_121,A large egg is hurled at the target with maximum force to inflict damage.
+move_desc_122,The target is licked with a long tongue, causing damage. It may also leave the target with paralysis.
+move_desc_123,The target is attacked with a discharge of filthy gases. It may also poison the target.
+move_desc_124,Unsanitary sludge is hurled at the target. It may also poison the target.
+move_desc_125,The user clubs the target with a bone. It may also make the target flinch.
+move_desc_126,The target is attacked with an intense blast of all-consuming fire. It may also leave the target with a burn.
+move_desc_127,The user charges at the target and may make it flinch. It can also be used to climb a waterfall.
+move_desc_128,The target is clamped and squeezed by the user's very thick and sturdy shell for four to five turns.
+move_desc_129,Star-shaped rays are shot at the opposing team. This attack never misses.
+move_desc_130,The user tucks in its head to raise its Defense in the first turn, then rams the target on the next turn.
+move_desc_131,Sharp spikes are shot at the target in rapid succession. They hit two to five times in a row.
+move_desc_132,The target is attacked with long, creeping tentacles or vines. It may also lower the target's Speed stat.
+move_desc_133,The user temporarily empties its mind to forget its concerns. It sharply raises the user's Sp. Def. stat.
+move_desc_134,The user distracts the target by bending a spoon. It lowers the target's accuracy.
+move_desc_135,The user restores its own HP by up to half of its maximum HP. May also be used in the field to heal HP.
+move_desc_136,The target is attacked with a knee kick from a jump. If it misses, the user is hurt instead.
+move_desc_137,The user intimidates the target with the pattern on its belly to cause paralysis.
+move_desc_138,The user eats the dreams of a sleeping target. It absorbs half the damage caused to heal the user's HP.
+move_desc_139,A cloud of poison gas is sprayed in the face of opposing Pokémon. It may poison those hit.
+move_desc_140,Round objects are hurled at the target to strike two to five times in a row.
+move_desc_141,The user drains the target's blood. The user's HP is restored by half the damage taken by the target.
+move_desc_142,With a scary face, the user tries to force a kiss on the target. If it succeeds, the target falls asleep.
+move_desc_143,A second-turn attack move where critical hits land more easily. It may also make the target flinch.
+move_desc_144,The user transforms into a copy of the target right down to having the same move set.
+move_desc_145,A spray of countless bubbles is jetted at the opposing team. It may also lower the targets' Speed stats.
+move_desc_146,The target is hit with rhythmically launched punches. This may also leave the target confused.
+move_desc_147,The user scatters bursts of spores that induce sleep.
+move_desc_148,The user flashes a bright light with enormous speed at the target. It cuts the user's accuracy though.
+move_desc_149,The target is attacked with an odd psychic wave. The attack varies in intensity.
+move_desc_150,The user just flops and splashes around to no effect at all...
+move_desc_151,The user alters its cellular structure to liquefy itself, sharply raising its Defense stat.
+move_desc_152,The target is hammered with a large pincer. Critical hits land more easily.
+move_desc_153,The user explodes to inflict damage on those around it. The user faints upon using this move.
+move_desc_154,The target is raked with sharp claws or scythes for two to five times in quick succession.
+move_desc_155,The user throws the bone it holds. The bone loops to hit the target twice, coming and going.
+move_desc_156,The user goes to sleep for two turns. It fully restores the user's HP and heals any status problem.
+move_desc_157,Large boulders are hurled at the opposing team to inflict damage. They may also make the targets flinch.
+move_desc_158,The user bites hard on the target with its sharp front fangs. It may also make the target flinch.
+move_desc_159,The user reduces its polygon count to make itself more jagged, raising the Attack stat.
+move_desc_160,The user changes its type to become the same type as the move at the top of the list of moves it knows.
+move_desc_161,The user strikes with a simultaneous three-beam attack. May also burn, freeze, or leave the target with paralysis.
+move_desc_162,The user chomps hard on the target with its sharp front fangs. It cuts the target's HP to half.
+move_desc_163,The target is attacked with a slash of claws or blades. Critical hits land more easily.
+move_desc_164,The user makes a copy of itself using some of its HP. The copy serves as the user's decoy.
+move_desc_165,An attack that is used in desperation only if the user has no PP. It also hurts the user slightly.
+
+move_desc_167,A consecutive three-kick attack that becomes more powerful with each successive hit.
+
+move_desc_172,The user cloaks itself in fire and charges at the target. It may also leave the target with a burn.
+
+move_desc_177,A vortex of air is shot at the target to inflict damage. Critical hits land more easily.
+move_desc_178,The user releases cotton-like spores that cling to the target, harshly reducing its Speed stat.
+
+move_desc_181,The user attacks with a chilling gust of powdery snow. It may also freeze the targets.
+
+move_desc_183,The user throws a punch at blinding speed. It is certain to strike first.
+move_desc_184,The user frightens the target with a scary face to harshly reduce its Speed stat.
+move_desc_185,The user approaches the target disarmingly, then throws a sucker punch. It hits without fail.
+move_desc_186,The user kisses the target with a sweet, angelic cuteness that causes confusion.
+
+move_desc_188,Unsanitary sludge is hurled at the target. It may also poison the target.
+move_desc_189,The user hurls mud in the target's face to inflict damage and lower its accuracy.
+move_desc_190,The user attacks by spraying ink in the target's face or eyes. It may also lower the target's accuracy.
+
+move_desc_192,The user fires an electric blast like a cannon to inflict damage and cause paralysis.
+
+move_desc_196,The user attacks with a gust of chilled air. It also reduces the targets' Speed stat.
+
+move_desc_198,The user strikes the target with a hard bone two to five times in a row.
+
+move_desc_200,The user rampages and attacks for two to three turns. It then becomes confused, however.
+
+move_desc_202,A nutrient-draining attack. The user's HP is restored by half the damage taken by the target.
+
+move_desc_204,The user gazes at the target rather charmingly, making it less wary. The target's Attack is harshly lowered.
+move_desc_205,The user continually rolls into the target over five turns. It becomes stronger each time it hits.
+move_desc_206,A restrained attack that prevents the target from fainting. The target is left with at least 1 HP.
+
+move_desc_209,The user throws an electrically charged tackle at the target. It may also leave the target with paralysis.
+
+move_desc_211,The target is hit with wings of steel. It may also raise the user's Defense stat.
+
+move_desc_221,The target is razed with a mystical fire of great intensity. It may also leave the target with a burn.
+
+move_desc_223,The user punches the target with full, concentrated power. It confuses the target if it hits.
+move_desc_224,Using its tough and impressive horn, the user rams into the target with no letup.
+move_desc_225,The user exhales a mighty gust that inflicts damage. It may also leave the target with paralysis.
+
+move_desc_230,A sweet scent that lowers the opposing team's evasiveness. It also lures wild Pokémon if used in grass, etc.
+move_desc_231,The target is slammed with a steel-hard tail. It may also lower the target's Defense stat.
+move_desc_232,The target is raked with steel claws. It may also raise the user's Attack stat.
+
+move_desc_234,The user restores its own HP. The amount of HP regained varies with the weather.
+move_desc_235,The user restores its own HP. The amount of HP regained varies with the weather.
+move_desc_236,The user restores its own HP. The amount of HP regained varies with the weather.
+
+move_desc_238,The user delivers a double chop with its forearms crossed. Critical hits land more easily.
+move_desc_239,The user whips up a vicious tornado to tear at the opposing team. It may also make targets flinch.
+
+move_desc_242,The user crunches up the target with sharp fangs. It may also lower the target's Defense stat.
+
+move_desc_245,The user charges the target at blinding speed. This attack always goes before any other move.
+move_desc_246,The user attacks with a prehistoric power. It may also raise all the user's stats at once.
+move_desc_247,The user hurls a shadowy blob at the target. It may also lower the target's Sp. Def. stat.
+
+move_desc_249,The user attacks with a punch that can shatter a rock. It may also lower the target's Defense stat.
+
+move_desc_304,The user lets loose a horribly echoing shout with the power to inflict damage.
+
+move_desc_324,The user attacks with a sinister beam of light. It may also confuse the target.
+
+move_desc_334,The user hardens its body's surface like iron, sharply raising its Defense stat.
+
+move_desc_398,The target is stabbed with a tentacle or arm steeped in poison. It may also poison the target.
+move_desc_399,The user releases a horrible aura imbued with dark thoughts. It may also make the target flinch.
+move_desc_400,The user slashes the target the instant an opportunity arises. Critical hits land more easily.
+
+move_desc_402,The user slams a barrage of hard-shelled seeds on the target from above.
+move_desc_403,The user attacks with a blade of air that slices even the sky. It may also make the target flinch.
+move_desc_404,The user slashes at the target by crossing its scythes or claws as if they were a pair of scissors.
+
+move_desc_406,The target is attacked with a shock wave generated by the user's gaping mouth.
+
+move_desc_416,The user charges at the target using every bit of its power. The user can't move on the next turn.
+
+move_desc_430,The user gathers all its light energy and releases it at once. This may also lower the target's Sp. Def. stat.
+
+move_desc_442,The user slams the target with its steel-hard head. This may also make the target flinch.
+
+move_desc_452,The user slams its rugged body into the target to attack. The user also sustains serious damage.
+
+move_desc_577,The user steals the target's energy with a kiss. The user's HP is restored by over half of the damage taken by the target.
+
+move_desc_583,The user plays rough with the target and attacks it. This may also lower the target's Attack stat.
+move_desc_584,The user stirs up a fairy wind and strikes the target with it.
+move_desc_585,Borrowing the power of the moon, the user attacks the target. This may also lower the target's Sp. Atk. stat.
+
+move_desc_790,The user attacks the target by emitting steam. This may also confuse the target.
+
+move_desc_889,The user converts its rage into energy to attack. The more times the user has been hit by attacks, the greater the move's power.
+-------------------
+Ability Names:
+ability_name_1,Stench
+ability_name_2,Drizzle
+ability_name_3,Speed Boost
+ability_name_4,Battle Armor
+ability_name_5,Sturdy
+ability_name_6,Damp
+ability_name_7,Limber
+ability_name_8,Sand Veil
+ability_name_9,Static
+ability_name_10,Volt Absorb
+ability_name_11,Water Absorb
+ability_name_12,Oblivious
+ability_name_13,Cloud Nine
+ability_name_14,Compoundeyes
+ability_name_15,Insomnia
+ability_name_16,Color Change
+ability_name_17,Immunity
+ability_name_18,Flash Fire
+ability_name_19,Shield Dust
+ability_name_20,Own Tempo
+ability_name_21,Suction Cups
+ability_name_22,Intimidate
+ability_name_23,Shadow Tag
+ability_name_24,Rough Skin
+ability_name_25,Wonder Guard
+ability_name_26,Levitate
+ability_name_27,Effect Spore
+ability_name_28,Synchronize
+ability_name_29,Clear Body
+ability_name_30,Natural Cure
+ability_name_31,Lightningrod
+ability_name_32,Serene Grace
+ability_name_33,Swift Swim
+ability_name_34,Chlorophyll
+ability_name_35,Illuminate
+ability_name_36,Trace
+ability_name_37,Huge Power
+ability_name_38,Poison Point
+ability_name_39,Inner Focus
+ability_name_40,Magma Armor
+ability_name_41,Water Veil
+ability_name_42,Magnet Pull
+ability_name_43,Soundproof
+ability_name_44,Rain Dish
+ability_name_45,Sand Stream
+ability_name_46,Pressure
+ability_name_47,Thick Fat
+ability_name_48,Early Bird
+ability_name_49,Flame Body
+ability_name_50,Run Away
+ability_name_51,Keen Eye
+ability_name_52,Hyper Cutter
+ability_name_53,Pickup
+ability_name_54,Truant
+ability_name_55,Hustle
+ability_name_56,Cute Charm
+ability_name_57,Plus
+ability_name_58,Minus
+ability_name_59,Forecast
+ability_name_60,Sticky Hold
+ability_name_61,Shed Skin
+ability_name_62,Guts
+ability_name_63,Marvel Scale
+ability_name_64,Liquid Ooze
+ability_name_65,Overgrow
+ability_name_66,Blaze
+ability_name_67,Torrent
+ability_name_68,Swarm
+ability_name_69,Rock Head
+ability_name_70,Drought
+ability_name_71,Arena Trap
+ability_name_72,Vital Spirit
+ability_name_73,White Smoke
+ability_name_74,Pure Power
+ability_name_75,Shell Armor
+ability_name_76,Air Lock
+ability_name_77,Tangled Feet
+ability_name_78,Motor Drive
+ability_name_79,Rivalry
+ability_name_80,Steadfast
+ability_name_81,Snow Cloak
+ability_name_82,Gluttony
+ability_name_83,Anger Point
+ability_name_84,Unburden
+ability_name_85,Heatproof
+ability_name_86,Simple
+ability_name_87,Dry Skin
+ability_name_88,Download
+ability_name_89,Iron Fist
+ability_name_90,Poison Heal
+ability_name_91,Adaptability
+ability_name_92,Skill Link
+ability_name_93,Hydration
+ability_name_94,Solar Power
+ability_name_95,Quick Feet
+ability_name_96,Normalize
+ability_name_97,Sniper
+ability_name_98,Magic Guard
+ability_name_99,No Guard
+ability_name_100,Stall
+ability_name_101,Technician
+ability_name_102,Leaf Guard
+ability_name_103,Klutz
+ability_name_104,Mold Breaker
+ability_name_105,Super Luck
+ability_name_106,Aftermath
+ability_name_107,Anticipation
+ability_name_108,Forewarn
+ability_name_109,Unaware
+ability_name_110,Tinted Lens
+ability_name_111,Filter
+ability_name_112,Slow Start
+ability_name_113,Scrappy
+ability_name_114,Storm Drain
+ability_name_115,Ice Body
+ability_name_116,Solid Rock
+ability_name_117,Snow Warning
+ability_name_118,Honey Gather
+ability_name_119,Frisk
+ability_name_120,Reckless
+ability_name_121,Multitype
+ability_name_122,Flower Gift
+ability_name_123,Bad Dreams
+ability_name_124,Pickpocket
+ability_name_125,Sheer Force
+ability_name_126,Contrary
+ability_name_127,Unnerve
+ability_name_128,Defiant
+ability_name_129,Defeatist
+ability_name_130,Cursed Body
+ability_name_131,Healer
+ability_name_132,Friend Guard
+ability_name_133,Weak Armor
+ability_name_134,Heavy Metal
+ability_name_135,Light Metal
+ability_name_136,Multiscale
+ability_name_137,Toxic Boost
+ability_name_138,Flare Boost
+ability_name_139,Harvest
+ability_name_140,Telepathy
+ability_name_141,Moody
+ability_name_142,Overcoat
+ability_name_143,Poison Touch
+ability_name_144,Regenerator
+ability_name_145,Big Pecks
+ability_name_146,Sand Rush
+ability_name_147,Wonder Skin
+ability_name_148,Analytic
+ability_name_149,Illusion
+ability_name_150,Imposter
+ability_name_151,Infiltrator
+ability_name_152,Mummy
+ability_name_153,Moxie
+ability_name_154,Justified
+ability_name_155,Rattled
+ability_name_156,Magic Bounce
+ability_name_157,Sap Sipper
+ability_name_158,Prankster
+ability_name_159,Sand Force
+ability_name_160,Iron Barbs
+ability_name_161,Zen Mode
+ability_name_162,Victory Star
+ability_name_163,Turboblaze
+ability_name_164,Teravolt
+ability_name_165,Aroma Veil
+ability_name_166,Flower Veil
+ability_name_167,Cheek Pouch
+ability_name_168,Protean
+ability_name_169,Fur Coat
+ability_name_170,Magician
+ability_name_171,Bulletproof
+ability_name_172,Competitive
+ability_name_173,Strong Jaw
+ability_name_174,Refrigerate
+ability_name_175,Sweet Veil
+ability_name_176,Stance Change
+ability_name_177,Gale Wings
+ability_name_178,Mega Launcher
+ability_name_179,Grass Pelt
+ability_name_180,Symbiosis
+ability_name_181,Tough Claws
+ability_name_182,Pixilate
+ability_name_183,Gooey
+ability_name_184,Aerilate
+ability_name_185,Parental Bond
+ability_name_186,Dark Aura
+ability_name_187,Fairy Aura
+ability_name_188,Aura Break
+
+ability_name_202,Slush Rush
+
+ability_name_206,Galvanize
+ability_name_207,Surge Surfer
+
+ability_name_221,Tangling Hair
+
+ability_name_223,Power of Alchemy
+
+ability_name_226,Electric Surge
+ability_name_227,Psychic Surge
+ability_name_228,Misty Surge
+ability_name_229,Grassy Surge
+
+ability_name_243,Steam Engine
+
+ability_name_291,Cud Chew
+-------------------
+Ability Descriptions:
+ability_desc_1,The stench may cause the target to flinch.
+ability_desc_2,The Pokémon makes it rain if it appears in battle.
+ability_desc_3,Its Speed stat is gradually boosted.
+ability_desc_4,The Pokémon is protected against critical hits.
+ability_desc_5,It cannot be knocked out with one hit.
+ability_desc_6,Prevents the use of self-destructing moves.
+ability_desc_7,The Pokémon is protected from paralysis.
+ability_desc_8,Boosts the Pokémon's evasion in a sandstorm.
+ability_desc_9,Contact with the Pokémon may cause paralysis.
+ability_desc_10,Restores HP if hit by an Electric-type move.
+ability_desc_11,Restores HP if hit by a Water-type move.
+ability_desc_12,Prevents it from becoming infatuated.
+ability_desc_13,Eliminates the effects of weather.
+ability_desc_14,The Pokémon's accuracy is boosted.
+ability_desc_15,Prevents the Pokémon from falling asleep.
+ability_desc_16,Changes the Pokémon's type to the foe's move.
+ability_desc_17,Prevents the Pokémon from getting poisoned.
+ability_desc_18,It powers up Fire-type moves if it's hit by one.
+ability_desc_19,Blocks the added effects of attacks taken.
+ability_desc_20,Prevents the Pokémon from becoming confused.
+ability_desc_21,Negates all moves that force switching out.
+ability_desc_22,Lowers the foe's Attack stat.
+ability_desc_23,Prevents the foe from escaping.
+ability_desc_24,Inflicts damage to the attacker on contact.
+ability_desc_25,Only supereffective moves will hit.
+ability_desc_26,Gives full immunity to all Ground-type moves.
+ability_desc_27,Contact may poison or cause paralysis or sleep.
+ability_desc_28,Passes a burn or paralysis to the foe.
+ability_desc_29,Prevents other Pokémon from lowering its stats.
+ability_desc_30,All status problems heal when it switches out.
+ability_desc_31,Draws in all Electric-type moves to up Sp. Attack.
+ability_desc_32,Boosts the likelihood of added effects appearing.
+ability_desc_33,Boosts the Pokémon's Speed in rain.
+ability_desc_34,Boosts the Pokémon's Speed in sunshine.
+ability_desc_35,Raises the likelihood of meeting wild Pokémon.
+ability_desc_36,The Pokémon copies a foe's Ability.
+ability_desc_37,Raises the Pokémon's Attack stat.
+ability_desc_38,Contact with the Pokémon may poison the attacker.
+ability_desc_39,The Pokémon is protected from flinching.
+ability_desc_40,Prevents the Pokémon from becoming frozen.
+ability_desc_41,Prevents the Pokémon from getting a burn.
+ability_desc_42,Prevents Steel-type Pokémon from escaping.
+ability_desc_43,Gives full immunity to all sound-based moves.
+ability_desc_44,The Pokémon gradually regains HP in rain.
+ability_desc_45,The Pokémon summons a sandstorm in battle.
+ability_desc_46,The Pokémon raises the foe's PP usage.
+ability_desc_47,Ups resistance to Fire- and Ice-type moves.
+ability_desc_48,The Pokémon awakens quickly from sleep.
+ability_desc_49,Contact with the Pokémon may burn the attacker.
+ability_desc_50,Enables a sure getaway from wild Pokémon.
+ability_desc_51,Prevents other Pokémon from lowering accuracy.
+ability_desc_52,Prevents other Pokémon from lowering Attack stat.
+ability_desc_53,The Pokémon may pick up items.
+ability_desc_54,Pokémon can't attack on consecutive turns.
+ability_desc_55,Boosts the Attack stat but lowers accuracy.
+ability_desc_56,Contact with the Pokémon may cause infatuation.
+ability_desc_57,Ups Sp. Atk. if another Pokémon has Plus or Minus.
+ability_desc_58,Ups Sp. Atk. if another Pokémon has Plus or Minus.
+ability_desc_59,Castform transforms with the weather.
+ability_desc_60,Protects the Pokémon from item theft.
+ability_desc_61,The Pokémon may heal its own status problems.
+ability_desc_62,Boosts Attack if there is a status problem.
+ability_desc_63,Ups Defense if there is a status problem.
+ability_desc_64,Damages attackers using any draining move.
+ability_desc_65,Powers up Grass-type moves in a pinch.
+ability_desc_66,Powers up Fire-type moves in a pinch.
+ability_desc_67,Powers up Water-type moves in a pinch.
+ability_desc_68,Powers up Bug-type moves in a pinch.
+ability_desc_69,Protects the Pokémon from recoil damage.
+ability_desc_70,Turns the sunlight harsh if it is in battle.
+ability_desc_71,Prevents the foe from fleeing.
+ability_desc_72,Prevents the Pokémon from falling asleep.
+ability_desc_73,Prevents other Pokémon from lowering its stats.
+ability_desc_74,Raises the Pokémon's Attack stat.
+ability_desc_75,The Pokémon is protected against critical hits.
+ability_desc_76,Eliminates the effects of weather.
+ability_desc_77,Raises evasion if the Pokémon is confused.
+ability_desc_78,Raises Speed if hit by an Electric-type move.
+ability_desc_79,Deals more damage to a Pokémon of same gender.
+ability_desc_80,Raises Speed each time the Pokémon flinches.
+ability_desc_81,Raises evasion in a hailstorm.
+ability_desc_82,Encourages the early use of a held Berry.
+ability_desc_83,Maxes Attack after taking a critical hit.
+ability_desc_84,Raises Speed if a held item is used.
+ability_desc_85,Weakens the power of Fire-type moves.
+ability_desc_86,The Pokémon is prone to wild stat changes.
+ability_desc_87,Reduces HP if it is hot. Water restores HP.
+ability_desc_88,Adjusts power according to a foe's defenses.
+ability_desc_89,Boosts the power of punching moves.
+ability_desc_90,Restores HP if the Pokémon is poisoned.
+ability_desc_91,Powers up moves of the same type.
+ability_desc_92,Increases the frequency of multi-strike moves.
+ability_desc_93,Heals status problems if it is raining.
+ability_desc_94,In sunshine boosted but HP decreases.
+ability_desc_95,Boosts Speed if there is a status problem.
+ability_desc_96,All the Pokémon's moves become the Normal type.
+ability_desc_97,Powers up moves if they become critical hits.
+ability_desc_98,The Pokémon only takes damage from attacks.
+ability_desc_99,Ensures attacks by or against the Pokémon land.
+ability_desc_100,The Pokémon moves after all other Pokémon do.
+ability_desc_101,Powers up the Pokémon's weaker moves.
+ability_desc_102,Prevents problems with status in sunny weather.
+ability_desc_103,The Pokémon can't use any held items.
+ability_desc_104,Moves can be used regardless of Abilities.
+ability_desc_105,Heightens the critical- hit ratios of moves.
+ability_desc_106,Damages the attacker landing the finishing hit.
+ability_desc_107,Senses a foe's dangerous moves.
+ability_desc_108,Determines what moves a foe has.
+ability_desc_109,Ignores any stat changes in the Pokémon.
+ability_desc_110,Powers up not very effective moves.
+ability_desc_111,Reduces damage from supereffective attacks.
+ability_desc_112,Temporarily halves Attack and Speed.
+ability_desc_113,Enables moves to hit Ghost-type Pokémon.
+ability_desc_114,Draws in all Water-type moves to up Sp. Attack.
+ability_desc_115,The Pokémon gradually regains HP in a hailstorm.
+ability_desc_116,Reduces damage from supereffective attacks.
+ability_desc_117,The Pokémon summons a hailstorm in battle.
+ability_desc_118,The Pokémon may gather Honey from somewhere.
+ability_desc_119,The Pokémon can check a foe's held item.
+ability_desc_120,Powers up moves that have recoil damage.
+ability_desc_121,Changes type to match the held Plate.
+ability_desc_122,Powers up party Pokémon when it is sunny.
+ability_desc_123,Reduces a sleeping foe's HP.
+ability_desc_124,Steals an item when hit by another Pokémon.
+ability_desc_125,Removes added effects to increase move damage.
+ability_desc_126,Makes stat changes have an opposite effect.
+ability_desc_127,Makes the foe nervous and unable to eat Berries.
+ability_desc_128,When its stats are lowered its Attack increases.
+ability_desc_129,Lowers stats when HP becomes half or less.
+ability_desc_130,May disable a move used on the Pokémon.
+ability_desc_131,May heal an ally's status conditions.
+ability_desc_132,Reduces damage done to allies.
+ability_desc_133,Physical attacks lower Defense and raise Speed.
+ability_desc_134,Doubles the Pokémon's weight.
+ability_desc_135,Halves the Pokémon's weight.
+ability_desc_136,Reduces damage when HP is full.
+ability_desc_137,Powers up physical attacks when poisoned.
+ability_desc_138,Powers up special attacks when burned.
+ability_desc_139,May create another Berry after one is used.
+ability_desc_140,Anticipates an ally's attack and dodges it.
+ability_desc_141,Raises one stat and lowers another.
+ability_desc_142,Protects the Pokémon from damage from weather.
+ability_desc_143,May poison targets when a Pokémon makes contact.
+ability_desc_144,Restores a little HP when withdrawn from battle.
+ability_desc_145,Protects the Pokémon from Defense-lowering attacks.
+ability_desc_146,Boosts the Pokémon's Speed in a sandstorm.
+ability_desc_147,Makes status-changing moves more likely to miss.
+ability_desc_148,Boosts move power when the Pokémon moves last.
+ability_desc_149,Comes out disguised as the Pokémon in back.
+ability_desc_150,It transforms itself into the Pokémon it is facing.
+ability_desc_151,Passes through the foe's barrier and strikes.
+ability_desc_152,Contact with this Pokémon spreads this Ability.
+ability_desc_153,Boosts Attack after knocking out any Pokémon.
+ability_desc_154,Raises Attack when hit by a Dark-type move.
+ability_desc_155,Some move types scare it and boost its Speed.
+ability_desc_156,Reflects status- changing moves.
+ability_desc_157,Boosts Attack when hit by a Grass-type move.
+ability_desc_158,Gives priority to a status move.
+ability_desc_159,Boosts certain moves' power in a sandstorm.
+ability_desc_160,Inflicts damage to the Pokémon on contact.
+ability_desc_161,Changes the Pokémon's shape when HP is halved.
+ability_desc_162,Boosts the accuracy of its allies and itself.
+ability_desc_163,Moves can be used regardless of Abilities.
+ability_desc_164,Moves can be used regardless of Abilities.
+ability_desc_165,Protects allies from attacks that limit their move choices.
+ability_desc_166,Prevents lowering of ally Grass-type Pokémon's stats.
+ability_desc_167,Restores HP as well when the Pokémon eats a Berry.
+ability_desc_168,Changes the Pokémon's type to the same type of the move it is using.
+ability_desc_169,Halves damage from physical moves.
+ability_desc_170,The Pokémon steals the held item of a Pokémon it hits with a move.
+ability_desc_171,Protects the Pokémon from some ball and bomb moves.
+ability_desc_172,Boosts the Sp. Atk. stat when a stat is lowered.
+ability_desc_173,The Pokémon's strong jaw gives it tremendous biting power.
+ability_desc_174,Normal-type moves become Ice-type moves.
+ability_desc_175,Prevents itself and its allies from falling asleep.
+ability_desc_176,The Pokémon changes form depending on how it battles.
+ability_desc_177,Gives priority to Flying-type moves.
+ability_desc_178,Powers up aura and pulse moves.
+ability_desc_179,Boosts the Defense stat in Grassy Terrain.
+ability_desc_180,The Pokémon can pass an item to an ally.
+ability_desc_181,Powers up moves that make direct contact.
+ability_desc_182,Normal-type moves become Fairy-type moves.
+ability_desc_183,Contact with the Pokémon lowers the attacker's Speed stat.
+ability_desc_184,Normal-type moves become Flying-type moves.
+ability_desc_185,Parent and child attack together.
+ability_desc_186,Powers up each Pokémon's Dark-type moves.
+ability_desc_187,Powers up each Pokémon's Fairy-type moves.
+ability_desc_188,The effects of Aura Abilities are reversed.
+
+ability_desc_202,Boosts the Pokémon's Speed stat in a hailstorm.
+
+ability_desc_206,Normal-type moves become Electric-type moves. The power of those moves is boosted a little.
+ability_desc_207,Doubles the Pokémon's Speed stat on Electric Terrain.
+
+ability_desc_221,Contact with the Pokémon lowers the attacker's Speed stat.
+
+ability_desc_223,The Pokémon copies the Ability of a defeated ally.
+
+ability_desc_226,Turns the ground into Electric Terrain when the Pokémon enters a battle.
+ability_desc_227,Turns the ground into Psychic Terrain when the Pokémon enters a battle.
+ability_desc_228,Turns the ground into Misty Terrain when the Pokémon enters a battle.
+ability_desc_229,Turns the ground into Grassy Terrain when the Pokémon enters a battle.
+
+ability_desc_243,Boosts the Pokémon's Speed stat drastically if hit by a Fire- or Water-type move.
+
+-------------------
+Nature Names:
+
+nature_name_Hardy,Hardy
+nature_name_Lonely,Lonely
+nature_name_Brave,Brave
+nature_name_Adamant,Adamant
+nature_name_Naughty,Naughty
+nature_name_Bold,Bold
+nature_name_Docile,Docile
+nature_name_Relaxed,Relaxed
+nature_name_Impish,Impish
+nature_name_Lax,Lax
+nature_name_Timid,Timid
+nature_name_Hasty,Hasty
+nature_name_Serious,Serious
+nature_name_Jolly,Jolly
+nature_name_Naive,Naive
+nature_name_Modest,Modest
+nature_name_Mild,Mild
+nature_name_Quiet,Quiet
+nature_name_Bashful,Bashful
+nature_name_Rash,Rash
+nature_name_Calm,Calm
+nature_name_Gentle,Gentle
+nature_name_Sassy,Sassy
+nature_name_Careful,Careful
+nature_name_Quirky,Quirky
+-----
+Follower Pokémon Interactions:
+[Generic]
+FollowerInteraction_HeldItem_Question,It looks like your Pokémon~holds on to something.*Do you want to~take it?
+FollowerInteraction_HeldItem_Answer_Yes,Your Pokémon handed over~the <item>!
+FollowerInteraction_HeldItem_Answer_No,Your Pokémon kept~the item happily.
+
+FollowerInteraction_StatusEffect_Poison,<name> is shivering~with the effects of being~poisoned.
+FollowerInteraction_StatusEffect_Burn,<name>'s burn~looks painful!
+FollowerInteraction_StatusEffect_Freeze1,<name> seems very cold!
+FollowerInteraction_StatusEffect_Freeze2,.....Your Pokémon seems~a little cold.
+FollowerInteraction_StatusEffect_Paralyzed,<name> is trying~very hard to keep~up with you...
+FollowerInteraction_StatusEffect_Sleep1,<name> seems~a little tired.
+FollowerInteraction_StatusEffect_Sleep2,<name> is somehow~fighting off sleep...
+FollowerInteraction_StatusEffect_Sleep3,<name> yawned~very loudly!
+FollowerInteraction_StatusEffect_Other,<name> is trying~very hard to keep~up with you...
+
+FollowerInteraction_LowHP1,<name> is going~to fall down!
+FollowerInteraction_LowHP2,<name> seems to~be about to fall over!
+
+FollowerInteraction_Hate1,<name> is doing~it's best to keep up~with you.
+FollowerInteraction_Hate2,<name> is somehow~forcing itself to keep going.
+FollowerInteraction_Hate3,<name> is staring~patiantly at nothing at all.
+FollowerInteraction_Hate4,<name> is staring~intently into the distance.
+FollowerInteraction_Hate5,<name> is dizzy...
+FollowerInteraction_Hate6,<name> is stepping~on your feet!
+FollowerInteraction_Hate7,<name> seems~unhappy somehow...
+FollowerInteraction_Hate8,<name> is making~an unhappy face.
+FollowerInteraction_Hate9,<name> seems~uneasy and is poking~<Player.Name>.
+FollowerInteraction_Hate10,<name> is making~a face like its angry!
+FollowerInteraction_Hate11,<name> seems to be~angry for some reason.
+FollowerInteraction_Hate12,Your Pokémon turned to face~the other way, showing a~defiant expression.
+FollowerInteraction_Hate13,<name> is looking~down steadily...
+FollowerInteraction_Hate14,Your Pokémon is staring~intently at nothing...
+FollowerInteraction_Hate15,Your Pokémon turned to~face the other way,~showing a defiant expression.
+FollowerInteraction_Hate16,<name> seems~a bit nervous...
+FollowerInteraction_Hate17,Your Pokémon stumbled~and nearly fell!
+FollowerInteraction_Hate18,<name> is having~a hard time keeping up.
+
+FollowerInteraction_Neutral1,<name> is happy~but shy.
+FollowerInteraction_Neutral2,<name> puts in~extra effort.
+FollowerInteraction_Neutral3,<name> is smelling~the scents of the~surrounding air.
+FollowerInteraction_Neutral4,Your Pokémon has caught~the scent of smoke.
+FollowerInteraction_Neutral5,<name> greeted everyone!
+FollowerInteraction_Neutral6,<name> is wandering~around and listening~to the different sounds.
+FollowerInteraction_Neutral7,<name> looks very~interested!
+FollowerInteraction_Neutral8,<name> is steadily~poking at the ground.
+FollowerInteraction_Neutral9,Your Pokémon is looking~around restlessly.
+FollowerInteraction_Neutral10,<name> seems dazzled~after seeing the sky.
+FollowerInteraction_Neutral11,<name> is gazing~around restlessly!
+FollowerInteraction_Neutral12,<name> let out~a battle cry!
+FollowerInteraction_Neutral13,<name> is vigorously~breathing fire!
+FollowerInteraction_Neutral14,<name> is on~the lookout!
+FollowerInteraction_Neutral15,<name> roared!
+FollowerInteraction_Neutral16,<name> let out a roar!
+FollowerInteraction_Neutral17,<name> is surveying~the area...
+FollowerInteraction_Neutral18,<name> is sniffing~at the floor.
+FollowerInteraction_Neutral19,<name> is peering~down.
+FollowerInteraction_Neutral20,<name> seems~to be wandering around.
+FollowerInteraction_Neutral21,<name> is looking~around absentmindedly.
+FollowerInteraction_Neutral22,<name> is relaxing~comfortably.
+FollowerInteraction_Neutral23,<name> is sniffing~at the floor.
+FollowerInteraction_Neutral24,<name> seems to~relax as it hears the~sound of rustling leaves...
+FollowerInteraction_Neutral25,<name> seems to~be listening to the~sound of rustling leaves...
+FollowerInteraction_Neutral26,Your Pokémon is playing around~and splashing in the water!
+FollowerInteraction_Neutral27,<name> is looking~up at the sky.
+FollowerInteraction_Neutral28,Your Pokémon is happily~gazing at the beautiful,~starry sky!
+FollowerInteraction_Neutral29,<name> seems to be~enjoying this a little bit!
+FollowerInteraction_Neutral30,<name> is looking~up at the ceiling.
+FollowerInteraction_Neutral31,Your Pokémon is staring~spellbound at the night sky!
+FollowerInteraction_Neutral32,<name> is in~danger of falling over!
+FollowerInteraction_Neutral33,<name> doesn't~seem to be used to its~own name yet.
+FollowerInteraction_Neutral34,<name> slipped~on the floor and seems~likely to fall!
+FollowerInteraction_Neutral35,<name> feels something~and is howling!
+FollowerInteraction_Neutral36,<name> seems~refreshed!
+FollowerInteraction_Neutral37,<name> feels~refreshed.
+FollowerInteraction_Neutral38,<name> seems to~have found something!
+FollowerInteraction_Neutral39,<name> suddenly~turned around and~started barking!
+FollowerInteraction_Neutral40,<name> suddenly~turned around!
+FollowerInteraction_Neutral41,<name> looked up~at the sky and shouted loudly!
+FollowerInteraction_Neutral42,Your Pokémon was surprised~that you suddenly spoke to it!
+FollowerInteraction_Neutral43,<name> almost forgot~it was holding~that " & p.Item.OneLineName() & "!
+FollowerInteraction_Neutral44,Oh!~It's slipping and came~over here for support.
+FollowerInteraction_Neutral45,Your Pokémon almost slipped~and fell over!
+FollowerInteraction_Neutral46,<name> sensed something~strange and was surprised!
+FollowerInteraction_Neutral47,Your Pokémon is looking~around restlessly for~something.
+FollowerInteraction_Neutral48,Your Pokémon wasn't watching~where it was going and~ran into you!
+FollowerInteraction_Neutral49,Sniff, sniff!~Is there something nearby?
+FollowerInteraction_Neutral50,<name> is wandering~around and searching~for something.
+FollowerInteraction_Neutral51,<name> is sniffing~at <player.name>.
+FollowerInteraction_Neutral52,<name> is taking~shelter in the grass from~the rain!
+FollowerInteraction_Neutral53,<name> is splashing~around in the wet grass!
+
+FollowerInteraction_Like1,Your Pokémon seems happy~about the great weather!
+FollowerInteraction_Like2,<name> is coming along~happily.
+FollowerInteraction_Like3,<name> is composed!
+FollowerInteraction_Like4,<name> is glowing~with health!
+FollowerInteraction_Like5,<name> looks~very happy!
+FollowerInteraction_Like6,<name> is full~of life!
+FollowerInteraction_Like7,<name> is very~eager!
+FollowerInteraction_Like8,<name> gives you~a happy look and a smile!
+FollowerInteraction_Like9,<name> seems very~happy to see you!
+FollowerInteraction_Like10,<name> faced this~way and grinned!
+FollowerInteraction_Like11,<name> spun around~in a circle!
+FollowerInteraction_Like12,<name> is looking~this way and smiling.
+FollowerInteraction_Like13,<name> is very~eager...
+FollowerInteraction_Like14,<name> is focusing~its attention on you!
+FollowerInteraction_Like15,<name> focused~with a sharp gaze!
+FollowerInteraction_Like16,<name> is looking~at <player.name>'s footprints.
+FollowerInteraction_Like17,<name> is staring~straight into <player.name>'s~eyes.
+FollowerInteraction_Like18,<name> is showing off~its agility!
+FollowerInteraction_Like19,<name> is moving~around happily!
+FollowerInteraction_Like20,<name> is steadily~keeping up with you!
+FollowerInteraction_Like21,<name> seems to~want to play with~<player.name>!
+FollowerInteraction_Like22,<name> is singing~and humming.
+FollowerInteraction_Like23,<name> is playfully~nibbling at the ground.
+FollowerInteraction_Like24,<name> is nipping~at your feet!
+FollowerInteraction_Like25,<name> is working~hard to show off~its mighty power!
+FollowerInteraction_Like26,<name> is cheerful!
+FollowerInteraction_Like27,<name> bumped~into <player.name>!
+FollowerInteraction_Like28,<name> is scared~and snuggled up~to <player.name>!
+
+FollowerInteraction_Loyal1,<name> began poking~you in the stomach!
+FollowerInteraction_Loyal2,<name> seems to be~feeling great about~walking with you!
+FollowerInteraction_Loyal3,<name> is still~feeling great!
+FollowerInteraction_Loyal4,<name> is poking~at your belly.
+FollowerInteraction_Loyal5,<name> looks like~it wants to lead!
+FollowerInteraction_Loyal6,<name> seems to be~very happy!
+FollowerInteraction_Loyal7,<name> nodded slowly.
+FollowerInteraction_Loyal8,<name> gave you~a sunny look!
+FollowerInteraction_Loyal9,<name> is very~composed and sure of itself!
+FollowerInteraction_Loyal10,<name> is~standing guard!
+FollowerInteraction_Loyal11,<name> danced a~wonderful dance!
+FollowerInteraction_Loyal12,<name> is staring~steadfastly at~<player.name>'s face.
+FollowerInteraction_Loyal13,<name> is staring~intently at~<player.name>'s face.
+FollowerInteraction_Loyal14,<name> is concentrating.
+FollowerInteraction_Loyal15,<name> faced this~way and nodded.
+FollowerInteraction_Loyal16,<name> suddenly~started walking closer!
+FollowerInteraction_Loyal17,Woah!*<name> is suddenly~playful!
+FollowerInteraction_Loyal18,<name> blushes.
+FollowerInteraction_Loyal19,Woah!*<name> suddenly started~dancing in happiness!
+FollowerInteraction_Loyal20,<name> is happily~skipping about.
+FollowerInteraction_Loyal21,Woah!*<name> suddenly~danced in happiness!
+
+FollowerInteraction_Love1,<name> is jumping~for joy!
+FollowerInteraction_Love2,Your Pokémon stretched out~its body and is relaxing.
+FollowerInteraction_Love3,<name> is happily~cuddling up to you!
+FollowerInteraction_Love4,<name> is so happy~that it can't stand still!
+FollowerInteraction_Love5,<name> happily~cuddled up to you!
+FollowerInteraction_Love6,<name>'s cheeks are~becoming rosy!
+FollowerInteraction_Love7,Woah!*<name> suddenly~hugged you!
+FollowerInteraction_Love8,<name> is rubbing~against your legs!
+FollowerInteraction_Love9,Ah!~<name> cuddles you!
+FollowerInteraction_Love10,<name> is regarding~you with adoration!
+FollowerInteraction_Love11,<name> got~closer to <player.name>!
+FollowerInteraction_Love12,<name> is keeping~close to your feet.
+FollowerInteraction_Love13,<name> is jumping~around in a carefree way!
+
+[GameMode Related]
+FollowerInteraction_NewBarkTown_YourHouse_PlayerRoom1,<name> is sniffing~around the room.
+FollowerInteraction_NewBarkTown_YourHouse_PlayerRoom2,<name> sings happily.
+FollowerInteraction_NewBarkTown_YourHouse_LivingRoom,<name> greeted your~mom.
+FollowerInteraction_NewBarkTown_Outside1,Your Pokémon has a~flower petal on its face!
+FollowerInteraction_NewBarkTown_Outside2,Your Pokémon stares~at the sky and feels~the breeze!
+FollowerInteraction_NewBarkTown_Relaxed,Your Pokémon stretched~out and relaxed!
+FollowerInteraction_NewBarkTown_ElmLab,<name> is fidgeting~in front of everyone.
+
+FollowerInteraction_Routes29-32_ChikoritaAndEvos1,<name> is waving~its leaf around.
+FollowerInteraction_Routes29-32_ChikoritaAndEvos2,<name> is making~its leaf twitch.
+FollowerInteraction_Routes29-32_CyndaquilAndEvos1,<name> blew out~a couple of fireballs.
+FollowerInteraction_Routes29-32_CyndaquilAndEvos2,<name> blew out~a fireball.
+FollowerInteraction_Routes29-32_TotodileAndEvos1,<name> is moving~its jaw.
+FollowerInteraction_Routes29-32_TotodileAndEvos2,<name> is opening~and closing its mouth.
+
+FollowerInteraction_CherrygroveCity1,<name> is smelling~the scents of the~surrounding air.
+FollowerInteraction_CherrygroveCity2,Your Pokémon is~smelling the scent of~the flowers.
+
+FollowerInteraction_CitiesWithOcean1,<name> is staring~at the sea.
+FollowerInteraction_CitiesWithOcean2,<name> is listening~to the sound of~the waves.
+
+FollowerInteraction_DarkCaveIcePokemon,<name> is cheerful~that it's become~a bit cold!
+
+FollowerInteraction_VioletCity_School,<name> stares intently~at the blackboard, but~doesn't seem to get it.
+FollowerInteraction_VioletCity_StrawberryPidgeyHouse,<name> greeted~Strawberry, the Pidgey.
+FollowerInteraction_VioletCity_SproutTower_Bellsprout,<name> swayed and~danced around as~it pleased.
+FollowerInteraction_VioletCity_SproutTower_BellsproutAndEvos,<name> swayed around,~dancing in a strange manner.
+FollowerInteraction_VioletCity_SproutTower_OtherPokemon,<name> swayed around,~dancing in a strange manner.
+
+FollowerInteraction_Gyms_HasTypeAdvantage1,<name> is very eager~to battle!
+FollowerInteraction_Gyms_HasTypeAdvantage2,<name> is composed~and very sure of itself.
+
+FollowerInteraction_RuinsOfAlph_Unown1,A strange sound is coming~from <name>!
+FollowerInteraction_RuinsOfAlph_Unown2,<name> started spinning~around in circles.
+FollowerInteraction_RuinsOfAlph_Unown3,<name> is growling~in a way that sounds~almost like speech...
+FollowerInteraction_RuinsOfAlph_Unown4,Your Pokémon isn’t moving.
+FollowerInteraction_RuinsOfAlph_Unown5,Your Pokémon seems to be~singing something?
+FollowerInteraction_RuinsOfAlph_OtherPokemon1,<name> is wandering~around and listening to~the different sounds.
+FollowerInteraction_RuinsOfAlph_OtherPokemon2,<name> looks very~interested.
+FollowerInteraction_RuinsOfAlph_OtherPokemon3,Your Pokémon is staring~intently at nothing.
+
+FollowerInteraction_Routes33_ChikoritaAndEvos,<name> is dancing~and splashing around!
+FollowerInteraction_Routes33_CyndaquilAndEvos,<name> seems to be~very surprised that~it’s raining!
+FollowerInteraction_Routes33_TotodileAndEvos,<name> is looking~up with its mouth~wide open.
+FollowerInteraction_Routes33_OtherPokemon_Grass,<name> is very~happy about the rain!
+FollowerInteraction_Routes33_OtherPokemon_Water,<name> seems to~be happy about the rain!
+FollowerInteraction_Routes33_OtherPokemon_FireRockGround,<name> is making~an unhappy face....
+
+FollowerInteraction_AzaleaTown_Outside_FirePokemon,Your <name> is~hot and cheerful!
+FollowerInteraction_AzaleaTown_Outside_WaterPokemon,Your <name> is~hot and cheerful!
+FollowerInteraction_AzaleaTown_Outside1,Your Pokémon has caught~the scent of smoke.
+FollowerInteraction_AzaleaTown_Outside2,<name> greeted the~Slowpoke.
+FollowerInteraction_AzaleaTown_KurtHouse,Your Pokémon is staring~at the various items.
+FollowerInteraction_AzaleaTown_CharcoalHouse,<name> greeted the~Farfetch'd.
+FollowerInteraction_AzaleaTown_Gym_SpinarakAriados,<name> began to~scuttle around!
+
+FollowerInteraction_SlowpokeWell_SlowpokeAndEvos,<name> seems~very happy!
+FollowerInteraction_SlowpokeWell_FirePokemon1,<name> doesn't like~splashing around on~the ground...
+FollowerInteraction_SlowpokeWell_FirePokemon2,<name> seems very~unhappy to be wet...
+FollowerInteraction_SlowpokeWell_WaterPokemon1,<name> seems very~happy and is jumping around!
+FollowerInteraction_SlowpokeWell_WaterPokemon2,<name> is cautious~about the confined~area!
+FollowerInteraction_SlowpokeWell_OtherPokemon,<name> greeted the~Slowpoke.
+
+FollowerInteraction_Forests1,<name> is looking~around restlessly at~the forest.
+FollowerInteraction_Forests2,<name> is wandering~around enjoying the~forest scenery.
+
+FollowerInteraction_IlexForest_OtherPokemon,<name> felt curious~about the shrine.
+FollowerInteraction_IlexForest_Farfecthd1,<name> is dancing~around happily!
+FollowerInteraction_IlexForest_Farfecthd2,<name> is happily~waving its stick around~and singing!
+FollowerInteraction_IlexForest_Pichu,<name> is looking~around for something.
+FollowerInteraction_IlexForest_Celebi1,<name> danced happily!
+FollowerInteraction_IlexForest_Celebi2,<name> danced~beautifully!
+FollowerInteraction_IlexForest_Heracross,<name> is clinging~to the tree!
+FollowerInteraction_IlexForest_ShroomishBreloom,<name> sent a~ring-shaped cloud of~spores in the air!
+
+FollowerInteraction_Route36_Sudowoodo,<name> is staying~completely still -- ~imitating a tree!
+
+FollowerInteraction_GoldenrodCity_Outside,<name> is gazing~restlessly at the~buildings.
+FollowerInteraction_GoldenrodCity_Underground,<name> is poking~at garbage.
+FollowerInteraction_GoldenrodCity_PokeMart,<name> is feeling~nervous and a touch~claustrophobic.
+FollowerInteraction_GoldenrodCity_Gym_Clefairy,<name> is~very happy!
+FollowerInteraction_GoldenrodCity_Gym_ClefairyAndEvos,<name> is waggling~a finger and dancing!
+FollowerInteraction_GoldenrodCity_RadioTower_ElectricPokemon,<name> seems to be~getting an electrifying feeling!
+FollowerInteraction_GoldenrodCity_RadioTower_GhostPokemon,Your <name> is feeling~alert because of something!
+
+FollowerInteraction_NationalPark_BugPokemon,<name> is getting~a little excited.
+FollowerInteraction_NationalParkForestsAndEcruteakCity,<name> seems to~relax as it hears~the sound of rustling~leaves...
+
+FollowerInteraction_EcruteakCity_Outside,<name> is playing~around in the~fallen leaves.
+FollowerInteraction_EcruteakCity_DanceTheater_Pichu,<name> danced along~with the Kimono Girls!
+FollowerInteraction_EcruteakCity_DanceTheater_Bellossom,<name> danced better~than the Kimono Girls!
+FollowerInteraction_EcruteakCity_DanceTheater_MimeJrMrMime,<name> is dancing~in the same manner as~the Kimono Girls!
+
+FollowerInteraction_BurnedTower_LegendaryDogsAndHo-oh,<name> shook the~tower with its voice!
+FollowerInteraction_BurnedTower_LegendaryDogs,<name> howled loudly!
+FollowerInteraction_BurnedTower_Ho-oh,<name> shouted loudly!
+FollowerInteraction_BurnedTower_OtherPokemon1,<name> is staring~at the crumbling floor.
+FollowerInteraction_BurnedTower_OtherPokemon2,<name> seems to be~concerned about the~room below!
+FollowerInteraction_BurnedTower_TinTower_Ho-oh1,<name> is looking~to the sky and shouting!
+FollowerInteraction_BurnedTower_TinTower_Ho-oh2,<name> shook the tower~with its cry!
+
+FollowerInteraction_Route39_Tauros,<name> suddenly roared!
+FollowerInteraction_Route39_Miltank1,<name> seems to~be very happy!
+FollowerInteraction_Route39_Miltank2,<name> is so happy,~it started rolling around.
+
+FollowerInteraction_Lighthouse_MareepAndEvos,<name> sparkled~in concert with Amphy!
+FollowerInteraction_Lighthouse_OtherPokemon1,<name> greeted Amphy.
+FollowerInteraction_Lighthouse_OtherPokemon2,<name> seems interested~in Amphy...
+
+FollowerInteraction_OlivineCity_Cafe,Your Pokémon is~drooling a little.
+
+FollowerInteraction_CianwoodCityRoute40and41_1,<name> is looking~at your footprints~in the sand!
+FollowerInteraction_CianwoodCityRoute40and41_2,<name> is blowing~sand in the air!
+FollowerInteraction_CianwoodCity_KrabbyKingler,<name> moved sideways!
+
+FollowerInteraction_Route40_PoliwagAndEvos,<name> swung its~belly around.
+
+FollowerInteraction_WhirlIslands_PoliwagAndEvos,<name> swung its~belly around.
+FollowerInteraction_WhirlIslands_Lugia,<name> moved its~long body and let out~a great big roar!
+FollowerInteraction_WhirlIslands_WaterPokemon,<name> seems to~be all wet.
+
+FollowerInteraction_Route42_RockPokemon,<name> is looking~at the mountain as if~anticipating climbing it.
+FollowerInteraction_Route42_OtherPokemon,Your Pokémon is staring~intently at the mountain~peak.
+
+FollowerInteraction_MtMortar,<name> is listening~to the sound of the waterfall.
+
+FollowerInteraction_Route47_Ditto,...Oh?~<name>'s appearance...~Didn't change!
+FollowerInteraction_Route47_FlyingPokemon,<name> is flying~through the sky with~grace!
+
+FollowerInteraction_Route47and48,<name> is steadily~observing the flow of~the river!
+FollowerInteraction_Route48,<name> is trying~not to look down!
+
+FollowerInteraction_LakeOfRage_Magikarp,<name> is leaping~around more than usual!
+FollowerInteraction_LakeOfRage_Gyarados,<name> howled~very loudly!
+FollowerInteraction_LakeOfRage_FireRockPokemon,<name> is making~an unhappy face...
+
+FollowerInteraction_RocketBase_VoltorbElectrode,<name> is trembling!
+FollowerInteraction_RocketBase_OtherPokemon1,<name> is nervous.
+FollowerInteraction_RocketBase_OtherPokemon2,<name> seems to~be hearing a strange~sound.
+FollowerInteraction_RocketBase_RoomWithStatues,<name> is hostile~towards the statues!
+
+FollowerInteraction_IcePathSeafoamIslands_Lapras,Woah! A cold wind suddenly~blew! And now it looks~happy?
+FollowerInteraction_IcePathSeafoamIslands_OtherPokemon,Your Pokémon seems~surprised to touch ice!
+
+FollowerInteraction_IcePathSeafoamIslandsMahoganyTownGym_IcePokemon1,<name> is cheerful~because of the cold!
+FollowerInteraction_IcePathSeafoamIslandsMahoganyTownGym_IcePokemon2,<name> is cheering~happily because of~the cold!
+FollowerInteraction_IcePathSeafoamIslandsMahoganyTownGym_IcePokemon3,<name> just looks~so very happy!
+FollowerInteraction_IcePathSeafoamIslandsMahoganyTownGym_GrassPokemon1,<name> seems unhappy~about the cold...
+FollowerInteraction_IcePathSeafoamIslandsMahoganyTownGym_GrassPokemon2,<name> made its body~slightly smaller because~of the cold...
+FollowerInteraction_IcePathSeafoamIslandsMahoganyTownGym_GroundFlyingPokemon,<name> constantly~shivers.
+FollowerInteraction_IcePathSeafoamIslandsMahoganyTownGym_OtherPokemon,<name> is walking~along cautiously.
+
+FollowerInteraction_MahoganyTownGym,Your Pokémon seems~to be enjoying sliding~around!
+
+FollowerInteraction_DragonsDen_DragonPokemon1,<name> suddenly barked!
+FollowerInteraction_DragonsDen_DragonPokemon2,<name> looks excited!
+FollowerInteraction_DragonsDen_DragonPokemon3,<name> suddenly howled!
+FollowerInteraction_DragonsDen_DragonPokemon4,<name> is staring~into <player.name>'s eyes.
+FollowerInteraction_DragonsDen_DragonPokemon5,<name> is growling~softly.
+
+FollowerInteraction_BlackthornCity_Outside,Your Pokémon is staring~intently at the mountain~peak.
+FollowerInteraction_BlackthornCity_Gym_FirePokemon,<name> seems to be~enjoying the heat.
+
+FollowerInteraction_VictoryRoad_Meganium,<name> turned its~head and let out a fighting~yell!
+FollowerInteraction_VictoryRoad_Typhlosion,<name> emitted fire~and shouted!
+FollowerInteraction_VictoryRoad_Feraligatr,<name> is swinging its~arms around and shouting!
+FollowerInteraction_VictoryRoad_OtherPokemon,<name> is focused~with a sharp gaze!
+
+FollowerInteraction_PalletTown,Your Pokémon seems to be~smelling a nostalgically familiar~scent...
+
+FollowerInteraction_Route1-4_BulbasaurAndEvos,<name> wiggled~its vine!
+FollowerInteraction_Route1-4_CharmanderAndEvos,<name> flared~its fiery tail!
+FollowerInteraction_Route1-4_SquirtleAndEvos,<name> slid~around in its shell!
+
+FollowerInteraction_IndigoPlateau,<name> is staring~straight at the~Pokémon League.
+
+FollowerInteraction_PokeMarts,Your Pokémon is~surveying the shelves~restlessly.
+
+FollowerInteraction_SSAqua1,<name> is swaying~with the ship!
+FollowerInteraction_SSAqua2,<name> seems happy~at the sight of water~on the window!
+FollowerInteraction_SSAqua3,<name> doesn't~want to get off the~boat yet!
+
+FollowerInteraction_ViridianForest_PichuAndEvos,<name> danced around~happily!
+FollowerInteraction_ViridianForest_Heracross,<name> is clinging~to the tree!
+FollowerInteraction_ViridianForest_ShroomishBreloom,<name> sent a~ring-shaped cloud of~spores in the air!
+
+FollowerInteraction_MtMoon_CleffaAndEvos,<name> suddenly~started dancing!
+FollowerInteraction_MtMoonSquare_CleffaAndEvos,<name> is looking~up at the sky.
+
+FollowerInteraction_CeruleanCity_Gym_Magikarp,<name> is~jumping energetically!
+FollowerInteraction_CeruleanCity_Gym_Togepi,<name> suddenly~began crying softly!
+FollowerInteraction_CeruleanCity_Gym_OtherPokemon,<name> is running~along the side of~the pool!
+
+FollowerInteraction_CeruleanCave_MewAndMewtwo1,<name>~suddenly shouted!
+FollowerInteraction_CeruleanCave_MewAndMewtwo2,<name> looked~up at the ceiling~and howled!
+FollowerInteraction_CeruleanCave_Mewtwo,<name>~slapped at the ground!
+FollowerInteraction_CeruleanCave_Mew,<name> suddenly~started spinning around!
+
+FollowerInteraction_PowerPlant_PichuAndEvos1,<name> seems to~be very happy!
+FollowerInteraction_PowerPlant_PichuAndEvos2,<name> had fun~dancing a dance!
+FollowerInteraction_PowerPlant_PichuAndEvos3,<name> is so happy,~it began to dance!
+FollowerInteraction_PowerPlant_PichuAndEvos4,<name> is so happy,~it started dancing!
+FollowerInteraction_PowerPlant_OtherPokemon,<name> seems to want to~touch the machine!
+
+FollowerInteraction_RockTunnel_OnixSteelix1,<name> is happily~digging into the ground!
+FollowerInteraction_RockTunnel_OnixSteelix2,<name> is happily~digging itself into~the ground!
+FollowerInteraction_RockTunnel_OnixSteelix3,<name> is having fun~rolling around!
+FollowerInteraction_RockTunnel_OnixSteelix4,<name> started~grinding at the rocks!
+FollowerInteraction_RockTunnel_OnixSteelix5,<name> is having~fun hitting rocks together!
+FollowerInteraction_RockTunnel_OnixSteelix6,<name> started~pounding the ground flat!
+
+FollowerInteraction_DiglettsCave_DiglettDugtrio,Your Pokémon is stretching~out its body and is relaxing!
+
+FollowerInteraction_SaffronCity_CopycatHouse_MimeJrMrMime,<name> mimicked~<player.name>.
+FollowerInteraction_SaffronCity_MrPsychicHouse_PsychicPokemon,......~......~......~<name>~silently nodded!
+FollowerInteraction_SaffronCity_SilphCo_PorygonAndEvos,<name> is moving~around energetically.
+FollowerInteraction_SaffronCity_RotomRoom_Rotom1,<name> is happily~zapping and jumping~in circles!
+FollowerInteraction_SaffronCity_RotomRoom_Rotom2,<name> is having~fun dancing a lively jig!
+
+FollowerInteraction_CeladonCityAndSilphCo_Porygon,<name> stammered~something...
+FollowerInteraction_CeladonCity_Gym_TangelaTangrowth,<name> is~extending its vines and~wrapping itself in them!~Seems like fun!
+FollowerInteraction_CeladonCity_Gym_WaterAndGrassPokemon,<name> seems happy~to have taken a shower!
+FollowerInteraction_CeladonCity_Gym_FirePokemon,<name> seems unhappy~to have taken a shower...
+
+FollowerInteraction_LavenderTown_GhostPokemon,<name> is having~fun swaying back and forth.
+FollowerInteraction_LavenderTown_OtherPokemon,<name> is feeling~an unusual presence.
+
+FollowerInteraction_FuchsiaCity_Tauros,<name> started~breathing roughly through~its nose in excitement!
+
+FollowerInteraction_MtSilver_BulbasaurAndEvos,<name> sent out~a bundle of leaves and~looked eager!
+FollowerInteraction_MtSilver_CharmanderAndEvos,<name> blew out~a plume of fire and~looked eager!
+FollowerInteraction_MtSilver_SquirtleAndEvos,<name> shoot out~a jet of water and~looked eager!
+FollowerInteraction_MtSilver_EeveeOrPichuAndEvos,<name> is trembling~with eagerness!
+FollowerInteraction_MtSilver_LaprasSnorlax,<name> is feeling~very eager!
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------
+Trainer Classes:
+
+TrainerClass_AceTrainer,Ace Trainer
+TrainerClass_AromaLady,Aroma Lady
+TrainerClass_Automaton,Automaton
+TrainerClass_BattleGirl,Battle Girl
+TrainerClass_Beauty,Beauty
+TrainerClass_Biker,Biker
+TrainerClass_BirdKeeper,Bird Keeper
+TrainerClass_BlackBelt,Black Belt
+TrainerClass_Boarder,Boarder
+TrainerClass_BugCatcher,Bug Catcher
+TrainerClass_Burglar,Burglar
+TrainerClass_Cameraman,Cameraman
+TrainerClass_Camper,Camper
+TrainerClass_Captain,Captain
+TrainerClass_Champion,Champion
+TrainerClass_Clicker,Clicker
+TrainerClass_Clown,Clown
+TrainerClass_Collector,Collector
+TrainerClass_Cowgirl,Cowgirl
+TrainerClass_CrushGirl,Crush Girl
+TrainerClass_CrushKin,Crush Kin
+TrainerClass_CueBall,Cue Ball
+TrainerClass_Cyclist,Cyclist
+TrainerClass_Dancer,Dancer
+TrainerClass_Developer,Developer
+TrainerClass_Dinnerbone,Dinnerbone
+TrainerClass_DoubleTeam,Double Team
+TrainerClass_DragonTamer,Dragon Tamer
+TrainerClass_Drummer,Drummer
+TrainerClass_Elder,Elder
+TrainerClass_EliteFour,Elite Four
+TrainerClass_Engineer,Engineer
+TrainerClass_Executive,Executive
+TrainerClass_FactoryHead,Factory Head
+TrainerClass_Firebreather,Firebreather
+TrainerClass_Fisher,Fisher
+TrainerClass_Fisherman,Fisherman
+TrainerClass_Gentleman,Gentleman
+TrainerClass_Guitarist,Guitarist
+TrainerClass_Hiker,Hiker
+TrainerClass_Idol,Idol
+TrainerClass_Jogger,Jogger
+TrainerClass_Juggler,Juggler
+TrainerClass_KarateKing,Karate King
+TrainerClass_KimonoGirl,Kimono Girl
+TrainerClass_KingOfTheSquirrels,King of the Squirrels
+TrainerClass_Lady,Lady
+TrainerClass_Lass,Lass
+TrainerClass_Leader,Leader
+TrainerClass_Medium,Medium
+TrainerClass_Moderator,Moderator
+TrainerClass_MysticalMan,Mystical Man
+TrainerClass_NinjaBoy,Ninja Boy
+TrainerClass_Painter,Painter
+TrainerClass_ParasolLady,Parasol Lady
+TrainerClass_PI,PI
+TrainerClass_Picnicker,Picnicker
+TrainerClass_PokéManiac,PokéManiac
+TrainerClass_PokémonBreeder,Pokémon Breeder
+TrainerClass_PokémonRanger,Pokémon Ranger
+TrainerClass_PokémonTrainer,Pokémon Trainer
+TrainerClass_PokéFan,Poké Fan
+TrainerClass_PokéKid,Poké Kid
+TrainerClass_PokéManiac,Poké Maniac
+TrainerClass_PokémonBreeder,Pokémon Breeder
+TrainerClass_PokémonRanger,Pokémon Ranger
+TrainerClass_PokémonTrainer,Pokémon Trainer
+TrainerClass_Policeman,Policeman
+TrainerClass_President,President
+TrainerClass_Professor,Professor
+TrainerClass_Programmer,Programmer
+TrainerClass_Psychic,Psychic
+TrainerClass_Rancher,Rancher
+TrainerClass_Reporter,Reporter
+TrainerClass_RichBoy,Rich Boy
+TrainerClass_Rival,Rival
+TrainerClass_RocketBoss,Rocket Boss
+TrainerClass_Roughneck,Roughneck
+TrainerClass_RuinManiac,Ruin Maniac
+TrainerClass_Sage,Sage
+TrainerClass_Sailor,Sailor
+TrainerClass_School Kid,School Kid
+TrainerClass_Scientist,Scientist
+TrainerClass_SisAndBro,Sis and Bro
+TrainerClass_Skier,Skier
+TrainerClass_Socialite,Socialite
+TrainerClass_SuperNerd,Super Nerd
+TrainerClass_Swimmer_Male,Swimmer♂
+TrainerClass_Swimmer_Female,Swimmer♀
+TrainerClass_Tamer,Tamer
+TrainerClass_Teacher,Teacher
+TrainerClass_TeamRocket_Agents,Team Rocket_Agents
+TrainerClass_TeamRocket,Team Rocket
+TrainerClass_TowerTycoon,Tower Tycoon
+TrainerClass_Trainer,Trainer
+TrainerClass_Tuber,Tuber
+TrainerClass_Twins,Twins
+TrainerClass_Veteran,Veteran
+TrainerClass_Waiter,Waiter
+TrainerClass_Waitress,Waitress
+TrainerClass_Worker,Worker
+TrainerClass_YoungCouple,Young Couple
+TrainerClass_Youngster,Youngster
+
+-----
 Story translation:
 ---
 New Bark Town:
 ---
 barktown.dat:
 ---
-barktown_player_house,<playername>s hus
+barktown_player_house,<playername>'s House

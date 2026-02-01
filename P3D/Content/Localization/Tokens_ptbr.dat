@@ -3410,7 +3410,7 @@ move_name_887,Hyper Drill
 move_name_888,Twin Beam
 move_name_889,Rage Fist
 -----
-Follower Interactions:
+Follower Pokémon Interactions:
 [Generic]
 FollowerInteraction_HeldItem_Question,It looks like your Pokémon~holds on to something.*Do you want to~take it?
 FollowerInteraction_HeldItem_Answer_Yes,Your Pokémon handed over~the <item>!

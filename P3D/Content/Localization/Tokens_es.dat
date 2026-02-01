@@ -3327,7 +3327,7 @@ move_name_887,Hipertaladro
 move_name_888,Láser Doble
 move_name_889,Puño Furia
 -----
-Follower Interactions:
+Follower Pokémon Interactions:
 [Generic]
 FollowerInteraction_HeldItem_Question,It looks like your Pokémon~holds on to something.*Do you want to~take it?
 FollowerInteraction_HeldItem_Answer_Yes,Your Pokémon handed over~the <item>!
