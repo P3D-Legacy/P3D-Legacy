@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Tommy
-TrainerClass|<system.token(TrainerClass_Fisher)>man
+TrainerClass|<system.token(TrainerClass_Fisherman)>
 Money|1800
 IntroMessage|Wait!~Wait a second!*I think I've~hooked a big one!
 OutroMessage|I've lost it all again...

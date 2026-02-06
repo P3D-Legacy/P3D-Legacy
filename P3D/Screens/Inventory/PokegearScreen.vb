@@ -57,7 +57,7 @@
                     FunctionList.Add("GTS")
                 End If
                 If API.LoggedIn = True And Core.Player.IsGameJoltSave = True And Core.Player.Pokemons.Count > 0 Then
-                    FunctionList.Add("Wondertrade")
+                    FunctionList.Add("Wonder Trade")
                 End If
             End If
 
@@ -68,7 +68,7 @@
                 FunctionList.Add("Radio")
             End If
             If ActionScript.IsRegistered("pokegear_remove_worldmap") = False Then
-                FunctionList.Add("Worldmap")
+                FunctionList.Add("World Map")
             End If
             If ActionScript.IsRegistered("pokegear_card_minimap") = True Or GameController.IS_DEBUG_ACTIVE = True Then
                 FunctionList.Add("Minimap")
@@ -201,7 +201,7 @@
             Canvas.DrawGradient(New Rectangle(CInt(startPos.X), CInt(startPos.Y) + 30, width, heigth - 30), New Color(225, 220, 94), New Color(210, 172, 73), False, -1)
 
             Dim t As String = TimeHelpers.GetDisplayTime(Date.Now, True)
-            Dim t2 As String = "Pokégear"
+            Dim t2 As String = Localization.GetString("pokegear_screen_main_title", "Pokégear")
 
             Core.SpriteBatch.DrawString(FontManager.MainFont, t, New Vector2(startPos.X + width - FontManager.MainFont.MeasureString(t).X - 5, startPos.Y + 4), Color.White)
             Core.SpriteBatch.DrawString(FontManager.MainFont, t2, New Vector2(startPos.X + 5, startPos.Y + 4), Color.White)
@@ -240,34 +240,34 @@
                 Select Case f
                     Case "PSS"
                         t = TextureManager.GetTexture("GUI\Menus\pokegear", New Rectangle(64, 32, 32, 32), "")
-                        displayText = "PSS"
-                    Case "Wondertrade"
+                        displayText = Localization.GetString("pokegear_screen_main_function_PlayerSearchSystem", "PSS")
+                    Case "Wonder Trade"
                         t = TextureManager.GetTexture("GUI\Menus\pokegear", New Rectangle(0, 64, 32, 32), "")
-                        displayText = "Wondertrade"
+                        displayText = Localization.GetString("pokegear_screen_main_function_WonderTrade", "Wonder Trade")
                     Case "Phone"
                         t = TextureManager.GetTexture("GUI\Menus\pokegear", New Rectangle(96, 32, 32, 32), "")
-                        displayText = "Phone"
+                        displayText = Localization.GetString("pokegear_screen_main_function_Phone", "Phone")
                     Case "Radio"
                         t = TextureManager.GetTexture("GUI\Menus\pokegear", New Rectangle(32, 32, 32, 32), "")
-                        displayText = "Radio"
+                        displayText = Localization.GetString("pokegear_screen_main_function_Radio", "Radio")
                     Case "GTS"
                         t = TextureManager.GetTexture("GUI\Menus\pokegear", New Rectangle(64, 0, 32, 32), "")
-                        displayText = "GTS"
+                        displayText = Localization.GetString("pokegear_screen_main_function_GlobalTradeSystem", "GTS")
                     Case "Frontier"
                         t = TextureManager.GetTexture("GUI\Menus\pokegear", New Rectangle(32, 64, 32, 32), "")
-                        displayText = "Frontier"
-                    Case "Worldmap"
+                        displayText = Localization.GetString("pokegear_screen_main_function_BattleFrontier", "Frontier")
+                    Case "World Map"
                         t = TextureManager.GetTexture("GUI\Menus\pokegear", New Rectangle(64, 64, 32, 32), "")
-                        displayText = "Worldmap"
+                        displayText = Localization.GetString("pokegear_screen_main_function_WorldMap", "World Map")
                     Case "Minimap"
                         t = TextureManager.GetTexture("GUI\Menus\pokegear", New Rectangle(96, 64, 32, 32), "")
-                        displayText = "Minimap"
+                        displayText = Localization.GetString("pokegear_screen_main_function_Minimap", "Minimap")
                     Case "Battle Spot"
                         t = TextureManager.GetTexture("GUI\Menus\pokegear", New Rectangle(32, 96, 32, 32), "")
-                        displayText = "BattleSpot"
+                        displayText = Localization.GetString("pokegear_screen_main_function_BattleSpot", "Battle Spot")
                     Case "Statistics"
                         t = TextureManager.GetTexture("GUI\Menus\pokegear", New Rectangle(32, 0, 32, 32), "")
-                        displayText = "Statistics"
+                        displayText = Localization.GetString("pokegear_screen_main_function_Statistics", "Statistics")
                 End Select
 
                 Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokegear"), New Rectangle(CInt(startPos.X + (x * 152) + 80), CInt(startPos.Y + 80 + (y * 100)), 64, 64), New Rectangle(0, 0, 32, 32), Color.White)
@@ -348,7 +348,7 @@
                     Core.SetScreen(New TransitionScreen(Core.CurrentScreen, New GTSMainScreen(Core.CurrentScreen), Color.White, False))
                 Case "Frontier"
                     Me.menuIndex = MenuScreens.Frontier
-                Case "Worldmap"
+                Case "World Map"
                     Dim argument As String = Screen.Level.CurrentRegion
                     If argument.Contains(",") = True Then
                         Dim regions As List(Of String) = argument.Split(CChar(",")).ToList()
@@ -361,7 +361,7 @@
                     Me.menuIndex = MenuScreens.MiniMap
                 Case "Radio"
                     Me.menuIndex = MenuScreens.Radio
-                Case "Wondertrade"
+                Case "Wonder Trade"
                     Core.SetScreen(New TransitionScreen(Core.CurrentScreen, New WonderTradeScreen(Core.CurrentScreen), Color.White, False))
                 Case "Statistics"
                     Core.SetScreen(New TransitionScreen(Core.CurrentScreen, New StatisticsScreen(Core.CurrentScreen), Color.White, False))
@@ -454,9 +454,9 @@
             Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokegear"), New Rectangle(CInt(startPos.X + 40 + 200 + 200 + 16), CInt(startPos.Y + 46), 152, 32), New Rectangle(102, 112, 4, 16), Color.White)
             Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokegear"), New Rectangle(CInt(startPos.X + 40 + 200 + 200 + 16 + 152), CInt(startPos.Y + 46), 16, 32), New Rectangle(104, 112, 8, 16), Color.White)
 
-            Core.SpriteBatch.DrawString(FontManager.MainFont, "PSS Ranklist", New Vector2(CInt(startPos.X + 48), CInt(startPos.Y + 48)), Color.Black)
-            Core.SpriteBatch.DrawString(FontManager.MainFont, "PSS Friendlist", New Vector2(CInt(startPos.X + 48 + 200), CInt(startPos.Y + 48)), Color.Black)
-            Core.SpriteBatch.DrawString(FontManager.MainFont, "PSS Passby", New Vector2(CInt(startPos.X + 48 + 200 + 200), CInt(startPos.Y + 48)), Color.Black)
+            Core.SpriteBatch.DrawString(FontManager.MainFont, Localization.GetString("pokegear_screen_pss_title_Ranklist", "PSS Ranklist"), New Vector2(CInt(startPos.X + 48), CInt(startPos.Y + 48)), Color.Black)
+            Core.SpriteBatch.DrawString(FontManager.MainFont, Localization.GetString("pokegear_screen_pss_title_Friendlist", "PSS Friendlist"), New Vector2(CInt(startPos.X + 48 + 200), CInt(startPos.Y + 48)), Color.Black)
+            Core.SpriteBatch.DrawString(FontManager.MainFont, Localization.GetString("pokegear_screen_pss_title_Passby", "PSS Passby"), New Vector2(CInt(startPos.X + 48 + 200 + 200), CInt(startPos.Y + 48)), Color.Black)
 
             If Core.Player.IsGameJoltSave = True Then
                 ' Draw own information:
@@ -485,7 +485,7 @@
                 Core.SpriteBatch.DrawString(FontManager.MainFont, ownE.Username, New Vector2(CInt(startPos.X + 88), CInt(startPos.Y + 80)), Color.Black)
 
                 If OwnRank > -1 Then
-                    Core.SpriteBatch.DrawString(FontManager.MainFont, "Rank " & OwnRank.ToString(), New Vector2(CInt(startPos.X + 332), CInt(startPos.Y + 80)), Color.Black)
+                    Core.SpriteBatch.DrawString(FontManager.MainFont, Localization.GetString("pokegear_screen_pss_RankNumber", "Rank [NUMBER]").Replace("[NUMBER]", OwnRank.ToString()), New Vector2(CInt(startPos.X + 332), CInt(startPos.Y + 80)), Color.Black)
                 End If
 
                 If UserBanned = False Then
@@ -525,24 +525,24 @@
                                         End If
                                         Core.SpriteBatch.Draw(e.SpriteTexture, New Rectangle(CInt(startPos.X + 64 - (frameSize.Width * frameScale / 2)), CInt(startPos.Y + 96 - (frameSize.Height * frameScale / 2) + 36 + i * 36), CInt(frameSize.Width * frameScale), CInt(frameSize.Height * frameScale)), New Rectangle(0, frameSize.Height * 2, frameSize.Width, frameSize.Height), Color.White)
                                         Core.SpriteBatch.DrawString(FontManager.MainFont, e.Username, New Vector2(CInt(startPos.X + 88), CInt(startPos.Y + 80 + 36 + i * 36)), Color.Black)
-                                        Core.SpriteBatch.DrawString(FontManager.MainFont, "Rank " & (index + 1).ToString() & " (" & e.Points.ToString() & ")", New Vector2(CInt(startPos.X + 332), CInt(startPos.Y + 80 + 36 + i * 36)), Color.Black)
+                                        Core.SpriteBatch.DrawString(FontManager.MainFont, Localization.GetString("pokegear_screen_pss_RankNumber", "Rank [NUMBER]").Replace("[NUMBER]", (index + 1).ToString()) & " (" & e.Points.ToString() & ")", New Vector2(CInt(startPos.X + 332), CInt(startPos.Y + 80 + 36 + i * 36)), Color.Black)
                                     Else
                                         If e.startedLoading = False Then
                                             e.StartLoading(e.Username)
                                         End If
 
-                                        Core.SpriteBatch.DrawString(FontManager.MainFont, "Loading" & LoadingDots.Dots, New Vector2(CInt(startPos.X + 48), CInt(startPos.Y + 80 + 36 + i * 36)), Color.Black)
+                                        Core.SpriteBatch.DrawString(FontManager.MainFont, Localization.GetString("global_loading", "Loading") & LoadingDots.Dots, New Vector2(CInt(startPos.X + 48), CInt(startPos.Y + 80 + 36 + i * 36)), Color.Black)
                                     End If
                                 End If
                             End If
                         Next
                         Canvas.DrawScrollBar(New Vector2(startPos.X + 570, startPos.Y + 88), 100, 9, RankListScroll, New Size(4, 300), False, New Color(252, 196, 68), New Color(217, 120, 18))
                     Else
-                        Core.SpriteBatch.DrawString(FontManager.MainFont, "Loading" & LoadingDots.Dots, New Vector2(CInt(startPos.X + 48), CInt(startPos.Y + 80 + 36)), Color.Black)
+                        Core.SpriteBatch.DrawString(FontManager.MainFont, Localization.GetString("global_loading", "Loading") & LoadingDots.Dots, New Vector2(CInt(startPos.X + 48), CInt(startPos.Y + 80 + 36)), Color.Black)
                     End If
                 End If
             Else
-                Core.SpriteBatch.DrawString(FontManager.MainFont, "You are not logged in with a GameJolt profile.", New Vector2(CInt(startPos.X + 48), CInt(startPos.Y + 88)), Color.Black)
+                Core.SpriteBatch.DrawString(FontManager.MainFont, Localization.GetString("pokegear_screen_pss_NoGameJoltProfile", "You are not logged in with a GameJolt profile."), New Vector2(CInt(startPos.X + 48), CInt(startPos.Y + 88)), Color.Black)
             End If
         End Sub
 
@@ -687,9 +687,9 @@
             Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokegear"), New Rectangle(CInt(startPos.X + 40 + 200 + 200 + 16), CInt(startPos.Y + 46), 152, 32), New Rectangle(102, 112, 4, 16), Color.White)
             Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokegear"), New Rectangle(CInt(startPos.X + 40 + 200 + 200 + 16 + 152), CInt(startPos.Y + 46), 16, 32), New Rectangle(104, 112, 8, 16), Color.White)
 
-            Core.SpriteBatch.DrawString(FontManager.MainFont, "PSS Ranklist", New Vector2(CInt(startPos.X + 48), CInt(startPos.Y + 48)), Color.Black)
-            Core.SpriteBatch.DrawString(FontManager.MainFont, "PSS Friendlist", New Vector2(CInt(startPos.X + 48 + 200), CInt(startPos.Y + 48)), Color.Black)
-            Core.SpriteBatch.DrawString(FontManager.MainFont, "PSS Passby", New Vector2(CInt(startPos.X + 48 + 200 + 200), CInt(startPos.Y + 48)), Color.Black)
+            Core.SpriteBatch.DrawString(FontManager.MainFont, Localization.GetString("pokegear_screen_pss_title_Ranklist", "PSS Ranklist"), New Vector2(CInt(startPos.X + 48), CInt(startPos.Y + 48)), Color.Black)
+            Core.SpriteBatch.DrawString(FontManager.MainFont, Localization.GetString("pokegear_screen_pss_title_Friendlist", "PSS Friendlist"), New Vector2(CInt(startPos.X + 48 + 200), CInt(startPos.Y + 48)), Color.Black)
+            Core.SpriteBatch.DrawString(FontManager.MainFont, Localization.GetString("pokegear_screen_pss_title_Passby", "PSS Passby"), New Vector2(CInt(startPos.X + 48 + 200 + 200), CInt(startPos.Y + 48)), Color.Black)
 
             If Core.Player.IsGameJoltSave = True Then
                 ' Draw own information:
@@ -719,7 +719,7 @@
                 Core.SpriteBatch.DrawString(FontManager.MainFont, ownE.Username, New Vector2(CInt(startPos.X + 88), CInt(startPos.Y + 80)), Color.Black)
 
                 If OwnRank > -1 Then
-                    Core.SpriteBatch.DrawString(FontManager.MainFont, "Rank " & OwnRank.ToString(), New Vector2(CInt(startPos.X + 332), CInt(startPos.Y + 80)), Color.Black)
+                    Core.SpriteBatch.DrawString(FontManager.MainFont, Localization.GetString("pokegear_screen_pss_RankNumber", "Rank [NUMBER]").Replace("[NUMBER]", OwnRank.ToString()), New Vector2(CInt(startPos.X + 332), CInt(startPos.Y + 80)), Color.Black)
                 End If
 
                 If UserBanned = False Then
@@ -759,24 +759,24 @@
                                         End If
                                         Core.SpriteBatch.Draw(e.SpriteTexture, New Rectangle(CInt(startPos.X + 64 - (frameSize.Width * frameScale / 2)), CInt(startPos.Y + 80 + 36 - (frameSize.Height * frameScale / 2) + i * 36), CInt(frameSize.Width * frameScale), CInt(frameSize.Height * frameScale)), New Rectangle(0, frameSize.Height * 2, frameSize.Width, frameSize.Height), Color.White)
                                         Core.SpriteBatch.DrawString(FontManager.MainFont, e.Username, New Vector2(CInt(startPos.X + 88), CInt(startPos.Y + 80 + 36 + i * 36)), Color.Black)
-                                        Core.SpriteBatch.DrawString(FontManager.MainFont, "Level " & Emblem.GetPlayerLevel(e.Points) & " (" & e.Points.ToString() & ")", New Vector2(CInt(startPos.X + 332), CInt(startPos.Y + 80 + 36 + i * 36)), Color.Black)
+                                        Core.SpriteBatch.DrawString(FontManager.MainFont, Localization.GetString("pokegear_screen_pss_LevelNumber", "Level [NUMBER]").Replace("[NUMBER]", Emblem.GetPlayerLevel(e.Points).ToString) & " (" & e.Points.ToString() & ")", New Vector2(CInt(startPos.X + 332), CInt(startPos.Y + 80 + 36 + i * 36)), Color.Black)
                                     Else
                                         If e.startedLoading = False Then
                                             e.StartLoading(e.Username)
                                         End If
 
-                                        Core.SpriteBatch.DrawString(FontManager.MainFont, "Loading" & LoadingDots.Dots, New Vector2(CInt(startPos.X + 48), CInt(startPos.Y + 80 + 36 + i * 36)), Color.Black)
+                                        Core.SpriteBatch.DrawString(FontManager.MainFont, Localization.GetString("global_loading", "Loading") & LoadingDots.Dots, New Vector2(CInt(startPos.X + 48), CInt(startPos.Y + 80 + 36 + i * 36)), Color.Black)
                                     End If
                                 End If
                             End If
                         Next
                         Canvas.DrawScrollBar(New Vector2(startPos.X + 570, startPos.Y + 88), FriendList.Count, 9, FriendListScroll, New Size(4, 300), False, New Color(252, 196, 68), New Color(217, 120, 18))
                     Else
-                        Core.SpriteBatch.DrawString(FontManager.MainFont, "Loading" & LoadingDots.Dots, New Vector2(CInt(startPos.X + 48), CInt(startPos.Y + 80 + 36)), Color.Black)
+                        Core.SpriteBatch.DrawString(FontManager.MainFont, Localization.GetString("global_loading", "Loading") & LoadingDots.Dots, New Vector2(CInt(startPos.X + 48), CInt(startPos.Y + 80 + 36)), Color.Black)
                     End If
                 End If
             Else
-                Core.SpriteBatch.DrawString(FontManager.MainFont, "You are not logged in with a GameJolt profile.", New Vector2(CInt(startPos.X + 48), CInt(startPos.Y + 88)), Color.Black)
+                Core.SpriteBatch.DrawString(FontManager.MainFont, Localization.GetString("pokegear_screen_pss_NoGameJoltProfile", "You are not logged in with a GameJolt profile."), New Vector2(CInt(startPos.X + 48), CInt(startPos.Y + 88)), Color.Black)
             End If
         End Sub
 
@@ -967,9 +967,9 @@
             Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokegear"), New Rectangle(CInt(startPos.X + 40 + 200 + 200 + 16), CInt(startPos.Y + 46), 152, 32), New Rectangle(102, 112, 4, 16), Color.White, 0.0F, Vector2.Zero, SpriteEffects.FlipVertically, 0.0F)
             Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokegear"), New Rectangle(CInt(startPos.X + 40 + 200 + 200 + 16 + 152), CInt(startPos.Y + 46), 16, 32), New Rectangle(104, 112, 8, 16), Color.White, 0.0F, Vector2.Zero, SpriteEffects.FlipVertically, 0.0F)
 
-            Core.SpriteBatch.DrawString(FontManager.MainFont, "PSS Ranklist", New Vector2(CInt(startPos.X + 48), CInt(startPos.Y + 48)), Color.Black)
-            Core.SpriteBatch.DrawString(FontManager.MainFont, "PSS Friendlist", New Vector2(CInt(startPos.X + 48 + 200), CInt(startPos.Y + 48)), Color.Black)
-            Core.SpriteBatch.DrawString(FontManager.MainFont, "PSS Passby", New Vector2(CInt(startPos.X + 48 + 200 + 200), CInt(startPos.Y + 48)), Color.Black)
+            Core.SpriteBatch.DrawString(FontManager.MainFont, Localization.GetString("pokegear_screen_pss_title_Ranklist", "PSS Ranklist"), New Vector2(CInt(startPos.X + 48), CInt(startPos.Y + 48)), Color.Black)
+            Core.SpriteBatch.DrawString(FontManager.MainFont, Localization.GetString("pokegear_screen_pss_title_Friendlist", "PSS Friendlist"), New Vector2(CInt(startPos.X + 48 + 200), CInt(startPos.Y + 48)), Color.Black)
+            Core.SpriteBatch.DrawString(FontManager.MainFont, Localization.GetString("pokegear_screen_pss_title_Passby", "PSS Passby"), New Vector2(CInt(startPos.X + 48 + 200 + 200), CInt(startPos.Y + 48)), Color.Black)
 
 
             If InitializedLocals = True Then
@@ -1012,9 +1012,9 @@
                     Canvas.DrawScrollBar(New Vector2(startPos.X + 570, startPos.Y + 88), LocalList.Count, 9, LocalScroll, New Size(4, 300), False, New Color(252, 196, 68), New Color(217, 120, 18))
                 Else
                     If ConnectScreen.Connected = True Then
-                        Core.SpriteBatch.DrawString(FontManager.MainFont, "No other players connected to server" & Environment.NewLine & """" & JoinServerScreen.SelectedServer.GetName() & """.", New Vector2(CInt(startPos.X + 48), CInt(startPos.Y + 88)), Color.Black)
+                        Core.SpriteBatch.DrawString(FontManager.MainFont, Localization.GetString("pokegear_screen_pss_NoOtherPlayersOnServer", "No other players connected to server.") & Environment.NewLine & """" & JoinServerScreen.SelectedServer.GetName() & """.", New Vector2(CInt(startPos.X + 48), CInt(startPos.Y + 88)), Color.Black)
                     Else
-                        Core.SpriteBatch.DrawString(FontManager.MainFont, "You are playing locally.", New Vector2(CInt(startPos.X + 48), CInt(startPos.Y + 88)), Color.Black)
+                        Core.SpriteBatch.DrawString(FontManager.MainFont, Localization.GetString("pokegear_screen_pss_YouArePlayingLocally", "You are playing locally."), New Vector2(CInt(startPos.X + 48), CInt(startPos.Y + 88)), Color.Black)
                     End If
                 End If
             End If
@@ -1175,29 +1175,29 @@
                 Dim texV As Vector2 = New Vector2
                 Select Case x
                     Case 0
-                        t = "Battle"
+                        t = Localization.GetString("pokegear_screen_pss_user_function_Battle", "Battle")
                         If sameServer = False Then
                             c = Color.Gray
                         End If
                         texV = New Vector2(32, 96)
                     Case 1
-                        t = "Trade"
+                        t = Localization.GetString("pokegear_screen_pss_user_function_Trade", "Trade")
                         If sameServer = False Or sameConnection = False Then
                             c = Color.Gray
                         End If
                         texV = New Vector2(0, 96)
                     Case 2
-                        t = "PM"
+                        t = Localization.GetString("pokegear_screen_pss_user_function_PersonalMessage", "PM")
                         If sameServer = False Then
                             c = Color.Gray
                         End If
                     Case 3
-                        t = "Friend"
+                        t = Localization.GetString("pokegear_screen_pss_user_function_Friend", "Friend")
                         If UserEmblem Is Nothing Then
                             c = Color.Gray
                         End If
                     Case 4
-                        t = "Favorite"
+                        t = Localization.GetString("pokegear_screen_pss_user_function_Favorite", "Favorite")
                         If UserEmblem Is Nothing Then
                             c = Color.Gray
                         End If
@@ -1320,7 +1320,7 @@
             Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokegear"), New Rectangle(CInt(startPos.X + 40 + 16), CInt(startPos.Y + 46), 192, 32), New Rectangle(102, 112, 4, 16), Color.White)
             Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokegear"), New Rectangle(CInt(startPos.X + 40 + 16 + 192), CInt(startPos.Y + 46), 16, 32), New Rectangle(104, 112, 8, 16), Color.White)
 
-            Core.SpriteBatch.DrawString(FontManager.MainFont, "Phone", New Vector2(CInt(startPos.X + 48), CInt(startPos.Y + 48)), Color.Black)
+            Core.SpriteBatch.DrawString(FontManager.MainFont, Localization.GetString("pokegear_screen_main_function_Phone", "Phone"), New Vector2(CInt(startPos.X + 48), CInt(startPos.Y + 48)), Color.Black)
 
             If PhoneContacts.Count > 0 Then
                 For i = 0 To 8
@@ -1357,7 +1357,7 @@
                         End If
                         Core.SpriteBatch.Draw(_spriteTexture, New Rectangle(CInt(startPos.X + 48), CInt(startPos.Y + 96 - (frameSize.Height * frameScale / 2) + i * 36), CInt(frameSize.Width * frameScale), CInt(frameSize.Height * frameScale)), New Rectangle(0, frameSize.Height * 2, frameSize.Width, frameSize.Height), Color.White)
                         Core.SpriteBatch.DrawString(FontManager.MainFont, C.Name, New Vector2(CInt(startPos.X + 88), CInt(startPos.Y + 84 + i * 36)), Color.Black)
-                        Core.SpriteBatch.DrawString(FontManager.MainFont, "Location: " & C.Location, New Vector2(CInt(startPos.X + 320), CInt(startPos.Y + 84 + i * 36)), Color.Black)
+                        Core.SpriteBatch.DrawString(FontManager.MainFont, Localization.GetString("global_location", "Location") & ": " & Localization.GetString("Places_" & C.Location, C.Location), New Vector2(CInt(startPos.X + 320), CInt(startPos.Y + 84 + i * 36)), Color.Black)
                     End If
                 Next
                 Canvas.DrawScrollBar(New Vector2(startPos.X + width - 32, startPos.Y + 88), PhoneContacts.Count, 9, PhoneScroll, New Size(4, 300), False, New Color(252, 196, 68), New Color(217, 120, 18))
@@ -1608,9 +1608,9 @@
             Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokegear"), New Rectangle(CInt(startPos.X + 40 + 16), CInt(startPos.Y + 46), 224, 32), New Rectangle(102, 112, 4, 16), Color.White)
             Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokegear"), New Rectangle(CInt(startPos.X + 40 + 16 + 224), CInt(startPos.Y + 46), 16, 32), New Rectangle(104, 112, 8, 16), Color.White)
 
-            Core.SpriteBatch.DrawString(FontManager.MainFont, "Frontier Emblems", New Vector2(CInt(startPos.X + 48), CInt(startPos.Y + 48)), Color.Black)
+            Core.SpriteBatch.DrawString(FontManager.MainFont, Localization.GetString("pokegear_screen_frontier_title", "Frontier Emblems"), New Vector2(CInt(startPos.X + 48), CInt(startPos.Y + 48)), Color.Black)
 
-            Core.SpriteBatch.DrawString(FontManager.MainFont, "Current BP: " & Core.Player.BP.ToString, New Vector2(CInt(startPos.X + 320), CInt(startPos.Y + 48)), Color.Black)
+            Core.SpriteBatch.DrawString(FontManager.MainFont, Localization.GetString("pokegear_screen_frontier_CurrentBattlePoints", "Current BP: [NUMBER]").Replace("[NUMBER]", Core.Player.BP.ToString), New Vector2(CInt(startPos.X + 320), CInt(startPos.Y + 48)), Color.Black)
 
             If FrontierList.Count > 0 Then
                 For x = 0 To FrontierList.Count - 1
@@ -1628,7 +1628,7 @@
                     End If
                 Next
             Else
-                Core.SpriteBatch.DrawString(FontManager.MainFont, "You don't own any Frontier Emblems yet.", New Vector2(CInt(startPos.X + 48), CInt(startPos.Y + 88)), Color.Black)
+                Core.SpriteBatch.DrawString(FontManager.MainFont, Localization.GetString("pokegear_screen_frontier_NoFrontierEmblems", "You don't own any Frontier Emblems yet."), New Vector2(CInt(startPos.X + 48), CInt(startPos.Y + 88)), Color.Black)
                 Canvas.DrawGradient(New Rectangle(CInt(startPos.X + 48), CInt(startPos.Y + 220), width - 100, heigth - 260), Color.White, Color.Gray, False, -1)
             End If
         End Sub
@@ -1728,7 +1728,7 @@
             Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokegear"), New Rectangle(CInt(startPos.X + 365 + 16), CInt(startPos.Y + 46), 128, 32), New Rectangle(102, 112, 4, 16), Color.White)
             Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokegear"), New Rectangle(CInt(startPos.X + 365 + 16 + 128), CInt(startPos.Y + 46), 16, 32), New Rectangle(104, 112, 8, 16), Color.White)
 
-            Core.SpriteBatch.DrawString(FontManager.MainFont, "Minimap", New Vector2(CInt(startPos.X + 372), CInt(startPos.Y + 48)), Color.Black)
+            Core.SpriteBatch.DrawString(FontManager.MainFont, Localization.GetString("pokegear_screen_main_function_Minimap", "Minimap"), New Vector2(CInt(startPos.X + 372), CInt(startPos.Y + 48)), Color.Black)
 
             If InitializedMinimap = True Then
                 Canvas.DrawBorder(1, New Rectangle(CInt(startPos.X + 49 - 32), CInt(startPos.Y + 79 - 32), 21 * 16 + 2, 21 * 16 + 2), Color.Black)
@@ -1794,7 +1794,7 @@
                     Me.OverwriteMax = Me.OverwriteMin
                 End If
 
-                Me.Name = data(2)
+                Me.Name = ScriptVersion2.ScriptCommander.Parse(data(2)).ToString
                 Me.Region = data(3)
 
                 Dim lDayTimes() As String = data(4).Split(CChar(","))
@@ -1946,7 +1946,7 @@
                                 DexEntrySpecies = Localization.GetString("pokemon_species_" & FormName, p.PokedexEntry.Species)
                             End If
 
-                            output = "Welcome to the Pokédex Show! Today, we are going to look at the entry of " & p.GetName(True) & "! Its entry reads:~""" & DexEntryText & """~Wow, that is interesting! Also, " & p.GetName(True) & " is " & p.PokedexEntry.Height & "m high and weighs " & p.PokedexEntry.Weight & "kg.~Isn't that amazing?~" & p.GetName(True) & " is part of the " & DexEntrySpecies & " species.~That's all the information we have. Tune in next time!"
+                            output = Localization.GetString("pokegear_screen_radio_PokédexShow_Content", "Welcome to the Pokédex Show! Today, we are going to look at the entry of [NAME]! Its entry reads:~""[DEXENTRY]""~Wow, that is interesting! Also, [NAME] is [HEIGHT]m high and weighs [WEIGHT]kg.~Isn't that amazing?~[NAME] is part of the [SPECIES] species.~That's all the information we have. Tune in next time!").Replace("NAME", p.GetName(True)).Replace("[DEXENTRY]", DexEntryText).Replace("[HEIGHT]", p.PokedexEntry.Height.ToString).Replace("[WEIGHT]", p.PokedexEntry.Weight.ToString).Replace("[SPECIES]", DexEntrySpecies)
                         End If
                     Case "[randompokemon]"
                         Dim levels() As String = {"route29.dat", "route30.dat", "route31.dat", "route32.dat", "route33.dat", "route36.dat", "route37.dat", "route38.dat", "route39.dat", "routes\route34.dat", "routes\route35.dat", "routes\route42.dat", "routes\route43.dat", "routes\route44.dat", "routes\route45.dat", "routes\route46.dat"}
@@ -1962,7 +1962,7 @@
                         levelName = levelName.Substring(0, 5) & " " & levelName.Remove(0, 5)
 
                         If Not p Is Nothing Then
-                            output = "Professor Oak's Pokémon Talk! With Mary!~~Professor Oak: " & p.GetName(True) & " has been spotted on " & levelName & ".~Mary: " & p.GetName(True) & "! How smart! How inspiring!"
+                            output = Localization.GetString("pokegear_screen_radio_PokemonTalk_Content", "Professor Oak's Pokémon Talk! With Mary!~~Professor Oak: [NAME] has been spotted on [LOCATION].~Mary: [NAME]! How smart! How inspiring!").Replace("[NAME]", p.GetName(True)).Replace("[LOCATION]", Localization.GetString("Places_" & levelName, levelName))
                         End If
                     Case "[unown]"
                         Dim words() As String = {"doom", "dark", "help", "join us", "stay", "lost", "vanish", "always there", "no eyes"}
@@ -1972,28 +1972,46 @@
                                 output &= "~"
                             End If
                             If Core.Random.Next(0, 3) = 0 Then
-                                output &= words(Core.Random.Next(0, words.Count))
+                                Dim WordString = words(Core.Random.Next(0, words.Count))
+                                Dim WordIndex = 0
+                                For w = 0 To words.Count - 1
+                                    If words(w) = WordString Then
+                                        WordIndex = w + 1
+                                        Exit For
+                                    End If
+                                Next
+                                output &= Localization.GetString("pokegear_screen_radio_UnownMessage" & WordIndex, WordString)
                             Else
                                 output &= "... ... ..."
                             End If
                         Next
                     Case "[luckychannel]"
-                        output = "We are not broadcasting at the moment.~We will ensure that we can provide our service to you again as soon as possible."
+                        output = Localization.GetString("pokegear_screen_radio_LuckyChannel_Content", "We are not broadcasting at the moment.~We will ensure that we can provide our service to you again as soon as possible.")
                     Case "[placesandpeople]"
-                        Dim phrases() As String = {" is actually great.", " is always happy.", " is cute.", " is definitely odd!", " is inspiring!", " is just my type.", " is just so-so.", " is kind of weird.", " is precious.", " is quite noisy.", " is right for me?", " is so cool, no?", " is sort of OK.", " is sort of lazy.", " is somewhat bold.", " is too picky!"}
-                        Dim people() As String = {"Youngster Joey", "Youngster Mike", "Bug Catcher Don", "Schoolboy Danny", "Cooltrainer Quinn", "Bug Catcher Rob", "Bug Catcher Doug", "Bug Catcher Ed", "Youngster Warren", "Youngster Jimmy", "Firebreather Otis", "Firebreather Burt", "Pickniker Hope", "Bird Keeper Hank", "Picnicker Sharon", "Pokéfan Rex", "Pokéfan Allan", "Biker Dwayne", "Biker Harris", "Biker Zeke", "Super Nerd Sam", "Super Nerd Tom", "Picnicker Edna", "Camper Sid", "Camper Dean", "Hiker Tim", "Picnicker Heidi", "Hiker Sidney", "Pokéfan Robert", "Hiker Jim", "Psychic Fidel", "Youngster Jason", "Youngster Owen", "Psychic Herman", "Fisher Kile", "Fisher Martin", "Fisher Stephen", "Fisher Barney"}
+                        Dim phrases() As String = {"is actually great.", "is always happy.", "is cute.", "is definitely odd!", "is inspiring!", "is just my type.", "is just so-so.", "is kind of weird.", "is precious.", "is quite noisy.", "is right for me?", "is so cool, no?", "is sort of OK.", "is sort of lazy.", "is somewhat bold.", "is too picky!"}
+                        Dim people() As String = {"Youngster Joey", "Youngster Mike", "Bug Catcher Don", "School Kid Danny", "Ace Trainer Quinn", "Bug Catcher Rob", "Bug Catcher Doug", "Bug Catcher Ed", "Youngster Warren", "Youngster Jimmy", "Firebreather Otis", "Firebreather Burt", "Picknicker Hope", "Bird Keeper Hank", "Picnicker Sharon", "Poké Fan Rex", "Poké Fan Allan", "Biker Dwayne", "Biker Harris", "Biker Zeke", "Super Nerd Sam", "Super Nerd Tom", "Picnicker Edna", "Camper Sid", "Camper Dean", "Hiker Tim", "Picnicker Heidi", "Hiker Sidney", "Poké Fan Robert", "Hiker Jim", "Psychic Fidel", "Youngster Jason", "Youngster Owen", "Psychic Herman", "Fisherman Kile", "Fisherman Martin", "Fisherman Stephen", "Fisherman Barney"}
 
-                        output = "This is Places and People~with Lily.~Let's have a look at some~interesting people today."
+                        output = Localization.GetString("pokegear_screen_radio_PlacesAndPeople_Intro", "This is Places and People~with Lily.~Let's have a look at some~interesting people today.")
 
                         For x = 0 To 10
-                            Dim phrase As String = phrases(Core.Random.Next(0, phrases.Count))
-                            Dim person As String = people(Core.Random.Next(0, people.Count))
-                            output &= "~" & person & phrase
+                            Dim PhraseString As String = phrases(Core.Random.Next(0, phrases.Count))
+                            Dim PhraseIndex = 0
+                            For p = 0 To phrases.Count - 1
+                                If phrases(p) = PhraseString Then
+                                    PhraseIndex = p + 1
+                                    Exit For
+                                End If
+                            Next
+
+                            Dim Person As String = people(Core.Random.Next(0, people.Count))
+                            Dim TrainerClass As String = Localization.GetString("TrainerClass_" & Person.Remove(Person.LastIndexOf(" ")).Replace(" ", "").Replace("♀", "_Female").Replace("♂", "_Male"), Person.Remove(Person.LastIndexOf(" ")))
+                            Dim PersonName As String = Person.Remove(0, Person.LastIndexOf(" ") + 1)
+                            output &= "~" & TrainerClass & PersonName & " " & Localization.GetString("pokegear_screen_radio_PlacesAndPeople_Phrase" & PhraseIndex, PhraseString)
                         Next
 
-                        output &= "This is it for now.~Tune in next time."
+                        output &= Localization.GetString("pokegear_screen_radio_PlacesAndPeople_Outro", "This is it for now.~Tune in next time.")
                     Case Else
-                        output = Content
+                        output = ScriptVersion2.ScriptCommander.Parse(Content).ToString
                 End Select
 
                 Dim l As New List(Of String)
@@ -2035,18 +2053,18 @@
             Dim cursorPosition As Integer = CInt(RadioCursor * 20)
             Canvas.DrawRectangle(New Rectangle(CInt(startPos.X + 86 + cursorPosition), CInt(startPos.Y + 105), 8, 15), Color.White)
 
-            Dim text1 As String = "...No channels found..."
+            Dim text1 As String = Localization.GetString("pokegear_screen_radio_NoChannelsFound", "...No channels found...")
             If Not CurrentStation Is Nothing Then
-                text1 = "You are listening to:" & Environment.NewLine & CurrentStation.Name
+                text1 = Localization.GetString("pokegear_screen_radio_YouAreListeningTo", "You are listening to:") & Environment.NewLine & CurrentStation.Name
             End If
             Core.SpriteBatch.DrawString(FontManager.MainFont, text1, New Vector2(startPos.X + 150 - CInt(FontManager.MainFont.MeasureString(text1).X / 2), startPos.Y + 152), Color.Black)
 
             Dim text2 As String = ""
             If Screen.Level.IsRadioOn = True Then
-                text2 = "Background station:" & Environment.NewLine & Screen.Level.SelectedRadioStation.Name & "." & Environment.NewLine & "Press Accept to remove."
+                text2 = Localization.GetString("pokegear_screen_radio_BackgroundStation", "Background station:") & Environment.NewLine & Screen.Level.SelectedRadioStation.Name & "." & Environment.NewLine & Localization.GetString("pokegear_screen_radio_BackgroundStation_StopListening", "Press Accept to remove.")
             Else
                 If Not CurrentStation Is Nothing Then
-                    text2 = "Press Accept to listen" & Environment.NewLine & "to this station in" & Environment.NewLine & "the background."
+                    text2 = Localization.GetString("pokegear_screen_radio_BackgroundStation_StartListening", "Press Accept to listen~to this station in~the background.").Replace("~", Environment.NewLine).Replace("*", Environment.NewLine)
                 End If
             End If
             If text2 <> "" Then
@@ -2228,10 +2246,10 @@
             Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokegear"), New Rectangle(CInt(startPos.X + 40 + 16), CInt(startPos.Y + 46), 192, 32), New Rectangle(102, 112, 4, 16), Color.White)
             Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokegear"), New Rectangle(CInt(startPos.X + 40 + 16 + 192), CInt(startPos.Y + 46), 16, 32), New Rectangle(104, 112, 8, 16), Color.White)
 
-            Core.SpriteBatch.DrawString(FontManager.MainFont, "Trade", New Vector2(CInt(startPos.X + 48), CInt(startPos.Y + 48)), Color.Black)
+            Core.SpriteBatch.DrawString(FontManager.MainFont, Localization.GetString("pokegear_screen_pss_user_function_Trade", "Trade"), New Vector2(CInt(startPos.X + 48), CInt(startPos.Y + 48)), Color.Black)
 
             If Not TradeRequestTexture Is Nothing Then
-                Core.SpriteBatch.DrawString(FontManager.MainFont, "The player """ & TradeRequestName & """ wants to trade with you.", New Vector2(CInt(startPos.X + 84), CInt(startPos.Y + 80)), Color.Black)
+                Core.SpriteBatch.DrawString(FontManager.MainFont, Localization.GetString("pokegear_screen_pss_TradeRequest", "The player ""[NAME]"" wants to trade with you.").Replace("[NAME]", TradeRequestName), New Vector2(CInt(startPos.X + 84), CInt(startPos.Y + 80)), Color.Black)
 
                 Dim frameSize As New Size(CInt(TradeRequestTexture.Width / 3), CInt(TradeRequestTexture.Height / 4))
                 Dim frameScale As Single = 1.0F
@@ -2257,9 +2275,9 @@
                     Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokegear"), New Rectangle(CInt(startPos.X + 40 + 16), CInt(startPos.Y + 152 + i * 64), 192, 32), New Rectangle(102, 112, 4, 16), Color.White, 0.0F, Vector2.Zero, eff, 0.0F)
                     Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokegear"), New Rectangle(CInt(startPos.X + 40 + 16 + 192), CInt(startPos.Y + 152 + i * 64), 16, 32), New Rectangle(104, 112, 8, 16), Color.White, 0.0F, Vector2.Zero, eff, 0.0F)
 
-                    Dim t As String = "Yes"
+                    Dim t As String = Localization.GetString("global_yes", "Yes")
                     If i = 1 Then
-                        t = "No"
+                        t = Localization.GetString("global_no", "No")
                     End If
 
                     Core.SpriteBatch.DrawString(FontManager.MainFont, t, New Vector2(CInt(startPos.X + 48), CInt(startPos.Y + 155 + i * 64)), Color.Black)
@@ -2379,7 +2397,7 @@
             Core.SpriteBatch.DrawString(FontManager.MainFont, "Battle", New Vector2(CInt(startPos.X + 48), CInt(startPos.Y + 48)), Color.Black)
 
             If Not BattleRequestTexture Is Nothing Then
-                Core.SpriteBatch.DrawString(FontManager.MainFont, "The player """ & BattleRequestName & """ wants to battle with you.", New Vector2(CInt(startPos.X + 84), CInt(startPos.Y + 80)), Color.Black)
+                Core.SpriteBatch.DrawString(FontManager.MainFont, Localization.GetString("pokegear_screen_pss_BattleRequest", "The player ""[NAME]"" wants to battle with you.").Replace("[NAME]", BattleRequestName), New Vector2(CInt(startPos.X + 84), CInt(startPos.Y + 80)), Color.Black)
 
                 Dim frameSize As New Size(CInt(BattleRequestTexture.Width / 3), CInt(BattleRequestTexture.Height / 4))
                 Dim frameScale As Single = 1.0F
@@ -2406,9 +2424,9 @@
                     Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokegear"), New Rectangle(CInt(startPos.X + 40 + 16), CInt(startPos.Y + 152 + i * 64), 192, 32), New Rectangle(102, 112, 4, 16), Color.White, 0.0F, Vector2.Zero, eff, 0.0F)
                     Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokegear"), New Rectangle(CInt(startPos.X + 40 + 16 + 192), CInt(startPos.Y + 152 + i * 64), 16, 32), New Rectangle(104, 112, 8, 16), Color.White, 0.0F, Vector2.Zero, eff, 0.0F)
 
-                    Dim t As String = "Yes"
+                    Dim t As String = Localization.GetString("global_yes", "Yes")
                     If i = 1 Then
-                        t = "No"
+                        t = Localization.GetString("global_no", "No")
                     End If
 
                     Core.SpriteBatch.DrawString(FontManager.MainFont, t, New Vector2(CInt(startPos.X + 48), CInt(startPos.Y + 155 + i * 64)), Color.Black)

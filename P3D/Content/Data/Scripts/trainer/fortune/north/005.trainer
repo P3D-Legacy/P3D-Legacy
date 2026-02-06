@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Tylor
-TrainerClass|<system.token(TrainerClass_Fisher)>man
+TrainerClass|<system.token(TrainerClass_Fisherman)>
 Money|1908
 IntroMessage|I'm having no luck at all.~A battle'd be a change of pace!
 OutroMessage|Nope, no luck at all...

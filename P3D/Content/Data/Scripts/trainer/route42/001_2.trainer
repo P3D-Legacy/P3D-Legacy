@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Tully
-TrainerClass|<system.token(TrainerClass_Fisher)>man
+TrainerClass|<system.token(TrainerClass_Fisherman)>
 Money|40*(21+(<player.badges>*2))
 IntroMessage|Let me demonstrate~the power of the~Pokémon I caught!
 OutroMessage|What? that's not~right.

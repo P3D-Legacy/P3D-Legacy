@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Henry
-TrainerClass|<system.token(TrainerClass_Fisher)>man
+TrainerClass|<system.token(TrainerClass_Fisherman)>
 Money|320
 IntroMessage|Whoa!*You made me lose~that fish!
 OutroMessage|Sploosh!

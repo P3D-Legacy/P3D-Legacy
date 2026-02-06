@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Turner
-TrainerClass|<system.token(TrainerClass_Fisher)>man
+TrainerClass|<system.token(TrainerClass_Fisherman)>
 Money|0
 IntroMessage|My rod-handling technique~is the best in all Johto.*Check it out!
 OutroMessage|Unless I am a master baiter,~my rod handling skills go to waste.

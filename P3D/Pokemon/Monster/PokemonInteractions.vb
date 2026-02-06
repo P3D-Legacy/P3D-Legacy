@@ -878,7 +878,7 @@
         End Function
 
         Public Function GetMessage(ByVal p As Pokemon) As String
-            Return ScriptVersion2.ScriptCommander.Parse(Me.Message.Replace("<name>", p.GetDisplayName())).ToString.Replace("//POKEMONNAME//", p.GetDisplayName())
+            Return ScriptVersion2.ScriptCommander.Parse(Me.Message.Replace("<name>", p.GetDisplayName()).Replace("<item>", p.Item.OneLineName())).ToString.Replace("//POKEMONNAME//", p.GetDisplayName()).Replace("//ITEM//", p.Item.OneLineName())
         End Function
 
         Public Function GetNotification() As MessageBulb.NotificationTypes

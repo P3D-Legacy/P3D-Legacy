@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Andre
-TrainerClass|<system.token(TrainerClass_Fisher)>man
+TrainerClass|<system.token(TrainerClass_Fisherman)>
 Money|1080
 IntroMessage|Let me battle with~the Pokémon I just~caught!
 OutroMessage|I might be an~expert angler, but~I stink as a trainer...

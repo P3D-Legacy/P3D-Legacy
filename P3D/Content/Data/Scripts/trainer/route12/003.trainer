@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Stephan
-TrainerClass|<system.token(TrainerClass_Fisher)>
+TrainerClass|<system.token(TrainerClass_Fisherman)>
 Money|1840
 IntroMessage|I feel so content fishing~while listening to some~tunes on my radio.
 OutroMessage|My stupid radio distracted me!

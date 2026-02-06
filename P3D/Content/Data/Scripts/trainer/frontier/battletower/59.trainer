@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Braxton
-TrainerClass|<system.token(TrainerClass_Fisher)>man
+TrainerClass|<system.token(TrainerClass_Fisherman)>
 Money|0
 IntroMessage|Fish, fish, fish, that's what I do!~I'm gonna fish it all up!
 OutroMessage|Oh, waah!~I let that get away!

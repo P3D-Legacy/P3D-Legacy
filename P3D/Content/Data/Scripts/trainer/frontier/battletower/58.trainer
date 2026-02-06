@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Bennett
-TrainerClass|<system.token(TrainerClass_Fisher)>man
+TrainerClass|<system.token(TrainerClass_Fisherman)>
 Money|0
 IntroMessage|Sure, we're going to battle, but~don't be over the top about it.
 OutroMessage|You have to loosen up some~more.

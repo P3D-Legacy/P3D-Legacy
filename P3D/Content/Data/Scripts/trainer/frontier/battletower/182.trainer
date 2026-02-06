@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Bronson
-TrainerClass|<system.token(TrainerClass_Fisher)>man
+TrainerClass|<system.token(TrainerClass_Fisherman)>
 Money|0
 IntroMessage|My cohorts call me the~emperor of fishing!
 OutroMessage|Why the emperor of fishing?~It's an ancient Chinese legend...

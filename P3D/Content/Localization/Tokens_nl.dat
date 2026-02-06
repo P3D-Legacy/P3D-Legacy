@@ -620,6 +620,251 @@ shop_screen_currency_short_BattlePoints,GP
 shop_screen_currency_short_Coins,M
 shop_screen_currency_short_Pokédollars,$
 ---
+GameJolt Emblems:
+
+emblem_level,Level: [NUMBER]
+emblem_points,Points: [NUMBER]
+emblem_title_Banned,Lonely
+emblem_title_AceTrainer,Ace Trainer
+emblem_title_Athlete,Athlete
+emblem_title_Backpacker,Backpacker
+emblem_title_Butler,Butler
+emblem_title_Cheerleader,Cheerleader
+emblem_title_Clerk,Clerk
+emblem_title_Cyclist,Cyclist
+emblem_title_Doctor,Doctor
+emblem_title_Drummer,Drummer
+emblem_title_Gentleman,Gentleman
+emblem_title_Guitarist,Guitarist
+emblem_title_Lady,Lady
+emblem_title_Lass,Lass
+emblem_title_Maid,Maid
+emblem_title_Motivator,Motivator
+emblem_title_Nurse,Nurse
+emblem_title_OldPerson,Old Person
+emblem_title_Pokefan,Poké Fan
+emblem_title_PokemonBreeder,Pokémon Breeder
+emblem_title_Preschooler,Preschooler
+emblem_title_Ranger,Ranger
+emblem_title_RichBoy,Rich Boy
+emblem_title_RichKid,Rich Kid
+emblem_title_SchoolKid,School Kid
+emblem_title_Scientist,Scientist
+emblem_title_Socialite,Socialite
+emblem_title_Veteran,Veteran
+emblem_title_Waiter,Waiter
+emblem_title_Waitress,Waitress
+emblem_title_Worker,Worker
+emblem_title_Youngster,Youngster
+
+emblem_achievement_message,Achieved new emblem background: [NAME]
+
+emblem_achievement_difficulty_bronze,Bronze
+emblem_achievement_difficulty_silver,Silver
+emblem_achievement_difficulty_gold,Gold
+emblem_achievement_difficulty_platinum,Platinum
+
+emblem_achievement_name_alph,Alph
+emblem_achievement_name_material,Material
+emblem_achievement_name_cyber,Cyber
+emblem_achievement_name_johto,Johto
+emblem_achievement_name_kanto,Kanto
+emblem_achievement_name_legendary,Legendary
+emblem_achievement_name_genetics,Genetics
+emblem_achievement_name_unodostres,UnoDosTres
+emblem_achievement_name_champion,Champion
+emblem_achievement_name_snow,Snow
+emblem_achievement_name_eevee,Eevee
+emblem_achievement_name_stars,Stars
+emblem_achievement_name_glowing,Glowing
+emblem_achievement_name_overkill,Overkill
+emblem_achievement_name_pokedex,Pokédex
+emblem_achievement_name_zephyr,Zephyr
+emblem_achievement_name_hive,Hive
+emblem_achievement_name_plain,Plain
+emblem_achievement_name_fog,Fog
+emblem_achievement_name_storm,Storm
+emblem_achievement_name_mineral,Mineral
+emblem_achievement_name_glacier,Glacier
+emblem_achievement_name_rising,Rising
+emblem_achievement_name_eggsplosion,Eggsplosion
+emblem_achievement_name_mailman,Mailman
+emblem_achievement_name_silver ability,Silver Ability
+emblem_achievement_name_silver knowledge,Silver Knowledge
+emblem_achievement_name_gold ability,Gold Ability
+emblem_achievement_name_gold knowledge,Gold Knowledge
+emblem_achievement_name_boulder,Boulder
+emblem_achievement_name_cascade,Cascade
+emblem_achievement_name_thunder,Thunder
+emblem_achievement_name_rainbow,Rainbow
+emblem_achievement_name_marsh,Marsh
+emblem_achievement_name_soul,Soul
+emblem_achievement_name_volcano,Volcano
+emblem_achievement_name_earth,Earth
+emblem_achievement_name_shooting star,Shooting Star
+emblem_achievement_name_victorious,Victorious
+emblem_achievement_name_deep sea,Deep Sea
+emblem_achievement_name_eruption,Eruption
+emblem_achievement_name_ancestor,Ancestor
+emblem_achievement_name_time,Time
+emblem_achievement_name_mega,Mega
+emblem_achievement_name_beast,Beast
+emblem_achievement_name_heart gold,Heart Gold
+emblem_achievement_name_soul silver,Soul Silver
+emblem_achievement_name_tao,Tao
+emblem_achievement_name_floral,Floral
+
+emblem_achievement_description_alph,Solve the Ruins of Alph puzzles.
+emblem_achievement_description_material,Battle and defeat or catch the Red Gyarados in the Lake of Rage to obtain the Red Scale.
+emblem_achievement_description_cyber,Trade on the GTS.
+emblem_achievement_description_johto,Get all the badges from the Johto region.
+emblem_achievement_description_kanto,Get all the badges from the Kanto region.
+emblem_achievement_description_legendary,Have Ho-oh,Lugia and Suicune in your party.
+emblem_achievement_description_genetics,Have a legendary encounter.
+emblem_achievement_description_unodostres,Have Articuno,Zapdos,and Moltres in your party.
+emblem_achievement_description_champion,Defeat Lance to become the Champion.
+emblem_achievement_description_snow,Defeat Red on Mt. Silver.
+emblem_achievement_description_eevee,Get the 8 eevolutions (Vaporeon,Flareon,Jolteon,Umbreon,Espeon,Leafeon,Glaceon and Sylveon).
+emblem_achievement_description_stars,Catch a shiny Pokémon (except a shiny Gyarados).
+emblem_achievement_description_overkill,Get a full party of level 100 Pokemon.
+emblem_achievement_description_pokedex,Complete the Johto Pokédex!
+emblem_achievement_description_zephyr,Get the Zephyr-Badge from Falkner.
+emblem_achievement_description_hive,Get the Hive-Badge from Bugsy.
+emblem_achievement_description_plain,Get the Plain-Badge from Whitney.
+emblem_achievement_description_fog,Get the Fog-Badge from Morty.
+emblem_achievement_description_storm,Get the Plain-Badge from Whitney.
+emblem_achievement_description_mineral,Get the Mineral-Badge from Jasmine.
+emblem_achievement_description_glacier,Get the Glacier-Badge from Pryce.
+emblem_achievement_description_rising,Get the Rising-Badge from Clair.
+emblem_achievement_description_eggsplosion,Breed a Pokémon and pass down an egg move.
+emblem_achievement_description_mailman,Get all the available mail items in the game.
+emblem_achievement_description_silver ability,Defeat 21 trainers in a row in Battle Tower Challenge Mode.
+emblem_achievement_description_silver knowledge,Defeat 21 trainers in a row in Battle Factory Challenge Mode.
+emblem_achievement_description_gold ability,Defeat the Battle Tower Brain once.
+emblem_achievement_description_gold knowledge,Defeat the Battle Factory Brain once.
+emblem_achievement_description_boulder,Get the Boulder-Badge from Brock.
+emblem_achievement_description_cascade,Get the Cascade-Badge from Misty.
+emblem_achievement_description_thunder,Get the Thunder-Badge from Lt.Surge.
+emblem_achievement_description_rainbow,Get the Rainbow-Badge from Erika.
+emblem_achievement_description_marsh,Get the Marsh-Badge from Sabrina.
+emblem_achievement_description_soul,Get the Soul-Badge from Jasmine.
+emblem_achievement_description_volcano,Get the Volcano-Badge from Blaine.
+emblem_achievement_description_earth,Get the Earth-Badge from Blue.
+emblem_achievement_description_shooting star,Have a stellar encounter.
+emblem_achievement_description_victorious,Have a victorious encounter.
+emblem_achievement_description_deep sea,Find a mysterious egg at the bottom of the sea.
+emblem_achievement_description_eruption,Have an explosive enounter.
+emblem_achievement_description_ancestor,Have a mythical encounter.
+emblem_achievement_description_time,Have an adventure through time.
+emblem_achievement_description_mega,Receive the Mega Bracelet from Professor Oak.
+emblem_achievement_description_beast,Have Raikou,Entei,and Suicune in your party.
+emblem_achievement_description_heart gold,Have an encounter with the magnificent Ho-oh.
+emblem_achievement_description_soul silver,Have an encounter with the mysterious Lugia.
+emblem_achievement_description_tao,Have a heroic encounter.
+emblem_achievement_description_floral,Have a mythical encounter.
+---
+Pokegear Screen:
+pokegear_screen_main_title,Pokégear
+pokegear_screen_main_function_PlayerSearchSystem,PSS
+pokegear_screen_main_function_WonderTrade,Wonder Trade
+pokegear_screen_main_function_Phone,Phone
+pokegear_screen_main_function_Radio,Radio
+pokegear_screen_main_function_GlobalTradeSystem,GTS
+pokegear_screen_main_function_BattleFrontier,Frontier
+pokegear_screen_main_function_WorldMap,World Map
+pokegear_screen_main_function_Minimap,Minimap
+pokegear_screen_main_function_BattleSpot,Battle Spot
+pokegear_screen_main_function_Statistics,Statistics
+
+pokegear_screen_pss_title_Ranklist,PSS Ranklist
+pokegear_screen_pss_title_Friendlist,PSS Friendlist
+pokegear_screen_pss_title_Passby,PSS Passby
+
+pokegear_screen_frontier_title,Frontier Emblems
+pokegear_screen_frontier_CurrentBattlePoints,Current BP: [NUMBER]
+pokegear_screen_frontier_NoFrontierEmblems,You don't own any Frontier Emblems yet.
+
+pokegear_screen_pss_RankNumber,Rank [NUMBER]
+pokegear_screen_pss_LevelNumber,Level [NUMBER]
+pokegear_screen_pss_NoGameJoltProfile,You are not logged in with a GameJolt profile.
+pokegear_screen_pss_NoOtherPlayersOnServer,No other players connected to server.
+pokegear_screen_pss_YouArePlayingLocally,You are playing locally.
+
+pokegear_screen_pss_user_function_Battle,Battle
+pokegear_screen_pss_user_function_Trade,Trade
+pokegear_screen_pss_user_function_PersonalMessage,PM
+pokegear_screen_pss_user_function_Friend,Friend
+pokegear_screen_pss_user_function_Friend,Favorite
+
+pokegear_screen_pss_TradeRequest,The player "[NAME]" wants to trade with you.
+pokegear_screen_pss_BattleRequest,The player "[NAME]" wants to battle with you.
+
+pokegear_screen_radio_NoChannelsFound,...No channels found...
+pokegear_screen_radio_YouAreListeningTo,You are listening to:
+pokegear_screen_radio_BackgroundStation,Background station:
+pokegear_screen_radio_BackgroundStation_StopListening,Press Accept to remove.
+pokegear_screen_radio_BackgroundStation_StartListening,Press Accept to listen~to this station in~the background.
+
+pokegear_screen_radio_PokédexShow_Name,Pokédex Show
+pokegear_screen_radio_PokédexShow_Content,Welcome to the Pokédex Show! Today, we are going to look at the entry of [NAME]! Its entry reads:~"[DEXENTRY]"~Wow, that is interesting! Also, [NAME] is [HEIGHT]m high and weighs [WEIGHT]kg.~Isn't that amazing?~[NAME] is part of the [SPECIES] species.~That's all the information we have. Tune in next time!
+
+pokegear_screen_radio_PokemonTalk_Name,Pokémon Talk
+pokegear_screen_radio_PokemonTalk_Content,Professor Oak's Pokémon Talk! With Mary!~~Professor Oak: [NAME] has been spotted on [LOCATION].~Mary: [NAME]! How smart! How inspiring!
+
+pokegear_screen_radio_UnownMessage1,doom
+pokegear_screen_radio_UnownMessage2,dark
+pokegear_screen_radio_UnownMessage3,help
+pokegear_screen_radio_UnownMessage4,join us
+pokegear_screen_radio_UnownMessage5,stay
+pokegear_screen_radio_UnownMessage6,lost
+pokegear_screen_radio_UnownMessage7,vanish
+pokegear_screen_radio_UnownMessage8,always there
+pokegear_screen_radio_UnownMessage9,no eyes
+
+pokegear_screen_radio_PlacesAndPeople_Name,Places and People
+pokegear_screen_radio_PlacesAndPeople_Intro,This is Places and People~with Lily.~Let's have a look at some~interesting people today.
+pokegear_screen_radio_PlacesAndPeople_Outro,This is it for now.~Tune in next time.
+pokegear_screen_radio_PlacesAndPeople_Phrase1,is actually great.
+pokegear_screen_radio_PlacesAndPeople_Phrase2,is always happy.
+pokegear_screen_radio_PlacesAndPeople_Phrase3,is cute.
+pokegear_screen_radio_PlacesAndPeople_Phrase4,is definitely odd!
+pokegear_screen_radio_PlacesAndPeople_Phrase5,is inspiring!
+pokegear_screen_radio_PlacesAndPeople_Phrase6,is just my type.
+pokegear_screen_radio_PlacesAndPeople_Phrase7,is just so-so.
+pokegear_screen_radio_PlacesAndPeople_Phrase8,is kind of weird.
+pokegear_screen_radio_PlacesAndPeople_Phrase9,is precious.
+pokegear_screen_radio_PlacesAndPeople_Phrase10,is quite noisy.
+pokegear_screen_radio_PlacesAndPeople_Phrase11,is right for me?
+pokegear_screen_radio_PlacesAndPeople_Phrase12,is so cool, no?
+pokegear_screen_radio_PlacesAndPeople_Phrase13,is sort of OK.
+pokegear_screen_radio_PlacesAndPeople_Phrase14,is sort of lazy.
+pokegear_screen_radio_PlacesAndPeople_Phrase15,is somewhat bold.
+pokegear_screen_radio_PlacesAndPeople_Phrase16,is too picky!
+
+pokegear_screen_radio_LetsAllSing_Name,Let's All Sing
+pokegear_screen_radio_LetsAllSing_Lullaby,Fern: POKéMUSIC!~With DJ Fern! We are bringing you the song that fits this time of the day:~The Pokémon Lullaby.
+pokegear_screen_radio_LetsAllSing_March,Fern: POKéMUSIC!~With DJ Fern!~The sun is up~So let us jam to~Pokémon March!
+
+pokegear_screen_radio_LuckyChannel_Name,Lucky Channel
+pokegear_screen_radio_LuckyChannel_Content,We are not broadcasting at the moment.~We will ensure that we can provide our service to you again as soon as possible.
+
+pokegear_screen_radio_PokemonMusic_Name,Pokémon Music
+pokegear_screen_radio_PokemonMusic_Lullaby,Hi there, folks.~This is DJ Ben. And you are listening to Pokémon Music.~We are bringing you the song that fits this time of the day:~The Pokémon Lullaby.
+pokegear_screen_radio_PokemonMusic_March,Hi there, folks.~This is DJ Ben. And you are listening to Pokémon Music.~We are bringing you the song that fits this time of the day:~The Pokémon March.
+
+pokegear_screen_radio_RocketTransmission_Name,Rocket Transmission
+///...evolve!...grow...stronger, faster...magikarp...
+pokegear_screen_radio_RocketTransmission_Content,...~e.olv.!~...~.row str..ge., f.ster.~...~mag..arp.~...
+
+pokegear_screen_radio_TeamRocketAnnouncement_Name,Team Rocket Announcement
+pokegear_screen_radio_TeamRocketAnnouncement_Content,---Start of Message---~Team Rocket Executive:~Attention everybody! This is Team Rocket!~We've taken over the Radio Tower in Goldenrod City!~We did this to broadcast a message:~Giovanni! A new Team Rocket has been built.~Now, we reach out to you to come back to lead Team Rocket to victory!~Rejoin Team Rocket and help us taking over the World!~---End of Message---
+
+pokegear_screen_radio_MysteriousTransmission_Name,Mysterious Transmission
+pokegear_screen_radio_MysteriousTransmission_BadConnection_Content,...~we ar.~...eam Ro....~....ey us...~...wer and mig...~...oin u...
+pokegear_screen_radio_MysteriousTransmission_GoodConnection_Content,We are Team Rocket.~Obey us or~suffer our power~and might.~Come and join us.
+
+pokegear_screen_radio_PokeFlute_Name,PokéFlute
+---
 Trade Screen:
 trade_screen_trade_SendingPokemon,[YOURPOKEMON] naar [OTHERPLAYER] aan het sturen.~Vaarwel, [YOURPOKEMON]!
 trade_screen_trade_ReceivedPokemon,[OTHERPLAYER] stuurde [THEIRPOKEMON] naar jou.
@@ -836,6 +1081,22 @@ badge_Storm,Storm
 badge_Mineral,Mineraal
 badge_Glacier,Gletsjer
 badge_Rising,Stijging
+---
+Frontier Emblems:
+
+frontier_1_silver_name,Silver Ability
+frontier_1_gold_name,Gold Ability
+frontier_2_silver_name,Silver Knowledge
+frontier_2_gold_name,Gold Knowledge
+frontier_3_silver_name,Silver Luck
+frontier_3_gold_name,Gold Luck
+
+frontier_1_silver_description,You defeated the Frontier Brain of~Battle Tower and showed him how~you and your Pokémon really are.
+frontier_1_gold__description,You defeated the Frontier Brain of~Battle Tower a second time and you've shown~your real strength when it comes to battles.
+frontier_2_silver_description,Only few trainers achieved this emblem~which shows what strength lies~inside them.
+frontier_2_gold_description,This Emblem displays how great you can~interact with Pokémon and how well~you can adapt your strategy to a new situation.
+frontier_3_silver_description,You have shown great skill at taking~the luck thrown your way, good or bad.
+frontier_3_gold_description,Your luck trumped all at the Battle Pike.~You mitigated the worst luck and~doubled down on the best luck.
 ---
 Regions:
 Johto,Johto
@@ -4448,7 +4709,7 @@ FollowerInteraction_LowHP2,<name> seems to~be about to fall over!
 
 FollowerInteraction_Hate1,<name> is doing~it's best to keep up~with you.
 FollowerInteraction_Hate2,<name> is somehow~forcing itself to keep going.
-FollowerInteraction_Hate3,<name> is staring~patiantly at nothing at all.
+FollowerInteraction_Hate3,<name> is staring~patiently at nothing at all.
 FollowerInteraction_Hate4,<name> is staring~intently into the distance.
 FollowerInteraction_Hate5,<name> is dizzy...
 FollowerInteraction_Hate6,<name> is stepping~on your feet!
@@ -4480,7 +4741,7 @@ FollowerInteraction_Neutral12,<name> let out~a battle cry!
 FollowerInteraction_Neutral13,<name> is vigorously~breathing fire!
 FollowerInteraction_Neutral14,<name> is on~the lookout!
 FollowerInteraction_Neutral15,<name> roared!
-FollowerInteraction_Neutral16,<name> let out a roar!
+FollowerInteraction_Neutral16,<name> let out a~roar!
 FollowerInteraction_Neutral17,<name> is surveying~the area...
 FollowerInteraction_Neutral18,<name> is sniffing~at the floor.
 FollowerInteraction_Neutral19,<name> is peering~down.
@@ -4490,7 +4751,7 @@ FollowerInteraction_Neutral22,<name> is relaxing~comfortably.
 FollowerInteraction_Neutral23,<name> is sniffing~at the floor.
 FollowerInteraction_Neutral24,<name> seems to~relax as it hears the~sound of rustling leaves...
 FollowerInteraction_Neutral25,<name> seems to~be listening to the~sound of rustling leaves...
-FollowerInteraction_Neutral26,Your Pokémon is playing around~and splashing in the water!
+FollowerInteraction_Neutral26,Your Pokémon is playing~around and splashing in~the water!
 FollowerInteraction_Neutral27,<name> is looking~up at the sky.
 FollowerInteraction_Neutral28,Your Pokémon is happily~gazing at the beautiful,~starry sky!
 FollowerInteraction_Neutral29,<name> seems to be~enjoying this a little bit!
@@ -4507,7 +4768,7 @@ FollowerInteraction_Neutral39,<name> suddenly~turned around and~started barking!
 FollowerInteraction_Neutral40,<name> suddenly~turned around!
 FollowerInteraction_Neutral41,<name> looked up~at the sky and shouted loudly!
 FollowerInteraction_Neutral42,Your Pokémon was surprised~that you suddenly spoke to it!
-FollowerInteraction_Neutral43,<name> almost forgot~it was holding~that " & p.Item.OneLineName() & "!
+FollowerInteraction_Neutral43,<name> almost forgot~it was holding~that <item>!
 FollowerInteraction_Neutral44,Oh!~It's slipping and came~over here for support.
 FollowerInteraction_Neutral45,Your Pokémon almost slipped~and fell over!
 FollowerInteraction_Neutral46,<name> sensed something~strange and was surprised!
@@ -4857,7 +5118,6 @@ TrainerClass_Engineer,Engineer
 TrainerClass_Executive,Executive
 TrainerClass_FactoryHead,Factory Head
 TrainerClass_Firebreather,Firebreather
-TrainerClass_Fisher,Fisher
 TrainerClass_Fisherman,Fisherman
 TrainerClass_Gentleman,Gentleman
 TrainerClass_Guitarist,Guitarist

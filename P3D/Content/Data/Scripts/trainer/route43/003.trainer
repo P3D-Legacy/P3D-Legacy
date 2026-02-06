@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Marvin
-TrainerClass|<system.token(TrainerClass_Fisher)>man
+TrainerClass|<system.token(TrainerClass_Fisherman)>
 Money|600
 IntroMessage|I'm in a slump.*Maybe it's the gear I'm using.*Let's battle for a~change of pace!
 OutroMessage|I lost, but I feel~better anyway.

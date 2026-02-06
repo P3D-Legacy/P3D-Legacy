@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Edgar
-TrainerClass|<system.token(TrainerClass_Fisher)>
+TrainerClass|<system.token(TrainerClass_Fisherman)>
 Money|1000
 IntroMessage|I fish until I~can't anymore.*I also battle~until I drop.*That's my relationship~with my Pokémon.
 OutroMessage|Hmmmm...~This isn't right.

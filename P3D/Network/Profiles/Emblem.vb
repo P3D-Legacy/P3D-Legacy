@@ -164,7 +164,7 @@
         ''' <param name="Name">The name of the player.</param>
         ''' <param name="ID">The GameJolt ID.</param>
         ''' <param name="Points">The points of the player.</param>
-        ''' <param name="Gender">The gender of the player (0=male, 1=female).</param>
+        ''' <param name="Gender">The gender of the player (Male, Female, Other).</param>
         ''' <param name="EmblemBackground">The emblem background name.</param>
         ''' <param name="Position">The position on the screen.</param>
         ''' <param name="Scale">The scale of the emblem.</param>
@@ -179,7 +179,7 @@
         ''' <param name="Name">The name of the player.</param>
         ''' <param name="ID">The GameJolt ID.</param>
         ''' <param name="Points">The points of the player.</param>
-        ''' <param name="Gender">The gender of the player (0=male, 1=female).</param>
+        ''' <param name="Gender">The gender of the player (Male, Female, Other).</param>
         ''' <param name="EmblemBackground">The emblem background name.</param>
         ''' <param name="Position">The position on the screen.</param>
         ''' <param name="Scale">The scale of the emblem.</param>
@@ -209,7 +209,7 @@
 
             Dim PlayerTitle As String = GetPlayerTitle(PlayerLevel, ID, Gender)
             If UserBanned = True Then
-                PlayerTitle = "Lonely"
+                PlayerTitle = Localization.GetString("emblem_title_Banned", "Lonely")
             End If
 
             Dim EmblemBackgroundTexture As Texture2D = Nothing
@@ -227,15 +227,15 @@
             Core.SpriteBatch.Draw(PlayerTexture, New Rectangle(CInt(Position.X), CInt(Position.Y), CInt(32 * Scale), CInt(32 * Scale)), New Rectangle(0, frameSize.Height * 2, frameSize.Width, frameSize.Height), Color.White)
 
             If PokemonList Is Nothing OrElse PokemonList.Count = 0 Then
-                Core.SpriteBatch.DrawString(FontManager.MainFont, PlayerName & Environment.NewLine & PlayerTitle & Environment.NewLine & Environment.NewLine & "Level: " & PlayerLevel & Environment.NewLine & "(Points: " & PlayerPoints & ")", New Vector2(32 * Scale + 12 + Position.X, 12 + Position.Y), EmblemFontShadowColor, 0.0F, Vector2.Zero, CSng(Scale / 4), SpriteEffects.None, 0.0F)
-                Core.SpriteBatch.DrawString(FontManager.MainFont, PlayerName & Environment.NewLine & PlayerTitle & Environment.NewLine & Environment.NewLine & "Level: " & PlayerLevel & Environment.NewLine & "(Points: " & PlayerPoints & ")", New Vector2(32 * Scale + 12 + Position.X, 10 + Position.Y), EmblemFontShadowColor, 0.0F, Vector2.Zero, CSng(Scale / 4), SpriteEffects.None, 0.0F)
-                Core.SpriteBatch.DrawString(FontManager.MainFont, PlayerName & Environment.NewLine & PlayerTitle & Environment.NewLine & Environment.NewLine & "Level: " & PlayerLevel & Environment.NewLine & "(Points: " & PlayerPoints & ")", New Vector2(32 * Scale + 10 + Position.X, 12 + Position.Y), EmblemFontShadowColor, 0.0F, Vector2.Zero, CSng(Scale / 4), SpriteEffects.None, 0.0F)
-                Core.SpriteBatch.DrawString(FontManager.MainFont, PlayerName & Environment.NewLine & PlayerTitle & Environment.NewLine & Environment.NewLine & "Level: " & PlayerLevel & Environment.NewLine & "(Points: " & PlayerPoints & ")", New Vector2(32 * Scale + 10 + Position.X, 10 + Position.Y), EmblemFontColor, 0.0F, Vector2.Zero, CSng(Scale / 4), SpriteEffects.None, 0.0F)
+                Core.SpriteBatch.DrawString(FontManager.MainFont, PlayerName & Environment.NewLine & PlayerTitle & Environment.NewLine & Environment.NewLine & Localization.GetString("emblem_level", "Level: [NUMBER]").Replace("[NUMBER]", PlayerLevel.ToString) & Environment.NewLine & "(" & Localization.GetString("emblem_points", "Points: [NUMBER]").Replace("[NUMBER]", PlayerPoints.ToString) & ")", New Vector2(32 * Scale + 12 + Position.X, 12 + Position.Y), EmblemFontShadowColor, 0.0F, Vector2.Zero, CSng(Scale / 4), SpriteEffects.None, 0.0F)
+                Core.SpriteBatch.DrawString(FontManager.MainFont, PlayerName & Environment.NewLine & PlayerTitle & Environment.NewLine & Environment.NewLine & Localization.GetString("emblem_level", "Level: [NUMBER]").Replace("[NUMBER]", PlayerLevel.ToString) & Environment.NewLine & "(" & Localization.GetString("emblem_points", "Points: [NUMBER]").Replace("[NUMBER]", PlayerPoints.ToString) & ")", New Vector2(32 * Scale + 12 + Position.X, 10 + Position.Y), EmblemFontShadowColor, 0.0F, Vector2.Zero, CSng(Scale / 4), SpriteEffects.None, 0.0F)
+                Core.SpriteBatch.DrawString(FontManager.MainFont, PlayerName & Environment.NewLine & PlayerTitle & Environment.NewLine & Environment.NewLine & Localization.GetString("emblem_level", "Level: [NUMBER]").Replace("[NUMBER]", PlayerLevel.ToString) & Environment.NewLine & "(" & Localization.GetString("emblem_points", "Points: [NUMBER]").Replace("[NUMBER]", PlayerPoints.ToString) & ")", New Vector2(32 * Scale + 10 + Position.X, 12 + Position.Y), EmblemFontShadowColor, 0.0F, Vector2.Zero, CSng(Scale / 4), SpriteEffects.None, 0.0F)
+                Core.SpriteBatch.DrawString(FontManager.MainFont, PlayerName & Environment.NewLine & PlayerTitle & Environment.NewLine & Environment.NewLine & Localization.GetString("emblem_level", "Level: [NUMBER]").Replace("[NUMBER]", PlayerLevel.ToString) & Environment.NewLine & "(" & Localization.GetString("emblem_points", "Points: [NUMBER]").Replace("[NUMBER]", PlayerPoints.ToString) & ")", New Vector2(32 * Scale + 10 + Position.X, 10 + Position.Y), EmblemFontColor, 0.0F, Vector2.Zero, CSng(Scale / 4), SpriteEffects.None, 0.0F)
             Else
-                Core.SpriteBatch.DrawString(FontManager.MainFont, PlayerName & Environment.NewLine & PlayerTitle & Environment.NewLine & "Level: " & PlayerLevel & Environment.NewLine & "(Points: " & PlayerPoints & ")", New Vector2(32 * Scale + 12 + Position.X, 8 + Position.Y), EmblemFontShadowColor, 0.0F, Vector2.Zero, CSng(Scale / 4), SpriteEffects.None, 0.0F)
-                Core.SpriteBatch.DrawString(FontManager.MainFont, PlayerName & Environment.NewLine & PlayerTitle & Environment.NewLine & "Level: " & PlayerLevel & Environment.NewLine & "(Points: " & PlayerPoints & ")", New Vector2(32 * Scale + 12 + Position.X, 6 + Position.Y), EmblemFontShadowColor, 0.0F, Vector2.Zero, CSng(Scale / 4), SpriteEffects.None, 0.0F)
-                Core.SpriteBatch.DrawString(FontManager.MainFont, PlayerName & Environment.NewLine & PlayerTitle & Environment.NewLine & "Level: " & PlayerLevel & Environment.NewLine & "(Points: " & PlayerPoints & ")", New Vector2(32 * Scale + 10 + Position.X, 8 + Position.Y), EmblemFontShadowColor, 0.0F, Vector2.Zero, CSng(Scale / 4), SpriteEffects.None, 0.0F)
-                Core.SpriteBatch.DrawString(FontManager.MainFont, PlayerName & Environment.NewLine & PlayerTitle & Environment.NewLine & "Level: " & PlayerLevel & Environment.NewLine & "(Points: " & PlayerPoints & ")", New Vector2(32 * Scale + 10 + Position.X, 6 + Position.Y), EmblemFontColor, 0.0F, Vector2.Zero, CSng(Scale / 4), SpriteEffects.None, 0.0F)
+                Core.SpriteBatch.DrawString(FontManager.MainFont, PlayerName & Environment.NewLine & PlayerTitle & Environment.NewLine & Localization.GetString("emblem_level", "Level: [NUMBER]").Replace("[NUMBER]", PlayerLevel.ToString) & Environment.NewLine & "(" & Localization.GetString("emblem_points", "Points: [NUMBER]").Replace("[NUMBER]", PlayerPoints.ToString) & ")", New Vector2(32 * Scale + 12 + Position.X, 8 + Position.Y), EmblemFontShadowColor, 0.0F, Vector2.Zero, CSng(Scale / 4), SpriteEffects.None, 0.0F)
+                Core.SpriteBatch.DrawString(FontManager.MainFont, PlayerName & Environment.NewLine & PlayerTitle & Environment.NewLine & Localization.GetString("emblem_level", "Level: [NUMBER]").Replace("[NUMBER]", PlayerLevel.ToString) & Environment.NewLine & "(" & Localization.GetString("emblem_points", "Points: [NUMBER]").Replace("[NUMBER]", PlayerPoints.ToString) & ")", New Vector2(32 * Scale + 12 + Position.X, 6 + Position.Y), EmblemFontShadowColor, 0.0F, Vector2.Zero, CSng(Scale / 4), SpriteEffects.None, 0.0F)
+                Core.SpriteBatch.DrawString(FontManager.MainFont, PlayerName & Environment.NewLine & PlayerTitle & Environment.NewLine & Localization.GetString("emblem_level", "Level: [NUMBER]").Replace("[NUMBER]", PlayerLevel.ToString) & Environment.NewLine & "(" & Localization.GetString("emblem_points", "Points: [NUMBER]").Replace("[NUMBER]", PlayerPoints.ToString) & ")", New Vector2(32 * Scale + 10 + Position.X, 8 + Position.Y), EmblemFontShadowColor, 0.0F, Vector2.Zero, CSng(Scale / 4), SpriteEffects.None, 0.0F)
+                Core.SpriteBatch.DrawString(FontManager.MainFont, PlayerName & Environment.NewLine & PlayerTitle & Environment.NewLine & Localization.GetString("emblem_level", "Level: [NUMBER]").Replace("[NUMBER]", PlayerLevel.ToString) & Environment.NewLine & "(" & Localization.GetString("emblem_points", "Points: [NUMBER]").Replace("[NUMBER]", PlayerPoints.ToString) & ")", New Vector2(32 * Scale + 10 + Position.X, 6 + Position.Y), EmblemFontColor, 0.0F, Vector2.Zero, CSng(Scale / 4), SpriteEffects.None, 0.0F)
 
                 For i = 0 To 5
                     Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\Menu", New Rectangle(192, 0, 32, 32), ""), New Rectangle(CInt(32 * Scale + (10 / 4) * Scale + Position.X + i * (10 * Scale)), CInt(Position.Y + 22.5F * Scale), CInt(Scale * 8), CInt(Scale * 8)), Color.White)
@@ -284,11 +284,11 @@
             t = t.Clamp(0, 19)
 
             If gender = "Male" Then
-                Return CType(t, MaleEmblemSpriteType).ToString()
+                Return Localization.GetString("emblem_title_" & CType(t, MaleEmblemSpriteType).ToString(), CType(t, MaleEmblemSpriteType).ToString())
             ElseIf gender = "Female" Then
-                Return CType(t, FemaleEmblemSpriteType).ToString()
+                Return Localization.GetString("emblem_title_" & CType(t, FemaleEmblemSpriteType).ToString(), CType(t, FemaleEmblemSpriteType).ToString())
             Else
-                Return CType(t, GenderlessEmblemSpriteType).ToString()
+                Return Localization.GetString("emblem_title_" & CType(t, GenderlessEmblemSpriteType).ToString(), CType(t, GenderlessEmblemSpriteType).ToString())
             End If
         End Function
 
@@ -427,7 +427,7 @@
 
         Public Emblem As String = "trainer"
         Public Points As Integer = 0
-        Public Gender As String = "0"
+        Public Gender As String = "Male"
 
         Public Username As String = ""
         Public GameJoltID As String = ""
@@ -586,7 +586,7 @@
                 loadedInstances += 1
             End If
             If exists(2) = False Then
-                Me.Gender = "0"
+                Me.Gender = "Male"
                 loadedInstances += 1
             End If
         End Sub
@@ -642,7 +642,7 @@
 
                 Gender = data.Replace("\""", """")
             Else
-                Gender = "0"
+                Gender = "Male"
             End If
 
             loadedInstances += 1
@@ -1044,7 +1044,7 @@
 
             If Core.Player.EarnedAchievements.Contains(emblem.ToLower()) = False Then
                 If ConnectScreen.Connected = True Then
-                    Core.ServersManager.ServerConnection.SendGameStateMessage("achieved the emblem """ & emblem.ToUpper() & """!")
+                    Core.ServersManager.ServerConnection.SendGameStateMessage("achieved the emblem """ & GetEmblemTitle(emblem) & """!")
                 End If
                 Core.Player.EarnedAchievements.Add(emblem.ToLower())
             End If
@@ -1053,103 +1053,103 @@
         Private Shared Function GetEmblemTitle(ByVal emblem As String) As String
             Select Case emblem
                 Case "alph"
-                    Return "Alph"
+                    Return Localization.GetString("emblem_achievement_name_" & emblem.ToLower(), "Alph")
                 Case "material"
-                    Return "Material"
+                    Return Localization.GetString("emblem_achievement_name_" & emblem.ToLower(), "Material")
                 Case "cyber"
-                    Return "Cyber"
+                    Return Localization.GetString("emblem_achievement_name_" & emblem.ToLower(), "Cyber")
                 Case "johto"
-                    Return "Johto"
+                    Return Localization.GetString("emblem_achievement_name_" & emblem.ToLower(), "Johto")
                 Case "kanto"
-                    Return "Kanto"
+                    Return Localization.GetString("emblem_achievement_name_" & emblem.ToLower(), "Kanto")
                 Case "legendary"
-                    Return "Legendary"
+                    Return Localization.GetString("emblem_achievement_name_" & emblem.ToLower(), "Legendary")
                 Case "genetics"
-                    Return "Genetics"
+                    Return Localization.GetString("emblem_achievement_name_" & emblem.ToLower(), "Genetics")
                 Case "unodostres"
-                    Return "UnoDosTres"
+                    Return Localization.GetString("emblem_achievement_name_" & emblem.ToLower(), "UnoDosTres")
                 Case "champion"
-                    Return "Champion"
+                    Return Localization.GetString("emblem_achievement_name_" & emblem.ToLower(), "Champion")
                 Case "snow"
-                    Return "Snow"
+                    Return Localization.GetString("emblem_achievement_name_" & emblem.ToLower(), "Snow")
                 Case "eevee"
-                    Return "Eevee"
+                    Return Localization.GetString("emblem_achievement_name_" & emblem.ToLower(), "Eevee")
                 Case "stars"
-                    Return "Stars"
+                    Return Localization.GetString("emblem_achievement_name_" & emblem.ToLower(), "Stars")
                 Case "glowing"
-                    Return "Glowing"
+                    Return Localization.GetString("emblem_achievement_name_" & emblem.ToLower(), "Glowing")
                 Case "overkill"
-                    Return "Overkill"
+                    Return Localization.GetString("emblem_achievement_name_" & emblem.ToLower(), "Overkill")
                 Case "pokedex"
-                    Return "Pokédex"
+                    Return Localization.GetString("emblem_achievement_name_" & emblem.ToLower(), "Pokédex")
                 Case "zephyr"
-                    Return "Zephyr"
+                    Return Localization.GetString("emblem_achievement_name_" & emblem.ToLower(), "Zephyr")
                 Case "hive"
-                    Return "Hive"
+                    Return Localization.GetString("emblem_achievement_name_" & emblem.ToLower(), "Hive")
                 Case "plain"
-                    Return "Plain"
+                    Return Localization.GetString("emblem_achievement_name_" & emblem.ToLower(), "Plain")
                 Case "fog"
-                    Return "Fog"
+                    Return Localization.GetString("emblem_achievement_name_" & emblem.ToLower(), "Fog")
                 Case "storm"
-                    Return "Storm"
+                    Return Localization.GetString("emblem_achievement_name_" & emblem.ToLower(), "Storm")
                 Case "mineral"
-                    Return "Mineral"
+                    Return Localization.GetString("emblem_achievement_name_" & emblem.ToLower(), "Mineral")
                 Case "glacier"
-                    Return "Glacier"
+                    Return Localization.GetString("emblem_achievement_name_" & emblem.ToLower(), "Glacier")
                 Case "rising"
-                    Return "Rising"
+                    Return Localization.GetString("emblem_achievement_name_" & emblem.ToLower(), "Rising")
                 Case "eggsplosion"
-                    Return "Eggsplosion"
+                    Return Localization.GetString("emblem_achievement_name_" & emblem.ToLower(), "Eggsplosion")
                 Case "mailman"
-                    Return "Mailman"
+                    Return Localization.GetString("emblem_achievement_name_" & emblem.ToLower(), "Mailman")
                 Case "silver ability"
-                    Return "Silver Ability"
+                    Return Localization.GetString("emblem_achievement_name_" & emblem.ToLower(), "Silver Ability")
                 Case "silver knowledge"
-                    Return "Silver Knowledge"
+                    Return Localization.GetString("emblem_achievement_name_" & emblem.ToLower(), "Silver Knowledge")
                 Case "gold ability"
-                    Return "Gold Ability"
+                    Return Localization.GetString("emblem_achievement_name_" & emblem.ToLower(), "Gold Ability")
                 Case "gold knowledge"
-                    Return "Gold Knowledge"
+                    Return Localization.GetString("emblem_achievement_name_" & emblem.ToLower(), "Gold Knowledge")
                 Case "boulder"
-                    Return "Boulder"
+                    Return Localization.GetString("emblem_achievement_name_" & emblem.ToLower(), "Boulder")
                 Case "cascade"
-                    Return "Cascade"
+                    Return Localization.GetString("emblem_achievement_name_" & emblem.ToLower(), "Cascade")
                 Case "thunder"
-                    Return "Thunder"
+                    Return Localization.GetString("emblem_achievement_name_" & emblem.ToLower(), "Thunder")
                 Case "rainbow"
-                    Return "Rainbow"
+                    Return Localization.GetString("emblem_achievement_name_" & emblem.ToLower(), "Rainbow")
                 Case "marsh"
-                    Return "Marsh"
+                    Return Localization.GetString("emblem_achievement_name_" & emblem.ToLower(), "Marsh")
                 Case "soul"
-                    Return "Soul"
+                    Return Localization.GetString("emblem_achievement_name_" & emblem.ToLower(), "Soul")
                 Case "volcano"
-                    Return "Volcano"
+                    Return Localization.GetString("emblem_achievement_name_" & emblem.ToLower(), "Volcano")
                 Case "earth"
-                    Return "Earth"
+                    Return Localization.GetString("emblem_achievement_name_" & emblem.ToLower(), "Earth")
                 Case "shooting star"
-                    Return "Shooting Star"
+                    Return Localization.GetString("emblem_achievement_name_" & emblem.ToLower(), "Shooting Star")
                 Case "victorious"
-                    Return "Victorious"
+                    Return Localization.GetString("emblem_achievement_name_" & emblem.ToLower(), "Victorious")
                 Case "deep sea"
-                    Return "Deep Sea"
+                    Return Localization.GetString("emblem_achievement_name_" & emblem.ToLower(), "Deep Sea")
                 Case "eruption"
-                    Return "Eruption"
+                    Return Localization.GetString("emblem_achievement_name_" & emblem.ToLower(), "Eruption")
                 Case "ancestor"
-                    Return "Ancestor"
+                    Return Localization.GetString("emblem_achievement_name_" & emblem.ToLower(), "Ancestor")
                 Case "time"
-                    Return "Time"
+                    Return Localization.GetString("emblem_achievement_name_" & emblem.ToLower(), "Time")
                 Case "mega"
-                    Return "Mega"
+                    Return Localization.GetString("emblem_achievement_name_" & emblem.ToLower(), "Mega")
                 Case "beast"
-                    Return "Beast"
+                    Return Localization.GetString("emblem_achievement_name_" & emblem.ToLower(), "Beast")
                 Case "heart gold"
-                    Return "Heart Gold"
+                    Return Localization.GetString("emblem_achievement_name_" & emblem.ToLower(), "Heart Gold")
                 Case "soul silver"
-                    Return "Soul Silver"
+                    Return Localization.GetString("emblem_achievement_name_" & emblem.ToLower(), "Soul Silver")
                 Case "tao"
-                    Return "Tao"
+                    Return Localization.GetString("emblem_achievement_name_" & emblem.ToLower(), "Tao")
                 Case "floral"
-                    Return "Floral"
+                    Return Localization.GetString("emblem_achievement_name_" & emblem.ToLower(), "Floral")
                 Case Else
                     Return "???"
             End Select
@@ -1158,105 +1158,105 @@
         Private Shared Function GetEmblemDescription(ByVal emblem As String) As String
             Select Case emblem
                 Case "alph"
-                    Return "Solve the Ruins of Alph puzzles."
+                    Return Localization.GetString("emblem_achievement_description_" & emblem.ToLower(), "Solve the Ruins of Alph puzzles.")
                 Case "material"
-                    Return "Battle and defeat or catch the Red Gyarados in the Lake of Rage to obtain the Red Scale."
+                    Return Localization.GetString("emblem_achievement_description_" & emblem.ToLower(), "Battle and defeat or catch the Red Gyarados in the Lake of Rage to obtain the Red Scale.")
                 Case "cyber"
-                    Return "Trade on the GTS."
+                    Return Localization.GetString("emblem_achievement_description_" & emblem.ToLower(), "Trade on the GTS.")
                 Case "johto"
-                    Return "Get all the badges from the Johto region."
+                    Return Localization.GetString("emblem_achievement_description_" & emblem.ToLower(), "Get all the badges from the Johto region.")
                 Case "kanto"
-                    Return "Get all the badges from the Kanto region."
+                    Return Localization.GetString("emblem_achievement_description_" & emblem.ToLower(), "Get all the badges from the Kanto region.")
                 Case "legendary"
-                    Return "Have Ho-oh, Lugia and Suicune in your party."
+                    Return Localization.GetString("emblem_achievement_description_" & emblem.ToLower(), "Have Ho-oh, Lugia and Suicune in your party.")
                 Case "genetics"
-                    Return "Have a legendary encounter."
+                    Return Localization.GetString("emblem_achievement_description_" & emblem.ToLower(), "Have a legendary encounter.")
                 Case "unodostres"
-                    Return "Have Articuno, Zapdos, and Moltres in your party."
+                    Return Localization.GetString("emblem_achievement_description_" & emblem.ToLower(), "Have Articuno, Zapdos, and Moltres in your party.")
                 Case "champion"
-                    Return "Defeat Lance to become the Champion."
+                    Return Localization.GetString("emblem_achievement_description_" & emblem.ToLower(), "Defeat Lance to become the Champion.")
                 Case "snow"
-                    Return "Defeat Red on Mt. Silver."
+                    Return Localization.GetString("emblem_achievement_description_" & emblem.ToLower(), "Defeat Red on Mt. Silver.")
                 Case "eevee"
-                    Return "Get the 8 eevolutions (Vaporeon, Flareon, Jolteon, Umbreon, Espeon, Leafeon, Glaceon and Sylveon)."
+                    Return Localization.GetString("emblem_achievement_description_" & emblem.ToLower(), "Get the 8 eevolutions (Vaporeon, Flareon, Jolteon, Umbreon, Espeon, Leafeon, Glaceon and Sylveon).")
                 Case "stars"
-                    Return "Catch a shiny Pokémon (except a shiny Gyarados)."
+                    Return Localization.GetString("emblem_achievement_description_" & emblem.ToLower(), "Catch a shiny Pokémon (except a shiny Gyarados).")
                 Case "glowing"
                     Return "???"
                 Case "overkill"
-                    Return "Get a full party of level 100 Pokemon."
+                    Return Localization.GetString("emblem_achievement_description_" & emblem.ToLower(), "Get a full party of level 100 Pokemon.")
                 Case "pokedex"
-                    Return "Complete the Johto Pokédex!"
+                    Return Localization.GetString("emblem_achievement_description_" & emblem.ToLower(), "Complete the Johto Pokédex!")
                 Case "zephyr"
-                    Return "Get the Zephyr-Badge from Falkner."
+                    Return Localization.GetString("emblem_achievement_description_" & emblem.ToLower(), "Get the Zephyr-Badge from Falkner.")
                 Case "hive"
-                    Return "Get the Hive-Badge from Bugsy."
+                    Return Localization.GetString("emblem_achievement_description_" & emblem.ToLower(), "Get the Hive-Badge from Bugsy.")
                 Case "plain"
-                    Return "Get the Plain-Badge from Whitney."
+                    Return Localization.GetString("emblem_achievement_description_" & emblem.ToLower(), "Get the Plain-Badge from Whitney.")
                 Case "fog"
-                    Return "Get the Fog-Badge from Morty."
+                    Return Localization.GetString("emblem_achievement_description_" & emblem.ToLower(), "Get the Fog-Badge from Morty.")
                 Case "storm"
-                    Return "Get the Plain-Badge from Whitney."
+                    Return Localization.GetString("emblem_achievement_description_" & emblem.ToLower(), "Get the Plain-Badge from Whitney.")
                 Case "mineral"
-                    Return "Get the Mineral-Badge from Jasmine."
+                    Return Localization.GetString("emblem_achievement_description_" & emblem.ToLower(), "Get the Mineral-Badge from Jasmine.")
                 Case "glacier"
-                    Return "Get the Glacier-Badge from Pryce."
+                    Return Localization.GetString("emblem_achievement_description_" & emblem.ToLower(), "Get the Glacier-Badge from Pryce.")
                 Case "rising"
-                    Return "Get the Rising-Badge from Clair."
+                    Return Localization.GetString("emblem_achievement_description_" & emblem.ToLower(), "Get the Rising-Badge from Clair.")
                 Case "eggsplosion"
-                    Return "Breed a Pokémon and pass down an egg move."
+                    Return Localization.GetString("emblem_achievement_description_" & emblem.ToLower(), "Breed a Pokémon and pass down an egg move.")
                 Case "mailman"
-                    Return "Get all the available mail items in the game."
+                    Return Localization.GetString("emblem_achievement_description_" & emblem.ToLower(), "Get all the available mail items in the game.")
                 Case "silver ability"
-                    Return "Defeat 21 trainers in a row in Battle Tower Challenge Mode."
+                    Return Localization.GetString("emblem_achievement_description_" & emblem.ToLower(), "Defeat 21 trainers in a row in Battle Tower Challenge Mode.")
                 Case "silver knowledge"
-                    Return "Defeat 21 trainers in a row in Battle Factory Challenge Mode."
+                    Return Localization.GetString("emblem_achievement_description_" & emblem.ToLower(), "Defeat 21 trainers in a row in Battle Factory Challenge Mode.")
                 Case "gold ability"
-                    Return "Defeat the Battle Tower Brain once."
+                    Return Localization.GetString("emblem_achievement_description_" & emblem.ToLower(), "Defeat the Battle Tower Brain once.")
                 Case "gold knowledge"
-                    Return "Defeat the Battle Factory Brain once."
+                    Return Localization.GetString("emblem_achievement_description_" & emblem.ToLower(), "Defeat the Battle Factory Brain once.")
                 Case "boulder"
-                    Return "Get the Boulder-Badge from Brock."
+                    Return Localization.GetString("emblem_achievement_description_" & emblem.ToLower(), "Get the Boulder-Badge from Brock.")
                 Case "cascade"
-                    Return "Get the Cascade-Badge from Misty."
+                    Return Localization.GetString("emblem_achievement_description_" & emblem.ToLower(), "Get the Cascade-Badge from Misty.")
                 Case "thunder"
-                    Return "Get the Thunder-Badge from Lt.Surge."
+                    Return Localization.GetString("emblem_achievement_description_" & emblem.ToLower(), "Get the Thunder-Badge from Lt.Surge.")
                 Case "rainbow"
-                    Return "Get the Rainbow-Badge from Erika."
+                    Return Localization.GetString("emblem_achievement_description_" & emblem.ToLower(), "Get the Rainbow-Badge from Erika.")
                 Case "marsh"
-                    Return "Get the Marsh-Badge from Sabrina."
+                    Return Localization.GetString("emblem_achievement_description_" & emblem.ToLower(), "Get the Marsh-Badge from Sabrina.")
                 Case "soul"
-                    Return "Get the Soul-Badge from Jasmine."
+                    Return Localization.GetString("emblem_achievement_description_" & emblem.ToLower(), "Get the Soul-Badge from Jasmine.")
                 Case "volcano"
-                    Return "Get the Volcano-Badge from Blaine."
+                    Return Localization.GetString("emblem_achievement_description_" & emblem.ToLower(), "Get the Volcano-Badge from Blaine.")
                 Case "earth"
-                    Return "Get the Earth-Badge from Blue."
+                    Return Localization.GetString("emblem_achievement_description_" & emblem.ToLower(), "Get the Earth-Badge from Blue.")
                 Case "shooting star"
-                    Return "Have a stellar encounter."
+                    Return Localization.GetString("emblem_achievement_description_" & emblem.ToLower(), "Have a stellar encounter.")
                 Case "victorious"
-                    Return "Have a victorious encounter."
+                    Return Localization.GetString("emblem_achievement_description_" & emblem.ToLower(), "Have a victorious encounter.")
                 Case "deep sea"
-                    Return "Find a mysterious egg at the bottom of the sea."
+                    Return Localization.GetString("emblem_achievement_description_" & emblem.ToLower(), "Find a mysterious egg at the bottom of the sea.")
                 Case "eruption"
-                    Return "Have an explosive enounter."
+                    Return Localization.GetString("emblem_achievement_description_" & emblem.ToLower(), "Have an explosive enounter.")
                 Case "ancestor"
-                    Return "Have a mythical encounter."
+                    Return Localization.GetString("emblem_achievement_description_" & emblem.ToLower(), "Have a mythical encounter.")
                 Case "time"
-                    Return "Have an adventure through time."
+                    Return Localization.GetString("emblem_achievement_description_" & emblem.ToLower(), "Have an adventure through time.")
                 Case "mega"
-                    Return "Receive the Mega Bracelet from Professor Oak."
+                    Return Localization.GetString("emblem_achievement_description_" & emblem.ToLower(), "Receive the Mega Bracelet from Professor Oak.")
                 Case "beast"
-                    Return "Have Raikou, Entei, and Suicune in your party."
+                    Return Localization.GetString("emblem_achievement_description_" & emblem.ToLower(), "Have Raikou, Entei, and Suicune in your party.")
                 Case "heart gold"
-                    Return "Have an encounter with the magnificent Ho-oh."
+                    Return Localization.GetString("emblem_achievement_description_" & emblem.ToLower(), "Have an encounter with the magnificent Ho-oh.")
                 Case "soul silver"
-                    Return "Have an encounter with the mysterious Lugia."
+                    Return Localization.GetString("emblem_achievement_description_" & emblem.ToLower(), "Have an encounter with the mysterious Lugia.")
                 Case "tao"
-                    Return "Have a heroic encounter."
+                    Return Localization.GetString("emblem_achievement_description_" & emblem.ToLower(), "Have a heroic encounter.")
                 Case "floral"
-                    Return "Have a mythical encounter."
+                    Return Localization.GetString("emblem_achievement_description_" & emblem.ToLower(), "Have a mythical encounter.")
                 Case Else
-                    Return "Unknown emblem."
+                    Return "???"
             End Select
         End Function
 
@@ -1327,7 +1327,7 @@
 
         Public Shared Sub DrawNewEmblems()
             If displayEmblemDelay > 0.0F Then
-                Dim EmblemTitleString As String = "Achieved new emblem background: " & achieved_emblem_title
+                Dim EmblemTitleString As String = Localization.GetString("emblem_achievement_message", "Achieved new emblem background: [NAME]").Replace("[NAME]", achieved_emblem_title)
                 Dim descText As String = achieved_emblem_description.CropStringToWidth(FontManager.MainFont, 500)
                 Dim EmblemDescWidth As Integer = CInt(FontManager.MainFont.MeasureString(descText).X + 104)
                 Dim EmblemWidth As Integer = CInt(FontManager.MainFont.MeasureString(EmblemTitleString).X + 104)
@@ -1366,11 +1366,9 @@
                     Case "platinum"
                         fontColor = New Color(172, 201, 202)
                 End Select
-                Core.SpriteBatch.DrawString(FontManager.MainFont, achieved_emblem_difficulty, New Vector2(emblemPositionX + (46 - CInt(FontManager.MainFont.MeasureString(achieved_emblem_difficulty).X / 2)), 77), fontColor)
+                Core.SpriteBatch.DrawString(FontManager.MainFont, Localization.GetString("emblem_achievement_difficulty_" & achieved_emblem_difficulty.ToLower, achieved_emblem_difficulty), New Vector2(emblemPositionX + (46 - CInt(FontManager.MainFont.MeasureString(achieved_emblem_difficulty).X / 2)), 77), fontColor)
 
-                Core.SpriteBatch.DrawString(FontManager.MainFont, "Achieved new emblem background: " & achieved_emblem_title, New Vector2(emblemPositionX + 88, 4), fontColor)
-
-
+                Core.SpriteBatch.DrawString(FontManager.MainFont, EmblemTitleString, New Vector2(emblemPositionX + 88, 4), fontColor)
 
                 Core.SpriteBatch.DrawString(FontManager.MainFont, descText, New Vector2(emblemPositionX + 94, 24), Color.White)
 
