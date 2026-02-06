@@ -864,6 +864,54 @@ pokegear_screen_radio_MysteriousTransmission_GoodConnection_Content,We are Team 
 
 pokegear_screen_radio_PokeFlute_Name,PokéFlute
 ---
+Statistics Screen:
+statistics_screen_header_Name,Name
+statistics_screen_header_Value,Value
+
+statistics_screen_Battle Spot battles,Battle Spot battles
+statistics_screen_Blackouts,Blackouts
+statistics_screen_Bug-Catching contest battles,Bug-Catching contest battles
+statistics_screen_Caught Pokemon,Caught Pokemon
+statistics_screen_Cut used,Cut used
+statistics_screen_Dig used,Dig used
+statistics_screen_Eggs hatched,Eggs hatched
+statistics_screen_Evolutions,Evolutions
+statistics_screen_Flash used,Flash used
+statistics_screen_Fly used,Fly used
+statistics_screen_GTS trades,GTS trades
+statistics_screen_Items found,Items found
+statistics_screen_Level,Level
+statistics_screen_Moves learned,Moves learned
+statistics_screen_Obtained BP,Obtained BP
+statistics_screen_Obtained Coins,Obtained Coins
+statistics_screen_Points,Points
+statistics_screen_PVP Losses,PVP Losses
+statistics_screen_PVP Wins,PVP Wins
+statistics_screen_PVP battles,PVP battles
+statistics_screen_Ride used,Ride used
+statistics_screen_Rock Smash used,Rock Smash used
+statistics_screen_Safari battles,Safari battles
+statistics_screen_Steps taken,Steps taken
+statistics_screen_Strength used,Strength used
+statistics_screen_Surf used,Surf used
+statistics_screen_TMs/HMs used,TMs/HMs used
+statistics_screen_Teleport used,Teleport used
+statistics_screen_Trades,Trades
+statistics_screen_Trainer battles,Trainer battles
+statistics_screen_Waterfall used,Waterfall used
+statistics_screen_Whirlpool used,Whirlpool used
+statistics_screen_Wild battles,Wild battles
+statistics_screen_Wondertrades,Wondertrades
+statistics_screen_Medicine Items used,Medicine Items used
+statistics_screen_Berries picked,Berries picked
+statistics_screen_Evolution stones used,Evolution stones used
+statistics_screen_Wings used,Wings used
+statistics_screen_Vitamins used,Vitamins used
+statistics_screen_Repels used,Repels used
+statistics_screen_Poké Balls used,Poké Balls used
+statistics_screen_Status booster used,Status booster used
+statistics_screen_Apricorns picked,Apricorns picked
+---
 Trade Screen:
 trade_screen_trade_SendingPokemon,Sending [YOURPOKEMON] to [OTHERPLAYER].~Good-bye, [YOURPOKEMON]!
 trade_screen_trade_ReceivedPokemon,[OTHERPLAYER] sent over [THEIRPOKEMON].

@@ -482,7 +482,7 @@
                     r = New ReactionContainer(Localization.GetString("FollowerInteraction_Neutral42", "Your Pokémon was surprised~that you suddenly spoke to it!"), MessageBulb.NotificationTypes.Exclamation)
                 Case 42
                     If Not p.Item Is Nothing Then
-                        r = New ReactionContainer(Localization.GetString("FollowerInteraction_Neutral43", "<name> almost forgot~it was holding~that " & p.Item.OneLineName() & "!"), MessageBulb.NotificationTypes.Question)
+                        r = New ReactionContainer(Localization.GetString("FollowerInteraction_Neutral43", "<name> almost forgot~it was holding~that <item>!"), MessageBulb.NotificationTypes.Question)
                     End If
                 Case 43
                     If IceAround() = True Then

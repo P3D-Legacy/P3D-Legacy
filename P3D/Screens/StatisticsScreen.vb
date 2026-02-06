@@ -74,10 +74,10 @@
                 Core.SpriteBatch.Draw(Item.Texture, New Rectangle(CInt(140), CInt(152 + i * 50 + Scroll), 48, 48), Color.White)
             End If
 
-            Core.SpriteBatch.DrawString(FontManager.MainFont, name, New Vector2(144 + ItemIDX, CInt(160 + i * 50 + Scroll)), Color.White, 0.0F, Vector2.Zero, 1.0F, SpriteEffects.None, 0.0F)
+            Core.SpriteBatch.DrawString(FontManager.MainFont, Localization.GetString("statistics_screen_" & name, name), New Vector2(144 + ItemIDX, CInt(160 + i * 50 + Scroll)), Color.White, 0.0F, Vector2.Zero, 1.0F, SpriteEffects.None, 0.0F)
 
             If GJStatistics.ContainsKey(Me.Statistics.Keys(i)) = True Then
-                Core.SpriteBatch.DrawString(FontManager.MainFont, GJStatistics(Me.Statistics.Keys(i)).ToString(), New Vector2(CInt(Core.windowSize.Width - 418), CInt(180 + i * 50 + Scroll)), Color.White, 0.0F, Vector2.Zero, 1.0F, SpriteEffects.None, 0.0F)
+                Core.SpriteBatch.DrawString(FontManager.MainFont, Localization.GetString("statistics_screen_" & GJStatistics(Me.Statistics.Keys(i)).ToString(), GJStatistics(Me.Statistics.Keys(i)).ToString()), New Vector2(CInt(Core.windowSize.Width - 418), CInt(180 + i * 50 + Scroll)), Color.White, 0.0F, Vector2.Zero, 1.0F, SpriteEffects.None, 0.0F)
                 Core.SpriteBatch.DrawString(FontManager.MainFont, value.ToString(), New Vector2(CInt(Core.windowSize.Width - 420), CInt(150 + i * 50 + Scroll)), Color.White, 0.0F, Vector2.Zero, 1.0F, SpriteEffects.None, 0.0F)
             Else
                 Core.SpriteBatch.DrawString(FontManager.MainFont, value.ToString(), New Vector2(CInt(Core.windowSize.Width - 420), CInt(160 + i * 50 + Scroll)), Color.White, 0.0F, Vector2.Zero, 1.0F, SpriteEffects.None, 0.0F)
@@ -108,10 +108,10 @@
         Canvas.DrawGradient(New Rectangle(0, 0, CInt(Core.windowSize.Width), 200), New Color(42, 167, 198), New Color(42, 167, 198, 0), False, -1)
         Canvas.DrawGradient(New Rectangle(0, CInt(Core.windowSize.Height - 200), CInt(Core.windowSize.Width), 200), New Color(42, 167, 198, 0), New Color(42, 167, 198), False, -1)
 
-        Core.SpriteBatch.DrawString(FontManager.MainFont, "Name", New Vector2(150, 110), Color.White, 0.0F, Vector2.Zero, 1.0F, SpriteEffects.None, 0.0F)
-        Core.SpriteBatch.DrawString(FontManager.MainFont, "Value", New Vector2(Core.windowSize.Width - 420, 110), Color.White, 0.0F, Vector2.Zero, 1.0F, SpriteEffects.None, 0.0F)
+        Core.SpriteBatch.DrawString(FontManager.MainFont, Localization.GetString("statistics_screen_header_Name", "Name"), New Vector2(150, 110), Color.White, 0.0F, Vector2.Zero, 1.0F, SpriteEffects.None, 0.0F)
+        Core.SpriteBatch.DrawString(FontManager.MainFont, Localization.GetString("statistics_screen_header_Value", "Value"), New Vector2(Core.windowSize.Width - 420, 110), Color.White, 0.0F, Vector2.Zero, 1.0F, SpriteEffects.None, 0.0F)
 
-        Core.SpriteBatch.DrawString(FontManager.MainFont, "Statistics", New Vector2(100, 24), Color.White, 0.0F, Vector2.Zero, 2.0F, SpriteEffects.None, 0.0F)
+        Core.SpriteBatch.DrawString(FontManager.MainFont, Localization.GetString("pokegear_screen_main_function_Statistics", "Statistics"), New Vector2(100, 24), Color.White, 0.0F, Vector2.Zero, 2.0F, SpriteEffects.None, 0.0F)
     End Sub
 
     Public Overrides Sub Update()
