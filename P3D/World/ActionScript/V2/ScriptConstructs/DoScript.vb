@@ -45,7 +45,8 @@
                                         Next
                                 End Select
                         End Select
-
+                    Else
+                        Return ReturnBoolean(False)
                     End If
             End Select
 

@@ -380,7 +380,7 @@ Namespace ScriptVersion2
             r(New ScriptCommand("script", "cleardelay", {New ScriptArgument("delayID", ScriptArgument.ArgumentTypes.Str)}.ToList(), "Removes the register with the specified identifier (delayID) created with @script.delay, preventing the script from being executed."))
 
             ' Constructs:
-            r(New ScriptCommand("script", "delay", "str,int", {New ScriptArgument("delayID", ScriptArgument.ArgumentTypes.Str), New ScriptArgument("returnType", ScriptArgument.ArgumentTypes.Str, {"type", "script", "value"})}.ToList(), "Returns the ""type"", ""scriptpath"" or ""value"" of what will trigger the script, like the number of steps.", ",", True))
+            r(New ScriptCommand("script", "delay", "str,int", {New ScriptArgument("delayID", ScriptArgument.ArgumentTypes.Str), New ScriptArgument("returnType", ScriptArgument.ArgumentTypes.Str, {"type", "script", "value"})}.ToList(), "Returns the ""type"", ""scriptpath"" or ""value"" of what will trigger the script, like the number of steps. Returns ""false"" if no delay is registered.", ",", True))
         End Sub
 
         Private Shared Sub DoRegister()
