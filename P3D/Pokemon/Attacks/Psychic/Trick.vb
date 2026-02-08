@@ -143,16 +143,20 @@ Namespace BattleSystem.Moves.Psychic
                     End If
                 End If
                 If op.Item IsNot Nothing AndAlso op.OriginalItem IsNot Nothing Then
-                    Dim opItemID As String = op.Item.ID.ToString
-                    Dim opOriginalItemID As String = op.OriginalItem.ID.ToString
-                    If op.Item.IsGameModeItem = True Then
+                    Dim opItemID As String
+                    If p.Item.IsGameModeItem = True Then
                         opItemID = op.Item.gmID
+                    Else
+                        opItemID = op.Item.ID.ToString
                     End If
-                    If op.OriginalItem.IsGameModeItem = True Then
+                    Dim opOriginalItemID As String
+                    If p.OriginalItem.IsGameModeItem = True Then
                         opOriginalItemID = op.Item.gmID
+                    Else
+                        opOriginalItemID = op.Item.ID.ToString
                     End If
 
-                    If op.Item.ID = op.OriginalItem.ID AndAlso op.Item.AdditionalData = op.OriginalItem.AdditionalData Then
+                    If opItemID = opOriginalItemID AndAlso op.Item.AdditionalData = op.OriginalItem.AdditionalData Then
                         p.OriginalItem = Nothing
                     End If
                 End If

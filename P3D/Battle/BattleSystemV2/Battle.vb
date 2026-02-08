@@ -649,14 +649,18 @@
             'Transform a Pokemon into it's Mega Evolution
             Dim _base As String = p.GetDisplayName()
             If p.AdditionalData = "" Then
-                Select Case p.Item.ID
-                    Case 516, 529
-                        p.AdditionalData = "mega_x"
-                    Case 517, 530
-                        p.AdditionalData = "mega_y"
-                    Case Else
-                        p.AdditionalData = "mega"
-                End Select
+                If p.Item.IsGameModeItem = False Then
+                    Select Case p.Item.ID
+                        Case 516, 529
+                            p.AdditionalData = "mega_x"
+                        Case 517, 530
+                            p.AdditionalData = "mega_y"
+                        Case Else
+                            p.AdditionalData = "mega"
+                    End Select
+                Else
+                    p.AdditionalData = "mega"
+                End If
                 p.ReloadDefinitions()
                 p.CalculateStats()
                 p.LoadAltAbility()
@@ -4876,9 +4880,13 @@
                     End If
                 End If
 
-                Dim ItemID As Integer = -1
+                Dim ItemID As String = "-1"
                 If Not p.Item Is Nothing Then
-                    ItemID = p.Item.ID
+                    If p.Item.IsGameModeItem = True Then
+                        ItemID = p.Item.gmID
+                    Else
+                        ItemID = p.Item.ID.ToString()
+                    End If
                 End If
 
                 Dim lastMove As Attack = Nothing
@@ -5170,8 +5178,13 @@
             End If
 
             If TestFor = False Then
-                Dim ItemID As Integer = p.Item.ID
-                Dim lostItem As Item = Item.GetItemByID(ItemID.ToString)
+                Dim ItemID As String = ""
+                If p.Item.IsGameModeItem = True Then
+                    ItemID = p.Item.gmID
+                Else
+                    ItemID = p.Item.ID.ToString
+                End If
+                Dim lostItem As Item = Item.GetItemByID(ItemID)
 
                 Dim CudChewBerries As String() = {"oran", "sitrus", "figy", "wiki", "mago", "aguav", "iapapa", "liechi", "ganlon", "salac", "petaya", "apicot", "lansat", "starf", "lum", "rawst", "aspear", "cheri", "chesto"}
                 If CudChewBerries.Contains(lostItem.Name.ToLower) Then
@@ -8002,7 +8015,7 @@
                     BattleScreen.TrainerRecallOwn += 1
                     If BattleScreen.Trainer.RecallOwnMessage.ContainsKey(BattleScreen.TrainerRecallOwn) Then
                         Dim s1 As QueryObject = BattleScreen.FocusOppPlayer()
-                        Dim s2 As TextQueryObject = New TextQueryObject(ScriptVersion2.ScriptCommander.Parse(BattleScreen.Trainer.RecallOwnMessage(BattleScreen.TrainerRecallOwn)).t)
+                        Dim s2 As TextQueryObject = New TextQueryObject(ScriptVersion2.ScriptCommander.Parse(BattleScreen.Trainer.RecallOwnMessage(BattleScreen.TrainerRecallOwn)).ToString)
                         BattleScreen.BattleQuery.AddRange({s1, s2})
                         ChangeCameraAngle(1, True, BattleScreen)
                     End If

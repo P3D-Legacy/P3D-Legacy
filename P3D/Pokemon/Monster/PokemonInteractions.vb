@@ -912,7 +912,7 @@
                         'Checks if the player is outside:
                         If IsOutside() = True Then
                             'Checks if the leading Pokémon is holding a sticky feather, which ensures a 90% feather pickup outside:
-                            If Not Core.Player.GetWalkPokemon().Item Is Nothing AndAlso Core.Player.GetWalkPokemon().Item.ID = 261 AndAlso Core.Random.Next(0, 100) < 90 Then
+                            If Not Core.Player.GetWalkPokemon().Item Is Nothing AndAlso Core.Player.GetWalkPokemon.Item.IsGameModeItem = False AndAlso Core.Player.GetWalkPokemon().Item.ID = 261 AndAlso Core.Random.Next(0, 100) < 90 Then
                                 newItemID = Core.Random.Next(254, 261)
                             Else
                                 'Checks if ice is around:
@@ -1009,7 +1009,7 @@
                             'Player is in cave:
                         ElseIf IsCave() = True Then
                             'Checks if the leading Pokémon is holding a sticky rock, which ensures a 90% feather pickup in a cave:
-                            If Not Core.Player.GetWalkPokemon().Item Is Nothing AndAlso Core.Player.GetWalkPokemon().Item.ID = 262 AndAlso Core.Random.Next(0, 100) < 90 Then
+                            If Not Core.Player.GetWalkPokemon().Item Is Nothing AndAlso Core.Player.GetWalkPokemon.Item.IsGameModeItem = False AndAlso Core.Player.GetWalkPokemon().Item.ID = 262 AndAlso Core.Random.Next(0, 100) < 90 Then
                                 'Thunderstone(20%),Firestone(20%),Waterstone(20%),Leafstone(20%),Moonstone(10%),Sunstone(10%)
                                 Dim r1 As Integer = Core.Random.Next(0, 100)
                                 If r1 < 20 Then

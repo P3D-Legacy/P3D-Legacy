@@ -59,7 +59,7 @@ Namespace BattleSystem.Moves.Normal
             End If
 
             Dim itemID As Integer = 0
-            If Not p.Item Is Nothing Then
+            If Not p.Item Is Nothing AndAlso p.Item.IsGameModeItem = False Then
                 itemID = p.Item.ID
             End If
 

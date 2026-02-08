@@ -110,7 +110,7 @@
                 Dim Claw As Integer = 0
 
                 If Not ownPokemon.Item Is Nothing And BattleScreen.FieldEffects.CanUseItem(True) = True And BattleScreen.FieldEffects.CanUseOwnItem(True, BattleScreen) = True Then
-                    If ownPokemon.Item.ID = 73 Then
+                    If ownPokemon.Item.IsGameModeItem = False AndAlso ownPokemon.Item.ID = 73 Then
                         If Core.Random.Next(0, 100) < 20 Then
                             Claw += 1 'Own claw succeeded
                         End If
@@ -118,7 +118,7 @@
                 End If
 
                 If Not oppPokemon.Item Is Nothing And BattleScreen.FieldEffects.CanUseItem(False) = True And BattleScreen.FieldEffects.CanUseOwnItem(False, BattleScreen) = True Then
-                    If oppPokemon.Item.ID = 73 Then
+                    If oppPokemon.Item.IsGameModeItem = False AndAlso oppPokemon.Item.ID = 73 Then
                         If Core.Random.Next(0, 100) < 20 Then
                             Claw += 10 'Opp's claw succeeded
                         End If
@@ -1295,208 +1295,210 @@
                     Case Else
                         IT = 1.0F
                 End Select
-                Select Case p.Item.ID
-                    Case 98, 270 'Black Belt, Fist Plate
-                        If Attack.Type.Type = Element.Types.Fighting Then
-                            IT = 1.2F
-                        End If
-                    Case 102, 268 'Black Glasses, Dread Plate
-                        If Attack.Type.Type = Element.Types.Dark Then
-                            IT = 1.2F
-                        End If
-                    Case 138, 271 'Charcoal, Flame Plate
-                        If Attack.Type.Type = Element.Types.Fire Then
-                            IT = 1.2F
-                        End If
-                    Case 144, 267 'Dragon Fang, Draco Plate
-                        If Attack.Type.Type = Element.Types.Dragon Then
-                            IT = 1.2F
-                        End If
-                    Case 125, 281, 286 'Hard Stone, Stone Plate, Rock Incense
-                        If Attack.Type.Type = Element.Types.Rock Then
-                            IT = 1.2F
-                        End If
-                    Case 108, 283 'Magnet, Zap Plate
-                        If Attack.Type.Type = Element.Types.Electric Then
-                            IT = 1.2F
-                        End If
-                    Case 143, 274 'Metal Coat, Iron Plate
-                        If Attack.Type.Type = Element.Types.Steel Then
-                            IT = 1.2F
-                        End If
-                    Case 117, 275, 287 'Miracle Seed, Meadow Plate, Rose Incense
-                        If Attack.Type.Type = Element.Types.Grass Then
-                            IT = 1.2F
-                        End If
-                    Case 95, 145, 264, 279 'Mystic Water, Wave Incense, Sea Incense, Splash Plate
-                        If Attack.Type.Type = Element.Types.Water Then
-                            IT = 1.2F
-                        End If
-                    Case 107, 272 'NeverMeltIce, Icicle Plate
-                        If Attack.Type.Type = Element.Types.Ice Then
-                            IT = 1.2F
-                        End If
-                    Case 104, 277 'Pink Bow, Pixie Plate
-                        If Attack.Type.Type = Element.Types.Fairy Then
-                            IT = 1.2F
-                        End If
-                    Case 81, 282 'Poison Barb, Toxic Plate
-                        If Attack.Type.Type = Element.Types.Poison Then
-                            IT = 1.2F
-                        End If
-                    Case 77, 278 'Sharp Beak, Sky Plate
-                        If Attack.Type.Type = Element.Types.Flying Then
-                            IT = 1.2F
-                        End If
-                    Case 88, 273 'Silver Powder, Insect Plate
-                        If Attack.Type.Type = Element.Types.Bug Then
-                            IT = 1.2F
-                        End If
-                    Case 76, 269 'Soft Sand, Earth Plate
-                        If Attack.Type.Type = Element.Types.Ground Then
-                            IT = 1.2F
-                        End If
-                    Case 113, 280 'Spell Tag, Spooky Plate
-                        If Attack.Type.Type = Element.Types.Ghost Then
-                            IT = 1.2F
-                        End If
-                    Case 96, 263, 276 'Twisted Spoon, Odd Incense, Mind Plate
-                        If Attack.Type.Type = Element.Types.Psychic Then
-                            IT = 1.2F
-                        End If
-                    Case 90 'Silk Scarf
-                        If Attack.Type.Type = Element.Types.Normal Then
-                            IT = 1.2F
-                        End If
-                End Select
-                Select Case p.Item.ID
-                    Case 635 'Fighting Gem
-                        If Attack.Type.Type = Element.Types.Fighting Then
-                            If BattleScreen.Battle.RemoveHeldItem(Own, Own, BattleScreen, "-1", "item:fighting gem") = True Then
-                                BattleScreen.BattleQuery.Add(New TextQueryObject("The Fighting Gem boosted " & p.GetDisplayName() & "'s " & Attack.Name & "!"))
-                                IT = 1.3F
+                If p.Item.IsGameModeItem = False Then
+                    Select Case p.Item.ID
+                        Case 98, 270 'Black Belt, Fist Plate
+                            If Attack.Type.Type = Element.Types.Fighting Then
+                                IT = 1.2F
                             End If
-                        End If
-                    Case 644 'Dark Gem
-                        If Attack.Type.Type = Element.Types.Dark Then
-                            If BattleScreen.Battle.RemoveHeldItem(Own, Own, BattleScreen, "-1", "item:dark gem") = True Then
-                                BattleScreen.BattleQuery.Add(New TextQueryObject("The Dark Gem boosted " & p.GetDisplayName() & "'s " & Attack.Name & "!"))
-                                IT = 1.3F
+                        Case 102, 268 'Black Glasses, Dread Plate
+                            If Attack.Type.Type = Element.Types.Dark Then
+                                IT = 1.2F
                             End If
-                        End If
-                    Case 630 'Fire Gem
-                        If Attack.Type.Type = Element.Types.Fire Then
-                            If BattleScreen.Battle.RemoveHeldItem(Own, Own, BattleScreen, "-1", "item:fire gem") = True Then
-                                BattleScreen.BattleQuery.Add(New TextQueryObject("The Fire Gem boosted " & p.GetDisplayName() & "'s " & Attack.Name & "!"))
-                                IT = 1.3F
+                        Case 138, 271 'Charcoal, Flame Plate
+                            If Attack.Type.Type = Element.Types.Fire Then
+                                IT = 1.2F
                             End If
-                        End If
-                    Case 643 'Dragon Gem
-                        If Attack.Type.Type = Element.Types.Dragon Then
-                            If BattleScreen.Battle.RemoveHeldItem(Own, Own, BattleScreen, "-1", "item:dragon gem") = True Then
-                                BattleScreen.BattleQuery.Add(New TextQueryObject("The Dragon Gem boosted " & p.GetDisplayName() & "'s " & Attack.Name & "!"))
-                                IT = 1.3F
+                        Case 144, 267 'Dragon Fang, Draco Plate
+                            If Attack.Type.Type = Element.Types.Dragon Then
+                                IT = 1.2F
                             End If
-                        End If
-                    Case 641 'Rock Gem
-                        If Attack.Type.Type = Element.Types.Rock Then
-                            If BattleScreen.Battle.RemoveHeldItem(Own, Own, BattleScreen, "-1", "item:rock gem") = True Then
-                                BattleScreen.BattleQuery.Add(New TextQueryObject("The Rock Gem boosted " & p.GetDisplayName() & "'s " & Attack.Name & "!"))
-                                IT = 1.3F
+                        Case 125, 281, 286 'Hard Stone, Stone Plate, Rock Incense
+                            If Attack.Type.Type = Element.Types.Rock Then
+                                IT = 1.2F
                             End If
-                        End If
-                    Case 632 'Electric Gem
-                        If Attack.Type.Type = Element.Types.Electric Then
-                            If BattleScreen.Battle.RemoveHeldItem(Own, Own, BattleScreen, "-1", "item:electric gem") = True Then
-                                BattleScreen.BattleQuery.Add(New TextQueryObject("The Electric Gem boosted " & p.GetDisplayName() & "'s " & Attack.Name & "!"))
-                                IT = 1.3F
+                        Case 108, 283 'Magnet, Zap Plate
+                            If Attack.Type.Type = Element.Types.Electric Then
+                                IT = 1.2F
                             End If
-                        End If
-                    Case 645 'Steel Gem
-                        If Attack.Type.Type = Element.Types.Steel Then
-                            If BattleScreen.Battle.RemoveHeldItem(Own, Own, BattleScreen, "-1", "item:steel gem") = True Then
-                                BattleScreen.BattleQuery.Add(New TextQueryObject("The Steel Gem boosted " & p.GetDisplayName() & "'s " & Attack.Name & "!"))
-                                IT = 1.3F
+                        Case 143, 274 'Metal Coat, Iron Plate
+                            If Attack.Type.Type = Element.Types.Steel Then
+                                IT = 1.2F
                             End If
-                        End If
-                    Case 633 'Grass Gem
-                        If Attack.Type.Type = Element.Types.Grass Then
-                            If BattleScreen.Battle.RemoveHeldItem(Own, Own, BattleScreen, "-1", "item:grass gem") = True Then
-                                BattleScreen.BattleQuery.Add(New TextQueryObject("The Grass Gem boosted " & p.GetDisplayName() & "'s " & Attack.Name & "!"))
-                                IT = 1.3F
+                        Case 117, 275, 287 'Miracle Seed, Meadow Plate, Rose Incense
+                            If Attack.Type.Type = Element.Types.Grass Then
+                                IT = 1.2F
                             End If
-                        End If
-                    Case 631 'Water Gem
-                        If Attack.Type.Type = Element.Types.Water Then
-                            If BattleScreen.Battle.RemoveHeldItem(Own, Own, BattleScreen, "-1", "item:water gem") = True Then
-                                BattleScreen.BattleQuery.Add(New TextQueryObject("The Water Gem boosted " & p.GetDisplayName() & "'s " & Attack.Name & "!"))
-                                IT = 1.3F
+                        Case 95, 145, 264, 279 'Mystic Water, Wave Incense, Sea Incense, Splash Plate
+                            If Attack.Type.Type = Element.Types.Water Then
+                                IT = 1.2F
                             End If
-                        End If
-                    Case 634 'Ice Gem
-                        If Attack.Type.Type = Element.Types.Ice Then
-                            If BattleScreen.Battle.RemoveHeldItem(Own, Own, BattleScreen, "-1", "item:ice gem") = True Then
-                                BattleScreen.BattleQuery.Add(New TextQueryObject("The Ice Gem boosted " & p.GetDisplayName() & "'s " & Attack.Name & "!"))
-                                IT = 1.3F
+                        Case 107, 272 'NeverMeltIce, Icicle Plate
+                            If Attack.Type.Type = Element.Types.Ice Then
+                                IT = 1.2F
                             End If
-                        End If
-                    Case 647 'Fairy Gem
-                        If Attack.Type.Type = Element.Types.Fairy Then
-                            If BattleScreen.Battle.RemoveHeldItem(Own, Own, BattleScreen, "-1", "item:fairy gem") = True Then
-                                BattleScreen.BattleQuery.Add(New TextQueryObject("The Fairy Gem boosted " & p.GetDisplayName() & "'s " & Attack.Name & "!"))
-                                IT = 1.3F
+                        Case 104, 277 'Pink Bow, Pixie Plate
+                            If Attack.Type.Type = Element.Types.Fairy Then
+                                IT = 1.2F
                             End If
-                        End If
-                    Case 636 'Poison Gem
-                        If Attack.Type.Type = Element.Types.Poison Then
-                            If BattleScreen.Battle.RemoveHeldItem(Own, Own, BattleScreen, "-1", "item:poison gem") = True Then
-                                BattleScreen.BattleQuery.Add(New TextQueryObject("The Poison Gem boosted " & p.GetDisplayName() & "'s " & Attack.Name & "!"))
-                                IT = 1.3F
+                        Case 81, 282 'Poison Barb, Toxic Plate
+                            If Attack.Type.Type = Element.Types.Poison Then
+                                IT = 1.2F
                             End If
-                        End If
-                    Case 638 'Flying Gem
-                        If Attack.Type.Type = Element.Types.Flying Then
-                            If BattleScreen.Battle.RemoveHeldItem(Own, Own, BattleScreen, "-1", "item:flying gem") = True Then
-                                BattleScreen.BattleQuery.Add(New TextQueryObject("The Flying Gem boosted " & p.GetDisplayName() & "'s " & Attack.Name & "!"))
-                                IT = 1.3F
+                        Case 77, 278 'Sharp Beak, Sky Plate
+                            If Attack.Type.Type = Element.Types.Flying Then
+                                IT = 1.2F
                             End If
-                        End If
-                    Case 640 'Bug Gem
-                        If Attack.Type.Type = Element.Types.Bug Then
-                            If BattleScreen.Battle.RemoveHeldItem(Own, Own, BattleScreen, "-1", "item:bug gem") = True Then
-                                BattleScreen.BattleQuery.Add(New TextQueryObject("The Bug Gem boosted " & p.GetDisplayName() & "'s " & Attack.Name & "!"))
-                                IT = 1.3F
+                        Case 88, 273 'Silver Powder, Insect Plate
+                            If Attack.Type.Type = Element.Types.Bug Then
+                                IT = 1.2F
                             End If
-                        End If
-                    Case 637 'Ground Gem
-                        If Attack.Type.Type = Element.Types.Ground Then
-                            If BattleScreen.Battle.RemoveHeldItem(Own, Own, BattleScreen, "-1", "item:ground gem") = True Then
-                                BattleScreen.BattleQuery.Add(New TextQueryObject("The Ground Gem boosted " & p.GetDisplayName() & "'s " & Attack.Name & "!"))
-                                IT = 1.3F
+                        Case 76, 269 'Soft Sand, Earth Plate
+                            If Attack.Type.Type = Element.Types.Ground Then
+                                IT = 1.2F
                             End If
-                        End If
-                    Case 642 'Ghost Gem
-                        If Attack.Type.Type = Element.Types.Ghost Then
-                            If BattleScreen.Battle.RemoveHeldItem(Own, Own, BattleScreen, "-1", "item:ghost gem") = True Then
-                                BattleScreen.BattleQuery.Add(New TextQueryObject("The Ghost Gem boosted " & p.GetDisplayName() & "'s " & Attack.Name & "!"))
-                                IT = 1.3F
+                        Case 113, 280 'Spell Tag, Spooky Plate
+                            If Attack.Type.Type = Element.Types.Ghost Then
+                                IT = 1.2F
                             End If
-                        End If
-                    Case 639 'Psychic Gem
-                        If Attack.Type.Type = Element.Types.Psychic Then
-                            If BattleScreen.Battle.RemoveHeldItem(Own, Own, BattleScreen, "-1", "item:psychic gem") = True Then
-                                BattleScreen.BattleQuery.Add(New TextQueryObject("The Psychic Gem boosted " & p.GetDisplayName() & "'s " & Attack.Name & "!"))
-                                IT = 1.3F
+                        Case 96, 263, 276 'Twisted Spoon, Odd Incense, Mind Plate
+                            If Attack.Type.Type = Element.Types.Psychic Then
+                                IT = 1.2F
                             End If
-                        End If
-                    Case 646 'Normal Gem
-                        If Attack.Type.Type = Element.Types.Normal Then
-                            If BattleScreen.Battle.RemoveHeldItem(Own, Own, BattleScreen, "-1", "item:normal gem") = True Then
-                                BattleScreen.BattleQuery.Add(New TextQueryObject("The Normal Gem boosted " & p.GetDisplayName() & "'s " & Attack.Name & "!"))
-                                IT = 1.3F
+                        Case 90 'Silk Scarf
+                            If Attack.Type.Type = Element.Types.Normal Then
+                                IT = 1.2F
                             End If
-                        End If
-                End Select
+                    End Select
+                    Select Case p.Item.ID
+                        Case 635 'Fighting Gem
+                            If Attack.Type.Type = Element.Types.Fighting Then
+                                If BattleScreen.Battle.RemoveHeldItem(Own, Own, BattleScreen, "-1", "item:fighting gem") = True Then
+                                    BattleScreen.BattleQuery.Add(New TextQueryObject("The Fighting Gem boosted " & p.GetDisplayName() & "'s " & Attack.Name & "!"))
+                                    IT = 1.3F
+                                End If
+                            End If
+                        Case 644 'Dark Gem
+                            If Attack.Type.Type = Element.Types.Dark Then
+                                If BattleScreen.Battle.RemoveHeldItem(Own, Own, BattleScreen, "-1", "item:dark gem") = True Then
+                                    BattleScreen.BattleQuery.Add(New TextQueryObject("The Dark Gem boosted " & p.GetDisplayName() & "'s " & Attack.Name & "!"))
+                                    IT = 1.3F
+                                End If
+                            End If
+                        Case 630 'Fire Gem
+                            If Attack.Type.Type = Element.Types.Fire Then
+                                If BattleScreen.Battle.RemoveHeldItem(Own, Own, BattleScreen, "-1", "item:fire gem") = True Then
+                                    BattleScreen.BattleQuery.Add(New TextQueryObject("The Fire Gem boosted " & p.GetDisplayName() & "'s " & Attack.Name & "!"))
+                                    IT = 1.3F
+                                End If
+                            End If
+                        Case 643 'Dragon Gem
+                            If Attack.Type.Type = Element.Types.Dragon Then
+                                If BattleScreen.Battle.RemoveHeldItem(Own, Own, BattleScreen, "-1", "item:dragon gem") = True Then
+                                    BattleScreen.BattleQuery.Add(New TextQueryObject("The Dragon Gem boosted " & p.GetDisplayName() & "'s " & Attack.Name & "!"))
+                                    IT = 1.3F
+                                End If
+                            End If
+                        Case 641 'Rock Gem
+                            If Attack.Type.Type = Element.Types.Rock Then
+                                If BattleScreen.Battle.RemoveHeldItem(Own, Own, BattleScreen, "-1", "item:rock gem") = True Then
+                                    BattleScreen.BattleQuery.Add(New TextQueryObject("The Rock Gem boosted " & p.GetDisplayName() & "'s " & Attack.Name & "!"))
+                                    IT = 1.3F
+                                End If
+                            End If
+                        Case 632 'Electric Gem
+                            If Attack.Type.Type = Element.Types.Electric Then
+                                If BattleScreen.Battle.RemoveHeldItem(Own, Own, BattleScreen, "-1", "item:electric gem") = True Then
+                                    BattleScreen.BattleQuery.Add(New TextQueryObject("The Electric Gem boosted " & p.GetDisplayName() & "'s " & Attack.Name & "!"))
+                                    IT = 1.3F
+                                End If
+                            End If
+                        Case 645 'Steel Gem
+                            If Attack.Type.Type = Element.Types.Steel Then
+                                If BattleScreen.Battle.RemoveHeldItem(Own, Own, BattleScreen, "-1", "item:steel gem") = True Then
+                                    BattleScreen.BattleQuery.Add(New TextQueryObject("The Steel Gem boosted " & p.GetDisplayName() & "'s " & Attack.Name & "!"))
+                                    IT = 1.3F
+                                End If
+                            End If
+                        Case 633 'Grass Gem
+                            If Attack.Type.Type = Element.Types.Grass Then
+                                If BattleScreen.Battle.RemoveHeldItem(Own, Own, BattleScreen, "-1", "item:grass gem") = True Then
+                                    BattleScreen.BattleQuery.Add(New TextQueryObject("The Grass Gem boosted " & p.GetDisplayName() & "'s " & Attack.Name & "!"))
+                                    IT = 1.3F
+                                End If
+                            End If
+                        Case 631 'Water Gem
+                            If Attack.Type.Type = Element.Types.Water Then
+                                If BattleScreen.Battle.RemoveHeldItem(Own, Own, BattleScreen, "-1", "item:water gem") = True Then
+                                    BattleScreen.BattleQuery.Add(New TextQueryObject("The Water Gem boosted " & p.GetDisplayName() & "'s " & Attack.Name & "!"))
+                                    IT = 1.3F
+                                End If
+                            End If
+                        Case 634 'Ice Gem
+                            If Attack.Type.Type = Element.Types.Ice Then
+                                If BattleScreen.Battle.RemoveHeldItem(Own, Own, BattleScreen, "-1", "item:ice gem") = True Then
+                                    BattleScreen.BattleQuery.Add(New TextQueryObject("The Ice Gem boosted " & p.GetDisplayName() & "'s " & Attack.Name & "!"))
+                                    IT = 1.3F
+                                End If
+                            End If
+                        Case 647 'Fairy Gem
+                            If Attack.Type.Type = Element.Types.Fairy Then
+                                If BattleScreen.Battle.RemoveHeldItem(Own, Own, BattleScreen, "-1", "item:fairy gem") = True Then
+                                    BattleScreen.BattleQuery.Add(New TextQueryObject("The Fairy Gem boosted " & p.GetDisplayName() & "'s " & Attack.Name & "!"))
+                                    IT = 1.3F
+                                End If
+                            End If
+                        Case 636 'Poison Gem
+                            If Attack.Type.Type = Element.Types.Poison Then
+                                If BattleScreen.Battle.RemoveHeldItem(Own, Own, BattleScreen, "-1", "item:poison gem") = True Then
+                                    BattleScreen.BattleQuery.Add(New TextQueryObject("The Poison Gem boosted " & p.GetDisplayName() & "'s " & Attack.Name & "!"))
+                                    IT = 1.3F
+                                End If
+                            End If
+                        Case 638 'Flying Gem
+                            If Attack.Type.Type = Element.Types.Flying Then
+                                If BattleScreen.Battle.RemoveHeldItem(Own, Own, BattleScreen, "-1", "item:flying gem") = True Then
+                                    BattleScreen.BattleQuery.Add(New TextQueryObject("The Flying Gem boosted " & p.GetDisplayName() & "'s " & Attack.Name & "!"))
+                                    IT = 1.3F
+                                End If
+                            End If
+                        Case 640 'Bug Gem
+                            If Attack.Type.Type = Element.Types.Bug Then
+                                If BattleScreen.Battle.RemoveHeldItem(Own, Own, BattleScreen, "-1", "item:bug gem") = True Then
+                                    BattleScreen.BattleQuery.Add(New TextQueryObject("The Bug Gem boosted " & p.GetDisplayName() & "'s " & Attack.Name & "!"))
+                                    IT = 1.3F
+                                End If
+                            End If
+                        Case 637 'Ground Gem
+                            If Attack.Type.Type = Element.Types.Ground Then
+                                If BattleScreen.Battle.RemoveHeldItem(Own, Own, BattleScreen, "-1", "item:ground gem") = True Then
+                                    BattleScreen.BattleQuery.Add(New TextQueryObject("The Ground Gem boosted " & p.GetDisplayName() & "'s " & Attack.Name & "!"))
+                                    IT = 1.3F
+                                End If
+                            End If
+                        Case 642 'Ghost Gem
+                            If Attack.Type.Type = Element.Types.Ghost Then
+                                If BattleScreen.Battle.RemoveHeldItem(Own, Own, BattleScreen, "-1", "item:ghost gem") = True Then
+                                    BattleScreen.BattleQuery.Add(New TextQueryObject("The Ghost Gem boosted " & p.GetDisplayName() & "'s " & Attack.Name & "!"))
+                                    IT = 1.3F
+                                End If
+                            End If
+                        Case 639 'Psychic Gem
+                            If Attack.Type.Type = Element.Types.Psychic Then
+                                If BattleScreen.Battle.RemoveHeldItem(Own, Own, BattleScreen, "-1", "item:psychic gem") = True Then
+                                    BattleScreen.BattleQuery.Add(New TextQueryObject("The Psychic Gem boosted " & p.GetDisplayName() & "'s " & Attack.Name & "!"))
+                                    IT = 1.3F
+                                End If
+                            End If
+                        Case 646 'Normal Gem
+                            If Attack.Type.Type = Element.Types.Normal Then
+                                If BattleScreen.Battle.RemoveHeldItem(Own, Own, BattleScreen, "-1", "item:normal gem") = True Then
+                                    BattleScreen.BattleQuery.Add(New TextQueryObject("The Normal Gem boosted " & p.GetDisplayName() & "'s " & Attack.Name & "!"))
+                                    IT = 1.3F
+                                End If
+                            End If
+                    End Select
+                End If
             End If
             'CHG (If used Charge)
             Dim lastMove As Attack = BattleScreen.FieldEffects.OwnLastMove

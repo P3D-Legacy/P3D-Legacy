@@ -157,7 +157,7 @@ Public Class PokemonEncounter
                         ' Cleanse Tag prevents wild Pokémon encounters if held by the first Pokémon in the party:
                         If Core.Player.Pokemons(0).Level >= Pokemon.Level Then
                             If Not Core.Player.Pokemons(0).Item Is Nothing Then
-                                If Core.Player.Pokemons(0).Item.ID = 94 Then
+                                If Core.Player.Pokemons(0).Item.IsGameModeItem = False AndAlso Core.Player.Pokemons(0).Item.ID = 94 Then
                                     If Core.Random.Next(0, 3) = 0 Then
                                         If BattleSystem.BattleScreen.RoamingBattle = True Then
                                             BattleSystem.BattleScreen.RoamingBattle = False
@@ -172,7 +172,7 @@ Public Class PokemonEncounter
                         ' Pure Incense lowers the chance of encountering wild Pokémon if held by the first Pokémon in the party:
                         If Core.Player.Pokemons(0).Level >= Pokemon.Level Then
                             If Not Core.Player.Pokemons(0).Item Is Nothing Then
-                                If Core.Player.Pokemons(0).Item.ID = 291 Then
+                                If Core.Player.Pokemons(0).Item.IsGameModeItem = False AndAlso Core.Player.Pokemons(0).Item.ID = 291 Then
                                     If Core.Random.Next(0, 3) = 0 Then
                                         If BattleSystem.BattleScreen.RoamingBattle = True Then
                                             BattleSystem.BattleScreen.RoamingBattle = False

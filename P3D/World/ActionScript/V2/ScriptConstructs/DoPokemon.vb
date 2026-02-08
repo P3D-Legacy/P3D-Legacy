@@ -91,7 +91,11 @@
                     If Core.Player.Pokemons(index).Item Is Nothing Then
                         Return 0
                     Else
-                        Return Core.Player.Pokemons(index).Item.ID
+                        If Core.Player.Pokemons(index).Item.IsGameModeItem = True Then
+                            Return Core.Player.Pokemons(index).Item.gmID
+                        Else
+                            Return Core.Player.Pokemons(index).Item.ID.ToString
+                        End If
                     End If
                 Case "friendship"
                     Dim index As Integer = int(argument.GetSplit(0))

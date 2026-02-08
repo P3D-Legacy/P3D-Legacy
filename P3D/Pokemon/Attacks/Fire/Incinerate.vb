@@ -65,7 +65,12 @@
 
             If Not op.Item Is Nothing Then
                 If op.Item.IsBerry = True OrElse op.Item.OriginalName.ToLower().EndsWith(" gem") Then
-                    Dim ItemID As Integer = op.Item.ID
+                    Dim ItemID As String = ""
+                    If op.Item.IsGameModeItem = True Then
+                        ItemID = op.Item.gmID
+                    Else
+                        ItemID = op.Item.ID.ToString
+                    End If
                     BattleScreen.Battle.RemoveHeldItem(Not own, own, BattleScreen, op.GetDisplayName() & "'s " & op.Item.OneLineName() & " got burned up!", "move:incinerate")
                 End If
             End If

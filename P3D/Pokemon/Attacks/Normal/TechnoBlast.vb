@@ -60,10 +60,14 @@
 
             Dim itemID As Integer = 0
             If Not p.Item Is Nothing Then
-                itemID = p.Item.ID
+                If p.Item.IsGameModeItem = False Then
+                    itemID = p.Item.ID
+                Else
+                    Return New Element(Element.Types.Normal)
+                End If
             End If
 
-            Select Case p.Item.ID
+            Select Case itemID
                 Case 1996
                     Return New Element(Element.Types.Fire)
                 Case 1997

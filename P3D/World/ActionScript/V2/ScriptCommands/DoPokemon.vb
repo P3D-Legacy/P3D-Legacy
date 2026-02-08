@@ -839,7 +839,7 @@
                 ''Make sure X and Y megas hold the correct stone. Other megas may have no stone.
                 Case "megaevolve"
                     Dim p As Pokemon = Core.Player.Pokemons(int(argument))
-                    If p.Item IsNot Nothing Then
+                    If p.Item IsNot Nothing AndAlso p.Item.IsGameModeItem = False Then
                         Select Case p.Item.ID
                             Case 516, 529
                                 p.AdditionalData = "mega_x"
@@ -857,7 +857,7 @@
                 Case "megaevolveall"
                     For i = 0 To Core.Player.Pokemons.Count - 1
                         Dim p As Pokemon = Core.Player.Pokemons(i)
-                        If p.Item IsNot Nothing Then
+                        If p.Item IsNot Nothing AndAlso p.Item.IsGameModeItem = False Then
                             Select Case p.Item.ID
                                 Case 516, 529
                                     p.AdditionalData = "mega_x"

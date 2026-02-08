@@ -62,7 +62,12 @@
 
             If Not op.Item Is Nothing Then
                 If op.Item.isBerry = True Then
-                    Dim ItemID As Integer = op.Item.ID
+                    Dim ItemID As String = ""
+                    If op.Item.IsGameModeItem = True Then
+                        ItemID = op.Item.gmID
+                    Else
+                        ItemID = op.Item.ID.ToString
+                    End If
 
                     BattleScreen.Battle.RemoveHeldItem(Not own, own, BattleScreen, p.GetDisplayName() & " ate the " & op.Item.OneLineName() & " berry!", "move:bugbite")
                     BattleScreen.Battle.UseBerry(own, own, Item.GetItemByID(ItemID.ToString), BattleScreen, "", "move:bugbite")
