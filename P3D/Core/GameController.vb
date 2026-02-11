@@ -1,4 +1,5 @@
-﻿Imports System.Windows.Forms
+﻿Imports System.Runtime.InteropServices
+Imports System.Windows.Forms
 Imports GameDevCommon
 
 Public Class Classified
@@ -169,6 +170,25 @@ Public Class GameController
 
     Public Function GetComponentManager() As ComponentManager Implements IGame.GetComponentManager
         Return _componentManager
+    End Function
+
+    Declare Function GetForegroundWindow Lib "user32.dll" () As IntPtr
+    Declare Function GetWindowThreadProcessId Lib "user32.dll" (ByVal handle As IntPtr, <Out> ByRef processId As Integer) As Integer
+
+    Private Shared CurrentProcessID As Integer = Process.GetCurrentProcess().Id
+    Private Shared ActivateProcessID As Integer
+
+    Public Shared Function IsActiveWindow() As Boolean
+        Dim activatedHandle = GetForegroundWindow()
+
+        If activatedHandle = IntPtr.Zero Then
+            Return False
+        End If
+
+        Dim ActivateProcessID As Integer
+        GetWindowThreadProcessId(activatedHandle, ActivateProcessID)
+        Return ActivateProcessID = CurrentProcessID
+
     End Function
 
     Private Shared GameHacked As Boolean = False 'Temp value that stores if a hacking file was detected at game start.

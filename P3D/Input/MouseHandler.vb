@@ -24,7 +24,7 @@
     End Sub
 
     Public Shared Function ButtonPressed(ByVal Button As MouseButtons) As Boolean
-        If WindowContainsMouse = True And Core.GameInstance.IsActive = True Then
+        If WindowContainsMouse = True And GameController.IsActiveWindow = True Then
             Select Case Button
                 Case MouseButtons.LeftButton
                     If OldState.LeftButton = ButtonState.Released And NewState.LeftButton = ButtonState.Pressed Then
@@ -44,7 +44,7 @@
     End Function
 
     Public Shared Function ButtonDown(ByVal Button As MouseButtons) As Boolean
-        If WindowContainsMouse = True And Core.GameInstance.IsActive = True Then
+        If WindowContainsMouse = True And GameController.IsActiveWindow = True Then
             Select Case Button
                 Case MouseButtons.LeftButton
                     Return (NewState.LeftButton = ButtonState.Pressed)
@@ -81,7 +81,7 @@
         Get
             If ButtonDown(MouseButtons.LeftButton) = True OrElse ButtonDown(MouseButtons.RightButton) OrElse ButtonDown(MouseButtons.MiddleButton) OrElse
                 GetScrollWheelChange() <> 0 Then
-                If WindowContainsMouse = True And Core.GameInstance.IsActive = True Then
+                If WindowContainsMouse = True And GameController.IsActiveWindow = True Then
                     Return True
                 End If
             End If

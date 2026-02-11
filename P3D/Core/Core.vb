@@ -149,7 +149,7 @@
 
         ConnectScreen.UpdateConnectSet()
 
-        If Core.GameInstance.IsActive = False Then
+        If GameController.IsActiveWindow = False Then
             If Core.CurrentScreen.CanBePaused = True Then
                 Core.SetScreen(New PauseScreen(Core.CurrentScreen))
             End If

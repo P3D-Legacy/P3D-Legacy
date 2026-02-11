@@ -556,7 +556,7 @@
     End Sub
 
     Public Sub ResetCursor()
-        If Core.GameInstance.IsActive = True Then
+        If GameController.IsActiveWindow = True Then
             Mouse.SetPosition(CInt(Core.windowSize.Width / 2), CInt(Core.windowSize.Height / 2))
             oldX = CInt(Core.windowSize.Width / 2)
             oldY = CInt(Core.windowSize.Height / 2)

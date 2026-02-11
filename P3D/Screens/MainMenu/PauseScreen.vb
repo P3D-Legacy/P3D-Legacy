@@ -90,7 +90,7 @@
 
         Screen.TextBox.reDelay = 0.0F
 
-        If Core.GameInstance.IsActive = True Then
+        If GameController.IsActiveWindow = True Then
             If Me.menuIndex = 0 Then
                 UpdateMain()
             Else

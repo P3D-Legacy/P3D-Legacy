@@ -100,7 +100,7 @@
     End Function
 
     Public Shared Function Left(ByVal Pressed As Boolean, Optional ByVal ArrowKeys As Boolean = True, Optional ByVal Scroll As Boolean = True, Optional ByVal WASD As Boolean = True, Optional ByVal ThumbStick As Boolean = True, Optional ByVal DPad As Boolean = True) As Boolean
-        If Core.GameInstance.IsActive = True Then
+        If GameController.IsActiveWindow = True Then
             If MouseHandler.WindowContainsMouse = True And Scroll = True Then
                 If MouseHandler.GetScrollWheelChange() > 0 Then
                     Return True
@@ -135,7 +135,7 @@
     End Function
 
     Public Shared Function Right(ByVal Pressed As Boolean, Optional ByVal ArrowKeys As Boolean = True, Optional ByVal Scroll As Boolean = True, Optional ByVal WASD As Boolean = True, Optional ByVal ThumbStick As Boolean = True, Optional ByVal DPad As Boolean = True) As Boolean
-        If Core.GameInstance.IsActive = True Then
+        If GameController.IsActiveWindow = True Then
             If MouseHandler.WindowContainsMouse = True And Scroll = True Then
                 If MouseHandler.GetScrollWheelChange() < 0 Then
                     Return True
@@ -170,7 +170,7 @@
     End Function
 
     Public Shared Function Up(ByVal Pressed As Boolean, Optional ByVal ArrowKeys As Boolean = True, Optional ByVal Scroll As Boolean = True, Optional ByVal WASD As Boolean = True, Optional ByVal ThumbStick As Boolean = True, Optional ByVal DPad As Boolean = True) As Boolean
-        If Core.GameInstance.IsActive = True Then
+        If GameController.IsActiveWindow = True Then
             If MouseHandler.WindowContainsMouse = True And Scroll = True Then
                 If MouseHandler.GetScrollWheelChange() > 0 Then
                     Return True
@@ -205,7 +205,7 @@
     End Function
 
     Public Shared Function Down(ByVal Pressed As Boolean, Optional ByVal ArrowKeys As Boolean = True, Optional ByVal Scroll As Boolean = True, Optional ByVal WASD As Boolean = True, Optional ByVal ThumbStick As Boolean = True, Optional ByVal DPad As Boolean = True) As Boolean
-        If Core.GameInstance.IsActive = True Then
+        If GameController.IsActiveWindow = True Then
             If MouseHandler.WindowContainsMouse = True And Scroll = True Then
                 If MouseHandler.GetScrollWheelChange() < 0 Then
                     Return True
@@ -302,7 +302,7 @@
     End Function
 
     Public Shared Function Accept(Optional ByVal DoMouse As Boolean = True, Optional ByVal DoKeyBoard As Boolean = True, Optional ByVal DoGamePad As Boolean = True) As Boolean
-        If Core.GameInstance.IsActive = True Then
+        If GameController.IsActiveWindow = True Then
             If DoKeyBoard = True Then
                 If KeyBoardHandler.KeyPressed(KeyBindings.EnterKey1) = True Or KeyBoardHandler.KeyPressed(KeyBindings.EnterKey2) = True Then
                     Return True
@@ -323,7 +323,7 @@
     End Function
 
     Public Shared Function Dismiss(Optional ByVal DoMouse As Boolean = True, Optional ByVal DoKeyBoard As Boolean = True, Optional ByVal DoGamePad As Boolean = True) As Boolean
-        If Core.GameInstance.IsActive = True Then
+        If GameController.IsActiveWindow = True Then
             If DoKeyBoard = True Then
                 If KeyBoardHandler.KeyPressed(KeyBindings.BackKey1) = True Or KeyBoardHandler.KeyPressed(KeyBindings.BackKey2) = True Then
                     Return True

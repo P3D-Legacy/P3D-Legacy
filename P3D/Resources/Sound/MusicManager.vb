@@ -313,7 +313,7 @@ Public Class MusicManager
             End If
         End If
 
-        If Core.GameInstance.IsActive AndAlso _lastVolume <> (Volume * PauseVolume * MasterVolume) Then
+        If GameController.IsActiveWindow AndAlso _lastVolume <> (Volume * PauseVolume * MasterVolume) Then
             UpdateVolume()
         End If
     End Sub
