@@ -1196,7 +1196,7 @@
                 Case "fog"
                     Return Localization.GetString("emblem_achievement_description_" & emblem.ToLower(), "Get the Fog-Badge from Morty.")
                 Case "storm"
-                    Return Localization.GetString("emblem_achievement_description_" & emblem.ToLower(), "Get the Plain-Badge from Whitney.")
+                    Return Localization.GetString("emblem_achievement_description_" & emblem.ToLower(), "Get the Storm-Badge from Chuck.")
                 Case "mineral"
                     Return Localization.GetString("emblem_achievement_description_" & emblem.ToLower(), "Get the Mineral-Badge from Jasmine.")
                 Case "glacier"
@@ -1254,7 +1254,7 @@
                 Case "tao"
                     Return Localization.GetString("emblem_achievement_description_" & emblem.ToLower(), "Have a heroic encounter.")
                 Case "floral"
-                    Return Localization.GetString("emblem_achievement_description_" & emblem.ToLower(), "Have a mythical encounter.")
+                    Return Localization.GetString("emblem_achievement_description_" & emblem.ToLower(), "Have a fragrant encounter.")
                 Case Else
                     Return "???"
             End Select

@@ -105,8 +105,8 @@
             Core.SpriteBatch.Draw(Me.texture, New Rectangle(Core.windowSize.Width - 128, y + TileOffset, 128, 64), New Rectangle(48, 0, 16, 16), Color.White)
         Next
 
-        Canvas.DrawGradient(New Rectangle(0, 0, CInt(Core.windowSize.Width), 200), New Color(42, 167, 198), New Color(42, 167, 198, 0), False, -1)
-        Canvas.DrawGradient(New Rectangle(0, CInt(Core.windowSize.Height - 200), CInt(Core.windowSize.Width), 200), New Color(42, 167, 198, 0), New Color(42, 167, 198), False, -1)
+        Canvas.DrawGradient(New Rectangle(0, 0, CInt(Core.windowSize.Width), 100), New Color(42, 167, 198), New Color(42, 167, 198, 0), False, -1)
+        Canvas.DrawGradient(New Rectangle(0, CInt(Core.windowSize.Height - 100), CInt(Core.windowSize.Width), 100), New Color(42, 167, 198, 0), New Color(42, 167, 198), False, -1)
 
         Core.SpriteBatch.DrawString(FontManager.MainFont, Localization.GetString("statistics_screen_header_Name", "Name"), New Vector2(150, 110), Color.White, 0.0F, Vector2.Zero, 1.0F, SpriteEffects.None, 0.0F)
         Core.SpriteBatch.DrawString(FontManager.MainFont, Localization.GetString("statistics_screen_header_Value", "Value"), New Vector2(Core.windowSize.Width - 420, 110), Color.White, 0.0F, Vector2.Zero, 1.0F, SpriteEffects.None, 0.0F)

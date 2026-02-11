@@ -1,23 +1,23 @@
 listen channels (range)|overwrite channels (range)|channel name|Region|TimeOfDay (range)|Card Requirements (range)|Music|[SPECIAL]/(Script)/Text|CanBeOverwritten|Activation (0=Always,1=LevelChannel)|Activation Register (0=no register)
 
-{4.5|4.5|<system.token(pokegear_radio_PokédexShow_Name)>|Johto|0,3|RADIO|show_me_around|[POKEDEXENTRY]|1|0|0}
-{4.5|4.5|<system.token(pokegear_radio_PokemonTalk_Name)>|Johto|1,2|RADIO|oakslab|[RANDOMPOKEMON]|1|0|0}
-{7.5|7.5|<system.token(pokegear_radio_PokemonMusic_Name)>|Johto|0,3|RADIO|pokemon_lullaby|<system.token(pokegear_radio_PokemonMusic_Lullaby)>|1|0|0}
-{7.5|7.5|<system.token(pokegear_radio_PokemonMusic_Name)>|Johto|1,2|RADIO|pokemon_march|<systemt.token(pokegear_radio_PokemonMusic_March)>|1|0|0}
-{8.5|8.5|<system.token(pokegear_radio_LuckyChannel_Name)>|Johto|0,1,2,3|RADIO|gamecorner|[luckychannel]|1|0|0}
-{20.5|0-21|<system.token(pokegear_radio_RocketTransmission_Name)>|Johto|0,1,2,3|RADIO|rocket_broadcast|<system.token(pokegear_radio_RocketTransmission_Content)>|1|1|johto_rocket_hq_broadcast}
-{0-21|0-21|<system.token(pokegear_radio_TeamRocketAnnouncement_Name)>|Johto|0,1,2,3|RADIO|johto_rocket_encounter|<system.token(pokegear_radio_TeamRocketAnnouncement_Content)>|1|0|johto_rocket_radio_pokegear}
-{13.5|0-21|<system.token(pokegear_radio_MysteriousTransmission_Name)>|Johto|0,1,2,3|RADIO|unown_broadcast|[unown]|0|1|0}
-{0-21|0|<system.token(pokegear_radio_MysteriousTransmission_Name)>|Kanto|0,1,2,3|EXPN|cerulean_cave|<system.token(pokegear_radio_MysteriousTransmission_BadConnection_Content)>|0|1|0}
+{4.5|4.5|<system.token(pokegear_screen_radio_PokédexShow_Name)>|Johto|0,3|RADIO|show_me_around|[POKEDEXENTRY]|1|0|0}
+{4.5|4.5|<system.token(pokegear_screen_radio_PokemonTalk_Name)>|Johto|1,2|RADIO|oakslab|[RANDOMPOKEMON]|1|0|0}
+{7.5|7.5|<system.token(pokegear_screen_radio_PokemonMusic_Name)>|Johto|0,3|RADIO|pokemon_lullaby|<system.token(pokegear_screen_radio_PokemonMusic_Lullaby)>|1|0|0}
+{7.5|7.5|<system.token(pokegear_screen_radio_PokemonMusic_Name)>|Johto|1,2|RADIO|pokemon_march|<system.token(pokegear_screen_radio_PokemonMusic_March)>|1|0|0}
+{8.5|8.5|<system.token(pokegear_screen_radio_LuckyChannel_Name)>|Johto|0,1,2,3|RADIO|gamecorner|[luckychannel]|1|0|0}
+{20.5|0-21|<system.token(pokegear_screen_radio_RocketTransmission_Name)>|Johto|0,1,2,3|RADIO|rocket_broadcast|<system.token(pokegear_screen_radio_RocketTransmission_Content)>|1|1|johto_rocket_hq_broadcast}
+{0-21|0-21|<system.token(pokegear_screen_radio_TeamRocketAnnouncement_Name)>|Johto|0,1,2,3|RADIO|johto_rocket_encounter|<system.token(pokegear_screen_radio_TeamRocketAnnouncement_Content)>|1|0|johto_rocket_radio_pokegear}
+{13.5|0-21|<system.token(pokegear_screen_radio_MysteriousTransmission_Name)>|Johto|0,1,2,3|RADIO|unown_broadcast|[unown]|0|1|0}
+{0-21|0|<system.token(pokegear_screen_radio_MysteriousTransmission_Name)>|Kanto|0,1,2,3|EXPN|cerulean_cave|<system.token(pokegear_screen_radio_MysteriousTransmission_BadConnection_Content)>|0|1|0}
 
-{14.5|14.5|<system.token(pokegear_radio_PlacesAndPeople_Name)>|Kanto|0,1,2,3|EXPN|Cerulean|[PLACESANDPEOPLE]|1|0|0}
-{18.5|18.5|<system.token(pokegear_radio_LetsAllSing_Name)>|Kanto|0,3|EXPN|pokemon_lullaby|<system.token(pokegear_radio_LetsAllSing_Lullaby)>|1|0|0}
-{18.5|18.5|<system.token(pokegear_radio_LetsAllSing_Name)>|Kanto|1,2|EXPN|pokemon_march|<system.token(pokegear_radio_LetsAllSing_March)>|1|0|0}
-{20.0|20.0|<system.token(pokegear_radio_PokeFlute_Name)>|Kanto|0,1,2,3|EXPN|pokeflute||1|0|0}
-{0-21|0-1|<system.token(pokegear_radio_MysteriousTransmission_Name)>|Kanto|0,1,2,3|EXPN|cerulean_cave|<system.token(pokegear_radio_MysteriousTransmission_BadConnection_Content)>|0|0|rocketkantointerferance}
+{14.5|14.5|<system.token(pokegear_screen_radio_PlacesAndPeople_Name)>|Kanto|0,1,2,3|EXPN|Cerulean|[PLACESANDPEOPLE]|1|0|0}
+{18.5|18.5|<system.token(pokegear_screen_radio_LetsAllSing_Name)>|Kanto|0,3|EXPN|pokemon_lullaby|<system.token(pokegear_screen_radio_LetsAllSing_Lullaby)>|1|0|0}
+{18.5|18.5|<system.token(pokegear_screen_radio_LetsAllSing_Name)>|Kanto|1,2|EXPN|pokemon_march|<system.token(pokegear_screen_radio_LetsAllSing_March)>|1|0|0}
+{20.0|20.0|<system.token(pokegear_screen_radio_PokeFlute_Name)>|Kanto|0,1,2,3|EXPN|pokeflute||1|0|0}
+{0-21|0-1|<system.token(pokegear_screen_radio_MysteriousTransmission_Name)>|Kanto|0,1,2,3|EXPN|cerulean_cave|<system.token(pokegear_screen_radio_MysteriousTransmission_BadConnection_Content)>|0|0|rocketkantointerferance}
 
-{14.5|14.5|<system.token(pokegear_radio_PlacesAndPeople_Name)>|Sevii Islands|0,1,2,3|EXPN|Cerulean|[PLACESANDPEOPLE]|1|0|0}
-{18.5|18.5|<system.token(pokegear_radio_LetsAllSing_Name)>|Sevii Islands|0,3|EXPN|pokemon_lullaby|<system.token(pokegear_radio_LetsAllSing_Lullaby)>|1|0|0}
-{18.5|18.5|<system.token(pokegear_radio_LetsAllSing_Name)>|Sevii Islands|1,2|EXPN|pokemon_march|<system.token(pokegear_radio_LetsAllSing_March)>|1|0|0}
-{20.0|20.0|<system.token(pokegear_radio_PokeFlute_Name)>|Sevii Islands|0,1,2,3|EXPN|pokeflute||1|0|0}
-{0-21|0-21|<system.token(pokegear_radio_MysteriousTransmission_Name)>|Sevii Islands|0,1,2,3|EXPN|cerulean_cave|<system.token(pokegear_radio_MysteriousTransmission_GoodConnection_Content)>|0|0|rocketkantointerferance}
+{14.5|14.5|<system.token(pokegear_screen_radio_PlacesAndPeople_Name)>|Sevii Islands|0,1,2,3|EXPN|Cerulean|[PLACESANDPEOPLE]|1|0|0}
+{18.5|18.5|<system.token(pokegear_screen_radio_LetsAllSing_Name)>|Sevii Islands|0,3|EXPN|pokemon_lullaby|<system.token(pokegear_screen_radio_LetsAllSing_Lullaby)>|1|0|0}
+{18.5|18.5|<system.token(pokegear_screen_radio_LetsAllSing_Name)>|Sevii Islands|1,2|EXPN|pokemon_march|<system.token(pokegear_screen_radio_LetsAllSing_March)>|1|0|0}
+{20.0|20.0|<system.token(pokegear_screen_radio_PokeFlute_Name)>|Sevii Islands|0,1,2,3|EXPN|pokeflute||1|0|0}
+{0-21|0-21|<system.token(pokegear_screen_radio_MysteriousTransmission_Name)>|Sevii Islands|0,1,2,3|EXPN|cerulean_cave|<system.token(pokegear_screen_radio_MysteriousTransmission_GoodConnection_Content)>|0|0|rocketkantointerferance}

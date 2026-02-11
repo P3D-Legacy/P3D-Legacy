@@ -720,12 +720,12 @@ emblem_achievement_description_material,Battle and defeat or catch the Red Gyara
 emblem_achievement_description_cyber,Trade on the GTS.
 emblem_achievement_description_johto,Get all the badges from the Johto region.
 emblem_achievement_description_kanto,Get all the badges from the Kanto region.
-emblem_achievement_description_legendary,Have Ho-oh,Lugia and Suicune in your party.
+emblem_achievement_description_legendary,Have Ho-oh, Lugia and Suicune in your party.
 emblem_achievement_description_genetics,Have a legendary encounter.
-emblem_achievement_description_unodostres,Have Articuno,Zapdos,and Moltres in your party.
+emblem_achievement_description_unodostres,Have Articuno, Zapdos and Moltres in your party.
 emblem_achievement_description_champion,Defeat Lance to become the Champion.
 emblem_achievement_description_snow,Defeat Red on Mt. Silver.
-emblem_achievement_description_eevee,Get the 8 eevolutions (Vaporeon,Flareon,Jolteon,Umbreon,Espeon,Leafeon,Glaceon and Sylveon).
+emblem_achievement_description_eevee,Get the 8 eevolutions (Vaporeon, Flareon, Jolteon, Umbreon, Espeon, Leafeon, Glaceon and Sylveon).
 emblem_achievement_description_stars,Catch a shiny Pokémon (except a shiny Gyarados).
 emblem_achievement_description_overkill,Get a full party of level 100 Pokemon.
 emblem_achievement_description_pokedex,Complete the Johto Pokédex!
@@ -733,7 +733,7 @@ emblem_achievement_description_zephyr,Get the Zephyr-Badge from Falkner.
 emblem_achievement_description_hive,Get the Hive-Badge from Bugsy.
 emblem_achievement_description_plain,Get the Plain-Badge from Whitney.
 emblem_achievement_description_fog,Get the Fog-Badge from Morty.
-emblem_achievement_description_storm,Get the Plain-Badge from Whitney.
+emblem_achievement_description_storm,Get the Storm-Badge from Chuck.
 emblem_achievement_description_mineral,Get the Mineral-Badge from Jasmine.
 emblem_achievement_description_glacier,Get the Glacier-Badge from Pryce.
 emblem_achievement_description_rising,Get the Rising-Badge from Clair.
@@ -745,7 +745,7 @@ emblem_achievement_description_gold ability,Defeat the Battle Tower Brain once.
 emblem_achievement_description_gold knowledge,Defeat the Battle Factory Brain once.
 emblem_achievement_description_boulder,Get the Boulder-Badge from Brock.
 emblem_achievement_description_cascade,Get the Cascade-Badge from Misty.
-emblem_achievement_description_thunder,Get the Thunder-Badge from Lt.Surge.
+emblem_achievement_description_thunder,Get the Thunder-Badge from Lt. Surge.
 emblem_achievement_description_rainbow,Get the Rainbow-Badge from Erika.
 emblem_achievement_description_marsh,Get the Marsh-Badge from Sabrina.
 emblem_achievement_description_soul,Get the Soul-Badge from Jasmine.
@@ -758,11 +758,11 @@ emblem_achievement_description_eruption,Have an explosive enounter.
 emblem_achievement_description_ancestor,Have a mythical encounter.
 emblem_achievement_description_time,Have an adventure through time.
 emblem_achievement_description_mega,Receive the Mega Bracelet from Professor Oak.
-emblem_achievement_description_beast,Have Raikou,Entei,and Suicune in your party.
+emblem_achievement_description_beast,Have Raikou, Entei and Suicune in your party.
 emblem_achievement_description_heart gold,Have an encounter with the magnificent Ho-oh.
 emblem_achievement_description_soul silver,Have an encounter with the mysterious Lugia.
 emblem_achievement_description_tao,Have a heroic encounter.
-emblem_achievement_description_floral,Have a mythical encounter.
+emblem_achievement_description_floral,Have a fragrant encounter.
 ---
 Pokegear Screen:
 pokegear_screen_main_title,Pokégear
@@ -785,6 +785,12 @@ pokegear_screen_frontier_title,Frontier Emblems
 pokegear_screen_frontier_CurrentBattlePoints,Current BP: [NUMBER]
 pokegear_screen_frontier_NoFrontierEmblems,You don't own any Frontier Emblems yet.
 
+pokegear_screen_phone_contact_Mom,Mom
+pokegear_screen_phone_contact_ProfessorElm,Professor Elm
+pokegear_screen_phone_contact_ProfessorOak,Professor Oak
+pokegear_screen_phone_contact_DayCareMan,Day-Care Man
+pokegear_screen_phone_contact_DayCareGirl,Day-Care Girl
+
 pokegear_screen_pss_RankNumber,Rank [NUMBER]
 pokegear_screen_pss_LevelNumber,Level [NUMBER]
 pokegear_screen_pss_NoGameJoltProfile,You are not logged in with a GameJolt profile.
@@ -803,8 +809,8 @@ pokegear_screen_pss_BattleRequest,The player "[NAME]" wants to battle with you.
 pokegear_screen_radio_NoChannelsFound,...No channels found...
 pokegear_screen_radio_YouAreListeningTo,You are listening to:
 pokegear_screen_radio_BackgroundStation,Background station:
-pokegear_screen_radio_BackgroundStation_StopListening,Press Accept to remove.
-pokegear_screen_radio_BackgroundStation_StartListening,Press Accept to listen~to this station in~the background.
+pokegear_screen_radio_BackgroundStation_StopListening,Press [<system.button(enter1)>] to remove.
+pokegear_screen_radio_BackgroundStation_StartListening,Press [<system.button(enter1)>] to listen~to this station in~the background.
 
 pokegear_screen_radio_PokédexShow_Name,Pokédex Show
 pokegear_screen_radio_PokédexShow_Content,Welcome to the Pokédex Show! Today, we are going to look at the entry of [NAME]! Its entry reads:~"[DEXENTRY]"~Wow, that is interesting! Also, [NAME] is [HEIGHT]m high and weighs [WEIGHT]kg.~Isn't that amazing?~[NAME] is part of the [SPECIES] species.~That's all the information we have. Tune in next time!
@@ -844,7 +850,7 @@ pokegear_screen_radio_PlacesAndPeople_Phrase16,is too picky!
 
 pokegear_screen_radio_LetsAllSing_Name,Let's All Sing
 pokegear_screen_radio_LetsAllSing_Lullaby,Fern: POKéMUSIC!~With DJ Fern! We are bringing you the song that fits this time of the day:~The Pokémon Lullaby.
-pokegear_screen_radio_LetsAllSing_March,Fern: POKéMUSIC!~With DJ Fern!~The sun is up~So let us jam to~Pokémon March!
+pokegear_screen_radio_LetsAllSing_March,Fern: POKéMUSIC!~With DJ Fern!~The sun is up!~So let us jam to~Pokémon March!
 
 pokegear_screen_radio_LuckyChannel_Name,Lucky Channel
 pokegear_screen_radio_LuckyChannel_Content,We are not broadcasting at the moment.~We will ensure that we can provide our service to you again as soon as possible.
@@ -1143,7 +1149,7 @@ frontier_3_gold_name,Gold Luck
 frontier_1_silver_description,You defeated the Frontier Brain of~Battle Tower and showed him how~you and your Pokémon really are.
 frontier_1_gold__description,You defeated the Frontier Brain of~Battle Tower a second time and you've shown~your real strength when it comes to battles.
 frontier_2_silver_description,Only few trainers achieved this emblem~which shows what strength lies~inside them.
-frontier_2_gold_description,This Emblem displays how great you can~interact with Pokémon and how well~you can adapt your strategy to a new situation.
+frontier_2_gold_description,This emblem displays how great you can~interact with Pokémon and how well~you can adapt your strategy to a new situation.
 frontier_3_silver_description,You have shown great skill at taking~the luck thrown your way, good or bad.
 frontier_3_gold_description,Your luck trumped all at the Battle Pike.~You mitigated the worst luck and~doubled down on the best luck.
 ---
@@ -1209,6 +1215,7 @@ Places_Fuchsia City Gym,Fuchsania Stadens Gym
 Places_Saffron City Gym,Saffron Stadens Gym
 Places_Cinnabar Gym,Cinnabar Gym
 Places_Viridian City Gym,Viridian Stadens Gym
+Places_League Reception Gate,League Reception Gate
 Places_Dance Theater,Dansteater
 Places_Lighthouse,Fyr
 Places_Team Rocket HQ,Team Rocket HQ
@@ -1238,7 +1245,6 @@ Places_Tohjo Falls,Tohjo Falls
 Places_Victory Road,Segervägen
 Places_Mt. Silver,Mt. Silver
 Places_Diamond Dive,Diamond Dive
-Places_Indigo Plateau,Indigo Platå
 Places_Safari Zone,Safari Zon
 Places_Viridian Forest,Viridian Skog
 Places_Cerulean Cave,Cerulean Grotta
@@ -1346,7 +1352,7 @@ Places_Tanoby Ruins,Tanoby Ruins
 Places_Safari Zone Gate,Safari Zone Gate
 Places_S.S. Aqua,S.S. Aqua
 Places_Elite 4,Elite 4
-Places_Indigo Plateau,Indigo Plateau
+Places_Indigo Plateau,Indigo Platå
 Places_Twirl Forest,Twirl Forest
 Places_Berry Vista,Berry Vista
 Places_Frontier Plaza,Frontier Plaza
@@ -4756,7 +4762,6 @@ TrainerClass_Collector,Collector
 TrainerClass_Cowgirl,Cowgirl
 TrainerClass_CrushGirl,Crush Girl
 TrainerClass_CrushKin,Crush Kin
-TrainerClass_CueBall,Cue Ball
 TrainerClass_Cyclist,Cyclist
 TrainerClass_Dancer,Dancer
 TrainerClass_Developer,Developer
@@ -4791,10 +4796,6 @@ TrainerClass_Painter,Painter
 TrainerClass_ParasolLady,Parasol Lady
 TrainerClass_PI,PI
 TrainerClass_Picnicker,Picnicker
-TrainerClass_PokéManiac,PokéManiac
-TrainerClass_PokémonBreeder,Pokémon Breeder
-TrainerClass_PokémonRanger,Pokémon Ranger
-TrainerClass_PokémonTrainer,Pokémon Trainer
 TrainerClass_PokéFan,Poké Fan
 TrainerClass_PokéKid,Poké Kid
 TrainerClass_PokéManiac,Poké Maniac
@@ -4810,12 +4811,11 @@ TrainerClass_Rancher,Rancher
 TrainerClass_Reporter,Reporter
 TrainerClass_RichBoy,Rich Boy
 TrainerClass_Rival,Rival
-TrainerClass_RocketBoss,Rocket Boss
 TrainerClass_Roughneck,Roughneck
 TrainerClass_RuinManiac,Ruin Maniac
 TrainerClass_Sage,Sage
 TrainerClass_Sailor,Sailor
-TrainerClass_School Kid,School Kid
+TrainerClass_SchoolKid,School Kid
 TrainerClass_Scientist,Scientist
 TrainerClass_SisAndBro,Sis and Bro
 TrainerClass_Skier,Skier
@@ -4825,8 +4825,9 @@ TrainerClass_Swimmer_Male,Swimmer♂
 TrainerClass_Swimmer_Female,Swimmer♀
 TrainerClass_Tamer,Tamer
 TrainerClass_Teacher,Teacher
-TrainerClass_TeamRocket_Agents,Team Rocket_Agents
 TrainerClass_TeamRocket,Team Rocket
+TrainerClass_TeamRocket_Agents,Team Rocket Agents
+TrainerClass_TeamRocket_Boss,Team Rocket Boss
 TrainerClass_TowerTycoon,Tower Tycoon
 TrainerClass_Trainer,Trainer
 TrainerClass_Tuber,Tuber

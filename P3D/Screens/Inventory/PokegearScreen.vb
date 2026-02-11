@@ -1356,7 +1356,7 @@
                             frameScale = 2.0F
                         End If
                         Core.SpriteBatch.Draw(_spriteTexture, New Rectangle(CInt(startPos.X + 48), CInt(startPos.Y + 96 - (frameSize.Height * frameScale / 2) + i * 36), CInt(frameSize.Width * frameScale), CInt(frameSize.Height * frameScale)), New Rectangle(0, frameSize.Height * 2, frameSize.Width, frameSize.Height), Color.White)
-                        Core.SpriteBatch.DrawString(FontManager.MainFont, C.Name, New Vector2(CInt(startPos.X + 88), CInt(startPos.Y + 84 + i * 36)), Color.Black)
+                        Core.SpriteBatch.DrawString(FontManager.MainFont, ScriptVersion2.ScriptCommander.Parse(C.Name).ToString, New Vector2(CInt(startPos.X + 88), CInt(startPos.Y + 84 + i * 36)), Color.Black)
                         Core.SpriteBatch.DrawString(FontManager.MainFont, Localization.GetString("global_location", "Location") & ": " & Localization.GetString("Places_" & C.Location, C.Location), New Vector2(CInt(startPos.X + 320), CInt(startPos.Y + 84 + i * 36)), Color.Black)
                     End If
                 Next
@@ -2006,7 +2006,7 @@
                             Dim Person As String = people(Core.Random.Next(0, people.Count))
                             Dim TrainerClass As String = Localization.GetString("TrainerClass_" & Person.Remove(Person.LastIndexOf(" ")).Replace(" ", "").Replace("♀", "_Female").Replace("♂", "_Male"), Person.Remove(Person.LastIndexOf(" ")))
                             Dim PersonName As String = Person.Remove(0, Person.LastIndexOf(" ") + 1)
-                            output &= "~" & TrainerClass & PersonName & " " & Localization.GetString("pokegear_screen_radio_PlacesAndPeople_Phrase" & PhraseIndex, PhraseString)
+                            output &= "~" & TrainerClass & " " & PersonName & " " & Localization.GetString("pokegear_screen_radio_PlacesAndPeople_Phrase" & PhraseIndex, PhraseString)
                         Next
 
                         output &= Localization.GetString("pokegear_screen_radio_PlacesAndPeople_Outro", "This is it for now.~Tune in next time.")
@@ -2057,7 +2057,7 @@
             If Not CurrentStation Is Nothing Then
                 text1 = Localization.GetString("pokegear_screen_radio_YouAreListeningTo", "You are listening to:") & Environment.NewLine & CurrentStation.Name
             End If
-            Core.SpriteBatch.DrawString(FontManager.MainFont, text1, New Vector2(startPos.X + 150 - CInt(FontManager.MainFont.MeasureString(text1).X / 2), startPos.Y + 152), Color.Black)
+            Core.SpriteBatch.DrawString(FontManager.MainFont, text1, New Vector2(startPos.X + 160 - CInt(FontManager.MainFont.MeasureString(text1).X / 2), startPos.Y + 152), Color.Black)
 
             Dim text2 As String = ""
             If Screen.Level.IsRadioOn = True Then
