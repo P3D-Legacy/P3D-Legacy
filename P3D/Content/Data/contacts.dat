@@ -1,39 +1,39 @@
-000|Mom|3|New Bark Town|0
-001|Professor Elm|62|New Bark Town|0
-002|Professor Oak|oak|Pallet Town|0
-003|Youngster Joey|14|Route 30|1
-004|Bug Catcher Wade|bugcatcher|Route 31|1
-005|Picnicker Liz|16|Route 32|1
-006|Fisherman Ralph|19|Route 32|1
-007|Hiker Anthony|2|Route 33|1
-009|Picnicker Gina|16|Route 34|1
-010|Camper Todd|17|Route 34|1
-011|Youngster Ian|24|Route 34|1
-012|Day-Care Man|5|Route 34|0
+000|<system.token(pokegear_screen_phone_contact_Mom)>|3|New Bark Town|0
+001|<system.token(pokegear_screen_phone_contact_ProfessorElm)>|62|New Bark Town|0
+002|<system.token(pokegear_screen_phone_contact_ProfessorOak)>|oak|Pallet Town|0
+003|<system.token(TrainerClass_Youngster)> Joey|14|Route 30|1
+004|<system.token(TrainerClass_BugCatcher)> Wade|bugcatcher|Route 31|1
+005|<system.token(TrainerClass_Picnicker)> Liz|16|Route 32|1
+006|<system.token(TrainerClass_Fisherman)> Ralph|19|Route 32|1
+007|<system.token(TrainerClass_Hiker)> Anthony|2|Route 33|1
+009|<system.token(TrainerClass_Picnicker)> Gina|16|Route 34|1
+010|<system.token(TrainerClass_Camper)> Todd|17|Route 34|1
+011|<system.token(TrainerClass_Youngster)> Ian|24|Route 34|1
+012|<system.token(pokegear_screen_phone_contact_DayCareMan)>|5|Route 34|0
 013|Bill|33|Goldenrod City|1
-014|Bug Catcher Arnie|bugcatcher|Route 35|1
-015|Firebreather Walt|21|Route 35|1
-016|Juggler Irwin|27|Route 35|1
-017|Lass Krise|10|National Park|1
-018|Pokéfan Beverly|1|National Park|1
-019|School Kid Jack|49|National Park|1
-020|School Kid Alan|49|Route 36|1
-021|Gentleman Alfred|oldhatman|Glitter Lighthouse|1
-022|Sailor Huey|32|Glitter Lighthouse|1
-023|Lass Dana|10|Route 38|1
-024|School Kid Chad|49|Route 38|1
-025|Pokéfan Derek|11|Route 39|1
-026|Fisherman Tully|19|Route 42|1
-027|Picnicker Tiffany|16|Route 43|1
-028|Pokémaniac Brent|20|Route 43|1
-029|Bird Keeper Vance|9|Route 44|1
-030|Fisherman Wilton|19|Route 44|1
-031|Black Belt Kenji|22|Route 45|1
-032|Hiker Parry|2|Route 45|1
-033|Picnicker Erin|16|Route 46|1
-034|Day-Care Girl|10|Route 5|0
-035|Day-Care Man|5|Four Island|0
-036|Bird Keeper Jose|9|Route 27|1
-037|Ace Trainer Reena|23|Route 27|1
-038|Ace Trainer Gaven|13|Route 26|1
-039|Ace Trainer Beth|23|Route 26|1
+014|<system.token(TrainerClass_BugCatcher)> Arnie|bugcatcher|Route 35|1
+015|<system.token(TrainerClass_Firebreather)> Walt|21|Route 35|1
+016|<system.token(TrainerClass_Juggler)> Irwin|27|Route 35|1
+017|<system.token(TrainerClass_Lass)> Krise|10|National Park|1
+018|<system.token(TrainerClass_PokéFan)> Beverly|1|National Park|1
+019|<system.token(TrainerClass_SchoolKid)> Jack|49|National Park|1
+020|<system.token(TrainerClass_SchoolKid)> Alan|49|Route 36|1
+021|<system.token(TrainerClass_Gentleman)> Alfred|oldhatman|Glitter Lighthouse|1
+022|<system.token(TrainerClass_Sailor)> Huey|32|Glitter Lighthouse|1
+023|<system.token(TrainerClass_Lass)> Dana|10|Route 38|1
+024|<system.token(TrainerClass_SchoolKid)> Chad|49|Route 38|1
+025|<system.token(TrainerClass_PokéFan)> Derek|11|Route 39|1
+026|<system.token(TrainerClass_Fisherman)> Tully|19|Route 42|1
+027|<system.token(TrainerClass_Picnicker)> Tiffany|16|Route 43|1
+028|<system.token(TrainerClass_PokéManiac)> Brent|20|Route 43|1
+029|<system.token(TrainerClass_BirdKeeper)> Vance|9|Route 44|1
+030|<system.token(TrainerClass_Fisherman)> Wilton|19|Route 44|1
+031|<system.token(TrainerClass_BlackBelt)> Kenji|22|Route 45|1
+032|<system.token(TrainerClass_Hiker)> Parry|2|Route 45|1
+033|<system.token(TrainerClass_Picnicker)> Erin|16|Route 46|1
+034|<system.token(pokegear_screen_phone_contact_DayCareGirl)>|10|Route 5|0
+035|<system.token(pokegear_screen_phone_contact_DayCareMan)>|5|Four Island|0
+036|<system.token(TrainerClass_BirdKeeper)> Jose|9|Route 27|1
+037|<system.token(TrainerClass_AceTrainer)> Reena|23|Route 27|1
+038|<system.token(TrainerClass_AceTrainer)> Gaven|13|Route 26|1
+039|<system.token(TrainerClass_AceTrainer)> Beth|23|Route 26|1

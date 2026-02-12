@@ -226,7 +226,7 @@ Public Class PressStartScreen
                 GetFontRenderer().DrawString(FontManager.InGameFont, text, New Vector2(CInt(windowSize.Width / 2.0F - textSize.X / 2.0F),
                                                                                        CInt(windowSize.Height - textSize.Y - 50)), _textColor)
 
-                If ControllerHandler.IsConnected() Then
+                If ControllerHandler.IsConnected() AndAlso Core.GameOptions.GamePadEnabled = True Then
                     SpriteBatch.Draw(TextureManager.GetTexture("GUI\GamePad\xboxControllerButtonA"), New Rectangle(CInt(windowSize.Width / 2 - textSize.X / 2 + textSizeUntilButton.X + FontManager.InGameFont.MeasureString(" ").X + 2), CInt(windowSize.Height - textSize.Y - 58), 40, 40), Color.White)
                 End If
             End If

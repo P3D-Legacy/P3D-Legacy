@@ -52,9 +52,9 @@
         If KeyBoardHandler.KeyPressed(KeyBindings.DisableControllerKey) = True Then
             Core.GameOptions.GamePadEnabled = Not Core.GameOptions.GamePadEnabled
             If Core.GameOptions.GamePadEnabled Then
-                Core.GameMessage.ShowMessage("Enabled XBOX 360 GamePad support.", 12, FontManager.MainFont, Color.White)
+                Core.GameMessage.ShowMessage(Localization.GetString("game_message_gamepad_support_on", "Enabled XBOX 360 GamePad support"), 12, FontManager.MainFont, Color.White)
             Else
-                Core.GameMessage.ShowMessage("Disabled XBOX 360 GamePad support.", 12, FontManager.MainFont, Color.White)
+                Core.GameMessage.ShowMessage(Localization.GetString("game_message_gamepad_support_off", "Disabled XBOX 360 GamePad support"), 12, FontManager.MainFont, Color.White)
             End If
             Core.GameOptions.SaveOptions()
         End If

@@ -806,6 +806,7 @@ pokegear_screen_pss_TradeRequest,De speler "[NAME]" wil met je ruilen.
 pokegear_screen_pss_BattleRequest,De speler "[NAME]" wil met je vechten.
 
 pokegear_screen_radio_NoChannelsFound,...Geen kanalen gevonden...
+pokegear_screen_radio_Tuning,Afstemming:
 pokegear_screen_radio_YouAreListeningTo,Je luistert naar:
 pokegear_screen_radio_BackgroundStation,Achtergrondkanaal:
 pokegear_screen_radio_BackgroundStation_StopListening,Druk op [<system.button(enter1)>] om te~stoppen met luisteren.
@@ -1146,7 +1147,7 @@ frontier_3_silver_name,Zilveren Geluk
 frontier_3_gold_name,Gouden Geluk
 
 frontier_1_silver_description,Je hebt het Frontierhoofd van de~Gevechtstoren verslagen en hem~laten zien hoe goed jij en je~Pokémon werkelijk zijn.
-frontier_1_gold__description,Je hebt de Frontierhoofd van de~Gevechtstoren voor de tweede keer~verslagen en je hebt je ware~kracht laten zien als het op~gevechten aankomt.
+frontier_1_gold_description,Je hebt het Frontierhoofd van de~Gevechtstoren voor de tweede keer~verslagen en je hebt je ware~kracht laten zien als het op~gevechten aankomt.
 frontier_2_silver_description,Slechts enkele trainers hebben dit~embleem behaald, wat aantoont welke~kracht er in hen schuilt.
 frontier_2_gold_description,Dit embleem laat zien hoe goed je~met Pokémon kunt omgaan en hoe goed~je je strategie aan een nieuwe~situatie kunt aanpassen.
 frontier_3_silver_description,Je hebt laten zien dat je heel goed~bent in het benutten van het geluk~dat op je pad komt, of dat nu goed~of slecht is.
@@ -1387,6 +1388,8 @@ game_message_free_camera_on,Vrije-camera-modus aan
 game_message_free_camera_off,Vrije-camera-modus uit
 game_message_sandbox_mode_on,Zandbak-modus aan
 game_message_sandbox_mode_off,Zandbak-modus uit
+game_message_gamepad_support_on,XBOX 360 Controller-ondersteuning ingeschakeld
+game_message_gamepad_support_off,XBOX 360 Controller-ondersteuning uitgeschakeld
 game_message_audio_on,Geluid aan
 game_message_audio_off,Geluid uit
 game_message_continue_autosave,Hervatte opslagbestand:
@@ -5233,7 +5236,7 @@ TrainerClass_Waiter,Ober
 TrainerClass_Waitress,Serveerster
 TrainerClass_Worker,Werknemer
 TrainerClass_YoungCouple,Jong Koppel
-TrainerClass_Youngster,Jongen
+TrainerClass_Youngster,Jongetje
 
 -----
 Story translation:

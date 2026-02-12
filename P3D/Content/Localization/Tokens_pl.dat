@@ -807,6 +807,7 @@ pokegear_screen_pss_TradeRequest,The player "[NAME]" wants to trade with you.
 pokegear_screen_pss_BattleRequest,The player "[NAME]" wants to battle with you.
 
 pokegear_screen_radio_NoChannelsFound,...No channels found...
+pokegear_screen_radio_Tuning,Tuning:
 pokegear_screen_radio_YouAreListeningTo,You are listening to:
 pokegear_screen_radio_BackgroundStation,Background station:
 pokegear_screen_radio_BackgroundStation_StopListening,Press [<system.button(enter1)>] to remove.
@@ -1388,6 +1389,8 @@ game_message_free_camera_on,Free camera mode on
 game_message_free_camera_off,Free camera mode off
 game_message_sandbox_mode_on,Tryb piaskownicy włączony
 game_message_sandbox_mode_off,Tryb piaskownicy wyłączony
+game_message_gamepad_support_on,Enabled XBOX 360 GamePad support
+game_message_gamepad_support_off,Disabled XBOX 360 GamePad support
 game_message_audio_on,Dźwięk włączony
 game_message_audio_off,Dźwięk wyłączony
 game_message_continue_autosave,Continued save state:
