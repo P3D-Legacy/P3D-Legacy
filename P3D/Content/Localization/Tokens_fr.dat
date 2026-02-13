@@ -488,7 +488,7 @@ storage_screen_pokemon_summary_SpDEF,SP. DEF
 storage_screen_pokemon_summary_SPEED,SPEED
 storage_screen_pokemon_summary_ITEM,ITEM
 
-storage_screen_filter_Hint,Press <system.button(special)> on the keyboard to filter.
+storage_screen_filter_Hint,Press [<system.button(special)>] on the keyboard to filter.
 storage_screen_filter_Title,Configure the filters:
 storage_screen_filter_Results,Results:
 storage_screen_filter_Filters,Filters:

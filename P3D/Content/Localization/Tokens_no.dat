@@ -62,7 +62,7 @@ IngameMenu:
 game_menu_pokedex,Pokédex
 game_menu_party,Pokémon
 game_menu_bag,Ryggsekk
-game_menu_trainer_card,<playername>
+game_menu_trainer_card,<Player.Name>
 game_menu_save,Lagre
 game_menu_options,Alternativer
 game_menu_exit,Lukk meny
@@ -838,4 +838,4 @@ New Bark Town:
 ---
 barktown.dat:
 ---
-barktown_player_house,<playername>s Hus
+barktown_player_house,<Player.Name>s Hus

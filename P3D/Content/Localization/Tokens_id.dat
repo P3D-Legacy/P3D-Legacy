@@ -227,8 +227,8 @@ game_interaction_clear,Hapus
 game_interaction_delete,Hapus
 game_interaction_learn,Learn
 game_interaction_notification,Notification
-game_notification_accept,Press <system.button(special)> to accept.
-game_notification_dismiss,Press <system.button(special)> to dismiss.
+game_notification_accept,Press [<system.button(special)>] to accept.
+game_notification_dismiss,Press [<system.button(special)>] to dismiss.
 ---
 PressStartScreen:
 start_screen_press,Press
@@ -490,7 +490,7 @@ storage_screen_pokemon_summary_SpDEF,PERTAHANAN SP.
 storage_screen_pokemon_summary_SPEED,KECEPATAN
 storage_screen_pokemon_summary_ITEM,BARANG
 
-storage_screen_filter_Hint,Press <system.button(special)> on the keyboard to filter.
+storage_screen_filter_Hint,Press [<system.button(special)>] on the keyboard to filter.
 storage_screen_filter_Title,Configure the filters:
 storage_screen_filter_Results,Results:
 storage_screen_filter_Filters,Filters:

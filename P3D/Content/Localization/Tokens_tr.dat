@@ -31,7 +31,7 @@ IngameMenu:
 game_menu_pokedex,Pokédex
 game_menu_party,Pokémon
 game_menu_bag,Çanta
-game_menu_trainer_card,<playername>
+game_menu_trainer_card,<Player.Name>
 game_menu_save,Kaydet
 game_menu_options,Seçenekler
 game_menu_exit,Menüye dön
@@ -638,4 +638,4 @@ New Bark Town:
 ---
 barktown.dat:
 ---
-barktown_player_house,<playername>'s House
+barktown_player_house,<Player.Name>'s House

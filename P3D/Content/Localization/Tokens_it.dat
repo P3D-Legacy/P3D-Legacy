@@ -1,4 +1,3 @@
-
 language_name,Italiano
 =====
 Global:
@@ -228,8 +227,8 @@ game_interaction_clear,Pulisci
 game_interaction_delete,Elimina
 game_interaction_learn,Learn
 game_interaction_notification,Notification
-game_notification_accept,Press <system.button(special)> to accept.
-game_notification_dismiss,Press <system.button(special)> to dismiss.
+game_notification_accept,Press [<system.button(special)>] to accept.
+game_notification_dismiss,Press [<system.button(special)>] to dismiss.
 ---
 PressStartScreen:
 start_screen_press,Press
@@ -491,7 +490,7 @@ storage_screen_pokemon_summary_SpDEF,SP. DEF
 storage_screen_pokemon_summary_SPEED,SPEED
 storage_screen_pokemon_summary_ITEM,ITEM
 
-storage_screen_filter_Hint,Press <system.button(special)> on the keyboard to filter.
+storage_screen_filter_Hint,Press [<system.button(special)>] on the keyboard to filter.
 storage_screen_filter_Title,Configure the filters:
 storage_screen_filter_Results,Results:
 storage_screen_filter_Filters,Filters:
@@ -1065,7 +1064,7 @@ pokedex_order_height,Height
 pokedex_order_weight,Weight
 pokedex_order_reverse,Reverse
 pokedex_filter,Filter
-pokedex_filter_none,None
+pokedex_filter_none,Niente
 pokedex_filter_name,Nome
 pokedex_filter_type1,Type 1
 pokedex_filter_type2,Type 2

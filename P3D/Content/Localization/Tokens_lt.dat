@@ -62,7 +62,7 @@ IngameMenu:
 game_menu_pokedex,Pokedeksas
 game_menu_party,Pokemonai
 game_menu_bag,Kuprinė/Rankinė
-game_menu_trainer_card,<playername>
+game_menu_trainer_card,<Player.Name>
 game_menu_save,Išsaugoti Žaidimą
 game_menu_options,Nustatymai
 game_menu_exit,Išeiti iš Meniu
@@ -1155,4 +1155,4 @@ New Bark Town:
 ---
 barktown.dat:
 ---
-barktown_player_house,<playername>'s House
+barktown_player_house,<Player.Name>'s House
