@@ -87,19 +87,19 @@ global_none,Niente
 ---
 Pokémon & Attack Properties:
 
-property_HP,HP
+property_HP,PS
 property_PP,PP
 property_No.,No.
-property_Lv.,Lv.
-property_Level,Level
-property_MaxHP,Max HP
-property_Attack,Attack
-property_Defense,Defense
-property_Special_Attack,Special Attack
-property_Sp_Attack,Sp. Attack
-property_Special_Defense,Special Defense
-property_Sp_Defense,Sp. Defense
-property_Speed,Speed
+property_Lv.,Liv.
+property_Level,Livello
+property_MaxHP,Max PS
+property_Attack,Attacco
+property_Defense,Difesa
+property_Special_Attack,Attacco Speciale
+property_Sp_Attack,Attacco Sp.
+property_Special_Defense,Difesa Speciale
+property_Sp_Defense,Difesa Sp.
+property_Speed,Velocità
 property_Ability,Abilità
 property_Type,Type
 property_Nature,Natura
