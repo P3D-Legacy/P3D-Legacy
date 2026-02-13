@@ -4747,160 +4747,160 @@ nature_name_Quirky,Eigenzinnig
 -----
 Follower Pokémon Interactions:
 [Generic]
-FollowerInteraction_HeldItem_Question,It looks like your Pokémon~holds on to something.*Do you want to~take it?
-FollowerInteraction_HeldItem_Answer_Yes,Your Pokémon handed over~the <item>!
-FollowerInteraction_HeldItem_Answer_No,Your Pokémon kept~the item happily.
+FollowerInteraction_HeldItem_Question,Het lijkt erop dat je~Pokémon iets vasthoudt.*Wil je het afnemen?
+FollowerInteraction_HeldItem_Answer_Yes,Je Pokémon gaf een~<item> aan je!
+FollowerInteraction_HeldItem_Answer_No,Je Pokémon hield het~voorwerp vrolijk bij zich.
 
-FollowerInteraction_StatusEffect_Poison,<name> is shivering~with the effects of being~poisoned.
-FollowerInteraction_StatusEffect_Burn,<name>'s burn~looks painful!
-FollowerInteraction_StatusEffect_Freeze1,<name> seems very cold!
-FollowerInteraction_StatusEffect_Freeze2,.....Your Pokémon seems~a little cold.
-FollowerInteraction_StatusEffect_Paralyzed,<name> is trying~very hard to keep~up with you...
-FollowerInteraction_StatusEffect_Sleep1,<name> seems~a little tired.
-FollowerInteraction_StatusEffect_Sleep2,<name> is somehow~fighting off sleep...
-FollowerInteraction_StatusEffect_Sleep3,<name> yawned~very loudly!
-FollowerInteraction_StatusEffect_Other,<name> is trying~very hard to keep~up with you...
+FollowerInteraction_StatusEffect_Poison,<name> rilt door de~gevolgen van vergiftiging.
+FollowerInteraction_StatusEffect_Burn,De brandwond van~<name> ziet er~pijnlijk uit!
+FollowerInteraction_StatusEffect_Freeze1,<name> lijkt het erg~koud te hebben!
+FollowerInteraction_StatusEffect_Freeze2,.....Je Pokémon lijkt het~een beetje koud te hebben.
+FollowerInteraction_StatusEffect_Paralyzed,<name> doet erg zijn~best om je bij te houden...
+FollowerInteraction_StatusEffect_Sleep1,<name> lijkt een~beetje moe.
+FollowerInteraction_StatusEffect_Sleep2,<name> probeert~tegen de slaap te vechten...
+FollowerInteraction_StatusEffect_Sleep3,<name> gaapte heel~luid!
+FollowerInteraction_StatusEffect_Other,<name> doet erg zijn~best om je bij te houden...
 
-FollowerInteraction_LowHP1,<name> is going~to fall down!
-FollowerInteraction_LowHP2,<name> seems to~be about to fall over!
+FollowerInteraction_LowHP1,<name> staat op het~punt om neer te vallen!
+FollowerInteraction_LowHP2,<name> lijkt bijna~om te vallen!
 
-FollowerInteraction_Hate1,<name> is doing~it's best to keep up~with you.
-FollowerInteraction_Hate2,<name> is somehow~forcing itself to keep going.
-FollowerInteraction_Hate3,<name> is staring~patiently at nothing at all.
-FollowerInteraction_Hate4,<name> is staring~intently into the distance.
-FollowerInteraction_Hate5,<name> is dizzy...
-FollowerInteraction_Hate6,<name> is stepping~on your feet!
-FollowerInteraction_Hate7,<name> seems~unhappy somehow...
-FollowerInteraction_Hate8,<name> is making~an unhappy face.
-FollowerInteraction_Hate9,<name> seems~uneasy and is poking~<Player.Name>.
-FollowerInteraction_Hate10,<name> is making~a face like its angry!
-FollowerInteraction_Hate11,<name> seems to be~angry for some reason.
-FollowerInteraction_Hate12,Your Pokémon turned to face~the other way, showing a~defiant expression.
-FollowerInteraction_Hate13,<name> is looking~down steadily...
-FollowerInteraction_Hate14,Your Pokémon is staring~intently at nothing...
-FollowerInteraction_Hate15,Your Pokémon turned to~face the other way,~showing a defiant expression.
-FollowerInteraction_Hate16,<name> seems~a bit nervous...
-FollowerInteraction_Hate17,Your Pokémon stumbled~and nearly fell!
-FollowerInteraction_Hate18,<name> is having~a hard time keeping up.
+FollowerInteraction_Hate1,<name> doet zijn~best om je bij te houden.
+FollowerInteraction_Hate2,<name> dwingt~zichzelf op de een of andere~manier om door te gaan.
+FollowerInteraction_Hate3,<name> staart~geduldig naar helemaal niets.
+FollowerInteraction_Hate4,<name> staart~intens in de verte.
+FollowerInteraction_Hate5,<name> is~duizelig...
+FollowerInteraction_Hate6,<name> staat op~jouw voeten!
+FollowerInteraction_Hate7,<name> lijkt op de~een of andere manier~ongelukkig...
+FollowerInteraction_Hate8,<name> trekt een~ongelukkig gezicht.
+FollowerInteraction_Hate9,<name> lijkt onrustig~en port <Player.Name>.
+FollowerInteraction_Hate10,<name> trekt een~gezicht alsof hij boos is!
+FollowerInteraction_Hate11,<name> lijkt om de~een of andere reden boos~te zijn.
+FollowerInteraction_Hate12,Jouw Pokémon draaide zich~om met een opstandige blik.
+FollowerInteraction_Hate13,<name> kijkt strak~naar beneden...
+FollowerInteraction_Hate14,Jouw Pokémon staart~intens naar niets...
+FollowerInteraction_Hate15,Jouw Pokémon draaide zich~om met een opstandige blik.
+FollowerInteraction_Hate16,<name> lijkt een~beetje nerveus...
+FollowerInteraction_Hate17,Jouw Pokémon struikelde~en viel bijna!
+FollowerInteraction_Hate18,<name> heeft moeite~om je bij te houden.
 
-FollowerInteraction_Neutral1,<name> is happy~but shy.
-FollowerInteraction_Neutral2,<name> puts in~extra effort.
-FollowerInteraction_Neutral3,<name> is smelling~the scents of the~surrounding air.
-FollowerInteraction_Neutral4,Your Pokémon has caught~the scent of smoke.
-FollowerInteraction_Neutral5,<name> greeted everyone!
-FollowerInteraction_Neutral6,<name> is wandering~around and listening~to the different sounds.
-FollowerInteraction_Neutral7,<name> looks very~interested!
-FollowerInteraction_Neutral8,<name> is steadily~poking at the ground.
-FollowerInteraction_Neutral9,Your Pokémon is looking~around restlessly.
-FollowerInteraction_Neutral10,<name> seems dazzled~after seeing the sky.
-FollowerInteraction_Neutral11,<name> is gazing~around restlessly!
-FollowerInteraction_Neutral12,<name> let out~a battle cry!
-FollowerInteraction_Neutral13,<name> is vigorously~breathing fire!
-FollowerInteraction_Neutral14,<name> is on~the lookout!
-FollowerInteraction_Neutral15,<name> roared!
-FollowerInteraction_Neutral16,<name> let out a~roar!
-FollowerInteraction_Neutral17,<name> is surveying~the area...
-FollowerInteraction_Neutral18,<name> is sniffing~at the floor.
-FollowerInteraction_Neutral19,<name> is peering~down.
-FollowerInteraction_Neutral20,<name> seems~to be wandering around.
-FollowerInteraction_Neutral21,<name> is looking~around absentmindedly.
-FollowerInteraction_Neutral22,<name> is relaxing~comfortably.
-FollowerInteraction_Neutral23,<name> is sniffing~at the floor.
-FollowerInteraction_Neutral24,<name> seems to~relax as it hears the~sound of rustling leaves...
-FollowerInteraction_Neutral25,<name> seems to~be listening to the~sound of rustling leaves...
-FollowerInteraction_Neutral26,Your Pokémon is playing~around and splashing in~the water!
-FollowerInteraction_Neutral27,<name> is looking~up at the sky.
-FollowerInteraction_Neutral28,Your Pokémon is happily~gazing at the beautiful,~starry sky!
-FollowerInteraction_Neutral29,<name> seems to be~enjoying this a little bit!
-FollowerInteraction_Neutral30,<name> is looking~up at the ceiling.
-FollowerInteraction_Neutral31,Your Pokémon is staring~spellbound at the night sky!
-FollowerInteraction_Neutral32,<name> is in~danger of falling over!
-FollowerInteraction_Neutral33,<name> doesn't~seem to be used to its~own name yet.
-FollowerInteraction_Neutral34,<name> slipped~on the floor and seems~likely to fall!
-FollowerInteraction_Neutral35,<name> feels something~and is howling!
-FollowerInteraction_Neutral36,<name> seems~refreshed!
-FollowerInteraction_Neutral37,<name> feels~refreshed.
-FollowerInteraction_Neutral38,<name> seems to~have found something!
-FollowerInteraction_Neutral39,<name> suddenly~turned around and~started barking!
-FollowerInteraction_Neutral40,<name> suddenly~turned around!
-FollowerInteraction_Neutral41,<name> looked up~at the sky and shouted loudly!
-FollowerInteraction_Neutral42,Your Pokémon was surprised~that you suddenly spoke to it!
-FollowerInteraction_Neutral43,<name> almost forgot~it was holding~that <item>!
-FollowerInteraction_Neutral44,Oh!~It's slipping and came~over here for support.
-FollowerInteraction_Neutral45,Your Pokémon almost slipped~and fell over!
-FollowerInteraction_Neutral46,<name> sensed something~strange and was surprised!
-FollowerInteraction_Neutral47,Your Pokémon is looking~around restlessly for~something.
-FollowerInteraction_Neutral48,Your Pokémon wasn't watching~where it was going and~ran into you!
-FollowerInteraction_Neutral49,Sniff, sniff!~Is there something nearby?
-FollowerInteraction_Neutral50,<name> is wandering~around and searching~for something.
-FollowerInteraction_Neutral51,<name> is sniffing~at <player.name>.
-FollowerInteraction_Neutral52,<name> is taking~shelter in the grass from~the rain!
-FollowerInteraction_Neutral53,<name> is splashing~around in the wet grass!
+FollowerInteraction_Neutral1,<name> is blij~maar verlegen.
+FollowerInteraction_Neutral2,<name> doet extra~zijn best.
+FollowerInteraction_Neutral3,<name> ruikt de~geuren van de~omgevingslucht.
+FollowerInteraction_Neutral4,Jouw Pokémon heeft de geur~van rook opgevangen.
+FollowerInteraction_Neutral5,<name> groette~iedereen!
+FollowerInteraction_Neutral6,<name> dwaalt rond~en luistert naar de~verschillende geluiden.
+FollowerInteraction_Neutral7,<name> kijkt erg~geïnteresseerd!
+FollowerInteraction_Neutral8,<name> prikt gestaag~in de grond.
+FollowerInteraction_Neutral9,Jouw Pokémon kijkt rusteloos~rond.
+FollowerInteraction_Neutral10,<name> lijkt verblind~na het zien van de lucht.
+FollowerInteraction_Neutral11,<name> staart~rusteloos rond!
+FollowerInteraction_Neutral12,<name> slaakte~een strijdkreet!
+FollowerInteraction_Neutral13,<name> is krachtig~vuur aan het spuwen!
+FollowerInteraction_Neutral14,<name> staat op~de uitkijk!
+FollowerInteraction_Neutral15,<name> brulde!
+FollowerInteraction_Neutral16,<name> slaakte een~brul!
+FollowerInteraction_Neutral17,<name> verkent het~gebied...
+FollowerInteraction_Neutral18,<name> snuffelt aan~de vloer.
+FollowerInteraction_Neutral19,<name> gluurt naar~beneden.
+FollowerInteraction_Neutral20,<name> lijkt wat~rond te dwalen.
+FollowerInteraction_Neutral21,<name> kijkt~verstrooid rond.
+FollowerInteraction_Neutral22,<name> ontspant zich~behaaglijk.
+FollowerInteraction_Neutral23,<name> snuffelt aan~de vloer.
+FollowerInteraction_Neutral24,<name> lijkt tot~rust te komen bij het geluid~van ritselende bladeren...
+FollowerInteraction_Neutral25,<name> lijkt te~luisteren naar het geluid~van ritselende bladeren...
+FollowerInteraction_Neutral26,Jouw Pokémon is aan het~spelen en spettert in~het water!
+FollowerInteraction_Neutral27,<name> kijkt omhoog~naar de lucht.
+FollowerInteraction_Neutral28,Jouw Pokémon staart vrolijk~naar de prachtige~sterrenhemel!
+FollowerInteraction_Neutral29,<name> lijkt hier~een klein beetje van te~genieten!
+FollowerInteraction_Neutral30,<name> kijkt~omhoog naar het plafond.
+FollowerInteraction_Neutral31,Jouw Pokémon staart~betoverd naar de nachthemel!
+FollowerInteraction_Neutral32,<name> dreigt~om te vallen!
+FollowerInteraction_Neutral33,<name> lijkt nog~niet gewend aan zijn~eigen naam.
+FollowerInteraction_Neutral34,<name> gleed uit~over de vloer en lijkt~te gaan vallen!
+FollowerInteraction_Neutral35,<name> voelt iets~en is aan het huilen!
+FollowerInteraction_Neutral36,<name> ziet er~verfrist uit!
+FollowerInteraction_Neutral37,<name> voelt zich~verfrist.
+FollowerInteraction_Neutral38,<name> lijkt iets~gevonden te hebben!
+FollowerInteraction_Neutral39,<name> draaide zich~plotseling om en begon~te blaffen!
+FollowerInteraction_Neutral40,<name> draaide zich~plotseling om!
+FollowerInteraction_Neutral41,<name> keek omhoog~naar de lucht en riep luid!
+FollowerInteraction_Neutral42,Jouw Pokémon was verrast dat~je hem plotseling aansprak!
+FollowerInteraction_Neutral43,<name> was bijna~vergeten dat hij een~<item> vasthield!
+FollowerInteraction_Neutral44,Oh!~Hij glijdt uit en kwam~naar jou toe voor steun.
+FollowerInteraction_Neutral45,Jouw Pokémon gleed bijna~uit en viel net niet!
+FollowerInteraction_Neutral46,<name> merkte iets~vreemds op en was verrast!
+FollowerInteraction_Neutral47,Jouw Pokémon is rusteloos~rond aan het zoeken~naar iets.
+FollowerInteraction_Neutral48,Jouw Pokémon lette niet op~waar hij liep en botste~tegen je aan!
+FollowerInteraction_Neutral49,Snuffel, snuffel!~Is er iets in de buurt?
+FollowerInteraction_Neutral50,<name> dwaalt rond~en is naar iets op zoek.
+FollowerInteraction_Neutral51,<name> snuffelt~aan <Player.Name>.
+FollowerInteraction_Neutral52,<name> schuilt in~het gras voor de regen!
+FollowerInteraction_Neutral53,<name> spettert~rond in het natte gras!
 
-FollowerInteraction_Like1,Your Pokémon seems happy~about the great weather!
-FollowerInteraction_Like2,<name> is coming along~happily.
-FollowerInteraction_Like3,<name> is composed!
-FollowerInteraction_Like4,<name> is glowing~with health!
-FollowerInteraction_Like5,<name> looks~very happy!
-FollowerInteraction_Like6,<name> is full~of life!
-FollowerInteraction_Like7,<name> is very~eager!
-FollowerInteraction_Like8,<name> gives you~a happy look and a smile!
-FollowerInteraction_Like9,<name> seems very~happy to see you!
-FollowerInteraction_Like10,<name> faced this~way and grinned!
-FollowerInteraction_Like11,<name> spun around~in a circle!
-FollowerInteraction_Like12,<name> is looking~this way and smiling.
-FollowerInteraction_Like13,<name> is very~eager...
-FollowerInteraction_Like14,<name> is focusing~its attention on you!
-FollowerInteraction_Like15,<name> focused~with a sharp gaze!
-FollowerInteraction_Like16,<name> is looking~at <player.name>'s footprints.
-FollowerInteraction_Like17,<name> is staring~straight into <player.name>'s~eyes.
-FollowerInteraction_Like18,<name> is showing off~its agility!
-FollowerInteraction_Like19,<name> is moving~around happily!
-FollowerInteraction_Like20,<name> is steadily~keeping up with you!
-FollowerInteraction_Like21,<name> seems to~want to play with~<player.name>!
-FollowerInteraction_Like22,<name> is singing~and humming.
-FollowerInteraction_Like23,<name> is playfully~nibbling at the ground.
-FollowerInteraction_Like24,<name> is nipping~at your feet!
-FollowerInteraction_Like25,<name> is working~hard to show off~its mighty power!
-FollowerInteraction_Like26,<name> is cheerful!
-FollowerInteraction_Like27,<name> bumped~into <player.name>!
-FollowerInteraction_Like28,<name> is scared~and snuggled up~to <player.name>!
+FollowerInteraction_Like1,Jouw Pokémon lijkt blij met~het geweldige weer!
+FollowerInteraction_Like2,<name> loopt vrolijk~met je mee.
+FollowerInteraction_Like3,<name> is beheerst!
+FollowerInteraction_Like4,<name> blaakt van~gezondheid!
+FollowerInteraction_Like5,<name> ziet er erg~gelukkig uit!
+FollowerInteraction_Like6,<name> zit vol~leven!
+FollowerInteraction_Like7,<name> is erg~enthousiast!
+FollowerInteraction_Like8,<name> kijkt je blij~aan met een glimlach!
+FollowerInteraction_Like9,<name> lijkt erg~blij om je te zien!
+FollowerInteraction_Like10,<name> keek jouw~kant op en grijnsde!
+FollowerInteraction_Like11,<name> draaide een~rondje om zijn as!
+FollowerInteraction_Like12,<name> kijkt jouw~kant op en glimlacht.
+FollowerInteraction_Like13,<name> is zeer~gedreven...
+FollowerInteraction_Like14,<name> richt al zijn~aandacht op jou!
+FollowerInteraction_Like15,<name> focuste zich~met een scherpe blik!
+FollowerInteraction_Like16,<name> kijkt naar de~voetafdrukken van~<Player.Name>.
+FollowerInteraction_Like17,<name> staart~<Player.Name> recht in de~ogen aan.
+FollowerInteraction_Like18,<name> pronkt met~zijn behendigheid!
+FollowerInteraction_Like19,<name> beweegt~vrolijk in het rond!
+FollowerInteraction_Like20,<name> houdt je~tempo moeiteloos bij!
+FollowerInteraction_Like21,<name> lijkt met~<Player.Name> te willen~spelen!
+FollowerInteraction_Like22,<name> is aan het~zingen en neuriën.
+FollowerInteraction_Like23,<name> is speels aan~de grond aan het knabbelen.
+FollowerInteraction_Like24,<name> is zachtjes~in je voeten aan het bijten!
+FollowerInteraction_Like25,<name> doet erg zijn~best om met zijn enorme~kracht te pronken!
+FollowerInteraction_Like26,<name> is opgewekt!
+FollowerInteraction_Like27,<name> botste tegen~<Player.Name> aan!
+FollowerInteraction_Like28,<name> is bang en~kroop dicht tegen~<Player.Name> aan!
 
-FollowerInteraction_Loyal1,<name> began poking~you in the stomach!
-FollowerInteraction_Loyal2,<name> seems to be~feeling great about~walking with you!
-FollowerInteraction_Loyal3,<name> is still~feeling great!
-FollowerInteraction_Loyal4,<name> is poking~at your belly.
-FollowerInteraction_Loyal5,<name> looks like~it wants to lead!
-FollowerInteraction_Loyal6,<name> seems to be~very happy!
-FollowerInteraction_Loyal7,<name> nodded slowly.
-FollowerInteraction_Loyal8,<name> gave you~a sunny look!
-FollowerInteraction_Loyal9,<name> is very~composed and sure of itself!
-FollowerInteraction_Loyal10,<name> is~standing guard!
-FollowerInteraction_Loyal11,<name> danced a~wonderful dance!
-FollowerInteraction_Loyal12,<name> is staring~steadfastly at~<player.name>'s face.
-FollowerInteraction_Loyal13,<name> is staring~intently at~<player.name>'s face.
-FollowerInteraction_Loyal14,<name> is concentrating.
-FollowerInteraction_Loyal15,<name> faced this~way and nodded.
-FollowerInteraction_Loyal16,<name> suddenly~started walking closer!
-FollowerInteraction_Loyal17,Woah!*<name> is suddenly~playful!
-FollowerInteraction_Loyal18,<name> blushes.
-FollowerInteraction_Loyal19,Woah!*<name> suddenly started~dancing in happiness!
-FollowerInteraction_Loyal20,<name> is happily~skipping about.
-FollowerInteraction_Loyal21,Woah!*<name> suddenly~danced in happiness!
+FollowerInteraction_Loyal1,<name> begon je in~je buik te prikken!
+FollowerInteraction_Loyal2,<name> lijkt het~geweldig te vinden om met~je te wandelen!
+FollowerInteraction_Loyal3,<name> voelt zich~nog steeds geweldig!
+FollowerInteraction_Loyal4,<name> is in je~buik aan het prikken.
+FollowerInteraction_Loyal5,<name> lijkt wel~te willen leiden!
+FollowerInteraction_Loyal6,<name> lijkt erg~gelukkig te zijn!
+FollowerInteraction_Loyal7,<name> knikte~langzaam.
+FollowerInteraction_Loyal8,<name> gaf je een~stralende blik!
+FollowerInteraction_Loyal9,<name> is erg~beheerst en zelfverzekerd!
+FollowerInteraction_Loyal10,<name> staat op~wacht!
+FollowerInteraction_Loyal11,<name> danste een~prachtige dans!
+FollowerInteraction_Loyal12,<name> staart~standvastig naar het gezicht~van <Player.Name>.
+FollowerInteraction_Loyal13,<name> staart~aandachtig naar het gezicht~van <Player.Name>.
+FollowerInteraction_Loyal14,<name> is zich aan~het concentreren.
+FollowerInteraction_Loyal15,<name> keek jouw~kant op en knikte.
+FollowerInteraction_Loyal16,<name> begon~plotseling dichterbij te~lopen!
+FollowerInteraction_Loyal17,Wauw!*<name> is opeens~speels!
+FollowerInteraction_Loyal18,<name> bloost.
+FollowerInteraction_Loyal19,Wauw!*<name> begon~plotseling te dansen van~geluk!
+FollowerInteraction_Loyal20,<name> huppelt~vrolijk in het rond.
+FollowerInteraction_Loyal21,Wauw!*<name> danste~plotseling van geluk!
 
-FollowerInteraction_Love1,<name> is jumping~for joy!
-FollowerInteraction_Love2,Your Pokémon stretched out~its body and is relaxing.
-FollowerInteraction_Love3,<name> is happily~cuddling up to you!
-FollowerInteraction_Love4,<name> is so happy~that it can't stand still!
-FollowerInteraction_Love5,<name> happily~cuddled up to you!
-FollowerInteraction_Love6,<name>'s cheeks are~becoming rosy!
-FollowerInteraction_Love7,Woah!*<name> suddenly~hugged you!
-FollowerInteraction_Love8,<name> is rubbing~against your legs!
-FollowerInteraction_Love9,Ah!~<name> cuddles you!
-FollowerInteraction_Love10,<name> is regarding~you with adoration!
-FollowerInteraction_Love11,<name> got~closer to <player.name>!
-FollowerInteraction_Love12,<name> is keeping~close to your feet.
-FollowerInteraction_Love13,<name> is jumping~around in a carefree way!
+FollowerInteraction_Love1,<name> springt op~van vreugde!
+FollowerInteraction_Love2,Jouw Pokémon rekt zich uit~en ontspant zich.
+FollowerInteraction_Love3,<name> is heerlijk~tegen je aan het kroezen!
+FollowerInteraction_Love4,<name> is zo blij~dat hij niet kan stilstaan!
+FollowerInteraction_Love5,<name> kroop vrolijk~dicht tegen je aan!
+FollowerInteraction_Love6,De wangen van <name>~worden rood!
+FollowerInteraction_Love7,Wauw!*<name> gaf je~plotseling een knuffel!
+FollowerInteraction_Love8,<name> wrijft tegen~je benen aan!
+FollowerInteraction_Love9,Ah!~<name> knuffelt je!
+FollowerInteraction_Love10,<name> kijkt je vol~aanbidding aan!
+FollowerInteraction_Love11,<name> kwam dichter~bij <Player.Name>!
+FollowerInteraction_Love12,<name> blijft~vlakbij je voeten.
+FollowerInteraction_Love13,<name> springt~zorgeloos in het rond!
 
 [GameMode Related]
 FollowerInteraction_NewBarkTown_YourHouse_PlayerRoom1,<name> is sniffing~around the room.
@@ -5060,7 +5060,7 @@ FollowerInteraction_MahoganyTownGym,Your Pokémon seems~to be enjoying sliding~a
 FollowerInteraction_DragonsDen_DragonPokemon1,<name> suddenly barked!
 FollowerInteraction_DragonsDen_DragonPokemon2,<name> looks excited!
 FollowerInteraction_DragonsDen_DragonPokemon3,<name> suddenly howled!
-FollowerInteraction_DragonsDen_DragonPokemon4,<name> is staring~into <player.name>'s eyes.
+FollowerInteraction_DragonsDen_DragonPokemon4,<name> is staring~into <Player.Name>'s eyes.
 FollowerInteraction_DragonsDen_DragonPokemon5,<name> is growling~softly.
 
 FollowerInteraction_BlackthornCity_Outside,Your Pokémon is staring~intently at the mountain~peak.
@@ -5116,7 +5116,7 @@ FollowerInteraction_RockTunnel_OnixSteelix6,<name> started~pounding the ground f
 
 FollowerInteraction_DiglettsCave_DiglettDugtrio,Your Pokémon is stretching~out its body and is relaxing!
 
-FollowerInteraction_SaffronCity_CopycatHouse_MimeJrMrMime,<name> mimicked~<player.name>.
+FollowerInteraction_SaffronCity_CopycatHouse_MimeJrMrMime,<name> mimicked~<Player.Name>.
 FollowerInteraction_SaffronCity_MrPsychicHouse_PsychicPokemon,......~......~......~<name>~silently nodded!
 FollowerInteraction_SaffronCity_SilphCo_PorygonAndEvos,<name> is moving~around energetically.
 FollowerInteraction_SaffronCity_RotomRoom_Rotom1,<name> is happily~zapping and jumping~in circles!

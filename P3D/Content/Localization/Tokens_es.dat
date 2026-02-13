@@ -380,7 +380,7 @@ IngameMenu:
 game_menu_pokedex,Pokédex
 game_menu_party,Pokémon
 game_menu_bag,Mochila
-game_menu_trainer_card,<playername>
+game_menu_trainer_card,<Player.Name>
 game_menu_save,Guardar
 game_menu_save_notpossible,Saving is not possible right now.
 game_menu_options,Opciones
@@ -995,7 +995,7 @@ Voltorb Flip:
 VoltorbFlip_LV.,LV.
 VoltorbFlip_CurrentCoins_Line1,Coins found
 VoltorbFlip_CurrentCoins_Line2,in this LV.
-VoltorbFlip_TotalCoins_Line1,<player.name>'s
+VoltorbFlip_TotalCoins_Line1,<Player.Name>'s
 VoltorbFlip_TotalCoins_Line2,earned Coins
 
 VoltorbFlip_MemoButton_Open_Line1,Open
@@ -1019,7 +1019,7 @@ VoltorbFlip_BeforeNewLevel_GameInfo_Answer_Hint,Hint!
 VoltorbFlip_BeforeNewLevel_GameInfo_Answer_AboutMemos,About Memos
 VoltorbFlip_BeforeNewLevel_GameInfo_Back,Back
 
-VoltorbFlip_GameWon_1,Game clear!~You've found all of the~hidden x2 and x3 cards.*<player.name> received~
+VoltorbFlip_GameWon_1,Game clear!~You've found all of the~hidden x2 and x3 cards.*<Player.Name> received~
 VoltorbFlip_GameWon_2,Coin(s)!
 
 VoltorbFlip_GameLost,Oh no! You get 0 Coins!
@@ -1033,7 +1033,7 @@ VoltorbFlip_NewLevel_Higher2,!
 VoltorbFlip_NewLevel_Ready1,Ready to play Game Lv.
 VoltorbFlip_NewLevel_Ready2,!
 
-VoltorbFlip_QuitGame_1,<player.name> received~
+VoltorbFlip_QuitGame_1,<Player.Name> received~
 VoltorbFlip_QuitGame_2,Coin(s)!
 
 VoltorbFlip_AfterGame_Won1,You've won
@@ -1086,18 +1086,18 @@ pokedex_evolution_no_evolutions,doesn't evolve.
 Receiving Items:
 item_received_single,Received the~
 item_received_multiple,Received
-item_found,<player.name> found~
-item_stored_in_pocket_single_start,<player.name> stored it in the~
+item_found,<Player.Name> found~
+item_stored_in_pocket_single_start,<Player.Name> stored it in the~
 item_stored_in_pocket_single_end,pocket.
-item_stored_in_pocket_multiple_start,<player.name> stored them~in the
+item_stored_in_pocket_multiple_start,<Player.Name> stored them~in the
 item_stored_in_pocket_multiple_end,pocket.
 item_handed_over_single,<Player.Name> handed over the~
 item_handed_over_multiple,<Player.Name> handed over the~
 
 Berries:
-berry_picked_single_start,<player.name> picked the~
+berry_picked_single_start,<Player.Name> picked the~
 berry_picked_single_end,Berry.
-berry_picked_multiple_start,<player.name> picked the~
+berry_picked_multiple_start,<Player.Name> picked the~
 berry_picked_multiple_end,Berries.
 ----
 Battle:
@@ -1207,8 +1207,8 @@ Places_Cianwood City Gym,Gimnasio ciudad Cianwood
 Places_Olivine City Gym,Gimnasio ciudad Olivine
 Places_Mahogany City Gym,Gimnasio ciudad Mahogany
 Places_Blackthorn City Gym,Gimnasio ciudad Endrino
-Places_Your House,Casa de <playername>
-Places_Your Room,Cuarto de <playername>
+Places_Your House,Casa de <Player.Name>
+Places_Your Room,Cuarto de <Player.Name>
 Places_Daycare,Guardería
 Places_Pewter City Gym,Gimnasio ciudad Pewter
 Places_Cerulean City Gym,Gimnasio ciudad Cerulean
@@ -3018,7 +3018,7 @@ item_6_missingskin,You can't use this item~without a bicycle skin.*Its name shou
 item_6_only_custom_gamemodes,This item can't be used~on this GameMode.
 
 Key Items:
-item_use_6,<player.name> stepped~off the Bicycle.
+item_use_6,<Player.Name> stepped~off the Bicycle.
 item_use_54,Your Coins:~
 item_use_658_disable,The Exp. All was turned off.
 item_use_658_enable,The Exp. All was turned on.
@@ -3733,7 +3733,7 @@ FollowerInteraction_Neutral47,Your Pokémon is looking~around restlessly for~som
 FollowerInteraction_Neutral48,Your Pokémon wasn't watching~where it was going and~ran into you!
 FollowerInteraction_Neutral49,Sniff, sniff!~Is there something nearby?
 FollowerInteraction_Neutral50,<name> is wandering~around and searching~for something.
-FollowerInteraction_Neutral51,<name> is sniffing~at <player.name>.
+FollowerInteraction_Neutral51,<name> is sniffing~at <Player.Name>.
 FollowerInteraction_Neutral52,<name> is taking~shelter in the grass from~the rain!
 FollowerInteraction_Neutral53,<name> is splashing~around in the wet grass!
 
@@ -3752,19 +3752,19 @@ FollowerInteraction_Like12,<name> is looking~this way and smiling.
 FollowerInteraction_Like13,<name> is very~eager...
 FollowerInteraction_Like14,<name> is focusing~its attention on you!
 FollowerInteraction_Like15,<name> focused~with a sharp gaze!
-FollowerInteraction_Like16,<name> is looking~at <player.name>'s footprints.
-FollowerInteraction_Like17,<name> is staring~straight into <player.name>'s~eyes.
+FollowerInteraction_Like16,<name> is looking~at <Player.Name>'s footprints.
+FollowerInteraction_Like17,<name> is staring~straight into <Player.Name>'s~eyes.
 FollowerInteraction_Like18,<name> is showing off~its agility!
 FollowerInteraction_Like19,<name> is moving~around happily!
 FollowerInteraction_Like20,<name> is steadily~keeping up with you!
-FollowerInteraction_Like21,<name> seems to~want to play with~<player.name>!
+FollowerInteraction_Like21,<name> seems to~want to play with~<Player.Name>!
 FollowerInteraction_Like22,<name> is singing~and humming.
 FollowerInteraction_Like23,<name> is playfully~nibbling at the ground.
 FollowerInteraction_Like24,<name> is nipping~at your feet!
 FollowerInteraction_Like25,<name> is working~hard to show off~its mighty power!
 FollowerInteraction_Like26,<name> is cheerful!
-FollowerInteraction_Like27,<name> bumped~into <player.name>!
-FollowerInteraction_Like28,<name> is scared~and snuggled up~to <player.name>!
+FollowerInteraction_Like27,<name> bumped~into <Player.Name>!
+FollowerInteraction_Like28,<name> is scared~and snuggled up~to <Player.Name>!
 
 FollowerInteraction_Loyal1,<name> began poking~you in the stomach!
 FollowerInteraction_Loyal2,<name> seems to be~feeling great about~walking with you!
@@ -3777,8 +3777,8 @@ FollowerInteraction_Loyal8,<name> gave you~a sunny look!
 FollowerInteraction_Loyal9,<name> is very~composed and sure of itself!
 FollowerInteraction_Loyal10,<name> is~standing guard!
 FollowerInteraction_Loyal11,<name> danced a~wonderful dance!
-FollowerInteraction_Loyal12,<name> is staring~steadfastly at~<player.name>'s face.
-FollowerInteraction_Loyal13,<name> is staring~intently at~<player.name>'s face.
+FollowerInteraction_Loyal12,<name> is staring~steadfastly at~<Player.Name>'s face.
+FollowerInteraction_Loyal13,<name> is staring~intently at~<Player.Name>'s face.
 FollowerInteraction_Loyal14,<name> is concentrating.
 FollowerInteraction_Loyal15,<name> faced this~way and nodded.
 FollowerInteraction_Loyal16,<name> suddenly~started walking closer!
@@ -3798,7 +3798,7 @@ FollowerInteraction_Love7,Woah!*<name> suddenly~hugged you!
 FollowerInteraction_Love8,<name> is rubbing~against your legs!
 FollowerInteraction_Love9,Ah!~<name> cuddles you!
 FollowerInteraction_Love10,<name> is regarding~you with adoration!
-FollowerInteraction_Love11,<name> got~closer to <player.name>!
+FollowerInteraction_Love11,<name> got~closer to <Player.Name>!
 FollowerInteraction_Love12,<name> is keeping~close to your feet.
 FollowerInteraction_Love13,<name> is jumping~around in a carefree way!
 
@@ -3960,7 +3960,7 @@ FollowerInteraction_MahoganyTownGym,Your Pokémon seems~to be enjoying sliding~a
 FollowerInteraction_DragonsDen_DragonPokemon1,<name> suddenly barked!
 FollowerInteraction_DragonsDen_DragonPokemon2,<name> looks excited!
 FollowerInteraction_DragonsDen_DragonPokemon3,<name> suddenly howled!
-FollowerInteraction_DragonsDen_DragonPokemon4,<name> is staring~into <player.name>'s eyes.
+FollowerInteraction_DragonsDen_DragonPokemon4,<name> is staring~into <Player.Name>'s eyes.
 FollowerInteraction_DragonsDen_DragonPokemon5,<name> is growling~softly.
 
 FollowerInteraction_BlackthornCity_Outside,Your Pokémon is staring~intently at the mountain~peak.
@@ -4016,7 +4016,7 @@ FollowerInteraction_RockTunnel_OnixSteelix6,<name> started~pounding the ground f
 
 FollowerInteraction_DiglettsCave_DiglettDugtrio,Your Pokémon is stretching~out its body and is relaxing!
 
-FollowerInteraction_SaffronCity_CopycatHouse_MimeJrMrMime,<name> mimicked~<player.name>.
+FollowerInteraction_SaffronCity_CopycatHouse_MimeJrMrMime,<name> mimicked~<Player.Name>.
 FollowerInteraction_SaffronCity_MrPsychicHouse_PsychicPokemon,......~......~......~<name>~silently nodded!
 FollowerInteraction_SaffronCity_SilphCo_PorygonAndEvos,<name> is moving~around energetically.
 FollowerInteraction_SaffronCity_RotomRoom_Rotom1,<name> is happily~zapping and jumping~in circles!
@@ -4145,4 +4145,4 @@ New Bark Town:
 ---
 barktown.dat:
 ---
-barktown_player_house,Casa de <playername>
+barktown_player_house,Casa de <Player.Name>

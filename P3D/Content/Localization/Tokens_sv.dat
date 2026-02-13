@@ -4437,7 +4437,7 @@ FollowerInteraction_Neutral47,Your Pokémon is looking~around restlessly for~som
 FollowerInteraction_Neutral48,Your Pokémon wasn't watching~where it was going and~ran into you!
 FollowerInteraction_Neutral49,Sniff, sniff!~Is there something nearby?
 FollowerInteraction_Neutral50,<name> is wandering~around and searching~for something.
-FollowerInteraction_Neutral51,<name> is sniffing~at <player.name>.
+FollowerInteraction_Neutral51,<name> is sniffing~at <Player.Name>.
 FollowerInteraction_Neutral52,<name> is taking~shelter in the grass from~the rain!
 FollowerInteraction_Neutral53,<name> is splashing~around in the wet grass!
 
@@ -4456,19 +4456,19 @@ FollowerInteraction_Like12,<name> is looking~this way and smiling.
 FollowerInteraction_Like13,<name> is very~eager...
 FollowerInteraction_Like14,<name> is focusing~its attention on you!
 FollowerInteraction_Like15,<name> focused~with a sharp gaze!
-FollowerInteraction_Like16,<name> is looking~at <player.name>'s footprints.
-FollowerInteraction_Like17,<name> is staring~straight into <player.name>'s~eyes.
+FollowerInteraction_Like16,<name> is looking~at <Player.Name>'s footprints.
+FollowerInteraction_Like17,<name> is staring~straight into <Player.Name>'s~eyes.
 FollowerInteraction_Like18,<name> is showing off~its agility!
 FollowerInteraction_Like19,<name> is moving~around happily!
 FollowerInteraction_Like20,<name> is steadily~keeping up with you!
-FollowerInteraction_Like21,<name> seems to~want to play with~<player.name>!
+FollowerInteraction_Like21,<name> seems to~want to play with~<Player.Name>!
 FollowerInteraction_Like22,<name> is singing~and humming.
 FollowerInteraction_Like23,<name> is playfully~nibbling at the ground.
 FollowerInteraction_Like24,<name> is nipping~at your feet!
 FollowerInteraction_Like25,<name> is working~hard to show off~its mighty power!
 FollowerInteraction_Like26,<name> is cheerful!
-FollowerInteraction_Like27,<name> bumped~into <player.name>!
-FollowerInteraction_Like28,<name> is scared~and snuggled up~to <player.name>!
+FollowerInteraction_Like27,<name> bumped~into <Player.Name>!
+FollowerInteraction_Like28,<name> is scared~and snuggled up~to <Player.Name>!
 
 FollowerInteraction_Loyal1,<name> began poking~you in the stomach!
 FollowerInteraction_Loyal2,<name> seems to be~feeling great about~walking with you!
@@ -4481,8 +4481,8 @@ FollowerInteraction_Loyal8,<name> gave you~a sunny look!
 FollowerInteraction_Loyal9,<name> is very~composed and sure of itself!
 FollowerInteraction_Loyal10,<name> is~standing guard!
 FollowerInteraction_Loyal11,<name> danced a~wonderful dance!
-FollowerInteraction_Loyal12,<name> is staring~steadfastly at~<player.name>'s face.
-FollowerInteraction_Loyal13,<name> is staring~intently at~<player.name>'s face.
+FollowerInteraction_Loyal12,<name> is staring~steadfastly at~<Player.Name>'s face.
+FollowerInteraction_Loyal13,<name> is staring~intently at~<Player.Name>'s face.
 FollowerInteraction_Loyal14,<name> is concentrating.
 FollowerInteraction_Loyal15,<name> faced this~way and nodded.
 FollowerInteraction_Loyal16,<name> suddenly~started walking closer!
@@ -4502,7 +4502,7 @@ FollowerInteraction_Love7,Woah!*<name> suddenly~hugged you!
 FollowerInteraction_Love8,<name> is rubbing~against your legs!
 FollowerInteraction_Love9,Ah!~<name> cuddles you!
 FollowerInteraction_Love10,<name> is regarding~you with adoration!
-FollowerInteraction_Love11,<name> got~closer to <player.name>!
+FollowerInteraction_Love11,<name> got~closer to <Player.Name>!
 FollowerInteraction_Love12,<name> is keeping~close to your feet.
 FollowerInteraction_Love13,<name> is jumping~around in a carefree way!
 
@@ -4664,7 +4664,7 @@ FollowerInteraction_MahoganyTownGym,Your Pokémon seems~to be enjoying sliding~a
 FollowerInteraction_DragonsDen_DragonPokemon1,<name> suddenly barked!
 FollowerInteraction_DragonsDen_DragonPokemon2,<name> looks excited!
 FollowerInteraction_DragonsDen_DragonPokemon3,<name> suddenly howled!
-FollowerInteraction_DragonsDen_DragonPokemon4,<name> is staring~into <player.name>'s eyes.
+FollowerInteraction_DragonsDen_DragonPokemon4,<name> is staring~into <Player.Name>'s eyes.
 FollowerInteraction_DragonsDen_DragonPokemon5,<name> is growling~softly.
 
 FollowerInteraction_BlackthornCity_Outside,Your Pokémon is staring~intently at the mountain~peak.
@@ -4720,7 +4720,7 @@ FollowerInteraction_RockTunnel_OnixSteelix6,<name> started~pounding the ground f
 
 FollowerInteraction_DiglettsCave_DiglettDugtrio,Your Pokémon is stretching~out its body and is relaxing!
 
-FollowerInteraction_SaffronCity_CopycatHouse_MimeJrMrMime,<name> mimicked~<player.name>.
+FollowerInteraction_SaffronCity_CopycatHouse_MimeJrMrMime,<name> mimicked~<Player.Name>.
 FollowerInteraction_SaffronCity_MrPsychicHouse_PsychicPokemon,......~......~......~<name>~silently nodded!
 FollowerInteraction_SaffronCity_SilphCo_PorygonAndEvos,<name> is moving~around energetically.
 FollowerInteraction_SaffronCity_RotomRoom_Rotom1,<name> is happily~zapping and jumping~in circles!
@@ -4849,4 +4849,4 @@ New Bark Town:
 ---
 barktown.dat:
 ---
-barktown_player_house,<playername>'s House
+barktown_player_house,<Player.Name>'s House
