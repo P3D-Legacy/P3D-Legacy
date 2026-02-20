@@ -95,7 +95,7 @@ Public Class JoinServerScreen
         endX = CInt(MathHelper.Clamp(endX, 0, ServersToDisplay - 1))
 
         If ServerList.Count > ServersToDisplay Then
-            Canvas.DrawScrollBar(New Vector2(CSng(Core.ScreenSize.Width / 2 + 266), 100), Me.ServerList.Count, 1, selectIndex, New Size(8, Core.ScreenSize.Height - 300), False, Color.Black, Color.Gray, True)
+            Canvas.DrawScrollBar(New Vector2(CSng(Core.ScreenSize.Width / 2 + 320), 100), Me.ServerList.Count, 1, selectIndex, New Size(8, Core.ScreenSize.Height - 300), False, Color.Black, Color.Gray, True)
         End If
 
         ' Draw default first.
