@@ -265,7 +265,7 @@
                                 move.gmDeductPP = CBool(value)
                             Case "aifield1", "aifield2", "aifield3"
                                 Dim AIFieldType As Attack.AIField = Attack.AIField.Nothing
-                                Select Case value
+                                Select Case value.ToLower
                                     Case "damage"
                                         AIFieldType = Attack.AIField.Damage
                                     Case "poison"
@@ -402,7 +402,21 @@
                                 If value <> "" Then
                                     Dim stringList As List(Of String) = value.Split(";").ToList
                                     For a = 0 To stringList.Count - 1
-                                        movelist.Add(CInt(stringList(a)))
+                                        If stringList(a).Contains("-") Then
+                                            Dim min As Integer = CInt(stringList(a).Remove(stringList(a).IndexOf("-")))
+                                            Dim max As Integer = CInt(stringList(a).Remove(0, stringList(a).IndexOf("-") + 1))
+
+                                            For i = min To max
+                                                If movelist.Contains(i) = False Then
+                                                    movelist.Add(i)
+                                                End If
+                                            Next
+                                        Else
+                                            If movelist.Contains(CInt(stringList(a))) = False Then
+                                                movelist.Add(CInt(stringList(a)))
+                                            End If
+                                        End If
+
                                     Next
                                 Else
                                     Dim forbiddenIDs As List(Of Integer) = {68, 102, 118, 119, 144, 165, 166, 168, 173, 182, 194, 197, 203, 214, 243, 264, 266, 267, 270, 271, 274, 289, 343, 364, 382, 383, 415, 448, 476, 469, 495, 501, 511, 516, 546, 547, 548, 553, 554, 555, 557}.ToList()
