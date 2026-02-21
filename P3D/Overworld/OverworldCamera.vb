@@ -225,12 +225,33 @@ Public Class OverworldCamera
         Dim gState As GamePadState = GamePad.GetState(PlayerIndex.One)
         Dim text As String = ""
 
-        Dim dx As Single = mState.X - oldX
+        Dim horizontalCutoff = windowSize.Width / 10.0F
+        Dim verticalCutoff = windowSize.Height / 10.0F
+
+        Dim dx As Single = 0.0F
+        Dim dy As Single = 0.0F
+
+        Dim mX As Single = mState.X.Clamp(CInt(horizontalCutoff), CInt(windowSize.Width - horizontalCutoff))
+        Dim mY As Single = mState.Y.Clamp(CInt(verticalCutoff), CInt(windowSize.Height - verticalCutoff))
+
+        If mState.X > horizontalCutoff AndAlso
+               mState.X < windowSize.Width - horizontalCutoff AndAlso
+               mState.Y > verticalCutoff AndAlso
+               mState.Y < windowSize.Height - verticalCutoff Then
+
+            dx = mState.X - oldX
+            dy = mState.Y - oldY
+        Else
+            Mouse.SetPosition(CInt(mX), CInt(mY))
+            dx = mX - oldX
+            dy = mY - oldY
+        End If
+
+
         If gState.ThumbSticks.Right.X <> 0.0F And Core.GameOptions.GamePadEnabled = True Then
             dx = gState.ThumbSticks.Right.X * 50.0F
         End If
 
-        Dim dy As Single = mState.Y - oldY
         If gState.ThumbSticks.Right.Y <> 0.0F And Core.GameOptions.GamePadEnabled = True Then
             dy = gState.ThumbSticks.Right.Y * 35.0F * -1.0F
         End If
