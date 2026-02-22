@@ -45,7 +45,7 @@ Namespace BattleSystem.Moves.Normal
             Me.IsDamagingMove = False
             Me.IsProtectMove = False
 
-
+            Me.CanHitSleeping = False
             Me.IsAffectedBySubstitute = True
             Me.IsOneHitKOMove = False
             Me.IsWonderGuardAffected = False

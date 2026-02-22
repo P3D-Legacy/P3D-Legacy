@@ -1791,6 +1791,17 @@
                 End If
             End If
 
+            If op.Status = Pokemon.StatusProblems.Sleep AndAlso moveUsed.CanHitSleeping = False Then
+                BattleScreen.BattleQuery.Add(New TextQueryObject(moveUsed.Name & "failed because" & op.GetDisplayName() & "is asleep!"))
+                moveUsed.MoveMisses(own, BattleScreen)
+                If own = True Then
+                    BattleScreen.FieldEffects.OwnLastMoveFailed = True
+                Else
+                    BattleScreen.FieldEffects.OppLastMoveFailed = True
+                End If
+                Exit Sub
+            End If
+
             If own = True Then
                 BattleScreen.FieldEffects.OwnLastMove = moveUsed
             Else
