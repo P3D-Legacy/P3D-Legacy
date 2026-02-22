@@ -29,7 +29,7 @@
         Dim FunctionList As New List(Of String)
 
         Dim width As Integer = 800
-        Dim heigth As Integer = 400
+        Dim heigth As Integer = 460
 
         Dim Cursors() As Integer
         Public menuIndex As MenuScreens = MenuScreens.Main
@@ -235,47 +235,56 @@
             For i = 0 To Me.FunctionList.Count - 1
                 Dim f As String = Me.FunctionList(i)
                 Dim t As Texture2D = Nothing
-                Dim displayText As String = ""
+                Dim displayText1 As String = ""
+                Dim displayText2 As String = ""
 
                 Select Case f
                     Case "PSS"
                         t = TextureManager.GetTexture("GUI\Menus\pokegear", New Rectangle(64, 32, 32, 32), "")
-                        displayText = Localization.GetString("pokegear_screen_main_function_PlayerSearchSystem", "PSS")
+                        displayText1 = Localization.GetString("pokegear_screen_main_function_PlayerSearchSystem", "PSS")
                     Case "Wonder Trade"
                         t = TextureManager.GetTexture("GUI\Menus\pokegear", New Rectangle(0, 64, 32, 32), "")
-                        displayText = Localization.GetString("pokegear_screen_main_function_WonderTrade", "Wonder Trade")
+                        displayText1 = Localization.GetString("pokegear_screen_main_function_WonderTrade", "Wonder Trade")
                     Case "Phone"
                         t = TextureManager.GetTexture("GUI\Menus\pokegear", New Rectangle(96, 32, 32, 32), "")
-                        displayText = Localization.GetString("pokegear_screen_main_function_Phone", "Phone")
+                        displayText1 = Localization.GetString("pokegear_screen_main_function_Phone", "Phone")
                     Case "Radio"
                         t = TextureManager.GetTexture("GUI\Menus\pokegear", New Rectangle(32, 32, 32, 32), "")
-                        displayText = Localization.GetString("pokegear_screen_main_function_Radio", "Radio")
+                        displayText1 = Localization.GetString("pokegear_screen_main_function_Radio", "Radio")
                     Case "GTS"
                         t = TextureManager.GetTexture("GUI\Menus\pokegear", New Rectangle(64, 0, 32, 32), "")
-                        displayText = Localization.GetString("pokegear_screen_main_function_GlobalTradeSystem", "GTS")
+                        displayText1 = Localization.GetString("pokegear_screen_main_function_GlobalTradeSystem", "GTS")
                     Case "Frontier"
                         t = TextureManager.GetTexture("GUI\Menus\pokegear", New Rectangle(32, 64, 32, 32), "")
-                        displayText = Localization.GetString("pokegear_screen_main_function_BattleFrontier", "Frontier")
+                        displayText1 = Localization.GetString("pokegear_screen_main_function_BattleFrontier", "Frontier")
                     Case "World Map"
                         t = TextureManager.GetTexture("GUI\Menus\pokegear", New Rectangle(64, 64, 32, 32), "")
-                        displayText = Localization.GetString("pokegear_screen_main_function_WorldMap", "World Map")
+                        displayText1 = Localization.GetString("pokegear_screen_main_function_WorldMap", "World Map")
                     Case "Minimap"
                         t = TextureManager.GetTexture("GUI\Menus\pokegear", New Rectangle(96, 64, 32, 32), "")
-                        displayText = Localization.GetString("pokegear_screen_main_function_Minimap", "Minimap")
+                        displayText1 = Localization.GetString("pokegear_screen_main_function_Minimap", "Minimap")
                     Case "Battle Spot"
                         t = TextureManager.GetTexture("GUI\Menus\pokegear", New Rectangle(32, 96, 32, 32), "")
-                        displayText = Localization.GetString("pokegear_screen_main_function_BattleSpot", "Battle Spot")
+                        displayText1 = Localization.GetString("pokegear_screen_main_function_BattleSpot", "Battle Spot")
                     Case "Statistics"
                         t = TextureManager.GetTexture("GUI\Menus\pokegear", New Rectangle(32, 0, 32, 32), "")
-                        displayText = Localization.GetString("pokegear_screen_main_function_Statistics", "Statistics")
+                        displayText1 = Localization.GetString("pokegear_screen_main_function_Statistics", "Statistics")
                 End Select
 
-                Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokegear"), New Rectangle(CInt(startPos.X + (x * 176) + 80 + 20), CInt(startPos.Y + 80 + (y * 100)), 64, 64), New Rectangle(0, 0, 32, 32), Color.White)
-                Core.SpriteBatch.Draw(t, New Rectangle(CInt(startPos.X + (x * (176)) + 80 + 20), CInt(startPos.Y + 80 + (y * 100)), 64, 64), New Rectangle(0, 0, 32, 32), Color.White)
-                Core.SpriteBatch.DrawString(FontManager.MainFont, displayText, New Vector2(CInt(startPos.X + (x * 176) + 80 + 20) + 32 - FontManager.MainFont.MeasureString(displayText).X / 2.0F, CInt(startPos.Y + 152 + (y * 100))), Color.Black)
+                If displayText1.Contains("~") = True Then
+                    displayText2 = Environment.NewLine & displayText1.Remove(0, displayText1.IndexOf("~") + 1)
+                    displayText1 = displayText1.Remove(displayText1.IndexOf("~"))
+                End If
+
+                Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokegear"), New Rectangle(CInt(startPos.X + (x * 176) + 80 + 20), CInt(startPos.Y + 64 + (y * 128)), 64, 64), New Rectangle(0, 0, 32, 32), Color.White)
+                Core.SpriteBatch.Draw(t, New Rectangle(CInt(startPos.X + (x * (176)) + 80 + 20), CInt(startPos.Y + 64 + (y * 128)), 64, 64), New Rectangle(0, 0, 32, 32), Color.White)
+                Core.SpriteBatch.DrawString(FontManager.MainFont, displayText1, New Vector2(CInt(startPos.X + (x * 176) + 80 + 20) + 32 - FontManager.MainFont.MeasureString(displayText1).X / 2.0F, CInt(startPos.Y + 136 + (y * 128))), Color.Black)
+                If displayText2 <> "" Then
+                    Core.SpriteBatch.DrawString(FontManager.MainFont, displayText2, New Vector2(CInt(startPos.X + (x * 176) + 80 + 20) + 32 - FontManager.MainFont.MeasureString(displayText2).X / 2.0F, CInt(startPos.Y + 136 + (y * 128))), Color.Black)
+                End If
 
                 If Cursors(0) = i Then
-                    Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokegear"), New Rectangle(CInt(startPos.X + (x * 176) + 80 + 20), CInt(startPos.Y + 80 + (y * 100)), 64, 64), New Rectangle(0, 32, 32, 32), Color.White)
+                    Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokegear"), New Rectangle(CInt(startPos.X + (x * 176) + 80 + 20), CInt(startPos.Y + 64 + (y * 128)), 64, 64), New Rectangle(0, 32, 32, 32), Color.White)
                 End If
 
                 x += 1
@@ -307,7 +316,7 @@
                 Dim startPos As Vector2 = GetStartPosition()
                 For x = 0 To 3
                     For y = 0 To 2
-                        Dim r As New Rectangle(CInt(startPos.X + (x * 176) + 80 + 20), CInt(startPos.Y + 80 + (y * 100)), 64, 64)
+                        Dim r As New Rectangle(CInt(startPos.X + (x * 176) + 80 + 20), CInt(startPos.Y + 80 + (y * 128)), 64, 64)
                         If r.Contains(MouseHandler.MousePosition) = True Then
                             pressedIndex = x + y * 4
                         End If

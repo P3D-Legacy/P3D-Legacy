@@ -213,7 +213,7 @@ fieldmove_fly_used,gebruikte~Vlieg!
 GameInteractions:
 game_interaction_interact,Actie
 game_interaction_gamemenu,Spelmenu
-game_interaction_pokegear,Pokégear
+game_interaction_pokegear,Pokétoestel
 game_interaction_pausemenu,Pauzemenu
 game_interaction_accept,Accepteer
 game_interaction_enter,Voer In
@@ -764,13 +764,13 @@ emblem_achievement_description_tao,Houd een heldhaftig gevecht.
 emblem_achievement_description_floral,Have a fragrant encounter.
 ---
 Pokegear Screen:
-pokegear_screen_main_title,Pokégear
+pokegear_screen_main_title,Pokétoestel
 pokegear_screen_main_function_PlayerSearchSystem,Spelersysteem
 pokegear_screen_main_function_WonderTrade,Wonderruil
 pokegear_screen_main_function_Phone,Telefoon
 pokegear_screen_main_function_Radio,Radio
 pokegear_screen_main_function_GlobalTradeSystem,Wereldhandel
-pokegear_screen_main_function_BattleFrontier,Frontier
+pokegear_screen_main_function_BattleFrontier,Strijd der~Grenzen
 pokegear_screen_main_function_WorldMap,Wereldkaart
 pokegear_screen_main_function_Minimap,Minikaart
 pokegear_screen_main_function_BattleSpot,Gevechtsplek
@@ -780,9 +780,9 @@ pokegear_screen_pss_title_Ranklist,Ranglijst
 pokegear_screen_pss_title_Friendlist,Vriendenlijst
 pokegear_screen_pss_title_Passby,Medespelers
 
-pokegear_screen_frontier_title,Frontieremblemen
-pokegear_screen_frontier_CurrentBattlePoints,Huidige GP-saldo: [NUMBER]
-pokegear_screen_frontier_NoFrontierEmblems,Je bezit nog geen Frontieremblemen.
+pokegear_screen_frontier_title,Strijd-emblemen
+pokegear_screen_frontier_CurrentBattlePoints,Huidige SP-saldo: [NUMBER]
+pokegear_screen_frontier_NoFrontierEmblems,Je bezit nog geen Strijd-emblemen.
 
 pokegear_screen_phone_contact_Mom,Moeder
 pokegear_screen_phone_contact_ProfessorElm,Professor Elm
@@ -890,7 +890,7 @@ statistics_screen_GTS trades,Via Werelhandel geruild
 statistics_screen_Items found,Voorwerpen gevonden
 statistics_screen_Level,Niveau
 statistics_screen_Moves learned,Technieken geleerd
-statistics_screen_Obtained BP,Ontvangen GP
+statistics_screen_Obtained BP,Ontvangen SP
 statistics_screen_Obtained Coins,Ontvangen Munten
 statistics_screen_Points,Punten
 statistics_screen_PVP Losses,Spelergevechten verloren
@@ -1146,12 +1146,12 @@ frontier_2_gold_name,Gouden Kennis
 frontier_3_silver_name,Zilveren Geluk
 frontier_3_gold_name,Gouden Geluk
 
-frontier_1_silver_description,Je hebt het Frontierhoofd van de~Gevechtstoren verslagen en hem~laten zien hoe goed jij en je~Pokémon werkelijk zijn.
-frontier_1_gold_description,Je hebt het Frontierhoofd van de~Gevechtstoren voor de tweede keer~verslagen en je hebt je ware~kracht laten zien als het op~gevechten aankomt.
+frontier_1_silver_description,Je hebt het Grenzenstrijd-Hoofd~van de Strijdtoren verslagen~en hem laten zien hoe goed jij~en je Pokémon werkelijk zijn.
+frontier_1_gold_description,Je hebt het Grenzenstrijd-Hoofd~van de Strijdtoren voor de~tweede keer verslagen en je hebt~je ware kracht laten zien als~het op gevechten aankomt.
 frontier_2_silver_description,Slechts enkele trainers hebben dit~embleem behaald, wat aantoont welke~kracht er in hen schuilt.
 frontier_2_gold_description,Dit embleem laat zien hoe goed je~met Pokémon kunt omgaan en hoe goed~je je strategie aan een nieuwe~situatie kunt aanpassen.
 frontier_3_silver_description,Je hebt laten zien dat je heel goed~bent in het benutten van het geluk~dat op je pad komt, of dat nu goed~of slecht is.
-frontier_3_gold_description,Je geluk troefde alles bij Gevechtsslang.~Je hebt het slechtste geluk verzacht en~het beste geluk verdubbeld.
+frontier_3_gold_description,Je geluk troefde alles bij Strijdslang.~Je hebt het slechtste geluk verzacht en~het beste geluk verdubbeld.
 ---
 Regions:
 Johto,Johto
@@ -1355,14 +1355,14 @@ Places_S.S. Aqua,Stoomboot Aqua
 Places_Elite 4,Elite 4
 Places_Twirl Forest,Ronddraaibos
 Places_Berry Vista,Bessenuitzicht
-Places_Frontier Plaza,Frontier Plaza
-Places_Battle Frontier,Gevechtsfrontier
-Places_Battle Tower,Gevechtstoren
-Places_Battle Factory,Gevechtsfabriek
-Places_Battle Pike,Gevechtsslang
-Places_Battle Hall,Gevechtshal
-Places_Battle Castle,Gevechtskasteel
-Places_Battle Dome,Gevechtskoepel
+Places_Frontier Plaza,Strijdplein
+Places_Battle Frontier,Strijd der Grenzen
+Places_Battle Tower,Strijdtoren
+Places_Battle Factory,Strijdfabriek
+Places_Battle Pike,Strijdslang
+Places_Battle Hall,Strijdhal
+Places_Battle Castle,Strijdkasteel
+Places_Battle Dome,Strijdstadion
 Places_Rocket Warehouse,Team Rocket Warenhuis
 Places_Secret Laboratory,Geheim Laboratorium
 
