@@ -68,7 +68,7 @@
             Dim autosaveFailText As String = Localization.GetString("pause_menu_autosave_fail")
 
             Core.SpriteBatch.DrawInterfaceString(FontManager.InGameFont, autosaveFailText, New Vector2(9, CInt(Core.ScreenSize.Height - FontManager.InGameFont.MeasureString(autosaveFailText).Y)), Color.Black)
-            Core.SpriteBatch.DrawInterfaceString(FontManager.InGameFont, autosaveFailText, New Vector2(5, CInt(Core.ScreenSize.Height - FontManager.InGameFont.MeasureString(autosaveFailText).Y - 4)), Color.White)
+            Core.SpriteBatch.DrawInterfaceString(FontManager.InGameFont, autosaveFailText, New Vector2(7, CInt(Core.ScreenSize.Height - FontManager.InGameFont.MeasureString(autosaveFailText).Y - 2)), Color.White)
         End If
 
         Dim d As New Dictionary(Of Buttons, String)
