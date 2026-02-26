@@ -369,12 +369,17 @@
                     Dim index As Integer = int(argument.GetSplit(0))
                     Dim amount As Integer = int(argument.GetSplit(1))
 
-                    Core.Player.Pokemons(index).Friendship = amount
+                    Core.Player.Pokemons(index).Friendship = CInt(MathHelper.Clamp(amount, 0, 255))
                 Case "addfriendship"
                     Dim index As Integer = int(argument.GetSplit(0))
                     Dim amount As Integer = int(argument.GetSplit(1))
 
-                    Core.Player.Pokemons(index).Friendship += amount
+                    Core.Player.Pokemons(index).Friendship = CInt(MathHelper.Clamp(Core.Player.Pokemons(index).Friendship + amount, 0, 255))
+                Case "removefriendship"
+                    Dim index As Integer = int(argument.GetSplit(0))
+                    Dim amount As Integer = int(argument.GetSplit(1))
+
+                    Core.Player.Pokemons(index).Friendship = CInt(MathHelper.Clamp(Core.Player.Pokemons(index).Friendship - amount, 0, 255))
                 Case "select"
                     Dim canExit As Boolean = False
                     Dim canChooseEgg As Boolean = True

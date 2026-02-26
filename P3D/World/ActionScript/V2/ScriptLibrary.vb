@@ -794,6 +794,8 @@ Namespace ScriptVersion2
                                                          New ScriptArgument("friendship", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Sets the friendship value for a Pokémon in the player's party."))
             r(New ScriptCommand("Pokemon", "addfriendship", {New ScriptArgument("PokémonIndex", ScriptArgument.ArgumentTypes.Str),
                                                          New ScriptArgument("friendship", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Adds to the frienship value of a Pokémon in the player's party."))
+            r(New ScriptCommand("Pokemon", "RemoveFriendship", {New ScriptArgument("PokémonIndex", ScriptArgument.ArgumentTypes.Str),
+                                                         New ScriptArgument("Amount", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Removes the given amount from the friendship value of a Pokémon in the player's party."))
             r(New ScriptCommand("Pokemon", "select", {New ScriptArgument("canExit", ScriptArgument.ArgumentTypes.Bool, True, "false"),
                                                          New ScriptArgument("canChooseEgg", ScriptArgument.ArgumentTypes.Bool, True, "true"),
                                                          New ScriptArgument("canChooseFainted", ScriptArgument.ArgumentTypes.Bool, True, "true"),
