@@ -271,11 +271,9 @@ Public Class EvolutionCondition
                                 canEvolve = False
                             End If
                         Case ConditionTypes.Trade
-                            If StringHelper.IsNumeric(c.Argument) Then
-                                If CInt(c.Argument) > 0 Then
-                                    If CInt(c.Argument) <> CInt(arg) Then
-                                        canEvolve = False
-                                    End If
+                            If c.Argument.ToString <> "0" Then
+                                If c.Argument <> arg.ToString Then
+                                    canEvolve = False
                                 End If
                             End If
                         Case ConditionTypes.Weather
