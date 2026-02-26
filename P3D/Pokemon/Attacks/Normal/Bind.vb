@@ -105,7 +105,7 @@ Namespace BattleSystem.Moves.Normal
             MoveAnimation.AnimationScale(BindEntity, False, False, 0.75F, 0.5F, 0.75F, 0.02F, 9, 0)
             MoveAnimation.AnimationScale(Nothing, False, True, 1.0F, 1.0F, 1.0F, 0.04F, 11, 0)
             MoveAnimation.AnimationScale(BindEntity, False, True, 1.0F, 0.5F, 1.0F, 0.04F, 11, 0)
-            MoveAnimation.AnimationFade(BindEntity, True, 0.03, False, 0.0, 11, 0)
+            MoveAnimation.AnimationFade(BindEntity, True, 0.03, 0.0, 11, 0)
 
             BattleScreen.BattleQuery.Add(MoveAnimation)
         End Sub

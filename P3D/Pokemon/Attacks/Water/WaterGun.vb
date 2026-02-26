@@ -66,7 +66,7 @@
 
             MoveAnimation.AnimationPlaySound("Battle\Attacks\Water\Watergun_Hit", 3, 0)
             Dim HitEntity = MoveAnimation.SpawnEntity(New Vector3(0, -0.2, 0), TextureManager.GetTexture("Textures\Battle\Water\WaterGun", New Rectangle(0, 16, 16, 16), ""), New Vector3(0.5F), 0.5F, 3, 1)
-            MoveAnimation.AnimationFade(HitEntity, True, 1.0F, False, 0.0F, 5, 0)
+            MoveAnimation.AnimationFade(HitEntity, True, 1.0F, 0.0F, 5, 0)
 
             Dim WaterDrop1Position As Vector3 = New Vector3(-0.25, 0.25, -0.25)
             Dim WaterDrop2Position As Vector3 = New Vector3(0, 0.25, 0)

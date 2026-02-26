@@ -109,7 +109,7 @@ Namespace BattleSystem
 			AnimationEnded = True
 		End Sub
 
-		Public Function SpawnEntity(ByVal Position As Vector3, ByVal Texture As Texture2D, ByVal Scale As Vector3, ByVal Opacity As Single, Optional ByVal startDelay As Single = 0.0F, Optional ByVal endDelay As Single = 0.0F, Optional ModelPath As String = "") As Entity
+		Public Function SpawnEntity(ByVal Position As Vector3, ByVal Texture As Texture2D, ByVal Scale As Vector3, ByVal Opacity As Single, Optional ByVal StartDelay As Single = 0.0F, Optional ByVal EndDelay As Single = 0.0F, Optional ModelPath As String = "") As Entity
 			Dim NewPosition As Vector3
 			If Not Position = Nothing Then
 				If CurrentEntity IsNot Nothing Then
@@ -133,7 +133,7 @@ Namespace BattleSystem
 					NewPosition = New Vector3(0, 0, 0)
 				End If
 			End If
-			Dim SpawnedEntity = New BattleAnimation3D(NewPosition, Texture, Scale, startDelay, endDelay, False)
+			Dim SpawnedEntity = New BattleAnimation3D(NewPosition, Texture, Scale, StartDelay, EndDelay, False)
 			SpawnedEntity.Opacity = Opacity
 			SpawnedEntity.Visible = False
 
@@ -157,7 +157,7 @@ Namespace BattleSystem
 		Public Sub RemoveEntity(Entity As Entity)
 			SpawnedEntities.Remove(Entity)
 		End Sub
-		Public Sub AnimationChangeTexture(ByVal Entity As Entity, ByVal RemoveEntityAfter As Boolean, ByVal Texture As Texture2D, ByVal startDelay As Single, ByVal endDelay As Single)
+		Public Sub AnimationChangeTexture(ByVal Entity As Entity, ByVal RemoveEntityAfter As Boolean, ByVal Texture As Texture2D, ByVal StartDelay As Single, ByVal EndDelay As Single)
 			Dim TextureChangeEntity As Entity
 
 			If Entity Is Nothing Then
@@ -166,12 +166,12 @@ Namespace BattleSystem
 				TextureChangeEntity = Entity
 			End If
 
-			Dim baEntityTextureChange As BAEntityTextureChange = New BAEntityTextureChange(TextureChangeEntity, RemoveEntityAfter, Texture, startDelay, endDelay)
+			Dim baEntityTextureChange As BAEntityTextureChange = New BAEntityTextureChange(TextureChangeEntity, RemoveEntityAfter, Texture, StartDelay, EndDelay)
 			AnimationSequence.Add(baEntityTextureChange)
 
 		End Sub
 
-		Public Sub AnimationMove(ByVal Entity As Entity, ByVal RemoveEntityAfter As Boolean, ByVal DestinationX As Single, ByVal DestinationY As Single, ByVal DestinationZ As Single, ByVal MoveSpeed As Single, ByVal SpinX As Boolean, ByVal SpinZ As Boolean, ByVal startDelay As Single, ByVal endDelay As Single, Optional ByVal SpinXSpeed As Single = 0.1F, Optional ByVal SpinZSpeed As Single = 0.1F, Optional MoveYSpeed As Single = 0.0F, Optional MovementCurve As Integer = 3)
+		Public Sub AnimationMove(ByVal Entity As Entity, ByVal RemoveEntityAfter As Boolean, ByVal DestinationX As Single, ByVal DestinationY As Single, ByVal DestinationZ As Single, ByVal MoveSpeed As Single, ByVal SpinX As Boolean, ByVal SpinZ As Boolean, ByVal StartDelay As Single, ByVal EndDelay As Single, Optional ByVal SpinXSpeed As Single = 0.1F, Optional ByVal SpinZSpeed As Single = 0.1F, Optional MoveYSpeed As Single = 0.0F, Optional MovementCurve As Integer = 3)
 			Dim MoveEntity As Entity
 			Dim Destination As Vector3
 
@@ -198,11 +198,11 @@ Namespace BattleSystem
 				Destination = CurrentEntity.Position + New Vector3(DestinationX, DestinationY, DestinationZ)
 			End If
 
-			Dim baEntityMove As BAEntityMove = New BAEntityMove(MoveEntity, RemoveEntityAfter, Destination, MoveSpeed, SpinX, SpinZ, startDelay, endDelay, SpinXSpeed, SpinZSpeed, MovementCurve, MoveYSpeed)
+			Dim baEntityMove As BAEntityMove = New BAEntityMove(MoveEntity, RemoveEntityAfter, Destination, MoveSpeed, SpinX, SpinZ, StartDelay, EndDelay, SpinXSpeed, SpinZSpeed, MovementCurve, MoveYSpeed)
 			AnimationSequence.Add(baEntityMove)
 
 		End Sub
-		Public Sub AnimationOscillateMove(ByVal Entity As Entity, ByVal RemoveEntityAfter As Boolean, ByVal Distance As Vector3, ByVal MoveSpeed As Single, ByVal BothWays As Boolean, ByVal Duration As Single, ByVal startDelay As Single, ByVal endDelay As Single, Optional MovementCurve As Integer = 0, Optional ReturnToStart As Vector3 = Nothing)
+		Public Sub AnimationOscillateMove(ByVal Entity As Entity, ByVal RemoveEntityAfter As Boolean, ByVal Distance As Vector3, ByVal MoveSpeed As Single, ByVal BothWays As Boolean, ByVal Duration As Single, ByVal StartDelay As Single, ByVal EndDelay As Single, Optional MovementCurve As Integer = 0, Optional ReturnToStart As Vector3 = Nothing)
 			Dim MoveEntity As Entity
 			Dim ReturnPosition As New Vector3(0)
 
@@ -221,12 +221,12 @@ Namespace BattleSystem
 			Dim DurationWhole = CSng(Math.Truncate(CDbl(Duration / 6.0F)))
 			Dim DurationFraction = CSng((Duration / 6.0F - DurationWhole) * 1000)
 			Dim DurationTime As TimeSpan = New TimeSpan(0, 0, 0, CInt(DurationWhole), CInt(DurationFraction))
-			Dim baEntityOscillateMove As BAEntityOscillateMove = New BAEntityOscillateMove(MoveEntity, RemoveEntityAfter, Distance, MoveSpeed, BothWays, DurationTime, startDelay, endDelay, MovementCurve, ReturnToStart)
+			Dim baEntityOscillateMove As BAEntityOscillateMove = New BAEntityOscillateMove(MoveEntity, RemoveEntityAfter, Distance, MoveSpeed, BothWays, DurationTime, StartDelay, EndDelay, MovementCurve, ReturnToStart)
 			AnimationSequence.Add(baEntityOscillateMove)
 
 		End Sub
 
-		Public Sub AnimationSetPosition(ByVal Entity As Entity, ByVal RemoveEntityAfter As Boolean, ByVal PositionX As Single, ByVal PositionY As Single, ByVal PositionZ As Single, ByVal startDelay As Single, ByVal endDelay As Single)
+		Public Sub AnimationSetPosition(ByVal Entity As Entity, ByVal RemoveEntityAfter As Boolean, ByVal PositionX As Single, ByVal PositionY As Single, ByVal PositionZ As Single, ByVal StartDelay As Single, ByVal EndDelay As Single)
 			Dim SetEntity As Entity
 			Dim SetPosition As Vector3
 
@@ -238,23 +238,23 @@ Namespace BattleSystem
 
 			SetPosition = New Vector3(PositionX, PositionY, PositionZ) + BattleScreen.BattleMapOffset
 
-			Dim baEntitySetPosition As BAEntitySetPosition = New BAEntitySetPosition(SetEntity, RemoveEntityAfter, SetPosition, startDelay, endDelay)
+			Dim baEntitySetPosition As BAEntitySetPosition = New BAEntitySetPosition(SetEntity, RemoveEntityAfter, SetPosition, StartDelay, EndDelay)
 			AnimationSequence.Add(baEntitySetPosition)
 
 		End Sub
 
-		Public Sub AnimationColor(ByVal Entity As Entity, ByVal RemoveEntityAfter As Boolean, ByVal TransitionSpeedIn As Single, ByVal ReturnToFromWhenDone As Boolean, ByVal startDelay As Single, ByVal endDelay As Single, ByVal VectorColorTo As Vector3, Optional ByVal VectorColorFrom As Vector3 = Nothing, Optional TransitionSpeedOut As Single = -1)
+		Public Sub AnimationColor(ByVal Entity As Entity, ByVal RemoveEntityAfter As Boolean, ByVal TransitionSpeedIn As Single, ByVal ReturnToFromWhenDone As Boolean, ByVal StartDelay As Single, ByVal EndDelay As Single, ByVal VectorColorTo As Vector3, Optional TransitionSpeedOut As Single = -1, Optional ByVal VectorColorFrom As Vector3 = Nothing)
 			Dim ColorEntity As Entity
 			If Entity Is Nothing Then
 				ColorEntity = CurrentEntity
 			Else
 				ColorEntity = Entity
 			End If
-			Dim baEntityColor As BAEntityColor = New BAEntityColor(ColorEntity, RemoveEntityAfter, TransitionSpeedIn, ReturnToFromWhenDone, startDelay, endDelay, VectorColorTo, VectorColorFrom, TransitionSpeedOut)
+			Dim baEntityColor As BAEntityColor = New BAEntityColor(ColorEntity, RemoveEntityAfter, TransitionSpeedIn, ReturnToFromWhenDone, StartDelay, EndDelay, VectorColorTo, TransitionSpeedOut, VectorColorFrom)
 			AnimationSequence.Add(baEntityColor)
 		End Sub
 
-		Public Sub AnimationColor(ByVal Entity As Entity, ByVal RemoveEntityAfter As Boolean, ByVal TransitionSpeedIn As Single, ByVal ReturnToFromWhenDone As Boolean, ByVal startDelay As Single, ByVal endDelay As Single, ByVal ColorTo As Color, Optional ByVal ColorFrom As Color = Nothing, Optional TransitionSpeedOut As Single = -1)
+		Public Sub AnimationColor(ByVal Entity As Entity, ByVal RemoveEntityAfter As Boolean, ByVal TransitionSpeedIn As Single, ByVal ReturnToFromWhenDone As Boolean, ByVal StartDelay As Single, ByVal EndDelay As Single, ByVal ColorTo As Color, Optional TransitionSpeedOut As Single = -1.0F, Optional ByVal ColorFrom As Color = Nothing)
 			Dim ColorEntity As Entity
 			If Entity Is Nothing Then
 				ColorEntity = CurrentEntity
@@ -267,24 +267,24 @@ Namespace BattleSystem
 				VectorColorFrom = ColorFrom.ToVector3
 			End If
 
-			Dim baEntityColor As BAEntityColor = New BAEntityColor(ColorEntity, RemoveEntityAfter, TransitionSpeedIn, ReturnToFromWhenDone, startDelay, endDelay, VectorColorTo, VectorColorFrom, TransitionSpeedOut)
+			Dim baEntityColor As BAEntityColor = New BAEntityColor(ColorEntity, RemoveEntityAfter, TransitionSpeedIn, ReturnToFromWhenDone, StartDelay, EndDelay, VectorColorTo, TransitionSpeedOut, VectorColorFrom)
 			AnimationSequence.Add(baEntityColor)
 		End Sub
 
-		Public Sub AnimationFade(ByVal Entity As Entity, ByVal RemoveEntityAfter As Boolean, ByVal TransitionSpeed As Single, ByVal FadeIn As Boolean, ByVal EndState As Single, ByVal startDelay As Single, ByVal endDelay As Single, Optional ByVal startState As Single = -1.0F)
+		Public Sub AnimationFade(ByVal Entity As Entity, ByVal RemoveEntityAfter As Boolean, ByVal TransitionSpeed As Single, ByVal EndState As Single, ByVal StartDelay As Single, ByVal EndDelay As Single, Optional ByVal startState As Single = -1.0F)
 			Dim FadeEntity As Entity
 			If Entity Is Nothing Then
 				FadeEntity = CurrentEntity
 			Else
 				FadeEntity = Entity
 			End If
-			If startState = -1 Then startState = FadeEntity.NormalOpacity
-			Dim baEntityOpacity As BAEntityOpacity = New BAEntityOpacity(FadeEntity, RemoveEntityAfter, TransitionSpeed, FadeIn, EndState, startDelay, endDelay, startState)
+			If startState = -1.0F Then startState = FadeEntity.NormalOpacity
+			Dim baEntityOpacity As BAEntityOpacity = New BAEntityOpacity(FadeEntity, RemoveEntityAfter, TransitionSpeed, EndState, StartDelay, EndDelay, startState)
 			AnimationSequence.Add(baEntityOpacity)
 
 		End Sub
 
-		Public Sub AnimationRotate(Entity As Entity, ByVal RemoveEntityAfter As Boolean, ByVal RotationSpeedX As Single, ByVal RotationSpeedY As Single, ByVal RotationSpeedZ As Single, ByVal EndRotationX As Single, ByVal EndRotationY As Single, ByVal EndRotationZ As Single, ByVal startDelay As Single, ByVal endDelay As Single, ByVal DoXRotation As Boolean, ByVal DoYRotation As Boolean, ByVal DoZRotation As Boolean, ByVal DoReturn As Boolean)
+		Public Sub AnimationRotate(Entity As Entity, ByVal RemoveEntityAfter As Boolean, ByVal RotationSpeedX As Single, ByVal RotationSpeedY As Single, ByVal RotationSpeedZ As Single, ByVal EndRotationX As Single, ByVal EndRotationY As Single, ByVal EndRotationZ As Single, ByVal StartDelay As Single, ByVal EndDelay As Single, Optional ByVal DoReturn As Boolean = False)
 			Dim RotateEntity As Entity
 			If Entity Is Nothing Then
 				RotateEntity = CurrentEntity
@@ -294,12 +294,12 @@ Namespace BattleSystem
 
 			Dim RotationSpeedVector As Vector3 = New Vector3(RotationSpeedX, RotationSpeedY, RotationSpeedZ)
 			Dim EndRotation As Vector3 = New Vector3(EndRotationX, EndRotationY, EndRotationZ)
-			Dim baEntityRotate As BAEntityRotate = New BAEntityRotate(RotateEntity, RemoveEntityAfter, RotationSpeedVector, EndRotation, startDelay, endDelay, DoXRotation, DoYRotation, DoZRotation, DoReturn)
+			Dim baEntityRotate As BAEntityRotate = New BAEntityRotate(RotateEntity, RemoveEntityAfter, RotationSpeedVector, EndRotation, StartDelay, EndDelay, DoReturn)
 			AnimationSequence.Add(baEntityRotate)
 
 		End Sub
 
-		Public Sub AnimationTurnNPC(ByVal TurnSteps As Integer, ByVal startDelay As Single, ByVal endDelay As Single, Optional ByVal EndFaceRotation As Integer = -1, Optional ByVal TurnSpeed As Integer = 1, Optional ByVal TurnDelay As Single = 0.25F)
+		Public Sub AnimationTurnNPC(ByVal TurnSteps As Integer, ByVal StartDelay As Single, ByVal EndDelay As Single, Optional ByVal EndFaceRotation As Integer = -1, Optional ByVal TurnSpeed As Integer = 1, Optional ByVal TurnDelay As Single = 0.25F)
 			Dim TurnNPC As NPC = Nothing
 			If CurrentEntity IsNot Nothing Then
 				TurnNPC = CType(CurrentEntity, NPC)
@@ -310,11 +310,11 @@ Namespace BattleSystem
 				TurnSpeed *= -1
 			End If
 
-			Dim BAEntityFaceRotate As BAEntityFaceRotate = New BAEntityFaceRotate(TurnNPC, TurnSteps, startDelay, endDelay, EndFaceRotation, TurnSpeed, TurnDelay)
+			Dim BAEntityFaceRotate As BAEntityFaceRotate = New BAEntityFaceRotate(TurnNPC, TurnSteps, StartDelay, EndDelay, EndFaceRotation, TurnSpeed, TurnDelay)
 			AnimationSequence.Add(BAEntityFaceRotate)
 
 		End Sub
-		Public Sub AnimationScale(ByVal Entity As Entity, ByVal RemoveEntityAfter As Boolean, ByVal Grow As Boolean, ByVal EndSizeX As Single, ByVal EndSizeY As Single, ByVal EndSizeZ As Single, ByVal SizeSpeed As Single, ByVal startDelay As Single, ByVal endDelay As Single, Optional ByVal Anchors As String = "", Optional SpeedMultiplier As Vector3 = Nothing)
+		Public Sub AnimationScale(ByVal Entity As Entity, ByVal RemoveEntityAfter As Boolean, ByVal Grow As Boolean, ByVal EndSizeX As Single, ByVal EndSizeY As Single, ByVal EndSizeZ As Single, ByVal SizeSpeed As Single, ByVal StartDelay As Single, ByVal EndDelay As Single, Optional ByVal Anchors As String = "", Optional SpeedMultiplier As Vector3 = Nothing)
 			Dim ScaleEntity As Entity
 			If Entity Is Nothing Then
 				ScaleEntity = CurrentEntity
@@ -330,26 +330,26 @@ Namespace BattleSystem
 
 			Dim Scale As Vector3 = ScaleEntity.Scale
 			Dim EndSize As Vector3 = New Vector3(EndSizeX, EndSizeY, EndSizeZ)
-			Dim baEntityScale As BAEntityScale = New BAEntityScale(ScaleEntity, RemoveEntityAfter, Scale, Grow, EndSize, SizeSpeed, startDelay, endDelay, Anchors, SpeedMultiplier)
+			Dim baEntityScale As BAEntityScale = New BAEntityScale(ScaleEntity, RemoveEntityAfter, Scale, Grow, EndSize, SizeSpeed, StartDelay, EndDelay, Anchors, SpeedMultiplier)
 			AnimationSequence.Add(baEntityScale)
 		End Sub
 
-		Public Sub AnimationPlaySound(ByVal sound As String, ByVal startDelay As Single, ByVal endDelay As Single, Optional ByVal stopMusic As Boolean = False, Optional ByVal IsPokemon As Boolean = False, Optional ByVal CrySuffix As String = "")
-			Dim baSound As BAPlaySound = New BAPlaySound(sound, startDelay, endDelay, stopMusic, IsPokemon, CrySuffix)
+		Public Sub AnimationPlaySound(ByVal sound As String, ByVal StartDelay As Single, ByVal EndDelay As Single, Optional ByVal stopMusic As Boolean = False, Optional ByVal IsPokemon As Boolean = False, Optional ByVal CrySuffix As String = "")
+			Dim baSound As BAPlaySound = New BAPlaySound(sound, StartDelay, EndDelay, stopMusic, IsPokemon, CrySuffix)
 			AnimationSequence.Add(baSound)
 		End Sub
 
-		Public Sub AnimationBackground(ByVal Texture As Texture2D, ByVal startDelay As Single, ByVal endDelay As Single, ByVal Duration As Single, Optional ByVal AfterFadeInOpacity As Single = 1.0F, Optional ByVal FadeInSpeed As Single = 0.125F, Optional ByVal FadeOutSpeed As Single = 0.125F, Optional ByVal DoTile As Boolean = False, Optional ByVal AnimationLength As Integer = 1, Optional ByVal AnimationSpeed As Integer = 4, Optional ByVal Scale As Integer = 4)
-			Dim baBackground As BABackground = New BABackground(Texture, startDelay, endDelay, Duration, AfterFadeInOpacity, FadeInSpeed, FadeOutSpeed, DoTile, AnimationLength, AnimationSpeed, Scale)
+		Public Sub AnimationBackground(ByVal Texture As Texture2D, ByVal StartDelay As Single, ByVal EndDelay As Single, ByVal Duration As Single, Optional ByVal AfterFadeInOpacity As Single = 1.0F, Optional ByVal FadeInSpeed As Single = 0.125F, Optional ByVal FadeOutSpeed As Single = 0.125F, Optional ByVal DoTile As Boolean = False, Optional ByVal AnimationLength As Integer = 1, Optional ByVal AnimationSpeed As Integer = 4, Optional ByVal Scale As Integer = 4)
+			Dim baBackground As BABackground = New BABackground(Texture, StartDelay, EndDelay, Duration, AfterFadeInOpacity, FadeInSpeed, FadeOutSpeed, DoTile, AnimationLength, AnimationSpeed, Scale)
 			AnimationSequence.Add(baBackground)
 		End Sub
 
-		Public Sub AnimationCameraChangeAngle(ByRef Battlescreen As BattleScreen, ByVal CameraAngleID As Integer, ByVal startDelay As Single, ByVal endDelay As Single)
-			Dim baCameraChangeAngle As BACameraChangeAngle = New BACameraChangeAngle(Battlescreen, CameraAngleID, startDelay, endDelay)
+		Public Sub AnimationCameraChangeAngle(ByRef Battlescreen As BattleScreen, ByVal CameraAngleID As Integer, ByVal StartDelay As Single, ByVal EndDelay As Single)
+			Dim baCameraChangeAngle As BACameraChangeAngle = New BACameraChangeAngle(Battlescreen, CameraAngleID, StartDelay, EndDelay)
 			AnimationSequence.Add(baCameraChangeAngle)
 		End Sub
 
-		Public Sub AnimationCameraOscillateMove(ByVal Distance As Vector3, ByVal Speed As Single, ByVal BothWays As Boolean, ByVal Duration As Single, ByVal startDelay As Single, ByVal endDelay As Single, Optional MovementCurve As Integer = 0, Optional ReturnToStart As Vector3 = Nothing)
+		Public Sub AnimationCameraOscillateMove(ByVal Distance As Vector3, ByVal Speed As Single, ByVal BothWays As Boolean, ByVal Duration As Single, ByVal StartDelay As Single, ByVal EndDelay As Single, Optional MovementCurve As Integer = 0, Optional ReturnToStart As Vector3 = Nothing)
 			Dim ReturnPosition As New Vector3(0)
 
 			If Not BattleFlipped = Nothing Then
@@ -361,7 +361,7 @@ Namespace BattleSystem
 			Dim DurationWhole = CSng(Math.Truncate(CDbl(Duration / 6.0F)))
 			Dim DurationFraction = CSng((Duration / 6.0F - DurationWhole) * 1000)
 			Dim DurationTime As TimeSpan = New TimeSpan(0, 0, 0, CInt(DurationWhole), CInt(DurationFraction))
-			Dim baCameraOscillateMove As BACameraOscillateMove = New BACameraOscillateMove(Distance, Speed, BothWays, DurationTime, startDelay, endDelay, MovementCurve, ReturnToStart)
+			Dim baCameraOscillateMove As BACameraOscillateMove = New BACameraOscillateMove(Distance, Speed, BothWays, DurationTime, StartDelay, EndDelay, MovementCurve, ReturnToStart)
 			AnimationSequence.Add(baCameraOscillateMove)
 
 		End Sub

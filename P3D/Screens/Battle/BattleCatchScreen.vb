@@ -175,8 +175,8 @@ nextIndex:
                                 Dim BallEntity As Entity = CatchAnimation.SpawnEntity(BallPosition, Ball.Texture, New Vector3(0.3F), 1.0F, 0, 0)
 
                                 CatchAnimation.AnimationMove(BallEntity, False, 3, 0.1F, 0, 0.075, False, False, 0F, 0F,,, 0.025)
-                                CatchAnimation.AnimationRotate(BallEntity, False, 0, 0, -0.5, 0, 0, -6 * MathHelper.Pi, 0, 0, False, False, True, False)
-                                CatchAnimation.AnimationRotate(BallEntity, False, 0, 0, 6 * MathHelper.Pi, 0, 0, 0, 4, 0, False, False, True, False)
+                                CatchAnimation.AnimationRotate(BallEntity, False, 0, 0, -0.5, 0, 0, -6 * MathHelper.Pi, 0, 0, False)
+                                CatchAnimation.AnimationRotate(BallEntity, False, 0, 0, 6 * MathHelper.Pi, 0, 0, 0, 4, 0, False)
 
                                 ' Ball closes
                                 CatchAnimation.AnimationPlaySound("Battle\Pokeball\Open", 3, 0)
@@ -206,9 +206,9 @@ nextIndex:
                                 For i = 0 To Shakes.Count - 1
                                     CatchAnimation.AnimationPlaySound("Battle\Pokeball\Shake", 12 + i * 10, 0)
                                     If Shakes(i) = False Then
-                                        CatchAnimation.AnimationRotate(BallEntity, False, 0, 0, 0.15F, 0, 0, MathHelper.PiOver4, 12 + i * 10, 0, False, False, True, True)
+                                        CatchAnimation.AnimationRotate(BallEntity, False, 0, 0, 0.15F, 0, 0, MathHelper.PiOver4, 12 + i * 10, 0, True)
                                     Else
-                                        CatchAnimation.AnimationRotate(BallEntity, False, 0, 0, -0.15F, 0, 0, -MathHelper.PiOver4, 12 + i * 10, 0, False, False, True, True)
+                                        CatchAnimation.AnimationRotate(BallEntity, False, 0, 0, -0.15F, 0, 0, -MathHelper.PiOver4, 12 + i * 10, 0, True)
                                     End If
                                 Next
 
@@ -219,10 +219,10 @@ nextIndex:
                                         Dim StarEntity As Entity = CatchAnimation.SpawnEntity(StarPosition, TextureManager.GetTexture("Textures\Battle\BallCatchStar"), New Vector3(0.35F), 1.0F, 12 + Shakes.Count * 10)
                                         CatchAnimation.AnimationMove(StarEntity, True, StarDestination.X, StarDestination.Y, StarDestination.Z, 0.01F, False, False, 12 + Shakes.Count * 10, 0.0F,,, 0.015F)
                                         CatchAnimation.AnimationPlaySound("Battle\Pokeball\Catch", 12 + Shakes.Count * 10, 4)
-                                        CatchAnimation.AnimationFade(BallEntity, True, 0.01F, False, 0.0F, 12 + Shakes.Count * 10 + 3, 2)
+                                        CatchAnimation.AnimationFade(BallEntity, True, 0.01F, 0.0F, 12 + Shakes.Count * 10 + 3, 2)
                                     Next
                                 Else
-                                    CatchAnimation.AnimationFade(BallEntity, True, 1.0F, False, 0.0F, 12 + Shakes.Count * 10, 0)
+                                    CatchAnimation.AnimationFade(BallEntity, True, 1.0F, 0.0F, 12 + Shakes.Count * 10, 0)
                                     CatchAnimation.AnimationPlaySound("Battle\Pokeball\Break", 12 + Shakes.Count * 10, 0)
                                     ' Ball Opens
                                     Dim SmokeParticlesOpen As Integer = 0

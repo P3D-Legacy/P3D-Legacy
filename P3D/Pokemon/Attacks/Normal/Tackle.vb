@@ -63,7 +63,7 @@
             Dim MoveAnimation As AnimationQueryObject = New AnimationQueryObject(CurrentEntity, BattleFlip)
             MoveAnimation.AnimationPlaySound("Battle\Attacks\Normal\Tackle", 0, 0)
             Dim SpawnEntity = MoveAnimation.SpawnEntity(New Vector3(0, -0.2, 0), TextureManager.GetTexture("Textures\Battle\Normal\Tackle"), New Vector3(0.5F), 1.0F, 0, 2)
-            MoveAnimation.AnimationFade(SpawnEntity, True, 1.0F, False, 0.0F, 2, 0)
+            MoveAnimation.AnimationFade(SpawnEntity, True, 1.0F, 0.0F, 2, 0)
             BattleScreen.BattleQuery.Add(MoveAnimation)
         End Sub
     End Class

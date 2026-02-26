@@ -104,7 +104,7 @@
             MoveAnimation.AnimationScale(WrapEntity, False, False, 0.75F, 0.5F, 0.75F, 0.02F, 9, 0)
             MoveAnimation.AnimationScale(Nothing, False, True, 1.0F, 1.0F, 1.0F, 0.04F, 11, 0)
             MoveAnimation.AnimationScale(WrapEntity, False, True, 1.0F, 0.5F, 1.0F, 0.04F, 11, 0)
-            MoveAnimation.AnimationFade(WrapEntity, True, 0.03, False, 0.0, 11, 0)
+            MoveAnimation.AnimationFade(WrapEntity, True, 0.03, 0.0, 11, 0)
 
             BattleScreen.BattleQuery.Add(MoveAnimation)
         End Sub

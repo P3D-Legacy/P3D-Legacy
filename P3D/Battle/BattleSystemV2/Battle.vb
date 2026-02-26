@@ -690,7 +690,7 @@
 
                     Dim Phase2Entity As Entity = MegaAnimation.SpawnEntity(New Vector3(0), TextureManager.GetTexture("Textures\Battle\MegaEvolution\Mega_Phase2"), New Vector3(0.0F), 1.0F, 4.0F, 0.0F)
                     MegaAnimation.AnimationScale(Phase2Entity, False, True, 1.25F, 1.25F, 1.25F, 0.02F, 4.0F, 0.0F)
-                    MegaAnimation.AnimationRotate(Phase2Entity, True, 0, 0, 0.1F, 0, 0, 10.0F, 4, 0F, False, False, True, False)
+                    MegaAnimation.AnimationRotate(Phase2Entity, True, 0, 0, 0.1F, 0, 0, 10.0F, 4, 0F, False)
                     BattleScreen.BattleQuery.Add(MegaAnimation)
                 Else
                     BattleScreen.BattleQuery.Add(New PlaySoundQueryObject("Battle\Effects\MegaEvolution", False))
@@ -1423,7 +1423,7 @@
                             Dim startDelay As Double = 5.0 * Random.NextDouble()
                             Dim SnowflakeEntity = FrozenAnimation.SpawnEntity(Position, Texture, Scale, 1.0F, CSng(startDelay))
 
-                            FrozenAnimation.AnimationFade(SnowflakeEntity, True, 0.02, False, 0.0F, CSng(startDelay), 0.0)
+                            FrozenAnimation.AnimationFade(SnowflakeEntity, True, 0.02, 0.0F, CSng(startDelay), 0.0)
                             Threading.Interlocked.Increment(currentAmount)
                         End While
 
@@ -1728,7 +1728,7 @@
                                 Dim HeartEntity = HeartAnimation.SpawnEntity(New Vector3(0.0, 0.0, 0.0), TextureManager.GetTexture("Textures\Battle\Normal\Attract"), New Vector3(0.25F), 1.0F, CSng(i * 0.2))
                                 Dim zPos As Single = CSng(Random.Next(-2, 2) * 0.2)
                                 HeartAnimation.AnimationMove(HeartEntity, False, 0.0, 0.25, zPos, 0.01, False, False, CSng(i * 0.2), 0.0)
-                                HeartAnimation.AnimationFade(HeartEntity, True, 0.02, False, 0.0, CSng(1 + i * 0.2), 0.0)
+                                HeartAnimation.AnimationFade(HeartEntity, True, 0.02, 0.0, CSng(1 + i * 0.2), 0.0)
                                 i += 1
                             Next
                             BattleScreen.BattleQuery.Add(HeartAnimation)
@@ -3460,7 +3460,7 @@
                                     Dim startDelay As Double = 5.0 * Random.NextDouble()
                                     Dim SnowflakeEntity = FrozenAnimation.SpawnEntity(Position, Texture, Scale, 1.0F, CSng(startDelay))
 
-                                    FrozenAnimation.AnimationFade(SnowflakeEntity, True, 0.02, False, 0.0F, CSng(startDelay), 0.0)
+                                    FrozenAnimation.AnimationFade(SnowflakeEntity, True, 0.02, 0.0F, CSng(startDelay), 0.0)
                                     Threading.Interlocked.Increment(currentAmount)
                                 End While
 
@@ -4850,10 +4850,10 @@
                 If Core.Player.ShowBattleAnimations <> 0 AndAlso BattleScreen.IsPVPBattle = False Then
                     If fly = 0 Then
                         Dim HitAnimation As AnimationQueryObject = New AnimationQueryObject(pNPC, own)
-                        HitAnimation.AnimationFade(Nothing, False, 1, False, 0, 0, 0)
-                        HitAnimation.AnimationFade(Nothing, False, 1, True, 1, 1, 0)
-                        HitAnimation.AnimationFade(Nothing, False, 1, False, 0, 2, 0)
-                        HitAnimation.AnimationFade(Nothing, False, 1, True, 1, 3, 0)
+                        HitAnimation.AnimationFade(Nothing, False, 1, 0, 0, 0)
+                        HitAnimation.AnimationFade(Nothing, False, 1, 1, 1, 0)
+                        HitAnimation.AnimationFade(Nothing, False, 1, 0, 2, 0)
+                        HitAnimation.AnimationFade(Nothing, False, 1, 1, 3, 0)
                         BattleScreen.BattleQuery.Add(HitAnimation)
                     End If
                 End If
@@ -6485,7 +6485,7 @@
                                 WrapAnimation.AnimationScale(WrapEntity, False, False, 0.75F, 0.5F, 0.75F, 0.02F, 9, 0)
                                 WrapAnimation.AnimationScale(Nothing, False, True, 1.0F, 1.0F, 1.0F, 0.04F, 11, 0)
                                 WrapAnimation.AnimationScale(WrapEntity, False, True, 1.0F, 0.5F, 1.0F, 0.04F, 11, 0)
-                                WrapAnimation.AnimationFade(WrapEntity, True, 0.03, False, 0.0, 11, 0)
+                                WrapAnimation.AnimationFade(WrapEntity, True, 0.03, 0.0, 11, 0)
                                 BattleScreen.BattleQuery.Add(WrapAnimation)
                             End If
                             ReduceHP(multiHP, True, False, BattleScreen, .OwnPokemon.GetDisplayName() & " is hurt by Wrap!", "wrap")
@@ -6509,8 +6509,8 @@
                                 Dim WhirlpoolAnimation As AnimationQueryObject = New AnimationQueryObject(.OwnPokemonNPC, False, True)
                                 WhirlpoolAnimation.AnimationPlaySound("Battle\Attacks\Water\Whirlpool", 0.0F, 0)
                                 Dim WhirlpoolEntity As Entity = WhirlpoolAnimation.SpawnEntity(New Vector3(0, -0.3, 0), TextureManager.GetTexture("Textures\Battle\Water\Whirlpool"), New Vector3(0.0F), 1.0F, 0.0F, 0.0F)
-                                WhirlpoolAnimation.AnimationRotate(WhirlpoolEntity, False, CSng(MathHelper.Pi * 1.5), 0, 0, CSng(MathHelper.Pi * 1.5), 0, 0, 0, 0, True, False, False, False)
-                                WhirlpoolAnimation.AnimationRotate(WhirlpoolEntity, False, 0, 0, 0.2F, 0, 0, 10.0F, 0.0F, 0.0F, False, False, True, True)
+                                WhirlpoolAnimation.AnimationRotate(WhirlpoolEntity, False, CSng(MathHelper.Pi * 1.5), 0, 0, CSng(MathHelper.Pi * 1.5), 0, 0, 0, 0, False)
+                                WhirlpoolAnimation.AnimationRotate(WhirlpoolEntity, False, 0, 0, 0.2F, 0, 0, 10.0F, 0.0F, 0.0F, True)
                                 WhirlpoolAnimation.AnimationScale(WhirlpoolEntity, False, True, 1.0F, 1.0F, 1.0F, 0.025F, 0.0F, 0.0F)
                                 WhirlpoolAnimation.AnimationScale(WhirlpoolEntity, True, False, 0.0F, 0.0F, 0.0F, 0.025F, 5.0F, 0.0F)
                                 BattleScreen.BattleQuery.Add(WhirlpoolAnimation)
@@ -6562,7 +6562,7 @@
                                 BindAnimation.AnimationScale(BindEntity, False, False, 0.75F, 0.5F, 0.75F, 0.02F, 9, 0)
                                 BindAnimation.AnimationScale(Nothing, False, True, 1.0F, 1.0F, 1.0F, 0.04F, 11, 0)
                                 BindAnimation.AnimationScale(BindEntity, False, True, 1.0F, 0.5F, 1.0F, 0.04F, 11, 0)
-                                BindAnimation.AnimationFade(BindEntity, True, 0.03, False, 0.0, 11, 0)
+                                BindAnimation.AnimationFade(BindEntity, True, 0.03, 0.0, 11, 0)
                                 BattleScreen.BattleQuery.Add(BindAnimation)
                             End If
                             ReduceHP(multiHP, True, False, BattleScreen, .OwnPokemon.GetDisplayName() & " is hurt by Bind!", "bind")
@@ -6593,7 +6593,7 @@
                                 ClampAnimation.AnimationMove(ClampEntityLeft, True, -0.35, -0.1, -0.35, 0.02, False, False, 2, 0)
                                 ClampAnimation.AnimationMove(ClampEntityRight, True, 0.35, -0.1, 0.35, 0.02, False, False, 2, 0)
                                 Dim SpawnEntity = ClampAnimation.SpawnEntity(New Vector3(0, -0.2, 0), TextureManager.GetTexture("Textures\Battle\Normal\Tackle"), New Vector3(0.5F), 1.0F, 2.5, 2)
-                                ClampAnimation.AnimationFade(SpawnEntity, True, 1.0F, False, 0.0F, 4.5F, 0)
+                                ClampAnimation.AnimationFade(SpawnEntity, True, 1.0F, 0.0F, 4.5F, 0)
                                 BattleScreen.BattleQuery.Add(ClampAnimation)
                             End If
                             ReduceHP(multiHP, True, False, BattleScreen, .OwnPokemon.GetDisplayName() & " is hurt by Clamp!", "clamp")
@@ -7392,7 +7392,7 @@
                                 WrapAnimation.AnimationScale(WrapEntity, False, False, 0.75F, 0.5F, 0.75F, 0.02F, 9, 0)
                                 WrapAnimation.AnimationScale(Nothing, False, True, 1.0F, 1.0F, 1.0F, 0.04F, 11, 0)
                                 WrapAnimation.AnimationScale(WrapEntity, False, True, 1.0F, 0.5F, 1.0F, 0.04F, 11, 0)
-                                WrapAnimation.AnimationFade(WrapEntity, True, 0.03, False, 0.0, 11, 0)
+                                WrapAnimation.AnimationFade(WrapEntity, True, 0.03, 0.0, 11, 0)
                                 BattleScreen.BattleQuery.Add(WrapAnimation)
                             End If
                             ReduceHP(multiHP, False, True, BattleScreen, .OppPokemon.GetDisplayName() & " is hurt by Wrap!", "wrap")
@@ -7415,8 +7415,8 @@
                                 Dim WhirlpoolAnimation As AnimationQueryObject = New AnimationQueryObject(.OppPokemonNPC, True, True)
                                 WhirlpoolAnimation.AnimationPlaySound("Battle\Attacks\Water\Whirlpool", 0.0F, 0)
                                 Dim WhirlpoolEntity As Entity = WhirlpoolAnimation.SpawnEntity(New Vector3(0, -0.3, 0), TextureManager.GetTexture("Textures\Battle\Water\Whirlpool"), New Vector3(0.0F), 1.0F, 0.0F, 0.0F)
-                                WhirlpoolAnimation.AnimationRotate(WhirlpoolEntity, False, CSng(MathHelper.Pi * 1.5), 0, 0, CSng(MathHelper.Pi * 1.5), 0, 0, 0, 0, True, False, False, False)
-                                WhirlpoolAnimation.AnimationRotate(WhirlpoolEntity, False, 0, 0, 0.2F, 0, 0, 10.0F, 0.0F, 0.0F, False, False, True, True)
+                                WhirlpoolAnimation.AnimationRotate(WhirlpoolEntity, False, CSng(MathHelper.Pi * 1.5), 0, 0, CSng(MathHelper.Pi * 1.5), 0, 0, 0, 0, False)
+                                WhirlpoolAnimation.AnimationRotate(WhirlpoolEntity, False, 0, 0, 0.2F, 0, 0, 10.0F, 0.0F, 0.0F, True)
                                 WhirlpoolAnimation.AnimationScale(WhirlpoolEntity, False, True, 1.0F, 1.0F, 1.0F, 0.025F, 0.0F, 0.0F)
                                 WhirlpoolAnimation.AnimationScale(WhirlpoolEntity, True, False, 0.0F, 0.0F, 0.0F, 0.025F, 5.0F, 0.0F)
                                 BattleScreen.BattleQuery.Add(WhirlpoolAnimation)
@@ -7468,7 +7468,7 @@
                                 BindAnimation.AnimationScale(BindEntity, False, False, 0.75F, 0.5F, 0.75F, 0.02F, 9, 0)
                                 BindAnimation.AnimationScale(Nothing, False, True, 1.0F, 1.0F, 1.0F, 0.04F, 11, 0)
                                 BindAnimation.AnimationScale(BindEntity, False, True, 1.0F, 0.5F, 1.0F, 0.04F, 11, 0)
-                                BindAnimation.AnimationFade(BindEntity, True, 0.03, False, 0.0, 11, 0)
+                                BindAnimation.AnimationFade(BindEntity, True, 0.03, 0.0, 11, 0)
                                 BattleScreen.BattleQuery.Add(BindAnimation)
                             End If
                             ReduceHP(multiHP, False, True, BattleScreen, .OppPokemon.GetDisplayName() & " is hurt by Bind!", "bind")
@@ -7499,7 +7499,7 @@
                                 ClampAnimation.AnimationMove(ClampEntityLeft, True, -0.35, -0.1, -0.35, 0.02, False, False, 2, 0)
                                 ClampAnimation.AnimationMove(ClampEntityRight, True, 0.35, -0.1, 0.35, 0.02, False, False, 2, 0)
                                 Dim SpawnEntity = ClampAnimation.SpawnEntity(New Vector3(0, -0.2, 0), TextureManager.GetTexture("Textures\Battle\Normal\Tackle"), New Vector3(0.5F), 1.0F, 2.5, 2)
-                                ClampAnimation.AnimationFade(SpawnEntity, True, 1.0F, False, 0.0F, 4.5F, 0)
+                                ClampAnimation.AnimationFade(SpawnEntity, True, 1.0F, 0.0F, 4.5F, 0)
                                 BattleScreen.BattleQuery.Add(ClampAnimation)
                             End If
                             ReduceHP(multiHP, False, True, BattleScreen, .OppPokemon.GetDisplayName() & " is hurt by Clamp!", "clamp")
@@ -8014,7 +8014,7 @@
 
                 If Core.Player.ShowBattleAnimations <> 0 AndAlso BattleScreen.IsPVPBattle = False Then
                     ' Pokemon disappears
-                    BallReturn.AnimationFade(Nothing, False, 1, False, 0, 1, 0)
+                    BallReturn.AnimationFade(Nothing, False, 1, 0, 1, 0)
                     ' Ball returns
                     BallReturn.AnimationPlaySound("Battle\Pokeball\Throw", 1, 0)
                     Dim BallReturnEntity As Entity = BallReturn.SpawnEntity(New Vector3(0, 0 + PositionOffsetY, 0), BattleScreen.OwnPokemon.CatchBall.Texture, New Vector3(0.3F), 1.0F)
@@ -8102,7 +8102,7 @@
                 If Core.Player.ShowBattleAnimations <> 0 AndAlso BattleScreen.IsPVPBattle = False Then
                     ' Pokemon appears
                     BallThrow.AnimationSetPosition(Nothing, False, 12, CSng(0.5), 13, 0, 0)
-                    BallThrow.AnimationFade(Nothing, False, 1, True, 1, 3, 0)
+                    BallThrow.AnimationFade(Nothing, False, 1, 1, 3, 0)
                     BallThrow.AnimationPlaySound(CStr(BattleScreen.OwnPokemon.Number), 4, 0,, True, crySuffixOwn)
                     '  Pokémon falls down
                     BallThrow.AnimationMove(Nothing, False, 0, -0.5F + PositionOffsetY, 0, 0.05F, False, False, 5, 0,,,, 3)
@@ -8415,7 +8415,7 @@
                         Loop While SmokeReturned <= 38
 
                         ' Pokemon disappears
-                        BallReturn.AnimationFade(Nothing, False, 1, False, 0, 1, 0)
+                        BallReturn.AnimationFade(Nothing, False, 1, 0, 1, 0)
 
                         BallReturn.AnimationMove(Nothing, False, 0, 0.5, 0, 0.5, False, False, 2, 0,,,, 3)
 
@@ -8495,7 +8495,7 @@
                     Loop While SmokeReturned <= 38
 
                     ' Pokemon disappears
-                    BallReturn.AnimationFade(Nothing, False, 1, False, 0, 1, 0)
+                    BallReturn.AnimationFade(Nothing, False, 1, 0, 1, 0)
                     BallReturn.AnimationMove(Nothing, False, 0, 0.5, 0, 0.5, False, False, 2, 0,,,, 3)
 
                     ' Ball returns
@@ -8574,7 +8574,7 @@
                 Dim crySuffixOpp As String = PokemonForms.GetCrySuffix(BattleScreen.OppPokemon)
                 If Core.Player.ShowBattleAnimations <> 0 AndAlso BattleScreen.IsPVPBattle = False Then
                     ' Pokemon appears
-                    BallThrow.AnimationFade(Nothing, False, 1, True, 1, 3, 0)
+                    BallThrow.AnimationFade(Nothing, False, 1, 1, 3, 0)
                     BallThrow.AnimationPlaySound(CStr(BattleScreen.OppPokemon.Number), 4, 0,, True, crySuffixOpp)
                     '  Pokémon falls down
                     BallThrow.AnimationMove(Nothing, False, 0, -0.5F, 0, 0.05F, False, False, 5, 0)

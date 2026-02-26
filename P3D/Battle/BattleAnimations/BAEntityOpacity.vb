@@ -4,38 +4,46 @@
 
     Dim TargetEntity As Entity
     Dim TransitionSpeed As Single = 0.01F
-    Dim FadeIn As Boolean = False
     Dim EndState As Single = 0.0F
-    Dim RemoveEntityAfter As Boolean
+    Dim StartState As Single = 1.0F
+    Dim RemoveEntityAfter As Boolean = False
+    Dim InitialOpacitySet As Boolean = False
 
-    Public Sub New(ByRef entity As Entity, ByVal RemoveEntityAfter As Boolean, ByVal TransitionSpeed As Single, ByVal FadeIn As Boolean, ByVal EndState As Single, ByVal startDelay As Single, ByVal endDelay As Single, Optional ByVal StartState As Single = 1.0F)
+    Public Sub New(ByRef entity As Entity, ByVal RemoveEntityAfter As Boolean, ByVal TransitionSpeed As Single, ByVal EndState As Single, ByVal startDelay As Single, ByVal endDelay As Single, Optional ByVal StartState As Single = 1.0F)
         MyBase.New(New Vector3(0.0F), TextureManager.DefaultTexture, New Vector3(1.0F), startDelay, endDelay)
         Me.RemoveEntityAfter = RemoveEntityAfter
         Me.EndState = EndState
-        Me.FadeIn = FadeIn
         Me.TransitionSpeed = TransitionSpeed
         Me.TargetEntity = entity
-        Me.TargetEntity.NormalOpacity = StartState
+        Me.StartState = StartState
+
         Me.Visible = False
 
         Me.AnimationType = AnimationTypes.Transition
     End Sub
 
     Public Overrides Sub DoActionActive()
-        If Me.FadeIn = True Then
+        If InitialOpacitySet = False Then
+            Me.TargetEntity.NormalOpacity = Me.StartState
+            InitialOpacitySet = True
+        End If
+
+        If Me.EndState > Me.StartState Then
             If Me.EndState > TargetEntity.NormalOpacity Then
                 TargetEntity.NormalOpacity += Me.TransitionSpeed
                 If TargetEntity.NormalOpacity >= Me.EndState Then
                     TargetEntity.NormalOpacity = Me.EndState
                 End If
             End If
-        Else
+        ElseIf Me.EndState < Me.StartState Then
             If Me.EndState < TargetEntity.NormalOpacity Then
                 TargetEntity.NormalOpacity -= Me.TransitionSpeed
                 If TargetEntity.NormalOpacity <= Me.EndState Then
                     TargetEntity.NormalOpacity = Me.EndState
                 End If
             End If
+        Else
+            TargetEntity.NormalOpacity = Me.EndState
         End If
 
         If TargetEntity.NormalOpacity = Me.EndState Then

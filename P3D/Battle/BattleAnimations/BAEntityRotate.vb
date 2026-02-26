@@ -12,39 +12,37 @@
     Dim AmountRotated As Vector3 = New Vector3(0.0F)
     Dim ReadyAxis As Vector3 = New Vector3(0.0F)
     Dim RemoveEntityAfter As Boolean = False
+    Const DegreesToRadiansCalc As Single = Math.PI / 180.0F
 
-    Public Sub New(ByRef Entity As Entity, ByVal RemoveEntityAfter As Boolean, ByVal RotationSpeedVector As Vector3, ByVal EndRotation As Vector3, ByVal startDelay As Single, ByVal endDelay As Single)
+    Public Sub New(ByRef Entity As Entity, ByVal RemoveEntityAfter As Boolean, ByVal RotationSpeedVector As Vector3, ByVal EndRotation As Vector3, ByVal startDelay As Single, ByVal endDelay As Single, Optional ByVal DoReturn As Boolean = False, Optional ByVal ConvertDegreesToRadians As Boolean = False)
         MyBase.New(New Vector3(0.0F), TextureManager.DefaultTexture, New Vector3(1.0F), startDelay, endDelay)
+
         Me.RemoveEntityAfter = RemoveEntityAfter
-        Me.RotationSpeedVector = RotationSpeedVector
-        Me.EndRotation = EndRotation
+        If ConvertDegreesToRadians = False Then
+            Me.RotationSpeedVector = RotationSpeedVector
+            Me.EndRotation = EndRotation
+        Else
+            Me.RotationSpeedVector = New Vector3(RotationSpeedVector.X * DegreesToRadiansCalc, RotationSpeedVector.Y * DegreesToRadiansCalc, RotationSpeedVector.Z * DegreesToRadiansCalc)
+            Me.EndRotation = New Vector3(EndRotation.X * DegreesToRadiansCalc, EndRotation.Y * DegreesToRadiansCalc, EndRotation.Z * DegreesToRadiansCalc)
+        End If
         Me.TargetEntity = Entity
         Me.ReturnVector = TargetEntity.Rotation
 
-        Me.AnimationType = AnimationTypes.Rotation
-    End Sub
-
-    Public Sub New(ByRef Entity As Entity, ByVal RemoveEntityAfter As Boolean, ByVal RotationSpeedVector As Vector3, ByVal EndRotation As Vector3, ByVal startDelay As Single, ByVal endDelay As Single, ByVal DoXRotation As Boolean, ByVal DoYRotation As Boolean, ByVal DoZRotation As Boolean)
-        Me.New(Entity, RemoveEntityAfter, RotationSpeedVector, EndRotation, startDelay, endDelay)
-
-        If DoXRotation = False Then
+        If RotationSpeedVector.X = 0.0F Then
             DoRotation.X = 0.0F
             ReadyAxis.X = 1.0F
         End If
-        If DoYRotation = False Then
+        If RotationSpeedVector.Y = 0.0F Then
             DoRotation.Y = 0.0F
             ReadyAxis.Y = 1.0F
         End If
-        If DoZRotation = False Then
+        If RotationSpeedVector.Z = 0.0F Then
             DoRotation.Z = 0.0F
             ReadyAxis.Z = 1.0F
         End If
-    End Sub
-
-    Public Sub New(ByRef Entity As Entity, ByVal RemoveEntityAfter As Boolean, ByVal RotationSpeedVector As Vector3, ByVal EndRotation As Vector3, ByVal startDelay As Single, ByVal endDelay As Single, ByVal DoXRotation As Boolean, ByVal DoYRotation As Boolean, ByVal DoZRotation As Boolean, ByVal DoReturn As Boolean)
-        Me.New(Entity, RemoveEntityAfter, RotationSpeedVector, EndRotation, startDelay, endDelay, DoXRotation, DoYRotation, DoZRotation)
-
         Me.DoReturn = DoReturn
+
+        Me.AnimationType = AnimationTypes.Rotation
     End Sub
 
     Public Overrides Sub DoActionActive()

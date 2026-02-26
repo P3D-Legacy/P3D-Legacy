@@ -61,7 +61,7 @@
             Dim MoveAnimation As AnimationQueryObject = New AnimationQueryObject(CurrentEntity, BattleFlip, True)
             MoveAnimation.AnimationPlaySound("Battle\Attacks\Electric\Flash", 0.0F, 0)
             MoveAnimation.AnimationBackground(TextureManager.GetTexture("Textures\Battle\Electric\FlashBackground"), 0, 0, 1.5F, 0.9F, 0.2F, 0.025F, True, 1, 0, 6)
-            MoveAnimation.AnimationColor(CurrentEntity, False, 0.2F, True, 0, 0, New Vector3(0.1), Nothing, 0.025F)
+            MoveAnimation.AnimationColor(CurrentEntity, False, 0.2F, True, 0, 0, New Vector3(0.1), 0.025F)
 
             BattleScreen.BattleQuery.Add(MoveAnimation)
         End Sub

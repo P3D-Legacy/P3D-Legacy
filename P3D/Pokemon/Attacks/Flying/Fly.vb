@@ -189,9 +189,9 @@
 
             If fly = 0 Then
                 MoveAnimation.AnimationPlaySound("Battle\Attacks\Flying\Fly_Start", 0, 0)
-                MoveAnimation.AnimationFade(Nothing, False, 0.2F, False, 0.0F, 0, 0)
+                MoveAnimation.AnimationFade(Nothing, False, 0.2F, 0.0F, 0, 0)
                 Dim FlyEntity = MoveAnimation.SpawnEntity(New Vector3(0), TextureManager.GetTexture("Textures\Battle\Flying\Fly", New Rectangle(0, 0, 32, 32), ""), New Vector3(0.5F), 0.0F)
-                MoveAnimation.AnimationFade(FlyEntity, False, 0.2F, True, 1.0F, 0, 0)
+                MoveAnimation.AnimationFade(FlyEntity, False, 0.2F, 1.0F, 0, 0)
                 MoveAnimation.AnimationMove(FlyEntity, True, 0.0, 2.0, 0.0, 0.06, False, False, 1.4F, 0.0,,, 0.06, 0)
                 MoveAnimation.AnimationChangeTexture(FlyEntity, False, TextureManager.GetTexture("Textures\Battle\Flying\Fly", New Rectangle(0, 32, 32, 32), ""), 1.3F, 0)
                 MoveAnimation.AnimationChangeTexture(FlyEntity, False, TextureManager.GetTexture("Textures\Battle\Flying\Fly", New Rectangle(0, 64, 32, 32), ""), 1.4F, 0)
@@ -222,9 +222,9 @@
                 MoveAnimation.AnimationMove(FlyEntity, True, 0.0, 0.0, 0.0, 0.07, False, False, 0.0, 0.0,,, 0.035, 3)
 
                 If BattleFlip = False Then
-                    MoveAnimation.AnimationFade(BattleScreen.OwnPokemonNPC, False, 1, True, 1.0F, 0, 0)
+                    MoveAnimation.AnimationFade(BattleScreen.OwnPokemonNPC, False, 1, 1.0F, 0, 0)
                 Else
-                    MoveAnimation.AnimationFade(BattleScreen.OppPokemonNPC, False, 1, True, 1.0F, 0, 0)
+                    MoveAnimation.AnimationFade(BattleScreen.OppPokemonNPC, False, 1, 1.0F, 0, 0)
                 End If
 
                 BattleScreen.BattleQuery.Add(MoveAnimation)
@@ -250,12 +250,12 @@
                 MoveAnimation.AnimationChangeTexture(FlyEntity, False, TextureManager.GetTexture("Textures\Battle\Flying\Fly", New Rectangle(0, 64, 32, 32), ""), 0.2F, 0)
                 MoveAnimation.AnimationChangeTexture(FlyEntity, False, TextureManager.GetTexture("Textures\Battle\Flying\Fly", New Rectangle(0, 32, 32, 32), ""), 0.3F, 0)
                 MoveAnimation.AnimationChangeTexture(FlyEntity, False, TextureManager.GetTexture("Textures\Battle\Flying\Fly", New Rectangle(0, 0, 32, 32), ""), 0.4F, 0)
-                MoveAnimation.AnimationFade(FlyEntity, True, FadeSpeed, False, 0.0F, FadeDelay + 0.1F, 0, 1)
+                MoveAnimation.AnimationFade(FlyEntity, True, FadeSpeed, 0.0F, FadeDelay + 0.1F, 0, 1)
             End If
             If BattleFlip = False Then
-                MoveAnimation.AnimationFade(BattleScreen.OwnPokemonNPC, False, FadeSpeed, True, 1.0F, FadeDelay, 0)
+                MoveAnimation.AnimationFade(BattleScreen.OwnPokemonNPC, False, FadeSpeed, 1.0F, FadeDelay, 0)
             Else
-                MoveAnimation.AnimationFade(BattleScreen.OppPokemonNPC, False, FadeSpeed, True, 1.0F, FadeDelay, 0)
+                MoveAnimation.AnimationFade(BattleScreen.OppPokemonNPC, False, FadeSpeed, 1.0F, FadeDelay, 0)
             End If
             BattleScreen.BattleQuery.Add(MoveAnimation)
         End Sub

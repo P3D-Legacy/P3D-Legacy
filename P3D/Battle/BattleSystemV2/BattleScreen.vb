@@ -511,7 +511,7 @@
                 Loop While SmokeSpawnedOpp <= 38
 
                 ' Pokemon appears
-                BallThrowOpp.AnimationFade(Nothing, False, 1, True, 1, 3, 0)
+                BallThrowOpp.AnimationFade(Nothing, False, 1, 1, 3, 0)
                 BallThrowOpp.AnimationPlaySound(CStr(Me.OppPokemon.Number), 4, 0,, True, crySuffixOpp)
             Else
                 BallThrowOpp.AnimationPlaySound(CStr(Me.OppPokemon.Number), 0, 0,, True, crySuffixOpp)
@@ -565,7 +565,7 @@
 
 
                 ' Pokemon appears
-                BallThrowOwn.AnimationFade(Nothing, False, 1, True, 1, 3, 0)
+                BallThrowOwn.AnimationFade(Nothing, False, 1, 1, 3, 0)
                 BallThrowOwn.AnimationPlaySound(CStr(Me.OwnPokemon.Number), 4, 0,, True, crySuffixOwn)
 
                 '  Pokémon falls down

@@ -299,13 +299,13 @@
 
             If Core.Player.ShowBattleAnimations <> 0 AndAlso BattleScreen.IsPVPBattle = False Then
                 ' Pokemon appears
-                BallThrow.AnimationFade(Nothing, False, 1, True, 1, 3, 0)
+                BallThrow.AnimationFade(Nothing, False, 1, 1, 3, 0)
                 BallThrow.AnimationPlaySound(CStr(BattleScreen.OppPokemon.Number), 4, 0,, True)
                 '  Pokémon falls down
                 BallThrow.AnimationMove(Nothing, False, 0, -0.5F, 0, 0.05F, False, False, 5, 0)
             Else
                 ' Pokemon appears
-                BallThrow.AnimationFade(Nothing, False, 1, True, 1, 0, 0)
+                BallThrow.AnimationFade(Nothing, False, 1, 1, 0, 0)
                 BallThrow.AnimationPlaySound(CStr(BattleScreen.OppPokemon.Number), 0, 0,, True)
             End If
             BattleScreen.BattleQuery.Add(BallThrow)

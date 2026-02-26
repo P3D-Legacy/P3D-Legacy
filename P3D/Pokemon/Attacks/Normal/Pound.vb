@@ -81,7 +81,7 @@
             Dim MoveAnimation As AnimationQueryObject = New AnimationQueryObject(CurrentEntity, BattleFlip)
             MoveAnimation.AnimationPlaySound("Battle\Attacks\Normal\Pound", 0.5, 2.5)
             Dim PoundEntity = MoveAnimation.SpawnEntity(New Vector3(0, -0.2, 0), TextureManager.GetTexture("Textures\Battle\Normal\Pound"), New Vector3(0.5F), 1, 0, 3)
-            MoveAnimation.AnimationFade(PoundEntity, True, 1.0F, False, 0.0F, 3, 0)
+            MoveAnimation.AnimationFade(PoundEntity, True, 1.0F, 0.0F, 3, 0)
             BattleScreen.BattleQuery.Add(MoveAnimation)
         End Sub
 

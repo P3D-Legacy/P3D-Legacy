@@ -103,7 +103,7 @@ Namespace BattleSystem.Moves.Water
             MoveAnimation.AnimationMove(ClampEntityLeft, True, -0.35, -0.1, -0.35, 0.02, False, False, 2, 0)
             MoveAnimation.AnimationMove(ClampEntityRight, True, 0.35, -0.1, 0.35, 0.02, False, False, 2, 0)
             Dim SpawnEntity = MoveAnimation.SpawnEntity(New Vector3(0, -0.2, 0), TextureManager.GetTexture("Textures\Battle\Normal\Tackle"), New Vector3(0.5F), 1.0F, 2.5, 2)
-            MoveAnimation.AnimationFade(SpawnEntity, True, 1.0F, False, 0.0F, 4.5F, 0)
+            MoveAnimation.AnimationFade(SpawnEntity, True, 1.0F, 0.0F, 4.5F, 0)
 
             BattleScreen.BattleQuery.Add(MoveAnimation)
         End Sub

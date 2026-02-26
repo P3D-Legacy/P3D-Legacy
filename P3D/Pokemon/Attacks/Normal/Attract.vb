@@ -98,7 +98,7 @@
                 MoveAnimation.AnimationMove(HeartEntity, False, 0.0, 0.0, 0.0, 0.06, False, False, CSng(i * 0.2), 0.0)
                 Dim zPos As Single = CSng(Random.Next(-2, 2) * 0.2)
                 MoveAnimation.AnimationMove(HeartEntity, False, 0.0, 0.25, zPos, 0.01, False, False, CSng(1 + i * 0.2), 0.0)
-                MoveAnimation.AnimationFade(HeartEntity, True, 0.02, False, 0.0, CSng(2 + i * 0.2), 0.0)
+                MoveAnimation.AnimationFade(HeartEntity, True, 0.02, 0.0, CSng(2 + i * 0.2), 0.0)
                 i += 1
             Next
 

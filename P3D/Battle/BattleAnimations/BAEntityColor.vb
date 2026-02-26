@@ -12,7 +12,7 @@
     Dim ColorTo As Vector3 = New Vector3(1.0F, 1.0F, 1.0F)
     Dim ColorFrom As Vector3 = New Vector3(1.0F, 1.0F, 1.0F)
 
-    Public Sub New(ByRef Entity As Entity, ByVal RemoveEntityAfter As Boolean, ByVal TransitionSpeedIn As Single, ByVal ReturnToFromWhenDone As Boolean, ByVal startDelay As Single, ByVal endDelay As Single, ByVal ColorTo As Vector3, Optional ByVal ColorFrom As Vector3 = Nothing, Optional TransitionSpeedOut As Single = -1)
+    Public Sub New(ByRef Entity As Entity, ByVal RemoveEntityAfter As Boolean, ByVal TransitionSpeedIn As Single, ByVal ReturnToFromWhenDone As Boolean, ByVal startDelay As Single, ByVal endDelay As Single, ByVal ColorTo As Vector3, Optional TransitionSpeedOut As Single = -1, Optional ByVal ColorFrom As Vector3 = Nothing)
         MyBase.New(New Vector3(0.0F), TextureManager.DefaultTexture, New Vector3(1.0F), startDelay, endDelay)
         Me.RemoveEntityAfter = RemoveEntityAfter
         If TransitionSpeedOut = -1 Then

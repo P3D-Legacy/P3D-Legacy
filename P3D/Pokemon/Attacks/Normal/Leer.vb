@@ -71,7 +71,7 @@
             MoveAnimation.AnimationScale(SpawnEntity, False, False, 0.5, 0.5, 0.5, 0.05, 0.5, 0.5)
             MoveAnimation.AnimationScale(SpawnEntity, False, True, 0.7, 0.7, 0.7, 0.05, 1.0, 0.5)
             MoveAnimation.AnimationScale(SpawnEntity, False, False, 0.5, 0.5, 0.5, 0.05, 1.5, 0.5)
-            MoveAnimation.AnimationFade(SpawnEntity, True, 1.0F, False, 0.0F, 2, 0)
+            MoveAnimation.AnimationFade(SpawnEntity, True, 1.0F, 0.0F, 2, 0)
             BattleScreen.BattleQuery.Add(MoveAnimation)
         End Sub
         Public Overrides Sub InternalOpponentPokemonMoveAnimation(ByVal BattleScreen As BattleScreen, ByVal BattleFlip As Boolean, ByVal CurrentPokemon As Pokemon, ByVal CurrentEntity As NPC)
