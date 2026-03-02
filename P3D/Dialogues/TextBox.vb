@@ -208,8 +208,7 @@
         If Core.CurrentScreen.Identification = Screen.Identifications.OverworldScreen Then
             Dim c As OverworldCamera = CType(Screen.Camera, OverworldCamera)
             Mouse.SetPosition(CInt(Core.windowSize.Width / 2), CInt(Core.windowSize.Height / 2))
-            c.oldX = CInt(Core.windowSize.Width / 2)
-            c.oldY = CInt(Core.windowSize.Height / 2)
+            c.oldMousePos = New Vector2(CInt(windowSize.Width / 2), CInt(windowSize.Height / 2))
         End If
     End Sub
 

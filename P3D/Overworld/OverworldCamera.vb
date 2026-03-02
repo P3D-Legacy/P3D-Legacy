@@ -6,7 +6,9 @@ Public Class OverworldCamera
 
 #Region "Fields"
 
-    Public oldX, oldY As Single
+    Public oldMousePos As Vector2
+    Public DoMouseUpdate As Boolean = True
+    Public MouseSpeed As New Vector2(0, 0)
 
     Private _thirdPerson As Boolean = False
     Public _canToggleThirdPerson As Boolean = True
@@ -172,7 +174,7 @@ Public Class OverworldCamera
 
 
 #Region "Update"
-
+    Dim mouseState As MouseState = Mouse.GetState()
     Public Overrides Sub Update()
         If GameController.IS_DEBUG_ACTIVE = True Or Core.Player.IsGameJoltSave = False Then
             If KeyBoardHandler.KeyDown(KeyBindings.DebugKey) = True AndAlso KeyBoardHandler.KeyPressed(Keys.O) = True Then
@@ -201,6 +203,7 @@ Public Class OverworldCamera
         Else
             CursorClipper.ReleaseCursor()
         End If
+        mouseState = Mouse.GetState()
 
         Ray = CreateRay()
 
@@ -224,41 +227,42 @@ Public Class OverworldCamera
 
         UpdateViewMatrix()
         UpdateFrustum()
+
         ResetCursor()
     End Sub
 
     'Control camera with the cursor:
     Private Sub ControlCamera()
-        Dim mState As MouseState = Mouse.GetState()
         Dim gState As GamePadState = GamePad.GetState(PlayerIndex.One)
         Dim text As String = ""
 
-        Dim dx As Single = 0.0F
-        Dim dy As Single = 0.0F
+        Dim CameraD As New Vector2(0.0F)
 
-        dx = mState.X - oldX
-        dy = mState.Y - oldY
-        
+        If DoMouseUpdate = True Then
+            CameraD = New Vector2(CInt(mouseState.X - oldMousePos.X).Clamp(-360, 360), CInt(mouseState.Y - oldMousePos.Y).Clamp(-360, 360))
+            DoMouseUpdate = False
+        End If
+
         If gState.ThumbSticks.Right.X <> 0.0F And Core.GameOptions.GamePadEnabled = True Then
-            dx = gState.ThumbSticks.Right.X * 50.0F
+            CameraD.X = gState.ThumbSticks.Right.X * 50.0F
         End If
 
         If gState.ThumbSticks.Right.Y <> 0.0F And Core.GameOptions.GamePadEnabled = True Then
-            dy = gState.ThumbSticks.Right.Y * 35.0F * -1.0F
+            CameraD.Y = gState.ThumbSticks.Right.Y * 35.0F * -1.0F
         End If
 
-        If _isFixed = False AndAlso (dx <> 0 OrElse dy <> 0) Then
+        If _isFixed = False AndAlso (CameraD.X <> 0 OrElse CameraD.Y <> 0) Then
             If CurrentScreen.Identification = Screen.Identifications.OverworldScreen Then
                 Dim OS As OverworldScreen = CType(CurrentScreen, OverworldScreen)
 
                 If OS.NotificationPopupList.Count = 0 OrElse OS.NotificationPopupList(0)._forceAccept = False Then
                     If _freeCameraMode = True And OS.ActionScript.IsReady = True Then
                         If YawLocked = False Then
-                            Yaw += -RotationSpeed * 0.75F * dx
+                            Yaw += -RotationSpeed * 0.75F * CameraD.X
                         End If
                     End If
                     If OS.ActionScript.IsReady = True Then
-                        Pitch += -RotationSpeed * dy
+                        Pitch += -RotationSpeed * CameraD.Y
                     End If
                 End If
             End If
@@ -268,6 +272,9 @@ Public Class OverworldCamera
         'interval = Date.Now - oldDate
         'Logger.Debug("ControlCamera: " & interval.Milliseconds.ToString & " ms" & text)
         'oldDate = Date.Now
+
+        'MouseSpeed = CameraD
+        'Logger.Debug("MouseSpeed: " & MouseSpeed.ToString)
         ClampYaw()
         ClampPitch()
     End Sub
@@ -450,28 +457,24 @@ Public Class OverworldCamera
     End Sub
 
     Public Sub ResetCursor()
-        If GameInstance.IsActive = True Then
+        If GameController.IsActiveWindow = True Then
             ' Only reset the mouse position when it's "close" to the border of the client rect
-            Dim horizontalCutoff = windowSize.Width / 10.0F
-            Dim verticalCutoff = windowSize.Height / 10.0F
-            Dim mousePos = Mouse.GetState().Position.ToVector2()
+            Dim horizontalCutoff = windowSize.Width / 15.0F
+            Dim verticalCutoff = windowSize.Height / 15.0F
 
-            If mousePos.X <= horizontalCutoff OrElse
-               mousePos.X >= windowSize.Width - horizontalCutoff OrElse
-               mousePos.Y <= verticalCutoff OrElse
-               mousePos.Y >= windowSize.Height - verticalCutoff Then
+            If mouseState.X <= horizontalCutoff OrElse
+               mouseState.X >= windowSize.Width - horizontalCutoff OrElse
+               mouseState.Y <= verticalCutoff OrElse
+               mouseState.Y >= windowSize.Height - verticalCutoff Then
 
+                oldMousePos = New Vector2(CInt(windowSize.Width / 2), CInt(windowSize.Height / 2))
                 Mouse.SetPosition(CInt(windowSize.Width / 2), CInt(windowSize.Height / 2))
-                oldX = CInt(windowSize.Width / 2)
-                oldY = CInt(windowSize.Height / 2)
 
             Else
-
-                oldX = mousePos.X
-                oldY = mousePos.Y
+                oldMousePos = mouseState.Position.ToVector2
 
             End If
-
+            DoMouseUpdate = True
         End If
     End Sub
 
