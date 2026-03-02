@@ -55,6 +55,21 @@
                                 Return CType(CurrentScreen, BattleSystem.BattleScreen).OppPokemon.GetDisplayName()
                         End Select
                     End If
+                Case "pokemonid"
+                    Dim own As Boolean = True
+                    If argument <> "" Then
+                        own = CBool(argument)
+                    End If
+                    If CurrentScreen.Identification = Screen.Identifications.BattleScreen Then
+                        Select Case own
+                            Case True
+                                Dim p As Pokemon = CType(CurrentScreen, BattleSystem.BattleScreen).OwnPokemon
+                                Return PokemonForms.GetPokemonDataFileName(p.Number, p.AdditionalData, True)
+                            Case False
+                                Dim op As Pokemon = CType(CurrentScreen, BattleSystem.BattleScreen).OppPokemon
+                                Return PokemonForms.GetPokemonDataFileName(op.Number, op.AdditionalData, True)
+                        End Select
+                    End If
                 Case "pokemonitem"
                     Dim own As Boolean = True
                     If argument <> "" Then

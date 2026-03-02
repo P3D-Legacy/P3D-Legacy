@@ -218,7 +218,7 @@
         Dim ors As New List(Of List(Of String))
 
         Dim currentOr As New List(Of String)
-        While check.Contains(" <and>") = True Or check.Contains(" <or> ") = True
+        While check.Contains(" <and> ") = True Or check.Contains(" <or> ") = True
             If check.StartsWith(" <and> ") = True Then
                 check = check.Remove(0, " <and> ".Length)
             ElseIf check.StartsWith(" <or> ") = True Then

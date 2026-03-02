@@ -208,6 +208,7 @@ Namespace ScriptVersion2
             r(New ScriptCommand("Battle", "Caught", "bool", "Returns ""true"" if the player caught the Pokémon in the last battle. Returns ""false"" otherwise.", ",", True))
             r(New ScriptCommand("Battle", "TrainerName", "str", {New ScriptArgument("TrainerIndex", ScriptArgument.ArgumentTypes.Int, True, "0")}.ToList(), "Returns the name of one trainer that you're currently battling. Can be 0 or 1 for double battles.", ",", True))
             r(New ScriptCommand("Battle", "PokemonName", "str", {New ScriptArgument("OwnOrOppPokemon", ScriptArgument.ArgumentTypes.Int, True, "true")}.ToList(), "Returns the name of a Pokémon currently in battle. True = Your Pokémon, False = Opponent's Pokémon.", ",", True))
+            r(New ScriptCommand("Battle", "PokemonID", "str", {New ScriptArgument("OwnOrOppPokemon", ScriptArgument.ArgumentTypes.Int, True, "true")}.ToList(), "Returns the Pokémon ID (including form suffix) of a Pokémon currently in battle. True = Your Pokémon, False = Opponent's Pokémon.", ",", True))
             r(New ScriptCommand("Battle", "PokemonItem", "str", {New ScriptArgument("OwnOrOppPokemon", ScriptArgument.ArgumentTypes.Int, True, "true")}.ToList(), "Returns the Item ID of a Pokémon currently in battle. True = Your Pokémon, False = Opponent's Pokémon.", ",", True))
         End Sub
 
