@@ -485,7 +485,9 @@ Public Class OverworldScreen
             AfterRoamingBattleScript = ""
         End If
     End Sub
-
+    Public Overrides Sub ChangeFrom()
+        CursorClipper.ReleaseCursor()
+    End Sub
     ''' <summary>
     ''' Update all title objects in the _titles array.
     ''' </summary>

@@ -1,4 +1,4 @@
-﻿Imports System.Runtime.InteropServices
+Imports System.Runtime.InteropServices
 Imports System.Windows.Forms
 Imports GameDevCommon
 
@@ -176,7 +176,6 @@ Public Class GameController
     Declare Function GetWindowThreadProcessId Lib "user32.dll" (ByVal handle As IntPtr, <Out> ByRef processId As Integer) As Integer
 
     Private Shared CurrentProcessID As Integer = Process.GetCurrentProcess().Id
-    Private Shared ActivateProcessID As Integer
 
     Public Shared Function IsActiveWindow() As Boolean
         Dim activatedHandle = GetForegroundWindow()
@@ -185,9 +184,9 @@ Public Class GameController
             Return False
         End If
 
-        Dim ActivateProcessID As Integer
-        GetWindowThreadProcessId(activatedHandle, ActivateProcessID)
-        Return ActivateProcessID = CurrentProcessID
+        Dim ActiveProcessID As Integer
+        GetWindowThreadProcessId(activatedHandle, ActiveProcessID)
+        Return ActiveProcessID = CurrentProcessID
 
     End Function
 
@@ -210,5 +209,23 @@ Public Class GameController
             Return My.Application.Info.DirectoryPath
         End Get
     End Property
+
+End Class
+
+Public Class CursorClipper
+
+    Private Declare Function ClipCursor Lib "user32" (ByRef lpRect As Rectangle) As Long
+    Private Declare Function ClipCursor Lib "user32" (lpRect As IntPtr) As Long
+    Public Shared IsActivated As Boolean = False
+
+    Public Shared Sub LockCursor()
+        Dim CursorClipRectangle As New Rectangle(Core.Window.ClientBounds.X, Core.Window.ClientBounds.Y, CInt(Core.Window.ClientBounds.X + Core.Window.ClientBounds.Width), CInt(Core.Window.ClientBounds.Y + Core.Window.ClientBounds.Height))
+        ClipCursor(CursorClipRectangle)
+        IsActivated = True
+    End Sub
+    Public Shared Sub ReleaseCursor()
+        ClipCursor(IntPtr.Zero)
+        IsActivated = False
+    End Sub
 
 End Class
