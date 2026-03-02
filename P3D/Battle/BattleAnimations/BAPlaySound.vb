@@ -2,18 +2,18 @@
 
     Inherits BattleAnimation3D
 
-    Dim soundfile As String
-    Dim stopMusic As Boolean
+    Dim SoundFile As String
+    Dim StopMusic As Boolean
     Dim IsPokemon As Boolean
     Dim CrySuffix As String = ""
 
 
-    Public Sub New(ByVal sound As String, ByVal startDelay As Single, ByVal endDelay As Single, Optional ByVal stopMusic As Boolean = False, Optional ByVal IsPokemon As Boolean = False, Optional ByVal CrySuffix As String = "")
-        MyBase.New(New Vector3(0.0F), TextureManager.DefaultTexture, New Vector3(1.0F), startDelay, endDelay)
+    Public Sub New(ByVal Sound As String, ByVal StartDelay As Single, ByVal EndDelay As Single, Optional ByVal StopMusic As Boolean = False, Optional ByVal IsPokemon As Boolean = False, Optional ByVal CrySuffix As String = "")
+        MyBase.New(New Vector3(0.0F), TextureManager.DefaultTexture, New Vector3(1.0F), StartDelay, EndDelay)
         Me.Scale = New Vector3(1.0F)
-        soundfile = sound
+        SoundFile = Sound
         Me.Visible = False
-        Me.stopMusic = stopMusic
+        Me.StopMusic = StopMusic
         Me.IsPokemon = IsPokemon
         Me.CrySuffix = CrySuffix
 
@@ -22,9 +22,9 @@
 
     Public Overrides Sub DoActionActive()
         If IsPokemon = True Then
-            SoundManager.PlayPokemonCry(CInt(soundfile), Me.CrySuffix)
+            SoundManager.PlayPokemonCry(CInt(SoundFile), Me.CrySuffix)
         Else
-            SoundManager.PlaySound(soundfile, stopMusic)
+            SoundManager.PlaySound(SoundFile, StopMusic)
         End If
         Me.Ready = True
     End Sub

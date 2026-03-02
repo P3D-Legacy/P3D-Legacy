@@ -299,7 +299,7 @@ Namespace BattleSystem
 
 		End Sub
 
-		Public Sub AnimationTurnNPC(ByVal TurnSteps As Integer, ByVal StartDelay As Single, ByVal EndDelay As Single, Optional ByVal EndFaceRotation As Integer = -1, Optional ByVal TurnSpeed As Integer = 1, Optional ByVal TurnDelay As Single = 0.25F)
+		Public Sub AnimationTurnNPC(ByVal TurnSteps As Integer, ByVal StartDelay As Single, ByVal EndDelay As Single, Optional ByVal EndFaceRotation As Integer = -1, Optional ByVal TurnDelay As Single = 0.5F, Optional ByVal TurnSpeed As Integer = 1)
 			Dim TurnNPC As NPC = Nothing
 			If CurrentEntity IsNot Nothing Then
 				TurnNPC = CType(CurrentEntity, NPC)
@@ -310,11 +310,11 @@ Namespace BattleSystem
 				TurnSpeed *= -1
 			End If
 
-			Dim BAEntityFaceRotate As BAEntityFaceRotate = New BAEntityFaceRotate(TurnNPC, TurnSteps, StartDelay, EndDelay, EndFaceRotation, TurnSpeed, TurnDelay)
+			Dim BAEntityFaceRotate As BAEntityFaceRotate = New BAEntityFaceRotate(TurnNPC, TurnSteps, StartDelay, EndDelay, EndFaceRotation, TurnDelay, TurnSpeed)
 			AnimationSequence.Add(BAEntityFaceRotate)
 
 		End Sub
-		Public Sub AnimationScale(ByVal Entity As Entity, ByVal RemoveEntityAfter As Boolean, ByVal Grow As Boolean, ByVal EndSizeX As Single, ByVal EndSizeY As Single, ByVal EndSizeZ As Single, ByVal SizeSpeed As Single, ByVal StartDelay As Single, ByVal EndDelay As Single, Optional ByVal Anchors As String = "", Optional SpeedMultiplier As Vector3 = Nothing)
+		Public Sub AnimationScale(ByVal Entity As Entity, ByVal RemoveEntityAfter As Boolean, ByVal EndSizeX As Single, ByVal EndSizeY As Single, ByVal EndSizeZ As Single, ByVal SizeSpeed As Single, ByVal StartDelay As Single, ByVal EndDelay As Single, Optional ByVal Anchors As String = "", Optional SpeedMultiplier As Vector3 = Nothing)
 			Dim ScaleEntity As Entity
 			If Entity Is Nothing Then
 				ScaleEntity = CurrentEntity
@@ -330,12 +330,12 @@ Namespace BattleSystem
 
 			Dim Scale As Vector3 = ScaleEntity.Scale
 			Dim EndSize As Vector3 = New Vector3(EndSizeX, EndSizeY, EndSizeZ)
-			Dim baEntityScale As BAEntityScale = New BAEntityScale(ScaleEntity, RemoveEntityAfter, Scale, Grow, EndSize, SizeSpeed, StartDelay, EndDelay, Anchors, SpeedMultiplier)
+			Dim baEntityScale As BAEntityScale = New BAEntityScale(ScaleEntity, RemoveEntityAfter, Scale, EndSize, SizeSpeed, StartDelay, EndDelay, Anchors, SpeedMultiplier)
 			AnimationSequence.Add(baEntityScale)
 		End Sub
 
-		Public Sub AnimationPlaySound(ByVal sound As String, ByVal StartDelay As Single, ByVal EndDelay As Single, Optional ByVal stopMusic As Boolean = False, Optional ByVal IsPokemon As Boolean = False, Optional ByVal CrySuffix As String = "")
-			Dim baSound As BAPlaySound = New BAPlaySound(sound, StartDelay, EndDelay, stopMusic, IsPokemon, CrySuffix)
+		Public Sub AnimationPlaySound(ByVal Sound As String, ByVal StartDelay As Single, ByVal EndDelay As Single, Optional ByVal StopMusic As Boolean = False, Optional ByVal IsPokemon As Boolean = False, Optional ByVal CrySuffix As String = "")
+			Dim baSound As BAPlaySound = New BAPlaySound(Sound, StartDelay, EndDelay, StopMusic, IsPokemon, CrySuffix)
 			AnimationSequence.Add(baSound)
 		End Sub
 

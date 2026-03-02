@@ -2,27 +2,26 @@
 
     Inherits BattleAnimation3D
 
-    Dim Grow As Boolean = False
+    Dim InitialScaleSet As Boolean = False
     Dim EndSize As Vector3
+    Dim StartSize As Vector3
     Dim SizeSpeed As Single = 0.01F
     Dim TargetEntity As Entity
-    Dim Anchors As String '1 = Bottom, 2 = Top, 3 = Left, 4 = Right. Combinations are possible.
+    Dim Anchors As String 'b = Bottom, t = Top, l = Left, r = Right. Combinations are possible.
 
-    Dim SpeedMultiplier As Vector3
+    Dim SpeedMultiplier As New Vector3(1)
     Dim RemoveEntityAfter As Boolean
 
-    Public Sub New(ByRef Entity As Entity, ByVal RemoveEntityAfter As Boolean, ByVal Scale As Vector3, ByVal Grow As Boolean, ByVal EndSize As Vector3, ByVal SizeSpeed As Single, ByVal startDelay As Single, ByVal endDelay As Single, ByVal Anchors As String, Optional SpeedMultiplier As Vector3 = Nothing)
+    Public Sub New(ByRef Entity As Entity, ByVal RemoveEntityAfter As Boolean, ByVal Scale As Vector3, ByVal EndSize As Vector3, ByVal SizeSpeed As Single, ByVal startDelay As Single, ByVal endDelay As Single, ByVal Anchors As String, Optional SpeedMultiplier As Vector3 = Nothing)
         MyBase.New(New Vector3(0.0F), TextureManager.DefaultTexture, Scale, startDelay, endDelay)
         Me.RemoveEntityAfter = RemoveEntityAfter
         Me.Anchors = Anchors
-        Me.Grow = Grow
         Me.EndSize = EndSize
         Me.SizeSpeed = SizeSpeed
         Me.TargetEntity = Entity
+
         If SpeedMultiplier <> Nothing Then
             Me.SpeedMultiplier = SpeedMultiplier
-        Else
-            Me.SpeedMultiplier = New Vector3(1)
         End If
 
         Me.AnimationType = AnimationTypes.Size
@@ -35,26 +34,17 @@
         Dim changeY As Single = SizeSpeed * SpeedMultiplier.Y
         Dim changeZ As Single = SizeSpeed * SpeedMultiplier.Z
 
-        If Grow = True Then
+        If InitialScaleSet = False Then
+            Me.StartSize = Me.TargetEntity.Scale
+            InitialScaleSet = True
+        End If
+
+        If StartSize.X < EndSize.X Then
             If TargetEntity.Scale.X < Me.EndSize.X Then
                 TargetEntity.Scale.X += changeX
 
                 If TargetEntity.Scale.X >= Me.EndSize.X Then
                     TargetEntity.Scale.X = Me.EndSize.X
-                End If
-            End If
-            If TargetEntity.Scale.Y < Me.EndSize.Y Then
-                TargetEntity.Scale.Y += changeY
-
-                If TargetEntity.Scale.Y >= Me.EndSize.Y Then
-                    TargetEntity.Scale.Y = Me.EndSize.Y
-                End If
-            End If
-            If TargetEntity.Scale.Z < Me.EndSize.Z Then
-                TargetEntity.Scale.Z += changeZ
-
-                If TargetEntity.Scale.Z >= Me.EndSize.Z Then
-                    TargetEntity.Scale.Z = Me.EndSize.Z
                 End If
             End If
         Else
@@ -65,6 +55,16 @@
                     TargetEntity.Scale.X = Me.EndSize.X
                 End If
             End If
+        End If
+        If StartSize.Y < EndSize.Y Then
+            If TargetEntity.Scale.Y < Me.EndSize.Y Then
+                TargetEntity.Scale.Y += changeY
+
+                If TargetEntity.Scale.Y >= Me.EndSize.Y Then
+                    TargetEntity.Scale.Y = Me.EndSize.Y
+                End If
+            End If
+        Else
             If TargetEntity.Scale.Y > Me.EndSize.Y Then
                 TargetEntity.Scale.Y -= changeY
 
@@ -72,6 +72,16 @@
                     TargetEntity.Scale.Y = Me.EndSize.Y
                 End If
             End If
+        End If
+        If StartSize.Z < EndSize.Z Then
+            If TargetEntity.Scale.Z < Me.EndSize.Z Then
+                TargetEntity.Scale.Z += changeZ
+
+                If TargetEntity.Scale.Z >= Me.EndSize.Z Then
+                    TargetEntity.Scale.Z = Me.EndSize.Z
+                End If
+            End If
+        Else
             If TargetEntity.Scale.Z > Me.EndSize.Z Then
                 TargetEntity.Scale.Z -= changeZ
 
@@ -82,22 +92,22 @@
         End If
 
         'Bottom
-        If Anchors.Contains("1") = True Then
+        If Anchors.ToLower.Contains("b") = True Then
             Dim diffY As Single = saveScale.Y - TargetEntity.Scale.Y
             TargetEntity.Position.Y -= diffY / 2
         End If
         'Top
-        If Anchors.Contains("2") = True Then
+        If Anchors.ToLower.Contains("t") = True Then
             Dim diffY As Single = saveScale.Y - TargetEntity.Scale.Y
             TargetEntity.Position.Y += diffY / 2
         End If
         'Left
-        If Anchors.Contains("3") = True Then
+        If Anchors.ToLower.Contains("l") = True Then
             Dim diffX As Single = saveScale.X - TargetEntity.Scale.X
             TargetEntity.Position.X -= diffX / 2
         End If
         'Right
-        If Anchors.Contains("4") = True Then
+        If Anchors.ToLower.Contains("r") = True Then
             Dim diffX As Single = saveScale.X - TargetEntity.Scale.X
             TargetEntity.Position.X += diffX / 2
         End If

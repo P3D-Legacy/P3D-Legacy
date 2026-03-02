@@ -196,7 +196,7 @@ nextIndex:
                                     Threading.Interlocked.Increment(SmokeParticlesClose)
                                 Loop While SmokeParticlesClose <= 38
                                 ' Pokémon Shrinks
-                                CatchAnimation.AnimationScale(BattleScreen.OppPokemonNPC, False, False, 0.0F, 0.0F, 0.0F, 0.035F, 3, 0)
+                                CatchAnimation.AnimationScale(BattleScreen.OppPokemonNPC, False, 0.0F, 0.0F, 0.0F, 0.035F, 3, 0)
 
                                 ' Ball falls
                                 CatchAnimation.AnimationMove(BallEntity, False, 3, -0.35, 0, 0.1F, False, False, 8, 0)
@@ -243,7 +243,7 @@ nextIndex:
                                     Loop While SmokeParticlesOpen <= 38
 
                                     ' Pokemon appears
-                                    CatchAnimation.AnimationScale(BattleScreen.OppPokemonNPC, False, True, PokemonScale.X, PokemonScale.Y, PokemonScale.Z, 0.035F, 12 + Shakes.Count * 10, 0)
+                                    CatchAnimation.AnimationScale(BattleScreen.OppPokemonNPC, False, PokemonScale.X, PokemonScale.Y, PokemonScale.Z, 0.035F, 12 + Shakes.Count * 10, 0)
 
                                 End If
 

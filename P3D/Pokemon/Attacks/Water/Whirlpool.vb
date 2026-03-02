@@ -105,8 +105,8 @@ Namespace BattleSystem.Moves.Water
             Dim WhirlpoolEntity As Entity = MoveAnimation.SpawnEntity(New Vector3(0, -0.3F, 0), TextureManager.GetTexture("Textures\Battle\Water\Whirlpool"), New Vector3(0.0F), 1.0F, 0.0F, 0.0F)
             MoveAnimation.AnimationRotate(WhirlpoolEntity, False, CSng(MathHelper.Pi * 1.5), 0, 0, CSng(MathHelper.Pi * 1.5), 0, 0, 0, 0, False)
             MoveAnimation.AnimationRotate(WhirlpoolEntity, False, 0, 0, 0.2F, 0, 0, 10.0F, 0.0F, 0.0F, True)
-            MoveAnimation.AnimationScale(WhirlpoolEntity, False, True, 1.0F, 1.0F, 1.0F, 0.025F, 0.0F, 0.0F)
-            MoveAnimation.AnimationScale(WhirlpoolEntity, True, False, 0.0F, 0.0F, 0.0F, 0.025F, 5.0F, 0.0F)
+            MoveAnimation.AnimationScale(WhirlpoolEntity, False, 1.0F, 1.0F, 1.0F, 0.025F, 0.0F, 0.0F)
+            MoveAnimation.AnimationScale(WhirlpoolEntity, True, 0.0F, 0.0F, 0.0F, 0.025F, 5.0F, 0.0F)
             BattleScreen.BattleQuery.Add(MoveAnimation)
         End Sub
     End Class
