@@ -239,13 +239,13 @@ Public Class OverworldCamera
         Dim CameraD As New Vector2(0.0F)
 
         If DoMouseUpdate = True Then
-            If CInt(mouseState.X - oldMousePos.X) >= 500 OrElse
-                CInt(mouseState.X - oldMousePos.X) <= -500 OrElse
-                CInt(mouseState.Y - oldMousePos.Y) >= 500 OrElse
-                CInt(mouseState.Y - oldMousePos.Y) <= -500 Then
+            If CInt(mouseState.X - oldMousePos.X) >= 400 OrElse
+                CInt(mouseState.X - oldMousePos.X) <= -400 OrElse
+                CInt(mouseState.Y - oldMousePos.Y) >= 400 OrElse
+                CInt(mouseState.Y - oldMousePos.Y) <= -400 Then
                 CameraD = New Vector2(CInt(mouseState.X - oldMousePos.X).Clamp(-128, 128), CInt(mouseState.Y - oldMousePos.Y).Clamp(-128, 128))
             Else
-                CameraD = New Vector2(CInt(mouseState.X - oldMousePos.X).Clamp(-496, 496), CInt(mouseState.Y - oldMousePos.Y).Clamp(-496, 496))
+                CameraD = New Vector2(CInt(mouseState.X - oldMousePos.X).Clamp(-400, 400), CInt(mouseState.Y - oldMousePos.Y).Clamp(-400, 400))
             End If
 
             DoMouseUpdate = False
