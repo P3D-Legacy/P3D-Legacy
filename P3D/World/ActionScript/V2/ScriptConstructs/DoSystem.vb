@@ -91,6 +91,26 @@
                         End If
                     End If
                     Return Core.Random.Next(minRange, maxRange + 1)
+                Case "chooserandom"
+                    Dim args() As String = argument.Split(",")
+                    Dim chooseList As New List(Of String)
+                    For Each a As String In args
+                        If a.Contains("-") AndAlso ScriptConversion.IsArithmeticExpression(a.GetSplit(0, "-")) AndAlso ScriptConversion.IsArithmeticExpression(a.GetSplit(1, "-")) Then
+                            Dim minNumRange As Integer = CInt(a.GetSplit(0, "-"))
+                            Dim maxNumRange As Integer = CInt(a.GetSplit(1, "-"))
+                            For i = minNumRange To maxNumRange
+                                chooseList.Add(i.ToString)
+                            Next
+                        Else
+                            chooseList.Add(a.ToString)
+                        End If
+                    Next
+                    If chooseList.Count > 0 Then
+                        Dim minRange As Integer = 0
+                        Dim maxRange As Integer = chooseList.Count - 1
+
+                        Return chooseList(Core.Random.Next(minRange, maxRange))
+                    End If
                 Case "unixtimestamp"
                     Return (DateTime.Now - New DateTime(1970, 1, 1, 0, 0, 0, 0)).TotalSeconds
                 Case "dayofyear"

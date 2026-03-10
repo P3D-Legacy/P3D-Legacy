@@ -434,6 +434,7 @@ Namespace ScriptVersion2
             ' Constructs:
             r(New ScriptCommand("system", "random", "int", {New ScriptArgument("min", ScriptArgument.ArgumentTypes.Int, True, "1"),
                                                         New ScriptArgument("max", ScriptArgument.ArgumentTypes.Int, True, "2")}.ToList(), "Generates a random number between min and max, inclusive.", ",", True))
+            r(New ScriptCommand("system", "chooserandom", "str", {New ScriptArgument("StringsToChooseFrom", ScriptArgument.ArgumentTypes.Str)}.ToList(), "From the given arguments separated by commas, a random argument is chosen and returned. You can specify a range of numbers by separating two numbers with a dash (e.g. 1-151).", ",", True))
             r(New ScriptCommand("system", "unixtimestamp", "int", "Returns the UNIX timestamp for the current computer time.", ",", True))
             r(New ScriptCommand("system", "dayofyear", "int", "Returns the day of the year (Outdated, use <environment.dayofyear> instead).", ",", True))
             r(New ScriptCommand("system", "year", "int", "Returns the current year (Outdated, use <environment.year> instead).", ",", True))
