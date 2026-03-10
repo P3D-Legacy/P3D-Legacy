@@ -239,13 +239,13 @@ Public Class OverworldCamera
         Dim CameraD As New Vector2(0.0F)
 
         If DoMouseUpdate = True Then
-            If CInt(mouseState.X - oldMousePos.X) >= 400 OrElse
-                CInt(mouseState.X - oldMousePos.X) <= -400 OrElse
-                CInt(mouseState.Y - oldMousePos.Y) >= 400 OrElse
-                CInt(mouseState.Y - oldMousePos.Y) <= -400 Then
-                CameraD = New Vector2(CInt(mouseState.X - oldMousePos.X).Clamp(-128, 128), CInt(mouseState.Y - oldMousePos.Y).Clamp(-128, 128))
+            If CInt(mouseState.X - oldMousePos.X) >= 400 Or
+                CInt(mouseState.X - oldMousePos.X) <= -400 Or
+                CInt(mouseState.Y - oldMousePos.Y) >= 320 Or
+                CInt(mouseState.Y - oldMousePos.Y) <= -320 Then
+                CameraD = New Vector2(CInt(mouseState.X - oldMousePos.X).Clamp(-240, 240), CInt(mouseState.Y - oldMousePos.Y).Clamp(-128, 128))
             Else
-                CameraD = New Vector2(CInt(mouseState.X - oldMousePos.X).Clamp(-400, 400), CInt(mouseState.Y - oldMousePos.Y).Clamp(-400, 400))
+                CameraD = New Vector2(CInt(mouseState.X - oldMousePos.X).Clamp(-400, 400), CInt(mouseState.Y - oldMousePos.Y).Clamp(-320, 320))
             End If
 
             DoMouseUpdate = False
@@ -281,8 +281,8 @@ Public Class OverworldCamera
         'Logger.Debug("ControlCamera: " & interval.Milliseconds.ToString & " ms" & text)
         'oldDate = Date.Now
 
-        'MouseSpeed = CameraD
-        'Logger.Debug("MouseSpeed: " & MouseSpeed.ToString)
+        MouseSpeed = CameraD
+        Logger.Debug("MouseSpeed: " & MouseSpeed.ToString)
         ClampYaw()
         ClampPitch()
     End Sub
