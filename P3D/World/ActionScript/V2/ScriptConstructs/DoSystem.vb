@@ -104,6 +104,26 @@
                         Return "1"
                     End If
                     Return "0"
+                Case "startswith"
+                    Dim args() As String = argument.Split(CChar(","))
+                    Dim StringsToCheck() As String = args(1).Split(";")
+                    For Each s As String In StringsToCheck
+                        If args(0).ToLower.StartsWith(s.ToLower) Then
+                            Return ReturnBoolean(True)
+                            Exit For
+                        End If
+                    Next
+                    Return ReturnBoolean(False)
+                Case "contains"
+                    Dim args() As String = argument.Split(CChar(","))
+                    Dim StringsToCheck() As String = args(1).Split(";")
+                    For Each s As String In StringsToCheck
+                        If args(0).ToLower.Contains(s.ToLower) Then
+                            Return ReturnBoolean(True)
+                            Exit For
+                        End If
+                    Next
+                    Return ReturnBoolean(False)
                 Case "calcint", "int"
                     Return int(argument)
                 Case "calcsng", "sng"
