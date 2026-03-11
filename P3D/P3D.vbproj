@@ -32986,6 +32986,7 @@
     <Compile Include="Screens\Battle\BlackOutScreen.vb" />
     <Compile Include="Screens\Credits\CreditsCamera.vb" />
     <Compile Include="Screens\Credits\CreditsScreen.vb" />
+    <Compile Include="Screens\NPCTradeScreen.vb" />
     <Compile Include="Screens\GUI\Button.vb" />
     <Compile Include="Screens\GUI\Canvas.vb" />
     <Compile Include="Screens\GUI\DonationScreen.vb" />

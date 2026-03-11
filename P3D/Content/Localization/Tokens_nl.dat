@@ -923,6 +923,7 @@ statistics_screen_Apricorns picked,Apricorns geplukt
 Trade Screen:
 trade_screen_trade_SendingPokemon,[YOURPOKEMON] naar [OTHERPLAYER] aan het sturen.~Vaarwel, [YOURPOKEMON]!
 trade_screen_trade_ReceivedPokemon,[OTHERPLAYER] stuurde [THEIRPOKEMON] naar jou.
+trade_screen_trade_TradedWithNPC,<Player.Name> ruilde~[THEIRPOKEMON] voor~[YOURPOKEMON]!
 
 trade_screen_button_ConfirmTrade,Ruil
 trade_screen_button_ChoosePokemon,Kies Pokémon

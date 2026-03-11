@@ -774,10 +774,10 @@ Namespace ScriptVersion2
                                                    New ScriptArgument("expAmount", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Adds Experience to the Experience value of a Pokémon in the player's party."))
             r(New ScriptCommand("Pokemon", "setnature", {New ScriptArgument("PokémonIndex", ScriptArgument.ArgumentTypes.Int),
                                                      New ScriptArgument("natureID", ScriptArgument.ArgumentTypes.Int, {"0-24"})}.ToList(), "Sets the Nature of a Pokémon in the player's party."))
-            r(New ScriptCommand("Pokemon", "npctrade", {New ScriptArgument("ownPokemonID", ScriptArgument.ArgumentTypes.Int),
-                                                    New ScriptArgument("oppPokemonID", ScriptArgument.ArgumentTypes.Int),
+            r(New ScriptCommand("Pokemon", "npctrade", {New ScriptArgument("ownPokemonID(s)", ScriptArgument.ArgumentTypes.Int),
+                                                    New ScriptArgument("oppPokemonID(s)", ScriptArgument.ArgumentTypes.Int),
                                                     New ScriptArgument("level", ScriptArgument.ArgumentTypes.Int),
-                                                    New ScriptArgument("genderID", ScriptArgument.ArgumentTypes.Int, {"0-2"}),
+                                                    New ScriptArgument("genderID", ScriptArgument.ArgumentTypes.Int, {"0, 1, 2, or -1 for same as own"}),
                                                     New ScriptArgument("attackIDs", ScriptArgument.ArgumentTypes.IntArr),
                                                     New ScriptArgument("shiny", ScriptArgument.ArgumentTypes.Bool),
                                                     New ScriptArgument("OT", ScriptArgument.ArgumentTypes.Str),
@@ -787,9 +787,10 @@ Namespace ScriptVersion2
                                                     New ScriptArgument("location", ScriptArgument.ArgumentTypes.Str),
                                                     New ScriptArgument("method", ScriptArgument.ArgumentTypes.Str),
                                                     New ScriptArgument("nickname", ScriptArgument.ArgumentTypes.Str),
-                                                    New ScriptArgument("message1", ScriptArgument.ArgumentTypes.Str),
-                                                    New ScriptArgument("message2", ScriptArgument.ArgumentTypes.Str),
-                                                    New ScriptArgument("register", ScriptArgument.ArgumentTypes.Str)}.ToList(), "Trades a Pokémon with an NPC.", "|", False))
+                                                    New ScriptArgument("message1", ScriptArgument.ArgumentTypes.Str, True, ""),
+                                                    New ScriptArgument("message2", ScriptArgument.ArgumentTypes.Str, True, ""),
+                                                    New ScriptArgument("register", ScriptArgument.ArgumentTypes.Str),
+                                                    New ScriptArgument("messageAfterTrade", ScriptArgument.ArgumentTypes.Str, True, "")}.ToList(), "Trades a Pokémon with an NPC. You can add multiple requested and offered Pokémon IDs in the first and second arguments separated by commas.", "|", False))
             r(New ScriptCommand("Pokemon", "rename", {New ScriptArgument("PokémonIndex", ScriptArgument.ArgumentTypes.Str, {"0-5", "last"}),
                                                   New ScriptArgument("OTcheck", ScriptArgument.ArgumentTypes.Bool)}.ToList(), "Opens the Name Rater rename feature."))
             r(New ScriptCommand("Pokemon", "read", {New ScriptArgument("PokémonIndex", ScriptArgument.ArgumentTypes.Str, {"[empty],0-5"})}.ToList(), "Displays the reader's dialogue."))

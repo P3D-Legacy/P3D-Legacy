@@ -439,6 +439,7 @@
 
                 Dim t As String = Localization.GetString("trade_screen_trade_SendingPokemon", "Sending [YOURPOKEMON] to [OTHERPLAYER].~Good-bye, [YOURPOKEMON]!").Replace("[YOURPOKEMON]", OfferPokemon.GetDisplayName()).Replace("[OTHERPLAYER]", p.Name).Replace("~", Environment.NewLine).Replace("*", Environment.NewLine)
 
+                Core.SpriteBatch.DrawString(FontManager.MainFont, t, New Vector2(CInt(Core.windowSize.Width / 2 - FontManager.MainFont.MeasureString(t).X / 2) + 2, CInt(Core.windowSize.Height / 2 + 192) + 2), Color.Black)
                 Core.SpriteBatch.DrawString(FontManager.MainFont, t, New Vector2(CInt(Core.windowSize.Width / 2 - FontManager.MainFont.MeasureString(t).X / 2), CInt(Core.windowSize.Height / 2 + 192)), Color.White)
             Case 2
                 Core.SpriteBatch.Draw(Me.OfferPokemon.GetTexture(False), New Rectangle(CInt(Core.windowSize.Width / 2 - MathHelper.Min(CInt(OfferPokemon.GetTexture(False).Width * 3 / 2), 144)), ownPokemonPosition, MathHelper.Min(OfferPokemon.GetTexture(False).Width * 3, 288), MathHelper.Min(OfferPokemon.GetTexture(False).Height * 3, 288)), Color.White)
@@ -457,6 +458,7 @@
 
                 Dim t As String = Localization.GetString("trade_screen_trade_ReceivedPokemon", "[OTHERPLAYER] sent over [THEIRPOKEMON].").Replace("[OTHERPLAYER]", p.Name).Replace("[THEIRPOKEMON]", TradePokemon.GetDisplayName())
 
+                Core.SpriteBatch.DrawString(FontManager.MainFont, t, New Vector2(CInt(Core.windowSize.Width / 2 - FontManager.MainFont.MeasureString(t).X / 2) + 2, CInt(Core.windowSize.Height / 2 + 192) + 2), Color.Black)
                 Core.SpriteBatch.DrawString(FontManager.MainFont, t, New Vector2(CInt(Core.windowSize.Width / 2 - FontManager.MainFont.MeasureString(t).X / 2), CInt(Core.windowSize.Height / 2 + 192)), Color.White)
         End Select
     End Sub

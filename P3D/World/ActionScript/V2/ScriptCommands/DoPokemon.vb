@@ -271,7 +271,7 @@
                     Dim splits() As String = argument.Split(CChar("|"))
                     Script.SaveNPCTrade = splits
 
-                    Dim selScreen = New PartyScreen(Core.CurrentScreen, Item.GetItemByID(5.ToString), AddressOf Script.DoNPCTrade, "Choose Pokémon for trade", True) With {.Mode = Screens.UI.ISelectionScreen.ScreenMode.Selection, .CanExit = True}
+                    Dim selScreen = New PartyScreen(Core.CurrentScreen, Item.GetItemByID(5.ToString), AddressOf Script.DoNPCTrade, Localization.GetString("trade_screen_ChoosePokemonForTrade", "Choose Pokémon for Trade"), True) With {.Mode = Screens.UI.ISelectionScreen.ScreenMode.Selection, .CanExit = True}
                     AddHandler selScreen.SelectedObject, AddressOf Script.DoNPCTradeHandler
 
                     Core.SetScreen(selScreen)

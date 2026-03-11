@@ -923,6 +923,7 @@ statistics_screen_Apricorns picked,Apricorns picked
 Trade Screen:
 trade_screen_trade_SendingPokemon,Enviando [YOURPOKEMON] para [OTHERPLAYER].~Adeus, [YOURPOKEMON]!
 trade_screen_trade_ReceivedPokemon,[OTHERPLAYER] enviou [THEIRPOKEMON].
+trade_screen_trade_TradedWithNPC,<Player.Name> traded~[THEIRPOKEMON] for [YOURPOKEMON]!
 
 trade_screen_button_ConfirmTrade,Trade
 trade_screen_button_ChoosePokemon,Escolha o Pokémon

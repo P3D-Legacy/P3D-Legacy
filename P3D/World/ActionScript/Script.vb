@@ -212,10 +212,59 @@
 
         Dim ownPokemon As Pokemon = Core.Player.Pokemons(pokeIndex)
 
-        Dim ownPokeID As Integer = ScriptConversion.ToInteger(Script.SaveNPCTrade(0))
-        Dim oppPokeID As Integer = ScriptConversion.ToInteger(Script.SaveNPCTrade(1))
+        Dim ownPokeID As String = ""
+        Dim ownPokeAD As String = ""
+        Dim ownPokeIndex As Integer = -1
 
-        Dim oppPokemon As Pokemon = Pokemon.GetPokemonByID(oppPokeID)
+        Dim oppPokeID As String = Script.SaveNPCTrade(1)
+        Dim oppPokeAD As String = ""
+        Dim OwnPreventFormGeneration As Boolean = False
+        Dim OppPreventFormGeneration As Boolean = False
+
+        If Script.SaveNPCTrade(0).Contains(",") Then
+            For p = 0 To Script.SaveNPCTrade(0).Split(",").Count
+                If Script.SaveNPCTrade(0).GetSplit(p) = PokemonForms.GetPokemonDataFileName(ownPokemon.Number, ownPokemon.AdditionalData, True) Then
+                    ownPokeID = Script.SaveNPCTrade(0).GetSplit(p)
+                    ownPokeIndex = p
+                    Exit For
+                End If
+            Next
+            If ownPokeID = "" Then
+                ownPokeID = Script.SaveNPCTrade(0).GetSplit(0, ",")
+            End If
+        Else
+            ownPokeID = Script.SaveNPCTrade(0)
+        End If
+
+        If Script.SaveNPCTrade(1).Contains(",") AndAlso ownPokeIndex <> -1 Then
+            oppPokeID = Script.SaveNPCTrade(1).GetSplit(ownPokeIndex)
+        Else
+            oppPokeID = Script.SaveNPCTrade(1)
+        End If
+
+        If ownPokeID.Contains("_") Then
+            ownPokeAD = PokemonForms.GetAdditionalValueFromDataFile(ownPokeID)
+            ownPokeID = ownPokeID.GetSplit(0, "_")
+        End If
+
+        If oppPokeID.Contains("_") Then
+            oppPokeAD = PokemonForms.GetAdditionalValueFromDataFile(oppPokeID)
+            oppPokeID = oppPokeID.GetSplit(0, "_")
+        End If
+
+        If ownPokeID.Contains(";") Then
+            ownPokeAD = ownPokeID.GetSplit(1, ";")
+            ownPokeID = ownPokeID.GetSplit(0, ";")
+            OwnPreventFormGeneration = True
+        End If
+
+        If oppPokeID.Contains(";") Then
+            oppPokeAD = oppPokeID.GetSplit(1, ";")
+            oppPokeID = oppPokeID.GetSplit(0, ";")
+            OppPreventFormGeneration = True
+        End If
+
+        Dim oppPokemon As Pokemon = Pokemon.GetPokemonByID(CInt(oppPokeID), oppPokeAD, OppPreventFormGeneration)
 
         Dim Level As Integer = ownPokemon.Level
 
@@ -268,21 +317,31 @@
         oppPokemon.CatchTrainerName = Script.SaveNPCTrade(7)
         oppPokemon.CatchBall = Item.GetItemByID(Script.SaveNPCTrade(8))
 
-        Dim itemID As String = Script.SaveNPCTrade(9)
-        If StringHelper.IsNumeric(itemID) Then
-            oppPokemon.Item = Item.GetItemByID(itemID)
-        End If
+        oppPokemon.Item = Item.GetItemByID(Script.SaveNPCTrade(9))
 
         oppPokemon.CatchLocation = Script.SaveNPCTrade(10)
         oppPokemon.CatchMethod = Script.SaveNPCTrade(11)
-        oppPokemon.NickName = Script.SaveNPCTrade(12)
+        If Script.SaveNPCTrade(12) <> "" Then
+            oppPokemon.NickName = Script.SaveNPCTrade(12)
+        End If
 
-        Dim message1 As String = Script.SaveNPCTrade(13)
-        Dim message2 As String = Script.SaveNPCTrade(14)
+        Dim message1 As String = ""
+        If Script.SaveNPCTrade(13) <> "" Then
+            message1 = Script.SaveNPCTrade(13)
+        End If
+        Dim message2 As String = ""
+        If Script.SaveNPCTrade(14) <> "" Then
+            message2 = Script.SaveNPCTrade(14)
+        End If
 
         Dim register As String = Script.SaveNPCTrade(15)
 
-        If ownPokeID = ownPokemon.Number Then
+        Dim afterTradeMessage As String = ""
+        If Script.SaveNPCTrade.Count > 16 AndAlso Script.SaveNPCTrade(16) <> "" Then
+            afterTradeMessage = Script.SaveNPCTrade(16).Replace("[YOURPOKEMON]", ownPokemon.Name).Replace("[THEIRPOKEMON]", oppPokemon.Name)
+        End If
+
+        If PokemonForms.GetPokemonDataFileName(CInt(ownPokeID), ownPokeAD, True) = PokemonForms.GetPokemonDataFileName(ownPokemon.Number, ownPokemon.AdditionalData, True) Then
             Core.Player.Pokemons.RemoveAt(pokeIndex)
             Core.Player.Pokemons.Add(oppPokemon)
 
@@ -308,10 +367,16 @@
 
             Core.Player.AddPoints(10, "Traded with NPC.")
 
-            SoundManager.PlaySound("success_small")
-            Screen.TextBox.Show(message1 & "*" & Core.Player.Name & " traded~" & oppPokemon.GetName & " for~" & ownPokemon.GetName & "!", {}, False, False)
+            If message1 <> "" Then
+                Screen.TextBox.Show(message1, {}, False, False)
+            End If
+            Core.SetScreen(New TransitionScreen(Core.CurrentScreen, New NPCTradeScreen(Core.CurrentScreen, ownPokemon, oppPokemon, oppPokemon.CatchTrainerName, afterTradeMessage), Color.Black, False, 15))
+
         Else
-            Screen.TextBox.Show(message2, {}, False, False)
+            If message2 <> "" Then
+                Screen.TextBox.Show(message2, {}, False, False)
+            End If
+
         End If
     End Sub
 
