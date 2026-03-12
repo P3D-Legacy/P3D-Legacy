@@ -65,9 +65,9 @@
 
         GraphicsManager.PreferredBackBufferWidth = CInt(GameOptions.WindowSize.X)
         GraphicsManager.PreferredBackBufferHeight = CInt(GameOptions.WindowSize.Y)
+        GraphicsManager.SynchronizeWithVerticalRetrace = False
         GraphicsDevice.PresentationParameters.BackBufferFormat = SurfaceFormat.Rgba1010102
         GraphicsDevice.PresentationParameters.DepthStencilFormat = DepthFormat.Depth24Stencil8
-
 
         GraphicsManager.PreferMultiSampling = True
         GraphicsManager.GraphicsProfile = GraphicsProfile.HiDef

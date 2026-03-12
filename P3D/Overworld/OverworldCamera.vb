@@ -281,8 +281,8 @@ Public Class OverworldCamera
         'Logger.Debug("ControlCamera: " & interval.Milliseconds.ToString & " ms" & text)
         'oldDate = Date.Now
 
-        MouseSpeed = CameraD
-        Logger.Debug("MouseSpeed: " & MouseSpeed.ToString)
+        'MouseSpeed = CameraD
+        'Logger.Debug("MouseSpeed: " & MouseSpeed.ToString)
         ClampYaw()
         ClampPitch()
     End Sub
