@@ -10,9 +10,16 @@
         Public CanInteract As Boolean = True
         Public MenuState As MenuStates = MenuStates.Main
         Public Visible As Boolean = False
+        Private Shared BattleInterfaceTexture As String = "GUI\Battle\Interface"
 
         Public Sub New()
             Me.Reset()
+            If TextureManager.TextureExist("GUI\Battle\Interface_" & Localization.LanguageSuffix) Then
+                BattleInterfaceTexture = "GUI\Battle\Interface_" & Localization.LanguageSuffix
+            Else
+                BattleInterfaceTexture = "GUI\Battle\Interface"
+            End If
+
             Dim blockinteractscreen() As Screen.Identifications = {Screen.Identifications.PartyScreen, Screen.Identifications.SummaryScreen, Screen.Identifications.PauseScreen, Screen.Identifications.ChatScreen}
             If blockinteractscreen.Contains(Core.CurrentScreen.Identification) = True Then
                 CanInteract = False
@@ -108,7 +115,7 @@
             'Draw large stats:
             If largeStatsDisplay = True Then
                 'Background
-                Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Battle\Interface"), New Rectangle(CInt(pos.X) + 14, CInt(pos.Y) + 14, 182, 42), New Rectangle(0, 0, 91, 21), shinyHue)
+                Core.SpriteBatch.Draw(TextureManager.GetTexture(BattleInterfaceTexture), New Rectangle(CInt(pos.X) + 14, CInt(pos.Y) + 14, 182, 42), New Rectangle(0, 0, 91, 21), shinyHue)
 
                 'Name:
                 Dim nameInformation As String = p.GetDisplayName() & " " & Localization.GetString("property_Lv.", "Lv.") & " " & p.Level.ToString()
@@ -118,9 +125,9 @@
 
                 'Gender:
                 If p.Gender = Pokemon.Genders.Male Then
-                    Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Battle\Interface"), New Rectangle(CInt(pos.X + 6 + FontManager.MainFont.MeasureString(nameInformation).X), CInt(pos.Y), 12, 20), New Rectangle(0, 104, 6, 10), New Color(255, 255, 255, _moveMenuAlpha))
+                    Core.SpriteBatch.Draw(TextureManager.GetTexture(BattleInterfaceTexture), New Rectangle(CInt(pos.X + 6 + FontManager.MainFont.MeasureString(nameInformation).X), CInt(pos.Y), 12, 20), New Rectangle(0, 104, 6, 10), New Color(255, 255, 255, _moveMenuAlpha))
                 ElseIf p.Gender = Pokemon.Genders.Female Then
-                    Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Battle\Interface"), New Rectangle(CInt(pos.X + 6 + FontManager.MainFont.MeasureString(nameInformation).X), CInt(pos.Y), 12, 20), New Rectangle(6, 104, 6, 10), New Color(255, 255, 255, _moveMenuAlpha))
+                    Core.SpriteBatch.Draw(TextureManager.GetTexture(BattleInterfaceTexture), New Rectangle(CInt(pos.X + 6 + FontManager.MainFont.MeasureString(nameInformation).X), CInt(pos.Y), 12, 20), New Rectangle(6, 104, 6, 10), New Color(255, 255, 255, _moveMenuAlpha))
                 End If
 
                 'HP indicator:
@@ -156,7 +163,7 @@
                                 EXPlength = 143
                             End If
 
-                            Dim t = TextureManager.GetTexture("GUI\Battle\Interface")
+                            Dim t = TextureManager.GetTexture(BattleInterfaceTexture)
                             For dX As Integer = 0 To EXPlength Step 4
                                 Core.SpriteBatch.Draw(t, New Rectangle(CInt(pos.X) + 50 + dX, CInt(pos.Y) + 64, 4, 6), New Rectangle(0, 43, 2, 3), New Color(255, 255, 255, _moveMenuAlpha))
                             Next
@@ -165,7 +172,7 @@
                 End If
             Else 'Smaller stats display
                 'Background
-                Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Battle\Interface"), New Rectangle(CInt(pos.X) + 14, CInt(pos.Y) + 14, 182, 32), New Rectangle(0, 21, 91, 16), shinyHue)
+                Core.SpriteBatch.Draw(TextureManager.GetTexture(BattleInterfaceTexture), New Rectangle(CInt(pos.X) + 14, CInt(pos.Y) + 14, 182, 32), New Rectangle(0, 21, 91, 16), shinyHue)
 
                 'Name:
                 Dim nameInformation As String = p.GetDisplayName() & " " & Localization.GetString("property_Lv.", "Lv.") & " " & p.Level.ToString()
@@ -175,9 +182,9 @@
 
                 'Gender:
                 If p.Gender = Pokemon.Genders.Male Then
-                    Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Battle\Interface"), New Rectangle(CInt(pos.X + 6 + FontManager.MainFont.MeasureString(nameInformation).X), CInt(pos.Y), 12, 20), New Rectangle(0, 104, 6, 10), New Color(255, 255, 255, _moveMenuAlpha))
+                    Core.SpriteBatch.Draw(TextureManager.GetTexture(BattleInterfaceTexture), New Rectangle(CInt(pos.X + 6 + FontManager.MainFont.MeasureString(nameInformation).X), CInt(pos.Y), 12, 20), New Rectangle(0, 104, 6, 10), New Color(255, 255, 255, _moveMenuAlpha))
                 ElseIf p.Gender = Pokemon.Genders.Female Then
-                    Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Battle\Interface"), New Rectangle(CInt(pos.X + 6 + FontManager.MainFont.MeasureString(nameInformation).X), CInt(pos.Y), 12, 20), New Rectangle(6, 104, 6, 10), New Color(255, 255, 255, _moveMenuAlpha))
+                    Core.SpriteBatch.Draw(TextureManager.GetTexture(BattleInterfaceTexture), New Rectangle(CInt(pos.X + 6 + FontManager.MainFont.MeasureString(nameInformation).X), CInt(pos.Y), 12, 20), New Rectangle(6, 104, 6, 10), New Color(255, 255, 255, _moveMenuAlpha))
                 End If
             End If
 
@@ -207,9 +214,9 @@
             End If
 
             If HPlength > 0 Then
-                Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Battle\Interface"), New Rectangle(CInt(pos.X) + 54, CInt(pos.Y) + 26, 2, 12), New Rectangle(cX, 37, 1, 6), New Color(255, 255, 255, _moveMenuAlpha))
-                Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Battle\Interface"), New Rectangle(CInt(pos.X) + 2 + 54, CInt(pos.Y) + 26, HPlength - 4, 12), New Rectangle(cX + 1, 37, 1, 6), New Color(255, 255, 255, _moveMenuAlpha))
-                Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Battle\Interface"), New Rectangle(CInt(pos.X) + HPlength - 2 + 54, CInt(pos.Y) + 26, 2, 12), New Rectangle(cX, 37, 1, 6), New Color(255, 255, 255, _moveMenuAlpha))
+                Core.SpriteBatch.Draw(TextureManager.GetTexture(BattleInterfaceTexture), New Rectangle(CInt(pos.X) + 54, CInt(pos.Y) + 26, 2, 12), New Rectangle(cX, 37, 1, 6), New Color(255, 255, 255, _moveMenuAlpha))
+                Core.SpriteBatch.Draw(TextureManager.GetTexture(BattleInterfaceTexture), New Rectangle(CInt(pos.X) + 2 + 54, CInt(pos.Y) + 26, HPlength - 4, 12), New Rectangle(cX + 1, 37, 1, 6), New Color(255, 255, 255, _moveMenuAlpha))
+                Core.SpriteBatch.Draw(TextureManager.GetTexture(BattleInterfaceTexture), New Rectangle(CInt(pos.X) + HPlength - 2 + 54, CInt(pos.Y) + 26, 2, 12), New Rectangle(cX, 37, 1, 6), New Color(255, 255, 255, _moveMenuAlpha))
             End If
 
             Dim caughtX As Integer = 0
@@ -223,16 +230,16 @@
                 Dim dexID As String = PokemonForms.GetPokemonDataFileName(p.Number, p.AdditionalData, True)
 
                 If Pokedex.GetEntryType(Core.Player.PokedexData, dexID) > 1 Then
-                    Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Battle\Interface"), New Rectangle(CInt(pos.X) + caughtX, CInt(pos.Y) + 22, 20, 20), New Rectangle(0, 46, 10, 10), New Color(255, 255, 255, _moveMenuAlpha))
+                    Core.SpriteBatch.Draw(TextureManager.GetTexture(BattleInterfaceTexture), New Rectangle(CInt(pos.X) + caughtX, CInt(pos.Y) + 22, 20, 20), New Rectangle(0, 46, 10, 10), New Color(255, 255, 255, _moveMenuAlpha))
                 End If
             End If
         End Sub
 
         Private Sub DrawPokeBalls(ByVal pos As Vector2, ByVal BattleScreen As BattleScreen, ByVal PokemonList As List(Of Pokemon), ByVal Mirrored As Boolean)
             If Mirrored = True Then
-                Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Battle\Interface"), New Rectangle(CInt(pos.X), CInt(pos.Y), 160, 14), New Rectangle(128, 7, 80, 7), New Color(255, 255, 255, _moveMenuAlpha))
+                Core.SpriteBatch.Draw(TextureManager.GetTexture(BattleInterfaceTexture), New Rectangle(CInt(pos.X), CInt(pos.Y), 160, 14), New Rectangle(128, 7, 80, 7), New Color(255, 255, 255, _moveMenuAlpha))
             Else
-                Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Battle\Interface"), New Rectangle(CInt(pos.X), CInt(pos.Y), 160, 14), New Rectangle(128, 0, 80, 7), New Color(255, 255, 255, _moveMenuAlpha))
+                Core.SpriteBatch.Draw(TextureManager.GetTexture(BattleInterfaceTexture), New Rectangle(CInt(pos.X), CInt(pos.Y), 160, 14), New Rectangle(128, 0, 80, 7), New Color(255, 255, 255, _moveMenuAlpha))
             End If
 
             Dim mouseHovers As Boolean = False
@@ -256,7 +263,7 @@
                     End If
 
                     If MouseHandler.IsInRectangle(New Rectangle(CInt(pos.X) + startX + 12 * i, CInt(pos.Y) + 1, 10, 10)) = True And Mirrored = False And _moveMenuChoseMove = False Then
-                        Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Battle\Interface"), New Rectangle(CInt(pos.X) + startX + 12 * i - 27, CInt(pos.Y) - 86, 64, 84), New Rectangle(128, 16, 32, 42), New Color(255, 255, 255, _mainMenuTeamPreviewAlpha))
+                        Core.SpriteBatch.Draw(TextureManager.GetTexture(BattleInterfaceTexture), New Rectangle(CInt(pos.X) + startX + 12 * i - 27, CInt(pos.Y) - 86, 64, 84), New Rectangle(128, 16, 32, 42), New Color(255, 255, 255, _mainMenuTeamPreviewAlpha))
                         Core.SpriteBatch.Draw(PokemonList(i).GetMenuTexture(True), New Rectangle(CInt(pos.X) + startX + 12 * i - 27, CInt(pos.Y) - 86, 64, 64), New Color(255, 255, 255, _mainMenuTeamPreviewAlpha))
 
                         If _mainMenuTeamPreviewAlpha < 255 Then
@@ -273,7 +280,7 @@
                 Else
                     texturePos = 20
                 End If
-                Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Battle\Interface"), New Rectangle(CInt(pos.X) + startX + 12 * i, CInt(pos.Y) + 1, 10, 10), New Rectangle(texturePos, 46, 10, 10), New Color(255, 255, 255, _moveMenuAlpha))
+                Core.SpriteBatch.Draw(TextureManager.GetTexture(BattleInterfaceTexture), New Rectangle(CInt(pos.X) + startX + 12 * i, CInt(pos.Y) + 1, 10, 10), New Rectangle(texturePos, 46, 10, 10), New Color(255, 255, 255, _moveMenuAlpha))
             Next
 
             If mouseHovers = False And Mirrored = False Then
@@ -283,7 +290,7 @@
                         _mainMenuTeamPreviewAlpha = 0
                     End If
                     If _mainMenuTeamPreviewLastIndex > -1 Then
-                        Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Battle\Interface"), New Rectangle(CInt(pos.X) + startX + 12 * _mainMenuTeamPreviewLastIndex - 27, CInt(pos.Y) - 86, 64, 84), New Rectangle(128, 16, 32, 42), New Color(255, 255, 255, _mainMenuTeamPreviewAlpha))
+                        Core.SpriteBatch.Draw(TextureManager.GetTexture(BattleInterfaceTexture), New Rectangle(CInt(pos.X) + startX + 12 * _mainMenuTeamPreviewLastIndex - 27, CInt(pos.Y) - 86, 64, 84), New Rectangle(128, 16, 32, 42), New Color(255, 255, 255, _mainMenuTeamPreviewAlpha))
                         Core.SpriteBatch.Draw(PokemonList(_mainMenuTeamPreviewLastIndex).GetMenuTexture(True), New Rectangle(CInt(pos.X) + startX + 12 * _mainMenuTeamPreviewLastIndex - 27, CInt(pos.Y) - 86, 64, 64), New Color(255, 255, 255, _mainMenuTeamPreviewAlpha))
                     End If
                 End If
@@ -372,11 +379,11 @@
 
             Public Sub New(ByVal IconIndex As Integer, ByVal Text As String, ByVal Index As Integer, ByVal ClickAction As D_MainMenuClick)
                 If IconIndex > 4 Then
-                    Me.IconUnselected = TextureManager.GetTexture("GUI\Battle\Interface", New Rectangle(160 + (IconIndex - 5) * 24, 56, 24, 24), "")
-                    Me.IconSelected = TextureManager.GetTexture("GUI\Battle\Interface", New Rectangle(160 + (IconIndex - 5) * 24, 80, 24, 24), "")
+                    Me.IconUnselected = TextureManager.GetTexture(BattleInterfaceTexture, New Rectangle(160 + (IconIndex - 5) * 24, 56, 24, 24), "")
+                    Me.IconSelected = TextureManager.GetTexture(BattleInterfaceTexture, New Rectangle(160 + (IconIndex - 5) * 24, 80, 24, 24), "")
                 Else
-                    Me.IconUnselected = TextureManager.GetTexture("GUI\Battle\Interface", New Rectangle(IconIndex * 24, 56, 24, 24), "")
-                    Me.IconSelected = TextureManager.GetTexture("GUI\Battle\Interface", New Rectangle(IconIndex * 24, 80, 24, 24), "")
+                    Me.IconUnselected = TextureManager.GetTexture(BattleInterfaceTexture, New Rectangle(IconIndex * 24, 56, 24, 24), "")
+                    Me.IconSelected = TextureManager.GetTexture(BattleInterfaceTexture, New Rectangle(IconIndex * 24, 80, 24, 24), "")
                 End If
 
                 Me.IconFading = 0

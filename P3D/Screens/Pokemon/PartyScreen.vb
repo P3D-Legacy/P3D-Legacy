@@ -119,8 +119,11 @@ Public Class PartyScreen
 
         _index = Player.Temp.PokemonScreenIndex
         _texture = TextureManager.GetTexture("GUI\Menus\General")
-        _menuTexture = TextureManager.GetTexture("GUI\Menus\PokemonInfo")
-
+        If TextureManager.TextureExist("GUI\Menus\PokemonInfo_" & Localization.LanguageSuffix) Then
+            _menuTexture = TextureManager.GetTexture("GUI\Menus\PokemonInfo_" & Localization.LanguageSuffix)
+        Else
+            _menuTexture = TextureManager.GetTexture("GUI\Menus\PokemonInfo")
+        End If
 
 
         If _index > PokemonList.Count - 1 Then

@@ -369,8 +369,13 @@
                 End If
                 SpriteBatch.DrawString(FontManager.MainFont, statValues(y), New Vector2(CInt(DeltaX + 344 + (380 / 2) + (264 / 2) - 128) + xOffset, DeltaY + 48 + y * 32 + yOffset), multiColor)
             Next
+            Dim pokeInfoTexture As texture2d
+            If TextureManager.TextureExist("GUI\Menus\PokemonInfo_" & Localization.LanguageSuffix) Then
+                pokeInfoTexture = TextureManager.GetTexture("GUI\Menus\PokemonInfo_" & Localization.LanguageSuffix)
+            Else
+                pokeInfoTexture = TextureManager.GetTexture("GUI\Menus\PokemonInfo")
+            End If
 
-            Dim pokeInfoTexture = TextureManager.GetTexture("GUI\Menus\PokemonInfo")
 
             'HP Bar:
             SpriteBatch.Draw(pokeInfoTexture, New Rectangle(DeltaX + 455 + 56 - 4, DeltaY + 82, 135, 15), New Rectangle(0, 32, 90, 10), New Color(255, 255, 255, CInt(220 * _interfaceFade * _pageFade)))
