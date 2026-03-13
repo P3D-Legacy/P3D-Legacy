@@ -34,7 +34,34 @@
     End Sub
 
     Public Overrides Sub Draw()
-        Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\GTS"), Core.windowSize, New Rectangle(320, 176, 192, 160), Color.White)
+        Dim background As Texture2D = TextureManager.GetTexture("GUI\Menus\GTSBackground")
+
+        Dim backSize As New Size(windowSize.Width, windowSize.Height)
+        Dim origSize As New Size(background.Width, background.Height)
+        Dim aspectRatio As Single = CSng(origSize.Width / origSize.Height)
+
+        backSize.Width = CInt(windowSize.Width * aspectRatio)
+        backSize.Height = CInt(backSize.Width / aspectRatio)
+
+        If backSize.Width > backSize.Height Then
+            backSize.Width = windowSize.Width
+            backSize.Height = CInt(windowSize.Width / aspectRatio)
+        Else
+            backSize.Height = windowSize.Height
+            backSize.Width = CInt(windowSize.Height / aspectRatio)
+        End If
+        If backSize.Height < windowSize.Height Then
+            backSize.Height = windowSize.Height
+            backSize.Width = CInt(windowSize.Height / origSize.Height * origSize.Width)
+        End If
+
+        Dim xOffset As Integer = 0
+        If windowSize.Width < backSize.Width Then
+            Dim xAspectRatio As Single = CSng(origSize.Width / backSize.Width)
+            xOffset = CInt(Math.Floor((backSize.Width - windowSize.Width) * xAspectRatio) / 2)
+        End If
+
+        Core.SpriteBatch.Draw(background, New Rectangle(0, 0, backSize.Width, backSize.Height), New Rectangle(xOffset, 0, origSize.Width, origSize.Height), Color.White)
         Select Case tState
             Case 0
                 Core.SpriteBatch.Draw(Me.PlayerPokemon.GetTexture(True), New Rectangle(CInt(Core.windowSize.Width / 2 - MathHelper.Min(CInt(PlayerPokemon.GetTexture(True).Width * 3 / 2), 144)), ownPokemonPosition, MathHelper.Min(PlayerPokemon.GetTexture(True).Width * 3, 288), MathHelper.Min(PlayerPokemon.GetTexture(True).Height * 3, 288)), Color.White)
@@ -111,13 +138,18 @@
     End Sub
 
     Private Sub EndTrade()
-        Core.SetScreen(New TransitionScreen(Core.CurrentScreen, CurrentScreen.PreScreen, Color.Black, False, 15))
-        SoundManager.PlaySound("success_small")
         Dim text As String = Me.TextMessage
         If text = "" Then
             text = Localization.GetString("trade_screen_trade_TradedWithNPC", "<Player.Name> traded~[THEIRPOKEMON] for~[YOURPOKEMON]!").Replace("[THEIRPOKEMON]", NPCPokemon.GetName).Replace("[YOURPOKEMON]", PlayerPokemon.GetName)
         End If
-        Screen.TextBox.Show(text, {}, False, False)
+        Dim s As String =
+          "version=2" & Environment.NewLine &
+          "@sound.play(success_small)" & Environment.NewLine &
+          "@text.show(" & text & ")" & Environment.NewLine &
+          ":end"
+
+        CType(CurrentScreen.PreScreen, OverworldScreen).ActionScript.StartScript(s, 2, False)
+        Core.SetScreen(New TransitionScreen(Core.CurrentScreen, CurrentScreen.PreScreen, Color.Black, False, 15))
 
         Dim p As Pokemon = Core.Player.Pokemons(Core.Player.Pokemons.Count - 1)
         If p.CanEvolve(EvolutionCondition.EvolutionTrigger.Trading, PokemonForms.GetPokemonDataFileName(NPCPokemon.Number, NPCPokemon.AdditionalData)) Then

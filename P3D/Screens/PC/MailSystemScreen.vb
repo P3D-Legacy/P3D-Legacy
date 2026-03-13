@@ -72,8 +72,10 @@
 
     Public Overrides Sub Draw()
 
+        Dim background As Texture2D = TextureManager.GetTexture("GUI\Menus\MailboxBackground")
+
         Dim backSize As New Size(windowSize.Width, windowSize.Height)
-        Dim origSize As New Size(380, 210)
+        Dim origSize As New Size(background.Width, background.Height)
         Dim aspectRatio As Single = CSng(origSize.Width / origSize.Height)
 
         backSize.Width = CInt(windowSize.Width * aspectRatio)
@@ -90,8 +92,6 @@
             backSize.Height = windowSize.Height
             backSize.Width = CInt(windowSize.Height / origSize.Height * origSize.Width)
         End If
-
-        Dim background As Texture2D = TextureManager.GetTexture("GUI\Menus\MailboxBackground")
 
         Dim xOffset As Integer = 0
         If windowSize.Width < backSize.Width Then

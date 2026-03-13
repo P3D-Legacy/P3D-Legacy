@@ -200,7 +200,34 @@
         End Sub
 
         Public Overrides Sub Draw()
-            Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\GTS"), Core.windowSize, New Rectangle(320, 176, 192, 160), Color.White)
+            Dim background As Texture2D = TextureManager.GetTexture("GUI\Menus\GTSBackground")
+
+            Dim backSize As New Size(windowSize.Width, windowSize.Height)
+            Dim origSize As New Size(background.Width, background.Height)
+            Dim aspectRatio As Single = CSng(origSize.Width / origSize.Height)
+
+            backSize.Width = CInt(windowSize.Width * aspectRatio)
+            backSize.Height = CInt(backSize.Width / aspectRatio)
+
+            If backSize.Width > backSize.Height Then
+                backSize.Width = windowSize.Width
+                backSize.Height = CInt(windowSize.Width / aspectRatio)
+            Else
+                backSize.Height = windowSize.Height
+                backSize.Width = CInt(windowSize.Height / aspectRatio)
+            End If
+            If backSize.Height < windowSize.Height Then
+                backSize.Height = windowSize.Height
+                backSize.Width = CInt(windowSize.Height / origSize.Height * origSize.Width)
+            End If
+
+            Dim xOffset As Integer = 0
+            If windowSize.Width < backSize.Width Then
+                Dim xAspectRatio As Single = CSng(origSize.Width / backSize.Width)
+                xOffset = CInt(Math.Floor((backSize.Width - windowSize.Width) * xAspectRatio) / 2)
+            End If
+
+            Core.SpriteBatch.Draw(background, New Rectangle(0, 0, backSize.Width, backSize.Height), New Rectangle(xOffset, 0, origSize.Width, origSize.Height), Color.White)
 
             For Each F As Furr In GTSMainScreen.Furrs
                 F.Draw()
