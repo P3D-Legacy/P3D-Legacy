@@ -630,7 +630,7 @@ Public Class StorageSystemScreen
             If p.Item IsNot Nothing Then entries.Add(New MenuEntry(5, Localization.GetString("storage_screen_menu_pokemon_TakeItem", "Take Item"), False, Sub() TakeItemPokemon()))
             entries.Add(New MenuEntry(5 + itemOffset, Localization.GetString("storage_screen_menu_pokemon_Release", "Release"), False, AddressOf ReleasePokemon))
             entries.Add(New MenuEntry(6 + itemOffset, Localization.GetString("global_cancel", "Cancel"), True, Nothing))
-            SetupMenu(entries.ToArray(), Localization.GetString("storage_screen_menu_pokemon_IsSelected", "//POKEMONNAME// is selected.").Replace("//POKEMONNAME//", p.GetDisplayName()))
+            SetupMenu(entries.ToArray(), Localization.GetString("storage_screen_menu_pokemon_IsSelected", "//POKEMONNAME// is selected.").Replace("[POKEMONNAME]", p.GetDisplayName()))
         End If
     End Sub
 
@@ -756,7 +756,7 @@ Public Class StorageSystemScreen
 
             Core.Player.Mails.Add(Items.MailItem.GetMailDataFromString(pokemon.Item.AdditionalData))
         Else
-            message = Localization.GetString("storage_screen_pokemon_item_TakenItemFromPokemon", "Taken //ITEM//~from //POKEMONNAME//.").Replace("//ITEM//", pokemon.Item.OneLineName()).Replace("//POKEMONNAME//", pokemon.GetDisplayName())
+            message = Localization.GetString("storage_screen_pokemon_item_TakenItemFromPokemon", "Taken //ITEM//~from //POKEMONNAME//.").Replace("[ITEM]", pokemon.Item.OneLineName()).Replace("[POKEMONNAME]", pokemon.GetDisplayName())
             Dim ItemID = If(pokemon.Item.IsGameModeItem, pokemon.Item.gmID, pokemon.Item.ID.ToString())
 
             Core.Player.Inventory.AddItem(ItemID, 1)
@@ -788,7 +788,7 @@ Public Class StorageSystemScreen
             If Not p.IsEgg() Then
                 Dim e1 = New MenuEntry(3, Localization.GetString("global_no", "No"), True, AddressOf SelectPokemon)
                 Dim e = New MenuEntry(4, Localization.GetString("global_yes", "Yes"), False, AddressOf ConfirmRelease)
-                Me.SetupMenu({e1, e}, Localization.GetString("storage_screen_pokemon_release_Question", "Release //POKEMONNAME//?").Replace("//POKEMONNAME//", p.GetDisplayName()))
+                Me.SetupMenu({e1, e}, Localization.GetString("storage_screen_pokemon_release_Question", "Release //POKEMONNAME//?").Replace("[POKEMONNAME]", p.GetDisplayName()))
             Else
                 Me.SetupMenu({New MenuEntry(3, Localization.GetString("global_ok", "OK"), True, Nothing)}, Localization.GetString("storage_screen_pokemon_release_CannotReleaseEgg", "Cannot release an Egg."))
             End If
@@ -804,7 +804,7 @@ Public Class StorageSystemScreen
         Dim text = ""
         If pokemon.Item IsNot Nothing Then text &= Me.TakeItemPokemon(False)
         If text <> "" Then text &= "*"
-        text &= Localization.GetString("storage_screen_pokemon_release_Goodbye", "Goodbye, //POKEMONNAME//!").Replace("//POKEMONNAME//", pokemon.GetDisplayName())
+        text &= Localization.GetString("storage_screen_pokemon_release_Goodbye", "Goodbye, //POKEMONNAME//!").Replace("[POKEMONNAME]", pokemon.GetDisplayName())
         Screen.TextBox.Show(text)
 
         If CursorPosition.X = 6 Then

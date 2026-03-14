@@ -840,7 +840,7 @@ Public Class PartyScreen
                     End If
                     p.Item = Nothing
                 Else
-                    ShowMessage(Localization.GetString("party_screen_TakenItemFromPokemon", "Taken //ITEM//~from //POKEMONNAME//.").Replace("//ITEM//", p.Item.OneLineName()).Replace("//POKEMONNAME//", p.GetDisplayName()))
+                    ShowMessage(Localization.GetString("party_screen_TakenItemFromPokemon", "Taken //ITEM//~from //POKEMONNAME//.").Replace("[ITEM]", p.Item.OneLineName()).Replace("[POKEMONNAME]", p.GetDisplayName()))
                     Dim ItemID As String
                     If p.Item.IsGameModeItem Then
                         ItemID = p.Item.gmID
@@ -877,7 +877,7 @@ Public Class PartyScreen
                 If reItem.IsMail And reItem.AdditionalData <> "" Then
                     Core.Player.Mails.Add(Items.MailItem.GetMailDataFromString(reItem.AdditionalData))
 
-                    message = Localization.GetString("inventory_screen_GiveItem_TakeMail", "Gave <newitem> to <name> and took the Mail to the PC.").Replace("//NEWITEM//", i.OneLineName()).Replace("//POKEMONNAME//", p.GetDisplayName())
+                    message = Localization.GetString("inventory_screen_GiveItem_TakeMail", "Gave <newitem> to <name> and took the Mail to the PC.").Replace("[NEWITEM]", i.OneLineName()).Replace("[POKEMONNAME]", p.GetDisplayName())
                 Else
                     Dim ReItemID As String
                     If reItem.IsGameModeItem Then
@@ -887,17 +887,17 @@ Public Class PartyScreen
                     End If
                     Core.Player.Inventory.AddItem(ReItemID, 1)
 
-                    message = Localization.GetString("inventory_screen_GiveItem_Switch", "Switched <name>'s <olditem> with the <newitem>.").Replace("//NEWITEM//", i.OneLineName()).Replace("//OLDITEM//", reItem.OneLineName()).Replace("//POKEMONNAME//", p.GetDisplayName())
+                    message = Localization.GetString("inventory_screen_GiveItem_Switch", "Switched <name>'s <olditem> with the <newitem>.").Replace("[NEWITEM]", i.OneLineName()).Replace("[OLDITEM]", reItem.OneLineName()).Replace("[POKEMONNAME]", p.GetDisplayName())
                 End If
             Else
-                message = Localization.GetString("inventory_screen_GiveItem_Give", "Gave <name> the <newitem>.").Replace("//POKEMONNAME//", p.GetDisplayName()).Replace("//NEWITEM//", i.OneLineName())
+                message = Localization.GetString("inventory_screen_GiveItem_Give", "Gave <name> the <newitem>.").Replace("[POKEMONNAME]", p.GetDisplayName()).Replace("[NEWITEM]", i.OneLineName())
             End If
 
             p.Item = i
 
             ShowMessage(message)
         Else
-            ShowMessage(Localization.GetString("inventory_screen_CannotGiveToPokemon", "<newitem> cannot be given to a Pokémon.").Replace("//NEWITEM//", i.OneLineName()))
+            ShowMessage(Localization.GetString("inventory_screen_CannotGiveToPokemon", "<newitem> cannot be given to a Pokémon.").Replace("[NEWITEM]", i.OneLineName()))
         End If
     End Sub
 

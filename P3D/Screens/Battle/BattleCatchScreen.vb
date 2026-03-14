@@ -117,7 +117,7 @@ nextIndex:
         Lighting.UpdateLighting(Screen.Effect)
         If textboxStart = False Then
             textboxStart = True
-            TextBox.Show(Core.Player.Name & " used a~" & Ball.Name & "!", {}, False, False)
+            TextBox.Show(Localization.GetString("battle_catch_PlayerUsedBall", "<Player.Name> used a~[BALLNAME]!").Replace("[BALLNAME]", Ball.OneLineName) & "!", {}, False, False)
         End If
         TextBox.Update()
 
@@ -313,13 +313,13 @@ nextIndex:
         End If
         p.ResetTemp()
 
-        Dim s As String = "Gotcha!~" & p.GetName() & " was caught!"
+        Dim s As String = Localization.GetString("battle_catch_CaughtPokemon", "Gotcha!~[POKEMONNAME] was caught!").Replace("[POKEMONNAME]", p.GetName())
 
         Dim dexID As String = PokemonForms.GetPokemonDataFileName(p.Number, p.AdditionalData, True)
 
         If Core.Player.HasPokedex = True Then
             If Pokedex.GetEntryType(Core.Player.PokedexData, dexID) < 2 Then
-                s &= "*" & p.GetName() & "'s data was~added to the Pokédex."
+                s &= "*" & Localization.GetString("battle_catch_PokemonAddedToDex", "[POKEMONNAME]'s data was~added to the Pokédex.").Replace("[POKEMONNAME]", p.GetName())
                 showPokedexEntry = True
             End If
         End If
@@ -365,7 +365,7 @@ nextIndex:
         Else
             Dim boxName As String = StorageSystemScreen.GetBoxName(StorageSystemScreen.DepositPokemon(p, Player.Temp.PCBoxIndex))
 
-            s = "It was transfered to Box~""" & boxName & """~on the PC."
+            s = Localization.GetString("battle_catch_PokemonTransferedToPC", "It was transfered to Box~""[BOXNAME]""~on the PC.").Replace("[BOXNAME]", boxName)
         End If
 
         If p.IsShiny = True Then
@@ -390,7 +390,7 @@ nextIndex:
         Dim BallRate As Single = Ball.CatchMultiplier
         Dim PokemonStartFriendship As Integer = cp.Friendship
 
-        Select Case Ball.Name.ToLower()
+        Select Case Ball.OriginalName.ToLower()
             Case "repeat ball"
                 Dim dexID As String = PokemonForms.GetPokemonDataFileName(cp.Number, cp.AdditionalData)
                 If dexID.Contains("_") = False Then
@@ -414,7 +414,7 @@ nextIndex:
                 If BattleSystem.BattleScreen.DiveBattle = True Then
                     BallRate = 3.5F
                 End If
-			Case "lure ball"
+            Case "lure ball"
                 If BattleSystem.BattleScreen.DiveBattle = True Then
                     BallRate = 5.0F
                 End If

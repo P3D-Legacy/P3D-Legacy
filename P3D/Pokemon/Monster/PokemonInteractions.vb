@@ -112,7 +112,7 @@
             s &= "@text.show(" & message & ")" & Environment.NewLine &
                 "@options.show(<system.token(global_yes)>,<system.token(global_no)>)" & Environment.NewLine &
                 ":when:<system.token(global_yes)>" & Environment.NewLine &
-                "@text.show(" & Localization.GetString("FollowerInteraction_HeldItem_Answer_Yes", "Your Pokémon handed over~the <item>!").Replace("//ITEM//", item.OneLineName()) & ")" & Environment.NewLine &
+                "@text.show(" & Localization.GetString("FollowerInteraction_HeldItem_Answer_Yes", "Your Pokémon handed over~the <item>!").Replace("[ITEM]", item.OneLineName()) & ")" & Environment.NewLine &
                 "@item.give(" & PickupItemID & ",1)" & Environment.NewLine &
                 "@item.messagegive(" & PickupItemID & ",1)" & Environment.NewLine &
                 ":when:<system.token(global_no)>" & Environment.NewLine &
@@ -128,7 +128,7 @@
             s &= "@text.show(" & message & ")" & Environment.NewLine &
                 "@options.show(<system.token(global_yes)>,<system.token(global_no)>)" & Environment.NewLine &
                 ":when:<system.token(global_yes)>" & Environment.NewLine &
-                "@text.show(" & Localization.GetString("FollowerInteraction_HeldItem_Answer_Yes", "Your Pokémon handed over~the <item>!").Replace("//ITEM//", item.OneLineName()) & ")" & Environment.NewLine &
+                "@text.show(" & Localization.GetString("FollowerInteraction_HeldItem_Answer_Yes", "Your Pokémon handed over~the <item>!").Replace("[ITEM]", item.OneLineName()) & ")" & Environment.NewLine &
                 "@item.give(" & PickupItemID & ",1)" & Environment.NewLine &
                 "@item.messagegive(" & PickupItemID & ",1)" & Environment.NewLine &
                 ":when:<system.token(global_no)>" & Environment.NewLine &
@@ -878,7 +878,7 @@
         End Function
 
         Public Function GetMessage(ByVal p As Pokemon) As String
-            Return ScriptVersion2.ScriptCommander.Parse(Me.Message.Replace("<name>", p.GetDisplayName()).Replace("<item>", p.Item.OneLineName())).ToString.Replace("//POKEMONNAME//", p.GetDisplayName()).Replace("//ITEM//", p.Item.OneLineName())
+            Return ScriptVersion2.ScriptCommander.Parse(Me.Message.Replace("<name>", p.GetDisplayName()).Replace("<item>", p.Item.OneLineName())).ToString.Replace("[POKEMONNAME]", p.GetDisplayName()).Replace("[ITEM]", p.Item.OneLineName())
         End Function
 
         Public Function GetNotification() As MessageBulb.NotificationTypes

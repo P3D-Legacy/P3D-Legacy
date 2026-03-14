@@ -103,41 +103,43 @@
 
     Public Shared Function GetString(ByVal s As String, Optional ByVal DefaultValue As String = "") As String
         Dim resultToken As Token = Nothing
+        Dim result As String = ""
         If LocalizationTokens.ContainsKey(s) = True Then
             If LocalizationTokens.TryGetValue(s, resultToken) = False Then
                 Return s
             Else
-                Dim result As String = resultToken.TokenContent
-                If Core.Player IsNot Nothing Then
-                    result = result.Replace("<playername>", Core.Player.Name)
-                    result = result.Replace("<player.name>", Core.Player.Name)
-                    result = result.Replace("<rivalname>", Core.Player.RivalName)
-                    result = result.Replace("<rival.name>", Core.Player.RivalName)
-                End If
-                If result.Contains("<name>") Then
-                    result = result.Replace("<name>", "//POKEMONNAME//")
-                End If
-                If result.Contains("<newitem>") Then
-                    result = result.Replace("<newitem>", "//NEWITEM//")
-                End If
-                If result.Contains("<olditem>") Then
-                    result = result.Replace("<olditem>", "//OLDITEM//")
-                End If
-                If result.Contains("<item>") Then
-                    result = result.Replace("<item>", "//ITEM//")
-                End If
-                If result.Contains("<") Then
-                    result = CStr(ScriptVersion2.ScriptComparer.EvaluateConstruct(result))
-                End If
-                Return result
+                result = resultToken.TokenContent
             End If
         Else
             If DefaultValue = "" Then
                 Return s
             Else
-                Return DefaultValue
+                result = DefaultValue
             End If
         End If
+
+        If Core.Player IsNot Nothing Then
+            result = result.Replace("<playername>", Core.Player.Name)
+            result = result.Replace("<player.name>", Core.Player.Name)
+            result = result.Replace("<rivalname>", Core.Player.RivalName)
+            result = result.Replace("<rival.name>", Core.Player.RivalName)
+        End If
+        If result.Contains("<name>") Then
+            result = result.Replace("<name>", "[POKEMONNAME]")
+        End If
+        If result.Contains("<newitem>") Then
+            result = result.Replace("<newitem>", "[NEWITEM]")
+        End If
+        If result.Contains("<olditem>") Then
+            result = result.Replace("<olditem>", "[OLDITEM]")
+        End If
+        If result.Contains("<item>") Then
+            result = result.Replace("<item>", "[ITEM]")
+        End If
+        If result.Contains("<") Then
+            result = CStr(ScriptVersion2.ScriptComparer.EvaluateConstruct(result))
+        End If
+        Return result
     End Function
 
     Public Shared Function TokenExists(ByVal TokenName As String) As Boolean

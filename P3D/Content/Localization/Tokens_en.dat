@@ -1120,6 +1120,12 @@ battle_Battle,Battle
 battle_Bag,Bag
 battle_Surrender,Surrender
 battle_action_MegaEvolve,Mega Evolve!
+----
+Catching:
+battle_catch_PlayerUsedBall,<Player.Name> used a~[BALLNAME]!
+battle_catch_CaughtPokemon,Gotcha!~[POKEMONNAME] was caught!
+battle_catch_PokemonAddedToDex,[POKEMONNAME]'s data was~added to the Pokédex.
+battle_catch_PokemonTransferedToPC,It was transfered to Box~"[BOXNAME]"~on the PC.
 ---
 Badges:
 badge_1,Boulder
