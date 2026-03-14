@@ -814,7 +814,7 @@
                         If AttackLearnList.Count > 0 Then
                             For i = 0 To AttackLearnList.Count - 1
                                 If p.Attacks.Count < 4 Then
-                                    s &= "@text.show(" & p.GetDisplayName() & " learned " & AttackLearnList(i).Name & "!)" & Environment.NewLine
+                                    s &= "@text.show(" & p.GetDisplayName() & " learned~" & AttackLearnList(i).Name & "!)" & Environment.NewLine
                                     p.Attacks.Add(AttackLearnList(i))
                                     PlayerStatistics.Track("Moves learned", 1)
                                 Else
