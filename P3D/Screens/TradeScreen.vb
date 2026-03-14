@@ -484,15 +484,17 @@ Public Class TradeScreen
                 Dim y As Integer = 0
 
                 For Each i As TradeItem In Me.TradeItems
-                    Dim item As Item = i.GetItem()
-                    If item.ItemType = Me.loadedBuyCategories(Me.Cursor + Me.Scroll) Then
-                        SpriteBatch.Draw(item.Texture, New Rectangle(580 + x * 48, 100 + y * 48, 48, 48), Color.White)
+                    If i.Amount <> 0 Then
+                        Dim item As Item = i.GetItem()
+                        If item.ItemType = Me.loadedBuyCategories(Me.Cursor + Me.Scroll) Then
+                            SpriteBatch.Draw(item.Texture, New Rectangle(580 + x * 48, 100 + y * 48, 48, 48), Color.White)
 
-                        x += 1
-                        If x = 5 Then
-                            x = 0
-                            y += 1
-                            Canvas.DrawRectangle(New Rectangle(580, 100 + y * 48, 240, 48), New Color(255, 255, 255, 127))
+                            x += 1
+                            If x = 5 Then
+                                x = 0
+                                y += 1
+                                Canvas.DrawRectangle(New Rectangle(580, 100 + y * 48, 240, 48), New Color(255, 255, 255, 127))
+                            End If
                         End If
                     End If
                 Next
@@ -520,7 +522,7 @@ Public Class TradeScreen
         Me.BuyItemsList.Clear()
         For Each i As TradeItem In Me.TradeItems
             Dim item As Item = i.GetItem()
-            If item.ItemType = Me.CurrentCategory And i.Amount > 0 Then
+            If item.ItemType = Me.CurrentCategory And i.Amount <> 0 Then
                 BuyItemsList.Add(i)
             End If
         Next
