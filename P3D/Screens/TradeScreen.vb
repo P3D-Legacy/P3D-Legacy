@@ -176,6 +176,12 @@ Public Class TradeScreen
             End If
 
         Next
+        If TradeItems.Count > 0 Then
+            Me.TradeItems = (From i As TradeItem In TradeItems Order By i.GetItem().OneLineName).ToList()
+        End If
+        If PossibleStoreItems.Count > 0 Then
+            Me.PossibleStoreItems = (From i As TradeItem In PossibleStoreItems Order By i.GetItem().OneLineName).ToList()
+        End If
 
         Me.texture = TextureManager.GetTexture("GUI\Menus\General")
 
