@@ -8784,6 +8784,45 @@
                             BattleScreen.BattleQuery.Add(New TextQueryObject(ScriptVersion2.ScriptCommander.Parse(BattleScreen.Trainer.PlayerLossMessage).ToString))
                         End If
 
+                        Dim HighestLevel As Integer = 1
+                        For Each p As Pokemon In Core.Player.Pokemons
+                            If p.Level > HighestLevel Then
+                                HighestLevel = p.Level
+                            End If
+                        Next
+                        Dim BasePayout As Integer = 8
+                        Select Case Core.Player.Badges.Count
+                            Case 1
+                                BasePayout = 16
+                            Case 2
+                                BasePayout = 24
+                            Case 3
+                                BasePayout = 36
+                            Case 4
+                                BasePayout = 48
+                            Case 5
+                                BasePayout = 64
+                            Case 6
+                                BasePayout = 80
+                            Case 7
+                                BasePayout = 100
+                            Case 8
+                                BasePayout = 120
+                            Case > 8
+                                BasePayout = 120
+                        End Select
+                        Dim LostMoney As Integer = CInt(HighestLevel * BasePayout)
+
+                        If Core.Player.Money <= LostMoney Then
+                            LostMoney = Core.Player.Money
+                        End If
+                        Core.Player.Money -= LostMoney
+
+                        If BattleScreen.IsTrainerBattle = False Then
+                            BattleScreen.BattleQuery.Add(New TextQueryObject("You panicked and dropped $" & LostMoney.ToString & "..."))
+                        Else
+                            BattleScreen.BattleQuery.Add(New TextQueryObject("You gave $" & LostMoney.ToString & " to the winner..."))
+                        End If
                         BattleScreen.BattleQuery.Add(New EndBattleQueryObject(True))
                 End Select
             End If
