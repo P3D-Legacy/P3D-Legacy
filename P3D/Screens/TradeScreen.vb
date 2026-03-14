@@ -520,7 +520,7 @@ Public Class TradeScreen
         Me.BuyItemsList.Clear()
         For Each i As TradeItem In Me.TradeItems
             Dim item As Item = i.GetItem()
-            If item.ItemType = Me.CurrentCategory Then
+            If item.ItemType = Me.CurrentCategory And i.Amount > 0 Then
                 BuyItemsList.Add(i)
             End If
         Next
