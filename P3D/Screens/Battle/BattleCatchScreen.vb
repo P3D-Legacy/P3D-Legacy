@@ -343,6 +343,14 @@ nextIndex:
         SoundManager.PlaySound("success_catch", True)
         TextBox.Show(s, {}, False, False)
 
+        'Add the Pokefile to the visited pokefiles list.
+        If BattleScreen.IsTrainerBattle = False Then
+            If BattleSystem.BattleScreen.TempPokeFile <> "" Then
+                If Core.Player.PokeFiles.Contains(BattleSystem.BattleScreen.TempPokeFile) = False Then
+                    Core.Player.PokeFiles.Add(BattleSystem.BattleScreen.TempPokeFile)
+                End If
+            End If
+        End If
     End Sub
 
     Private Sub StorePokemon()
