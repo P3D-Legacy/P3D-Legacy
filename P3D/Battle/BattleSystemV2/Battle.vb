@@ -8022,7 +8022,7 @@
                     BattleScreen.AddToQuery(InsertIndex, BallReturn)
                 End If
 
-                If HasSwitched = True Then
+                If HasSwitched = True AndAlso BattleScreen.IsTrainerBattle = True Then
                     BattleScreen.TrainerRecallOwn += 1
                     If BattleScreen.Trainer.RecallOwnMessage.ContainsKey(BattleScreen.TrainerRecallOwn) Then
                         Dim s1 As QueryObject = BattleScreen.FocusOppPlayer()
@@ -8216,7 +8216,7 @@
                     End If
                 End If
             End With
-            If FirstTime = False Then
+            If FirstTime = False AndAlso BattleScreen.IsTrainerBattle = True Then
                 BattleScreen.TrainerSendOutOwn += 1
                 If Core.Player.CountFightablePokemon > 1 Then
                     If BattleScreen.Trainer.SendOutXOwnMessage.ContainsKey(BattleScreen.TrainerSendOutOwn) Then
@@ -8458,7 +8458,7 @@
         Public Sub SwitchInOpp(ByVal BattleScreen As BattleScreen, ByVal FirstTime As Boolean, ByVal index As Integer, Optional HasSwitched As Boolean = False)
             Dim AddSwitch As Boolean = False
 
-            If HasSwitched = True Then
+            If HasSwitched = True AndAlso BattleScreen.IsTrainerBattle = True Then
                 BattleScreen.TrainerRecallOpp += 1
                 If BattleScreen.Trainer.RecallOwnMessage.ContainsKey(BattleScreen.TrainerRecallOpp) Then
                     Dim s1 As QueryObject = BattleScreen.FocusOppPlayer()
