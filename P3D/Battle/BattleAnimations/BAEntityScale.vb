@@ -94,22 +94,22 @@
         'Bottom
         If Anchors.ToLower.Contains("b") = True Then
             Dim diffY As Single = saveScale.Y - TargetEntity.Scale.Y
-            TargetEntity.Position.Y -= diffY / 2
+            TargetEntity.Position.Y -= diffY / 4
         End If
         'Top
         If Anchors.ToLower.Contains("t") = True Then
             Dim diffY As Single = saveScale.Y - TargetEntity.Scale.Y
-            TargetEntity.Position.Y += diffY / 2
+            TargetEntity.Position.Y += diffY / 4
         End If
         'Left
         If Anchors.ToLower.Contains("l") = True Then
             Dim diffX As Single = saveScale.X - TargetEntity.Scale.X
-            TargetEntity.Position.X -= diffX / 2
+            TargetEntity.Position.X -= diffX / 4
         End If
         'Right
         If Anchors.ToLower.Contains("r") = True Then
             Dim diffX As Single = saveScale.X - TargetEntity.Scale.X
-            TargetEntity.Position.X += diffX / 2
+            TargetEntity.Position.X += diffX / 4
         End If
 
         If Me.EndSize = TargetEntity.Scale Then

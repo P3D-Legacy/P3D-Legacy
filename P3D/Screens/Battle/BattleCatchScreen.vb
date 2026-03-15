@@ -117,7 +117,7 @@ nextIndex:
         Lighting.UpdateLighting(Screen.Effect)
         If textboxStart = False Then
             textboxStart = True
-            TextBox.Show(Localization.GetString("battle_catch_PlayerUsedBall", "<Player.Name> used a~[BALLNAME]!").Replace("[BALLNAME]", Ball.OneLineName) & "!", {}, False, False)
+            TextBox.Show(Localization.GetString("battle_catch_PlayerUsedBall", "<Player.Name> used a~[BALLNAME]!").Replace("[BALLNAME]", Ball.OneLineName), {}, False, False)
         End If
         TextBox.Update()
 
@@ -165,7 +165,7 @@ nextIndex:
                             Next
                             If Core.Player.ShowBattleAnimations <> 0 AndAlso BattleScreen.IsPVPBattle = False Then
 
-
+                                Dim PokemonPosition = BattleScreen.OppPokemonNPC.Position
                                 PokemonScale = BattleScreen.OppPokemonNPC.Scale
                                 'Ball is thrown
                                 Dim CatchAnimation = New BattleSystem.AnimationQueryObject(Nothing, False)
@@ -196,7 +196,7 @@ nextIndex:
                                     Threading.Interlocked.Increment(SmokeParticlesClose)
                                 Loop While SmokeParticlesClose <= 38
                                 ' Pokémon Shrinks
-                                CatchAnimation.AnimationScale(BattleScreen.OppPokemonNPC, False, 0.0F, 0.0F, 0.0F, 0.035F, 3, 0)
+                                CatchAnimation.AnimationScale(BattleScreen.OppPokemonNPC, False, 0.0F, 0.0F, 0.0F, 0.035F, 3, 0, "t")
 
                                 ' Ball falls
                                 CatchAnimation.AnimationMove(BallEntity, False, 3, -0.35, 0, 0.1F, False, False, 8, 0)
@@ -243,7 +243,8 @@ nextIndex:
                                     Loop While SmokeParticlesOpen <= 38
 
                                     ' Pokemon appears
-                                    CatchAnimation.AnimationScale(BattleScreen.OppPokemonNPC, False, PokemonScale.X, PokemonScale.Y, PokemonScale.Z, 0.035F, 12 + Shakes.Count * 10, 0)
+                                    CatchAnimation.AnimationSetPosition(BattleScreen.OppPokemonNPC, False, PokemonPosition.X, PokemonPosition.Y - 0.25F, PokemonPosition.Z, 11 + Shakes.Count * 10, 0)
+                                    CatchAnimation.AnimationScale(BattleScreen.OppPokemonNPC, False, PokemonScale.X, PokemonScale.Y, PokemonScale.Z, 0.035F, 12 + Shakes.Count * 10, 0, "b")
 
                                 End If
 
