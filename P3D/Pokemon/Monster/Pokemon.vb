@@ -2954,7 +2954,10 @@ Public Class Pokemon
 
         Dim itemNumber = 0
         If Item IsNot Nothing Then
-            itemNumber = Item.ID
+            If Item.IsGameModeItem = False Then
+                itemNumber = Item.ID
+            End If
+
         End If
 
         Select Case itemNumber
