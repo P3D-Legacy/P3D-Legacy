@@ -56,7 +56,7 @@ version=2
 	:endwhen
 	@storage.set(integer,potentialrooms,0)
 	@storage.set(integer,roomcounter,0)
-	:while:<storage.get(integer,roomcounter)><8
+	:while:8><storage.get(integer,roomcounter)>
 		:select:<storage.get(integer,roomcounter)>
 			:when:0
 				:if:<not><register.value(pikehint)>=0
@@ -123,3 +123,4 @@ version=2
 	:endif
 	@storage.update(integer,roomsset,+,1)
 :endwhile
+:end

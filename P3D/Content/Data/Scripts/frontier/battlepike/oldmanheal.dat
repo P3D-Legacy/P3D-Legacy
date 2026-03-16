@@ -2,13 +2,13 @@ version=2
 @storage.set(integer,potheals,0)
 
 :if:<pokemon.fullyhealed(0)>=false
-	@storage.set(integer,potheals,<storage.get(integer,potheals)>+1)
+	@storage.update(integer,potheals,+,1)
 :endif
 :if:<pokemon.fullyhealed(1)>=false
-	@storage.set(integer,potheals,<storage.get(integer,potheals)>+1)
+	@storage.update(integer,potheals,+,1)
 :endif
 :if:<pokemon.fullyhealed(2)>=false
-	@storage.set(integer,potheals,<storage.get(integer,potheals)>+1)
+	@storage.update(integer,potheals,+,1)
 :endif
 
 :select:<storage.get(integer,potheals)>
@@ -18,8 +18,8 @@ version=2
 		@text.show(Ah, you're a lucky one.~I'm in somewhat-good~spirits now.*I will restore one of your~Pokémon to full health.)
 		@pokemon.heal
 	:when:2
-		:select:<system.random(1,2)>
-			:when:1
+		:select:<system.random(0,2)>
+			:when:0,1
 				@text.show(Ah, you're a lucky one.~I'm in somewhat-good~spirits now.*I will restore one of your~Pokémon to full health.)
 				:select:<system.random(0,2)>
 					:when:0
@@ -51,8 +51,8 @@ version=2
 				@pokemon.heal
 		:endwhen
 	:when:3
-		:select:<system.random(1,2)>
-			:when:1
+		:select:<system.random(0,2)>
+			:when:0,1
 				@text.show(Ah, you're a lucky one.~I'm in somewhat-good~spirits now.*I will restore one of your~Pokémon to full health.)
 				@pokemon.heal(<system.random(0,2)>)
 			:when:2
@@ -67,6 +67,7 @@ version=2
 				:endwhen
 		:endwhen
 :endwhen
+@sound.play(healing,1)
 @text.show(The best of luck to you.~Farewell.)
 @npc.turn(11,0)
 @npc.move(11,2)
