@@ -1,4 +1,4 @@
-﻿Namespace BattleSystem
+Namespace BattleSystem
 
     Public Class Battle
 
@@ -6232,7 +6232,7 @@
                                 healHP = CInt(healHP * 1.3F)
                             End If
                         End If
-                        GainHP(healHP, True, True, BattleScreen, .OwnPokemon.GetDisplayName() & " gained health from the Ingrain.", "ignrain")
+                        GainHP(healHP, True, True, BattleScreen, .OwnPokemon.GetDisplayName() & " gained health from the Ingrain.", "ingrain")
                     End If
                 End If
 
