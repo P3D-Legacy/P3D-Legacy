@@ -93,6 +93,8 @@
                                 ent.Visible = CBool(argument.GetSplit(1))
                             Case "setadditionalvalue"
                                 ent.AdditionalValue = argument.GetSplit(1)
+                            Case "setaction"
+                                ent.ActionValue = CInt(argument.GetSplit(1))
                             Case "setcollision"
                                 ent.Collision = CBool(argument.GetSplit(1))
                             Case "settexture"

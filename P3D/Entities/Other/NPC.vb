@@ -29,7 +29,7 @@
     Public TrainerChecked As Boolean = False
     Public TrainerCheckCollision As Boolean = True
 
-    Dim AnimateIdle As Boolean = True
+    Public AnimateIdle As Boolean = True
     Dim AnimationX As Integer = 1
     Dim AnimationX_Offset As Integer = 0
     Const AnimationDelayLength As Single = 1.1F

@@ -260,6 +260,8 @@ Namespace ScriptVersion2
                                                 New ScriptArgument("Visible", ScriptArgument.ArgumentTypes.Bool)}.ToList(), "Changes the whether the entity is visible or not."))
             r(New ScriptCommand("Entity", "SetAdditionalValue", {New ScriptArgument("EntityID", ScriptArgument.ArgumentTypes.Int),
                                                 New ScriptArgument("AdditionalValue", ScriptArgument.ArgumentTypes.Str)}.ToList(), "Sets the AdditionalValue property of the given entity."))
+            r(New ScriptCommand("Entity", "SetAction", {New ScriptArgument("EntityID", ScriptArgument.ArgumentTypes.Int),
+                                                           New ScriptArgument("Action", ScriptArgument.ArgumentTypes.Str)}.ToList(), "Sets the Action property of the given entity."))
             r(New ScriptCommand("Entity", "SetCollision", {New ScriptArgument("EntityID", ScriptArgument.ArgumentTypes.Int),
                                                 New ScriptArgument("Collision", ScriptArgument.ArgumentTypes.Bool)}.ToList(), "Sets the Collision property of the given entity."))
             r(New ScriptCommand("Entity", "SetTexture", {New ScriptArgument("EntityID", ScriptArgument.ArgumentTypes.Int),
@@ -628,6 +630,15 @@ Namespace ScriptVersion2
                                                           New ScriptArgument("xScale", ScriptArgument.ArgumentTypes.Sng),
                                                           New ScriptArgument("yScale", ScriptArgument.ArgumentTypes.Sng),
                                                           New ScriptArgument("zScale", ScriptArgument.ArgumentTypes.Sng)}.ToList(), "Changes the Scale property of the selected NPC."))
+            r(New ScriptCommand("NPC", "SetAnimateIdle", {New ScriptArgument("ID", ScriptArgument.ArgumentTypes.Int),
+                                                          New ScriptArgument("AnimateIdle", ScriptArgument.ArgumentTypes.Bool)}.ToList(), "Sets the AnimateIdle property of the selected NPC."))
+            r(New ScriptCommand("NPC", "SetMovement", {New ScriptArgument("ID", ScriptArgument.ArgumentTypes.Int),
+                                                          New ScriptArgument("Movement", ScriptArgument.ArgumentTypes.Str, {"still", "faceplayer", "walk", "straight", "turning", "pokeball"})}.ToList(), "Sets the Movement property of the selected NPC."))
+            r(New ScriptCommand("NPC", "SetAdditionalValue", {New ScriptArgument("ID", ScriptArgument.ArgumentTypes.Int),
+                                                           New ScriptArgument("AdditionalValue", ScriptArgument.ArgumentTypes.Str)}.ToList(), "Sets the AdditionalValue property of the given NPC."))
+            r(New ScriptCommand("NPC", "SetAction", {New ScriptArgument("ID", ScriptArgument.ArgumentTypes.Int),
+                                                           New ScriptArgument("Action", ScriptArgument.ArgumentTypes.Str)}.ToList(), "Sets the Action property of the given NPC."))
+
 
             ' Constructs:
             r(New ScriptCommand("NPC", "Position", "sngArr", {New ScriptArgument("ID", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Returns the position of the selected NPC.", ",", True))

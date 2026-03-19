@@ -1,4 +1,6 @@
-﻿Namespace ScriptVersion2
+﻿Imports P3D.Items.Balls
+
+Namespace ScriptVersion2
 
     Partial Class ScriptCommander
 
@@ -115,6 +117,42 @@
                     If targetNPC.ModelPath <> "" Then
                         targetNPC.Scale *= ModelManager.MODELSCALE
                     End If
+                    IsReady = True
+                Case "setanimateidle"
+                    Dim targetNPC As NPC = Screen.Level.GetNPC(int(argument.GetSplit(0)))
+
+                    targetNPC.AnimateIdle = CBool(argument.GetSplit(1))
+
+                    IsReady = True
+                Case "setmovement"
+                    Dim targetNPC As NPC = Screen.Level.GetNPC(int(argument.GetSplit(0)))
+                    Select Case argument.GetSplit(1).ToLower
+                        Case "still"
+                            targetNPC.Movement = NPC.Movements.Still
+                        Case "looking"
+                            targetNPC.Movement = NPC.Movements.Looking
+                        Case "faceplayer"
+                            targetNPC.Movement = NPC.Movements.FacePlayer
+                        Case "walk"
+                            targetNPC.Movement = NPC.Movements.Walk
+                        Case "straight"
+                            targetNPC.Movement = NPC.Movements.Straight
+                        Case "turning"
+                            targetNPC.Movement = NPC.Movements.Turning
+                        Case "pokeball"
+                            targetNPC.Movement = NPC.Movements.Pokeball
+                    End Select
+
+                    IsReady = True
+                Case "setadditionalvalue"
+                    Dim targetNPC As NPC = Screen.Level.GetNPC(int(argument.GetSplit(0)))
+                    targetNPC.AdditionalValue = argument.Remove(0, argument.IndexOf(",") + 1)
+
+                    IsReady = True
+                Case "setaction"
+                    Dim targetNPC As NPC = Screen.Level.GetNPC(int(argument.GetSplit(0)))
+                    targetNPC.ActionValue = CInt(argument.GetSplit(1))
+
                     IsReady = True
                 Case "moveasync"
                     Dim targetNPC As NPC = Screen.Level.GetNPC(int(argument.GetSplit(0)))
