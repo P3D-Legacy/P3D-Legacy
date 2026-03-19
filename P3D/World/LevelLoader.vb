@@ -664,6 +664,11 @@
         Dim Movement As String = CStr(GetTag(Tags, "Movement"))
         Dim MoveRectangles As List(Of Rectangle) = CType(GetTag(Tags, "MoveRectangles"), List(Of Rectangle))
 
+        Dim CameraDistanceDelta As Single = 0.0F
+        If TagExists(Tags, "CameraDistanceDelta") = True Then
+            CameraDistanceDelta = CSng(GetTag(Tags, "CameraDistanceDelta"))
+        End If
+
         Dim Shader As New Vector3(1.0F)
         If TagExists(Tags, "Shader") = True Then
             Dim ShaderList As List(Of Single) = CType(GetTag(Tags, "Shader"), List(Of Single))
@@ -675,7 +680,7 @@
             AnimateIdle = CBool(GetTag(Tags, "AnimateIdle"))
         End If
 
-        Dim NPC As NPC = CType(Entity.GetNewEntity("NPC", Position, {Nothing}, {0, 0}, Collision, New Vector3(0), Scale, BaseModel.BillModel, ActionValue, AdditionalValue, True, Shader, -1, MapOrigin, "", Offset, {TextureID, Rotation, Name, ID, AnimateIdle, Movement, MoveRectangles},,,, ModelPath), NPC)
+        Dim NPC As NPC = CType(Entity.GetNewEntity("NPC", Position, {Nothing}, {0, 0}, Collision, New Vector3(0), Scale, BaseModel.BillModel, ActionValue, AdditionalValue, True, Shader, -1, MapOrigin, "", Offset, {TextureID, Rotation, Name, ID, AnimateIdle, Movement, MoveRectangles},,, CameraDistanceDelta, ModelPath), NPC)
 
         If loadOffsetMap = False Then
             Screen.Level.Entities.Add(NPC)
