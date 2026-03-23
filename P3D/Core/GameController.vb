@@ -66,6 +66,7 @@ Public Class GameController
 
     Public Sub New()
         Me.window_change = False
+        Me.InactiveSleepTime = New TimeSpan(0)
         Graphics = New GraphicsDeviceManager(Me)
         Content.RootDirectory = "Content"
 
