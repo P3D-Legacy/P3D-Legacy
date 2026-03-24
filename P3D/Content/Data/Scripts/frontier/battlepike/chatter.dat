@@ -1,6 +1,88 @@
 version=2
-:select:<register.value(pike_npc)>
-	:when:
-		@text.show( )
+:select:<calc.int(<environment.hour>+<calc.int(<environment.dayofyear>m18)>)>
+	:when:0
+		@text.show(I am lost,~I need a Helping Hand.)
+	:when:1
+		@text.show(I've no sense of~where I am!)
+	:when:2
+		@text.show(What should I do now?)
+	:when:3
+		@text.show(This is too exciting for me!)
+	:when:4
+		@text.show(Did you make a mistake?)
+	:when:5
+		@text.show(It's mean and awful in here!)
+	:when:6
+		@text.show(I am so tired~of this place.)
+	:when:7
+		@text.show(I quite enjoy~this challenge.)
+	:when:8
+		@text.show(Look at how I Tackle this!)
+	:when:9
+		@text.show(Ready to give up yet?)
+	:when:10
+		@text.show(Oh no, who are you?)
+	:when:11
+		@text.show(I've been wandering~about forever...)
+	:when:12
+		@text.show(I think I will give up...)
+	:when:13
+		@text.show(What should I do next?)
+	:when:14
+		@text.show(I can win with my~Sheer Cold genius!)
+	:when:15
+		@text.show(Won't someone cool show up?)
+	:when:16
+		@text.show(I can't take this any more.)
+	:when:17
+		@text.show(Oh no! Not another trainer!)
+	:when:18
+		@text.show(It has to be left next.)
+	:when:19
+		@text.show(I don't know if it's okay.)
+	:when:20
+		@text.show(It must be over soon right?)
+	:when:21
+		@text.show(Waaah! It wasn't this way!)
+	:when:22
+		@text.show(There is no give up in me!)
+	:when:23
+		@text.show(What will come after this?)
+	:when:24
+		@text.show(My pokemon are too tired...)
+	:when:25
+		@text.show(A trainer after another...)
+	:when:26
+		@text.show(My pokemon are strong~to poison!)
+	:when:27
+		@text.show(Go on. I can't anymore.)
+	:when:28
+		@text.show(I just want to go home!)
+	:when:29
+		@text.show(Lalala lalala!~I am awesome lalala!)
+	:when:30
+		@text.show(You think this is easy?)
+	:when:31
+		@text.show(Maybe it's right next,~I think.)
+	:when:32
+		@text.show(Toxic is a terrible thing~isn't it?)
+	:when:33
+		@text.show(Every trainer here~is too weak!)
+	:when:34
+		@text.show(Do you like steel pokemon?)
+	:when:35
+		@text.show(I am not going to make it.)
+	:when:36
+		@text.show(I am just so confused!)
+	:when:37
+		@text.show(Yeehaw!~This place is a pushover!)
+	:when:38
+		@text.show(I haven't been in~a battle yet!)
+	:when:39
+		@text.show(I am going to power on!)
+	:when:40
+		@text.show(This is totally easy~isn't it?)
+	:when:41
+		@text.show(This battle game~is awesome!)
 :endwhen
 :end
