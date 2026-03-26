@@ -600,6 +600,9 @@ E:
 Pike Building
 {"Entity"{ENT[{"ID"{int[14]}}{"Scale"{sngArr[2.01,2,2.01]}}{"EntityID"{str[WallBlock]}}{"Position"{sngArr[33,3.49,28.5]}}{"TexturePath"{str[BarkTown]}}{"Textures"{recArr[[64,0,16,16]]}}{"TextureIndex"{intArr[0,0]}}{"Collision"{bool[0]}}{"ModelID"{int[1]}}{"Action"{int[0]}}{"AdditionalValue"{str[]}}{"ModelPath"{str[Models\BattlePike\BattlePike]}}{"Rotation"{int[1]}}]}}
 
+{"EntityField"{ENT[{"Size"{intArr[1,1]}}{"EntityID"{str[SlideBlock]}}{"Position"{sngArr[33,4,40]}}{"TexturePath"{str[frontier]}}{"Textures"{recArr[[16,0,16,16]]}}{"TextureIndex"{intArr[-1,-1,-1,-1,-1,-1]}}{"Collision"{bool[1]}}{"ModelID"{int[2]}}{"Action"{int[0]}}{"AdditionalValue"{str[]}}{"Rotation"{int[2]}}]}}
+{"Floor"{ENT[{"Size"{intArr[1,2]}}{"Position"{intArr[33,5,38]}}{"hasSnow"{bool[0]}}{"TexturePath"{str[frontier]}}{"Texture"{rec[16,0,16,16]}}{"Visible"{bool[0]}}]}}
+	
 NPCs:
 Shops:
 {"NPC"{NPC[{"Position"{sngArr[29,4,28]}}{"TextureID"{str[29]}}{"ID"{int[10]}}{"Name"{str[GymGuy]}}{"Action"{int[1]}}{"AdditionalValue"{str[frontier\shops\choice]}}{"Rotation"{int[1]}}{"Movement"{str[Still]}}{"MoveRectangles"{recArr[]}}]}}
@@ -611,7 +614,7 @@ Shops:
 
 Warps:
 Pike:
-{"Entity"{ENT[{"EntityID"{str[WarpBlock]}}{"TexturePath"{str[frontier]}}{"Textures"{recArr[[24,16,16,16]]}}{"TextureIndex"{intArr[0,0,0,0,0,0,0,0,0,0]}}{"Collision"{bool[1]}}{"ModelID"{int[1]}}{"Action"{int[0]}}{"AdditionalValue"{str[frontier\battlepike\main.dat,5,0.1,8,0]}}{"Rotation"{int[0]}}{"Visible"{bool[0]}}{"Position"{sngArr[33,4,41]}}]}}
+{"Entity"{ENT[{"EntityID"{str[WarpBlock]}}{"TexturePath"{str[frontier]}}{"Textures"{recArr[[24,16,16,16]]}}{"TextureIndex"{intArr[0,0,0,0,0,0,0,0,0,0]}}{"Collision"{bool[1]}}{"ModelID"{int[1]}}{"Action"{int[0]}}{"AdditionalValue"{str[frontier\battlepike\main.dat,5,0.1,8,0]}}{"Rotation"{int[0]}}{"Visible"{bool[0]}}{"Position"{sngArr[33,5,38]}}]}}
 Castle:
 {"Entity"{ENT[{"EntityID"{str[WarpBlock]}}{"Position"{sngArr[5,3,27]}}{"TexturePath"{str[Village]}}{"Textures"{recArr[[128,16,16,16]]}}{"TextureIndex"{intArr[0,0,0,0,0,0,0,0,0,0]}}{"Collision"{bool[1]}}{"ModelID"{int[0]}}{"Action"{int[0]}}{"AdditionalValue"{str[frontier\battlecastle\exterior.dat,44,3.1,31,0]}}{"Rotation"{int[0]}}{"Visible"{bool[0]}}]}}
 {"Entity"{ENT[{"EntityID"{str[WarpBlock]}}{"Position"{sngArr[5,3,28]}}{"TexturePath"{str[Village]}}{"Textures"{recArr[[128,16,16,16]]}}{"TextureIndex"{intArr[0,0,0,0,0,0,0,0,0,0]}}{"Collision"{bool[1]}}{"ModelID"{int[0]}}{"Action"{int[0]}}{"AdditionalValue"{str[frontier\battlecastle\exterior.dat,44,3.1,32,0]}}{"Rotation"{int[0]}}{"Visible"{bool[0]}}]}}
