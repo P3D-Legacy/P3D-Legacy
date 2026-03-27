@@ -20,6 +20,7 @@ Public MustInherit Class Item
     Public gmIsMail As Boolean = False
     Public gmIsMegaStone As Boolean = False
     Public gmIsPlate As Boolean = False
+    Public gmBattleSelectPokemon As Boolean = True
 
     Public Property IsGameModeItem As Boolean = False
 
@@ -214,7 +215,15 @@ Public MustInherit Class Item
     ''' <summary>
     ''' If this item requires the player to select a Pokémon to use the item on in battle.
     ''' </summary>
-    Public Overridable ReadOnly Property BattleSelectPokemon As Boolean = True
+    Public Overridable ReadOnly Property BattleSelectPokemon As Boolean
+        Get
+            If Me.IsGameModeItem Then
+                Return Me.gmBattleSelectPokemon
+            Else
+                Return True
+            End If
+        End Get
+    End Property
 
     ''' <summary>
     ''' If this item is a Healing item.

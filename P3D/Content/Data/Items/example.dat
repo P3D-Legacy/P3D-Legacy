@@ -1,9 +1,11 @@
 #This is an example item for a GameMode.
 #The default GameMode cannot load additional items, however all other GameModes can.
-#Here's a list of all properties that can be set: "ID", "Name", "PluralName", "Description", "Type", "TextureIndex", "CanBeUsed", "CanBeUsedInBattle", "CanBeHeld", "UseOnPokemonInBattle", "CanBeTossed", "CanBeTraded", "Price", "BattlePointsPrice", "CatchMultiplier", "MaxStack", "FlingDamage", "IsHealingItem", "HealHPAmount", "CureStatus", "EvolutionPokemon", "Script", "IsHM", "TeachMove", "CanAlwaysTeach", "CanTeachWhenFullyEvolved", "CanTeachWhenGendered", "IsMail"
+#Here's a list of all properties that can be set: "ID", "Name", "PluralName", "Description", "Type", "TextureIndex", "CanBeUsed", "CanBeUsedInBattle", "CanBeHeld", "UseOnPokemonInBattle", "BattleUseSound", "CanBeTossed", "CanBeTraded", "Price", "BattlePointsPrice", "CatchMultiplier", "MaxStack", "FlingDamage", "IsHealingItem", "HealHPAmount", "CureStatus", "OpponentEffects" "EvolutionPokemon", "Script", "IsHM", "TeachMove", "CanAlwaysTeach", "CanTeachWhenFullyEvolved", "CanTeachWhenGendered", "IsMail"
 
 #Available values for "Type": "Standard", "Medicine", "Plants", "Balls" or "PokeBalls", "Machines", "KeyItems", "Mail", "BattleItems"
 #Available values for "CureStatus", multiple values can be added separated by a comma: "BRN", "FRZ", "PRZ", "PSN", "BPSN", "SLP", "FNT", "Confusion", "AllWithoutFaint", "All"
+#Available values for "OpponentEffects", multiple values can be added separated by a comma: "BRN", "FRZ", "PRZ", "PSN", "BPSN", "SLP", "Confusion", "AllStatus", "Heal"
+#BattleUseSound consists of the path to the sound (Relative to Sounds\) and optionally after a comma a boolean for if the music should be paused until the sound is over (Defaults to 0/false if no second value is added).
 #EvolutionPokemon can contain multiple Pokemon numbers, separated by a comma (,)
 
 #To build your own item for your GameMode, create a new file with the .dat file extension in the Content\Data\Items folder and add/replace lines like these without the #.
@@ -15,6 +17,7 @@
 #CanBeUsed|1
 #CanBeUsedInBattle|1
 #UseOnPokemonInBattle|1
+#BattleUseSound|SoundEffect,1
 #CanBeTossed|1
 #CanBeTraded|1
 #CanBeHeld|1
@@ -25,7 +28,8 @@
 #FlingDamage|30
 #IsHealingItem|1
 #HealHPAmount|40
-#CureStatus|0,BRN,PRZ,Confusion
+#CureStatus|BRN,PRZ,Confusion
+#OpponentEffects|PSN,FRZ,Heal
 #EvolutionPokemon|64,93
 #Script|Items\ItemName
 #IsMail|1

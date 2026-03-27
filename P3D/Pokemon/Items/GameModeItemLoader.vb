@@ -102,6 +102,13 @@ Public Class GameModeItemLoader
                             item.gmCanBeUsedInBattle = CBool(value)
                         Case "useonpokemoninbattle"
                             item.gmBattleSelectPokemon = CBool(value)
+                        Case "battleusesound"
+                            If value.Contains(",") = False Then
+                                item.gmBattleUseSound = value & ",0"
+                            Else
+                                item.gmBattleUseSound = value
+                            End If
+
                         Case "canbetossed"
                             item.gmCanBeTossed = CBool(value)
                         Case "canbeheld"
@@ -142,6 +149,20 @@ Public Class GameModeItemLoader
                                 item.gmCureStatusEffects = StatusEffectList
                             Else
                                 item.gmCureStatusEffects.AddRange(StatusEffectList)
+                            End If
+                        Case "opponenteffects"
+                            Dim EffectList As New List(Of String)
+                            Dim valueSplit As String() = value.Split(",")
+                            For i = 0 To valueSplit.Count - 1
+                                Select Case valueSplit(i).ToLower
+                                    Case "brn", "frz", "prz", "psn", "bpsn", "slp", "confusion", "allstatus", "heal"
+                                        EffectList.Add(valueSplit(i))
+                                End Select
+                            Next
+                            If item.gmUseOnOppEffects Is Nothing Then
+                                item.gmUseOnOppEffects = EffectList
+                            Else
+                                item.gmUseOnOppEffects.AddRange(EffectList)
                             End If
                         Case "evolutionpokemon"
                             Dim PokemonList As New List(Of Integer)

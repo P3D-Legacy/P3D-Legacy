@@ -1,4 +1,6 @@
+Imports P3D.BattleSystem
 Imports P3D.Items
+Imports P3D.Screen
 
 ''' <summary>
 ''' An item the player stores in their inventory.
@@ -20,7 +22,6 @@ Public Class GameModeItem
     Public gmCanBeUsed As Boolean = True
     Public gmCanBeUsedInBattle As Boolean = True
     Public gmCanBeTossed As Boolean = True
-    Public gmBattleSelectPokemon As Boolean = True
     Public gmExpMultiplier As Double = -1D
     Public gmOverrideTradeExp As Boolean = False
 
@@ -30,6 +31,8 @@ Public Class GameModeItem
     Public gmIsHealingItem As Boolean = False
     Public gmHealHPAmount As Integer = 0
     Public gmCureStatusEffects As List(Of String)
+    Public gmUseOnOppEffects As List(Of String)
+    Public gmBattleUseSound As String
 
     'Evolution Item
     Public gmEvolutionPokemon As List(Of Integer)
@@ -250,21 +253,36 @@ Public Class GameModeItem
     ''' The item gets used from the bag.
     ''' </summary>
     Public Overrides Sub Use()
-        If gmScriptPath = "" Then
-            If IsMail = True Then
-                Core.SetScreen(New TransitionScreen(Core.CurrentScreen, New MailSystemScreen(Core.CurrentScreen, Me.gmID), Color.Black, False))
+        Dim cScreen As Screen = Core.CurrentScreen
+        While Not cScreen.PreScreen Is Nothing And cScreen.Identification <> Identifications.BattleScreen
+            cScreen = cScreen.PreScreen
+        End While
+
+        If cScreen.Identification = Identifications.BattleScreen OrElse gmScriptPath = "" Then
+            If cScreen.Identification <> Identifications.BattleScreen Then
+                If IsMail = True Then
+                    Core.SetScreen(New TransitionScreen(Core.CurrentScreen, New MailSystemScreen(Core.CurrentScreen, Me.gmID), Color.Black, False))
+                End If
+
+                If gmTeachMove IsNot Nothing Then
+                    If Core.Player.Pokemons.Count > 0 Then
+                        SoundManager.PlaySound("PC\LogOn", False)
+                        Dim selScreen = New PartyScreen(Core.CurrentScreen, Me, AddressOf Me.UseOnPokemon, Localization.GetString("global_use", "Use") & " " & Me.OneLineName(), True) With {.Mode = Screens.UI.ISelectionScreen.ScreenMode.Selection, .CanExit = True}
+                        AddHandler selScreen.SelectedObject, AddressOf UseItemhandler
+
+                        Core.SetScreen(selScreen)
+                        CType(CurrentScreen, PartyScreen).SetupLearnAttack(gmTeachMove, 1, Me)
+                    Else
+                        Screen.TextBox.Show("You don't have any Pokémon.", {}, False, False)
+                    End If
+                End If
             End If
-
-            If gmTeachMove IsNot Nothing Then
-                If Core.Player.Pokemons.Count > 0 Then
-                    SoundManager.PlaySound("PC\LogOn", False)
-                    Dim selScreen = New PartyScreen(Core.CurrentScreen, Me, AddressOf Me.UseOnPokemon, Localization.GetString("global_use", "Use") & " " & Me.OneLineName(), True) With {.Mode = Screens.UI.ISelectionScreen.ScreenMode.Selection, .CanExit = True}
-                    AddHandler selScreen.SelectedObject, AddressOf UseItemhandler
-
-                    Core.SetScreen(selScreen)
-                    CType(CurrentScreen, PartyScreen).SetupLearnAttack(gmTeachMove, 1, Me)
-                Else
-                    Screen.TextBox.Show("You don't have any Pokémon.", {}, False, False)
+            If Me.gmBattleSelectPokemon = False Then
+                CType(cScreen, BattleSystem.BattleScreen).FocusBattle()
+            End If
+            If gmCureStatusEffects Is Nothing AndAlso Me.gmBattleSelectPokemon = False Then
+                If cScreen.Identification = Identifications.BattleScreen AndAlso gmBattleUseSound <> "" Then
+                    CType(cScreen, BattleSystem.BattleScreen).AddToQuery(-1, New PlaySoundQueryObject(gmBattleUseSound.GetSplit(0, ","), False, "", CBool(gmBattleUseSound.GetSplit(1, ","))))
                 End If
             End If
             If gmIsHealingItem = True Then
@@ -272,22 +290,34 @@ Public Class GameModeItem
                     Screen.TextBox.Show("Cannot use heal items.", {}, False, False)
                     Exit Sub
                 End If
-                If Core.Player.Pokemons.Count > 0 Then
-                    Dim selScreen = New PartyScreen(Core.CurrentScreen, Me, AddressOf Me.UseOnPokemon, Localization.GetString("global_use", "Use") & " " & Me.OneLineName(), True) With {.Mode = Screens.UI.ISelectionScreen.ScreenMode.Selection, .CanExit = True}
-                    AddHandler selScreen.SelectedObject, AddressOf UseItemhandler
+                If cScreen.Identification <> Identifications.BattleScreen OrElse Me.gmBattleSelectPokemon = True Then
+                    If Core.Player.Pokemons.Count > 0 Then
+                        Dim selScreen = New PartyScreen(Core.CurrentScreen, Me, AddressOf Me.UseOnPokemon, Localization.GetString("global_use", "Use") & " " & Me.OneLineName(), True) With {.Mode = Screens.UI.ISelectionScreen.ScreenMode.Selection, .CanExit = True}
+                        AddHandler selScreen.SelectedObject, AddressOf UseItemhandler
 
-                    Core.SetScreen(selScreen)
+                        Core.SetScreen(selScreen)
+                    Else
+                        Screen.TextBox.Show("You don't have any Pokémon.", {}, False, False)
+                    End If
                 Else
-                    Screen.TextBox.Show("You don't have any Pokémon.", {}, False, False)
+                    If Core.Player.Pokemons.Count > 0 Then
+                        Me.UseOnPokemon(CType(cScreen, BattleSystem.BattleScreen).OwnPokemonIndex)
+                    End If
                 End If
             ElseIf gmCureStatusEffects IsNot Nothing AndAlso gmCureStatusEffects.Count > 0 Then
-                If Core.Player.Pokemons.Count > 0 Then
-                    Dim selScreen = New PartyScreen(Core.CurrentScreen, Me, AddressOf Me.UseOnPokemon, Localization.GetString("global_use", "Use") & " " & Me.OneLineName(), True) With {.Mode = Screens.UI.ISelectionScreen.ScreenMode.Selection, .CanExit = True}
-                    AddHandler selScreen.SelectedObject, AddressOf UseItemhandler
+                If cScreen.Identification <> Identifications.BattleScreen OrElse Me.gmBattleSelectPokemon = True Then
+                    If Core.Player.Pokemons.Count > 0 Then
+                        Dim selScreen = New PartyScreen(Core.CurrentScreen, Me, AddressOf Me.UseOnPokemon, Localization.GetString("global_use", "Use") & " " & Me.OneLineName(), True) With {.Mode = Screens.UI.ISelectionScreen.ScreenMode.Selection, .CanExit = True}
+                        AddHandler selScreen.SelectedObject, AddressOf UseItemhandler
 
-                    Core.SetScreen(selScreen)
+                        Core.SetScreen(selScreen)
+                    Else
+                        Screen.TextBox.Show("You don't have any Pokémon.", {}, False, False)
+                    End If
                 Else
-                    Screen.TextBox.Show("You don't have any Pokémon.", {}, False, False)
+                    If Core.Player.Pokemons.Count > 0 Then
+                        Me.UseOnPokemon(CType(cScreen, BattleSystem.BattleScreen).OwnPokemonIndex)
+                    End If
                 End If
             ElseIf gmEvolutionPokemon IsNot Nothing AndAlso gmEvolutionPokemon.Count > 0 Then
                 If Core.Player.Pokemons.Count > 0 Then
@@ -299,6 +329,11 @@ Public Class GameModeItem
 
                 Else
                     Screen.TextBox.Show("You don't have any Pokémon.", {}, False, False)
+                End If
+            End If
+            If gmUseOnOppEffects IsNot Nothing AndAlso gmUseOnOppEffects.Count > 0 Then
+                If cScreen.Identification = Identifications.BattleScreen AndAlso Me.CanBeUsedInBattle = True Then
+                    UseOnOppPokemon(CType(cScreen, BattleSystem.BattleScreen))
                 End If
             End If
         Else
@@ -324,7 +359,9 @@ Public Class GameModeItem
         If PokeIndex < 0 Or PokeIndex > 5 Then
             Throw New ArgumentOutOfRangeException("PokeIndex", PokeIndex, "The index for a Pokémon in a player's party can only be between 0 and 5.")
         End If
-
+        If CurrentScreen.Identification = Identifications.BattleScreen AndAlso Me.gmBattleSelectPokemon = True AndAlso gmBattleUseSound <> "" Then
+            CType(CurrentScreen, BattleSystem.BattleScreen).AddToQuery(-1, New PlaySoundQueryObject(gmBattleUseSound.GetSplit(0, ","), False, "", CBool(gmBattleUseSound.GetSplit(1, ","))))
+        End If
         Dim p As Pokemon = Core.Player.Pokemons(PokeIndex)
 
         If gmTeachMove IsNot Nothing Then
@@ -407,7 +444,9 @@ Public Class GameModeItem
                     If success1 = True Or success2 = True Then
                         Screen.TextBox.reDelay = 0.0F
 
-                        t &= RemoveItem()
+                        If Me.gmItemType <> ItemTypes.KeyItems Then
+                            t &= RemoveItem()
+                        End If
                         PlayerStatistics.Track("[17]Medicine Items used", 1)
 
                         SoundManager.PlaySound("Use_Item", False)
@@ -415,7 +454,7 @@ Public Class GameModeItem
 
                         Return True
                     Else
-                        Screen.TextBox.Show("Cannot use" & Me.gmName & "~on " & p.GetDisplayName() & ".", {}, False, False)
+                        Screen.TextBox.Show("Cannot use" & Me.Name & "~on " & p.GetDisplayName() & ".", {}, False, False)
                         Return False
                     End If
                 ElseIf gmCureStatusEffects.Contains("all") Then
@@ -448,7 +487,9 @@ Public Class GameModeItem
                     If success1 = True Or success2 = True Then
                         Screen.TextBox.reDelay = 0.0F
 
-                        t &= RemoveItem()
+                        If Me.gmItemType <> ItemTypes.KeyItems Then
+                            t &= RemoveItem()
+                        End If
                         PlayerStatistics.Track("[17]Medicine Items used", 1)
 
                         SoundManager.PlaySound("Use_Item", False)
@@ -456,7 +497,7 @@ Public Class GameModeItem
 
                         Return True
                     Else
-                        Screen.TextBox.Show("Cannot use" & Me.gmName & "~on " & p.GetDisplayName() & ".", {}, False, False)
+                        Screen.TextBox.Show("Cannot use" & Me.Name & "~on " & p.GetDisplayName() & ".", {}, False, False)
                         Return False
                     End If
                 Else
@@ -476,7 +517,7 @@ Public Class GameModeItem
                         If gmCureStatusEffects.Contains("slp") Then
                             Return WakeUp(PokeIndex)
                         End If
-                        If gmCureStatusEffects.Contains("cfs") Then
+                        If gmCureStatusEffects.Contains("confusion") Then
                             Return CureConfusion(PokeIndex)
                         End If
                         If gmCureStatusEffects.Contains("fnt") Then
@@ -509,7 +550,7 @@ Public Class GameModeItem
                                 success = True
                             End If
                         End If
-                        If gmCureStatusEffects.Contains("cfs") Then
+                        If gmCureStatusEffects.Contains("confusion") Then
                             If CureConfusion(PokeIndex, True) Then
                                 success = True
                             End If
@@ -533,7 +574,9 @@ Public Class GameModeItem
                         If healsuccess = True Or success = True Then
                             Screen.TextBox.reDelay = 0.0F
 
-                            t &= RemoveItem()
+                            If Me.gmItemType <> ItemTypes.KeyItems Then
+                                t &= RemoveItem()
+                            End If
                             PlayerStatistics.Track("[17]Medicine Items used", 1)
 
                             SoundManager.PlaySound("Use_Item", False)
@@ -541,7 +584,7 @@ Public Class GameModeItem
 
                             Return True
                         Else
-                            Screen.TextBox.Show("Cannot use" & Me.gmName & "~on " & p.GetDisplayName() & ".", {}, False, False)
+                            Screen.TextBox.Show("Cannot use" & Me.Name & "~on " & p.GetDisplayName() & ".", {}, False, False)
                             Return False
                         End If
                     End If
@@ -550,6 +593,159 @@ Public Class GameModeItem
         End If
         If gmEvolutionPokemon IsNot Nothing AndAlso gmEvolutionPokemon.Count > 0 Then
             Return Me.UseEvolutionItem(PokeIndex)
+        End If
+
+        Return False
+    End Function
+    Public Function UseOnOppPokemon(bScreen As BattleSystem.BattleScreen) As Boolean
+
+        Dim p As Pokemon = bScreen.OppPokemon
+        Dim healsuccess As Boolean = False
+        If gmUseOnOppEffects Is Nothing OrElse gmUseOnOppEffects.Count = 0 Then
+            If gmIsHealingItem = True AndAlso gmHealHPAmount > 0 AndAlso gmUseOnOppEffects.Contains("heal") Then
+                Return HealPokemon(-1, gmHealHPAmount,, p)
+            End If
+        ElseIf gmUseOnOppEffects.Contains("allstatus") = False Then
+            If gmIsHealingItem = True AndAlso gmHealHPAmount > 0 AndAlso gmUseOnOppEffects.Contains("heal") Then
+                If HealPokemon(-1, gmHealHPAmount, True, p) Then
+                    healsuccess = True
+                End If
+            End If
+        End If
+
+        If gmUseOnOppEffects IsNot Nothing AndAlso gmUseOnOppEffects.Count > 0 Then
+            If gmUseOnOppEffects.Contains("allstatus") Then
+                Dim success1 As Boolean = False
+                Dim success2 As Boolean = False
+                If gmIsHealingItem = True AndAlso gmHealHPAmount > 0 AndAlso gmUseOnOppEffects.Contains("heal") Then
+                    If HealPokemon(-1, gmHealHPAmount, True, p) = True Then
+                        success1 = True
+                    End If
+                End If
+                If p.Status <> Pokemon.StatusProblems.Fainted AndAlso p.Status <> Pokemon.StatusProblems.None Or p.HasVolatileStatus(Pokemon.VolatileStatus.Confusion) = True Then
+                    If p.HasVolatileStatus(Pokemon.VolatileStatus.Confusion) = True Then
+                        p.RemoveVolatileStatus(Pokemon.VolatileStatus.Confusion)
+                    End If
+                    p.Status = Pokemon.StatusProblems.None
+                    success2 = True
+                End If
+
+                Dim t As String = ""
+                If success1 = True AndAlso success2 = False Then
+                    t &= "Healed " & p.GetDisplayName() & "!"
+                End If
+                If success1 = False AndAlso success2 = True Then
+                    t &= "Cured " & p.GetDisplayName() & "!"
+                End If
+                If success1 = True AndAlso success2 = True Then
+                    t &= "Healed and cured~" & p.GetDisplayName() & "!"
+                End If
+
+                If success1 = True Or success2 = True Then
+                    Screen.TextBox.reDelay = 0.0F
+
+                    If Me.gmItemType <> ItemTypes.KeyItems Then
+                        t &= RemoveItem()
+                    End If
+                    If gmCureStatusEffects IsNot Nothing And gmUseOnOppEffects Is Nothing OrElse gmCureStatusEffects Is Nothing And gmUseOnOppEffects IsNot Nothing Then
+                        PlayerStatistics.Track("[17]Medicine Items used", 1)
+                    End If
+
+                    SoundManager.PlaySound("Use_Item", False)
+                    Screen.TextBox.Show(t, {})
+
+                    Return True
+                Else
+                    Screen.TextBox.Show("Cannot use" & Me.Name & "~on " & p.GetDisplayName() & ".", {}, False, False)
+                    Return False
+                End If
+            Else
+                If gmUseOnOppEffects.Count = 1 Then
+                    If gmUseOnOppEffects.Contains("brn") Then
+                        Return HealBurn(-1,, p)
+                    End If
+                    If gmUseOnOppEffects.Contains("frz") Then
+                        Return HealIce(-1,, p)
+                    End If
+                    If gmUseOnOppEffects.Contains("prz") Then
+                        Return HealParalyze(-1,, p)
+                    End If
+                    If gmUseOnOppEffects.Contains("psn") OrElse gmUseOnOppEffects.Contains("bpsn") Then
+                        Return CurePoison(-1,, p)
+                    End If
+                    If gmUseOnOppEffects.Contains("slp") Then
+                        Return WakeUp(-1,, p)
+                    End If
+                    If gmUseOnOppEffects.Contains("confusion") Then
+                        Return CureConfusion(-1,, p)
+                    End If
+                Else
+                    Dim success As Boolean = False
+                    If gmUseOnOppEffects.Contains("brn") Then
+                        If HealBurn(-1, True, p) Then
+                            success = True
+                        End If
+                    End If
+                    If gmUseOnOppEffects.Contains("frz") Then
+                        If HealIce(-1, True, p) Then
+                            success = True
+                        End If
+                    End If
+                    If gmUseOnOppEffects.Contains("prz") Then
+                        If HealParalyze(-1, True, p) Then
+                            success = True
+                        End If
+                    End If
+                    If gmUseOnOppEffects.Contains("psn") OrElse gmUseOnOppEffects.Contains("bpsn") Then
+                        If CurePoison(-1, True, p) Then
+                            success = True
+                        End If
+                    End If
+                    If gmUseOnOppEffects.Contains("slp") Then
+                        If WakeUp(-1, True, p) Then
+                            success = True
+                        End If
+                    End If
+                    If gmUseOnOppEffects.Contains("confusion") Then
+                        If CureConfusion(-1, True, p) Then
+                            success = True
+                        End If
+                    End If
+                    Dim t As String = ""
+                    If healsuccess = True AndAlso success = False Then
+                        t &= "Healed " & p.GetDisplayName() & "!"
+                    End If
+                    If healsuccess = False AndAlso success = True Then
+                        t &= "Cured " & p.GetDisplayName() & "!"
+                    End If
+                    If healsuccess = True AndAlso success = True Then
+                        t &= "Healed and cured~" & p.GetDisplayName() & "!"
+                    End If
+
+                    If healsuccess = True Or success = True Then
+                        Screen.TextBox.reDelay = 0.0F
+
+                        If Me.gmItemType <> ItemTypes.KeyItems Then
+                            t &= RemoveItem()
+                        End If
+
+                        If gmCureStatusEffects Is Nothing Then
+                            PlayerStatistics.Track("[17]Medicine Items used", 1)
+                        End If
+
+                        SoundManager.PlaySound("Use_Item", False)
+                        Screen.TextBox.Show(t, {})
+
+                        Return True
+                    Else
+                        If gmCureStatusEffects Is Nothing Then
+                            Screen.TextBox.Show("Cannot use" & Me.Name & "~on " & p.GetDisplayName() & ".", {}, False, False)
+                        End If
+
+                        Return False
+                    End If
+                End If
+            End If
         End If
 
         Return False
@@ -611,7 +807,9 @@ Public Class GameModeItem
         Dim p As Pokemon = Core.Player.Pokemons(PokeIndex)
         If p.IsEgg() = False And p.CanEvolve(EvolutionCondition.EvolutionTrigger.ItemUse, Me.gmID) = True Then
 
-            RemoveItem()
+            If Me.gmItemType <> ItemTypes.KeyItems Then
+                t &= RemoveItem()
+            End If
 
             Core.SetScreen(New TransitionScreen(Core.CurrentScreen, New EvolutionScreen(Core.CurrentScreen, {PokeIndex}.ToList(), Me.gmID, EvolutionCondition.EvolutionTrigger.ItemUse), Color.Black, False))
             Return True
@@ -627,18 +825,28 @@ Public Class GameModeItem
     ''' </summary>
     ''' <param name="PokeIndex">The index of the Pokémon in the player's party.</param>
     ''' <param name="HP">The HP that should be healed.</param>
-    Public Function HealPokemon(ByVal PokeIndex As Integer, ByVal HP As Integer, Optional NoTextOrSound As Boolean = False) As Boolean
-        If PokeIndex < 0 Or PokeIndex > 5 Then
-            Throw New ArgumentOutOfRangeException("PokeIndex", PokeIndex, "The index for a Pokémon in a player's party can only be between 0 and 5.")
+    Public Function HealPokemon(ByVal PokeIndex As Integer, ByVal HP As Integer, Optional NoTextOrSound As Boolean = False, Optional ByVal P As Pokemon = Nothing) As Boolean
+        If P Is Nothing Then
+            If PokeIndex < 0 Or PokeIndex > 5 Then
+                Throw New ArgumentOutOfRangeException("PokeIndex", PokeIndex, "The index for a Pokémon in a player's party can only be between 0 and 5.")
+            End If
         End If
 
-        Dim Pokemon As Pokemon = Core.Player.Pokemons(PokeIndex)
+        Dim Pokemon As Pokemon
+        If P Is Nothing Then
+            Pokemon = Core.Player.Pokemons(PokeIndex)
+        Else
+            Pokemon = P
+            If Me.gmBattleSelectPokemon = true Then
+                CType(CurrentScreen, BattleSystem.BattleScreen).Battle.ChangeCameraAngle(2, True, CType(CurrentScreen, BattleSystem.BattleScreen))
+            End If
+        End If
 
         If HP < 0 Then
             HP = CInt(Pokemon.MaxHP / (100 / (HP * (-1))))
         End If
 
-        If Pokemon.Status = P3D.Pokemon.StatusProblems.Fainted Then
+        If Pokemon.Status = Pokemon.StatusProblems.Fainted Then
             If NoTextOrSound = False Then
                 Screen.TextBox.reDelay = 0.0F
                 Screen.TextBox.Show(Pokemon.GetDisplayName() & "~is fainted!", {})
@@ -662,10 +870,14 @@ Public Class GameModeItem
                     Screen.TextBox.reDelay = 0.0F
 
                     Dim t As String = "Restored " & Pokemon.GetDisplayName() & "'s~HP by " & diff & "."
-                    t &= RemoveItem()
+                    If Me.gmItemType <> ItemTypes.KeyItems Then
+                        t &= RemoveItem()
+                    End If
 
                     SoundManager.PlaySound("Use_Item", False)
                     Screen.TextBox.Show(t, {})
+                End If
+                If gmCureStatusEffects IsNot Nothing And gmUseOnOppEffects Is Nothing OrElse gmCureStatusEffects Is Nothing And gmUseOnOppEffects IsNot Nothing Then
                     PlayerStatistics.Track("[17]Medicine Items used", 1)
                 End If
                 Return True
@@ -678,6 +890,7 @@ Public Class GameModeItem
     ''' </summary>
     ''' <param name="PokeIndex">The index of a Pokémon in the player's party.</param>
     Public Function Revive(ByVal PokeIndex As Integer, Optional NoTextOrSound As Boolean = False) As Boolean
+
         If PokeIndex < 0 Or PokeIndex > 5 Then
             Throw New ArgumentOutOfRangeException("PokeIndex", PokeIndex, "The index for a Pokémon in a player's party can only be between 0 and 5.")
         End If
@@ -692,15 +905,17 @@ Public Class GameModeItem
 
                 Dim t As String = Pokemon.GetDisplayName() & "~is revitalized."
 
-                t &= RemoveItem()
+                If Me.gmItemType <> ItemTypes.KeyItems Then
+                    t &= RemoveItem()
+                End If
                 SoundManager.PlaySound("Use_Item", False)
                 Screen.TextBox.Show(t, {}, False, False)
-                PlayerStatistics.Track("[17]Medicine Items used", 1)
             End If
+            PlayerStatistics.Track("[17]Medicine Items used", 1)
             Return True
         Else
             If NoTextOrSound = False Then
-                Screen.TextBox.Show("Cannot use" & Me.gmName & "~on " & Pokemon.GetDisplayName() & ".", {}, False, False)
+                Screen.TextBox.Show("Cannot use" & Me.Name & "~on " & Pokemon.GetDisplayName() & ".", {}, False, False)
             End If
             Return False
         End If
@@ -710,12 +925,22 @@ Public Class GameModeItem
     ''' Tries to cure a Pokémon from Poison.
     ''' </summary>
     ''' <param name="PokeIndex">The index of a Pokémon in the player's party.</param>
-    Public Function CurePoison(ByVal PokeIndex As Integer, Optional NoTextOrSound As Boolean = False) As Boolean
-        If PokeIndex < 0 Or PokeIndex > 5 Then
-            Throw New ArgumentOutOfRangeException("PokeIndex", PokeIndex, "The index for a Pokémon in a player's party can only be between 0 and 5.")
+    Public Function CurePoison(ByVal PokeIndex As Integer, Optional NoTextOrSound As Boolean = False, Optional ByVal p As Pokemon = Nothing) As Boolean
+        If p Is Nothing Then
+            If PokeIndex < 0 Or PokeIndex > 5 Then
+                Throw New ArgumentOutOfRangeException("PokeIndex", PokeIndex, "The index for a Pokémon in a player's party can only be between 0 and 5.")
+            End If
         End If
 
-        Dim Pokemon As Pokemon = Core.Player.Pokemons(PokeIndex)
+        Dim Pokemon As Pokemon
+        If p Is Nothing Then
+            Pokemon = Core.Player.Pokemons(PokeIndex)
+        Else
+            Pokemon = p
+            If Me.gmBattleSelectPokemon = True Then
+                CType(CurrentScreen, BattleSystem.BattleScreen).Battle.ChangeCameraAngle(2, True, CType(CurrentScreen, BattleSystem.BattleScreen))
+            End If
+        End If
 
         If Pokemon.Status = P3D.Pokemon.StatusProblems.Poison Or Pokemon.Status = P3D.Pokemon.StatusProblems.BadPoison Then
             Pokemon.Status = P3D.Pokemon.StatusProblems.None
@@ -724,11 +949,15 @@ Public Class GameModeItem
                 Screen.TextBox.reDelay = 0.0F
 
                 Dim t As String = "Cures the poison~of " & Pokemon.GetDisplayName() & "."
-                t &= RemoveItem()
-                PlayerStatistics.Track("[17]Medicine Items used", 1)
+                If Me.gmItemType <> ItemTypes.KeyItems Then
+                    t &= RemoveItem()
+                End If
 
                 SoundManager.PlaySound("Use_Item", False)
                 Screen.TextBox.Show(t, {})
+            End If
+            If gmCureStatusEffects IsNot Nothing And gmUseOnOppEffects Is Nothing OrElse gmCureStatusEffects Is Nothing And gmUseOnOppEffects IsNot Nothing Then
+                PlayerStatistics.Track("[17]Medicine Items used", 1)
             End If
             Return True
         ElseIf NoTextOrSound = False Then
@@ -743,12 +972,22 @@ Public Class GameModeItem
     ''' Tries to cure a Pokémon from Confusion.
     ''' </summary>
     ''' <param name="PokeIndex">The index of a Pokémon in the player's party.</param>
-    Public Function CureConfusion(ByVal PokeIndex As Integer, Optional NoTextOrSound As Boolean = False) As Boolean
-        If PokeIndex < 0 Or PokeIndex > 5 Then
-            Throw New ArgumentOutOfRangeException("PokeIndex", PokeIndex, "The index for a Pokémon in a player's party can only be between 0 and 5.")
+    Public Function CureConfusion(ByVal PokeIndex As Integer, Optional NoTextOrSound As Boolean = False, Optional ByVal p As Pokemon = Nothing) As Boolean
+        If p Is Nothing Then
+            If PokeIndex < 0 Or PokeIndex > 5 Then
+                Throw New ArgumentOutOfRangeException("PokeIndex", PokeIndex, "The index for a Pokémon in a player's party can only be between 0 and 5.")
+            End If
         End If
 
-        Dim Pokemon As Pokemon = Core.Player.Pokemons(PokeIndex)
+        Dim Pokemon As Pokemon
+        If p Is Nothing Then
+            Pokemon = Core.Player.Pokemons(PokeIndex)
+        Else
+            Pokemon = p
+            If Me.gmBattleSelectPokemon = True Then
+                CType(CurrentScreen, BattleSystem.BattleScreen).Battle.ChangeCameraAngle(2, True, CType(CurrentScreen, BattleSystem.BattleScreen))
+            End If
+        End If
 
         If Pokemon.HasVolatileStatus(Pokemon.VolatileStatus.Confusion) = True Then
             Pokemon.RemoveVolatileStatus(Pokemon.VolatileStatus.Confusion)
@@ -757,9 +996,13 @@ Public Class GameModeItem
                 Screen.TextBox.reDelay = 0.0F
                 Dim t As String = Pokemon.GetDisplayName() & "~is no longer confused."
 
-                t &= RemoveItem()
+                If Me.gmItemType <> ItemTypes.KeyItems Then
+                    t &= RemoveItem()
+                End If
                 SoundManager.PlaySound("Use_Item", False)
                 Screen.TextBox.Show(t, {}, False, False)
+            End If
+            If gmCureStatusEffects IsNot Nothing And gmUseOnOppEffects Is Nothing OrElse gmCureStatusEffects Is Nothing And gmUseOnOppEffects IsNot Nothing Then
                 PlayerStatistics.Track("[17]Medicine Items used", 1)
             End If
             Return True
@@ -776,12 +1019,22 @@ Public Class GameModeItem
     ''' Tries to wake a Pokémon up from Sleep.
     ''' </summary>
     ''' <param name="PokeIndex">The index of a Pokémon in the player's party.</param>
-    Public Function WakeUp(ByVal PokeIndex As Integer, Optional NoTextOrSound As Boolean = False) As Boolean
-        If PokeIndex < 0 Or PokeIndex > 5 Then
-            Throw New ArgumentOutOfRangeException("PokeIndex", PokeIndex, "The index for a Pokémon in a player's party can only be between 0 and 5.")
+    Public Function WakeUp(ByVal PokeIndex As Integer, Optional NoTextOrSound As Boolean = False, Optional ByVal p As Pokemon = Nothing) As Boolean
+        If p Is Nothing Then
+            If PokeIndex < 0 Or PokeIndex > 5 Then
+                Throw New ArgumentOutOfRangeException("PokeIndex", PokeIndex, "The index for a Pokémon in a player's party can only be between 0 and 5.")
+            End If
         End If
 
-        Dim Pokemon As Pokemon = Core.Player.Pokemons(PokeIndex)
+        Dim Pokemon As Pokemon
+        If p Is Nothing Then
+            Pokemon = Core.Player.Pokemons(PokeIndex)
+        Else
+            Pokemon = p
+            If Me.gmBattleSelectPokemon = True Then
+                CType(CurrentScreen, BattleSystem.BattleScreen).Battle.ChangeCameraAngle(2, True, CType(CurrentScreen, BattleSystem.BattleScreen))
+            End If
+        End If
 
         If Pokemon.Status = P3D.Pokemon.StatusProblems.Sleep Then
             Pokemon.Status = P3D.Pokemon.StatusProblems.None
@@ -791,10 +1044,14 @@ Public Class GameModeItem
 
                 Dim t As String = "Cures the sleep~of " & Pokemon.GetDisplayName() & "."
 
-                t &= RemoveItem()
+                If Me.gmItemType <> ItemTypes.KeyItems Then
+                    t &= RemoveItem()
+                End If
 
                 SoundManager.PlaySound("Use_Item", False)
                 Screen.TextBox.Show(t, {})
+            End If
+            If gmCureStatusEffects IsNot Nothing And gmUseOnOppEffects Is Nothing OrElse gmCureStatusEffects Is Nothing And gmUseOnOppEffects IsNot Nothing Then
                 PlayerStatistics.Track("[17]Medicine Items used", 1)
             End If
 
@@ -812,12 +1069,22 @@ Public Class GameModeItem
     ''' Tries to heal a Pokémon from Burn.
     ''' </summary>
     ''' <param name="PokeIndex">The index of a Pokémon in the player's party.</param>
-    Public Function HealBurn(ByVal PokeIndex As Integer, Optional NoTextOrSound As Boolean = False) As Boolean
-        If PokeIndex < 0 Or PokeIndex > 5 Then
-            Throw New ArgumentOutOfRangeException("PokeIndex", PokeIndex, "The index for a Pokémon in a player's party can only be between 0 and 5.")
+    Public Function HealBurn(ByVal PokeIndex As Integer, Optional NoTextOrSound As Boolean = False, Optional ByVal p As Pokemon = Nothing) As Boolean
+        If p Is Nothing Then
+            If PokeIndex < 0 Or PokeIndex > 5 Then
+                Throw New ArgumentOutOfRangeException("PokeIndex", PokeIndex, "The index for a Pokémon in a player's party can only be between 0 and 5.")
+            End If
         End If
 
-        Dim Pokemon As Pokemon = Core.Player.Pokemons(PokeIndex)
+        Dim Pokemon As Pokemon
+        If p Is Nothing Then
+            Pokemon = Core.Player.Pokemons(PokeIndex)
+        Else
+            Pokemon = p
+            If Me.gmBattleSelectPokemon = True Then
+                CType(CurrentScreen, BattleSystem.BattleScreen).Battle.ChangeCameraAngle(2, True, CType(CurrentScreen, BattleSystem.BattleScreen))
+            End If
+        End If
 
         If Pokemon.Status = P3D.Pokemon.StatusProblems.Burn Then
             Pokemon.Status = P3D.Pokemon.StatusProblems.None
@@ -826,10 +1093,14 @@ Public Class GameModeItem
                 Screen.TextBox.reDelay = 0.0F
 
                 Dim t As String = "Cures the burn~of " & Pokemon.GetDisplayName() & "."
-                t &= RemoveItem()
+                If Me.gmItemType <> ItemTypes.KeyItems Then
+                    t &= RemoveItem()
+                End If
 
                 SoundManager.PlaySound("Use_Item", False)
                 Screen.TextBox.Show(t, {})
+            End If
+            If gmCureStatusEffects IsNot Nothing And gmUseOnOppEffects Is Nothing OrElse gmCureStatusEffects Is Nothing And gmUseOnOppEffects IsNot Nothing Then
                 PlayerStatistics.Track("[17]Medicine Items used", 1)
             End If
             Return True
@@ -844,25 +1115,38 @@ Public Class GameModeItem
     ''' Tries to heal a Pokémon from Ice.
     ''' </summary>
     ''' <param name="PokeIndex">The index of a Pokémon in the player's party.</param>
-    Public Function HealIce(ByVal PokeIndex As Integer, Optional NoTextOrSound As Boolean = False) As Boolean
-        If PokeIndex < 0 Or PokeIndex > 5 Then
-            Throw New ArgumentOutOfRangeException("PokeIndex", PokeIndex, "The index for a Pokémon in a player's party can only be between 0 and 5.")
+    Public Function HealIce(ByVal PokeIndex As Integer, Optional NoTextOrSound As Boolean = False, Optional ByVal p As Pokemon = Nothing) As Boolean
+        If p Is Nothing Then
+            If PokeIndex < 0 Or PokeIndex > 5 Then
+                Throw New ArgumentOutOfRangeException("PokeIndex", PokeIndex, "The index for a Pokémon in a player's party can only be between 0 and 5.")
+            End If
         End If
 
-        Dim Pokemon As Pokemon = Core.Player.Pokemons(PokeIndex)
+        Dim Pokemon As Pokemon
+        If p Is Nothing Then
+            Pokemon = Core.Player.Pokemons(PokeIndex)
+        Else
+            Pokemon = p
+            If Me.gmBattleSelectPokemon = True Then
+                CType(CurrentScreen, BattleSystem.BattleScreen).Battle.ChangeCameraAngle(2, True, CType(CurrentScreen, BattleSystem.BattleScreen))
+            End If
+        End If
 
         If Pokemon.Status = P3D.Pokemon.StatusProblems.Freeze Then
             Pokemon.Status = P3D.Pokemon.StatusProblems.None
 
-            Core.Player.Inventory.RemoveItem(Me.ID.ToString, 1)
             If NoTextOrSound = False Then
                 Screen.TextBox.reDelay = 0.0F
 
                 Dim t As String = "Cures the ice~of " & Pokemon.GetDisplayName() & "."
-                t &= RemoveItem()
+                If Me.gmItemType <> ItemTypes.KeyItems Then
+                    t &= RemoveItem()
+                End If
 
                 SoundManager.PlaySound("Use_Item", False)
                 Screen.TextBox.Show(t, {})
+            End If
+            If gmCureStatusEffects IsNot Nothing And gmUseOnOppEffects Is Nothing OrElse gmCureStatusEffects Is Nothing And gmUseOnOppEffects IsNot Nothing Then
                 PlayerStatistics.Track("[17]Medicine Items used", 1)
             End If
             Return True
@@ -880,25 +1164,38 @@ Public Class GameModeItem
     ''' Tries to heal a Pokémon from Paralysis.
     ''' </summary>
     ''' <param name="PokeIndex">The index of a Pokémon in the player's party.</param>
-    Public Function HealParalyze(ByVal PokeIndex As Integer, Optional NoTextOrSound As Boolean = False) As Boolean
-        If PokeIndex < 0 Or PokeIndex > 5 Then
-            Throw New ArgumentOutOfRangeException("PokeIndex", PokeIndex, "The index for a Pokémon in a player's party can only be between 0 and 5.")
+    Public Function HealParalyze(ByVal PokeIndex As Integer, Optional NoTextOrSound As Boolean = False, Optional ByVal p As Pokemon = Nothing) As Boolean
+        If p Is Nothing Then
+            If PokeIndex < 0 Or PokeIndex > 5 Then
+                Throw New ArgumentOutOfRangeException("PokeIndex", PokeIndex, "The index for a Pokémon in a player's party can only be between 0 and 5.")
+            End If
         End If
 
-        Dim Pokemon As Pokemon = Core.Player.Pokemons(PokeIndex)
+        Dim Pokemon As Pokemon
+        If p Is Nothing Then
+            Pokemon = Core.Player.Pokemons(PokeIndex)
+        Else
+            Pokemon = p
+            If Me.gmBattleSelectPokemon = True Then
+                CType(CurrentScreen, BattleSystem.BattleScreen).Battle.ChangeCameraAngle(2, True, CType(CurrentScreen, BattleSystem.BattleScreen))
+            End If
+        End If
 
         If Pokemon.Status = P3D.Pokemon.StatusProblems.Paralyzed Then
             Pokemon.Status = P3D.Pokemon.StatusProblems.None
 
-            Core.Player.Inventory.RemoveItem(Me.ID.ToString, 1)
             If NoTextOrSound = False Then
                 Screen.TextBox.reDelay = 0.0F
 
                 Dim t As String = "Cures the paralysis~of " & Pokemon.GetDisplayName() & "."
-                t &= RemoveItem()
+                If Me.gmItemType <> ItemTypes.KeyItems Then
+                    t &= RemoveItem()
+                End If
 
                 SoundManager.PlaySound("Use_Item", False)
                 Screen.TextBox.Show(t, {})
+            End If
+            If gmCureStatusEffects IsNot Nothing And gmUseOnOppEffects Is Nothing OrElse gmCureStatusEffects Is Nothing And gmUseOnOppEffects IsNot Nothing Then
                 PlayerStatistics.Track("[17]Medicine Items used", 1)
             End If
             Return True

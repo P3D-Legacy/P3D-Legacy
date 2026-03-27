@@ -1,4 +1,4 @@
-﻿Namespace BattleSystem
+Namespace BattleSystem
 
     Public Class BattleMenu
 
@@ -1195,6 +1195,11 @@
 
                         Core.SetScreen(selScreen)
                     Else
+                        If Item.IsGameModeItem = True Then
+                            If CType(Item, GameModeItem).gmIsHealingItem = True Or CType(Item, GameModeItem).gmCureStatusEffects IsNot Nothing Or CType(Item, GameModeItem).gmUseOnOppEffects IsNot Nothing Then
+                                CType(Item, GameModeItem).Use()
+                            End If
+                        End If
                         UseItem(0)
                     End If
                 End If
