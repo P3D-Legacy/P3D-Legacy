@@ -5,18 +5,18 @@ version=2
 		@Camera.SetToPlayerFacing
 	:endif
 	@camera.deactivatethirdperson
-	@npc.turn(0,0)
-	@npc.moveasync(0,2)
+	@npc.turn(1,0)
+	@npc.moveasync(1,2)
 	@player.move(1)
 	@player.warp(frontier\battlepike\passage.dat,1,0.1,3)
 	@level.update
 
-	@npc.turn(0,0)
-	@npc.moveasync(0,2)
+	@npc.turn(1,0)
+	@npc.moveasync(1,2)
 	@player.move(2)
-	@npc.turn(0,1)
-	@npc.move(0,1)
-	@npc.turn(0,2)
+	@npc.turn(1,1)
+	@npc.move(1,1)
+	@npc.turn(1,2)
 	
 	@Text.Show(Your Battle Choice challenge~has now begun...)
 	@player.move(2)

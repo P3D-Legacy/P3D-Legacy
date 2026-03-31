@@ -33,7 +33,7 @@ version=2
 		@storage.set(boolean,pike_brain,false)
 
 		:if:<pokemon.count>=3 <and> <pokemon.countbattle>=3
-			@text.show(You have the choice of two cources, Level 50 and Open Level.~Which will you challenge?)
+			@text.show(You have the choice of~two courses, Level 50 and~Open Level.*Which will you challenge?)
 			@options.show(Lv. 50,Lv. 100,Cancel)
 			:when:Lv. 50
 				@register.register(pike_level,int,50)
@@ -55,6 +55,8 @@ version=2
 			@register.register(pike_challenge_level_1,int,<pokemon.level(1)>)
 			@register.register(pike_challenge_level_2,int,<pokemon.level(2)>)
 			
+			#Replace the following line with "@register.register(piketype,str,endless)" when it is implemented:
+			@register.register(piketype,str,challenge)
 			@register.register(pike_npc,INT,5)
 			@register.register(pikeroom0,INT,0)
 			@register.register(pikeroom1,INT,0)
@@ -76,7 +78,7 @@ version=2
 			@pokemon.heal
 
 			@Text.Show(Well, now you are~prepared.)
-			@script.start(frontier\battlepike\challenge\intro_walk)
+			@script.start(frontier\battlepike\endless\intro_walk)
 		:else
 			:if:<pokemon.count>>3 <or> <pokemon.countbattle>>3
 				@Text.Show(It seems you have~too many Pokémon.*Please come see me when~you are ready...)

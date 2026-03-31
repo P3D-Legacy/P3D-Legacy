@@ -33,7 +33,7 @@ version=2
 		@storage.set(boolean,pike_brain,false)
 
 		:if:<pokemon.count>=3 <and> <pokemon.countbattle>=3
-			@text.show(You have the choice of~two cources, Level 50~and Open Level.~Which will you challenge?)
+			@text.show(You have the choice of~two courses, Level 50 and~Open Level.*Which will you challenge?)
 			@options.show(Lv. 50,Lv. 100,Cancel)
 			:when:Lv. 50
 				@register.register(pike_level,int,50)

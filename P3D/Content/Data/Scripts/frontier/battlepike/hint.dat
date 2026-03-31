@@ -4,10 +4,10 @@ version=2
 	:end
 :endif
 
-@text.show(I beg your pardon, but...~Are you perhaps finding it difficult to choose your path?)
+@text.show(I beg your pardon, but...*Are you perhaps finding~it difficult to choose~your path?)
 @options.show(Yes,No)
 	:when:No
-		@text.show(I See...~I apologize for my~impertinence...)
+		@text.show(I see...~I apologize for my~impertinence...)
 		:end
 	:when:Yes
 		:select:<register.value(pikehintspot)>
