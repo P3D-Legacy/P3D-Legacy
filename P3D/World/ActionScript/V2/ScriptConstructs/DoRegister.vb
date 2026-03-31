@@ -40,13 +40,13 @@
                     Dim lValue As String = CStr(registerContent(0))
 
                     Select Case lType.ToLower()
-                        Case "bool"
+                        Case "bool", "boolean"
                             Return ReturnBoolean(CBool(lValue))
-                        Case "sng"
+                        Case "sng", "single"
                             Return dbl(lValue)
-                        Case "int"
+                        Case "int", "integer"
                             Return int(lValue)
-                        Case "str"
+                        Case "str", "string"
                             Return lValue
                         Case Else
                             Logger.Log(Logger.LogTypes.Warning, "ScriptComparer.vb: (<register." & command & ">) The value passed in for ""lType"" is not valid (" & lType & "). Assuming str.")
