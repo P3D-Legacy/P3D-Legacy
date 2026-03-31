@@ -1,21 +1,21 @@
 version=2
-@text.show(You are currently in room <register.value(pike_room_count_temp)>...~Will you continue with your challenge?)
+@text.show(You are currently in room <register.value(pike_room_count_temp)>...~Will you continue with~your challenge?)
 @options.show(Yes,No)
 	:when:No
-		@text.show(Would you like to pause your challenge and resume it later?)
+		@text.show(Would you like to pause~your challenge and resume~it later?)
 		@options.show(Yes,No)
 			:when:Yes
 				@player.save
 				@player.quitgame(true)
 			:when:No
-				@text.show(So you want to quit your challenge entirely?)
+				@text.show(So you want to quit~your challenge entirely?)
 				@options.show(Yes,No)
 					:when:Yes
 						@screen.fadeout
 						@player.warp(frontier\battlepike\main.dat,6,0.1,2)
 						@player.turnto(0)
 						@screen.fadein
-						@text.show(Your challenge has ended...*I shall record your results...*We look forward to seeing you on another occasion...)
+						@text.show(Your challenge has ended...*I shall record your results...*We look forward to seeing~you on another occasion...)
 
 						@pokemon.changelevel(0,<register.value(pike_challenge_level_0)>)
 						@pokemon.changelevel(1,<register.value(pike_challenge_level_1)>)

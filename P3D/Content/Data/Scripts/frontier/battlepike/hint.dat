@@ -4,7 +4,7 @@ version=2
 	:end
 :endif
 
-I beg your pardon, but...~Are you perhaps finding it difficult to choose your path?
+@text.show(I beg your pardon, but...~Are you perhaps finding it difficult to choose your path?)
 @options.show(Yes,No)
 	:when:No
 		@text.show(I See...~I apologize for my~impertinence...)
