@@ -1133,12 +1133,12 @@
             If CurrentScreen.Identification = Screen.Identifications.OverworldScreen Then
                 If CType(CurrentScreen, OverworldScreen).ActionScript.IsReady = True Then
                     CType(CurrentScreen, OverworldScreen).ActionScript.reDelay = 0.0F
-                    CType(CurrentScreen, OverworldScreen).ActionScript.StartScript(scriptName, 0)
+                    CType(CurrentScreen, OverworldScreen).ActionScript.StartScript(ScriptVersion2.ScriptCommander.Parse(scriptName).ToString, 0)
                 Else ' A script intro is playing (such as Fly).
-                    MapScript = scriptName
+                    MapScript = ScriptVersion2.ScriptCommander.Parse(scriptName).ToString
                 End If
             Else ' Must be a direct save load from the main menu.
-                MapScript = scriptName
+                MapScript = ScriptVersion2.ScriptCommander.Parse(scriptName).ToString
             End If
         Else
             MapScript = ""
