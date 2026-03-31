@@ -188,7 +188,7 @@ version=2
 		@npc.warp(51,~,0,~)
 		@npc.wearskin(51,<npc.trainertexture(frontier\battletower\<storage.get(integer,trainer_id)>)>)
 		@player.move(0)
-		@text.show(Welcome...*Here,we will have you battle~a somewhat-tough trainer...)
+		@text.show(Welcome...*Here, we will have you battle~a somewhat-tough trainer...)
 		@npc.move(51,2)
 		@battle.setvar(canreceiveexp,0)
 		@battle.setvar(canuseitems,0)
@@ -202,7 +202,7 @@ version=2
 			@npc.move(31,1)
 			@npc.turn(31,2)
 			@npc.move(31,2)
-			@text.show(How wonderful...*To honor your victory,~your Pokémon shall be~restored to full health...*I urge you to enjoy~the rest of your~Battle Choice challenge...)
+			@text.show(How wonderful...*To honor your victory,~your [POKE]mon shall be~restored to full health...*I urge you to enjoy~the rest of your~Battle Choice challenge...)
 			@npc.turn(31,0)
 			@npc.move(31,3)
 		:else
