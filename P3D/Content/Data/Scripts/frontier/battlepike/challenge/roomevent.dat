@@ -1,1 +1,358 @@
-version=2@register.change(pike_room_count_temp,<register.value(pike_room_count_temp)>+1):select:<register.value(pikeroom<level.filename>)>	:when:0		#enter room, get statused, full control - Done		@storage.set(string,pikestatuspokemon,Kirlia)		:select:<system.random(0,19)>			:when:0				@storage.set(integer,pikestatusattack,0)			:when:1				@storage.set(integer,pikestatusattack,1)				@npc.wearskin([POKEMON|N]356)				@storage.set(string,pikestatuspokemon,Dusclops)			:when:2;3				@storage.set(integer,pikestatusattack,2)			:when:4;5;6;7				@storage.set(integer,pikestatusattack,3)			:when:8;9;10;11;12				@storage.set(integer,pikestatusattack,4)				@npc.wearskin([POKEMON|N]356)				@storage.set(string,pikestatuspokemon,Dusclops)			:when:13;14;15;16;17;18;19				@storage.set(integer,pikestatusattack,5)		:endwhen		@npc.warp(1,~,0,~)		@npc.warp(2,~,0,~)		@player.move(0)		@text.show(Oh, my!)		@npc.setspeed(1,3)		@npc.move(1,1)		@npc.turn(1,3)		@npc.move(1,1)		@npc.turn(1,2)		@npc.move(1,1)		@text.show(Watch out!)		:select:<register.value(pike_class)>			:when:0				@storage.set(integer,pikestatuseattempts,1)				@storage.set(integer,pikestatusmon0,<system.random(0,2)>)			:when:1				@storage.set(integer,pikestatuseattempts,2)					:select:<system.random(0,2)>						:when:0							@storage.set(integer,pikestatusmon0,0)							@storage.set(integer,pikestatusmon1,1)						:when:1							@storage.set(integer,pikestatusmon0,0)							@storage.set(integer,pikestatusmon1,2)						:when:2							@storage.set(integer,pikestatusmon0,2)							@storage.set(integer,pikestatusmon1,1)					:endwhen			:when:2				@storage.set(integer,pikestatuseattempts,3)				@storage.set(integer,pikestatusmon0,0)				@storage.set(integer,pikestatusmon1,1)				@storage.set(integer,pikestatusmon2,2)		:endwhen		@storage.set(integer,pikestatusdone,0)		:select:<storage.get(integer,pikestatusattack)>			:when:0				@text.show(Kirlia used Will-O-Wisp!)				:while:<storage.get(integer,pikestatuseattempts)>><storage.get(integer,pikestatusdone)>					:if:<pokemon.status(<storage.get(integer,pikestatusmon<storage.get(integer,pikestatusdone)>)>)> = none						:if:<pokemon.istype(<storage.get(integer,pikestatusmon<storage.get(integer,pikestatusdone)>)>,fire)> = false							:if:<not><pokemon.ability(<storage.get(integer,pikestatusmon<storage.get(integer,pikestatusdone)>)>)> = 41 <and> <not><pokemon.ability(<storage.get(integer,pikestatusmon<storage.get(integer,pikestatusdone)>)>)> = 199 <and> <not><pokemon.ability(<storage.get(integer,pikestatusmon<storage.get(integer,pikestatusdone)>)>)> = 213								@pokemon.setstatus(<storage.get(integer,pikestatusmon<storage.get(integer,pikestatusdone)>)>,brn)							:endif						:endif					:endif					@storage.update(integer,pikestatusdone,+,1)									:endwhile			:when:1				@text.show(Dusclops used Will-O-Wisp!)				:while:<storage.get(integer,pikestatuseattempts)>><storage.get(integer,pikestatusdone)>					:if:<pokemon.status(<storage.get(integer,pikestatusmon<storage.get(integer,pikestatusdone)>)>)> = none						:if:<pokemon.istype(<storage.get(integer,pikestatusmon<storage.get(integer,pikestatusdone)>)>,fire)> = false							:if:<not><pokemon.ability(<storage.get(integer,pikestatusmon<storage.get(integer,pikestatusdone)>)>)> = 41 <and> <not><pokemon.ability(<storage.get(integer,pikestatusmon<storage.get(integer,pikestatusdone)>)>)> = 199 <and> <not><pokemon.ability(<storage.get(integer,pikestatusmon<storage.get(integer,pikestatusdone)>)>)> = 213								@pokemon.setstatus(<storage.get(integer,pikestatusmon<storage.get(integer,pikestatusdone)>)>,brn)							:endif						:endif					:endif					@storage.update(integer,pikestatusdone,+,1)									:endwhile			:when:2				@text.show(Kirlia used Hypnosis!)				:while:<storage.get(integer,pikestatuseattempts)>><storage.get(integer,pikestatusdone)>					:if:<pokemon.status(<storage.get(integer,pikestatusmon<storage.get(integer,pikestatusdone)>)>)> = none						:if:<not><pokemon.ability(<storage.get(integer,pikestatusmon<storage.get(integer,pikestatusdone)>)>)> = 15 <and> <not><pokemon.ability(<storage.get(integer,pikestatusmon<storage.get(integer,pikestatusdone)>)>)> = 72 <and> <not><pokemon.ability(<storage.get(integer,pikestatusmon<storage.get(integer,pikestatusdone)>)>)> = 175 <and> <not><pokemon.ability(<storage.get(integer,pikestatusmon<storage.get(integer,pikestatusdone)>)>)> = 213							@pokemon.setstatus(<storage.get(integer,pikestatusmon<storage.get(integer,pikestatusdone)>)>,slp)						:endif					:endif					@storage.update(integer,pikestatusdone,+,1)									:endwhile			:when:3				@text.show(Kirlia used Thunder Wave!)				:while:<storage.get(integer,pikestatuseattempts)>><storage.get(integer,pikestatusdone)>					:if:<pokemon.status(<storage.get(integer,pikestatusmon<storage.get(integer,pikestatusdone)>)>)> = none						:if:<pokemon.istype(<storage.get(integer,pikestatusmon<storage.get(integer,pikestatusdone)>)>,electric)> = false <and> <pokemon.istype(<storage.get(integer,pikestatusmon<storage.get(integer,pikestatusdone)>)>,ground)> = false							:if:<not><pokemon.ability(<storage.get(integer,pikestatusmon<storage.get(integer,pikestatusdone)>)>)> = 7 <and> <not><pokemon.ability(<storage.get(integer,pikestatusmon<storage.get(integer,pikestatusdone)>)>)> = 213								@pokemon.setstatus(<storage.get(integer,pikestatusmon<storage.get(integer,pikestatusdone)>)>,prz)							:endif						:endif					:endif					@storage.update(integer,pikestatusdone,+,1)									:endwhile			:when:4				@text.show(Dusclops used Ice Beam!)				:while:<storage.get(integer,pikestatuseattempts)>><storage.get(integer,pikestatusdone)>					:if:<pokemon.status(<storage.get(integer,pikestatusmon<storage.get(integer,pikestatusdone)>)>)> = none						:if:<pokemon.istype(<storage.get(integer,pikestatusmon<storage.get(integer,pikestatusdone)>)>,ice)> = false							:if:<not><pokemon.ability(<storage.get(integer,pikestatusmon<storage.get(integer,pikestatusdone)>)>)> = 40 <and> <not><pokemon.ability(<storage.get(integer,pikestatusmon<storage.get(integer,pikestatusdone)>)>)> = 213								@pokemon.setstatus(<storage.get(integer,pikestatusmon<storage.get(integer,pikestatusdone)>)>,frz)							:endif						:endif					:endif					@storage.update(integer,pikestatusdone,+,1)									:endwhile			:when:5				@text.show(Kirlia used Toxic!)				:while:<storage.get(integer,pikestatuseattempts)>><storage.get(integer,pikestatusdone)>					:if:<pokemon.status(<storage.get(integer,pikestatusmon<storage.get(integer,pikestatusdone)>)>)> = none						:if:<pokemon.istype(<storage.get(integer,pikestatusmon<storage.get(integer,pikestatusdone)>)>,poison)> = false <and> <pokemon.istype(<storage.get(integer,pikestatusmon<storage.get(integer,pikestatusdone)>)>,steel)> = false							:if:<not><pokemon.ability(<storage.get(integer,pikestatusmon<storage.get(integer,pikestatusdone)>)>)> = 17 <and> <not><pokemon.ability(<storage.get(integer,pikestatusmon<storage.get(integer,pikestatusdone)>)>)> = 257 <and> <not><pokemon.ability(<storage.get(integer,pikestatusmon<storage.get(integer,pikestatusdone)>)>)> = 213								@pokemon.setstatus(<storage.get(integer,pikestatusmon<storage.get(integer,pikestatusdone)>)>,bpsn)							:endif						:endif					:endif					@storage.update(integer,pikestatusdone,+,1)									:endwhile		:endwhen		@npc.move(2,1)		@npc.turn(1,0)		@text.show(Look here!~That's quite enough!)		@npc.turn(1,3)		@npc.move(1,-1)		@npc.move(2,1)		@npc.turn(2,1)		@level.wait(25)		@npc.turn(2,0)		@text.show(I must apologize to you...*My <storage.get(string,pikestatuspokemon)> has~a timid nature...*It attacks without warning~if it is startled by another~person...*Are you and your Pokémon~all right?)		:end	:when:1		#old hat man standing in front of exit,manual approach for script. - Done		@npc.warp(11,~,0,~)	:when:2		#trainer comes in direct ahead, starts battle with text, then walks back out		@storage.set(integer,trainer_id,<system.random(0,307)>)		@npc.spawn(<player.position(x)>,0,-1,0,,<npc.trainertexture(frontier\battletower\<storage.get(integer,trainer_id)>)>,0,0,0,20,Still)		@player.move(0)		@npc.move(20,2)		@text.show(<battle.intromessage(frontier\battletower\<storage.get(integer,trainer_id)>)>)		@battle.setvar(canreceiveexp,0)		@battle.setvar(canuseitems,0)		@battle.setvar(canblackout,0)		@battle.setvar(frontiertrainer,<register.value(pike_class)>)		@battle.trainer(frontier\battletower\<storage.get(integer,trainer_id)>)				:if:<battle.won>=true			@npc.turn(20,2)			@npc.move(20,4)			@npc.remove(20)		:else			@script.start(frontier\battlepike\challenge\lost)		:endif	:when:3		#Maid approaches, full heals, and leaves - Done		@npc.warp(31,~,0,~)		@player.move(0)		@npc.move(31,2)		@text.show(Welcome... You must be~commended for your luck...*Your Pokémon shall be~restored to full health...)		@sound.play(healing,1)		@pokemon.heal		@text.show(I urge you to enjoy the rest~of your Battle Choice~Challenge...)		@npc.turn(31,0)		@npc.move(31,4)	:when:4		#warp to wild room, full control		@player.warp(frontier\battlepike\wildroom.dat,4,0,14)	:when:5		#Maid+trainer(m-left, t-center), trainer approaches, trainer leaves, maid approaches and heals fully, then leaves		@storage.set(integer,trainer_id,<system.random(0,306)>)		@npc.warp(31,~,0,~)		@npc.warp(51,~,0,~)		@npc.wearskin(51,<npc.trainertexture(frontier\battletower\<storage.get(integer,trainer_id)>)>)		@player.move(0)		@text.show(Welcome...*Here,we will have you battle a somewhat-tough trainer...)		@npc.move(51,2)		@battle.setvar(canreceiveexp,0)		@battle.setvar(canuseitems,0)		@battle.setvar(canblackout,0)		@battle.setvar(frontiertrainer,<register.value(pike_class)>+1)		@battle.trainer(frontier\battletower\<storage.get(integer,trainer_id)>)		:if:<battle.won>=true			@npc.turn(51,0)			@npc.move(51,3)			@npc.turn(31,3)			@npc.move(31,1)			@npc.turn(31,2)			@npc.move(31,2)			@text.show(How wonderful...*To honor your victory, your Pokémon shall be restored to full health...*I urge you to enjoy the rest of your Battle Choice challenge...)			@npc.turn(31,0)			@npc.move(31,3)		:else			@script.start(frontier\battlepike\challenge\lost)		:endif	:when:6		#random npc who will say a one liner - Done		@register.change(pike_npc,<system.random(5,29)>)		@npc.wearskin(61,<register.value(pike_npc)>)		@npc.warp(61,~,0,~)		:end	:when:7		#double Approach, battle, leave		@storage.set(integer,trainer_id,<system.random(0,306)>)		@npc.spawn(<player.position(x)>,0,-1,0,,<npc.trainertexture(frontier\battletower\<storage.get(integer,trainer_id)>)>,0,0,0,70,Still)		@npc.spawn(<player.position(x)>+1,0,-1,0,,<npc.trainertexture(frontier\battletower\<storage.get(integer,trainer_id)>+1)>,0,0,0,71,Still)		@player.move(0)		@npc.moveasync(70,2)		@npc.move(71,2)		@text.show(<battle.intromessage(frontier\battletower\<storage.get(integer,trainer_id)>)>)		@battle.setvar(canreceiveexp,0)		@battle.setvar(canuseitems,0)		@battle.setvar(canblackout,0)		@battle.setvar(frontiertrainer,<register.value(pike_class)>)		@battle.trainer(frontier\battletower\<storage.get(integer,trainer_id)>)				:if:<battle.won>=true			@npc.turn(70,2)			@npc.turn(71,2)			@npc.moveasync(70,4)			@npc.move(71,4)			@npc.remove(70)			@npc.remove(71)		:else			@script.start(frontier\battlepike\challenge\lost)		:endif	:when:8		#maid heals 0-2, leaves, lucy enters, battle - Done(trainer file?)		@npc.warp(31,~,0,~)		@player.move(0)		@npc.move(31,2)		@text.show(I welcome you...)		@storage.set(integer,potheals,0)		:if:<pokemon.fullyhealed(0)>=false			@storage.set(integer,potheals,<storage.get(integer,potheals)>+1)		:endif		:if:<pokemon.fullyhealed(1)>=false			@storage.set(integer,potheals,<storage.get(integer,potheals)>+1)		:endif		:if:<pokemon.fullyhealed(2)>=false			@storage.set(integer,potheals,<storage.get(integer,potheals)>+1)		:endif		:select:<system.random(0,2)>			:when:0				@text.show(Giggle... You seem~to be bereft of luck...*If only you hadn't chosen~this room, your Pokémon~could have been healed...)			:when:1				@text.show(Since you have chosen this~room, I will restore one~Pokémon to full health...)				:select:<storage.get(integer,potheals)>					:when:0					:when:1						@pokemon.heal					:when:2						:select:<system.random(0,2)>							:when:0								:if:<pokemon.fullyhealed(0)>=false									@pokemon.heal(0)								:else									@pokemon.heal(<system.random(1,2)>)														:endif							:when:1								:if:<pokemon.fullyhealed(1)>=false									@pokemon.heal(1)								:else									:select:<system.random(0,1)>										:when:0											@pokemon.heal(0)										:when:1											@pokemon.heal(2)									:endwhen								:endif							:when:2								:if:<pokemon.fullyhealed(2)>=false									@pokemon.heal(2)								:else									@pokemon.heal(<system.random(0,1)>)														:endif						:endwhen					:when:3						@pokemon.heal(<system.random(0,2)>)				:endwhen			:when:2				@text.show(Since you have chosen this~room, I will restore two~Pokémon to full health...)				:select:<storage.get(integer,potheals)>					:when:0					:when:1						@pokemon.heal					:when:2						@pokemon.heal					:when:3						:select:<system.random(0,2)>							:when:0								@pokemon.heal(1,2)							:when:1								@pokemon.heal(0,2)							:when:2								@pokemon.heal(0,1)						:endwhen				:endwhen		:endwhen		@text.show(I shall go fetch our master...)		@npc.turn(31,0)		@npc.move(31,4)		@npc.remove(31)		@npc.warp(8,~,0,~)		@npc.move(8,1)		@battle.setvar(canreceiveexp,0)		@battle.setvar(canuseitems,0)		@battle.setvar(canblackout,0)		@battle.setvar(frontiertrainer,<register.value(pike_class)>)		:if:<register.value(pike_room_count_temp)>=28			@text.show(I am Lucy...~I am the law here...~For I am the Pike Queen...*You already know it,~but to advance,~you must defeat me...*...I'm not one for idle chatter. Hurry. Come on...*Your luck...~I hope you didn't use it all up here...)			@player.move(2)			@battle.trainer(frontier\battlefactory\lucy_silver)			@text.show(Lucy: ... ... ... ... ...~Show me your Frontier Pass...)			@player.achieveemblem(silver luck)			@player.addfrontieremblem(2,0)			@register.register(pike_silver)			@text.show(<player.name> received~the Silver Luck Emblem!)			@text.show(...That's all there is... Disappear already...)		:else			@text.show(...You again...*... ... ... ... ... ...*...I've trampled flowers~and braved storms to get~to where I am...*I don't feel any compulsion~to keep losing to the~same opponent...*... ... ... ... ... ...*Fine...~I'll do it...*Now!~Come on!)			@player.move(2)			@battle.trainer(frontier\battlefactory\lucy_gold)			:if:<register.value(pike_room_count_temp)>=112				@text.show(Lucy: ... ... ... ... ...~...Frontier Pass...)				@player.achieveemblem(gold luck)				@player.addfrontieremblem(2,1)				@register.register(pike_gold)				@text.show(<player.name> received~the Gold Luck Emblem!)			:endif			@text.show(...You, I won't forget...~...Ever...)		:endif		@npc.turn(8,3)		@npc.move(8,1)		@npc.turn(8,1):endwhen:end
+version=2
+@register.change(pike_room_count_temp,<register.value(pike_room_count_temp)>+1)
+:select:<register.value(pikeroom<level.filename>)>
+	:when:0
+		#enter room, get statused, full control - Done
+		@storage.set(string,pikestatuspokemon,Kirlia)
+		:select:<system.random(0,19)>
+			:when:0
+				@storage.set(integer,pikestatusattack,0)
+			:when:1
+				@storage.set(integer,pikestatusattack,1)
+				@npc.wearskin([POKEMON|N]356)
+				@storage.set(string,pikestatuspokemon,Dusclops)
+			:when:2;3
+				@storage.set(integer,pikestatusattack,2)
+			:when:4;5;6;7
+				@storage.set(integer,pikestatusattack,3)
+			:when:8;9;10;11;12
+				@storage.set(integer,pikestatusattack,4)
+				@npc.wearskin([POKEMON|N]356)
+				@storage.set(string,pikestatuspokemon,Dusclops)
+			:when:13;14;15;16;17;18;19
+				@storage.set(integer,pikestatusattack,5)
+		:endwhen
+		@npc.warp(1,~,0,~)
+		@npc.warp(2,~,0,~)
+		@player.move(0)
+		@text.show(Oh, my!)
+		@npc.setspeed(1,3)
+		@npc.move(1,1)
+		@npc.turn(1,3)
+		@npc.move(1,1)
+		@npc.turn(1,2)
+		@npc.move(1,1)
+		@text.show(Watch out!)
+		:select:<register.value(pike_class)>
+			:when:0
+				@storage.set(integer,pikestatuseattempts,1)
+				@storage.set(integer,pikestatusmon0,<system.random(0,2)>)
+			:when:1
+				@storage.set(integer,pikestatuseattempts,2)
+					:select:<system.random(0,2)>
+						:when:0
+							@storage.set(integer,pikestatusmon0,0)
+							@storage.set(integer,pikestatusmon1,1)
+						:when:1
+							@storage.set(integer,pikestatusmon0,0)
+							@storage.set(integer,pikestatusmon1,2)
+						:when:2
+							@storage.set(integer,pikestatusmon0,2)
+							@storage.set(integer,pikestatusmon1,1)
+					:endwhen
+			:when:2
+				@storage.set(integer,pikestatuseattempts,3)
+				@storage.set(integer,pikestatusmon0,0)
+				@storage.set(integer,pikestatusmon1,1)
+				@storage.set(integer,pikestatusmon2,2)
+		:endwhen
+		@storage.set(integer,pikestatusdone,0)
+		:select:<storage.get(integer,pikestatusattack)>
+			:when:0
+				@text.show(Kirlia used Will-O-Wisp!)
+				:while:<storage.get(integer,pikestatuseattempts)>><storage.get(integer,pikestatusdone)>
+					:if:<pokemon.status(<storage.get(integer,pikestatusmon<storage.get(integer,pikestatusdone)>)>)> = none
+						:if:<pokemon.istype(<storage.get(integer,pikestatusmon<storage.get(integer,pikestatusdone)>)>,fire)> = false
+							:if:<not><pokemon.ability(<storage.get(integer,pikestatusmon<storage.get(integer,pikestatusdone)>)>)> = 41 <and> <not><pokemon.ability(<storage.get(integer,pikestatusmon<storage.get(integer,pikestatusdone)>)>)> = 199 <and> <not><pokemon.ability(<storage.get(integer,pikestatusmon<storage.get(integer,pikestatusdone)>)>)> = 213
+								@pokemon.setstatus(<storage.get(integer,pikestatusmon<storage.get(integer,pikestatusdone)>)>,brn)
+							:endif
+						:endif
+					:endif
+					@storage.update(integer,pikestatusdone,+,1)					
+				:endwhile
+			:when:1
+				@text.show(Dusclops used Will-O-Wisp!)
+				:while:<storage.get(integer,pikestatuseattempts)>><storage.get(integer,pikestatusdone)>
+					:if:<pokemon.status(<storage.get(integer,pikestatusmon<storage.get(integer,pikestatusdone)>)>)> = none
+						:if:<pokemon.istype(<storage.get(integer,pikestatusmon<storage.get(integer,pikestatusdone)>)>,fire)> = false
+							:if:<not><pokemon.ability(<storage.get(integer,pikestatusmon<storage.get(integer,pikestatusdone)>)>)> = 41 <and> <not><pokemon.ability(<storage.get(integer,pikestatusmon<storage.get(integer,pikestatusdone)>)>)> = 199 <and> <not><pokemon.ability(<storage.get(integer,pikestatusmon<storage.get(integer,pikestatusdone)>)>)> = 213
+								@pokemon.setstatus(<storage.get(integer,pikestatusmon<storage.get(integer,pikestatusdone)>)>,brn)
+							:endif
+						:endif
+					:endif
+					@storage.update(integer,pikestatusdone,+,1)					
+				:endwhile
+			:when:2
+				@text.show(Kirlia used Hypnosis!)
+				:while:<storage.get(integer,pikestatuseattempts)>><storage.get(integer,pikestatusdone)>
+					:if:<pokemon.status(<storage.get(integer,pikestatusmon<storage.get(integer,pikestatusdone)>)>)> = none
+						:if:<not><pokemon.ability(<storage.get(integer,pikestatusmon<storage.get(integer,pikestatusdone)>)>)> = 15 <and> <not><pokemon.ability(<storage.get(integer,pikestatusmon<storage.get(integer,pikestatusdone)>)>)> = 72 <and> <not><pokemon.ability(<storage.get(integer,pikestatusmon<storage.get(integer,pikestatusdone)>)>)> = 175 <and> <not><pokemon.ability(<storage.get(integer,pikestatusmon<storage.get(integer,pikestatusdone)>)>)> = 213
+							@pokemon.setstatus(<storage.get(integer,pikestatusmon<storage.get(integer,pikestatusdone)>)>,slp)
+						:endif
+					:endif
+					@storage.update(integer,pikestatusdone,+,1)					
+				:endwhile
+			:when:3
+				@text.show(Kirlia used Thunder Wave!)
+				:while:<storage.get(integer,pikestatuseattempts)>><storage.get(integer,pikestatusdone)>
+					:if:<pokemon.status(<storage.get(integer,pikestatusmon<storage.get(integer,pikestatusdone)>)>)> = none
+						:if:<pokemon.istype(<storage.get(integer,pikestatusmon<storage.get(integer,pikestatusdone)>)>,electric)> = false <and> <pokemon.istype(<storage.get(integer,pikestatusmon<storage.get(integer,pikestatusdone)>)>,ground)> = false
+							:if:<not><pokemon.ability(<storage.get(integer,pikestatusmon<storage.get(integer,pikestatusdone)>)>)> = 7 <and> <not><pokemon.ability(<storage.get(integer,pikestatusmon<storage.get(integer,pikestatusdone)>)>)> = 213
+								@pokemon.setstatus(<storage.get(integer,pikestatusmon<storage.get(integer,pikestatusdone)>)>,prz)
+							:endif
+						:endif
+					:endif
+					@storage.update(integer,pikestatusdone,+,1)					
+				:endwhile
+			:when:4
+				@text.show(Dusclops used Ice Beam!)
+				:while:<storage.get(integer,pikestatuseattempts)>><storage.get(integer,pikestatusdone)>
+					:if:<pokemon.status(<storage.get(integer,pikestatusmon<storage.get(integer,pikestatusdone)>)>)> = none
+						:if:<pokemon.istype(<storage.get(integer,pikestatusmon<storage.get(integer,pikestatusdone)>)>,ice)> = false
+							:if:<not><pokemon.ability(<storage.get(integer,pikestatusmon<storage.get(integer,pikestatusdone)>)>)> = 40 <and> <not><pokemon.ability(<storage.get(integer,pikestatusmon<storage.get(integer,pikestatusdone)>)>)> = 213
+								@pokemon.setstatus(<storage.get(integer,pikestatusmon<storage.get(integer,pikestatusdone)>)>,frz)
+							:endif
+						:endif
+					:endif
+					@storage.update(integer,pikestatusdone,+,1)					
+				:endwhile
+			:when:5
+				@text.show(Kirlia used Toxic!)
+				:while:<storage.get(integer,pikestatuseattempts)>><storage.get(integer,pikestatusdone)>
+					:if:<pokemon.status(<storage.get(integer,pikestatusmon<storage.get(integer,pikestatusdone)>)>)> = none
+						:if:<pokemon.istype(<storage.get(integer,pikestatusmon<storage.get(integer,pikestatusdone)>)>,poison)> = false <and> <pokemon.istype(<storage.get(integer,pikestatusmon<storage.get(integer,pikestatusdone)>)>,steel)> = false
+							:if:<not><pokemon.ability(<storage.get(integer,pikestatusmon<storage.get(integer,pikestatusdone)>)>)> = 17 <and> <not><pokemon.ability(<storage.get(integer,pikestatusmon<storage.get(integer,pikestatusdone)>)>)> = 257 <and> <not><pokemon.ability(<storage.get(integer,pikestatusmon<storage.get(integer,pikestatusdone)>)>)> = 213
+								@pokemon.setstatus(<storage.get(integer,pikestatusmon<storage.get(integer,pikestatusdone)>)>,bpsn)
+							:endif
+						:endif
+					:endif
+					@storage.update(integer,pikestatusdone,+,1)					
+				:endwhile
+		:endwhen
+		@npc.move(2,1)
+		@npc.turn(1,0)
+		@text.show(Look here!~That's quite enough!)
+		@npc.turn(1,3)
+		@npc.move(1,-1)
+		@npc.move(2,1)
+		@npc.turn(2,1)
+		@level.wait(25)
+		@npc.turn(2,0)
+		@text.show(I must apologize to you...*My <storage.get(string,pikestatuspokemon)> has~a timid nature...*It attacks without warning~if it is startled by another~person...*Are you and your Pokémon~all right?)
+		:end
+	:when:1
+		#old hat man standing in front of exit,manual approach for script. - Done
+		@npc.warp(11,~,0,~)
+	:when:2
+		#trainer comes in direct ahead, starts battle with text, then walks back out
+		@storage.set(integer,trainer_id,<system.random(0,307)>)
+
+		@npc.spawn(<player.position(x)>,0,-1,0,,<npc.trainertexture(frontier\battletower\<storage.get(integer,trainer_id)>)>,0,0,0,20,Still)
+
+		@player.move(0)
+		@npc.move(20,2)
+		@text.show(<battle.intromessage(frontier\battletower\<storage.get(integer,trainer_id)>)>)
+
+		@battle.setvar(canreceiveexp,0)
+		@battle.setvar(canuseitems,0)
+		@battle.setvar(canblackout,0)
+
+		@battle.setvar(frontiertrainer,<register.value(pike_class)>)
+		@battle.trainer(frontier\battletower\<storage.get(integer,trainer_id)>)
+		
+		:if:<battle.won>=true
+			@npc.turn(20,2)
+			@npc.move(20,4)
+			@npc.remove(20)
+		:else
+			@script.start(frontier\battlepike\challenge\lost)
+		:endif
+	:when:3
+		#Maid approaches, full heals, and leaves - Done
+		@npc.warp(31,~,0,~)
+		@player.move(0)
+		@npc.move(31,2)
+		@text.show(Welcome... You must be~commended for your luck...*Your Pokémon shall be~restored to full health...)
+		@sound.play(healing,1)
+		@pokemon.heal
+		@text.show(I urge you to enjoy the rest~of your Battle Choice~Challenge...)
+		@npc.turn(31,0)
+		@npc.move(31,4)
+	:when:4
+		#warp to wild room, full control
+		@player.warp(frontier\battlepike\wildroom.dat,4,0,14)
+	:when:5
+		#Maid+trainer(m-left, t-center), trainer approaches, trainer leaves, maid approaches and heals fully, then leaves
+		@storage.set(integer,trainer_id,<system.random(0,306)>)
+		@npc.warp(31,~,0,~)
+		@npc.warp(51,~,0,~)
+		@npc.wearskin(51,<npc.trainertexture(frontier\battletower\<storage.get(integer,trainer_id)>)>)
+		@player.move(0)
+		@text.show(Welcome...*Here,we will have you battle a somewhat-tough trainer...)
+		@npc.move(51,2)
+		@battle.setvar(canreceiveexp,0)
+		@battle.setvar(canuseitems,0)
+		@battle.setvar(canblackout,0)
+		@battle.setvar(frontiertrainer,<register.value(pike_class)>+1)
+		@battle.trainer(frontier\battletower\<storage.get(integer,trainer_id)>)
+		:if:<battle.won>=true
+			@npc.turn(51,0)
+			@npc.move(51,3)
+			@npc.turn(31,3)
+			@npc.move(31,1)
+			@npc.turn(31,2)
+			@npc.move(31,2)
+			@text.show(How wonderful...*To honor your victory, your Pokémon shall be restored to full health...*I urge you to enjoy the rest of your Battle Choice challenge...)
+			@npc.turn(31,0)
+			@npc.move(31,3)
+		:else
+			@script.start(frontier\battlepike\challenge\lost)
+		:endif
+	:when:6
+		#random npc who will say a one liner - Done
+		@register.change(pike_npc,<system.random(5,29)>)
+		@npc.wearskin(61,<register.value(pike_npc)>)
+		@npc.warp(61,~,0,~)
+		:end
+	:when:7
+		#double Approach, battle, leave
+		@storage.set(integer,trainer_id,<system.random(0,306)>)
+
+		@npc.spawn(<player.position(x)>,0,-1,0,,<npc.trainertexture(frontier\battletower\<storage.get(integer,trainer_id)>)>,0,0,0,70,Still)
+		@npc.spawn(<player.position(x)>+1,0,-1,0,,<npc.trainertexture(frontier\battletower\<storage.get(integer,trainer_id)>+1)>,0,0,0,71,Still)
+
+		@player.move(0)
+		@npc.moveasync(70,2)
+		@npc.move(71,2)
+		@text.show(<battle.intromessage(frontier\battletower\<storage.get(integer,trainer_id)>)>)
+
+		@battle.setvar(canreceiveexp,0)
+		@battle.setvar(canuseitems,0)
+		@battle.setvar(canblackout,0)
+
+		@battle.setvar(frontiertrainer,<register.value(pike_class)>)
+		@battle.trainer(frontier\battletower\<storage.get(integer,trainer_id)>)
+		
+		:if:<battle.won>=true
+			@npc.turn(70,2)
+			@npc.turn(71,2)
+			@npc.moveasync(70,4)
+			@npc.move(71,4)
+			@npc.remove(70)
+			@npc.remove(71)
+		:else
+			@script.start(frontier\battlepike\challenge\lost)
+		:endif
+	:when:8
+		#maid heals 0-2, leaves, lucy enters, battle - Done(trainer file?)
+		@npc.warp(31,~,0,~)
+		@player.move(0)
+		@npc.move(31,2)
+		@text.show(I welcome you...)
+		@storage.set(integer,potheals,0)
+
+		:if:<pokemon.fullyhealed(0)>=false
+			@storage.set(integer,potheals,<storage.get(integer,potheals)>+1)
+		:endif
+		:if:<pokemon.fullyhealed(1)>=false
+			@storage.set(integer,potheals,<storage.get(integer,potheals)>+1)
+		:endif
+		:if:<pokemon.fullyhealed(2)>=false
+			@storage.set(integer,potheals,<storage.get(integer,potheals)>+1)
+		:endif
+
+		:select:<system.random(0,2)>
+			:when:0
+				@text.show(Giggle... You seem~to be bereft of luck...*If only you hadn't chosen~this room, your Pokémon~could have been healed...)
+			:when:1
+				@text.show(Since you have chosen this~room, I will restore one~Pokémon to full health...)
+				:select:<storage.get(integer,potheals)>
+					:when:0
+					:when:1
+						@pokemon.heal
+					:when:2
+						:select:<system.random(0,2)>
+							:when:0
+								:if:<pokemon.fullyhealed(0)>=false
+									@pokemon.heal(0)
+								:else
+									@pokemon.heal(<system.random(1,2)>)						
+								:endif
+							:when:1
+								:if:<pokemon.fullyhealed(1)>=false
+									@pokemon.heal(1)
+								:else
+									:select:<system.random(0,1)>
+										:when:0
+											@pokemon.heal(0)
+										:when:1
+											@pokemon.heal(2)
+									:endwhen
+								:endif
+							:when:2
+								:if:<pokemon.fullyhealed(2)>=false
+									@pokemon.heal(2)
+								:else
+									@pokemon.heal(<system.random(0,1)>)						
+								:endif
+						:endwhen
+					:when:3
+						@pokemon.heal(<system.random(0,2)>)
+				:endwhen
+			:when:2
+				@text.show(Since you have chosen this~room, I will restore two~Pokémon to full health...)
+				:select:<storage.get(integer,potheals)>
+					:when:0
+					:when:1
+						@pokemon.heal
+					:when:2
+						@pokemon.heal
+					:when:3
+						:select:<system.random(0,2)>
+							:when:0
+								@pokemon.heal(1,2)
+							:when:1
+								@pokemon.heal(0,2)
+							:when:2
+								@pokemon.heal(0,1)
+						:endwhen
+				:endwhen
+		:endwhen
+		@text.show(I shall go fetch our master...)
+		@npc.turn(31,0)
+		@npc.move(31,4)
+		@npc.remove(31)
+		@npc.warp(8,~,0,~)
+		@npc.move(8,1)
+		@battle.setvar(canreceiveexp,0)
+		@battle.setvar(canuseitems,0)
+		@battle.setvar(canblackout,0)
+		@battle.setvar(frontiertrainer,<register.value(pike_class)>)
+		:if:<register.value(pike_room_count_temp)>=28
+			@text.show(I am Lucy...~I am the law here...~For I am the Pike Queen...*You already know it,~but to advance,~you must defeat me...*...I'm not one for idle chatter. Hurry. Come on...*Your luck...~I hope you didn't use it all up here...)
+			@player.move(2)
+			@battle.trainer(frontier\battlefactory\lucy_silver)
+			@text.show(Lucy: ... ... ... ... ...~Show me your Frontier Pass...)
+			@player.achieveemblem(silver luck)
+			@player.addfrontieremblem(2,0)
+			@register.register(pike_silver)
+			@text.show(<player.name> received~the Silver Luck Emblem!)
+			@text.show(...That's all there is... Disappear already...)
+		:else
+			@text.show(...You again...*... ... ... ... ... ...*...I've trampled flowers~and braved storms to get~to where I am...*I don't feel any compulsion~to keep losing to the~same opponent...*... ... ... ... ... ...*Fine...~I'll do it...*Now!~Come on!)
+			@player.move(2)
+			@battle.trainer(frontier\battlefactory\lucy_gold)
+			:if:<register.value(pike_room_count_temp)>=112
+				@text.show(Lucy: ... ... ... ... ...~...Frontier Pass...)
+				@player.achieveemblem(gold luck)
+				@player.addfrontieremblem(2,1)
+				@register.register(pike_gold)
+				@text.show(<player.name> received~the Gold Luck Emblem!)
+			:endif
+			@text.show(...You, I won't forget...~...Ever...)
+		:endif
+		@npc.turn(8,3)
+		@npc.move(8,1)
+		@npc.turn(8,1)
+:endwhen
+:end

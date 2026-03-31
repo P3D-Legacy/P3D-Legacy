@@ -1,8 +1,8 @@
 version=2
-@text.show(You are currently in room <register.value(pike_room_count_temp)>...~Will you continue with your challenge?)
+@text.show(You are currently in room <register.value(pike_room_count_temp)>...~Will you continue with your~challenge?)
 @options.show(Yes,No)
 	:when:No
-		@text.show(Would you like to pause your challenge and resume it later?)
+		@text.show(Would you like to pause~your challenge and resume~it later?)
 		@options.show(Yes,No)
 			:when:Yes
 				@player.save
