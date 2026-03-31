@@ -2,7 +2,7 @@
 {"Actions"{LEV[{"CanTeleport"{bool[1]}}{"CanDig"{bool[0]}}{"CanFly"{bool[0]}}{"EnvironmentType"{int[1]}}{"BlackOutScript"{str[frontier\battlepike\<register.value(piketype)>\lost]}}{"DisableMenus"{bool[1]}}{"MapScript"{str[frontier\battlepike\<register.value(piketype)>\enterchoose]}}{"Weather"{int[1]}}]}}
 
 Floor:
-{"Floor"{ENT[{"Size"{intArr[12,8]}}{"Position"{intArr[-1,0,0]}}{"TexturePath"{str[battlepike]}}{"Texture"{rec[64,80,16,16]}}]}}
+{"Floor"{ENT[{"Size"{intArr[12,9]}}{"Position"{intArr[-1,0,-1]}}{"TexturePath"{str[battlepike]}}{"Texture"{rec[64,80,16,16]}}]}}
 
 Ceiling:
 {"EntityField"{ENT[{"Size"{intArr[12,8]}}{"EntityID"{str[Cube]}}{"Position"{sngArr[-1,4,0]}}{"TexturePath"{str[battlepike]}}{"Textures"{recArr[[48,80,16,16]]}}{"TextureIndex"{intArr[0,0,0,0,0,0,0,0,0,0]}}{"Collision"{bool[1]}}{"ModelID"{int[0]}}{"Action"{int[0]}}{"AdditionalValue"{str[]}}{"Rotation"{int[0]}}]}}
@@ -54,3 +54,13 @@ Mats:
 NPC:
 {"NPC"{NPC[{"Position"{sngArr[3,0,6]}}{"TextureID"{str[96]}}{"ID"{int[0]}}{"Name"{str[Guide]}}{"Action"{int[1]}}{"AdditionalValue"{str[frontier\battlepike\challenge\checkin]}}{"Rotation"{int[3]}}{"Movement"{str[Still]}}{"MoveRectangles"{recArr[]}}]}}
 {"NPC"{NPC[{"Position"{sngArr[6,0,1]}}{"TextureID"{str[96]}}{"ID"{int[1]}}{"Name"{str[Hint]}}{"Action"{int[1]}}{"AdditionalValue"{str[frontier\battlepike\hint]}}{"Rotation"{int[2]}}{"Movement"{str[Still]}}{"MoveRectangles"{recArr[]}}]}}
+
+Warps:
+{"Entity"{ENT[{"EntityID"{str[WarpBlock]}}{"TexturePath"{str[frontier]}}{"Textures"{recArr[[24,16,16,16]]}}{"TextureIndex"{intArr[0,0,0,0,0,0,0,0,0,0]}}{"Collision"{bool[1]}}{"ModelID"{int[1]}}{"Action"{int[0]}}{"AdditionalValue"{str[frontier\battlepike\rooms\0.dat,0,0.1,4,0]}}{"Rotation"{int[0]}}{"Visible"{bool[0]}}{"Position"{sngArr[0,0,-1]}}]}}
+{"Entity"{ENT[{"EntityID"{str[WarpBlock]}}{"TexturePath"{str[frontier]}}{"Textures"{recArr[[24,16,16,16]]}}{"TextureIndex"{intArr[0,0,0,0,0,0,0,0,0,0]}}{"Collision"{bool[1]}}{"ModelID"{int[1]}}{"Action"{int[0]}}{"AdditionalValue"{str[frontier\battlepike\rooms\0.dat,1,0.1,4,0]}}{"Rotation"{int[0]}}{"Visible"{bool[0]}}{"Position"{sngArr[1,0,-1]}}]}}
+
+{"Entity"{ENT[{"EntityID"{str[WarpBlock]}}{"TexturePath"{str[frontier]}}{"Textures"{recArr[[24,16,16,16]]}}{"TextureIndex"{intArr[0,0,0,0,0,0,0,0,0,0]}}{"Collision"{bool[1]}}{"ModelID"{int[1]}}{"Action"{int[0]}}{"AdditionalValue"{str[frontier\battlepike\rooms\1.dat,0,0.1,4,0]}}{"Rotation"{int[0]}}{"Visible"{bool[0]}}{"Position"{sngArr[4,0,-1]}}]}}
+{"Entity"{ENT[{"EntityID"{str[WarpBlock]}}{"TexturePath"{str[frontier]}}{"Textures"{recArr[[24,16,16,16]]}}{"TextureIndex"{intArr[0,0,0,0,0,0,0,0,0,0]}}{"Collision"{bool[1]}}{"ModelID"{int[1]}}{"Action"{int[0]}}{"AdditionalValue"{str[frontier\battlepike\rooms\1.dat,1,0.1,4,0]}}{"Rotation"{int[0]}}{"Visible"{bool[0]}}{"Position"{sngArr[5,0,-1]}}]}}
+
+{"Entity"{ENT[{"EntityID"{str[WarpBlock]}}{"TexturePath"{str[frontier]}}{"Textures"{recArr[[24,16,16,16]]}}{"TextureIndex"{intArr[0,0,0,0,0,0,0,0,0,0]}}{"Collision"{bool[1]}}{"ModelID"{int[1]}}{"Action"{int[0]}}{"AdditionalValue"{str[frontier\battlepike\rooms\2.dat,0,0.1,4,0]}}{"Rotation"{int[0]}}{"Visible"{bool[0]}}{"Position"{sngArr[8,0,-1]}}]}}
+{"Entity"{ENT[{"EntityID"{str[WarpBlock]}}{"TexturePath"{str[frontier]}}{"Textures"{recArr[[24,16,16,16]]}}{"TextureIndex"{intArr[0,0,0,0,0,0,0,0,0,0]}}{"Collision"{bool[1]}}{"ModelID"{int[1]}}{"Action"{int[0]}}{"AdditionalValue"{str[frontier\battlepike\rooms\2.dat,1,0.1,4,0]}}{"Rotation"{int[0]}}{"Visible"{bool[0]}}{"Position"{sngArr[9,0,-1]}}]}}
