@@ -1043,7 +1043,7 @@
             Screen.Level.DisableMenus = False
         End If
         If TagExists(Tags, "BlackOutScript") = True Then
-            Screen.Level.BlackOutScript = CStr(GetTag(Tags, "BlackOutScript"))
+            Screen.Level.BlackOutScript = ScriptVersion2.ScriptCommander.Parse(CStr(GetTag(Tags, "BlackOutScript"))).ToString
         Else
             Screen.Level.BlackOutScript = ""
         End If
