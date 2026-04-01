@@ -93,7 +93,7 @@ Namespace Items
 
                 Screen.TextBox.reDelay = 0.0F
 
-                Dim t As String = "Cures the poison~of " & Pokemon.GetDisplayName() & "."
+                Dim t As String = "Cured the poison~of " & Pokemon.GetDisplayName() & "."
                 t &= RemoveItem()
                 PlayerStatistics.Track("[17]Medicine Items used", 1)
 
@@ -103,7 +103,7 @@ Namespace Items
                 Return True
             Else
                 Screen.TextBox.reDelay = 0.0F
-                Screen.TextBox.Show(Pokemon.GetDisplayName() & " is not poisoned.", {})
+                Screen.TextBox.Show(Pokemon.GetDisplayName() & " is not~poisoned.", {})
 
                 Return False
             End If
@@ -138,7 +138,7 @@ Namespace Items
 
                 Screen.TextBox.reDelay = 0.0F
 
-                Dim t As String = "Cures the sleep~of " & Pokemon.GetDisplayName() & "."
+                Dim t As String = "Cured the sleep~of " & Pokemon.GetDisplayName() & "."
                 t &= RemoveItem()
 
                 SoundManager.PlaySound("Use_Item", False)
@@ -148,7 +148,7 @@ Namespace Items
                 Return True
             Else
                 Screen.TextBox.reDelay = 0.0F
-                Screen.TextBox.Show(Pokemon.GetDisplayName() & " is not asleep.", {})
+                Screen.TextBox.Show(Pokemon.GetDisplayName() & " is not~asleep.", {})
 
                 Return False
             End If
@@ -183,7 +183,7 @@ Namespace Items
 
                 Screen.TextBox.reDelay = 0.0F
 
-                Dim t As String = "Cures the burn~of " & Pokemon.GetDisplayName() & "."
+                Dim t As String = "Cured the burn~of " & Pokemon.GetDisplayName() & "."
                 t &= RemoveItem()
 
                 SoundManager.PlaySound("Use_Item", False)
@@ -193,7 +193,7 @@ Namespace Items
                 Return True
             Else
                 Screen.TextBox.reDelay = 0.0F
-                Screen.TextBox.Show(Pokemon.GetDisplayName() & " is not burned.", {})
+                Screen.TextBox.Show(Pokemon.GetDisplayName() & " is not~burned.", {})
 
                 Return False
             End If
@@ -228,7 +228,7 @@ Namespace Items
 
                 Screen.TextBox.reDelay = 0.0F
 
-                Dim t As String = "Cures the ice~of " & Pokemon.GetDisplayName() & "."
+                Dim t As String = "Cured the ice~of " & Pokemon.GetDisplayName() & "."
                 t &= RemoveItem()
 
                 SoundManager.PlaySound("Use_Item", False)
@@ -238,7 +238,7 @@ Namespace Items
                 Return True
             Else
                 Screen.TextBox.reDelay = 0.0F
-                Screen.TextBox.Show(Pokemon.GetDisplayName() & " is not frozen.", {})
+                Screen.TextBox.Show(Pokemon.GetDisplayName() & " is not~frozen.", {})
 
                 Return False
             End If
@@ -273,7 +273,7 @@ Namespace Items
 
                 Screen.TextBox.reDelay = 0.0F
 
-                Dim t As String = "Cures the paralysis~of " & Pokemon.GetDisplayName() & "."
+                Dim t As String = "Cured the paralysis~of " & Pokemon.GetDisplayName() & "."
                 t &= RemoveItem()
 
                 SoundManager.PlaySound("Use_Item", False)

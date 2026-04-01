@@ -1,3 +1,5 @@
+Imports P3D.Screen
+
 Namespace BattleSystem
 
     Public Class BattleMenu
@@ -1195,12 +1197,11 @@ Namespace BattleSystem
 
                         Core.SetScreen(selScreen)
                     Else
-                        If Item.IsGameModeItem = True Then
-                            If CType(Item, GameModeItem).gmIsHealingItem = True Or CType(Item, GameModeItem).gmCureStatusEffects IsNot Nothing Or CType(Item, GameModeItem).gmUseOnOppEffects IsNot Nothing Then
-                                CType(Item, GameModeItem).Use()
-                            End If
-                        End If
-                        UseItem(0)
+                        Dim cScreen As Screen = Core.CurrentScreen
+                        While Not cScreen.PreScreen Is Nothing And cScreen.Identification <> Identifications.BattleScreen
+                            cScreen = cScreen.PreScreen
+                        End While
+                        UseItem(CType(cScreen, BattleSystem.BattleScreen).OwnPokemonIndex)
                     End If
                 End If
             End If
@@ -1213,11 +1214,31 @@ Namespace BattleSystem
         End Sub
 
         Private Shared Sub UseItem(ByVal PokeIndex As Integer)
-            Dim Pokemon As Pokemon = Core.Player.Pokemons(PokeIndex)
-
             Dim Item As Item = Item.GetItemByID(TempItemID)
 
-            If Item.UseOnPokemon(PokeIndex) = True Then
+            Dim UseOnOwn As Boolean = False
+            Dim UseOnOpp As Boolean = False
+
+            Dim cScreen As Screen = Core.CurrentScreen
+            While Not cScreen.PreScreen Is Nothing And cScreen.Identification <> Identifications.BattleScreen
+                cScreen = cScreen.PreScreen
+            End While
+
+            If cScreen.Identification = Identifications.BattleScreen Then
+                If Item.IsGameModeItem Then
+                    Dim gmItem As GameModeItem = CType(Item, GameModeItem)
+                    If gmItem.gmUseOnOwnEffects IsNot Nothing Then
+                        UseOnOwn = gmItem.UseOnPokemon(PokeIndex)
+                    End If
+                    If gmItem.gmUseOnOppEffects IsNot Nothing AndAlso gmItem.gmUseOnOwnEffects Is Nothing Then
+                        UseOnOpp = gmItem.UseOnOppPokemon(CType(cScreen, BattleSystem.BattleScreen))
+                    End If
+                Else
+
+                    UseOnOwn = Item.UseOnPokemon(PokeIndex)
+                End If
+            End If
+            If UseOnOwn = True Or UseOnOpp = True Then
                 Dim CudChewBerries As String() = {"oran", "sitrus", "figy", "wiki", "mago", "aguav", "iapapa", "liechi", "ganlon", "salac", "petaya", "apicot", "lansat", "starf", "lum", "rawst", "aspear", "cheri", "chesto"}
                 If Core.Player.Pokemons(PokeIndex).Ability.Name.ToLower() = "cud chew" AndAlso Item.IsBerry = True AndAlso CudChewBerries.Contains(Item.Name.ToLower) Then
                     TempBattleScreen.FieldEffects.OwnCudChewBerry = Item
@@ -1227,6 +1248,7 @@ Namespace BattleSystem
                 TempBattleScreen.BattleQuery.Clear()
                 TempBattleScreen.BattleQuery.Add(TempBattleScreen.FocusBattle())
                 TempBattleScreen.BattleQuery.Insert(0, New ToggleMenuQueryObject(True))
+
                 TempBattleScreen.Battle.InitializeRound(TempBattleScreen, New Battle.RoundConst With {.StepType = Battle.RoundConst.StepTypes.Item, .Argument = TempItemID.ToString()})
             End If
         End Sub

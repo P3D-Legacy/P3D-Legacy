@@ -1,3 +1,4 @@
+Imports System.Windows.Forms
 Imports P3D.BattleSystem
 Imports P3D.Items
 Imports P3D.Screen
@@ -30,7 +31,7 @@ Public Class GameModeItem
     'Medicine Item
     Public gmIsHealingItem As Boolean = False
     Public gmHealHPAmount As Integer = 0
-    Public gmCureStatusEffects As List(Of String)
+    Public gmUseOnOwnEffects As List(Of String)
     Public gmUseOnOppEffects As List(Of String)
     Public gmBattleUseSound As String
 
@@ -277,14 +278,6 @@ Public Class GameModeItem
                     End If
                 End If
             End If
-            If Me.gmBattleSelectPokemon = False Then
-                CType(cScreen, BattleSystem.BattleScreen).FocusBattle()
-            End If
-            If gmCureStatusEffects Is Nothing AndAlso Me.gmBattleSelectPokemon = False Then
-                If cScreen.Identification = Identifications.BattleScreen AndAlso gmBattleUseSound <> "" Then
-                    CType(cScreen, BattleSystem.BattleScreen).AddToQuery(-1, New PlaySoundQueryObject(gmBattleUseSound.GetSplit(0, ","), False, "", CBool(gmBattleUseSound.GetSplit(1, ","))))
-                End If
-            End If
             If gmIsHealingItem = True Then
                 If CBool(GameModeManager.GetGameRuleValue("CanUseHealItems", "1")) = False Then
                     Screen.TextBox.Show("Cannot use heal items.", {}, False, False)
@@ -304,7 +297,7 @@ Public Class GameModeItem
                         Me.UseOnPokemon(CType(cScreen, BattleSystem.BattleScreen).OwnPokemonIndex)
                     End If
                 End If
-            ElseIf gmCureStatusEffects IsNot Nothing AndAlso gmCureStatusEffects.Count > 0 Then
+            ElseIf gmUseOnOwnEffects IsNot Nothing AndAlso gmUseOnOwnEffects.Count > 0 Then
                 If cScreen.Identification <> Identifications.BattleScreen OrElse Me.gmBattleSelectPokemon = True Then
                     If Core.Player.Pokemons.Count > 0 Then
                         Dim selScreen = New PartyScreen(Core.CurrentScreen, Me, AddressOf Me.UseOnPokemon, Localization.GetString("global_use", "Use") & " " & Me.OneLineName(), True) With {.Mode = Screens.UI.ISelectionScreen.ScreenMode.Selection, .CanExit = True}
@@ -359,8 +352,16 @@ Public Class GameModeItem
         If PokeIndex < 0 Or PokeIndex > 5 Then
             Throw New ArgumentOutOfRangeException("PokeIndex", PokeIndex, "The index for a Pokémon in a player's party can only be between 0 and 5.")
         End If
-        If CurrentScreen.Identification = Identifications.BattleScreen AndAlso Me.gmBattleSelectPokemon = True AndAlso gmBattleUseSound <> "" Then
-            CType(CurrentScreen, BattleSystem.BattleScreen).AddToQuery(-1, New PlaySoundQueryObject(gmBattleUseSound.GetSplit(0, ","), False, "", CBool(gmBattleUseSound.GetSplit(1, ","))))
+        Dim cScreen As Screen = Core.CurrentScreen
+        While Not cScreen.PreScreen Is Nothing And cScreen.Identification <> Identifications.BattleScreen
+            cScreen = cScreen.PreScreen
+        End While
+
+        Dim UseOnOppSuccess = False
+        If cScreen.Identification = Identifications.BattleScreen Then
+            If gmUseOnOppEffects IsNot Nothing AndAlso gmUseOnOppEffects.Count > 0 Then
+               UseOnOppSuccess = UseOnOppPokemon(CType(cScreen, BattleSystem.BattleScreen))
+            End If
         End If
         Dim p As Pokemon = Core.Player.Pokemons(PokeIndex)
 
@@ -395,17 +396,17 @@ Public Class GameModeItem
             End If
         End If
 
-        If p.Status = P3D.Pokemon.StatusProblems.Fainted AndAlso (gmCureStatusEffects Is Nothing OrElse gmCureStatusEffects.Count = 0 OrElse gmCureStatusEffects.Contains("fnt") = False) Then
+        If p.Status = P3D.Pokemon.StatusProblems.Fainted AndAlso (gmUseOnOwnEffects Is Nothing OrElse gmUseOnOwnEffects.Count = 0 OrElse gmUseOnOwnEffects.Contains("fnt") = False) Then
             Screen.TextBox.reDelay = 0.0F
             Screen.TextBox.Show(p.GetDisplayName() & "~is fainted!", {})
             Return False
         Else
             Dim healsuccess As Boolean = False
-            If gmCureStatusEffects Is Nothing OrElse gmCureStatusEffects.Count = 0 Then
+            If gmUseOnOwnEffects Is Nothing OrElse gmUseOnOwnEffects.Count = 0 Then
                 If gmIsHealingItem = True AndAlso gmHealHPAmount > 0 Then
                     Return HealPokemon(PokeIndex, gmHealHPAmount)
                 End If
-            ElseIf gmCureStatusEffects.Contains("all") = False AndAlso gmCureStatusEffects.Contains("allwithoutfnt") = False Then
+            ElseIf gmUseOnOwnEffects.Contains("all") = False AndAlso gmUseOnOwnEffects.Contains("allwithoutfnt") = False Then
                 If gmIsHealingItem = True AndAlso gmHealHPAmount > 0 Then
                     If HealPokemon(PokeIndex, gmHealHPAmount, True) Then
                         healsuccess = True
@@ -413,8 +414,8 @@ Public Class GameModeItem
                 End If
             End If
 
-            If gmCureStatusEffects IsNot Nothing AndAlso gmCureStatusEffects.Count > 0 Then
-                If gmCureStatusEffects.Contains("allwithoutfnt") Then
+            If gmUseOnOwnEffects IsNot Nothing AndAlso gmUseOnOwnEffects.Count > 0 Then
+                If gmUseOnOwnEffects.Contains("allwithoutfnt") Then
                     Dim success1 As Boolean = False
                     Dim success2 As Boolean = False
                     If gmIsHealingItem = True AndAlso gmHealHPAmount > 0 Then
@@ -432,13 +433,26 @@ Public Class GameModeItem
 
                     Dim t As String = ""
                     If success1 = True AndAlso success2 = False Then
-                        t &= "Healed " & p.GetDisplayName() & "!"
+                        If UseOnOppSuccess = True And Me.gmUseOnOppEffects.Contains("heal") Then
+                            t &= "Healed " & p.GetDisplayName() & " and " & CType(cScreen, BattleSystem.BattleScreen).OppPokemon.GetDisplayName() & "!"
+                        Else
+
+                            t &= "Healed " & p.GetDisplayName() & "!"
+                        End If
                     End If
                     If success1 = False AndAlso success2 = True Then
-                        t &= "Cured " & p.GetDisplayName() & "!"
+                        If UseOnOppSuccess = True And Me.gmUseOnOppEffects.Contains("heal") = False Then
+                            t &= "Cured " & p.GetDisplayName() & " and " & CType(cScreen, BattleSystem.BattleScreen).OppPokemon.GetDisplayName() & "!"
+                        Else
+                            t &= "Cured " & p.GetDisplayName() & "!"
+                        End If
                     End If
                     If success1 = True AndAlso success2 = True Then
-                        t &= "Healed and cured~" & p.GetDisplayName() & "!"
+                        If UseOnOppSuccess = True And Me.gmUseOnOppEffects.Contains("heal") Then
+                            t &= "Healed and cured~" & p.GetDisplayName() & " and " & CType(cScreen, BattleSystem.BattleScreen).OppPokemon.GetDisplayName() & "!"
+                        Else
+                            t &= "Healed and cured~" & p.GetDisplayName() & "!"
+                        End If
                     End If
 
                     If success1 = True Or success2 = True Then
@@ -449,7 +463,11 @@ Public Class GameModeItem
                         End If
                         PlayerStatistics.Track("[17]Medicine Items used", 1)
 
-                        SoundManager.PlaySound("Use_Item", False)
+                        If gmBattleUseSound <> "" Then
+                            SoundManager.PlaySound(gmBattleUseSound.GetSplit(0, ","), CBool(gmBattleUseSound.GetSplit(1, ",")))
+                        Else
+                            SoundManager.PlaySound("Use_Item", False)
+                        End If
                         Screen.TextBox.Show(t, {})
 
                         Return True
@@ -457,7 +475,7 @@ Public Class GameModeItem
                         Screen.TextBox.Show("Cannot use" & Me.Name & "~on " & p.GetDisplayName() & ".", {}, False, False)
                         Return False
                     End If
-                ElseIf gmCureStatusEffects.Contains("all") Then
+                ElseIf gmUseOnOwnEffects.Contains("all") Then
                     Dim success1 As Boolean = False
                     Dim success2 As Boolean = False
                     If gmIsHealingItem = True AndAlso gmHealHPAmount > 0 Then
@@ -475,13 +493,26 @@ Public Class GameModeItem
 
                     Dim t As String = ""
                     If success1 = True AndAlso success2 = False Then
-                        t &= "Healed " & p.GetDisplayName() & "!"
+                        If UseOnOppSuccess = True And Me.gmUseOnOppEffects.Contains("heal") Then
+                            t &= "Healed " & p.GetDisplayName() & " and " & CType(cScreen, BattleSystem.BattleScreen).OppPokemon.GetDisplayName() & "!"
+                        Else
+
+                            t &= "Healed " & p.GetDisplayName() & "!"
+                        End If
                     End If
                     If success1 = False AndAlso success2 = True Then
-                        t &= "Cured " & p.GetDisplayName() & "!"
+                        If UseOnOppSuccess = True And Me.gmUseOnOppEffects.Contains("heal") = False Then
+                            t &= "Cured " & p.GetDisplayName() & " and " & CType(cScreen, BattleSystem.BattleScreen).OppPokemon.GetDisplayName() & "!"
+                        Else
+                            t &= "Cured " & p.GetDisplayName() & "!"
+                        End If
                     End If
                     If success1 = True AndAlso success2 = True Then
-                        t &= "Healed and cured~" & p.GetDisplayName() & "!"
+                        If UseOnOppSuccess = True And Me.gmUseOnOppEffects.Contains("heal") Then
+                            t &= "Healed and cured~" & p.GetDisplayName() & " and " & CType(cScreen, BattleSystem.BattleScreen).OppPokemon.GetDisplayName() & "!"
+                        Else
+                            t &= "Healed and cured~" & p.GetDisplayName() & "!"
+                        End If
                     End If
 
                     If success1 = True Or success2 = True Then
@@ -492,83 +523,105 @@ Public Class GameModeItem
                         End If
                         PlayerStatistics.Track("[17]Medicine Items used", 1)
 
-                        SoundManager.PlaySound("Use_Item", False)
+                        If gmBattleUseSound <> "" Then
+                            SoundManager.PlaySound(gmBattleUseSound.GetSplit(0, ","), CBool(gmBattleUseSound.GetSplit(1, ",")))
+                        Else
+                            SoundManager.PlaySound("Use_Item", False)
+                        End If
                         Screen.TextBox.Show(t, {})
 
                         Return True
                     Else
-                        Screen.TextBox.Show("Cannot use" & Me.Name & "~on " & p.GetDisplayName() & ".", {}, False, False)
+                        If UseOnOppSuccess = False AndAlso Me.gmUseOnOppEffects IsNot Nothing AndAlso cScreen.Identification = Identifications.BattleScreen Then
+                            Screen.TextBox.Show("Cannot use" & Me.Name & "~on " & p.GetDisplayName() & " or " & CType(cScreen, BattleSystem.BattleScreen).OppPokemon.GetDisplayName() & ".", {}, False, False)
+                        Else
+                            Screen.TextBox.Show("Cannot use" & Me.Name & "~on " & p.GetDisplayName() & ".", {}, False, False)
+                        End If
+
                         Return False
                     End If
                 Else
-                    If gmCureStatusEffects.Count = 1 Then
-                        If gmCureStatusEffects.Contains("brn") Then
-                            Return HealBurn(PokeIndex)
+                    If gmUseOnOwnEffects.Count = 1 Then
+                        If gmUseOnOwnEffects.Contains("brn") Then
+                            Return HealBurn(PokeIndex,, UseOnOppSuccess)
                         End If
-                        If gmCureStatusEffects.Contains("frz") Then
-                            Return HealIce(PokeIndex)
+                        If gmUseOnOwnEffects.Contains("frz") Then
+                            Return HealIce(PokeIndex,, UseOnOppSuccess)
                         End If
-                        If gmCureStatusEffects.Contains("prz") Then
-                            Return HealParalyze(PokeIndex)
+                        If gmUseOnOwnEffects.Contains("prz") Then
+                            Return HealParalyze(PokeIndex,, UseOnOppSuccess)
                         End If
-                        If gmCureStatusEffects.Contains("psn") OrElse gmCureStatusEffects.Contains("bpsn") Then
-                            Return CurePoison(PokeIndex)
+                        If gmUseOnOwnEffects.Contains("psn") OrElse gmUseOnOwnEffects.Contains("bpsn") Then
+                            Return CurePoison(PokeIndex,, UseOnOppSuccess)
                         End If
-                        If gmCureStatusEffects.Contains("slp") Then
-                            Return WakeUp(PokeIndex)
+                        If gmUseOnOwnEffects.Contains("slp") Then
+                            Return WakeUp(PokeIndex,, UseOnOppSuccess)
                         End If
-                        If gmCureStatusEffects.Contains("confusion") Then
-                            Return CureConfusion(PokeIndex)
+                        If gmUseOnOwnEffects.Contains("confusion") Then
+                            Return CureConfusion(PokeIndex,, UseOnOppSuccess)
                         End If
-                        If gmCureStatusEffects.Contains("fnt") Then
+                        If gmUseOnOwnEffects.Contains("fnt") Then
                             Return Revive(PokeIndex)
                         End If
                     Else
                         Dim success As Boolean = False
-                        If gmCureStatusEffects.Contains("brn") Then
+                        If gmUseOnOwnEffects.Contains("brn") Then
                             If HealBurn(PokeIndex, True) Then
                                 success = True
                             End If
                         End If
-                        If gmCureStatusEffects.Contains("frz") Then
+                        If gmUseOnOwnEffects.Contains("frz") Then
                             If HealIce(PokeIndex, True) Then
                                 success = True
                             End If
                         End If
-                        If gmCureStatusEffects.Contains("prz") Then
+                        If gmUseOnOwnEffects.Contains("prz") Then
                             If HealParalyze(PokeIndex, True) Then
                                 success = True
                             End If
                         End If
-                        If gmCureStatusEffects.Contains("psn") OrElse gmCureStatusEffects.Contains("bpsn") Then
+                        If gmUseOnOwnEffects.Contains("psn") OrElse gmUseOnOwnEffects.Contains("bpsn") Then
                             If CurePoison(PokeIndex, True) Then
                                 success = True
                             End If
                         End If
-                        If gmCureStatusEffects.Contains("slp") Then
+                        If gmUseOnOwnEffects.Contains("slp") Then
                             If WakeUp(PokeIndex, True) Then
                                 success = True
                             End If
                         End If
-                        If gmCureStatusEffects.Contains("confusion") Then
+                        If gmUseOnOwnEffects.Contains("confusion") Then
                             If CureConfusion(PokeIndex, True) Then
                                 success = True
                             End If
                         End If
-                        If gmCureStatusEffects.Contains("fnt") Then
+                        If gmUseOnOwnEffects.Contains("fnt") Then
                             If Revive(PokeIndex, True) Then
                                 success = True
                             End If
                         End If
                         Dim t As String = ""
                         If healsuccess = True AndAlso success = False Then
-                            t &= "Healed " & p.GetDisplayName() & "!"
+                            If UseOnOppSuccess = True And Me.gmUseOnOppEffects.Contains("heal") Then
+                                t &= "Healed " & p.GetDisplayName() & " and " & CType(cScreen, BattleSystem.BattleScreen).OppPokemon.GetDisplayName() & "!"
+                            Else
+
+                                t &= "Healed " & p.GetDisplayName() & "!"
+                            End If
                         End If
                         If healsuccess = False AndAlso success = True Then
-                            t &= "Cured " & p.GetDisplayName() & "!"
+                            If UseOnOppSuccess = True And Me.gmUseOnOppEffects.Contains("heal") = False Then
+                                t &= "Cured " & p.GetDisplayName() & " and " & CType(cScreen, BattleSystem.BattleScreen).OppPokemon.GetDisplayName() & "!"
+                            Else
+                                t &= "Cured " & p.GetDisplayName() & "!"
+                            End If
                         End If
                         If healsuccess = True AndAlso success = True Then
-                            t &= "Healed and cured~" & p.GetDisplayName() & "!"
+                            If UseOnOppSuccess = True And Me.gmUseOnOppEffects.Contains("heal") Then
+                                t &= "Healed and cured~" & p.GetDisplayName() & " and " & CType(cScreen, BattleSystem.BattleScreen).OppPokemon.GetDisplayName() & "!"
+                            Else
+                                t &= "Healed and cured~" & p.GetDisplayName() & "!"
+                            End If
                         End If
 
                         If healsuccess = True Or success = True Then
@@ -578,13 +631,20 @@ Public Class GameModeItem
                                 t &= RemoveItem()
                             End If
                             PlayerStatistics.Track("[17]Medicine Items used", 1)
-
-                            SoundManager.PlaySound("Use_Item", False)
+                            If gmBattleUseSound <> "" Then
+                                SoundManager.PlaySound(gmBattleUseSound.GetSplit(0, ","), CBool(gmBattleUseSound.GetSplit(1, ",")))
+                            Else
+                                SoundManager.PlaySound("Use_Item", False)
+                            End If
                             Screen.TextBox.Show(t, {})
 
                             Return True
                         Else
-                            Screen.TextBox.Show("Cannot use" & Me.Name & "~on " & p.GetDisplayName() & ".", {}, False, False)
+                            If UseOnOppSuccess = False AndAlso Me.gmUseOnOppEffects IsNot Nothing AndAlso cScreen.Identification = Identifications.BattleScreen Then
+                                Screen.TextBox.Show("Cannot use" & Me.Name & "~on " & p.GetDisplayName() & " or " & CType(cScreen, BattleSystem.BattleScreen).OppPokemon.GetDisplayName() & ".", {}, False, False)
+                            Else
+                                Screen.TextBox.Show("Cannot use" & Me.Name & "~on " & p.GetDisplayName() & ".", {}, False, False)
+                            End If
                             Return False
                         End If
                     End If
@@ -599,15 +659,14 @@ Public Class GameModeItem
     End Function
     Public Function UseOnOppPokemon(bScreen As BattleSystem.BattleScreen) As Boolean
 
-        Dim p As Pokemon = bScreen.OppPokemon
         Dim healsuccess As Boolean = False
         If gmUseOnOppEffects Is Nothing OrElse gmUseOnOppEffects.Count = 0 Then
             If gmIsHealingItem = True AndAlso gmHealHPAmount > 0 AndAlso gmUseOnOppEffects.Contains("heal") Then
-                Return HealPokemon(-1, gmHealHPAmount,, p)
+                Return HealPokemon(-1, gmHealHPAmount,,, bScreen.OppPokemon)
             End If
         ElseIf gmUseOnOppEffects.Contains("allstatus") = False Then
             If gmIsHealingItem = True AndAlso gmHealHPAmount > 0 AndAlso gmUseOnOppEffects.Contains("heal") Then
-                If HealPokemon(-1, gmHealHPAmount, True, p) Then
+                If HealPokemon(-1, gmHealHPAmount, True, , bScreen.OppPokemon) Then
                     healsuccess = True
                 End If
             End If
@@ -618,108 +677,114 @@ Public Class GameModeItem
                 Dim success1 As Boolean = False
                 Dim success2 As Boolean = False
                 If gmIsHealingItem = True AndAlso gmHealHPAmount > 0 AndAlso gmUseOnOppEffects.Contains("heal") Then
-                    If HealPokemon(-1, gmHealHPAmount, True, p) = True Then
+                    If HealPokemon(-1, gmHealHPAmount, True,, bScreen.OppPokemon) = True Then
                         success1 = True
                     End If
                 End If
-                If p.Status <> Pokemon.StatusProblems.Fainted AndAlso p.Status <> Pokemon.StatusProblems.None Or p.HasVolatileStatus(Pokemon.VolatileStatus.Confusion) = True Then
-                    If p.HasVolatileStatus(Pokemon.VolatileStatus.Confusion) = True Then
-                        p.RemoveVolatileStatus(Pokemon.VolatileStatus.Confusion)
+                If bScreen.OppPokemon.Status <> Pokemon.StatusProblems.Fainted AndAlso bScreen.OppPokemon.Status <> Pokemon.StatusProblems.None Or bScreen.OppPokemon.HasVolatileStatus(Pokemon.VolatileStatus.Confusion) = True Then
+                    If bScreen.OppPokemon.HasVolatileStatus(Pokemon.VolatileStatus.Confusion) = True Then
+                        bScreen.OppPokemon.RemoveVolatileStatus(Pokemon.VolatileStatus.Confusion)
                     End If
-                    p.Status = Pokemon.StatusProblems.None
+                    bScreen.OppPokemon.Status = Pokemon.StatusProblems.None
                     success2 = True
                 End If
 
                 Dim t As String = ""
                 If success1 = True AndAlso success2 = False Then
-                    t &= "Healed " & p.GetDisplayName() & "!"
+                    t &= "Healed " & bScreen.OppPokemon.GetDisplayName() & "!"
                 End If
                 If success1 = False AndAlso success2 = True Then
-                    t &= "Cured " & p.GetDisplayName() & "!"
+                    t &= "Cured " & bScreen.OppPokemon.GetDisplayName() & "!"
                 End If
                 If success1 = True AndAlso success2 = True Then
-                    t &= "Healed and cured~" & p.GetDisplayName() & "!"
+                    t &= "Healed and cured~" & bScreen.OppPokemon.GetDisplayName() & "!"
                 End If
 
                 If success1 = True Or success2 = True Then
                     Screen.TextBox.reDelay = 0.0F
 
-                    If Me.gmItemType <> ItemTypes.KeyItems Then
+                    If Me.gmItemType <> ItemTypes.KeyItems AndAlso Me.gmUseOnOwnEffects Is Nothing Then
                         t &= RemoveItem()
                     End If
-                    If gmCureStatusEffects IsNot Nothing And gmUseOnOppEffects Is Nothing OrElse gmCureStatusEffects Is Nothing And gmUseOnOppEffects IsNot Nothing Then
+                    If gmUseOnOwnEffects Is Nothing Then
                         PlayerStatistics.Track("[17]Medicine Items used", 1)
+                        If gmUseOnOwnEffects Is Nothing AndAlso gmBattleUseSound <> "" Then
+                            SoundManager.PlaySound(gmBattleUseSound.GetSplit(0, ","), CBool(gmBattleUseSound.GetSplit(1, ",")))
+                        Else
+                            SoundManager.PlaySound("Use_Item", False)
+                        End If
                     End If
 
-                    SoundManager.PlaySound("Use_Item", False)
                     Screen.TextBox.Show(t, {})
 
                     Return True
                 Else
-                    Screen.TextBox.Show("Cannot use" & Me.Name & "~on " & p.GetDisplayName() & ".", {}, False, False)
+                    If gmUseOnOwnEffects Is Nothing Then
+                        Screen.TextBox.Show("Cannot use" & Me.Name & "~on " & bScreen.OppPokemon.GetDisplayName() & ".", {}, False, False)
+                    End If
                     Return False
                 End If
             Else
                 If gmUseOnOppEffects.Count = 1 Then
                     If gmUseOnOppEffects.Contains("brn") Then
-                        Return HealBurn(-1,, p)
+                        Return HealBurn(-1,,, bScreen.OppPokemon)
                     End If
                     If gmUseOnOppEffects.Contains("frz") Then
-                        Return HealIce(-1,, p)
+                        Return HealIce(-1,,, bScreen.OppPokemon)
                     End If
                     If gmUseOnOppEffects.Contains("prz") Then
-                        Return HealParalyze(-1,, p)
+                        Return HealParalyze(-1,,, bScreen.OppPokemon)
                     End If
                     If gmUseOnOppEffects.Contains("psn") OrElse gmUseOnOppEffects.Contains("bpsn") Then
-                        Return CurePoison(-1,, p)
+                        Return CurePoison(-1,,, bScreen.OppPokemon)
                     End If
                     If gmUseOnOppEffects.Contains("slp") Then
-                        Return WakeUp(-1,, p)
+                        Return WakeUp(-1,,, bScreen.OppPokemon)
                     End If
                     If gmUseOnOppEffects.Contains("confusion") Then
-                        Return CureConfusion(-1,, p)
+                        Return CureConfusion(-1,,, bScreen.OppPokemon)
                     End If
                 Else
                     Dim success As Boolean = False
                     If gmUseOnOppEffects.Contains("brn") Then
-                        If HealBurn(-1, True, p) Then
+                        If HealBurn(-1, True,, bScreen.OppPokemon) Then
                             success = True
                         End If
                     End If
                     If gmUseOnOppEffects.Contains("frz") Then
-                        If HealIce(-1, True, p) Then
+                        If HealIce(-1, True,, bScreen.OppPokemon) Then
                             success = True
                         End If
                     End If
                     If gmUseOnOppEffects.Contains("prz") Then
-                        If HealParalyze(-1, True, p) Then
+                        If HealParalyze(-1, True,, bScreen.OppPokemon) Then
                             success = True
                         End If
                     End If
                     If gmUseOnOppEffects.Contains("psn") OrElse gmUseOnOppEffects.Contains("bpsn") Then
-                        If CurePoison(-1, True, p) Then
+                        If CurePoison(-1, True,, bScreen.OppPokemon) Then
                             success = True
                         End If
                     End If
                     If gmUseOnOppEffects.Contains("slp") Then
-                        If WakeUp(-1, True, p) Then
+                        If WakeUp(-1, True,, bScreen.OppPokemon) Then
                             success = True
                         End If
                     End If
                     If gmUseOnOppEffects.Contains("confusion") Then
-                        If CureConfusion(-1, True, p) Then
+                        If CureConfusion(-1, True,, bScreen.OppPokemon) Then
                             success = True
                         End If
                     End If
                     Dim t As String = ""
                     If healsuccess = True AndAlso success = False Then
-                        t &= "Healed " & p.GetDisplayName() & "!"
+                        t &= "Healed " & bScreen.OppPokemon.GetDisplayName() & "!"
                     End If
                     If healsuccess = False AndAlso success = True Then
-                        t &= "Cured " & p.GetDisplayName() & "!"
+                        t &= "Cured " & bScreen.OppPokemon.GetDisplayName() & "!"
                     End If
                     If healsuccess = True AndAlso success = True Then
-                        t &= "Healed and cured~" & p.GetDisplayName() & "!"
+                        t &= "Healed and cured~" & bScreen.OppPokemon.GetDisplayName() & "!"
                     End If
 
                     If healsuccess = True Or success = True Then
@@ -729,17 +794,20 @@ Public Class GameModeItem
                             t &= RemoveItem()
                         End If
 
-                        If gmCureStatusEffects Is Nothing Then
+                        If gmUseOnOwnEffects Is Nothing Then
                             PlayerStatistics.Track("[17]Medicine Items used", 1)
                         End If
-
-                        SoundManager.PlaySound("Use_Item", False)
+                        If gmUseOnOwnEffects Is Nothing AndAlso gmBattleUseSound <> "" Then
+                            SoundManager.PlaySound(gmBattleUseSound.GetSplit(0, ","), CBool(gmBattleUseSound.GetSplit(1, ",")))
+                        Else
+                            SoundManager.PlaySound("Use_Item", False)
+                        End If
                         Screen.TextBox.Show(t, {})
 
                         Return True
                     Else
-                        If gmCureStatusEffects Is Nothing Then
-                            Screen.TextBox.Show("Cannot use" & Me.Name & "~on " & p.GetDisplayName() & ".", {}, False, False)
+                        If gmUseOnOwnEffects Is Nothing Then
+                            Screen.TextBox.Show("Cannot use" & Me.Name & "~on " & bScreen.OppPokemon.GetDisplayName() & ".", {}, False, False)
                         End If
 
                         Return False
@@ -808,7 +876,7 @@ Public Class GameModeItem
         If p.IsEgg() = False And p.CanEvolve(EvolutionCondition.EvolutionTrigger.ItemUse, Me.gmID) = True Then
 
             If Me.gmItemType <> ItemTypes.KeyItems Then
-                t &= RemoveItem()
+                RemoveItem()
             End If
 
             Core.SetScreen(New TransitionScreen(Core.CurrentScreen, New EvolutionScreen(Core.CurrentScreen, {PokeIndex}.ToList(), Me.gmID, EvolutionCondition.EvolutionTrigger.ItemUse), Color.Black, False))
@@ -825,21 +893,23 @@ Public Class GameModeItem
     ''' </summary>
     ''' <param name="PokeIndex">The index of the Pokémon in the player's party.</param>
     ''' <param name="HP">The HP that should be healed.</param>
-    Public Function HealPokemon(ByVal PokeIndex As Integer, ByVal HP As Integer, Optional NoTextOrSound As Boolean = False, Optional ByVal P As Pokemon = Nothing) As Boolean
-        If P Is Nothing Then
+    Public Function HealPokemon(ByVal PokeIndex As Integer, ByVal HP As Integer, Optional NoTextOrSound As Boolean = False, Optional UseOppSuccess As Boolean = False, Optional ByVal p As Pokemon = Nothing) As Boolean
+        If p Is Nothing Then
             If PokeIndex < 0 Or PokeIndex > 5 Then
                 Throw New ArgumentOutOfRangeException("PokeIndex", PokeIndex, "The index for a Pokémon in a player's party can only be between 0 and 5.")
             End If
         End If
+        Dim cScreen As Screen = Core.CurrentScreen
+        While Not cScreen.PreScreen Is Nothing And cScreen.Identification <> Identifications.BattleScreen
+            cScreen = cScreen.PreScreen
+        End While
+
 
         Dim Pokemon As Pokemon
-        If P Is Nothing Then
+        If p Is Nothing Then
             Pokemon = Core.Player.Pokemons(PokeIndex)
         Else
-            Pokemon = P
-            If Me.gmBattleSelectPokemon = true Then
-                CType(CurrentScreen, BattleSystem.BattleScreen).Battle.ChangeCameraAngle(2, True, CType(CurrentScreen, BattleSystem.BattleScreen))
-            End If
+            Pokemon = p
         End If
 
         If HP < 0 Then
@@ -849,14 +919,52 @@ Public Class GameModeItem
         If Pokemon.Status = Pokemon.StatusProblems.Fainted Then
             If NoTextOrSound = False Then
                 Screen.TextBox.reDelay = 0.0F
-                Screen.TextBox.Show(Pokemon.GetDisplayName() & "~is fainted!", {})
+                If UseOppSuccess = True Then
+                    If gmUseOnOppEffects IsNot Nothing AndAlso gmUseOnOppEffects.Contains("heal") Then
+                        If p Is Nothing Then
+                            If gmBattleUseSound <> "" Then
+                                SoundManager.PlaySound(gmBattleUseSound.GetSplit(0, ","), CBool(gmBattleUseSound.GetSplit(1, ",")))
+                            Else
+                                SoundManager.PlaySound("Use_Item", False)
+                            End If
+                            Screen.TextBox.Show("Restored " & CType(cScreen, BattleSystem.BattleScreen).OppPokemon.GetDisplayName() & "'s~HP.", {})
+                            Return True
+                        End If
+                    Else
+                        Screen.TextBox.Show(Pokemon.GetDisplayName() & "~is fainted!", {})
+                    End If
+                Else
+                    Screen.TextBox.Show(Pokemon.GetDisplayName() & "~is fainted!", {})
+                End If
             End If
             Return False
         Else
             If Pokemon.HP = Pokemon.MaxHP Then
                 If NoTextOrSound = False Then
                     Screen.TextBox.reDelay = 0.0F
-                    Screen.TextBox.Show(Pokemon.GetDisplayName() & " has full~HP already.", {})
+                    If cScreen.Identification = Identifications.BattleScreen Then
+                        If gmUseOnOppEffects IsNot Nothing AndAlso gmUseOnOppEffects.Contains("heal") Then
+                            If p Is Nothing Then
+                                If UseOppSuccess = True Then
+                                    If gmBattleUseSound <> "" Then
+                                        SoundManager.PlaySound(gmBattleUseSound.GetSplit(0, ","), CBool(gmBattleUseSound.GetSplit(1, ",")))
+                                    Else
+                                        SoundManager.PlaySound("Use_Item", False)
+                                    End If
+                                    Screen.TextBox.Show("Restored " & CType(cScreen, BattleSystem.BattleScreen).OppPokemon.GetDisplayName() & "'s~HP.", {})
+                                    Return True
+                                Else
+                                    Screen.TextBox.Show(Pokemon.GetDisplayName() & " and~" & CType(cScreen, BattleSystem.BattleScreen).OppPokemon.GetDisplayName() & " have full~HP already.", {})
+                                End If
+                            Else
+                                Screen.TextBox.Show(Pokemon.GetDisplayName() & " has full~HP already.", {})
+                            End If
+                        Else
+                            Screen.TextBox.Show(Pokemon.GetDisplayName() & " has full~HP already.", {})
+                        End If
+                    Else
+                        Screen.TextBox.Show(Pokemon.GetDisplayName() & " has full~HP already.", {})
+                    End If
 
                 End If
                 Return False
@@ -868,16 +976,38 @@ Public Class GameModeItem
 
                 If NoTextOrSound = False Then
                     Screen.TextBox.reDelay = 0.0F
-
-                    Dim t As String = "Restored " & Pokemon.GetDisplayName() & "'s~HP by " & diff & "."
-                    If Me.gmItemType <> ItemTypes.KeyItems Then
-                        t &= RemoveItem()
+                    Dim t As String = ""
+                    If cScreen.Identification = Identifications.BattleScreen Then
+                        If gmUseOnOppEffects IsNot Nothing AndAlso gmUseOnOppEffects.Contains("heal") Then
+                            If UseOppSuccess = True AndAlso p Is Nothing Then
+                                t = "Restored " & Pokemon.GetDisplayName() & " and~" & CType(cScreen, BattleSystem.BattleScreen).OppPokemon.GetDisplayName() & "'s HP."
+                            Else
+                                t = "Restored " & Pokemon.GetDisplayName() & "'s~HP by " & diff & "."
+                            End If
+                        Else
+                            t = "Restored " & Pokemon.GetDisplayName() & "'s~HP by " & diff & "."
+                        End If
+                    Else
+                        t = "Restored " & Pokemon.GetDisplayName() & "'s~HP by " & diff & "."
                     End If
 
-                    SoundManager.PlaySound("Use_Item", False)
+
+                    If Me.gmItemType <> ItemTypes.KeyItems Then
+                        If p Is Nothing OrElse Me.gmUseOnOwnEffects Is Nothing Then
+                            t &= RemoveItem()
+                        End If
+
+                    End If
+                    If p Is Nothing OrElse Me.gmUseOnOwnEffects Is Nothing Then
+                        If gmBattleUseSound <> "" Then
+                            SoundManager.PlaySound(gmBattleUseSound.GetSplit(0, ","), CBool(gmBattleUseSound.GetSplit(1, ",")))
+                        Else
+                            SoundManager.PlaySound("Use_Item", False)
+                        End If
+                    End If
                     Screen.TextBox.Show(t, {})
-                End If
-                If gmCureStatusEffects IsNot Nothing And gmUseOnOppEffects Is Nothing OrElse gmCureStatusEffects Is Nothing And gmUseOnOppEffects IsNot Nothing Then
+                    End If
+                    If gmUseOnOwnEffects IsNot Nothing And gmUseOnOppEffects Is Nothing OrElse gmUseOnOwnEffects Is Nothing And gmUseOnOppEffects IsNot Nothing Then
                     PlayerStatistics.Track("[17]Medicine Items used", 1)
                 End If
                 Return True
@@ -925,7 +1055,7 @@ Public Class GameModeItem
     ''' Tries to cure a Pokémon from Poison.
     ''' </summary>
     ''' <param name="PokeIndex">The index of a Pokémon in the player's party.</param>
-    Public Function CurePoison(ByVal PokeIndex As Integer, Optional NoTextOrSound As Boolean = False, Optional ByVal p As Pokemon = Nothing) As Boolean
+    Public Function CurePoison(ByVal PokeIndex As Integer, Optional NoTextOrSound As Boolean = False, Optional UseOppSuccess As Boolean = False, Optional ByVal p As Pokemon = Nothing) As Boolean
         If p Is Nothing Then
             If PokeIndex < 0 Or PokeIndex > 5 Then
                 Throw New ArgumentOutOfRangeException("PokeIndex", PokeIndex, "The index for a Pokémon in a player's party can only be between 0 and 5.")
@@ -937,10 +1067,14 @@ Public Class GameModeItem
             Pokemon = Core.Player.Pokemons(PokeIndex)
         Else
             Pokemon = p
-            If Me.gmBattleSelectPokemon = True Then
-                CType(CurrentScreen, BattleSystem.BattleScreen).Battle.ChangeCameraAngle(2, True, CType(CurrentScreen, BattleSystem.BattleScreen))
-            End If
         End If
+
+        Dim cScreen As Screen = Core.CurrentScreen
+        While Not cScreen.PreScreen Is Nothing And cScreen.Identification <> Identifications.BattleScreen
+            cScreen = cScreen.PreScreen
+        End While
+
+        Dim t As String
 
         If Pokemon.Status = P3D.Pokemon.StatusProblems.Poison Or Pokemon.Status = P3D.Pokemon.StatusProblems.BadPoison Then
             Pokemon.Status = P3D.Pokemon.StatusProblems.None
@@ -948,21 +1082,62 @@ Public Class GameModeItem
             If NoTextOrSound = False Then
                 Screen.TextBox.reDelay = 0.0F
 
-                Dim t As String = "Cures the poison~of " & Pokemon.GetDisplayName() & "."
-                If Me.gmItemType <> ItemTypes.KeyItems Then
-                    t &= RemoveItem()
+                If cScreen.Identification = Identifications.BattleScreen Then
+                    If gmUseOnOppEffects IsNot Nothing AndAlso gmUseOnOppEffects.Contains("psn") Then
+                        If UseOppSuccess = True AndAlso p Is Nothing Then
+                            t = "Cured the poison~of " & Pokemon.GetDisplayName() & " and~" & CType(cScreen, BattleSystem.BattleScreen).OppPokemon.GetDisplayName() & "."
+                        Else
+                            t = "Cured the poison~of " & Pokemon.GetDisplayName() & "."
+                        End If
+                    Else
+                        t = "Cured the poison~of " & Pokemon.GetDisplayName() & "."
+                    End If
+                Else
+                    t = "Cured the poison~of " & Pokemon.GetDisplayName() & "."
                 End If
 
-                SoundManager.PlaySound("Use_Item", False)
+                If Me.gmItemType <> ItemTypes.KeyItems Then
+                    If p Is Nothing OrElse Me.gmUseOnOwnEffects Is Nothing Then
+                        t &= RemoveItem()
+                    End If
+                End If
+
+                If p Is Nothing OrElse Me.gmUseOnOwnEffects Is Nothing Then
+                    If gmBattleUseSound <> "" Then
+                        SoundManager.PlaySound(gmBattleUseSound.GetSplit(0, ","), CBool(gmBattleUseSound.GetSplit(1, ",")))
+                    Else
+                        SoundManager.PlaySound("Use_Item", False)
+                    End If
+                End If
                 Screen.TextBox.Show(t, {})
             End If
-            If gmCureStatusEffects IsNot Nothing And gmUseOnOppEffects Is Nothing OrElse gmCureStatusEffects Is Nothing And gmUseOnOppEffects IsNot Nothing Then
+            If gmUseOnOwnEffects IsNot Nothing And gmUseOnOppEffects Is Nothing OrElse gmUseOnOwnEffects Is Nothing And gmUseOnOppEffects IsNot Nothing Then
                 PlayerStatistics.Track("[17]Medicine Items used", 1)
             End If
             Return True
         ElseIf NoTextOrSound = False Then
             Screen.TextBox.reDelay = 0.0F
-            Screen.TextBox.Show(Pokemon.GetDisplayName() & " is not poisoned.", {})
+            If cScreen.Identification = Identifications.BattleScreen Then
+                If gmUseOnOppEffects IsNot Nothing AndAlso gmUseOnOppEffects.Contains("psn") Then
+                    If UseOppSuccess = True Then
+                        If gmBattleUseSound <> "" Then
+                            SoundManager.PlaySound(gmBattleUseSound.GetSplit(0, ","), CBool(gmBattleUseSound.GetSplit(1, ",")))
+                        Else
+                            SoundManager.PlaySound("Use_Item", False)
+                        End If
+                        t = "Cured the poison~of " & CType(cScreen, BattleSystem.BattleScreen).OppPokemon.GetDisplayName() & "."
+                        PlayerStatistics.Track("[17]Medicine Items used", 1)
+                        Return True
+                    Else
+                        t = Pokemon.GetDisplayName() & " and~" & CType(cScreen, BattleSystem.BattleScreen).OppPokemon.GetDisplayName() & "~are not poisoned."
+                    End If
+                Else
+                    t = Pokemon.GetDisplayName() & " is not~poisoned."
+                End If
+            Else
+                t = Pokemon.GetDisplayName() & " is not~poisoned."
+            End If
+            Screen.TextBox.Show(t, {})
 
         End If
         Return False
@@ -972,7 +1147,7 @@ Public Class GameModeItem
     ''' Tries to cure a Pokémon from Confusion.
     ''' </summary>
     ''' <param name="PokeIndex">The index of a Pokémon in the player's party.</param>
-    Public Function CureConfusion(ByVal PokeIndex As Integer, Optional NoTextOrSound As Boolean = False, Optional ByVal p As Pokemon = Nothing) As Boolean
+    Public Function CureConfusion(ByVal PokeIndex As Integer, Optional NoTextOrSound As Boolean = False, Optional UseOppSuccess As Boolean = False, Optional ByVal p As Pokemon = Nothing) As Boolean
         If p Is Nothing Then
             If PokeIndex < 0 Or PokeIndex > 5 Then
                 Throw New ArgumentOutOfRangeException("PokeIndex", PokeIndex, "The index for a Pokémon in a player's party can only be between 0 and 5.")
@@ -984,31 +1159,76 @@ Public Class GameModeItem
             Pokemon = Core.Player.Pokemons(PokeIndex)
         Else
             Pokemon = p
-            If Me.gmBattleSelectPokemon = True Then
-                CType(CurrentScreen, BattleSystem.BattleScreen).Battle.ChangeCameraAngle(2, True, CType(CurrentScreen, BattleSystem.BattleScreen))
-            End If
         End If
+
+        Dim cScreen As Screen = Core.CurrentScreen
+        While Not cScreen.PreScreen Is Nothing And cScreen.Identification <> Identifications.BattleScreen
+            cScreen = cScreen.PreScreen
+        End While
+
+        Dim t As String
 
         If Pokemon.HasVolatileStatus(Pokemon.VolatileStatus.Confusion) = True Then
             Pokemon.RemoveVolatileStatus(Pokemon.VolatileStatus.Confusion)
 
             If NoTextOrSound = False Then
                 Screen.TextBox.reDelay = 0.0F
-                Dim t As String = Pokemon.GetDisplayName() & "~is no longer confused."
+                If cScreen.Identification = Identifications.BattleScreen Then
+                    If gmUseOnOppEffects IsNot Nothing AndAlso gmUseOnOppEffects.Contains("psn") Then
+                        If UseOppSuccess = True AndAlso p Is Nothing Then
+                            t = Pokemon.GetDisplayName() & " and~" & CType(cScreen, BattleSystem.BattleScreen).OppPokemon.GetDisplayName() & "~are no longer confused."
+                        Else
+                            t = Pokemon.GetDisplayName() & "~is no longer confused."
+                        End If
+                    Else
+                        t = Pokemon.GetDisplayName() & "~is no longer confused."
+                    End If
+                Else
+                    t = Pokemon.GetDisplayName() & "~is no longer confused."
+                End If
+
 
                 If Me.gmItemType <> ItemTypes.KeyItems Then
-                    t &= RemoveItem()
+                    If p Is Nothing OrElse Me.gmUseOnOwnEffects Is Nothing Then
+                        t &= RemoveItem()
+                    End If
                 End If
-                SoundManager.PlaySound("Use_Item", False)
+                If p Is Nothing OrElse Me.gmUseOnOwnEffects Is Nothing Then
+                    If gmBattleUseSound <> "" Then
+                        SoundManager.PlaySound(gmBattleUseSound.GetSplit(0, ","), CBool(gmBattleUseSound.GetSplit(1, ",")))
+                    Else
+                        SoundManager.PlaySound("Use_Item", False)
+                    End If
+                End If
                 Screen.TextBox.Show(t, {}, False, False)
             End If
-            If gmCureStatusEffects IsNot Nothing And gmUseOnOppEffects Is Nothing OrElse gmCureStatusEffects Is Nothing And gmUseOnOppEffects IsNot Nothing Then
+            If gmUseOnOwnEffects IsNot Nothing And gmUseOnOppEffects Is Nothing OrElse gmUseOnOwnEffects Is Nothing And gmUseOnOppEffects IsNot Nothing Then
                 PlayerStatistics.Track("[17]Medicine Items used", 1)
             End If
             Return True
         Else
             If NoTextOrSound = False Then
-                Screen.TextBox.Show(Pokemon.GetDisplayName() & "~is not confused.", {}, False, False)
+                If cScreen.Identification = Identifications.BattleScreen Then
+                    If gmUseOnOppEffects IsNot Nothing AndAlso gmUseOnOppEffects.Contains("confusion") Then
+                        If UseOppSuccess = True Then
+                            If gmBattleUseSound <> "" Then
+                                SoundManager.PlaySound(gmBattleUseSound.GetSplit(0, ","), CBool(gmBattleUseSound.GetSplit(1, ",")))
+                            Else
+                                SoundManager.PlaySound("Use_Item", False)
+                            End If
+                            t = CType(cScreen, BattleSystem.BattleScreen).OppPokemon.GetDisplayName() & "~is no longer confused."
+                            PlayerStatistics.Track("[17]Medicine Items used", 1)
+                            Return True
+                        Else
+                            t = Pokemon.GetDisplayName() & " and~" & CType(cScreen, BattleSystem.BattleScreen).OppPokemon.GetDisplayName() & "~are not confused."
+                        End If
+                    Else
+                        t = Pokemon.GetDisplayName() & " is not~confused."
+                    End If
+                Else
+                    t = Pokemon.GetDisplayName() & " is not~confused."
+                End If
+                Screen.TextBox.Show(t, {}, False, False)
             End If
             Return False
         End If
@@ -1019,7 +1239,7 @@ Public Class GameModeItem
     ''' Tries to wake a Pokémon up from Sleep.
     ''' </summary>
     ''' <param name="PokeIndex">The index of a Pokémon in the player's party.</param>
-    Public Function WakeUp(ByVal PokeIndex As Integer, Optional NoTextOrSound As Boolean = False, Optional ByVal p As Pokemon = Nothing) As Boolean
+    Public Function WakeUp(ByVal PokeIndex As Integer, Optional NoTextOrSound As Boolean = False, Optional UseOppSuccess As Boolean = False, Optional ByVal p As Pokemon = Nothing) As Boolean
         If p Is Nothing Then
             If PokeIndex < 0 Or PokeIndex > 5 Then
                 Throw New ArgumentOutOfRangeException("PokeIndex", PokeIndex, "The index for a Pokémon in a player's party can only be between 0 and 5.")
@@ -1031,10 +1251,14 @@ Public Class GameModeItem
             Pokemon = Core.Player.Pokemons(PokeIndex)
         Else
             Pokemon = p
-            If Me.gmBattleSelectPokemon = True Then
-                CType(CurrentScreen, BattleSystem.BattleScreen).Battle.ChangeCameraAngle(2, True, CType(CurrentScreen, BattleSystem.BattleScreen))
-            End If
         End If
+
+        Dim cScreen As Screen = Core.CurrentScreen
+        While Not cScreen.PreScreen Is Nothing And cScreen.Identification <> Identifications.BattleScreen
+            cScreen = cScreen.PreScreen
+        End While
+
+        Dim t As String
 
         If Pokemon.Status = P3D.Pokemon.StatusProblems.Sleep Then
             Pokemon.Status = P3D.Pokemon.StatusProblems.None
@@ -1042,16 +1266,36 @@ Public Class GameModeItem
             If NoTextOrSound = False Then
                 Screen.TextBox.reDelay = 0.0F
 
-                Dim t As String = "Cures the sleep~of " & Pokemon.GetDisplayName() & "."
-
-                If Me.gmItemType <> ItemTypes.KeyItems Then
-                    t &= RemoveItem()
+                If cScreen.Identification = Identifications.BattleScreen Then
+                    If gmUseOnOppEffects IsNot Nothing AndAlso gmUseOnOppEffects.Contains("slp") Then
+                        If UseOppSuccess = True AndAlso p Is Nothing Then
+                            t = "Cured the sleep~of " & Pokemon.GetDisplayName() & " and~" & CType(cScreen, BattleSystem.BattleScreen).OppPokemon.GetDisplayName() & "."
+                        Else
+                            t = "Cured the sleep~of " & Pokemon.GetDisplayName() & "."
+                        End If
+                    Else
+                        t = "Cured the sleep~of " & Pokemon.GetDisplayName() & "."
+                    End If
+                Else
+                    t = "Cured the sleep~of " & Pokemon.GetDisplayName() & "."
                 End If
 
-                SoundManager.PlaySound("Use_Item", False)
+                If Me.gmItemType <> ItemTypes.KeyItems Then
+                    If p Is Nothing OrElse Me.gmUseOnOwnEffects Is Nothing Then
+                        t &= RemoveItem()
+                    End If
+                End If
+
+                If p Is Nothing OrElse Me.gmUseOnOwnEffects Is Nothing Then
+                    If gmBattleUseSound <> "" Then
+                        SoundManager.PlaySound(gmBattleUseSound.GetSplit(0, ","), CBool(gmBattleUseSound.GetSplit(1, ",")))
+                    Else
+                        SoundManager.PlaySound("Use_Item", False)
+                    End If
+                End If
                 Screen.TextBox.Show(t, {})
             End If
-            If gmCureStatusEffects IsNot Nothing And gmUseOnOppEffects Is Nothing OrElse gmCureStatusEffects Is Nothing And gmUseOnOppEffects IsNot Nothing Then
+            If gmUseOnOwnEffects IsNot Nothing And gmUseOnOppEffects Is Nothing OrElse gmUseOnOwnEffects Is Nothing And gmUseOnOppEffects IsNot Nothing Then
                 PlayerStatistics.Track("[17]Medicine Items used", 1)
             End If
 
@@ -1059,7 +1303,29 @@ Public Class GameModeItem
 
         ElseIf NoTextOrSound = False Then
             Screen.TextBox.reDelay = 0.0F
-            Screen.TextBox.Show(Pokemon.GetDisplayName() & " is not asleep.", {})
+
+            If cScreen.Identification = Identifications.BattleScreen Then
+                If gmUseOnOppEffects IsNot Nothing AndAlso gmUseOnOppEffects.Contains("slp") Then
+                    If UseOppSuccess = True Then
+                        If gmBattleUseSound <> "" Then
+                            SoundManager.PlaySound(gmBattleUseSound.GetSplit(0, ","), CBool(gmBattleUseSound.GetSplit(1, ",")))
+                        Else
+                            SoundManager.PlaySound("Use_Item", False)
+                        End If
+                        t = "Cured the sleep~of " & CType(cScreen, BattleSystem.BattleScreen).OppPokemon.GetDisplayName() & "."
+                        PlayerStatistics.Track("[17]Medicine Items used", 1)
+                        Return True
+                    Else
+                        t = Pokemon.GetDisplayName() & " and~" & CType(cScreen, BattleSystem.BattleScreen).OppPokemon.GetDisplayName() & "~are not asleep."
+                    End If
+                Else
+                    t = Pokemon.GetDisplayName() & " is not~asleep."
+                End If
+            Else
+                t = Pokemon.GetDisplayName() & " is not~asleep."
+            End If
+
+            Screen.TextBox.Show(t, {})
 
         End If
         Return False
@@ -1069,7 +1335,7 @@ Public Class GameModeItem
     ''' Tries to heal a Pokémon from Burn.
     ''' </summary>
     ''' <param name="PokeIndex">The index of a Pokémon in the player's party.</param>
-    Public Function HealBurn(ByVal PokeIndex As Integer, Optional NoTextOrSound As Boolean = False, Optional ByVal p As Pokemon = Nothing) As Boolean
+    Public Function HealBurn(ByVal PokeIndex As Integer, Optional NoTextOrSound As Boolean = False, Optional UseOppSuccess As Boolean = False, Optional ByVal p As Pokemon = Nothing) As Boolean
         If p Is Nothing Then
             If PokeIndex < 0 Or PokeIndex > 5 Then
                 Throw New ArgumentOutOfRangeException("PokeIndex", PokeIndex, "The index for a Pokémon in a player's party can only be between 0 and 5.")
@@ -1081,10 +1347,14 @@ Public Class GameModeItem
             Pokemon = Core.Player.Pokemons(PokeIndex)
         Else
             Pokemon = p
-            If Me.gmBattleSelectPokemon = True Then
-                CType(CurrentScreen, BattleSystem.BattleScreen).Battle.ChangeCameraAngle(2, True, CType(CurrentScreen, BattleSystem.BattleScreen))
-            End If
         End If
+
+        Dim cScreen As Screen = Core.CurrentScreen
+        While Not cScreen.PreScreen Is Nothing And cScreen.Identification <> Identifications.BattleScreen
+            cScreen = cScreen.PreScreen
+        End While
+
+        Dim t As String
 
         If Pokemon.Status = P3D.Pokemon.StatusProblems.Burn Then
             Pokemon.Status = P3D.Pokemon.StatusProblems.None
@@ -1092,21 +1362,63 @@ Public Class GameModeItem
             If NoTextOrSound = False Then
                 Screen.TextBox.reDelay = 0.0F
 
-                Dim t As String = "Cures the burn~of " & Pokemon.GetDisplayName() & "."
+                If cScreen.Identification = Identifications.BattleScreen Then
+                    If gmUseOnOppEffects IsNot Nothing AndAlso gmUseOnOppEffects.Contains("brn") Then
+                        If UseOppSuccess = True AndAlso p Is Nothing Then
+                            t = "Cured the burn~of " & Pokemon.GetDisplayName() & " and~" & CType(cScreen, BattleSystem.BattleScreen).OppPokemon.GetDisplayName() & "."
+                        Else
+                            t = "Cured the burn~of " & Pokemon.GetDisplayName() & "."
+                        End If
+                    Else
+                        t = "Cured the burn~of " & Pokemon.GetDisplayName() & "."
+                    End If
+                Else
+                    t = "Cured the burn~of " & Pokemon.GetDisplayName() & "."
+                End If
                 If Me.gmItemType <> ItemTypes.KeyItems Then
-                    t &= RemoveItem()
+                    If p Is Nothing OrElse Me.gmUseOnOwnEffects Is Nothing Then
+                        t &= RemoveItem()
+                    End If
                 End If
 
-                SoundManager.PlaySound("Use_Item", False)
+                If p Is Nothing OrElse Me.gmUseOnOwnEffects Is Nothing Then
+                    If gmBattleUseSound <> "" Then
+                        SoundManager.PlaySound(gmBattleUseSound.GetSplit(0, ","), CBool(gmBattleUseSound.GetSplit(1, ",")))
+                    Else
+                        SoundManager.PlaySound("Use_Item", False)
+                    End If
+                End If
                 Screen.TextBox.Show(t, {})
             End If
-            If gmCureStatusEffects IsNot Nothing And gmUseOnOppEffects Is Nothing OrElse gmCureStatusEffects Is Nothing And gmUseOnOppEffects IsNot Nothing Then
+            If gmUseOnOwnEffects IsNot Nothing And gmUseOnOppEffects Is Nothing OrElse gmUseOnOwnEffects Is Nothing And gmUseOnOppEffects IsNot Nothing Then
                 PlayerStatistics.Track("[17]Medicine Items used", 1)
             End If
             Return True
         ElseIf NoTextOrSound = False Then
             Screen.TextBox.reDelay = 0.0F
-            Screen.TextBox.Show(Pokemon.GetDisplayName() & " is not burned.", {})
+
+            If cScreen.Identification = Identifications.BattleScreen Then
+                If gmUseOnOppEffects IsNot Nothing AndAlso gmUseOnOppEffects.Contains("brn") Then
+                    If UseOppSuccess = True Then
+                        If gmBattleUseSound <> "" Then
+                            SoundManager.PlaySound(gmBattleUseSound.GetSplit(0, ","), CBool(gmBattleUseSound.GetSplit(1, ",")))
+                        Else
+                            SoundManager.PlaySound("Use_Item", False)
+                        End If
+                        t = "Cured the burn~of " & CType(cScreen, BattleSystem.BattleScreen).OppPokemon.GetDisplayName() & "."
+                        PlayerStatistics.Track("[17]Medicine Items used", 1)
+                        Return True
+                    Else
+                        t = Pokemon.GetDisplayName() & " and~" & CType(cScreen, BattleSystem.BattleScreen).OppPokemon.GetDisplayName() & "~are not burned."
+                    End If
+                Else
+                    t = Pokemon.GetDisplayName() & " is not~burned."
+                End If
+            Else
+                t = Pokemon.GetDisplayName() & " is not~burned."
+            End If
+
+            Screen.TextBox.Show(t, {})
         End If
         Return False
     End Function
@@ -1115,7 +1427,7 @@ Public Class GameModeItem
     ''' Tries to heal a Pokémon from Ice.
     ''' </summary>
     ''' <param name="PokeIndex">The index of a Pokémon in the player's party.</param>
-    Public Function HealIce(ByVal PokeIndex As Integer, Optional NoTextOrSound As Boolean = False, Optional ByVal p As Pokemon = Nothing) As Boolean
+    Public Function HealIce(ByVal PokeIndex As Integer, Optional NoTextOrSound As Boolean = False, Optional UseOppSuccess As Boolean = False, Optional ByVal p As Pokemon = Nothing) As Boolean
         If p Is Nothing Then
             If PokeIndex < 0 Or PokeIndex > 5 Then
                 Throw New ArgumentOutOfRangeException("PokeIndex", PokeIndex, "The index for a Pokémon in a player's party can only be between 0 and 5.")
@@ -1127,10 +1439,14 @@ Public Class GameModeItem
             Pokemon = Core.Player.Pokemons(PokeIndex)
         Else
             Pokemon = p
-            If Me.gmBattleSelectPokemon = True Then
-                CType(CurrentScreen, BattleSystem.BattleScreen).Battle.ChangeCameraAngle(2, True, CType(CurrentScreen, BattleSystem.BattleScreen))
-            End If
         End If
+
+        Dim cScreen As Screen = Core.CurrentScreen
+        While Not cScreen.PreScreen Is Nothing And cScreen.Identification <> Identifications.BattleScreen
+            cScreen = cScreen.PreScreen
+        End While
+
+        Dim t As String
 
         If Pokemon.Status = P3D.Pokemon.StatusProblems.Freeze Then
             Pokemon.Status = P3D.Pokemon.StatusProblems.None
@@ -1138,21 +1454,64 @@ Public Class GameModeItem
             If NoTextOrSound = False Then
                 Screen.TextBox.reDelay = 0.0F
 
-                Dim t As String = "Cures the ice~of " & Pokemon.GetDisplayName() & "."
-                If Me.gmItemType <> ItemTypes.KeyItems Then
-                    t &= RemoveItem()
+                If cScreen.Identification = Identifications.BattleScreen Then
+                    If gmUseOnOppEffects IsNot Nothing AndAlso gmUseOnOppEffects.Contains("frz") Then
+                        If UseOppSuccess = True AndAlso p Is Nothing Then
+                            t = "Cured the ice~of " & Pokemon.GetDisplayName() & " and~" & CType(cScreen, BattleSystem.BattleScreen).OppPokemon.GetDisplayName() & "."
+                        Else
+                            t = "Cured the ice~of " & Pokemon.GetDisplayName() & "."
+                        End If
+                    Else
+                        t = "Cured the ice~of " & Pokemon.GetDisplayName() & "."
+                    End If
+                Else
+                    t = "Cured the ice~of " & Pokemon.GetDisplayName() & "."
                 End If
 
-                SoundManager.PlaySound("Use_Item", False)
+                If Me.gmItemType <> ItemTypes.KeyItems Then
+                    If p Is Nothing OrElse Me.gmUseOnOwnEffects Is Nothing Then
+                        t &= RemoveItem()
+                    End If
+                End If
+
+                If p Is Nothing OrElse Me.gmUseOnOwnEffects Is Nothing Then
+                    If gmBattleUseSound <> "" Then
+                        SoundManager.PlaySound(gmBattleUseSound.GetSplit(0, ","), CBool(gmBattleUseSound.GetSplit(1, ",")))
+                    Else
+                        SoundManager.PlaySound("Use_Item", False)
+                    End If
+                End If
                 Screen.TextBox.Show(t, {})
             End If
-            If gmCureStatusEffects IsNot Nothing And gmUseOnOppEffects Is Nothing OrElse gmCureStatusEffects Is Nothing And gmUseOnOppEffects IsNot Nothing Then
+            If gmUseOnOwnEffects IsNot Nothing And gmUseOnOppEffects Is Nothing OrElse gmUseOnOwnEffects Is Nothing And gmUseOnOppEffects IsNot Nothing Then
                 PlayerStatistics.Track("[17]Medicine Items used", 1)
             End If
             Return True
         ElseIf NoTextOrSound = False Then
             Screen.TextBox.reDelay = 0.0F
-            Screen.TextBox.Show(Pokemon.GetDisplayName() & " is not frozen.", {})
+
+            If cScreen.Identification = Identifications.BattleScreen Then
+                If gmUseOnOppEffects IsNot Nothing AndAlso gmUseOnOppEffects.Contains("frz") Then
+                    If UseOppSuccess = True Then
+                        If gmBattleUseSound <> "" Then
+                            SoundManager.PlaySound(gmBattleUseSound.GetSplit(0, ","), CBool(gmBattleUseSound.GetSplit(1, ",")))
+                        Else
+                            SoundManager.PlaySound("Use_Item", False)
+                        End If
+                        t = "Cured the ice~of " & CType(cScreen, BattleSystem.BattleScreen).OppPokemon.GetDisplayName() & "."
+                        PlayerStatistics.Track("[17]Medicine Items used", 1)
+                        Return True
+                    Else
+                        t = Pokemon.GetDisplayName() & " and~" & CType(cScreen, BattleSystem.BattleScreen).OppPokemon.GetDisplayName() & "~are not frozen."
+                    End If
+                Else
+                    t = Pokemon.GetDisplayName() & " is not~frozen."
+                End If
+            Else
+                t = Pokemon.GetDisplayName() & " is not~frozen."
+            End If
+
+            Screen.TextBox.Show(t, {})
         End If
 
         Return False
@@ -1164,7 +1523,7 @@ Public Class GameModeItem
     ''' Tries to heal a Pokémon from Paralysis.
     ''' </summary>
     ''' <param name="PokeIndex">The index of a Pokémon in the player's party.</param>
-    Public Function HealParalyze(ByVal PokeIndex As Integer, Optional NoTextOrSound As Boolean = False, Optional ByVal p As Pokemon = Nothing) As Boolean
+    Public Function HealParalyze(ByVal PokeIndex As Integer, Optional NoTextOrSound As Boolean = False, Optional UseOppSuccess As Boolean = False, Optional ByVal p As Pokemon = Nothing) As Boolean
         If p Is Nothing Then
             If PokeIndex < 0 Or PokeIndex > 5 Then
                 Throw New ArgumentOutOfRangeException("PokeIndex", PokeIndex, "The index for a Pokémon in a player's party can only be between 0 and 5.")
@@ -1176,10 +1535,14 @@ Public Class GameModeItem
             Pokemon = Core.Player.Pokemons(PokeIndex)
         Else
             Pokemon = p
-            If Me.gmBattleSelectPokemon = True Then
-                CType(CurrentScreen, BattleSystem.BattleScreen).Battle.ChangeCameraAngle(2, True, CType(CurrentScreen, BattleSystem.BattleScreen))
-            End If
         End If
+
+        Dim cScreen As Screen = Core.CurrentScreen
+        While Not cScreen.PreScreen Is Nothing And cScreen.Identification <> Identifications.BattleScreen
+            cScreen = cScreen.PreScreen
+        End While
+
+        Dim t As String
 
         If Pokemon.Status = P3D.Pokemon.StatusProblems.Paralyzed Then
             Pokemon.Status = P3D.Pokemon.StatusProblems.None
@@ -1187,21 +1550,64 @@ Public Class GameModeItem
             If NoTextOrSound = False Then
                 Screen.TextBox.reDelay = 0.0F
 
-                Dim t As String = "Cures the paralysis~of " & Pokemon.GetDisplayName() & "."
-                If Me.gmItemType <> ItemTypes.KeyItems Then
-                    t &= RemoveItem()
+                If cScreen.Identification = Identifications.BattleScreen Then
+                    If gmUseOnOppEffects IsNot Nothing AndAlso gmUseOnOppEffects.Contains("prz") Then
+                        If UseOppSuccess = True AndAlso p Is Nothing Then
+                            t = "Cured the paralysis~of " & Pokemon.GetDisplayName() & " and~" & CType(cScreen, BattleSystem.BattleScreen).OppPokemon.GetDisplayName() & "."
+                        Else
+                            t = "Cured the paralysis~of " & Pokemon.GetDisplayName() & "."
+                        End If
+                    Else
+                        t = "Cured the paralysis~of " & Pokemon.GetDisplayName() & "."
+                    End If
+                Else
+                    t = "Cured the paralysis~of " & Pokemon.GetDisplayName() & "."
                 End If
 
-                SoundManager.PlaySound("Use_Item", False)
+                If Me.gmItemType <> ItemTypes.KeyItems Then
+                    If p Is Nothing OrElse Me.gmUseOnOwnEffects Is Nothing Then
+                        t &= RemoveItem()
+                    End If
+                End If
+
+                If p Is Nothing OrElse Me.gmUseOnOwnEffects Is Nothing Then
+                    If gmBattleUseSound <> "" Then
+                        SoundManager.PlaySound(gmBattleUseSound.GetSplit(0, ","), CBool(gmBattleUseSound.GetSplit(1, ",")))
+                    Else
+                        SoundManager.PlaySound("Use_Item", False)
+                    End If
+                End If
                 Screen.TextBox.Show(t, {})
             End If
-            If gmCureStatusEffects IsNot Nothing And gmUseOnOppEffects Is Nothing OrElse gmCureStatusEffects Is Nothing And gmUseOnOppEffects IsNot Nothing Then
+            If gmUseOnOwnEffects IsNot Nothing And gmUseOnOppEffects Is Nothing OrElse gmUseOnOwnEffects Is Nothing And gmUseOnOppEffects IsNot Nothing Then
                 PlayerStatistics.Track("[17]Medicine Items used", 1)
             End If
             Return True
         ElseIf NoTextOrSound = False Then
             Screen.TextBox.reDelay = 0.0F
-            Screen.TextBox.Show(Pokemon.GetDisplayName() & " is not~paralyzed.", {})
+
+            If cScreen.Identification = Identifications.BattleScreen Then
+                If gmUseOnOppEffects IsNot Nothing AndAlso gmUseOnOppEffects.Contains("prz") Then
+                    If UseOppSuccess = True Then
+                        If gmBattleUseSound <> "" Then
+                            SoundManager.PlaySound(gmBattleUseSound.GetSplit(0, ","), CBool(gmBattleUseSound.GetSplit(1, ",")))
+                        Else
+                            SoundManager.PlaySound("Use_Item", False)
+                        End If
+                        t = "Cured the paralysis~of " & CType(cScreen, BattleSystem.BattleScreen).OppPokemon.GetDisplayName() & "."
+                        PlayerStatistics.Track("[17]Medicine Items used", 1)
+                        Return True
+                    Else
+                        t = Pokemon.GetDisplayName() & " and~" & CType(cScreen, BattleSystem.BattleScreen).OppPokemon.GetDisplayName() & "~are not paralyzed."
+                    End If
+                Else
+                    t = Pokemon.GetDisplayName() & " is not~paralyzed."
+                End If
+            Else
+                t = Pokemon.GetDisplayName() & " is not~paralyzed."
+            End If
+
+            Screen.TextBox.Show(t, {})
         End If
         Return False
     End Function

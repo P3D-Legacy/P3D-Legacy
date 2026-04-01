@@ -130,25 +130,26 @@ Public Class GameModeItemLoader
                             item.gmMaxStack = CInt(value)
                         Case "flingdamage"
                             item.gmFlingDamage = CInt(value)
-                        Case "ishealingitem"
-                            item.gmIsHealingItem = CBool(value)
                         Case "ismail"
                             item.gmIsMail = CBool(value)
                         Case "healhpamount"
                             item.gmHealHPAmount = CInt(value)
-                        Case "curestatus"
-                            Dim StatusEffectList As New List(Of String)
+                        Case "curestatus", "owneffects"
+                            Dim EffectList As New List(Of String)
                             Dim valueSplit As String() = value.Split(",")
                             For i = 0 To valueSplit.Count - 1
                                 Select Case valueSplit(i).ToLower
-                                    Case "brn", "frz", "prz", "psn", "bpsn", "slp", "fnt", "confusion", "allwithoutfnt", "all"
-                                        StatusEffectList.Add(valueSplit(i))
+                                    Case "brn", "frz", "prz", "psn", "bpsn", "slp", "fnt", "confusion", "allstatus", "allstatusandfnt", "heal"
+                                        EffectList.Add(valueSplit(i).ToLower)
                                 End Select
                             Next
-                            If item.gmCureStatusEffects Is Nothing Then
-                                item.gmCureStatusEffects = StatusEffectList
+                            If EffectList.Contains("heal") Then
+                                item.gmIsHealingItem = True
+                            End If
+                            If item.gmUseOnOwnEffects Is Nothing Then
+                                item.gmUseOnOwnEffects = EffectList
                             Else
-                                item.gmCureStatusEffects.AddRange(StatusEffectList)
+                                item.gmUseOnOwnEffects.AddRange(EffectList)
                             End If
                         Case "opponenteffects"
                             Dim EffectList As New List(Of String)
@@ -156,9 +157,13 @@ Public Class GameModeItemLoader
                             For i = 0 To valueSplit.Count - 1
                                 Select Case valueSplit(i).ToLower
                                     Case "brn", "frz", "prz", "psn", "bpsn", "slp", "confusion", "allstatus", "heal"
-                                        EffectList.Add(valueSplit(i))
+                                        EffectList.Add(valueSplit(i).ToLower)
                                 End Select
                             Next
+
+                            If EffectList.Contains("heal") Then
+                                item.gmIsHealingItem = True
+                            End If
                             If item.gmUseOnOppEffects Is Nothing Then
                                 item.gmUseOnOppEffects = EffectList
                             Else
