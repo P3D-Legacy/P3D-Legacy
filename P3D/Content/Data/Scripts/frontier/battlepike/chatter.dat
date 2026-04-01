@@ -1,5 +1,5 @@
 version=2
-:select:<calc.int(<environment.hour>+<calc.int(<environment.dayofyear>m18)>)>
+:select:<math.int(<environment.hour>+<math.int(<environment.dayofyear>m18)>)>
 	:when:0
 		@text.show(I am lost,~I need a Helping Hand.)
 	:when:1
