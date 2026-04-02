@@ -1,29 +1,13 @@
 version=2
 :if:<register.registered(frontier_battlepike_challenge_values_created)>=false
-	@text.show(No data recorded for~Challenge Mode.)
+	@text.show(No data recorded for~Endless Mode.)
 :else
-	@text.show(A machine which displays~record data for~Challenge Mode:)
-	@options.show(Lv. 50,Lv. 100,Emblems,Cancel)
+	@text.show(A machine which displays~record data for~Endless Mode:)
+	@options.show(Lv. 50,Lv. 100,Cancel)
 	:when:Lv. 50
-		@text.show(Your record for:~Lv. 50, Challenge Mode:~<register.value(battlepike_challenge_50_best)> win streak.)
+		@text.show(Your record for:~Lv. 50, Endless Mode:~<register.value(battlepike_endless_50_best)> rooms.)
 	:when:Lv. 100
-		@text.show(Your record for:~Lv. 100, Challenge Mode:~<register.value(battlepike_challenge_100_best)> win streak.)
-	:when:Emblems
-		:if:<register.registered(pike_silver)>=true
-			:if:<player.hasfrontieremblem(3,0)>=false
-				@player.addfrontieremblem(3,0)
-			:endif
-			@text.show(You got the~Silver Luck Emblem.)
-		:endif
-		:if:<register.registered(pike_gold)>=true
-			:if:<player.hasfrontieremblem(3,1)>=false
-				@player.addfrontieremblem(3,1)
-			:endif
-			@text.show(You got the~Gold Luck Emblem.)
-		:endif
-		:if:<register.registered(pike_gold)>=false <and> <register.registered(pike_silver)>=false
-			@text.show(You don't own a~pike emblem yet.)
-		:endif
+		@text.show(Your record for:~Lv. 100, Endless Mode:~<register.value(battlepike_endless_100_best)> rooms.)
 	:when:Cancel
 		@text.show(Record machine~shutting down.)
 	:endwhen

@@ -1,14 +1,5 @@
 version=2
 @register.change(pike_room_count_temp,<register.value(pike_room_count_temp)>+1)
-:if:<register.value(pike_room_count_temp)>=27
-	@register.register(pikelucynext)
-:else
-	:if:<register.value(pike_room_count_temp)>>112
-		:if:<system.calcint(<register.value(pike_room_count_temp)>m56)>=55
-			@register.register(pikelucynext)
-		:endif
-	:endif
-:endif
 @script.start(frontier\battlepike\roomchooser)
 
 :end

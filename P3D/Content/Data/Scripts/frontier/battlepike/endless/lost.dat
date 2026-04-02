@@ -3,19 +3,30 @@ version=2
 @player.warp(frontier\battlepike\main.dat,6,0.1,2)
 @player.turnto(0)
 @screen.fadein
-@text.show(Your challenge has ended...*I shall record your results...*We look forward to seeing you on another occasion...)
+@text.show(Your challenge has ended...*I shall record your results...*We look forward to seeing~you on another occasion...)
 
-@register.change(battlepike_challenge_<register.value(pike_level)>_previous_streak,0)
-@register.change(battlepike_challenge_<register.value(pike_level)>_class,0)
+@register.change(battlepike_endless_<register.value(pike_level)>_previous_streak,0)
+@register.change(battlepike_endless_<register.value(pike_level)>_class,0)
 
+@pokemon.changelevel(0,<register.value(pike_endless_level_0)>)
+@pokemon.changelevel(1,<register.value(pike_endless_level_1)>)
+@pokemon.changelevel(2,<register.value(pike_endless_level_2)>)
+
+@pokemon.calcstats(0)
+@pokemon.calcstats(1)
+@pokemon.calcstats(2)
+
+@pokemon.heal
+
+@register.unregister(piketype,str)
 @register.unregister(pike_level,int)
 @register.unregister(pike_class,int)
 @register.unregister(wildlevel,INT)
 @register.unregister(pike_room_count_temp,INT)
 
-@register.unregister(pike_challenge_level_0,int)
-@register.unregister(pike_challenge_level_1,int)
-@register.unregister(pike_challenge_level_2,int)
+@register.unregister(pike_endless_level_0,int)
+@register.unregister(pike_endless_level_1,int)
+@register.unregister(pike_endless_level_2,int)
 
 @register.unregister(pike_npc,INT)
 @register.unregister(pikeroom0,INT)

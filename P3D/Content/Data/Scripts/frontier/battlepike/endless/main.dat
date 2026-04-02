@@ -18,45 +18,44 @@ version=2
 			:endif
 		:endif
 
-		:if:<register.registered(frontier_battlepike_challenge_values_created)>=false
+		:if:<register.registered(frontier_battlepike_endless_values_created)>=false
 			#main stats
-			@register.register(battlepike_challenge_50_class,INT,0)
-			@register.register(battlepike_challenge_50_best,INT,0)
-			@register.register(battlepike_challenge_50_previous_streak,INT,0)
-			@register.register(battlepike_challenge_100_class,INT,0)
-			@register.register(battlepike_challenge_100_best,INT,0)
-			@register.register(battlepike_challenge_100_previous_streak,INT,0)
-			@register.register(frontier_battlepike_challenge_values_created)
+			@register.register(battlepike_endless_50_class,INT,0)
+			@register.register(battlepike_endless_50_best,INT,0)
+			@register.register(battlepike_endless_50_previous_streak,INT,0)
+			@register.register(battlepike_endless_100_class,INT,0)
+			@register.register(battlepike_endless_100_best,INT,0)
+			@register.register(battlepike_endless_100_previous_streak,INT,0)
+			@register.register(frontier_battlepike_endless_values_created)
 		:endif		
 		
 		@storage.set(integer,pike_streak,0)
 		@storage.set(boolean,pike_brain,false)
 
 		:if:<pokemon.count>=3 <and> <pokemon.countbattle>=3
-			@text.show(You have the choice of~two courses, Level 50 and~Open Level.*Which will you challenge?)
+			@text.show(You have the choice of~two courses, Level 50 and~Level 100.*Which will you challenge?)
 			@options.show(Lv. 50,Lv. 100,Cancel)
 			:when:Lv. 50
 				@register.register(pike_level,int,50)
-				@register.register(pike_class,int,<register.value(battlepike_challenge_50_class)>)
+				@register.register(pike_class,int,<register.value(battlepike_endless_50_class)>)
 				@register.register(wildlevel,INT,46)
-				@register.register(pike_room_count_temp,INT,<register.value(battlepike_challenge_50_previous_streak)>)
+				@register.register(pike_room_count_temp,INT,<register.value(battlepike_endless_50_previous_streak)>)
 			:when:Lv. 100
 				@register.register(pike_level,int,100)
-				@register.register(pike_class,int,<register.value(battlepike_challenge_100_class)>)
+				@register.register(pike_class,int,<register.value(battlepike_endless_100_class)>)
 				@register.register(wildlevel,INT,96)
-				@register.register(pike_room_count_temp,INT,<register.value(battlepike_challenge_100_previous_streak)>)
+				@register.register(pike_room_count_temp,INT,<register.value(battlepike_endless_100_previous_streak)>)
 			:when:Cancel
 				@Text.Show(We look forward to seeing~you on another occasion...)
 				:endscript
 			:endwhen
 			
 			@pokemon.heal
-			@register.register(pike_challenge_level_0,int,<pokemon.level(0)>)
-			@register.register(pike_challenge_level_1,int,<pokemon.level(1)>)
-			@register.register(pike_challenge_level_2,int,<pokemon.level(2)>)
+			@register.register(pike_endless_level_0,int,<pokemon.level(0)>)
+			@register.register(pike_endless_level_1,int,<pokemon.level(1)>)
+			@register.register(pike_endless_level_2,int,<pokemon.level(2)>)
 			
-			#Replace the following line with "@register.register(piketype,str,endless)" when it is implemented:
-			@register.register(piketype,str,challenge)
+			@register.register(piketype,str,endless)
 			@register.register(pike_npc,INT,5)
 			@register.register(pikeroom0,INT,0)
 			@register.register(pikeroom1,INT,0)
