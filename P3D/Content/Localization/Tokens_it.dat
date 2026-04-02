@@ -1402,6 +1402,7 @@ game_message_continue_autosave,Ripresa partita:
 game_message_debug_texture_list_clear,Texture list was cleared
 ---
 Pokemon:
+pokemon_name_Egg,Egg
 pokemon_name_Bulbasaur,Bulbasaur
 pokemon_name_Ivysaur,Ivysaur
 pokemon_name_Venusaur,Venusaur

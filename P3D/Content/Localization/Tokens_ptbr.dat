@@ -1404,6 +1404,7 @@ game_message_sandbox_mode_on,Modo Caixa de Aréia ativado
 game_message_sandbox_mode_off,Modo Caixa de Aréia desativado
 ---
 Pokemon:
+pokemon_name_Egg,Egg
 pokemon_name_Bulbasaur,Bulbasaur
 pokemon_name_Ivysaur,Ivysaur
 pokemon_name_Venusaur,Venusaur

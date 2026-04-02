@@ -2306,9 +2306,9 @@ Public Class Pokemon
     ''' Returns the Display Name of this Pokémon.
     ''' </summary>
     ''' <remarks>Returns "Egg" when the Pokémon is in an egg. Returns the properly translated name if it exists. Returns the nickname if set.</remarks>
-    Public Function GetDisplayName(Optional ByVal GetFormName As Boolean = False) As String
+    Public Function GetDisplayName(Optional ByVal GetFormName As Boolean = True) As String
         If Me.EggSteps > 0 Then
-            Return "Egg"
+            Return Localization.GetString("pokemon_name_Egg", "Egg")
         Else
             If Me.NickName = "" Then
                 If GetFormName = True AndAlso PokemonForms.GetFormName(Me) <> "" Then

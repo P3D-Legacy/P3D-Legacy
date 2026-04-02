@@ -1404,6 +1404,7 @@ game_message_continue_autosave,Fortsatt sparat spel:
 game_message_debug_texture_list_clear,Texturlistan har rensats
 ---
 Pokemon:
+pokemon_name_Egg,Egg
 pokemon_name_Bulbasaur,Bulbasaur
 pokemon_name_Ivysaur,Ivysaur
 pokemon_name_Venusaur,Venusaur
