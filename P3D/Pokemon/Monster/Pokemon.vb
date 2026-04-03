@@ -2334,7 +2334,7 @@ Public Class Pokemon
     ''' <summary>
     ''' Returns the properly translated name of a Pokémon if defined in the language files.
     ''' </summary>
-    Public Function GetName(Optional ByVal GetFormName As Boolean = False) As String
+    Public Function GetName(Optional ByVal GetFormName As Boolean = True) As String
         If GetFormName = True AndAlso PokemonForms.GetFormName(Me) <> "" Then
             Dim FormName As String = PokemonForms.GetFormName(Me)
             If Localization.TokenExists("pokemon_name_" & FormName) = True Then

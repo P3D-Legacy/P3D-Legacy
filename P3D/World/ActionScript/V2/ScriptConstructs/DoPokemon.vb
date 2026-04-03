@@ -72,12 +72,15 @@
                     If Core.Player.Pokemons(index).NickName <> "" Then
                         Return Core.Player.Pokemons(index).NickName
                     Else
-                        Return Core.Player.Pokemons(index).GetName
+                        Return Core.Player.Pokemons(index).GetDisplayName
                     End If
                 Case "hasnickname"
                     Dim index As Integer = int(argument.GetSplit(0))
                     Return (Core.Player.Pokemons(index).NickName = "")
                 Case "name"
+                    Dim index As Integer = int(argument.GetSplit(0))
+                    Return Core.Player.Pokemons(index).GetName
+                Case "originalname"
                     Dim index As Integer = int(argument.GetSplit(0))
                     Return Core.Player.Pokemons(index).OriginalName
                 Case "ot"
