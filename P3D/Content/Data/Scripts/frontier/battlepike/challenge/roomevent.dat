@@ -180,10 +180,10 @@ version=2
 		@npc.move(31,4)
 	:when:4
 		#warp to wild room, full control
-		@player.warp(frontier\battlepike\wildroom.dat,4,0,14)
+		@player.warp(frontier\battlepike\wildroom.dat,4,0,15)
 	:when:5
 		#Maid+trainer(m-left, t-center), trainer approaches, trainer leaves, maid approaches and heals fully, then leaves
-		@storage.set(integer,trainer_id,<system.random(0,306)>)
+		@storage.set(integer,trainer_id,<system.random(0,307)>)
 		@npc.warp(31,~,0,~)
 		@npc.warp(51,~,0,~)
 		@npc.wearskin(51,<npc.trainertexture(frontier\battletower\<storage.get(integer,trainer_id)>)>)
@@ -219,7 +219,7 @@ version=2
 		@storage.set(integer,trainer_id,<system.random(0,306)>)
 
 		@npc.spawn(<player.position(x)>,0,-1,0,,<npc.trainertexture(frontier\battletower\<storage.get(integer,trainer_id)>)>,0,0,0,70,Still)
-		@npc.spawn(<player.position(x)>+1,0,-1,0,,<npc.trainertexture(frontier\battletower\<storage.get(integer,trainer_id)>+1)>,0,0,0,71,Still)
+		@npc.spawn(<player.position(x)>+1,0,-1,0,,<npc.trainertexture(frontier\battletower\<math.calc(<storage.get(integer,trainer_id)>+1)>)>,0,0,0,71,Still)
 
 		@player.move(0)
 		@npc.moveasync(70,2)
