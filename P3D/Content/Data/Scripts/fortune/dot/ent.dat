@@ -6,7 +6,7 @@ version=2
 		@text.setfont(braille)
 		@text.show(cut)
 		:if:<pokemon.hasattackinparty(15)>>-1
-			@text.show(<pokemon.name(<pokemon.hasattackinparty(15)>)> used cut!)
+			@text.show(<pokemon.name(<pokemon.hasattackinparty(15)>)> used~Cut!)
 			@sound.play(destroy)
 			@register.register(dotcut)
 			@entity.remove(21)
