@@ -252,7 +252,7 @@
             MyBase.New(QueryTypes.SwitchPokemon)
 
             Me.TempScreen = BattleScreen
-            TransformText(BattleScreen.Trainer.Name & " " & Localization.GetString("battle_trainer_about_to_send_out_1") & " " & NewPokemon.GetDisplayName() & Localization.GetString("battle_trainer_about_to_send_out_2"))
+            TransformText(BattleScreen.Trainer.Name & " " & Localization.GetString("battle_trainer_about_to_send_out_1") & " " & NewPokemon.GetDisplayName() & " " & Localization.GetString("battle_trainer_about_to_send_out_2"))
         End Sub
 
         Dim delay As Single = 2.0F
