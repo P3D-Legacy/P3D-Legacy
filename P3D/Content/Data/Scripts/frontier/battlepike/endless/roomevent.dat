@@ -147,7 +147,7 @@ version=2
 		#trainer comes in direct ahead, starts battle with text, then walks back out
 		@storage.set(integer,trainer_id,<system.random(0,307)>)
 
-		@npc.spawn(<player.position(x)>,0,-1,0,,<npc.trainertexture(frontier\battletower\<storage.get(integer,trainer_id)>)>,0,0,0,20,Still)
+		@npc.spawn(<player.position(x)>,0,-1,0,,<npc.trainertexture(frontier\battletower\<storage.get(integer,trainer_id)>)>,0,2,0,20,Still)
 
 		@player.move(0)
 		@npc.move(20,2)
@@ -218,8 +218,8 @@ version=2
 		#double Approach, battle, leave
 		@storage.set(integer,trainer_id,<system.random(0,306)>)
 
-		@npc.spawn(<player.position(x)>,0,-1,0,,<npc.trainertexture(frontier\battletower\<storage.get(integer,trainer_id)>)>,0,0,0,70,Still)
-		@npc.spawn(<player.position(x)>+1,0,-1,0,,<npc.trainertexture(frontier\battletower\<math.calc(<storage.get(integer,trainer_id)>+1)>)>,0,0,0,71,Still)
+		@npc.spawn(<player.position(x)>,0,-1,0,,<npc.trainertexture(frontier\battletower\<storage.get(integer,trainer_id)>)>,0,2,0,70,Still)
+		@npc.spawn(<player.position(x)>+1,0,-1,0,,<npc.trainertexture(frontier\battletower\<math.calc(<storage.get(integer,trainer_id)>+1)>)>,0,2,0,71,Still)
 
 		@player.move(0)
 		@npc.moveasync(70,2)
