@@ -1,4 +1,4 @@
-﻿Namespace BattleSystem
+Namespace BattleSystem
 
     Public Class BattleScreen
 
@@ -1429,7 +1429,7 @@ nextIndex:
                                 If ItemReturnScript <> "" Then
                                     ItemReturnScript &= ")" & Environment.NewLine
                                 End If
-                                ItemReturnScript &= "@Sound.Play(item_found)" & Environment.NewLine & "@Text.Show(" & Core.Player.Name & " found~" & p.OriginalItem.Name & "!*" & Core.Player.Inventory.GetMessageReceive(p.OriginalItem, 1)
+                                ItemReturnScript &= "@Sound.Play(Receive_Item)" & Environment.NewLine & "@Text.Show(" & Core.Player.Name & " found~" & p.OriginalItem.Name & "!*" & Core.Player.Inventory.GetMessageReceive(p.OriginalItem, 1)
 
                                 p.OriginalItem = Nothing
                             End If
@@ -1531,7 +1531,7 @@ nextIndex:
                                 If ItemReturnScript <> "" Then
                                     ItemReturnScript &= ")" & Environment.NewLine
                                 End If
-                                ItemReturnScript &= "@Sound.Play(item_found)" & Environment.NewLine & "@Text.Show(" & Core.Player.Name & " found~" & p.OriginalItem.Name & "!*" & Core.Player.Inventory.GetMessageReceive(p.OriginalItem, 1)
+                                ItemReturnScript &= "@Sound.Play(Receive_Item)" & Environment.NewLine & "@Text.Show(" & Core.Player.Name & " found~" & p.OriginalItem.Name & "!*" & Core.Player.Inventory.GetMessageReceive(p.OriginalItem, 1)
 
                                 p.OriginalItem = Nothing
                             End If
