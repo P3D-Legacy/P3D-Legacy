@@ -138,7 +138,7 @@ version=2
 		@npc.turn(2,1)
 		@level.wait(25)
 		@npc.turn(2,0)
-		@text.show(I must apologize to you...*My <storage.get(string,pikestatuspokemon)> has~a timid nature...*It attacks without warning~if it is startled by another~person...*Are you and your PokÃ©mon~all right?)
+		@text.show(I must apologize to you...*My <storage.get(string,pikestatuspokemon)> has~a timid nature...*It attacks without warning~if it is startled by another~person...*Are you and your Pokémon~all right?)
 		:end
 	:when:1
 		#old hat man standing in front of exit,manual approach for script. - Done
@@ -172,7 +172,7 @@ version=2
 		@npc.warp(31,~,0,~)
 		@player.move(0)
 		@npc.move(31,2)
-		@text.show(Welcome... You must be~commended for your luck...*Your PokÃ©mon shall be~restored to full health...)
+		@text.show(Welcome... You must be~commended for your luck...*Your Pokémon shall be~restored to full health...)
 		@sound.play(healing,1)
 		@pokemon.heal
 		@text.show(I urge you to enjoy the rest~of your Battle Choice~Challenge...)
@@ -263,9 +263,9 @@ version=2
 
 		:select:<system.random(0,2)>
 			:when:0
-				@text.show(Giggle... You seem~to be bereft of luck...*If only you hadn't chosen~this room, your PokÃ©mon~could have been healed...)
+				@text.show(Giggle... You seem~to be bereft of luck...*If only you hadn't chosen~this room, your Pokémon~could have been healed...)
 			:when:1
-				@text.show(Since you have chosen this~room, I will restore one~PokÃ©mon to full health...)
+				@text.show(Since you have chosen this~room, I will restore one~Pokémon to full health...)
 				:select:<storage.get(integer,potheals)>
 					:when:0
 					:when:1
@@ -300,7 +300,7 @@ version=2
 						@pokemon.heal(<system.random(0,2)>)
 				:endwhen
 			:when:2
-				@text.show(Since you have chosen this~room, I will restore two~PokÃ©mon to full health...)
+				@text.show(Since you have chosen this~room, I will restore two~Pokémon to full health...)
 				:select:<storage.get(integer,potheals)>
 					:when:0
 					:when:1
@@ -329,7 +329,7 @@ version=2
 		@battle.setvar(canblackout,0)
 		@battle.setvar(frontiertrainer,<register.value(pike_class)>)
 		:if:<register.value(pike_room_count_temp)>=28
-			@text.show(I am Lucy...~I am the law here...~For I am the Pike Queen...*You already know it,~but to advance,~you must defeat me...*...I'm not one for idle~chatter. Hurry. Come on...*Your luck...~I hope you didn't use it all~up here...)
+			@text.show(I am Lucy...~I am the law here...~For I am the Pike Queen...*You already know it,~but to advance,~you must defeat me...*...I'm not one for idle chatter. Hurry. Come on...*Your luck...~I hope you didn't use it all up here...)
 			@player.move(2)
 			@battle.trainer(frontier\battlefactory\lucy_silver)
 			@text.show(Lucy: ... ... ... ... ...~Show me your Frontier Pass...)
