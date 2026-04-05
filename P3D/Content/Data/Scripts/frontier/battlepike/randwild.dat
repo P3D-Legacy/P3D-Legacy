@@ -1,5 +1,5 @@
 version=2
-:select:<math.int(<environment.hour>+<math.int(<environment.dayofyear>m18)>)>
+:select:<math.int(<environment.hour>+<math.int(<environment.dayofyear>)>m18)>
 	:when:0
 		@register.register(wildspecial,str,{"Pokemon"«356»}{"OriginalNumber"«-1»}{"Gender"«0»}{"EggSteps"«0»}{"Item"«0»}{"ItemData"«»}{"NickName"«»}{"Level"«<register.value(wildlevel)>»}{"OT"«00000»}{"Ability"«46»}{"Status"«»}{"Nature"«23»}{"CatchLocation"«Battle Pike»}{"CatchTrainer"«Lucy»}{"CatchBall"«5»}{"CatchMethod"«annoyed»}{"Friendship"«70»}{"isShiny"«0»}{"Attack1"«261§15§15»}{"Attack2"«212§5§5»}{"Attack3"«92§10§10»}{"Attack4"«325§20§20»}{"EVs"«88§84§84§84§84§84»}{"IVs"«22§22§22§22§22§22»}{"AdditionalData"«»})
 	:when:1
