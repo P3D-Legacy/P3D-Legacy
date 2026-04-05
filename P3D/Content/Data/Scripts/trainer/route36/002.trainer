@@ -1,6 +1,6 @@
 [TRAINER FORMAT]
 Name|Alan
-TrainerClass|<system.token(TrainerClass_School Kid)>
+TrainerClass|<system.token(TrainerClass_SchoolKid)>
 Money|544
 IntroMessage|Thanks to my studies,~I'm ready for any~Pokémon!
 OutroMessage|Oops! Computation~error?
