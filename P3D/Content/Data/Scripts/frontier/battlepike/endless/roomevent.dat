@@ -138,7 +138,7 @@ version=2
 		@npc.turn(2,1)
 		@level.wait(25)
 		@npc.turn(2,0)
-		@text.show(I must apologize to you...*My <storage.get(string,pikestatuspokemon)> has~a timid nature...*It attacks without warning~if it is startled by another~person...*Are you and your Pokémon~all right?)
+		@text.show(I must apologize to you...*My <storage.get(string,pikestatuspokemon)> has~a timid nature...*It attacks without warning~if it is startled by another~person...*Are you and your PokÃ©mon~all right?)
 		:end
 	:when:1
 		#old hat man standing in front of exit,manual approach for script. - Done
@@ -172,7 +172,7 @@ version=2
 		@npc.warp(31,~,0,~)
 		@player.move(0)
 		@npc.move(31,2)
-		@text.show(Welcome... You must be~commended for your luck...*Your Pokémon shall be~restored to full health...)
+		@text.show(Welcome... You must be~commended for your luck...*Your PokÃ©mon shall be~restored to full health...)
 		@sound.play(healing,1)
 		@pokemon.heal
 		@text.show(I urge you to enjoy the rest~of your Battle Choice~Challenge...)

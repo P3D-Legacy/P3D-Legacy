@@ -17,7 +17,7 @@ version=2
 	:when:7
 		@text.show(I quite enjoy~this challenge.)
 	:when:8
-		@text.show(Look at how I Tackle this!)
+		@text.show(Look at how I tackle this!)
 	:when:9
 		@text.show(Ready to give up yet?)
 	:when:10
@@ -29,7 +29,7 @@ version=2
 	:when:13
 		@text.show(What should I do next?)
 	:when:14
-		@text.show(I can win with my~Sheer Cold genius!)
+		@text.show(I can win with my~sheer cold genius!)
 	:when:15
 		@text.show(Won't someone cool show up?)
 	:when:16
