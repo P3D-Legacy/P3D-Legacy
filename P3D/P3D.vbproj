@@ -19301,10 +19301,16 @@
     <Content Include="Content\Textures\Emblem\floral.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\Textures\Emblem\gold luck.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\Textures\Emblem\heart gold.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Textures\Emblem\mega.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Textures\Emblem\silver luck.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Textures\Emblem\soul silver.png">
@@ -19364,6 +19370,9 @@
     <Content Include="Content\Textures\Emblem\Square\gold knowledge.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\Textures\Emblem\Square\gold luck.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\Textures\Emblem\Square\heart gold.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -19420,6 +19429,9 @@
     </Content>
     <Content Include="Content\Textures\Emblem\Square\silver knowledge.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Textures\Emblem\Square\silver luck.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Textures\Emblem\Square\snow.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
