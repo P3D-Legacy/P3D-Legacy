@@ -9,18 +9,19 @@ version=2
 	@npc.moveasync(0,2)
 	@player.move(1)
 	@player.warp(frontier\battlepike\passage.dat,0,0.1,3)
+	@level.update
 	@npc.warp(0,0,~,~)
 	@level.update
 
 	@npc.turn(0,0)
 	@npc.moveasync(0,2)
 	@player.move(2)
-	@npc.turn(0,1)
+	@npc.turn(0,3)
 	@npc.move(0,1)
 	@npc.turn(0,2)
 	
 	@Text.Show(Your Battle Choice challenge~has now begun...)
 	@player.move(2)
-	@player.warp(frontier\battlepike\choose.dat,5,0.1,7)
+	@player.warp(frontier\battlepike\choose.dat,4,0.1,7)
 
 :end
