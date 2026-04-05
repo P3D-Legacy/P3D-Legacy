@@ -138,7 +138,7 @@ version=2
 		@npc.turn(2,1)
 		@level.wait(25)
 		@npc.turn(2,0)
-		@text.show(I must apologize to you...*My <storage.get(string,pikestatuspokemon)> has~a timid nature...*It attacks without warning~if it is startled by another~person...*Are you and your Pokémon~all right?)
+		@text.show(I must apologize to you...*My <storage.get(string,pikestatuspokemon)> has~a timid nature...*It attacks without warning~if it is startled by another~person...*Are you and your [Poke]mon~all right?)
 		:end
 	:when:1
 		#old hat man standing in front of exit,manual approach for script. - Done
@@ -161,7 +161,7 @@ version=2
 		@battle.trainer(frontier\battletower\<storage.get(integer,trainer_id)>)
 		
 		:if:<battle.won>=true
-			@npc.turn(20,2)
+			@npc.turn(20,0)
 			@npc.move(20,4)
 			@npc.remove(20)
 		:else
@@ -169,10 +169,10 @@ version=2
 		:endif
 	:when:3
 		#Maid approaches, full heals, and leaves - Done
-		@npc.warp(31,~,0,~)
+		@npc.warp(31,<player.position(x)>,0,~)
 		@player.move(0)
 		@npc.move(31,2)
-		@text.show(Welcome... You must be~commended for your luck...*Your Pokémon shall be~restored to full health...)
+		@text.show(Welcome... You must be~commended for your luck...*Your [Poke]mon shall be~restored to full health...)
 		@sound.play(healing,1)
 		@pokemon.heal
 		@text.show(I urge you to enjoy the rest~of your Battle Choice~Challenge...)
@@ -184,8 +184,14 @@ version=2
 	:when:5
 		#Maid+trainer(m-left, t-center), trainer approaches, trainer leaves, maid approaches and heals fully, then leaves
 		@storage.set(integer,trainer_id,<system.random(0,307)>)
-		@npc.warp(31,~,0,~)
-		@npc.warp(51,~,0,~)
+		:select:<player.position(x)>
+			:when:0
+				@npc.warp(31,1,0,~)
+				@npc.warp(51,0,0,~)
+			:when:1
+				@npc.warp(31,0,0,~)
+				@npc.warp(51,1,0,~)
+		:endwhen
 		@npc.wearskin(51,<npc.trainertexture(frontier\battletower\<storage.get(integer,trainer_id)>)>)
 		@player.move(0)
 		@text.show(Welcome...*Here, we will have you battle~a somewhat-tough trainer...)
@@ -198,7 +204,12 @@ version=2
 		:if:<battle.won>=true
 			@npc.turn(51,0)
 			@npc.move(51,3)
-			@npc.turn(31,3)
+			:select:<player.position(x)>
+				:when:0
+					@npc.turn(31,3)
+				:when:1
+					@npc.turn(31,1)
+			:endwhen
 			@npc.move(31,1)
 			@npc.turn(31,2)
 			@npc.move(31,2)
@@ -213,6 +224,7 @@ version=2
 		@register.change(pike_npc,<system.random(5,29)>)
 		@npc.wearskin(61,<register.value(pike_npc)>)
 		@npc.warp(61,~,0,~)
+		@script.start(frontier\batlepike\chatter)
 		:end
 	:when:7
 		#double Approach, battle, leave

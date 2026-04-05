@@ -3,7 +3,7 @@ version=2
 :if:<register.value(pike_room_count_temp)>=27
 	@register.register(pikelucynext)
 :else
-	:if:<register.value(pike_room_count_temp)>>112
+	:if:<register.value(pike_room_count_temp)>>100
 		:if:<system.calcint(<register.value(pike_room_count_temp)>m56)>=55
 			@register.register(pikelucynext)
 		:endif

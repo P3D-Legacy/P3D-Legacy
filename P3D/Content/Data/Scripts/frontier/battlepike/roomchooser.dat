@@ -12,7 +12,8 @@ version=2
 	@register.change(pikehintspot,3)
 	@register.change(pikehint,4)
 	@register.change(pikehinted,8)
-	@player.move(0)
+	@player.move(1)
+	@player.turnto(3)
 	@text.show(I am sorry to say...*A terrifying event,~yes, a horrible one,~is about to befall you...*I urge you to pay the utmost~care and prepare for~the worst...)
 :else
 	@register.change(pikehintspot,<system.random(0,2)>)
