@@ -171,54 +171,47 @@ Public Class NotificationPopup
         Dim TextHeader As String = _text.GetSplit(0, "*").Replace(CChar("~"), Environment.NewLine)
         Dim TextBody As String = _text.GetSplit(1, "*").Replace(CChar("~"), Environment.NewLine)
 
-        While FontManager.InGameFont.MeasureString(TextHeader).X * CInt(_scale) > CInt((_size.Width * (FrameSizeBack / 3) - FrameSizeBack / 3 * 4) * _scale)
+        While FontManager.TextFont.MeasureString(TextHeader).X * CInt(_scale * 2) > CInt((_size.Width * (FrameSizeBack / 3) - FrameSizeBack / 3 * 4) * _scale)
             _size.Width += 1
         End While
 
-        TextHeader = TextHeader.CropStringToWidth(FontManager.InGameFont, CInt(_scale), CInt((_size.Width * (FrameSizeBack / 3) - FrameSizeBack / 3 * 4) * _scale))
+        TextHeader = TextHeader.CropStringToWidth(FontManager.TextFont, CInt(_scale * 2), CInt((_size.Width * (FrameSizeBack / 3) - FrameSizeBack / 3 * 4) * _scale))
 
-        While FontManager.InGameFont.MeasureString(TextHeader).Y * CInt(_scale) + FontManager.InGameFont.MeasureString(TextBody).Y > CInt(((_size.Height * FrameSizeBack / 3) - FrameSizeBack / 3) * _scale - 5)
+        While FontManager.TextFont.MeasureString(TextHeader).Y * CInt(_scale * 2) + FontManager.TextFont.MeasureString(TextBody).Y * CInt(_scale) > CInt(((_size.Height * FrameSizeBack / 3) - FrameSizeBack / 3) * _scale - 5)
             _size.Height += 1
         End While
 
         Dim BackGroundOffsetX As Integer = CInt(Core.windowSize.Width - (_size.Width * (FrameSizeBack / 3 * _scale)) - (FrameSizeBack / 3) * _scale - (5 * SpriteBatch.InterfaceScale))
 
-        Dim BackGroundScaleY As Integer = 0
-        If SpriteBatch.InterfaceScale > 1 Then
-            BackGroundScaleY = 2
-        ElseIf SpriteBatch.InterfaceScale < 1 Then
-            BackGroundScaleY = -2
-        End If
-
         'Draw the frame.
-        Canvas.DrawImageBorder(_background, CInt(_scale), New Rectangle(BackGroundOffsetX, CInt(Me._positionY), CInt(_size.Width * (FrameSizeBack / 3) * _scale), CInt(CInt(_size.Height + BackGroundScaleY) * (FrameSizeBack / 3) * _scale)))
+        Canvas.DrawImageBorder(_background, CInt(_scale), New Rectangle(BackGroundOffsetX, CInt(Me._positionY), CInt(_size.Width * (FrameSizeBack / 3) * _scale), CInt(CInt(_size.Height) * (FrameSizeBack / 3) * _scale)))
 
         'Draw the icon.
-        Core.SpriteBatch.Draw(_icon, New Rectangle(CInt(BackGroundOffsetX + ((FrameSizeBack / 3 + 3) * _scale) - (_icon.Width / 3 * _scale) + 8 * _scale), CInt(Me._positionY + CInt(CInt(_size.Height + BackGroundScaleY) * (FrameSizeBack / 3) * _scale * 0.5) - (_icon.Height / 2 * _scale)), CInt(_icon.Width * _scale), CInt(_icon.Height * _scale)), Color.White)
+        Core.SpriteBatch.Draw(_icon, New Rectangle(CInt(BackGroundOffsetX + ((FrameSizeBack / 3 + 3) * _scale) - (_icon.Width / 3 * _scale) + 8 * _scale), CInt(Me._positionY + CInt(CInt(_size.Height) * (FrameSizeBack / 3) * _scale / 2) - (_icon.Height / 2 * _scale)), CInt(_icon.Width * _scale), CInt(_icon.Height * _scale)), Color.White)
 
         Dim TextOffset = CInt(BackGroundOffsetX + FrameSizeBack / 3 * _scale * 4)
         If TextBody <> "" Then
             If TextHeader <> "" Then
                 'Draw the header, then the body
-                Core.SpriteBatch.DrawString(FontManager.InGameFont, TextHeader.CropStringToWidth(FontManager.InGameFont, CInt(_scale), CInt((_size.Width * (FrameSizeBack / 3) - FrameSizeBack / 3 * 4) * _scale)), New Vector2(TextOffset, CInt(Me._positionY + FrameSizeBack / 3)), Color.Black, 0.0F, Vector2.Zero, CSng(_scale), SpriteEffects.None, 0.0F)
-                Core.SpriteBatch.DrawString(FontManager.InGameFont, TextBody.CropStringToWidth(FontManager.InGameFont, CInt(_scale / 2), CInt((_size.Width * (FrameSizeBack / 3) - FrameSizeBack / 3 * 4) * _scale)), New Vector2(TextOffset, CInt(Me._positionY + FrameSizeBack / 3 + (FontManager.InGameFont.MeasureString(TextHeader).Y * _scale))), Color.Black, 0.0F, Vector2.Zero, CSng(_scale / 2), SpriteEffects.None, 0.0F)
+                Core.SpriteBatch.DrawString(FontManager.TextFont, TextHeader.CropStringToWidth(FontManager.TextFont, CInt(_scale * 2), CInt((_size.Width * (FrameSizeBack / 3) - FrameSizeBack / 3 * 4) * _scale)), New Vector2(TextOffset, CInt(Me._positionY + FrameSizeBack / 3)), Color.Black, 0.0F, Vector2.Zero, CSng(_scale * 2), SpriteEffects.None, 0.0F)
+                Core.SpriteBatch.DrawString(FontManager.TextFont, TextBody.CropStringToWidth(FontManager.TextFont, CInt(_scale), CInt((_size.Width * (FrameSizeBack / 3) - FrameSizeBack / 3 * 4) * _scale)), New Vector2(TextOffset, CInt(Me._positionY + FrameSizeBack / 3 + (FontManager.TextFont.MeasureString(TextHeader).Y * _scale * 2))), Color.Black, 0.0F, Vector2.Zero, CSng(_scale), SpriteEffects.None, 0.0F)
             Else
                 'Just draw the body
-                Core.SpriteBatch.DrawString(FontManager.InGameFont, TextBody.CropStringToWidth(FontManager.InGameFont, CInt(_scale / 2), CInt((_size.Width * (FrameSizeBack / 3) - FrameSizeBack / 3 * 4) * _scale)), New Vector2(TextOffset, CInt(Me._positionY + FrameSizeBack / 3)), Color.Black, 0.0F, Vector2.Zero, CSng(_scale / 2), SpriteEffects.None, 0.0F)
+                Core.SpriteBatch.DrawString(FontManager.TextFont, TextBody.CropStringToWidth(FontManager.TextFont, CInt(_scale), CInt((_size.Width * (FrameSizeBack / 3) - FrameSizeBack / 3 * 4) * _scale)), New Vector2(TextOffset, CInt(Me._positionY + FrameSizeBack / 3)), Color.Black, 0.0F, Vector2.Zero, CSng(_scale), SpriteEffects.None, 0.0F)
             End If
         Else
             'Just draw the header
-            Core.SpriteBatch.DrawString(FontManager.InGameFont, TextHeader.CropStringToWidth(FontManager.InGameFont, CInt(_scale), CInt((_size.Width * (FrameSizeBack / 3) - FrameSizeBack / 3 * 4) * _scale)), New Vector2(TextOffset, CInt(Me._positionY + FrameSizeBack / 3)), Color.Black, 0.0F, Vector2.Zero, CSng(_scale), SpriteEffects.None, 0.0F)
+            Core.SpriteBatch.DrawString(FontManager.TextFont, TextHeader.CropStringToWidth(FontManager.TextFont, CInt(_scale * 2), CInt((_size.Width * (FrameSizeBack / 3) - FrameSizeBack / 3 * 4) * _scale)), New Vector2(TextOffset, CInt(Me._positionY + FrameSizeBack / 3)), Color.Black, 0.0F, Vector2.Zero, CSng(_scale * 2), SpriteEffects.None, 0.0F)
         End If
 
         Dim InteractText As String = "[" & Localization.GetString("game_notification_dismiss") & "]"
         If Me._scriptFile <> "" OrElse _waitForInput = True Then
             InteractText = "[" & Localization.GetString("game_notification_accept") & "]"
         End If
-        Dim InteractOffset As Vector2 = New Vector2(CInt(BackGroundOffsetX + (_size.Width * (FrameSizeBack / 3 * _scale)) - FontManager.InGameFont.MeasureString(InteractText).X * _scale / 2), CInt(Me._positionY + ((CInt(_size.Height + BackGroundScaleY) * (FrameSizeBack / 3 * _scale)) + (5 * _scale))))
+        Dim InteractOffset As Vector2 = New Vector2(CInt(BackGroundOffsetX + (_size.Width * (FrameSizeBack / 3 * _scale)) - FontManager.TextFont.MeasureString(InteractText).X * _scale), CInt(Me._positionY + ((CInt(_size.Height) * (FrameSizeBack / 3 * _scale)) + (5 * _scale))))
 
-        Core.SpriteBatch.Draw(_background, New Rectangle(CInt(InteractOffset.X), CInt(InteractOffset.Y), CInt(FontManager.InGameFont.MeasureString(InteractText).X * _scale / 2), CInt(FontManager.InGameFont.MeasureString(InteractText).Y * _scale / 2)), New Rectangle(CInt(FrameSizeBack / 3), CInt(FrameSizeBack / 3), CInt(FrameSizeBack / 3), CInt(FrameSizeBack / 3)), Color.White)
-        Core.SpriteBatch.DrawString(FontManager.InGameFont, InteractText, New Vector2(CInt(InteractOffset.X), CInt(InteractOffset.Y)), Color.Black, 0.0F, Vector2.Zero, CSng(_scale / 2), SpriteEffects.None, 0.0F)
+        Core.SpriteBatch.Draw(_background, New Rectangle(CInt(InteractOffset.X), CInt(InteractOffset.Y), CInt(FontManager.TextFont.MeasureString(InteractText).X * _scale), CInt(FontManager.TextFont.MeasureString(InteractText).Y * _scale)), New Rectangle(CInt(FrameSizeBack / 3), CInt(FrameSizeBack / 3), CInt(FrameSizeBack / 3), CInt(FrameSizeBack / 3)), Color.White)
+        Core.SpriteBatch.DrawString(FontManager.TextFont, InteractText, New Vector2(CInt(InteractOffset.X), CInt(InteractOffset.Y)), Color.Black, 0.0F, Vector2.Zero, CSng(_scale), SpriteEffects.None, 0.0F)
     End Sub
 
 End Class
