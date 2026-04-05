@@ -331,7 +331,7 @@ version=2
 		:if:<register.value(pike_room_count_temp)>=28
 			@text.show(I am Lucy...~I am the law here...~For I am the Pike Queen...*You already know it,~but to advance,~you must defeat me...*...I'm not one for idle~chatter. Hurry. Come on...*Your luck...~I hope you didn't use it all~up here...)
 			@player.move(2)
-			@battle.trainer(frontier\battlepike\lucy_silver)
+			@battle.trainer(frontier\battlefactory\lucy_silver)
 			@text.show(Lucy: ... ... ... ... ...~Show me your Frontier Pass...)
 			@player.achieveemblem(silver luck)
 			@player.addfrontieremblem(2,0)
@@ -341,7 +341,7 @@ version=2
 		:else
 			@text.show(...You again...*... ... ... ... ... ...*...I've trampled flowers~and braved storms to get~to where I am...*I don't feel any compulsion~to keep losing to the~same opponent...*... ... ... ... ... ...*Fine...~I'll do it...*Now!~Come on!)
 			@player.move(2)
-			@battle.trainer(frontier\battlepike\lucy_gold)
+			@battle.trainer(frontier\battlefactory\lucy_gold)
 			:if:<register.value(pike_room_count_temp)>=112
 				@text.show(Lucy: ... ... ... ... ...~...Frontier Pass...)
 				@player.achieveemblem(gold luck)
