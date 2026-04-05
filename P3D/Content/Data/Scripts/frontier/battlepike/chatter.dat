@@ -1,7 +1,7 @@
 version=2
 :select:<math.int(<environment.hour>+<math.int(<environment.dayofyear>m18)>)>
 	:when:0
-		@text.show(I am lost,~I need a helping hand.)
+		@text.show(I am lost,~I need a Helping Hand.)
 	:when:1
 		@text.show(I've no sense of~where I am!)
 	:when:2
