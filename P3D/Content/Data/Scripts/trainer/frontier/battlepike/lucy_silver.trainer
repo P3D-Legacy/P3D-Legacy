@@ -1,22 +1,22 @@
 [TRAINER FORMAT]
-Name|Nils
-TrainerClass|<system.token(TrainerClass_TowerTycoon)>
+Name|Lucy
+TrainerClass|<system.token(TrainerClass_PikeQueen)>
 Money|0
-IntroMessage|Lass uns loslegen!
-OutroMessage|
+IntroMessage|
+OutroMessage|Urk...
 DefeatMessage|
-TextureID|nilllzz
+TextureID|lucy
 Region|Johto
 IniMusic|brain_battle_intro
 DefeatMusic|leader_defeat
 BattleMusic|brain_battle
-Pokemon1|<pokemon.generatefrontier(<storage.get(integer,tower_level)>,<storage.get(integer,tower_class)>,1-251)>
-Pokemon2|<pokemon.generatefrontier(<storage.get(integer,tower_level)>,<storage.get(integer,tower_class)>,382-384)>
-Pokemon3|<pokemon.generatefrontier(<storage.get(integer,tower_level)>,0,54)>
+Pokemon1|{"Pokemon"[336]}{"Experience"[2744]}{"Gender"[1]}{"EggSteps"[0]}{"Item"[73]}{"NickName"[]}{"Level"[<register.value(pike_level)>]}{"OT"[00000]}{"Ability"[61]}{"Status"[]}{"Nature"[2]}{"CatchLocation"[New Map]}{"CatchTrainer"[Lucy]}{"CatchBall"[174]}{"CatchMethod"[caught at]}{"Friendship"[255]}{"isShiny"[0]}{"Attack1"[207,15,15]}{"Attack2"[242,15,15]}{"Attack3"[188,10,10]}{"Attack4"[202,10,10]}{"FPs"[252,0,252,6,0,0]}{"DVs"[31,31,31,31,31,31]}
+Pokemon2|{"Pokemon"[213]}{"Experience"[2744]}{"Gender"[1]}{"EggSteps"[0]}{"Item"[2001]}{"NickName"[]}{"Level"[<register.value(pike_level)>]}{"OT"[00000]}{"Ability"[5]}{"Status"[]}{"Nature"[5]}{"CatchLocation"[New Map]}{"CatchTrainer"[Lucy]}{"CatchBall"[174]}{"CatchMethod"[caught at]}{"Friendship"[255]}{"isShiny"[0]}{"Attack1"[92,10,10]}{"Attack2"[201,10,10]}{"Attack3"[182,10,10]}{"Attack4"[156,10,10]}{"FPs"[252,0,0,106,252,0]}{"DVs"[31,31,31,31,31,31]}
+Pokemon3|{"Pokemon"[350]}{"Experience"[2744]}{"Gender"[1]}{"EggSteps"[0]}{"Item"[146]}{"NickName"[]}{"Level"[<register.value(pike_level)>]}{"OT"[00000]}{"Ability"[63]}{"Status"[]}{"Nature"[15]}{"CatchLocation"[New Map]}{"CatchTrainer"[Lucy]}{"CatchBall"[174]}{"CatchMethod"[caught at]}{"Friendship"[255]}{"isShiny"[0]}{"Attack1"[58,10,10]}{"Attack2"[243,20,20]}{"Attack3"[57,15,15]}{"Attack4"[105,10,10]}{"FPs"[152,0,100,152,106,0]}{"DVs"[31,31,31,31,31,31]}
 Pokemon4|
 Pokemon5|
 Pokemon6|
 Items|
-Gender|0
+Gender|1
 AI|2
 IntroSequence|battlefrontier,red
