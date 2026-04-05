@@ -337,7 +337,7 @@ version=2
 			@player.addfrontieremblem(2,0)
 			@register.register(pike_silver)
 			@text.show(<player.name> received~the Silver Luck Emblem!)
-			@text.show(...That's all there is... Disappear already...)
+			@text.show(...That's all there is...~Disappear already...)
 		:else
 			@text.show(...You again...*... ... ... ... ... ...*...I've trampled flowers~and braved storms to get~to where I am...*I don't feel any compulsion~to keep losing to the~same opponent...*... ... ... ... ... ...*Fine...~I'll do it...*Now!~Come on!)
 			@player.move(2)
