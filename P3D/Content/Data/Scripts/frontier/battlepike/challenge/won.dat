@@ -1,24 +1,25 @@
 version=2
 #massive tbd
+	@npc.warp(0,<player.position(x)>,0,~)
 	@player.move(0)
 	@npc.move(0,2)
-	@text.show(Congratulations... Now, this way, please...)
+	@text.show(Congratulations...~Now, this way, please...)
 	@screen.fadeout
-	@Player.warp(frontier\battlepike\main.dat,6,0.1,2,0)
+	@Player.warp(frontier\battlepike\main.dat,5,0.1,2,0)
 	@camera.reset
 	@level.update
 	@screen.fadein
 	@player.turnto(0)
 	
 	:if:<register.registered(pikelucynext)>=true
-		@text.show(Congratulations...*You have snatched victory from the Pike Queen and cleared the event...)
+		@text.show(Congratulations...*You have snatched victory~from the Pike Queen and~cleared the event...)
 		@storage.set(integer,get_bp,<math.floor(13+(<register.value(pike_room_count_temp)>)/14)>)
 	:else
-		@text.show(You have completed the challenge...*I must say... You seem to possess luck in abundance...)
+		@text.show(You have completed~the challenge...*I must say...~You seem to possess luck~in abundance...)
 		@storage.set(integer,get_bp,<math.floor(3+(<register.value(pike_room_count_temp)>)/14)>)
 	:endif
 	
-	@text.show(In recognition of your amazing luck, we award you these Battle Points...)
+	@text.show(In recognition of your~amazing luck, we award~you these Battle Points...)
 	@player.addbp(<storage.get(integer,get_bp)>)
 	@text.show(<player.name> got <storage.get(integer,get_bp)> BP!*You now have <player.bp> BP.)
 	
@@ -38,7 +39,7 @@ version=2
 	:endif
 	@register.change(battlepike_challenge_<register.value(pike_level)>_previous_streak,<register.value(pike_room_count_temp)>)
 	
-	:if:<system.calcint(<register.value(pike_room_count_temp)>m56)>=0 <and> 2><register.value(battlepike_challenge_<register.value(pike_level)>_class)>
+	:if:<math.int(<register.value(pike_room_count_temp)>m56)>=0 <and> 2><register.value(battlepike_challenge_<register.value(pike_level)>_class)>
 		@register.change(battlepike_challenge_<register.value(pike_level)>_class,<register.value(battlepike_challenge_<register.value(pike_level)>_class)>+1)
 	:endif
 	
@@ -64,10 +65,10 @@ version=2
 	@register.unregister(pikelucynext)
 	
 		
-	@text.show(I shall record your results. Please wait...)
+	@text.show(I shall record your results.~Please wait...)
 	@player.save
 	
-	@text.show(We look forward to seeing you on another occasion...)
+	@text.show(We look forward to seeing~you on another occasion...)
 	@storage.clear
 	
 :end
