@@ -480,7 +480,7 @@
         End If
 
         If MakeShake = True Then
-            If Core.Random.Next(0, 1) = 0 Then
+            If Core.Random.Next(0, 2) = 0 Then
                 Me.Rotation.X += CSng((Core.Random.Next(1, 6) - 3) / 100)
                 Me.Rotation.Z += CSng((Core.Random.Next(1, 6) - 3) / 100)
                 Me.Rotation.Y += CSng((Core.Random.Next(1, 6) - 3) / 100)
