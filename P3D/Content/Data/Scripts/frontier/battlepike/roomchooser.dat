@@ -130,7 +130,7 @@ version=2
 			@text.log(pikeroom<storage.get(integer,roomsset)> is the hinted room set as <register.value(pikehinted)>)
 		:else
 			@register.change(pikeroom<storage.get(integer,roomsset)>,<storage.get(integer,potroom<system.random(0,<math.int(<storage.get(integer,potentialrooms)>-1)>)>)>)
-			@text.log(pikeroom<storage.get(integer,roomsset)> is set randomly from the potential rooms
+			@text.log(pikeroom<storage.get(integer,roomsset)> is set randomly from the potential rooms)
 		:endif
 	:endif
 	@storage.update(integer,roomsset,+,1)

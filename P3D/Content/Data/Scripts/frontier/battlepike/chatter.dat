@@ -1,5 +1,5 @@
 version=2
-:select:<math.int(<environment.hour>+<math.int(<environment.dayofyear>m18)>)>
+:select:<system.random(0,41)>
 	:when:0
 		@npc.setadditionalvalue(61,I am lost~I need a Helping Hand.)
 	:when:1

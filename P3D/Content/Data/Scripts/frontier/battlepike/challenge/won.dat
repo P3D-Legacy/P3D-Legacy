@@ -1,6 +1,5 @@
 version=2
 #massive tbd
-	@npc.warp(0,<player.position(x)>,0,~)
 	@player.move(0)
 	@npc.move(0,2)
 	@text.show(Congratulations...~Now, this way, please...)

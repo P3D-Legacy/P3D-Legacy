@@ -42,4 +42,4 @@ Mats:
 {"Floor"{ENT[{"Size"{intArr[1,1]}}{"Position"{intArr[2,0,3]}}{"TexturePath"{str[battlepike]}}{"Texture"{rec[112,112,16,16]}}]}}
 
 NPC:
-{"NPC"{NPC[{"Position"{sngArr[4,0,5]}}{"TextureID"{str[96]}}{"ID"{int[0]}}{"Name"{str[Endless]}}{"Action"{int[1]}}{"AdditionalValue"{str[frontier\battlepike\endless\main]}}{"Rotation"{int[2]}}{"Movement"{str[Still]}}{"MoveRectangles"{recArr[]}}]}}
+{"NPC"{NPC[{"Position"{sngArr[1,0,0]}}{"TextureID"{str[96]}}{"ID"{int[0]}}{"Name"{str[Endless]}}{"Action"{int[1]}}{"AdditionalValue"{str[frontier\battlepike\endless\main]}}{"Rotation"{int[2]}}{"Movement"{str[Still]}}{"MoveRectangles"{recArr[]}}]}}

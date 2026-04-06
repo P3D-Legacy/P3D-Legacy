@@ -199,7 +199,7 @@ version=2
 		@battle.setvar(canreceiveexp,0)
 		@battle.setvar(canuseitems,0)
 		@battle.setvar(canblackout,0)
-		@battle.setvar(frontiertrainer,<register.value(pike_class)>+1)
+		@battle.setvar(frontiertrainer,2)
 		@battle.trainer(frontier\battletower\<storage.get(integer,trainer_id)>)
 		:if:<battle.won>=true
 			@npc.turn(51,0)
@@ -225,7 +225,6 @@ version=2
 		@npc.wearskin(61,<register.value(pike_npc)>)
 		@npc.warp(61,~,0,~)
 		@script.start(frontier\battlepike\chatter)
-		:end
 	:when:7
 		#double Approach, battle, leave
 		@storage.set(integer,trainer_id,<system.random(0,306)>)
