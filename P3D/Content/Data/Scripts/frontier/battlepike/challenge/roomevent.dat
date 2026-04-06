@@ -1,6 +1,6 @@
 version=2
 @register.change(pike_room_count_temp,<register.value(pike_room_count_temp)>+1)
-:if:<math.calc(<register.value(pike_room_count_temp)>m14)>=0
+:if:<math.int(<register.value(pike_room_count_temp)>m14)>=0
 	@entity.remove(90)
 	@entity.warp(99,~,0,~)
 :endif
@@ -228,7 +228,7 @@ version=2
 		@register.change(pike_npc,<system.random(5,29)>)
 		@npc.wearskin(61,<register.value(pike_npc)>)
 		@npc.warp(61,~,0,~)
-		@script.start(frontier\batlepike\chatter)
+		@script.start(frontier\battlepike\chatter)
 		:end
 	:when:7
 		#double Approach, battle, leave
