@@ -210,12 +210,12 @@ version=2
 			@npc.move(51,3)
 			:select:<player.position(x)>
 				:when:0
-					@npc.turn(31,3)
-				:when:1
 					@npc.turn(31,1)
+				:when:1
+					@npc.turn(31,3)
 			:endwhen
 			@npc.move(31,1)
-			@npc.turn(31,2)
+			@npc.turn(31,0)
 			@npc.move(31,2)
 			@text.show(How wonderful...*To honor your victory,~your [POKE]mon shall be~restored to full health...*I urge you to enjoy~the rest of your~Battle Choice challenge...)
 			@npc.turn(31,0)
