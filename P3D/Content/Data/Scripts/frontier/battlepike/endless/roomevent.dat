@@ -9,7 +9,7 @@ version=2
 				@storage.set(integer,pikestatusattack,0)
 			:when:1
 				@storage.set(integer,pikestatusattack,1)
-				@npc.wearskin([POKEMON|N]356)
+				@npc.wearskin(1,[POKEMON|N]356)
 				@storage.set(string,pikestatuspokemon,Dusclops)
 			:when:2;3
 				@storage.set(integer,pikestatusattack,2)
@@ -17,7 +17,7 @@ version=2
 				@storage.set(integer,pikestatusattack,3)
 			:when:8;9;10;11;12
 				@storage.set(integer,pikestatusattack,4)
-				@npc.wearskin([POKEMON|N]356)
+				@npc.wearskin(1,[POKEMON|N]356)
 				@storage.set(string,pikestatuspokemon,Dusclops)
 			:when:13;14;15;16;17;18;19
 				@storage.set(integer,pikestatusattack,5)

@@ -64,7 +64,6 @@ version=2
 					:if:<pokemon.status(0)>=none <or> <pokemon.status(1)>=none <or> <pokemon.status(2)>=none
 						@storage.set(integer,potroom<storage.get(integer,potentialrooms)>,0)
 						@storage.update(integer,potentialrooms,+,1)
-						@text.log(type 0 added as potential room during <register.value(pike_room_count_temp)>)
 					:endif
 				:endif
 			:when:1
@@ -72,54 +71,46 @@ version=2
 					:if:<pokemon.fullyhealed>=false
 						@storage.set(integer,potroom<storage.get(integer,potentialrooms)>,1)
 						@storage.update(integer,potentialrooms,+,1)
-						@text.log(type 1 added as potential room during <register.value(pike_room_count_temp)>)
 					:endif
 				:endif
 			:when:2
 				:if:<not><register.value(pikehint)>=1
 					@storage.set(integer,potroom<storage.get(integer,potentialrooms)>,2)
 					@storage.update(integer,potentialrooms,+,1)
-						@text.log(type 2 added as potential room during <register.value(pike_room_count_temp)>)
 				:endif
 			:when:3
 				:if:<not><register.value(pikehint)>=1
 					:if:<pokemon.fullyhealed>=false
 						@storage.set(integer,potroom<storage.get(integer,potentialrooms)>,3)
 						@storage.update(integer,potentialrooms,+,1)
-						@text.log(type 3 added as potential room during <register.value(pike_room_count_temp)>)
 					:endif
 				:endif
 			:when:4
 				:if:<not><register.value(pikehint)>=2
 					@storage.set(integer,potroom<storage.get(integer,potentialrooms)>,4)
 					@storage.update(integer,potentialrooms,+,1)
-						@text.log(type 4 added as potential room during <register.value(pike_room_count_temp)>)
 				:endif
 			:when:5
 				:if:<not><register.value(pikehint)>=2
 					@storage.set(integer,potroom<storage.get(integer,potentialrooms)>,5)
 					@storage.update(integer,potentialrooms,+,1)
-						@text.log(type 5 added as potential room during <register.value(pike_room_count_temp)>)
 				:endif
 			:when:6
 				:if:<not><register.value(pikehint)>=3
 					@storage.set(integer,potroom<storage.get(integer,potentialrooms)>,6)
 					@storage.update(integer,potentialrooms,+,1)
-						@text.log(type 6 added as potential room during <register.value(pike_room_count_temp)>)
 				:endif
 			:when:7
 				:if:<not><register.value(pikehint)>=3
 					:if:<pokemon.countbattle>=1
 						@storage.set(integer,potroom<storage.get(integer,potentialrooms)>,7)
 						@storage.update(integer,potentialrooms,+,1)
-						@text.log(type 7 added as potential room during <register.value(pike_room_count_temp)>)
 					:endif
 				:endif
 		:endwhen
 		@storage.update(integer,roomcounter,+,1)
 	:endwhile
 :endif
-@text.log(<storage.get(integer,potentialrooms)>)
 @storage.set(integer,roomsset,0)
 :while:3><storage.get(integer,roomsset)>
 	:if:<register.registered(pikelucynext)>=true
@@ -127,10 +118,8 @@ version=2
 	:else
 		:if:<storage.get(integer,roomsset)>=<register.value(pikehintspot)>
 			@register.change(pikeroom<storage.get(integer,roomsset)>,<register.value(pikehinted)>)
-			@text.log(pikeroom<storage.get(integer,roomsset)> is the hinted room set as <register.value(pikehinted)>)
 		:else
 			@register.change(pikeroom<storage.get(integer,roomsset)>,<storage.get(integer,potroom<system.random(0,<math.int(<storage.get(integer,potentialrooms)>-1)>)>)>)
-			@text.log(pikeroom<storage.get(integer,roomsset)> is set randomly from the potential rooms)
 		:endif
 	:endif
 	@storage.update(integer,roomsset,+,1)

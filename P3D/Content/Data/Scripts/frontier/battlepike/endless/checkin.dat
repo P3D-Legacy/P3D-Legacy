@@ -13,6 +13,7 @@ version=2
 					:when:Yes
 						@screen.fadeout
 						@player.warp(frontier\battlepike\main.dat,6,0.1,2)
+						@level.update
 						@player.turnto(0)
 						@screen.fadein
 						@text.show(Your challenge has ended...*I shall record your results...*We look forward to seeing~you on another occasion...)
