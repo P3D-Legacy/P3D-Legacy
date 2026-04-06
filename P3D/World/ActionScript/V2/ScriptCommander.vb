@@ -139,6 +139,12 @@ Namespace ScriptVersion2
                     DoSystem(subClass)
                 Case "title"
                     DoTitle(subClass)
+                Case "animation"
+                    If CurrentScreen.Identification = Screen.Identifications.BattleScreen Then
+                        DoAnimation(subClass)
+                    Else
+                        Logger.Log(Logger.LogTypes.Message, "ScriptCommander.vb: This class (" & mainClass & ") cannot be used outside of battle.")
+                    End If
                 Case Else
                     Logger.Log(Logger.LogTypes.Message, "ScriptCommander.vb: This class (" & mainClass & ") doesn't exist.")
                     IsReady = True

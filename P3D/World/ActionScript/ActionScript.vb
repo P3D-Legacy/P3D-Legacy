@@ -70,7 +70,9 @@ nextScript:
         If Me.IsReady = True Then
             If unlock = False Then
                 Logger.Debug("Unlock Camera")
-                CType(Screen.Camera, OverworldCamera).YawLocked = False
+                If CurrentScreen.Identification = Screen.Identifications.OverworldScreen Then
+                    CType(Screen.Camera, OverworldCamera).YawLocked = False
+                End If
                 'CType(Screen.Camera, OverworldCamera).ResetCursor()
                 GameJolt.PokegearScreen.Call_Flag = ""
             End If
@@ -111,10 +113,12 @@ nextScript:
     ''' </summary>
     ''' <param name="Input">The input string.</param>
     ''' <param name="InputType">Type of information; 0: Script path, 1: Text, 2: Direct input.</param>
-    Public Sub StartScript(ByVal Input As String, ByVal InputType As Integer, Optional ByVal CheckDelay As Boolean = True, Optional ByVal ResetInsight As Boolean = True, Optional ScriptTrigger As String = "")
-        Screen.Level.OwnPlayer.Opacity = 1
-        If Core.Player.IsRunning = True OrElse Screen.Level.Riding = True Then
-            Screen.Camera.Speed = 0.04F
+    Public Sub StartScript(ByVal Input As String, ByVal InputType As Integer, Optional ByVal CheckDelay As Boolean = True, Optional ByVal ResetInsight As Boolean = True, Optional ScriptTrigger As String = "", Optional IsRelative As Boolean = True)
+        If CurrentScreen.Identification = Screen.Identifications.OverworldScreen Then
+            Screen.Level.OwnPlayer.Opacity = 1
+            If Core.Player.IsRunning = True OrElse Screen.Level.Riding = True Then
+                Screen.Camera.Speed = 0.04F
+            End If
         End If
         ScriptLevelIndex += 1
         emAddToWhile = True
@@ -137,7 +141,12 @@ nextScript:
                     Logger.Debug("Start script (ID: " & Input & ")")
                     l.ScriptName = "Type: Script; Input: " & Input
 
-                    Dim path As String = GameModeManager.GetScriptPath(Input & ".dat")
+                    Dim path As String = ""
+                    If IsRelative = True Then
+                        path = GameModeManager.GetScriptPath(Input & ".dat")
+                    Else
+                        path = Input & ".dat"
+                    End If
                     Security.FileValidation.CheckFileValid(path, False, "ActionScript.vb")
 
                     If System.IO.File.Exists(path) = True Then

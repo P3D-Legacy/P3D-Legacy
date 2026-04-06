@@ -1,4 +1,4 @@
-Namespace BattleSystem
+﻿Namespace BattleSystem
 
     Public Class Battle
 
@@ -1912,6 +1912,12 @@ Namespace BattleSystem
                 End If
             End If
 
+            If own = True Then
+                BattleScreen.BattleAnimationLoaderIndex = 0
+            Else
+                BattleScreen.BattleAnimationLoaderIndex = 1
+            End If
+
             'Own Pokémon move animation! This displays any effects that should display on the user of the move.
             moveUsed.UserPokemonMoveAnimation(BattleScreen, own)
 
@@ -2229,88 +2235,88 @@ Namespace BattleSystem
                 End If
 
                 If moveWorks = True Then
-                        If op.HP > 0 And op.Status <> Pokemon.StatusProblems.Fainted Then
-                            Dim protect As Integer = BattleScreen.FieldEffects.OppProtectCounter
-                            If own = False Then
-                                protect = BattleScreen.FieldEffects.OwnProtectCounter
-                            End If
-                            If protect > 0 And moveUsed.ProtectAffected = True Then
-                                Dim protectWorks As Boolean = True
-                                If p.Ability.Name.ToLower() = "no guard" Then
-                                    If Core.Random.Next(0, 100) < (100 - moveUsed.GetAccuracy(own, BattleScreen)) Then
-                                        protectWorks = False
-                                    End If
-                                End If
-
-                                If protectWorks = True Then
-                                    BattleScreen.BattleQuery.Add(New TextQueryObject(op.GetDisplayName() & " protected itself!"))
-                                    moveUsed.MoveProtectedDetected(own, BattleScreen)
-                                    Exit Sub
+                    If op.HP > 0 And op.Status <> Pokemon.StatusProblems.Fainted Then
+                        Dim protect As Integer = BattleScreen.FieldEffects.OppProtectCounter
+                        If own = False Then
+                            protect = BattleScreen.FieldEffects.OwnProtectCounter
+                        End If
+                        If protect > 0 And moveUsed.ProtectAffected = True Then
+                            Dim protectWorks As Boolean = True
+                            If p.Ability.Name.ToLower() = "no guard" Then
+                                If Core.Random.Next(0, 100) < (100 - moveUsed.GetAccuracy(own, BattleScreen)) Then
+                                    protectWorks = False
                                 End If
                             End If
 
-                            Dim detect As Integer = BattleScreen.FieldEffects.OppDetectCounter
-                            If own = False Then
-                                detect = BattleScreen.FieldEffects.OwnDetectCounter
-                            End If
-                            If detect > 0 And moveUsed.ProtectAffected = True Then
-                                Dim detectWorks As Boolean = True
-                                If p.Ability.Name.ToLower() = "no guard" Then
-                                    If Core.Random.Next(0, 100) < (100 - moveUsed.GetAccuracy(own, BattleScreen)) Then
-                                        detectWorks = False
-                                    End If
-                                End If
-
-                                If detectWorks = True Then
-                                    BattleScreen.BattleQuery.Add(New TextQueryObject(op.GetDisplayName() & " protected itself!"))
-                                    moveUsed.MoveProtectedDetected(own, BattleScreen)
-                                    Exit Sub
-                                End If
-                            End If
-
-                            Dim kingsshield As Integer = BattleScreen.FieldEffects.OppKingsShieldCounter
-                            If own = False Then
-                                kingsshield = BattleScreen.FieldEffects.OwnKingsShieldCounter
-                            End If
-                            If kingsshield > 0 And moveUsed.ProtectAffected = True And moveUsed.Category <> Attack.Categories.Status Then
-                                Dim kingsshieldWorks As Boolean = True
-                                If p.Ability.Name.ToLower() = "no guard" Then
-                                    If Core.Random.Next(0, 100) < (100 - moveUsed.GetAccuracy(own, BattleScreen)) Then
-                                        kingsshieldWorks = False
-                                    End If
-                                End If
-
-                                If kingsshieldWorks = True Then
-                                    BattleScreen.BattleQuery.Add(New TextQueryObject(op.GetDisplayName() & " protected itself!"))
-
-                                    If moveUsed.MakesContact = True Then
-                                        Me.LowerStat(own, Not own, BattleScreen, "Attack", 1, "", "move:kingsshield")
-                                    End If
-                                    moveUsed.MoveProtectedDetected(own, BattleScreen)
-                                    Exit Sub
-                                End If
+                            If protectWorks = True Then
+                                BattleScreen.BattleQuery.Add(New TextQueryObject(op.GetDisplayName() & " protected itself!"))
+                                moveUsed.MoveProtectedDetected(own, BattleScreen)
+                                Exit Sub
                             End If
                         End If
 
-                        'Protean Ability:
-                        If p.Ability.Name.ToLower() = "protean" AndAlso moveUsed.ID <> 165 Then ''165 = Struggle
-                            If p.Type1.Type <> moveUsed.Type.Type OrElse p.Type2.Type <> Element.Types.Blank Then
-                                If p.OriginalType1 Is Nothing Then
-                                    p.OriginalType1 = New Element(p.Type1.Type)
+                        Dim detect As Integer = BattleScreen.FieldEffects.OppDetectCounter
+                        If own = False Then
+                            detect = BattleScreen.FieldEffects.OwnDetectCounter
+                        End If
+                        If detect > 0 And moveUsed.ProtectAffected = True Then
+                            Dim detectWorks As Boolean = True
+                            If p.Ability.Name.ToLower() = "no guard" Then
+                                If Core.Random.Next(0, 100) < (100 - moveUsed.GetAccuracy(own, BattleScreen)) Then
+                                    detectWorks = False
                                 End If
-                                p.Type1.Type = moveUsed.Type.Type
-                                If p.Type2.Type <> Element.Types.Blank Then
-                                    If p.OriginalType2 Is Nothing Then
-                                        p.OriginalType2 = New Element(p.Type2.Type)
-                                    End If
-                                    p.Type2.Type = Element.Types.Blank
-                                End If
-                                BattleScreen.BattleQuery.Add(New TextQueryObject(p.GetDisplayName() & "'s type changed to " & p.Type1.ToString() & " due to Protean."))
+                            End If
+
+                            If detectWorks = True Then
+                                BattleScreen.BattleQuery.Add(New TextQueryObject(op.GetDisplayName() & " protected itself!"))
+                                moveUsed.MoveProtectedDetected(own, BattleScreen)
+                                Exit Sub
                             End If
                         End If
 
-                        'Opp Pokémon move animation! This displays the move effects that target the other Pokémon and appear after the camera switched around.
-                        moveUsed.OpponentPokemonMoveAnimation(BattleScreen, own)
+                        Dim kingsshield As Integer = BattleScreen.FieldEffects.OppKingsShieldCounter
+                        If own = False Then
+                            kingsshield = BattleScreen.FieldEffects.OwnKingsShieldCounter
+                        End If
+                        If kingsshield > 0 And moveUsed.ProtectAffected = True And moveUsed.Category <> Attack.Categories.Status Then
+                            Dim kingsshieldWorks As Boolean = True
+                            If p.Ability.Name.ToLower() = "no guard" Then
+                                If Core.Random.Next(0, 100) < (100 - moveUsed.GetAccuracy(own, BattleScreen)) Then
+                                    kingsshieldWorks = False
+                                End If
+                            End If
+
+                            If kingsshieldWorks = True Then
+                                BattleScreen.BattleQuery.Add(New TextQueryObject(op.GetDisplayName() & " protected itself!"))
+
+                                If moveUsed.MakesContact = True Then
+                                    Me.LowerStat(own, Not own, BattleScreen, "Attack", 1, "", "move:kingsshield")
+                                End If
+                                moveUsed.MoveProtectedDetected(own, BattleScreen)
+                                Exit Sub
+                            End If
+                        End If
+                    End If
+
+                    'Protean Ability:
+                    If p.Ability.Name.ToLower() = "protean" AndAlso moveUsed.ID <> 165 Then ''165 = Struggle
+                        If p.Type1.Type <> moveUsed.Type.Type OrElse p.Type2.Type <> Element.Types.Blank Then
+                            If p.OriginalType1 Is Nothing Then
+                                p.OriginalType1 = New Element(p.Type1.Type)
+                            End If
+                            p.Type1.Type = moveUsed.Type.Type
+                            If p.Type2.Type <> Element.Types.Blank Then
+                                If p.OriginalType2 Is Nothing Then
+                                    p.OriginalType2 = New Element(p.Type2.Type)
+                                End If
+                                p.Type2.Type = Element.Types.Blank
+                            End If
+                            BattleScreen.BattleQuery.Add(New TextQueryObject(p.GetDisplayName() & "'s type changed to " & p.Type1.ToString() & " due to Protean."))
+                        End If
+                    End If
+
+                    'Opp Pokémon move animation! This displays the move effects that target the other Pokémon and appear after the camera switched around.
+                    moveUsed.OpponentPokemonMoveAnimation(BattleScreen, own)
 
                         'Reset Fly if needed after the animation definition
                         If own = True And BattleScreen.FieldEffects.OwnFlyCounter = 2 Then

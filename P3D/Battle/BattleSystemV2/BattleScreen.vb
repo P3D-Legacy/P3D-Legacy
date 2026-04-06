@@ -1,4 +1,4 @@
-Namespace BattleSystem
+﻿Namespace BattleSystem
 
     Public Class BattleScreen
 
@@ -46,6 +46,16 @@ Namespace BattleSystem
         Public TrainerSendOutOpp As Integer = 1
 #End Region
 
+        Private _actionScript As ActionScript 'Private ActionScript instance.
+        ''' <summary>
+        ''' The ActionScript instance that controls the scripts.
+        ''' </summary>
+        Public ReadOnly Property ActionScript() As ActionScript
+            Get
+                Return Me._actionScript
+            End Get
+        End Property
+
         Public Enum BattleModes
             Standard
             Safari
@@ -57,6 +67,10 @@ Namespace BattleSystem
         Public FieldEffects As FieldEffects
         Public SavedOverworld As OverworldStorage
         Public BattleMenu As BattleMenu
+
+        Public Shared BattleAnimationLoaders As New List(Of BattleAnimationLoader) 'index 0 = own, index 1 = opp
+        Public Shared BattleAnimationLoaderIndex As Integer = 0
+
         Public BattleQuery As New List(Of QueryObject)
 
         'Remove when new system gets put in place:
@@ -131,6 +145,10 @@ Namespace BattleSystem
         End Function
 
         Public Sub New(ByVal WildPokemon As Pokemon, ByVal OverworldScreen As Screen, ByVal defaultMapType As Integer)
+            BattleAnimationLoaders.Clear()
+            BattleAnimationLoaders.Add(New BattleAnimationLoader(False)) 'own
+            BattleAnimationLoaders.Add(New BattleAnimationLoader(True)) 'opponent
+
             Me.WildPokemon = WildPokemon
             Me.OverworldScreen = OverworldScreen
             Me.defaultMapType = defaultMapType
@@ -139,9 +157,14 @@ Namespace BattleSystem
             Me.PVPGameJoltID = ""
             'Reset variable when new battle starts
             BattleSystem.Battle.Caught = False
+
+            Me._actionScript = New ActionScript(Level)
         End Sub
 
         Public Sub New(ByVal Trainer As Trainer, ByVal OverworldScreen As Screen, ByVal defaultMapType As Integer)
+            BattleAnimationLoaders.Clear()
+            BattleAnimationLoaders.Add(New BattleAnimationLoader(False)) 'own
+            BattleAnimationLoaders.Add(New BattleAnimationLoader(True)) 'opponent
             Me.Trainer = Trainer
             Me.OverworldScreen = OverworldScreen
             Me.defaultMapType = defaultMapType
@@ -150,6 +173,8 @@ Namespace BattleSystem
             Me.PVPGameJoltID = ""
             'Reset variable when new battle starts
             FirstRound = True
+
+            Me._actionScript = New ActionScript(Level)
         End Sub
 
 #Region "Initialize"
