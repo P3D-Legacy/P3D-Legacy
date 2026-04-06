@@ -2441,10 +2441,11 @@
             If InputData <> "" Then
                 Dim Data() As String = InputData.Split(CChar(","))
                 Dim a As Attack = GetAttackByID(CInt(Data(0)))
-
                 If Not a Is Nothing Then
-                    a.MaxPP = CInt(Data(1))
-                    a.CurrentPP = CInt(Data(2))
+                    If Data.Count = 3 Then
+                        a.MaxPP = CInt(Data(1))
+                        a.CurrentPP = CInt(Data(2))
+                    End If
                 End If
 
                 Return a
