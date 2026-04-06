@@ -21,7 +21,7 @@ version=2
 
 	:select:<register.value(pikehint)>
 		:when:0
-			:if:<pokemon.status(0)> = none <or> <pokemon.status(1)> = none <or> <pokemon.status(2)> = none
+			:if:<pokemon.status(0)>=none <or> <pokemon.status(1)>=none <or> <pokemon.status(2)>=none
 				:if:<pokemon.fullyhealed>=true
 					@register.change(pikehinted,0)
 				:else
@@ -61,7 +61,7 @@ version=2
 		:select:<storage.get(integer,roomcounter)>
 			:when:0
 				:if:<not><register.value(pikehint)>=0
-					:if:<pokemon.status(0)> = none <or> <pokemon.status(1)> = none <or> <pokemon.status(2)> = none
+					:if:<pokemon.status(0)>=none <or> <pokemon.status(1)>=none <or> <pokemon.status(2)>=none
 						@storage.set(integer,potroom<storage.get(integer,potentialrooms)>,0)
 						@storage.update(integer,potentialrooms,+,1)
 						@text.log(type 0 added as potential room during <register.value(pike_room_count_temp)>)
