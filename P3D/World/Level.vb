@@ -42,6 +42,7 @@ Public Class Level
     Public _DayTime As World.DayTimes = World.GetTime
     Private _environmentType As Integer = 0
     Private _saveonly As Boolean = False
+    Private _nosavebagorpokegear As Boolean = False
     Private _disableMenus As Boolean = False
     Private _wildPokemonGrass As Boolean = True
     Private _wildPokemonFloor As Boolean = False
@@ -406,6 +407,18 @@ Public Class Level
         End Get
         Set(value As Boolean)
             Me._saveonly = value
+        End Set
+    End Property
+
+    ''' <summary>
+    ''' If the Save and Bag options should be unavailable in the menu for this map.
+    ''' </summary>
+    Public Property NoSaveBagOrPokegear As Boolean
+        Get
+            Return Me._nosavebagorpokegear
+        End Get
+        Set(value As Boolean)
+            Me._nosavebagorpokegear = value
         End Set
     End Property
 

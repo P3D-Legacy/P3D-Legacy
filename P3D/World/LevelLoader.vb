@@ -1037,6 +1037,11 @@
         Else
             Screen.Level.SaveOnly = False
         End If
+        If TagExists(Tags, "NoSaveBagOrPokegear") = True Then
+            Screen.Level.NoSaveBagOrPokegear = CBool(GetTag(Tags, "NoSaveBagOrPokegear"))
+        Else
+            Screen.Level.NoSaveBagOrPokegear = False
+        End If
         If TagExists(Tags, "DisableMenus") = True Then
             Screen.Level.DisableMenus = CBool(GetTag(Tags, "DisableMenus"))
         Else
