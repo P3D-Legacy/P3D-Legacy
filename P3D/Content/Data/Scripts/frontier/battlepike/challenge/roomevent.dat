@@ -235,7 +235,7 @@ version=2
 		@storage.set(integer,trainer_id,<system.random(0,306)>)
 
 		@npc.spawn(<player.position(x)>,0,-1,0,,<npc.trainertexture(frontier\battletower\<storage.get(integer,trainer_id)>)>,0,2,0,70,Still)
-		@npc.spawn(<player.position(x)>+1,0,-1,0,,<npc.trainertexture(frontier\battletower\<math.calc(<storage.get(integer,trainer_id)>+1)>)>,0,2,0,71,Still)
+		@npc.spawn(<player.position(x)>+1,0,-1,0,,<npc.trainertexture(frontier\battletower\<math.int(<storage.get(integer,trainer_id)>+1)>)>,0,2,0,71,Still)
 
 		@player.move(0)
 		@npc.moveasync(70,2)
