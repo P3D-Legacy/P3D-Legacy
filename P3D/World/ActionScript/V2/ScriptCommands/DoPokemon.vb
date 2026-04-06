@@ -464,11 +464,71 @@
                     End If
                 Case "setability"
                     Dim Index As Integer = int(argument.GetSplit(0, ","))
-                    Dim abilityID As Integer = int(argument.GetSplit(1, ","))
+                    Dim abilityID As string = ""
+                    If StringHelper.IsNumeric(argument.GetSplit(1, ",")) = True Then
+                        If Core.Player.Pokemons.Count - 1 >= Index Then
+                            Core.Player.Pokemons(Index).Ability = Ability.GetAbilityByID(int(argument.GetSplit(1, ",")))
+                            For a = 0 To Core.Player.Pokemons(Index).NewAbilities.Count - 1
+                                If Core.Player.Pokemons(Index).Ability.ID = Core.Player.Pokemons(Index).NewAbilities(a).ID Then
+                                    If a = 0 Then
+                                        Core.Player.Pokemons(Index).AbilitySlot = "A"
+                                    ElseIf a = 1 Then
+                                        Core.Player.Pokemons(Index).AbilitySlot = "B"
+                                    ElseIf a = 2 Then
+                                        Core.Player.Pokemons(Index).AbilitySlot = "C"
+                                    Else
+                                        Core.Player.Pokemons(Index).AbilitySlot = argument.GetSplit(1, ",")
+                                    End If
+                                    Exit For
+                                End If
+                            Next
+                        End If
+                    Else
+                        If argument.GetSplit(1, ",").ToLower = "a" Then
+                            Core.Player.Pokemons(Index).Ability = Core.Player.Pokemons(Index).NewAbilities(0)
+                            Core.Player.Pokemons(Index).AbilitySlot = "A"
 
-                    If Core.Player.Pokemons.Count - 1 >= Index Then
-                        Core.Player.Pokemons(Index).Ability = Ability.GetAbilityByID(abilityID)
+                        ElseIf argument.GetSplit(1, ",").ToLower = "b" Then
+                            If Core.Player.Pokemons(Index).NewAbilities.Count > 1 AndAlso Core.Player.Pokemons(Index).NewAbilities(1) IsNot Nothing Then
+                                Core.Player.Pokemons(Index).Ability = Core.Player.Pokemons(Index).NewAbilities(1)
+                            Else
+                                Core.Player.Pokemons(Index).Ability = Core.Player.Pokemons(Index).NewAbilities(0)
+                            End If
+                            Core.Player.Pokemons(Index).AbilitySlot = "B"
+
+                        ElseIf argument.GetSplit(1, ",").ToLower = "c" Then
+                            If Core.Player.Pokemons(Index).NewAbilities.Count > 2 AndAlso Core.Player.Pokemons(Index).NewAbilities(2) IsNot Nothing Then
+                                Core.Player.Pokemons(Index).Ability = Core.Player.Pokemons(Index).NewAbilities(2)
+                            Else
+                                Core.Player.Pokemons(Index).Ability = Core.Player.Pokemons(Index).NewAbilities(0)
+                            End If
+                            Core.Player.Pokemons(Index).AbilitySlot = "C"
+
+                        ElseIf argument.GetSplit(1, ",").ToLower = "h" Then
+                            If Core.Player.Pokemons(Index).HasHiddenAbility = True Then
+                                Core.Player.Pokemons(Index).Ability = Core.Player.Pokemons(Index).HiddenAbility
+                            Else
+                                Core.Player.Pokemons(Index).Ability = Core.Player.Pokemons(Index).NewAbilities(0)
+                            End If
+                            Core.Player.Pokemons(Index).AbilitySlot = "H"
+
+                        Else
+                            Dim NewAbilityIndex As Integer = Core.Random.Next(0, 2)
+                            If NewAbilityIndex = 0 Then
+                                Core.Player.Pokemons(Index).Ability = Core.Player.Pokemons(Index).NewAbilities(0)
+                                Core.Player.Pokemons(Index).AbilitySlot = "A"
+                            ElseIf NewAbilityIndex = 1 Then
+                                If Core.Player.Pokemons(Index).NewAbilities.Count > 1 AndAlso Core.Player.Pokemons(Index).NewAbilities(1) IsNot Nothing Then
+                                    Core.Player.Pokemons(Index).Ability = Core.Player.Pokemons(Index).NewAbilities(1)
+                                Else
+                                    Core.Player.Pokemons(Index).Ability = Core.Player.Pokemons(Index).NewAbilities(0)
+                                End If
+                                Core.Player.Pokemons(Index).AbilitySlot = "B"
+                            End If
+
+                        End If
                     End If
+
                 Case "addev"
                     Dim Index As Integer = int(argument.GetSplit(0, ","))
                     Dim ev As String = argument.GetSplit(1, ",")

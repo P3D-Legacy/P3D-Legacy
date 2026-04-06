@@ -971,7 +971,43 @@ Public Class Pokemon
     End Property
 
     Public Attacks As New List(Of BattleSystem.Attack)
-    Public Ability As Ability
+    Public AbilitySlot As String
+    Public _ability As Ability
+    Public Property Ability() As Ability
+        Get
+            If StringHelper.IsNumeric(AbilitySlot) = False Then
+                If Me.AbilitySlot = "A" Then
+                    Return Me.NewAbilities(0)
+                ElseIf Me.AbilitySlot = "B" Then
+                    If Me.NewAbilities.Count > 1 AndAlso Me.NewAbilities(1) IsNot Nothing Then
+                        Return Me.NewAbilities(1)
+                    Else
+                        Return Me.NewAbilities(0)
+                    End If
+                ElseIf Me.AbilitySlot = "C" Then
+                    If Me.NewAbilities.Count > 2 AndAlso Me.NewAbilities(2) IsNot Nothing Then
+                        Return Me.NewAbilities(2)
+                    Else
+                        Return Me.NewAbilities(0)
+                    End If
+
+                ElseIf Me.AbilitySlot = "H" Then
+                    If Me.HasHiddenAbility = True Then
+                        Return Me.HiddenAbility
+                    Else
+                        Return Me.NewAbilities(0)
+                    End If
+
+                End If
+            End If
+            Return _ability
+        End Get
+        Set(value As Ability)
+            _ability = value
+        End Set
+    End Property
+
+
     Public CatchBall As Item = Item.GetItemByID(5.ToString)
 
     Private _experience As Integer
@@ -1123,6 +1159,7 @@ Public Class Pokemon
         End If
 
         Me.Ability = Me._originalAbility
+        Me.AbilitySlot = Me._originalAbilitySlot
 
         Me.IsTransformed = False
 
@@ -1131,13 +1168,17 @@ Public Class Pokemon
 
     'Just use these subs when doing/reverting mega evolutions.
     Public NormalAbility As Ability = New Abilities.Stench
+    Public NormalAbilitySlot As String = "A"
     Public Sub LoadAltAbility()
         NormalAbility = OriginalAbility
+        NormalAbilitySlot = AbilitySlot
         Me.Ability = NewAbilities(0)
+        Me.AbilitySlot = "A"
         SetOriginalAbility()
     End Sub
     Public Sub RestoreAbility()
         Me.Ability = NormalAbility
+        Me.AbilitySlot = Me.NormalAbilitySlot
         SetOriginalAbility()
     End Sub
 
@@ -1223,7 +1264,8 @@ Public Class Pokemon
         End Get
     End Property
     Public Sub SetOriginalAbility()
-        Me._originalAbility = Ability
+        Me._originalAbility = Me.Ability()
+        Me._originalAbilitySlot = Me.AbilitySlot
     End Sub
 
     ''' <summary>
@@ -1272,6 +1314,7 @@ Public Class Pokemon
     Private _originalShiny As Integer = -1
     Private _originalMoves As List(Of BattleSystem.Attack) = Nothing
     Private _originalAbility As Ability = Nothing
+    Private _originalAbilitySlot As String = Nothing
 
     Private _originalItem As Item = Nothing
 
@@ -1445,15 +1488,19 @@ Public Class Pokemon
                     Me.Devolution = Value
                 Case "ability1", "ability"
                     If Value <> "Nothing" Then
-                        Me.NewAbilities.Add(Ability.GetAbilityByID(CInt(Value)))
+                        Me.NewAbilities.Add(P3D.Ability.GetAbilityByID(CInt(Value)))
                     End If
                 Case "ability2"
                     If Value <> "Nothing" Then
-                        Me.NewAbilities.Add(Ability.GetAbilityByID(CInt(Value)))
+                        Me.NewAbilities.Add(P3D.Ability.GetAbilityByID(CInt(Value)))
+                    End If
+                Case "ability3"
+                    If Value <> "Nothing" Then
+                        Me.NewAbilities.Add(P3D.Ability.GetAbilityByID(CInt(Value)))
                     End If
                 Case "hiddenability"
                     If Value <> "Nothing" Then
-                        Me.HiddenAbility = Ability.GetAbilityByID(CInt(Value))
+                        Me.HiddenAbility = P3D.Ability.GetAbilityByID(CInt(Value))
                     End If
                 Case "machines"
                     If Value <> "" Then
@@ -1713,11 +1760,82 @@ Public Class Pokemon
                     Me.OT = tagValue
                 Case "ability"
                     Dim argument As String = ScriptVersion2.ScriptCommander.Parse(tagValue).ToString
-                    Me.Ability = P3D.Ability.GetAbilityByID(CInt(argument))
+                    Dim success As Boolean = False
+                    If StringHelper.IsNumeric(argument) Then
+                        Me.Ability = P3D.Ability.GetAbilityByID(CInt(argument))
+                        If Me.HiddenAbility IsNot Nothing AndAlso IsUsingHiddenAbility() = True Then
+                            Me.AbilitySlot = "H"
+                        Else
+                            For a = 0 To NewAbilities.Count - 1
+                                If Me.Ability.ID = NewAbilities(a).ID Then
+                                    If a = 0 Then
+                                        Me.AbilitySlot = "A"
+                                    ElseIf a = 1 Then
+                                        Me.AbilitySlot = "B"
+                                    ElseIf a = 2 Then
+                                        Me.AbilitySlot = "C"
+                                    Else
+                                        Me.AbilitySlot = Me.Ability.ID.ToString
+                                    End If
+                                    Exit For
+                                End If
+                            Next
+                        End If
+                        If Me.AbilitySlot IsNot Nothing Then
+                            success = True
+                        End If
+                    Else
+                        If argument.ToLower = "a" Then
+                            Me.Ability = Me.NewAbilities(0)
+                            Me.AbilitySlot = "A"
+                            success = True
+                        ElseIf argument.ToLower = "b" Then
+                            If Me.NewAbilities.Count > 1 AndAlso Me.NewAbilities(1) IsNot Nothing Then
+                                Me.Ability = Me.NewAbilities(1)
+                            Else
+                                Me.Ability = Me.NewAbilities(0)
+                            End If
+                            Me.AbilitySlot = "B"
+                            success = True
+                        ElseIf argument.ToLower = "c" Then
+                            If Me.NewAbilities.Count > 2 AndAlso Me.NewAbilities(2) IsNot Nothing Then
+                                Me.Ability = Me.NewAbilities(2)
+                            Else
+                                Me.Ability = Me.NewAbilities(0)
+                            End If
+                            Me.AbilitySlot = "C"
+                            success = True
+                        ElseIf argument.ToLower = "h" Then
+                            If Me.HasHiddenAbility = True Then
+                                Me.Ability = Me.HiddenAbility
+                            Else
+                                Me.Ability = Me.NewAbilities(0)
+                            End If
+                            Me.AbilitySlot = "H"
+                            success = True
+                        Else
+                            Dim NewAbilityIndex As Integer = Core.Random.Next(0, 2)
+                            If NewAbilityIndex = 0 Then
+                                Me.Ability = Me.NewAbilities(0)
+                                Me.AbilitySlot = "A"
+                            ElseIf NewAbilityIndex = 1 Then
+                                If Me.NewAbilities.Count > 1 AndAlso Me.NewAbilities(1) IsNot Nothing Then
+                                    Me.Ability = Me.NewAbilities(1)
+                                Else
+                                    Me.Ability = Me.NewAbilities(0)
+                                End If
+                                Me.AbilitySlot = "B"
+                            End If
+                            success = True
+                        End If
+                    End If
                     'is this relevant for the client in PvP?
-                    SetOriginalAbility()
-                    Me.NormalAbility = Ability
-                    loadedAbility = True
+                    If success = True Then
+                        SetOriginalAbility()
+                        Me.NormalAbility = Me.Ability
+                        Me.NormalAbilitySlot = Me.AbilitySlot
+                        loadedAbility = True
+                    End If
                 Case "status"
                     Select Case ScriptVersion2.ScriptCommander.Parse(tagValue).ToString
                         Case "BRN"
@@ -1818,8 +1936,10 @@ Public Class Pokemon
 
         If loadedAbility = False Then
             Me.Ability = pDumb.Ability
+            Me.AbilitySlot = pDumb.AbilitySlot
             SetOriginalAbility()
-            Me.NormalAbility = Ability
+            Me.NormalAbility = Me.Ability
+            Me.NormalAbilitySlot = Me.AbilitySlot
         End If
 
         If loadedGender = False Then
@@ -1955,8 +2075,19 @@ Public Class Pokemon
             shinyString = "1"
         End If
 
-        If Me.Ability Is Nothing Then
-            Me.Ability = Me.NewAbilities(Core.Random.Next(0, Me.NewAbilities.Count))
+        If Me.AbilitySlot Is Nothing Then
+            Dim NewAbilityIndex As Integer = Core.Random.Next(0, 2)
+            If NewAbilityIndex = 0 Then
+                Me.Ability = P3D.Ability.GetAbilityByID(Me.NewAbilities(0).ID)
+                Me.AbilitySlot = "A"
+            ElseIf NewAbilityIndex = 1 Then
+                If Me.NewAbilities.Count > 1 AndAlso Me.NewAbilities(1) IsNot Nothing Then
+                    Me.Ability = P3D.Ability.GetAbilityByID(Me.NewAbilities(1).ID)
+                Else
+                    Me.Ability = P3D.Ability.GetAbilityByID(Me.NewAbilities(0).ID)
+                End If
+                Me.AbilitySlot = "B"
+            End If
             SetOriginalAbility()
         End If
 
@@ -1970,7 +2101,7 @@ Public Class Pokemon
         "{""NickName""[" & Me.NickName & "]}" &
         "{""Level""[" & Me.Level & "]}" &
         "{""OT""[" & Me.OT & "]}" &
-        "{""Ability""[" & Me.Ability.ID & "]}" &
+        "{""Ability""[" & Me.AbilitySlot & "]}" &
         "{""Status""[" & SaveStatus & "]}" &
         "{""Nature""[" & Me.Nature & "]}" &
         "{""CatchLocation""[" & Me.CatchLocation & "]}" &
@@ -2021,11 +2152,27 @@ Public Class Pokemon
             End If
 
             If Screen.Level IsNot Nothing Then
-                If Screen.Level.HiddenAbilityChance > Core.Random.Next(0, 100) And Me.HasHiddenAbility = True Then
-                    Me.Ability = P3D.Ability.GetAbilityByID(Me.HiddenAbility.ID)
+                If Screen.Level.HiddenAbilityChance > Core.Random.Next(0, 100) Then
+                    If Me.HasHiddenAbility = True Then
+                        Me.Ability = P3D.Ability.GetAbilityByID(Me.HiddenAbility.ID)
+                    Else
+                        Me.Ability = P3D.Ability.GetAbilityByID(Me.NewAbilities(0).ID)
+                    End If
+                    Me.AbilitySlot = "H"
                     SetOriginalAbility()
                 Else
-                    Me.Ability = P3D.Ability.GetAbilityByID(Me.NewAbilities(Core.Random.Next(0, Me.NewAbilities.Count)).ID)
+                    Dim NewAbilityIndex As Integer = Core.Random.Next(0, 2)
+                    If NewAbilityIndex = 0 Then
+                        Me.Ability = P3D.Ability.GetAbilityByID(Me.NewAbilities(0).ID)
+                        Me.AbilitySlot = "A"
+                    ElseIf NewAbilityIndex = 1 Then
+                        If Me.NewAbilities.Count > 1 AndAlso Me.NewAbilities(1) IsNot Nothing Then
+                            Me.Ability = P3D.Ability.GetAbilityByID(Me.NewAbilities(1).ID)
+                        Else
+                            Me.Ability = P3D.Ability.GetAbilityByID(Me.NewAbilities(0).ID)
+                        End If
+                        Me.AbilitySlot = "B"
+                    End If
                     SetOriginalAbility()
                 End If
             End If

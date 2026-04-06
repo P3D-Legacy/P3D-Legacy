@@ -397,32 +397,45 @@
 
         Dim hasOldAbility As Boolean = False
 
+        evolvedPokemon.AbilitySlot = currentPokemon.AbilitySlot
+
         If currentPokemon.IsUsingHiddenAbility = True And evolvedPokemon.HasHiddenAbility = True Then
             evolvedPokemon.Ability = evolvedPokemon.HiddenAbility
         Else
-            For Each a As Ability In evolvedPokemon.NewAbilities
-                If a.ID = currentPokemon.Ability.ID Then
+            For a = 0 To evolvedPokemon.NewAbilities.Count - 1
+                If evolvedPokemon.NewAbilities(a).ID = currentPokemon.Ability.ID Then
                     hasOldAbility = True
+                    If a = 0 Then
+                        evolvedPokemon.AbilitySlot = "A"
+                    ElseIf a = 1 Then
+                        evolvedPokemon.AbilitySlot = "B"
+                    ElseIf a = 2 Then
+                        evolvedPokemon.AbilitySlot = "C"
+                    Else
+                        evolvedPokemon.AbilitySlot = evolvedPokemon.Ability.ID.ToString
+                    End If
+                    evolvedPokemon.Ability = currentPokemon.Ability
                     Exit For
                 End If
             Next
 
             If hasOldAbility = False Then
-                Dim AbilityNumber As Integer = -1
-                For i = 0 To currentPokemon.NewAbilities.Count - 1
-                    If currentPokemon.NewAbilities(i).ID = currentPokemon.Ability.ID Then
-                        AbilityNumber = i
-                        Exit For
-                    End If
-                Next
-                If AbilityNumber > -1 Then
-                    AbilityNumber = AbilityNumber.Clamp(0, evolvedPokemon.NewAbilities.Count - 1)
-                    evolvedPokemon.Ability = evolvedPokemon.NewAbilities(AbilityNumber)
+                If currentPokemon.AbilitySlot IsNot Nothing Then
+                    evolvedPokemon.Ability = evolvedPokemon.Ability()
                 Else
-                    evolvedPokemon.Ability = evolvedPokemon.NewAbilities(Core.Random.Next(0, evolvedPokemon.NewAbilities.Count))
+                    Dim NewAbilityIndex As Integer = Core.Random.Next(0, 2)
+                    If NewAbilityIndex = 0 Then
+                        evolvedPokemon.Ability = P3D.Ability.GetAbilityByID(evolvedPokemon.NewAbilities(0).ID)
+                        evolvedPokemon.AbilitySlot = "A"
+                    ElseIf NewAbilityIndex = 1 Then
+                        If evolvedPokemon.NewAbilities.Count > 1 AndAlso evolvedPokemon.NewAbilities(1) IsNot Nothing Then
+                            evolvedPokemon.Ability = P3D.Ability.GetAbilityByID(evolvedPokemon.NewAbilities(1).ID)
+                        Else
+                            evolvedPokemon.Ability = P3D.Ability.GetAbilityByID(evolvedPokemon.NewAbilities(0).ID)
+                        End If
+                        evolvedPokemon.AbilitySlot = "B"
+                    End If
                 End If
-            Else
-                evolvedPokemon.Ability = currentPokemon.Ability
             End If
         End If
         evolvedPokemon.SetOriginalAbility()

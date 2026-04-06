@@ -350,13 +350,30 @@
                 If Core.Random.Next(0, 100) < 80 Then
                     If p.NewAbilities.Contains(female.Ability) Then
                         p.Ability = female.Ability
+                        For a = 0 To p.NewAbilities.Count - 1
+                            If p.Ability.ID = p.NewAbilities(a).ID Then
+                                If a = 0 Then
+                                    p.AbilitySlot = "A"
+                                ElseIf a = 1 Then
+                                    p.AbilitySlot = "B"
+                                End If
+                                Exit For
+                            End If
+                        Next
                     Else
-                        For a = 0 To female.NewAbilities.Count
+                        For a = 0 To female.NewAbilities.Count - 1
                             If female.Ability.ID = female.NewAbilities(a).ID Then
                                 p.Ability = p.NewAbilities(a)
+                                If a = 0 Then
+                                    p.AbilitySlot = "A"
+                                ElseIf a = 1 Then
+                                    p.AbilitySlot = "B"
+                                End If
+                                Exit For
                             End If
                         Next
                     End If
+
                 End If
             End If
 
@@ -365,10 +382,12 @@
                 If DittoAsParent = 1 Then
                     If parent2.IsUsingHiddenAbility = True And p.HasHiddenAbility = True And Core.Random.Next(0, 100) < 60 Then
                         p.Ability = p.HiddenAbility
+                        p.AbilitySlot = "H"
                     End If
                 Else
                     If parent1.IsUsingHiddenAbility = True And p.HasHiddenAbility = True And Core.Random.Next(0, 100) < 60 Then
                         p.Ability = p.HiddenAbility
+                        p.AbilitySlot = "H"
                     End If
                 End If
             Else
@@ -379,6 +398,7 @@
 
                 If female.IsUsingHiddenAbility = True And p.HasHiddenAbility = True And Core.Random.Next(0, 100) < 80 Then
                     p.Ability = p.HiddenAbility
+                    p.AbilitySlot = "H"
                 End If
             End If
 

@@ -511,6 +511,9 @@
                 Case "ability"
                     Dim p As Pokemon = Core.Player.Pokemons(int(argument))
                     Return p.Ability.ID()
+                Case "abilityslot"
+                    Dim p As Pokemon = Core.Player.Pokemons(int(argument))
+                    Return p.AbilitySlot
                 Case "displayname"
                     Dim index As Integer = int(argument.GetSplit(0))
                     Return Core.Player.Pokemons(index).GetDisplayName()
