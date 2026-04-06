@@ -98,8 +98,12 @@ Public Class ScriptConversion
                             End If
                         Case "^"
                             result = v1 ^ v2
-                        Case "%"
+                        Case "m"
                             result = v1 Mod v2
+                        Case "r"
+                            result = Math.Pow(v1, 1 / v2)
+                        Case "%"
+                            result = v1 / 100 * v2
                     End Select
 
                     stack.Insert(0, result)
@@ -214,7 +218,7 @@ Public Class ScriptConversion
     ''' </summary>
     ''' <param name="token">The token.</param>
     Private Shared Function IsOperator(ByVal token As Char) As Boolean
-        Return "+-*/^%".ToCharArray().Contains(token)
+        Return "+-*/^%mr".ToCharArray().Contains(token)
     End Function
 
     ''' <summary>
@@ -225,9 +229,9 @@ Public Class ScriptConversion
         Select Case [Operator]
             Case "+"c, "-"c
                 Return 2
-            Case "*"c, "/"c, "%"c
+            Case "*"c, "/"c, "%"c, "m"c
                 Return 3
-            Case "^"c
+            Case "^"c, "r"c
                 Return 4
         End Select
 
@@ -240,7 +244,7 @@ Public Class ScriptConversion
     ''' <param name="[Operator]">The operator</param>
     Private Shared Function GetAssociativity(ByVal [Operator] As Char) As Associativity
         Select Case [Operator]
-            Case "^"c
+            Case "^"c, "r"c
                 Return Associativity.Right
             Case Else
                 Return Associativity.Left
