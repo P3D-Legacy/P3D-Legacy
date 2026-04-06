@@ -112,7 +112,7 @@ version=2
 	:endwhile
 :endif
 @storage.set(integer,roomsset,0)
-:while:<storage.get(integer,roomsset)><3
+:while:3><storage.get(integer,roomsset)>
 	:if:<register.registered(pikelucynext)>=true
 		@register.change(pikeroom<storage.get(integer,roomsset)>,8)
 	:else
@@ -124,4 +124,5 @@ version=2
 	:endif
 	@storage.update(integer,roomsset,+,1)
 :endwhile
+@storage.clear
 :end
