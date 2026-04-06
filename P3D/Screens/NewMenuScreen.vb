@@ -61,9 +61,14 @@
                 If Core.Player.Pokemons.Count > 0 Then
                     _menuOptions.Add(Localization.GetString("game_menu_party", "Pokémon"))
                 End If
-                _menuOptions.AddRange({Localization.GetString("game_menu_bag", "Bag"),
+                If Screen.Level.NoSaveBagOrPokegear = False Then
+                    _menuOptions.AddRange({Localization.GetString("game_menu_bag", "Bag"),
                                          "|||" & Localization.GetString("game_menu_trainer_card", Core.Player.Name),
                                         Localization.GetString("game_menu_save", "Save")})
+                Else
+                    _menuOptions.Add("|||" & Localization.GetString("game_menu_trainer_card", Core.Player.Name))
+                End If
+
             End If
 
             _menuOptions.Add(Localization.GetString("game_menu_options", "Options"))
