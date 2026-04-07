@@ -21,13 +21,13 @@ version=2
 			@Level.Wait(70)
 			@text.show(There we go!~All done!)
 			:select:<system.random(0,9)>
-				:when:0;1;2
+				:when:0;1;2;3;4;5
 					@Pokemon.addfriendship(<pokemon.selected>,1)
 					@Text.Show(<pokemon.name(<pokemon.selected>)> looks~a little happier.)
-				:when:3;4;5;6
+				:when:6;7;8
 					@Pokemon.addfriendship(<pokemon.selected>,5)
 					@Text.Show(<pokemon.name(<pokemon.selected>)> looks~happy!)
-				:when:7;8;9
+				:when:9
 					@Pokemon.addfriendship(<pokemon.selected>,10)
 					@Text.Show(<pokemon.name(<pokemon.selected>)> looks~delighted!)
 			:endwhen
