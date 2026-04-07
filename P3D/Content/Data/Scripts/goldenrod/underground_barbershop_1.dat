@@ -1,37 +1,41 @@
 version=2
-
-:if:<not><environment.day>=monday
-:then
-@Text.Show(We're not open today.)
-:end
-:endif
-
-:if:<register.registered(barbershop_monday)>=true
-:then
-@Text.Show(I do only one~haircut a day. I'm~done for today.)
-:end
+:if:<register.registered(GU_elderbarber)>=true
+	@Text.Show(I do only one~haircut a day. I'm~done for today.)
+	:end
 :endif
 
 @Text.Show(Welcome!*I run the Pokémon~Salon!*I'm the older and~better of the two~Haircut Brothers.*I can make your~Pokémon beautiful~for just $500.*Would you like me~to do that?)
 @Options.show(Yes,No)
-:when:Yes
-:if:<player.money><500
-:then
-@Text.Show(You'll need more~money than that.)
-:else
-@Text.Show(Which Pokémon~should I work on?)
-@Pokemon.Select
-@Text.Show(OK! Watch it~become beautiful!)
-@Sound.Play(Heal_Party)
-@Level.Wait(70)
-@Pokemon.addfriendship(<pokemon.selected>,4)
-@Text.Show(<pokemon.name(<pokemon.selected>)> looks~happy.)
-@player.money(-500)
-@Register.register(barbershop_monday)
-:endif
-
-:when:No
-@Text.Show(Is that right?~That's a shame!)
+	:when:Yes
+		:if:<player.money><500
+			@Text.Show(You'll need more~money than that.)
+		:else
+			@Text.Show(Which Pokémon~should I work on?)
+			@Pokemon.Select
+			:if:<pokemon.selected>=-1
+				@text.show(Come again soon!)
+				:end
+			:endif
+			@Text.Show(OK! Watch it~become beautiful!)
+			@Sound.Play(Heal_Party)
+			@Level.Wait(70)
+			@text.show(There! All done!)
+			:select:<system.random(0,9)>
+				:when:0;1;2
+					@Pokemon.addfriendship(<pokemon.selected>,1)
+					@Text.Show(<pokemon.name(<pokemon.selected>)> looks~a little happier.)
+				:when:3;4;5;6
+					@Pokemon.addfriendship(<pokemon.selected>,5)
+					@Text.Show(<pokemon.name(<pokemon.selected>)> looks~happy!)
+				:when:7;8;9
+					@Pokemon.addfriendship(<pokemon.selected>,10)
+					@Text.Show(<pokemon.name(<pokemon.selected>)> looks~delighted!)
+			:endwhen
+			@player.money(-500)
+			@Register.registertime(GU_elderbarber,1,day)
+		:endif
+	:when:No
+		@Text.Show(Is that right?~That's a shame!)
 :endwhen
 
 :end

@@ -1,38 +1,40 @@
 version=2
-
-:if:<not><environment.day>=friday
-:then
-@Text.Show(We're not open today.)
-:end
-:endif
-
-:if:<register.registered(barbershop_friday)>=true
-:then
-@Text.Show(I can do only one~haircut a day.*Sorry, but I'm all~done for today.)
-:end
+:if:<register.registered(GU_youngerbarber)>=true
+	@Text.Show(I can do only one~haircut a day.*Sorry, but I'm all~done for today.)
+	:end
 :endif
 
 @Text.Show(Welcome to the~Pokémon Salon!*I'm the younger~and less expensive of~the two Haircut Brothers.*I'll spiff up your~Pokémon for just~$300.*So? How about it?)
 @Options.show(Yes,No)
-:when:Yes
-:if:<player.money><300
-:then
-@Text.Show(You're a little~short on funds.)
-:else
+	:when:Yes
+		:if:<player.money><300
+			@Text.Show(You're a little~short on funds.)
+		:else
 @Text.Show(OK, which Pokémon~should I do?)
-@Pokemon.Select
+			@Pokemon.Select
+			:if:<pokemon.selected>=-1
+				@text.show(Come again soon!)
+				:end
+			:endif
 @Text.Show(OK! I'll make it~look cool!)
-@Sound.Play(Heal_Party)
-@Level.Wait(70)
-@Pokemon.addfriendship(<pokemon.selected>,2)
-@Text.Show(There we go!~All done!)
-@Text.Show(<pokemon.name(<pokemon.selected>)> looks~happy.)
-@player.money(-300)
-@Register.register(barbershop_friday)
-:endif
-
-:when:No
-@Text.Show(No?~How disappointing!)
+			@Sound.Play(Heal_Party)
+			@Level.Wait(70)
+			@text.show(There we go!~All done!)
+			:select:<system.random(0,9)>
+				:when:0;1;2
+					@Pokemon.addfriendship(<pokemon.selected>,1)
+					@Text.Show(<pokemon.name(<pokemon.selected>)> looks~a little happier.)
+				:when:3;4;5;6
+					@Pokemon.addfriendship(<pokemon.selected>,5)
+					@Text.Show(<pokemon.name(<pokemon.selected>)> looks~happy!)
+				:when:7;8;9
+					@Pokemon.addfriendship(<pokemon.selected>,10)
+					@Text.Show(<pokemon.name(<pokemon.selected>)> looks~delighted!)
+			:endwhen
+			@player.money(-300)
+			@Register.registertime(GU_youngerbarber,1,day)
+		:endif
+	:when:No
+		@Text.Show(Is that right?~That's a shame!)
 :endwhen
-
 :end

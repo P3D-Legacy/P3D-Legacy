@@ -1,26 +1,36 @@
 version=2
 
 :if:<register.registered(underground_dooropen)>=true
-:then
-@entity.warp(10,16,0,5)
+	@entity.warp(10,16,0,5)
 :endif
 
-:if:<not><environment.day>=monday
-:then
-@Register.Unregister(barbershop_monday)
-@Text.Log(Unregister barbershop_monday)
-:endif
-
-:if:<not><environment.day>=friday
-:then
-@Register.Unregister(barbershop_friday)
-@Text.Log(Unregister barbershop_friday)
-:endif
-
-:if:<not><environment.day>=sunday
-:then
-@Register.Unregister(bargainshop_sunday)
-@Text.Log(Unregister bargainshop_sunday)
-:endif
-
+:select:<environment.day>
+	:when:monday
+		:if:<environment.daytimeid>=1
+			@npc.warp(4,~,0.1,~)
+			@entity.warp(14,~,0,~)
+		:endif
+	:when:tuesday
+		@npc.warp(5,~,0.1,~)
+		@entity.warp(15,~,0,~)
+	:when:wednesday
+		@npc.warp(6,~,0.1,~)
+		@entity.warp(16,~,0,~)
+	:when:thurday
+		@npc.warp(5,~,0.1,~)
+		@entity.warp(15,~,0,~)
+	:when:friday
+		@npc.warp(6,~,0.1,~)
+		@entity.warp(16,~,0,~)
+	:when:saturday
+		@npc.warp(5,~,0.1,~)
+		@entity.warp(15,~,0,~)
+		@npc.warp(7,~,0.1,~)
+		@entity.warp(17,~,0,~)
+	:when:sunday
+		@npc.warp(6,~,0.1,~)
+		@entity.warp(16,~,0,~)
+		@npc.warp(7,~,0.1,~)
+		@entity.warp(17,~,0,~)
+:endwhen
 :end
