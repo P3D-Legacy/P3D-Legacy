@@ -6,6 +6,7 @@ version=2
 :else
 	@battle.wild(245,40,0,suicune_battle_intro,12)
 :endif
+@npc.remove(0)
 :if:<battle.caught>=true
 	@register.register(caughtsuicune)
 :endif
@@ -13,7 +14,6 @@ version=2
 @register.register(battlesuicune)
 :if:<register.registered(suicunebattle)>=false
 	@register.register(suicunebattle)
-	@npc.remove(0)
 	@npc.turn(11,1)
 	@npc.move(11,1)
 	@npc.turn(11,0)

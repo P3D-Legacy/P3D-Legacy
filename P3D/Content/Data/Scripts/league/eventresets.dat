@@ -78,7 +78,7 @@ version=2
 	:endif
 	:if:<register.registered(caughtvolcanion)>=false
 		@register.unregister(volcanionbattle)
-		@npc.register(mtember\peak.dat|1|remove|0)
+		@npc.unregister(mtember\peak.dat|1|remove|0)
 		@register.unregister(shinyvolcanion,bool)
 	:endif
 #roamers
