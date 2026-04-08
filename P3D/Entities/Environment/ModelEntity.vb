@@ -4,13 +4,12 @@
 
     'A private copy of a model, because who needs Inherhitance or OO in general.
     'Just... Microsoft... Why make the Model class NotInheritable
-    Private _model As Model
-
+    
     Public Overrides Sub Initialize()
         MyBase.Initialize()
 
         If ModelManager.ModelExist(Me.AdditionalValue) = True Then
-            Me._model = ModelManager.GetModel(Me.AdditionalValue)
+            Me.Model = ModelManager.GetModel(Me.AdditionalValue)
         End If
         Me.NeedsUpdate = True
 
@@ -18,7 +17,7 @@
     End Sub
 
     Public Sub LoadModel(ByVal m As String)
-        Me._model = ModelManager.GetModel(m)
+        Me.Model = ModelManager.GetModel(m)
         Me.AdditionalValue = m
 
         ApplyEffect()
@@ -35,17 +34,17 @@
 
     Public Overrides Sub Render()
         If Visible = True Then
-            If Not _model Is Nothing Then
+            If Model IsNot Nothing Then
                 For Each modelMesh As ModelMesh In Model.Meshes
                     For Each modelMeshPart As ModelMeshPart In modelMesh.MeshParts
-                        If modelMeshPart.Effect.GetType() = GetType(BasicEffect)
+                        If modelMeshPart.Effect.GetType() = GetType(BasicEffect) Then
                             Dim effect = New BasicEffectWithAlphaTest(CType(modelMeshPart.Effect, BasicEffect))
                             modelMeshPart.Effect = effect
                         End If
                     Next
                 Next
                 Core.GraphicsDevice.SamplerStates(0) = SamplerState.PointWrap
-                _model.Draw(Me.World, Screen.Camera.View, Screen.Camera.Projection)
+                Model.Draw(Me.World, Screen.Camera.View, Screen.Camera.Projection)
                 Core.GraphicsDevice.SamplerStates(0) = Core.Sampler
             End If
 
