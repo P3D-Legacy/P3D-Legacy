@@ -270,6 +270,18 @@
 /processorParam:TextureFormat=Color
 /build:Models/Pokemon/143/Normal.fbx
 
+#begin Models/Pokemon/143/Normal.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Models/Pokemon/143/Normal.png
+
 #begin Models/Pokemon/143/Shiny.fbx
 /importer:FbxImporter
 /processor:ModelProcessor
@@ -289,7 +301,7 @@
 /processorParam:TextureFormat=Color
 /build:Models/Pokemon/143/Shiny.fbx
 
-#begin Models/Pokemon/143/Snorlax_Normal.png
+#begin Models/Pokemon/143/Shiny.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -299,19 +311,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Models/Pokemon/143/Snorlax_Normal.png
-
-#begin Models/Pokemon/143/Snorlax_Shiny.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Models/Pokemon/143/Snorlax_Shiny.png
+/build:Models/Pokemon/143/Shiny.png
 
 #begin Models/SeaPlane/SeaPlane.fbx
 /importer:FbxImporter
@@ -370,6 +370,18 @@
 /processorParam:TextureFormat=Color
 /build:Models/Snorlax/Normal.fbx
 
+#begin Models/Snorlax/Normal.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Models/Snorlax/Normal.png
+
 #begin Models/Snorlax/Shiny.fbx
 /importer:FbxImporter
 /processor:ModelProcessor
@@ -388,6 +400,18 @@
 /processorParam:SwapWindingOrder=False
 /processorParam:TextureFormat=Color
 /build:Models/Snorlax/Shiny.fbx
+
+#begin Models/Snorlax/Shiny.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Models/Snorlax/Shiny.png
 
 #begin Models/truck2/Truck.fbx
 /importer:FbxImporter
