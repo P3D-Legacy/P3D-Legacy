@@ -5,7 +5,7 @@ Money|1512
 IntroMessage|Trainers live to seek~stronger opponents.
 OutroMessage|Oh! So strong!
 DefeatMessage|By fighting tough battles,~you get stronger.
-TextureID|13
+TextureID|23
 Region|Kanto
 IniMusic|Kanto_trainer_intro
 DefeatMusic|trainer_defeat

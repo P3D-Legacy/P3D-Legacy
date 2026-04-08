@@ -5,7 +5,7 @@ Money|1512
 IntroMessage|I can see you're good.~Let me see exactly how good!
 OutroMessage|I had a chance...
 DefeatMessage|Tch! I concede, you are~better than I!
-TextureID|
+TextureID|13
 Region|Kanto
 IniMusic|Kanto_trainer_intro
 DefeatMusic|trainer_defeat
