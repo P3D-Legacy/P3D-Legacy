@@ -5,32 +5,37 @@
     Public Shader As Vector3
     Public StopOnContact As Boolean
     Public HasBeenApplied As Boolean = False
+    Public DisableWhenNoLighting As Boolean = False
 
-    Public Sub New(ByVal Position As Vector3, ByVal Size As Vector3, ByVal Shader As Vector3, ByVal StopOnContact As Boolean)
+    Public Sub New(ByVal Position As Vector3, ByVal Size As Vector3, ByVal Shader As Vector3, ByVal StopOnContact As Boolean, Optional ByVal DisableWhenNoLighting As Boolean = False)
         Me.Position = Position
         Me.Size = Size
         Me.Shader = Shader
         Me.StopOnContact = StopOnContact
+        Me.DisableWhenNoLighting = DisableWhenNoLighting
     End Sub
 
     Public Sub ApplyShader(ByVal Entities() As Entity)
-        For x = 0 To Size.X - 1
-            For z = 0 To Size.Z - 1
-                For Each e As Entity In Entities
-                    If StopOnContact = True Then
-                        If CInt(e.Position.X) = x + Position.X And CInt(e.Position.Z) = z + Position.Z And e.Position.Y <= Position.Y Then
-                            e.Shaders.Add(Shader)
+        If Me.DisableWhenNoLighting = False OrElse Core.GameOptions.LightingEnabled = True Then
+
+            For x = 0 To Size.X - 1
+                For z = 0 To Size.Z - 1
+                    For Each e As Entity In Entities
+                        If StopOnContact = True Then
+                            If CInt(e.Position.X) = x + Position.X And CInt(e.Position.Z) = z + Position.Z And e.Position.Y <= Position.Y Then
+                                e.Shaders.Add(Shader)
+                            End If
+                        Else
+                            If CInt(e.Position.X) = x + Position.X And CInt(e.Position.Z) = z + Position.Z And e.Position.Y <= Position.Y + Size.Y And e.Position.Y >= Position.Y Then
+                                e.Shaders.Add(Shader)
+                            End If
                         End If
-                    Else
-                        If CInt(e.Position.X) = x + Position.X And CInt(e.Position.Z) = z + Position.Z And e.Position.Y <= Position.Y + Size.Y And e.Position.Y >= Position.Y Then
-                            e.Shaders.Add(Shader)
-                        End If
-                    End If
+                    Next
                 Next
             Next
-        Next
 
-        Me.HasBeenApplied = True
+            Me.HasBeenApplied = True
+        End If
     End Sub
 
 End Class

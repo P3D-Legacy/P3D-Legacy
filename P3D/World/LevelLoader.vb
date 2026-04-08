@@ -1193,6 +1193,11 @@
             DayTime = CType(GetTag(Tags, "DayTime"), List(Of Integer))
         End If
 
+        Dim DisableWhenNoLighting As Boolean = False
+        If TagExists(Tags, "DisableWhenNoLighting") = True Then
+            DisableWhenNoLighting = CType(GetTag(Tags, "DisableWhenNoLighting"), Boolean)
+        End If
+
         Dim CurrentTime As World.DayTimes = World.GetTime()
 
         Select Case Screen.Level.DayTime
@@ -1207,7 +1212,7 @@
         End Select
 
         If DayTime.Contains(CurrentTime) Or DayTime.Contains(-1) Or DayTime.Count = 0 Then
-            Dim NewShader As New Shader(Position, Size, Shader, StopOnContact)
+            Dim NewShader As New Shader(Position, Size, Shader, StopOnContact, DisableWhenNoLighting)
             Screen.Level.Shaders.Add(NewShader)
         End If
     End Sub
