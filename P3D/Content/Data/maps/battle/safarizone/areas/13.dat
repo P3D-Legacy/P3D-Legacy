@@ -1,4 +1,4 @@
-{"Action"{LEV[{"EnvironmentType"{int[0]}}{"Lighting"{int[2]}}{"Weather"{int[4]}}]}}
+{"Actions"{LEV[{"EnvironmentType"{int[0]}}{"Lighting"{int[2]}}{"Weather"{int[4]}}]}}
 
 {"Floor"{ENT[{"SeasonTexture"{str[Grass]}}{"Size"{intArr[25,25]}}{"Position"{intArr[0,0,0]}}{"TexturePath"{str[Routes]}}{"Texture"{rec[96,16,16,16]}}]}}
 

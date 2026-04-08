@@ -1,4 +1,4 @@
-{"Actions"{LEV[{"CanTeleport"{bool[0]}}{"CanDig"{bool[1]}}{"CanFly"{bool[0]}}{"EnvironmentType"{int[2]}}{"Weather"{int[1]}}]}}
+{"Actions"{LEV[{"CanTeleport"{bool[0]}}{"CanDig"{bool[1]}}{"CanFly"{bool[0]}}{"EnvironmentType"{int[2]}}{"Weather"{int[6]}}]}}
 
 {"Floor"{ENT[{"Size"{intArr[16,9]}}{"Position"{intArr[5,0,9]}}{"TexturePath"{str[Sevii]}}{"Texture"{rec[96,96,16,16]}}]}}
 

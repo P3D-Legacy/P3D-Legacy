@@ -1,4 +1,4 @@
-{"Action"{LEV[{"Lighting"{int[0]}}]}}
+{"Actions"{LEV[{"Lighting"{int[0]}}]}}
 
 Floor:
 {"Floor"{ENT[{"Size"{intArr[12,6]}}{"Position"{intArr[8,0,10]}}{"TexturePath"{str[dungeon]}}{"Texture"{rec[0,0,16,16]}}]}}
