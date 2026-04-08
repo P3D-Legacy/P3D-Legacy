@@ -13,17 +13,17 @@
         Dim stat As StatNames = StatNames.Attack
 
         Select Case StatName.ToLower()
-            Case "hp"
+            Case Localization.GetString("property_HP", "HP").ToLower
                 stat = StatNames.HP
-            Case "attack", "atk"
+            Case Localization.GetString("property_Attack", "Attack").ToLower, "atk"
                 stat = StatNames.Attack
-            Case "defense", "def"
+            Case Localization.GetString("property_Defense", "Defense").ToLower, "def"
                 stat = StatNames.Defense
-            Case "spattack", "spatk", "specialattack", "sp. atk"
+            Case "spattack", "spatk", "specialattack", Localization.GetString("property_Sp_Attack", "Sp. Atk").ToLower
                 stat = StatNames.SpAttack
-            Case "spdefense", "spdef", "specialdefense", "sp. def"
+            Case "spdefense", "spdef", "specialdefense", Localization.GetString("property_Sp_Defense", "Sp. Def").ToLower
                 stat = StatNames.SpDefense
-            Case "speed", "spe"
+            Case Localization.GetString("property_Speed", "Speed").ToLower, "spe"
                 stat = StatNames.Speed
         End Select
 
