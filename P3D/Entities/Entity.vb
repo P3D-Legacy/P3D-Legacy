@@ -23,6 +23,7 @@
     Public Visible As Boolean = True
     Public Shader As New Vector3(1.0F)
     Public Shaders As New List(Of Vector3)
+    Public ShadersDisableWhenNoLighting As New List(Of Boolean)
     Public Color As Vector3 = New Vector3(1.0F)
 
     Public CameraDistanceDelta As Single = 0.0F
@@ -512,11 +513,11 @@
             Me.Shader = New Vector3(0.5F)
         End If
 
-        If Core.GameOptions.LightingEnabled = True Then
-            For Each s As Vector3 In Me.Shaders
-                Me.Shader *= s
-            Next
-        End If
+        For s = 0 To Me.Shaders.Count - 1
+            If Me.ShadersDisableWhenNoLighting(s) = False OrElse Core.GameOptions.LightingEnabled = True Then
+                Me.Shader *= Me.Shaders(s)
+            End If
+        Next
     End Sub
 
     Dim tempCenterVector As Vector3 = Vector3.Zero

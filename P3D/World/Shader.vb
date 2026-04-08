@@ -16,26 +16,25 @@
     End Sub
 
     Public Sub ApplyShader(ByVal Entities() As Entity)
-        If Me.DisableWhenNoLighting = False OrElse Core.GameOptions.LightingEnabled = True Then
-
-            For x = 0 To Size.X - 1
-                For z = 0 To Size.Z - 1
-                    For Each e As Entity In Entities
-                        If StopOnContact = True Then
-                            If CInt(e.Position.X) = x + Position.X And CInt(e.Position.Z) = z + Position.Z And e.Position.Y <= Position.Y Then
-                                e.Shaders.Add(Shader)
-                            End If
-                        Else
-                            If CInt(e.Position.X) = x + Position.X And CInt(e.Position.Z) = z + Position.Z And e.Position.Y <= Position.Y + Size.Y And e.Position.Y >= Position.Y Then
-                                e.Shaders.Add(Shader)
-                            End If
+        For x = 0 To Size.X - 1
+            For z = 0 To Size.Z - 1
+                For Each e As Entity In Entities
+                    If StopOnContact = True Then
+                        If CInt(e.Position.X) = x + Position.X And CInt(e.Position.Z) = z + Position.Z And e.Position.Y <= Position.Y Then
+                            e.Shaders.Add(Shader)
+                            e.ShadersDisableWhenNoLighting.Add(DisableWhenNoLighting)
                         End If
-                    Next
+                    Else
+                        If CInt(e.Position.X) = x + Position.X And CInt(e.Position.Z) = z + Position.Z And e.Position.Y <= Position.Y + Size.Y And e.Position.Y >= Position.Y Then
+                            e.Shaders.Add(Shader)
+                            e.ShadersDisableWhenNoLighting.Add(DisableWhenNoLighting)
+                        End If
+                    End If
                 Next
             Next
+        Next
 
-            Me.HasBeenApplied = True
-        End If
+        Me.HasBeenApplied = True
     End Sub
 
 End Class
