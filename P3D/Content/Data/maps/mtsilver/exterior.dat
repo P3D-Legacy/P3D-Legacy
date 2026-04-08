@@ -273,6 +273,5 @@ r28
 {"Entity"{ENT[{"EntityID"{str[WarpBlock]}}{"Position"{sngArr[29,0,16]}}{"TexturePath"{str[Kanto0]}}{"Visible"{bool[0]}}{"Textures"{recArr[[32,48,16,16]]}}{"TextureIndex"{intArr[0,0]}}{"Collision"{bool[1]}}{"ModelID"{int[0]}}{"Action"{int[0]}}{"AdditionalValue"{str[routes\route28.dat,-1,1.1,17,0]}}{"Rotation"{int[0]}}]}}
 
 {"Entity"{ENT[{"Scale"{sngArr[75,75,75]}}{"EntityID"{str[WallBlock]}}{"Position"{sngArr[10,-10,-57]}}{"TexturePath"{str[Routes]}}{"Textures"{recArr[[96,0,16,16]]}}{"TextureIndex"{intArr[0,0,0,0,0,0]}}{"Collision"{bool[1]}}{"ModelID"{int[0]}}{"Action"{int[0]}}{"ModelPath"{str[models\Environment\MtSilver\Mountain]}}{"Rotation"{int[2]}}]}}
-"Entity"{ENT[{"Scale"{sngArr[0.5,0.5,0.5]}}{"EntityID"{str[ModelEntity]}}{"Position"{sngArr[10,-10,-57]}}{"TexturePath"{str[Routes]}}{"Textures"{recArr[[96,0,16,16]]}}{"TextureIndex"{intArr[0,0,0,0,0,0]}}{"Collision"{bool[1]}}{"ModelID"{int[0]}}{"Action"{int[2]}}{"AdditionalValue"{str[models\Environment\MtSilver\Mountain]}}{"Rotation"{int[2]}}]}}
 
 {"OffsetMap"{MAP[{"Offset"{sngArr[30,-2,-1]}}{"Map"{str[routes\route28.dat]}}]}}
