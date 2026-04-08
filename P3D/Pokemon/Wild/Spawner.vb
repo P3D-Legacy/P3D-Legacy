@@ -200,7 +200,7 @@ Public Class Spawner
                         End If
                     Next
                     If Pokemons(i).Contains("_") Then
-                        PkAD = PokemonForms.GetAdditionalValueFromDataFile(Pokemons(i).Split(CChar("_"))(1))
+                        PkAD = PokemonForms.GetAdditionalValueFromDataFile(Pokemons(i))
                     ElseIf Pokemons(i).Contains(";") Then
                         PkAD = Pokemons(i).Split(CChar(";"))(1)
                     End If
