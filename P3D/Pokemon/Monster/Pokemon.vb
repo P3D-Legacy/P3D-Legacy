@@ -999,6 +999,8 @@ Public Class Pokemon
                     End If
 
                 End If
+            Else
+                Return Ability.GetAbilityByID(CInt(Me.AbilitySlot))
             End If
             Return _ability
         End Get
@@ -1780,6 +1782,9 @@ Public Class Pokemon
                                     Exit For
                                 End If
                             Next
+                            If Me.AbilitySlot = Nothing AndAlso Me.Ability IsNot Nothing Then
+                                Me.AbilitySlot = Me.Ability.ID.ToString
+                            End If
                         End If
                         If Me.AbilitySlot IsNot Nothing Then
                             success = True
