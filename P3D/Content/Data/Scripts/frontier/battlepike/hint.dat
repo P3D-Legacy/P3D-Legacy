@@ -1,6 +1,6 @@
 version=2
 :if:<register.registered(pikelucynext)>=true
-	@text.show(From every path I sense a dreadful presence...)
+	@text.show(From every path I sense~a dreadful presence...)
 	:end
 :endif
 

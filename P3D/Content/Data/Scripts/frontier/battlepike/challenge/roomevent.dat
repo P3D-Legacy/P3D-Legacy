@@ -26,13 +26,24 @@ version=2
 			:when:13;14;15;16;17;18;19
 				@storage.set(integer,pikestatusattack,5)
 		:endwhen
-		@npc.warp(1,~,0,~)
-		@npc.warp(2,~,0,~)
+		:select:<player.position(x)>
+			:when:0
+				@npc.warp(1,1,0,0)
+				@npc.warp(2,0,0,0)
+			:when:1
+				@npc.warp(1,0,0,0)
+				@npc.warp(2,1,0,0)
+		:endwhen
 		@player.move(0)
 		@text.show(Oh, my!)
 		@npc.setspeed(1,3)
 		@npc.move(1,1)
-		@npc.turn(1,3)
+		:select:<player.position(x)>
+			:when:0
+				@npc.turn(1,1)
+			:when:1
+				@npc.turn(1,3)
+		:endwhen
 		@npc.move(1,1)
 		@npc.turn(1,2)
 		@npc.move(1,1)
@@ -136,7 +147,12 @@ version=2
 		@npc.move(2,1)
 		@npc.turn(1,0)
 		@text.show(Look here!~That's quite enough!)
-		@npc.turn(1,3)
+		:select:<player.position(x)>
+			:when:0
+				@npc.turn(1,3)
+			:when:1
+				@npc.turn(1,1)
+		:endwhen
 		@npc.move(1,-1)
 		@npc.move(2,1)
 		@npc.turn(2,1)
@@ -218,6 +234,8 @@ version=2
 			@npc.turn(31,2)
 			@npc.move(31,2)
 			@text.show(How wonderful...*To honor your victory,~your [POKE]mon shall be~restored to full health...*I urge you to enjoy~the rest of your~Battle Choice challenge...)
+			@sound.play(healing,1)
+			@pokemon.heal
 			@npc.turn(31,0)
 			@npc.move(31,3)
 		:else
@@ -347,24 +365,34 @@ version=2
 			@text.show(I am Lucy...~I am the law here...~For I am the Pike Queen...*You already know it,~but to advance,~you must defeat me...*...I'm not one for idle~chatter. Hurry.~Come on...*Your luck...~I hope you didn't use it~all up here...)
 			@player.move(2)
 			@battle.trainer(frontier\battlepike\lucy_silver)
-			@text.show(Lucy: ... ... ... ... ...~Show me your Frontier Pass...)
-			@player.achieveemblem(silver luck)
-			@player.addfrontieremblem(3,0)
-			@register.register(pike_silver)
-			@text.show(<player.name> received~the Silver Luck Emblem!)
-			@text.show(...That's all there is...~Disappear already...)
+			:if:<battle.won>=true
+				@text.show(Lucy: ... ... ... ... ...~Show me your Frontier Pass...)
+				@player.achieveemblem(silver luck)
+				@player.addfrontieremblem(3,0)
+				@register.register(pike_silver)
+				@text.show(<player.name> received~the Silver Luck Emblem!)
+				@text.show(...That's all there is...~Disappear already...)
+			:else
+				@script.start(frontier\battlepike\challenge\lost)
+				:end
+			:endif
 		:else
 			@text.show(...You again...*... ... ... ... ... ...*...I've trampled flowers~and braved storms to get~to where I am...*I don't feel any compulsion~to keep losing to the~same opponent...*... ... ... ... ... ...*Fine...~I'll do it...*Now!~Come on!)
 			@player.move(2)
 			@battle.trainer(frontier\battlepike\lucy_gold)
-			:if:<register.value(pike_room_count_temp)>=112
-				@text.show(Lucy: ... ... ... ... ...~...Frontier Pass...)
-				@player.achieveemblem(gold luck)
-				@player.addfrontieremblem(3,1)
-				@register.register(pike_gold)
-				@text.show(<player.name> received~the Gold Luck Emblem!)
+			:if:<battle.won>=true
+				:if:<register.value(pike_room_count_temp)>=112
+					@text.show(Lucy: ... ... ... ... ...~...Frontier Pass...)
+					@player.achieveemblem(gold luck)
+					@player.addfrontieremblem(3,1)
+					@register.register(pike_gold)
+					@text.show(<player.name> received~the Gold Luck Emblem!)
+				:endif
+				@text.show(...You, I won't forget...~...Ever...)
+			:else
+				@script.start(frontier\battlepike\challenge\lost)
+				:end
 			:endif
-			@text.show(...You, I won't forget...~...Ever...)
 		:endif
 		:select:<player.position(x)>
 			:when:0
