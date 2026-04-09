@@ -349,7 +349,7 @@ version=2
 			@battle.trainer(frontier\battlepike\lucy_silver)
 			@text.show(Lucy: ... ... ... ... ...~Show me your Frontier Pass...)
 			@player.achieveemblem(silver luck)
-			@player.addfrontieremblem(2,0)
+			@player.addfrontieremblem(3,0)
 			@register.register(pike_silver)
 			@text.show(<player.name> received~the Silver Luck Emblem!)
 			@text.show(...That's all there is...~Disappear already...)
@@ -360,7 +360,7 @@ version=2
 			:if:<register.value(pike_room_count_temp)>=112
 				@text.show(Lucy: ... ... ... ... ...~...Frontier Pass...)
 				@player.achieveemblem(gold luck)
-				@player.addfrontieremblem(2,1)
+				@player.addfrontieremblem(3,1)
 				@register.register(pike_gold)
 				@text.show(<player.name> received~the Gold Luck Emblem!)
 			:endif
