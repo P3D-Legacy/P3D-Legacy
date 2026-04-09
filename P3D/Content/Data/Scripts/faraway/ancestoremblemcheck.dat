@@ -4,7 +4,13 @@ version=2
 		@player.achieveemblem(ancestor)
 		@register.register(achievedancestor)
 	:endif
-:else
+:endif
+	:if:<register.registered(shinymew)>=false
+		@register.register(shinymew,bool,false)
+		:if:<system.random(1,<math.floor(<pokemon.mastershinyrate>/2)>)>=1
+			@register.change(shinymew,true)
+		:endif
+	:endif
 	:if:<register.value(shinymew)>=true
 		@npc.wearskin(0,[POKEMON|S]151)
 	:endif
