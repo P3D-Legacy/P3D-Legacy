@@ -26,7 +26,6 @@ version=2
 		@text.show(The Battle Factory is the~large building to the west~of the Plaza.*An event called the Battle~Swap is conducted there.)
 	:when:Battle Pike
 		@text.show(The Battle Pike is the~Seviper shaped building~in the center of the~Battle Frontier.*An event called the Battle~Choice is conducted there.)
-		@text.show(The Battle Pike~is not yet operational.)
 	:when:Exit
 		@text.show(We hope you enjoy all~that the Battle Frontier~has to offer!)
 		@register.unregister(firstloop,bool)
