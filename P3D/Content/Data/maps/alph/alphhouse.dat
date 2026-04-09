@@ -32,7 +32,7 @@ Furniture:
 		{"EntityField"{ENT[{"Size"{intArr[2,1]}}{"Scale"{sngArr[1,1.625,1]}}{"EntityID"{str[WallBlock]}}{"Position"{sngArr[6,0.3125,4]}}{"TexturePath"{str[Lab]}}{"Textures"{recArr[[44,80,16,26][60,80,16,26][80,48,16,16]]}}{"TextureIndex"{intArr[0,0,1,1,1,1,1,1,2,2]}}{"Collision"{bool[1]}}{"ModelID"{int[1]}}{"Action"{int[0]}}{"AdditionalValue"{str[]}}{"Rotation"{int[0]}}]}}
 
 	PC Monitor
-		{"EntityField"{ENT[{"RotationXYZ"{sngArr[0,-0.78,0]}}{"Size"{intArr[1,1]}}{"Scale"{sngArr[0.5,0.5,0.5]}}{"EntityID"{str[ScriptBlock]}}{"Position"{sngArr[3,0.25,3]}}{"TexturePath"{str[House4]}}{"Textures"{recArr[[16,128,12,12][40,128,12,12][64,128,12,12][52,128,12,12][28,128,12,12]]}}{"TextureIndex"{intArr[0,0,1,1,2,2,3,3,4,4]}}{"Collision"{bool[1]}}{"ModelID"{int[1]}}{"Action"{int[2]}}{"AdditionalValue"{str[<system.token(Route55_RainbowTower_Floor3_PC_Suloku)>]}}{"Rotation"{int[0]}}]}}
+		{"EntityField"{ENT[{"RotationXYZ"{sngArr[0,-0.78,0]}}{"Size"{intArr[1,1]}}{"Scale"{sngArr[0.5,0.5,0.5]}}{"EntityID"{str[ScriptBlock]}}{"Position"{sngArr[3,0.25,3]}}{"TexturePath"{str[House4]}}{"Textures"{recArr[[16,128,12,12][40,128,12,12][64,128,12,12][52,128,12,12][28,128,12,12]]}}{"TextureIndex"{intArr[0,0,1,1,2,2,3,3,4,4]}}{"Collision"{bool[1]}}{"ModelID"{int[1]}}{"Action"{int[1]}}{"AdditionalValue"{str[computer]}}{"Rotation"{int[0]}}]}}
 	
 	Tables
 		{"Entity"{ENT[{"Scale"{sngArr[2,0.5,1]}}{"EntityID"{str[WallBlock]}}{"Position"{sngArr[2.5,-0.25,3]}}{"TexturePath"{str[rocketbase]}}{"Textures"{recArr[[32,104,32,8][32,104,19,8]]}}{"TextureIndex"{intArr[0,0,1,1,1,1,1,1,-1,-1]}}{"Collision"{bool[1]}}{"ModelID"{int[1]}}{"Action"{int[0]}}{"AdditionalValue"{str[]}}{"Rotation"{int[0]}}]}}
