@@ -720,13 +720,22 @@ Namespace BattleSystem
                     Else
                         _mainMenuItemList.Add(New MainMenuItem(0, Localization.GetString("battle_action_Battle", "Battle"), 0, AddressOf MainMenuOpenBattleMenu))
                         _mainMenuItemList.Add(New MainMenuItem(1, "Pokémon", 1, AddressOf MainMenuOpenPokemon))
-                        _mainMenuItemList.Add(New MainMenuItem(2, Localization.GetString("battle_action_Bag", "Bag"), 2, AddressOf MainMenuOpenBag))
+                        If BattleScreen.SavedOverworld.Level.NoSaveBagOrPokegear = False OrElse BattleScreen.SavedOverworld.Level.SaveOnly = False Then
+                            _mainMenuItemList.Add(New MainMenuItem(2, Localization.GetString("battle_action_Bag", "Bag"), 2, AddressOf MainMenuOpenBag))
 
-                        If BattleScreen.IsTrainerBattle = False Then
-                            _mainMenuItemList.Add(New MainMenuItem(3, Localization.GetString("battle_action_Run", "Run"), 3, AddressOf MainMenuRun))
-                            MainMenuAddMegaEvolution(BattleScreen, 4)
+                            If BattleScreen.IsTrainerBattle = False Then
+                                _mainMenuItemList.Add(New MainMenuItem(3, Localization.GetString("battle_action_Run", "Run"), 3, AddressOf MainMenuRun))
+                                MainMenuAddMegaEvolution(BattleScreen, 4)
+                            Else
+                                MainMenuAddMegaEvolution(BattleScreen, 3)
+                            End If
                         Else
-                            MainMenuAddMegaEvolution(BattleScreen, 3)
+                            If BattleScreen.IsTrainerBattle = False Then
+                                _mainMenuItemList.Add(New MainMenuItem(2, Localization.GetString("battle_action_Run", "Run"), 2, AddressOf MainMenuRun))
+                                MainMenuAddMegaEvolution(BattleScreen, 3)
+                            Else
+                                MainMenuAddMegaEvolution(BattleScreen, 2)
+                            End If
                         End If
                     End If
 
