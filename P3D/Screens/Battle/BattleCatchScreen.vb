@@ -165,7 +165,7 @@ nextIndex:
                             Next
                             If Core.Player.ShowBattleAnimations <> 0 AndAlso BattleScreen.IsPVPBattle = False Then
 
-                                Dim PokemonPosition = BattleScreen.OppPokemonNPC.Position
+                                Dim PokemonPosition = BattleScreen.OppPokemonNPC.Position - BattleSystem.BattleScreen.BattleMapOffset
                                 PokemonScale = BattleScreen.OppPokemonNPC.Scale
                                 'Ball is thrown
                                 Dim CatchAnimation = New BattleSystem.AnimationQueryObject(Nothing, False)
