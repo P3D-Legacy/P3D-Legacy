@@ -44,6 +44,7 @@ Public Class Level
     Private _saveonly As Boolean = False
     Private _nosavebagorpokegear As Boolean = False
     Private _disableMenus As Boolean = False
+    Private _canreceiveexp As Boolean = True
     Private _wildPokemonGrass As Boolean = True
     Private _wildPokemonFloor As Boolean = False
     Private _wildPokemonWater As Boolean = True
@@ -419,6 +420,18 @@ Public Class Level
         End Get
         Set(value As Boolean)
             Me._nosavebagorpokegear = value
+        End Set
+    End Property
+
+    ''' <summary>
+    ''' If Pokémon can gain Experience Points on this map
+    ''' </summary>
+    Public Property CanReceiveExp As Boolean
+        Get
+            Return Me._canreceiveexp
+        End Get
+        Set(value As Boolean)
+            Me._canreceiveexp = value
         End Set
     End Property
 
