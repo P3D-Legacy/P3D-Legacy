@@ -4,7 +4,7 @@ version=2
 		@player.achieveemblem(ancestor)
 		@register.register(achievedancestor)
 	:endif
-:endif
+:else
 	:if:<register.registered(shinymew)>=false
 		@register.register(shinymew,bool,false)
 		:if:<system.random(1,<math.floor(<pokemon.mastershinyrate>/2)>)>=1
