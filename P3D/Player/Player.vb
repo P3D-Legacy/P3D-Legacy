@@ -1980,7 +1980,7 @@
                 Dim p As Pokemon = Spawner.GetPokemon(Screen.Level.LevelFile, Spawner.EncounterMethods.Land, False, "")
 
                 If Not p Is Nothing Then
-                    PlayWildPokemonNoise(p.Number)
+                    PlayWildPokemonNoise(p.Number, PokemonForms.GetCrySuffix(p))
                 End If
             End If
         End If
@@ -1989,7 +1989,7 @@
                 Dim p As Pokemon = Spawner.GetPokemon(Screen.Level.LevelFile, Spawner.EncounterMethods.Land, False, "")
 
                 If Not p Is Nothing Then
-                    PlayWildPokemonNoise(p.Number)
+                    PlayWildPokemonNoise(p.Number, PokemonForms.GetCrySuffix(p))
                     Exit Sub
                 End If
             End If
@@ -1999,15 +1999,15 @@
                 Dim p As Pokemon = Spawner.GetPokemon(Screen.Level.LevelFile, Spawner.EncounterMethods.Surfing, False, "")
 
                 If Not p Is Nothing Then
-                    PlayWildPokemonNoise(p.Number)
+                    PlayWildPokemonNoise(p.Number, PokemonForms.GetCrySuffix(p))
                     Exit Sub
                 End If
             End If
         End If
     End Sub
 
-    Private Sub PlayWildPokemonNoise(ByVal number As Integer)
-        SoundManager.PlayPokemonCry(number, Random.Next(0, 6) / 10.0F, Random.Next(0, 20) / 10.0F - 1, SoundManager.Volume * 0.5F)
+    Private Sub PlayWildPokemonNoise(ByVal Number As Integer, Optional ByVal CrySuffix As String = "")
+        SoundManager.PlayPokemonCry(Number, Random.Next(0, 6) / 10.0F, Random.Next(0, 20) / 10.0F - 1, SoundManager.Volume * 0.5F, CrySuffix)
     End Sub
 
 #End Region
