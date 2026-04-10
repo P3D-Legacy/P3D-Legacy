@@ -1951,7 +1951,9 @@
                     Temp.LastCall += 1
                 Else
                     If Random.Next(0, 700) = 0 Then
-                        GameJolt.PokegearScreen.RandomCall()
+                        If Screen.Level.NoSaveBagOrPokegear = False AndAlso Screen.Level.SaveOnly = False Then
+                            GameJolt.PokegearScreen.RandomCall()
+                        End If
                         Temp.LastCall = 0
                     End If
                 End If
