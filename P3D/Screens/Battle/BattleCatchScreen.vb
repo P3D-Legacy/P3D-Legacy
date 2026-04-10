@@ -119,7 +119,7 @@ nextIndex:
             textboxStart = True
             Dim text As String = Localization.GetString("battle_catch_PlayerUsedBall", "<Player.Name> used a~[BALLNAME]!")
             If Ball.OneLineName.StartsWith("a") OrElse Ball.OneLineName.StartsWith("o") OrElse Ball.OneLineName.StartsWith("e") OrElse
-                    OrElse Ball.OneLineName.StartsWith("i") OrElse OrElse Ball.OneLineName.StartsWith("u") Then
+                   Ball.OneLineName.StartsWith("i") OrElse Ball.OneLineName.StartsWith("u") Then
                 text = Localization.GetString("battle_catch_PlayerUsedAnBall", "<Player.Name> used an~[BALLNAME]!")
             End If
             TextBox.Show(text.Replace("[BALLNAME]", Ball.OneLineName), {}, False, False)
