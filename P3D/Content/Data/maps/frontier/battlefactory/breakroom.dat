@@ -1,5 +1,5 @@
 {"Level"{LEV[{"Name"{str[Battle Factory]}}{"OverworldPokemon"{bool[0]}}{"MusicLoop"{str[BattleFactory]}}{"CurrentRegion"{str[battle frontier,johto,kanto]}}]}}
-{"Actions"{LEV[{"CanTeleport"{bool[1]}}{"CanDig"{bool[0]}}{"CanFly"{bool[1]}}{"EnvironmentType"{int[1]}}{"SaveOnly"{bool[1]}}{"Weather"{int[1]}}]}}
+{"Actions"{LEV[{"CanTeleport"{bool[1]}}{"CanDig"{bool[0]}}{"CanFly"{bool[1]}}{"EnvironmentType"{int[1]}}{"DisabledMenus"{str[Pokegear,Pokedex,Pokemon,Bag,TrainerCard,Options]}}{"Weather"{int[1]}}]}}
 
 Floor:
 {"Floor"{ENT[{"Size"{intArr[5,3]}}{"Position"{intArr[0,0,0]}}{"TexturePath"{str[battlefactory]}}{"Texture"{rec[0,32,16,16]}}]}}

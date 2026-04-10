@@ -1032,20 +1032,10 @@
         Else
             Screen.Level.RideType = 0
         End If
-        If TagExists(Tags, "SaveOnly") = True Then
-            Screen.Level.SaveOnly = CBool(GetTag(Tags, "SaveOnly"))
+        If TagExists(Tags, "DisabledMenus") = True Then
+            Screen.Level.DisabledMenus = CStr(GetTag(Tags, "DisabledMenus"))
         Else
-            Screen.Level.SaveOnly = False
-        End If
-        If TagExists(Tags, "NoSaveBagOrPokegear") = True Then
-            Screen.Level.NoSaveBagOrPokegear = CBool(GetTag(Tags, "NoSaveBagOrPokegear"))
-        Else
-            Screen.Level.NoSaveBagOrPokegear = False
-        End If
-        If TagExists(Tags, "DisableMenus") = True Then
-            Screen.Level.DisableMenus = CBool(GetTag(Tags, "DisableMenus"))
-        Else
-            Screen.Level.DisableMenus = False
+            Screen.Level.DisabledMenus = "None"
         End If
 
         If TagExists(Tags, "BattleVariables") = True Then

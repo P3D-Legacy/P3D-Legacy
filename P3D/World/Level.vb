@@ -41,9 +41,7 @@ Public Class Level
     Private _weatherType As Integer = 0
     Public _DayTime As World.DayTimes = World.GetTime
     Private _environmentType As Integer = 0
-    Private _saveonly As Boolean = False
-    Private _nosavebagorpokegear As Boolean = False
-    Private _disableMenus As Boolean = False
+    Private _disabledMenus As String = ""
     Private _wildPokemonGrass As Boolean = True
     Private _wildPokemonFloor As Boolean = False
     Private _wildPokemonWater As Boolean = True
@@ -399,30 +397,6 @@ Public Class Level
     End Property
 
     ''' <summary>
-    ''' If only the Save option should be available in the menu for this map.
-    ''' </summary>
-    Public Property SaveOnly As Boolean
-        Get
-            Return Me._saveonly
-        End Get
-        Set(value As Boolean)
-            Me._saveonly = value
-        End Set
-    End Property
-
-    ''' <summary>
-    ''' If the Save and Bag options should be unavailable in the menu for this map.
-    ''' </summary>
-    Public Property NoSaveBagOrPokegear As Boolean
-        Get
-            Return Me._nosavebagorpokegear
-        End Get
-        Set(value As Boolean)
-            Me._nosavebagorpokegear = value
-        End Set
-    End Property
-
-    ''' <summary>
     ''' Sets the battle variables for this map
     ''' </summary>
     Public Sub SetBattleVariables(ByVal BattleVariables As String)
@@ -458,17 +432,29 @@ Public Class Level
     End Sub
 
     ''' <summary>
-    ''' If the player should be prevented from opening the start menu or accessing the PokéGear..
+    ''' The menus that the player can't access in the overworld
     ''' </summary>
-    Public Property DisableMenus As Boolean
+    ''' <remarks>Possible Values: PokeGear, Pokedex, Pokemon, Bag, TrainerCard, Options, Save, AllButPokegear, All, None</remarks>
+    Public Property DisabledMenus As String
         Get
-            Return Me._disableMenus
+            Return Me._disabledMenus.ToLower
         End Get
-        Set(value As Boolean)
-            Me._disableMenus = value
+        Set(value As String)
+            If value.ToLower = "all" Then
+                Me._disabledMenus = "PokeGear,Pokedex,Pokemon,Bag,TrainerCard,Options,Save,All"
+            ElseIf value.ToLower = "allbutpokegear" Then
+                Me._disabledMenus = "Pokedex,Pokemon,Bag,TrainerCard,Options,Save,AllButPokegear"
+            ElseIf value = "" Then
+                Me._disabledMenus = "None"
+            Else
+                Me._disabledMenus = value
+            End If
+            If Me._disabledMenus.ToLower.Contains("allbutpokegear") = False And Me._disabledMenus.ToLower.Contains("none") = False AndAlso Me._disabledMenus.ToLower.Contains("pokedex") AndAlso Me._disabledMenus.ToLower.Contains("pokemon") AndAlso Me._disabledMenus.ToLower.Contains("bag") AndAlso
+               Me._disabledMenus.ToLower.Contains("trainercard") AndAlso Me._disabledMenus.ToLower.Contains("options") AndAlso Me._disabledMenus.ToLower.Contains("save") AndAlso Me._disabledMenus.ToLower.Contains("pokegear") = False Then
+                Me._disabledMenus &= ",AllButPokegear"
+            End If
         End Set
     End Property
-
     ''' <summary>
     ''' The environment type for this map.
     ''' </summary>
