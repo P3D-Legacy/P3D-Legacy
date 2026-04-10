@@ -5,50 +5,15 @@ version=2
 		@text.show(Would you like to pause~your challenge and resume~it later?)
 		@options.show(Yes,No)
 			:when:Yes
-				@register.change(pike_room_count_temp,<register.value(pike_room_count_temp)>-1)
+				@register.unregister(resumedinpike,int)
+				@register.register(savinginpike)
 				@player.save
 				@player.quitgame(true)
 			:when:No
 				@text.show(So you want to quit~your challenge entirely?)
 				@options.show(Yes,No)
 					:when:Yes
-						@screen.fadeout
-						@player.warp(frontier\battlepike\main.dat,6,0.1,2)
-						@level.update
-						@player.turnto(0)
-						@screen.fadein
-						@text.show(Your challenge has ended...*I shall record your results...*We look forward to seeing~you on another occasion...)
-
-						@pokemon.changelevel(0,<register.value(pike_endless_level_0)>)
-						@pokemon.changelevel(1,<register.value(pike_endless_level_1)>)
-						@pokemon.changelevel(2,<register.value(pike_endless_level_2)>)
-
-						@pokemon.calcstats(0)
-						@pokemon.calcstats(1)
-						@pokemon.calcstats(2)
-
-						@pokemon.heal
-
-						@register.unregister(pike_level,int)
-						@register.unregister(pike_class,int)
-						@register.unregister(wildlevel,INT)
-						@register.unregister(pike_room_count_temp,INT)
-
-						@register.unregister(pike_endless_level_0,int)
-						@register.unregister(pike_endless_level_1,int)
-						@register.unregister(pike_endless_level_2,int)
-
-						@register.unregister(pike_npc,INT)
-						@register.unregister(pikeroom0,INT)
-						@register.unregister(pikeroom1,INT)
-						@register.unregister(pikeroom2,INT)
-						@register.unregister(pikehintspot,INT)
-						@register.unregister(pikehint,INT)
-						@register.unregister(pikehinted,INT)
-						@register.unregister(wildlevel,INT)
-						@register.unregister(wildspecial,str)
-						@register.unregister(pikelucynext)
-						
+						@script.start(frontier\battlepike\endless\lost)
 					:when:No
 				:endwhen
 		:endwhen

@@ -4,10 +4,7 @@ version=2
 @level.update
 @player.turnto(0)
 @screen.fadein
-@text.show(Your challenge has ended...*I shall record your results...*We look forward to seeing~you on another occasion...)
-
-@register.change(battlepike_endless_<register.value(pike_level)>_previous_streak,0)
-@register.change(battlepike_endless_<register.value(pike_level)>_class,0)
+@text.show(Your challenge has ended...)
 
 @pokemon.changelevel(0,<register.value(pike_endless_level_0)>)
 @pokemon.changelevel(1,<register.value(pike_endless_level_1)>)
@@ -18,6 +15,20 @@ version=2
 @pokemon.calcstats(2)
 
 @pokemon.heal
+
+:if:<register.value(pike_room_count_temp)>>14
+	@storage.set(integer,get_bp,<math.floor(3+(<register.value(pike_room_count_temp)>)/7)>)
+	@text.show(In recognition of your~amazing luck, we award~you these Battle Points...)
+	@player.addbp(<storage.get(integer,get_bp)>)
+	@text.show(<player.name> got <storage.get(integer,get_bp)> BP!*You now have <player.bp> BP.)
+	:if:<register.value(pike_room_count_temp)>><register.value(battlepike_endless_<register.value(pike_level)>_best)>
+		@register.change(battlepike_endless_<register.value(pike_level)>_best,<register.value(pike_room_count_temp)>)
+		@text.show(Congratulations!~You beat your high score.*Your new high score is~<register.value(pike_room_count_temp)> rooms.)
+	:endif
+:endif
+
+@register.change(battlepike_endless_<register.value(pike_level)>_previous_streak,0)
+@register.change(battlepike_endless_<register.value(pike_level)>_class,0)
 
 @register.unregister(piketype,str)
 @register.unregister(pike_level,int)
@@ -39,5 +50,12 @@ version=2
 @register.unregister(wildlevel,INT)
 @register.unregister(wildspecial,str)
 @register.unregister(pikelucynext)
+
+	@text.show(I shall record your results.~Please wait...)
+	@player.save
+	
+	@text.show(We look forward to seeing~you on another occasion...)
+	@storage.clear
+	
 
 :endscript

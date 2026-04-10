@@ -1,5 +1,4 @@
 version=2
-#massive tbd
 	@player.move(0)
 	@npc.move(0,2)
 	@text.show(Congratulations...~Now, this way, please...)

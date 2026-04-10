@@ -1,5 +1,16 @@
 version=2
-@register.change(pike_room_count_temp,<register.value(pike_room_count_temp)>+1)
-@script.start(frontier\battlepike\roomchooser)
-
+:if:<register.registered(savinginpike)>=true
+	@register.unregister(savinginpike)
+	@register.register(resumedinpike,int,<register.value(pike_room_count_temp)>)
+	@player.save
+:else
+	:if:<register.value(resumedinpike)>=<register.value(pike_room_count_temp)>
+		@text.show(Please do not exit the~game mid challenge...*You will now be sent back~to the front desk...)
+		@script.start(frontier\battlepike\endless\lost)
+		:end
+	:else
+		@register.change(pike_room_count_temp,<register.value(pike_room_count_temp)>+1)
+		@script.start(frontier\battlepike\roomchooser)
+	:endif
+:endif
 :end

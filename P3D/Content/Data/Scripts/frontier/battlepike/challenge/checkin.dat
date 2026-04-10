@@ -5,7 +5,8 @@ version=2
 		@text.show(Would you like to pause~your challenge and resume~it later?)
 		@options.show(Yes,No)
 			:when:Yes
-				@register.change(pike_room_count_temp,<register.value(pike_room_count_temp)>-1)
+				@register.unregister(resumedinpike,int)
+				@register.register(savinginpike)
 				@player.save
 				@player.quitgame(true)
 			:when:No
