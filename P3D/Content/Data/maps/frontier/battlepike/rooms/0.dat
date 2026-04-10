@@ -36,7 +36,7 @@ Mats:
 
 NPC:
 {"NPC"{NPC[{"Position"{sngArr[0,-1,1]}}{"TextureID"{str[[POKEMON|N]281]}}{"ID"{int[1]}}{"Name"{str[Challenge]}}{"Action"{int[0]}}{"AdditionalValue"{str[.... .... .... .... ....~.... .... .... .... ....]}}{"Rotation"{int[2]}}{"Movement"{str[Still]}}{"MoveRectangles"{recArr[]}}]}}
-{"NPC"{NPC[{"Position"{sngArr[0,-1,1]}}{"TextureID"{str[oldhatman]}}{"ID"{int[2]}}{"Name"{str[Challenge]}}{"Action"{int[0]}}{"AdditionalValue"{str[I do apologize for what happened...~I do hope your Pokémon are fine.]}}{"Rotation"{int[2]}}{"Movement"{str[Still]}}{"MoveRectangles"{recArr[]}}]}}
+{"NPC"{NPC[{"Position"{sngArr[0,-1,1]}}{"TextureID"{str[oldhatman]}}{"ID"{int[2]}}{"Name"{str[Challenge]}}{"Action"{int[0]}}{"AdditionalValue"{str[I do apologize~for what happened...~I do hope your Pokémon~are fine.]}}{"Rotation"{int[2]}}{"Movement"{str[Still]}}{"MoveRectangles"{recArr[]}}]}}
 {"NPC"{NPC[{"Position"{sngArr[0,-1,1]}}{"TextureID"{str[oldhatman]}}{"ID"{int[11]}}{"Name"{str[Challenge]}}{"Action"{int[1]}}{"AdditionalValue"{str[frontier\battlepike\oldmanheal]}}{"Rotation"{int[2]}}{"Movement"{str[Still]}}{"MoveRectangles"{recArr[]}}]}}
 {"NPC"{NPC[{"Position"{sngArr[0,-1,1]}}{"TextureID"{str[61]}}{"ID"{int[61]}}{"Name"{str[Challenge]}}{"Action"{int[0]}}{"AdditionalValue"{str[frontier\battlepike\chatter]}}{"Rotation"{int[2]}}{"Movement"{str[Looking]}}{"MoveRectangles"{recArr[]}}]}}
 {"NPC"{NPC[{"Position"{sngArr[0,-1,0]}}{"TextureID"{str[96]}}{"ID"{int[31]}}{"Name"{str[Challenge]}}{"Action"{int[1]}}{"AdditionalValue"{str[frontier\battlepike\challenge\main]}}{"Rotation"{int[2]}}{"Movement"{str[Still]}}{"MoveRectangles"{recArr[]}}]}}

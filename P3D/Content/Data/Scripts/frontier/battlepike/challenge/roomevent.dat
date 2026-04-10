@@ -157,7 +157,7 @@ version=2
 		@npc.move(2,1)
 		@npc.turn(2,1)
 		@level.wait(25)
-		@npc.turn(2,0)
+		@npc.turn(2,2)
 		@text.show(I must apologize to you...*My <storage.get(string,pikestatuspokemon)> has~a timid nature...*It attacks without warning~if it is startled by another~person...*Are you and your [POKE]mon~all right?)
 		:end
 	:when:1
