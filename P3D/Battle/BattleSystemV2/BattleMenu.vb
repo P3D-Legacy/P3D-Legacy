@@ -976,11 +976,15 @@ Namespace BattleSystem
                 If _moveMenuAlpha <= 0 Then
                     _moveMenuAlpha = 0
                     If BattleScreen.OwnPokemon.Attacks(_moveMenuIndex).SwapsOutOwnPokemon = True Then
-                        If PartyScreen.Selected = -1 Then
+                        If PartyScreen.Selected = -1 AndAlso Screen.TextBox.Showing = False Then
                             Dim selScreen = New PartyScreen(Core.CurrentScreen, Item.GetItemByID(5.ToString), Nothing, Localization.GetString("party_screen_ChoosePokemon", "Choose Pokémon"), False, False, False) With {.Mode = Screens.UI.ISelectionScreen.ScreenMode.Selection, .CanExit = False, .SelectButtonText = Localization.GetString("global_switch", "Switch")}
                             AddHandler selScreen.SelectedObject, Nothing
 
                             Core.SetScreen(selScreen)
+                        End If
+                        If PartyScreen.Selected = BattleScreen.OwnPokemonIndex AndAlso CurrentScreen.Identification <> Screen.Identifications.PartyScreen Then
+                            Screen.TextBox.Show(Localization.GetString("party_screen_CannotChoosePokemon", "Cannot choose this~Pokémon."))
+                            PartyScreen.Selected = -1
                         End If
                         If CurrentScreen.Identification <> Screen.Identifications.PartyScreen AndAlso PartyScreen.Selected <> -1 Then
                             If BattleScreen.OwnPokemon.Attacks(_moveMenuIndex).ID = 226 Then
@@ -1174,7 +1178,7 @@ Namespace BattleSystem
                 If Item.IsBall = True Then
                     If Core.Player.CanCatchPokemon = False AndAlso TempBattleScreen.IsTrainerBattle = False Then
                         Screen.TextBox.Show(Localization.GetString("battle_NoMoreRoomInPC", "There's no more room for~Pokémon in the PC!"), {}, True, True)
-                    Else
+                        Else
                         Core.Player.Inventory.RemoveItem(itemID.ToString, 1)
                         If TempBattleScreen.IsTrainerBattle = False Then
                             If BattleScreen.CanCatch = True Or CBool(GameModeManager.GetGameRuleValue("OnlyCaptureFirst", "0")) = True And Core.Player.PokeFiles.Contains(BattleScreen.TempPokeFile) = False Then
