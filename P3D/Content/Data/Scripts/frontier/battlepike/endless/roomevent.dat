@@ -270,9 +270,15 @@ version=2
 	:when:7
 		#double Approach, battle, leave
 		@storage.set(integer,trainer_id,<system.random(0,306)>)
+		:select:<player.position(x)>
+			:when:0
+				@npc.spawn(0,0,-1,0,,<npc.trainertexture(frontier\battletower\<storage.get(integer,trainer_id)>)>,0,2,0,70,Still)
+				@npc.spawn(1,0,-1,0,,<npc.trainertexture(frontier\battletower\<math.int(<storage.get(integer,trainer_id)>+1)>)>,0,2,0,71,Still)
+			:when:1
+				@npc.spawn(1,0,-1,0,,<npc.trainertexture(frontier\battletower\<storage.get(integer,trainer_id)>)>,0,2,0,70,Still)
+				@npc.spawn(0,0,-1,0,,<npc.trainertexture(frontier\battletower\<math.int(<storage.get(integer,trainer_id)>+1)>)>,0,2,0,71,Still)
+		:endwhen
 
-		@npc.spawn(<player.position(x)>,0,-1,0,,<npc.trainertexture(frontier\battletower\<storage.get(integer,trainer_id)>)>,0,2,0,70,Still)
-		@npc.spawn(<player.position(x)>+1,0,-1,0,,<npc.trainertexture(frontier\battletower\<math.int(<storage.get(integer,trainer_id)>+1)>)>,0,2,0,71,Still)
 
 		@player.move(0)
 		@npc.moveasync(70,2)
