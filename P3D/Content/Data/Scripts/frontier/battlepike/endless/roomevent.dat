@@ -74,8 +74,12 @@ version=2
 				:while:<storage.get(integer,pikestatusattempts)>><storage.get(integer,pikestatusdone)>
 					:if:<pokemon.status(<storage.get(integer,pikestatusmon<storage.get(integer,pikestatusdone)>)>)>=none
 						:if:<pokemon.istype(<storage.get(integer,pikestatusmon<storage.get(integer,pikestatusdone)>)>,fire)>=false
-							:if:<not><pokemon.ability(<storage.get(integer,pikestatusmon<storage.get(integer,pikestatusdone)>)>)>=41 <and> <not><pokemon.ability(<storage.get(integer,pikestatusmon<storage.get(integer,pikestatusdone)>)>)>=199 <and> <not><pokemon.ability(<storage.get(integer,pikestatusmon<storage.get(integer,pikestatusdone)>)>)>=213
-								@pokemon.setstatus(<storage.get(integer,pikestatusmon<storage.get(integer,pikestatusdone)>)>,brn)
+							:if:<not><pokemon.ability(<storage.get(integer,pikestatusmon<storage.get(integer,pikestatusdone)>)>)>=41
+								:if:<not><pokemon.ability(<storage.get(integer,pikestatusmon<storage.get(integer,pikestatusdone)>)>)>=199
+									:if:<not><pokemon.ability(<storage.get(integer,pikestatusmon<storage.get(integer,pikestatusdone)>)>)>=213
+										@pokemon.setstatus(<storage.get(integer,pikestatusmon<storage.get(integer,pikestatusdone)>)>,brn)
+									:endif
+								:endif
 							:endif
 						:endif
 					:endif
@@ -86,8 +90,12 @@ version=2
 				:while:<storage.get(integer,pikestatusattempts)>><storage.get(integer,pikestatusdone)>
 					:if:<pokemon.status(<storage.get(integer,pikestatusmon<storage.get(integer,pikestatusdone)>)>)>=none
 						:if:<pokemon.istype(<storage.get(integer,pikestatusmon<storage.get(integer,pikestatusdone)>)>,fire)>=false
-							:if:<not><pokemon.ability(<storage.get(integer,pikestatusmon<storage.get(integer,pikestatusdone)>)>)>=41 <and> <not><pokemon.ability(<storage.get(integer,pikestatusmon<storage.get(integer,pikestatusdone)>)>)>=199 <and> <not><pokemon.ability(<storage.get(integer,pikestatusmon<storage.get(integer,pikestatusdone)>)>)>=213
-								@pokemon.setstatus(<storage.get(integer,pikestatusmon<storage.get(integer,pikestatusdone)>)>,brn)
+							:if:<not><pokemon.ability(<storage.get(integer,pikestatusmon<storage.get(integer,pikestatusdone)>)>)>=41
+								:if:<not><pokemon.ability(<storage.get(integer,pikestatusmon<storage.get(integer,pikestatusdone)>)>)>=199
+									:if:<not><pokemon.ability(<storage.get(integer,pikestatusmon<storage.get(integer,pikestatusdone)>)>)>=213
+										@pokemon.setstatus(<storage.get(integer,pikestatusmon<storage.get(integer,pikestatusdone)>)>,brn)
+									:endif
+								:endif
 							:endif
 						:endif
 					:endif
@@ -97,8 +105,14 @@ version=2
 				@text.show(Kirlia used Hypnosis!)
 				:while:<storage.get(integer,pikestatusattempts)>><storage.get(integer,pikestatusdone)>
 					:if:<pokemon.status(<storage.get(integer,pikestatusmon<storage.get(integer,pikestatusdone)>)>)>=none
-						:if:<not><pokemon.ability(<storage.get(integer,pikestatusmon<storage.get(integer,pikestatusdone)>)>)>=15 <and> <not><pokemon.ability(<storage.get(integer,pikestatusmon<storage.get(integer,pikestatusdone)>)>)>=72 <and> <not><pokemon.ability(<storage.get(integer,pikestatusmon<storage.get(integer,pikestatusdone)>)>)>=175 <and> <not><pokemon.ability(<storage.get(integer,pikestatusmon<storage.get(integer,pikestatusdone)>)>)>=213
-							@pokemon.setstatus(<storage.get(integer,pikestatusmon<storage.get(integer,pikestatusdone)>)>,slp)
+						:if:<not><pokemon.ability(<storage.get(integer,pikestatusmon<storage.get(integer,pikestatusdone)>)>)>=15
+							:if:<not><pokemon.ability(<storage.get(integer,pikestatusmon<storage.get(integer,pikestatusdone)>)>)>=72
+								:if:<not><pokemon.ability(<storage.get(integer,pikestatusmon<storage.get(integer,pikestatusdone)>)>)>=175
+									:if:<not><pokemon.ability(<storage.get(integer,pikestatusmon<storage.get(integer,pikestatusdone)>)>)>=213
+										@pokemon.setstatus(<storage.get(integer,pikestatusmon<storage.get(integer,pikestatusdone)>)>,slp)
+									:endif
+								:endif
+							:endif
 						:endif
 					:endif
 					@storage.update(integer,pikestatusdone,+,1)					
@@ -108,8 +122,10 @@ version=2
 				:while:<storage.get(integer,pikestatusattempts)>><storage.get(integer,pikestatusdone)>
 					:if:<pokemon.status(<storage.get(integer,pikestatusmon<storage.get(integer,pikestatusdone)>)>)>=none
 						:if:<pokemon.istype(<storage.get(integer,pikestatusmon<storage.get(integer,pikestatusdone)>)>,electric)>=false <and> <pokemon.istype(<storage.get(integer,pikestatusmon<storage.get(integer,pikestatusdone)>)>,ground)>=false
-							:if:<not><pokemon.ability(<storage.get(integer,pikestatusmon<storage.get(integer,pikestatusdone)>)>)>=7 <and> <not><pokemon.ability(<storage.get(integer,pikestatusmon<storage.get(integer,pikestatusdone)>)>)>=213
-								@pokemon.setstatus(<storage.get(integer,pikestatusmon<storage.get(integer,pikestatusdone)>)>,prz)
+							:if:<not><pokemon.ability(<storage.get(integer,pikestatusmon<storage.get(integer,pikestatusdone)>)>)>=7
+								:if:<not><pokemon.ability(<storage.get(integer,pikestatusmon<storage.get(integer,pikestatusdone)>)>)>=213
+									@pokemon.setstatus(<storage.get(integer,pikestatusmon<storage.get(integer,pikestatusdone)>)>,prz)
+								:endif
 							:endif
 						:endif
 					:endif
@@ -120,8 +136,10 @@ version=2
 				:while:<storage.get(integer,pikestatusattempts)>><storage.get(integer,pikestatusdone)>
 					:if:<pokemon.status(<storage.get(integer,pikestatusmon<storage.get(integer,pikestatusdone)>)>)>=none
 						:if:<pokemon.istype(<storage.get(integer,pikestatusmon<storage.get(integer,pikestatusdone)>)>,ice)>=false
-							:if:<not><pokemon.ability(<storage.get(integer,pikestatusmon<storage.get(integer,pikestatusdone)>)>)>=40 <and> <not><pokemon.ability(<storage.get(integer,pikestatusmon<storage.get(integer,pikestatusdone)>)>)>=213
-								@pokemon.setstatus(<storage.get(integer,pikestatusmon<storage.get(integer,pikestatusdone)>)>,frz)
+							:if:<not><pokemon.ability(<storage.get(integer,pikestatusmon<storage.get(integer,pikestatusdone)>)>)>=40
+								:if:<not><pokemon.ability(<storage.get(integer,pikestatusmon<storage.get(integer,pikestatusdone)>)>)>=213
+									@pokemon.setstatus(<storage.get(integer,pikestatusmon<storage.get(integer,pikestatusdone)>)>,frz)
+								:endif
 							:endif
 						:endif
 					:endif
@@ -132,8 +150,12 @@ version=2
 				:while:<storage.get(integer,pikestatusattempts)>><storage.get(integer,pikestatusdone)>
 					:if:<pokemon.status(<storage.get(integer,pikestatusmon<storage.get(integer,pikestatusdone)>)>)>=none
 						:if:<pokemon.istype(<storage.get(integer,pikestatusmon<storage.get(integer,pikestatusdone)>)>,poison)>=false <and> <pokemon.istype(<storage.get(integer,pikestatusmon<storage.get(integer,pikestatusdone)>)>,steel)>=false
-							:if:<not><pokemon.ability(<storage.get(integer,pikestatusmon<storage.get(integer,pikestatusdone)>)>)>=17 <and> <not><pokemon.ability(<storage.get(integer,pikestatusmon<storage.get(integer,pikestatusdone)>)>)>=257 <and> <not><pokemon.ability(<storage.get(integer,pikestatusmon<storage.get(integer,pikestatusdone)>)>)>=213
-								@pokemon.setstatus(<storage.get(integer,pikestatusmon<storage.get(integer,pikestatusdone)>)>,bpsn)
+							:if:<not><pokemon.ability(<storage.get(integer,pikestatusmon<storage.get(integer,pikestatusdone)>)>)>=17
+								:if:<not><pokemon.ability(<storage.get(integer,pikestatusmon<storage.get(integer,pikestatusdone)>)>)>=257
+									:if:<not><pokemon.ability(<storage.get(integer,pikestatusmon<storage.get(integer,pikestatusdone)>)>)>=213
+										@pokemon.setstatus(<storage.get(integer,pikestatusmon<storage.get(integer,pikestatusdone)>)>,bpsn)
+									:endif
+								:endif
 							:endif
 						:endif
 					:endif
