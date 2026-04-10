@@ -425,7 +425,7 @@ Public Class Level
     ''' <summary>
     ''' Sets the battle variables for this map
     ''' </summary>
-    Public Sub SetBattleVars(ByVal BattleVariables As String)
+    Public Sub SetBattleVariables(ByVal BattleVariables As String)
         For Each var As String In BattleVariables.Split(",")
             Dim varname As String = var.GetSplit(0, ";")
             Dim varvalue As String = var.GetSplit(1, ";")

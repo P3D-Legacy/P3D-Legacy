@@ -1048,8 +1048,8 @@
             Screen.Level.DisableMenus = False
         End If
 
-        If TagExists(Tags, "BattleVars") = True Then
-            Screen.Level.SetBattleVars(CStr(GetTag(Tags, "BattleVars")))
+        If TagExists(Tags, "BattleVariables") = True Then
+            Screen.Level.SetBattleVariables(CStr(GetTag(Tags, "BattleVariables")))
         End If
 
         If TagExists(Tags, "BlackOutScript") = True Then
