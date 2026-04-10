@@ -30,7 +30,6 @@ Namespace BattleSystem
         Public Shared RoamingPokemonStorage As RoamingPokemon = Nothing
         Public Shared CanUseItems As Boolean = True
         Public Shared DiveBattle As Boolean = False
-        Public Shared CanUseBag As Boolean = True
         Public Shared TempPokeFile As String = ""
         Public Shared IsInverseBattle As Boolean = False
         Public Shared CustomBattleMusic As String = ""

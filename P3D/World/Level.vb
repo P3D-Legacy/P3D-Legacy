@@ -431,8 +431,6 @@ Public Class Level
             Dim varvalue As String = var.GetSplit(1, ";")
 
             Select Case varname.ToLower()
-                Case "canusebag"
-                    BattleSystem.BattleScreen.CanUseBag = CBool(varvalue)
                 Case "canrun"
                     BattleSystem.BattleScreen.CanRun = CBool(varvalue)
                 Case "cancatch"

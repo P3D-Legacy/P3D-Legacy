@@ -720,7 +720,7 @@ Namespace BattleSystem
                     Else
                         _mainMenuItemList.Add(New MainMenuItem(0, Localization.GetString("battle_action_Battle", "Battle"), 0, AddressOf MainMenuOpenBattleMenu))
                         _mainMenuItemList.Add(New MainMenuItem(1, "Pokémon", 1, AddressOf MainMenuOpenPokemon))
-                        If BattleScreen.CanUseBag = True Then
+                        If BattleScreen.CanUseItems = True Then
                             _mainMenuItemList.Add(New MainMenuItem(2, Localization.GetString("battle_action_Bag", "Bag"), 2, AddressOf MainMenuOpenBag))
 
                             If BattleScreen.IsTrainerBattle = False Then
@@ -820,15 +820,13 @@ Namespace BattleSystem
         End Sub
 
         Private Sub MainMenuOpenBag(ByVal BattleScreen As BattleScreen)
-            If BattleScreen.CanUseItems = True Then
-                TempBattleScreen = BattleScreen
-                Dim selScreen As New NewInventoryScreen(Core.CurrentScreen)
-                selScreen.Mode = Screens.UI.ISelectionScreen.ScreenMode.Selection
-                selScreen.CanExit = True
+            TempBattleScreen = BattleScreen
+            Dim selScreen As New NewInventoryScreen(Core.CurrentScreen)
+            selScreen.Mode = Screens.UI.ISelectionScreen.ScreenMode.Selection
+            selScreen.CanExit = True
 
-                AddHandler selScreen.SelectedObject, AddressOf SelectedItemHandler
-                Core.SetScreen(selScreen)
-            End If
+            AddHandler selScreen.SelectedObject, AddressOf SelectedItemHandler
+            Core.SetScreen(selScreen)
         End Sub
 
         Private Sub MainMenuRun(ByVal BattleScreen As BattleScreen)
