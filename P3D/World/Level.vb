@@ -44,7 +44,6 @@ Public Class Level
     Private _saveonly As Boolean = False
     Private _nosavebagorpokegear As Boolean = False
     Private _disableMenus As Boolean = False
-    Private _canreceiveexp As Boolean = True
     Private _wildPokemonGrass As Boolean = True
     Private _wildPokemonFloor As Boolean = False
     Private _wildPokemonWater As Boolean = True
@@ -424,16 +423,41 @@ Public Class Level
     End Property
 
     ''' <summary>
-    ''' If Pokémon can gain Experience Points on this map
+    ''' Sets the battle variables for this map
     ''' </summary>
-    Public Property CanReceiveExp As Boolean
-        Get
-            Return Me._canreceiveexp
-        End Get
-        Set(value As Boolean)
-            Me._canreceiveexp = value
-        End Set
-    End Property
+    Public Sub SetBattleVars(ByVal BattleVariables As String)
+        For Each var As String In BattleVariables.Split(",")
+            Dim varname As String = var.GetSplit(0, ";")
+            Dim varvalue As String = var.GetSplit(1, ";")
+
+            Select Case varname.ToLower()
+                Case "canusebag"
+                    BattleSystem.BattleScreen.CanUseBag = CBool(varvalue)
+                Case "canrun"
+                    BattleSystem.BattleScreen.CanRun = CBool(varvalue)
+                Case "cancatch"
+                    BattleSystem.BattleScreen.CanCatch = CBool(varvalue)
+                Case "canblackout"
+                    BattleSystem.BattleScreen.CanBlackout = CBool(varvalue)
+                Case "canreceiveexp"
+                    BattleSystem.BattleScreen.CanReceiveEXP = CBool(varvalue)
+                Case "canuseitems"
+                    BattleSystem.BattleScreen.CanUseItems = CBool(varvalue)
+                Case "frontiertrainer"
+                    Trainer.FrontierTrainer = ScriptConversion.ToInteger(varvalue)
+                Case "divebattle"
+                    BattleSystem.BattleScreen.DiveBattle = CBool(varvalue)
+                Case "inversebattle"
+                    BattleSystem.BattleScreen.IsInverseBattle = CBool(varvalue)
+                Case "custombattlemusic"
+                    BattleSystem.BattleScreen.CustomBattleMusic = varvalue
+                Case "hiddenabilitychance"
+                    Screen.Level.HiddenAbilityChance = ScriptConversion.ToInteger(varvalue)
+
+            End Select
+        Next
+
+    End Sub
 
     ''' <summary>
     ''' If the player should be prevented from opening the start menu or accessing the PokéGear..

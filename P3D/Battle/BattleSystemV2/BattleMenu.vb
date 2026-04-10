@@ -720,7 +720,7 @@ Namespace BattleSystem
                     Else
                         _mainMenuItemList.Add(New MainMenuItem(0, Localization.GetString("battle_action_Battle", "Battle"), 0, AddressOf MainMenuOpenBattleMenu))
                         _mainMenuItemList.Add(New MainMenuItem(1, "Pokémon", 1, AddressOf MainMenuOpenPokemon))
-                        If BattleScreen.SavedOverworld.Level.NoSaveBagOrPokegear = False OrElse BattleScreen.SavedOverworld.Level.SaveOnly = False Then
+                        If BattleScreen.CanUseBag = True Then
                             _mainMenuItemList.Add(New MainMenuItem(2, Localization.GetString("battle_action_Bag", "Bag"), 2, AddressOf MainMenuOpenBag))
 
                             If BattleScreen.IsTrainerBattle = False Then

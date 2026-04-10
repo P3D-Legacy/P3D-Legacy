@@ -1047,11 +1047,11 @@
         Else
             Screen.Level.DisableMenus = False
         End If
-        If TagExists(Tags, "CanReceiveExp") = True Then
-            Screen.Level.CanReceiveExp = CBool(GetTag(Tags, "CanReceiveExp"))
-        Else
-            Screen.Level.CanReceiveExp = True
+
+        If TagExists(Tags, "BattleVars") = True Then
+            Screen.Level.SetBattleVars(CStr(GetTag(Tags, "BattleVars")))
         End If
+
         If TagExists(Tags, "BlackOutScript") = True Then
             Screen.Level.BlackOutScript = ScriptVersion2.ScriptCommander.Parse(CStr(GetTag(Tags, "BlackOutScript"))).ToString
         Else
