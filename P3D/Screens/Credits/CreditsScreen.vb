@@ -14,6 +14,7 @@ Public Class CreditsScreen
 
     Dim TheEnd As Boolean = False
     Dim FadeAlpha As Integer = 0
+    Dim WaitAfterSkipping As Date = Date.Now
 
     Public SavedOverworld As OverworldStorage
 
@@ -31,6 +32,7 @@ Public Class CreditsScreen
         Me.CanMuteAudio = True
         Me.CanTakeScreenshot = True
         Me.CanBeSkipped = CanBeSkipped
+        Me.WaitAfterSkipping = Date.Now
 
         Screen.TextBox.Showing = False
         Screen.PokemonImageView.Showing = False
@@ -203,14 +205,18 @@ Public Class CreditsScreen
         CreditsPages(CurrentPageIndex).Update()
 
         Dim NextPageIndex = CurrentPageIndex + 1
-        If Me.CanBeSkipped = True AndAlso CurrentPageIndex > 2 Then
+        Dim SkipPage As Boolean = False
+
+        If Me.CanBeSkipped = True AndAlso CurrentPageIndex > 2 AndAlso TheEnd = False Then
             If Controls.Accept(True, True) = True Then
                 SoundManager.PlaySound("select")
                 NextPageIndex = CreditsPages.Count - 1
+                SkipPage = True
+                WaitAfterSkipping = Date.Now + New TimeSpan(0, 0, 1)
             End If
         End If
 
-        If CreditsPages(CurrentPageIndex).IsReady = True And TheEnd = False Then
+        If (CreditsPages(CurrentPageIndex).IsReady = True Or SkipPage = True) AndAlso TheEnd = False Then
             CurrentPageIndex = NextPageIndex
             If CurrentPageIndex = CreditsPages.Count - 1 Then
                 TheEnd = True
@@ -224,9 +230,11 @@ Public Class CreditsScreen
         End If
 
         If TheEnd = True Then
-            If Controls.Accept(True, True) = True Then
-                SoundManager.PlaySound("select")
-                Core.SetScreen(New TransitionScreen(Me, SavedOverworld.OverworldScreen, Color.Black, False, AddressOf ChangeSavedScreen))
+            If Date.Now >= WaitAfterSkipping Then
+                If Controls.Accept(True, True) = True Then
+                    SoundManager.PlaySound("select")
+                    Core.SetScreen(New TransitionScreen(Me, SavedOverworld.OverworldScreen, Color.Black, False, AddressOf ChangeSavedScreen))
+                End If
             End If
         End If
 
