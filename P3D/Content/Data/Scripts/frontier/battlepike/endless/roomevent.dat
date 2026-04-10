@@ -21,6 +21,8 @@ version=2
 				@storage.set(string,pikestatuspokemon,Dusclops)
 			:when:13;14;15;16;17;18;19
 				@storage.set(integer,pikestatusattack,5)
+				@npc.wearskin(1,[POKEMON|N]315)
+				@storage.set(string,pikestatuspokemon,Roselia)
 		:endwhen
 		:select:<player.position(x)>
 			:when:0
@@ -146,7 +148,7 @@ version=2
 					@storage.update(integer,pikestatusdone,+,1)					
 				:endwhile
 			:when:5
-				@text.show(Kirlia used Toxic!)
+				@text.show(Roselia used Toxic!)
 				:while:<storage.get(integer,pikestatusattempts)>><storage.get(integer,pikestatusdone)>
 					:if:<pokemon.status(<storage.get(integer,pikestatusmon<storage.get(integer,pikestatusdone)>)>)>=none
 						:if:<pokemon.istype(<storage.get(integer,pikestatusmon<storage.get(integer,pikestatusdone)>)>,poison)>=false <and> <pokemon.istype(<storage.get(integer,pikestatusmon<storage.get(integer,pikestatusdone)>)>,steel)>=false
