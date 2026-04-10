@@ -19,7 +19,7 @@ version=2
 		@pokemon.heal
 	:when:2
 		:select:<system.random(0,2)>
-			:when:0,1
+			:when:0;1
 				@text.show(Ah, you're a lucky one.~I'm in somewhat-good~spirits now.*I will restore one of your~Pokémon to full health.)
 				:select:<system.random(0,2)>
 					:when:0
@@ -52,7 +52,7 @@ version=2
 		:endwhen
 	:when:3
 		:select:<system.random(0,2)>
-			:when:0,1
+			:when:0;1
 				@text.show(Ah, you're a lucky one.~I'm in somewhat-good~spirits now.*I will restore one of your~Pokémon to full health.)
 				@pokemon.heal(<system.random(0,2)>)
 			:when:2
