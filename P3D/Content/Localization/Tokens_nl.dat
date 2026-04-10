@@ -1122,6 +1122,7 @@ battle_action_MegaEvolve,Mega-Evolueer!
 ----
 Catching:
 battle_catch_PlayerUsedBall,<Player.Name> gebruikte een~[BALLNAME]!
+battle_catch_PlayerUsedAnBall,<Player.Name> gebruikte een~[BALLNAME]!
 battle_catch_CaughtPokemon,Hebbes!~[POKEMONNAME] is gevangen!
 battle_catch_PokemonAddedToDex,[POKEMONNAME]'s gegevens~zijn op de Pokédex ingevoerd.
 battle_catch_PokemonTransferedToPC,Hij is verstuurd naar Opslag~"[BOXNAME]"~op de PC.
