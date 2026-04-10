@@ -884,7 +884,7 @@ Public Class Level
         Entities.AddRange({OwnPlayer, OverworldPokemon})
 
         Me.Surfing = Core.Player.startSurfing
-        If Me.Surfing = True And OwnPlayer.SkinName = Core.Player.Skin Then
+        If Me.Surfing = True And OwnPlayer.SkinName.StartsWith("[POKEMON|") = False Then
             With Screen.Level.OwnPlayer
                 Core.Player.TempSurfSkin = .SkinName
 
