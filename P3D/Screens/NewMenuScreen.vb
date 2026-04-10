@@ -46,35 +46,45 @@
     End Sub
 
     Private Sub ConstructMenu()
-        If Screen.Level.SaveOnly = False Then
-
+        If Screen.Level.DisabledMenus.Contains("pokedex") = False Then
             If Core.Player.HasPokedex = True Then
                 _menuOptions.Add(Localization.GetString("game_menu_pokedex", "Pokédex"))
             End If
+        End If
 
-            If Screen.Level.IsBugCatchingContest = True Then
-                _menuOptions.AddRange({Screen.Level.BugCatchingContestData.GetSplit(2) & " x" & Core.Player.Inventory.GetItemAmount(177.ToString),
-                                        Localization.GetString("game_menu_bag", "Bag"),
-                                        "|||" & Core.Player.Name, 'Trainer card
-                                        Localization.GetString("game_menu_end_contest", "End Contest")})
-            Else
+        If Screen.Level.IsBugCatchingContest = True Then
+            _menuOptions.Add(Screen.Level.BugCatchingContestData.GetSplit(2) & " x" & Core.Player.Inventory.GetItemAmount(177.ToString))
+
+            If Screen.Level.DisabledMenus.Contains("bag") = False Then
+                _menuOptions.Add(Localization.GetString("game_menu_bag", "Bag"))
+            End If
+            If Screen.Level.DisabledMenus.Contains("trainercard") = False Then
+                _menuOptions.Add("|||" & Core.Player.Name) 'Trainer card
+            End If
+            _menuOptions.Add(Localization.GetString("game_menu_end_contest", "End Contest"))
+
+        Else
+            If Screen.Level.DisabledMenus.Contains("pokemon") = False Then
                 If Core.Player.Pokemons.Count > 0 Then
                     _menuOptions.Add(Localization.GetString("game_menu_party", "Pokémon"))
                 End If
-                If Screen.Level.NoSaveBagOrPokegear = False Then
-                    _menuOptions.AddRange({Localization.GetString("game_menu_bag", "Bag"),
-                                         "|||" & Localization.GetString("game_menu_trainer_card", Core.Player.Name),
-                                        Localization.GetString("game_menu_save", "Save")})
-                Else
-                    _menuOptions.Add("|||" & Localization.GetString("game_menu_trainer_card", Core.Player.Name))
-                End If
-
+            End If
+            If Screen.Level.DisabledMenus.Contains("bag") = False Then
+                _menuOptions.Add(Localization.GetString("game_menu_bag", "Bag"))
+            End If
+            If Screen.Level.DisabledMenus.Contains("trainercard") = False Then
+                _menuOptions.Add("|||" & Core.Player.Name) 'Trainer card
+            End If
+            If Screen.Level.DisabledMenus.Contains("save") = False Then
+                _menuOptions.Add(Localization.GetString("game_menu_save", "Save"))
             End If
 
-            _menuOptions.Add(Localization.GetString("game_menu_options", "Options"))
-        Else
-            _menuOptions.Add(Localization.GetString("game_menu_save", "Save"))
         End If
+
+        If Screen.Level.DisabledMenus.Contains("options") = False Then
+            _menuOptions.Add(Localization.GetString("game_menu_options", "Options"))
+        End If
+
     End Sub
 
     Private _blur As Resources.Blur.BlurHandler
