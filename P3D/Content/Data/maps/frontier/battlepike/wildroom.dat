@@ -1,5 +1,5 @@
 {"Level"{LEV[{"Name"{str[Battle Pike]}}{"OverworldPokemon"{bool[0]}}{"WildPokemon"{Bool[1]}}{"MusicLoop"{str[battlepike]}}]}}
-{"Actions"{LEV[{"CanTeleport"{bool[1]}}{"CanDig"{bool[0]}}{"CanFly"{bool[0]}}{"EnvironmentType"{int[1]}}{"BlackOutScript"{str[frontier\battlepike\<register.value(piketype)>\lost]}}{"NoSaveBagOrPokegear"{bool[1]}}{"BattleMap"{str[frontier\battlepike\arena.dat,-8,0,-9.5]}}{"Weather"{int[1]}}]}}
+{"Actions"{LEV[{"CanTeleport"{bool[1]}}{"CanDig"{bool[0]}}{"CanFly"{bool[0]}}{"EnvironmentType"{int[1]}}{"BlackOutScript"{str[frontier\battlepike\<register.value(piketype)>\lost]}}{"NoSaveBagOrPokegear"{bool[1]}}{"BattleVariables"{str[canreceiveexp;0,canuseitems;0]}}{"BattleMap"{str[frontier\battlepike\arena.dat,-8,0,-9.5]}}{"Weather"{int[1]}}]}}
 
 Floor:
 {"Floor"{ENT[{"Size"{intArr[3,1]}}{"Position"{intArr[3,0,-1]}}{"TexturePath"{str[battlepike]}}{"Texture"{rec[64,80,16,16]}}]}}
