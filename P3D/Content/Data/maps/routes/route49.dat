@@ -3,7 +3,7 @@
 
 grass:
 {"Floor"{ENT[{"SeasonTexture"{str[Grass]}}{"Size"{intArr[5,20]}}{"Position"{intArr[20,0,0]}}{"TexturePath"{str[Cherrygrove]}}{"Texture"{rec[0,16,16,16]}}]}}
-{"Floor"{ENT[{"SeasonTexture"{str[Grass]}}{"Size"{intArr[1,1]}}{"Position"{intArr[25,0,17]}}{"TexturePath"{str[Cherrygrove]}}{"Texture"{rec[0,16,16,16]}}]}}
+{"Floor"{ENT[{"SeasonTexture"{str[Grass]}}{"Size"{intArr[1,1]}}{"Position"{intArr[25,0,17]}}{"TexturePath"{str[Cherrygrove]}}{"Texture"{rec[0,16,16,16]}}{"Visible"{bool[0]}}]}}
 
 sand:
 {"Floor"{ENT[{"Size"{intArr[3,2]}}{"Position"{intArr[3,0,28]}}{"TexturePath"{str[Cherrygrove]}}{"Texture"{rec[16,16,16,16]}}]}}
@@ -114,6 +114,10 @@ Cherrygrove:
 {"OffsetMap"{MAP[{"Offset"{sngArr[25,15]}}{"Map"{str[routes\route50.dat]}}]}}
 {"OffsetMap"{MAP[{"Offset"{sngArr[25,0]}}{"Map"{str[routes\offsettrees.dat]}}]}}
 
-{"Backdrop"{BAC[{"Position"{sngArr[-200.5,-0.75,-50]}}{"Size"{intArr[200,200]}}{"Rotation"{sngArr[0,0,0]}}{"Type"{str[Water]}}{"TexturePath"{str[Village]}}{"Texture"{rec[32,48,16,16]}}]}}
-{"Backdrop"{BAC[{"Position"{sngArr[-0.5,-0.75,39.5]}}{"Size"{intArr[200,200]}}{"Rotation"{sngArr[0,0,0]}}{"Type"{str[Water]}}{"TexturePath"{str[Village]}}{"Texture"{rec[32,48,16,16]}}]}}
-{"Backdrop"{BAC[{"Position"{sngArr[24.5,-0.5,-0.5]}}{"Size"{intArr[21,15]}}{"Rotation"{sngArr[0,0,0]}}{"Type"{str[Grass]}}{"TexturePath"{str[Routes]}}{"Texture"{rec[112,16,16,16]}}]}}
+Backdrops:
+{"Backdrop"{BAC[{"Position"{sngArr[-200.5,-0.75,-50.5]}}{"Size"{intArr[200,200]}}{"Rotation"{sngArr[0,0,0]}}{"Type"{str[Water]}}{"TexturePath"{str[Village]}}{"Texture"{rec[32,48,16,16]}}]}}
+
+{"Backdrop"{BAC[{"Position"{sngArr[-0.5,-0.75,39.5]}}{"Size"{intArr[25,110]}}{"Rotation"{sngArr[0,0,0]}}{"Type"{str[Water]}}{"TexturePath"{str[Village]}}{"Trigger"{str[NotOffset]}}{"Texture"{rec[32,48,16,16]}}]}}
+{"Backdrop"{BAC[{"Position"{sngArr[-0.5,-0.75,39.5]}}{"Size"{intArr[200,110]}}{"Rotation"{sngArr[0,0,0]}}{"Type"{str[Water]}}{"TexturePath"{str[Village]}}{"Trigger"{str[Offset]}}{"Texture"{rec[32,48,16,16]}}]}}
+
+{"Backdrop"{BAC[{"Position"{sngArr[24.5,-0.5,-0.5]}}{"Size"{intArr[21,15]}}{"Rotation"{sngArr[0,0,0]}}{"Type"{str[Grass]}}{"Trigger"{str[Offset]}}{"TexturePath"{str[Routes]}}{"Texture"{rec[112,16,16,16]}}]}}

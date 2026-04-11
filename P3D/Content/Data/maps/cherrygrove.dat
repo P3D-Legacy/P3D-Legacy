@@ -279,7 +279,8 @@ ScriptBlocks:
 {"Entity"{ENT[{"EntityID"{str[ScriptBlock]}}{"Position"{sngArr[35,0,9]}}{"TexturePath"{str[Center]}}{"Textures"{recArr[[0,48,16,16]]}}{"TextureIndex"{intArr[0,0]}}{"Collision"{bool[0]}}{"ModelID"{int[0]}}{"Action"{int[0]}}{"AdditionalValue"{str[rival\rival_cherrygrove\startscript]}}{"Rotation"{int[0]}}]}}
 
 Backdrops:
-{"Backdrop"{BAC[{"Position"{sngArr[-200.5,-0.76,-50]}}{"Size"{intArr[200,200]}}{"Rotation"{sngArr[0,0,0]}}{"Type"{str[Water]}}{"TexturePath"{str[Village]}}{"Texture"{rec[32,48,16,16]}}]}}
+{"Backdrop"{BAC[{"Position"{sngArr[-200.5,-0.76,-50.5]}}{"Size"{intArr[200,200]}}{"Rotation"{sngArr[0,0,0]}}{"Type"{str[Water]}}{"TexturePath"{str[Village]}}{"Texture"{rec[32,48,16,16]}}]}}
+{"Backdrop"{BAC[{"Position"{sngArr[-0.5,-0.76,63.5]}}{"Size"{intArr[25,86]}}{"Rotation"{sngArr[0,0,0]}}{"Type"{str[Water]}}{"Trigger"{str[Offset]}}{"TexturePath"{str[Village]}}{"Texture"{rec[32,48,16,16]}}]}}
 
 {"OffsetMap"{MAP[{"Offset"{sngArr[46,-2]}}{"Map"{str[route29.dat]}}]}}
 {"OffsetMap"{MAP[{"Offset"{sngArr[10,-56]}}{"Map"{str[route30.dat]}}]}}

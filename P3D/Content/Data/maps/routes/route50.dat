@@ -9,7 +9,7 @@ grass:
 {"Floor"{ENT[{"SeasonTexture"{str[Grass]}}{"Size"{intArr[14,3]}}{"Position"{intArr[36,0,2]}}{"TexturePath"{str[Cherrygrove]}}{"Texture"{rec[0,16,16,16]}}]}}
 {"Floor"{ENT[{"SeasonTexture"{str[Grass]}}{"Size"{intArr[30,22]}}{"Position"{intArr[50,0,0]}}{"TexturePath"{str[Cherrygrove]}}{"Texture"{rec[0,16,16,16]}}]}}
 {"Floor"{ENT[{"SeasonTexture"{str[Grass]}}{"Size"{intArr[9,10]}}{"Position"{intArr[80,0,0]}}{"TexturePath"{str[Cherrygrove]}}{"Texture"{rec[0,16,16,16]}}]}}
-{"Floor"{ENT[{"SeasonTexture"{str[Grass]}}{"Size"{intArr[1,1]}}{"Position"{intArr[-1,0,2]}}{"TexturePath"{str[Cherrygrove]}}{"Texture"{rec[0,16,16,16]}}]}}
+{"Floor"{ENT[{"SeasonTexture"{str[Grass]}}{"Size"{intArr[1,1]}}{"Position"{intArr[-1,0,2]}}{"TexturePath"{str[Cherrygrove]}}{"Texture"{rec[0,16,16,16]}}{"Visible"{bool[0]}}]}}
 
 sand:
 {"Floor"{ENT[{"Size"{intArr[5,4]}}{"Position"{intArr[50,0,9]}}{"TexturePath"{str[Cherrygrove]}}{"Texture"{rec[16,16,16,16]}}]}}
@@ -285,7 +285,11 @@ route49:
 {"OffsetMap"{MAP[{"Offset"{sngArr[-25,-15]}}{"Map"{str[routes\route49.dat]}}]}}
 {"OffsetMap"{MAP[{"Offset"{sngArr[0,-15]}}{"Map"{str[routes\offsettrees2.dat]}}]}}
 
-{"Backdrop"{BAC[{"Position"{sngArr[-225.5,-0.75,-65]}}{"Size"{intArr[200,200]}}{"Rotation"{sngArr[0,0,0]}}{"Type"{str[Water]}}{"TexturePath"{str[Village]}}{"Texture"{rec[32,48,16,16]}}]}}
-{"Backdrop"{BAC[{"Position"{sngArr[88.5,-0.76,-65]}}{"Size"{intArr[200,200]}}{"Rotation"{sngArr[0,0,0]}}{"Type"{str[Water]}}{"TexturePath"{str[Village]}}{"Texture"{rec[32,48,16,16]}}]}}
-{"Backdrop"{BAC[{"Position"{sngArr[-25.5,-0.75,24.5]}}{"Size"{intArr[200,200]}}{"Rotation"{sngArr[0,0,0]}}{"Type"{str[Water]}}{"TexturePath"{str[Village]}}{"Texture"{rec[32,48,16,16]}}]}}
-{"Backdrop"{BAC[{"Position"{sngArr[-0.5,-0.5,-15.5]}}{"Size"{intArr[89,15]}}{"Rotation"{sngArr[0,0,0]}}{"Type"{str[Grass]}}{"TexturePath"{str[Routes]}}{"Texture"{rec[112,16,16,16]}}]}}
+{"Backdrop"{BAC[{"Position"{sngArr[-225.5,-0.75,-64.5]}}{"Size"{intArr[200,200]}}{"Rotation"{sngArr[0,0,0]}}{"Type"{str[Water]}}{"Trigger"{str[Offset]}}{"TexturePath"{str[Village]}}{"Texture"{rec[32,48,16,16]}}]}}
+
+{"Backdrop"{BAC[{"Position"{sngArr[-25.5,-0.75,24.5]}}{"Size"{intArr[200,110]}}{"Rotation"{sngArr[0,0,0]}}{"Type"{str[Water]}}{"TexturePath"{str[Village]}}{"Trigger"{str[Offset]}}{"Texture"{rec[32,48,16,16]}}]}}
+{"Backdrop"{BAC[{"Position"{sngArr[-0.5,-0.75,24.5]}}{"Size"{intArr[200,110]}}{"Rotation"{sngArr[0,0,0]}}{"Type"{str[Water]}}{"TexturePath"{str[Village]}}{"Trigger"{str[NotOffset]}}{"Texture"{rec[32,48,16,16]}}]}}
+
+{"Backdrop"{BAC[{"Position"{sngArr[88.5,-0.76,-64.5]}}{"Size"{intArr[200,200]}}{"Rotation"{sngArr[0,0,0]}}{"Type"{str[Water]}}{"TexturePath"{str[Village]}}{"Texture"{rec[32,48,16,16]}}]}}
+
+{"Backdrop"{BAC[{"Position"{sngArr[-0.5,-0.5,-15.5]}}{"Size"{intArr[89,15]}}{"Rotation"{sngArr[0,0,0]}}{"Type"{str[Grass]}}{"Trigger"{str[Offset]}}{"TexturePath"{str[Routes]}}{"Texture"{rec[112,16,16,16]}}]}}
