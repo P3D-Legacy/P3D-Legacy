@@ -981,10 +981,12 @@ Namespace BattleSystem
                             Core.SetScreen(selScreen)
                         End If
                         If PartyScreen.Selected = BattleScreen.OwnPokemonIndex AndAlso CurrentScreen.Identification <> Screen.Identifications.PartyScreen Then
-                            Screen.TextBox.Show(Localization.GetString("party_screen_CannotChoosePokemon", "Cannot choose this~Pokémon."))
-                            PartyScreen.Selected = -1
+                            If Core.Player.CountFightablePokemon > 1 Then
+                                Screen.TextBox.Show(Localization.GetString("party_screen_CannotChoosePokemon", "Cannot choose this~Pokémon."))
+                                PartyScreen.Selected = -1
+                            End If
                         End If
-                        If CurrentScreen.Identification <> Screen.Identifications.PartyScreen AndAlso PartyScreen.Selected <> -1 Then
+                        If CurrentScreen.Identification <> Screen.Identifications.PartyScreen AndAlso (PartyScreen.Selected <> -1 OrElse Core.Player.CountFightablePokemon = 1) Then
                             If BattleScreen.OwnPokemon.Attacks(_moveMenuIndex).ID = 226 Then
                                 BattleScreen.FieldEffects.OwnBatonPassIndex = PartyScreen.Selected
                             Else
