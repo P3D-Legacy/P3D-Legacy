@@ -167,7 +167,7 @@ LoamySoil:
 Trainers:
 {"NPC"{NPC[{"Position"{sngArr[27,0,9]}}{"TextureID"{str[32]}}{"ID"{int[0]}}{"Name"{str[Harry]}}{"Action"{int[2]}}{"AdditionalValue"{str[2|trainer\route38\001]}}{"Rotation"{int[1]}}{"Movement"{str[FacePlayer]}}{"MoveRectangles"{recArr[]}}]}}
 {"NPC"{NPC[{"Position"{sngArr[17,0,7]}}{"TextureID"{str[10]}}{"ID"{int[1]}}{"Name"{str[Dana]}}{"Action"{int[2]}}{"AdditionalValue"{str[2|trainer\route38\002]}}{"Rotation"{int[2]}}{"Movement"{str[Looking]}}{"MoveRectangles"{recArr[]}}]}}
-{"NPC"{NPC[{"Position"{sngArr[10.95,0,10.1]}}{"TextureID"{str[15]}}{"ID"{int[2]}}{"Name"{str[Valerie]}}{"Action"{int[2]}}{"AdditionalValue"{str[3|trainer\route38\003]}}{"Rotation"{int[2]}}{"Movement"{str[Still]}}{"MoveRectangles"{recArr[]}}]}}
+{"NPC"{NPC[{"Position"{sngArr[11,0,10]}}{"TextureID"{str[15]}}{"ID"{int[2]}}{"Name"{str[Valerie]}}{"Action"{int[2]}}{"AdditionalValue"{str[3|trainer\route38\003]}}{"Rotation"{int[2]}}{"Movement"{str[Still]}}{"MoveRectangles"{recArr[]}}]}}
 {"NPC"{NPC[{"Position"{sngArr[17,0,13]}}{"TextureID"{str[9]}}{"ID"{int[3]}}{"Name"{str[Toby]}}{"Action"{int[2]}}{"AdditionalValue"{str[2|trainer\route38\004]}}{"Rotation"{int[3]}}{"Movement"{str[Still]}}{"MoveRectangles"{recArr[]}}]}}
 {"NPC"{NPC[{"Position"{sngArr[6,0,5]}}{"TextureID"{str[49]}}{"ID"{int[4]}}{"Name"{str[Chad]}}{"Action"{int[2]}}{"AdditionalValue"{str[2|trainer\route38\005]}}{"Rotation"{int[2]}}{"Movement"{str[Still]}}{"MoveRectangles"{recArr[]}}]}}
 

@@ -5,7 +5,7 @@ version=2
 :when:Choices
 	@text.show(Every other room you will~have to choose between three~different paths.*You can ask our staff~for a single hint to~help guide you.)
 :when:Modes
-	@text.show(There are two modes~in the Battle Pike:*Challenge Mode and~Endless Mode.*In Challenge Mode, you are~going to go through 14 rooms~in a row.*In Endless Mode, you~go through rooms until you~get defeated.*The Challenge Mode is on~the right and~the Endless Mode on~the left.)
+	@text.show(There are two modes~in the Battle Pike:*Challenge Mode and~Endless Mode.*In Challenge Mode, you are~going to go through 14 rooms~in a row.*In Endless Mode, you~go through rooms until you~get defeated.*The Challenge Mode is on~the left and~the Endless Mode on~the right.)
 :when:Requirements
 	@text.show(You need to bring~3 Pokémon with you that~are ready to battle.*Eggs don't count~as Pokémon.*They get raised to level~50 or 100 temporary.)
 :when:Canceling
