@@ -578,7 +578,7 @@ apricorn_screen_ok,OK
 apricorn_screen_clear,Limpar
 apricorn_screen_all,Todas
 apricorn_screen_take,Pegar devolta
-apricorn_screen_ready,Terminei de fazer as pokébolas, aqui está o resultado do meu trabalho:
+apricorn_screen_ready,Terminei de fazer as pokébolas,~aqui está o resultado do meu trabalho:
 apricorn_screen_obtain,obteve
 ---
 Donation screen:

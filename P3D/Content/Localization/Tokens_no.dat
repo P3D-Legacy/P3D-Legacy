@@ -224,11 +224,11 @@ Apricorn Screen:
 apricorn_screen_apricorns,Apricorns
 apricorn_screen_producing,Jeg produserer Pokéballene for øyeblikket.~Kom tilbake senere.
 apricorn_screen_backadvice,TRYKK E FOR Å… GÅ… TILBAKE
-apricorn_screen_choose_apricorns,Vennligst velg Apricorn jeg skal bruke for å produsere Pokéballer.
+apricorn_screen_choose_apricorns,Vennligst velg Apricorn jeg skal bruke~for å produsere Pokéballer.
 apricorn_screen_ok,OK
 apricorn_screen_clear,Tøm
 apricorn_screen_take,Ta
-apricorn_screen_ready,Jeg er klar til å produsere Pokéballer. Her er resultatet av mitt arbeid:
+apricorn_screen_ready,Jeg er klar til å produsere Pokéballer.~Her er resultatet av mitt arbeid:
 apricorn_screen_obtain, motatt
 ---
 Daycare Screen:

@@ -224,11 +224,11 @@ Apricorn Screen:
 apricorn_screen_apricorns,Aprikornai
 apricorn_screen_producing,Aš šiuo momentu gaminu rutulius.~Grįžkite vėliau.
 apricorn_screen_backadvice,PASPAUDE E GRĮŠITE ATGAL
-apricorn_screen_choose_apricorns,Pasirinkite Aprikornus iš kūrių norite, kad pagaminčiau Poke rutulių
+apricorn_screen_choose_apricorns,Pasirinkite Aprikornus iš kūrių norite,~kad pagaminčiau Poke rutulių
 apricorn_screen_ok,GERAI
 apricorn_screen_clear,Išvalyti
 apricorn_screen_take,Paimti
-apricorn_screen_ready,Aš baigiau gaminti Poke rutulius. Štai mano darbo vaisiai:
+apricorn_screen_ready,Aš baigiau gaminti Poke rutulius.~Štai mano darbo vaisiai:
 apricorn_screen_obtain, gauti
 ---
 Daycare Screen:

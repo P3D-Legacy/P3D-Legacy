@@ -576,12 +576,12 @@ Apricorn Screen:
 apricorn_screen_apricorns,Albaricoques
 apricorn_screen_producing,Estoy produciendo los Balls en este momento.~ Vuelve más tarde.
 apricorn_screen_backadvice,PULSA [<system.button(OpenMenu)>] PARA VOLVER
-apricorn_screen_choose_apricorns,Elige los Apricorns que debo tomar para producir Pokébolas.
+apricorn_screen_choose_apricorns,Elige los Apricorns que debo tomar~para producir Pokébolas.
 apricorn_screen_ok,Vale
 apricorn_screen_clear,Borrar
 apricorn_screen_all,All
 apricorn_screen_take,Coger
-apricorn_screen_ready,Estoy listo para producir Pokébolas. Aquí está el resultado de mi trabajo:
+apricorn_screen_ready,Estoy listo para producir Pokébolas.~Aquí está el resultado de mi trabajo:
 apricorn_screen_obtain,obtenido
 ---
 Donation screen:

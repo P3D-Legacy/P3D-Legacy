@@ -573,12 +573,12 @@ Apricorn Screen:
 apricorn_screen_apricorns,Aprikokos
 apricorn_screen_producing,Ich verarbeite die Aprikokos gerade.~Komm doch später wieder.
 apricorn_screen_backadvice,[<system.button(OpenMenu)>]: Zurück
-apricorn_screen_choose_apricorns,Bitte wähle Aprikokos aus, um Pokébälle herzustellen:
+apricorn_screen_choose_apricorns,Bitte wähle Aprikokos aus,~um Pokébälle herzustellen:
 apricorn_screen_ok,OK
 apricorn_screen_clear,Leeren
 apricorn_screen_all,Alle
 apricorn_screen_take,Nehmen
-apricorn_screen_ready,Ich habe die Pokébälle produziert. Hier ist das Ergebnis:
+apricorn_screen_ready,Ich habe die Pokébälle produziert.~Hier ist das Ergebnis:
 apricorn_screen_obtain,erhält
 ---
 Donation screen:

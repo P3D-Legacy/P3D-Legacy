@@ -574,12 +574,12 @@ Apricorn Screen:
 apricorn_screen_apricorns,Ghicocche
 apricorn_screen_producing,Sto producendo le Pokéball al momento.~Torna più tardi.
 apricorn_screen_backadvice,PREMI [<system.button(OpenMenu)>] PER TORNARE INDIETRO
-apricorn_screen_choose_apricorns,Per favore scegli le ghicocche che dovrei usare per produrre le Pokéball.
+apricorn_screen_choose_apricorns,Per favore scegli le ghicocche che dovrei~usare per produrre le Pokéball.
 apricorn_screen_ok,OK
 apricorn_screen_clear,Pulisci
 apricorn_screen_all,All
 apricorn_screen_take,Prendi
-apricorn_screen_ready,Ho finito di produrre le Pokéball. Questo è il risultato del mio lavoro:
+apricorn_screen_ready,Ho finito di produrre le Pokéball.~Questo è il risultato del mio lavoro:
 apricorn_screen_obtain,ottenuta
 ---
 Donation screen:
