@@ -753,7 +753,7 @@ Namespace BattleSystem
                 Exit Sub
             End If
 
-            If _mainMenuIndex >= 3 Then
+            If _mainMenuIndex >= _mainMenuItemList.Count - 1 Then
                 _mainMenuIndex = 0
             End If
 
