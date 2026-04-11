@@ -743,6 +743,8 @@ Namespace BattleSystem
                     _mainMenuItemList.Add(New MainMenuItem(0, Localization.GetString("battle_action_Battle", "Battle"), 0, AddressOf MainMenuOpenBattleMenu))
                     _mainMenuItemList.Add(New MainMenuItem(1, "Pokémon", 1, AddressOf MainMenuOpenPokemon))
                     _mainMenuItemList.Add(New MainMenuItem(3, Localization.GetString("battle_action_Surrender", "Surrender"), 2, AddressOf MainMenuOpenBag))
+                    MainMenuAddMegaEvolution(BattleScreen, 3)
+
             End Select
         End Sub
 
