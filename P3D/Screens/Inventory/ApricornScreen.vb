@@ -90,7 +90,7 @@
 
                     Buttons.AddRange({RedApricorn, BlueApricorn, YellowApricorn, GreenApricorn, WhiteApricorn, BlackApricorn, PinkApricorn, AddAllButton, ClearButton, GiveButton})
                 Case States.CanTake
-                    Me.Labels.Add(New Label(Localization.GetString("apricorn_screen_ready"), New Vector2(Delta_X + 48, Delta_Y + 48), FontManager.MainFont))
+                    Me.Labels.Add(New Label(Localization.GetString("apricorn_screen_ready").Replace("~", Environment.NewLine), New Vector2(Delta_X + 48, Delta_Y + 48), FontManager.MainFont))
 
                     Dim TakeButton As ButtonIcon = New ButtonIcon(AddressOf Me.Take, Localization.GetString("apricorn_screen_take"), FontManager.MainFont, buttonTexture, New Rectangle(48, 128, 16, 16), New Vector2(Delta_X + 128 * 5, Delta_Y + 16 + 104 * 2), New Size(48, 48))
                     Buttons.AddRange({TakeButton})
