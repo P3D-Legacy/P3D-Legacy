@@ -227,7 +227,7 @@ Public Class OverworldScreen
 
             'Open the MenuScreen:
             If KeyBoardHandler.KeyPressed(KeyBindings.OpenInventoryKey) = True Or ControllerHandler.ButtonPressed(Buttons.X) = True Then
-                If Screen.Camera.IsMoving() = False And ActionScript.IsReady = True AndAlso Screen.Level.DisabledMenus.Contains("all") = False AndAlso Screen.Level.DisabledMenus.Contains("allbutpokegear") = False Then
+                If Screen.Camera.IsMoving() = False And ActionScript.IsReady = True AndAlso Screen.Level.DisabledMenus.Contains("all") = False AndAlso Screen.Level.DisabledMenus.Contains("startmenus") = False Then
                     Level.RouteSign.Hide()
                     SoundManager.PlaySound("menu_open")
                     Core.SetScreen(New NewMenuScreen(Me))
@@ -240,7 +240,7 @@ Public Class OverworldScreen
                     NotificationPopupList(0).Dismiss()
                 Else
                     If Core.Player.HasPokegear = True Or GameController.IS_DEBUG_ACTIVE = True Or Core.Player.SandBoxMode = True Then
-                        If Screen.Camera.IsMoving() = False And ActionScript.IsReady = True AndAlso Screen.Level.DisabledMenus.Contains("pokegear") = False AndAlso Screen.Level.DisabledMenus.Contains("none") = False AndAlso Screen.Level.IsBugCatchingContest = False Then
+                        If Screen.Camera.IsMoving() = False And ActionScript.IsReady = True AndAlso Screen.Level.DisabledMenus.Contains("pokegear") = False AndAlso Screen.Level.DisabledMenus.Contains("all") = False AndAlso Screen.Level.IsBugCatchingContest = False Then
                             Core.SetScreen(New GameJolt.PokegearScreen(Me, GameJolt.PokegearScreen.EntryModes.MainMenu, {}))
                         End If
                     End If

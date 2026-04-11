@@ -434,7 +434,7 @@ Public Class Level
     ''' <summary>
     ''' The menus that the player can't access in the overworld
     ''' </summary>
-    ''' <remarks>Possible Values: PokeGear, Pokedex, Pokemon, Bag, TrainerCard, Options, Save, AllButPokegear, All, None</remarks>
+    ''' <remarks>Possible Values: PokeGear, Pokedex, Pokemon, Bag, TrainerCard, Options, Save, StartMenus, All, None</remarks>
     Public Property DisabledMenus As String
         Get
             Return Me._disabledMenus.ToLower
@@ -442,16 +442,16 @@ Public Class Level
         Set(value As String)
             If value.ToLower = "all" Then
                 Me._disabledMenus = "PokeGear,Pokedex,Pokemon,Bag,TrainerCard,Options,Save,All"
-            ElseIf value.ToLower = "allbutpokegear" Then
-                Me._disabledMenus = "Pokedex,Pokemon,Bag,TrainerCard,Options,Save,AllButPokegear"
+            ElseIf value.ToLower = "startmenus" Then
+                Me._disabledMenus = "Pokedex,Pokemon,Bag,TrainerCard,Options,Save,StartMenus"
             ElseIf value = "" Then
                 Me._disabledMenus = "None"
             Else
                 Me._disabledMenus = value
             End If
-            If Me._disabledMenus.ToLower.Contains("allbutpokegear") = False And Me._disabledMenus.ToLower.Contains("none") = False AndAlso Me._disabledMenus.ToLower.Contains("pokedex") AndAlso Me._disabledMenus.ToLower.Contains("pokemon") AndAlso Me._disabledMenus.ToLower.Contains("bag") AndAlso
+            If Me._disabledMenus.ToLower.Contains("startmenus") = False And Me._disabledMenus.ToLower.Contains("none") = False AndAlso Me._disabledMenus.ToLower.Contains("pokedex") AndAlso Me._disabledMenus.ToLower.Contains("pokemon") AndAlso Me._disabledMenus.ToLower.Contains("bag") AndAlso
                Me._disabledMenus.ToLower.Contains("trainercard") AndAlso Me._disabledMenus.ToLower.Contains("options") AndAlso Me._disabledMenus.ToLower.Contains("save") AndAlso Me._disabledMenus.ToLower.Contains("pokegear") = False Then
-                Me._disabledMenus &= ",AllButPokegear"
+                Me._disabledMenus &= ",StartMenus"
             End If
         End Set
     End Property
