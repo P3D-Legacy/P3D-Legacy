@@ -316,7 +316,7 @@
                 Dim startPos As Vector2 = GetStartPosition()
                 For x = 0 To 3
                     For y = 0 To 2
-                        Dim r As New Rectangle(CInt(startPos.X + (x * 176) + 80 + 20), CInt(startPos.Y + 80 + (y * 128)), 64, 64)
+                        Dim r As New Rectangle(CInt(startPos.X + (x * 176) + 80 + 20), CInt(startPos.Y + 64 + (y * 128)), 64, 64)
                         If r.Contains(MouseHandler.MousePosition) = True Then
                             pressedIndex = x + y * 4
                         End If
@@ -2289,7 +2289,7 @@
                         t = Localization.GetString("global_no", "No")
                     End If
 
-                    Core.SpriteBatch.DrawString(FontManager.MainFont, t, New Vector2(CInt(startPos.X + 48+ 40), CInt(startPos.Y + 155 + i * 64)), Color.Black)
+                    Core.SpriteBatch.DrawString(FontManager.MainFont, t, New Vector2(CInt(startPos.X + 48 + 40), CInt(startPos.Y + 155 + i * 64)), Color.Black)
 
                 Next
             End If
@@ -2438,7 +2438,7 @@
                         t = Localization.GetString("global_no", "No")
                     End If
 
-                    Core.SpriteBatch.DrawString(FontManager.MainFont, t, New Vector2(CInt(startPos.X + 48), CInt(startPos.Y + 155 + i * 64)), Color.Black)
+                    Core.SpriteBatch.DrawString(FontManager.MainFont, t, New Vector2(CInt(startPos.X + 48 + 40), CInt(startPos.Y + 155 + i * 64)), Color.Black)
                 Next
             End If
         End Sub
