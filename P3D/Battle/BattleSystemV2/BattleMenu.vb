@@ -1255,12 +1255,13 @@ Namespace BattleSystem
                     TempBattleScreen.FieldEffects.OwnCudChewBerry = Item
                     TempBattleScreen.FieldEffects.OwnCudChewIndex = PokeIndex
                 End If
+                If Item.ReplacesBattleQuery = False Then
+                    TempBattleScreen.BattleQuery.Clear()
+                    TempBattleScreen.BattleQuery.Add(TempBattleScreen.FocusBattle())
+                    TempBattleScreen.BattleQuery.Insert(0, New ToggleMenuQueryObject(True))
 
-                TempBattleScreen.BattleQuery.Clear()
-                TempBattleScreen.BattleQuery.Add(TempBattleScreen.FocusBattle())
-                TempBattleScreen.BattleQuery.Insert(0, New ToggleMenuQueryObject(True))
-
-                TempBattleScreen.Battle.InitializeRound(TempBattleScreen, New Battle.RoundConst With {.StepType = Battle.RoundConst.StepTypes.Item, .Argument = TempItemID.ToString()})
+                    TempBattleScreen.Battle.InitializeRound(TempBattleScreen, New Battle.RoundConst With {.StepType = Battle.RoundConst.StepTypes.Item, .Argument = TempItemID.ToString()})
+                End If
             End If
         End Sub
 

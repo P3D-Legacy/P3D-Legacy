@@ -21,6 +21,7 @@ Public MustInherit Class Item
     Public gmIsMegaStone As Boolean = False
     Public gmIsPlate As Boolean = False
     Public gmBattleSelectPokemon As Boolean = True
+    Public gmReplacesBattleQuery As Boolean = False
 
     Public Property IsGameModeItem As Boolean = False
 
@@ -180,7 +181,7 @@ Public MustInherit Class Item
     ''' The additional data that is stored with this item.
     ''' </summary>
     Public Property AdditionalData As String = ""
-    
+
 
     ''' <summary>
     ''' The damage the Fling move does when this item is attached to a Pokémon.
@@ -221,6 +222,19 @@ Public MustInherit Class Item
                 Return Me.gmBattleSelectPokemon
             Else
                 Return True
+            End If
+        End Get
+    End Property
+
+    ''' <summary>
+    ''' If this item replaces the BattleQuery
+    ''' </summary>
+    Public Overridable ReadOnly Property ReplacesBattleQuery As Boolean
+        Get
+            If Me.IsGameModeItem Then
+                Return Me.gmReplacesBattleQuery
+            Else
+                Return False
             End If
         End Get
     End Property
