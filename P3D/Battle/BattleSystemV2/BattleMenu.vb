@@ -974,7 +974,7 @@ Namespace BattleSystem
                 If _moveMenuAlpha <= 0 Then
                     _moveMenuAlpha = 0
                     If BattleScreen.OwnPokemon.Attacks(_moveMenuIndex).SwapsOutOwnPokemon = True Then
-                        If PartyScreen.Selected = -1 AndAlso Screen.TextBox.Showing = False Then
+                        If PartyScreen.Selected = -1 Then
                             Dim selScreen = New PartyScreen(Core.CurrentScreen, Item.GetItemByID(5.ToString), Nothing, Localization.GetString("party_screen_ChoosePokemon", "Choose Pokémon"), False, False, False) With {.Mode = Screens.UI.ISelectionScreen.ScreenMode.Selection, .CanExit = False, .SelectButtonText = Localization.GetString("global_switch", "Switch")}
                             AddHandler selScreen.SelectedObject, Nothing
 
@@ -982,7 +982,6 @@ Namespace BattleSystem
                         End If
                         If PartyScreen.Selected = BattleScreen.OwnPokemonIndex AndAlso CurrentScreen.Identification <> Screen.Identifications.PartyScreen Then
                             If Core.Player.CountFightablePokemon > 1 Then
-                                Screen.TextBox.Show(Localization.GetString("party_screen_CannotChoosePokemon", "Cannot choose this~Pokémon."))
                                 PartyScreen.Selected = -1
                             End If
                         End If
