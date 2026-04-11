@@ -174,7 +174,11 @@ nextIndex:
                                 PokemonScale = BattleScreen.OppPokemonNPC.Scale
                                 'Ball is thrown
                                 Dim CatchAnimation = New BattleSystem.AnimationQueryObject(Nothing, False)
-                                CatchAnimation.AnimationPlaySound("Battle\Pokeball\Throw", 0, 0)
+                                If CriticalCapture = True Then
+                                    CatchAnimation.AnimationPlaySound("Battle\Pokeball\Throw_Critical", 0, 0)
+                                Else
+                                    CatchAnimation.AnimationPlaySound("Battle\Pokeball\Throw", 0, 0)
+                                End If
 
                                 Dim BallPosition As Vector3 = New Vector3(BattleScreen.OppPokemonNPC.Position.X - 3, BattleScreen.OppPokemonNPC.Position.Y + 0.15F, BattleScreen.OppPokemonNPC.Position.Z)
                                 Dim BallEntity As Entity = CatchAnimation.SpawnEntity(BallPosition, Ball.Texture, New Vector3(0.3F), 1.0F, 0, 0)
