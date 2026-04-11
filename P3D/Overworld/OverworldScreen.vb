@@ -332,7 +332,7 @@ Public Class OverworldScreen
     Private Function HandleServerRequests() As Boolean
         If Screen.Level.IsBugCatchingContest = False Then
             If GameJolt.PokegearScreen.BattleRequestData <> -1 Then 'A Servers ID from another player is set here.
-                If Core.ServersManager.PlayerCollection.HasPlayer(GameJolt.PokegearScreen.BattleRequestData) = True Then 'If the player still exists on the server.
+                If Core.ServersManager.PlayerCollection.HasPlayer(GameJolt.PokegearScreen.BattleRequestData) = True AndAlso Screen.Level.DisabledMenus.Contains("pokegear") = False AndAlso Screen.Level.DisabledMenus.Contains("all") = False Then 'If the player still exists on the server.
                     Core.SetScreen(New GameJolt.PokegearScreen(Core.CurrentScreen, GameJolt.PokegearScreen.EntryModes.BattleRequest, {GameJolt.PokegearScreen.BattleRequestData, Core.ServersManager.PlayerCollection.GetPlayer(GameJolt.PokegearScreen.BattleRequestData).GameJoltId}))
                     Return False
                 Else 'Otherwise, reset the data.
@@ -340,7 +340,7 @@ Public Class OverworldScreen
                 End If
             End If
             If GameJolt.PokegearScreen.TradeRequestData <> -1 Then 'A Servers ID from another player is set here.
-                If Core.ServersManager.PlayerCollection.HasPlayer(GameJolt.PokegearScreen.TradeRequestData) = True Then 'If the player still exists on the server.
+                If Core.ServersManager.PlayerCollection.HasPlayer(GameJolt.PokegearScreen.TradeRequestData) = True AndAlso Screen.Level.DisabledMenus.Contains("pokegear") = False AndAlso Screen.Level.DisabledMenus.Contains("all") = False Then 'If the player still exists on the server.
                     Core.SetScreen(New GameJolt.PokegearScreen(Core.CurrentScreen, GameJolt.PokegearScreen.EntryModes.TradeRequest, {GameJolt.PokegearScreen.TradeRequestData, Core.ServersManager.PlayerCollection.GetPlayer(GameJolt.PokegearScreen.TradeRequestData).GameJoltId}))
                     Return False
                 Else 'Otherwise, reset the data.
