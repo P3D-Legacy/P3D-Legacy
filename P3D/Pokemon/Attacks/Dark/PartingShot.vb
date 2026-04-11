@@ -68,7 +68,7 @@
                         BattleScreen.Battle.SwitchOutOwn(BattleScreen, BattleScreen.FieldEffects.OwnSwapIndex, -1)
                         BattleScreen.FieldEffects.OwnSwapIndex = -1
                     Else
-                        BattleScreen.BattleQuery.Add(New TextQueryObject("Cannot switch out " & BattleScreen.OwnPokemon.GetDisplayName(True) & "!"))
+                        BattleScreen.FieldEffects.OwnSwapIndex = -1
                     End If
                 Else
                     BattleScreen.FieldEffects.OwnSwapIndex = -1
@@ -82,7 +82,7 @@
                                 BattleScreen.Battle.SwitchOutOpp(BattleScreen, BattleScreen.FieldEffects.OppSwapIndex)
                                 BattleScreen.FieldEffects.OppSwapIndex = -1
                             Else
-                                BattleScreen.BattleQuery.Add(New TextQueryObject("Cannot switch out " & BattleScreen.OppPokemon.GetDisplayName(True) & "!"))
+                                BattleScreen.FieldEffects.OppSwapIndex = -1
                             End If
                         Else
                             BattleScreen.FieldEffects.OppSwapIndex = -1
@@ -92,11 +92,11 @@
 
                             BattleScreen.Battle.SwitchOutOpp(BattleScreen, GetPokemonIndex(BattleScreen, own))
                         Else
-                            BattleScreen.BattleQuery.Add(New TextQueryObject("Cannot switch out " & BattleScreen.OppPokemon.GetDisplayName(True) & "!"))
+                            BattleScreen.FieldEffects.OppSwapIndex = -1
                         End If
                     End If
                 Else
-                    BattleScreen.BattleQuery.Add(New TextQueryObject("Cannot switch out " & BattleScreen.OppPokemon.GetDisplayName(True) & "!"))
+                    BattleScreen.FieldEffects.OppSwapIndex = -1
                 End If
             End If
         End Sub
