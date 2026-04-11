@@ -395,7 +395,7 @@ Public Class Level
             End Select
         End Set
     End Property
-
+    Public Property BattleVariables As String = ""
     ''' <summary>
     ''' Sets the battle variables for this map
     ''' </summary>

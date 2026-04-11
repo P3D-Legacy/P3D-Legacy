@@ -1039,7 +1039,10 @@
         End If
 
         If TagExists(Tags, "BattleVariables") = True Then
-            Screen.Level.SetBattleVariables(CStr(GetTag(Tags, "BattleVariables")))
+            Screen.Level.BattleVariables = CStr(GetTag(Tags, "BattleVariables"))
+            Screen.Level.SetBattleVariables(Screen.Level.BattleVariables)
+        Else
+            Screen.Level.BattleVariables = ""
         End If
 
         If TagExists(Tags, "BlackOutScript") = True Then

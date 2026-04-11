@@ -1664,6 +1664,11 @@ nextIndex:
             IsInverseBattle = False
             CustomBattleMusic = ""
             RoamingPokemonStorage = Nothing
+            If CurrentScreen.Identification = Identifications.BattleScreen OrElse CurrentScreen.Identification = Identifications.BattleCatchScreen Then
+                If CType(CurrentScreen, BattleSystem.BattleScreen).SavedOverworld.Level.BattleVariables <> "" Then
+                    Screen.Level.SetBattleVariables(CType(CurrentScreen, BattleSystem.BattleScreen).SavedOverworld.Level.BattleVariables)
+                End If
+            End If
         End Sub
 
         Public Function GetTrainerMoney() As Integer
