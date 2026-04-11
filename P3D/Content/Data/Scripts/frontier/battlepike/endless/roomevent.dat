@@ -1,4 +1,4 @@
-version=2
+zversion=2
 @register.change(pike_room_count_temp,<register.value(pike_room_count_temp)>+1)
 :select:<register.value(pikeroom<level.filename>)>
 	:when:0
@@ -293,8 +293,8 @@ version=2
 		@battle.trainer(frontier\battletower\<storage.get(integer,trainer_id)>)
 		
 		:if:<battle.won>=true
-			@npc.turn(70,2)
-			@npc.turn(71,2)
+			@npc.turn(70,0)
+			@npc.turn(71,0)
 			@npc.moveasync(70,4)
 			@npc.move(71,4)
 			@npc.remove(70)
