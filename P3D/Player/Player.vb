@@ -1887,7 +1887,7 @@
                 If PoisonAmount > 0 Then
                     Dim PlayPoisonSound As Boolean = False
                     For i = 0 To Core.Player.Pokemons.Count - 1
-                        If Core.Player.Pokemons(i).Status = Pokemon.StatusProblems.Poison OrElse Core.Player.Pokemons(i).Status = Pokemon.StatusProblems.BadPoison Then
+                        If Core.Player.Pokemons(i).Status = Pokemon.StatusProblems.Poison OrElse Core.Player.Pokemons(i).Status = Pokemon.StatusProblems.BadPoison AndAlso Core.Player.Pokemons(i).Ability.ID <> 90 Then 'Poison Heal ability
                             PlayPoisonSound = True
                             Exit For
                         End If
@@ -1896,7 +1896,7 @@
                         SoundManager.PlaySound("OverworldPoison")
                     End If
                     For i = 0 To Core.Player.Pokemons.Count - 1
-                        If Core.Player.Pokemons(i).Status = Pokemon.StatusProblems.Poison OrElse Core.Player.Pokemons(i).Status = Pokemon.StatusProblems.BadPoison Then
+                        If Core.Player.Pokemons(i).Status = Pokemon.StatusProblems.Poison OrElse Core.Player.Pokemons(i).Status = Pokemon.StatusProblems.BadPoison AndAlso Core.Player.Pokemons(i).Ability.ID <> 90 Then 'Poison Heal ability
                             If Core.Player.Pokemons(i).Ability IsNot Ability.GetAbilityByID(17) Then
                                 Core.Player.Pokemons(i).HP -= 1 * PoisonAmount
                             End If
@@ -1904,7 +1904,7 @@
                     Next
                     If CInt(GameModeManager.GetGameRuleValue("OverworldPoison", "0")) = 1 Then
                         For i = 0 To Core.Player.Pokemons.Count - 1
-                            If Core.Player.Pokemons(i).Status = Pokemon.StatusProblems.Poison OrElse Core.Player.Pokemons(i).Status = Pokemon.StatusProblems.BadPoison Then
+                            If Core.Player.Pokemons(i).Status = Pokemon.StatusProblems.Poison OrElse Core.Player.Pokemons(i).Status = Pokemon.StatusProblems.BadPoison AndAlso Core.Player.Pokemons(i).Ability.ID <> 90 Then 'Poison Heal ability
                                 If Core.Player.Pokemons(i).HP <= 1 Then
                                     Core.Player.Pokemons(i).Status = Pokemon.StatusProblems.None
                                     Core.Player.Pokemons(i).HP = 1
@@ -1914,7 +1914,7 @@
                         Next
                     ElseIf CInt(GameModeManager.GetGameRuleValue("OverworldPoison", "0")) = 2 Then
                         For i = 0 To Core.Player.Pokemons.Count - 1
-                            If Core.Player.Pokemons(i).Status = Pokemon.StatusProblems.Poison OrElse Core.Player.Pokemons(i).Status = Pokemon.StatusProblems.BadPoison Then
+                            If Core.Player.Pokemons(i).Status = Pokemon.StatusProblems.Poison OrElse Core.Player.Pokemons(i).Status = Pokemon.StatusProblems.BadPoison AndAlso Core.Player.Pokemons(i).Ability.ID <> 90 Then 'Poison Heal ability
                                 If Core.Player.Pokemons(i).HP <= 0 Then
                                     Core.Player.Pokemons(i).Status = Pokemon.StatusProblems.Fainted
                                     Screen.TextBox.Show(Core.Player.Pokemons(i).GetDisplayName & "Fainted.")
