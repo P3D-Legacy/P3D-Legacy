@@ -28916,6 +28916,7 @@
     <Compile Include="Battle\BattleSystemV2\QueryObjects\StartRoundQueryObject.vb" />
     <Compile Include="Dialogues\ImageView.vb" />
     <Compile Include="Entities\Environment\HoleBlock.vb" />
+    <Compile Include="Entities\Environment\HalfSlideBlock.vb" />
     <Compile Include="Overworld\NotificationPopup.vb" />
     <Compile Include="Overworld\RouteSign.vb" />
     <Compile Include="Pokemon\Abilities\ArmorTail.vb" />

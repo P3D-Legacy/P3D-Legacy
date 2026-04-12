@@ -178,6 +178,10 @@
                 newEnt = New SlideBlock()
                 SetProperties(newEnt, propertiesEnt)
                 CType(newEnt, SlideBlock).Initialize()
+            Case "halfslideblock"
+                newEnt = New HalfSlideBlock()
+                SetProperties(newEnt, propertiesEnt)
+                CType(newEnt, HalfSlideBlock).Initialize()
             Case "wallbill"
                 newEnt = New WallBill()
                 SetProperties(newEnt, propertiesEnt)
