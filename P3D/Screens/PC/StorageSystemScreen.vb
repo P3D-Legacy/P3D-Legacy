@@ -1372,9 +1372,10 @@ Public Class StorageSystemScreen
         Dim Pokemons = New List(Of Pokemon)
         Dim Data() = Core.Player.BoxData.SplitAtNewline()
         For Each line In Data
-            If Not line.StartsWith("BOX|") Or line = "" Then Continue For
-            Dim pokeData = line.Remove(0, line.IndexOf("{"))
-            Pokemons.Add(Pokemon.GetPokemonByData(pokeData))
+            If Not line.StartsWith("BOX|") Or line = "" Then
+                Dim pokeData = line.Remove(0, line.IndexOf("{"))
+                Pokemons.Add(Pokemon.GetPokemonByData(pokeData))
+            End If
         Next
         Return Pokemons
     End Function
