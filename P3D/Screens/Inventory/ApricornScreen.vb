@@ -168,7 +168,7 @@
                 End If
 
                 If Me.Buttons.Count > 0 Then
-                    If Controls.Accept(False, True, True) = True Then
+                    If Controls.Accept(False, True, True) = True AndAlso Me.Buttons(Me.CursorIndex).Enabled = True Then
                         SoundManager.PlaySound("select")
                         Me.Buttons(Me.CursorIndex).Click()
                     End If
@@ -444,14 +444,14 @@
         Dim d As Date = Date.Now
 
         Dim s As String = "{" & Me.owner & "|" &
-            Me.Apricorns(0) & "," &
-            Me.Apricorns(1) & "," &
-            Me.Apricorns(2) & "," &
-            Me.Apricorns(3) & "," &
-            Me.Apricorns(4) & "," &
-            Me.Apricorns(5) & "," &
-            Me.Apricorns(6) & "|" &
-            d.Year & "," & d.Month & "," & d.Day & "," & d.Hour & "," & d.Minute & "," & d.Second & "}"
+          Me.Apricorns(0) & "," &
+          Me.Apricorns(1) & "," &
+          Me.Apricorns(2) & "," &
+          Me.Apricorns(3) & "," &
+          Me.Apricorns(4) & "," &
+          Me.Apricorns(5) & "," &
+          Me.Apricorns(6) & "|" &
+          d.Year & "," & d.Month & "," & d.Day & "," & d.Hour & "," & d.Minute & "," & d.Second & "}"
 
         If Core.Player.ApricornData <> "" Then
             Core.Player.ApricornData &= Environment.NewLine
