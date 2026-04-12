@@ -1,4 +1,4 @@
-Imports P3D.Screens.UI
+﻿Imports P3D.Screens.UI
 Public Class PartyScreen
 
     Inherits Screen
@@ -743,10 +743,10 @@ Public Class PartyScreen
                 items.Add(Localization.GetString("global_pokemon_move_sweetscent", "Sweet Scent"))
             End If
         End If
-        If CanUseMove(p, 208, -1) And p.HP > CInt(p.MaxHP * 0.2) Then
+        If CanUseMove(p, 208, -1) AndAlso p.MaxHP > 1 AndAlso p.HP > Math.Ceiling(p.MaxHP * 0.2) Then
             items.Add(Localization.GetString("global_pokemon_move_milkdrink", "Milk Drink"))
         End If
-        If CanUseMove(p, 135, -1) And p.HP > CInt(p.MaxHP * 0.2) Then
+        If CanUseMove(p, 135, -1) AndAlso p.MaxHP > 1 AndAlso p.HP > Math.Ceiling(p.MaxHP * 0.2) Then
             items.Add(Localization.GetString("global_pokemon_move_softboiled", "Soft-Boiled"))
         End If
 
@@ -1223,7 +1223,7 @@ Public Class PartyScreen
             If Core.Player.Pokemons(HealIndex).HP < Core.Player.Pokemons(HealIndex).MaxHP Then
                 SoundManager.PlaySound("Use_Item", False)
                 TextBox.Show(Core.Player.Pokemons(FieldMovePokemonIndex).GetDisplayName() & " " & Localization.GetString("fieldmove_milkdrink_used", "used~Milk Drink!*Some HP was shared~with [POKEMON]!").Replace("[POKEMON]", Core.Player.Pokemons(HealIndex).GetDisplayName()))
-                Dim HealHP As Integer = CInt(Core.Player.Pokemons(FieldMovePokemonIndex).MaxHP * 0.2)
+                Dim HealHP As Integer = CInt(Math.Ceiling(Core.Player.Pokemons(FieldMovePokemonIndex).MaxHP * 0.2))
                 Core.Player.Pokemons(FieldMovePokemonIndex).HP -= HealHP
                 Core.Player.Pokemons(HealIndex).HP += HealHP
                 If Core.Player.Pokemons(HealIndex).HP > Core.Player.Pokemons(HealIndex).MaxHP Then
@@ -1264,7 +1264,7 @@ Public Class PartyScreen
             If Core.Player.Pokemons(HealIndex).HP < Core.Player.Pokemons(HealIndex).MaxHP Then
                 SoundManager.PlaySound("Use_Item", False)
                 TextBox.Show(Core.Player.Pokemons(FieldMovePokemonIndex).GetDisplayName() & " " & Localization.GetString("fieldmove_softboiled_used", "used~Soft-Boiled!*Some HP was shared~with [POKEMON]!").Replace("[POKEMON]", Core.Player.Pokemons(HealIndex).GetDisplayName()))
-                Dim HealHP As Integer = CInt(Core.Player.Pokemons(FieldMovePokemonIndex).MaxHP * 0.2)
+                Dim HealHP As Integer = CInt(Math.Ceiling(Core.Player.Pokemons(FieldMovePokemonIndex).MaxHP * 0.2))
                 Core.Player.Pokemons(FieldMovePokemonIndex).HP -= HealHP
                 Core.Player.Pokemons(HealIndex).HP += HealHP
                 If Core.Player.Pokemons(HealIndex).HP > Core.Player.Pokemons(HealIndex).MaxHP Then
