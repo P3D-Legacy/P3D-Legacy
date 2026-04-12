@@ -68,6 +68,7 @@ Public Class PartyScreen
     Public CanChooseEgg As Boolean = True
     Public CanChooseHMPokemon As Boolean = True
     Public CanChooseFusedPokemon As Boolean = True
+    Public CannotChooseIndex As Integer = -1
 
     Public Delegate Sub DoStuff(ByVal PokeIndex As Integer)
     Dim ChoosePokemon As DoStuff
@@ -89,7 +90,7 @@ Public Class PartyScreen
                                                  Identifications.GTSTradeScreen,
                                                  Identifications.PVPLobbyScreen}
 
-    Public Sub New(ByVal currentScreen As Screen, ByVal Item As Item, ByVal ChoosePokemon As DoStuff, ByVal Title As String, ByVal canExit As Boolean, ByVal canChooseFainted As Boolean, ByVal canChooseEgg As Boolean, Optional ByVal _pokemonList As List(Of Pokemon) = Nothing, Optional ByVal ChooseMode As Boolean = True)
+    Public Sub New(ByVal currentScreen As Screen, ByVal Item As Item, ByVal ChoosePokemon As DoStuff, ByVal Title As String, ByVal canExit As Boolean, ByVal canChooseFainted As Boolean, ByVal canChooseEgg As Boolean, Optional ByVal _pokemonList As List(Of Pokemon) = Nothing, Optional ByVal ChooseMode As Boolean = True, Optional cannotChooseIndex As Integer = -1)
 
         _preScreenTarget = New RenderTarget2D(GraphicsDevice, windowSize.Width, windowSize.Height, False, SurfaceFormat.Color, DepthFormat.Depth24Stencil8)
         _blur = New Resources.Blur.BlurHandler(windowSize.Width, windowSize.Height)
@@ -101,6 +102,7 @@ Public Class PartyScreen
         Me.ChooseMode = ChooseMode
         Me.CanChooseEgg = canChooseEgg
         Me.CanChooseFainted = canChooseFainted
+        Me.CannotChooseIndex = cannotChooseIndex
         If ChoosePokemon IsNot Nothing Then
             Me.ChoosePokemon = ChoosePokemon
         End If
@@ -200,6 +202,8 @@ Public Class PartyScreen
 
         DrawBackground()
         DrawPokemonArea()
+
+        TextBox.Draw()
 
         If _messageDelay > 0F Then
             Dim textFade As Single = 1.0F
@@ -512,6 +516,10 @@ Public Class PartyScreen
             End If
         End If
 
+        If ChooseBox.Showing = False Then
+            TextBox.Update()
+        End If
+
         If _closing And _messageDelay = 0 Then
             If _interfaceFade > 0F Then
                 _interfaceFade = MathHelper.Lerp(0, _interfaceFade, 0.8F)
@@ -575,7 +583,7 @@ Public Class PartyScreen
                 _cursorPosition.X = MathHelper.Lerp(_cursorDest.X, _cursorPosition.X, 0.8F)
                 _cursorPosition.Y = MathHelper.Lerp(_cursorDest.Y, _cursorPosition.Y, 0.8F)
 
-                If Controls.Accept() Then
+                If Not TextBox.Showing AndAlso Controls.Accept() Then
                     If _isSwitching Then
                         _isSwitching = False
 
@@ -592,7 +600,7 @@ Public Class PartyScreen
                     End If
                 End If
 
-                If Controls.Dismiss() And CanExit Then
+                If Not TextBox.Showing AndAlso Controls.Dismiss() And CanExit Then
                     If _isSwitching Then
                         _isSwitching = False
                     Else
@@ -665,6 +673,11 @@ Public Class PartyScreen
                 If p.AdditionalData = "black" Or p.AdditionalData = "white" Then
                     Return False
                 End If
+            End If
+        End If
+        If Me.CannotChooseIndex <> -1 Then
+            If _index = Me.CannotChooseIndex Then
+                Return False
             End If
         End If
         Return True

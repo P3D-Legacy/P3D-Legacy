@@ -976,18 +976,17 @@ Namespace BattleSystem
                 If _moveMenuAlpha <= 0 Then
                     _moveMenuAlpha = 0
                     If BattleScreen.OwnPokemon.Attacks(_moveMenuIndex).SwapsOutOwnPokemon = True Then
-                        If PartyScreen.Selected = -1 Then
-                            Dim selScreen = New PartyScreen(Core.CurrentScreen, Item.GetItemByID(5.ToString), Nothing, Localization.GetString("party_screen_ChoosePokemon", "Choose Pokémon"), False, False, False) With {.Mode = Screens.UI.ISelectionScreen.ScreenMode.Selection, .CanExit = False, .SelectButtonText = Localization.GetString("global_switch", "Switch")}
+                        If PartyScreen.Selected = -1 AndAlso Core.Player.CountFightablePokemon > 1 Then
+                            Dim selScreen = New PartyScreen(Core.CurrentScreen, Item.GetItemByID(5.ToString), Nothing, Localization.GetString("party_screen_ChoosePokemon", "Choose Pokémon"), False, False, False) With {.Mode = Screens.UI.ISelectionScreen.ScreenMode.Selection, .CanExit = False, .CannotChooseIndex = BattleScreen.OwnPokemonIndex, .SelectButtonText = Localization.GetString("global_switch", "Switch")}
                             AddHandler selScreen.SelectedObject, Nothing
 
                             Core.SetScreen(selScreen)
                         End If
-                        If PartyScreen.Selected = BattleScreen.OwnPokemonIndex AndAlso CurrentScreen.Identification <> Screen.Identifications.PartyScreen Then
-                            If Core.Player.CountFightablePokemon > 1 Then
-                                PartyScreen.Selected = -1
-                            End If
+                        Dim LastFightingPokemon As Boolean = False
+                        If Core.Player.CountFightablePokemon = 1 Then
+                            LastFightingPokemon = True
                         End If
-                        If CurrentScreen.Identification <> Screen.Identifications.PartyScreen AndAlso (PartyScreen.Selected <> -1 OrElse Core.Player.CountFightablePokemon = 1) Then
+                        If CurrentScreen.Identification <> Screen.Identifications.PartyScreen AndAlso (PartyScreen.Selected <> -1 OrElse LastFightingPokemon = True) Then
                             If BattleScreen.OwnPokemon.Attacks(_moveMenuIndex).ID = 226 Then
                                 BattleScreen.FieldEffects.OwnBatonPassIndex = PartyScreen.Selected
                             Else
