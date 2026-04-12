@@ -164,8 +164,18 @@ nextIndex:
                                         End Select
                                     End If
                                 Else
-                                    Exit For
-                                    InBall = False
+                                    If CriticalCapture = True Then
+                                        Select Case i
+                                            Case 0
+                                                Shakes.Add(False)
+                                            Case 1
+                                                InBall = False
+                                                Exit For
+                                        End Select
+                                    Else
+                                        Exit For
+                                        InBall = False
+                                    End If
                                 End If
                             Next
                             If Core.Player.ShowBattleAnimations <> 0 AndAlso BattleScreen.IsPVPBattle = False Then
