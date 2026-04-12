@@ -600,7 +600,8 @@ E:
 Pike Building
 {"Entity"{ENT[{"ID"{int[14]}}{"Scale"{sngArr[2.01,2,2.01]}}{"EntityID"{str[WallBlock]}}{"Position"{sngArr[33,3.49,28.5]}}{"TexturePath"{str[BarkTown]}}{"Textures"{recArr[[64,0,16,16]]}}{"TextureIndex"{intArr[0,0]}}{"Collision"{bool[0]}}{"ModelID"{int[1]}}{"Action"{int[0]}}{"AdditionalValue"{str[]}}{"ModelPath"{str[Models\BattlePike\BattlePike]}}{"Rotation"{int[1]}}]}}
 
-{"EntityField"{ENT[{"Size"{intArr[1,1]}}{"EntityID"{str[SlideBlock]}}{"Position"{sngArr[33,4,40]}}{"TexturePath"{str[frontier]}}{"Textures"{recArr[[16,0,16,16]]}}{"TextureIndex"{intArr[-1,-1,-1,-1,-1,-1]}}{"Collision"{bool[1]}}{"ModelID"{int[2]}}{"Action"{int[0]}}{"AdditionalValue"{str[]}}{"Rotation"{int[2]}}]}}
+{"EntityField"{ENT[{"Size"{intArr[1,1]}}{"EntityID"{str[HalfSlideBlock]}}{"Position"{sngArr[33,4,40]}}{"TexturePath"{str[frontier]}}{"Textures"{recArr[[16,0,16,16]]}}{"TextureIndex"{intArr[-1,-1,-1,-1,-1,-1]}}{"Collision"{bool[1]}}{"ModelID"{int[2]}}{"Action"{int[0]}}{"AdditionalValue"{str[]}}{"Rotation"{int[2]}}]}}
+{"EntityField"{ENT[{"Size"{intArr[1,1]}}{"EntityID"{str[HalfSlideBlock]}}{"Position"{sngArr[33,4,41]}}{"TexturePath"{str[frontier]}}{"Textures"{recArr[[16,0,16,16]]}}{"TextureIndex"{intArr[-1,-1,-1,-1,-1,-1]}}{"Collision"{bool[1]}}{"ModelID"{int[2]}}{"Action"{int[0]}}{"AdditionalValue"{str[]}}{"Rotation"{int[2]}}]}}
 {"Floor"{ENT[{"Size"{intArr[1,2]}}{"Position"{intArr[33,5,38]}}{"hasSnow"{bool[0]}}{"TexturePath"{str[frontier]}}{"Texture"{rec[16,0,16,16]}}{"Visible"{bool[0]}}]}}
 	
 NPCs:
