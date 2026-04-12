@@ -1,4 +1,4 @@
-﻿Imports P3D.Screens.UI
+Imports P3D.Screens.UI
 Public Class PartyScreen
 
     Inherits Screen
@@ -1303,11 +1303,13 @@ Public Class PartyScreen
                 .PokemonEncounterData.PokeFile = ""
 
                 Dim p As Pokemon = Spawner.GetPokemon(.LevelFile, .PokemonEncounterData.Method, True, "")
-
                 If Not p Is Nothing Then
-                    TextBox.Show(PokemonList(_index).GetDisplayName() & " " & Localization.GetString("fieldmove_sweetscent_used", "used~Sweet Scent!"))
-
-                    .PokemonEncounter.TriggerBattle()
+                    Dim scr As String = "version=2" & Environment.NewLine &
+                        "@text.show(" & PokemonList(_index).GetDisplayName() & " <system.token(fieldmove_sweetscent_used)>)" & Environment.NewLine &
+                        "@battle.wild(" & p.GetSaveData & ")" & Environment.NewLine &
+                        ":end"
+                    CType(Core.CurrentScreen, OverworldScreen).ActionScript.StartScript(scr, 2)
+                    .PokemonEncounterData.EncounteredPokemon = False
                 Else
                     TextBox.Show(Localization.GetString("fieldmove_sweetscent_CannotUse", "Cannot use Sweet Scent here."), {}, True, False)
                 End If
