@@ -26,7 +26,7 @@ Namespace Items.Standard
             Dim BattleScreen As BattleSystem.BattleScreen = CType(s, BattleSystem.BattleScreen)
 
             If BattleScreen.IsTrainerBattle = True Then
-                Screen.TextBox.Show("Cannot run from a trainer battle!", {}, False, False)
+                Screen.TextBox.Show("Cannot run from a trainer~battle!", {}, False, False)
                 Return False
             Else
                 Me.RemoveItem()
