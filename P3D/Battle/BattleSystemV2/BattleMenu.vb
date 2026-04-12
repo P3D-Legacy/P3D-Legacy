@@ -731,7 +731,7 @@ Namespace BattleSystem
                             End If
                         Else
                             If BattleScreen.IsTrainerBattle = False Then
-                                _mainMenuItemList.Add(New MainMenuItem(2, Localization.GetString("battle_action_Run", "Run"), 2, AddressOf MainMenuRun))
+                                _mainMenuItemList.Add(New MainMenuItem(3, Localization.GetString("battle_action_Run", "Run"), 2, AddressOf MainMenuRun))
                                 MainMenuAddMegaEvolution(BattleScreen, 3)
                             Else
                                 MainMenuAddMegaEvolution(BattleScreen, 2)
