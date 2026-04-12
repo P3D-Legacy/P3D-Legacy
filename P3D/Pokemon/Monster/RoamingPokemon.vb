@@ -11,14 +11,14 @@ Public Class RoamingPokemon
         Dim data() As String = DataLine.Split(CChar("|"))
 
         Me.RoamerID = data(0)
-        Me.PokemonReference = Pokemon.GetPokemonByData(data(8))
+        Me.PokemonReference = Pokemon.GetPokemonByData(data(7))
 
         Me.WorldID = CInt(data(3))
         Me.LevelFile = data(4)
         Me.MusicLoop = data(5)
 
         If data.Length = 10 Then
-            ScriptPath = data(9)
+            ScriptPath = data(8)
         End If
     End Sub
 
