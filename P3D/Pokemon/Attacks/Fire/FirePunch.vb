@@ -78,15 +78,15 @@
             Dim currentAmount As Integer = 0
             While currentAmount <= maxAmount
                 Dim Texture As Texture2D = TextureManager.GetTexture("Textures\Battle\Fire\Ember", New Rectangle(0, 64, 32, 32), "")
-                Dim xDest = CSng((Random.NextDouble() - 0.5) * 1.5)
-                Dim yDest = 0.25F
-                Dim zDest = CSng((Random.NextDouble() - 0.5) * 1.5)
+                Dim xDest = CSng((Random.NextDouble() - 0.5) * 1.2)
+                Dim yDest = 0.375F
+                Dim zDest = CSng((Random.NextDouble() - 0.5) * 1.2)
 
                 Dim Destination As New Vector3(xDest, yDest, zDest)
 
-                Dim Position As New Vector3(0, 0, 0)
+                Dim Position As New Vector3(0, -0.1, 0)
 
-                Dim Scale As New Vector3(0.35F)
+                Dim Scale As New Vector3(0.375F)
                 Dim startDelay As Double = 1.5 * Random.NextDouble()
                 Dim FlameEntity As Entity = MoveAnimation.SpawnEntity(Position, Texture, Scale, 1.0F, CSng(startDelay))
 
@@ -95,7 +95,7 @@
                 Threading.Interlocked.Increment(currentAmount)
             End While
 
-            Dim FistEntity = MoveAnimation.SpawnEntity(New Vector3(0, -0.2, 0), TextureManager.GetTexture("Textures\Battle\Fire\FirePunch_Fist"), New Vector3(0.5F), 0.0F, 0, 2)
+            Dim FistEntity = MoveAnimation.SpawnEntity(New Vector3(0, -0.2, 0), TextureManager.GetTexture("Textures\Battle\Fire\FirePunch_Fist"), New Vector3(0.5F), 1.0F, 0, 2)
             MoveAnimation.AnimationOscillateMove(FistEntity, False, New Vector3(0, 0.02, 0), 0.03, True, 7, 0, 0.5, 0, New Vector3(0, 1, 0))
             MoveAnimation.AnimationFade(FistEntity, True, 1.0F, 0.0F, 7, 0)
             MoveAnimation.AnimationPlaySound("Battle\Attacks\Fire\FirePunch", 0, 0)
