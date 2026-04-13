@@ -3,7 +3,7 @@ version=2
 	@Text.show(Oh!~Hello, welcome to my shop!*We've only opened up recently.*Our merchandise is limited,~but I hope we can serve~your needs.)
 	@register.register(boonmartfirstvisit)
 :else
-	@text.show(Hi, There!~May I help you?)
+	@text.show(Hi, there!~May I help you?)
 :endif
 @Options.show(Store,See Ya!)
 	:when:Store
