@@ -1724,7 +1724,9 @@
             StepEventWildPokemon()
             StepEventPokegearCall()
         Else
-            IsFlying = False
+            If CType(Core.CurrentScreen, OverworldScreen).ActionScript.IsReady = True Then
+                IsFlying = False
+            End If
         End If
     End Sub
 
