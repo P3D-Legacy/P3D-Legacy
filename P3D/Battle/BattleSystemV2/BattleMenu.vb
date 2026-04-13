@@ -1147,11 +1147,13 @@ Namespace BattleSystem
                                 TempBattleScreen.BattleQuery.Add(TempBattleScreen.FocusBattle())
                                 TempBattleScreen.BattleQuery.Insert(0, New ToggleMenuQueryObject(True))
                                 TempBattleScreen.SendClientCommand("SWITCH|" & PokeIndex.ToString())
+                                PartyScreen.Selected = -1
                             Else
                                 TempBattleScreen.BattleQuery.Clear()
                                 TempBattleScreen.BattleQuery.Add(TempBattleScreen.FocusBattle())
                                 TempBattleScreen.BattleQuery.Insert(0, New ToggleMenuQueryObject(True))
                                 TempBattleScreen.Battle.InitializeRound(TempBattleScreen, New Battle.RoundConst With {.StepType = Battle.RoundConst.StepTypes.Switch, .Argument = PokeIndex.ToString()})
+                                PartyScreen.Selected = -1
                             End If
                         End If
                     Else
