@@ -168,13 +168,12 @@ nextIndex:
                                         Select Case i
                                             Case 0
                                                 Shakes.Add(False)
-                                            Case 1
                                                 InBall = False
                                                 Exit For
                                         End Select
                                     Else
-                                        Exit For
                                         InBall = False
+                                        Exit For
                                     End If
                                 End If
                             Next
