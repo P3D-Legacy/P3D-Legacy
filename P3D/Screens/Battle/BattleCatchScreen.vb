@@ -541,7 +541,7 @@ nextIndex:
         End If
         Dim CriticalCaptureChance As Integer = CInt(Math.Floor(CriticalMultiplier / 6))
         Dim CriticalCheck As Integer = Core.Random.Next(0, 255 + 1)
-        If CriticalCheck < CriticalCaptureChance Then
+        If CriticalCheck < CriticalCaptureChance AndAlso Ball.ID <> 1 Then
             CriticalCapture = True
         End If
 
