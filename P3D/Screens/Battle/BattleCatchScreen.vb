@@ -1,4 +1,4 @@
-﻿Public Class BattleCatchScreen
+Public Class BattleCatchScreen
 
     Inherits Screen
 
@@ -106,7 +106,11 @@ nextIndex:
     End Sub
 
     Private Sub SetCamera()
-        Camera.Position = New Vector3(BattleScreen.OppPokemonNPC.Position.X - 2.5F, BattleScreen.OppPokemonNPC.Position.Y + 0.25F, BattleScreen.OppPokemonNPC.Position.Z + 0.5F) - BattleSystem.BattleScreen.BattleMapOffset
+        Dim ModelOffsetY As Single = 0.0F
+        If BattleScreen.OppPokemonNPC.ModelPath <> "" Then
+            ModelOffsetY = 0.5F
+        End If
+        Camera.Position = New Vector3(BattleScreen.OppPokemonNPC.Position.X - 2.5F, BattleScreen.OppPokemonNPC.Position.Y + 0.25F + ModelOffsetY, BattleScreen.OppPokemonNPC.Position.Z + 0.5F) - BattleSystem.BattleScreen.BattleMapOffset
         Camera.Pitch = -0.25F
         Camera.Yaw = MathHelper.Pi * 1.5F + 0.25F
     End Sub
@@ -131,7 +135,10 @@ nextIndex:
         Level.Update()
 
         BattleScreen.OppPokemonNPC.UpdateEntity()
-
+        Dim ModelOffsetY As Single = 0.0F
+        If BattleScreen.OppPokemonNPC.ModelPath <> "" Then
+            ModelOffsetY = 0.5F
+        End If
         CType(Camera, BattleSystem.BattleCamera).UpdateMatrices()
         CType(Camera, BattleSystem.BattleCamera).UpdateFrustum()
         If TextBox.Showing = False Then
@@ -179,7 +186,7 @@ nextIndex:
                             Next
                             If Core.Player.ShowBattleAnimations <> 0 AndAlso BattleScreen.IsPVPBattle = False Then
 
-                                Dim PokemonPosition = BattleScreen.OppPokemonNPC.Position - BattleSystem.BattleScreen.BattleMapOffset
+                                Dim PokemonPosition = BattleScreen.OppPokemonNPC.Position - BattleSystem.BattleScreen.BattleMapOffset + New Vector3(0, ModelOffsetY, 0)
                                 PokemonScale = BattleScreen.OppPokemonNPC.Scale
                                 'Ball is thrown
                                 Dim CatchAnimation = New BattleSystem.AnimationQueryObject(Nothing, False)
@@ -189,7 +196,7 @@ nextIndex:
                                     CatchAnimation.AnimationPlaySound("Battle\Pokeball\Throw", 0, 0)
                                 End If
 
-                                Dim BallPosition As Vector3 = New Vector3(BattleScreen.OppPokemonNPC.Position.X - 3, BattleScreen.OppPokemonNPC.Position.Y + 0.15F, BattleScreen.OppPokemonNPC.Position.Z)
+                                Dim BallPosition As Vector3 = New Vector3(PokemonPosition.X - 3, PokemonPosition.Y + 0.15F, PokemonPosition.Z)
                                 Dim BallEntity As Entity = CatchAnimation.SpawnEntity(BallPosition, Ball.Texture, New Vector3(0.3F), 1.0F, 0, 0)
 
                                 CatchAnimation.AnimationMove(BallEntity, False, 3, 0.1F, 0, 0.075, False, False, 0F, 0F,,, 0.025)
@@ -200,7 +207,7 @@ nextIndex:
                                 CatchAnimation.AnimationPlaySound("Battle\Pokeball\Open", 3, 0)
                                 Dim SmokeParticlesClose As Integer = 0
                                 Do
-                                    Dim SmokePosition = New Vector3(BattleScreen.OppPokemonNPC.Position.X + CSng(Random.Next(-10, 10) / 10), BattleScreen.OppPokemonNPC.Position.Y - 0.35F, BattleScreen.OppPokemonNPC.Position.Z + CSng(Random.Next(-10, 10) / 10))
+                                    Dim SmokePosition = New Vector3(PokemonPosition.X + CSng(Random.Next(-10, 10) / 10), PokemonPosition.Y - 0.35F, PokemonPosition.Z + CSng(Random.Next(-10, 10) / 10))
 
 
                                     Dim SmokeTexture As Texture2D = TextureManager.GetTexture("Textures\Battle\Smoke")
@@ -217,7 +224,11 @@ nextIndex:
                                 CatchAnimation.AnimationScale(BattleScreen.OppPokemonNPC, False, 0.0F, 0.0F, 0.0F, 0.035F, 3, 0, "t")
 
                                 ' Ball falls
-                                CatchAnimation.AnimationMove(BallEntity, False, 3, -0.35, 0, 0.1F, False, False, 8, 0)
+                                Dim BallOffsetY As Single = 0
+                                If ModelOffsetY <> 0 Then
+                                    BallOffsetY = 0.25F
+                                End If
+                                CatchAnimation.AnimationMove(BallEntity, False, 3, -0.35F - BallOffsetY, 0, 0.1F, False, False, 8, 0)
                                 CatchAnimation.AnimationPlaySound("Battle\Pokeball\Land", 9, 0)
 
 
@@ -232,7 +243,7 @@ nextIndex:
 
                                 If InBall = True Then
                                     For i = 0 To 2
-                                        Dim StarPosition As Vector3 = New Vector3(BattleScreen.OppPokemonNPC.Position.X + 0.05F, BattleScreen.OppPokemonNPC.Position.Y, BattleScreen.OppPokemonNPC.Position.Z)
+                                        Dim StarPosition As Vector3 = New Vector3(PokemonPosition.X + 0.05F, PokemonPosition.Y, PokemonPosition.Z)
                                         Dim StarDestination As Vector3 = New Vector3(0.05F, 0.65F, 0 - ((1 - i) * 0.4F))
                                         Dim StarEntity As Entity = CatchAnimation.SpawnEntity(StarPosition, TextureManager.GetTexture("Textures\Battle\BallCatchStar"), New Vector3(0.35F), 1.0F, 12 + Shakes.Count * 10)
                                         CatchAnimation.AnimationMove(StarEntity, True, StarDestination.X, StarDestination.Y, StarDestination.Z, 0.01F, False, False, 12 + Shakes.Count * 10, 0.0F,,, 0.015F)
@@ -245,7 +256,7 @@ nextIndex:
                                     ' Ball Opens
                                     Dim SmokeParticlesOpen As Integer = 0
                                     Do
-                                        Dim SmokePosition = BattleScreen.OppPokemonNPC.Position
+                                        Dim SmokePosition = PokemonPosition
                                         Dim SmokeDestination = New Vector3(CSng(Random.Next(-10, 10) / 10), CSng(Random.Next(-10, 10) / 10), CSng(Random.Next(-10, 10) / 10))
 
                                         Dim SmokeTexture As Texture2D = TextureManager.GetTexture("Textures\Battle\Smoke")
@@ -261,7 +272,11 @@ nextIndex:
                                     Loop While SmokeParticlesOpen <= 38
 
                                     ' Pokemon appears
-                                    CatchAnimation.AnimationSetPosition(BattleScreen.OppPokemonNPC, False, PokemonPosition.X, PokemonPosition.Y - 0.25F, PokemonPosition.Z, 11 + Shakes.Count * 10, 0)
+                                    Dim PositionOffsetY As Single = 0
+                                    If ModelOffsetY <> 0 Then
+                                        PositionOffsetY = -0.25F
+                                    End If
+                                    CatchAnimation.AnimationSetPosition(BattleScreen.OppPokemonNPC, False, PokemonPosition.X, PokemonPosition.Y - 0.25F - PositionOffsetY, PokemonPosition.Z, 11 + Shakes.Count * 10, 0)
                                     CatchAnimation.AnimationScale(BattleScreen.OppPokemonNPC, False, PokemonScale.X, PokemonScale.Y, PokemonScale.Z, 0.035F, 12 + Shakes.Count * 10, 0, "b")
 
                                 End If
@@ -309,7 +324,7 @@ nextIndex:
                         If CBool(GameModeManager.GetGameRuleValue("GainExpAfterCatch", "0")) = True AndAlso BattleSystem.BattleScreen.CanReceiveEXP = True Then
                             CType(Core.CurrentScreen, BattleSystem.BattleScreen).BattleQuery.Clear()
                             If CType(Camera, BattleSystem.BattleCamera).TargetMode = True Then
-                                Camera.Position = New Vector3(BattleScreen.OppPokemonNPC.Position.X - 2.5F, BattleScreen.OppPokemonNPC.Position.Y + 0.25F, BattleScreen.OppPokemonNPC.Position.Z + 0.5F) - BattleSystem.BattleScreen.BattleMapOffset
+                                Camera.Position = New Vector3(BattleScreen.OppPokemonNPC.Position.X - 2.5F, BattleScreen.OppPokemonNPC.Position.Y + 0.25F + ModelOffsetY, BattleScreen.OppPokemonNPC.Position.Z + 0.5F) - BattleSystem.BattleScreen.BattleMapOffset
                                 Camera.Pitch = -0.25F
                                 Camera.Yaw = MathHelper.Pi * 1.5F + 0.25F
                                 CType(Camera, BattleSystem.BattleCamera).TargetMode = False
