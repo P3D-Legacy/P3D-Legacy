@@ -251,8 +251,12 @@
         Public Sub New(ByVal BattleScreen As BattleScreen, ByVal NewPokemon As Pokemon)
             MyBase.New(QueryTypes.SwitchPokemon)
 
+            Dim SecondPart As String = Localization.GetString("battle_trainer_about_to_send_out_2")
+            If "!?¡¿-,;.'""~".Contains(SecondPart.Remove(1)) = False Then
+                SecondPart = " " & SecondPart
+            End If
             Me.TempScreen = BattleScreen
-            TransformText(BattleScreen.Trainer.Name & " " & Localization.GetString("battle_trainer_about_to_send_out_1") & " " & NewPokemon.GetDisplayName() & Localization.GetString("battle_trainer_about_to_send_out_2"))
+            TransformText(BattleScreen.Trainer.Name & " " & Localization.GetString("battle_trainer_about_to_send_out_1") & " " & NewPokemon.GetDisplayName() & SecondPart)
         End Sub
 
         Dim delay As Single = 2.0F
