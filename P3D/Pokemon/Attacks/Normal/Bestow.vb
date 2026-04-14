@@ -110,6 +110,24 @@
                         BattleScreen.FieldEffects.StolenItemIDs.Add(ItemID)
                     End If
                     op.Item = Item.GetItemByID(ItemID)
+                    If op.Item IsNot Nothing AndAlso op.OriginalItem IsNot Nothing Then
+                        Dim opItemID As String
+                        If op.Item.IsGameModeItem = True Then
+                            opItemID = op.Item.gmID
+                        Else
+                            opItemID = op.Item.ID.ToString
+                        End If
+                        Dim opOriginalItemID As String
+                        If op.OriginalItem.IsGameModeItem = True Then
+                            opOriginalItemID = op.OriginalItem.gmID
+                        Else
+                            opOriginalItemID = op.OriginalItem.ID.ToString
+                        End If
+
+                        If opItemID = opOriginalItemID AndAlso op.Item.AdditionalData = op.OriginalItem.AdditionalData Then
+                            op.OriginalItem = Nothing
+                        End If
+                    End If
                 End If
             Else
                 BattleScreen.BattleQuery.Add(New TextQueryObject(Me.Name & " failed!"))

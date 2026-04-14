@@ -1394,11 +1394,16 @@ nextIndex:
                             End If
 
                             p.Item.AdditionalData = p.OriginalItem.AdditionalData
-                            If ItemReturnScript <> "" Then
+                            If ItemReturnScript <> "@Text.Show(" Then
                                 ItemReturnScript &= "*"
                             End If
                             ItemReturnScript &= Core.Player.Name & " received~" & p.OriginalItem.Name & "*and gave it back to~" & p.GetDisplayName & "!"
                             p.OriginalItem = Nothing
+                        Else
+                            If p.Item IsNot Nothing Then
+                                p.Item = Nothing
+                                p.OriginalItem = Nothing
+                            End If
                         End If
                     Else
                         If Not p.OriginalItem Is Nothing Then
@@ -1411,7 +1416,7 @@ nextIndex:
 
                                 p.Item.AdditionalData = p.OriginalItem.AdditionalData
 
-                                If ItemReturnScript <> "" Then
+                                If ItemReturnScript <> "@Text.Show(" Then
                                     ItemReturnScript &= "*"
                                 End If
 
@@ -1423,11 +1428,19 @@ nextIndex:
                                 Else
                                     Core.Player.Inventory.AddItem(p.OriginalItem.ID.ToString, 1)
                                 End If
+                                If ItemReturnScript = "@Text.Show(" Then
+                                    ItemReturnScript = ""
+                                End If
                                 If ItemReturnScript <> "" Then
                                     ItemReturnScript &= ")" & Environment.NewLine
                                 End If
                                 ItemReturnScript &= "@Sound.Play(Receive_Item)" & Environment.NewLine & "@Text.Show(" & Core.Player.Name & " found~" & p.OriginalItem.Name & "!*" & Core.Player.Inventory.GetMessageReceive(p.OriginalItem, 1)
 
+                                p.OriginalItem = Nothing
+                            End If
+                        Else
+                            If p.Item IsNot Nothing Then
+                                p.Item = Nothing
                                 p.OriginalItem = Nothing
                             End If
                         End If

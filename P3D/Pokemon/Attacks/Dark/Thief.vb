@@ -99,6 +99,24 @@
                         BattleScreen.FieldEffects.StolenItemIDs.Add(ItemID)
                     End If
                     p.Item = Item.GetItemByID(ItemID)
+                    If p.Item IsNot Nothing AndAlso p.OriginalItem IsNot Nothing Then
+                        Dim pItemID As String
+                        If p.Item.IsGameModeItem = True Then
+                            pItemID = p.Item.gmID
+                        Else
+                            pItemID = p.Item.ID.ToString
+                        End If
+                        Dim pOriginalItemID As String
+                        If p.OriginalItem.IsGameModeItem = True Then
+                            pOriginalItemID = p.OriginalItem.gmID
+                        Else
+                            pOriginalItemID = p.OriginalItem.ID.ToString
+                        End If
+
+                        If pItemID = pOriginalItemID AndAlso p.Item.AdditionalData = p.OriginalItem.AdditionalData Then
+                            p.OriginalItem = Nothing
+                        End If
+                    End If
                 End If
             End If
         End Sub

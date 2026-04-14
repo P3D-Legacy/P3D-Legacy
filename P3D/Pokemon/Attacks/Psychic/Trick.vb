@@ -133,31 +133,34 @@ Namespace BattleSystem.Moves.Psychic
                     End If
                     Dim pOriginalItemID As String
                     If p.OriginalItem.IsGameModeItem = True Then
-                        pOriginalItemID = p.Item.gmID
+                        pOriginalItemID = p.OriginalItem.gmID
                     Else
-                        pOriginalItemID = p.Item.ID.ToString
+                        pOriginalItemID = p.OriginalItem.ID.ToString
                     End If
 
                     If pItemID = pOriginalItemID AndAlso p.Item.AdditionalData = p.OriginalItem.AdditionalData Then
                         p.OriginalItem = Nothing
+                        If own = True AndAlso BattleScreen.FieldEffects.StolenItemIDs.Contains(pItemID) Then
+                            BattleScreen.FieldEffects.StolenItemIDs.Remove(pItemID)
+                        End If
                     End If
                 End If
                 If op.Item IsNot Nothing AndAlso op.OriginalItem IsNot Nothing Then
                     Dim opItemID As String
-                    If p.Item.IsGameModeItem = True Then
+                    If op.Item.IsGameModeItem = True Then
                         opItemID = op.Item.gmID
                     Else
                         opItemID = op.Item.ID.ToString
                     End If
                     Dim opOriginalItemID As String
-                    If p.OriginalItem.IsGameModeItem = True Then
-                        opOriginalItemID = op.Item.gmID
+                    If op.OriginalItem.IsGameModeItem = True Then
+                        opOriginalItemID = op.OriginalItem.gmID
                     Else
-                        opOriginalItemID = op.Item.ID.ToString
+                        opOriginalItemID = op.OriginalItem.ID.ToString
                     End If
 
                     If opItemID = opOriginalItemID AndAlso op.Item.AdditionalData = op.OriginalItem.AdditionalData Then
-                        p.OriginalItem = Nothing
+                        op.OriginalItem = Nothing
                     End If
                 End If
 
