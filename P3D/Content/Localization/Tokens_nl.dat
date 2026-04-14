@@ -192,11 +192,11 @@ fieldmove_flash_AlreadyLitUp,De omgeving is al verlicht!
 fieldmove_flash_used,gebruikte~Flits!
 
 fieldmove_milkdrink_softboiled_ChoosePokemon,Kies Pokémon om te Genezen
-fieldmove_milkdrink_softboiled_CannotChoose_FullHP,[POKEMON] is al~volledig genezen.
-fieldmove_milkdrink_softboiled_CannotChoose_SamePokemon,[POKEMON] kan zichzelf~niet genezen.
+fieldmove_milkdrink_softboiled_CannotChoose_FullHP,[POKEMONNAME] is al~volledig genezen.
+fieldmove_milkdrink_softboiled_CannotChoose_SamePokemon,[POKEMONNAME] kan zichzelf~niet genezen.
 
-fieldmove_milkdrink_used,gebruikte~Melkdrank!*Een kleine hoeveelheid IP~werd gedeeld met [POKEMON]!
-fieldmove_softboiled_used,gebruikte~Zachtgekookt!*Een kleine hoeveelheid IP~werd gedeeld met [POKEMON]!
+fieldmove_milkdrink_used,gebruikte~Melkdrank!*Een kleine hoeveelheid IP~werd gedeeld met [POKEMONNAME]!
+fieldmove_softboiled_used,gebruikte~Zachtgekookt!*Een kleine hoeveelheid IP~werd gedeeld met [POKEMONNAME]!
 
 fieldmove_sweetscent_CannotUse,Kan hier niet Zoete geur~gebruiken.
 fieldmove_sweetscent_used,gebruikte~Zoete geur!
@@ -519,8 +519,8 @@ mail_screen_mail_delete_confirm,Deze Brief verwijderen?
 mail_screen_mail_deleted_from_mailbox,De Brief is uit het postvak verwijderd.
 mail_screen_mail_added_to_mailbox,De Brief is aan het postvak op je PC toegevoegd.
 mail_screen_mail_missing_contents,Vul de Koptekst, het Bericht en de Ondertekening in.
-mail_screen_mail_attached_mail,De Brief is aan [POKEMON] gegeven.
-mail_screen_mail_taken_item_and_attached_mail,Wisselde [ITEM] van [POKEMON] om met de Brief.
+mail_screen_mail_attached_mail,De Brief is aan [POKEMONNAME] gegeven.
+mail_screen_mail_taken_item_and_attached_mail,Wisselde [ITEM] van [POKEMONNAME] om met de Brief.
 ---
 PartyScreen:
 party_screen_Unable,Onmogelijk!
@@ -528,7 +528,7 @@ party_screen_Able,Mogelijk!
 party_screen_FieldMove,Veldtechniek
 party_screen_ChoosePokemon,Kies Pokémon
 party_screen_CannotChoosePokemon,Kan deze Pokémon niet~kiezen.
-party_screen_TakenItemFromPokemon,Taken <item>~from <name>.
+party_screen_TakenItemFromPokemon,Nam een <item>~van <name>.
 ---
 NewGameScreen:
 new_game_intro_1,Hallo!~Sorry dat je moest wachten!*Welkom in de wereld van~Pokémon!*Mijn naam is Oak.~Mensen noemen mij de Pokémon~Prof.*Deze wereld wordt bewoond~door wezens die wij...

@@ -804,14 +804,14 @@
     End Sub
 
     Private Sub ChosenPokemon(ByVal PokeIndex As Integer)
-        Dim text As String = Localization.GetString("mail_screen_mail_attached_mail", "Attached the Mail to [POKEMON].").Replace("[POKEMON]", Core.Player.Pokemons(PokeIndex).GetDisplayName())
+        Dim text As String = Localization.GetString("mail_screen_mail_attached_mail", "Attached the Mail to [POKEMONNAME].").Replace("[POKEMONNAME]", Core.Player.Pokemons(PokeIndex).GetDisplayName())
         If Not Core.Player.Pokemons(PokeIndex).Item Is Nothing Then
             If Core.Player.Pokemons(PokeIndex).Item.IsGameModeItem Then
                 Core.Player.Inventory.AddItem(Core.Player.Pokemons(PokeIndex).Item.gmID, 1)
             Else
                 Core.Player.Inventory.AddItem(Core.Player.Pokemons(PokeIndex).Item.ID.ToString, 1)
             End If
-            text = Localization.GetString("mail_screen_mail_taken_item_and_attached_mail", "Taken [ITEM] from [POKEMON], and attached the Mail to [POKEMON].").Replace("[POKEMON]", Core.Player.Pokemons(PokeIndex).GetDisplayName()).Replace("[ITEM]", Core.Player.Pokemons(PokeIndex).Item.OneLineName())
+            text = Localization.GetString("mail_screen_mail_taken_item_and_attached_mail", "Taken [ITEM] from [POKEMONNAME], and attached the Mail to [POKEMONNAME].").Replace("[POKEMONNAME]", Core.Player.Pokemons(PokeIndex).GetDisplayName()).Replace("[ITEM]", Core.Player.Pokemons(PokeIndex).Item.OneLineName())
         End If
 
         Core.Player.Pokemons(PokeIndex).Item = Item.GetItemByID(TempNewMail.MailID.ToString)

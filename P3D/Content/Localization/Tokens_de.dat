@@ -191,11 +191,11 @@ fieldmove_flash_AlreadyLitUp,The area is already~lit up!
 fieldmove_flash_used,used~Flash!
 
 fieldmove_milkdrink_softboiled_ChoosePokemon,Choose Pokémon to Heal
-fieldmove_milkdrink_softboiled_CannotChoose_FullHP,[POKEMON] has full~HP already.
-fieldmove_milkdrink_softboiled_CannotChoose_SamePokemon,[POKEMON] cannot~heal itself.
+fieldmove_milkdrink_softboiled_CannotChoose_FullHP,[POKEMONNAME] has full~HP already.
+fieldmove_milkdrink_softboiled_CannotChoose_SamePokemon,[POKEMONNAME] cannot~heal itself.
 
-fieldmove_milkdrink_used,used~Milk Drink!*Some HP was shared~with [POKEMON]!
-fieldmove_softboiled_used,used~Soft-Boiled!*Some HP was shared~with [POKEMON]!
+fieldmove_milkdrink_used,used~Milk Drink!*Some HP was shared~with [POKEMONNAME]!
+fieldmove_softboiled_used,used~Soft-Boiled!*Some HP was shared~with [POKEMONNAME]!
 
 fieldmove_sweetscent_CannotUse,Cannot use Sweet Scent here.
 fieldmove_sweetscent_used,used~Sweet Scent!
@@ -518,8 +518,8 @@ mail_screen_mail_delete_confirm,Delete this Mail?
 mail_screen_mail_deleted_from_mailbox,The Mail has been removed from the Mailbox.
 mail_screen_mail_added_to_mailbox,The Mail was taken to your inbox on your PC.
 mail_screen_mail_missing_contents,Please fill in the Header, the Message and the Signature.
-mail_screen_mail_attached_mail,Attached the Mail to [POKEMON].
-mail_screen_mail_taken_item_and_attached_mail,Taken [ITEM] from [POKEMON], and attached the Mail to [POKEMON].
+mail_screen_mail_attached_mail,Attached the Mail to [POKEMONNAME].
+mail_screen_mail_taken_item_and_attached_mail,Taken [ITEM] from [POKEMONNAME], and attached the Mail to [POKEMONNAME].
 ---
 PartyScreen:
 party_screen_Unable,Unable!

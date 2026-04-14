@@ -853,7 +853,7 @@ Public Class PartyScreen
                     End If
                     p.Item = Nothing
                 Else
-                    ShowMessage(Localization.GetString("party_screen_TakenItemFromPokemon", "Taken //ITEM//~from //POKEMONNAME//.").Replace("[ITEM]", p.Item.OneLineName()).Replace("[POKEMONNAME]", p.GetDisplayName()))
+                    ShowMessage(Localization.GetString("party_screen_TakenItemFromPokemon", "Taken [ITEM]~from [POKEMONNAME].").Replace("[ITEM]", p.Item.OneLineName()).Replace("[POKEMONNAME]", p.GetDisplayName()))
                     Dim ItemID As String
                     If p.Item.IsGameModeItem Then
                         ItemID = p.Item.gmID
@@ -1222,7 +1222,7 @@ Public Class PartyScreen
         If HealIndex <> FieldMovePokemonIndex Then
             If Core.Player.Pokemons(HealIndex).HP < Core.Player.Pokemons(HealIndex).MaxHP Then
                 SoundManager.PlaySound("Use_Item", False)
-                TextBox.Show(Core.Player.Pokemons(FieldMovePokemonIndex).GetDisplayName() & " " & Localization.GetString("fieldmove_milkdrink_used", "used~Milk Drink!*Some HP was shared~with [POKEMON]!").Replace("[POKEMON]", Core.Player.Pokemons(HealIndex).GetDisplayName()))
+                TextBox.Show(Core.Player.Pokemons(FieldMovePokemonIndex).GetDisplayName() & " " & Localization.GetString("fieldmove_milkdrink_used", "used~Milk Drink!*Some HP was shared~with [POKEMONNAME]!").Replace("[POKEMONNAME]", Core.Player.Pokemons(HealIndex).GetDisplayName()))
                 Dim HealHP As Integer = CInt(Math.Ceiling(Core.Player.Pokemons(FieldMovePokemonIndex).MaxHP * 0.2))
                 Core.Player.Pokemons(FieldMovePokemonIndex).HP -= HealHP
                 Core.Player.Pokemons(HealIndex).HP += HealHP
@@ -1230,10 +1230,10 @@ Public Class PartyScreen
                     Core.Player.Pokemons(HealIndex).HP = Core.Player.Pokemons(HealIndex).MaxHP
                 End If
             Else
-                TextBox.Show(Localization.GetString("fieldmove_milkdrink_softboiled_CannotChoose_FullHP", "[POKEMON] has full~HP already.").Replace("[POKEMON]", Core.Player.Pokemons(HealIndex).GetDisplayName()), {}, True, False)
+                TextBox.Show(Localization.GetString("fieldmove_milkdrink_softboiled_CannotChoose_FullHP", "[POKEMONNAME] has full~HP already.").Replace("[POKEMONNAME]", Core.Player.Pokemons(HealIndex).GetDisplayName()), {}, True, False)
             End If
         Else
-            TextBox.Show(Localization.GetString("fieldmove_milkdrink_softboiled_CannotChoose_SamePokemon", "[POKEMON] cannot~heal itself.").Replace("[POKEMON]", Core.Player.Pokemons(FieldMovePokemonIndex).GetDisplayName()), {}, True, False)
+            TextBox.Show(Localization.GetString("fieldmove_milkdrink_softboiled_CannotChoose_SamePokemon", "[POKEMONNAME] cannot~heal itself.").Replace("[POKEMONNAME]", Core.Player.Pokemons(FieldMovePokemonIndex).GetDisplayName()), {}, True, False)
         End If
         FieldMovePokemonIndex = -1
     End Sub
@@ -1263,7 +1263,7 @@ Public Class PartyScreen
         If HealIndex <> FieldMovePokemonIndex Then
             If Core.Player.Pokemons(HealIndex).HP < Core.Player.Pokemons(HealIndex).MaxHP Then
                 SoundManager.PlaySound("Use_Item", False)
-                TextBox.Show(Core.Player.Pokemons(FieldMovePokemonIndex).GetDisplayName() & " " & Localization.GetString("fieldmove_softboiled_used", "used~Soft-Boiled!*Some HP was shared~with [POKEMON]!").Replace("[POKEMON]", Core.Player.Pokemons(HealIndex).GetDisplayName()))
+                TextBox.Show(Core.Player.Pokemons(FieldMovePokemonIndex).GetDisplayName() & " " & Localization.GetString("fieldmove_softboiled_used", "used~Soft-Boiled!*Some HP was shared~with [POKEMONNAME]!").Replace("[POKEMONNAME]", Core.Player.Pokemons(HealIndex).GetDisplayName()))
                 Dim HealHP As Integer = CInt(Math.Ceiling(Core.Player.Pokemons(FieldMovePokemonIndex).MaxHP * 0.2))
                 Core.Player.Pokemons(FieldMovePokemonIndex).HP -= HealHP
                 Core.Player.Pokemons(HealIndex).HP += HealHP
@@ -1271,10 +1271,10 @@ Public Class PartyScreen
                     Core.Player.Pokemons(HealIndex).HP = Core.Player.Pokemons(HealIndex).MaxHP
                 End If
             Else
-                TextBox.Show(Localization.GetString("fieldmove_milkdrink_softboiled_CannotChoose_FullHP", "[POKEMON] has full~HP already.").Replace("[POKEMON]", Core.Player.Pokemons(HealIndex).GetDisplayName()), {}, True, False)
+                TextBox.Show(Localization.GetString("fieldmove_milkdrink_softboiled_CannotChoose_FullHP", "[POKEMONNAME] has full~HP already.").Replace("[POKEMONNAME]", Core.Player.Pokemons(HealIndex).GetDisplayName()), {}, True, False)
             End If
         Else
-            TextBox.Show(Localization.GetString("fieldmove_milkdrink_softboiled_CannotChoose_SamePokemon", "[POKEMON] cannot~heal itself.").Replace("[POKEMON]", Core.Player.Pokemons(FieldMovePokemonIndex).GetDisplayName()), {}, True, False)
+            TextBox.Show(Localization.GetString("fieldmove_milkdrink_softboiled_CannotChoose_SamePokemon", "[POKEMONNAME] cannot~heal itself.").Replace("[POKEMONNAME]", Core.Player.Pokemons(FieldMovePokemonIndex).GetDisplayName()), {}, True, False)
         End If
         FieldMovePokemonIndex = -1
     End Sub

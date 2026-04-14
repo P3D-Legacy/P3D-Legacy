@@ -190,11 +190,11 @@ fieldmove_flash_AlreadyLitUp,A área ja está iluminada!
 fieldmove_flash_used,usou~Flash!
 
 fieldmove_milkdrink_softboiled_ChoosePokemon,Escolha o Pokémon para curar
-fieldmove_milkdrink_softboiled_CannotChoose_FullHP,[POKEMON] já está~com o HP cheio.
-fieldmove_milkdrink_softboiled_CannotChoose_SamePokemon,[POKEMON] não pode~se curar.
+fieldmove_milkdrink_softboiled_CannotChoose_FullHP,[POKEMONNAME] já está~com o HP cheio.
+fieldmove_milkdrink_softboiled_CannotChoose_SamePokemon,[POKEMONNAME] não pode~se curar.
 
-fieldmove_milkdrink_used,usou~Milk Drink!*Um pouco de HP foi~compartilhado com [POKEMON]!
-fieldmove_softboiled_used,usou~Soft-Boiled!*Um pouco de HP foi~compartilhado com [POKEMON]!
+fieldmove_milkdrink_used,usou~Milk Drink!*Um pouco de HP foi~compartilhado com [POKEMONNAME]!
+fieldmove_softboiled_used,usou~Soft-Boiled!*Um pouco de HP foi~compartilhado com [POKEMONNAME]!
 
 fieldmove_sweetscent_CannotUse,Não pode usar Sweet Scent~nesse lugar.
 fieldmove_sweetscent_used,usou~Sweet Scent!
@@ -517,8 +517,8 @@ mail_screen_mail_delete_confirm,Apagar essa Carta?
 mail_screen_mail_deleted_from_mailbox,A Carta foi removida do Correio.
 mail_screen_mail_added_to_mailbox,A Carta foi entregue a caixa de entrada em seu PC.
 mail_screen_mail_missing_contents,Porfavor preencha o Cabeçalho, a Mensagem e Assinatura.
-mail_screen_mail_attached_mail,Anexou a Carta em [POKEMON].
-mail_screen_mail_taken_item_and_attached_mail,Pegou [ITEM] de [POKEMON], e anexou Carta em [POKEMON].
+mail_screen_mail_attached_mail,Anexou a Carta em [POKEMONNAME].
+mail_screen_mail_taken_item_and_attached_mail,Pegou [ITEM] de [POKEMONNAME], e anexou Carta em [POKEMONNAME].
 ---
 PartyScreen:
 party_screen_Unable,Incapaz!
