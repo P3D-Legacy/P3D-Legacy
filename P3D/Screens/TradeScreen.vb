@@ -747,7 +747,16 @@ Public Class TradeScreen
             If i <= Me.BuyItemsList.Count - 1 Then
                 Dim p As Integer = i - Scroll
 
-                DrawButton(New Vector2(100, 100 + p * 96), 5, Me.BuyItemsList(i).GetItem().OneLineName, 16, Me.BuyItemsList(i).GetItem().Texture)
+                Dim item As Item = Me.BuyItemsList(i).GetItem()
+                Dim itemName As String = item.OneLineName
+                If item.ItemType = Items.ItemTypes.Machines Then
+                    If item.IsGameModeItem = False Then
+                        itemName &= " " & CType(item, Items.TechMachine).Attack.Name
+                    Else
+                        itemName &= " " & CType(item, GameModeItem).gmTeachMove.Name
+                    End If
+                End If
+                DrawButton(New Vector2(100, 100 + p * 96), 5, itemName, 16, item.Texture)
             End If
         Next
 
@@ -1115,7 +1124,16 @@ Public Class TradeScreen
             If i <= Me.SellItemsList.Count - 1 Then
                 Dim p As Integer = i - Scroll
 
-                DrawButton(New Vector2(100, 100 + p * 96), 5, Me.SellItemsList(i).GetItem().OneLineName, 16, Me.SellItemsList(i).GetItem().Texture)
+                Dim item As Item = Me.SellItemsList(i).GetItem()
+                Dim itemName As String = item.OneLineName
+                If item.ItemType = Items.ItemTypes.Machines Then
+                    If item.IsGameModeItem = False Then
+                        itemName &= " " & CType(item, Items.TechMachine).Attack.Name
+                    Else
+                        itemName &= " " & CType(item, GameModeItem).gmTeachMove.Name
+                    End If
+                End If
+                DrawButton(New Vector2(100, 100 + p * 96), 5, itemName, 16, item.Texture)
             End If
         Next
 
