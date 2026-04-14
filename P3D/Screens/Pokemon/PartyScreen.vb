@@ -213,7 +213,7 @@ Public Class PartyScreen
 
             Canvas.DrawRectangle(New Rectangle(CInt(Core.windowSize.Width / 2 - 150), CInt(Core.windowSize.Height - 200), 300, 100), New Color(0, 0, 0, CInt(150 * textFade * _interfaceFade)))
 
-            Dim text As String = _messageText.CropStringToWidth(FontManager.MainFont, 250) '''???
+            Dim text As String = _messageText.Replace("~", " ").CropStringToWidth(FontManager.MainFont, 250) '''???
             Dim size As Vector2 = FontManager.MainFont.MeasureString(text)
 
             SpriteBatch.DrawString(FontManager.MainFont, text, New Vector2(CSng(Core.windowSize.Width / 2 - size.X / 2), CSng(Core.windowSize.Height - 150 - size.Y / 2)), New Color(255, 255, 255, CInt(255 * textFade * _interfaceFade)))
