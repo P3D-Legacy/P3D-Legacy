@@ -252,19 +252,34 @@
             MyBase.New(QueryTypes.SwitchPokemon)
 
             Me.TempScreen = BattleScreen
-            TransformText(BattleScreen.Trainer.Name & " " & Localization.GetString("battle_trainer_about_to_send_out_1") & " " & NewPokemon.GetDisplayName() & " " & Localization.GetString("battle_trainer_about_to_send_out_2"))
+            TransformText(BattleScreen.Trainer.Name & " " & Localization.GetString("battle_trainer_about_to_send_out_1") & " " & NewPokemon.GetDisplayName() & Localization.GetString("battle_trainer_about_to_send_out_2"))
         End Sub
 
         Dim delay As Single = 2.0F
 
         Public Sub FinishOppSwitchAnimation(BattleScreen As BattleScreen)
-            BattleScreen.OppPokemonNPC.Position.Y = 0 + BattleScreen.BattleMapOffset.Y
+            If BattleScreen.OppPokemonNPC.Model IsNot Nothing Then
+                BattleScreen.OppPokemonNPC.Position.Y = 0 + BattleScreen.BattleMapOffset.Y - 0.45F
+            Else
+                BattleScreen.OppPokemonNPC.Position.Y = 0 + BattleScreen.BattleMapOffset.Y
+            End If
+
             BattleScreen.Battle.ChangeCameraAngle(1, False, BattleScreen)
+
+            BattleScreen.OppPokemonNPC.Position.Y = 0 + BattleScreen.BattleMapOffset.Y
+
             Dim oppModel As String = BattleScreen.GetModelName(False)
             If oppModel = "" Then
                 BattleScreen.BattleQuery.Add(New ToggleEntityQueryObject(True, ToggleEntityQueryObject.BattleEntities.OppPokemon, PokemonForms.GetOverworldSpriteName(BattleScreen.OppPokemon, True), -1, -1, 0, 1))
             Else
                 BattleScreen.BattleQuery.Add(New ToggleEntityQueryObject(False, oppModel, -1, -1, 1, 0))
+            End If
+
+            Dim SendBallPositionOffsetY As Single = 0.0F
+            Dim SendPokemonPositionOffsetY As Single = 0.0F
+            If BattleScreen.OppPokemonNPC.Model IsNot Nothing Then
+                SendBallPositionOffsetY = 0.5
+                SendPokemonPositionOffsetY = -0.5
             End If
 
             BattleScreen.BattleQuery.Add(New ToggleEntityQueryObject(True, ToggleEntityQueryObject.BattleEntities.OppPokemon, 1, -1, -1, -1, -1))
@@ -277,14 +292,14 @@
 
                 BallThrow.AnimationPlaySound("Battle\Pokeball\Throw", 0, 0)
                 Dim BallThrowEntity = BallThrow.SpawnEntity(New Vector3(2, -0.15, 0), BattleScreen.OppPokemon.CatchBall.Texture, New Vector3(0.3F), 1.0F)
-                BallThrow.AnimationMove(BallThrowEntity, True, 0, 0.35, 0, 0.1, False, True, 0F, 0.5F,, 0.3, 0.025F)
+                BallThrow.AnimationMove(BallThrowEntity, True, 0, 0.35F + SendBallPositionOffsetY, 0, 0.1, False, True, 0F, 0.5F,, 0.3, 0.025F)
 
                 ' Ball opens
                 BallThrow.AnimationPlaySound("Battle\Pokeball\Open", 3, 0)
                 Dim SmokeSpawned As Integer = 0
                 Do
-                    Dim SmokePosition = New Vector3(0, 0.35, 0)
-                    Dim SmokeDestination = New Vector3(CSng(Random.Next(-10, 10) / 10), CSng(Random.Next(-10, 10) / 10), CSng(Random.Next(-10, 10) / 10))
+                    Dim SmokePosition = New Vector3(0, 0.35F + SendBallPositionOffsetY, 0)
+                    Dim SmokeDestination = New Vector3(CSng(Random.Next(-10, 10) / 10), CSng(Random.Next(-10, 10) / 10) + SendBallPositionOffsetY, CSng(Random.Next(-10, 10) / 10))
 
                     Dim SmokeTexture As Texture2D = TextureManager.GetTexture("Textures\Battle\Smoke")
 
@@ -299,10 +314,11 @@
 
             If Core.Player.ShowBattleAnimations <> 0 AndAlso BattleScreen.IsPVPBattle = False Then
                 ' Pokemon appears
+                BallThrow.AnimationSetPosition(Nothing, False, 15, CSng(0.5), 13, 0, 0)
                 BallThrow.AnimationFade(Nothing, False, 1, 1, 3, 0)
                 BallThrow.AnimationPlaySound(CStr(BattleScreen.OppPokemon.Number), 4, 0,, True)
                 '  Pokémon falls down
-                BallThrow.AnimationMove(Nothing, False, 0, -0.5F, 0, 0.05F, False, False, 5, 0)
+                BallThrow.AnimationMove(Nothing, False, 0, -0.5F + SendPokemonPositionOffsetY, 0, 0.05F, False, False, 5, 0,,,, 3)
             Else
                 ' Pokemon appears
                 BallThrow.AnimationFade(Nothing, False, 1, 1, 0, 0)

@@ -7985,9 +7985,9 @@ Namespace BattleSystem
 
                 BattleScreen.AddToQuery(InsertIndex, New TextQueryObject(insertMessage))
 
-                Dim PositionOffsetY As Single = 0.0F
+                Dim ReturnPositionOffsetY As Single = 0.0F
                 If BattleScreen.OwnPokemonNPC.Model IsNot Nothing Then
-                    PositionOffsetY = 0.5F
+                    ReturnPositionOffsetY = 0.5F
                 End If
 
                 Dim BallReturn As AnimationQueryObject = New AnimationQueryObject(BattleScreen.OwnPokemonNPC, False)
@@ -7997,8 +7997,8 @@ Namespace BattleSystem
                     BallReturn.AnimationPlaySound("Battle\Pokeball\Open", 0, 0)
                     Dim SmokeReturned As Integer = 0
                     Do
-                        Dim SmokePosition = New Vector3(CSng(Random.Next(-10, 10) / 10), CSng(Random.Next(-10, 10) / 10) + PositionOffsetY, CSng(Random.Next(-10, 10) / 10))
-                        Dim SmokeDestination As Vector3 = New Vector3(0, PositionOffsetY, 0)
+                        Dim SmokePosition = New Vector3(CSng(Random.Next(-10, 10) / 10), CSng(Random.Next(-10, 10) / 10), CSng(Random.Next(-10, 10) / 10))
+                        Dim SmokeDestination As Vector3 = New Vector3(0, ReturnPositionOffsetY, 0)
 
                         Dim SmokeTexture As Texture2D = TextureManager.GetTexture("Textures\Battle\Smoke")
 
@@ -8017,8 +8017,8 @@ Namespace BattleSystem
                     BallReturn.AnimationFade(Nothing, False, 1, 0, 1, 0)
                     ' Ball returns
                     BallReturn.AnimationPlaySound("Battle\Pokeball\Throw", 1, 0)
-                    Dim BallReturnEntity As Entity = BallReturn.SpawnEntity(New Vector3(0, 0 + PositionOffsetY, 0), BattleScreen.OwnPokemon.CatchBall.Texture, New Vector3(0.3F), 1.0F)
-                    BallReturn.AnimationMove(BallReturnEntity, True, -2, 0 + PositionOffsetY, 0, 0.1, False, True, 1, 0,, 0.3)
+                    Dim BallReturnEntity As Entity = BallReturn.SpawnEntity(New Vector3(0, 0 + ReturnPositionOffsetY, 0), BattleScreen.OwnPokemon.CatchBall.Texture, New Vector3(0.3F), 1.0F)
+                    BallReturn.AnimationMove(BallReturnEntity, True, -2, 0 + ReturnPositionOffsetY, 0, 0.1, False, True, 1, 0,, 0.3)
                     BattleScreen.AddToQuery(InsertIndex, BallReturn)
                 End If
 
@@ -8055,12 +8055,18 @@ Namespace BattleSystem
                     ownShiny = "S"
                 End If
 
-                Dim FallOffset = 0.0F
                 Dim ownModel As String = BattleScreen.GetModelName(True)
                 If ownModel = "" Then
                     BattleScreen.AddToQuery(InsertIndex, New ToggleEntityQueryObject(True, ToggleEntityQueryObject.BattleEntities.OwnPokemon, PokemonForms.GetOverworldSpriteName(BattleScreen.OwnPokemon, True), 0, 1, -1, -1))
                 Else
                     BattleScreen.AddToQuery(InsertIndex, New ToggleEntityQueryObject(True, ownModel, 1, 0, -1, -1))
+                End If
+
+                Dim SendBallPositionOffsetY As Single = 0.0F
+                Dim SendPokemonPositionOffsetY As Single = 0.0F
+                If BattleScreen.OwnPokemonNPC.Model IsNot Nothing Then
+                    SendBallPositionOffsetY = 0.5
+                    SendPokemonPositionOffsetY = -0.5
                 End If
 
                 If Core.Player.ShowBattleAnimations = 0 OrElse BattleScreen.IsPVPBattle = True Then
@@ -8077,22 +8083,23 @@ Namespace BattleSystem
                 If Core.Player.ShowBattleAnimations <> 0 AndAlso BattleScreen.IsPVPBattle = False Then
                     BallThrow.AnimationPlaySound("Battle\Pokeball\Throw", 0, 0)
 
-                    Dim BallThrowEntity As Entity = BallThrow.SpawnEntity(New Vector3(-2, CSng(-0.15 + PositionOffsetY), 0), BattleScreen.OwnPokemon.CatchBall.Texture, New Vector3(0.3F), 1.0F)
-                    BallThrow.AnimationMove(BallThrowEntity, True, 0, CSng(0.35 + PositionOffsetY), 0, 0.1, False, True, 0F, 0.5F,, -0.3, 0.025F)
+                    Dim BallThrowEntity As Entity = BallThrow.SpawnEntity(New Vector3(-2, CSng(-0.15), 0), BattleScreen.OwnPokemon.CatchBall.Texture, New Vector3(0.3F), 1.0F)
+                    BallThrow.AnimationMove(BallThrowEntity, True, 0, CSng(0.35 + SendBallPositionOffsetY), 0, 0.1, False, True, 0F, 0.5F,, -0.3, 0.025F)
 
                     ' Ball Opens
                     BallThrow.AnimationPlaySound("Battle\Pokeball\Open", 3, 0)
 
                     Dim SmokeSpawned As Integer = 0
                     Do
-                        Dim SmokeDestination = New Vector3(CSng(Random.Next(-10, 10) / 10), CSng(Random.Next(-10, 10) / 10) + PositionOffsetY, CSng(Random.Next(-10, 10) / 10))
+                        Dim SmokePosition = New Vector3(0, 0.35F + SendBallPositionOffsetY, 0)
+                        Dim SmokeDestination = New Vector3(CSng(Random.Next(-10, 10) / 10), CSng(Random.Next(-10, 10) / 10) + SendBallPositionOffsetY, CSng(Random.Next(-10, 10) / 10))
 
                         Dim SmokeTexture As Texture2D = TextureManager.GetTexture("Textures\Battle\Smoke")
 
                         Dim SmokeScale = New Vector3(CSng(Random.Next(2, 6) / 10))
                         Dim SmokeSpeed = CSng(Random.Next(1, 3) / 20.0F)
 
-                        Dim SmokeEntity As Entity = BallThrow.SpawnEntity(New Vector3(0, PositionOffsetY, 0), SmokeTexture, SmokeScale, 1.0F, 3)
+                        Dim SmokeEntity As Entity = BallThrow.SpawnEntity(SmokePosition, SmokeTexture, SmokeScale, 1.0F, 3)
                         BallThrow.AnimationMove(SmokeEntity, True, SmokeDestination.X, SmokeDestination.Y, SmokeDestination.Z, SmokeSpeed, False, False, 3.0F, 0.0F)
 
                         Threading.Interlocked.Increment(SmokeSpawned)
@@ -8105,9 +8112,7 @@ Namespace BattleSystem
                     BallThrow.AnimationFade(Nothing, False, 1, 1, 3, 0)
                     BallThrow.AnimationPlaySound(CStr(BattleScreen.OwnPokemon.Number), 4, 0,, True, crySuffixOwn)
                     '  Pokémon falls down
-                    BallThrow.AnimationMove(Nothing, False, 0, -0.5F + PositionOffsetY, 0, 0.05F, False, False, 5, 0,,,, 3)
-
-
+                    BallThrow.AnimationMove(Nothing, False, 0, -0.5F + SendPokemonPositionOffsetY, 0, 0.05F, False, False, 5, 0,,,, 3)
                     BattleScreen.AddToQuery(InsertIndex, BallThrow)
                 End If
             End If
@@ -8408,7 +8413,7 @@ Namespace BattleSystem
 
                             Dim SmokeScale = New Vector3(CSng(Random.Next(2, 6) / 10))
                             Dim SmokeSpeed = CSng(Random.Next(1, 3) / 20.0F)
-                            Dim SmokeEntity = BallReturn.SpawnEntity(SmokePosition, SmokeTexture, SmokeScale, 1)
+                            Dim SmokeEntity As Entity = BallReturn.SpawnEntity(SmokePosition, SmokeTexture, SmokeScale, 1)
                             BallReturn.AnimationMove(SmokeEntity, True, SmokeDestination.X, SmokeDestination.Y, SmokeDestination.Z, SmokeSpeed, False, False, 0.0F, 0.0F)
 
                             Threading.Interlocked.Increment(SmokeReturned)
@@ -8471,9 +8476,9 @@ Namespace BattleSystem
                 ChangeCameraAngle(1, False, BattleScreen)
                 HasSwitchedInOpp = True
                 BattleScreen.BattleQuery.Add(New TextQueryObject(BattleScreen.Trainer.Name & ": ""Come back, " & BattleScreen.OppPokemon.GetDisplayName() & "!"""))
-                Dim PositionOffsetY As Single = 0.0F
+                Dim ReturnPositionOffsetY As Single = 0.0F
                 If BattleScreen.OppPokemonNPC.Model IsNot Nothing Then
-                    PositionOffsetY = 0.5F
+                    ReturnPositionOffsetY = 0.5F
                 End If
                 If Core.Player.ShowBattleAnimations <> 0 AndAlso BattleScreen.IsPVPBattle = False Then
                     Dim BallReturn As AnimationQueryObject = New AnimationQueryObject(BattleScreen.OppPokemonNPC, True)
@@ -8482,14 +8487,14 @@ Namespace BattleSystem
                     BallReturn.AnimationPlaySound("Battle\Pokeball\Open", 0, 0)
                     Dim SmokeReturned As Integer = 0
                     Do
-                        Dim SmokePosition = New Vector3(CSng(Random.Next(-10, 10) / 10), CSng(Random.Next(-10, 10) / 10) + PositionOffsetY, CSng(Random.Next(-10, 10) / 10))
-                        Dim SmokeDestination = New Vector3(0, 0, 0)
+                        Dim SmokePosition = New Vector3(CSng(Random.Next(-10, 10) / 10), CSng(Random.Next(-10, 10) / 10), CSng(Random.Next(-10, 10) / 10))
+                        Dim SmokeDestination = New Vector3(0, ReturnPositionOffsetY, 0)
 
                         Dim SmokeTexture As Texture2D = TextureManager.GetTexture("Textures\Battle\Smoke")
 
                         Dim SmokeScale = New Vector3(CSng(Random.Next(2, 6) / 10))
                         Dim SmokeSpeed = CSng(Random.Next(1, 3) / 20.0F)
-                        Dim SmokeEntity = BallReturn.SpawnEntity(SmokePosition, SmokeTexture, SmokeScale, 1)
+                        Dim SmokeEntity As Entity = BallReturn.SpawnEntity(SmokePosition, SmokeTexture, SmokeScale, 1)
                         BallReturn.AnimationMove(SmokeEntity, True, SmokeDestination.X, SmokeDestination.Y, SmokeDestination.Z, SmokeSpeed, False, False, 0.0F, 0.0F)
                         Threading.Interlocked.Increment(SmokeReturned)
                     Loop While SmokeReturned <= 38
@@ -8500,8 +8505,8 @@ Namespace BattleSystem
 
                     ' Ball returns
                     BallReturn.AnimationPlaySound("Battle\Pokeball\Throw", 1, 0)
-                    Dim BallReturnEntity = BallReturn.SpawnEntity(New Vector3(0, 0 + PositionOffsetY, 0), BattleScreen.OppPokemon.CatchBall.Texture, New Vector3(0.3F), 1.0F)
-                    BallReturn.AnimationMove(BallReturnEntity, True, -2, 0, 0 + PositionOffsetY, 0.1, False, True, 0F, 0F,, 0.3)
+                    Dim BallReturnEntity = BallReturn.SpawnEntity(New Vector3(0, 0 + ReturnPositionOffsetY, 0), BattleScreen.OppPokemon.CatchBall.Texture, New Vector3(0.3F), 1.0F)
+                    BallReturn.AnimationMove(BallReturnEntity, True, -2, 0 + ReturnPositionOffsetY, 0, 0.1, False, True, 1.0F, 0F,, 0.3)
 
                     BattleScreen.BattleQuery.Add(BallReturn)
                 Else
@@ -8537,6 +8542,13 @@ Namespace BattleSystem
                     BattleScreen.BattleQuery.Add(New ToggleEntityQueryObject(False, oppModel, -1, -1, 1, 0))
                 End If
 
+                Dim SendBallPositionOffsetY As Single = 0.0F
+                Dim SendPokemonPositionOffsetY As Single = 0.0F
+                If BattleScreen.OppPokemonNPC.Model IsNot Nothing Then
+                    SendBallPositionOffsetY = 0.5
+                    SendPokemonPositionOffsetY = -0.5
+                End If
+
                 BattleScreen.BattleQuery.Add(New ToggleEntityQueryObject(True, ToggleEntityQueryObject.BattleEntities.OppPokemon, 1, -1, -1, -1, -1))
                 If Core.Player.ShowBattleAnimations = 0 OrElse BattleScreen.IsPVPBattle = True Then
                     BattleScreen.BattleQuery.Add(New PlaySoundQueryObject(BattleScreen.OppPokemon.Number.ToString(), True))
@@ -8544,20 +8556,20 @@ Namespace BattleSystem
                 BattleScreen.BattleQuery.Add(New TextQueryObject(BattleScreen.Trainer.Name & ": ""Go, " & BattleScreen.OppPokemon.GetDisplayName() & "!"""))
 
                 Dim BallThrow As AnimationQueryObject = New AnimationQueryObject(BattleScreen.OppPokemonNPC, False)
-                BattleScreen.OppPokemonNPC.Position.Y = 0 + BattleScreen.BattleMapOffset.Y
+
                 If Core.Player.ShowBattleAnimations <> 0 AndAlso BattleScreen.IsPVPBattle = False Then
                     ' Ball is thrown
 
                     BallThrow.AnimationPlaySound("Battle\Pokeball\Throw", 0, 0)
                     Dim BallThrowEntity = BallThrow.SpawnEntity(New Vector3(2, -0.15, 0), BattleScreen.OppPokemon.CatchBall.Texture, New Vector3(0.3F), 1.0F)
-                    BallThrow.AnimationMove(BallThrowEntity, True, 0, 0.35, 0, 0.1, False, True, 0F, 0.5F,, 0.3, 0.025F)
+                    BallThrow.AnimationMove(BallThrowEntity, True, 0, 0.35F + SendBallPositionOffsetY, 0, 0.1, False, True, 0F, 0.5F,, 0.3, 0.025F)
 
                     ' Ball opens
                     BallThrow.AnimationPlaySound("Battle\Pokeball\Open", 3, 0)
                     Dim SmokeSpawned As Integer = 0
                     Do
-                        Dim SmokePosition = New Vector3(0, 0.35, 0)
-                        Dim SmokeDestination = New Vector3(CSng(Random.Next(-10, 10) / 10), CSng(Random.Next(-10, 10) / 10), CSng(Random.Next(-10, 10) / 10))
+                        Dim SmokePosition = New Vector3(0, 0.35F + SendBallPositionOffsetY, 0)
+                        Dim SmokeDestination = New Vector3(CSng(Random.Next(-10, 10) / 10), CSng(Random.Next(-10, 10) / 10) + SendBallPositionOffsetY, CSng(Random.Next(-10, 10) / 10))
 
                         Dim SmokeTexture As Texture2D = TextureManager.GetTexture("Textures\Battle\Smoke")
 
@@ -8574,13 +8586,13 @@ Namespace BattleSystem
                 Dim crySuffixOpp As String = PokemonForms.GetCrySuffix(BattleScreen.OppPokemon)
                 If Core.Player.ShowBattleAnimations <> 0 AndAlso BattleScreen.IsPVPBattle = False Then
                     ' Pokemon appears
+                    BallThrow.AnimationSetPosition(Nothing, False, 15, CSng(0.5), 13, 0, 0)
                     BallThrow.AnimationFade(Nothing, False, 1, 1, 3, 0)
                     BallThrow.AnimationPlaySound(CStr(BattleScreen.OppPokemon.Number), 4, 0,, True, crySuffixOpp)
                     '  Pokémon falls down
-                    BallThrow.AnimationMove(Nothing, False, 0, -0.5F, 0, 0.05F, False, False, 5, 0)
+                    BallThrow.AnimationMove(Nothing, False, 0, -0.5F + SendPokemonPositionOffsetY, 0, 0.05F, False, False, 5, 0,,,, 3)
                     BattleScreen.BattleQuery.Add(BallThrow)
                 End If
-
             End If
             If AddSwitch = False Then
                 With BattleScreen
