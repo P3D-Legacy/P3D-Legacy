@@ -1,4 +1,4 @@
-﻿Public Class PokemonInteractions
+Public Class PokemonInteractions
 
     'Procedure:
     '1. If has a status condition, return that
@@ -35,16 +35,6 @@
         Dim reaction As ReactionContainer = GetReaction(p)
 
         Dim offset As New Vector2(0, 0)
-        Select Case facing
-            Case 0
-                offset.Y = -0.02F
-            Case 1
-                offset.X = -0.02F
-            Case 2
-                offset.Y = 0.01F
-            Case 3
-                offset.X = 0.01F
-        End Select
 
         Dim newPosition As New Vector2(0, 1)
 
@@ -84,20 +74,12 @@
         Dim message As String = Localization.GetString("FollowerInteraction_HeldItem_Question", "It looks like your Pokémon~holds on to something.*Do you want to~take it?")
 
         Dim offset As New Vector2(0, 0)
-        Select Case facing
-            Case 0
-                offset.Y = -0.02F
-            Case 1
-                offset.X = -0.02F
-            Case 2
-                offset.Y = 0.01F
-            Case 3
-                offset.X = 0.01F
-        End Select
 
         Dim newPosition As New Vector2(0, 1)
 
         Dim item As Item = Item.GetItemByID(PickupItemID)
+
+        Dim preYaw As Single = Screen.Camera.Yaw
 
         Dim s As String = "version=2" & Environment.NewLine &
            "@pokemon.cry(" & PokemonForms.GetPokemonDataFileName(p.Number, p.AdditionalData) & ")" & Environment.NewLine
@@ -112,7 +94,7 @@
             s &= "@text.show(" & message & ")" & Environment.NewLine &
                 "@options.show(<system.token(global_yes)>,<system.token(global_no)>)" & Environment.NewLine &
                 ":when:<system.token(global_yes)>" & Environment.NewLine &
-                "@text.show(" & Localization.GetString("FollowerInteraction_HeldItem_Answer_Yes", "Your Pokémon handed over~the <item>!").Replace("[ITEM]", item.OneLineName()) & ")" & Environment.NewLine &
+                "@text.show(" & Localization.GetString("FollowerInteraction_HeldItem_Answer_Yes", "Your Pokémon handed over~the [ITEM]!").Replace("[ITEM]", item.OneLineName()) & ")" & Environment.NewLine &
                 "@item.give(" & PickupItemID & ",1)" & Environment.NewLine &
                 "@item.messagegive(" & PickupItemID & ",1)" & Environment.NewLine &
                 ":when:<system.token(global_no)>" & Environment.NewLine &
@@ -120,6 +102,7 @@
                 "@pokemon.addfriendship(0,10)" & Environment.NewLine &
                 ":endwhen" & Environment.NewLine
         Else
+            s &= "@camera.setyaw(" & CType(Screen.Camera, OverworldCamera).GetAimYawFromDirection(Screen.Camera.GetPlayerFacingDirection()) & ")" & Environment.NewLine
             s &= "@camera.setposition(" & newPosition.X & ",1," & newPosition.Y & ")" & Environment.NewLine
             s &= "@entity.showmessagebulb(" & CInt(MessageBulb.NotificationTypes.Question).ToString() & "|" & cPosition.X + offset.X & "|" & cPosition.Y + 0.7F & "|" & cPosition.Z + offset.Y & ")" & Environment.NewLine
 
@@ -128,7 +111,7 @@
             s &= "@text.show(" & message & ")" & Environment.NewLine &
                 "@options.show(<system.token(global_yes)>,<system.token(global_no)>)" & Environment.NewLine &
                 ":when:<system.token(global_yes)>" & Environment.NewLine &
-                "@text.show(" & Localization.GetString("FollowerInteraction_HeldItem_Answer_Yes", "Your Pokémon handed over~the <item>!").Replace("[ITEM]", item.OneLineName()) & ")" & Environment.NewLine &
+                "@text.show(" & Localization.GetString("FollowerInteraction_HeldItem_Answer_Yes", "Your Pokémon handed over~the [ITEM]!").Replace("[ITEM]", item.OneLineName()) & ")" & Environment.NewLine &
                 "@item.give(" & PickupItemID & ",1)" & Environment.NewLine &
                 "@item.messagegive(" & PickupItemID & ",1)" & Environment.NewLine &
                 ":when:<system.token(global_no)>" & Environment.NewLine &
@@ -136,6 +119,8 @@
                 "@pokemon.addfriendship(0,10)" & Environment.NewLine &
                 ":endwhen" & Environment.NewLine
             s &= "@camera.activatethirdperson" & Environment.NewLine
+            s &= "@camera.reset" & Environment.NewLine
+            s &= "@camera.setyaw(" & preYaw & ")" & Environment.NewLine
         End If
         s &= ":end"
 
