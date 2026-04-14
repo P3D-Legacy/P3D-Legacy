@@ -1,4 +1,4 @@
-Public Class BattleCatchScreen
+﻿Public Class BattleCatchScreen
 
     Inherits Screen
 
@@ -151,13 +151,10 @@ nextIndex:
                             For i = 0 To 3
                                 If StayInBall() = True Then
                                     If CriticalCapture = True Then
-                                        Select Case i
-                                            Case 0
-                                                Shakes.Add(False)
-                                            Case 1
-                                                InBall = True
-                                                Exit For
-                                        End Select
+                                        Shakes.Clear()
+                                        Shakes.Add(False)
+                                        InBall = True
+                                        Exit For
                                     Else
                                         Select Case i
                                             Case 0
@@ -172,12 +169,10 @@ nextIndex:
                                     End If
                                 Else
                                     If CriticalCapture = True Then
-                                        Select Case i
-                                            Case 0
-                                                Shakes.Add(False)
-                                                InBall = False
-                                                Exit For
-                                        End Select
+                                        Shakes.Clear()
+                                        Shakes.Add(False)
+                                        InBall = False
+                                        Exit For
                                     Else
                                         InBall = False
                                         Exit For
