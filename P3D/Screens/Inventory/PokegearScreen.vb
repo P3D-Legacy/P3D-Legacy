@@ -2050,7 +2050,11 @@
 
         Private Sub DrawRadio()
             Dim startPos As Vector2 = GetStartPosition()
-            Core.SpriteBatch.DrawString(FontManager.MainFont, Localization.GetString("pokegear_screen_radio_Tuning", "Tuning:") & " " & Me.RadioCursor.ToString(), New Vector2(startPos.X + 80, startPos.Y + 50), Color.Black)
+            Dim RadioCursorFrequency As String = Me.RadioCursor.ToString()
+            If Me.RadioCursor Mod 1 = 0 Then
+                RadioCursorFrequency = CInt(Me.RadioCursor).ToString
+            End If
+            Core.SpriteBatch.DrawString(FontManager.MainFont, Localization.GetString("pokegear_screen_radio_Tuning", "Tuning:") & " " & RadioCursorFrequency, New Vector2(startPos.X + 80, startPos.Y + 50), Color.Black)
 
             Canvas.DrawRectangle(New Rectangle(CInt(startPos.X + 88 + 40 + 40), CInt(startPos.Y + 110), 420, 5), Color.Black)
 
