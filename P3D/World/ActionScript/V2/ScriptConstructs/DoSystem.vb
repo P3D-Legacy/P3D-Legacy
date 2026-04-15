@@ -78,8 +78,8 @@
                 Case "scripttrigger"
                     Return ActionScript.ScriptTrigger
                 Case "random"
-                    Dim minRange As Integer = 1
-                    Dim maxRange As Integer = 2
+                    Dim minRange As Integer = 0
+                    Dim maxRange As Integer = 1
                     If argument <> "" Then
                         If argument.Contains(",") = True Then
                             minRange = int(argument.GetSplit(0))
@@ -107,7 +107,7 @@
                     Next
                     If chooseList.Count > 0 Then
                         Dim minRange As Integer = 0
-                        Dim maxRange As Integer = chooseList.Count - 1
+                        Dim maxRange As Integer = chooseList.Count
 
                         Return chooseList(Core.Random.Next(minRange, maxRange))
                     End If
