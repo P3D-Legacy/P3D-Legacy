@@ -762,8 +762,8 @@ Public Class TradeScreen
 
         If Me.BuyItemsList.Count > 0 Then
             Dim DescriptionHint As String = ScriptVersion2.ScriptCommander.Parse(Localization.GetString("shop_screen_buysell_DescriptionHint", "Press [<system.button(special)>] or Select to view the item's description.")).ToString
-            Core.SpriteBatch.DrawString(FontManager.InGameFont, DescriptionHint, New Vector2(128 + 2, Core.windowSize.Width - 128 + 2), Color.Black)
-            Core.SpriteBatch.DrawString(FontManager.InGameFont, DescriptionHint, New Vector2(128, Core.windowSize.Width - 128), Color.White)
+            Core.SpriteBatch.DrawString(FontManager.InGameFont, DescriptionHint, New Vector2(CInt(Core.windowSize.Width - 64 - FontManager.InGameFont.MeasureString(DescriptionHint).X + 2), CInt(36 + 2)), Color.Black)
+            Core.SpriteBatch.DrawString(FontManager.InGameFont, DescriptionHint, New Vector2(CInt(Core.windowSize.Width - 64 - FontManager.InGameFont.MeasureString(DescriptionHint).X), CInt(36)), Color.White)
 
             While BuyItemsList.Count <= Scroll + Cursor
                 Cursor -= 1
@@ -820,11 +820,12 @@ Public Class TradeScreen
 
             ' Buy button:
             If Me.BuyItemsAmount > 0 Then
-                If ControllerHandler.IsConnected() = True Then
-                    Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\GamePad\xboxControllerButtonA"), New Rectangle(664 + 12, 484 + 64 + 34, 40, 40), Color.White)
-                End If
 
                 Me.DrawButton(New Vector2(664 + 32, 484 + 64 + 22), 1, Localization.GetString("shop_screen_button_buy", "Buy"), 64)
+
+                If ControllerHandler.IsConnected() = True Then
+                    Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\GamePad\xboxControllerButtonA"), New Rectangle(664 + 48, 484 + 64 + 34, 40, 40), Color.White)
+                End If
             End If
         End If
 
@@ -1139,8 +1140,8 @@ Public Class TradeScreen
 
         If Me.SellItemsList.Count > 0 Then
             Dim DescriptionHint As String = ScriptVersion2.ScriptCommander.Parse(Localization.GetString("shop_screen_buysell_DescriptionHint", "Press [<system.button(special)>] or Select to view the item's description.")).ToString
-            Core.SpriteBatch.DrawString(FontManager.InGameFont, DescriptionHint, New Vector2(128 + 2, Core.windowSize.Width - 128 + 2), Color.Black)
-            Core.SpriteBatch.DrawString(FontManager.InGameFont, DescriptionHint, New Vector2(128, Core.windowSize.Width - 128), Color.White)
+            Core.SpriteBatch.DrawString(FontManager.InGameFont, DescriptionHint, New Vector2(CInt(Core.windowSize.Width - 64 - FontManager.InGameFont.MeasureString(DescriptionHint).X + 2), CInt(36 + 2)), Color.Black)
+            Core.SpriteBatch.DrawString(FontManager.InGameFont, DescriptionHint, New Vector2(CInt(Core.windowSize.Width - 64 - FontManager.InGameFont.MeasureString(DescriptionHint).X), CInt(36)), Color.White)
 
             Dim selectedItem As TradeItem = Me.SellItemsList(Scroll + Cursor)
 
@@ -1190,11 +1191,11 @@ Public Class TradeScreen
 
             ' Sell button:
             If Me.SellItemsAmount > 0 Then
-                If ControllerHandler.IsConnected() = True Then
-                    Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\GamePad\xboxControllerButtonA"), New Rectangle(664 + 12, 484 + 64 + 34, 40, 40), Color.White)
-                End If
-
                 Me.DrawButton(New Vector2(664 + 32, 484 + 64 + 22), 1, Localization.GetString("shop_screen_button_sell", "Sell"), 64)
+
+                If ControllerHandler.IsConnected() = True Then
+                    Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\GamePad\xboxControllerButtonA"), New Rectangle(664 + 48, 484 + 64 + 34, 40, 40), Color.White)
+                End If
             End If
         End If
 
