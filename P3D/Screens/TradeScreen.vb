@@ -781,9 +781,9 @@ Public Class TradeScreen
             Core.SpriteBatch.Draw(selectedItem.GetItem().Texture, New Rectangle(CInt(736 + itemOffset), CInt(160 + itemOffset), CInt(BuySellItemSize), CInt(BuySellItemSize)), Color.White)
 
             If BuyItemsShowDescription = True Then
-                Canvas.DrawRectangle(New Rectangle(736 + 28, 160 + 28, 200, 200), New Color(0, 0, 0, 200))
-                Dim t As String = selectedItem.GetItem().GetDescription().CropStringToWidth(FontManager.MiniFont, 180)
-                SpriteBatch.DrawString(FontManager.MiniFont, t, New Vector2(736 + 30, 160 + 30), Color.White)
+                Canvas.DrawRectangle(New Rectangle(736 + 28 - 32, 160 + 28, 264, 200), New Color(0, 0, 0, 200))
+                Dim t As String = selectedItem.GetItem().GetDescription().CropStringToWidth(FontManager.InGameFont, 256)
+                SpriteBatch.DrawString(FontManager.InGameFont, t, New Vector2(736 - 2, 160 + 30), Color.White)
             End If
 
             ' Amount of the selected item in the player's Bag:
@@ -1156,9 +1156,9 @@ Public Class TradeScreen
             Core.SpriteBatch.Draw(selectedItem.GetItem().Texture, New Rectangle(CInt(736 + itemOffset), CInt(160 + itemOffset), CInt(BuySellItemSize), CInt(BuySellItemSize)), Color.White)
 
             If Me.SellItemsShowDescription = True Then
-                Canvas.DrawRectangle(New Rectangle(736 + 28, 160 + 28, 200, 200), New Color(0, 0, 0, 200))
-                Dim t As String = selectedItem.GetItem().GetDescription().CropStringToWidth(FontManager.MiniFont, 180)
-                SpriteBatch.DrawString(FontManager.MiniFont, t, New Vector2(736 + 30, 160 + 30), Color.White)
+                Canvas.DrawRectangle(New Rectangle(736 + 28 - 32, 160 + 28, 264, 200), New Color(0, 0, 0, 200))
+                Dim t As String = selectedItem.GetItem().GetDescription().CropStringToWidth(FontManager.InGameFont, 256)
+                SpriteBatch.DrawString(FontManager.InGameFont, t, New Vector2(736 - 2, 160 + 30), Color.White)
             End If
 
             ' Amount of the selected item in the player's Bag:
