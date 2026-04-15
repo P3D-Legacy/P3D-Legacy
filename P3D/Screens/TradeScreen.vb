@@ -782,7 +782,7 @@ Public Class TradeScreen
 
             If BuyItemsShowDescription = True Then
                 Canvas.DrawRectangle(New Rectangle(736 + 28 - 32, 160 + 28, 264, 200), New Color(0, 0, 0, 200))
-                Dim t As String = selectedItem.GetItem().GetDescription().CropStringToWidth(FontManager.InGameFont, 256)
+                Dim t As String = selectedItem.GetItem().GetDescription().CropStringToWidth(FontManager.InGameFont, 244)
                 SpriteBatch.DrawString(FontManager.InGameFont, t, New Vector2(736 - 2, 160 + 30), Color.White)
             End If
 
@@ -1157,7 +1157,7 @@ Public Class TradeScreen
 
             If Me.SellItemsShowDescription = True Then
                 Canvas.DrawRectangle(New Rectangle(736 + 28 - 32, 160 + 28, 264, 200), New Color(0, 0, 0, 200))
-                Dim t As String = selectedItem.GetItem().GetDescription().CropStringToWidth(FontManager.InGameFont, 256)
+                Dim t As String = selectedItem.GetItem().GetDescription().CropStringToWidth(FontManager.InGameFont, 244)
                 SpriteBatch.DrawString(FontManager.InGameFont, t, New Vector2(736 - 2, 160 + 30), Color.White)
             End If
 
