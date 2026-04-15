@@ -277,6 +277,24 @@ nextIndex:
                                 End If
 
                                 AnimationList.Add(CatchAnimation)
+                            Else
+                                Dim CatchAnimation = New BattleSystem.AnimationQueryObject(Nothing, False)
+                                If InBall = True Then
+                                    Dim BallOffsetY As Single = 0
+                                    If ModelOffsetY <> 0 Then
+                                        BallOffsetY = 0.25F
+                                    End If
+
+                                    Dim PokemonPosition = BattleScreen.OppPokemonNPC.Position - BattleSystem.BattleScreen.BattleMapOffset + New Vector3(0, ModelOffsetY, 0)
+
+                                    Dim BallPosition As Vector3 = New Vector3(PokemonPosition.X, PokemonPosition.Y + 0.15F - 0.35F - BallOffsetY, PokemonPosition.Z)
+                                    CatchAnimation.AnimationFade(BattleScreen.OppPokemonNPC, False, 1.0F, 0.0F, 0, 5)
+                                    Dim BallEntity As Entity = CatchAnimation.SpawnEntity(BallPosition, Ball.Texture, New Vector3(0.3F), 1.0F, 0, 0)
+                                    CatchAnimation.AnimationPlaySound("Battle\Pokeball\Catch", 0, 4)
+                                Else
+                                    CatchAnimation.AnimationPlaySound("Battle\Pokeball\Break", 0, 0)
+                                End If
+                                AnimationList.Add(CatchAnimation)
                             End If
                             AnimationHasStarted = True
                         Else
