@@ -118,7 +118,7 @@ Places:
 {"PlaceType"[Place]}{"Name"[Dark Cave]}{"Mapfiles"[darkcave\darkcave0.dat,darkcave\darkcave1.dat]}{"Position"[18,11]}{"Size"[Small]}
 {"PlaceType"[Place]}{"Name"[Dark Cave]}{"Mapfiles"[darkcave\darkcave0.dat,darkcave\darkcave1.dat]}{"Position"[19,7]}{"Size"[Small]}
 {"PlaceType"[Place]}{"Name"[Dark Cave]}{"Mapfiles"[darkcave\darkcave0.dat,darkcave\darkcave1.dat]}{"Position"[16,9]}{"Size"[Small]}
-{"PlaceType"[Place]}{"Name"[Union Cave]}{"Mapfiles"[unioncave\unioncavebf1.dat,unioncave\unioncavebf2.dat,unioncave\unioncavef1.dat]}{"Position"[13,14]}{"Size"[Small]}
+{"PlaceType"[Place]}{"Name"[Union Cave]}{"Mapfiles"[unioncave\unioncavebf1.dat,unioncave\unioncavebf2.dat,unioncave\unioncavef1.dat]}{"Position"[13,14]}{"Size"[Small]}{"FlyTo"[route32.dat,13,12,75]}
 {"PlaceType"[Place]}{"Name"[Mt. Mortar]}{"Mapfiles"[mtmortar\mtmortarbf1.dat,mtmortar\mtmortarf1.dat,mtmortar\mtmortarmain.dat,mtmortar\mtmortarf2.dat]}{"Position"[13,6]}{"Size"[Small]}
 {"PlaceType"[Place]}{"Name"[Mt. Silver]}{"Mapfiles"[mtsilver\exterior.dat,mtsilver\center.dat,mtsilver\1f.dat,mtsilver\2f.dat,mtsilver\3f.dat,mtsilver\expert.dat,mtsilver\moltres.dat,mtsilver\side.dat,mtsilver\snow.dat,mtsilver\peak.dat]}{"Position"[24,7]}{"Size"[Small]}{"FlyTo"[mtsilver\exterior.dat,17,13,5]}
 {"PlaceType"[Place]}{"Name"[Victory Road]}{"Mapfiles"[victoryroad\1.dat,victoryroad\2.dat,victoryroad\3.dat]}{"Position"[27,5]}{"Size"[Vertical]}{"FlyTo"[routes\route23.dat,15,18,1]}

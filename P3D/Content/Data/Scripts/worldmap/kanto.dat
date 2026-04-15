@@ -143,7 +143,7 @@ Places:
 {"PlaceType"[Place]}{"Name"[Viridian Forest]}{"Mapfiles"[v_forest\main.dat,v_forest\north.dat,v_forest\south.dat]}{"Position"[14,6]}{"Size"[Small]}
 {"PlaceType"[Place]}{"Name"[Cerulean Cave]}{"Mapfiles"[ceruleancave\1f.dat,ceruleancave\2f.dat,ceruleancave\bf1.dat]}{"Position"[22,4]}{"Size"[Small]}
 {"PlaceType"[Place]}{"Name"[Power Plant]}{"Mapfiles"[routes\route10\powerplant.dat]}{"Position"[26,5]}{"Size"[Small]}
-{"PlaceType"[Place]}{"Name"[Rock Tunnel]}{"Mapfiles"[rocktunnel\bf1.dat,rocktunnel\bf2.dat]}{"Position"[26,6]}{"Size"[Small]}
+{"PlaceType"[Place]}{"Name"[Rock Tunnel]}{"Mapfiles"[rocktunnel\bf1.dat,rocktunnel\bf2.dat]}{"Position"[26,6]}{"Size"[Small]}{"FlyTo"[routes\route10.dat,11,12,2]}
 {"PlaceType"[Place]}{"Name"[Seafoam Islands]}{"Mapfiles"[seafoam\entWest.dat,seafoam\entEast.dat,seafoam\bf1.dat,seafoam\bf2.dat,seafoam\bf3.dat,seafoam\bf4.dat,gyms\cinnabar_gym.dat]}{"Position"[17,16]}{"Size"[Small]}
 {"PlaceType"[Place]}{"Name"[Diglett's Cave]}{"Mapfiles"[diglettscave\entpew.dat,diglettscave\main.dat]}{"Position"[14,5]}{"Size"[Small]}
 {"PlaceType"[Place]}{"Name"[Diglett's Cave]}{"Mapfiles"[diglettscave\entver.dat,diglettscave\main.dat]}{"Position"[24,10]}{"Size"[Small]}
