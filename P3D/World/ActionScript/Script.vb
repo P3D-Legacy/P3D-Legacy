@@ -274,12 +274,22 @@
 
         oppPokemon.Generate(Level, True)
 
-        Dim Gender As Pokemon.Genders = ownPokemon.Gender
+        Dim Gender As Pokemon.Genders
 
         If StringHelper.IsNumeric(Script.SaveNPCTrade(3)) Then
             Dim genderID As Integer = ScriptConversion.ToInteger(Script.SaveNPCTrade(3))
             If genderID = -1 Then
-                genderID = Core.Random.Next(0, 2)
+                If oppPokemon.IsGenderless = True Then
+                    genderID = 2
+                Else
+                    If oppPokemon.IsMale = 0 Then
+                        genderID = 1
+                    ElseIf oppPokemon.IsMale = 100 Then
+                        genderID = 0
+                    Else
+                        genderID = Core.Random.Next(0, 2)
+                    End If
+                End If
             End If
 
             Select Case genderID
@@ -290,8 +300,30 @@
                 Case 2
                     Gender = Pokemon.Genders.Genderless
                 Case Else
-                    Gender = Pokemon.Genders.Male
+                    If oppPokemon.IsGenderless = True Then
+                        Gender = Pokemon.Genders.Genderless
+                    Else
+                        If oppPokemon.IsMale = 0 Then
+                            Gender = Pokemon.Genders.Female
+                        ElseIf oppPokemon.IsMale = 100 Then
+                            Gender = Pokemon.Genders.Male
+                        Else
+                            Gender = ownPokemon.Gender
+                        End If
+                    End If
             End Select
+        Else
+            If oppPokemon.IsGenderless = True Then
+                Gender = Pokemon.Genders.Genderless
+            Else
+                If oppPokemon.IsMale = 0 Then
+                    Gender = Pokemon.Genders.Female
+                ElseIf oppPokemon.IsMale = 100 Then
+                    Gender = Pokemon.Genders.Male
+                Else
+                    Gender = ownPokemon.Gender
+                End If
+            End If
         End If
 
         oppPokemon.Gender = Gender
