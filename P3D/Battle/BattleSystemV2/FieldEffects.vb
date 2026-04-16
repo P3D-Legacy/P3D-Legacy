@@ -304,7 +304,8 @@
         'Special stuff
         Public RunTries As Integer = 0
         Public UsedPokemon As New List(Of Integer)
-        Public StolenItemIDs As New List(Of String)
+        Public StolenFromOppItems As New Dictionary(Of Integer, Item)
+        Public StolenFromOwnItems As New Dictionary(Of Integer, Item)
         Public DefeatedTrainerPokemon As Boolean = False
         Public RoamingFled As Boolean = False
 

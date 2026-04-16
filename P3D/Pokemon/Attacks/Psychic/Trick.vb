@@ -106,15 +106,13 @@ Namespace BattleSystem.Moves.Psychic
             If CanSwitchItems Then
                 Dim i1 As Item = Nothing
                 Dim i2 As Item = Nothing
-                If own = True Then
-                    If p.Item IsNot Nothing Then
-                        p.OriginalItem = p.Item
-                    End If
-                Else
-                    If op.Item IsNot Nothing Then
-                        op.OriginalItem = op.Item
-                    End If
+                If p.Item IsNot Nothing AndAlso p.OriginalItem Is Nothing Then
+                    p.OriginalItem = p.Item
                 End If
+                If op.Item IsNot Nothing AndAlso op.OriginalItem Is Nothing Then
+                    op.OriginalItem = op.Item
+                End If
+
                 If p.Item IsNot Nothing Then
                     i1 = p.Item
                 End If
@@ -123,6 +121,30 @@ Namespace BattleSystem.Moves.Psychic
                 End If
                 p.Item = i2
                 op.Item = i1
+
+                If BattleScreen.FieldEffects.StolenFromOppItems.ContainsKey(BattleScreen.OppPokemonIndex) = False Then
+                    Dim item As Item
+                    If own = True Then
+                        item = i2
+                    Else
+                        item = i1
+                    End If
+                    If item IsNot Nothing Then
+                        BattleScreen.FieldEffects.StolenFromOppItems.Add(BattleScreen.OppPokemonIndex, item)
+                    End If
+                End If
+
+                If BattleScreen.FieldEffects.StolenFromOwnItems.ContainsKey(BattleScreen.OwnPokemonIndex) = False Then
+                    Dim item As Item
+                    If own = True Then
+                        item = i1
+                    Else
+                        item = i2
+                    End If
+                    If item IsNot Nothing Then
+                        BattleScreen.FieldEffects.StolenFromOwnItems.Add(BattleScreen.OwnPokemonIndex, item)
+                    End If
+                End If
 
                 If p.Item IsNot Nothing AndAlso p.OriginalItem IsNot Nothing Then
                     Dim pItemID As String
@@ -140,8 +162,15 @@ Namespace BattleSystem.Moves.Psychic
 
                     If pItemID = pOriginalItemID AndAlso p.Item.AdditionalData = p.OriginalItem.AdditionalData Then
                         p.OriginalItem = Nothing
-                        If own = True AndAlso BattleScreen.FieldEffects.StolenItemIDs.Contains(pItemID) Then
-                            BattleScreen.FieldEffects.StolenItemIDs.Remove(pItemID)
+
+                        If own = True Then
+                            If BattleScreen.FieldEffects.StolenFromOwnItems.ContainsKey(BattleScreen.OwnPokemonIndex) Then
+                                BattleScreen.FieldEffects.StolenFromOwnItems.Remove(BattleScreen.OwnPokemonIndex)
+                            End If
+                        Else
+                            If BattleScreen.FieldEffects.StolenFromOppItems.ContainsKey(BattleScreen.OppPokemonIndex) Then
+                                BattleScreen.FieldEffects.StolenFromOppItems.Remove(BattleScreen.OppPokemonIndex)
+                            End If
                         End If
                     End If
                 End If
@@ -161,6 +190,15 @@ Namespace BattleSystem.Moves.Psychic
 
                     If opItemID = opOriginalItemID AndAlso op.Item.AdditionalData = op.OriginalItem.AdditionalData Then
                         op.OriginalItem = Nothing
+                        If own = False Then
+                            If BattleScreen.FieldEffects.StolenFromOwnItems.ContainsKey(BattleScreen.OwnPokemonIndex) Then
+                                BattleScreen.FieldEffects.StolenFromOppItems.Remove(BattleScreen.OwnPokemonIndex)
+                            End If
+                        Else
+                            If BattleScreen.FieldEffects.StolenFromOppItems.ContainsKey(BattleScreen.OppPokemonIndex) Then
+                                BattleScreen.FieldEffects.StolenFromOppItems.Remove(BattleScreen.OppPokemonIndex)
+                            End If
+                        End If
                     End If
                 End If
 

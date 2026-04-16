@@ -84,21 +84,17 @@
             End If
 
             If p.Item Is Nothing Then
-                Dim ItemID As String
-                If op.Item.IsGameModeItem = True Then
-                    ItemID = op.Item.gmID
-                Else
-                    ItemID = op.Item.ID.ToString
+                Dim item As Item = op.Item
+                If op.OriginalItem Is Nothing Then
+                    op.OriginalItem = item
                 End If
 
-                op.OriginalItem = Item.GetItemByID(ItemID)
-                op.OriginalItem.AdditionalData = op.Item.AdditionalData
-
-                If BattleScreen.Battle.RemoveHeldItem(Not own, own, BattleScreen, "Thief stole the item " & op.Item.OneLineName() & " from " & op.GetDisplayName() & "!", "move:thief") Then
-                    If own = False Then
-                        BattleScreen.FieldEffects.StolenItemIDs.Add(ItemID)
+                If BattleScreen.Battle.RemoveHeldItem(Not own, own, BattleScreen, "Thief stole the item " & op.Item.OneLineName() & " from " & op.GetDisplayName() & "!", "move:thief",, True) Then
+                    If own = True AndAlso BattleScreen.FieldEffects.StolenFromOppItems.ContainsKey(BattleScreen.OppPokemonIndex) = False Then
+                        BattleScreen.FieldEffects.StolenFromOppItems.Add(BattleScreen.OppPokemonIndex, item)
                     End If
-                    p.Item = Item.GetItemByID(ItemID)
+                    p.Item = item
+
                     If p.Item IsNot Nothing AndAlso p.OriginalItem IsNot Nothing Then
                         Dim pItemID As String
                         If p.Item.IsGameModeItem = True Then
@@ -115,7 +111,21 @@
 
                         If pItemID = pOriginalItemID AndAlso p.Item.AdditionalData = p.OriginalItem.AdditionalData Then
                             p.OriginalItem = Nothing
+
+                            If own = True Then
+                                If BattleScreen.FieldEffects.StolenFromOwnItems.ContainsKey(BattleScreen.OwnPokemonIndex) Then
+                                    BattleScreen.FieldEffects.StolenFromOwnItems.Remove(BattleScreen.OwnPokemonIndex)
+                                End If
+                            Else
+                                If BattleScreen.FieldEffects.StolenFromOppItems.ContainsKey(BattleScreen.OppPokemonIndex) Then
+                                    BattleScreen.FieldEffects.StolenFromOppItems.Remove(BattleScreen.OppPokemonIndex)
+                                End If
+                            End If
                         End If
+                    End If
+                Else
+                    If op.OriginalItem.ID = op.Item.ID AndAlso op.OriginalItem.AdditionalData = op.Item.AdditionalData Then
+                        op.OriginalItem = Nothing
                     End If
                 End If
             End If

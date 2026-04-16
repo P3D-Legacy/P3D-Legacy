@@ -2752,6 +2752,9 @@ Namespace BattleSystem
                                                 If p.Item.IsMegaStone = True Then
                                                     canSteal = False
                                                 End If
+                                                If p.Item.IsMail = True Then
+                                                    canSteal = False
+                                                End If
                                                 If p.Ability.Name.ToLower() = "multitype" AndAlso p.Item.OriginalName.ToLower().EndsWith(" plate") Then
                                                     canSteal = False
                                                 End If
@@ -2762,20 +2765,12 @@ Namespace BattleSystem
                                                     canSteal = False
                                                 End If
                                                 If canSteal Then
-                                                    Dim ItemID As String
-                                                    If p.Item.IsGameModeItem = True Then
-                                                        ItemID = p.Item.gmID
-                                                    Else
-                                                        ItemID = p.Item.ID.ToString()
+                                                    Dim item As Item = p.Item
+                                                    If p.OriginalItem Is Nothing Then
+                                                        p.OriginalItem = item
                                                     End If
-                                                    p.OriginalItem = Item.GetItemByID(ItemID)
-                                                    p.OriginalItem.AdditionalData = p.Item.AdditionalData
-
                                                     If BattleScreen.Battle.RemoveHeldItem(own, Not own, BattleScreen, op.GetDisplayName() & " stole an item from " & p.GetDisplayName() & " due to " & op.Ability.Name & "!", op.Ability.Name.ToLower()) Then
-                                                        If own = True Then
-                                                            BattleScreen.FieldEffects.StolenItemIDs.Add(ItemID)
-                                                        End If
-                                                        op.Item = Item.GetItemByID(ItemID)
+                                                        op.Item = item
 
                                                         If op.Item IsNot Nothing AndAlso op.OriginalItem IsNot Nothing Then
                                                             Dim opItemID As String
@@ -2793,7 +2788,21 @@ Namespace BattleSystem
 
                                                             If opItemID = opOriginalItemID AndAlso op.Item.AdditionalData = op.OriginalItem.AdditionalData Then
                                                                 op.OriginalItem = Nothing
+                                                                If own = True Then
+                                                                    If BattleScreen.FieldEffects.StolenFromOwnItems.ContainsKey(BattleScreen.OwnPokemonIndex) Then
+                                                                        BattleScreen.FieldEffects.StolenFromOwnItems.Remove(BattleScreen.OwnPokemonIndex)
+                                                                    End If
+                                                                Else
+                                                                    If BattleScreen.FieldEffects.StolenFromOppItems.ContainsKey(BattleScreen.OppPokemonIndex) Then
+                                                                        BattleScreen.FieldEffects.StolenFromOppItems.Remove(BattleScreen.OppPokemonIndex)
+                                                                    End If
+                                                                End If
                                                             End If
+                                                        End If
+                                                    Else
+
+                                                        If p.OriginalItem.ID = p.Item.ID AndAlso p.OriginalItem.AdditionalData = p.Item.AdditionalData Then
+                                                            p.OriginalItem = Nothing
                                                         End If
                                                     End If
                                                 End If
@@ -2821,6 +2830,9 @@ Namespace BattleSystem
                                             If op.Item.IsMegaStone = True Then
                                                 canSteal = False
                                             End If
+                                            If op.Item.IsMail = True Then
+                                                canSteal = False
+                                            End If
                                             If op.Ability.Name.ToLower() = "multitype" AndAlso op.Item.OriginalName.ToLower().EndsWith(" plate") Then
                                                 canSteal = False
                                             End If
@@ -2831,21 +2843,14 @@ Namespace BattleSystem
                                                 canSteal = False
                                             End If
                                             If canSteal Then
-                                                Dim ItemID As String
-                                                If op.Item.IsGameModeItem = True Then
-                                                    ItemID = op.Item.gmID
-                                                Else
-                                                    ItemID = op.Item.ID.ToString
+                                                Dim item As Item = op.Item
+                                                If op.OriginalItem Is Nothing Then
+                                                    op.OriginalItem = item
                                                 End If
 
-                                                op.OriginalItem = Item.GetItemByID(ItemID)
-                                                op.OriginalItem.AdditionalData = op.Item.AdditionalData
-
                                                 If BattleScreen.Battle.RemoveHeldItem(Not own, own, BattleScreen, p.GetDisplayName() & " stole an item from " & op.GetDisplayName() & " due to " & p.Ability.Name & "!", p.Ability.Name.ToLower()) Then
-                                                    If own = False Then
-                                                        BattleScreen.FieldEffects.StolenItemIDs.Add(ItemID)
-                                                    End If
-                                                    p.Item = Item.GetItemByID(ItemID)
+                                                    p.Item = item
+
                                                     If p.Item IsNot Nothing AndAlso p.OriginalItem IsNot Nothing Then
                                                         Dim pItemID As String
                                                         If p.Item.IsGameModeItem = True Then
@@ -2862,10 +2867,21 @@ Namespace BattleSystem
 
                                                         If pItemID = pOriginalItemID AndAlso p.Item.AdditionalData = p.OriginalItem.AdditionalData Then
                                                             p.OriginalItem = Nothing
-                                                            If own = True AndAlso BattleScreen.FieldEffects.StolenItemIDs.Contains(pItemID) Then
-                                                                BattleScreen.FieldEffects.StolenItemIDs.Remove(pItemID)
+
+                                                            If own = True Then
+                                                                If BattleScreen.FieldEffects.StolenFromOwnItems.ContainsKey(BattleScreen.OwnPokemonIndex) Then
+                                                                    BattleScreen.FieldEffects.StolenFromOwnItems.Remove(BattleScreen.OwnPokemonIndex)
+                                                                End If
+                                                            Else
+                                                                If BattleScreen.FieldEffects.StolenFromOppItems.ContainsKey(BattleScreen.OppPokemonIndex) Then
+                                                                    BattleScreen.FieldEffects.StolenFromOppItems.Remove(BattleScreen.OppPokemonIndex)
+                                                                End If
                                                             End If
                                                         End If
+                                                    End If
+                                                Else
+                                                    If op.OriginalItem.ID = op.Item.ID AndAlso op.OriginalItem.AdditionalData = op.Item.AdditionalData Then
+                                                        op.OriginalItem = Nothing
                                                     End If
                                                 End If
                                             End If
@@ -3164,10 +3180,15 @@ Namespace BattleSystem
 
             If BattleScreen.IsTrainerBattle = False AndAlso Core.Player.ShowBattleAnimations <> 0 AndAlso BattleScreen.IsPVPBattle = False Then
                 If own = False Then
+                    Dim ModelOffset As Single = 0.0F
+                    If BattleScreen.OppPokemonNPC.Model IsNot Nothing Then
+                        ModelOffset = 0.5F
+                    End If
                     Dim crySuffixOpp As String = PokemonForms.GetCrySuffix(BattleScreen.OppPokemon)
                     Dim FaintAnimation As AnimationQueryObject = New AnimationQueryObject(BattleScreen.OppPokemonNPC, True)
                     FaintAnimation.AnimationPlaySound(CStr(BattleScreen.OppPokemon.Number), 0, 2, False, True, crySuffixOpp)
-                    FaintAnimation.AnimationMove(Nothing, False, 0, -1, 0, 0.05, False, False, 2, 2)
+                    FaintAnimation.AnimationMove(Nothing, False, 0, -1 - ModelOffset, 0, 0.05, False, False, 2, 2)
+                    FaintAnimation.AnimationFade(Nothing, False, 1.0F, 0.0F, 4, 0)
                     BattleScreen.BattleQuery.Add(FaintAnimation)
                 End If
             End If
@@ -5204,7 +5225,7 @@ Namespace BattleSystem
             End If
         End Sub
 
-        Public Function RemoveHeldItem(ByVal own As Boolean, ByVal from As Boolean, ByVal BattleScreen As BattleScreen, ByVal message As String, ByVal cause As String, Optional ByVal TestFor As Boolean = False) As Boolean
+        Public Function RemoveHeldItem(ByVal own As Boolean, ByVal from As Boolean, ByVal BattleScreen As BattleScreen, ByVal message As String, ByVal cause As String, Optional ByVal TestFor As Boolean = False, Optional AffectsFainted As Boolean = False) As Boolean
             Dim p As Pokemon = BattleScreen.OwnPokemon
             Dim op As Pokemon = BattleScreen.OppPokemon
             If own = False Then
@@ -5216,8 +5237,10 @@ Namespace BattleSystem
                 Return False
             End If
 
-            If p.HP <= 0 Or p.Status = Pokemon.StatusProblems.Fainted Then
-                Return False
+            If AffectsFainted = False Then
+                If p.HP <= 0 Or p.Status = Pokemon.StatusProblems.Fainted Then
+                    Return False
+                End If
             End If
 
             If BattleScreen.FieldEffects.CanUseAbility(own, BattleScreen) And p.Ability.Name.ToLower() = "sticky hold" And cause.StartsWith("berry:") = False Then
