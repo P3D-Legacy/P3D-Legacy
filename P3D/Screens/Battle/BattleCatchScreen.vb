@@ -191,7 +191,7 @@ nextIndex:
                                     CatchAnimation.AnimationPlaySound("Battle\Pokeball\Throw", 0, 0)
                                 End If
 
-                                Dim BallPosition As Vector3 = New Vector3(PokemonPosition.X - 3, PokemonPosition.Y + 0.15F, PokemonPosition.Z)
+                                Dim BallPosition As Vector3 = New Vector3(PokemonPosition.X - 3, PokemonPosition.Y + 0.15F, PokemonPosition.Z) + BattleSystem.BattleScreen.BattleMapOffset
                                 Dim BallEntity As Entity = CatchAnimation.SpawnEntity(BallPosition, Ball.Texture, New Vector3(0.3F), 1.0F, 0, 0)
 
                                 CatchAnimation.AnimationMove(BallEntity, False, 3, 0.1F, 0, 0.075, False, False, 0F, 0F,,, 0.025)
@@ -202,7 +202,7 @@ nextIndex:
                                 CatchAnimation.AnimationPlaySound("Battle\Pokeball\Open", 3, 0)
                                 Dim SmokeParticlesClose As Integer = 0
                                 Do
-                                    Dim SmokePosition = New Vector3(PokemonPosition.X + CSng(Random.Next(-10, 10) / 10), PokemonPosition.Y - 0.35F, PokemonPosition.Z + CSng(Random.Next(-10, 10) / 10))
+                                    Dim SmokePosition = New Vector3(PokemonPosition.X + CSng(Random.Next(-10, 10) / 10), PokemonPosition.Y - 0.35F, PokemonPosition.Z + CSng(Random.Next(-10, 10) / 10)) + BattleSystem.BattleScreen.BattleMapOffset
 
 
                                     Dim SmokeTexture As Texture2D = TextureManager.GetTexture("Textures\Battle\Smoke")
@@ -238,7 +238,7 @@ nextIndex:
 
                                 If InBall = True Then
                                     For i = 0 To 2
-                                        Dim StarPosition As Vector3 = New Vector3(PokemonPosition.X + 0.05F, PokemonPosition.Y, PokemonPosition.Z)
+                                        Dim StarPosition As Vector3 = New Vector3(PokemonPosition.X + 0.05F, PokemonPosition.Y, PokemonPosition.Z) + BattleSystem.BattleScreen.BattleMapOffset
                                         Dim StarDestination As Vector3 = New Vector3(0.05F, 0.65F, 0 - ((1 - i) * 0.4F))
                                         Dim StarEntity As Entity = CatchAnimation.SpawnEntity(StarPosition, TextureManager.GetTexture("Textures\Battle\BallCatchStar"), New Vector3(0.35F), 1.0F, 12 + Shakes.Count * 10)
                                         CatchAnimation.AnimationMove(StarEntity, True, StarDestination.X, StarDestination.Y, StarDestination.Z, 0.01F, False, False, 12 + Shakes.Count * 10, 0.0F,,, 0.015F)
@@ -251,7 +251,7 @@ nextIndex:
                                     ' Ball Opens
                                     Dim SmokeParticlesOpen As Integer = 0
                                     Do
-                                        Dim SmokePosition = PokemonPosition
+                                        Dim SmokePosition = PokemonPosition + BattleSystem.BattleScreen.BattleMapOffset
                                         Dim SmokeDestination = New Vector3(CSng(Random.Next(-10, 10) / 10), CSng(Random.Next(-10, 10) / 10), CSng(Random.Next(-10, 10) / 10))
 
                                         Dim SmokeTexture As Texture2D = TextureManager.GetTexture("Textures\Battle\Smoke")
@@ -287,7 +287,7 @@ nextIndex:
 
                                     Dim PokemonPosition = BattleScreen.OppPokemonNPC.Position - BattleSystem.BattleScreen.BattleMapOffset + New Vector3(0, ModelOffsetY, 0)
 
-                                    Dim BallPosition As Vector3 = New Vector3(PokemonPosition.X, PokemonPosition.Y + 0.15F - 0.35F - BallOffsetY, PokemonPosition.Z)
+                                    Dim BallPosition As Vector3 = New Vector3(PokemonPosition.X, PokemonPosition.Y + 0.15F - 0.35F - BallOffsetY, PokemonPosition.Z) + BattleSystem.BattleScreen.BattleMapOffset
                                     CatchAnimation.AnimationFade(BattleScreen.OppPokemonNPC, False, 1.0F, 0.0F, 0, 5)
                                     Dim BallEntity As Entity = CatchAnimation.SpawnEntity(BallPosition, Ball.Texture, New Vector3(0.3F), 1.0F, 0, 0)
                                     CatchAnimation.AnimationPlaySound("Battle\Pokeball\Catch", 0, 4)
