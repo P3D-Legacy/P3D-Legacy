@@ -260,10 +260,10 @@ Public Class PartyScreen
         Dim halfWidth As Integer = CInt(Core.windowSize.Width / 2)
         Dim halfHeight As Integer = CInt(Core.windowSize.Height / 2)
 
-        Canvas.DrawRectangle(New Rectangle(halfWidth - 400, halfHeight - 232, 320, 32), New Color(ColorProvider.MainColor(False).R, ColorProvider.MainColor(False).G, ColorProvider.MainColor(False).B, mainBackgroundColor.A))
-        Canvas.DrawRectangle(New Rectangle(halfWidth - 400 + 320, halfHeight - 216, 16, 16), New Color(ColorProvider.MainColor(False).R, ColorProvider.MainColor(False).G, ColorProvider.MainColor(False).B, mainBackgroundColor.A))
-        SpriteBatch.Draw(_texture, New Rectangle(halfWidth - 400 + 320, halfHeight - 232, 16, 16), New Rectangle(80, 0, 16, 16), mainBackgroundColor)
-        SpriteBatch.Draw(_texture, New Rectangle(halfWidth - 400 + 320 + 16, halfHeight - 216, 16, 16), New Rectangle(80, 0, 16, 16), mainBackgroundColor)
+        Canvas.DrawRectangle(New Rectangle(halfWidth - 400, halfHeight - 232, 384, 32), New Color(ColorProvider.MainColor(False).R, ColorProvider.MainColor(False).G, ColorProvider.MainColor(False).B, mainBackgroundColor.A))
+        Canvas.DrawRectangle(New Rectangle(halfWidth - 400 + 384, halfHeight - 216, 16, 16), New Color(ColorProvider.MainColor(False).R, ColorProvider.MainColor(False).G, ColorProvider.MainColor(False).B, mainBackgroundColor.A))
+        SpriteBatch.Draw(_texture, New Rectangle(halfWidth - 400 + 384, halfHeight - 232, 16, 16), New Rectangle(80, 0, 16, 16), mainBackgroundColor)
+        SpriteBatch.Draw(_texture, New Rectangle(halfWidth - 400 + 384 + 16, halfHeight - 216, 16, 16), New Rectangle(80, 0, 16, 16), mainBackgroundColor)
 
         SpriteBatch.DrawString(FontManager.MainFont, POKEMON_TITLE, New Vector2(halfWidth - 390, halfHeight - 228), mainBackgroundColor)
 
