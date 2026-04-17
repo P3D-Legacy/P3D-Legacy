@@ -1059,20 +1059,18 @@ Public Class NewOptionScreen
 	End Sub
 
 	Private Sub Close()
-		If PreScreen.Identification = Identifications.MainMenuScreen Then
-			If currentLanguage <> TempLanguage Then
-				Localization.Load(TempLanguage)
-			End If
-			If MusicManager.MasterVolume * 100 <> Me.TempMusicVolume Then
-				MusicManager.MasterVolume = CSng(Me.TempMusicVolume / 100)
-			End If
-			If SoundManager.Volume * 100 <> Me.TempSoundVolume Then
-				SoundManager.Volume = CSng(Me.TempSoundVolume / 100)
-			End If
-			If MusicManager.Muted <> CBool(Me.TempMuted) Or SoundManager.Muted <> CBool(Me.TempMuted) Then
-				MusicManager.Muted = CBool(Me.TempMuted)
-				SoundManager.Muted = CBool(Me.TempMuted)
-			End If
+		If currentLanguage <> TempLanguage Then
+			Localization.Load(TempLanguage)
+		End If
+		If MusicManager.MasterVolume * 100 <> Me.TempMusicVolume Then
+			MusicManager.MasterVolume = CSng(Me.TempMusicVolume / 100)
+		End If
+		If SoundManager.Volume * 100 <> Me.TempSoundVolume Then
+			SoundManager.Volume = CSng(Me.TempSoundVolume / 100)
+		End If
+		If MusicManager.Muted <> CBool(Me.TempMuted) Or SoundManager.Muted <> CBool(Me.TempMuted) Then
+			MusicManager.Muted = CBool(Me.TempMuted)
+			SoundManager.Muted = CBool(Me.TempMuted)
 		End If
 		_closing = True
 	End Sub
@@ -1111,6 +1109,9 @@ Public Class NewOptionScreen
 		SoundManager.Volume = CSng(Me.Sound / 100)
 		MusicManager.Muted = CBool(Me.Muted)
 		SoundManager.Muted = CBool(Me.Muted)
+		Me.TempMusicVolume = CInt(MusicManager.MasterVolume * 100)
+		Me.TempSoundVolume = CInt(SoundManager.Volume * 100)
+		Me.TempMuted = CInt(MusicManager.Muted.ToNumberString())
 		Core.GameOptions.RenderDistance = Me.RenderDistance
 		Core.GameOptions.GraphicStyle = Me.GraphicStyle
 		Core.GameOptions.InterfaceScale = Me.InterfaceScale
