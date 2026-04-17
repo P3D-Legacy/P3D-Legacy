@@ -39,13 +39,12 @@
     End Sub
 
     Public Overrides Sub Update()
-        If Me.currentCharIndex < GetText().Length Then
-            Me.currentCharIndex += 1
-            Exit Sub
-        End If
-
-        TextBox.Update()
         If TextBox.Showing = False Then
+            If Me.currentCharIndex < GetText().Length Then
+                Me.currentCharIndex += 1
+                Exit Sub
+            End If
+
             If chosen = False Then
                 Core.GameInstance.IsMouseVisible = False
                 If Controls.Up(True, True, True, True) = True Then
@@ -115,6 +114,9 @@
                 End If
 
             End If
+        Else
+
+            TextBox.Update()
         End If
     End Sub
 
@@ -125,98 +127,102 @@
         DrawText()
 
         If currentCharIndex < GetText().Length Then
-            Exit Sub
-        End If
-
-        Dim p As Vector2 = New Vector2(96, 96)
-
-        If Pokemon.Attacks.Count > 0 Then
-            Canvas.DrawImageBorder(CanvasTexture, 2, New Rectangle(CInt(p.X), CInt(p.Y), 640, 416))
-
-            Dim A As BattleSystem.Attack
-            If AttackIndex = 4 Then
-                A = newAttacks(0)
-            Else
-                A = Pokemon.Attacks(AttackIndex)
+            If TextBox.Showing = True Then
+                TextBox.Draw()
             End If
+        Else
 
-            With Core.SpriteBatch
-                Dim Description As String = A.Description.Replace("’", "'").CropStringToWidth(FontManager.MainFont, 240)
 
-                Dim power As String = A.Power.ToString()
-                If power = "0" Then
-                    power = "-"
-                End If
+            Dim p As Vector2 = New Vector2(96, 96)
 
-                Dim acc As String = A.Accuracy.ToString()
-                If acc = "0" Then
-                    acc = "-"
-                End If
+            If Pokemon.Attacks.Count > 0 Then
+                Canvas.DrawImageBorder(CanvasTexture, 2, New Rectangle(CInt(p.X), CInt(p.Y), 640, 416))
 
-                .DrawString(FontManager.MainFont, "Power: " & power & Environment.NewLine & "Accuracy: " & acc & Environment.NewLine & Environment.NewLine & Description, New Vector2(CInt(p.X + 320 + 48), p.Y + 48), Color.Black)
-                .Draw(A.GetDamageCategoryImage(), New Rectangle(CInt(p.X + 640 - 16 - 56), CInt(p.Y + 48), 56, 28), Color.White)
-            End With
-
-            Canvas.DrawImageBorder(CanvasTexture, 2, New Rectangle(CInt(p.X), CInt(p.Y), 320, 416))
-            Canvas.DrawImageBorder(CanvasTexture, 2, New Rectangle(CInt(p.X), CInt(p.Y + 416 + 48), 320, 128))
-
-            For i = 0 To Me.Pokemon.Attacks.Count - 1
-                DrawAttack(p, i, Me.Pokemon.Attacks(i))
-            Next
-            DrawAttack(p, 4, newAttacks(0))
-        End If
-
-        If chosen = True Then
-            Canvas.DrawRectangle(Core.windowSize, New Color(0, 0, 0, 150))
-
-            Canvas.DrawImageBorder(CanvasTexture, 2, New Rectangle(CInt(Core.windowSize.Width / 2 - 352), 172, 704, 96))
-
-            Dim drawText As String = ""
-            If AttackIndex = 4 Then
-                drawText = "Give up on learning """ & newAttacks(0).Name & """?"
-            Else
-                drawText = "Forget """ & Pokemon.Attacks(AttackIndex).Name & """ to learn """ & newAttacks(0).Name & """?"
-                If canForget = False Then
-                    drawText = "Cannot forget the move " & Pokemon.Attacks(AttackIndex).Name & " because" & Environment.NewLine & "it's a Hidden Machine move."
-                End If
-            End If
-
-            Core.SpriteBatch.DrawString(FontManager.InGameFont, drawText, New Vector2(CInt(Core.windowSize.Width / 2) - CInt(FontManager.InGameFont.MeasureString(drawText).X / 2), 200), Color.Black)
-
-            Dim endIndex As Integer = 1
-            If canForget = False Then
-                endIndex = 0
-            End If
-
-            For i = 0 To endIndex
-                Dim FontColor As Color = Color.Black
-                Dim Text As String = "Learn"
+                Dim A As BattleSystem.Attack
                 If AttackIndex = 4 Then
-                    Text = "OK"
-                End If
-
-                If i = 0 Then
-                    Text = "Cancel"
-                End If
-
-                If i = index Then
-                    CanvasTexture = TextureManager.GetTexture("GUI\Menus\Menu", New Rectangle(0, 48, 48, 48), "")
-                    FontColor = Color.White
+                    A = newAttacks(0)
                 Else
-                    CanvasTexture = TextureManager.GetTexture("GUI\Menus\Menu", New Rectangle(0, 0, 48, 48), "")
+                    A = Pokemon.Attacks(AttackIndex)
                 End If
 
-                Canvas.DrawImageBorder(CanvasTexture, 2, New Rectangle(CInt(Core.windowSize.Width / 2) - 182 + i * 192 + 22, 550, 128, 64))
+                With Core.SpriteBatch
+                    Dim Description As String = A.Description.Replace("’", "'").CropStringToWidth(FontManager.MainFont, 240)
 
-                If FontColor <> Color.Black Then
-                    Core.SpriteBatch.DrawString(FontManager.InGameFont, Text, New Vector2(CInt(Core.windowSize.Width / 2) - 164 + i * 192 + 22 + 2, 404 + 180 + 2), Color.Black)
+                    Dim power As String = A.Power.ToString()
+                    If power = "0" Then
+                        power = "-"
+                    End If
+
+                    Dim acc As String = A.Accuracy.ToString()
+                    If acc = "0" Then
+                        acc = "-"
+                    End If
+
+                    .DrawString(FontManager.MainFont, "Power: " & power & Environment.NewLine & "Accuracy: " & acc & Environment.NewLine & Environment.NewLine & Description, New Vector2(CInt(p.X + 320 + 48), p.Y + 48), Color.Black)
+                    .Draw(A.GetDamageCategoryImage(), New Rectangle(CInt(p.X + 640 - 16 - 56), CInt(p.Y + 48), 56, 28), Color.White)
+                End With
+
+                Canvas.DrawImageBorder(CanvasTexture, 2, New Rectangle(CInt(p.X), CInt(p.Y), 320, 416))
+                Canvas.DrawImageBorder(CanvasTexture, 2, New Rectangle(CInt(p.X), CInt(p.Y + 416 + 48), 320, 128))
+
+                For i = 0 To Me.Pokemon.Attacks.Count - 1
+                    DrawAttack(p, i, Me.Pokemon.Attacks(i))
+                Next
+                DrawAttack(p, 4, newAttacks(0))
+            End If
+
+            If chosen = True Then
+                Canvas.DrawRectangle(Core.windowSize, New Color(0, 0, 0, 150))
+
+                Canvas.DrawImageBorder(CanvasTexture, 2, New Rectangle(CInt(Core.windowSize.Width / 2 - 352), 172, 704, 96))
+
+                Dim drawText As String = ""
+                If AttackIndex = 4 Then
+                    drawText = "Give up on learning """ & newAttacks(0).Name & """?"
+                Else
+                    drawText = "Forget """ & Pokemon.Attacks(AttackIndex).Name & """ to learn """ & newAttacks(0).Name & """?"
+                    If canForget = False Then
+                        drawText = "Cannot forget the move " & Pokemon.Attacks(AttackIndex).Name & " because" & Environment.NewLine & "it's a Hidden Machine move."
+                    End If
                 End If
-                Core.SpriteBatch.DrawString(FontManager.InGameFont, Text, New Vector2(CInt(Core.windowSize.Width / 2) - 164 + i * 192 + 22, 404 + 180), FontColor)
 
-            Next
+                Core.SpriteBatch.DrawString(FontManager.InGameFont, drawText, New Vector2(CInt(Core.windowSize.Width / 2) - CInt(FontManager.InGameFont.MeasureString(drawText).X / 2), 200), Color.Black)
+
+                Dim endIndex As Integer = 1
+                If canForget = False Then
+                    endIndex = 0
+                End If
+
+                For i = 0 To endIndex
+                    Dim FontColor As Color = Color.Black
+                    Dim Text As String = "Learn"
+                    If AttackIndex = 4 Then
+                        Text = "OK"
+                    End If
+
+                    If i = 0 Then
+                        Text = "Cancel"
+                    End If
+
+                    If i = index Then
+                        CanvasTexture = TextureManager.GetTexture("GUI\Menus\Menu", New Rectangle(0, 48, 48, 48), "")
+                        FontColor = Color.White
+                    Else
+                        CanvasTexture = TextureManager.GetTexture("GUI\Menus\Menu", New Rectangle(0, 0, 48, 48), "")
+                    End If
+
+                    Canvas.DrawImageBorder(CanvasTexture, 2, New Rectangle(CInt(Core.windowSize.Width / 2) - 182 + i * 192 + 22, 550, 128, 64))
+
+                    If FontColor <> Color.Black Then
+                        Core.SpriteBatch.DrawString(FontManager.InGameFont, Text, New Vector2(CInt(Core.windowSize.Width / 2) - 164 + i * 192 + 22 + 2, 404 + 180 + 2), Color.Black)
+                    End If
+                    Core.SpriteBatch.DrawString(FontManager.InGameFont, Text, New Vector2(CInt(Core.windowSize.Width / 2) - 164 + i * 192 + 22, 404 + 180), FontColor)
+
+                Next
+            End If
+
+            TextBox.Draw()
         End If
-
-        TextBox.Draw()
     End Sub
 
     Private Sub DrawText()
