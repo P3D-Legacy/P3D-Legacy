@@ -134,6 +134,13 @@
                         EndTrade()
                     End If
                 End If
+            Case 5
+                If NPCPokemon.Number <> Core.Player.Pokemons(Core.Player.Pokemons.Count - 1).Number OrElse NPCPokemon.AdditionalData <> Core.Player.Pokemons(Core.Player.Pokemons.Count - 1).AdditionalData Then
+                    NPCPokemon = Core.Player.Pokemons(Core.Player.Pokemons.Count - 1)
+                End If
+                If CurrentScreen.Identification = Identifications.DirectTradeScreen Then
+                    EndTradeAfterEvolve()
+                End If
         End Select
     End Sub
 
@@ -148,13 +155,29 @@
           "@text.show(" & text & ")" & Environment.NewLine &
           ":end"
 
-        CType(CurrentScreen.PreScreen, OverworldScreen).ActionScript.StartScript(s, 2, False)
-        Core.SetScreen(New TransitionScreen(Core.CurrentScreen, CurrentScreen.PreScreen, Color.Black, False, 15))
-
         Dim p As Pokemon = Core.Player.Pokemons(Core.Player.Pokemons.Count - 1)
         If p.CanEvolve(EvolutionCondition.EvolutionTrigger.Trading, PokemonForms.GetPokemonDataFileName(NPCPokemon.Number, NPCPokemon.AdditionalData)) Then
             Core.SetScreen(New EvolutionScreen(Me, {Core.Player.Pokemons.Count - 1}.ToList(), PokemonForms.GetPokemonDataFileName(NPCPokemon.Number, NPCPokemon.AdditionalData), EvolutionCondition.EvolutionTrigger.Trading))
+            tState = 5
+        Else
+            CType(CurrentScreen.PreScreen, OverworldScreen).ActionScript.StartScript(s, 2, False)
+            Core.SetScreen(New TransitionScreen(Core.CurrentScreen, CurrentScreen.PreScreen, Color.Black, False, 15))
         End If
+    End Sub
+    Private Sub EndTradeAfterEvolve()
+        Dim text As String = Me.TextMessage
+        If text = "" Then
+            text = Localization.GetString("trade_screen_trade_TradedWithNPC", "<Player.Name> traded~[THEIRPOKEMON] for~[YOURPOKEMON]!").Replace("[THEIRPOKEMON]", NPCPokemon.GetName).Replace("[YOURPOKEMON]", PlayerPokemon.GetName)
+        End If
+        Dim s As String =
+          "version=2" & Environment.NewLine &
+          "@sound.play(success_small)" & Environment.NewLine &
+          "@text.show(" & text & ")" & Environment.NewLine &
+          ":end"
+
+        CType(CurrentScreen.PreScreen, OverworldScreen).ActionScript.StartScript(s, 2, False)
+        Core.SetScreen(New TransitionScreen(Core.CurrentScreen, CurrentScreen.PreScreen, Color.Black, False, 20))
+
     End Sub
 
 
