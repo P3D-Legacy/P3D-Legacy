@@ -1,5 +1,5 @@
 version=2
-	:if:<radio.currentchannel>=PokéFlute
+	:if:<radio.currentchannel>=<system.token(pokegear_screen_radio_PokeFlute_Name)>
 		@text.show(The Pokégear was placed~near the sleeping~Snorlax...*...*Snorlax woke up!)
 		@pokemon.cry(143)
 		@level.wait(30)
