@@ -8,5 +8,5 @@ Door:
 NPCs:
 	Route10:
 		{"NPC"{NPC[{"Position"{sngArr[5,0,3]}}{"TextureID"{str[23]}}{"ID"{int[2]}}{"Name"{str[Odd Guy]}}{"Action"{int[0]}}{"AdditionalValue"{str[When you go outside,~you can see the roof~of a big building.*That's the Power Plant.]}}{"Rotation"{int[2]}}{"Movement"{str[Still]}}{"MoveRectangles"{recArr[[4,5,3,3]]}}]}}
-		{"NPC"{NPC[{"Position"{sngArr[12,0,2]}}{"TextureID"{str[26]}}{"ID"{int[3]}}{"Name"{str[Odd Guy]}}{"Action"{int[0]}}{"AdditionalValue"{str[I heard that Team Rocket~got back together in Johto~but fell apart right away.*I didn't know anything about that.]}}{"Rotation"{int[2]}}{"Movement"{str[Looking]}}{"MoveRectangles"{recArr[[4,5,3,3]]}}]}}
+		{"NPC"{NPC[{"Position"{sngArr[12,0,2]}}{"TextureID"{str[26]}}{"ID"{int[3]}}{"Name"{str[Odd Guy]}}{"Action"{int[0]}}{"AdditionalValue"{str[I heard that Team Rocket~got back together in Johto~but fell apart right away.*I didn't know anything about~that.]}}{"Rotation"{int[2]}}{"Movement"{str[Looking]}}{"MoveRectangles"{recArr[[4,5,3,3]]}}]}}
 		{"NPC"{NPC[{"Position"{sngArr[10,0,7]}}{"TextureID"{str[oldhatman]}}{"ID"{int[4]}}{"Name"{str[Odd Guy]}}{"Action"{int[0]}}{"AdditionalValue"{str[A Pokémon Center~near a cave?*That's mighty convenient!]}}{"Rotation"{int[2]}}{"Movement"{str[Walk]}}{"MoveRectangles"{recArr[[10,7,3,1]]}}]}}
