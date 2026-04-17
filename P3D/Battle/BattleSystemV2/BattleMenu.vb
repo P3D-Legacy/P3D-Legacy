@@ -536,7 +536,7 @@ Namespace BattleSystem
 
                         If Controls.Accept(False, True, True) = True And isSelected = True Then
                             SoundManager.PlaySound("select")
-                            If Me.Move.Disabled = 0 AndAlso BattleScreen.FieldEffects.OwnEncore = 0 OrElse BattleScreen.FieldEffects.OwnEncoreMove.ID = Move.ID Then
+                            If Me.Move.Disabled = 0 AndAlso BattleScreen.FieldEffects.OwnEncore = 0 OrElse BattleScreen.FieldEffects.OwnEncoreMove IsNot Nothing AndAlso BattleScreen.FieldEffects.OwnEncoreMove.ID = Move.ID Then
                                 BattleScreen.BattleMenu._moveMenuLastIndex = Me.Index
                                 Me.ClickAction(BattleScreen)
                             End If
