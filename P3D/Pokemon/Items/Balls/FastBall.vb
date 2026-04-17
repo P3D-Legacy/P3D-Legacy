@@ -5,7 +5,7 @@ Namespace Items.Balls
 
         Inherits BallItem
 
-        Public Overrides ReadOnly Property Description As String = "A Pokéball that makes it easier to catch Pokémon which are quick to run away."
+        Public Overrides ReadOnly Property Description As String = "A Pokéball that makes it easier to catch fast Pokémon."
         Public Overrides ReadOnly Property PokeDollarPrice As Integer = 150
 
         Public Sub New()
