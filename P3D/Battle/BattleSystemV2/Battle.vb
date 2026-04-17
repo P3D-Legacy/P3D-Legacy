@@ -341,7 +341,7 @@ Namespace BattleSystem
                 End If
 
                 'Fly:
-                If BattleScreen.FieldEffects.OppFlyCounter >= 1 Then
+                If BattleScreen.FieldEffects.OppFlyCounter = 1 Then
                     SelectedMoveOpp = False
                     Return New RoundConst() With {.StepType = RoundConst.StepTypes.Move, .Argument = GetPokemonMoveFromID(BattleScreen.OppPokemon, 19, BattleScreen, False)}
                 End If
