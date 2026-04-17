@@ -41,6 +41,7 @@ Public Class PressStartScreen
         PokemonImageView.Showing = False
         ImageView.Showing = False
         ChooseBox.Showing = False
+        Screen.Level = New Level
 
         GameModeManager.SetGameModePointer("Kolben")
 
@@ -1575,7 +1576,10 @@ Public Class NewMainMenuScreen
                                 GameModeManager.SetGameModePointer(_gameMode)
                                 Localization.ReloadGameModeTokens()
                             End If
+                            MusicManager.Clear()
                             MusicManager.LoadMusic(True)
+                            SoundManager.Clear()
+                            SoundManager.LoadSounds(True)
                             FontManager.LoadFonts()
                             Water.ClearAnimationResources()
                             Waterfall.ClearAnimationResources()
