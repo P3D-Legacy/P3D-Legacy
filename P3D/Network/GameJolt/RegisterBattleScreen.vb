@@ -131,16 +131,16 @@
         Private Sub DrawMainMenu()
             Canvas.DrawRectangle(New Rectangle(CInt(Core.windowSize.Width / 2 - 400), 100, 800, 240), New Color(177, 228, 247, 200))
 
-            Dim t As String = "Battle Spot allows you to battle against the registered teams of" & Environment.NewLine & "other players. These battles will be held against the computer."
+            Dim t As String = "Battle Spot allows you to battle against the registered teams of other players." & Environment.NewLine & "These battles will be held against the computer."
             Select Case Me.MainCursor
                 Case 0
-                    t &= Environment.NewLine & Environment.NewLine & "The Team Management gives you the option to set up your own" & Environment.NewLine & "team others can battle against."
+                    t &= Environment.NewLine & Environment.NewLine & "The Team Management gives you the option to set up your own team others can battle against."
                 Case 1
                     t &= Environment.NewLine & Environment.NewLine & "Start a battle against a random team registered by another player." & Environment.NewLine & "You have to register your own team first."
                 Case 2
                     t &= Environment.NewLine & Environment.NewLine & "Quit the Battle Spot."
             End Select
-
+            t = t.CropStringToWidth(FontManager.MainFont, 760)
             Core.SpriteBatch.DrawString(FontManager.MainFont, t, New Vector2(CInt(Core.windowSize.Width / 2 - FontManager.MainFont.MeasureString(t).X / 2), 220 - FontManager.MainFont.MeasureString(t).Y / 2), Color.Black)
 
             For i = 0 To Me.MainMenuItems.Count - 1
@@ -221,8 +221,8 @@
         Private Sub DrawTeamRegistration()
             Canvas.DrawRectangle(New Rectangle(CInt(Core.windowSize.Width / 2 - 400), 100, 800, 240), New Color(177, 228, 247, 200))
 
-            Dim t As String = "When you register your team, the game will store a copy of your" & Environment.NewLine & "Pokémon online so that other players can download that team and" & Environment.NewLine & "battle against it." & Environment.NewLine & Environment.NewLine & "If you register a new team, the old one will be overwritten with" & Environment.NewLine & "the new one."
-
+            Dim t As String = "When you register your team, the game will store a copy of your Pokémon online so that other players can download that team and battle against it." & Environment.NewLine & Environment.NewLine & "If you register a new team, the old one will be overwritten with the new one."
+            t = t.CropStringToWidth(FontManager.MainFont, 760)
             Core.SpriteBatch.DrawString(FontManager.MainFont, t, New Vector2(CInt(Core.windowSize.Width / 2 - FontManager.MainFont.MeasureString(t).X / 2), 180 - FontManager.MainFont.MeasureString(t).Y / 2), Color.Black)
 
             If HasTeamUploaded = True Then
