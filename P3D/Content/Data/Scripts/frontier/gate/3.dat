@@ -12,7 +12,7 @@ version=2
 @options.SetCancelIndex(2)
 @Options.show(Symbols,Battle Points,Exit)
 	:when:Symbols
-		@text.show(There are six facilities~at the Battle Frontier.*Trainers who gain recognition~for their abilities may be~rewarded with Symbols~from each of the facilities.*To earn a Symbol, trainers~may need to defaeat other~trainers in a row, and may~need to win events repeatedly.*This will culminate in~a battle against the~facility's Frontier Brain.*The Silver Symbol will~be awarded after beating~them the first time,~the Gold Symbol for beating~them the second time.*It's certainly not easy~to win Symbols.*I wish you the best of luck!)
+		@text.show(There are six facilities~at the Battle Frontier.*Trainers who gain recognition~for their abilities may be~rewarded with Symbols~from each of the facilities.*To earn a Symbol, trainers~may need to defeat other~trainers in a row, and may~need to win events repeatedly.*This will culminate in~a battle against the~facility's Frontier Brain.*The Silver Symbol will~be awarded after beating~them the first time,~the Gold Symbol for beating~them the second time.*It's certainly not easy~to win Symbols.*I wish you the best of luck!)
 	:when:Battle Points
 		@text.show(Battle Points are rewards~given to trainers who~battled outstandingly~at the Battle Frontier.*You may trade in your~Battle Points for prizes~at the various shops~around the Frontier Plaza.)
 	:when:Exit
