@@ -394,7 +394,7 @@ Public Class TradeScreen
         For Each i As TradeItem In Me.TradeItems
             Dim item As Item = i.GetItem()
 
-            If loadedBuyCategories.Contains(item.ItemType) = False And item.CanBeTraded = True Then
+            If loadedBuyCategories.Contains(item.ItemType) = False And item.CanBeTraded = True AndAlso (i.Amount = -1 OrElse i.Amount > 0) Then
                 loadedBuyCategories.Add(item.ItemType)
             End If
         Next
