@@ -719,7 +719,7 @@ Public Class NewOptionScreen
 							If ScreenIndex = 8 Then
 								SwitchToContentPacks()
 							Else
-								_closing = True
+								Close()
 							End If
 						Else
 							SwitchToMain()
