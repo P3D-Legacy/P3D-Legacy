@@ -141,7 +141,7 @@
                     t &= Environment.NewLine & Environment.NewLine & "Quit the Battle Spot."
             End Select
             t = t.CropStringToWidth(FontManager.MainFont, 760)
-            Core.SpriteBatch.DrawString(FontManager.MainFont, t, New Vector2(CInt(Core.windowSize.Width / 2 - FontManager.MainFont.MeasureString(t).X / 2), 220 - FontManager.MainFont.MeasureString(t).Y / 2), Color.Black)
+            Core.SpriteBatch.DrawString(FontManager.MainFont, t, New Vector2(CInt(Core.windowSize.Width / 2 - 400 + 20), 220 - FontManager.MainFont.MeasureString(t).Y / 2), Color.Black)
 
             For i = 0 To Me.MainMenuItems.Count - 1
                 Core.SpriteBatch.Draw(Me.texture, New Rectangle(CInt(Core.windowSize.Width / 2 - (64 * 5) / 2), 400 + i * 96, 64, 64), New Rectangle(16, 16, 16, 16), Color.White)
@@ -223,12 +223,12 @@
 
             Dim t As String = "When you register your team, the game will store a copy of your Pokémon online so that other players can download that team and battle against it." & Environment.NewLine & Environment.NewLine & "If you register a new team, the old one will be overwritten with the new one."
             t = t.CropStringToWidth(FontManager.MainFont, 760)
-            Core.SpriteBatch.DrawString(FontManager.MainFont, t, New Vector2(CInt(Core.windowSize.Width / 2 - FontManager.MainFont.MeasureString(t).X / 2), 180 - FontManager.MainFont.MeasureString(t).Y / 2), Color.Black)
+            Core.SpriteBatch.DrawString(FontManager.MainFont, t, New Vector2(CInt(Core.windowSize.Width / 2 - 400 + 20), 180 - FontManager.MainFont.MeasureString(t).Y / 2), Color.Black)
 
             If HasTeamUploaded = True Then
-                Core.SpriteBatch.DrawString(FontManager.MainFont, "Registered Team:", New Vector2(CInt(Core.windowSize.Width / 2 - FontManager.MainFont.MeasureString(t).X / 2), 335 - FontManager.MainFont.MeasureString(t).Y / 2), Color.Black)
+                Core.SpriteBatch.DrawString(FontManager.MainFont, "Registered Team:", New Vector2(CInt(Core.windowSize.Width / 2 - 400 + 20), 335 - FontManager.MainFont.MeasureString(t).Y / 2), Color.Black)
 
-                Dim startPos As New Vector2(CInt(Core.windowSize.Width / 2 - FontManager.MainFont.MeasureString(t).X / 2), 335 - FontManager.MainFont.MeasureString(t).Y / 2)
+                Dim startPos As New Vector2(CInt(Core.windowSize.Width / 2 - 400 + 20), 335 - FontManager.MainFont.MeasureString(t).Y / 2)
 
                 For i = 0 To Me.OwnTeam.Count - 1
                     Dim p As Pokemon = Me.OwnTeam(i)
@@ -237,7 +237,7 @@
                     Core.SpriteBatch.Draw(pokeTexture, New Rectangle(CInt(startPos.X) + 224 + i * 68, CInt(startPos.Y) - 26, CInt(pokeTexture.Width * pokeTextureScale.X), CInt(pokeTexture.Height * pokeTextureScale.Y)), Color.White)
                 Next
             Else
-                Core.SpriteBatch.DrawString(FontManager.MainFont, "No Team registered.", New Vector2(CInt(Core.windowSize.Width / 2 - FontManager.MainFont.MeasureString(t).X / 2), 335 - FontManager.MainFont.MeasureString(t).Y / 2), Color.Black)
+                Core.SpriteBatch.DrawString(FontManager.MainFont, "No Team registered.", New Vector2(CInt(Core.windowSize.Width / 2 - 400 + 20), 335 - FontManager.MainFont.MeasureString(t).Y / 2), Color.Black)
             End If
 
             For i = 0 To Me.TeamRegisterMenuItems.Count - 1
