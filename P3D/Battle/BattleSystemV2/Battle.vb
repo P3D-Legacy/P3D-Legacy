@@ -8829,8 +8829,9 @@ Namespace BattleSystem
                         Won = True
                         Core.Player.AddPoints(3, "Won against trainer.")
 
-                        Core.Player.Money += BattleScreen.GetTrainerMoney()
-
+                        If BattleScreen.IsPVPBattle = False Then
+                            Core.Player.Money += BattleScreen.GetTrainerMoney()
+                        End If
                         BattleScreen.BattleQuery.Add(New PlayMusicQueryObject(BattleScreen.Trainer.GetDefeatMusic()))
 
                         Dim q As New CameraQueryObject(New Vector3(15, 0, 13), Screen.Camera.Position, 0.03F, 0.03F, -(MathHelper.Pi * 0.5F), Screen.Camera.Yaw, 0.0F, Screen.Camera.Pitch, 0.04F, 0.02F)
@@ -8840,8 +8841,10 @@ Namespace BattleSystem
                         BattleScreen.BattleQuery.Add(New TextQueryObject(BattleScreen.Trainer.TrainerType & " " & BattleScreen.Trainer.Name & " was defeated!"))
                         BattleScreen.BattleQuery.Add(New TextQueryObject(ScriptVersion2.ScriptCommander.Parse(BattleScreen.Trainer.OutroMessage).ToString))
 
-                        If BattleScreen.GetTrainerMoney() > 0 Then
-                            BattleScreen.BattleQuery.Add(New TextQueryObject(Core.Player.Name & " got $" & BattleScreen.GetTrainerMoney() & "!"))
+                        If BattleScreen.IsPVPBattle = False Then
+                            If BattleScreen.GetTrainerMoney() > 0 Then
+                                BattleScreen.BattleQuery.Add(New TextQueryObject(Core.Player.Name & " got $" & BattleScreen.GetTrainerMoney() & "!"))
+                            End If
                         End If
 
                         BattleScreen.BattleQuery.Add(New EndBattleQueryObject(False))
@@ -8859,44 +8862,45 @@ Namespace BattleSystem
                             BattleScreen.BattleQuery.Add(New TextQueryObject(ScriptVersion2.ScriptCommander.Parse(BattleScreen.Trainer.PlayerLossMessage).ToString))
                         End If
 
-                        Dim HighestLevel As Integer = 1
-                        For Each p As Pokemon In Core.Player.Pokemons
-                            If p.Level > HighestLevel Then
-                                HighestLevel = p.Level
+                        If BattleScreen.IsPVPBattle = False Then
+                            Dim HighestLevel As Integer = 1
+                            For Each p As Pokemon In Core.Player.Pokemons
+                                If p.Level > HighestLevel Then
+                                    HighestLevel = p.Level
+                                End If
+                            Next
+                            Dim BasePayout As Integer = 8
+                            Select Case Core.Player.Badges.Count
+                                Case 1
+                                    BasePayout = 16
+                                Case 2
+                                    BasePayout = 24
+                                Case 3
+                                    BasePayout = 36
+                                Case 4
+                                    BasePayout = 48
+                                Case 5
+                                    BasePayout = 64
+                                Case 6
+                                    BasePayout = 80
+                                Case 7
+                                    BasePayout = 100
+                                Case 8
+                                    BasePayout = 120
+                                Case > 8
+                                    BasePayout = 120
+                            End Select
+                            Dim LostMoney As Integer = CInt(HighestLevel * BasePayout)
+
+                            If Core.Player.Money <= LostMoney Then
+                                LostMoney = Core.Player.Money
                             End If
-                        Next
-                        Dim BasePayout As Integer = 8
-                        Select Case Core.Player.Badges.Count
-                            Case 1
-                                BasePayout = 16
-                            Case 2
-                                BasePayout = 24
-                            Case 3
-                                BasePayout = 36
-                            Case 4
-                                BasePayout = 48
-                            Case 5
-                                BasePayout = 64
-                            Case 6
-                                BasePayout = 80
-                            Case 7
-                                BasePayout = 100
-                            Case 8
-                                BasePayout = 120
-                            Case > 8
-                                BasePayout = 120
-                        End Select
-                        Dim LostMoney As Integer = CInt(HighestLevel * BasePayout)
-
-                        If Core.Player.Money <= LostMoney Then
-                            LostMoney = Core.Player.Money
-                        End If
-                        Core.Player.Money -= LostMoney
-
-                        If BattleScreen.IsTrainerBattle = False Then
-                            BattleScreen.BattleQuery.Add(New TextQueryObject("You panicked and dropped $" & LostMoney.ToString & "..."))
-                        Else
-                            BattleScreen.BattleQuery.Add(New TextQueryObject("You gave $" & LostMoney.ToString & " to the winner..."))
+                            Core.Player.Money -= LostMoney
+                            If BattleScreen.IsTrainerBattle = False Then
+                                BattleScreen.BattleQuery.Add(New TextQueryObject("You panicked and dropped $" & LostMoney.ToString & "..."))
+                            Else
+                                BattleScreen.BattleQuery.Add(New TextQueryObject("You gave $" & LostMoney.ToString & " to the winner..."))
+                            End If
                         End If
                         BattleScreen.BattleQuery.Add(New EndBattleQueryObject(True))
                 End Select
