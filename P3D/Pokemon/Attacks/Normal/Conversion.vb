@@ -61,11 +61,11 @@
                 p = BattleScreen.OppPokemon
             End If
 
-            Dim newType As New Element(p.Attacks(0).Type.Type)
+            Dim newType As Element = GameModeElementLoader.GetElementByID(p.Attacks(0).Type.Type)
 
             If p.Type1.Type <> newType.Type Or p.Type2.Type <> Element.Types.Blank Then
-                p.OriginalType1 = New Element(p.Type1.Type)
-                p.OriginalType2 = New Element(p.Type2.Type)
+                p.OriginalType1 = GameModeElementLoader.GetElementByID(p.Type1.Type)
+                p.OriginalType2 = GameModeElementLoader.GetElementByID(p.Type2.Type)
 
                 p.Type1 = newType
                 p.Type2.Type = Element.Types.Blank
