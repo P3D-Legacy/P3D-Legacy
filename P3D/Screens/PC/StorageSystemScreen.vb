@@ -1415,7 +1415,7 @@ Public Class StorageSystemScreen
         For Each line In Data
             If Not line.StartsWith("BOX|") Then Continue For
             Dim boxData() = line.Split(CChar("|"))
-            BattleBoxID = Math.Min(CInt(boxData(1)), BattleBoxID)
+            BattleBoxID = Math.Max(CInt(boxData(1)), BattleBoxID)
         Next
         For Each line In Data
             If Not line.StartsWith(BattleBoxID.ToString() & ",") Or Not line.EndsWith("}") Then Continue For
