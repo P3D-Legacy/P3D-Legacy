@@ -8852,7 +8852,7 @@ Namespace BattleSystem
                         BattleScreen.BattleQuery.Add(q)
 
                         BattleScreen.BattleQuery.Add(New TextQueryObject("You lost the battle!"))
-                        If BattleScreen.Trainer.PlayerLossMessage <> "" Then
+                        If BattleScreen.IsTrainerBattle = True AndAlso BattleScreen.Trainer.PlayerLossMessage <> "" Then
                             Dim q1 As New CameraQueryObject(New Vector3(15, 0, 13), Screen.Camera.Position, 0.03F, 0.03F, -(MathHelper.Pi * 0.5F), Screen.Camera.Yaw, 0.0F, Screen.Camera.Pitch, 0.04F, 0.02F)
                             q1.ApplyCurrentCamera = True
                             BattleScreen.BattleQuery.Add(q)
