@@ -1871,7 +1871,21 @@ Namespace BattleSystem
             Dim DirectKOED As Boolean = False
 
             ChangeCameraAngle(1, own, BattleScreen)
-            BattleScreen.BattleQuery.Add(New TextQueryObject(p.GetDisplayName() & " used " & moveUsed.Name & "!"))
+            Dim MoveUsedText As String = p.GetDisplayName() & " used " & moveUsed.Name & "!"
+
+            Dim bide As Integer = BattleScreen.FieldEffects.OwnBideCounter
+            If own = False Then
+                bide = BattleScreen.FieldEffects.OppBideCounter
+            End If
+            If bide > 0 Then
+                If bide < 3 Then
+                    MoveUsedText = p.GetDisplayName() & " is storing energy!"
+                Else
+                    MoveUsedText = p.GetDisplayName() & " released energy!"
+                End If
+            End If
+
+            BattleScreen.BattleQuery.Add(New TextQueryObject(MoveUsedText))
 
             If moveUsed.DeductPP(own, BattleScreen) = True Then
                 If moveUsed.CurrentPP > 0 Then
