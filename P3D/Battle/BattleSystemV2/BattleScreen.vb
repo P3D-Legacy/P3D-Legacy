@@ -1474,7 +1474,11 @@ nextIndex:
                                                 If p.Item Is Nothing Then
                                                     p.Item = Core.Player.Pokemons(index).Item
                                                     p.OriginalItem = Nothing
+                                                    If ItemReturnScript <> "@Text.Show(" Then
+                                                        ItemReturnScript &= "*"
+                                                    End If
 
+                                                    ItemReturnScript &= Core.Player.Name & " gave the~" & p.Item.Name & " back to~" & p.GetDisplayName & "!"
                                                     Core.Player.Pokemons(index).Item = Nothing
                                                 Else
                                                     If p.Item.IsGameModeItem = True Then
@@ -1502,70 +1506,12 @@ nextIndex:
                             End If
                         End If
 
-                        ' Check if this Pokémon is holding the OriginalItem of another Pokémon
-                        If p.OriginalItem Is Nothing AndAlso p.Item IsNot Nothing Then
-                            If CType(CurrentScreen, BattleSystem.BattleScreen).FieldEffects.StolenFromOwnItems.Count > 0 Then
-                                For Each k As Integer In CType(CurrentScreen, BattleSystem.BattleScreen).FieldEffects.StolenFromOwnItems.Keys
-                                    Dim StolenItemID As String
-                                    If CType(CurrentScreen, BattleSystem.BattleScreen).FieldEffects.StolenFromOwnItems(k).IsGameModeItem = False Then
-                                        StolenItemID = CType(CurrentScreen, BattleSystem.BattleScreen).FieldEffects.StolenFromOwnItems(k).ID.ToString
-                                    Else
-                                        StolenItemID = CType(CurrentScreen, BattleSystem.BattleScreen).FieldEffects.StolenFromOwnItems(k).gmID.ToString
-                                    End If
-                                    Dim ItemID As String = ""
-                                    If p.Item IsNot Nothing Then
-                                        If p.Item.IsGameModeItem = False Then
-                                            ItemID = p.Item.ID.ToString
-                                        Else
-                                            ItemID = p.Item.gmID.ToString
-                                        End If
-                                    End If
-                                    If ItemID = StolenItemID Then
-                                        CType(CurrentScreen, BattleSystem.BattleScreen).FieldEffects.StolenFromOwnItems.Remove(k)
-
-                                        If Core.Player.Pokemons(k).Item Is Nothing Then
-                                            If ItemReturnScript <> "@Text.Show(" Then
-                                                ItemReturnScript &= "*"
-                                            End If
-
-                                            ItemReturnScript &= Core.Player.Name & " gave the~" & p.Item.Name & " back to~" & Core.Player.Pokemons(k).GetDisplayName & "!"
-                                            Core.Player.Pokemons(k).Item = p.Item
-                                            Core.Player.Pokemons(k).OriginalItem = Nothing
-                                            p.Item = Nothing
-                                        Else
-                                            If Core.Player.Pokemons(k).Item.IsGameModeItem = True Then
-                                                Core.Player.Inventory.AddItem(Core.Player.Pokemons(k).Item.gmID, 1)
-                                            Else
-                                                Core.Player.Inventory.AddItem(Core.Player.Pokemons(k).Item.ID.ToString, 1)
-                                            End If
-                                            If ItemReturnScript = "@Text.Show(" Then
-                                                ItemReturnScript = ""
-                                            End If
-                                            If ItemReturnScript <> "" Then
-                                                ItemReturnScript &= ")" & Environment.NewLine
-                                            End If
-                                            ItemReturnScript &= "@Sound.Play(Receive_Item)" & Environment.NewLine & "@Text.Show(" & Core.Player.Name & " found~" & Core.Player.Pokemons(k).Item.Name & "!*" & Core.Player.Inventory.GetMessageReceive(Core.Player.Pokemons(k).Item, 1)
-
-                                            Core.Player.Pokemons(k).Item = Nothing
-
-                                            ItemReturnScript &= Core.Player.Name & " gave the~" & p.Item.Name & " back to~" & Core.Player.Pokemons(k).GetDisplayName & "!"
-                                            Core.Player.Pokemons(k).Item = p.Item
-                                            Core.Player.Pokemons(k).OriginalItem = Nothing
-                                            p.Item = Nothing
-                                        End If
-
-                                        Exit For
-                                    End If
-                                Next
-                            End If
-
-                        End If
                         ' Check if an opponent Pokémon has this Pokémon's OriginalItem
                         If p.OriginalItem IsNot Nothing Then
                             If CType(CurrentScreen, BattleSystem.BattleScreen).FieldEffects.StolenFromOwnItems.Count > 0 Then
                                 For Each k As Integer In CType(CurrentScreen, BattleSystem.BattleScreen).FieldEffects.StolenFromOwnItems.Keys
                                     Dim StolenItemID As String
-                                    If CType(CurrentScreen, BattleSystem.BattleScreen).FieldEffects.StolenFromOppItems(k).IsGameModeItem = False Then
+                                    If CType(CurrentScreen, BattleSystem.BattleScreen).FieldEffects.StolenFromOwnItems(k).IsGameModeItem = False Then
                                         StolenItemID = CType(CurrentScreen, BattleSystem.BattleScreen).FieldEffects.StolenFromOwnItems(k).ID.ToString
                                     Else
                                         StolenItemID = CType(CurrentScreen, BattleSystem.BattleScreen).FieldEffects.StolenFromOwnItems(k).gmID.ToString
