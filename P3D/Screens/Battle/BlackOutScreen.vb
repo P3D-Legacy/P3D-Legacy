@@ -74,6 +74,7 @@ Public Class BlackOutScreen
                         CType(BattleScreen.SavedOverworld.Camera, OverworldCamera).CameraFocusType = OverworldCamera.CameraFocusTypes.Player
                         CType(BattleScreen.SavedOverworld.Camera, OverworldCamera).CameraFocusID = -1
                         Screen.Camera.Position = New Vector3(CSng(positionString(0).Replace(".", GameController.DecSeparator)), CSng(positionString(1).Replace(".", GameController.DecSeparator)), CSng(positionString(2).Replace(".", GameController.DecSeparator)))
+                        Screen.Camera.Update()
                         CType(BattleScreen.SavedOverworld.OverworldScreen, OverworldScreen).ActionScript.Scripts.Clear()
 
                         Core.SetScreen(New TransitionScreen(Me, BattleScreen.SavedOverworld.OverworldScreen, Color.Black, False))
@@ -96,6 +97,7 @@ Public Class BlackOutScreen
                         End If
                         Screen.Camera.Yaw = MathHelper.Pi
                         Screen.Camera.Position = New Vector3(CSng(positionString(0).Replace(".", GameController.DecSeparator)), CSng(positionString(1).Replace(".", GameController.DecSeparator)), CSng(positionString(2).Replace(".", GameController.DecSeparator)))
+                        Screen.Camera.Update()
                         If PreScreen.Identification = Identifications.BattleScreen Then
                             CType(BattleScreen.SavedOverworld.OverworldScreen, OverworldScreen).ActionScript.Scripts.Clear()
                         Else

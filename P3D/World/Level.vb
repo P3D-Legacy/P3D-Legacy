@@ -1120,6 +1120,9 @@ Public Class Level
             ' Change the player position:
             Screen.Camera.Position = WarpData.WarpPosition
 
+            ' Update the camera:
+            Screen.Camera.Update()
+
             Dim tempProperties As String = Me.CanDig.ToString() & "," & Me.CanFly.ToString() ' Store properties to determine if the "enter" sound should be played.
 
             ' Store skin values:

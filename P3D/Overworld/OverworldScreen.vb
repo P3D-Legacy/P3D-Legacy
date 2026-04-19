@@ -131,6 +131,9 @@ Public Class OverworldScreen
         Level = New Level()
         Level.Load(Core.Player.startMap)
 
+        ' Update the camera:
+        Screen.Camera.Update()
+
         'Play music depending on the player state in the level (surfing and riding):
         If Level.Surfing = True Then
             MusicManager.Play("surf", True) 'Play "surf" when player is surfing.
