@@ -457,7 +457,10 @@ Public Class MusicManager
                 End If
 
             ElseIf playIntro = True Then
-                Dim introSong = GetSong("intro\" + songName)
+                Dim introSong As SongContainer = Nothing
+                If SongExists("intro\" + songName) = True Then
+                    introSong = GetSong("intro\" + songName)
+                End If
                 Dim nextSong = GetSong(songName)
                 If Not introSong Is Nothing Then
                     If introSong.Origin = nextSong.Origin Then
