@@ -1885,6 +1885,14 @@ Namespace BattleSystem
                 End If
             End If
 
+            Dim thrash As Integer = BattleScreen.FieldEffects.OwnThrash
+            If own = False Then
+                thrash = BattleScreen.FieldEffects.OppThrash
+            End If
+            If thrash > 0 Then
+                MoveUsedText = p.GetDisplayName() & " is thrashing about!"
+            End If
+
             BattleScreen.BattleQuery.Add(New TextQueryObject(MoveUsedText))
 
             If moveUsed.DeductPP(own, BattleScreen) = True Then
