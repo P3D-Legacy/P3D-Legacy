@@ -635,6 +635,7 @@
                 t.IntroType = 11
                 t.OutroMessage = ". . ."
                 t.GameJoltID = OppEmblem.GameJoltID
+                t.AILevel = 2
 
                 For Each p As Pokemon In t.Pokemons
                     p.Level = 50
