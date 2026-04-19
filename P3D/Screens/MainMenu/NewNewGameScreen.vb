@@ -40,12 +40,13 @@
             ScriptStorage.Clear()
             Me.ActionScript.Scripts.Clear()
 
-
-            Camera = New NewGameCamera()
+            Camera = New NewGameCamera(GameModeManager.ActiveGameMode.StartPosition, GameModeManager.ActiveGameMode.StartYaw, GameModeManager.ActiveGameMode.StartPitch)
 
             SkyDome = New SkyDome()
             Level = New Level()
             Level.Load(GameModeManager.ActiveGameMode.StartMap)
+
+            Camera.Update()
 
             Core.Player.Unload()
 

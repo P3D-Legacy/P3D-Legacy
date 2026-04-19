@@ -2,16 +2,21 @@
 
     Inherits OverworldCamera
 
-    Public Sub New()
+    Public Sub New(StartPosition As Vector3, StartYaw As Single, StartPitch As Single)
         Me.Name = "New Game"
         Core.Player.startThirdPerson = False
-        Me.Position = New Vector3(13, 2, 14)
+        Me.Position = StartPosition
         Me.Speed = 0.0008F
 
-        Yaw = CSng(Core.Random.NextDouble() * MathHelper.TwoPi)
-        Pitch = -0.2F
+        Yaw = StartYaw
+        Pitch = StartPitch
 
-        View = Matrix.CreateLookAt(Position, Vector3.Zero, Vector3.Up)
+        Dim rotation As Matrix = Matrix.CreateRotationX(Pitch) * Matrix.CreateRotationY(Yaw)
+
+        Dim transformed As Vector3 = Vector3.Transform(New Vector3(0, 0, 0), rotation)
+        Dim lookAt As Vector3 = New Vector3(Me.Position.X, Me.Position.Y, Me.Position.Z) + transformed
+
+        View = Matrix.CreateLookAt(Position, lookAt, Vector3.Up)
         Projection = Matrix.CreatePerspectiveFieldOfView(MathHelper.ToRadians(45.0), Core.GraphicsDevice.Viewport.AspectRatio, 0.01, 16)
         FOV = 45
 
