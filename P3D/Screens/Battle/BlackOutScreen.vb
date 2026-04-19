@@ -1,4 +1,4 @@
-Public Class BlackOutScreen
+﻿Public Class BlackOutScreen
 
     Inherits Screen
 
@@ -74,7 +74,10 @@ Public Class BlackOutScreen
                         CType(BattleScreen.SavedOverworld.Camera, OverworldCamera).CameraFocusType = OverworldCamera.CameraFocusTypes.Player
                         CType(BattleScreen.SavedOverworld.Camera, OverworldCamera).CameraFocusID = -1
                         Screen.Camera.Position = New Vector3(CSng(positionString(0).Replace(".", GameController.DecSeparator)), CSng(positionString(1).Replace(".", GameController.DecSeparator)), CSng(positionString(2).Replace(".", GameController.DecSeparator)))
+
+                        Screen.Level.Update()
                         Screen.Camera.Update()
+
                         CType(BattleScreen.SavedOverworld.OverworldScreen, OverworldScreen).ActionScript.Scripts.Clear()
 
                         Core.SetScreen(New TransitionScreen(Me, BattleScreen.SavedOverworld.OverworldScreen, Color.Black, False))
@@ -97,7 +100,10 @@ Public Class BlackOutScreen
                         End If
                         Screen.Camera.Yaw = MathHelper.Pi
                         Screen.Camera.Position = New Vector3(CSng(positionString(0).Replace(".", GameController.DecSeparator)), CSng(positionString(1).Replace(".", GameController.DecSeparator)), CSng(positionString(2).Replace(".", GameController.DecSeparator)))
+
+                        Screen.Level.Update()
                         Screen.Camera.Update()
+
                         If PreScreen.Identification = Identifications.BattleScreen Then
                             CType(BattleScreen.SavedOverworld.OverworldScreen, OverworldScreen).ActionScript.Scripts.Clear()
                         Else
@@ -169,12 +175,12 @@ Public Class BlackOutScreen
     End Sub
 
     Private Sub ChangeFromSurfRideTexture()
-        If Screen.Level.Riding = True Then
+        If Screen.Level.Riding = True AndAlso Core.Player.TempRideSkin <> "" Then
             Screen.Level.Riding = False
             Screen.Level.OwnPlayer.SetTexture(Core.Player.TempRideSkin, True)
             Core.Player.Skin = Core.Player.TempRideSkin
         End If
-        If Screen.Level.Surfing = True Then
+        If Screen.Level.Surfing = True AndAlso Core.Player.TempSurfSkin <> "" Then
             Screen.Level.Surfing = False
             Screen.Level.OwnPlayer.SetTexture(Core.Player.TempSurfSkin, True)
             Core.Player.Skin = Core.Player.TempSurfSkin
