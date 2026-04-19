@@ -49,6 +49,9 @@
             Me.IsAffectedBySubstitute = True
             Me.IsOneHitKOMove = False
             Me.IsWonderGuardAffected = True
+
+            Me.AIField1 = AIField.Damage
+            Me.AIField2 = AIField.Nothing
             '#End
         End Sub
 
@@ -70,7 +73,7 @@
             End If
 
             For Each moveID As Integer In moveIDs
-                If AllUsedMoves.Contains(moveID) = False Then
+                If AllUsedMoves.Contains(moveID) = False And moveID <> 387 Then
                     usedMoves = False
                     Exit For
                 End If

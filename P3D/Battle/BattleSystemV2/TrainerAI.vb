@@ -800,7 +800,23 @@ Namespace BattleSystem
                     If cMove.ID = 171 And op.Status <> Pokemon.StatusProblems.Sleep Then 'Never use nightmare when opponent is not sleeping.
                         value = 0
                     End If
-                    If cMove.ID = 138 And op.Status <> Pokemon.StatusProblems.Sleep Then 'Never use Dream eater when opponent is not sleeping
+                    If cMove.ID = 138 And op.Status <> Pokemon.StatusProblems.Sleep Then 'Never use Dream eater when opponent is not sleeping.
+                        value = 0
+                    End If
+                    If cMove.ID = 485 And op.IsType(p.Type1.Type) = False Or op.IsType(p.Type2.Type) = False Then 'Never use Synchronoise when the opponent's type is the same as its own.
+                        value = 0
+                    End If
+                    'Never use Last Resort if other attacks have not been used yet.
+                    Dim usedMoves As Boolean = True
+                    Dim AllUsedMoves As List(Of Integer) = BattleScreen.FieldEffects.OppUsedMoves
+
+                    For Each moveID As Integer In attackDic.Keys
+                        If AllUsedMoves.Contains(m(moveID).ID) = False And m(moveID).ID <> 387 Then
+                            usedMoves = False
+                            Exit For
+                        End If
+                    Next
+                    If usedMoves = False Then
                         value = 0
                     End If
 
@@ -851,7 +867,24 @@ Namespace BattleSystem
                 Dim OppAttackChoice As Integer = Core.Random.Next(0, AvailableAttacks.Count)
                 Dim Ready As Boolean = False
                 While Ready = False
-                    If m(OppAttackChoice) Is BattleScreen.FieldEffects.OppTormentMove OrElse m(OppAttackChoice).Disabled > 0 OrElse BattleScreen.FieldEffects.OppTaunt > 0 AndAlso BattleScreen.OppPokemon.Attacks(OppAttackChoice).Category = Attack.Categories.Status Then
+
+                    'Check if infatuation moves are valid to use
+                    If AvailableAttacks.Count > 1 Then
+                        If MoveHasAIField(BattleScreen.OppPokemon.Attacks(OppAttackChoice), Attack.AIField.Infatuation) = True Then
+                            If BattleScreen.OwnPokemon.HasVolatileStatus(Pokemon.VolatileStatus.Infatuation) = True OrElse
+                            BattleScreen.OppPokemon.Gender = Pokemon.Genders.Genderless OrElse
+                            BattleScreen.OppPokemon.Gender = BattleScreen.OwnPokemon.Gender Then
+                                If RPercent(75) = True Then
+                                    AvailableAttacks.Remove(OppAttackChoice)
+                                    OppAttackChoice = AvailableAttacks(Core.Random.Next(0, AvailableAttacks.Count))
+                                End If
+                            End If
+                        End If
+                    End If
+
+                    If m(OppAttackChoice) Is BattleScreen.FieldEffects.OppTormentMove OrElse m(OppAttackChoice).Disabled > 0 OrElse
+                        BattleScreen.FieldEffects.OppTaunt > 0 AndAlso BattleScreen.OppPokemon.Attacks(OppAttackChoice).Category = Attack.Categories.Status Then
+
                         AvailableAttacks.Remove(OppAttackChoice)
                         If AvailableAttacks.Count > 0 Then
                             OppAttackChoice = AvailableAttacks(Core.Random.Next(0, AvailableAttacks.Count))
