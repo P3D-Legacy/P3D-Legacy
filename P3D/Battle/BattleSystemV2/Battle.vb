@@ -2296,12 +2296,12 @@ Namespace BattleSystem
                     If p.Ability.Name.ToLower() = "protean" AndAlso moveUsed.ID <> 165 Then ''165 = Struggle
                         If p.Type1.Type <> moveUsed.Type.Type OrElse p.Type2.Type <> Element.Types.Blank Then
                             If p.OriginalType1 Is Nothing Then
-                                p.OriginalType1 = New Element(p.Type1.Type)
+                                p.OriginalType1 = GameModeElementLoader.GetElementByID(p.Type1.Type)
                             End If
                             p.Type1.Type = moveUsed.Type.Type
                             If p.Type2.Type <> Element.Types.Blank Then
                                 If p.OriginalType2 Is Nothing Then
-                                    p.OriginalType2 = New Element(p.Type2.Type)
+                                    p.OriginalType2 = GameModeElementLoader.GetElementByID(p.Type2.Type)
                                 End If
                                 p.Type2.Type = Element.Types.Blank
                             End If
