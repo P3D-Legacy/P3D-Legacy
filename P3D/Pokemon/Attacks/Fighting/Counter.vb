@@ -34,7 +34,7 @@
             Me.CounterAffected = True
 
             Me.DisabledWhileGravity = False
-            Me.UseEffectiveness = True
+            Me.UseEffectiveness = False
             Me.ImmunityAffected = True
             Me.HasSecondaryEffect = False
             Me.RemovesOwnFrozen = False
