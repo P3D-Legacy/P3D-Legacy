@@ -341,7 +341,7 @@ Namespace BattleSystem
                 End If
 
                 'Fly:
-                If BattleScreen.FieldEffects.OppFlyCounter = 1 Then
+                If BattleScreen.FieldEffects.OppFlyCounter >= 1 Then
                     SelectedMoveOpp = False
                     Return New RoundConst() With {.StepType = RoundConst.StepTypes.Move, .Argument = GetPokemonMoveFromID(BattleScreen.OppPokemon, 19, BattleScreen, False)}
                 End If
@@ -2229,110 +2229,109 @@ Namespace BattleSystem
                 End If
 
                 If moveWorks = True Then
-                        If op.HP > 0 And op.Status <> Pokemon.StatusProblems.Fainted Then
-                            Dim protect As Integer = BattleScreen.FieldEffects.OppProtectCounter
-                            If own = False Then
-                                protect = BattleScreen.FieldEffects.OwnProtectCounter
-                            End If
-                            If protect > 0 And moveUsed.ProtectAffected = True Then
-                                Dim protectWorks As Boolean = True
-                                If p.Ability.Name.ToLower() = "no guard" Then
-                                    If Core.Random.Next(0, 100) < (100 - moveUsed.GetAccuracy(own, BattleScreen)) Then
-                                        protectWorks = False
-                                    End If
-                                End If
-
-                                If protectWorks = True Then
-                                    BattleScreen.BattleQuery.Add(New TextQueryObject(op.GetDisplayName() & " protected itself!"))
-                                    moveUsed.MoveProtectedDetected(own, BattleScreen)
-                                    Exit Sub
-                                End If
-                            End If
-
-                            Dim detect As Integer = BattleScreen.FieldEffects.OppDetectCounter
-                            If own = False Then
-                                detect = BattleScreen.FieldEffects.OwnDetectCounter
-                            End If
-                            If detect > 0 And moveUsed.ProtectAffected = True Then
-                                Dim detectWorks As Boolean = True
-                                If p.Ability.Name.ToLower() = "no guard" Then
-                                    If Core.Random.Next(0, 100) < (100 - moveUsed.GetAccuracy(own, BattleScreen)) Then
-                                        detectWorks = False
-                                    End If
-                                End If
-
-                                If detectWorks = True Then
-                                    BattleScreen.BattleQuery.Add(New TextQueryObject(op.GetDisplayName() & " protected itself!"))
-                                    moveUsed.MoveProtectedDetected(own, BattleScreen)
-                                    Exit Sub
-                                End If
-                            End If
-
-                            Dim kingsshield As Integer = BattleScreen.FieldEffects.OppKingsShieldCounter
-                            If own = False Then
-                                kingsshield = BattleScreen.FieldEffects.OwnKingsShieldCounter
-                            End If
-                            If kingsshield > 0 And moveUsed.ProtectAffected = True And moveUsed.Category <> Attack.Categories.Status Then
-                                Dim kingsshieldWorks As Boolean = True
-                                If p.Ability.Name.ToLower() = "no guard" Then
-                                    If Core.Random.Next(0, 100) < (100 - moveUsed.GetAccuracy(own, BattleScreen)) Then
-                                        kingsshieldWorks = False
-                                    End If
-                                End If
-
-                                If kingsshieldWorks = True Then
-                                    BattleScreen.BattleQuery.Add(New TextQueryObject(op.GetDisplayName() & " protected itself!"))
-
-                                    If moveUsed.MakesContact = True Then
-                                        Me.LowerStat(own, Not own, BattleScreen, "Attack", 1, "", "move:kingsshield")
-                                    End If
-                                    moveUsed.MoveProtectedDetected(own, BattleScreen)
-                                    Exit Sub
-                                End If
-                            End If
+                    If op.HP > 0 And op.Status <> Pokemon.StatusProblems.Fainted Then
+                        Dim protect As Integer = BattleScreen.FieldEffects.OppProtectCounter
+                        If own = False Then
+                            protect = BattleScreen.FieldEffects.OwnProtectCounter
                         End If
-
-                        'Protean Ability:
-                        If p.Ability.Name.ToLower() = "protean" AndAlso moveUsed.ID <> 165 Then ''165 = Struggle
-                            If p.Type1.Type <> moveUsed.Type.Type OrElse p.Type2.Type <> Element.Types.Blank Then
-                                If p.OriginalType1 Is Nothing Then
-                                    p.OriginalType1 = New Element(p.Type1.Type)
+                        If protect > 0 And moveUsed.ProtectAffected = True Then
+                            Dim protectWorks As Boolean = True
+                            If p.Ability.Name.ToLower() = "no guard" Then
+                                If Core.Random.Next(0, 100) < (100 - moveUsed.GetAccuracy(own, BattleScreen)) Then
+                                    protectWorks = False
                                 End If
-                                p.Type1.Type = moveUsed.Type.Type
-                                If p.Type2.Type <> Element.Types.Blank Then
-                                    If p.OriginalType2 Is Nothing Then
-                                        p.OriginalType2 = New Element(p.Type2.Type)
-                                    End If
-                                    p.Type2.Type = Element.Types.Blank
-                                End If
-                                BattleScreen.BattleQuery.Add(New TextQueryObject(p.GetDisplayName() & "'s type changed to " & p.Type1.ToString() & " due to Protean."))
                             End If
-                        End If
 
-                        'Opp Pokémon move animation! This displays the move effects that target the other Pokémon and appear after the camera switched around.
-                        moveUsed.OpponentPokemonMoveAnimation(BattleScreen, own)
-
-                        'Reset Fly if needed after the animation definition
-                        If own = True And BattleScreen.FieldEffects.OwnFlyCounter = 2 Then
-                            BattleScreen.FieldEffects.OwnFlyCounter = 0
-                        End If
-                        If own = False And BattleScreen.FieldEffects.OppFlyCounter = 2 Then
-                            BattleScreen.FieldEffects.OwnFlyCounter = 0
-                        End If
-
-                        If moveUsed.IsDamagingMove = True Then
-                            ChangeCameraAngle(2, own, BattleScreen)
-                            If op.Ability.Name.ToLower() = "wonder guard" And effectiveness <= 1.0F And BattleScreen.FieldEffects.CanUseAbility(Not own, BattleScreen) = True And moveUsed.IsWonderGuardAffected = True Then
-                                BattleScreen.BattleQuery.Add(New TextQueryObject(op.GetDisplayName() & "s Wonder Guard blocked the attack!"))
+                            If protectWorks = True Then
+                                BattleScreen.BattleQuery.Add(New TextQueryObject(op.GetDisplayName() & " protected itself!"))
+                                moveUsed.MoveProtectedDetected(own, BattleScreen)
                                 Exit Sub
                             End If
+                        End If
 
-                            Dim Hits As Integer = 0
-                            Dim TimesToAttack As Integer = moveUsed.GetTimesToAttack(own, BattleScreen)
+                        Dim detect As Integer = BattleScreen.FieldEffects.OppDetectCounter
+                        If own = False Then
+                            detect = BattleScreen.FieldEffects.OwnDetectCounter
+                        End If
+                        If detect > 0 And moveUsed.ProtectAffected = True Then
+                            Dim detectWorks As Boolean = True
+                            If p.Ability.Name.ToLower() = "no guard" Then
+                                If Core.Random.Next(0, 100) < (100 - moveUsed.GetAccuracy(own, BattleScreen)) Then
+                                    detectWorks = False
+                                End If
+                            End If
 
-                            Dim useParentalBond As Boolean = False
-                            If TimesToAttack = 1 AndAlso p.Ability IsNot Nothing AndAlso p.Ability.Name.ToLower = "parental bond" Then
-                                Dim moveList As String() = {"endeavor",
+                            If detectWorks = True Then
+                                BattleScreen.BattleQuery.Add(New TextQueryObject(op.GetDisplayName() & " protected itself!"))
+                                moveUsed.MoveProtectedDetected(own, BattleScreen)
+                                Exit Sub
+                            End If
+                        End If
+
+                        Dim kingsshield As Integer = BattleScreen.FieldEffects.OppKingsShieldCounter
+                        If own = False Then
+                            kingsshield = BattleScreen.FieldEffects.OwnKingsShieldCounter
+                        End If
+                        If kingsshield > 0 And moveUsed.ProtectAffected = True And moveUsed.Category <> Attack.Categories.Status Then
+                            Dim kingsshieldWorks As Boolean = True
+                            If p.Ability.Name.ToLower() = "no guard" Then
+                                If Core.Random.Next(0, 100) < (100 - moveUsed.GetAccuracy(own, BattleScreen)) Then
+                                    kingsshieldWorks = False
+                                End If
+                            End If
+
+                            If kingsshieldWorks = True Then
+                                BattleScreen.BattleQuery.Add(New TextQueryObject(op.GetDisplayName() & " protected itself!"))
+
+                                If moveUsed.MakesContact = True Then
+                                    Me.LowerStat(own, Not own, BattleScreen, "Attack", 1, "", "move:kingsshield")
+                                End If
+                                moveUsed.MoveProtectedDetected(own, BattleScreen)
+                                Exit Sub
+                            End If
+                        End If
+                    End If
+
+                    'Protean Ability:
+                    If p.Ability.Name.ToLower() = "protean" AndAlso moveUsed.ID <> 165 Then ''165 = Struggle
+                        If p.Type1.Type <> moveUsed.Type.Type OrElse p.Type2.Type <> Element.Types.Blank Then
+                            If p.OriginalType1 Is Nothing Then
+                                p.OriginalType1 = New Element(p.Type1.Type)
+                            End If
+                            p.Type1.Type = moveUsed.Type.Type
+                            If p.Type2.Type <> Element.Types.Blank Then
+                                If p.OriginalType2 Is Nothing Then
+                                    p.OriginalType2 = New Element(p.Type2.Type)
+                                End If
+                                p.Type2.Type = Element.Types.Blank
+                            End If
+                            BattleScreen.BattleQuery.Add(New TextQueryObject(p.GetDisplayName() & "'s type changed to " & p.Type1.ToString() & " due to Protean."))
+                        End If
+                    End If
+
+                    'Opp Pokémon move animation! This displays the move effects that target the other Pokémon and appear after the camera switched around.
+                    moveUsed.OpponentPokemonMoveAnimation(BattleScreen, own)
+
+                    'Reset Fly if needed after the animation definition
+                    If own = True And BattleScreen.FieldEffects.OwnFlyCounter = 2 Then
+                        BattleScreen.FieldEffects.OwnFlyCounter = 0
+                    End If
+                    If own = False And BattleScreen.FieldEffects.OppFlyCounter = 2 Then
+                        BattleScreen.FieldEffects.OppFlyCounter = 0
+                    End If
+                    If moveUsed.IsDamagingMove = True Then
+                        ChangeCameraAngle(2, own, BattleScreen)
+                        If op.Ability.Name.ToLower() = "wonder guard" And effectiveness <= 1.0F And BattleScreen.FieldEffects.CanUseAbility(Not own, BattleScreen) = True And moveUsed.IsWonderGuardAffected = True Then
+                            BattleScreen.BattleQuery.Add(New TextQueryObject(op.GetDisplayName() & "s Wonder Guard blocked the attack!"))
+                            Exit Sub
+                        End If
+
+                        Dim Hits As Integer = 0
+                        Dim TimesToAttack As Integer = moveUsed.GetTimesToAttack(own, BattleScreen)
+
+                        Dim useParentalBond As Boolean = False
+                        If TimesToAttack = 1 AndAlso p.Ability IsNot Nothing AndAlso p.Ability.Name.ToLower = "parental bond" Then
+                            Dim moveList As String() = {"endeavor",
                                                         "fling",
                                                         "explosion",
                                                         "self-destruct",
@@ -2355,217 +2354,217 @@ Namespace BattleSystem
                                                         "bide",
                                                         "struggle"
                                                        }
-                                If Not moveList.Contains(moveUsed.Name.ToLower) Then
-                                    useParentalBond = True
-                                    TimesToAttack += 1
-                                End If
+                            If Not moveList.Contains(moveUsed.Name.ToLower) Then
+                                useParentalBond = True
+                                TimesToAttack += 1
+                            End If
+                        End If
+
+                        For i = 1 To TimesToAttack
+                            Dim Critical As Boolean = BattleCalculation.IsCriticalHit(moveUsed, own, BattleScreen)
+                            Dim Damage As Integer = 0
+                            If useParentalBond AndAlso i = TimesToAttack Then
+                                Damage = moveUsed.GetDamage(Critical, own, Not own, BattleScreen, "parental bond")
+                            Else
+                                Damage = moveUsed.GetDamage(Critical, own, Not own, BattleScreen)
                             End If
 
-                            For i = 1 To TimesToAttack
-                                Dim Critical As Boolean = BattleCalculation.IsCriticalHit(moveUsed, own, BattleScreen)
-                                Dim Damage As Integer = 0
-                                If useParentalBond AndAlso i = TimesToAttack Then
-                                    Damage = moveUsed.GetDamage(Critical, own, Not own, BattleScreen, "parental bond")
-                                Else
-                                    Damage = moveUsed.GetDamage(Critical, own, Not own, BattleScreen)
-                                End If
+                            If effectiveness <> 0 Then
 
-                                If effectiveness <> 0 Then
+                                If Damage = 0 AndAlso moveUsed.ID = 117 Then
+                                    BattleScreen.BattleQuery.Add(New TextQueryObject("But it failed..."))
+                                    moveUsed.MoveMisses(own, BattleScreen)
 
-                                    If Damage = 0 AndAlso moveUsed.ID = 117 Then
-                                        BattleScreen.BattleQuery.Add(New TextQueryObject("But it failed..."))
-                                        moveUsed.MoveMisses(own, BattleScreen)
-
-                                        If own = True Then
-                                            BattleScreen.FieldEffects.OwnLastMoveFailed = True
-                                        Else
-                                            BattleScreen.FieldEffects.OppLastMoveFailed = True
-                                        End If
-                                        effectiveness = 0
-                                        Exit For
-                                    End If
-
-                                    Dim sturdyWorked As Boolean = False
-
-                                    If substitute = 0 Then
-                                        If op.HP = op.MaxHP And op.MaxHP <= Damage Then
-                                            DirectKOED = True
-                                        Else
-                                            DirectKOED = False
-                                        End If
-
-                                        If DirectKOED = True And op.Ability.Name.ToLower() = "sturdy" And BattleScreen.FieldEffects.CanUseAbility(Not own, BattleScreen) = True Then
-                                            DirectKOED = False
-                                            sturdyWorked = True
-                                            Damage = op.MaxHP - 1
-                                        End If
-
-                                        If op.HP <= Damage Then
-                                            KOED = True
-                                        Else
-                                            KOED = False
-                                        End If
-                                    End If
-
-                                    AllDamage += Damage
-
-                                    If substitute = 0 Then
-                                        If own = True Then
-                                            Dim didDamage As Integer = Damage
-                                            If didDamage > op.HP Then
-                                                didDamage = op.HP
-                                            End If
-
-                                            BattleScreen.FieldEffects.OwnLastDamage = didDamage
-
-                                            If BattleScreen.FieldEffects.OppBideCounter > 0 Then
-                                                BattleScreen.FieldEffects.OppBideDamage += didDamage
-                                            End If
-                                            If BattleScreen.FieldEffects.OppRageFistPower < 350 Then
-                                                BattleScreen.FieldEffects.OppRageFistPower += 50
-                                            End If
-                                        Else
-                                            Dim didDamage As Integer = Damage
-                                            If didDamage > op.HP Then
-                                                didDamage = op.HP
-                                            End If
-
-                                            BattleScreen.FieldEffects.OppLastDamage = didDamage
-
-                                            If BattleScreen.FieldEffects.OwnBideCounter > 0 Then
-                                                BattleScreen.FieldEffects.OwnBideDamage += didDamage
-                                            End If
-                                            If BattleScreen.FieldEffects.OwnRageFistPower < 350 Then
-                                                BattleScreen.FieldEffects.OwnRageFistPower += 50
-                                            End If
-                                        End If
-                                    End If
-
-                                    moveUsed.BeforeDealingDamage(own, BattleScreen)
-
-                                    If substitute = 0 Then
-                                        Dim endure As Integer = BattleScreen.FieldEffects.OppEndure
-                                        If own = False Then
-                                            endure = BattleScreen.FieldEffects.OwnEndure
-                                        End If
-
-                                        Dim endureWorked As Boolean = False
-
-                                        If endure > 0 And effectiveness <> 0 Then
-                                            If Damage > op.HP Then
-                                                Damage = op.HP - 1
-                                                endureWorked = True
-                                            End If
-                                        End If
-
-                                        If own = True Then
-                                            BattleScreen.FieldEffects.OppPokemonDamagedThisTurn = True
-                                        Else
-                                            BattleScreen.FieldEffects.OwnPokemonDamagedThisTurn = True
-                                        End If
-
-                                        Dim sound As String = "Battle\Damage\Effective"
-                                        If effectiveness > 1.0F Then
-                                            sound = "Battle\Damage\SuperEffective"
-                                        End If
-                                        If effectiveness < 1.0F And effectiveness <> 0.0F Then
-                                            sound = "Battle\Damage\NotVeryEffective"
-                                        End If
-
-                                        ReduceHP(Damage, Not own, own, BattleScreen, "", "battledamage", sound)
-
-                                        If sturdyWorked = True Then
-                                            BattleScreen.BattleQuery.Add(New TextQueryObject("Sturdy prevented " & op.GetDisplayName() & " from fainting!"))
-                                        End If
-                                        If endureWorked = True Then
-                                            BattleScreen.BattleQuery.Add(New TextQueryObject(op.GetDisplayName() & " endured the attack."))
-                                        End If
+                                    If own = True Then
+                                        BattleScreen.FieldEffects.OwnLastMoveFailed = True
                                     Else
-                                        If own = True Then
-                                            BattleScreen.FieldEffects.OppSubstitute -= Damage
-                                            BattleScreen.BattleQuery.Add(New TextQueryObject(BattleScreen.OppPokemon.GetDisplayName() & "'s substitute took the damage!"))
-                                            If BattleScreen.FieldEffects.OppSubstitute <= 0 Then
-                                                BattleScreen.FieldEffects.OppSubstitute = 0
-                                                BattleScreen.BattleQuery.Add(New ToggleEntityQueryObject(False, ToggleEntityQueryObject.BattleEntities.OwnPokemon, PokemonForms.GetOverworldSpriteName(BattleScreen.OppPokemon, True), 0, 1, -1, -1))
-                                                BattleScreen.BattleQuery.Add(New TextQueryObject(BattleScreen.OppPokemon.GetDisplayName() & " substitute broke!"))
-                                                Exit For
-                                            End If
-                                        Else
-                                            BattleScreen.FieldEffects.OwnSubstitute -= Damage
-                                            BattleScreen.BattleQuery.Add(New TextQueryObject(BattleScreen.OwnPokemon.GetDisplayName() & "'s substitute took the damage!"))
-                                            If BattleScreen.FieldEffects.OwnSubstitute <= 0 Then
-                                                BattleScreen.FieldEffects.OwnSubstitute = 0
-                                                BattleScreen.BattleQuery.Add(New ToggleEntityQueryObject(True, ToggleEntityQueryObject.BattleEntities.OwnPokemon, PokemonForms.GetOverworldSpriteName(BattleScreen.OwnPokemon, True), 0, 1, -1, -1))
-                                                BattleScreen.BattleQuery.Add(New TextQueryObject(BattleScreen.OwnPokemon.GetDisplayName() & " substitute broke!"))
-                                                Exit For
-                                            End If
-                                        End If
+                                        BattleScreen.FieldEffects.OppLastMoveFailed = True
                                     End If
-                                End If
-
-                                If effectiveness > 1.0F Then
-                                    BattleScreen.BattleQuery.Add(New TextQueryObject("It's super effective!"))
-                                    If BattleScreen.IsRemoteBattle = True And BattleScreen.IsHost = True Then
-                                        If own = True Then
-                                            BattleScreen.OwnStatistics.SuperEffective += 1
-                                        Else
-                                            BattleScreen.OppStatistics.SuperEffective += 1
-                                        End If
-                                    End If
-                                ElseIf effectiveness < 1.0F And effectiveness <> 0.0F Then
-                                    BattleScreen.BattleQuery.Add(New TextQueryObject("It's not very effective..."))
-                                    If BattleScreen.IsRemoteBattle = True And BattleScreen.IsHost = True Then
-                                        If own = True Then
-                                            BattleScreen.OwnStatistics.NotVeryEffective += 1
-                                        Else
-                                            BattleScreen.OppStatistics.NotVeryEffective += 1
-                                        End If
-                                    End If
-                                ElseIf effectiveness = 0.0F Then
-                                    BattleScreen.BattleQuery.Add(New TextQueryObject("It has no effect..."))
-                                    If BattleScreen.IsRemoteBattle = True And BattleScreen.IsHost = True Then
-                                        If own = True Then
-                                            BattleScreen.OwnStatistics.NoEffect += 1
-                                        Else
-                                            BattleScreen.OppStatistics.NoEffect += 1
-                                        End If
-                                    End If
+                                    effectiveness = 0
                                     Exit For
                                 End If
 
-                                If Critical = True And effectiveness <> 0 Then
-                                    If BattleScreen.IsRemoteBattle = True And BattleScreen.IsHost = True Then
-                                        If own = True Then
-                                            BattleScreen.OwnStatistics.Critical += 1
-                                        Else
-                                            BattleScreen.OppStatistics.Critical += 1
-                                        End If
-                                    End If
-                                    BattleScreen.BattleQuery.Add(New TextQueryObject("It's a critical hit!"))
+                                Dim sturdyWorked As Boolean = False
 
-                                    If op.Ability.Name.ToLower() = "anger point" And op.StatAttack < 6 And op.HP > 0 Then
-                                        BattleScreen.BattleQuery.Add(New TextQueryObject(op.GetDisplayName() & "'s Anger Point maxed it's attack!"))
-                                        op.StatAttack = 6
+                                If substitute = 0 Then
+                                    If op.HP = op.MaxHP And op.MaxHP <= Damage Then
+                                        DirectKOED = True
+                                    Else
+                                        DirectKOED = False
+                                    End If
+
+                                    If DirectKOED = True And op.Ability.Name.ToLower() = "sturdy" And BattleScreen.FieldEffects.CanUseAbility(Not own, BattleScreen) = True Then
+                                        DirectKOED = False
+                                        sturdyWorked = True
+                                        Damage = op.MaxHP - 1
+                                    End If
+
+                                    If op.HP <= Damage Then
+                                        KOED = True
+                                    Else
+                                        KOED = False
                                     End If
                                 End If
 
-                                If effectiveness <> 0 Then
-                                    Dim canUseEffect As Boolean = True
-                                    Dim multiUseEffect As Boolean = True
+                                AllDamage += Damage
 
-                                    If op.Ability.Name.ToLower() = "shield dust" AndAlso moveUsed.HasSecondaryEffect = True Then
-                                        If BattleScreen.FieldEffects.CanUseAbility(Not own, BattleScreen) = True Then
-                                            canUseEffect = False
+                                If substitute = 0 Then
+                                    If own = True Then
+                                        Dim didDamage As Integer = Damage
+                                        If didDamage > op.HP Then
+                                            didDamage = op.HP
+                                        End If
+
+                                        BattleScreen.FieldEffects.OwnLastDamage = didDamage
+
+                                        If BattleScreen.FieldEffects.OppBideCounter > 0 Then
+                                            BattleScreen.FieldEffects.OppBideDamage += didDamage
+                                        End If
+                                        If BattleScreen.FieldEffects.OppRageFistPower < 350 Then
+                                            BattleScreen.FieldEffects.OppRageFistPower += 50
+                                        End If
+                                    Else
+                                        Dim didDamage As Integer = Damage
+                                        If didDamage > op.HP Then
+                                            didDamage = op.HP
+                                        End If
+
+                                        BattleScreen.FieldEffects.OppLastDamage = didDamage
+
+                                        If BattleScreen.FieldEffects.OwnBideCounter > 0 Then
+                                            BattleScreen.FieldEffects.OwnBideDamage += didDamage
+                                        End If
+                                        If BattleScreen.FieldEffects.OwnRageFistPower < 350 Then
+                                            BattleScreen.FieldEffects.OwnRageFistPower += 50
                                         End If
                                     End If
-                                    If p.Ability.Name.ToLower() = "sheer force" AndAlso moveUsed.HasSecondaryEffect = True Then
-                                        canUseEffect = False
+                                End If
+
+                                moveUsed.BeforeDealingDamage(own, BattleScreen)
+
+                                If substitute = 0 Then
+                                    Dim endure As Integer = BattleScreen.FieldEffects.OppEndure
+                                    If own = False Then
+                                        endure = BattleScreen.FieldEffects.OwnEndure
                                     End If
 
+                                    Dim endureWorked As Boolean = False
 
-                                    'Moves that only use secondary effects on the second turn of parental bond
-                                    If useParentalBond Then
-                                        Dim PBmoveList As String() = {"secret power",
+                                    If endure > 0 And effectiveness <> 0 Then
+                                        If Damage > op.HP Then
+                                            Damage = op.HP - 1
+                                            endureWorked = True
+                                        End If
+                                    End If
+
+                                    If own = True Then
+                                        BattleScreen.FieldEffects.OppPokemonDamagedThisTurn = True
+                                    Else
+                                        BattleScreen.FieldEffects.OwnPokemonDamagedThisTurn = True
+                                    End If
+
+                                    Dim sound As String = "Battle\Damage\Effective"
+                                    If effectiveness > 1.0F Then
+                                        sound = "Battle\Damage\SuperEffective"
+                                    End If
+                                    If effectiveness < 1.0F And effectiveness <> 0.0F Then
+                                        sound = "Battle\Damage\NotVeryEffective"
+                                    End If
+
+                                    ReduceHP(Damage, Not own, own, BattleScreen, "", "battledamage", sound)
+
+                                    If sturdyWorked = True Then
+                                        BattleScreen.BattleQuery.Add(New TextQueryObject("Sturdy prevented " & op.GetDisplayName() & " from fainting!"))
+                                    End If
+                                    If endureWorked = True Then
+                                        BattleScreen.BattleQuery.Add(New TextQueryObject(op.GetDisplayName() & " endured the attack."))
+                                    End If
+                                Else
+                                    If own = True Then
+                                        BattleScreen.FieldEffects.OppSubstitute -= Damage
+                                        BattleScreen.BattleQuery.Add(New TextQueryObject(BattleScreen.OppPokemon.GetDisplayName() & "'s substitute took the damage!"))
+                                        If BattleScreen.FieldEffects.OppSubstitute <= 0 Then
+                                            BattleScreen.FieldEffects.OppSubstitute = 0
+                                            BattleScreen.BattleQuery.Add(New ToggleEntityQueryObject(False, ToggleEntityQueryObject.BattleEntities.OwnPokemon, PokemonForms.GetOverworldSpriteName(BattleScreen.OppPokemon, True), 0, 1, -1, -1))
+                                            BattleScreen.BattleQuery.Add(New TextQueryObject(BattleScreen.OppPokemon.GetDisplayName() & " substitute broke!"))
+                                            Exit For
+                                        End If
+                                    Else
+                                        BattleScreen.FieldEffects.OwnSubstitute -= Damage
+                                        BattleScreen.BattleQuery.Add(New TextQueryObject(BattleScreen.OwnPokemon.GetDisplayName() & "'s substitute took the damage!"))
+                                        If BattleScreen.FieldEffects.OwnSubstitute <= 0 Then
+                                            BattleScreen.FieldEffects.OwnSubstitute = 0
+                                            BattleScreen.BattleQuery.Add(New ToggleEntityQueryObject(True, ToggleEntityQueryObject.BattleEntities.OwnPokemon, PokemonForms.GetOverworldSpriteName(BattleScreen.OwnPokemon, True), 0, 1, -1, -1))
+                                            BattleScreen.BattleQuery.Add(New TextQueryObject(BattleScreen.OwnPokemon.GetDisplayName() & " substitute broke!"))
+                                            Exit For
+                                        End If
+                                    End If
+                                End If
+                            End If
+
+                            If effectiveness > 1.0F Then
+                                BattleScreen.BattleQuery.Add(New TextQueryObject("It's super effective!"))
+                                If BattleScreen.IsRemoteBattle = True And BattleScreen.IsHost = True Then
+                                    If own = True Then
+                                        BattleScreen.OwnStatistics.SuperEffective += 1
+                                    Else
+                                        BattleScreen.OppStatistics.SuperEffective += 1
+                                    End If
+                                End If
+                            ElseIf effectiveness < 1.0F And effectiveness <> 0.0F Then
+                                BattleScreen.BattleQuery.Add(New TextQueryObject("It's not very effective..."))
+                                If BattleScreen.IsRemoteBattle = True And BattleScreen.IsHost = True Then
+                                    If own = True Then
+                                        BattleScreen.OwnStatistics.NotVeryEffective += 1
+                                    Else
+                                        BattleScreen.OppStatistics.NotVeryEffective += 1
+                                    End If
+                                End If
+                            ElseIf effectiveness = 0.0F Then
+                                BattleScreen.BattleQuery.Add(New TextQueryObject("It has no effect..."))
+                                If BattleScreen.IsRemoteBattle = True And BattleScreen.IsHost = True Then
+                                    If own = True Then
+                                        BattleScreen.OwnStatistics.NoEffect += 1
+                                    Else
+                                        BattleScreen.OppStatistics.NoEffect += 1
+                                    End If
+                                End If
+                                Exit For
+                            End If
+
+                            If Critical = True And effectiveness <> 0 Then
+                                If BattleScreen.IsRemoteBattle = True And BattleScreen.IsHost = True Then
+                                    If own = True Then
+                                        BattleScreen.OwnStatistics.Critical += 1
+                                    Else
+                                        BattleScreen.OppStatistics.Critical += 1
+                                    End If
+                                End If
+                                BattleScreen.BattleQuery.Add(New TextQueryObject("It's a critical hit!"))
+
+                                If op.Ability.Name.ToLower() = "anger point" And op.StatAttack < 6 And op.HP > 0 Then
+                                    BattleScreen.BattleQuery.Add(New TextQueryObject(op.GetDisplayName() & "'s Anger Point maxed it's attack!"))
+                                    op.StatAttack = 6
+                                End If
+                            End If
+
+                            If effectiveness <> 0 Then
+                                Dim canUseEffect As Boolean = True
+                                Dim multiUseEffect As Boolean = True
+
+                                If op.Ability.Name.ToLower() = "shield dust" AndAlso moveUsed.HasSecondaryEffect = True Then
+                                    If BattleScreen.FieldEffects.CanUseAbility(Not own, BattleScreen) = True Then
+                                        canUseEffect = False
+                                    End If
+                                End If
+                                If p.Ability.Name.ToLower() = "sheer force" AndAlso moveUsed.HasSecondaryEffect = True Then
+                                    canUseEffect = False
+                                End If
+
+
+                                'Moves that only use secondary effects on the second turn of parental bond
+                                If useParentalBond Then
+                                    Dim PBmoveList As String() = {"secret power",
                                                                   "bug bite",
                                                                   "pluck",
                                                                   "smelling salts",
@@ -2575,66 +2574,66 @@ Namespace BattleSystem
                                                                   "circle throw",
                                                                   "dragon tail"
                                                                     }
-                                        If PBmoveList.Contains(moveUsed.Name.ToLower) Then
-                                            multiUseEffect = False
-                                        End If
-                                    End If
-
-
-                                    If canUseEffect AndAlso multiUseEffect OrElse (multiUseEffect = False AndAlso i = TimesToAttack) Then
-                                        If substitute = 0 OrElse moveUsed.IsAffectedBySubstitute = False Then
-                                            moveUsed.MoveHits(own, BattleScreen)
-
-                                            If own = True Then
-                                                BattleScreen.FieldEffects.OwnLastMoveFailed = False
-                                            Else
-                                                BattleScreen.FieldEffects.OppLastMoveFailed = False
-                                            End If
-
-                                            If op.Status = Pokemon.StatusProblems.Freeze Then
-                                                If moveUsed.RemovesOppFrozen = True Then
-                                                    CureStatusProblem(Not own, own, BattleScreen, op.GetDisplayName() & " got defrosted by " & moveUsed.Name & ".", "defrostmove")
-                                                End If
-                                            End If
-                                        End If
-                                    End If
-                                    If op.HP > 0 AndAlso op.Status <> Pokemon.StatusProblems.Fainted Then
-                                        If Not p.Item Is Nothing Then
-                                            If p.Item.OriginalName.ToLower() = "king's rock" Or p.Item.OriginalName.ToLower() = "razor fang" And BattleScreen.FieldEffects.CanUseItem(own) = True And BattleScreen.FieldEffects.CanUseOwnItem(own, BattleScreen) = True Then
-                                                If Core.Random.Next(0, 100) < 10 Then
-                                                    InflictFlinch(Not own, own, BattleScreen, "", "item:king's rock")
-                                                End If
-                                            End If
-                                        End If
-                                    End If
-
-                                    moveUsed.MoveRecoil(own, BattleScreen)
-
-                                    If op.HP > 0 Then
-                                        If own = True Then
-                                            If BattleScreen.FieldEffects.OppRageCounter > 0 Then
-                                                BattleScreen.FieldEffects.OppRageCounter += 1
-                                                BattleScreen.BattleQuery.Add(New TextQueryObject(op.GetDisplayName() & " built up its rage."))
-                                            End If
-                                        Else
-                                            If BattleScreen.FieldEffects.OwnRageCounter > 0 Then
-                                                BattleScreen.FieldEffects.OwnRageCounter += 1
-                                                BattleScreen.BattleQuery.Add(New TextQueryObject(op.GetDisplayName() & " built up its rage."))
-                                            End If
-                                        End If
-                                    End If
-                                Else
-                                    moveUsed.MoveHasNoEffect(own, BattleScreen)
-
-                                    If own = True Then
-                                        BattleScreen.FieldEffects.OwnLastMoveFailed = True
-                                    Else
-                                        BattleScreen.FieldEffects.OppLastMoveFailed = True
+                                    If PBmoveList.Contains(moveUsed.Name.ToLower) Then
+                                        multiUseEffect = False
                                     End If
                                 End If
 
-                                'ABILITY SHIT GOES HERE:
-                                If BattleScreen.FieldEffects.CanUseAbility(Not own, BattleScreen) Then
+
+                                If canUseEffect AndAlso multiUseEffect OrElse (multiUseEffect = False AndAlso i = TimesToAttack) Then
+                                    If substitute = 0 OrElse moveUsed.IsAffectedBySubstitute = False Then
+                                        moveUsed.MoveHits(own, BattleScreen)
+
+                                        If own = True Then
+                                            BattleScreen.FieldEffects.OwnLastMoveFailed = False
+                                        Else
+                                            BattleScreen.FieldEffects.OppLastMoveFailed = False
+                                        End If
+
+                                        If op.Status = Pokemon.StatusProblems.Freeze Then
+                                            If moveUsed.RemovesOppFrozen = True Then
+                                                CureStatusProblem(Not own, own, BattleScreen, op.GetDisplayName() & " got defrosted by " & moveUsed.Name & ".", "defrostmove")
+                                            End If
+                                        End If
+                                    End If
+                                End If
+                                If op.HP > 0 AndAlso op.Status <> Pokemon.StatusProblems.Fainted Then
+                                    If Not p.Item Is Nothing Then
+                                        If p.Item.OriginalName.ToLower() = "king's rock" Or p.Item.OriginalName.ToLower() = "razor fang" And BattleScreen.FieldEffects.CanUseItem(own) = True And BattleScreen.FieldEffects.CanUseOwnItem(own, BattleScreen) = True Then
+                                            If Core.Random.Next(0, 100) < 10 Then
+                                                InflictFlinch(Not own, own, BattleScreen, "", "item:king's rock")
+                                            End If
+                                        End If
+                                    End If
+                                End If
+
+                                moveUsed.MoveRecoil(own, BattleScreen)
+
+                                If op.HP > 0 Then
+                                    If own = True Then
+                                        If BattleScreen.FieldEffects.OppRageCounter > 0 Then
+                                            BattleScreen.FieldEffects.OppRageCounter += 1
+                                            BattleScreen.BattleQuery.Add(New TextQueryObject(op.GetDisplayName() & " built up its rage."))
+                                        End If
+                                    Else
+                                        If BattleScreen.FieldEffects.OwnRageCounter > 0 Then
+                                            BattleScreen.FieldEffects.OwnRageCounter += 1
+                                            BattleScreen.BattleQuery.Add(New TextQueryObject(op.GetDisplayName() & " built up its rage."))
+                                        End If
+                                    End If
+                                End If
+                            Else
+                                moveUsed.MoveHasNoEffect(own, BattleScreen)
+
+                                If own = True Then
+                                    BattleScreen.FieldEffects.OwnLastMoveFailed = True
+                                Else
+                                    BattleScreen.FieldEffects.OppLastMoveFailed = True
+                                End If
+                            End If
+
+                            'ABILITY SHIT GOES HERE:
+                            If BattleScreen.FieldEffects.CanUseAbility(Not own, BattleScreen) Then
                                 Select Case op.Ability.Name.ToLower()
                                     Case "color change"
                                         If op.HP > 0 Then
@@ -2950,90 +2949,90 @@ Namespace BattleSystem
                                         End Select
                                     End If
                                 End If
+                            End If
+
+                            Hits += 1
+
+                            If op.HP <= 0 Then
+                                Me.FaintPokemon(Not own, BattleScreen, "")
+
+                                Dim destinyBond As Boolean = False
+                                If own = True Then
+                                    destinyBond = BattleScreen.FieldEffects.OppDestinyBond
+                                Else
+                                    destinyBond = BattleScreen.FieldEffects.OwnDestinyBond
                                 End If
 
-                                Hits += 1
+                                'Faint other pokemon:
+                                If destinyBond = True Then
+                                    ReduceHP(p.HP, own, Not own, BattleScreen, op.GetDisplayName() & " took its attacker with it!", "move:destinybond")
 
-                                If op.HP <= 0 Then
-                                    Me.FaintPokemon(Not own, BattleScreen, "")
+                                    Me.FaintPokemon(own, BattleScreen, "")
+                                End If
 
-                                    Dim destinyBond As Boolean = False
-                                    If own = True Then
-                                        destinyBond = BattleScreen.FieldEffects.OppDestinyBond
+                                Exit For
+                            End If
+
+                            If op.HP > 0 AndAlso effectiveness <> 0 Then
+                                If moveUsed.GetAttackType(own, BattleScreen).Type = Element.Types.Fire Then
+                                    If op.Status = Pokemon.StatusProblems.Freeze Then
+                                        CureStatusProblem(Not own, own, BattleScreen, op.GetDisplayName() & " got defrosted by " & moveUsed.Name & ".", "defrostedfire")
+                                    End If
+                                End If
+                            End If
+                        Next
+
+                        If p.HP > 0 AndAlso p.Status <> Pokemon.StatusProblems.Fainted AndAlso effectiveness <> 0.0F Then
+                            moveUsed.MoveMultiTurn(own, BattleScreen)
+                            moveUsed.MoveRecharge(own, BattleScreen)
+                            moveUsed.MoveSwitch(own, BattleScreen)
+                        End If
+
+                        If (Hits > 1 Or TimesToAttack > 1) And effectiveness <> 0.0F Then
+                            BattleScreen.BattleQuery.Add(New TextQueryObject("Hit " & Hits & " times!"))
+                        End If
+
+                        'ABILITY SHIT GOES HERE
+
+                        If Not p.Item Is Nothing Then
+                            If p.Item.OriginalName.ToLower() = "sticky barb" AndAlso BattleScreen.FieldEffects.CanUseItem(own) = True AndAlso BattleScreen.FieldEffects.CanUseOwnItem(own, BattleScreen) = True Then
+                                If p.Ability.Name.ToLower() <> "magic guard" Then
+                                    ReduceHP(CInt(Math.Floor(p.MaxHP / 8)), True, True, BattleScreen, p.GetDisplayName() & " was harmed by Sticky Barb.", "stickybarb")
+                                End If
+
+                                If Core.Random.Next(0, 2) = 0 AndAlso moveUsed.MakesContact = True AndAlso op.Item Is Nothing AndAlso op.HP > 0 Then
+                                    ChangeCameraAngle(2, own, BattleScreen)
+                                    BattleScreen.BattleQuery.Add(New TextQueryObject(p.GetDisplayName() & "'s Sticky Barb was passed over to " & op.GetDisplayName() & "."))
+                                    If p.Item.IsGameModeItem = True Then
+                                        op.Item = Item.GetItemByID(p.Item.gmID.ToString)
                                     Else
-                                        destinyBond = BattleScreen.FieldEffects.OwnDestinyBond
+                                        op.Item = Item.GetItemByID(p.Item.ID.ToString)
                                     End If
 
-                                    'Faint other pokemon:
-                                    If destinyBond = True Then
-                                        ReduceHP(p.HP, own, Not own, BattleScreen, op.GetDisplayName() & " took its attacker with it!", "move:destinybond")
+                                    p.Item = Nothing
+                                End If 'CODELINE OF EVIL
+                            End If
+                        End If
 
-                                        Me.FaintPokemon(own, BattleScreen, "")
-                                    End If
-
-                                    Exit For
-                                End If
-
-                                If op.HP > 0 AndAlso effectiveness <> 0 Then
-                                    If moveUsed.GetAttackType(own, BattleScreen).Type = Element.Types.Fire Then
-                                        If op.Status = Pokemon.StatusProblems.Freeze Then
-                                            CureStatusProblem(Not own, own, BattleScreen, op.GetDisplayName() & " got defrosted by " & moveUsed.Name & ".", "defrostedfire")
+                        If p.HP > 0 Then
+                            If Not p.Item Is Nothing AndAlso BattleScreen.FieldEffects.CanUseItem(own) = True AndAlso BattleScreen.FieldEffects.CanUseOwnItem(own, BattleScreen) = True Then
+                                Select Case p.Item.OriginalName.ToLower()
+                                    Case "shell bell"
+                                        If p.HP < p.MaxHP Then
+                                            GainHP(CInt(AllDamage / 8), own, own, BattleScreen, p.GetDisplayName() & " gains some HP due to the Shell Bell.", "shellbell")
                                         End If
-                                    End If
-                                End If
-                            Next
-
-                            If p.HP > 0 AndAlso p.Status <> Pokemon.StatusProblems.Fainted AndAlso effectiveness <> 0.0F Then
-                                moveUsed.MoveMultiTurn(own, BattleScreen)
-                                moveUsed.MoveRecharge(own, BattleScreen)
-                                moveUsed.MoveSwitch(own, BattleScreen)
-                            End If
-
-                            If (Hits > 1 Or TimesToAttack > 1) And effectiveness <> 0.0F Then
-                                BattleScreen.BattleQuery.Add(New TextQueryObject("Hit " & Hits & " times!"))
-                            End If
-
-                            'ABILITY SHIT GOES HERE
-
-                            If Not p.Item Is Nothing Then
-                                If p.Item.OriginalName.ToLower() = "sticky barb" AndAlso BattleScreen.FieldEffects.CanUseItem(own) = True AndAlso BattleScreen.FieldEffects.CanUseOwnItem(own, BattleScreen) = True Then
-                                    If p.Ability.Name.ToLower() <> "magic guard" Then
-                                        ReduceHP(CInt(Math.Floor(p.MaxHP / 8)), True, True, BattleScreen, p.GetDisplayName() & " was harmed by Sticky Barb.", "stickybarb")
-                                    End If
-
-                                    If Core.Random.Next(0, 2) = 0 AndAlso moveUsed.MakesContact = True AndAlso op.Item Is Nothing AndAlso op.HP > 0 Then
-                                        ChangeCameraAngle(2, own, BattleScreen)
-                                        BattleScreen.BattleQuery.Add(New TextQueryObject(p.GetDisplayName() & "'s Sticky Barb was passed over to " & op.GetDisplayName() & "."))
-                                        If p.Item.IsGameModeItem = True Then
-                                            op.Item = Item.GetItemByID(p.Item.gmID.ToString)
-                                        Else
-                                            op.Item = Item.GetItemByID(p.Item.ID.ToString)
+                                    Case "life orb"
+                                        If p.Ability.Name.ToLower() <> "magic guard" AndAlso p.Ability.Name.ToLower() <> "sheer force" Then
+                                            ReduceHP(CInt(p.MaxHP / 10), own, own, BattleScreen, p.GetDisplayName() & " loses HP due to Life Orb.", "lifeorb")
                                         End If
-
-                                        p.Item = Nothing
-                                    End If 'CODELINE OF EVIL
-                                End If
+                                End Select
                             End If
-
-                            If p.HP > 0 Then
-                                If Not p.Item Is Nothing AndAlso BattleScreen.FieldEffects.CanUseItem(own) = True AndAlso BattleScreen.FieldEffects.CanUseOwnItem(own, BattleScreen) = True Then
-                                    Select Case p.Item.OriginalName.ToLower()
-                                        Case "shell bell"
-                                            If p.HP < p.MaxHP Then
-                                                GainHP(CInt(AllDamage / 8), own, own, BattleScreen, p.GetDisplayName() & " gains some HP due to the Shell Bell.", "shellbell")
-                                            End If
-                                        Case "life orb"
-                                            If p.Ability.Name.ToLower() <> "magic guard" AndAlso p.Ability.Name.ToLower() <> "sheer force" Then
-                                                ReduceHP(CInt(p.MaxHP / 10), own, own, BattleScreen, p.GetDisplayName() & " loses HP due to Life Orb.", "lifeorb")
-                                            End If
-                                    End Select
-                                End If
-                            End If
-                            If BattleScreen.FieldEffects.TempTripleKick > 0 Then
-                                BattleScreen.FieldEffects.TempTripleKick = 0
-                            End If
-                        Else 'If not damaging move
-                            Dim lastMove As Attack = BattleScreen.FieldEffects.OppLastMove
+                        End If
+                        If BattleScreen.FieldEffects.TempTripleKick > 0 Then
+                            BattleScreen.FieldEffects.TempTripleKick = 0
+                        End If
+                    Else 'If not damaging move
+                        Dim lastMove As Attack = BattleScreen.FieldEffects.OppLastMove
                             If own = False Then
                                 lastMove = BattleScreen.FieldEffects.OwnLastMove
                             End If
