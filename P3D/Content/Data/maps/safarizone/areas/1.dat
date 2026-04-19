@@ -1,5 +1,5 @@
 {"Level"{LEV[{"Name"{str[Safari Zone]}}{"MusicLoop"{str[safari]}}{"WildPokemon"{bool[1]}}{"OverWorldPokemon"{bool[0]}}{"HiddenAbility"{int[50]}}]}}
-{"Actions"{LEV[{"CanTeleport"{bool[0]}}{"CanDig"{bool[0]}}{"IsSafariZone"{bool[1]}}{"CanFly"{bool[0]}}{"RideType"{int[1]}}{"EnvironmentType"{int[5]}}{"Lighting"{int[2]}}{"Weather"{int[6]}}]}}
+{"Actions"{LEV[{"CanTeleport"{bool[0]}}{"CanDig"{bool[0]}}{"IsSafariZone"{bool[1]}}{"BlackOutScript"{str[safarizone\BlackOutScript]}}{"CanFly"{bool[0]}}{"RideType"{int[1]}}{"EnvironmentType"{int[5]}}{"Lighting"{int[2]}}{"Weather"{int[6]}}]}}
 
 {"Floor"{ENT[{"Size"{intArr[12,27]}}{"Position"{intArr[-1,0,-1]}}{"TexturePath"{str[Safari]}}{"Texture"{rec[112,0,16,16]}}]}}
 {"Floor"{ENT[{"Size"{intArr[17,10]}}{"Position"{intArr[10,0,-1]}}{"TexturePath"{str[Safari]}}{"Texture"{rec[112,0,16,16]}}]}}

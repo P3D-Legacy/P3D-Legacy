@@ -1,0 +1,7 @@
+version=2
+
+:if:<inventory.countitem(177)>>0
+@item.clearitem(177)
+:endif
+
+:end
