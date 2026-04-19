@@ -32,7 +32,7 @@
         End Set
     End Property
 
-    Public Property Gender() As String
+    Public Property Gender() As String 'Male, Female or Other
         Get
             Return _gender
         End Get

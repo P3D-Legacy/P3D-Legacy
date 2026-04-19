@@ -622,7 +622,16 @@
                 t.Region = "Johto"
                 t.TrainerFile = ""
                 t.Items = New List(Of Item)
-                t.Gender = CInt(OppEmblem.Gender)
+                Select Case OppEmblem.Gender.ToLower
+                    Case "male"
+                        t.Gender = 0
+                    Case "female"
+                        t.Gender = 1
+                    Case "other"
+                        t.Gender = 2
+                    Case Else
+                        t.Gender = 0
+                End Select
                 t.IntroType = 11
                 t.OutroMessage = ". . ."
                 t.GameJoltID = OppEmblem.GameJoltID
