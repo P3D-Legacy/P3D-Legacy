@@ -1387,7 +1387,7 @@ nextIndex:
                     If p.hasLeveledUp = True Then
                         hasLevelUp = True
                     End If
-                    If IsRemoteBattle = True Then
+                    If IsRemoteBattle = True OrElse IsPVPBattle = True Then
                         If p.OriginalItem IsNot Nothing Then
                             If p.OriginalItem.IsGameModeItem = True Then
                                 p.Item = P3D.Item.GetItemByID(p.OriginalItem.gmID)
