@@ -1,11 +1,11 @@
-﻿Public Class BlackOutScreen
+Public Class BlackOutScreen
 
     Inherits Screen
 
     Dim BattleScreen As BattleSystem.BattleScreen
     Dim index As Integer = 0
     Dim textIndex As Integer = 0
-    Dim Text() As String = {Localization.GetString("black_out_screen_line1"), Environment.NewLine, "        ", Localization.GetString("black_out_screen_line2"), Localization.GetString("black_out_screen_line3"), Localization.GetString("black_out_screen_line4"), Localization.GetString("black_out_screen_line5")}
+    Dim Text() As String = {Localization.GetString("black_out_screen_line1"), Environment.NewLine, "        ", Localization.GetString("black_out_screen_line2"), Localization.GetString("black_out_screen_line3"), Localization.GetString("black_out_screen_line4"), Localization.GetString("black_out_screen_line5"), Environment.NewLine, Localization.GetString("black_out_continue")}
     Dim ready As Boolean = False
     Dim delay As Single = 0.2F
 

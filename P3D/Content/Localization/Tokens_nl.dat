@@ -977,6 +977,7 @@ black_out_screen_line2,Je zult naar het dichtstbijzijnde
 black_out_screen_line3,PokéCenter gebracht worden
 black_out_screen_line4,om verdere schade aan je
 black_out_screen_line5,Pokémon te voorkomen.
+black_out_continue,Druk op [<system.button(enter1)>] om verder te gaan.
 ---
 Hall of Fame Screen:
 hall_of_fame_screen_title,Eregalerij

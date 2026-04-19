@@ -977,6 +977,7 @@ black_out_screen_line2,Você vai ser levado
 black_out_screen_line3,ao Centro Pokémon mais próximo
 black_out_screen_line4,para previnir mais danos
 black_out_screen_line5,a seus Pokémons.
+black_out_continue,Pressione [<system.button(enter1)>] para continuar.
 ---
 Hall of Fame Screen:
 hall_of_fame_screen_title,Hall da Fama

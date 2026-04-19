@@ -978,6 +978,7 @@ black_out_screen_line2,You will be brought
 black_out_screen_line3,to the nearest PokéCenter
 black_out_screen_line4,to prevent further injury
 black_out_screen_line5,to your Pokémon.
+black_out_continue,Press [<system.button(enter1)>] to continue.
 ---
 Hall of Fame Screen:
 hall_of_fame_screen_title,Hall of Fame

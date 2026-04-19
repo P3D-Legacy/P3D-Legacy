@@ -976,6 +976,7 @@ black_out_screen_line2,Tu sera transporter
 black_out_screen_line3,au plus proche centre POKéMON
 black_out_screen_line4,pour soigner les blessures
 black_out_screen_line5,de tes POKéMON.
+black_out_continue,Appuie sur [<system.button(enter1)>] pour continuer.
 ---
 Hall of Fame Screen:
 hall_of_fame_screen_title,Hall of Fame
