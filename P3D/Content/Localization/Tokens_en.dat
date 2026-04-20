@@ -3021,7 +3021,85 @@ item_name_673,Psychic Memory
 item_name_674,Rock Memory
 item_name_675,Steel Memory
 item_name_676,Water Memory
-
+----
+Item Descriptions:
+item_desc_MegaStone,One variety of the mysterious Mega Stones. Have [POKEMONNAME] hold it, and this stone will enable it to Mega Evolve during battle.
+item_desc_MachineItem,Teaches "[MOVENAME]" to a Pokémon.
+item_desc_1,The best Pokéball with the ultimate level of performance. With it, you will catch any wild Pokémon without fail.
+item_desc_2,An ultra-high performance Pokéball that provides a higher success rate for catching Pokémon than a Great Ball.
+item_desc_4,A good, high-performance Pokéball that provides a higher Pokémon catch rate than a standard Pokéball can.
+item_desc_5,An item for catching Pokémon.
+item_desc_6,A folding Bicycle that enables much faster movement than the Running Shoes.
+item_desc_8,A peculiar stone that can make certain species of Pokémon evolve. It is as black as the night sky.
+item_desc_9,A spray-type medicine for poisoning. It can be used once to lift the effects of being poisoned from a Pokémon.
+item_desc_10,A spray-type medicine for treating burns. It can be used once to heal a Pokemon suffering from a burn.
+item_desc_11,A spray-type medicine for freezing. It can be used once to defrost a Pokémon that has been frozen solid.
+item_desc_12,A spray-type medicine used against sleep. It can be used once to rouse a Pokémon from the clutches of sleep.
+item_desc_13,A spray-type medicine for paralysis. It can be used once to free a Pokémon that has been paralyzed.
+item_desc_14,A medicine that can be used to fully restore the HP of a single Pokémon and heal any status conditions it has.
+item_desc_15,A spray-type medicine for treating wounds. It will completely restore the max HP of a single Pokémon.
+item_desc_16,A spray-type medicine for treating wounds. It can be used to restore 200 HP to an injured Pokémon.
+item_desc_17,A spray-type medicine for treating wounds. It can be used to restore 50 HP to an injured Pokémon.
+item_desc_18,A spray-type medicine for treating wounds. It can be used to restore 20 HP to an injured Pokémon.
+item_desc_19,A long and durable rope. Use it to escape instantly from a cave or a dungeon.
+item_desc_20,An item that prevents any low-level wild Pokémon from jumping out at you for 100 steps after its use.
+item_desc_21,This medicine can fully restore the PP of all of the moves that have been learned by a Pokémon.
+item_desc_22,A peculiar stone that can make certain species of Pokémon evolve. The stone has a fiery orange heart.
+item_desc_23,A peculiar stone that can make certain species of Pokémon evolve. It has a distinct thunderbolt pattern.
+item_desc_24,A peculiar stone that can make certain species of Pokémon evolve. It is the blue of a pool of clear water.
+item_desc_26,A nutritious drink for Pokémon. When consumed, it raises the base HP of a single Pokémon.
+item_desc_27,A nutritious drink for Pokémon. When consumed, it raises the base Attack stat of a single Pokémon.
+item_desc_28,A nutritious drink for Pokémon. When consumed, it raises the base Defense stat of a single Pokémon.
+item_desc_29,A nutritious drink for Pokémon. When consumed, it raises the base Speed stat of a single Pokémon.
+item_desc_31,A nutritious drink for Pokémon. When consumed, it raises the base Sp. Atk stat of a single Pokémon.
+item_desc_32,A candy that is packed with energy. When consumed, it will instantly raise the level of a single Pokémon by one.
+item_desc_33,An item that boosts the accuracy of a Pokémon during a battle. It wears off once the Pokémon is withdrawn.
+item_desc_34,A peculiar stone that can make certain species of Pokémon evolve. It has an unmistakable leaf pattern.
+item_desc_36,A nugget of the purest gold that gives off a lustrous gleam in direct light. It can be sold at a high price to shops.
+item_desc_37,A doll that attracts the attention of a Pokémon. It guarantees escape from any battle with wild Pokémon.
+item_desc_38,A spray-type medicine that is broadly effective. It can be used once to heal all the status conditions of a Pokémon.
+item_desc_39,A medicine that can revive fainted Pokémon. It also restores half of a fainted Pokémon's HP.
+item_desc_40,A medicine that can revive fainted Pokémon. It also fully restores a fainted Pokémon's maximum HP.
+item_desc_41,The ticket required for boarding the cruise ship S.S. Anne. It has a drawing of a ship on it.
+item_desc_42,An item that prevents any low-level wild Pokémon from jumping out at you for 200 steps after its use.
+item_desc_43,An item that prevents any low-level wild Pokémon from jumping out at you for 250 steps after its use.
+item_desc_44,An item that raises the critical-hit ratio greatly. It can be used only once and wears off if the Pokémon is withdrawn.
+item_desc_47,A highly carbonated soda drink. When consumed, it restores 60 HP to an injured Pokémon.
+item_desc_48,A very sweet and refreshing drink. When consumed, it restores 80 HP to an injured Pokémon.
+item_desc_49,An item that boosts the Attack stat of a Pokémon during a battle. It wears off once the Pokémon is withdrawn.
+item_desc_50,An item that boosts the Sp. Def stat of a Pokémon during a battle. It wears off once the Pokémon is withdrawn.
+item_desc_51,An item that boosts the Defense stat of a Pokémon during a battle. It wears off once the Pokémon is withdrawn.
+item_desc_52,An item that boosts the Speed stat of a Pokémon during a battle. It wears off once the Pokémon is withdrawn.
+item_desc_53,An item that boosts the Sp. Atk stat of a Pokémon during a battle. It wears off once the Pokémon is withdrawn.
+item_desc_54,A case for holding coins obtained at the Owsauri Casino.
+item_desc_55,It checks for unseen items in the area and makes noise and lights when it finds something.
+item_desc_58,An old and beat-up fishing rod. Use it by any body of water to fish for wild aquatic Pokémon.
+item_desc_59,A new, good-quality fishing rod. Use it by any body of water to fish for wild aquatic Pokémon.
+item_desc_61,An awesome, high-tech fishing rod. Use it by any body of water to fish for wild aquatic Pokémon.
+item_desc_62,A medicine that can slightly raise the maximum PP of a single move that has been learned by the target Pokémon.
+item_desc_63,This medicine can restore 10 PP to a single selected move that has been learned by a Pokémon.
+item_desc_64,This medicine can fully restore the PP of a single selected move that has been learned by a Pokémon.
+item_desc_65,This medicine can restore 10 PP to each of the moves that have been learned by a Pokémon.
+item_desc_68,An item that prevents stat reduction among the Trainer's party Pokémon for five turns after it is used in battle.
+item_desc_75,A strange, gold-colored leaf.
+item_desc_78,A new pair of shoes to make you run faster.
+item_desc_86,A very small and rare mushroom. It's popular with a certain class of collectors and sought out by them.
+item_desc_87,A very large and rare mushroom. It's popular with a certain class of collectors and sought out by them.
+item_desc_109,A rare bone that is extremely valuable for the study of Pokémon archeology. It can be sold for a high price to shops.
+item_desc_110,A rather small pearl that has a very nice silvery sheen to it. It can be sold cheaply to shops.
+item_desc_111,A rather large pearl that has a very nice silvery sheen. It can be sold to shops for a high price.
+item_desc_127,A card key that opens a door in the Silph Co. Warehouse.
+item_desc_131,Lovely, red sand that flows between the fingers with a loose, silky feel. It can be sold at a high price to shops.
+item_desc_132,A small shard of a beautiful gem that demonstrates a distinctly red sparkle. It can be sold at a high price to shops.
+item_desc_135,A peculiar stone that makes certain species of Pokémon evolve. It shines with a dazzling light.
+item_desc_136,A peculiar stone that makes certain species of Pokémon evolve. It is as dark as dark can be.
+item_desc_593,A peculiar stone that can make certain species of Pokémon evolve. It has an unmistakable snowflake pattern.
+item_desc_601,A fossil from a prehistoric Pokémon taches "[MOVENAME]" to a Pokémon.
+item_desc_181,A special Poké Ball that is used only in the Eagulohat once lived in the sea. It might be a piece of a seashell.
+item_desc_602,A fossil from a prehistoric Pokémon that once lived in the sea. It could be a shell or carapace.
+item_desc_606,A fossil from a prehistoric Pokémon that once lived on the land. It appears as though it's part of a head.
+item_desc_658,Turning on this special device will allow all the Pokémon on your team to receive Exp. Points from battles.
+---
 Item Use Text:
 item_cannot_use,Now is not the time~to use that.
 item_6_cannot_walk,You cannot walk here!

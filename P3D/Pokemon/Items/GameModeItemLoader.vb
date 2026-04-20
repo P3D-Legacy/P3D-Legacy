@@ -1,4 +1,4 @@
-Imports P3D.Items
+﻿Imports P3D.Items
 
 ''' <summary>
 ''' Provides an interface to load additional GameMode items.
@@ -206,7 +206,7 @@ Public Class GameModeItemLoader
             If setID = True AndAlso setName = True Then
                 If item.gmIsMegaStone = True AndAlso item.gmMegaPokemonNumber <> Nothing AndAlso item.gmDescription = "" Then
                     Dim MegaPokemonName As String = Pokemon.GetPokemonByID(item.gmMegaPokemonNumber).GetName
-                    item.gmDescription = "One variety of the mysterious Mega Stones. Have " & MegaPokemonName & " hold it, and this stone will enable it to Mega Evolve during battle."
+                    item.gmDescription = Localization.GetString("item_desc_MegaStone", "One variety of the mysterious Mega Stones. Have [POKEMONNAME] hold it, and this stone will enable it to Mega Evolve during battle.").Replace("[POKEMONNAME]", MegaPokemonName)
                     item.gmCanBeTossed = False
                     item.gmCanBeTraded = False
                     item.gmCanBeUsed = False
@@ -214,7 +214,7 @@ Public Class GameModeItemLoader
                 End If
                 If item.gmTeachMove IsNot Nothing AndAlso item.gmDescription = "" Then
                     Dim AttackName As String = item.gmTeachMove.Name
-                    item.gmDescription = "Teaches """ & AttackName & """ to a Pokémon."
+                    item.gmDescription = Localization.GetString("item_desc_MachineItem", "Teaches ""[MOVENAME]"" to a Pokémon.").Replace("[MOVENAME]", AttackName)
                     item.gmItemType = ItemTypes.Machines
                     item.gmCanBeHeld = False
                     item.gmCanBeTossed = True
