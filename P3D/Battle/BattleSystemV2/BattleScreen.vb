@@ -1432,22 +1432,22 @@ nextIndex:
                         ' Check if another Pokémon is holding this Pokémon's OriginalItem
                         If p.OriginalItem IsNot Nothing Then
                             If CType(CurrentScreen, BattleSystem.BattleScreen).FieldEffects.StolenFromOwnItems.Count > 0 Then
-                                For index = 0 To Core.Player.Pokemons.Count - 1
-                                    If Core.Player.Pokemons(index).Item IsNot Nothing Then
+                                For OtherIndex = 0 To Core.Player.Pokemons.Count - 1
+                                    If Core.Player.Pokemons(OtherIndex).Item IsNot Nothing Then
                                         Dim OtherItemID As String = ""
-                                        If Core.Player.Pokemons(index).Item IsNot Nothing Then
-                                            If Core.Player.Pokemons(index).Item.IsGameModeItem = False Then
-                                                OtherItemID = Core.Player.Pokemons(index).Item.ID.ToString
+                                        If Core.Player.Pokemons(OtherIndex).Item IsNot Nothing Then
+                                            If Core.Player.Pokemons(OtherIndex).Item.IsGameModeItem = False Then
+                                                OtherItemID = Core.Player.Pokemons(OtherIndex).Item.ID.ToString
                                             Else
-                                                OtherItemID = Core.Player.Pokemons(index).Item.gmID.ToString
+                                                OtherItemID = Core.Player.Pokemons(OtherIndex).Item.gmID.ToString
                                             End If
                                         End If
                                         Dim OtherOriginalItemID As String = ""
-                                        If Core.Player.Pokemons(index).OriginalItem IsNot Nothing Then
-                                            If Core.Player.Pokemons(index).OriginalItem.IsGameModeItem = False Then
-                                                OtherOriginalItemID = Core.Player.Pokemons(index).OriginalItem.ID.ToString
+                                        If Core.Player.Pokemons(OtherIndex).OriginalItem IsNot Nothing Then
+                                            If Core.Player.Pokemons(OtherIndex).OriginalItem.IsGameModeItem = False Then
+                                                OtherOriginalItemID = Core.Player.Pokemons(OtherIndex).OriginalItem.ID.ToString
                                             Else
-                                                OtherOriginalItemID = Core.Player.Pokemons(index).OriginalItem.gmID.ToString
+                                                OtherOriginalItemID = Core.Player.Pokemons(OtherIndex).OriginalItem.gmID.ToString
                                             End If
                                         End If
                                         Dim ItemID As String = ""
@@ -1469,17 +1469,42 @@ nextIndex:
                                         If ItemID <> OtherItemID AndAlso OtherOriginalItemID <> OriginalItemID AndAlso
                                             OtherItemID = OriginalItemID AndAlso OtherItemID <> OtherOriginalItemID Then
 
-                                            If CType(CurrentScreen, BattleSystem.BattleScreen).FieldEffects.StolenFromOwnItems.ContainsKey(index) = False Then
-                                                CType(CurrentScreen, BattleSystem.BattleScreen).FieldEffects.StolenFromOwnItems.Remove(PokeIndex)
-                                                If p.Item Is Nothing Then
-                                                    p.Item = Core.Player.Pokemons(index).Item
+                                            CType(CurrentScreen, BattleSystem.BattleScreen).FieldEffects.StolenFromOwnItems.Remove(PokeIndex)
+
+                                            If p.Item Is Nothing Then
+                                                p.Item = Core.Player.Pokemons(OtherIndex).Item
+                                                p.OriginalItem = Nothing
+                                                If ItemReturnScript <> "@Text.Show(" Then
+                                                    ItemReturnScript &= "*"
+                                                End If
+
+                                                ItemReturnScript &= Core.Player.Name & " gave the~" & p.Item.Name & " back to~" & p.GetDisplayName & "!"
+                                                Core.Player.Pokemons(OtherIndex).Item = Nothing
+                                            Else
+                                                If OtherOriginalItemID <> "" AndAlso ItemID = OtherOriginalItemID Then
+
+                                                    For Each k As Integer In CType(CurrentScreen, BattleSystem.BattleScreen).FieldEffects.StolenFromOwnItems.Keys
+                                                        Dim i As Item = CType(CurrentScreen, BattleSystem.BattleScreen).FieldEffects.StolenFromOwnItems(k)
+                                                        Dim kItemID As String = ""
+                                                        If i.IsGameModeItem = True Then
+                                                            kItemID = i.gmID
+                                                        Else
+                                                            kItemID = i.ID.ToString
+                                                        End If
+                                                        If kItemID = OtherOriginalItemID Then
+                                                            CType(CurrentScreen, BattleSystem.BattleScreen).FieldEffects.StolenFromOwnItems.Remove(k)
+                                                            Exit For
+                                                        End If
+                                                    Next
+                                                    p.Item = Core.Player.Pokemons(OtherIndex).Item
+                                                    Core.Player.Pokemons(OtherIndex).Item = Core.Player.Pokemons(OtherIndex).OriginalItem
                                                     p.OriginalItem = Nothing
+                                                    Core.Player.Pokemons(OtherIndex).OriginalItem = Nothing
                                                     If ItemReturnScript <> "@Text.Show(" Then
                                                         ItemReturnScript &= "*"
                                                     End If
 
-                                                    ItemReturnScript &= Core.Player.Name & " gave the~" & p.Item.Name & " back to~" & p.GetDisplayName & "!"
-                                                    Core.Player.Pokemons(index).Item = Nothing
+                                                    ItemReturnScript &= Core.Player.Name & " gave the~" & p.Item.Name & " back to~" & p.GetDisplayName & "~and gave the " & Core.Player.Pokemons(OtherIndex).Item.Name & "~back to " & Core.Player.Pokemons(OtherIndex).GetDisplayName & "!"
                                                 Else
                                                     If p.Item.IsGameModeItem = True Then
                                                         Core.Player.Inventory.AddItem(p.Item.gmID, 1)
@@ -1494,12 +1519,12 @@ nextIndex:
                                                     End If
                                                     ItemReturnScript &= "@Sound.Play(Receive_Item)" & Environment.NewLine & "@Text.Show(" & Core.Player.Name & " found~" & p.Item.Name & "!*" & Core.Player.Inventory.GetMessageReceive(p.Item, 1)
 
-                                                    p.Item = Core.Player.Pokemons(index).Item
-                                                    Core.Player.Pokemons(index).Item = Nothing
+                                                    p.Item = Core.Player.Pokemons(OtherIndex).Item
+                                                    Core.Player.Pokemons(OtherIndex).Item = Nothing
                                                     p.OriginalItem = Nothing
                                                 End If
-                                                Exit For
                                             End If
+                                            Exit For
                                         End If
                                     End If
                                 Next
