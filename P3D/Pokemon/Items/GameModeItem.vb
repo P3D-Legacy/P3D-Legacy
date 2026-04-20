@@ -376,15 +376,16 @@ Public Class GameModeItem
 
                     Return True
                 Else
+                    Dim lastItemText As String = ""
                     If gmIsHM = False Then
                         If CBool(GameModeManager.GetGameRuleValue("SingleUseTM", "0")) = True Then
-                            Core.Player.Inventory.RemoveItem(gmID.ToString, 1)
+                            lastItemText = "*" & Me.RemoveItem()
                         End If
                     End If
                     p.Attacks.Add(BattleSystem.Attack.GetAttackByID(a.ID))
 
                     SoundManager.PlaySound("success_small", False)
-                    Screen.TextBox.Show(p.GetDisplayName() & " learned~" & a.Name & "!", {}, False, False)
+                    Screen.TextBox.Show(p.GetDisplayName() & " learned~" & a.Name & "!" & lastItemText, {}, False, False)
                     PlayerStatistics.Track("TMs/HMs used", 1)
 
                     Return True
@@ -402,12 +403,12 @@ Public Class GameModeItem
             Return False
         Else
             Dim healsuccess As Boolean = False
-            If gmUseOnOwnEffects Is Nothing OrElse gmUseOnOwnEffects.Count = 0 Then
-                If gmIsHealingItem = True AndAlso gmHealHPAmount > 0 Then
+            If gmUseOnOwnEffects.Count = 1 Then
+                If gmUseOnOwnEffects.Contains("heal") AndAlso gmHealHPAmount > 0 Then
                     Return HealPokemon(PokeIndex, gmHealHPAmount)
                 End If
             ElseIf gmUseOnOwnEffects.Contains("all") = False AndAlso gmUseOnOwnEffects.Contains("allwithoutfnt") = False Then
-                If gmIsHealingItem = True AndAlso gmHealHPAmount > 0 Then
+                If gmUseOnOwnEffects.Contains("heal") AndAlso gmHealHPAmount > 0 Then
                     If HealPokemon(PokeIndex, gmHealHPAmount, True) Then
                         healsuccess = True
                     End If
@@ -418,7 +419,7 @@ Public Class GameModeItem
                 If gmUseOnOwnEffects.Contains("allwithoutfnt") Then
                     Dim success1 As Boolean = False
                     Dim success2 As Boolean = False
-                    If gmIsHealingItem = True AndAlso gmHealHPAmount > 0 Then
+                    If gmUseOnOwnEffects.Contains("heal") AndAlso gmHealHPAmount > 0 Then
                         If HealPokemon(PokeIndex, gmHealHPAmount, True) = True Then
                             success1 = True
                         End If
@@ -478,7 +479,7 @@ Public Class GameModeItem
                 ElseIf gmUseOnOwnEffects.Contains("all") Then
                     Dim success1 As Boolean = False
                     Dim success2 As Boolean = False
-                    If gmIsHealingItem = True AndAlso gmHealHPAmount > 0 Then
+                    If gmUseOnOwnEffects.Contains("heal") AndAlso gmHealHPAmount > 0 Then
                         If HealPokemon(PokeIndex, gmHealHPAmount, True) = True Then
                             success1 = True
                         End If
@@ -660,12 +661,12 @@ Public Class GameModeItem
     Public Function UseOnOppPokemon(bScreen As BattleSystem.BattleScreen) As Boolean
 
         Dim healsuccess As Boolean = False
-        If gmUseOnOppEffects Is Nothing OrElse gmUseOnOppEffects.Count = 0 Then
-            If gmIsHealingItem = True AndAlso gmHealHPAmount > 0 AndAlso gmUseOnOppEffects.Contains("heal") Then
+        If gmUseOnOppEffects Is Nothing OrElse gmUseOnOppEffects.Count = 1 Then
+            If gmUseOnOwnEffects.Contains("heal") AndAlso gmHealHPAmount > 0 Then
                 Return HealPokemon(-1, gmHealHPAmount,,, bScreen.OppPokemon)
             End If
         ElseIf gmUseOnOppEffects.Contains("allstatus") = False Then
-            If gmIsHealingItem = True AndAlso gmHealHPAmount > 0 AndAlso gmUseOnOppEffects.Contains("heal") Then
+            If gmUseOnOwnEffects.Contains("heal") AndAlso gmHealHPAmount > 0 Then
                 If HealPokemon(-1, gmHealHPAmount, True, , bScreen.OppPokemon) Then
                     healsuccess = True
                 End If
@@ -676,7 +677,7 @@ Public Class GameModeItem
             If gmUseOnOppEffects.Contains("allstatus") Then
                 Dim success1 As Boolean = False
                 Dim success2 As Boolean = False
-                If gmIsHealingItem = True AndAlso gmHealHPAmount > 0 AndAlso gmUseOnOppEffects.Contains("heal") Then
+                If gmUseOnOwnEffects.Contains("heal") AndAlso gmHealHPAmount > 0 Then
                     If HealPokemon(-1, gmHealHPAmount, True,, bScreen.OppPokemon) = True Then
                         success1 = True
                     End If
