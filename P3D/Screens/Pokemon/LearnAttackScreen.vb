@@ -306,12 +306,12 @@
                         If TechMachine.ItemType = Items.ItemTypes.Machines Then
                             If TechMachine.IsGameModeItem = True Then
                                 If CType(TechMachine, GameModeItem).gmIsHM = False Then
-                                    Core.Player.Inventory.RemoveItem(Me.MachineItemID, 1)
+                                    TechMachine.RemoveItem()
                                 End If
                             Else
 
                                 If CType(TechMachine, Items.TechMachine).IsTM = True Then
-                                    Core.Player.Inventory.RemoveItem(Me.MachineItemID, 1)
+                                    TechMachine.RemoveItem()
                                 End If
                             End If
                         End If
