@@ -1,4 +1,4 @@
-﻿Imports P3D.Items
+Imports P3D.Items
 
 ''' <summary>
 ''' Provides an interface to load additional GameMode items.
@@ -221,14 +221,14 @@ Public Class GameModeItemLoader
                     item.gmCanBeTraded = True
                     item.gmCanBeUsed = True
                     item.gmCanBeUsedInBattle = False
-                    If item.gmName.StartsWith("TM ") Then
+                    If item.gmName.StartsWith(Localization.GetString("item_name_prefix_TM", "TM") & " ") Then
                         item.gmSortValue = CInt(item.gmName.Remove(0, 3)) + 190
-                    ElseIf item.gmName.StartsWith("TM") Then
+                    ElseIf item.gmName.StartsWith(Localization.GetString("item_name_prefix_TM", "TM")) Then
                         item.gmSortValue = CInt(item.gmName.Remove(0, 2)) + 190
                     End If
-                    If item.gmName.StartsWith("HM ") Then
+                    If item.gmName.StartsWith(Localization.GetString("item_name_prefix_HM", "HM") & " ") Then
                         item.gmSortValue = -100000 + CInt(item.gmName.Remove(0, 3))
-                    ElseIf item.gmName.StartsWith("HM") Then
+                    ElseIf item.gmName.StartsWith(Localization.GetString("item_name_prefix_HM", "HM")) Then
                         item.gmSortValue = -100000 + CInt(item.gmName.Remove(0, 2))
                     End If
                     If item.gmTeachMove.Type.IsGameModeElement = False Then

@@ -2378,6 +2378,7 @@ item_name_653,Black Augurite
 item_name_658,Exp. All
 
 Technical Machines:
+item_name_prefix_TM,TM
 item_name_191,TM 01
 item_name_192,TM 02
 item_name_193,TM 03
@@ -2561,6 +2562,7 @@ item_name_480,TM 180
 item_name_481,TM 181
 
 Hidden Machines:
+item_name_prefix_HM,HM
 item_name_247,HM 01
 item_name_244,HM 02
 item_name_245,HM 03

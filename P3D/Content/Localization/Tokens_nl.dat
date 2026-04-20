@@ -2403,6 +2403,7 @@ item_name_653,Zwart Auguriet
 item_name_658,Team-ervarings~deler
 
 Technical Machines:
+item_name_prefix_TM,TM
 item_name_191,TM 01
 item_name_192,TM 02
 item_name_193,TM 03
@@ -2586,6 +2587,7 @@ item_name_480,TM 180
 item_name_481,TM 181
 
 Hidden Machines:
+item_name_prefix_HM,VM
 item_name_247,VM 01
 item_name_244,VM 02
 item_name_245,VM 03

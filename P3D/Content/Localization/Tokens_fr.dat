@@ -2376,6 +2376,7 @@ item_name_653,Obsidienne
 item_name_658,Multi Exp
 
 Technical Machines:
+item_name_prefix_TM,TM
 item_name_191,CT 01
 item_name_192,CT 02
 item_name_193,CT 03
@@ -2559,6 +2560,7 @@ item_name_480,CT 180
 item_name_481,CT 181
 
 Hidden Machines:
+item_name_prefix_HM,HM
 item_name_247,CS 01
 item_name_244,CS 02
 item_name_245,CS 03
