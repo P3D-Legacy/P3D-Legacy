@@ -20,33 +20,36 @@
     End Sub
 
     Public Overrides Sub ClickFunction()
-        Dim canRead As Boolean = False
+        If CurrentScreen.Identification = Screen.Identifications.OverworldScreen Then
 
-        Select Case Screen.Camera.GetPlayerFacingDirection()
-            Case 1, 3
-                If Me.Rotation.Y = MathHelper.Pi * 1.5F Or Me.Rotation.Y = MathHelper.Pi * 0.5F Then
-                    canRead = True
-                End If
-            Case 0, 2
-                If Me.Rotation.Y = MathHelper.Pi Or Me.Rotation.Y = MathHelper.TwoPi Or Me.Rotation.Y = 0 Then
-                    canRead = True
-                End If
-        End Select
+            Dim canRead As Boolean = False
 
-        If canRead = True Then
-            Dim oScreen As OverworldScreen = CType(Core.CurrentScreen, OverworldScreen)
-            If oScreen.ActionScript.IsReady = True Then
-                SoundManager.PlaySound("select")
-                Select Case Me.ActionValue
-                    Case 0, 3
-                        oScreen.ActionScript.StartScript(Me.AdditionalValue, 1)
-                    Case 1
-                        oScreen.ActionScript.StartScript(Me.AdditionalValue, 0)
-                    Case 2
-                        oScreen.ActionScript.StartScript(Me.AdditionalValue.Replace("<br>", Environment.NewLine), 2)
-                    Case Else
-                        oScreen.ActionScript.StartScript(Me.AdditionalValue, 1)
-                End Select
+            Select Case Screen.Camera.GetPlayerFacingDirection()
+                Case 1, 3
+                    If Me.Rotation.Y = MathHelper.Pi * 1.5F Or Me.Rotation.Y = MathHelper.Pi * 0.5F Then
+                        canRead = True
+                    End If
+                Case 0, 2
+                    If Me.Rotation.Y = MathHelper.Pi Or Me.Rotation.Y = MathHelper.TwoPi Or Me.Rotation.Y = 0 Then
+                        canRead = True
+                    End If
+            End Select
+
+            If canRead = True Then
+                Dim oScreen As OverworldScreen = CType(Core.CurrentScreen, OverworldScreen)
+                If oScreen.ActionScript.IsReady = True Then
+                    SoundManager.PlaySound("select")
+                    Select Case Me.ActionValue
+                        Case 0, 3
+                            oScreen.ActionScript.StartScript(Me.AdditionalValue, 1)
+                        Case 1
+                            oScreen.ActionScript.StartScript(Me.AdditionalValue, 0)
+                        Case 2
+                            oScreen.ActionScript.StartScript(Me.AdditionalValue.Replace("<br>", Environment.NewLine), 2)
+                        Case Else
+                            oScreen.ActionScript.StartScript(Me.AdditionalValue, 1)
+                    End Select
+                End If
             End If
         End If
     End Sub
