@@ -1,4 +1,4 @@
-﻿Namespace BattleSystem.Moves.Normal
+Namespace BattleSystem.Moves.Normal
 
     Public Class Whirlwind
 
@@ -76,7 +76,7 @@
                             While BattleScreen.Trainer.Pokemons(i).Status = Pokemon.StatusProblems.Fainted OrElse BattleScreen.OppPokemonIndex = i OrElse BattleScreen.Trainer.Pokemons(i).HP <= 0
                                 i = Core.Random.Next(0, BattleScreen.Trainer.Pokemons.Count)
                             End While
-                            BattleScreen.Battle.SwitchOutOpp(BattleScreen, i, "")
+                            BattleScreen.Battle.SwitchOutOpp(BattleScreen, i, "",, False)
                         Else
                             BattleScreen.BattleQuery.Add(New TextQueryObject(Me.Name & " failed!"))
                         End If

@@ -8323,7 +8323,7 @@ Namespace BattleSystem
             End If
         End Sub
 
-        Public Sub SwitchOutOpp(ByVal BattleScreen As BattleScreen, ByVal index As Integer, Optional ByVal message As String = "", Optional HasSwitched As Boolean = False)
+        Public Sub SwitchOutOpp(ByVal BattleScreen As BattleScreen, ByVal index As Integer, Optional ByVal message As String = "", Optional HasSwitched As Boolean = False, Optional CanAddSwitchPokemonQuery As Boolean = True)
             With BattleScreen
                 'Natural cure cures status problems
                 If .OppPokemon.Ability.Name.ToLower() = "natural cure" Then
@@ -8472,7 +8472,7 @@ Namespace BattleSystem
                     If BattleScreen.IsRemoteBattle And BattleScreen.OppFaint Then
                         'Next pokemon is selected by the opponent.
                     Else
-                        SwitchInOpp(BattleScreen, False, index, HasSwitched)
+                        SwitchInOpp(BattleScreen, False, index, HasSwitched,CanAddSwitchPokemonQuery)
                     End If
                 Else
                     GainEXP(BattleScreen)
@@ -8544,7 +8544,7 @@ Namespace BattleSystem
             End If
         End Sub
 
-        Public Sub SwitchInOpp(ByVal BattleScreen As BattleScreen, ByVal FirstTime As Boolean, ByVal index As Integer, Optional HasSwitched As Boolean = False)
+        Public Sub SwitchInOpp(ByVal BattleScreen As BattleScreen, ByVal FirstTime As Boolean, ByVal index As Integer, Optional HasSwitched As Boolean = False, Optional CanAddSwitchPokemonQuery As Boolean = True)
             Dim AddSwitch As Boolean = False
 
             If HasSwitched = True AndAlso BattleScreen.IsTrainerBattle = True Then
@@ -8611,7 +8611,7 @@ Namespace BattleSystem
                 'Switch BattleStyle
 
                 If BattleScreen.FieldEffects.OwnDigCounter = 0 AndAlso BattleScreen.FieldEffects.OwnFlyCounter = 0 AndAlso BattleScreen.FieldEffects.OwnDiveCounter = 0 Then
-                    If Core.Player.BattleStyle <> 1 AndAlso OppStep.StepType <> RoundConst.StepTypes.Switch AndAlso BattleScreen.IsPVPBattle = False Then
+                    If Core.Player.BattleStyle <> 1 AndAlso OppStep.StepType <> RoundConst.StepTypes.Switch AndAlso BattleScreen.IsPVPBattle = False AndAlso CanAddSwitchPokemonQuery = True Then
                         AddSwitch = True
                         BattleScreen.BattleQuery.Add(New SwitchPokemonQueryObject(BattleScreen, BattleScreen.OppPokemon))
                         BattleScreen.Battle.ChangeCameraAngle(1, False, BattleScreen)
