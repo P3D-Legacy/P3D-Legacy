@@ -1173,7 +1173,7 @@ Public Class Pokemon
     Public NormalAbilitySlot As String = "A"
     Public Sub LoadAltAbility()
         NormalAbility = OriginalAbility
-        NormalAbilitySlot = AbilitySlot
+        NormalAbilitySlot = OriginalAbilitySlot
         Me.Ability = NewAbilities(0)
         Me.AbilitySlot = "A"
         SetOriginalAbility()
@@ -1263,6 +1263,15 @@ Public Class Pokemon
     Public ReadOnly Property OriginalAbility() As Ability
         Get
             Return Me._originalAbility
+        End Get
+    End Property
+
+    ''' <summary>
+    ''' The Pokémon's original ability slot.
+    ''' </summary>
+    Public ReadOnly Property OriginalAbilitySlot() As String
+        Get
+            Return Me._originalAbilitySlot
         End Get
     End Property
     Public Sub SetOriginalAbility()
