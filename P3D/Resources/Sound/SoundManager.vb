@@ -75,7 +75,6 @@
 
     Public Shared Sub Clear()
         _sounds.Clear()
-        LoadSounds(False)
     End Sub
 
     Public Shared Sub PlaySound(soundFile As String)

@@ -7,7 +7,6 @@ Imports P3D.Screens.MainMenu
 Public Class PressStartScreen
 
     Inherits Screen
-
     Public _fadeInMain As Single = 1.0F
     Private _introDelay As Single = 4.0F
     Private _logoFade As Single = 1.0F
@@ -1577,9 +1576,7 @@ Public Class NewMainMenuScreen
                                 Localization.ReloadGameModeTokens()
                             End If
                             MusicManager.Clear()
-                            MusicManager.LoadMusic(True)
                             SoundManager.Clear()
-                            SoundManager.LoadSounds(True)
                             FontManager.LoadFonts()
                             Water.ClearAnimationResources()
                             Waterfall.ClearAnimationResources()

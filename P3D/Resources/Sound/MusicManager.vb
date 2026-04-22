@@ -219,7 +219,6 @@ Public Class MusicManager
 
     Public Shared Sub Clear()
         _songs.Clear()
-        LoadMusic(False)
     End Sub
 
     Public Shared Sub ClearCurrentlyPlaying()
@@ -617,7 +616,7 @@ Public Class MusicManager
 
             If _songs.ContainsKey(GetSongName(Name)) = False Then
                 loadSong = True
-            ElseIf forceReplace = True And _songs(GetSongName(Name)).IsStandardSong = True Then
+            ElseIf forceReplace = True Then
                 removeSong = True
                 loadSong = True
             End If
