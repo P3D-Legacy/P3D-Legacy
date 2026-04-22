@@ -1,4 +1,4 @@
-Namespace BattleSystem.Moves.Normal
+﻿Namespace BattleSystem.Moves.Normal
 
     Public Class Whirlwind
 
@@ -93,20 +93,7 @@ Namespace BattleSystem.Moves.Normal
                     End If
                 Else
                     'wild battle
-
-                    If own = True Then
-                        BattleScreen.BattleQuery.Add(New EndBattleQueryObject(False))
-                    Else
-                        If Core.Player.CountFightablePokemon > 1 Then
-                            Dim i As Integer = Core.Random.Next(0, Core.Player.Pokemons.Count)
-                            While Core.Player.Pokemons(i).Status = Pokemon.StatusProblems.Fainted OrElse BattleScreen.OwnPokemonIndex = i OrElse Core.Player.Pokemons(i).HP <= 0
-                                i = Core.Random.Next(0, Core.Player.Pokemons.Count)
-                            End While
-                            BattleScreen.Battle.SwitchOutOwn(BattleScreen, i, -1)
-                        Else
-                            BattleScreen.BattleQuery.Add(New TextQueryObject(Me.Name & " failed!"))
-                        End If
-                    End If
+                    BattleScreen.BattleQuery.Add(New EndBattleQueryObject(False))
                 End If
             Else
                 BattleScreen.BattleQuery.Add(New TextQueryObject(Me.Name & " failed!"))

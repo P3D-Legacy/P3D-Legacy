@@ -108,16 +108,7 @@ Namespace BattleSystem.Moves.Fighting
                                     End If
                                 Else
                                     'wild battle
-
-                                    If own = True Then
-                                        BattleScreen.BattleQuery.Add(New EndBattleQueryObject(False))
-                                    Else
-                                        If Core.Player.CountFightablePokemon > 1 Then
-                                            BattleScreen.Battle.SwitchOutOwn(BattleScreen, -1, -1)
-                                        Else
-                                            BattleScreen.BattleQuery.Add(New TextQueryObject(Me.Name & " failed!"))
-                                        End If
-                                    End If
+                                    BattleScreen.BattleQuery.Add(New EndBattleQueryObject(False))
                                 End If
                             Else
                                 BattleScreen.BattleQuery.Add(New TextQueryObject(Me.Name & " failed!"))
