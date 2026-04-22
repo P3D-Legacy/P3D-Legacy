@@ -1578,13 +1578,13 @@ nextIndex:
                                                 ItemReturnScript &= ")" & Environment.NewLine
                                             End If
                                             ItemReturnScript &= "@Sound.Play(Receive_Item)" & Environment.NewLine & "@Text.Show(" & Core.Player.Name & " found~" & p.Item.Name & "!*" & Core.Player.Inventory.GetMessageReceive(p.Item, 1)
-                                            If CType(CurrentScreen, BattleSystem.BattleScreen).IsTrainerBattle = True Then
-                                                p.Item = CType(CurrentScreen, BattleSystem.BattleScreen).Trainer.Pokemons(k).Item
-                                                CType(CurrentScreen, BattleSystem.BattleScreen).Trainer.Pokemons(k).Item = Nothing
+                                            If p.OriginalItem.IsGameModeItem = True Then
+                                                p.Item = P3D.Item.GetItemByID(p.OriginalItem.gmID.ToString)
                                             Else
-                                                p.Item = CType(CurrentScreen, BattleSystem.BattleScreen).OppPokemon.Item
-                                                CType(CurrentScreen, BattleSystem.BattleScreen).OppPokemon.Item = Nothing
+                                                p.Item = P3D.Item.GetItemByID(p.OriginalItem.ID.ToString)
                                             End If
+
+                                            p.Item.AdditionalData = p.OriginalItem.AdditionalData
                                             If ItemReturnScript <> "@Text.Show(" Then
                                                 ItemReturnScript &= "*"
                                             End If
