@@ -106,18 +106,6 @@ Public Class StorageSystemScreen
                 Dim pokemonData = line.Remove(0, line.IndexOf("{"))
                 Dim box As Box = Nothing
 
-                Dim p As Pokemon = Pokemon.GetPokemonByData(pokemonData)
-
-                Dim dexID As String = PokemonForms.GetPokemonDataFileName(p.Number, p.AdditionalData, True)
-
-                If p.IsEgg() = False Then
-                    If p.IsShiny = True Then
-                        Core.Player.PokedexData = Pokedex.ChangeEntry(Core.Player.PokedexData, dexID, 3)
-                    Else
-                        Core.Player.PokedexData = Pokedex.ChangeEntry(Core.Player.PokedexData, dexID, 2)
-                    End If
-                End If
-
                 If Not boxes.TryGetValue(boxIndex, box) Then
                     boxes.Add(boxIndex, New Box(boxIndex))
                 End If
@@ -1429,6 +1417,30 @@ Public Class StorageSystemScreen
 
         Return PokemonList
     End Function
+
+    Public Shared Sub PokedexRegisterBoxPokemon()
+        Dim BoxData() = Core.Player.BoxData.SplitAtNewline()
+
+        For Each line In BoxData
+            If Not line.StartsWith("BOX") And line <> "" Then
+                Dim Data = line.Split(",")
+
+                Dim pokemonData = line.Remove(0, line.IndexOf("{"))
+
+                Dim p As Pokemon = Pokemon.GetPokemonByData(pokemonData)
+
+                Dim dexID As String = PokemonForms.GetPokemonDataFileName(p.Number, p.AdditionalData, True)
+
+                If p.IsEgg() = False Then
+                    If p.IsShiny = True Then
+                        Core.Player.PokedexData = Pokedex.ChangeEntry(Core.Player.PokedexData, dexID, 3)
+                    Else
+                        Core.Player.PokedexData = Pokedex.ChangeEntry(Core.Player.PokedexData, dexID, 2)
+                    End If
+                End If
+            End If
+        Next
+    End Sub
 
 End Class
 

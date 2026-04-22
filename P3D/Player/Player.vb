@@ -597,6 +597,8 @@
         ResetTemp()
         Chat.ClearChat()
 
+        StorageSystemScreen.PokedexRegisterBoxPokemon()
+
         If AutosaveUsed = True Then
             IO.Directory.Delete(GameController.GamePath & "\Save\" & Me.filePrefix, True)
 
