@@ -84,7 +84,7 @@
             Core.SpriteBatch.DrawString(FontManager.InGameFont, "+ " & newSpeed, New Vector2(p.X + 32 + NewOffset, p.Y + 284), Color.Black)
         End If
 
-        Dim ResultOffset As Integer = 272
+        Dim ResultOffset As Integer = 288
 
         If Delay >= 9.0F Then
             Core.SpriteBatch.DrawString(FontManager.InGameFont, "= " & Pokemon.MaxHP, New Vector2(p.X + 32 + ResultOffset, p.Y + 84), Color.Black)
