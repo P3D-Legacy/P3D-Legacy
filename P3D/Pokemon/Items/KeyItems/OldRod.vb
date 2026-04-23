@@ -22,8 +22,8 @@ Namespace Items.KeyItems
 
                 Dim p As Pokemon = Nothing
 
-                Dim pokeFile As String = "poke\" & Screen.Level.LevelFile.Remove(Screen.Level.LevelFile.Length - 4, 4) & ".poke"
-                If GameModeManager.MapFileExists(pokeFile) = True Then
+                Dim pokeFile As String = GameModeManager.GetPokeFilePath(Screen.Level.LevelFile.Remove(Screen.Level.LevelFile.Length - 4, 4) & ".poke")
+                If File.Exists(pokeFile) = True Then
                     p = Spawner.GetPokemon(Screen.Level.LevelFile, Spawner.EncounterMethods.OldRod, False)
                 End If
 

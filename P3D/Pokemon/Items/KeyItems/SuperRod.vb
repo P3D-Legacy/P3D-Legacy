@@ -22,8 +22,8 @@ Namespace Items.KeyItems
 
                 Dim p As Pokemon = Nothing
 
-                Dim pokeFile As String = "poke\" & Screen.Level.LevelFile.Remove(Screen.Level.LevelFile.Length - 4, 4) & ".poke"
-                If GameModeManager.MapFileExists(pokeFile) = True Then
+                Dim pokeFile As String = GameModeManager.GetPokeFilePath(Screen.Level.LevelFile.Remove(Screen.Level.LevelFile.Length - 4, 4) & ".poke")
+                If File.Exists(pokeFile) = True Then
                     p = Spawner.GetPokemon(Screen.Level.LevelFile, Spawner.EncounterMethods.SuperRod, False)
                 End If
 
@@ -74,10 +74,10 @@ Namespace Items.KeyItems
                         ":end"
                 Else
                     s &= Environment.NewLine & "@player.showrod(2)" & Environment.NewLine &
-                        "@text.show(. . . . . . . . . .)" & Environment.NewLine &
-                        "@text.show(No, there's nothing here...)" & Environment.NewLine &
-                        "@player.hiderod" & Environment.NewLine &
-                        ":end"
+                            "@text.show(. . . . . . . . . .)" & Environment.NewLine &
+                            "@text.show(No, there's nothing here...)" & Environment.NewLine &
+                            "@player.hiderod" & Environment.NewLine &
+                            ":end"
                 End If
 
                 CType(Core.CurrentScreen, OverworldScreen).ActionScript.StartScript(s, 2)
