@@ -220,10 +220,6 @@
                             Case "message", "text"
                                 Dim OppPokemon As Pokemon = BattleScreen.OppPokemon
                                 Dim OwnPokemon As Pokemon = BattleScreen.OwnPokemon
-                                If own = False Then
-                                    OwnPokemon = BattleScreen.OppPokemon
-                                    OppPokemon = BattleScreen.OwnPokemon
-                                End If
 
                                 If own = True Then
                                     fSub = Localization.GetString(fSub, fSub).Replace("[OPPNAME]", OppPokemon.GetDisplayName).Replace("[OWNNAME]", OwnPokemon.GetDisplayName)
@@ -452,11 +448,18 @@
                                 End If
                                 If f.Split(CChar(",")).Count > 3 Then
                                     EffectTarget = CBool(f.GetSplit(3, ","))
+                                    If own = False Then
+                                        EffectTarget = Not EffectTarget
+                                    End If
                                 End If
                             Case Else
                                 fSub = CInt(f.GetSplit(1, ",")).Clamp(0, 100).ToString
                                 If f.Split(CChar(",")).Count > 2 Then
                                     EffectTarget = CBool(f.GetSplit(2, ","))
+
+                                    If own = False Then
+                                        EffectTarget = Not EffectTarget
+                                    End If
                                 End If
                         End Select
                     Else
@@ -478,9 +481,6 @@
                         End Select
                     End If
 
-                    If own = False Then
-                        EffectTarget = Not EffectTarget
-                    End If
                     Select Case fMain.ToLower()
                         Case "flinch"
                             Flinch(Move, own, EffectTarget, BattleScreen, CInt(fSub))
@@ -496,19 +496,19 @@
                             End If
                             Select Case randomNumber
                                 Case 0
-                                    Paralyze(Move, own, EffectTarget, BattleScreen, CInt(fSub))
+                                    Paralyze(Move, own, EffectTarget, BattleScreen, chance)
                                 Case 1
-                                    Poison(Move, own, EffectTarget, BattleScreen, CInt(fSub))
+                                    Poison(Move, own, EffectTarget, BattleScreen, chance)
                                 Case 2
-                                    Burn(Move, own, EffectTarget, BattleScreen, CInt(fSub))
+                                    Burn(Move, own, EffectTarget, BattleScreen, chance)
                                 Case 3
-                                    Freeze(Move, own, EffectTarget, BattleScreen, CInt(fSub))
+                                    Freeze(Move, own, EffectTarget, BattleScreen, chance)
                                 Case 4
-                                    Sleep(Move, own, EffectTarget, BattleScreen, CInt(fSub))
+                                    Sleep(Move, own, EffectTarget, BattleScreen, chance)
                                 Case 5
-                                    Confuse(Move, own, EffectTarget, BattleScreen, CInt(fSub))
+                                    Confuse(Move, own, EffectTarget, BattleScreen, chance)
                                 Case 6
-                                    BadPoison(Move, own, EffectTarget, BattleScreen, CInt(fSub))
+                                    BadPoison(Move, own, EffectTarget, BattleScreen, chance)
                             End Select
                         Case "paralyze"
                             Paralyze(Move, own, EffectTarget, BattleScreen, CInt(fSub))
