@@ -89,7 +89,7 @@
             Return True
         End Function
 
-        Public Overrides Function GetDamage(Critical As Boolean, Own As Boolean, targetPokemon As Boolean, BattleScreen As BattleScreen, Optional ExtraParameter As String = "") As Integer
+        Public Overrides Function GetDamage(ByVal Critical As Boolean, ByVal Own As Boolean, ByVal targetPokemon As Boolean, ByVal BattleScreen As BattleScreen, Optional ByVal ExtraParameter As String = "", Optional TypeEffectivenessAttack As Attack = Nothing) As Integer
             Dim damage As Integer = BattleScreen.FieldEffects.OwnLastDamage
             If Own = True Then
                 damage = BattleScreen.FieldEffects.OppLastDamage

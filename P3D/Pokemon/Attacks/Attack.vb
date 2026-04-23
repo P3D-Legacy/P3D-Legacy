@@ -2001,16 +2001,16 @@
         ''' </summary>
         ''' <param name="Own">If the own Pokémon used the move.</param>
         ''' <param name="BattleScreen">Reference to the BattleScreen.</param>
-        Public Overridable Function GetDamage(ByVal Critical As Boolean, ByVal Own As Boolean, ByVal targetPokemon As Boolean, ByVal BattleScreen As BattleScreen, Optional ByVal ExtraParameter As String = "") As Integer
+        Public Overridable Function GetDamage(ByVal Critical As Boolean, ByVal Own As Boolean, ByVal targetPokemon As Boolean, ByVal BattleScreen As BattleScreen, Optional ByVal ExtraParameter As String = "", Optional TypeEffectivenessAttack As Attack = Nothing) As Integer
             If gmCopyMove <> -1 Then
                 Dim _attack As Attack = GetAttackByID(gmCopyMove)
                 If _attack.IsGameModeMove = False Then
-                    Return _attack.GetDamage(Critical, Own, targetPokemon, BattleScreen, ExtraParameter)
+                    Return _attack.GetDamage(Critical, Own, targetPokemon, BattleScreen, ExtraParameter, Me)
                 Else
-                    Return BattleCalculation.CalculateDamage(_attack, Critical, Own, targetPokemon, BattleScreen, ExtraParameter)
+                    Return BattleCalculation.CalculateDamage(_attack, Critical, Own, targetPokemon, BattleScreen, ExtraParameter, Me)
                 End If
             Else
-                Return BattleCalculation.CalculateDamage(Me, Critical, Own, targetPokemon, BattleScreen, ExtraParameter)
+                Return BattleCalculation.CalculateDamage(Me, Critical, Own, targetPokemon, BattleScreen, ExtraParameter, TypeEffectivenessAttack)
             End If
         End Function
 

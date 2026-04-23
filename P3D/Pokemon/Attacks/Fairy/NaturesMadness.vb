@@ -52,7 +52,7 @@
             '#End
         End Sub
 
-        Public Overrides Function GetDamage(Critical As Boolean, Own As Boolean, targetPokemon As Boolean, BattleScreen As BattleScreen, Optional ExtraParameter As String = "") As Integer
+        Public Overrides Function GetDamage(ByVal Critical As Boolean, ByVal Own As Boolean, ByVal targetPokemon As Boolean, ByVal BattleScreen As BattleScreen, Optional ByVal ExtraParameter As String = "", Optional TypeEffectivenessAttack As Attack = Nothing) As Integer
             Dim op As Pokemon = BattleScreen.OppPokemon
             If Own = False Then
                 op = BattleScreen.OwnPokemon

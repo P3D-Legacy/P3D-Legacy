@@ -1227,7 +1227,7 @@
             Return True
         End Function
 
-        Public Shared Function CalculateDamage(ByVal Attack As Attack, ByVal Critical As Boolean, ByVal Own As Boolean, ByVal targetPokemon As Boolean, ByVal BattleScreen As BattleScreen, Optional ByVal ExtraParameter As String = "") As Integer
+        Public Shared Function CalculateDamage(ByVal Attack As Attack, ByVal Critical As Boolean, ByVal Own As Boolean, ByVal targetPokemon As Boolean, ByVal BattleScreen As BattleScreen, Optional ByVal ExtraParameter As String = "", Optional TypeEffectivenessAttack As Attack = Nothing) As Integer
             Dim p As Pokemon = Nothing
             Dim Op As Pokemon = Nothing
             If Own = True Then
@@ -2095,7 +2095,12 @@
             Dim TL As Single = 1.0F
             Dim TRB As Single = 1.0F
 
-            Dim effectiveness As Single = CalculateEffectiveness(Attack, BattleScreen, p, Op, Own)
+            Dim effectiveness As Single = 0.0F
+            If TypeEffectivenessAttack IsNot Nothing Then
+                effectiveness = CalculateEffectiveness(TypeEffectivenessAttack, BattleScreen, p, Op, Own)
+            Else
+                effectiveness = CalculateEffectiveness(Attack, BattleScreen, p, Op, Own)
+            End If
 
             If effectiveness > 1.0F Then
                 If Op.Ability.Name.ToLower() = "solid rock" Or Op.Ability.Name.ToLower() = "filter" Then
