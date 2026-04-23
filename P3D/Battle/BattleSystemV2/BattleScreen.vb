@@ -24,6 +24,7 @@ Namespace BattleSystem
         Public ClearMoveMenuTime As Boolean = False
         Public Shared CanCatch As Boolean = True
         Public Shared CanRun As Boolean = True
+        Public Shared CanAlwaysRun As Boolean = False
         Public Shared CanBlackout As Boolean = True
         Public Shared CanReceiveEXP As Boolean = True
         Public Shared RoamingBattle As Boolean = False

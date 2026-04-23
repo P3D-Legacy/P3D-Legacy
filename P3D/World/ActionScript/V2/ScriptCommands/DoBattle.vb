@@ -224,6 +224,8 @@
                     Select Case varname.ToLower()
                         Case "canrun"
                             BattleSystem.BattleScreen.CanRun = CBool(varvalue)
+                        Case "canalwaysrun"
+                            BattleSystem.BattleScreen.CanAlwaysRun = CBool(varvalue)
                         Case "cancatch"
                             BattleSystem.BattleScreen.CanCatch = CBool(varvalue)
                         Case "canblackout"

@@ -681,6 +681,10 @@
                 Return True
             End If
 
+            If BattleScreen.CanAlwaysRun = True Then
+                Return True
+            End If
+
             Dim p As Pokemon = BattleScreen.OwnPokemon
             Dim op As Pokemon = BattleScreen.OppPokemon
             If own = False Then
