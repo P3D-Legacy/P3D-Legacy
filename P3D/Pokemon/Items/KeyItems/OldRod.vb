@@ -27,9 +27,11 @@ Namespace Items.KeyItems
                     p = Spawner.GetPokemon(Screen.Level.LevelFile, Spawner.EncounterMethods.OldRod, False)
                 End If
 
+                Dim hasFishEncounters = True
                 If p Is Nothing Then
                     p = Pokemon.GetPokemonByID(129)
                     p.Generate(10, True)
+                    hasFishEncounters = False
                 End If
 
                 Dim PokemonID As Integer = p.Number
@@ -38,49 +40,59 @@ Namespace Items.KeyItems
                     PokemonShiny = "S"
                 End If
 
-                If Core.Random.Next(0, 3) <> 0 Or Core.Player.Pokemons(0).Ability.Name.ToLower() = "suction cups" Or Core.Player.Pokemons(0).Ability.Name.ToLower() = "sticky hold" Then
-                    Dim LookingOffset As New Vector3(0)
+                If hasFishEncounters = True Then
 
-                    Select Case Screen.Camera.GetPlayerFacingDirection()
-                        Case 0
-                            LookingOffset.Z = -1
-                        Case 1
-                            LookingOffset.X = -1
-                        Case 2
-                            LookingOffset.Z = 1
-                        Case 3
-                            LookingOffset.X = 1
-                    End Select
+                    If Core.Random.Next(0, 3) <> 0 Or Core.Player.Pokemons(0).Ability.Name.ToLower() = "suction cups" Or Core.Player.Pokemons(0).Ability.Name.ToLower() = "sticky hold" Then
+                        Dim LookingOffset As New Vector3(0)
 
-                    Dim spawnPosition As Vector3 = New Vector3(Screen.Camera.Position.X + LookingOffset.X, Screen.Camera.Position.Y, Screen.Camera.Position.Z + LookingOffset.Z)
+                        Select Case Screen.Camera.GetPlayerFacingDirection()
+                            Case 0
+                                LookingOffset.Z = -1
+                            Case 1
+                                LookingOffset.X = -1
+                            Case 2
+                                LookingOffset.Z = 1
+                            Case 3
+                                LookingOffset.X = 1
+                        End Select
 
-                    Dim endRotation As Integer = Screen.Camera.GetPlayerFacingDirection() + 2
-                    If endRotation > 3 Then
-                        endRotation = endRotation - 4
+                        Dim spawnPosition As Vector3 = New Vector3(Screen.Camera.Position.X + LookingOffset.X, Screen.Camera.Position.Y, Screen.Camera.Position.Z + LookingOffset.Z)
+
+                        Dim endRotation As Integer = Screen.Camera.GetPlayerFacingDirection() + 2
+                        If endRotation > 3 Then
+                            endRotation = endRotation - 4
+                        End If
+
+                        s &= Environment.NewLine & "@player.showrod(0)" & Environment.NewLine &
+                            "@text.show(. . . . . . . . . .)" & Environment.NewLine &
+                            "@text.show(Oh!~A bite!)" & Environment.NewLine &
+                            "@player.hiderod" & Environment.NewLine &
+                            "@npc.spawn(" & spawnPosition.X.ToString().Replace(GameController.DecSeparator, ".") & "," & spawnPosition.Y.ToString().Replace(GameController.DecSeparator, ".") & "," & spawnPosition.Z.ToString().Replace(GameController.DecSeparator, ".") & ",0,...,[POKEMON|" & PokemonShiny & "]" & PokemonID & PokemonForms.GetOverworldAddition(p) & ",0," & endRotation & ",POKEMON,1337,Still)" & Environment.NewLine &
+                            "@Level.Update" & Environment.NewLine &
+                            "@pokemon.cry(" & PokemonID & ")" & Environment.NewLine &
+                            "@level.wait(50)" & Environment.NewLine &
+                            "@text.show(The wild " & p.GetName & "~attacked!)" & Environment.NewLine &
+                            "@npc.remove(1337)" & Environment.NewLine &
+                            "@battle.setvar(divebattle,true)" & Environment.NewLine &
+                            "@battle.wild(" & p.GetSaveData() & ")" & Environment.NewLine &
+                            ":end"
+                    Else
+                        s &= Environment.NewLine & "@player.showrod(2)" & Environment.NewLine &
+                            "@text.show(. . . . . . . . . .)" & Environment.NewLine &
+                            "@text.show(Not even a nibble...)" & Environment.NewLine &
+                            "@player.hiderod" & Environment.NewLine &
+                            ":end"
                     End If
-
-                    s &= Environment.NewLine & "@player.showrod(0)" & Environment.NewLine &
-                        "@text.show(. . . . . . . . . .)" & Environment.NewLine &
-                        "@text.show(Oh!~A bite!)" & Environment.NewLine &
-                        "@player.hiderod" & Environment.NewLine &
-                        "@npc.spawn(" & spawnPosition.X.ToString().Replace(GameController.DecSeparator, ".") & "," & spawnPosition.Y.ToString().Replace(GameController.DecSeparator, ".") & "," & spawnPosition.Z.ToString().Replace(GameController.DecSeparator, ".") & ",0,...,[POKEMON|" & PokemonShiny & "]" & PokemonID & PokemonForms.GetOverworldAddition(p) & ",0," & endRotation & ",POKEMON,1337,Still)" & Environment.NewLine &
-                        "@Level.Update" & Environment.NewLine &
-                        "@pokemon.cry(" & PokemonID & ")" & Environment.NewLine &
-                        "@level.wait(50)" & Environment.NewLine &
-                        "@text.show(The wild " & p.GetName & "~attacked!)" & Environment.NewLine &
-                        "@npc.remove(1337)" & Environment.NewLine &
-                        "@battle.setvar(divebattle,true)" & Environment.NewLine &
-                        "@battle.wild(" & p.GetSaveData() & ")" & Environment.NewLine &
-                        ":end"
                 Else
-                    s &= Environment.NewLine & "@player.showrod(0)" & Environment.NewLine &
+                    s &= Environment.NewLine & "@player.showrod(2)" & Environment.NewLine &
                         "@text.show(. . . . . . . . . .)" & Environment.NewLine &
                         "@text.show(No, there's nothing here...)" & Environment.NewLine &
                         "@player.hiderod" & Environment.NewLine &
                         ":end"
-                End If
+            End If
 
-                CType(Core.CurrentScreen, OverworldScreen).ActionScript.StartScript(s, 2)
+
+            CType(Core.CurrentScreen, OverworldScreen).ActionScript.StartScript(s, 2)
             Else
                 Screen.TextBox.Show(Localization.GetString("item_cannot_use", "Now is not the time~to use that."), {}, True, True)
             End If
