@@ -1,4 +1,4 @@
-﻿Public Class MapScreen
+Public Class MapScreen
 
     Inherits Screen
 
@@ -563,6 +563,7 @@
             End If
         Next
 
+        'Draw Map Objects
         If drawObjects(1) = True Then
             For Each Route As Route In routes
                 Dim isSelected As Boolean = False
@@ -662,6 +663,104 @@
             Next
         End If
 
+        'Draw Fly Icons
+        If drawObjects(1) = True Then
+            For Each Route As Route In routes
+
+                Dim c As Color = Color.White
+                If flag(0).ToString().ToLower() = "fly" And Route.CanFlyTo(flag) = False Then
+                    c = Color.Gray
+                End If
+
+                Dim DoDraw As Boolean = False
+                If Route.Visible = VisibleMode.Always OrElse Route.Visible = VisibleMode.Temporary AndAlso Route.ContainFiles.Contains(Level.LevelFile.ToLower()) = True Then
+                    DoDraw = True
+                ElseIf Route.Visible = VisibleMode.Unlock Then
+                    For Each p As String In Route.ContainFiles
+                        If Core.Player.VisitedMaps.ToLower().Split(CChar(",")).Contains(p.ToLower()) = True Then
+                            DoDraw = True
+                        End If
+                        Exit For
+                    Next
+                ElseIf Route.Visible = VisibleMode.Register Then
+                    If ActionScript.IsRegistered(Route.Register) = True Then
+                        DoDraw = True
+                    End If
+                End If
+                If DoDraw = True Then
+                    If flag(0).ToString().ToLower() = "fly" And Route.CanFlyTo(flag) = True Then
+                        Dim IconRectangle As Rectangle = Route.getRectangle(mapOffset)
+                        Core.SpriteBatch.Draw(objectsTexture, New Rectangle(CInt(IconRectangle.X + (IconRectangle.Width / 2) - 16), CInt(IconRectangle.Y + (IconRectangle.Height / 2) - 16), 32, 32), New Rectangle(72, 16, 16, 16), c)
+
+                    End If
+                End If
+            Next
+        End If
+        If drawObjects(0) = True Then
+            For Each City As City In Me.cities
+
+                Dim c As Color = Color.White
+                If flag(0).ToString().ToLower() = "fly" And City.CanFlyTo(flag) = False Then
+                    c = Color.Gray
+                End If
+
+                Dim DoDraw As Boolean = False
+                If City.Visible = VisibleMode.Always OrElse City.Visible = VisibleMode.Temporary AndAlso City.ContainFiles.Contains(Level.LevelFile.ToLower()) = True Then
+                    DoDraw = True
+                ElseIf City.Visible = VisibleMode.Unlock Then
+                    For Each p As String In City.ContainFiles
+                        If Core.Player.VisitedMaps.ToLower().Split(CChar(",")).Contains(p.ToLower()) = True Then
+                            DoDraw = True
+                        End If
+                        Exit For
+                    Next
+                ElseIf City.Visible = VisibleMode.Register Then
+                    If ActionScript.IsRegistered(City.Register) = True Then
+                        DoDraw = True
+                    End If
+                End If
+                If DoDraw = True Then
+                    If flag(0).ToString().ToLower() = "fly" And City.CanFlyTo(flag) = True Then
+                        Dim IconRectangle As Rectangle = City.getRectangle(mapOffset)
+                        Core.SpriteBatch.Draw(objectsTexture, New Rectangle(CInt(IconRectangle.X + (IconRectangle.Width / 2) - 16), CInt(IconRectangle.Y + (IconRectangle.Height / 2) - 16), 32, 32), New Rectangle(72, 0, 16, 16), c)
+
+                    End If
+                End If
+
+            Next
+        End If
+        If drawObjects(2) = True Then
+            For Each Place As Place In places
+
+                Dim c As Color = Color.White
+                If flag(0).ToString().ToLower() = "fly" And Place.CanFlyTo(flag) = False Then
+                    c = Color.Gray
+                End If
+
+                Dim DoDraw As Boolean = False
+                If Place.Visible = VisibleMode.Always OrElse Place.Visible = VisibleMode.Temporary AndAlso Place.ContainFiles.Contains(Level.LevelFile.ToLower()) = True Then
+                    DoDraw = True
+                ElseIf Place.Visible = VisibleMode.Unlock Then
+                    For Each p As String In Place.ContainFiles
+                        If Core.Player.VisitedMaps.ToLower().Split(CChar(",")).Contains(p.ToLower()) = True Then
+                            DoDraw = True
+                        End If
+                        Exit For
+                    Next
+                ElseIf Place.Visible = VisibleMode.Register Then
+                    If ActionScript.IsRegistered(Place.Register) = True Then
+                        DoDraw = True
+                    End If
+                End If
+                If DoDraw = True Then
+                    If flag(0).ToString().ToLower() = "fly" And Place.CanFlyTo(flag) = True Then
+                        Dim IconRectangle As Rectangle = Place.getRectangle(mapOffset)
+                        Core.SpriteBatch.Draw(objectsTexture, New Rectangle(CInt(IconRectangle.X + (IconRectangle.Width / 2) - 16), CInt(IconRectangle.Y + (IconRectangle.Height / 2) - 16), 32, 32), New Rectangle(72, 32, 16, 16), c)
+
+                    End If
+                End If
+            Next
+        End If
         If drawObjects(3) = True Then
             For Each Pokes As Roaming In RoamingPoke
                 Core.SpriteBatch.Draw(Pokes.getTexture(), Pokes.getRectangle(mapOffset), Color.White)
