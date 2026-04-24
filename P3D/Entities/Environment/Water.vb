@@ -187,9 +187,12 @@
                                 Case "2", "lake", "pond"
                                     message = Localization.GetString("fieldmove_surf_type2", "This lake is~calm and shallow~Do you want to Surf?") & "%" & Localization.GetString("global_yes", "Yes") & "|" & Localization.GetString("global_no", "No") & "%"
                             End Select
+                            If Screen.TextBox.reDelay = 0 Then
+                                SoundManager.PlaySound("select")
+                            End If
 
                             Screen.TextBox.Show(message, {Me}, True, True)
-                            SoundManager.PlaySound("select")
+
                         End If
                     End If
                 End If

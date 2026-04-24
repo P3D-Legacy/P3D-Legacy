@@ -161,7 +161,9 @@
 
                         If canSurf = True Then
                             Dim message As String = Localization.GetString("fieldmove_surf_type0", "Do you want to Surf?") & "%" & Localization.GetString("global_yes", "Yes") & "|" & Localization.GetString("global_no", "No") & "%"
-                            SoundManager.PlaySound("select")
+                            If Screen.TextBox.reDelay = 0 Then
+                                SoundManager.PlaySound("select")
+                            End If
                             Screen.TextBox.Show(message, {Me}, True, True)
                         End If
                     End If
