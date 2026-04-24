@@ -131,6 +131,9 @@ Public Class OverworldScreen
         Level = New Level()
         Level.Load(Core.Player.startMap)
 
+        'Update the level
+        Level.Update()
+
         ' Update the camera:
         Screen.Camera.Update()
 
@@ -141,7 +144,7 @@ Public Class OverworldScreen
             If Level.Riding = True Then
                 MusicManager.Play("ride", True) 'Play "ride" when player is riding.
             Else
-                    MusicManager.Play(Level.MusicLoop, True, 0.01F) 'Play default MusicLoop.
+                MusicManager.Play(Level.MusicLoop, True, 0.01F) 'Play default MusicLoop.
             End If
         End If
 

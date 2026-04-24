@@ -864,7 +864,8 @@ Public Class Level
         End If
 
         ' Create own player entity and OverworldPokémon entity and add them to the entity enumeration:
-        OwnPlayer = New OwnPlayer(0, 0, 0, {TextureManager.DefaultTexture}, Core.Player.Skin, 0, 0, "", "Gold", 0)
+        OwnPlayer = New OwnPlayer(Screen.Camera.Position.X, Screen.Camera.Position.Y - 0.1F, Screen.Camera.Position.Z, {TextureManager.DefaultTexture}, Core.Player.Skin, 0, 0, "", "Gold", 0)
+        OwnPlayer.UpdateEntity()
         OverworldPokemon = New OverworldPokemon(Screen.Camera.Position.X, Screen.Camera.Position.Y, Screen.Camera.Position.Z + 1)
         OverworldPokemon.ChangeRotation()
         Entities.AddRange({OwnPlayer, OverworldPokemon})
@@ -1146,9 +1147,9 @@ Public Class Level
             Me.Surfing = Core.Player.startSurfing ' Set the Surfing property after map switch.
 
             ' Create player and Pokémon entities:
-            OwnPlayer = New OwnPlayer(0, 0, 0, {TextureManager.DefaultTexture}, Core.Player.Skin, 0, 0, "", "Gold", 0)
+            OwnPlayer = New OwnPlayer(WarpData.WarpPosition.X, WarpData.WarpPosition.Y, WarpData.WarpPosition.Z, {TextureManager.DefaultTexture}, Core.Player.Skin, 0, 0, "", "Gold", 0)
             OwnPlayer.SetTexture(Core.Player.Skin, usingGameJoltTexture)
-
+            OwnPlayer.UpdateEntity()
             OverworldPokemon = New OverworldPokemon(Screen.Camera.Position.X, Screen.Camera.Position.Y, Screen.Camera.Position.Z + 1)
             OverworldPokemon.Visible = False
             OverworldPokemon.warped = True

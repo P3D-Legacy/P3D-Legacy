@@ -58,6 +58,7 @@
             Me.Texture = P3D.TextureManager.GetTexture(texturePath & TextureID & PokemonAddition)
             UsingGameJoltTexture = False
         End If
+        Me.UpdateEntity()
     End Sub
 
     Protected Overrides Function CalculateCameraDistance(CPosition As Vector3) As Single
