@@ -714,6 +714,8 @@ Public Class GameMode
         SuperHardGameRuleString & Environment.NewLine &
             "StartMap|" & Me._startMap & Environment.NewLine &
             "StartPosition|" & Me._startPosition.X.ToString().Replace(GameController.DecSeparator, ".") & "," & Me._startPosition.Y.ToString().Replace(GameController.DecSeparator, ".") & "," & Me._startPosition.Z.ToString().Replace(GameController.DecSeparator, ".") & Environment.NewLine &
+            "StartYaw|" & Me._startYaw.ToString().Replace(GameController.DecSeparator, ".") & Environment.NewLine &
+            "StartPitch|" & Me._startPitch.ToString().Replace(GameController.DecSeparator, ".") & Environment.NewLine &
             "StartRotation|" & Me._startRotation.ToString().Replace(GameController.DecSeparator, ".") & Environment.NewLine &
             "StartScript|" & StartScript & Environment.NewLine &
             "StartLocationName|" & Me._startLocationName & Environment.NewLine &
