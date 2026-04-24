@@ -1335,8 +1335,8 @@ nextIndex:
             'Add the Pokefile to the visited pokefiles list.
             If IsTrainerBattle = False Then
                 If TempPokeFile <> "" Then
-                    If Core.Player.PokeFiles.Contains(TempPokeFile) = False Then
-                        Core.Player.PokeFiles.Add(TempPokeFile)
+                    If Core.Player.PokeFiles.Contains(TempPokeFile.ToLower) = False Then
+                        Core.Player.PokeFiles.Add(TempPokeFile.ToLower)
                     End If
                 End If
             End If

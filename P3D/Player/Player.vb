@@ -791,9 +791,9 @@
                     Case "pokefiles"
                         If Value <> "" Then
                             If Value.Contains(",") = True Then
-                                PokeFiles.AddRange(Value.Split(CChar(",")))
+                                PokeFiles.AddRange(Value.ToLower.Split(CChar(",")))
                             Else
-                                PokeFiles.Add(Value)
+                                PokeFiles.Add(Value.ToLower)
                             End If
                         End If
                     Case "visitedmaps"
@@ -1226,7 +1226,7 @@
                     PokeFilesString &= ","
                 End If
 
-                PokeFilesString &= pokefile
+                PokeFilesString &= pokefile.ToLower
             Next
         End If
 

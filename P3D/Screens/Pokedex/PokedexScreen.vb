@@ -1,4 +1,4 @@
-﻿Public Class PokedexSelectScreen
+Public Class PokedexSelectScreen
 
     Inherits Screen
 
@@ -196,12 +196,11 @@ Public Class PokedexHabitatScreen
                         If h.Name.ToLower() = newHabitat.Name.ToLower() Then
                             exists = True
                             h.Merge(newHabitat)
-                            Exit For
-                        End If
-                    Next
-                    If exists = False AndAlso Core.Player.PokeFiles.Contains(fileName) = True Then
-                        HabitatList.Add(New PokedexScreen.Habitat(file))
+                        Exit For
                     End If
+                Next
+                If exists = False AndAlso Core.Player.PokeFiles.Contains(fileName.ToLower) = True Then
+                    HabitatList.Add(newHabitat)
                 End If
             End If
         Next
@@ -1686,8 +1685,8 @@ Public Class PokedexViewScreen
                         Exit For
                     End If
                 Next
-                If exists = False AndAlso Core.Player.PokeFiles.Contains(fileName) = True Then
-                    HabitatList.Add(New PokedexScreen.Habitat(file))
+                If exists = False AndAlso Core.Player.PokeFiles.Contains(fileName.ToLower) = True Then
+                    HabitatList.Add(newHabitat)
                 End If
             End If
         Next
