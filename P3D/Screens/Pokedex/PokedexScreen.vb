@@ -1,4 +1,4 @@
-Public Class PokedexSelectScreen
+﻿Public Class PokedexSelectScreen
 
     Inherits Screen
 
@@ -188,14 +188,18 @@ Public Class PokedexHabitatScreen
                     End If
                 Next
 
-                If DexInclude = True Then
-                    Dim fileName As String = file.Remove(0, (GameController.GamePath & GameModeManager.ActiveGameMode.PokeFilePath & "\").Length - 1)
-                    Dim newHabitat As New PokedexScreen.Habitat(file)
-                    Dim exists As Boolean = False
-                    For Each h As PokedexScreen.Habitat In Me.HabitatList
-                        If h.Name.ToLower() = newHabitat.Name.ToLower() Then
-                            exists = True
-                            h.Merge(newHabitat)
+                Dim fileName As String = file.Remove(0, (GameController.GamePath & GameModeManager.ActiveGameMode.PokeFilePath & "\").Length - 1)
+                Dim newHabitat As New PokedexScreen.Habitat(file)
+                Dim exists As Boolean = False
+
+                If DexInclude = False Then
+                    newHabitat.PokemonList.Clear()
+                    newHabitat.MergeData = {}
+                End If
+                For Each h As PokedexScreen.Habitat In Me.HabitatList
+                    If h.Name.ToLower() = newHabitat.Name.ToLower() Then
+                        exists = True
+                        h.Merge(newHabitat)
                         Exit For
                     End If
                 Next
@@ -1237,7 +1241,7 @@ Public Class PokedexScreen
             Public Daytimes() As Integer
         End Structure
 
-        Dim MergeData() As String = {} ' Temporary data storage if needs to merge.
+        Public MergeData() As String = {} ' Temporary data storage if needs to merge.
 
         Public File As String = ""
         Public Name As String = ""
@@ -1675,9 +1679,24 @@ Public Class PokedexViewScreen
     Private Sub FillHabitats()
         For Each file As String In System.IO.Directory.GetFiles(GameController.GamePath & GameModeManager.ActiveGameMode.PokeFilePath, "*.*", IO.SearchOption.AllDirectories)
             If file.EndsWith(".poke") = True Then
+                Dim DexInclude As Boolean = True
+                Dim data() As String = System.IO.File.ReadAllLines(file)
+
+                For Each line As String In data
+                    If line.ToLower().StartsWith("dexinclude=") = True Then
+                        DexInclude = CBool(line.Remove(0, 11))
+                        Exit For
+                    End If
+                Next
+
                 Dim fileName As String = file.Remove(0, (GameController.GamePath & GameModeManager.ActiveGameMode.PokeFilePath & "\").Length - 1)
                 Dim newHabitat As New PokedexScreen.Habitat(file)
                 Dim exists As Boolean = False
+
+                If DexInclude = False Then
+                    newHabitat.PokemonList.Clear()
+                    newHabitat.MergeData = {}
+                End If
                 For Each h As PokedexScreen.Habitat In Me.HabitatList
                     If h.Name.ToLower() = newHabitat.Name.ToLower() Then
                         exists = True
