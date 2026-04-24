@@ -936,6 +936,7 @@ Public Class OverworldCamera
         If cannotWalk = False And setSurfFalse = True Then
             If Screen.Level.Surfing = True Then
                 Screen.Level.Surfing = False
+                Core.Player.startSurfing = False
                 Screen.Level.OwnPlayer.SetTexture(Core.Player.TempSurfSkin, True)
                 Core.Player.Skin = Core.Player.TempSurfSkin
 
