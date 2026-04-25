@@ -534,7 +534,7 @@
         End Function
         Private Shared Sub LowerStat(ByVal Move As Attack, own As Boolean, Stat As String, Target As Boolean, Message As String, LowerAmount As Integer, Chance As Integer, FailMessage As String, ByVal BattleScreen As BattleScreen)
             If GetEffectChanceResult(Move, Chance) = True Then
-                If BattleScreen.Battle.LowerStat(Not Target, own, BattleScreen, Stat, LowerAmount, Message, "move:" & Move.Name.ToLower, True) = False Then
+                If BattleScreen.Battle.LowerStat(Target, own, BattleScreen, Stat, LowerAmount, Message, "move:" & Move.Name.ToLower, True) = False Then
                     If Move.Category = Attack.Categories.Status Then
                         If FailMessage = "" Then
                             BattleScreen.BattleQuery.Add(New TextQueryObject(Move.Name & " failed!"))
@@ -547,7 +547,7 @@
         End Sub
         Private Shared Sub RaiseStat(ByVal Move As Attack, own As Boolean, Stat As String, Target As Boolean, Message As String, RaiseAmount As Integer, Chance As Integer, FailMessage As String, ByVal BattleScreen As BattleScreen)
             If GetEffectChanceResult(Move, Chance) = True Then
-                If BattleScreen.Battle.RaiseStat(Not Target, own, BattleScreen, Stat, RaiseAmount, Message, "move:" & Move.Name.ToLower, True) = False Then
+                If BattleScreen.Battle.RaiseStat(Target, own, BattleScreen, Stat, RaiseAmount, Message, "move:" & Move.Name.ToLower, True) = False Then
                     If Move.Category = Attack.Categories.Status Then
                         If FailMessage = "" Then
                             BattleScreen.BattleQuery.Add(New TextQueryObject(Move.Name & " failed!"))
@@ -561,20 +561,20 @@
 
         Private Shared Sub Flinch(ByVal Move As Attack, ByVal own As Boolean, Target As Boolean, ByVal BattleScreen As BattleScreen, Chance As Integer)
             If GetEffectChanceResult(Move, Chance) = True Then
-                BattleScreen.Battle.InflictFlinch(Not Target, own, BattleScreen, "", "move:" & Move.Name.ToLower())
+                BattleScreen.Battle.InflictFlinch(Target, own, BattleScreen, "", "move:" & Move.Name.ToLower())
             End If
         End Sub
 
         Private Shared Sub Paralyze(ByVal Move As Attack, ByVal own As Boolean, Target As Boolean, ByVal BattleScreen As BattleScreen, Chance As Integer)
             If GetEffectChanceResult(Move, Chance) = True Then
-                If BattleScreen.Battle.InflictParalysis(Not Target, own, BattleScreen, "", "move:" & Move.Name.ToLower()) = False Then
+                If BattleScreen.Battle.InflictParalysis(Target, own, BattleScreen, "", "move:" & Move.Name.ToLower()) = False Then
                     If Move.Category = Attack.Categories.Status Then BattleScreen.BattleQuery.Add(New TextQueryObject(Move.Name & " failed!"))
                 End If
             End If
         End Sub
         Private Shared Sub Confuse(ByVal Move As Attack, ByVal own As Boolean, Target As Boolean, ByVal BattleScreen As BattleScreen, Chance As Integer)
             If GetEffectChanceResult(Move, Chance) = True Then
-                If BattleScreen.Battle.InflictConfusion(Not Target, own, BattleScreen, "", "move:" & Move.Name.ToLower()) = False Then
+                If BattleScreen.Battle.InflictConfusion(Target, own, BattleScreen, "", "move:" & Move.Name.ToLower()) = False Then
                     If Move.Category = Attack.Categories.Status Then BattleScreen.BattleQuery.Add(New TextQueryObject(Move.Name & " failed!"))
                 End If
             End If
@@ -582,7 +582,7 @@
 
         Private Shared Sub Burn(ByVal Move As Attack, ByVal own As Boolean, Target As Boolean, ByVal BattleScreen As BattleScreen, Chance As Integer)
             If GetEffectChanceResult(Move, Chance) = True Then
-                If BattleScreen.Battle.InflictBurn(Not Target, own, BattleScreen, "", "move:" & Move.Name.ToLower()) = False Then
+                If BattleScreen.Battle.InflictBurn(Target, own, BattleScreen, "", "move:" & Move.Name.ToLower()) = False Then
                     If Move.Category = Attack.Categories.Status Then BattleScreen.BattleQuery.Add(New TextQueryObject(Move.Name & " failed!"))
                 End If
             End If
@@ -590,7 +590,7 @@
 
         Private Shared Sub Sleep(ByVal Move As Attack, ByVal own As Boolean, Target As Boolean, ByVal BattleScreen As BattleScreen, Chance As Integer)
             If GetEffectChanceResult(Move, Chance) = True Then
-                If BattleScreen.Battle.InflictSleep(Not Target, own, BattleScreen, -1, "", "move:" & Move.Name.ToLower()) = False Then
+                If BattleScreen.Battle.InflictSleep(Target, own, BattleScreen, -1, "", "move:" & Move.Name.ToLower()) = False Then
                     If Move.Category = Attack.Categories.Status Then BattleScreen.BattleQuery.Add(New TextQueryObject(Move.Name & " failed!"))
                 End If
             End If
@@ -598,7 +598,7 @@
 
         Private Shared Sub Freeze(ByVal Move As Attack, ByVal own As Boolean, Target As Boolean, ByVal BattleScreen As BattleScreen, Chance As Integer)
             If GetEffectChanceResult(Move, Chance) = True Then
-                If BattleScreen.Battle.InflictFreeze(Not Target, own, BattleScreen, "", "move:" & Move.Name.ToLower()) = False Then
+                If BattleScreen.Battle.InflictFreeze(Target, own, BattleScreen, "", "move:" & Move.Name.ToLower()) = False Then
                     If Move.Category = Attack.Categories.Status Then BattleScreen.BattleQuery.Add(New TextQueryObject(Move.Name & " failed!"))
                 End If
             End If
@@ -606,7 +606,7 @@
 
         Private Shared Sub Poison(ByVal Move As Attack, ByVal own As Boolean, Target As Boolean, ByVal BattleScreen As BattleScreen, Chance As Integer)
             If GetEffectChanceResult(Move, Chance) = True Then
-                If BattleScreen.Battle.InflictPoison(Not Target, own, BattleScreen, False, "", "move:" & Move.Name.ToLower()) = False Then
+                If BattleScreen.Battle.InflictPoison(Target, own, BattleScreen, False, "", "move:" & Move.Name.ToLower()) = False Then
                     If Move.Category = Attack.Categories.Status Then BattleScreen.BattleQuery.Add(New TextQueryObject(Move.Name & " failed!"))
                 End If
             End If
@@ -614,7 +614,7 @@
 
         Private Shared Sub BadPoison(ByVal Move As Attack, ByVal own As Boolean, Target As Boolean, ByVal BattleScreen As BattleScreen, Chance As Integer)
             If GetEffectChanceResult(Move, Chance) = True Then
-                If BattleScreen.Battle.InflictPoison(Not Target, own, BattleScreen, True, "", "move:" & Move.Name.ToLower()) = False Then
+                If BattleScreen.Battle.InflictPoison(Target, own, BattleScreen, True, "", "move:" & Move.Name.ToLower()) = False Then
                     If Move.Category = Attack.Categories.Status Then BattleScreen.BattleQuery.Add(New TextQueryObject(Move.Name & " failed!"))
                 End If
             End If
