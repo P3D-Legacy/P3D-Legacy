@@ -797,7 +797,7 @@
                         evolutionArg = args(2)
                     End If
 
-                    Dim p As Pokemon = Core.Player.Pokemons(int(args(0)))
+                    Dim p As Pokemon = Core.Player.Pokemons(int(args(0)).Clamp(0, Core.Player.Pokemons.Count - 1))
 
                     Select Case triggerStr
                         Case "level", "levelup", "level up", "level-up"
@@ -823,7 +823,7 @@
                     End If
                 Case "levelup"
                     Dim args() As String = argument.Split(CChar(","))
-                    Dim p As Pokemon = Core.Player.Pokemons(int(args(0)))
+                    Dim p As Pokemon = Core.Player.Pokemons(int(args(0)).Clamp(0, Core.Player.Pokemons.Count - 1))
                     Dim amount As Integer = 1
 
                     If args.Count > 1 Then
