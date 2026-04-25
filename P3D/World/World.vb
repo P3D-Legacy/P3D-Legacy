@@ -715,7 +715,7 @@ endsub:
                         T = TextureManager.GetTexture("Textures\Weather\bubble")
 
                         If Core.Random.Next(0, 100) = 0 Then
-                            ObjectsList.Add(New Rectangle(Core.Random.Next(0, Core.windowSize.Width - 32), Core.windowSize.Height, 32, 32))
+                            ObjectsList.Add(New Rectangle(Core.Random.Next(0, Math.Max(1, Core.windowSize.Width - 32)), Core.windowSize.Height, 32, 32))
                         End If
 
                         For i = 0 To ObjectsList.Count - 1
