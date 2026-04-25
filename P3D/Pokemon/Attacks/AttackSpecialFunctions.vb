@@ -213,9 +213,9 @@
                                     Case 0
                                         BattleScreen.Battle.ChangeCameraAngle(0, own, BattleScreen)
                                     Case 1
-                                        BattleScreen.Battle.ChangeCameraAngle(1, True, BattleScreen)
+                                        BattleScreen.Battle.ChangeCameraAngle(1, own, BattleScreen)
                                     Case 2
-                                        BattleScreen.Battle.ChangeCameraAngle(2, True, BattleScreen)
+                                        BattleScreen.Battle.ChangeCameraAngle(2, own, BattleScreen)
                                 End Select
                             Case "message", "text"
                                 Dim OppPokemon As Pokemon = BattleScreen.OppPokemon
