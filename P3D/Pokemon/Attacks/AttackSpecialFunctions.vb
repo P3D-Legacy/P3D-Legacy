@@ -231,7 +231,7 @@
                                 Dim OppPokemon As Pokemon = BattleScreen.OppPokemon
                                 Dim OwnPokemon As Pokemon = BattleScreen.OwnPokemon
                                 Dim Stat As String = f.GetSplit(1, ",")
-                                Dim Target As Boolean = own
+                                Dim Target As Boolean = Not own
                                 Dim Message As String = ""
                                 Dim RaiseAmount As Integer = 1
                                 Dim Chance As Integer = 100
@@ -239,10 +239,10 @@
 
                                 If f.Split(CChar(",")).Count > 2 Then
                                     If f.GetSplit(2, ",") <> "" Then
-                                        Target = CBool(f.GetSplit(2, ","))
-                                    End If
-                                    If own = False Then
-                                        Target = Not Target
+                                        Target = Not CBool(f.GetSplit(2, ","))
+                                        If own = False Then
+                                            Target = Not Target
+                                        End If
                                     End If
                                     If f.Split(CChar(",")).Count > 3 Then
                                         Message = f.GetSplit(3, ",")
@@ -284,10 +284,10 @@
 
                                 If f.Split(CChar(",")).Count > 2 Then
                                     If f.GetSplit(2, ",") <> "" Then
-                                        Target = CBool(f.GetSplit(2, ","))
-                                    End If
-                                    If own = False Then
-                                        Target = Not Target
+                                        Target = Not CBool(f.GetSplit(2, ","))
+                                        If own = False Then
+                                            Target = Not Target
+                                        End If
                                     End If
                                     If f.Split(CChar(",")).Count > 3 Then
                                         Message = f.GetSplit(3, ",")
@@ -322,7 +322,7 @@
                             Case "reducehp", "drainhp", "damage"
                                 Dim OppPokemon As Pokemon = BattleScreen.OppPokemon
                                 Dim OwnPokemon As Pokemon = BattleScreen.OwnPokemon
-                                Dim Target As Boolean = CBool(f.GetSplit(1, ","))
+                                Dim Target As Boolean = Not CBool(f.GetSplit(1, ","))
                                 If own = False Then
                                     Target = Not Target
                                 End If
@@ -345,7 +345,7 @@
                             Case "gainhp", "increasehp", "heal"
                                 Dim OppPokemon As Pokemon = BattleScreen.OppPokemon
                                 Dim OwnPokemon As Pokemon = BattleScreen.OwnPokemon
-                                Dim Target As Boolean = CBool(f.GetSplit(1, ","))
+                                Dim Target As Boolean = Not CBool(f.GetSplit(1, ","))
                                 If own = False Then
                                     Target = Not Target
                                 End If
@@ -373,7 +373,7 @@
                                 End If
                                 BattleScreen.BattleQuery.Add(New EndBattleQueryObject(Blackout))
                             Case "faint"
-                                Dim Target As Boolean = CBool(f.GetSplit(1, ","))
+                                Dim Target As Boolean = Not CBool(f.GetSplit(1, ","))
                                 If own = False Then
                                     Target = Not Target
                                 End If
@@ -408,13 +408,17 @@
                                         Message = f.GetSplit(2, ",").Replace("[OWNNAME]", OppPokemon.GetDisplayName).Replace("[OPPNAME]", OwnPokemon.GetDisplayName)
                                     End If
                                 End If
-                                BattleScreen.Battle.FaintPokemon(Not Target, BattleScreen, Message)
+                                BattleScreen.Battle.FaintPokemon(Target, BattleScreen, Message)
                             Case "switch"
                                 Dim OppPokemon As Pokemon = BattleScreen.OppPokemon
                                 Dim OwnPokemon As Pokemon = BattleScreen.OwnPokemon
                                 Dim Target As Boolean = CBool(f.GetSplit(1, ","))
                                 Dim SwitchTo As Integer = 0
                                 Dim Message As String = ""
+
+                                If own = False Then
+                                    Target = Not Target
+                                End If
 
                                 If f.Split(CChar(",")).Count > 3 Then
                                     Message = f.GetSplit(3, ",")
@@ -447,7 +451,7 @@
                                     fSub &= "," & f.GetSplit(2, ",")
                                 End If
                                 If f.Split(CChar(",")).Count > 3 Then
-                                    EffectTarget = CBool(f.GetSplit(3, ","))
+                                    EffectTarget = Not CBool(f.GetSplit(3, ","))
                                     If own = False Then
                                         EffectTarget = Not EffectTarget
                                     End If
@@ -455,7 +459,7 @@
                             Case Else
                                 fSub = CInt(f.GetSplit(1, ",")).Clamp(0, 100).ToString
                                 If f.Split(CChar(",")).Count > 2 Then
-                                    EffectTarget = CBool(f.GetSplit(2, ","))
+                                    EffectTarget = Not CBool(f.GetSplit(2, ","))
 
                                     If own = False Then
                                         EffectTarget = Not EffectTarget
