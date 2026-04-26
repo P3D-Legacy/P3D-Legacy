@@ -505,6 +505,7 @@ Namespace ScriptVersion2
             r(New ScriptCommand("environment", "wildpokemonwater", "bool", "Returns the ""WildPokemonWater"" parameter of the current map.", ",", True))
             r(New ScriptCommand("environment", "wildpokemoneverywhere", "bool", "Returns the ""WildPokemonEverywhere"" parameter of the current map.", ",", True))
             r(New ScriptCommand("environment", "isdark", "bool", "Returns the ""IsDark"" parameter of the current map.", ",", True))
+            r(New ScriptCommand("environment", "graphicstyle", "bool", "Returns if the Graphics option is set to fancy (true) or fast (false).", ",", True))
         End Sub
 
         Private Shared Sub DoPlayer()

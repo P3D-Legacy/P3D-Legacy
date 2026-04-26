@@ -63,6 +63,8 @@
                         Return Screen.Level.RegionalForm.Split(CChar(","))(int(argument))
                     End If
                     Return Screen.Level.RegionalForm
+                Case "graphicstyle"
+                    Return ReturnBoolean(CBool(Core.GameOptions.GraphicStyle))
             End Select
 
             Return DEFAULTNULL
