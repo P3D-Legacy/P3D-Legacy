@@ -31,7 +31,7 @@
             Me.SnatchAffected = False
             Me.MirrorMoveAffected = True
             Me.KingsrockAffected = True
-            Me.CounterAffected = False
+            Me.CounterAffected = True
 
             Me.DisabledWhileGravity = False
             Me.UseEffectiveness = True
