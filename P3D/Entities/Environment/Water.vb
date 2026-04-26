@@ -207,7 +207,7 @@
     Public Overrides Sub UpdateEntity()
         If Core.GameOptions.GraphicStyle = 1 Then
             If Not WaterAnimation Is Nothing Then
-                WaterAnimation.Update(0.005)
+                WaterAnimation.Update(0.01)
                 If currentRectangle <> WaterAnimation.TextureRectangle Then
                     ChangeTexture()
 

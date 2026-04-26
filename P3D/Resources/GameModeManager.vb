@@ -821,7 +821,7 @@ Public Class GameMode
     Private _gameRules As New List(Of GameRule)
     Private _hardGameRules As New List(Of GameRule)
     Private _superHardGameRules As New List(Of GameRule)
-    Private _waterspeed As Integer = 8
+    Private _waterspeed As Integer = 4
     Private _masterShinyRate As Integer = 4096
 
     ''' <summary>
