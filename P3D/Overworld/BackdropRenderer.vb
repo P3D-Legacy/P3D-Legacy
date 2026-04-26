@@ -151,7 +151,7 @@
                 Case BackdropTypes.Water
                     If Core.GameOptions.GraphicStyle = 1 Then
                         If Not WaterAnimation Is Nothing Then
-                            WaterAnimation.Update(0.005)
+                            WaterAnimation.Update(0.01)
                             _backdropTexture = TextureManager.GetTexture("Textures\Backdrops\Water", WaterAnimation.TextureRectangle, "")
                         End If
                     End If
