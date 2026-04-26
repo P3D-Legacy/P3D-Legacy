@@ -920,8 +920,13 @@ Public Class Level
             AllFloors.AddRange(OffsetmapFloors)
         End If
 
-        AllEntities = (From f In AllEntities Order By f.CameraDistance Descending).ToList()
-        AllFloors = (From f In AllFloors Order By f.CameraDistance Descending).ToList()
+        If AllEntities.Count > 0 Then
+            AllEntities = (From f In AllEntities Order By f.CameraDistance Descending).ToList()
+        End If
+        If AllFloors.Count > 0 Then
+            AllFloors = (From f In AllFloors Order By f.CameraDistance Descending).ToList()
+        End If
+
 
         'Render floors:
         For i = 0 To AllFloors.Count - 1

@@ -908,7 +908,7 @@ Public Class NewInventoryScreen
             End If
         End If
 
-        If Controls.Accept() AndAlso _items.Length > 0 Then
+        If Controls.Accept() AndAlso _items.Length > 0 AndAlso _items.Length - 1 >= ItemIndex + PageIndex * 10 Then
             Dim cItem As Item = Item.GetItemByID(_items(ItemIndex + PageIndex * 10).ItemID)
             SoundManager.PlaySound("select")
             If DoReturnItem = True Then
