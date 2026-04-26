@@ -50,7 +50,7 @@ Public Class CreditsScreen
             Level = New Level()
             ExecuteCameraLevel()
         End If
-
+        MusicManager.Stop()
         MusicManager.Play("credits", True, False)
     End Sub
 
