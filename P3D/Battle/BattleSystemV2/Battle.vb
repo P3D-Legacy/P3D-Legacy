@@ -8840,20 +8840,16 @@ Namespace BattleSystem
 
                         GainEXP(BattleScreen)
 
-                        If BattleScreen.CanGainLoseMoney = True Then
-                            If BattleScreen.FieldEffects.OwnPayDayCounter > 0 Then
-                                Core.Player.Money += BattleScreen.FieldEffects.OwnPayDayCounter
-                                BattleScreen.BattleQuery.Add(New TextQueryObject(Core.Player.Name & " picked up $" & BattleScreen.FieldEffects.OwnPayDayCounter & "!"))
-                            End If
+                        If BattleScreen.FieldEffects.OwnPayDayCounter > 0 Then
+                            Core.Player.Money += BattleScreen.FieldEffects.OwnPayDayCounter
+                            BattleScreen.BattleQuery.Add(New TextQueryObject(Core.Player.Name & " picked up $" & BattleScreen.FieldEffects.OwnPayDayCounter & "!"))
                         End If
                         BattleScreen.BattleQuery.Add(New EndBattleQueryObject(False))
                     Case EndBattleReasons.WinTrainer
                         Won = True
                         Core.Player.AddPoints(3, "Won against trainer.")
 
-                        If BattleScreen.CanGainLoseMoney = True Then
-                            Core.Player.Money += BattleScreen.GetTrainerMoney()
-                        End If
+                        Core.Player.Money += BattleScreen.GetTrainerMoney()
                         BattleScreen.BattleQuery.Add(New PlayMusicQueryObject(BattleScreen.Trainer.GetDefeatMusic()))
 
                         Dim q As New CameraQueryObject(New Vector3(15, 0, 13), Screen.Camera.Position, 0.03F, 0.03F, -(MathHelper.Pi * 0.5F), Screen.Camera.Yaw, 0.0F, Screen.Camera.Pitch, 0.04F, 0.02F)
@@ -8863,10 +8859,8 @@ Namespace BattleSystem
                         BattleScreen.BattleQuery.Add(New TextQueryObject(BattleScreen.Trainer.TrainerType & " " & BattleScreen.Trainer.Name & " was defeated!"))
                         BattleScreen.BattleQuery.Add(New TextQueryObject(ScriptVersion2.ScriptCommander.Parse(BattleScreen.Trainer.OutroMessage).ToString))
 
-                        If BattleScreen.CanGainLoseMoney = True Then
-                            If BattleScreen.GetTrainerMoney() > 0 Then
-                                BattleScreen.BattleQuery.Add(New TextQueryObject(Core.Player.Name & " got $" & BattleScreen.GetTrainerMoney() & "!"))
-                            End If
+                        If BattleScreen.GetTrainerMoney() > 0 Then
+                            BattleScreen.BattleQuery.Add(New TextQueryObject(Core.Player.Name & " got $" & BattleScreen.GetTrainerMoney() & "!"))
                         End If
 
                         BattleScreen.BattleQuery.Add(New EndBattleQueryObject(False))

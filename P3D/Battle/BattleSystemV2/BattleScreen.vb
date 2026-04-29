@@ -1870,11 +1870,15 @@ nextIndex:
         Public Function GetTrainerMoney() As Integer
             Dim money As Integer = Trainer.Money
 
-            If FieldEffects.AmuletCoin > 0 Then
-                money *= 2
+            If BattleScreen.CanGainLoseMoney = False Then
+                money = 0
             End If
 
             money += FieldEffects.OwnPayDayCounter
+
+            If FieldEffects.AmuletCoin > 0 Then
+                money *= 2
+            End If
 
             For Each mysteryEvent As MysteryEventScreen.MysteryEvent In MysteryEventScreen.ActivatedMysteryEvents
                 If mysteryEvent.EventType = MysteryEventScreen.EventTypes.MoneyMultiplier Then
