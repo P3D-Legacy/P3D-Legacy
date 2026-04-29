@@ -855,7 +855,13 @@ Namespace BattleSystem
             'once everything else failed, choose one of the attacking moves:
             Dim chosenAttackMove As Integer = MoveAI(m, Attack.AIField.Damage)
             If chosenAttackMove > -1 Then
-                Return ProduceOppStep(m, chosenAttackMove)
+                If BattleScreen.Trainer.AILevel >= 1 Then
+                    If CheckForTypeIneffectiveness(BattleScreen, m, chosenAttackMove) = True Then
+                        Return ProduceOppStep(m, chosenAttackMove)
+                    End If
+                Else
+                    Return ProduceOppStep(m, chosenAttackMove)
+                End If
             End If
 
             'if no attacking moves, return random move:
