@@ -992,7 +992,7 @@ Public Class NewMainMenuScreen
                         GameModeNameString = Localization.GetString(("gamemode_name_" & GameModeManager.GetGameMode(tmpProfile.GameMode).DirectoryName).ToLower)
                     End If
                     GetFontRenderer().DrawString(FontManager.InGameFont, Localization.GetString("global_player_name", "Player Name") & ": " & tmpProfile.Name & Environment.NewLine &
-                                                                            Localization.GetString("global_gamemode", "GameMode") & ": " & Localization.GetString(GameModeNameString), New Vector2(displayRect.X + 30, displayRect.Y + 20), Color.White, 0F, Vector2.Zero, 1.0F, SpriteEffects.None, 0F)
+                                                                            Localization.GetString("global_gamemode", "GameMode") & ": " & GameModeNameString, New Vector2(displayRect.X + 30, displayRect.Y + 20), Color.White, 0F, Vector2.Zero, 1.0F, SpriteEffects.None, 0F)
                     GetFontRenderer().DrawString(FontManager.InGameFont, Localization.GetString("global_badges", "Badges") & ": " & tmpProfile.Badges.ToString() & Environment.NewLine &
                                                                             Localization.GetString("global_play_time", "Play Time") & ": " & tmpProfile.TimePlayed & Environment.NewLine &
                                                                             Localization.GetString("global_location", "Location") & ": " & Localization.GetString("Places_" & tmpProfile.Location, tmpProfile.Location), New Vector2(displayRect.X + 30, displayRect.Y + 150), Color.White, 0F, Vector2.Zero, 1.0F, SpriteEffects.None, 0F)
@@ -1003,8 +1003,11 @@ Public Class NewMainMenuScreen
                     ElseIf Localization.TokenExists(("gamemode_name_" & tmpProfile.GameMode).ToLower) = True Then
                         GameModeNameString = Localization.GetString(("gamemode_name_" & tmpProfile.GameMode).ToLower)
                     End If
+                    If GameModeNameString = Nothing Then
+                        GameModeNameString = ""
+                    End If
                     GetFontRenderer().DrawString(FontManager.InGameFont, Localization.GetString("global_player_name", "Player Name") & ": " & tmpProfile.Name & Environment.NewLine &
-                                                                            Localization.GetString("global_gamemode", "GameMode") & ": " & Localization.GetString(GameModeNameString), New Vector2(displayRect.X + 30, displayRect.Y + 20), Color.White, 0F, Vector2.Zero, 1.0F, SpriteEffects.None, 0F)
+                                                                            Localization.GetString("global_gamemode", "GameMode") & ": " & GameModeNameString, New Vector2(displayRect.X + 30, displayRect.Y + 20), Color.White, 0F, Vector2.Zero, 1.0F, SpriteEffects.None, 0F)
 
                     SpriteBatch.Draw(_menuTexture, New Rectangle(displayRect.X + 30, displayRect.Y + 70, 32, 32), New Rectangle(0, 32, 32, 32), Color.White)
                     Dim errorText As String

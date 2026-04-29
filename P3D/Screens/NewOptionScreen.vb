@@ -529,8 +529,11 @@ Public Class NewOptionScreen
 
 			Dim PressStart = Me.PreScreen.PreScreen
 			Me.PreScreen = New NewMainMenuScreen(PressStart)
-			Dim MainMenu As NewMainMenuScreen = CType(Me.PreScreen, NewMainMenuScreen)
 			SetScreen(New NewOptionScreen(Me.PreScreen, 4))
+			Dim MainMenu As NewMainMenuScreen = CType(Me.PreScreen, NewMainMenuScreen)
+			CType(CurrentScreen, NewOptionScreen)._opening = False
+			CType(CurrentScreen, NewOptionScreen)._interfaceFade = 1
+			CType(CurrentScreen, NewOptionScreen)._enrollY = 400
 			MainMenu._fadeInMain = 1.0F
 			MainMenu._fadeInOptions = 1.0F
 			MainMenu._screenOffsetTarget.Y = 0 - 180 - 32
