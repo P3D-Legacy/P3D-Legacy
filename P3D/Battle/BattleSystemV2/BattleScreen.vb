@@ -22,6 +22,7 @@ Namespace BattleSystem
         Public IsChoiced As Boolean = False
         Public ClearMainMenuTime As Boolean = False
         Public ClearMoveMenuTime As Boolean = False
+        Public Shared CanGainLoseMoney As Boolean = True
         Public Shared CanCatch As Boolean = True
         Public Shared CanRun As Boolean = True
         Public Shared CanAlwaysRun As Boolean = False
@@ -114,9 +115,9 @@ Namespace BattleSystem
                 pokemonString = pokemonString.Replace("OPPEMPTY", Me.OppPokemon.GetSaveData())
             End If
 
-            Dim values As String = "Values=; CanCatch=" & CanCatch.ToString() & "; CanRun=" & CanRun.ToString() & "; CanBlackout=" & CanBlackout.ToString() &
+            Dim values As String = "Values=; CanCatch=" & CanCatch.ToString() & "; CanRun=" & CanRun.ToString() & "; CanAlwaysRun=" & CanAlwaysRun.ToString() & "; CanBlackout=" & CanBlackout.ToString() &
                 "; CanReceiveEXP=" & CanReceiveEXP.ToString() & "; RoamingBattle=" & RoamingBattle.ToString() & "; CanUseItems=" & CanUseItems.ToString() &
-                "; DiveBattle=" & DiveBattle.ToString() & "; TempPokeFile=" & TempPokeFile & "; IsInverseBattle=" & IsInverseBattle.ToString()
+                "; DiveBattle=" & DiveBattle.ToString() & "; TempPokeFile=" & TempPokeFile & "; IsInverseBattle=" & IsInverseBattle.ToString() & "; CanGainLoseMoney=" & CanGainLoseMoney.ToString()
 
             Dim s As String = "BattleMode=" & Me.BattleMode.ToString() & Environment.NewLine &
                 "IsTrainerBattle=" & Me.IsTrainerBattle.ToString() & Environment.NewLine &
@@ -888,6 +889,7 @@ Namespace BattleSystem
             BattleScreen.CanBlackout = False
             BattleScreen.CanRun = False
             BattleScreen.CanUseItems = False
+            BattleScreen.CanGainLoseMoney = False
             PVPLobbyScreen.StoppedBattle = True
             PVPLobbyScreen.DisconnectMessage = "The battle has ended." & Environment.NewLine & Environment.NewLine & "Press any key to exit."
             PVPLobbyScreen.ScreenState = PVPLobbyScreen.ScreenStates.Stopped
@@ -1848,6 +1850,8 @@ nextIndex:
         Public Shared Sub ResetVars()
             CanCatch = True
             CanRun = True
+            CanAlwaysRun = False
+            CanGainLoseMoney = True
             CanBlackout = True
             CanReceiveEXP = True
             RoamingBattle = False

@@ -1,5 +1,6 @@
 version=2
 @battle.setvar(canreceiveexp,0)
+@battle.setvar(cangainlosemoney,0)
 @battle.starttrainer(quest\tower\double\007_1)
 @battle.resetvars
 :if:<register.registered(trainer_quest\tower\double\007_2)>=false

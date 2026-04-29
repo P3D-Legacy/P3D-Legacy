@@ -197,7 +197,7 @@ Namespace ScriptVersion2
                                                New ScriptArgument("IntroMusic", ScriptArgument.ArgumentTypes.Str, True, ""),
                                                New ScriptArgument("IntroType", ScriptArgument.ArgumentTypes.Int, True, "0-10"),
                                                New ScriptArgument("Gender", ScriptArgument.ArgumentTypes.Int, True, "")}.ToList(), "Initializes a wild battle against the given Pokémon."))
-            r(New ScriptCommand("Battle", "SetVar", {New ScriptArgument("VarName", ScriptArgument.ArgumentTypes.Str, {"CanRun", "CanAlwaysRun", "CanCatch", "CanBlackout", "CanReceiveExp", "CanUseItems", "FrontierTrainer", "DiveBattle", "InverseBattle, CustomBattleMusic, HiddenAbilityChance"}),
+            r(New ScriptCommand("Battle", "SetVar", {New ScriptArgument("VarName", ScriptArgument.ArgumentTypes.Str, {"CanRun", "CanAlwaysRun", "CanCatch", "CanBlackout", "CanReceiveExp", "CanUseItems", "CanGainLoseMoney", "FrontierTrainer", "DiveBattle", "InverseBattle, CustomBattleMusic, HiddenAbilityChance"}),
                                                  New ScriptArgument("VarValue", ScriptArgument.ArgumentTypes.Str)}.ToList(), "Changes the given battle variable to the given value."))
             r(New ScriptCommand("Battle", "ResetVars", "Resets the battle variables to their default value."))
             ' Constructs:

@@ -202,6 +202,7 @@ version=2
 		@npc.move(20,2)
 		@text.show(<battle.intromessage(frontier\battletower\<storage.get(integer,trainer_id)>)>)
 
+		@battle.setvar(cangainlosemoney,0)
 		@battle.setvar(canreceiveexp,0)
 		@battle.setvar(canuseitems,0)
 		@battle.setvar(canblackout,0)
@@ -245,6 +246,7 @@ version=2
 		@player.move(0)
 		@text.show(Welcome...*Here, we will have you battle~a somewhat-tough trainer...)
 		@npc.move(51,2)
+		@battle.setvar(cangainlosemoney,0)
 		@battle.setvar(canreceiveexp,0)
 		@battle.setvar(canuseitems,0)
 		@battle.setvar(canblackout,0)
@@ -294,6 +296,7 @@ version=2
 		@npc.move(71,2)
 		@text.show(<battle.intromessage(frontier\battletower\<storage.get(integer,trainer_id)>)>)
 
+		@battle.setvar(cangainlosemoney,0)
 		@battle.setvar(canreceiveexp,0)
 		@battle.setvar(canuseitems,0)
 		@battle.setvar(canblackout,0)
@@ -392,6 +395,7 @@ version=2
 		@npc.remove(31)
 		@npc.warp(8,<player.position(x)>,0,~)
 		@npc.move(8,1)
+		@battle.setvar(cangainlosemoney,0)
 		@battle.setvar(canreceiveexp,0)
 		@battle.setvar(canuseitems,0)
 		@battle.setvar(canblackout,0)

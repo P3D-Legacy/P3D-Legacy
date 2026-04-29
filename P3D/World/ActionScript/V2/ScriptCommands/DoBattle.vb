@@ -244,6 +244,8 @@
                             BattleSystem.BattleScreen.CustomBattleMusic = varvalue
                         Case "hiddenabilitychance"
                             Screen.Level.HiddenAbilityChance = int(varvalue)
+                        Case "cangainlosemoney"
+                            BattleSystem.BattleScreen.CanGainLoseMoney = CBool(varvalue)
 
                     End Select
 

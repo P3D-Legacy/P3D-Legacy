@@ -1,5 +1,6 @@
 version=2
 @battle.setvar(canreceiveexp,0)
+@battle.setvar(cangainlosemoney,0)
 @battle.starttrainer(quest\tower\single\003)
 @battle.resetvars
 :end

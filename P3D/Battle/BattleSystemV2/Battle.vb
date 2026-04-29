@@ -8840,17 +8840,18 @@ Namespace BattleSystem
 
                         GainEXP(BattleScreen)
 
-                        If BattleScreen.FieldEffects.OwnPayDayCounter > 0 Then
-                            Core.Player.Money += BattleScreen.FieldEffects.OwnPayDayCounter
-                            BattleScreen.BattleQuery.Add(New TextQueryObject(Core.Player.Name & " picked up $" & BattleScreen.FieldEffects.OwnPayDayCounter & "!"))
+                        If BattleScreen.CanGainLoseMoney = True Then
+                            If BattleScreen.FieldEffects.OwnPayDayCounter > 0 Then
+                                Core.Player.Money += BattleScreen.FieldEffects.OwnPayDayCounter
+                                BattleScreen.BattleQuery.Add(New TextQueryObject(Core.Player.Name & " picked up $" & BattleScreen.FieldEffects.OwnPayDayCounter & "!"))
+                            End If
                         End If
-
                         BattleScreen.BattleQuery.Add(New EndBattleQueryObject(False))
                     Case EndBattleReasons.WinTrainer
                         Won = True
                         Core.Player.AddPoints(3, "Won against trainer.")
 
-                        If BattleScreen.IsPVPBattle = False Then
+                        If BattleScreen.CanGainLoseMoney = True Then
                             Core.Player.Money += BattleScreen.GetTrainerMoney()
                         End If
                         BattleScreen.BattleQuery.Add(New PlayMusicQueryObject(BattleScreen.Trainer.GetDefeatMusic()))
@@ -8862,7 +8863,7 @@ Namespace BattleSystem
                         BattleScreen.BattleQuery.Add(New TextQueryObject(BattleScreen.Trainer.TrainerType & " " & BattleScreen.Trainer.Name & " was defeated!"))
                         BattleScreen.BattleQuery.Add(New TextQueryObject(ScriptVersion2.ScriptCommander.Parse(BattleScreen.Trainer.OutroMessage).ToString))
 
-                        If BattleScreen.IsPVPBattle = False Then
+                        If BattleScreen.CanGainLoseMoney = True Then
                             If BattleScreen.GetTrainerMoney() > 0 Then
                                 BattleScreen.BattleQuery.Add(New TextQueryObject(Core.Player.Name & " got $" & BattleScreen.GetTrainerMoney() & "!"))
                             End If
@@ -8883,7 +8884,7 @@ Namespace BattleSystem
                             BattleScreen.BattleQuery.Add(New TextQueryObject(ScriptVersion2.ScriptCommander.Parse(BattleScreen.Trainer.PlayerLossMessage).ToString))
                         End If
 
-                        If BattleScreen.IsPVPBattle = False Then
+                        If BattleScreen.CanGainLoseMoney = True Then
                             Dim HighestLevel As Integer = 1
                             For Each p As Pokemon In Core.Player.Pokemons
                                 If p.Level > HighestLevel Then
