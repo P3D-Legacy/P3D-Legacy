@@ -170,11 +170,11 @@ Public Class GameModeItemLoader
                                 item.gmUseOnOppEffects.AddRange(EffectList)
                             End If
                         Case "evolutionpokemon"
-                            Dim PokemonList As New List(Of Integer)
+                            Dim PokemonList As New List(Of String)
                             Dim valueSplit As String() = value.Split(CChar(","))
                             For i = 0 To valueSplit.Count - 1
                                 If Pokemon.PokemonDataExists(valueSplit(i)) Then
-                                    PokemonList.Add(CInt(valueSplit(i)))
+                                    PokemonList.Add(valueSplit(i))
                                 End If
                             Next
                             If item.gmEvolutionPokemon Is Nothing Then

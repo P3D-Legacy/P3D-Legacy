@@ -36,7 +36,7 @@ Public Class GameModeItem
     Public gmBattleUseSound As String
 
     'Evolution Item
-    Public gmEvolutionPokemon As List(Of Integer)
+    Public gmEvolutionPokemon As List(Of String)
 
     'Machine Item
     Public gmIsHM As Boolean = False
@@ -403,18 +403,20 @@ Public Class GameModeItem
             Return False
         Else
             Dim healsuccess As Boolean = False
-            If gmUseOnOwnEffects.Count = 1 Then
-                If gmUseOnOwnEffects.Contains("heal") AndAlso gmHealHPAmount > 0 Then
-                    Return HealPokemon(PokeIndex, gmHealHPAmount)
-                End If
-            ElseIf gmUseOnOwnEffects.Contains("all") = False AndAlso gmUseOnOwnEffects.Contains("allwithoutfnt") = False Then
-                If gmUseOnOwnEffects.Contains("heal") AndAlso gmHealHPAmount > 0 Then
-                    If HealPokemon(PokeIndex, gmHealHPAmount, True) Then
-                        healsuccess = True
+            If gmUseOnOwnEffects IsNot Nothing Then
+                If gmUseOnOwnEffects.Count = 1 Then
+                    If gmUseOnOwnEffects.Contains("heal") AndAlso gmHealHPAmount > 0 Then
+                        Return HealPokemon(PokeIndex, gmHealHPAmount)
+                    End If
+                ElseIf gmUseOnOwnEffects.Contains("all") = False AndAlso gmUseOnOwnEffects.Contains("allwithoutfnt") = False Then
+                    If gmUseOnOwnEffects.Contains("heal") AndAlso gmHealHPAmount > 0 Then
+                        If HealPokemon(PokeIndex, gmHealHPAmount, True) Then
+                            healsuccess = True
+                        End If
                     End If
                 End If
-            End If
 
+            End If
             If gmUseOnOwnEffects IsNot Nothing AndAlso gmUseOnOwnEffects.Count > 0 Then
                 If gmUseOnOwnEffects.Contains("allwithoutfnt") Then
                     Dim success1 As Boolean = False
@@ -883,7 +885,7 @@ Public Class GameModeItem
             Core.SetScreen(New TransitionScreen(Core.CurrentScreen, New EvolutionScreen(Core.CurrentScreen, {PokeIndex}.ToList(), Me.gmID, EvolutionCondition.EvolutionTrigger.ItemUse), Color.Black, False))
             Return True
         Else
-            Screen.TextBox.Show("Cannot use on~" & p.GetDisplayName(), {}, False, False)
+            Screen.TextBox.Show("Cannot use on~" & p.GetDisplayName() & ".", {}, False, False)
 
             Return False
         End If
