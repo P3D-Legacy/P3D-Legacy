@@ -30,6 +30,7 @@ version=2
 	@battle.setvar(canreceiveexp,0)
 	@battle.setvar(canuseitems,0)
 	@battle.setvar(canblackout,0)
+	@battle.setvar(cangainlosemoney,0)
 
 	:if:<storage.get(boolean,tower_brain)>=false
 	:then

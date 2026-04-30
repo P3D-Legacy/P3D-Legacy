@@ -21,6 +21,7 @@ version=2
 	@battle.setvar(canuseitems,0)
 	@battle.setvar(canblackout,0)
 	@battle.setvar(frontiertrainer,<storage.get(integer,tower_class)>)
+	@battle.setvar(cangainlosemoney,0)
 
 	@battle.trainer(frontier\battletower\<storage.get(integer,trainer_id)>)
 

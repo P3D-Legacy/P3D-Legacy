@@ -27,6 +27,7 @@ version=2
 @battle.setvar(canreceiveexp,0)
 @battle.setvar(canuseitems,0)
 @battle.setvar(canblackout,0)
+@battle.setvar(cangainlosemoney,0)
 @battle.setvar(frontiertrainer,<storage.get(integer,factory_class)>)
 
 :if:<storage.get(boolean,factory_brain)>=false
