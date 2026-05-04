@@ -5,7 +5,7 @@ version=2
 	@Text.show(I collect Pokémon.*Do you have Dugtrio?*Want to trade it for Magneton?)
 	@Options.show(Yes,No)
 		:when:Yes
-			@Pokemon.NPCTrade(51|82||1|||50082|Forest|5|2007|at Route 6|caught|Maggie|Okay lets do this!*...*Yay, I got myself a Dugtrio!~Thanks!|You don't want to~trade? Aww...|powerplant_magneton_trade)
+			@Pokemon.NPCTrade(51|82||1|||50082|Forest|5|2007|at Route 6|caught|Maggie|Okay lets do this!|You don't want to~trade? Aww...|powerplant_magneton_trade|<system.token(trade_screen_trade_TradedWithNPC)>*Yay, I got myself a Dugtrio!~Thanks!)
 		:when:No
 			@Text.show(You don't want to~trade? Aww...)
 	:endwhen

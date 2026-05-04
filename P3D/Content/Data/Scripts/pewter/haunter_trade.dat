@@ -5,7 +5,7 @@ version=2
 	@Text.show(Hi, I'm looking~for this Pokémon.*If you have Haunter,~would you trade it~for a Xatu?)
 	@Options.show(Yes,No)
 		:when:Yes
-			@Pokemon.NPCTrade(93|178||1|||24165|Peter|5|2037|at Ruins of Alph|caught|Paul|OK, let's trade!*...*Wow, my very own Haunter.~Thank you!|You don't want to~trade? Aww...|pewter_xatu_trade)
+			@Pokemon.NPCTrade(93|178||1|||24165|Peter|5|2037|at Ruins of Alph|caught|Paul|OK, let's trade!|You don't want to~trade? Aww...|pewter_xatu_trade|<system.token(trade_screen_trade_TradedWithNPC)>*Wow, my very own Haunter.~Thank you!)
 		:when:No
 			@Text.show(You don't want to~trade? Aww...)
 	:endwhen

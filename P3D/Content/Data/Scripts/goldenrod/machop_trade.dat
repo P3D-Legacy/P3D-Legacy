@@ -5,7 +5,7 @@ version=2
 	@Text.show(I like trading~Pokémon. Do you have*a Drowzee?~Do you want to trade it~for my Machop?)
 	@Options.show(Yes,No)
 		:when:Yes
-			@Pokemon.NPCTrade(96|66||1|||37460|Mike|5|581|at Rock Tunnel|caught|Muscle|OK, let's trade!*...*Wow, my very own Drowzee.~Thank you!|You don't want to~trade? Aww...|goldenrod_machop_trade)
+			@Pokemon.NPCTrade(96|66||1|||37460|Mike|5|581|at Rock Tunnel|caught|Muscle|OK, let's trade!|You don't want to~trade? Aww...|goldenrod_machop_trade|<system.token(trade_screen_trade_TradedWithNPC)>*Wow, my very own Drowzee.~Thank you!)
 		:when:No
 			@Text.show(You don't want to~trade? Aww...)
 	:endwhen

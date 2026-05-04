@@ -5,7 +5,7 @@ version=2
 	@Text.show(Hi, I'm looking~for this Pokémon.*If you have~Krabby, would*you trade it for~my Voltorb?)
 	@Options.show(Yes,No)
 		:when:Yes
-			@Pokemon.NPCTrade(98|100||0|||29189|Tim|5|2007|at Power Plant|caught|Volty|OK, let's trade!*...*Thank you very~much for the Krabby.|You don't have~one either?*Gee, that's really~disappointing...|olivine_voltorb_trade)
+			@Pokemon.NPCTrade(98|100||0|||29189|Tim|5|2007|at Power Plant|caught|Volty|OK, let's trade!|You don't have~one either?*Gee, that's really~disappointing...|olivine_voltorb_trade|<system.token(trade_screen_trade_TradedWithNPC)>*Thank you very~much for the Krabby.)
 		:when:No
 			@Text.show(You don't have~one either?*Gee, that's really~disappointing...)
 	:endwhen

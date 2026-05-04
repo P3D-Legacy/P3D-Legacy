@@ -6,7 +6,7 @@ version=2
 @Text.show(I collect Pokémon.~Do you have~Bellsprout?*Want to trade it~for my Onix?)
 @Options.show(Yes,No)
 :when:Yes
-@Pokemon.NPCTrade(69|95||0|||08276|Kyle|5|2006|at Unioncave|caught|Rocky|OK, let's trade!*...*Yay! I got myself~Bellsprout!*Thanks!|You don't want to~trade? Aww...|violet_onix_trade)
+@Pokemon.NPCTrade(69|95||0|||08276|Kyle|5|2006|at Unioncave|caught|Rocky|OK, let's trade!|You don't want to~trade? Aww...|violet_onix_trade|<system.token(trade_screen_trade_TradedWithNPC)>*Yay! I got myself~Bellsprout!*Thanks!)
 :when:No
 @Text.show(You don't want to~trade? Aww...)
 :endwhen

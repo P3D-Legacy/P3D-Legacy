@@ -62,86 +62,93 @@
         End If
 
         Core.SpriteBatch.Draw(background, New Rectangle(0, 0, backSize.Width, backSize.Height), New Rectangle(xOffset, 0, origSize.Width, origSize.Height), Color.White)
-        Select Case tState
-            Case 0
-                Core.SpriteBatch.Draw(Me.PlayerPokemon.GetTexture(True), New Rectangle(CInt(Core.windowSize.Width / 2 - MathHelper.Min(CInt(PlayerPokemon.GetTexture(True).Width * 3 / 2), 144)), ownPokemonPosition, MathHelper.Min(PlayerPokemon.GetTexture(True).Width * 3, 288), MathHelper.Min(PlayerPokemon.GetTexture(True).Height * 3, 288)), Color.White)
-            Case 1
-                Core.SpriteBatch.Draw(Me.PlayerPokemon.GetTexture(False), New Rectangle(CInt(Core.windowSize.Width / 2 - MathHelper.Min(CInt(PlayerPokemon.GetTexture(False).Width * 3 / 2), 144)), CInt(Core.windowSize.Height / 2 - 128), MathHelper.Min(PlayerPokemon.GetTexture(False).Width * 3, 288), MathHelper.Min(PlayerPokemon.GetTexture(False).Height * 3, 288)), Color.White)
+        If TextBox.Showing = False Then
+            Select Case tState
+                Case 0
+                    Core.SpriteBatch.Draw(Me.PlayerPokemon.GetTexture(True), New Rectangle(CInt(Core.windowSize.Width / 2 - MathHelper.Min(CInt(PlayerPokemon.GetTexture(True).Width * 3 / 2), 144)), ownPokemonPosition, MathHelper.Min(PlayerPokemon.GetTexture(True).Width * 3, 288), MathHelper.Min(PlayerPokemon.GetTexture(True).Height * 3, 288)), Color.White)
+                Case 1
+                    Core.SpriteBatch.Draw(Me.PlayerPokemon.GetTexture(False), New Rectangle(CInt(Core.windowSize.Width / 2 - MathHelper.Min(CInt(PlayerPokemon.GetTexture(False).Width * 3 / 2), 144)), CInt(Core.windowSize.Height / 2 - 128), MathHelper.Min(PlayerPokemon.GetTexture(False).Width * 3, 288), MathHelper.Min(PlayerPokemon.GetTexture(False).Height * 3, 288)), Color.White)
 
-                Dim t As String = Localization.GetString("trade_screen_trade_SendingPokemon", "Sending [YOURPOKEMON] to [OTHERPLAYER].~Good-bye, [YOURPOKEMON]!").Replace("[YOURPOKEMON]", PlayerPokemon.GetDisplayName()).Replace("[OTHERPLAYER]", NPCTrainerName).Replace("~", Environment.NewLine).Replace("*", Environment.NewLine)
+                    Dim t As String = Localization.GetString("trade_screen_trade_SendingPokemon", "Sending [YOURPOKEMON] to [OTHERPLAYER].~Good-bye, [YOURPOKEMON]!").Replace("[YOURPOKEMON]", PlayerPokemon.GetDisplayName()).Replace("[OTHERPLAYER]", NPCTrainerName).Replace("~", Environment.NewLine).Replace("*", Environment.NewLine)
 
-                Core.SpriteBatch.DrawString(FontManager.MainFont, t, New Vector2(CInt(Core.windowSize.Width / 2 - FontManager.MainFont.MeasureString(t).X / 2) + 2, CInt(Core.windowSize.Height / 2 + 192) + 2), Color.Black)
-                Core.SpriteBatch.DrawString(FontManager.MainFont, t, New Vector2(CInt(Core.windowSize.Width / 2 - FontManager.MainFont.MeasureString(t).X / 2), CInt(Core.windowSize.Height / 2 + 192)), Color.White)
-            Case 2
-                Core.SpriteBatch.Draw(Me.PlayerPokemon.GetTexture(False), New Rectangle(CInt(Core.windowSize.Width / 2 - MathHelper.Min(CInt(PlayerPokemon.GetTexture(False).Width * 3 / 2), 144)), ownPokemonPosition, MathHelper.Min(PlayerPokemon.GetTexture(False).Width * 3, 288), MathHelper.Min(PlayerPokemon.GetTexture(False).Height * 3, 288)), Color.White)
-            Case 3
-                Core.SpriteBatch.Draw(NPCPokemon.GetTexture(True), New Rectangle(CInt(Core.windowSize.Width / 2 - MathHelper.Min(CInt(NPCPokemon.GetTexture(True).Width * 3 / 2), 144)), oppPokemonPosition, MathHelper.Min(NPCPokemon.GetTexture(True).Width * 3, 288), MathHelper.Min(NPCPokemon.GetTexture(True).Height * 3, 288)), Color.White)
-            Case 4
-                Core.SpriteBatch.Draw(NPCPokemon.GetTexture(True), New Rectangle(CInt(Core.windowSize.Width / 2 - MathHelper.Min(CInt(NPCPokemon.GetTexture(True).Width * 3 / 2), 144)), CInt(Core.windowSize.Height / 2 - 128), MathHelper.Min(NPCPokemon.GetTexture(True).Width * 3, 288), MathHelper.Min(NPCPokemon.GetTexture(True).Height * 3, 288)), Color.White)
+                    Core.SpriteBatch.DrawString(FontManager.MainFont, t, New Vector2(CInt(Core.windowSize.Width / 2 - FontManager.MainFont.MeasureString(t).X / 2) + 2, CInt(Core.windowSize.Height / 2 + 192) + 2), Color.Black)
+                    Core.SpriteBatch.DrawString(FontManager.MainFont, t, New Vector2(CInt(Core.windowSize.Width / 2 - FontManager.MainFont.MeasureString(t).X / 2), CInt(Core.windowSize.Height / 2 + 192)), Color.White)
+                Case 2
+                    Core.SpriteBatch.Draw(Me.PlayerPokemon.GetTexture(False), New Rectangle(CInt(Core.windowSize.Width / 2 - MathHelper.Min(CInt(PlayerPokemon.GetTexture(False).Width * 3 / 2), 144)), ownPokemonPosition, MathHelper.Min(PlayerPokemon.GetTexture(False).Width * 3, 288), MathHelper.Min(PlayerPokemon.GetTexture(False).Height * 3, 288)), Color.White)
+                Case 3
+                    Core.SpriteBatch.Draw(NPCPokemon.GetTexture(True), New Rectangle(CInt(Core.windowSize.Width / 2 - MathHelper.Min(CInt(NPCPokemon.GetTexture(True).Width * 3 / 2), 144)), oppPokemonPosition, MathHelper.Min(NPCPokemon.GetTexture(True).Width * 3, 288), MathHelper.Min(NPCPokemon.GetTexture(True).Height * 3, 288)), Color.White)
+                Case 4
+                    Core.SpriteBatch.Draw(NPCPokemon.GetTexture(True), New Rectangle(CInt(Core.windowSize.Width / 2 - MathHelper.Min(CInt(NPCPokemon.GetTexture(True).Width * 3 / 2), 144)), CInt(Core.windowSize.Height / 2 - 128), MathHelper.Min(NPCPokemon.GetTexture(True).Width * 3, 288), MathHelper.Min(NPCPokemon.GetTexture(True).Height * 3, 288)), Color.White)
 
-                Dim t As String = Localization.GetString("trade_screen_trade_ReceivedPokemon", "[OTHERPLAYER] sent over [THEIRPOKEMON].").Replace("[OTHERPLAYER]", NPCTrainerName).Replace("[THEIRPOKEMON]", NPCPokemon.GetDisplayName())
+                    Dim t As String = Localization.GetString("trade_screen_trade_ReceivedPokemon", "[OTHERPLAYER] sent over [THEIRPOKEMON].").Replace("[OTHERPLAYER]", NPCTrainerName).Replace("[THEIRPOKEMON]", NPCPokemon.GetDisplayName())
 
-                Core.SpriteBatch.DrawString(FontManager.MainFont, t, New Vector2(CInt(Core.windowSize.Width / 2 - FontManager.MainFont.MeasureString(t).X / 2) + 2, CInt(Core.windowSize.Height / 2 + 192) + 2), Color.Black)
-                Core.SpriteBatch.DrawString(FontManager.MainFont, t, New Vector2(CInt(Core.windowSize.Width / 2 - FontManager.MainFont.MeasureString(t).X / 2), CInt(Core.windowSize.Height / 2 + 192)), Color.White)
-        End Select
+                    Core.SpriteBatch.DrawString(FontManager.MainFont, t, New Vector2(CInt(Core.windowSize.Width / 2 - FontManager.MainFont.MeasureString(t).X / 2) + 2, CInt(Core.windowSize.Height / 2 + 192) + 2), Color.Black)
+                    Core.SpriteBatch.DrawString(FontManager.MainFont, t, New Vector2(CInt(Core.windowSize.Width / 2 - FontManager.MainFont.MeasureString(t).X / 2), CInt(Core.windowSize.Height / 2 + 192)), Color.White)
+            End Select
+        End If
+        TextBox.Draw()
+
     End Sub
 
     Public Overrides Sub Update()
-        Select Case tState
-            Case 0
-                If ownPokemonPosition > CInt(Core.windowSize.Height / 2 - 128) Then
-                    ownPokemonPosition -= 4
-                    If ownPokemonPosition <= CInt(Core.windowSize.Height / 2 - 128) Then
-                        ownPokemonPosition = CInt(Core.windowSize.Height / 2 - 128)
-                        tState = 1
-                        SoundManager.PlayPokemonCry(PlayerPokemon.Number, PokemonForms.GetCrySuffix(PlayerPokemon))
+        TextBox.Update()
+        If TextBox.Showing = False Then
+            Select Case tState
+                Case 0
+                    If ownPokemonPosition > CInt(Core.windowSize.Height / 2 - 128) Then
+                        ownPokemonPosition -= 4
+                        If ownPokemonPosition <= CInt(Core.windowSize.Height / 2 - 128) Then
+                            ownPokemonPosition = CInt(Core.windowSize.Height / 2 - 128)
+                            tState = 1
+                            SoundManager.PlayPokemonCry(PlayerPokemon.Number, PokemonForms.GetCrySuffix(PlayerPokemon))
+                        End If
                     End If
-                End If
-            Case 1
-                If messageDelay > 0 Then
-                    messageDelay -= 1
-                    If messageDelay <= 0 Then
-                        messageDelay = 220
-                        tState = 2
+                Case 1
+                    If messageDelay > 0 Then
+                        messageDelay -= 1
+                        If messageDelay <= 0 Then
+                            messageDelay = 220
+                            tState = 2
+                        End If
                     End If
-                End If
-            Case 2
-                If ownPokemonPosition > -288 Then
-                    ownPokemonPosition -= 4
-                    If ownPokemonPosition <= -288 Then
-                        ownPokemonPosition = -288
-                        tState = 3
-                        oppPokemonPosition = -288
+                Case 2
+                    If ownPokemonPosition > -288 Then
+                        ownPokemonPosition -= 4
+                        If ownPokemonPosition <= -288 Then
+                            ownPokemonPosition = -288
+                            tState = 3
+                            oppPokemonPosition = -288
+                        End If
                     End If
-                End If
-            Case 3
-                If oppPokemonPosition < CInt(Core.windowSize.Height / 2 - 128) Then
-                    oppPokemonPosition += 4
-                    If oppPokemonPosition >= CInt(Core.windowSize.Height / 2 - 128) Then
-                        oppPokemonPosition = CInt(Core.windowSize.Height / 2 - 128)
-                        tState = 4
-                        SoundManager.PlayPokemonCry(NPCPokemon.Number, PokemonForms.GetCrySuffix(NPCPokemon))
+                Case 3
+                    If oppPokemonPosition < CInt(Core.windowSize.Height / 2 - 128) Then
+                        oppPokemonPosition += 4
+                        If oppPokemonPosition >= CInt(Core.windowSize.Height / 2 - 128) Then
+                            oppPokemonPosition = CInt(Core.windowSize.Height / 2 - 128)
+                            tState = 4
+                            SoundManager.PlayPokemonCry(NPCPokemon.Number, PokemonForms.GetCrySuffix(NPCPokemon))
+                        End If
                     End If
-                End If
-            Case 4
-                If messageDelay > 0 Then
-                    messageDelay -= 1
-                    If messageDelay = 180 Then
-                        SoundManager.PlaySound("success", True)
+                Case 4
+                    If messageDelay > 0 Then
+                        messageDelay -= 1
+                        If messageDelay = 180 Then
+                            SoundManager.PlaySound("success", True)
+                        End If
+                        If messageDelay <= 0 Then
+                            messageDelay = 220
+                            EndTrade()
+                        End If
                     End If
-                    If messageDelay <= 0 Then
-                        messageDelay = 220
-                        EndTrade()
+                Case 5
+                    If NPCPokemon.Number <> Core.Player.Pokemons(Core.Player.Pokemons.Count - 1).Number OrElse NPCPokemon.AdditionalData <> Core.Player.Pokemons(Core.Player.Pokemons.Count - 1).AdditionalData Then
+                        NPCPokemon = Core.Player.Pokemons(Core.Player.Pokemons.Count - 1)
                     End If
-                End If
-            Case 5
-                If NPCPokemon.Number <> Core.Player.Pokemons(Core.Player.Pokemons.Count - 1).Number OrElse NPCPokemon.AdditionalData <> Core.Player.Pokemons(Core.Player.Pokemons.Count - 1).AdditionalData Then
-                    NPCPokemon = Core.Player.Pokemons(Core.Player.Pokemons.Count - 1)
-                End If
-                If CurrentScreen.Identification = Identifications.DirectTradeScreen Then
-                    EndTradeAfterEvolve()
-                End If
-        End Select
+                    If CurrentScreen.Identification = Identifications.DirectTradeScreen Then
+                        EndTradeAfterEvolve()
+                    End If
+            End Select
+        End If
     End Sub
 
     Private Sub EndTrade()
