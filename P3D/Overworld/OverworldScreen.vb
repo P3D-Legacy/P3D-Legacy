@@ -13,6 +13,19 @@ Public Class OverworldScreen
     Private Shared _fadeValue As Integer = 0 'Fade progress value for the screen fade.
     Private Shared _drawRodID As Integer = -1 'The rod ID to display on the screen during the fishing animation.
     Public NotificationPopupList As List(Of NotificationPopup) = New List(Of NotificationPopup)
+    Public ReadOnly Property ActivatedScriptedNotification As Boolean
+        Get
+            If NotificationPopupList.Count > 0 Then
+                If (NotificationPopupList(0)._interacted = True OrElse NotificationPopupList(0)._forceAccept = True) AndAlso NotificationPopupList(0)._scriptFile <> "" Then
+                    Return True
+                Else
+                    Return False
+                End If
+            Else
+                Return False
+            End If
+        End Get
+    End Property
 
 
     Private _actionScript As ActionScript 'Private ActionScript instance.
@@ -233,7 +246,7 @@ Public Class OverworldScreen
 
             'Open the MenuScreen:
             If KeyBoardHandler.KeyPressed(KeyBindings.OpenInventoryKey) = True Or ControllerHandler.ButtonPressed(Buttons.X) = True Then
-                If Screen.Camera.IsMoving() = False And ActionScript.IsReady = True AndAlso Screen.Level.DisabledMenus.Contains("all") = False AndAlso Screen.Level.DisabledMenus.Contains("startmenus") = False Then
+                If Me.ActivatedScriptedNotification = False AndAlso Screen.Camera.IsMoving() = False AndAlso ActionScript.IsReady = True AndAlso Screen.Level.DisabledMenus.Contains("all") = False AndAlso Screen.Level.DisabledMenus.Contains("startmenus") = False Then
                     Level.RouteSign.Hide()
                     SoundManager.PlaySound("menu_open")
                     Core.SetScreen(New NewMenuScreen(Me))
@@ -246,7 +259,7 @@ Public Class OverworldScreen
                     NotificationPopupList(0).Dismiss()
                 Else
                     If Core.Player.HasPokegear = True Or GameController.IS_DEBUG_ACTIVE = True Or Core.Player.SandBoxMode = True Then
-                        If Screen.Camera.IsMoving() = False And ActionScript.IsReady = True AndAlso Screen.Level.DisabledMenus.Contains("pokegear") = False AndAlso Screen.Level.DisabledMenus.Contains("all") = False AndAlso Screen.Level.IsBugCatchingContest = False Then
+                        If Me.ActivatedScriptedNotification = False AndAlso Screen.Camera.IsMoving() = False And ActionScript.IsReady = True AndAlso Screen.Level.DisabledMenus.Contains("pokegear") = False AndAlso Screen.Level.DisabledMenus.Contains("all") = False AndAlso Screen.Level.IsBugCatchingContest = False Then
                             Core.SetScreen(New GameJolt.PokegearScreen(Me, GameJolt.PokegearScreen.EntryModes.MainMenu, {}))
                         End If
                     End If
@@ -338,7 +351,7 @@ Public Class OverworldScreen
     Private Function HandleServerRequests() As Boolean
         If Screen.Level.IsBugCatchingContest = False Then
             If GameJolt.PokegearScreen.BattleRequestData <> -1 Then 'A Servers ID from another player is set here.
-                If Core.ServersManager.PlayerCollection.HasPlayer(GameJolt.PokegearScreen.BattleRequestData) = True AndAlso Screen.Level.DisabledMenus.Contains("pokegear") = False AndAlso Screen.Level.DisabledMenus.Contains("all") = False Then 'If the player still exists on the server.
+                If Me.ActivatedScriptedNotification = False AndAlso Core.ServersManager.PlayerCollection.HasPlayer(GameJolt.PokegearScreen.BattleRequestData) = True AndAlso Screen.Level.DisabledMenus.Contains("pokegear") = False AndAlso Screen.Level.DisabledMenus.Contains("all") = False Then 'If the player still exists on the server.
                     Core.SetScreen(New GameJolt.PokegearScreen(Core.CurrentScreen, GameJolt.PokegearScreen.EntryModes.BattleRequest, {GameJolt.PokegearScreen.BattleRequestData, Core.ServersManager.PlayerCollection.GetPlayer(GameJolt.PokegearScreen.BattleRequestData).GameJoltId}))
                     Return False
                 Else 'Otherwise, reset the data.
@@ -346,7 +359,7 @@ Public Class OverworldScreen
                 End If
             End If
             If GameJolt.PokegearScreen.TradeRequestData <> -1 Then 'A Servers ID from another player is set here.
-                If Core.ServersManager.PlayerCollection.HasPlayer(GameJolt.PokegearScreen.TradeRequestData) = True AndAlso Screen.Level.DisabledMenus.Contains("pokegear") = False AndAlso Screen.Level.DisabledMenus.Contains("all") = False Then 'If the player still exists on the server.
+                If Me.ActivatedScriptedNotification = False AndAlso Core.ServersManager.PlayerCollection.HasPlayer(GameJolt.PokegearScreen.TradeRequestData) = True AndAlso Screen.Level.DisabledMenus.Contains("pokegear") = False AndAlso Screen.Level.DisabledMenus.Contains("all") = False Then 'If the player still exists on the server.
                     Core.SetScreen(New GameJolt.PokegearScreen(Core.CurrentScreen, GameJolt.PokegearScreen.EntryModes.TradeRequest, {GameJolt.PokegearScreen.TradeRequestData, Core.ServersManager.PlayerCollection.GetPlayer(GameJolt.PokegearScreen.TradeRequestData).GameJoltId}))
                     Return False
                 Else 'Otherwise, reset the data.

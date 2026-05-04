@@ -141,7 +141,7 @@ Public Class NotificationPopup
                 Dim BackY As Integer = CInt(0 - CInt(CInt(_size.Height + BackGroundScaleY) * (FrameSizeBack / 3) * _scale) - (FrameSizeBack / 3 * _scale) - 5)
                 If Me._interacted = True OrElse _forceAccept = True Then
                     If Me._positionY > BackY Then
-                        Me._positionY -= CInt((1.6 * (FrameSizeBack / 3) / (_size.Height + BackGroundScaleY)) * SpriteBatch.InterfaceScale)
+                        Me._positionY -= CInt((1.7 * (FrameSizeBack / 3) / (_size.Height + BackGroundScaleY)) * SpriteBatch.InterfaceScale)
                         If Me._positionY <= BackY Then
                             Me._positionY = BackY
                             If Me._scriptFile <> "" Then
@@ -152,7 +152,7 @@ Public Class NotificationPopup
                     End If
                 Else
                     If Me._positionY > BackY Then
-                        Me._positionY -= CInt((1.0 * (FrameSizeBack / 3) / (_size.Height + BackGroundScaleY)) * SpriteBatch.InterfaceScale)
+                        Me._positionY -= CInt((1.1 * (FrameSizeBack / 3) / (_size.Height + BackGroundScaleY)) * SpriteBatch.InterfaceScale)
                         If Me._positionY <= BackY Then
                             Me._positionY = BackY
                             Me.IsReady = True

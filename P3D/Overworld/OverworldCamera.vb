@@ -708,7 +708,7 @@ Public Class OverworldCamera
             End If
         End If
 
-        If isActionscriptReady = True AndAlso ScriptBlock.TriggeredScriptBlock = False AndAlso Screen.Level.CanMove() = True AndAlso PreventMovement = False AndAlso forcedNotification = False Then
+        If (Core.CurrentScreen.Identification = Screen.Identifications.OverworldScreen AndAlso CType(CurrentScreen, OverworldScreen).ActivatedScriptedNotification = False) AndAlso isActionscriptReady = True AndAlso ScriptBlock.TriggeredScriptBlock = False AndAlso Screen.Level.CanMove() = True AndAlso PreventMovement = False AndAlso forcedNotification = False Then
             If _thirdPerson = False And _cameraFocusType = CameraFocusTypes.Player Then
                 FirstPersonMovement()
             Else
@@ -1127,8 +1127,8 @@ Public Class OverworldCamera
                                 RayIntersects = True
                             End If
                         End If
-
-                        If RayIntersects = True And Screen.Level.Entities(i).boundingBox.Contains(checkPosition) = ContainmentType.Contains Then
+                        If (Core.CurrentScreen.Identification = Screen.Identifications.OverworldScreen AndAlso CType(CurrentScreen, OverworldScreen).ActivatedScriptedNotification = False) AndAlso
+                            RayIntersects = True And Screen.Level.Entities(i).boundingBox.Contains(checkPosition) = ContainmentType.Contains Then
                             Screen.Level.Entities(i).ClickFunction()
                         End If
                     Else
