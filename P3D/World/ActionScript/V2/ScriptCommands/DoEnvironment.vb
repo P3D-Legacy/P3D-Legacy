@@ -20,10 +20,10 @@
                     World.RegionWeather = World.GetRegionWeather(World.CurrentSeason)
                     World.RegionWeatherSet = False
                 Case "setseason"
-                    If int(argument) = -1 Then
-                        World.setSeason = Nothing
+                    If argument = "" OrElse int(argument) = -1 Then
+                        World.setSeason = -1
                     Else
-                        World.setSeason = CType(int(argument), World.Seasons)
+                        World.setSeason = int(argument)
                     End If
                 Case "setcanfly"
                     Screen.Level.CanFly = CBool(argument)

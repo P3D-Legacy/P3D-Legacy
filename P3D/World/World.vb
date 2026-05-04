@@ -4,7 +4,7 @@ Public Class World
 
     Private Shared _regionWeather As Weathers = Weathers.Clear
     Private Shared _regionWeatherSet As Boolean = False
-    Public Shared setSeason As Seasons = Nothing
+    Public Shared setSeason As Integer = -1
     Public Shared setDaytime As Integer = -1
 
     Public Shared IsMainMenu As Boolean = False
@@ -59,8 +59,8 @@ Public Class World
                 Return Seasons.Summer
             End If
 
-            If setSeason <> Nothing Then
-                Return setSeason
+            If setSeason <> -1 Then
+                Return CType(setSeason, Seasons)
             Else
                 If NeedServerObject() = True Then
                     Return ServerSeason

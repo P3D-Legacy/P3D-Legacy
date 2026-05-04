@@ -309,7 +309,7 @@
         Screen.TextBox.TextColor = TextBox.DefaultColor
         MusicManager.ForceMusic = ""
         World.setDaytime = -1
-        World.setSeason = Nothing
+        World.setSeason = -1
         Chat.ClearChat()
         ScriptStorage.Clear()
         GameModeManager.SetGameModePointer("Kolben")

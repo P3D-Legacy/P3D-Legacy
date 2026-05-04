@@ -1059,9 +1059,9 @@
 
             If TagExists(Tags, "Season") = True Then
                 If CInt(GetTag(Tags, "Season")) <> -1 Then
-                    World.setSeason = CType(CInt(GetTag(Tags, "Season")), World.Seasons)
+                    World.setSeason = CInt(GetTag(Tags, "Season"))
                 Else
-                    World.setSeason = Nothing
+                    World.setSeason = -1
                 End If
             End If
 
