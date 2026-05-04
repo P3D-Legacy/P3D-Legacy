@@ -217,8 +217,12 @@ Public Class GameModeItemLoader
                     item.gmDescription = Localization.GetString("item_desc_MachineItem", "Teaches ""[MOVENAME]"" to a Pokémon.").Replace("[MOVENAME]", AttackName)
                     item.gmItemType = ItemTypes.Machines
                     item.gmCanBeHeld = False
-                    item.gmCanBeTossed = True
-                    item.gmCanBeTraded = True
+
+                    If item.gmIsHM = True Then
+                        item.gmCanBeTossed = False
+                        item.gmCanBeTraded = False
+                    End If
+
                     item.gmCanBeUsed = True
                     item.gmCanBeUsedInBattle = False
                     If item.gmName.StartsWith(Localization.GetString("item_name_prefix_TM", "TM") & " ") Then
