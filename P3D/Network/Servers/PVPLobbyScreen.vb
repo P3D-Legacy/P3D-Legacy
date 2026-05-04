@@ -396,7 +396,7 @@
                 Dim pokeTexture = BattleBoxPokemon(i).GetMenuTexture()
                 Dim pokeTextureScale As Vector2 = New Vector2(CSng(32 / pokeTexture.Width) * 2, CSng(32 / pokeTexture.Height) * 2)
 
-                Core.SpriteBatch.Draw(pokeTexture, New Rectangle(CInt(startPos.X) + x * 140 + 32 - CInt(pokeTexture.Width - 32), y * 100 + CInt(startPos.Y) + 10, CInt(pokeTexture.Width * pokeTextureScale.X), CInt(pokeTexture.Height * pokeTextureScale.Y)), Color.White)
+                Core.SpriteBatch.Draw(pokeTexture, New Rectangle(CInt(startPos.X) + x * 140 + 32 + 32 - CInt((pokeTexture.Width * pokeTextureScale.X) / 2), y * 100 + CInt(startPos.Y) + 10 + 32 - CInt((pokeTexture.Height * pokeTextureScale.Y) / 2), CInt(pokeTexture.Width * pokeTextureScale.X), CInt(pokeTexture.Height * pokeTextureScale.Y)), Color.White)
             End If
 
             Core.SpriteBatch.DrawString(FontManager.MainFont, Localization.GetString("pvp_screen_BattleBox", "Battle Box"), New Vector2(CInt(startPos.X) + 80, CInt(startPos.Y) - 45), Color.White)
@@ -418,7 +418,7 @@
             If Core.Player.Pokemons.Count - 1 >= i Then
                 Dim pokeTexture = Core.Player.Pokemons(i).GetMenuTexture()
                 Dim pokeTextureScale As Vector2 = New Vector2(CSng(32 / pokeTexture.Width) * 2, CSng(32 / pokeTexture.Height) * 2)
-                Core.SpriteBatch.Draw(pokeTexture, New Rectangle(CInt(startPos.X) + x * 140 + 32 - CInt(pokeTexture.Width - 32), y * 100 + CInt(startPos.Y) + 10, CInt(pokeTexture.Width * pokeTextureScale.X), CInt(pokeTexture.Height * pokeTextureScale.Y)), Color.White)
+                Core.SpriteBatch.Draw(pokeTexture, New Rectangle(CInt(startPos.X) + x * 140 + 32 + 32 - CInt((pokeTexture.Width * pokeTextureScale.X) / 2), y * 100 + CInt(startPos.Y) + 10 + 32 - CInt((pokeTexture.Height * pokeTextureScale.Y) / 2), CInt(pokeTexture.Width * pokeTextureScale.X), CInt(pokeTexture.Height * pokeTextureScale.Y)), Color.White)
             End If
 
             Core.SpriteBatch.DrawString(FontManager.MainFont, Localization.GetString("pvp_screen_Team", "Team"), New Vector2(CInt(startPos.X) + 106, CInt(startPos.Y) - 45), Color.White)
