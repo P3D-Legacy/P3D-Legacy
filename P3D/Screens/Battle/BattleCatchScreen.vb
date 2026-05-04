@@ -14,7 +14,7 @@
     Dim showPokedexEntry As Boolean = False
 
     Dim boxData As String = ""
-    Dim sentToBox As Boolean = False
+    Public Shared sentToBox As Boolean = False
 
     Dim p As Pokemon
 
@@ -30,6 +30,7 @@
         Me.Ball = Ball
         Me.PreScreen = BattleScreen
         Me.UpdateFadeIn = True
+        BattleCatchScreen.sentToBox = False
 
         Me.BattleScreen = BattleScreen
         p = BattleScreen.OppPokemon
@@ -411,7 +412,7 @@ nextIndex:
             Core.Player.Pokemons.Add(p)
         Else
             Dim boxName As String = StorageSystemScreen.GetBoxName(StorageSystemScreen.DepositPokemon(p, Player.Temp.PCBoxIndex))
-
+            BattleCatchScreen.sentToBox = True
             s = Localization.GetString("battle_catch_PokemonTransferedToPC", "It was transfered to Box~""[BOXNAME]""~on the PC.").Replace("[BOXNAME]", boxName)
         End If
 
@@ -595,7 +596,11 @@ nextIndex:
             End If
         Next
 
-        For i = 0 To Core.Player.Pokemons.Count - 1
+        Dim PokemonCount As Integer = Core.Player.Pokemons.Count - 1
+        If BattleCatchScreen.sentToBox = False Then
+            PokemonCount -= Core.Player.Pokemons.Count - 2
+        End If
+        For i = 0 To PokemonCount
             If Core.Player.Inventory.GetItemAmount(658.ToString) > 0 And Core.Player.EnableExpAll = True Then
                 If expPokemon.Contains(i) = False AndAlso Core.Player.Pokemons(i).Status <> Pokemon.StatusProblems.Fainted AndAlso Core.Player.Pokemons(i).IsEgg() = False Then
                     expPokemon.Add(i)
