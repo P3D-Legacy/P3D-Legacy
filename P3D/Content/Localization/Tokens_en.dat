@@ -801,7 +801,7 @@ pokegear_screen_pss_user_function_Battle,Battle
 pokegear_screen_pss_user_function_Trade,Trade
 pokegear_screen_pss_user_function_PersonalMessage,PM
 pokegear_screen_pss_user_function_Friend,Friend
-pokegear_screen_pss_user_function_Friend,Favorite
+pokegear_screen_pss_user_function_Favorite,Favorite
 
 pokegear_screen_pss_TradeRequest,The player "[NAME]" wants to trade with you.
 pokegear_screen_pss_BattleRequest,The player "[NAME]" wants to battle with you.
@@ -3038,7 +3038,7 @@ item_desc_12,A spray-type medicine used against sleep. It can be used once to ro
 item_desc_13,A spray-type medicine for paralysis. It can be used once to free a Pokémon that has been paralyzed.
 item_desc_14,A medicine that can be used to fully restore the HP of a single Pokémon and heal any status conditions it has.
 item_desc_15,A spray-type medicine for treating wounds. It will completely restore the max HP of a single Pokémon.
-item_desc_16,A spray-type medicine for treating wounds. It can be used to restore 200 HP to an injured Pokémon.
+item_desc_16,A spray-type medicine for treating wounds. It can be used to restore 120 HP to an injured Pokémon.
 item_desc_17,A spray-type medicine for treating wounds. It can be used to restore 50 HP to an injured Pokémon.
 item_desc_18,A spray-type medicine for treating wounds. It can be used to restore 20 HP to an injured Pokémon.
 item_desc_19,A long and durable rope. Use it to escape instantly from a cave or a dungeon.

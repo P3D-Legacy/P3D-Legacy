@@ -803,7 +803,7 @@ pokegear_screen_pss_user_function_Battle,Battle
 pokegear_screen_pss_user_function_Trade,Trade
 pokegear_screen_pss_user_function_PersonalMessage,PM
 pokegear_screen_pss_user_function_Friend,Friend
-pokegear_screen_pss_user_function_Friend,Favorite
+pokegear_screen_pss_user_function_Favorite,Favorite
 
 pokegear_screen_pss_TradeRequest,The player "[NAME]" wants to trade with you.
 pokegear_screen_pss_BattleRequest,The player "[NAME]" wants to battle with you.
