@@ -217,6 +217,10 @@
             With Core.SpriteBatch
                 .Draw(TextureManager.GetTexture("GUI\Overworld\TextBox"), New Rectangle(CInt(Core.windowSize.Width / 2) - CInt(240 * Math.Ceiling(Core.SpriteBatch.InterfaceScale)), CInt(PositionY), CInt(480 * Math.Ceiling(Core.SpriteBatch.InterfaceScale)), CInt(144 * Math.Ceiling(Core.SpriteBatch.InterfaceScale))), New Rectangle(0, 0, 160, 48), Color.White)
 
+                If Me.CanProceed = True And Me.through = True Then
+                    .Draw(TextureManager.GetTexture("GUI\Overworld\TextBox"), New Rectangle(CInt(Core.windowSize.Width / 2) + CInt(240 * Math.Ceiling(Core.SpriteBatch.InterfaceScale)) - CInt(48 * Math.Ceiling(Core.SpriteBatch.InterfaceScale)), CInt(PositionY) + CInt(144 * Math.Ceiling(Core.SpriteBatch.InterfaceScale)) - CInt(24 * Math.Ceiling(Core.SpriteBatch.InterfaceScale)), CInt(24 * Math.Ceiling(Core.SpriteBatch.InterfaceScale)), CInt(24 * Math.Ceiling(Core.SpriteBatch.InterfaceScale))), New Rectangle(0, 48, 24, 24), Color.White)
+                End If
+
                 Dim m As Single = 1.0F
                 Select Case Me.TextFont.FontName.ToLower()
                     Case "textfont", "braille"
@@ -227,9 +231,6 @@
                 .DrawString(Me.TextFont.SpriteFont, Me.showText(0), New Vector2(CInt(Core.windowSize.Width / 2) - CInt(210 * Math.Ceiling(Core.SpriteBatch.InterfaceScale)), CInt(PositionY) + CInt(40 * Math.Ceiling(Core.SpriteBatch.InterfaceScale))), Me.TextColor, 0.0F, Vector2.Zero, m, SpriteEffects.None, 0.0F)
                 .DrawString(Me.TextFont.SpriteFont, Me.showText(1), New Vector2(CInt(Core.windowSize.Width / 2) - CInt(210 * Math.Ceiling(Core.SpriteBatch.InterfaceScale)), CInt(PositionY) + CInt(75 * Math.Ceiling(Core.SpriteBatch.InterfaceScale))), Me.TextColor, 0.0F, Vector2.Zero, m, SpriteEffects.None, 0.0F)
 
-                If Me.CanProceed = True And Me.through = True Then
-                    .Draw(TextureManager.GetTexture("GUI\Overworld\TextBox"), New Rectangle(CInt(Core.windowSize.Width / 2) + CInt(192 * Math.Ceiling(Core.SpriteBatch.InterfaceScale)), CInt(PositionY) + CInt(128 * Math.Ceiling(Core.SpriteBatch.InterfaceScale)), CInt(16 * Math.Ceiling(Core.SpriteBatch.InterfaceScale)), CInt(16 * Math.Ceiling(Core.SpriteBatch.InterfaceScale))), New Rectangle(0, 48, 16, 16), Color.White)
-                End If
             End With
         End If
     End Sub
