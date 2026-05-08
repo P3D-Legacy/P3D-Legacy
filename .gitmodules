@@ -1,6 +1,6 @@
 [submodule "lib/kolben"]
 	path = lib/kolben
-	url = https://github.com/nilllzz/kolben.git
+	url = https://github.com/P3D-Legacy/kolben.git
 	branch = master
 [submodule "lib/game-dev-common"]
 	path = lib/game-dev-common
