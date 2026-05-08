@@ -1,4 +1,4 @@
-Namespace GameJolt
+﻿Namespace GameJolt
 
     ''' <summary>
     ''' A class to handle emblem rendering and management.
@@ -1031,22 +1031,24 @@ Namespace GameJolt
             'End If
 
             'Temporary, remove when GameJolt side support is brought back
-            If Not Core.GameJoltSave.AchievedEmblems.Contains(emblem) Then
-                Core.GameJoltSave.AchievedEmblems.Add(emblem)
-                Dim emblemTexture As Texture2D = TextureManager.LoadDirect("Textures\Emblem\Square\" & emblem & ".png")
-                achieved_emblem_Texture = emblemTexture
-                achieved_emblem_title = GetEmblemTitle(emblem)
-                achieved_emblem_description = GetEmblemDescription(emblem)
-                achieved_emblem_difficulty = GetEmblemDifficulty(emblem)
-                displayEmblemDelay = 35.0F
-            End If
-            'End Temporary
-
-            If Core.Player.EarnedAchievements.Contains(emblem.ToLower()) = False Then
-                If ConnectScreen.Connected = True Then
-                    Core.ServersManager.ServerConnection.SendGameStateMessage("achieved the emblem """ & GetEmblemTitle(emblem) & """!")
+            If GameModeManager.ActiveGameMode.IsDefaultGamemode = True Then
+                If Not Core.GameJoltSave.AchievedEmblems.Contains(emblem) Then
+                    Core.GameJoltSave.AchievedEmblems.Add(emblem)
+                    Dim emblemTexture As Texture2D = TextureManager.LoadDirect("Textures\Emblem\Square\" & emblem & ".png")
+                    achieved_emblem_Texture = emblemTexture
+                    achieved_emblem_title = GetEmblemTitle(emblem)
+                    achieved_emblem_description = GetEmblemDescription(emblem)
+                    achieved_emblem_difficulty = GetEmblemDifficulty(emblem)
+                    displayEmblemDelay = 35.0F
                 End If
-                Core.Player.EarnedAchievements.Add(emblem.ToLower())
+                'End Temporary
+
+                If Core.Player.EarnedAchievements.Contains(emblem.ToLower()) = False Then
+                    If ConnectScreen.Connected = True Then
+                        Core.ServersManager.ServerConnection.SendGameStateMessage("achieved the emblem """ & GetEmblemTitle(emblem) & """!")
+                    End If
+                    Core.Player.EarnedAchievements.Add(emblem.ToLower())
+                End If
             End If
         End Sub
 
