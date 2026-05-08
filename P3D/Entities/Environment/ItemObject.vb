@@ -178,6 +178,10 @@ Public Class ItemObject
     End Sub
 
     Public Overrides Sub ClickFunction()
+        If CanInteractWith = True AndAlso (Me.PickupType = PickupTypes.Coins AndAlso Core.Player.Inventory.GetItemAmount(54.ToString) = 0 OrElse
+            Me.PickupType = PickupTypes.BattlePoints AndAlso ActionScript.IsRegistered("pokegear_card_frontier") = False) Then
+            CanInteractWith = False
+        End If
         If CanInteractWith Then
             If Me.LevelName = "" Then
                 Me.LevelName = Screen.Level.LevelFile.ToLower()
