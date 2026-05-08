@@ -4175,7 +4175,6 @@ TrainerClass_Drummer,Drummer
 TrainerClass_Elder,Elder
 TrainerClass_EliteFour,Elite Four
 TrainerClass_Engineer,Engineer
-TrainerClass_Executive,Executive
 TrainerClass_FactoryHead,Factory Head
 TrainerClass_Firebreather,Firebreather
 TrainerClass_Fisherman,Fisherman
@@ -4232,6 +4231,7 @@ TrainerClass_Teacher,Teacher
 TrainerClass_TeamRocket,Team Rocket
 TrainerClass_TeamRocket_Agents,Team Rocket Agents
 TrainerClass_TeamRocket_Boss,Team Rocket Boss
+TrainerClass_TeamRocket_Executive,Team Rocket Executive
 TrainerClass_TowerTycoon,Tower Tycoon
 TrainerClass_Trainer,Trainer
 TrainerClass_Tuber,Tuber

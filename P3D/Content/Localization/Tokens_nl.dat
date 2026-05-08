@@ -5192,7 +5192,6 @@ TrainerClass_Drummer,Drummer
 TrainerClass_Elder,Oudste
 TrainerClass_EliteFour,Elite Vier
 TrainerClass_Engineer,Technicus
-TrainerClass_Executive,Leidinggevende
 TrainerClass_FactoryHead,Fabriekshoofd
 TrainerClass_Firebreather,Vuurspuwer
 TrainerClass_Fisherman,Visser
@@ -5247,8 +5246,9 @@ TrainerClass_Swimmer_Female,Zwemster
 TrainerClass_Tamer,Temmer
 TrainerClass_Teacher,Docent
 TrainerClass_TeamRocket,Team Rocket
-TrainerClass_TeamRocket_Agents,Team Rocket-Agenten
+TrainerClass_TeamRocket_Agents,Team Rocket-Handlangers
 TrainerClass_TeamRocket_Boss,Team Rocket-Baas
+TrainerClass_TeamRocket_Executive,Team Rocket-Leidinggevende
 TrainerClass_TowerTycoon,Torenmagnaat
 TrainerClass_Trainer,Trainer
 TrainerClass_Tuber,Zwembandkind
