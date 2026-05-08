@@ -219,11 +219,12 @@ Public Class OverworldCamera
 
         ControlCamera()
 
+        ControlThirdPersonCamera()
+
         UpdateThirdPersonCamera()
 
         SetSpeed()
 
-        ControlThirdPersonCamera()
 
         UpdateViewMatrix()
         UpdateFrustum()
@@ -675,7 +676,11 @@ Public Class OverworldCamera
                 End If
 
                 If _tempDirectionPressed > -1 Then
-                    Turn(_tempDirectionPressed)
+                    If ThirdPerson = False Then
+                        Turn(_tempDirectionPressed)
+                    Else
+                        Turn(_tempDirectionPressed, True, False)
+                    End If
                 End If
                 _tempDirectionPressed = -1
                 Screen.Level.OwnPlayer.DoAnimation = True
@@ -1040,24 +1045,38 @@ Public Class OverworldCamera
         Return 0F
     End Function
 
-    Public Overrides Sub Turn(ByVal turns As Integer, Optional ForceCameraTurn As Boolean = False)
+    Public Overrides Sub Turn(ByVal turns As Integer, Optional ForceCameraTurn As Boolean = False, Optional DoPlayerTurn As Boolean = True)
         If turns > 0 Then
             If _thirdPerson = True Then
-                _playerFacing += turns
-                While _playerFacing > 3
-                    _playerFacing -= 4
-                End While
+                If DoPlayerTurn = True Then
+                    _playerFacing += turns
+                    While _playerFacing > 3
+                        _playerFacing -= 4
+                    End While
+                End If
                 Screen.Level.OwnPlayer.Opacity = 1.0F
                 If ForceCameraTurn = True Then
-                    Dim facing As Integer = GetFacingDirection()
-                    facing += _playerFacing - GetFacingDirection()
+                    If DoPlayerTurn = True Then
+                        Dim facing As Integer = GetFacingDirection()
+                        facing += _playerFacing - GetFacingDirection()
 
-                    While facing > 3
-                        facing -= 4
-                    End While
+                        While facing > 3
+                            facing -= 4
+                        End While
 
-                    Turning = True
-                    _aimDirection = facing
+                        Turning = True
+                        _aimDirection = facing
+                    Else
+                        Dim facing As Integer = GetFacingDirection()
+                        facing += turns
+
+                        While facing > 3
+                            facing -= 4
+                        End While
+
+                        Turning = True
+                        _aimDirection = facing
+                    End If
                 End If
             Else
                 Dim facing As Integer = GetFacingDirection()
@@ -1178,6 +1197,67 @@ Public Class OverworldCamera
                     ThirdPersonOffset.X -= Speed
                 End If
             End If
+        Else
+            Dim pressedDirection As Integer = -1
+            Dim ControllerTurnModifier As Single = 1.0F
+            If ControllerHandler.ButtonDown(Buttons.RightThumbstickLeft) = True OrElse ControllerHandler.ButtonDown(Buttons.RightThumbstickRight) = True Then
+                ControllerTurnModifier = 0.25F
+            End If
+            If YawLocked = False And Turning = False Then
+
+                If (KeyBoardHandler.KeyDown(KeyBindings.LeftKey) = True Or ControllerHandler.ButtonDown(Buttons.RightThumbstickLeft) = True) And Turning = False Then
+                    If _freeCameraMode = True AndAlso ControllerHandler.ButtonDown(Buttons.RightThumbstickLeft) = False Then
+                        Yaw += RotationSpeed * 40.0F * ControllerTurnModifier
+
+                        ClampYaw()
+                    Else
+                        pressedDirection = 1
+                    End If
+                End If
+                If (KeyBoardHandler.KeyDown(KeyBindings.RightKey) = True Or ControllerHandler.ButtonDown(Buttons.RightThumbstickRight) = True) And Turning = False Then
+                    If _freeCameraMode = True AndAlso ControllerHandler.ButtonDown(Buttons.RightThumbstickRight) = False Then
+                        Yaw -= RotationSpeed * 40.0F * ControllerTurnModifier
+
+                        ClampYaw()
+                    Else
+                        pressedDirection = 3
+                    End If
+                End If
+
+                If _freeCameraMode = False And pressedDirection > -1 Then
+                    If _moved <= 0F Then
+                        Turn(pressedDirection, True, False)
+                    Else
+                        _tempDirectionPressed = pressedDirection
+                    End If
+                End If
+
+                ClampYaw()
+            End If
+
+            If _isFixed = False Then
+                If CurrentScreen.Identification = Screen.Identifications.OverworldScreen Then
+                    Dim OS As OverworldScreen = CType(CurrentScreen, OverworldScreen)
+
+                    If OS.NotificationPopupList.Count = 0 OrElse OS.NotificationPopupList(0)._forceAccept = False Then
+                        If OS.ActionScript.IsReady = True Then
+                            If KeyBoardHandler.KeyDown(KeyBindings.UpKey) = True AndAlso Turning = False Then
+                                Pitch += RotationSpeed * 30.0F * ControllerTurnModifier
+
+                                ClampPitch()
+                            End If
+
+                            If KeyBoardHandler.KeyDown(KeyBindings.DownKey) = True AndAlso Turning = False Then
+                                Pitch -= RotationSpeed * 30.0F * ControllerTurnModifier
+
+                                ClampPitch()
+                            End If
+                        End If
+                    End If
+                End If
+                'text = " (Moving)"
+            End If
+
         End If
     End Sub
 

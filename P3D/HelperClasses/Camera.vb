@@ -43,7 +43,7 @@
         Throw New NotImplementedException()
     End Sub
 
-    Public Overridable Sub Turn(ByVal turns As Integer, Optional ForceCameraTurn As Boolean = False)
+    Public Overridable Sub Turn(ByVal turns As Integer, Optional ForceCameraTurn As Boolean = False, Optional DoPlayerTurn As Boolean = True)
         Throw New NotImplementedException()
     End Sub
 
