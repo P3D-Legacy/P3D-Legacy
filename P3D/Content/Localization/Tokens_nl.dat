@@ -613,7 +613,7 @@ shop_screen_buysell_PriceTotal,Totaal:
 shop_screen_buysell_InInventory,In Inventaris:
 shop_screen_buysell_DescriptionHint,Druk op [<system.button(special)>] of Select om de beschrijving van het voorwerp te bekijken.
 shop_screen_buysell_CurrentBalance,Huidig Saldo:
-shop_screen_currency_BattlePoints,Gevechtspunten
+shop_screen_currency_BattlePoints,Strijdpunten
 shop_screen_currency_Coins,Munten
 shop_screen_currency_Pokédollars,$
 shop_screen_currency_short_BattlePoints,GP
@@ -691,8 +691,10 @@ emblem_achievement_name_eggsplosion,Eisplosie
 emblem_achievement_name_mailman,Postbode
 emblem_achievement_name_silver ability,Zilveren Vaardigheid
 emblem_achievement_name_silver knowledge,Zilveren Kennis
+emblem_achievement_name_silver luck,Zilveren Geluk
 emblem_achievement_name_gold ability,Gouden Vaardigheid
 emblem_achievement_name_gold knowledge,Gouden Kennis
+emblem_achievement_name_gold luck,Gouden Geluk
 emblem_achievement_name_boulder,Rots
 emblem_achievement_name_cascade,Waterval
 emblem_achievement_name_thunder,Donder
@@ -738,10 +740,12 @@ emblem_achievement_description_glacier,Ontvang de Gletsjer-Badge van Pryce.
 emblem_achievement_description_rising,Ontvang de Stijging-Badge van Clair.
 emblem_achievement_description_eggsplosion,Kweek een Pokémon en geef een eier-aanvalstechniek door.
 emblem_achievement_description_mailman,Verzamel alle beschikbare briefvoorwerpen in het spel.
-emblem_achievement_description_silver ability,Versla 21 trainers achter elkaar in de Gevechtstoren Uitdagingsmodus.
-emblem_achievement_description_silver knowledge,Versla 21 trainers achter elkaar in de Gevechtsfabriek Uitdagingsmodus.
-emblem_achievement_description_gold ability,Versla het hoofd van de Gevechtstoren voor de eerste keer.
-emblem_achievement_description_gold knowledge,Versla het hoofd van de Gevechtsfabriek voor de eerste keer.
+emblem_achievement_description_silver ability,Versla 21 trainers achter elkaar in de Strijdtoren Uitdagingsmodus.
+emblem_achievement_description_silver knowledge,Versla 21 trainers achter elkaar in de Uitdagingsmodus van de Strijdfabriek.
+emblem_achievement_description_silver luck,Versla het hoofd van de Strijdslang één keer.
+emblem_achievement_description_gold ability,Versla het hoofd van de Strijdtoren één keer.
+emblem_achievement_description_gold knowledge,Versla het hoofd van de Strijdfabriek één keer.
+emblem_achievement_description_gold luck,Versla het hoofd van de Strijdslang twee keer.
 emblem_achievement_description_boulder,Ontvang de Rots-Badge van Brock.
 emblem_achievement_description_cascade,Ontvang de Waterval-Badge van Misty.
 emblem_achievement_description_thunder,Ontvang de Donder-Badge van Lt. Surge.

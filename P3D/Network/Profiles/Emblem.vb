@@ -1,4 +1,4 @@
-﻿Namespace GameJolt
+Namespace GameJolt
 
     ''' <summary>
     ''' A class to handle emblem rendering and management.
@@ -1106,10 +1106,14 @@
                     Return Localization.GetString("emblem_achievement_name_" & emblem.ToLower(), "Silver Ability")
                 Case "silver knowledge"
                     Return Localization.GetString("emblem_achievement_name_" & emblem.ToLower(), "Silver Knowledge")
+                Case "silver luck"
+                    Return Localization.GetString("emblem_achievement_name_" & emblem.ToLower(), "Silver Luck")
                 Case "gold ability"
                     Return Localization.GetString("emblem_achievement_name_" & emblem.ToLower(), "Gold Ability")
                 Case "gold knowledge"
                     Return Localization.GetString("emblem_achievement_name_" & emblem.ToLower(), "Gold Knowledge")
+                Case "gold luck"
+                    Return Localization.GetString("emblem_achievement_name_" & emblem.ToLower(), "Gold Luck")
                 Case "boulder"
                     Return Localization.GetString("emblem_achievement_name_" & emblem.ToLower(), "Boulder")
                 Case "cascade"
@@ -1211,10 +1215,14 @@
                     Return Localization.GetString("emblem_achievement_description_" & emblem.ToLower(), "Defeat 21 trainers in a row in Battle Tower Challenge Mode.")
                 Case "silver knowledge"
                     Return Localization.GetString("emblem_achievement_description_" & emblem.ToLower(), "Defeat 21 trainers in a row in Battle Factory Challenge Mode.")
+                Case "silver luck"
+                    Return Localization.GetString("emblem_achievement_description_" & emblem.ToLower(), "Defeat the Battle Pike Brain once.")
                 Case "gold ability"
                     Return Localization.GetString("emblem_achievement_description_" & emblem.ToLower(), "Defeat the Battle Tower Brain once.")
                 Case "gold knowledge"
                     Return Localization.GetString("emblem_achievement_description_" & emblem.ToLower(), "Defeat the Battle Factory Brain once.")
+                Case "gold luck"
+                    Return Localization.GetString("emblem_achievement_description_" & emblem.ToLower(), "Defeat the Battle Pike Brain twice.")
                 Case "boulder"
                     Return Localization.GetString("emblem_achievement_description_" & emblem.ToLower(), "Get the Boulder-Badge from Brock.")
                 Case "cascade"
@@ -1266,9 +1274,10 @@
                      "cascade", "thunder", "rainbow", "marsh", "soul", "volcano", "earth"
                     Return "Bronze"
                 Case "johto", "kanto", "legendary", "shooting star", "genetics", "eggsplosion", "mailman", "silver ability", "silver knowledge",
-                     "deep sea", "eruption", "victorious", "floral"
+                     "silver luck", "deep sea", "eruption", "victorious", "floral"
                     Return "Silver"
-                Case "champion", "snow", "eevee", "stars", "unodostres", "gold ability", "gold knowledge", "time", "ancestor", "beast", "tao", "heart gold", "soul silver"
+                Case "champion", "snow", "eevee", "stars", "unodostres", "gold ability", "gold knowledge", "gold luck", "time", "ancestor", "beast",
+                     "tao", "heart gold", "soul silver"
                     Return "Gold"
                 Case "overkill", "pokedex"
                     Return "Platinum"

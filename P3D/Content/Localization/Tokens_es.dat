@@ -694,8 +694,10 @@ emblem_achievement_name_eggsplosion,Eggsplosion
 emblem_achievement_name_mailman,Mailman
 emblem_achievement_name_silver ability,Silver Ability
 emblem_achievement_name_silver knowledge,Silver Knowledge
+emblem_achievement_name_silver luck,Silver Luck
 emblem_achievement_name_gold ability,Gold Ability
 emblem_achievement_name_gold knowledge,Gold Knowledge
+emblem_achievement_name_gold luck,Gold Luck
 emblem_achievement_name_boulder,Boulder
 emblem_achievement_name_cascade,Cascade
 emblem_achievement_name_thunder,Thunder
@@ -743,8 +745,10 @@ emblem_achievement_description_eggsplosion,Breed a Pokémon and pass down an egg
 emblem_achievement_description_mailman,Get all the available mail items in the game.
 emblem_achievement_description_silver ability,Defeat 21 trainers in a row in Battle Tower Challenge Mode.
 emblem_achievement_description_silver knowledge,Defeat 21 trainers in a row in Battle Factory Challenge Mode.
+emblem_achievement_description_silver luck,Defeat the Battle Pike Brain once.
 emblem_achievement_description_gold ability,Defeat the Battle Tower Brain once.
 emblem_achievement_description_gold knowledge,Defeat the Battle Factory Brain once.
+emblem_achievement_description_gold luck,Defeat the Battle Pike Brain twice.
 emblem_achievement_description_boulder,Get the Boulder-Badge from Brock.
 emblem_achievement_description_cascade,Get the Cascade-Badge from Misty.
 emblem_achievement_description_thunder,Get the Thunder-Badge from Lt. Surge.
