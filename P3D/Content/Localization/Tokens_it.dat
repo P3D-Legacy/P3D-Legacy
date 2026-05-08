@@ -1091,6 +1091,11 @@ Receiving and Handing Over Items:
 item_received_single,Received the~
 item_received_multiple,Received
 item_found,<Player.Name> found~
+currency_found_money,<Player.Name> found~$[AMOUNT]!
+currency_found_coins_single,<Player.Name> found~a coin!
+currency_found_coins_multiple,<Player.Name> found~[AMOUNT] coins!
+currency_found_battlepoints_single,<Player.Name> found~a Battle Point!
+currency_found_battlepoints_multiple,<Player.Name> found~[AMOUNT] Battle Points!
 item_stored_in_pocket_single_start,<Player.Name> stored it in the~
 item_stored_in_pocket_single_end,pocket.
 item_stored_in_pocket_multiple_start,<Player.Name> stored them~in the

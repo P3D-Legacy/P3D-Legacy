@@ -1090,6 +1090,11 @@ Receiving Items:
 item_received_single,Ontving een~
 item_received_multiple,Ontving
 item_found,<Player.Name> vond~
+currency_found_money,<Player.Name> vond~$[AMOUNT]!
+currency_found_coins_single,<Player.Name> vond~een Munt!
+currency_found_coins_multiple,<Player.Name> vond~[AMOUNT] Munten!
+currency_found_battlepoints_single,<Player.Name> vond~een Strijdpunt!
+currency_found_battlepoints_multiple,<Player.Name> vond~[AMOUNT] Strijdpunten!
 item_stored_in_pocket_single_start,<Player.Name> stopte hem in~het
 item_stored_in_pocket_single_end,~vakje.
 item_stored_in_pocket_multiple_start,<Player.Name> stopte ze weg~in het

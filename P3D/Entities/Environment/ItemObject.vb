@@ -1,4 +1,10 @@
-﻿Public Class ItemObject
+﻿Enum PickupTypes
+    Item
+    Money
+    Coins
+    BattlePoints
+End Enum
+Public Class ItemObject
 
     Inherits Entity
 
@@ -7,6 +13,8 @@
     Dim Animation As Animation = Nothing
 
     Dim LevelName As String = ""
+    Dim PickupType As PickupTypes = PickupTypes.Item
+    Dim PickupAmount As Integer = 1
     Dim Item As Item
     Dim ItemID As Integer = 0
     Dim checkedExistence As Boolean = False
@@ -19,53 +27,74 @@
     Public Overloads Sub Initialize(Optional ByVal AnimationData As List(Of List(Of Integer)) = Nothing)
         MyBase.Initialize()
 
-        Me.Item = Item.GetItemByID(Me.AdditionalValue.GetSplit(1))
-        Me.ItemID = CInt(Me.AdditionalValue.GetSplit(0))
-        If Me.AdditionalValue.Split(",").Count > 2 Then
-            Me.LevelName = Me.AdditionalValue.GetSplit(2).ToLower()
-        End If
+        If StringHelper.IsNumeric(Me.AdditionalValue.GetSplit(1)) = False Then
 
-        Me.Textures(0) = Me.Item.Texture
-        If Me.ActionValue = 0 Then
-            Me.Visible = Visible
-        ElseIf Me.ActionValue = 1 Then
+            Select Case Me.AdditionalValue.GetSplit(1).ToLower
+                Case "money"
+                    Me.PickupType = PickupTypes.Money
+                Case "coins"
+                    Me.PickupType = PickupTypes.Coins
+                Case "battlepoints"
+                    Me.PickupType = PickupTypes.BattlePoints
+            End Select
+            Me.PickupAmount = CInt(Me.AdditionalValue.GetSplit(2).ToLower())
+
+            If Me.AdditionalValue.Split(",").Count > 3 Then
+                Me.LevelName = Me.AdditionalValue.GetSplit(3).ToLower()
+            End If
             Me.Visible = False
             Me.Collision = False
-        ElseIf Me.ActionValue = 2 Then
-            If Core.Player.Inventory.HasMegaBracelet() Then
+        Else
+            Me.PickupType = PickupTypes.Item
+            If Me.AdditionalValue.Split(",").Count > 2 Then
+                Me.LevelName = Me.AdditionalValue.GetSplit(2).ToLower()
+            End If
+
+            Me.Item = Item.GetItemByID(Me.AdditionalValue.GetSplit(1))
+            Me.ItemID = CInt(Me.AdditionalValue.GetSplit(0))
+
+            Me.Textures(0) = Me.Item.Texture
+            If Me.ActionValue = 0 Then
                 Me.Visible = Visible
-                'sparkles
-                If AnimationData IsNot Nothing Then
-                    X = AnimationData(0)(0)
-                    Y = AnimationData(0)(1)
-                    width = AnimationData(0)(2)
-                    height = AnimationData(0)(3)
-                    rows = AnimationData(0)(4)
-                    columns = AnimationData(0)(5)
-                    animationSpeed = AnimationData(0)(6)
-                    startRow = AnimationData(0)(7)
-                    startColumn = AnimationData(0)(8)
-                    AnimationPath = "ItemAnimations"
-                Else
-                    X = 0
-                    Y = 0
-                    width = 48
-                    height = 48
-                    rows = 5
-                    columns = 10
-                    animationSpeed = 60
-                    startRow = 0
-                    startColumn = 0
-                    AnimationPath = "SparkleAnimation"
-                End If
-                CreateAnimationTextureTemp()
-
-                Me.Animation = New Animation(TextureManager.GetTexture("Textures\Routes"), rows, columns, 16, 16, animationSpeed, startRow, startColumn)
-
-            Else
+            ElseIf Me.ActionValue = 1 Then
                 Me.Visible = False
                 Me.Collision = False
-                CanInteractWith = False
+            ElseIf Me.ActionValue = 2 Then
+                If Core.Player.Inventory.HasMegaBracelet() Then
+                    Me.Visible = Visible
+                    'sparkles
+                    If AnimationData IsNot Nothing Then
+                        X = AnimationData(0)(0)
+                        Y = AnimationData(0)(1)
+                        width = AnimationData(0)(2)
+                        height = AnimationData(0)(3)
+                        rows = AnimationData(0)(4)
+                        columns = AnimationData(0)(5)
+                        animationSpeed = AnimationData(0)(6)
+                        startRow = AnimationData(0)(7)
+                        startColumn = AnimationData(0)(8)
+                        AnimationPath = "ItemAnimations"
+                    Else
+                        X = 0
+                        Y = 0
+                        width = 48
+                        height = 48
+                        rows = 5
+                        columns = 10
+                        animationSpeed = 60
+                        startRow = 0
+                        startColumn = 0
+                        AnimationPath = "SparkleAnimation"
+                    End If
+                    CreateAnimationTextureTemp()
+
+                    Me.Animation = New Animation(TextureManager.GetTexture("Textures\Routes"), rows, columns, 16, 16, animationSpeed, startRow, startColumn)
+
+                Else
+                    Me.Visible = False
+                    Me.Collision = False
+                    CanInteractWith = False
+                End If
             End If
         End If
 
@@ -154,36 +183,81 @@
                 Me.LevelName = Screen.Level.LevelFile.ToLower()
             End If
             RemoveItem(Me, Me.LevelName)
-            If Me.Item.OriginalName.Contains("HM") Then
-                SoundManager.PlaySound("Receive_HM", True)
-            Else
-                SoundManager.PlaySound("Receive_Item", True)
-            End If
+
             Screen.TextBox.TextColor = TextBox.PlayerColor
+            Dim foundString As String = ""
 
-            Dim foundString As String = Localization.GetString("item_found", "<player.name> found~").Replace("<player.name>", Core.Player.Name) & Me.Item.OneLineName()
-            If Item.ItemType = Items.ItemTypes.Machines Then
-                If Item.IsGameModeItem = True Then
-                    foundString &= " " & CType(Item, GameModeItem).gmTeachMove.Name & "!*"
+            If Me.PickupType = PickupTypes.Item Then
+                foundString = Localization.GetString("item_found", "<player.name> found~").Replace("<player.name>", Core.Player.Name) & Me.Item.OneLineName()
+                If Me.Item.OriginalName.Contains("HM") Then
+                    SoundManager.PlaySound("Receive_HM", True)
                 Else
-                    foundString &= " " & CType(Item, Items.TechMachine).Attack.Name & "!*"
+                    SoundManager.PlaySound("Receive_Item", True)
                 End If
+
+                If Item.ItemType = Items.ItemTypes.Machines Then
+                    If Item.IsGameModeItem = True Then
+                        foundString &= " " & CType(Item, GameModeItem).gmTeachMove.Name & "!*"
+                    Else
+                        foundString &= " " & CType(Item, Items.TechMachine).Attack.Name & "!*"
+                    End If
+                Else
+                    foundString &= "!*"
+                End If
+
+                Screen.TextBox.Show(foundString & Core.Player.Inventory.GetMessageReceive(Item, 1), {Me})
+                Dim ItemID As String
+                If Me.Item.IsGameModeItem Then
+                    ItemID = Me.Item.gmID
+                Else
+                    ItemID = Me.Item.ID.ToString
+                End If
+                Core.Player.Inventory.AddItem(ItemID, 1)
+                Core.Player.CheckItemCountScriptDelay(ItemID)
+                PlayerStatistics.Track("Items found", 1)
+
+                Core.Player.AddPoints(1, "Found an item.")
             Else
-                foundString &= "!*"
+                Select Case PickupType
+                    Case PickupTypes.Money
+                        foundString = Localization.GetString("currency_found_money", "<Player.Name> found $[AMOUNT]!").Replace("<player.name>", Core.Player.Name).Replace("[AMOUNT]", Me.PickupAmount.ToString)
+                        Core.Player.Money += Math.Max(1, PickupAmount)
+                    Case PickupTypes.Coins
+                        If PickupAmount <= 1 Then
+                            foundString = Localization.GetString("currency_found_coins_single", "<Player.Name> found~a coin!").Replace("<player.name>", Core.Player.Name)
+                        Else
+                            foundString = Localization.GetString("currency_found_coins_multiple", "<Player.Name> found~[AMOUNT] coins!").Replace("<player.name>", Core.Player.Name).Replace("[AMOUNT]", Me.PickupAmount.ToString)
+                        End If
+                        Dim coins As Integer = PickupAmount
+
+                        If CInt(GameModeManager.GetGameRuleValue("CoinCaseCap", "0")) > 0 AndAlso Core.Player.Coins + coins > CInt(GameModeManager.GetGameRuleValue("CoinCaseCap", "0")) Then
+                            coins = CInt(GameModeManager.GetGameRuleValue("CoinCaseCap", "0")) - Core.Player.Coins
+                        End If
+
+                        Core.Player.Coins += Math.Max(1, PickupAmount)
+
+                        If coins > 0 Then
+                            PlayerStatistics.Track("Obtained Coins", coins)
+                        End If
+                    Case PickupTypes.BattlePoints
+                        If PickupAmount <= 1 Then
+                            foundString = Localization.GetString("currency_found_battlepoints_single", "<Player.Name> found~a Battle Point!").Replace("<player.name>", Core.Player.Name)
+                        Else
+                            foundString = Localization.GetString("currency_found_battlepoints_multiple", "<Player.Name> found~[AMOUNT] Battle Points!").Replace("<player.name>", Core.Player.Name).Replace("[AMOUNT]", Me.PickupAmount.ToString)
+                        End If
+                        Dim bp As Integer = Math.Max(1, PickupAmount)
+
+                        Core.Player.BP += bp
+
+                        If bp > 0 Then
+                            PlayerStatistics.Track("Obtained BP", bp)
+                        End If
+                End Select
+                SoundManager.PlaySound("Receive_Item", True)
+                Screen.TextBox.Show(foundString)
+
             End If
 
-            Screen.TextBox.Show(foundString & Core.Player.Inventory.GetMessageReceive(Item, 1), {Me})
-            Dim ItemID As String
-            If Me.Item.IsGameModeItem Then
-                ItemID = Me.Item.gmID
-            Else
-                ItemID = Me.Item.ID.ToString
-            End If
-            Core.Player.Inventory.AddItem(ItemID, 1)
-            Core.Player.CheckItemCountScriptDelay(ItemID)
-            PlayerStatistics.Track("Items found", 1)
-
-            Core.Player.AddPoints(1, "Found an item.")
         End If
     End Sub
 
@@ -232,7 +306,7 @@
     End Sub
 
     Public Function IsHiddenItem() As Boolean
-        If Me.Collision = False And Me.ActionValue = 1 Then
+        If Me.Collision = False AndAlso Me.ActionValue = 1 AndAlso Me.PickupType = PickupTypes.Item Then
             Return True
         Else
             Return False
