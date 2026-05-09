@@ -3125,6 +3125,19 @@ Key Items:
 item_use_6,<Player.Name> desmontou~da Biscicleta.
 item_use_54,Suas Moedas:~
 item_use_658_enable,O Exp. para Todos foi ativado.
+item_use_55_NoHiddenItems,There are no hidden items~nearby.
+item_use_55_Found_North,It's pointing to the north.
+item_use_55_Found_NorthWest,It's pointing to the~northwest.
+item_use_55_Found_NorthEast,It's pointing to the~northeast.
+item_use_55_Found_South,It's pointing to the south.
+item_use_55_Found_SouthWest,It's pointing to the~southwest.
+item_use_55_Found_SouthEast,It's pointing to the~southeast.
+item_use_55_Found_West,It's pointing to the west.
+item_use_55_Found_East,It's pointing to the east.
+item_use_55_Found_Down,It's pointing downwards.
+item_use_55_Found_Up,It's pointing upwards.
+item_use_55_Found_Here,It's pointing to where I'm~standing.
+item_use_55_Found_InFrontOfMe,It's right in front of me!
 item_use_658_disable,O Exp para Todos foi desativado.
 -------------------
 Move Names:

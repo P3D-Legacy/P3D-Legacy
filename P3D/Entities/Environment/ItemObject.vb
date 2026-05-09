@@ -1,4 +1,4 @@
-﻿Enum PickupTypes
+﻿Public Enum PickupTypes
     Item
     Money
     Coins
@@ -13,8 +13,8 @@ Public Class ItemObject
     Dim Animation As Animation = Nothing
 
     Dim LevelName As String = ""
-    Dim PickupType As PickupTypes = PickupTypes.Item
-    Dim PickupAmount As Integer = 1
+    Public PickupType As PickupTypes = PickupTypes.Item
+    Public PickupAmount As Integer = 1
     Dim Item As Item
     Dim ItemID As Integer = 0
     Dim checkedExistence As Boolean = False
@@ -44,6 +44,7 @@ Public Class ItemObject
             End If
             Me.Visible = False
             Me.Collision = False
+            Me.ActionValue = 1
         Else
             Me.PickupType = PickupTypes.Item
             If Me.AdditionalValue.Split(",").Count > 2 Then
@@ -310,7 +311,7 @@ Public Class ItemObject
     End Sub
 
     Public Function IsHiddenItem() As Boolean
-        If Me.Collision = False AndAlso Me.ActionValue = 1 AndAlso Me.PickupType = PickupTypes.Item Then
+        If Me.Collision = False AndAlso Me.ActionValue = 1 Then
             Return True
         Else
             Return False

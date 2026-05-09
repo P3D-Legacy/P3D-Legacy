@@ -3434,6 +3434,19 @@ item_6_only_custom_gamemodes,Dit voorwerp kan niet gebruikt~worden in deze SpelM
 Key Items:
 item_use_6,<Player.Name> stapte~van de Fiets af.
 item_use_54,Jouw Munten:~
+item_use_55_NoHiddenItems,Er zijn geen verborgen~voorwerpen in de buurt.
+item_use_55_Found_North,Hij wijst naar het noorden.
+item_use_55_Found_NorthWest,Hij wijst naar het~noordwesten.
+item_use_55_Found_NorthEast,Hij wijst naar het~noordoosten.
+item_use_55_Found_South,Hij wijst naar het zuiden.
+item_use_55_Found_SouthWest,Hij wijst naar het~zuidwesten.
+item_use_55_Found_SouthEast,Hij wijst naar het~zuidoosten.
+item_use_55_Found_West,Hij wijst naar het westen.
+item_use_55_Found_East,Hij wijst naar het oosten.
+item_use_55_Found_Down,Hij wijst naar beneden.
+item_use_55_Found_Up,Hij wijst naar boven.
+item_use_55_Found_Here,Hij wijst naar waar ik sta.
+item_use_55_Found_InFrontOfMe,Het ligt hier vlak voor me!
 item_use_658_disable,De Team-ervaringsdeler is~uitgezet.
 item_use_658_enable,De Team-ervaringsdeler is~aangezet.
 -------------------
