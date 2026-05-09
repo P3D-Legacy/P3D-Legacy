@@ -5,6 +5,8 @@
     Private Shared TextureResolutions As New Dictionary(Of String, Single)
     Public Shared ScriptTextureReplacements As New Dictionary(Of TextureSource, TextureSource)
 
+    Public Shared PokeModelScale As New Dictionary(Of String, Single)
+    Public Shared PokeModelRotation As New Dictionary(Of String, Vector3)
     Public Shared Sub Load(ByVal ContentPackFile As String, Optional IsScriptContent As Boolean = False)
         If System.IO.Directory.Exists(GameController.GamePath & "\ContentPacks") = True Then
             If System.IO.File.Exists(ContentPackFile) = True Then
@@ -17,11 +19,17 @@
                             End If
                         Case "pokemodelscale"
                             If IsScriptContent = False Then
-                                GameModeManager.PokeModelScale = CSng(Line.GetSplit(1, "|").Replace(".", GameController.DecSeparator))
+                                Dim foldername As String = ContentPackFile.ToLower.Replace(GameController.GamePath.ToLower & "\", "").Replace("\exceptions.dat", "")
+                                If ContentPackManager.PokeModelScale.ContainsKey(foldername) = False Then
+                                    ContentPackManager.PokeModelScale.Add(foldername, CSng(Line.GetSplit(1, "|").Replace(".", GameController.DecSeparator)))
+                                End If
                             End If
                         Case "pokemodelrotation"
                             If IsScriptContent = False Then
-                                GameModeManager.PokeModelRotation = New Vector3(CSng(Line.GetSplit(1, "|").GetSplit(0).Replace(".", GameController.DecSeparator)), 0, CSng(Line.GetSplit(1, "|").GetSplit(1).Replace(".", GameController.DecSeparator)))
+                                Dim foldername As String = ContentPackFile.ToLower.Replace(GameController.GamePath.ToLower & "\", "").Replace("\exceptions.dat", "")
+                                If ContentPackManager.PokeModelRotation.ContainsKey(foldername) = False Then
+                                    ContentPackManager.PokeModelRotation.Add(foldername, New Vector3(CSng(Line.GetSplit(1, "|").GetSplit(0).Replace(".", GameController.DecSeparator)), 0, CSng(Line.GetSplit(1, "|").GetSplit(1).Replace(".", GameController.DecSeparator))))
+                                End If
                             End If
                         Case Else
                             Select Case Line.CountSplits("|")
@@ -123,7 +131,7 @@
                     If RootDirectory.EndsWith("\") = True Then
                         RootDirectory = RootDirectory.Remove(RootDirectory.Length - 1, 1)
                     End If
-                    Return New ContentManager(Core.GameInstance.Services, gameMode.ContentPath.Remove(0, 1))
+                    Return New ContentManager(Core.GameInstance.Services, RootDirectory)
                 End If
             Next
         End If
@@ -149,6 +157,8 @@
         TextureReplacements.Clear()
         TextureResolutions.Clear()
         FilesExist.Clear()
+        PokeModelScale.Clear()
+        PokeModelRotation.Clear()
         MusicManager.Clear()
         SoundManager.Clear()
         ModelManager.Clear()

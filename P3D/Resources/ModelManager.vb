@@ -46,7 +46,74 @@ Public Class ModelManager
             Return False
         End If
     End Function
+    Public Shared Function PokeModelScale(ByVal Path As String) As Single
+        Dim cContent As ContentManager = ContentPackManager.GetContentManager(Path, ".xnb")
+        If cContent.RootDirectory = "Content" Then
+            If GameModeManager.ActiveGameMode.DirectoryName <> "Kolben" Then
+                Return 1.0F
+            End If
+        End If
+        If Path = "" Then
+            Return 1.0F
+        End If
 
+        If System.IO.File.Exists(GameController.GamePath & "\" & cContent.RootDirectory & "\" & Path & ".xnb") = True Then
+            If cContent.RootDirectory.ToLower.Contains("contentpacks\") Then
+
+                If ContentPackManager.PokeModelScale.ContainsKey(cContent.RootDirectory.ToLower) = True Then
+                    Return ContentPackManager.PokeModelScale(cContent.RootDirectory.ToLower)
+                Else
+                    Return 1.0F
+                End If
+            Else
+                Dim RootDirectory As String = GameModeManager.ActiveGameMode.ContentPath.Remove(0, 1)
+                If RootDirectory.EndsWith("\") = True Then
+                    RootDirectory = RootDirectory.Remove(RootDirectory.Length - 1, 1)
+                End If
+                If cContent.RootDirectory.ToLower.Contains(RootDirectory.ToLower) Then
+                    Return GameModeManager.ActiveGameMode.PokeModelScale
+                Else
+                    Return 1.0F
+                End If
+            End If
+        Else
+            Return 1.0F
+        End If
+    End Function
+    Public Shared Function PokeModelRotation(ByVal Path As String) As Vector3
+        Dim cContent As ContentManager = ContentPackManager.GetContentManager(Path, ".xnb")
+        If cContent.RootDirectory = "Content" Then
+            If GameModeManager.ActiveGameMode.DirectoryName <> "Kolben" Then
+                Return New Vector3(0)
+            End If
+        End If
+        If Path = "" Then
+            Return New Vector3(0)
+        End If
+
+        If System.IO.File.Exists(GameController.GamePath & "\" & cContent.RootDirectory & "\" & Path & ".xnb") = True Then
+            If cContent.RootDirectory.ToLower.Contains("contentpacks\") Then
+
+                If ContentPackManager.PokeModelRotation.ContainsKey(cContent.RootDirectory.ToLower) = True Then
+                    Return ContentPackManager.PokeModelRotation(cContent.RootDirectory.ToLower)
+                Else
+                    Return New Vector3(0)
+                End If
+            Else
+                Dim RootDirectory As String = GameModeManager.ActiveGameMode.ContentPath.Remove(0, 1)
+                If RootDirectory.EndsWith("\") = True Then
+                    RootDirectory = RootDirectory.Remove(RootDirectory.Length - 1, 1)
+                End If
+                If cContent.RootDirectory.ToLower.Contains(RootDirectory.ToLower) Then
+                    Return GameModeManager.ActiveGameMode.PokeModelRotation
+                Else
+                    Return New Vector3(0)
+                End If
+            End If
+        Else
+            Return New Vector3(0)
+        End If
+    End Function
     Public Shared Sub Clear()
         ModelList.Clear()
     End Sub

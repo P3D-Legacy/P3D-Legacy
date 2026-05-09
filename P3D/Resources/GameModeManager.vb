@@ -4,8 +4,6 @@ Public Class GameModeManager
     Private Shared GameModePointer As Integer = 0
     Public Shared Initialized As Boolean = False
     Public Shared ForceWaterSpeed As Integer = -1
-    Public Shared PokeModelScale As Single = 1
-    Public Shared PokeModelRotation As New Vector3(0, 0, 0)
 
     ''' <summary>
     ''' Loads (or reloads) the list of GameModes. The pointer also gets reset.
@@ -390,7 +388,7 @@ Public Class GameMode
     ''' <param name="SkinNames">The skin names for the new GameMode. Must be the same amount as SkinFiles and SkinColors.</param>
     ''' <param name="SkinGenders">The skin names for the new GameMode. Must be the same amount as SkinFiles and SkinColors.</param>
     Public Sub New(ByVal Name As String, ByVal Description As String, ByVal Version As String, ByVal Author As String, ByVal MapPath As String, ByVal ScriptPath As String, ByVal PokeFilePath As String, ByVal PokemonDataPath As String, ByVal ContentPath As String, ByVal LocalizationsPath As String, ByVal GameRules As List(Of GameRule), ByVal HardGameRules As List(Of GameRule), ByVal SuperHardGameRules As List(Of GameRule),
-                   ByVal StartMap As String, ByVal StartPosition As Vector3, ByVal StartRotation As Single, ByVal StartLocationName As String, ByVal StartDialogue As String, ByVal StartColor As Color, ByVal PokemonAppear As String, ByVal IntroMusic As String, ByVal IntroType As String, ByVal SkinColors As List(Of Color), ByVal SkinFiles As List(Of String), ByVal SkinNames As List(Of String), ByVal SkinGenders As List(Of String), ByVal StartYaw As Single, ByVal StartPitch As Single, Optional WaterSpeed As Integer = 8, Optional MasterShinyRate As Integer = 4096)
+                   ByVal StartMap As String, ByVal StartPosition As Vector3, ByVal StartRotation As Single, ByVal StartLocationName As String, ByVal StartDialogue As String, ByVal StartColor As Color, ByVal PokemonAppear As String, ByVal IntroMusic As String, ByVal IntroType As String, ByVal SkinColors As List(Of Color), ByVal SkinFiles As List(Of String), ByVal SkinNames As List(Of String), ByVal SkinGenders As List(Of String), ByVal StartYaw As Single, ByVal StartPitch As Single, Optional WaterSpeed As Integer = 4, Optional MasterShinyRate As Integer = 4096, Optional ByVal PokeModelScale As Single = 1.0F, Optional ByVal PokeModelRotation As Vector3 = Nothing)
         Me._name = Name
         Me._description = Description
         Me._version = Version
@@ -406,6 +404,11 @@ Public Class GameMode
         Me._superHardGameRules = SuperHardGameRules
         Me._waterspeed = WaterSpeed
         Me._masterShinyRate = MasterShinyRate
+
+        Me._pokeModelScale = PokeModelScale
+        If PokeModelRotation <> Nothing Then
+            Me._pokeModelRotation = PokeModelRotation
+        End If
 
         Me._startMap = StartMap
         Me._startPosition = StartPosition
@@ -559,6 +562,21 @@ Public Class GameMode
                                     Me._pokemonRange = {CInt(Value), CInt(Value) + 1}
                                 End If
                             End If
+                        Case "pokemodelscale"
+                            Me._pokeModelScale = CSng(Value.Replace(".", GameController.DecSeparator))
+                        Case "pokemodelrotation"
+                            Dim x As Single = CSng(Value.GetSplit(0, ",").Replace(".", GameController.DecSeparator))
+                            Dim y As Single = 0.0F
+                            If Value.Split(",").Count > 2 Then
+                                y = CSng(Value.GetSplit(1, ",").Replace(".", GameController.DecSeparator))
+                            End If
+                            Dim z As Single = 0.0F
+                            If Value.Split(",").Count > 2 Then
+                                z = CSng(Value.GetSplit(2, ",").Replace(".", GameController.DecSeparator))
+                            ElseIf Value.Split(",").Count > 1 Then
+                                z = CSng(Value.GetSplit(1, ",").Replace(".", GameController.DecSeparator))
+                            End If
+                            Me._pokeModelRotation = New Vector3(x, y, z)
                         Case "intromusic"
                             Me._introMusic = Value
                         Case "introtype"
@@ -1024,6 +1042,8 @@ Public Class GameMode
     Private _skinNames As New List(Of String)
     Private _skinGenders As New List(Of String)
     Private _pokemonRange() As Integer
+    Private _pokeModelScale As Single = 1.0F
+    Private _pokeModelRotation As New Vector3(0.0F)
 
     ''' <summary>
     ''' The start map for this GameMode.
@@ -1152,6 +1172,24 @@ Public Class GameMode
     Public ReadOnly Property PokemonRange() As Integer()
         Get
             Return Me._pokemonRange
+        End Get
+    End Property
+
+    ''' <summary>
+    ''' The scale for Pokémon models during battle for this GameMode.
+    ''' </summary>
+    Public ReadOnly Property PokeModelScale() As Single
+        Get
+            Return Me._pokeModelScale
+        End Get
+    End Property
+
+    ''' <summary>
+    ''' The rotation for Pokémon models during battle for this GameMode.
+    ''' </summary>
+    Public ReadOnly Property PokeModelRotation() As Vector3
+        Get
+            Return Me._pokeModelRotation
         End Get
     End Property
 
