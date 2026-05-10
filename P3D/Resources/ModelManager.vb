@@ -130,7 +130,13 @@ Public Class ModelManager
 
         If enableLight = True Then
             For Each mesh As ModelMesh In m.Meshes
-                For Each Effect As BasicEffect In mesh.Effects
+                For Each modelMeshPart As ModelMeshPart In mesh.MeshParts
+                    If modelMeshPart.Effect.GetType() = GetType(BasicEffect) Then
+                        Dim effect = New BasicEffectWithAlphaTest(CType(modelMeshPart.Effect, BasicEffect))
+                        modelMeshPart.Effect = effect
+                    End If
+                Next
+                For Each Effect As BasicEffectWithAlphaTest In mesh.Effects
                     Lighting.UpdateLighting(Effect, True)
 
                     Effect.DirectionalLight0.DiffuseColor = New Vector3(0.7)
@@ -148,8 +154,10 @@ Public Class ModelManager
             Next
         End If
 
+        Core.GraphicsDevice.SamplerStates(0) = SamplerState.PointWrap
         m.Draw(Matrix.CreateFromYawPitchRoll(cameraRotation.X, cameraRotation.Y, cameraRotation.Z) * Matrix.CreateScale(New Vector3(_scale)) * Matrix.CreateTranslation(modelPosition), Matrix.CreateLookAt(cameraPosition, modelPosition, Vector3.Up), Matrix.CreatePerspectiveFieldOfView(MathHelper.ToRadians(45.0F), Core.GraphicsDevice.Viewport.AspectRatio, 0.1F, 10000.0F))
 
+        Core.GraphicsDevice.SamplerStates(0) = Core.Sampler
         Core.GraphicsDevice.SetRenderTarget(Nothing)
 
         Return renderTarget

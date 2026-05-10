@@ -1084,12 +1084,14 @@ Public Class StorageSystemScreen
     Private Sub Draw3DModel(ByVal p As Pokemon, ByVal modelName As String)
         Dim propList = p.GetModelProperties()
 
-        Dim scale = propList.Item1 * 10
+        Dim scale = propList.Item1 * 10 * ModelManager.PokeModelScale(modelName)
         Dim position = New Vector3(propList.Item2, propList.Item3, propList.Item4)
 
         Dim roll = propList.Item5
 
-        Dim t = ModelManager.DrawModelToTexture(modelName, renderTarget, position, New Vector3(0, 10, 50), New Vector3(roll + modelRoll, 0, 0), scale, True)
+        Dim rotation As New Vector3(ModelManager.PokeModelRotation(modelName).Z + roll + modelRoll, ModelManager.PokeModelRotation(modelName).X, ModelManager.PokeModelRotation(modelName).Y)
+
+        Dim t = ModelManager.DrawModelToTexture(modelName, renderTarget, position, New Vector3(0, 10, 50), rotation, scale, True)
         Core.SpriteBatch.Draw(t, New Rectangle(192, 72, 1200, 680), Color.White)
     End Sub
 
