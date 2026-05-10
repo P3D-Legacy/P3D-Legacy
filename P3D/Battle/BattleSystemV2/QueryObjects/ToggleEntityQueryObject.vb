@@ -101,26 +101,28 @@
                             BV2Screen.OwnPokemonNPC.ModelPath = ""
                             BV2Screen.OwnPokemonNPC.Model = Nothing
                             BV2Screen.OwnPokemonNPC.Scale = New Vector3(1)
+                            BV2Screen.OwnPokemonNPC.Rotation = NPC.GetRotationFromInteger(BV2Screen.OwnPokemonNPC.faceRotation)
                             BV2Screen.OwnPokemonNPC.SetupSprite(_newTexture, "", False)
 
                         Case BattleEntities.OppPokemon
                             BV2Screen.OppPokemonNPC.ModelPath = ""
                             BV2Screen.OppPokemonNPC.Model = Nothing
                             BV2Screen.OppPokemonNPC.Scale = New Vector3(1)
+                            BV2Screen.OppPokemonNPC.Rotation = NPC.GetRotationFromInteger(BV2Screen.OppPokemonNPC.faceRotation)
                             BV2Screen.OppPokemonNPC.SetupSprite(_newTexture, "", False)
                     End Select
                 Case 2
                     Select Case Me._entity
                         Case BattleEntities.OwnPokemon
-                            BV2Screen.OwnPokemonNPC.Scale = New Vector3(BV2Screen.OwnPokemon.GetModelProperties().Item1) * ModelManager.MODELSCALE * ModelManager.PokeModelScale(BV2Screen.OwnPokemonNPC.ModelPath)
-                            BV2Screen.OwnPokemonNPC.Rotation = NPC.GetRotationFromInteger(BV2Screen.OwnPokemonNPC.faceRotation) + ModelManager.PokeModelRotation(BV2Screen.OwnPokemonNPC.ModelPath)
                             BV2Screen.OwnPokemonNPC.ModelPath = _newTexture
                             BV2Screen.OwnPokemonNPC.Model = ModelManager.GetModel(BV2Screen.OwnPokemonNPC.ModelPath)
+                            BV2Screen.OwnPokemonNPC.Scale = New Vector3(BV2Screen.OwnPokemon.GetModelProperties().Item1) * ModelManager.MODELSCALE * ModelManager.PokeModelScale(BV2Screen.OwnPokemonNPC.ModelPath)
+                            BV2Screen.OwnPokemonNPC.Rotation = NPC.GetRotationFromInteger(BV2Screen.OwnPokemonNPC.faceRotation) + ModelManager.PokeModelRotation(BV2Screen.OwnPokemonNPC.ModelPath)
                         Case BattleEntities.OppPokemon
-                            BV2Screen.OppPokemonNPC.Scale = New Vector3(BV2Screen.OppPokemon.GetModelProperties().Item1) * ModelManager.MODELSCALE * ModelManager.PokeModelScale(BV2Screen.OppPokemonNPC.ModelPath)
-                            BV2Screen.OppPokemonNPC.Rotation = NPC.GetRotationFromInteger(BV2Screen.OppPokemonNPC.faceRotation) + ModelManager.PokeModelRotation(BV2Screen.OppPokemonNPC.ModelPath)
                             BV2Screen.OppPokemonNPC.ModelPath = _newTexture
                             BV2Screen.OppPokemonNPC.Model = ModelManager.GetModel(BV2Screen.OppPokemonNPC.ModelPath)
+                            BV2Screen.OppPokemonNPC.Scale = New Vector3(BV2Screen.OppPokemon.GetModelProperties().Item1) * ModelManager.MODELSCALE * ModelManager.PokeModelScale(BV2Screen.OppPokemonNPC.ModelPath)
+                            BV2Screen.OppPokemonNPC.Rotation = NPC.GetRotationFromInteger(BV2Screen.OppPokemonNPC.faceRotation) + ModelManager.PokeModelRotation(BV2Screen.OppPokemonNPC.ModelPath)
                     End Select
             End Select
             _done = True

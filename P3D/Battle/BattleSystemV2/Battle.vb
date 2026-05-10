@@ -8585,7 +8585,6 @@ Namespace BattleSystem
 
                     ' Pokemon disappears
                     BallReturn.AnimationFade(Nothing, False, 1, 0, 1, 0)
-                    BallReturn.AnimationMove(Nothing, False, 0, 0.5, 0, 0.5, False, False, 2, 0,,,, 3)
 
                     ' Ball returns
                     BallReturn.AnimationPlaySound("Battle\Pokeball\Throw", 1, 0)

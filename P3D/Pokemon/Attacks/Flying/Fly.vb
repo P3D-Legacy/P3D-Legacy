@@ -216,10 +216,13 @@
 
             If fly = 2 Then
                 Dim MoveAnimation = New AnimationQueryObject(CurrentEntity, BattleFlip)
-
+                Dim ModelOffset As Single = 0.0F
+                If CurrentEntity.ModelPath <> "" Then
+                    ModelOffset += 0.5F
+                End If
                 MoveAnimation.AnimationPlaySound("Battle\Attacks\Flying\Fly_Hit", 0, 0)
                 Dim FlyEntity = MoveAnimation.SpawnEntity(New Vector3(-2, 0.9, 0), TextureManager.GetTexture("Textures\Battle\Flying\Fly", New Rectangle(0, 0, 32, 32), ""), New Vector3(0.5F), 1.0F)
-                MoveAnimation.AnimationMove(FlyEntity, True, 0.0, 0.0, 0.0, 0.07, False, False, 0.0, 0.0,,, 0.035, 3)
+                MoveAnimation.AnimationMove(FlyEntity, True, 0.0, 0.0F + ModelOffset, 0.0, 0.07, False, False, 0.0, 0.0,,, 0.035, 3)
 
                 If BattleFlip = False Then
                     MoveAnimation.AnimationFade(BattleScreen.OwnPokemonNPC, False, 1, 1.0F, 0, 0)

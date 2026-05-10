@@ -262,17 +262,9 @@
         Dim delay As Single = 2.0F
 
         Public Sub FinishOppSwitchAnimation(BattleScreen As BattleScreen)
-            If BattleScreen.OppPokemonNPC.Model IsNot Nothing Then
-                BattleScreen.OppPokemonNPC.Position.Y = 0 + BattleScreen.BattleMapOffset.Y - 0.45F
-            Else
-                BattleScreen.OppPokemonNPC.Position.Y = 0 + BattleScreen.BattleMapOffset.Y
-            End If
-
-            BattleScreen.Battle.ChangeCameraAngle(1, False, BattleScreen)
-
-            BattleScreen.OppPokemonNPC.Position.Y = 0 + BattleScreen.BattleMapOffset.Y
 
             Dim oppModel As String = BattleScreen.GetModelName(False)
+
             If oppModel = "" Then
                 BattleScreen.BattleQuery.Add(New ToggleEntityQueryObject(True, ToggleEntityQueryObject.BattleEntities.OppPokemon, PokemonForms.GetOverworldSpriteName(BattleScreen.OppPokemon, True), -1, -1, 0, 1))
             Else
@@ -287,12 +279,15 @@
             End If
 
             BattleScreen.BattleQuery.Add(New ToggleEntityQueryObject(True, ToggleEntityQueryObject.BattleEntities.OppPokemon, 1, -1, -1, -1, -1))
+            If Core.Player.ShowBattleAnimations = 0 OrElse BattleScreen.IsPVPBattle = True Then
+                BattleScreen.BattleQuery.Add(New PlaySoundQueryObject(BattleScreen.OppPokemon.Number.ToString(), True))
+            End If
             BattleScreen.BattleQuery.Add(New TextQueryObject(BattleScreen.Trainer.Name & ": ""Go, " & BattleScreen.OppPokemon.GetDisplayName() & "!"""))
 
             Dim BallThrow As AnimationQueryObject = New AnimationQueryObject(BattleScreen.OppPokemonNPC, False)
+
             If Core.Player.ShowBattleAnimations <> 0 AndAlso BattleScreen.IsPVPBattle = False Then
                 ' Ball is thrown
-                BallThrow.AnimationMove(Nothing, False, 0, 0.5, 0, 0.5, False, False, 0, 0,,,, 3)
 
                 BallThrow.AnimationPlaySound("Battle\Pokeball\Throw", 0, 0)
                 Dim BallThrowEntity = BallThrow.SpawnEntity(New Vector3(2, -0.15, 0), BattleScreen.OppPokemon.CatchBall.Texture, New Vector3(0.3F), 1.0F)
@@ -314,21 +309,19 @@
                     BallThrow.AnimationMove(SmokeEntity, True, SmokeDestination.X, SmokeDestination.Y, SmokeDestination.Z, SmokeSpeed, False, False, 3.0F, 0.0F)
                     Threading.Interlocked.Increment(SmokeSpawned)
                 Loop While SmokeSpawned <= 38
+            Else
+                BattleScreen.Battle.ChangeCameraAngle(1, False, BattleScreen)
             End If
-
+            Dim crySuffixOpp As String = PokemonForms.GetCrySuffix(BattleScreen.OppPokemon)
             If Core.Player.ShowBattleAnimations <> 0 AndAlso BattleScreen.IsPVPBattle = False Then
                 ' Pokemon appears
                 BallThrow.AnimationSetPosition(Nothing, False, 15, CSng(0.5), 13, 0, 0)
                 BallThrow.AnimationFade(Nothing, False, 1, 1, 3, 0)
-                BallThrow.AnimationPlaySound(CStr(BattleScreen.OppPokemon.Number), 4, 0,, True)
+                BallThrow.AnimationPlaySound(CStr(BattleScreen.OppPokemon.Number), 4, 0,, True, crySuffixOpp)
                 '  Pokémon falls down
                 BallThrow.AnimationMove(Nothing, False, 0, -0.5F + SendPokemonPositionOffsetY, 0, 0.05F, False, False, 5, 0,,,, 3)
-            Else
-                ' Pokemon appears
-                BallThrow.AnimationFade(Nothing, False, 1, 1, 0, 0)
-                BallThrow.AnimationPlaySound(CStr(BattleScreen.OppPokemon.Number), 0, 0,, True)
+                BattleScreen.BattleQuery.Add(BallThrow)
             End If
-            BattleScreen.BattleQuery.Add(BallThrow)
 
             BattleScreen.TrainerSendOutOpp += 1
             If BattleScreen.Trainer.CountUseablePokemon > 1 Then
