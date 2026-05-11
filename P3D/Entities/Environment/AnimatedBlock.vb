@@ -85,7 +85,9 @@
     End Sub
 
     Public Overrides Sub ClickFunction()
-        Me.Surf()
+        If CurrentScreen.Identification = Screen.Identifications.OverworldScreen Then
+            Me.Surf()
+        End If
     End Sub
 
     Public Overrides Function WalkAgainstFunction() As Boolean
