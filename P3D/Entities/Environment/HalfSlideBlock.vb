@@ -21,10 +21,14 @@
 
             Dim checkPosition As Vector3 = Screen.Camera.GetForwardMovedPosition()
             checkPosition.Y = checkPosition.Y.ToInteger()
+            Dim checkBlockedPosition As Vector3 = Screen.Camera.GetForwardMovedPosition()
+            checkBlockedPosition.Y = checkBlockedPosition.Y.ToInteger() + 1
 
             Dim foundSteps As Boolean = True
+            Dim EndCollision As Boolean = False
             While foundSteps = True
                 Dim e As Entity = GetEntity(Screen.Level.Entities, checkPosition, True, {GetType(HalfSlideBlock), GetType(ScriptBlock), GetType(WarpBlock)})
+                Dim b As Entity = GetEntity(Screen.Level.Entities, checkBlockedPosition, True, {GetType(NPC), GetType(StrengthRock)})
                 If Not e Is Nothing Then
                     If e.EntityID = "HalfSlideBlock" Then
                         Steps += 2
@@ -32,6 +36,11 @@
                         checkPosition.Z += Screen.Camera.GetMoveDirection().Z * 2
                         If Steps Mod 2 = 0 Then
                             checkPosition.Y += 1
+                        End If
+                        checkBlockedPosition.X += Screen.Camera.GetMoveDirection().X * 2
+                        checkBlockedPosition.Z += Screen.Camera.GetMoveDirection().Z * 2
+                        If Steps Mod 2 = 0 Then
+                            checkBlockedPosition.Y += 1
                         End If
                     Else
                         If e.EntityID = "ScriptBlock" Then
@@ -42,41 +51,52 @@
                         foundSteps = False
                     End If
                 Else
+                    If b IsNot Nothing Then
+                        If b.Collision = True Then
+                            EndCollision = True
+                        End If
+                    End If
                     foundSteps = False
                 End If
             End While
 
-            Screen.Level.OverworldPokemon.Visible = False
-            Screen.Level.OverworldPokemon.warped = True
+            If EndCollision = False Then
+                Screen.Level.OverworldPokemon.Visible = False
+                Screen.Level.OverworldPokemon.warped = True
 
-            Dim walkSpeed As Single = 1.0F
-            If Screen.Camera.Speed <> 0.04F Then
-                walkSpeed = Screen.Camera.Speed / 0.04F
-            End If
+                Dim walkSpeed As Single = 1.0F
+                If Screen.Camera.Speed <> 0.04F Then
+                    walkSpeed = Screen.Camera.Speed / 0.04F
+                End If
 
-            Dim s As String = "version=2" & Environment.NewLine &
-                "@player.stopmovement" & Environment.NewLine &
-                "@player.setmovement(" & Screen.Camera.GetMoveDirection().X & ",0.5," & Screen.Camera.GetMoveDirection().Z & ")" & Environment.NewLine &
-                "@player.setspeed(" & walkSpeed & ")" & Environment.NewLine &
-                "@player.move(" & Steps & ")" & Environment.NewLine &
-                "@player.setmovement(" & Screen.Camera.GetMoveDirection().X & ",0," & Screen.Camera.GetMoveDirection().Z & ")" & Environment.NewLine &
-                "@overworldpokemon.hide" & Environment.NewLine &
-                "@player.move(1)" & Environment.NewLine &
-                "@overworldpokemon.hide" & Environment.NewLine &
-                "@player.allowmovement" & Environment.NewLine
+                Dim s As String = "version=2" & Environment.NewLine &
+                    "@player.stopmovement" & Environment.NewLine &
+                    "@player.setmovement(" & Screen.Camera.GetMoveDirection().X & ",0.5," & Screen.Camera.GetMoveDirection().Z & ")" & Environment.NewLine &
+                    "@player.setspeed(" & walkSpeed & ")" & Environment.NewLine &
+                    "@player.move(" & Steps & ")" & Environment.NewLine &
+                    "@player.setmovement(" & Screen.Camera.GetMoveDirection().X & ",0," & Screen.Camera.GetMoveDirection().Z & ")" & Environment.NewLine &
+                    "@overworldpokemon.hide" & Environment.NewLine &
+                    "@player.move(1)" & Environment.NewLine &
+                    "@overworldpokemon.hide" & Environment.NewLine &
+                    "@player.allowmovement" & Environment.NewLine
 
-            If Not Me.TempScriptEntity Is Nothing Then
-                s &= GetScriptStartLine(Me.TempScriptEntity) & Environment.NewLine
-                Me.TempScriptEntity = Nothing
-            End If
+                If Not Me.TempScriptEntity Is Nothing Then
+                    s &= GetScriptStartLine(Me.TempScriptEntity) & Environment.NewLine
+                    Me.TempScriptEntity = Nothing
+                End If
 
-            s &= ":end"
+                s &= ":end"
 
-            CType(Core.CurrentScreen, OverworldScreen).ActionScript.StartScript(s, 2, False)
-            If CType(Core.CurrentScreen, OverworldScreen).ActionScript.IsReady = True And CType(Screen.Camera, OverworldCamera).PreventMovement = True Then
+                CType(Core.CurrentScreen, OverworldScreen).ActionScript.StartScript(s, 2, False)
+                If CType(Core.CurrentScreen, OverworldScreen).ActionScript.IsReady = True And CType(Screen.Camera, OverworldCamera).PreventMovement = True Then
+                    CType(Screen.Camera, OverworldCamera).PreventMovement = False
+                End If
+                Return True
+            Else
                 CType(Screen.Camera, OverworldCamera).PreventMovement = False
+                CType(Screen.Camera, OverworldCamera).DidWalkAgainst = True
+                Return True
             End If
-            Return True
         Else
             CType(Screen.Camera, OverworldCamera).PreventMovement = False
             Return True
@@ -125,10 +145,14 @@
 
             Dim checkPosition As Vector3 = Screen.Camera.GetForwardMovedPosition()
             checkPosition.Y = checkPosition.Y.ToInteger() - 1
+            Dim checkBlockedPosition As Vector3 = Screen.Camera.GetForwardMovedPosition()
+            checkBlockedPosition.Y = checkBlockedPosition.Y.ToInteger()
 
             Dim foundSteps As Boolean = True
+            Dim EndCollision As Boolean = False
             While foundSteps = True
                 Dim e As Entity = GetEntity(Screen.Level.Entities, checkPosition, True, {GetType(HalfSlideBlock), GetType(ScriptBlock), GetType(WarpBlock)})
+                Dim b As Entity = GetEntity(Screen.Level.Entities, checkBlockedPosition, True, {GetType(NPC), GetType(StrengthRock)})
                 If Not e Is Nothing Then
                     If e.EntityID = "HalfSlideBlock" Then
                         Steps += 2
@@ -136,6 +160,11 @@
                         checkPosition.Z += Screen.Camera.GetMoveDirection().Z
                         If Steps Mod 2 = 0 Then
                             checkPosition.Y -= 1
+                        End If
+                        checkBlockedPosition.X += Screen.Camera.GetMoveDirection().X
+                        checkBlockedPosition.Z += Screen.Camera.GetMoveDirection().Z
+                        If Steps Mod 2 = 0 Then
+                            checkBlockedPosition.Y -= 1
                         End If
                     Else
                         If e.EntityID = "ScriptBlock" Then
@@ -146,38 +175,49 @@
                         foundSteps = False
                     End If
                 Else
+                    If b IsNot Nothing Then
+                        If b.Collision = True Then
+                            EndCollision = True
+                        End If
+                    End If
                     foundSteps = False
                 End If
             End While
 
-            Screen.Level.OverworldPokemon.Visible = False
-            Screen.Level.OverworldPokemon.warped = True
+            If EndCollision = False Then
+                Screen.Level.OverworldPokemon.Visible = False
+                Screen.Level.OverworldPokemon.warped = True
 
-            Dim walkSpeed As Single = 1.0F
-            If Screen.Camera.Speed <> 0.04F Then
-                walkSpeed = Screen.Camera.Speed / 0.04F
-            End If
+                Dim walkSpeed As Single = 1.0F
+                If Screen.Camera.Speed <> 0.04F Then
+                    walkSpeed = Screen.Camera.Speed / 0.04F
+                End If
 
-            Dim s As String = "version=2" & Environment.NewLine &
-            "@player.stopmovement" & Environment.NewLine &
-            "@player.setmovement(" & Screen.Camera.GetMoveDirection().X & ",0," & Screen.Camera.GetMoveDirection().Z & ")" & Environment.NewLine &
-            "@player.setspeed(" & walkSpeed & ")" & Environment.NewLine &
-            "@player.move(1)" & Environment.NewLine &
-            "@player.setmovement(" & Screen.Camera.GetMoveDirection().X & ",-0.5," & Screen.Camera.GetMoveDirection().Z & ")" & Environment.NewLine &
-            "@player.move(" & Steps & ")" & Environment.NewLine &
-            "@overworldpokemon.hide" & Environment.NewLine &
-            "@player.allowmovement" & Environment.NewLine
+                Dim s As String = "version=2" & Environment.NewLine &
+                "@player.stopmovement" & Environment.NewLine &
+                "@player.setmovement(" & Screen.Camera.GetMoveDirection().X & ",0," & Screen.Camera.GetMoveDirection().Z & ")" & Environment.NewLine &
+                "@player.setspeed(" & walkSpeed & ")" & Environment.NewLine &
+                "@player.move(1)" & Environment.NewLine &
+                "@player.setmovement(" & Screen.Camera.GetMoveDirection().X & ",-0.5," & Screen.Camera.GetMoveDirection().Z & ")" & Environment.NewLine &
+                "@player.move(" & Steps & ")" & Environment.NewLine &
+                "@overworldpokemon.hide" & Environment.NewLine &
+                "@player.allowmovement" & Environment.NewLine
 
-            If Not Me.TempScriptEntity Is Nothing Then
-                s &= GetScriptStartLine(Me.TempScriptEntity) & Environment.NewLine
-                Me.TempScriptEntity = Nothing
-            End If
+                If Not Me.TempScriptEntity Is Nothing Then
+                    s &= GetScriptStartLine(Me.TempScriptEntity) & Environment.NewLine
+                    Me.TempScriptEntity = Nothing
+                End If
 
-            s &= ":end"
+                s &= ":end"
 
-            CType(Core.CurrentScreen, OverworldScreen).ActionScript.StartScript(s, 2, False)
-            If CType(Core.CurrentScreen, OverworldScreen).ActionScript.IsReady = True And CType(Screen.Camera, OverworldCamera).PreventMovement = True Then
+                CType(Core.CurrentScreen, OverworldScreen).ActionScript.StartScript(s, 2, False)
+                If CType(Core.CurrentScreen, OverworldScreen).ActionScript.IsReady = True And CType(Screen.Camera, OverworldCamera).PreventMovement = True Then
+                    CType(Screen.Camera, OverworldCamera).PreventMovement = False
+                End If
+
+            Else
                 CType(Screen.Camera, OverworldCamera).PreventMovement = False
+                CType(Screen.Camera, OverworldCamera).DidWalkAgainst = True
             End If
         Else
             CType(Screen.Camera, OverworldCamera).PreventMovement = False
