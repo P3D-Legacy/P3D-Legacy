@@ -14,6 +14,7 @@
     Public Overrides Sub Initialize()
         MyBase.Initialize()
 
+        Me.EntityID = "ScriptBlock"
         Me.TriggerID = Me.ActionValue
         If Me.AdditionalValue.Contains(",") Then
             Dim Data() As String = Me.AdditionalValue.Split(CChar(","))

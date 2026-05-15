@@ -18,7 +18,7 @@
             For Each p As Pokemon In Core.Player.Pokemons
                 If p.IsEgg() = False Then
                     For Each a As BattleSystem.Attack In p.Attacks
-                        If a.Name = "Headbutt" Then
+                        If a.Name = Localization.GetString("move_name_29", "Headbutt") Then
                             pName = p.GetDisplayName()
                             Exit For
                         End If
@@ -44,7 +44,7 @@
 
             For Each p As Pokemon In Core.Player.Pokemons
                 For Each a As BattleSystem.Attack In p.Attacks
-                    If a.Name = "Headbutt" Then
+                    If a.Name = Localization.GetString("move_name_29", "Headbutt") Then
                         pName = p.GetDisplayName()
                         Exit For
                     End If

@@ -19,7 +19,7 @@
             For Each p As Pokemon In Core.Player.Pokemons
                 If p.IsEgg() = False Then
                     For Each a As BattleSystem.Attack In p.Attacks
-                        If a.Name = "Strength" Then
+                        If a.Name = Localization.GetString("move_name_70", "Strength") Then
                             pName = p.GetDisplayName()
                             Exit For
                         End If
@@ -49,7 +49,7 @@
             For Each p As Pokemon In Core.Player.Pokemons
                 If p.IsEgg() = False Then
                     For Each a As BattleSystem.Attack In p.Attacks
-                        If a.Name = "Strength" Then
+                        If a.Name = Localization.GetString("move_name_70", "Strength") Then
                             useP = p
                             Exit For
                         End If
@@ -117,7 +117,7 @@
 
         For Each Entity As Entity In Screen.Level.Entities
             If Entity.boundingBox.Contains(newPosition) = ContainmentType.Contains Then
-                If Entity.Collision = True Then
+                If Entity.Collision = True OrElse Entity.EntityID.ToLower = "scriptblock" AndAlso Entity.ActionValue = 0 Then
                     Return False
                 End If
             End If

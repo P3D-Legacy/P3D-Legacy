@@ -101,7 +101,7 @@
     Private Function GetDivePokemon() As String
         For Each p As Pokemon In Core.Player.Pokemons
             For Each a As BattleSystem.Attack In p.Attacks
-                If a.Name.ToLower() = "dive" Then
+                If a.Name = Localization.GetString("move_name_291", "Dive") Then
                     Return p.GetDisplayName()
                 End If
             Next

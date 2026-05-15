@@ -34,7 +34,7 @@ Namespace BattleSystem
             If own = True Then
                 If BattleScreen.FieldEffects.OwnUsedRandomMove = True Then
                     For Each a As Attack In Pokemon.Attacks
-                        If a.Name.ToLower = "metronome" OrElse a.IsGameModeMove AndAlso a.gmUseRandomMove = True Then
+                        If a.Name = Localization.GetString("move_name_118", "Metronome") OrElse a.IsGameModeMove AndAlso a.gmUseRandomMove = True Then
                             If a.CurrentPP > 0 Then
                                 a.CurrentPP -= 1
                                 Exit For
@@ -44,7 +44,7 @@ Namespace BattleSystem
                 End If
                 If BattleScreen.FieldEffects.OwnUsedMirrorMove = True Then
                     For Each a As Attack In Pokemon.Attacks
-                        If a.Name.ToLower = "mirror move" Then
+                        If a.Name = Localization.GetString("move_name_119", "Mirror Move") Then
                             If a.CurrentPP > 0 Then
                                 a.CurrentPP -= 1
                                 Exit For
@@ -58,7 +58,7 @@ Namespace BattleSystem
             Else
                 If BattleScreen.FieldEffects.OppUsedRandomMove = True Then
                     For Each a As Attack In Pokemon.Attacks
-                        If a.Name.ToLower = "metronome" OrElse a.IsGameModeMove AndAlso a.gmUseRandomMove = True Then
+                        If a.Name = Localization.GetString("move_name_118", "Metronome") OrElse a.IsGameModeMove AndAlso a.gmUseRandomMove = True Then
                             If a.CurrentPP > 0 Then
                                 a.CurrentPP -= 1
                                 Exit For
@@ -68,7 +68,7 @@ Namespace BattleSystem
                 End If
                 If BattleScreen.FieldEffects.OppUsedMirrorMove = True Then
                     For Each a As Attack In Pokemon.Attacks
-                        If a.Name.ToLower = "mirror move" Then
+                        If a.Name = Localization.GetString("move_name_119", "Mirror Move") Then
                             If a.CurrentPP > 0 Then
                                 a.CurrentPP -= 1
                                 Exit For

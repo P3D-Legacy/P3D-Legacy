@@ -1607,7 +1607,7 @@
 
                 If p.IsEgg() = False Then
                     For Each a As BattleSystem.Attack In p.Attacks
-                        If a.Name.ToLower() = "surf" Then
+                        If a.Name = Localization.GetString("move_name_57", "Surf") Then
                             Return i
                         End If
                     Next

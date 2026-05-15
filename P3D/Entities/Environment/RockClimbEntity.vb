@@ -44,7 +44,7 @@
         For Each teamPokemon As Pokemon In Core.Player.Pokemons
             If teamPokemon.IsEgg() = False Then
                 For Each a As BattleSystem.Attack In teamPokemon.Attacks
-                    If a.Name.ToLower() = "rock climb" Then
+                    If a.Name = Localization.GetString("move_name_431", "Rock Climb") Then
                         Return teamPokemon
                     End If
                 Next

@@ -94,7 +94,7 @@
         For Each p As Pokemon In Core.Player.Pokemons
             If p.IsEgg() = False Then
                 For Each a As BattleSystem.Attack In p.Attacks
-                    If a.Name.ToLower() = "whirlpool" Then
+                    If a.Name = Localization.GetString("move_name_250", "Whirlpool") Then
                         Return p.GetDisplayName()
                     End If
                 Next
