@@ -77,7 +77,7 @@
                     Next
                     If TargetMoveIndex <> -1 And HasDisabledMove = False Then
                         Target.Attacks(TargetMoveIndex).Disabled = 4
-                        BattleScreen.BattleQuery.Add(New TextQueryObject(Target.GetDisplayName() & "'s " & a.Name & " was Disabled!"))
+                        BattleScreen.BattleQuery.Add(New TextQueryObject(Target.GetDisplayName() & "'s " & Target.Attacks(TargetMoveIndex).Name & " was Disabled!"))
                     Else
                         BattleScreen.BattleQuery.Add(New TextQueryObject(Me.Name & " failed!"))
                     End If
