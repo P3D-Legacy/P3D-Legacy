@@ -2269,7 +2269,7 @@ Public Class Pokemon
                     'Compound eyes ability:
                     If Core.Player.Pokemons.Count > 0 Then
                         If Core.Player.Pokemons(0).Ability.Name.ToLower() = "compound eyes" Then
-                            usedWildItems = Abilities.Compoundeyes.ConvertItemChances(usedWildItems)
+                            usedWildItems = Abilities.CompoundEyes.ConvertItemChances(usedWildItems)
                         End If
                     End If
 

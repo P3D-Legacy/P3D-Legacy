@@ -66,7 +66,7 @@
             Case 13
                 Return New Abilities.CloudNine
             Case 14
-                Return New Abilities.Compoundeyes
+                Return New Abilities.CompoundEyes
             Case 15
                 Return New Abilities.Insomnia
             Case 16

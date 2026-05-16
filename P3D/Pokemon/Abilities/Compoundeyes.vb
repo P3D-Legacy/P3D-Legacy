@@ -1,11 +1,11 @@
 Namespace Abilities
 
-    Public Class Compoundeyes
+    Public Class CompoundEyes
 
         Inherits Ability
 
         Public Sub New()
-            MyBase.New(14, "Compoundeyes", "The Pokémon's accuracy is boosted.")
+            MyBase.New(14, "Compound Eyes", "The Pokémon's accuracy is boosted.")
         End Sub
 
         Public Shared Function ConvertItemChances(ByVal WildItems As Dictionary(Of Integer, String)) As Dictionary(Of Integer, String)

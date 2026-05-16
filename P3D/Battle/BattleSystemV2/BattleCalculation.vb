@@ -529,7 +529,7 @@
             End If
 
             Select Case p.Ability.Name.ToLower()
-                Case "compoundeyes"
+                Case "compound eyes"
                     result *= 1.3F
                 Case "victory star"
                     result *= 1.1F

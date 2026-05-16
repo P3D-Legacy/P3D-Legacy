@@ -31706,7 +31706,7 @@
     <Compile Include="Pokemon\Abilities\CloudNine.vb" />
     <Compile Include="Pokemon\Abilities\ColorChange.vb" />
     <Compile Include="Pokemon\Abilities\Competitive.vb" />
-    <Compile Include="Pokemon\Abilities\Compoundeyes.vb" />
+    <Compile Include="Pokemon\Abilities\CompoundEyes.vb" />
     <Compile Include="Pokemon\Abilities\Contrary.vb" />
     <Compile Include="Pokemon\Abilities\CursedBody.vb" />
     <Compile Include="Pokemon\Abilities\CuteCharm.vb" />
