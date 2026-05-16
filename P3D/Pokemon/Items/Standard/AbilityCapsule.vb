@@ -25,7 +25,6 @@ Namespace Items.Standard
         End Sub
 
         Public Overrides Function UseOnPokemon(ByVal PokeIndex As Integer) As Boolean
-            Dim currentAbility As Integer = -1
 
             Dim p As Pokemon = Core.Player.Pokemons(PokeIndex)
 
@@ -34,28 +33,22 @@ Namespace Items.Standard
                 Return False
             End If
 
-            For i = 0 To p.NewAbilities.Count - 1
-                If p.Ability.ID = p.NewAbilities(i).ID Then
-                    currentAbility = i
-                    Exit For
-                End If
-            Next
-
-            If currentAbility = -1 Then
+            If p.AbilitySlot = "H" Or p.AbilitySlot = "C" Or StringHelper.IsNumeric(p.AbilitySlot) = True Then
                 Screen.TextBox.Show("You cannot use this on~" & p.GetDisplayName() & ".")
                 Return False
             Else
                 Dim oldAbilityName As String = p.Ability.Name
 
-                Dim newAbility As Integer = currentAbility
-                While newAbility = currentAbility
-                    newAbility = Core.Random.Next(0, p.NewAbilities.Count)
-                End While
-
-                p.Ability = Ability.GetAbilityByID(p.NewAbilities(newAbility).ID)
+                If p.AbilitySlot = "A" Then
+                    p.AbilitySlot = "B"
+                Else
+                    p.AbilitySlot = "A"
+                End If
+                Dim newAbilityName As String = p.Ability.Name
+                p._ability = p.Ability
                 p.SetOriginalAbility()
 
-                Screen.TextBox.Show(p.GetDisplayName() & " forgot how~to use " & oldAbilityName & ".*It learned~" & p.NewAbilities(newAbility).Name & " instead." & RemoveItem())
+                Screen.TextBox.Show(p.GetDisplayName() & " forgot how~to use " & oldAbilityName & ".*It learned~" & newAbilityName & " instead." & RemoveItem())
                 Return True
             End If
         End Function
