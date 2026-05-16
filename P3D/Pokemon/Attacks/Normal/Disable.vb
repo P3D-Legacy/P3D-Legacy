@@ -64,12 +64,23 @@
             End If
             If LastMove IsNot Nothing Then
                 If LastMove.Name.ToLower <> "struggle" AndAlso LastMove.Disabled = 0 Then
+                    Dim HasDisabledMove = False
+                    Dim TargetMoveIndex As Integer = -1
                     For Each a As BattleSystem.Attack In Target.Attacks
+                        If a.Disabled > 0 Then
+                            HasDisabledMove = True
+                            Exit For
+                        End If
                         If a.ID = LastMove.ID Then
-                            a.Disabled = 4
-                            BattleScreen.BattleQuery.Add(New TextQueryObject(Target.GetDisplayName() & "'s " & a.Name & " was Disabled!"))
+                            TargetMoveIndex = a.ID
                         End If
                     Next
+                    If TargetMoveIndex <> -1 And HasDisabledMove = False Then
+                        Target.Attacks(TargetMoveIndex).Disabled = 4
+                        BattleScreen.BattleQuery.Add(New TextQueryObject(Target.GetDisplayName() & "'s " & a.Name & " was Disabled!"))
+                    Else
+                        BattleScreen.BattleQuery.Add(New TextQueryObject(Me.Name & " failed!"))
+                    End If
                 Else
                     BattleScreen.BattleQuery.Add(New TextQueryObject(Me.Name & " failed!"))
                 End If
