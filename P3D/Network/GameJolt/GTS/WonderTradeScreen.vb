@@ -143,7 +143,7 @@
                         If p.Item Is Nothing Then
                             Core.SpriteBatch.DrawString(FontManager.MainFont, "None", New Vector2(CInt(Core.windowSize.Width / 2 + 60), 355), Color.White)
                         Else
-                            Core.SpriteBatch.DrawString(FontManager.MainFont, p.Item.Name, New Vector2(CInt(Core.windowSize.Width / 2 + 60), 355), Color.White)
+                            Core.SpriteBatch.DrawString(FontManager.MainFont, p.Item.OneLineName, New Vector2(CInt(Core.windowSize.Width / 2 + 60), 355), Color.White)
                         End If
                     End If
                 Case ScreenStates.Trading

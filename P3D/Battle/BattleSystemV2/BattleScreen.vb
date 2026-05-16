@@ -1402,7 +1402,7 @@ nextIndex:
                             If ItemReturnScript <> "@Text.Show(" Then
                                 ItemReturnScript &= "*"
                             End If
-                            ItemReturnScript &= Core.Player.Name & " received~" & p.OriginalItem.Name & "*and gave it back to~" & p.GetDisplayName & "!"
+                            ItemReturnScript &= Core.Player.Name & " received~" & p.OriginalItem.OneLineName & "*and gave it back to~" & p.GetDisplayName & "!"
                             p.OriginalItem = Nothing
                         Else
                             If p.Item IsNot Nothing Then
@@ -1481,7 +1481,7 @@ nextIndex:
                                                     ItemReturnScript &= "*"
                                                 End If
 
-                                                ItemReturnScript &= Core.Player.Name & " gave the~" & p.Item.Name & " back to~" & p.GetDisplayName & "!"
+                                                ItemReturnScript &= Core.Player.Name & " gave the~" & p.Item.OneLineName & " back to~" & p.GetDisplayName & "!"
                                                 Core.Player.Pokemons(OtherIndex).Item = Nothing
                                             Else
                                                 If OtherOriginalItemID <> "" AndAlso ItemID = OtherOriginalItemID Then
@@ -1507,7 +1507,7 @@ nextIndex:
                                                         ItemReturnScript &= "*"
                                                     End If
 
-                                                    ItemReturnScript &= Core.Player.Name & " gave the~" & p.Item.Name & " back to~" & p.GetDisplayName & "~and gave the " & Core.Player.Pokemons(OtherIndex).Item.Name & "~back to " & Core.Player.Pokemons(OtherIndex).GetDisplayName & "!"
+                                                    ItemReturnScript &= Core.Player.Name & " gave the~" & p.Item.OneLineName & " back to~" & p.GetDisplayName & "~and gave the " & Core.Player.Pokemons(OtherIndex).Item.OneLineName & "~back to " & Core.Player.Pokemons(OtherIndex).GetDisplayName & "!"
                                                 Else
                                                     If p.Item.IsGameModeItem = True Then
                                                         Core.Player.Inventory.AddItem(p.Item.gmID, 1)
@@ -1520,7 +1520,7 @@ nextIndex:
                                                     If ItemReturnScript <> "" Then
                                                         ItemReturnScript &= ")" & Environment.NewLine
                                                     End If
-                                                    ItemReturnScript &= "@Sound.Play(Receive_Item)" & Environment.NewLine & "@Text.Show(" & Core.Player.Name & " found~" & p.Item.Name & "!*" & Core.Player.Inventory.GetMessageReceive(p.Item, 1)
+                                                    ItemReturnScript &= "@Sound.Play(Receive_Item)" & Environment.NewLine & "@Text.Show(" & Core.Player.Name & " found~" & p.Item.OneLineName & "!*" & Core.Player.Inventory.GetMessageReceive(p.Item, 1)
 
                                                     p.Item = Core.Player.Pokemons(OtherIndex).Item
                                                     Core.Player.Pokemons(OtherIndex).Item = Nothing
@@ -1566,7 +1566,7 @@ nextIndex:
                                                 ItemReturnScript &= "*"
                                             End If
 
-                                            ItemReturnScript &= Core.Player.Name & " found~" & p.OriginalItem.Name & "*and gave it back to~" & p.GetDisplayName & "!"
+                                            ItemReturnScript &= Core.Player.Name & " found~" & p.OriginalItem.OneLineName & "*and gave it back to~" & p.GetDisplayName & "!"
                                             p.OriginalItem = Nothing
                                         Else
                                             If p.Item.IsGameModeItem = True Then
@@ -1580,7 +1580,7 @@ nextIndex:
                                             If ItemReturnScript <> "" Then
                                                 ItemReturnScript &= ")" & Environment.NewLine
                                             End If
-                                            ItemReturnScript &= "@Sound.Play(Receive_Item)" & Environment.NewLine & "@Text.Show(" & Core.Player.Name & " found~" & p.Item.Name & "!*" & Core.Player.Inventory.GetMessageReceive(p.Item, 1)
+                                            ItemReturnScript &= "@Sound.Play(Receive_Item)" & Environment.NewLine & "@Text.Show(" & Core.Player.Name & " found~" & p.Item.OneLineName & "!*" & Core.Player.Inventory.GetMessageReceive(p.Item, 1)
                                             If p.OriginalItem.IsGameModeItem = True Then
                                                 p.Item = P3D.Item.GetItemByID(p.OriginalItem.gmID.ToString)
                                             Else
@@ -1592,7 +1592,7 @@ nextIndex:
                                                 ItemReturnScript &= "*"
                                             End If
 
-                                            ItemReturnScript &= Core.Player.Name & " found~" & p.Item.Name & "*and gave it back to~" & p.GetDisplayName & "!"
+                                            ItemReturnScript &= Core.Player.Name & " found~" & p.Item.OneLineName & "*and gave it back to~" & p.GetDisplayName & "!"
 
                                             p.OriginalItem = Nothing
                                         End If
@@ -1640,9 +1640,9 @@ nextIndex:
                                 ItemReturnScript &= "*"
                             End If
                             If IsTrainerBattle = True Then
-                                ItemReturnScript &= Core.Player.Name & " received~" & p.OriginalItem.Name & "*and gave it back to~" & p.GetDisplayName & "!"
+                                ItemReturnScript &= Core.Player.Name & " received~" & p.OriginalItem.OneLineName & "*and gave it back to~" & p.GetDisplayName & "!"
                             Else
-                                ItemReturnScript &= Core.Player.Name & " found~" & p.OriginalItem.Name & "*and gave it back to~" & p.GetDisplayName & "!"
+                                ItemReturnScript &= Core.Player.Name & " found~" & p.OriginalItem.OneLineName & "*and gave it back to~" & p.GetDisplayName & "!"
                             End If
                             p.OriginalItem = Nothing
                         End If
@@ -1716,7 +1716,7 @@ nextIndex:
                             If ItemReturnScript <> "" Then
                                 ItemReturnScript &= "*"
                             End If
-                            ItemReturnScript &= Core.Player.Name & " received~" & p.OriginalItem.Name & "*and gave it back to~" & p.GetDisplayName & "!"
+                            ItemReturnScript &= Core.Player.Name & " received~" & p.OriginalItem.OneLineName & "*and gave it back to~" & p.GetDisplayName & "!"
                             p.OriginalItem = Nothing
                         End If
                     Else
@@ -1734,7 +1734,7 @@ nextIndex:
                                     ItemReturnScript &= "*"
                                 End If
 
-                                ItemReturnScript &= Core.Player.Name & " found~" & p.OriginalItem.Name & "*and gave it back to~" & p.GetDisplayName & "!"
+                                ItemReturnScript &= Core.Player.Name & " found~" & p.OriginalItem.OneLineName & "*and gave it back to~" & p.GetDisplayName & "!"
                                 p.OriginalItem = Nothing
                             Else
                                 If p.OriginalItem.IsGameModeItem = True Then
@@ -1745,7 +1745,7 @@ nextIndex:
                                 If ItemReturnScript <> "" Then
                                     ItemReturnScript &= ")" & Environment.NewLine
                                 End If
-                                ItemReturnScript &= "@Sound.Play(Receive_Item)" & Environment.NewLine & "@Text.Show(" & Core.Player.Name & " found~" & p.OriginalItem.Name & "!*" & Core.Player.Inventory.GetMessageReceive(p.OriginalItem, 1)
+                                ItemReturnScript &= "@Sound.Play(Receive_Item)" & Environment.NewLine & "@Text.Show(" & Core.Player.Name & " found~" & p.OriginalItem.OneLineName & "!*" & Core.Player.Inventory.GetMessageReceive(p.OriginalItem, 1)
 
                                 p.OriginalItem = Nothing
                             End If

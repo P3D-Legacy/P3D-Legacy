@@ -1059,7 +1059,7 @@ Public Class StorageSystemScreen
             If p.IsEgg() Then
                 text = Localization.GetString("storage_screen_pokemon_summary_Egg", "Egg")
             Else
-                Dim itemString = If(p.Item Is Nothing, Localization.GetString("global_none", "None"), p.Item.Name)
+                Dim itemString = If(p.Item Is Nothing, Localization.GetString("global_none", "None"), p.Item.OneLineName)
 
                 Dim nameString = If(p.NickName = "", p.GetDisplayName(), $"{p.GetDisplayName()}/{p.GetName}")
 
