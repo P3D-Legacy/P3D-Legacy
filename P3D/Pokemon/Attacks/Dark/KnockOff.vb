@@ -117,15 +117,20 @@
                 Exit Sub
             End If
 
-            Dim ItemID As String
-            If op.Item.IsGameModeItem = True Then
-                ItemID = op.Item.gmID
-            Else
-                ItemID = op.Item.ID.ToString
+            Dim item As Item = op.Item
+            If op.OriginalItem Is Nothing Then
+                op.OriginalItem = item
             End If
-            op.OriginalItem = Item.GetItemByID(ItemID)
-            op.OriginalItem.AdditionalData = op.Item.AdditionalData
-            BattleScreen.Battle.RemoveHeldItem(Not own, own, BattleScreen, p.GetDisplayName() & " knocked off the " & op.GetDisplayName() & "'s " & op.OriginalItem.OneLineName() & "!", "move:knockoff")
+
+            If BattleScreen.Battle.RemoveHeldItem(Not own, own, BattleScreen, p.GetDisplayName() & " knocked off the " & op.GetDisplayName() & "'s " & op.OriginalItem.OneLineName() & "!", "move:knockoff") = True Then
+                If own = False AndAlso BattleScreen.FieldEffects.StolenFromOwnItems.ContainsKey(BattleScreen.OwnPokemonIndex) = False Then
+                    BattleScreen.FieldEffects.StolenFromOwnItems.Add(BattleScreen.OwnPokemonIndex, item)
+                End If
+            Else
+                If op.OriginalItem.ID = op.Item.ID AndAlso op.OriginalItem.AdditionalData = op.Item.AdditionalData Then
+                    op.OriginalItem = Nothing
+                End If
+            End If
 
         End Sub
 

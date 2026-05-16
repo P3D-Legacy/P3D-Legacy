@@ -1627,6 +1627,26 @@ nextIndex:
                             End If
                         End If
 
+                        'OriginalItem not found anywhere, just give it back.
+                        If p.OriginalItem IsNot Nothing AndAlso p.Item Is Nothing Then
+                            If p.OriginalItem.IsGameModeItem = True Then
+                                p.Item = P3D.Item.GetItemByID(p.OriginalItem.gmID)
+                            Else
+                                p.Item = P3D.Item.GetItemByID(p.OriginalItem.ID.ToString)
+                            End If
+
+                            p.Item.AdditionalData = p.OriginalItem.AdditionalData
+                            If ItemReturnScript <> "@Text.Show(" Then
+                                ItemReturnScript &= "*"
+                            End If
+                            If IsTrainerBattle = True Then
+                                ItemReturnScript &= Core.Player.Name & " received~" & p.OriginalItem.Name & "*and gave it back to~" & p.GetDisplayName & "!"
+                            Else
+                                ItemReturnScript &= Core.Player.Name & " found~" & p.OriginalItem.Name & "*and gave it back to~" & p.GetDisplayName & "!"
+                            End If
+                            p.OriginalItem = Nothing
+                        End If
+
                     End If
 
                     p.ResetTemp()
