@@ -1774,7 +1774,7 @@
                     Pokemons.Remove(p)
                 Next
 
-                Screen.TextBox.Show("Huh?")
+                Screen.TextBox.Show(Localization.GetString("hatch_egg_screen_start", "Huh?"))
                 SetScreen(New TransitionScreen(CurrentScreen, New HatchEggScreen(CurrentScreen, eggsReady), Color.White, False))
 
                 _stepEventEggHatched = True
@@ -1792,7 +1792,7 @@
                         Screen.Level.WalkedSteps = 0
 
                         Dim s As String = "version=2" & Environment.NewLine &
-                                        "@Text.Show(Your repel effect wore off.)" & Environment.NewLine &
+                                        "@Text.Show(" & Localization.GetString("step_event_RepelRanOut_NoneLeft", "Your repel effect wore off.") & ")" & Environment.NewLine &
                                         ":end"
 
                         If Temp.LastUsedRepel > -1 Then
@@ -1800,11 +1800,11 @@
 
                             If haveItemLeft = True Then
                                 s = "version=2" & Environment.NewLine &
-                                    "@Text.Show(Your repel effect wore off.*Do you want to use~another <inventory.name(" & Temp.LastUsedRepel & ")>?)" & Environment.NewLine &
-                                    "@Options.Show(Yes,No)" & Environment.NewLine &
-                                    ":when:Yes" & Environment.NewLine &
+                                    "@Text.Show(" & Localization.GetString("step_event_RepelRanOut_MoreLeft", "Your repel effect wore off.*Do you want to use~another [REPELNAME]?").Replace("[REPELNAME]", "<inventory.name(" & Temp.LastUsedRepel & ")>)") & Environment.NewLine &
+                                    "@Options.Show(<system.token(global_yes)>,<system.token(global_no)>)" & Environment.NewLine &
+                                    ":when:<system.token(global_yes)>" & Environment.NewLine &
                                     "@sound.play(Use_Repel)" & Environment.NewLine &
-                                    "@Text.Show(<player.name> used~a <inventory.name(" & Temp.LastUsedRepel & ")>.)" & Environment.NewLine &
+                                    "@Text.Show(" & Localization.GetString("step_event_RepelUsed", "<player.name> used~a [REPELNAME].").Replace("[REPELNAME]", "<inventory.name(" & Temp.LastUsedRepel & ")>)") & Environment.NewLine &
                                     "@item.repel(" & Temp.LastUsedRepel & ")" & Environment.NewLine &
                                     "@item.remove(" & Temp.LastUsedRepel & ",1,0)" & Environment.NewLine &
                                     ":endwhen" & Environment.NewLine &
@@ -1912,7 +1912,7 @@
                                 If Core.Player.Pokemons(i).HP <= 1 Then
                                     Core.Player.Pokemons(i).Status = Pokemon.StatusProblems.None
                                     Core.Player.Pokemons(i).HP = 1
-                                    Screen.TextBox.Show(Core.Player.Pokemons(i).GetDisplayName & " was cured~of Poison.")
+                                    Screen.TextBox.Show(Localization.GetString("step_event_PoisonCured", "[POKEMONNAME] was cured~of Poison.").Replace("[POKEMONNAME]", Core.Player.Pokemons(i).GetDisplayName))
                                 End If
                             End If
                         Next
@@ -1921,7 +1921,7 @@
                             If Core.Player.Pokemons(i).Status = Pokemon.StatusProblems.Poison OrElse Core.Player.Pokemons(i).Status = Pokemon.StatusProblems.BadPoison AndAlso Core.Player.Pokemons(i).Ability.ID <> 90 Then 'Poison Heal ability
                                 If Core.Player.Pokemons(i).HP <= 0 Then
                                     Core.Player.Pokemons(i).Status = Pokemon.StatusProblems.Fainted
-                                    Screen.TextBox.Show(Core.Player.Pokemons(i).GetDisplayName & "Fainted.")
+                                    Screen.TextBox.Show(Localization.GetString("step_event_PoisonFainted", "[POKEMONNAME] fainted.").Replace("[POKEMONNAME]", Core.Player.Pokemons(i).GetDisplayName))
 
                                     'Remove fainted Pokémon from player's team if the DeathInsteadOfFaint GameRule is activated.
                                     If CBool(GameModeManager.GetGameRuleValue("DeathInsteadOfFaint", "0")) = True Then

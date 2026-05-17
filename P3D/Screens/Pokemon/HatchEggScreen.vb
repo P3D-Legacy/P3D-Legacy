@@ -105,12 +105,12 @@
                     cPokemon.PlayCry()
                     SoundManager.PlaySound("success", True)
                     Stage = 7
-                    Dim t As String = "Congratulations!~Your egg hatched into~" & cPokemon.GetName() & "!"
+                    Dim t As String = Localization.GetString("hatch_egg_screen_congratulations", "Congratulations!~Your egg hatched into~[POKEMONNAME]!").Replace("[POKEMONNAME]", cPokemon.GetName())
                     If Message <> "" Then
                         t = Message
                     End If
                     If CanRename = True Then
-                        TextBox.Show(t & "*Do you want to give~a nickname to the freshly~hatched " & cPokemon.GetName() & "?%Yes|No%", AddressOf Me.ResultFunction, False, False, TextBox.DefaultColor)
+                        TextBox.Show(t & "*" & Localization.GetString("hatch_egg_screen_givenickname", "Do you want to give~a nickname to the freshly~hatched [POKEMONNAME]?").Replace("[POKEMONNAME]", cPokemon.GetName()) & "%Yes|No%", AddressOf Me.ResultFunction, False, False, TextBox.DefaultColor)
                     Else
                         TextBox.Show(t, {}, False, False)
                     End If

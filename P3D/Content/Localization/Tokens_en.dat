@@ -621,6 +621,11 @@ shop_screen_currency_short_BattlePoints,BP
 shop_screen_currency_short_Coins,C
 shop_screen_currency_short_Pokédollars,$
 ---
+Hatch Egg Screen:
+hatch_egg_screen_start,Huh?
+hatch_egg_screen_congratulations,Congratulations!~Your egg hatched into~[POKEMONNAME]!
+hatch_egg_screen_givenickname,Do you want to give~a nickname to the freshly~hatched [POKEMONNAME]?
+---
 GameJolt Emblems:
 
 emblem_level,Level: [NUMBER]
@@ -1135,6 +1140,13 @@ battle_Battle,Battle
 battle_Bag,Bag
 battle_Surrender,Surrender
 battle_action_MegaEvolve,Mega Evolve!
+----
+Step Events:
+step_event_RepelRanOut_NoneLeft,Your repel effect wore off.
+step_event_RepelRanOut_MoreLeft,Your repel effect wore off.*Do you want to use~another [REPELNAME]?
+step_event_RepelUsed,<player.name> used~a [REPELNAME].
+step_event_PoisonCured,[POKEMONNAME] was cured~of Poison.
+step_event_PoisonFainted,[POKEMONNAME] fainted.
 ----
 Catching:
 battle_catch_PlayerUsedBall,<Player.Name> used a~[BALLNAME]!

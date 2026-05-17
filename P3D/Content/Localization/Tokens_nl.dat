@@ -620,6 +620,11 @@ shop_screen_currency_short_BattlePoints,GP
 shop_screen_currency_short_Coins,M
 shop_screen_currency_short_Pokédollars,$
 ---
+Hatch Egg Screen:
+hatch_egg_screen_start,Huh?
+hatch_egg_screen_congratulations,Gefeliciteerd!~Uit je ei is een~[POKEMONNAME] gekomen!
+hatch_egg_screen_givenickname,Wil je de pas uitgekomen~[POKEMONNAME] een bijnaam~geven?
+---
 GameJolt Emblems:
 
 emblem_level,Level: [NUMBER]
@@ -1129,6 +1134,13 @@ battle_action_Battle,Vecht
 battle_action_Bag,Tas
 battle_action_Surrender,Geef Op
 battle_action_MegaEvolve,Mega-Evolueer!
+----
+Step Events:
+step_event_RepelRanOut_NoneLeft,Het afwerende effect is~uitgewerkt.
+step_event_RepelRanOut_MoreLeft,Het afwerende effect is~uitgewerkt.*Wil je nog een~[REPELNAME] gebruiken?
+step_event_RepelUsed,<player.name> gebruikte~een [REPELNAME].
+step_event_PoisonCured,[POKEMONNAME] was genezen~van vergiftiging.
+step_event_PoisonFainted,[POKEMONNAME] is~uitgeschakeld.
 ----
 Catching:
 battle_catch_PlayerUsedBall,<Player.Name> gebruikte een~[BALLNAME]!
