@@ -19,23 +19,9 @@
                     Return Pokedex.CountEntries(Core.Player.PokedexData, {1}).ToString()
                 Case "dexcaught"
                     Dim dexIndex As Integer = int(argument)
-                    If dexIndex > Core.Player.Pokedexes.Count - 1 Then
-                        Dim path As String = GameModeManager.GetContentFilePath("Data\pokedex.dat")
-                        Dim lines() As String = System.IO.File.ReadAllLines(path)
-                        If dexIndex < lines.Count - 1 Then
-                            Pokedex.Load()
-                        End If
-                    End If
                     Return Core.Player.Pokedexes(dexIndex).Obtained
                 Case "dexseen"
                     Dim dexIndex As Integer = int(argument)
-                    If dexIndex > Core.Player.Pokedexes.Count - 1 Then
-                        Dim path As String = GameModeManager.GetContentFilePath("Data\pokedex.dat")
-                        Dim lines() As String = System.IO.File.ReadAllLines(path)
-                        If dexIndex < lines.Count - 1 Then
-                            Pokedex.Load()
-                        End If
-                    End If
                     Return Core.Player.Pokedexes(dexIndex).Seen + Core.Player.Pokedexes(dexIndex).Obtained
                 Case "getheight"
                     Dim id As Integer = CInt(argument.GetSplit(0, ",").GetSplit(0, "_").GetSplit(0, ";"))

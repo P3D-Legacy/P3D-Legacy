@@ -21,6 +21,8 @@
                 ContentPackManager.Load(GameController.GamePath & "\ContentPacks\" & s & "\exceptions.dat")
             Next
 
+            Core.Player.Unload()
+
             BattleSystem.GameModeElementLoader.Load()
             BattleSystem.GameModeAttackLoader.Load()
             GameModeItemLoader.Load()
@@ -47,8 +49,6 @@
             Level.Load(GameModeManager.ActiveGameMode.StartMap)
 
             Camera.Update()
-
-            Core.Player.Unload()
 
             MusicManager.PlayNoMusic()
 
