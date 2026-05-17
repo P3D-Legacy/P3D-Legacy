@@ -914,7 +914,7 @@ Namespace GameJolt
         Public Sub ResetSave()
             Points = 0
             Emblem = "trainer"
-            Gender = "0"
+            Gender = "Male"
 
             _apricorns = ""
             _berries = GetBerryData()
@@ -935,7 +935,7 @@ Namespace GameJolt
         End Sub
 
         Public Shared Function GetOptionsData() As String
-            Dim s As String = "FOV|50" & Environment.NewLine &
+            Dim s As String = "FOV|60" & Environment.NewLine &
                 "TextSpeed|2" & Environment.NewLine &
                 "MouseSpeed|12"
 

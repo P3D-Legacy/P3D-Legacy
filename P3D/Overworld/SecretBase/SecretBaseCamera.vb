@@ -9,7 +9,7 @@
 
         Me.Position = New Vector3(3, 2, 3)
         Me.RotationSpeed = 0.04F
-        Me.FOV = 45.0F
+        Me.FOV = 60.0F
         Me.Speed = 1.0F
 
         Me.Yaw = 0.0F 'CSng(Math.PI / 4)

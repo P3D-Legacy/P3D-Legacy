@@ -458,7 +458,7 @@
     Public startRotation As Single = 0
     Public startFreeCameraMode As Boolean = False
     Public startMap As String = "barktown.dat"
-    Public startFOV As Single = 45.0F
+    Public startFOV As Single = 60.0F
     Public startRotationSpeed As Integer = 12
     Public startThirdPerson As Boolean = False
     Public startSurfing As Boolean = False
@@ -2236,7 +2236,7 @@
         startRotation = 0
         startFreeCameraMode = False
         startMap = "barktown.dat"
-        startFOV = 45.0F
+        startFOV = 60.0F
         startRotationSpeed = 12
         startThirdPerson = False
         startSurfing = False

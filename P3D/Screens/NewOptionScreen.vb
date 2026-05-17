@@ -5,7 +5,7 @@ Public Class NewOptionScreen
 	Inherits Screen
 	Dim TextSpeed As Integer = 2
 	Dim CameraSpeed As Integer = 12
-	Dim FOV As Single = 45.0F
+	Dim FOV As Single = 60.0F
 	Dim Music As Integer = 50
 	Dim Sound As Integer = 50
 	Dim RenderDistance As Integer = 0
@@ -1084,7 +1084,7 @@ Public Class NewOptionScreen
 	End Sub
 
 	Private Sub Reset()
-		Me.FOV = 45.0F
+		Me.FOV = 60.0F
 		Me.TextSpeed = 2
 		Me.CameraSpeed = 12
 		Me.Music = 50
