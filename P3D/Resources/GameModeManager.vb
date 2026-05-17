@@ -378,7 +378,7 @@ Public Class GameMode
     ''' <param name="SuperHardGameRules">The GameRules that apply to the new GameMode for the Super Hard Difficulty.</param>
     ''' <param name="StartMap">The start map for the new GameMode.</param>
     ''' <param name="StartPosition">The start position for the new GameMode.</param>
-    ''' <param name="StartRotation">The start rotation for the new GameMode.</param>
+    ''' <param name="StartRotation">The start yaw rotation for the new GameMode.</param>
     ''' <param name="StartLocationName">The start location name for the new GameMode.</param>
     ''' <param name="PokemonAppear">The Pokémon that appear on the new game screen for the new GameMode.</param>
     ''' <param name="IntroMusic">The intro music that plays on the new game screen for the new GameMode.</param>
@@ -387,8 +387,13 @@ Public Class GameMode
     ''' <param name="SkinFiles">The skin files for the new GameMode. Must be the same amount as SkinColors and SkinNames.</param>
     ''' <param name="SkinNames">The skin names for the new GameMode. Must be the same amount as SkinFiles and SkinColors.</param>
     ''' <param name="SkinGenders">The skin names for the new GameMode. Must be the same amount as SkinFiles and SkinColors.</param>
+    ''' <param name="StartPitch">The start pitch rotation for the new GameMode.</param>
+    ''' <param name="WaterSpeed">The speed at which water animates for the new GameMode.</param>
+    ''' <param name="MasterShinyRate">The shiny rate of Pokémon before modifiers for the new GameMode.</param>
+    ''' <param name="PokeModelScale">The default scale of the battle models for the new GameMode.</param>
+    ''' <param name="PokeModelRotation">The default rotation of the battle models for the new GameMode.</param>
     Public Sub New(ByVal Name As String, ByVal Description As String, ByVal Version As String, ByVal Author As String, ByVal MapPath As String, ByVal ScriptPath As String, ByVal PokeFilePath As String, ByVal PokemonDataPath As String, ByVal ContentPath As String, ByVal LocalizationsPath As String, ByVal GameRules As List(Of GameRule), ByVal HardGameRules As List(Of GameRule), ByVal SuperHardGameRules As List(Of GameRule),
-                   ByVal StartMap As String, ByVal StartPosition As Vector3, ByVal StartRotation As Single, ByVal StartLocationName As String, ByVal StartDialogue As String, ByVal StartColor As Color, ByVal PokemonAppear As String, ByVal IntroMusic As String, ByVal IntroType As String, ByVal SkinColors As List(Of Color), ByVal SkinFiles As List(Of String), ByVal SkinNames As List(Of String), ByVal SkinGenders As List(Of String), ByVal StartYaw As Single, ByVal StartPitch As Single, Optional WaterSpeed As Integer = 4, Optional MasterShinyRate As Integer = 4096, Optional ByVal PokeModelScale As Single = 1.0F, Optional ByVal PokeModelRotation As Vector3 = Nothing)
+                   ByVal StartMap As String, ByVal StartPosition As Vector3, ByVal StartRotation As Single, ByVal StartLocationName As String, ByVal StartDialogue As String, ByVal StartColor As Color, ByVal PokemonAppear As String, ByVal IntroMusic As String, ByVal IntroType As String, ByVal SkinColors As List(Of Color), ByVal SkinFiles As List(Of String), ByVal SkinNames As List(Of String), ByVal SkinGenders As List(Of String), ByVal StartPitch As Single, Optional WaterSpeed As Integer = 4, Optional MasterShinyRate As Integer = 4096, Optional ByVal PokeModelScale As Single = 1.0F, Optional ByVal PokeModelRotation As Vector3 = Nothing)
         Me._name = Name
         Me._description = Description
         Me._version = Version
@@ -423,7 +428,6 @@ Public Class GameMode
         Me._skinFiles = SkinFiles
         Me._skinNames = SkinNames
         Me._skinGenders = SkinGenders
-        Me.StartYaw = StartYaw
         Me.StartPitch = StartPitch
         Me._loaded = True
     End Sub
@@ -532,8 +536,10 @@ Public Class GameMode
                             Else
                                 Me._startPosition = Vector3.Zero
                             End If
-                        Case "startrotation"
+                        Case "startrotation", "startyaw"
                             Me._startRotation = CSng(Value.Replace(".", GameController.DecSeparator))
+                        Case "startpitch"
+                            Me._startPitch = CSng(Value.Replace(".", GameController.DecSeparator))
                         Case "startscript"
                             StartScript = Value
                         Case "startlocationname"
@@ -614,10 +620,6 @@ Public Class GameMode
                             If l.Count > 0 Then
                                 Me._skinGenders = l
                             End If
-                        Case "startyaw"
-                            Me.StartYaw = CSng(Value.Replace(".", GameController.DecSeparator))
-                        Case "startpitch"
-                            Me.StartPitch = CSng(Value.Replace(".", GameController.DecSeparator))
 
                     End Select
                 End If
@@ -654,7 +656,7 @@ Public Class GameMode
         Dim SkinGenders As List(Of String) = {"Male", "Female", "Female", "Male", "Female", "Male", "Female", "Male", "Female", "Male", "Female", "Male", "Female"}.ToList()
 
         Dim gameMode As New GameMode("Kolben", "The normal GameMode.", GameController.GAMEVERSION, "Kolben Games", "\Content\Data\maps\", "\Content\Data\Scripts\", "\Content\Data\maps\poke\", "\Content\Pokemon\Data\", "\Content\", "\Content\Localization\", New List(Of GameRule), New List(Of GameRule), New List(Of GameRule),
-                                     "newgame\intro0.dat", New Vector3(6, 3, 7), MathHelper.PiOver2, "Your Room", "", New Color(59, 123, 165), "0", "welcome", "1", SkinColors, SkinFiles, SkinNames, SkinGenders, 0, -0.3F, 4)
+                                     "newgame\intro0.dat", New Vector3(6, 3, 7), 0.0F, "Your Room", "", New Color(59, 123, 165), "0", "welcome", "1", SkinColors, SkinFiles, SkinNames, SkinGenders, -0.3F, 4)
 
         gameMode.StartScript = "startscript\main"
 
@@ -732,7 +734,6 @@ Public Class GameMode
         SuperHardGameRuleString & Environment.NewLine &
             "StartMap|" & Me._startMap & Environment.NewLine &
             "StartPosition|" & Me._startPosition.X.ToString().Replace(GameController.DecSeparator, ".") & "," & Me._startPosition.Y.ToString().Replace(GameController.DecSeparator, ".") & "," & Me._startPosition.Z.ToString().Replace(GameController.DecSeparator, ".") & Environment.NewLine &
-            "StartYaw|" & Me._startYaw.ToString().Replace(GameController.DecSeparator, ".") & Environment.NewLine &
             "StartPitch|" & Me._startPitch.ToString().Replace(GameController.DecSeparator, ".") & Environment.NewLine &
             "StartRotation|" & Me._startRotation.ToString().Replace(GameController.DecSeparator, ".") & Environment.NewLine &
             "StartScript|" & StartScript & Environment.NewLine &
@@ -1028,9 +1029,8 @@ Public Class GameMode
 
     Private _startMap As String = ""
     Private _startPosition As Vector3
-    Private _startYaw As Single = 0.0F
     Private _startPitch As Single = -0.2F
-    Private _startRotation As Single
+    Private _startRotation As Single = 0.0F
     Private _startLocationName As String = ""
     Private _startDialogue As String = ""
     Private _startColor As Color = New Color(59, 123, 165)
@@ -1070,19 +1070,7 @@ Public Class GameMode
     End Property
 
     ''' <summary>
-    ''' The start position for this GameMode.
-    ''' </summary>
-    Public Property StartYaw() As Single
-        Get
-            Return Me._startYaw
-        End Get
-        Set(value As Single)
-            Me._startYaw = value
-        End Set
-    End Property
-
-    ''' <summary>
-    ''' The start position for this GameMode.
+    ''' The start pitch rotation for this GameMode.
     ''' </summary>
     Public Property StartPitch() As Single
         Get
@@ -1094,7 +1082,7 @@ Public Class GameMode
     End Property
 
     ''' <summary>
-    ''' The start rotation for this GameMode.
+    ''' The start yaw rotation for this GameMode.
     ''' </summary>
     Public Property StartRotation() As Single
         Get

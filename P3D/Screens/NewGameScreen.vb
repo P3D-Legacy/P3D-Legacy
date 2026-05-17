@@ -328,7 +328,7 @@
             End If
             Dim skinRectangle As New Rectangle(0, CInt(skinFrameSize.Height * 2), CInt(skinFrameSize.Width), CInt(skinFrameSize.Height))
             skinTexture = TextureManager.GetTexture(skinTexture2D, skinRectangle)
-            Core.SetScreen(New InputScreen(Core.CurrentScreen, skinNames(SkinIndex), InputScreen.InputModes.Name, skinNames(SkinIndex), 20, New List(Of Texture2D)({skinTexture}), AddressOf Me.ConfirmInput))
+            Core.SetScreen(New InputScreen(Core.CurrentScreen, skinNames(SkinIndex), InputScreen.InputModes.Name, skinNames(SkinIndex), 14, New List(Of Texture2D)({skinTexture}), AddressOf Me.ConfirmInput))
         End Sub
 
         Private Sub ConfirmInput(ByVal input As String)
@@ -359,18 +359,36 @@
                 System.IO.Directory.CreateDirectory(GameController.GamePath & "\Save")
             End If
 
+            Core.Player.filePrefix = folderPath
+            Core.Player.GameStart = Date.Now
+            Core.Player.GameMode = GameModeManager.ActiveGameMode.DirectoryName
+            Core.Player.startFOV = 60
+            Core.Player.startFreeCameraMode = True
+            Core.Player.startPosition = startPosition
+            Core.Player.startMap = startMap
+            Core.Player.startRotationSpeed = 12
+            Core.Player.startSurfing = False
+            Core.Player.startThirdPerson = False
+            Core.Player.startRiding = False
+            Core.Player.startRotation = startYaw
+
+            Core.Player.PokedexData = Pokedex.NewPokedex()
+            Core.Player.BerryData = CreateBerryData()
+            Core.Player.AddVisitedMap(startMap)
+            Core.Player.SaveCreated = GameController.GAMEDEVELOPMENTSTAGE & " " & GameController.GAMEVERSION
+
             System.IO.Directory.CreateDirectory(savePath & folderPath)
 
             System.IO.File.WriteAllText(savePath & folderPath & "\Player.dat", GetPlayerData())
             System.IO.File.WriteAllText(savePath & folderPath & "\Pokedex.dat", "")
             System.IO.File.WriteAllText(savePath & folderPath & "\Items.dat", "")
             System.IO.File.WriteAllText(savePath & folderPath & "\Register.dat", "")
-            System.IO.File.WriteAllText(savePath & folderPath & "\Berries.dat", GetBerryData())
+            System.IO.File.WriteAllText(savePath & folderPath & "\Berries.dat", Core.Player.BerryData)
             System.IO.File.WriteAllText(savePath & folderPath & "\Apricorns.dat", "")
             System.IO.File.WriteAllText(savePath & folderPath & "\Daycare.dat", "")
             System.IO.File.WriteAllText(savePath & folderPath & "\Party.dat", "")
             System.IO.File.WriteAllText(savePath & folderPath & "\ItemData.dat", "")
-            System.IO.File.WriteAllText(savePath & folderPath & "\Options.dat", GetOptionsData())
+            System.IO.File.WriteAllText(savePath & folderPath & "\Options.dat", Core.Player.GetOptionsData())
             System.IO.File.WriteAllText(savePath & folderPath & "\Box.dat", "")
             System.IO.File.WriteAllText(savePath & folderPath & "\NPC.dat", "")
             System.IO.File.WriteAllText(savePath & folderPath & "\HallOfFame.dat", "")
@@ -397,28 +415,32 @@
             "RivalSkin|4" & Environment.NewLine &
             "Money|3000" & Environment.NewLine &
             "Badges|0" & Environment.NewLine &
-            "Gender|Male" & Environment.NewLine &
+            "Gender|" & skinGenders(SkinIndex) & Environment.NewLine &
             "PlayTime|0,0,0,0" & Environment.NewLine &
             "OT|" & ot & Environment.NewLine &
             "Points|0" & Environment.NewLine &
             "hasPokedex|0" & Environment.NewLine &
             "hasPokegear|0" & Environment.NewLine &
-            "freeCamera|1" & Environment.NewLine &
-            "thirdPerson|0" & Environment.NewLine &
-            "skin|" & skinFiles(SkinIndex) & Environment.NewLine &
-            "location|" & Me.startLocation & Environment.NewLine &
-            "battleAnimations|1" & Environment.NewLine &
+            "FreeCamera|1" & Environment.NewLine &
+            "ThirdPerson|0" & Environment.NewLine &
+            "Skin|" & skinFiles(SkinIndex) & Environment.NewLine &
+            "Location|" & Me.startLocation & Environment.NewLine &
+            "BattleAnimations|1" & Environment.NewLine &
             "RunMode|1" & Environment.NewLine &
+            "RunToggled|1" & Environment.NewLine &
             "BoxAmount|10" & Environment.NewLine &
             "LastRestPlace|" & startMap & Environment.NewLine &
             "LastRestPlacePosition|" & Me.startPosition.X.ToString().Replace(GameController.DecSeparator, ".") & "," & Me.startPosition.Y.ToString().Replace(GameController.DecSeparator, ".") & "," & Me.startPosition.Z.ToString().Replace(GameController.DecSeparator, ".") & Environment.NewLine &
             "DiagonalMovement|0" & Environment.NewLine &
             "RepelSteps|0" & Environment.NewLine &
+            "ScriptDelayItems|" & Environment.NewLine &
+            "ScriptDelaySteps|0" & Environment.NewLine &
+            "ScriptDelayDisplaySteps|0" & Environment.NewLine &
             "LastSavePlace|" & startMap & Environment.NewLine &
             "LastSavePlacePosition|" & Me.startPosition.X.ToString().Replace(GameController.DecSeparator, ".") & "," & Me.startPosition.Y.ToString().Replace(GameController.DecSeparator, ".") & "," & Me.startPosition.Z.ToString().Replace(GameController.DecSeparator, ".") & Environment.NewLine &
             "Difficulty|" & GameModeManager.GetGameRuleValue("Difficulty", "0") & Environment.NewLine &
             "BattleStyle|1" & Environment.NewLine &
-            "saveCreated|" & GameController.GAMEDEVELOPMENTSTAGE & " " & GameController.GAMEVERSION & Environment.NewLine &
+            "SaveCreated|" & GameController.GAMEDEVELOPMENTSTAGE & " " & GameController.GAMEVERSION & Environment.NewLine &
             "LastPokemonPosition|999,999,999" & Environment.NewLine &
             "DaycareSteps|0" & Environment.NewLine &
             "GameMode|" & GameModeManager.ActiveGameMode.DirectoryName & Environment.NewLine &
@@ -426,8 +448,11 @@
             "VisitedMaps|" & startMap & Environment.NewLine &
             "TempSurfSkin|" & skinFiles(SkinIndex) & Environment.NewLine &
             "Surfing|0" & Environment.NewLine &
+            "BP|0" & Environment.NewLine &
+            "Coins|0" & Environment.NewLine &
+            "ExpAll|False" & Environment.NewLine &
             "ShowModels|1" & Environment.NewLine &
-            "GTSStars|4" & Environment.NewLine &
+            "GTSStars|8" & Environment.NewLine &
             "SandBoxMode|0" & Environment.NewLine &
             "EarnedAchievements|"
 
@@ -442,7 +467,7 @@
             Return s
         End Function
 
-        Public Shared Function GetBerryData() As String
+        Private Shared Function CreateBerryData() As String
             Dim s As String = ""
             If File.Exists(GameModeManager.GetContentFilePath("Data\BerryData.dat")) Then
                 Dim Berries() As String = System.IO.File.ReadAllLines(GameModeManager.GetContentFilePath("Data\BerryData.dat"))
@@ -458,31 +483,31 @@
             Else
                 If GameModeManager.ActiveGameMode.IsDefaultGamemode = True Then
                     s = "{route29.dat|13,0,5|6|2|0|2012,9,21,4,0,0|1}" & Environment.NewLine &
-                    "{route29.dat|14,0,5|6|2|0|2012,9,21,4,0,0|1}" & Environment.NewLine &
-                    "{route29.dat|15,0,5|6|2|0|2012,9,21,4,0,0|1}" & Environment.NewLine &
-                    "{azalea.dat|9,0,3|0|2|0|2012,9,21,4,0,0|1}" & Environment.NewLine &
-                    "{azalea.dat|9,0,4|1|1|0|2012,9,21,4,0,0|1}" & Environment.NewLine &
-                    "{azalea.dat|9,0,5|0|2|0|2012,9,21,4,0,0|1}" & Environment.NewLine &
-                    "{route30.dat|7,0,41|10|1|0|2012,9,21,4,0,0|1}" & Environment.NewLine &
-                    "{route30.dat|14,0,5|2|1|0|2012,9,21,4,0,0|1}" & Environment.NewLine &
-                    "{route30.dat|15,0,5|6|2|0|2012,9,21,4,0,0|1}" & Environment.NewLine &
-                    "{route30.dat|16,0,5|2|1|0|2012,9,21,4,0,0|1}" & Environment.NewLine &
-                    "{routes\route35.dat|0,0,4|7|2|0|2012,9,21,4,0,0|1}" & Environment.NewLine &
-                    "{routes\route35.dat|1,0,4|8|2|0|2012,9,21,4,0,0|1}" & Environment.NewLine &
-                    "{route36.dat|37,0,7|0|1|0|2012,9,21,4,0,0|1}" & Environment.NewLine &
-                    "{route36.dat|38,0,7|4|1|0|2012,9,21,4,0,0|1}" & Environment.NewLine &
-                    "{route36.dat|39,0,7|3|2|0|2012,9,21,4,0,0|1}" & Environment.NewLine &
-                    "{route39.dat|8,0,2|9|1|0|2012,9,21,4,0,0|1}" & Environment.NewLine &
-                    "{route39.dat|8,0,3|6|1|0|2012,9,21,4,0,0|1}" & Environment.NewLine &
-                    "{route38.dat|13,0,12|16|2|0|2012,9,21,4,0,0|1}" & Environment.NewLine &
-                    "{route38.dat|14,0,12|23|1|0|2012,9,21,4,0,0|1}" & Environment.NewLine &
-                    "{route38.dat|15,0,12|16|2|0|2012,9,21,4,0,0|1}" & Environment.NewLine &
-                    "{routes\route43.dat|13,0,45|23|2|0|2012,9,21,4,0,0|1}" & Environment.NewLine &
-                    "{routes\route43.dat|13,0,46|24|2|0|2012,9,21,4,0,0|1}" & Environment.NewLine &
-                    "{routes\route43.dat|13,0,47|25|2|0|2012,9,21,4,0,0|1}" & Environment.NewLine &
-                    "{safarizone\main.dat|3,0,11|5|2|0|2012,9,21,4,0,0|1}" & Environment.NewLine &
-                    "{safarizone\main.dat|4,0,11|0|2|0|2012,9,21,4,0,0|1}" & Environment.NewLine &
-                    "{safarizone\main.dat|5,0,11|6|3|0|2012,9,21,4,0,0|1}"
+                        "{route29.dat|14,0,5|6|2|0|2012,9,21,4,0,0|1}" & Environment.NewLine &
+                        "{route29.dat|15,0,5|6|2|0|2012,9,21,4,0,0|1}" & Environment.NewLine &
+                        "{azalea.dat|9,0,3|0|2|0|2012,9,21,4,0,0|1}" & Environment.NewLine &
+                        "{azalea.dat|9,0,4|1|1|0|2012,9,21,4,0,0|1}" & Environment.NewLine &
+                        "{azalea.dat|9,0,5|0|2|0|2012,9,21,4,0,0|1}" & Environment.NewLine &
+                        "{route30.dat|7,0,41|10|1|0|2012,9,21,4,0,0|1}" & Environment.NewLine &
+                        "{route30.dat|14,0,5|2|1|0|2012,9,21,4,0,0|1}" & Environment.NewLine &
+                        "{route30.dat|15,0,5|6|2|0|2012,9,21,4,0,0|1}" & Environment.NewLine &
+                        "{route30.dat|16,0,5|2|1|0|2012,9,21,4,0,0|1}" & Environment.NewLine &
+                        "{routes\route35.dat|0,0,4|7|2|0|2012,9,21,4,0,0|1}" & Environment.NewLine &
+                        "{routes\route35.dat|1,0,4|8|2|0|2012,9,21,4,0,0|1}" & Environment.NewLine &
+                        "{route36.dat|37,0,7|0|1|0|2012,9,21,4,0,0|1}" & Environment.NewLine &
+                        "{route36.dat|38,0,7|4|1|0|2012,9,21,4,0,0|1}" & Environment.NewLine &
+                        "{route36.dat|39,0,7|3|2|0|2012,9,21,4,0,0|1}" & Environment.NewLine &
+                        "{route39.dat|8,0,2|9|1|0|2012,9,21,4,0,0|1}" & Environment.NewLine &
+                        "{route39.dat|8,0,3|6|1|0|2012,9,21,4,0,0|1}" & Environment.NewLine &
+                        "{route38.dat|13,0,12|16|2|0|2012,9,21,4,0,0|1}" & Environment.NewLine &
+                        "{route38.dat|14,0,12|23|1|0|2012,9,21,4,0,0|1}" & Environment.NewLine &
+                        "{route38.dat|15,0,12|16|2|0|2012,9,21,4,0,0|1}" & Environment.NewLine &
+                        "{routes\route43.dat|13,0,45|23|2|0|2012,9,21,4,0,0|1}" & Environment.NewLine &
+                        "{routes\route43.dat|13,0,46|24|2|0|2012,9,21,4,0,0|1}" & Environment.NewLine &
+                        "{routes\route43.dat|13,0,47|25|2|0|2012,9,21,4,0,0|1}" & Environment.NewLine &
+                        "{safarizone\main.dat|3,0,11|5|2|0|2012,9,21,4,0,0|1}" & Environment.NewLine &
+                        "{safarizone\main.dat|4,0,11|0|2|0|2012,9,21,4,0,0|1}" & Environment.NewLine &
+                        "{safarizone\main.dat|5,0,11|6|3|0|2012,9,21,4,0,0|1}"
                 End If
             End If
 
