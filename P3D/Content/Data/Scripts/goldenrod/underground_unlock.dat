@@ -3,31 +3,31 @@ version=2
 :if:<register.registered(underground_dooropen)>=true
 	@entity.warp(10,16,0,5)
 :endif
-
+@text.show(a)
 :select:<environment.day>
-	:when:monday
+	:when:Monday
 		:if:<environment.daytimeid>=1
 			@npc.warp(4,~,0.1,~)
 			@entity.warp(14,~,0,~)
 		:endif
-	:when:tuesday
+	:when:Tuesday
 		@npc.warp(5,~,0.1,~)
 		@entity.warp(15,~,0,~)
-	:when:wednesday
+	:when:Wednesday
 		@npc.warp(6,~,0.1,~)
 		@entity.warp(16,~,0,~)
-	:when:thurday
+	:when:Thurday
 		@npc.warp(5,~,0.1,~)
 		@entity.warp(15,~,0,~)
-	:when:friday
+	:when:Friday
 		@npc.warp(6,~,0.1,~)
 		@entity.warp(16,~,0,~)
-	:when:saturday
+	:when:Saturday
 		@npc.warp(5,~,0.1,~)
 		@entity.warp(15,~,0,~)
 		@npc.warp(7,~,0.1,~)
 		@entity.warp(17,~,0,~)
-	:when:sunday
+	:when:Sunday
 		@npc.warp(6,~,0.1,~)
 		@entity.warp(16,~,0,~)
 		@npc.warp(7,~,0.1,~)
