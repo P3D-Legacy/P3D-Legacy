@@ -606,6 +606,12 @@ Stones:
 {"Entity"{ENT[{"EntityID"{str[WallBlock]}}{"Position"{sngArr[0,0,33]}}{"TexturePath"{str[Routes]}}{"Textures"{recArr[[160,16,16,16]]}}{"TextureIndex"{intArr[-1,-1,0,0]}}{"Collision"{bool[1]}}{"ModelID"{int[5]}}{"Action"{int[0]}}{"AdditionalValue"{str[]}}{"Rotation"{int[2]}}]}}
 {"Entity"{ENT[{"EntityID"{str[WallBlock]}}{"Position"{sngArr[1,0,33]}}{"TexturePath"{str[Routes]}}{"Textures"{recArr[[160,16,16,16]]}}{"TextureIndex"{intArr[-1,-1,0,0]}}{"Collision"{bool[1]}}{"ModelID"{int[5]}}{"Action"{int[0]}}{"AdditionalValue"{str[]}}{"Rotation"{int[3]}}]}}
 
+water:
+{"EntityField"{ENT[{"Size"{intArr[3,2]}}{"EntityID"{str[Water]}}{"Position"{sngArr[0,-0.25,34]}}{"TexturePath"{str[Routes]}}{"Textures"{recArr[[0,16,16,16][144,16,16,16]]}}{"TextureIndex"{intArr[0,0,1,1]}}{"Collision"{bool[0]}}{"ModelID"{int[0]}}{"Action"{int[0]}}{"AdditionalValue"{str[]}}{"Rotation"{int[0]}}]}}
+
+waterborders:
+{"EntityField"{ENT[{"Size"{intArr[1,2]}}{"EntityID"{str[Water]}}{"Position"{sngArr[3,-0.25,34]}}{"TexturePath"{str[Routes]}}{"Textures"{recArr[[0,16,16,16][144,16,16,16]]}}{"TextureIndex"{intArr[0,0,1,1]}}{"Collision"{bool[0]}}{"ModelID"{int[9]}}{"Action"{int[0]}}{"AdditionalValue"{str[]}}{"Rotation"{int[1]}}]}}
+
 waterblocks:
 {"EntityField"{ENT[{"Size"{intArr[1,4]}}{"EntityID"{str[WallBlock]}}{"Position"{sngArr[2,-1,6]}}{"TexturePath"{str[Cherrygrove]}}{"Textures"{recArr[[96,16,16,16]]}}{"TextureIndex"{intArr[-1,-1,-1,-1,0,0,-1,-1,-1,-1]}}{"Collision"{bool[1]}}{"ModelID"{int[1]}}{"Action"{int[0]}}{"AdditionalValue"{str[]}}{"Rotation"{int[0]}}]}}
 {"EntityField"{ENT[{"Size"{intArr[2,1]}}{"EntityID"{str[WallBlock]}}{"Position"{sngArr[2,-1,11]}}{"TexturePath"{str[Cherrygrove]}}{"Textures"{recArr[[96,16,16,16]]}}{"TextureIndex"{intArr[0,0,-1,-1,-1,-1,-1,-1,-1,-1]}}{"Collision"{bool[1]}}{"ModelID"{int[1]}}{"Action"{int[0]}}{"AdditionalValue"{str[]}}{"Rotation"{int[0]}}]}}
@@ -669,7 +675,12 @@ Rockets:
 {"NPC"{NPC[{"Position"{sngArr[1,-1,1]}}{"TextureID"{str[GruntM]}}{"ID"{int[14]}}{"Name"{str[rocket2]}}{"Action"{int[0]}}{"AdditionalValue"{str[Come taste the~true terror of~Team Rocket!]}}{"Rotation"{int[1]}}{"Movement"{str[Still]}}{"MoveRectangles"{recArr[]}}]}}
 
 Backdrops:
-{"Backdrop"{BAC[{"Position"{sngArr[-150.5,-0.76,-60.5]}}{"Size"{intArr[168,170]}}{"Rotation"{sngArr[0,0,0]}}{"Type"{str[Water]}}{"TexturePath"{str[Village]}}{"Texture"{rec[32,48,16,16]}}]}}
+{"Backdrop"{BAC[{"Position"{sngArr[-150.5,-0.76,-60.5]}}{"Size"{intArr[150,170]}}{"Rotation"{sngArr[0,0,0]}}{"Type"{str[Water]}}{"TexturePath"{str[Village]}}{"Texture"{rec[32,48,16,16]}}]}}
+{"Backdrop"{BAC[{"Position"{sngArr[-0.5,-0.76,-60.5]}}{"Size"{intArr[18,92]}}{"Rotation"{sngArr[0,0,0]}}{"Type"{str[Water]}}{"TexturePath"{str[Village]}}{"Texture"{rec[32,48,16,16]}}]}}
+{"Backdrop"{BAC[{"Position"{sngArr[-0.5,-0.76,35.5]}}{"Size"{intArr[18,74]}}{"Rotation"{sngArr[0,0,0]}}{"Type"{str[Water]}}{"TexturePath"{str[Village]}}{"Trigger"{str[NotOffset]}}{"Texture"{rec[32,48,16,16]}}]}}
+{"Backdrop"{BAC[{"Position"{sngArr[-0.5,-0.76,36.5]}}{"Size"{intArr[9,73]}}{"Rotation"{sngArr[0,0,0]}}{"Type"{str[Water]}}{"TexturePath"{str[Village]}}{"Trigger"{str[Offset]}}{"Texture"{rec[32,48,16,16]}}]}}
+{"Backdrop"{BAC[{"Position"{sngArr[8.5,-0.76,36.5]}}{"Size"{intArr[1,42]}}{"Rotation"{sngArr[0,0,0]}}{"Type"{str[Water]}}{"TexturePath"{str[Village]}}{"Trigger"{str[Offset]}}{"Texture"{rec[32,48,16,16]}}]}}
+{"Backdrop"{BAC[{"Position"{sngArr[8.5,-0.76,89.5]}}{"Size"{intArr[1,20]}}{"Rotation"{sngArr[0,0,0]}}{"Type"{str[Water]}}{"TexturePath"{str[Village]}}{"Trigger"{str[Offset]}}{"Texture"{rec[32,48,16,16]}}]}}
 
 {"OffsetMap"{MAP[{"Offset"{sngArr[10,36]}}{"Map"{str[routes\route34.dat]}}]}}
 {"OffsetMap"{MAP[{"Offset"{sngArr[10,-36]}}{"Map"{str[routes\route35.dat]}}]}}
