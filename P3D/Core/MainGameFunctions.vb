@@ -4,6 +4,12 @@
         If KeyBoardHandler.KeyPressed(KeyBindings.GUIControlKey) = True Then
             Core.GameOptions.ShowGUI = Not Core.GameOptions.ShowGUI
             Core.GameOptions.SaveOptions()
+
+            If Core.GameOptions.ShowGUI Then
+                Core.GameMessage.ShowMessage(Localization.GetString("game_message_gui_on", "GUI Enabled"), 12, FontManager.MainFont, Color.White)
+            Else
+                Core.GameMessage.ShowMessage(Localization.GetString("game_message_gui_off", "GUI Disabled"), 12, FontManager.MainFont, Color.White)
+            End If
         ElseIf KeyBoardHandler.KeyPressed(KeyBindings.ScreenshotKey) AndAlso Core.CurrentScreen.CanTakeScreenshot Then
             CaptureScreen()
         ElseIf KeyBoardHandler.KeyPressed(KeyBindings.DebugKey) Then

@@ -1411,6 +1411,10 @@ game_message_gamepad_support_off,XBOX 360 Controller-ondersteuning uitgeschakeld
 game_message_audio_on,Geluid aan
 game_message_audio_off,Geluid uit
 game_message_continue_autosave,Hervatte opslagbestand:
+game_message_gui_on,GUI ingeschakeld
+game_message_gui_off,GUI uitgeschakeld
+game_message_lighting_on,Wereldverlichting ingeschakeld
+game_message_lighting_off,Wereldverlichting uitgeschakeld
 game_message_debug_texture_list_clear,Textuur-lijst is gewist
 ---
 Pokemon:

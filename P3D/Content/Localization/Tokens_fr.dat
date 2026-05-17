@@ -1410,6 +1410,10 @@ game_message_gamepad_support_off,Disabled XBOX 360 GamePad support
 game_message_audio_on,Audio activé.
 game_message_audio_off,Audio désactivé.
 game_message_continue_autosave,Continued save state:
+game_message_gui_on,GUI Enabled
+game_message_gui_off,GUI Disabled
+game_message_lighting_on,Lighting Enabled
+game_message_lighting_off,Lighting Disabled
 game_message_debug_texture_list_clear,Texture list was cleared
 ---
 Pokemon:

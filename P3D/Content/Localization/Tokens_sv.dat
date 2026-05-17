@@ -1412,6 +1412,10 @@ game_message_gamepad_support_off,Disabled XBOX 360 GamePad support
 game_message_audio_on,Audio på
 game_message_audio_off,Audio av
 game_message_continue_autosave,Fortsatt sparat spel:
+game_message_gui_on,GUI Enabled
+game_message_gui_off,GUI Disabled
+game_message_lighting_on,Lighting Enabled
+game_message_lighting_off,Lighting Disabled
 game_message_debug_texture_list_clear,Texturlistan har rensats
 ---
 Pokemon:
