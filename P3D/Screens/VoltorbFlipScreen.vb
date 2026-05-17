@@ -7,14 +7,14 @@ Namespace VoltorbFlip
 
         ' Variables & Properties
 
-        Private _screenTransitionY As Single = 0F
+        Public _screenTransitionY As Single = 0F
         Public Shared _interfaceFade As Single = 0F
 
         Private Delay As Integer = 0
         Private MemoMenuX As Single = 0F
         Private MemoMenuSize As New Size(112, 112)
 
-        Private Shared ReadOnly GameSize As New Size(576, 544)
+        Public Shared ReadOnly GameSize As New Size(576, 544)
         Public Shared ReadOnly BoardSize As New Size(384, 384)
         Public Shared ReadOnly TileSize As New Size(64, 64)
         Private Shared ReadOnly GridSize As Integer = 5
@@ -774,6 +774,12 @@ TryAgain:
             BoardCursorPosition = GetCursorOffset(0, 0)
         End Sub
 
+        Public Sub Minimized()
+            GameOrigin = New Vector2(CInt(windowSize.Width / 2 - GameSize.Width / 2 - 32), CInt(windowSize.Height / 2 - _screenTransitionY))
+            BoardOrigin = New Vector2(GameOrigin.X + 32, GameOrigin.Y + 160)
+            TutorialRectangle = New Rectangle(CInt(windowSize.Width / 2 - 512 / 2), CInt(windowSize.Height / 2 - 384 / 2), 512, 384)
+        End Sub
+
         Public Sub UpdateTiles()
             For _row = 0 To GridSize - 1
                 For _column = 0 To GridSize - 1
@@ -783,6 +789,9 @@ TryAgain:
             Next
         End Sub
         Public Overrides Sub Update()
+            If GameOrigin.X <> CInt(windowSize.Width / 2 - GameSize.Width / 2 - 32) Or GameOrigin.Y <> CInt(windowSize.Height / 2 - _screenTransitionY) Then
+                Minimized()
+            End If
 
             ChooseBox.Update()
             If ChooseBox.Showing = False Then

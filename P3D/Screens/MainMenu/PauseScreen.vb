@@ -86,6 +86,10 @@
             CType(PreScreen, BattleCatchScreen).UpdateAnimations()
         ElseIf PreScreen.Identification = Screen.Identifications.BattleScreen Then
             PreScreen.Update()
+        ElseIf PreScreen.Identification = Identifications.VoltorbFlipScreen Then
+            If VoltorbFlip.VoltorbFlipScreen.GameOrigin.X <> CInt(windowSize.Width / 2 - VoltorbFlip.VoltorbFlipScreen.GameSize.Width / 2 - 32) Or VoltorbFlip.VoltorbFlipScreen.GameOrigin.Y <> CInt(windowSize.Height / 2 - CType(PreScreen, VoltorbFlip.VoltorbFlipScreen)._screenTransitionY) Then
+                CType(PreScreen, VoltorbFlip.VoltorbFlipScreen).Minimized()
+            End If
         End If
 
         Screen.TextBox.reDelay = 0.0F
