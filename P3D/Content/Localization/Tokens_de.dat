@@ -335,6 +335,8 @@ option_screen_battle_battlestyle_shift,Tausch
 
 option_screen_controls,Controls
 option_screen_controls_xboxgamepad,Xbox Controller
+option_screen_controls_invertrightstick_x,Invert Right Stick X
+option_screen_controls_invertrightstick_y,Invert Right Stick Y
 option_screen_controls_resetkeybindings,Tastenbelegung zurücks.
 option_screen_controls_cameraspeed,Mausgeschwindigkeit
 option_screen_controls_cameraspeed_slow,...Langsam...

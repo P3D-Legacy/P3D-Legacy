@@ -9,6 +9,7 @@
     Public ViewBobbing As Boolean = True
     Public LightingEnabled As Boolean = True
     Public GamePadEnabled As Boolean = True
+    Public GamePadInvertRightStick As New Vector2(0, 0)
     Public StartedOfflineGame As Boolean = False
     Public WindowSize As New Vector2(1200, 680)
     Public MaxOffsetLevel As Integer = 0

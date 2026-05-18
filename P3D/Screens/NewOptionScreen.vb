@@ -20,6 +20,7 @@ Public Class NewOptionScreen
 	Dim ShowModels As Integer = 1
 	Dim Muted As Integer = 0
 	Dim GamePadEnabled As Boolean = True
+	Dim GamePadInvertRightStick As New Vector2(0, 0)
 	Dim RunMode As Boolean = True
 	Dim PreferMultiSampling As Boolean = True
 	Dim TempMusicVolume As Integer = 50
@@ -993,10 +994,12 @@ Public Class NewOptionScreen
 
 			Case 4 ' "Controls" from the Options menu.
 				If PreScreen.Identification = Identifications.MainMenuScreen Then
-					Me.ControlList.Add(New ToggleButton(New Vector2(Delta_X + 100, Delta_Y + 100), 5, 64, Localization.GetString("option_screen_controls_xboxgamepad", "Xbox Gamepad"), Me.GamePadEnabled, AddressOf ToggleXBOX360Controller, {Localization.GetString("global_disabled", "Disabled"), Localization.GetString("global_enabled", "Enabled")}.ToList(), 1))
-					Me.ControlList.Add(New CommandButton(New Vector2(Delta_X + 100, Delta_Y + 200), 3, 64, Localization.GetString("option_screen_controls_resetkeybindings", "Reset Key Bindings"), AddressOf ResetKeyBindings, 2))
-					Me.ControlList.Add(New CommandButton(New Vector2(Delta_X + 90 + 24, Delta_Y + 336), 1, 48, Localization.GetString("global_apply", "Apply"), AddressOf ControlsApply, 3))
-					Me.ControlList.Add(New CommandButton(New Vector2(Delta_X + 530 + 24, Delta_Y + 336), 1, 48, Localization.GetString("global_back", "Back"), AddressOf Close, 4))
+					Me.ControlList.Add(New ToggleButton(New Vector2(Delta_X + 100, Delta_Y + 100), 3, 64, Localization.GetString("option_screen_controls_xboxgamepad", "Xbox Gamepad"), Me.GamePadEnabled, AddressOf ToggleXBOX360Controller, {Localization.GetString("global_disabled", "Disabled"), Localization.GetString("global_enabled", "Enabled")}.ToList(), 1))
+					Me.ControlList.Add(New ToggleButton(New Vector2(Delta_X + 100 + (3 * 64) + 16, Delta_Y + 100), 3, 64, Localization.GetString("option_screen_controls_invertrightstick_x", "Invert Right Stick X"), CBool(GamePadInvertRightStick.X), AddressOf ToggleInvertRightStickX, {Localization.GetString("global_off", "Off"), Localization.GetString("global_on", "On")}.ToList(), 2))
+					Me.ControlList.Add(New CommandButton(New Vector2(Delta_X + 100, Delta_Y + 200), 3, 64, Localization.GetString("option_screen_controls_resetkeybindings", "Reset Key Bindings"), AddressOf ResetKeyBindings, 3))
+					Me.ControlList.Add(New ToggleButton(New Vector2(Delta_X + 100 + (3 * 64) + 16, Delta_Y + 200), 3, 64, Localization.GetString("option_screen_controls_invertrightstick_y", "Invert Right Stick Y"), CBool(GamePadInvertRightStick.Y), AddressOf ToggleInvertRightStickY, {Localization.GetString("global_off", "Off"), Localization.GetString("global_on", "On")}.ToList(), 4))
+					Me.ControlList.Add(New CommandButton(New Vector2(Delta_X + 90 + 24, Delta_Y + 336), 1, 48, Localization.GetString("global_apply", "Apply"), AddressOf ControlsApply, 5))
+					Me.ControlList.Add(New CommandButton(New Vector2(Delta_X + 530 + 24, Delta_Y + 336), 1, 48, Localization.GetString("global_back", "Back"), AddressOf Close, 6))
 				Else
 					Dim d As New Dictionary(Of Integer, String)
 					d.Add(1, Localization.GetString("option_screen_controls_cameraspeed_slow", "...Slow..."))
@@ -1004,8 +1007,8 @@ Public Class NewOptionScreen
 					d.Add(38, Localization.GetString("option_screen_controls_cameraspeed_fast", "Super fast!"))
 					d.Add(50, Localization.GetString("option_screen_controls_cameraspeed_fastest", "SPEED OF LIGHT!"))
 					Me.ControlList.Add(New ScrollBar(New Vector2(Delta_X + 100, Delta_Y + 60), 400, Localization.GetString("option_screen_controls_cameraspeed", "Camera Speed"), Me.CameraSpeed, 1, 50, AddressOf ChangeCameraSpeed, d, 1))
-					Me.ControlList.Add(New ToggleButton(New Vector2(Delta_X + 100, Delta_Y + 120), 5, 64, Localization.GetString("option_screen_controls_xboxgamepad", "Xbox Gamepad"), Me.GamePadEnabled, AddressOf ToggleXBOX360Controller, {Localization.GetString("global_disabled", "Disabled"), Localization.GetString("global_enabled", "Enabled")}.ToList(), 2))
-					Me.ControlList.Add(New ToggleButton(New Vector2(Delta_X + 100, Delta_Y + 200), 5, 64, Localization.GetString("option_screen_controls_running", "Running"), Me.RunMode, AddressOf ToggleRunningToggle, {Localization.GetString("option_screen_controls_running_hold", "Hold"), Localization.GetString("option_screen_controls_running_toggle", "Toggle")}.ToList(), 3))
+					Me.ControlList.Add(New ToggleButton(New Vector2(Delta_X + 100, Delta_Y + 120), 3, 64, Localization.GetString("option_screen_controls_xboxgamepad", "Xbox Gamepad"), Me.GamePadEnabled, AddressOf ToggleXBOX360Controller, {Localization.GetString("global_disabled", "Disabled"), Localization.GetString("global_enabled", "Enabled")}.ToList(), 2))
+					Me.ControlList.Add(New ToggleButton(New Vector2(Delta_X + 100, Delta_Y + 200), 3, 64, Localization.GetString("option_screen_controls_running", "Running"), Me.RunMode, AddressOf ToggleRunningToggle, {Localization.GetString("option_screen_controls_running_hold", "Hold"), Localization.GetString("option_screen_controls_running_toggle", "Toggle")}.ToList(), 3))
 					Me.ControlList.Add(New CommandButton(New Vector2(Delta_X + 100, Delta_Y + 280), 3, 64, Localization.GetString("option_screen_controls_resetkeybindings", "Reset Key Bindings"), AddressOf ResetKeyBindings, 4))
 					Me.ControlList.Add(New CommandButton(New Vector2(Delta_X + 530 + 24, Delta_Y + 336), 1, 48, Localization.GetString("global_back", "Back"), AddressOf SwitchToMain, 5))
 				End If
@@ -1078,6 +1081,8 @@ Public Class NewOptionScreen
 	End Sub
 	Private Sub ControlsApply()
 		Core.GameOptions.GamePadEnabled = Me.GamePadEnabled
+		Core.GameOptions.GamePadInvertRightStick = Me.GamePadInvertRightStick
+
 		Core.GameOptions.SaveOptions()
 		SoundManager.PlaySound("save")
 		_closing = True
@@ -1315,6 +1320,22 @@ Public Class NewOptionScreen
 
 	Private Sub ToggleXBOX360Controller(ByVal c As ToggleButton)
 		Me.GamePadEnabled = Not Me.GamePadEnabled
+	End Sub
+
+	Private Sub ToggleInvertRightStickX(ByVal c As ToggleButton)
+		If Me.GamePadInvertRightStick.X = 0 Then
+			Me.GamePadInvertRightStick.X = 1
+		Else
+			Me.GamePadInvertRightStick.X = 0
+		End If
+	End Sub
+
+	Private Sub ToggleInvertRightStickY(ByVal c As ToggleButton)
+		If Me.GamePadInvertRightStick.Y = 0 Then
+			Me.GamePadInvertRightStick.Y = 1
+		Else
+			Me.GamePadInvertRightStick.Y = 0
+		End If
 	End Sub
 	Private Sub ToggleRunningToggle(ByVal c As ToggleButton)
 		Me.RunMode = Not Me.RunMode

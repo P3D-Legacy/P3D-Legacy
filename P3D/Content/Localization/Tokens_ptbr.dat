@@ -334,6 +334,8 @@ option_screen_battle_battlestyle_set,Direto
 
 option_screen_controls,Controles
 option_screen_controls_xboxgamepad,Xbox Gamepad
+option_screen_controls_invertrightstick_x,Invert Right Stick X
+option_screen_controls_invertrightstick_y,Invert Right Stick Y
 option_screen_controls_resetkeybindings,Resetar Mapeamento
 option_screen_controls_cameraspeed,Velocidade da camera
 option_screen_controls_cameraspeed_slow,...lesma...
