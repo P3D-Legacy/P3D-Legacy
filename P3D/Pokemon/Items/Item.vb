@@ -87,7 +87,7 @@ Public MustInherit Class Item
     End Property
 
     Public Function OneLineName() As String
-        Return Name.Replace("~", " ")
+        Return Name.Replace("~", "")
     End Function
     Public Function OneLinePluralName() As String
         If IsGameModeItem = True Then
