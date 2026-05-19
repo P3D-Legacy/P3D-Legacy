@@ -254,10 +254,16 @@ Public Class OverworldCamera
 
         If gState.ThumbSticks.Right.X <> 0.0F And Core.GameOptions.GamePadEnabled = True Then
             CameraD.X = gState.ThumbSticks.Right.X * 50.0F
+            If Core.GameOptions.GamePadInvertRightStick.X <> 0 Then
+                CameraD.X *= -1
+            End If
         End If
 
         If gState.ThumbSticks.Right.Y <> 0.0F And Core.GameOptions.GamePadEnabled = True Then
             CameraD.Y = gState.ThumbSticks.Right.Y * 35.0F * -1.0F
+            If Core.GameOptions.GamePadInvertRightStick.Y <> 0 Then
+                CameraD.Y *= -1
+            End If
         End If
 
         If _isFixed = False AndAlso (CameraD.X <> 0 OrElse CameraD.Y <> 0) Then
