@@ -192,7 +192,7 @@
                     End If
                 End If
             Else
-                Me.PositionY -= 8.0F
+                Me.PositionY -= CSng(8.0F * Core.SpriteBatch.InterfaceScale)
             End If
         Else
             If reDelay > 0.0F Then
