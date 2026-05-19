@@ -27,7 +27,7 @@ Public Class ItemObject
     Public Overloads Sub Initialize(Optional ByVal AnimationData As List(Of List(Of Integer)) = Nothing)
         MyBase.Initialize()
 
-        If StringHelper.IsNumeric(Me.AdditionalValue.GetSplit(1)) = False Then
+        If StringHelper.IsNumeric(Me.AdditionalValue.GetSplit(1)) = False AndAlso Me.AdditionalValue.GetSplit(1).StartsWith("gm") = False Then
 
             Select Case Me.AdditionalValue.GetSplit(1).ToLower
                 Case "money"
