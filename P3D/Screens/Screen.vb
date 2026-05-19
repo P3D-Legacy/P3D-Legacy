@@ -313,7 +313,7 @@ Public MustInherit Class Screen
     ''' <param name="Descriptions">The button types and descriptions.</param>
     ''' <remarks>Calculates the position and calls DrawGamePadControls(Descriptions,Position)</remarks>
     Public Sub DrawGamePadControls(ByVal Descriptions As Dictionary(Of Buttons, String))
-        Dim x As Integer = windowSize.Width 'Store the x position of the start of the controls render.
+        Dim x As Integer = ScreenSize.Width 'Store the x position of the start of the controls render.
 
         'Loop through the buttons and add to the x location.
         For i = 0 To Descriptions.Count - 1
@@ -325,11 +325,11 @@ Public MustInherit Class Screen
             End Select
 
             'Add to the x location for the length of the string and a separator.
-            x -= CInt(FontManager.MainFont.MeasureString(Descriptions.Values(i)).X) + 16
+            x -= CInt(CInt(FontManager.MainFont.MeasureString(Descriptions.Values(i)).X) + 16 * SpriteBatch.InterfaceScale)
         Next
 
         'Finally, render the buttons:
-        DrawGamePadControls(Descriptions, New Vector2(x, windowSize.Height - 40))
+        DrawGamePadControls(Descriptions, New Vector2(x, ScreenSize.Height - 40))
     End Sub
 
     ''' <summary>
@@ -379,18 +379,18 @@ Public MustInherit Class Screen
                 End Select
 
                 'Draw the buttons (first, the "shadow" with a black color, then the real button).
-                SpriteBatch.Draw(TextureManager.GetTexture(t), New Rectangle(x + 2, y + 2, width, height), Color.Black)
-                SpriteBatch.Draw(TextureManager.GetTexture(t), New Rectangle(x, y, width, height), Color.White)
+                SpriteBatch.DrawInterface(TextureManager.GetTexture(t), New Rectangle(x + 2, y + 2, width, height), Color.Black)
+                SpriteBatch.DrawInterface(TextureManager.GetTexture(t), New Rectangle(x, y, width, height), Color.White)
 
                 'Add the button width and a little offset to the drawing position:
                 x += width + 4
 
                 'Draw the button description (again, with a shadow):
-                SpriteBatch.DrawString(FontManager.MainFont, Descriptions.Values(i), New Vector2(x + 3, y + 7), Color.Black)
-                SpriteBatch.DrawString(FontManager.MainFont, Descriptions.Values(i), New Vector2(x, y + 4), Color.White)
+                SpriteBatch.DrawInterfaceString(FontManager.MainFont, Descriptions.Values(i), New Vector2(x + 3, y + 7), Color.Black)
+                SpriteBatch.DrawInterfaceString(FontManager.MainFont, Descriptions.Values(i), New Vector2(x, y + 4), Color.White)
 
                 'Add the text width and the offset for the next button description to the drawing position:
-                x += CInt(FontManager.MainFont.MeasureString(Descriptions.Values(i)).X) + 16
+                x += CInt(CInt(FontManager.MainFont.MeasureString(Descriptions.Values(i)).X) + 16 * SpriteBatch.InterfaceScale)
             Next
         End If
     End Sub
