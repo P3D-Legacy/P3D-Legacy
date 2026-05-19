@@ -47,7 +47,7 @@
         Core.SpriteBatch.DrawString(FontManager.InGameFont, Pokemon.GetDisplayName(), New Vector2(p.X + 90, p.Y + 32), Color.Black)
         Core.SpriteBatch.DrawString(FontManager.InGameFont, " reached level " & Pokemon.Level & "!", New Vector2(p.X + 90 + FontManager.InGameFont.MeasureString(Pokemon.GetDisplayName()).X, p.Y + 32), Color.Black)
 
-        Dim OldOffset As Integer = 160
+        Dim OldOffset As Integer = 192
 
         If Delay >= 3.0F Then
             Core.SpriteBatch.DrawString(FontManager.InGameFont, Localization.GetString("property_MaxHP") & ":", New Vector2(p.X + 32, p.Y + 84), Color.Black)
@@ -64,7 +64,7 @@
             Core.SpriteBatch.DrawString(FontManager.InGameFont, OldStats(5).ToString(), New Vector2(p.X + 32 + OldOffset, p.Y + 284), Color.Black)
         End If
 
-        Dim NewOffset As Integer = 208
+        Dim NewOffset As Integer = 240
         If Delay >= 5.0F Then
             Core.SpriteBatch.DrawString(FontManager.InGameFont, "+ " & newMaxHP, New Vector2(p.X + 32 + NewOffset, p.Y + 84), Color.Black)
         End If
@@ -84,7 +84,7 @@
             Core.SpriteBatch.DrawString(FontManager.InGameFont, "+ " & newSpeed, New Vector2(p.X + 32 + NewOffset, p.Y + 284), Color.Black)
         End If
 
-        Dim ResultOffset As Integer = 288
+        Dim ResultOffset As Integer = 320
 
         If Delay >= 9.0F Then
             Core.SpriteBatch.DrawString(FontManager.InGameFont, "= " & Pokemon.MaxHP, New Vector2(p.X + 32 + ResultOffset, p.Y + 84), Color.Black)
