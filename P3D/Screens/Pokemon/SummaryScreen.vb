@@ -547,7 +547,7 @@
             Canvas.DrawRectangle(New Rectangle(DeltaX + 700, DeltaY + 76 + 32 * 2, 350, 32), New Color(0, 0, 0, CInt(100 * _interfaceFade * _pageFade * _moveFade)))
             Canvas.DrawRectangle(New Rectangle(DeltaX + 700, DeltaY + 76 + 32 * 3, 350, 32), New Color(0, 0, 0, CInt(70 * _interfaceFade * _pageFade * _moveFade)))
             Canvas.DrawRectangle(New Rectangle(DeltaX + 700, DeltaY + 76 + 32 * 4, 350, 32), New Color(0, 0, 0, CInt(100 * _interfaceFade * _pageFade * _moveFade)))
-            Canvas.DrawRectangle(New Rectangle(DeltaX + 700, DeltaY + 76 + 32 * 5, 350, 160), New Color(0, 0, 0, CInt(70 * _interfaceFade * _pageFade * _moveFade)))
+            Canvas.DrawRectangle(New Rectangle(DeltaX + 700, DeltaY + 76 + 32 * 5, 350, 240), New Color(0, 0, 0, CInt(70 * _interfaceFade * _pageFade * _moveFade)))
 
             'Type:
             SpriteBatch.DrawString(FontManager.MainFont, Localization.GetString("property_Type", "Type") & ":", New Vector2(DeltaX + 710, DeltaY + 80), New Color(255, 255, 255, CInt(220 * _interfaceFade * _pageFade * _moveFade)))
@@ -577,7 +577,7 @@
             SpriteBatch.DrawString(FontManager.MainFont, accuracy, New Vector2(DeltaX + 840 + 56, DeltaY + 208), New Color(255, 255, 255, CInt(220 * _fadeIn * _pageFade * _moveFade)))
 
             'Description:
-            SpriteBatch.DrawString(FontManager.MainFont, .Attacks(_moveIndex).Description.CropStringToWidth(FontManager.MainFont, 300), New Vector2(DeltaX + 720, DeltaY + 240), New Color(255, 255, 255, CInt(220 * _fadeIn * _pageFade * _moveFade)), 0.0F, New Vector2(0), 1.0F, SpriteEffects.None, 0.0F)
+            SpriteBatch.DrawString(FontManager.MainFont, .Attacks(_moveIndex).Description.CropStringToWidth(FontManager.MainFont, 300), New Vector2(DeltaX + 710, DeltaY + 240), New Color(255, 255, 255, CInt(220 * _fadeIn * _pageFade * _moveFade)), 0.0F, New Vector2(0), 1.0F, SpriteEffects.None, 0.0F)
 
             'Switch Page Hint
             Canvas.DrawRectangle(New Rectangle(CInt(DeltaX + 344 + (380 / 2) - (348 / 2)), DeltaY + 6, 300 + 48, 32), New Color(0, 0, 0, CInt(50 * _interfaceFade * _pageFade)))
