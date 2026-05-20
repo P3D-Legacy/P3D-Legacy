@@ -22,7 +22,7 @@ Namespace Items.Berries
 
         Public Overrides Sub Use()
             If CBool(GameModeManager.GetGameRuleValue("CanUseHealItems", "1")) = False Then
-                Screen.TextBox.Show("Cannot use heal items.", {}, False, False)
+                Screen.TextBox.Show(Localization.GetString("item_cannot_use_HealingItems", "Cannot use healing items."), {}, False, False)
                 Exit Sub
             End If
             If Core.Player.Pokemons.Count > 0 Then
@@ -31,7 +31,7 @@ Namespace Items.Berries
 
                 Core.SetScreen(selScreen)
             Else
-                Screen.TextBox.Show("You don't have any Pokémon.", {}, False, False)
+                Screen.TextBox.Show(Localization.GetString("item_cannot_use_NoPokemon", "You don't have any Pokémon."), {}, False, False)
             End If
         End Sub
 

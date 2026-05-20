@@ -982,6 +982,32 @@ pvp_screen_Team,Team
 pvp_screen_GameVersionsMismatch,Spelversies zijn niet hetzelfde.
 
 ---
+Move Tutor Screen:
+move_tutor_screen_CurrentMoves,Huidige technieken
+move_tutor_screen_TutorMoves,Leerbare technieken
+move_tutor_screen_CannotLearnNewMove,De Pokémon kan hier geen~nieuwe techniek leren.
+---
+Learning & Choosing Moves:
+learn_move_PokemonForgotMove,1... 2... 3... en...*Ta-da!*[POKEMONNAME] vergat~[MOVENAME] en...
+learn_move_PokemonLearnedMove,[POKEMONNAME] leerde~[MOVENAME]!
+learn_move_PokemonLearnedMove_WithDots,... [POKEMONNAME] leerde~[MOVENAME]!
+learn_move_GiveUpOnLearning,Stoppen met het leren van "[MOVENAME]"?
+learn_move_DidNotLearnMove,[POKEMONNAME] heeft~[MOVENAME] niet geleerd!
+learn_move_ForgetMoveToLearn,"[OLDMOVENAME]" vergeten om "[NEWMOVENAME]" te leren?
+learn_move_CannotForgetMove,Kan de techniek "[MOVENAME]" niet vergeten~omdat het een Verborgen Machine-techniek is.
+learn_move_AlreadyKnowsFourMoves1,wil de techniek "[MOVENAME]" leren. Maar [POKEMONNAME] kan maximaal 4 technieken leren.
+learn_move_AlreadyKnowsFourMoves2,Wil je dat [POKEMONNAME] een techniek vergeet om "[MOVENAME]" te leren?
+learn_move_AlreadyKnowsTheMove,[POKEMONNAME] kent de~techniek [MOVENAME] al.
+learn_move_EggCannotLearn,Ei kan de techniek~[MOVENAME]!
+learn_move_PokemonCannotLearn,[POKEMONNAME] kan de~techniek [MOVENAME] niet~leren!
+choose_move_CannotChooseHMMove,Kan geen VM-techniek kiezen.
+---
+Leveling Up & evolving
+level_up_PokemonReachedLevel,[POKEMONNAME] bereikte~niveau [LEVELNUMBER]!
+evolution_PokemonIsEvolving,Wat?*[POKEMONNAME] is aan het evolueren!
+evolution_PokemonStoppedEvolving,Huh? [POKEMONNAME]~stopte met evolueren!
+evolution_PokemonEvolvedInto,Gefeliciteerd!*Jouw [POKEMONNAME]~evolueerde in een [EVOLUTIONNAME]!
+---
 Blackout Screen:
 black_out_screen_line1,Je hebt geen strijdbare Pokémon meer!
 black_out_screen_line2,Je zult naar het dichtstbijzijnde
@@ -3444,7 +3470,31 @@ item_pluralname_675,Staal-herinneringen
 item_pluralname_676,Water-herinneringen
 
 Item Use Text:
+item_UsedLastItem,Er zijn geen~[ITEMPLURALNAME] over.
 item_cannot_use,Het is nu niet het moment~om dat te gebruiken.
+item_cannot_use_NoPokemon,Je hebt geen Pokémon.
+item_cannot_use_IsFainted,[POKEMONNAME]~is uitgeschakeld!
+item_cannot_use_HealingItems,Kan geen herstellende~voorwerpen gebruiken.
+item_cannot_use_OnPokemon_Single,Kan [ITEMNAME] niet~gebruiken op [POKEMONNAME].
+item_cannot_use_OnPokemon_Both,Kan [ITEMNAME] niet~gebruiken op [OWNPOKEMONNAME]~of [OPPPOKEMONNAME].
+item_cannot_use_FullHP_Single,[POKEMONNAME]'s LP zijn al~volledig aangevuld.
+item_cannot_use_FullHP_Both,[OWNPOKEMONNAME] en~[OPPPOKEMONNAME]'s LP zijn al~volledig aangevuld.
+item_cannot_use_NotPoisoned_Single,[POKEMONNAME] is niet~vergiftigd.
+item_cannot_use_NotPoisoned_Both,[OWNPOKEMONNAME] en~[OPPPOKEMONNAME] zijn niet~vergiftigd.
+
+item_use_HealItem_Own,[POKEMONNAME]'s LP zijn~met [HPAMOUNT] hersteld.
+item_use_HealItem_Opponent,[POKEMONNAME]'s LP zijn~hersteld.
+item_use_HealItem_Both,[OWNPOKEMONNAME] en~[OPPPOKEMONNAME]'s LP zijn~hersteld.
+item_use_HealAndCureItem_Heal_Single,[POKEMONNAME] is hersteld!
+item_use_HealAndCureItem_Heal_Both,[OWNPOKEMONNAME] en~[OPPPOKEMONNAME] zijn~hersteld!
+item_use_HealAndCureItem_Cure_Single,[POKEMONNAME] is genezen!
+item_use_HealAndCureItem_Cure_Both,[OWNPOKEMONNAME] en~[OPPPOKEMONNAME] zijn~genezen!
+item_use_HealAndCureItem_HealAndCure_Single,[POKEMONNAME] is hersteld~en genezen!
+item_use_HealAndCureItem_HealAndCure_Both,[OWNPOKEMONNAME] en~[OPPPOKEMONNAME] zijn~hersteld en genezen!
+item_use_CurePoison_Single,[POKEMONNAME] is genezen~van vergiftiging.
+item_use_CurePoison_Both,[OWNPOKEMONNAME] en~[OPPPOKEMONNAME] zijn~genezen van vergiftiging.
+item_use_RevivalItem,[POKEMONNAME]~is weer helemaal bijgekomen.
+
 item_6_cannot_walk,Je kunt hier niet lopen!
 item_6_missingskin,Je kunt dit voorwerp niet~gebruiken zonder een fiets-~karakterafbeelding.*De naam van de karakter-~afbeelding moet dezelfde zijn~als degene die je nu gebruikt~maar dan met "_bike" aan~het eind.
 item_6_only_custom_gamemodes,Dit voorwerp kan niet gebruikt~worden in deze SpelModus.
@@ -3465,6 +3515,7 @@ item_use_55_Found_Down,Hij wijst naar beneden.
 item_use_55_Found_Up,Hij wijst naar boven.
 item_use_55_Found_Here,Hij wijst naar waar ik sta.
 item_use_55_Found_InFrontOfMe,Het ligt hier vlak voor me!
+item_use_501,The Pokémon sparkled.
 item_use_658_disable,De Team-ervaringsdeler is~uitgezet.
 item_use_658_enable,De Team-ervaringsdeler is~aangezet.
 -------------------

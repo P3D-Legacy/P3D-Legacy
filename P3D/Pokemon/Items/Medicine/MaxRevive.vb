@@ -15,7 +15,7 @@ Namespace Items.Medicine
 
         Public Overrides Sub Use()
             If CBool(GameModeManager.GetGameRuleValue("CanUseHealItems", "1")) = False Then
-                Screen.TextBox.Show("Cannot use heal items.", {}, False, False)
+                Screen.TextBox.Show(Localization.GetString("item_cannot_use_HealingItems", "Cannot use healing items."), {}, False, False)
                 Exit Sub
             End If
             If Core.Player.Pokemons.Count > 0 Then
@@ -24,7 +24,7 @@ Namespace Items.Medicine
 
                 Core.SetScreen(selScreen)
             Else
-                Screen.TextBox.Show("You don't have any Pokémon.", {}, False, False)
+                Screen.TextBox.Show(Localization.GetString("item_cannot_use_NoPokemon", "You don't have any Pokémon."), {}, False, False)
             End If
         End Sub
 
@@ -36,14 +36,14 @@ Namespace Items.Medicine
                 Pokemon.HP = Pokemon.MaxHP
 
                 SoundManager.PlaySound("Use_Item", False)
-                Screen.TextBox.Show(Pokemon.GetDisplayName() & "~is revitalized.", {}, False, False)
+                Screen.TextBox.Show(Localization.GetString("item_use_RevivalItem", "[POKEMONNAME]~is revitalized.").Replace("[POKEMONNAME]", Pokemon.GetDisplayName()), {}, False, False)
                 PlayerStatistics.Track("[17]Medicine Items used", 1)
 
                 RemoveItem()
 
                 Return True
             Else
-                Screen.TextBox.Show("Cannot use Max Revive~on this Pokémon.", {}, False, False)
+                Screen.TextBox.Show(Localization.GetString("item_cannot_use_OnPokemon_Single", "Cannot use [ITEMNAME]~on [POKEMONNAME].").Replace("[ITEMNAME]", Me.Name).Replace("[POKEMONNAME]", Pokemon.GetDisplayName()), {}, False, False)
 
                 Return False
             End If

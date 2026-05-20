@@ -16,7 +16,7 @@ Namespace Items.Medicine
 
         Public Overrides Sub Use()
             If CBool(GameModeManager.GetGameRuleValue("CanUseHealItems", "1")) = False Then
-                Screen.TextBox.Show("Cannot use heal items.", {}, False, False)
+                Screen.TextBox.Show(Localization.GetString("item_cannot_use_HealingItems", "Cannot use healing items."), {}, False, False)
                 Exit Sub
             End If
             If Core.Player.Pokemons.Count > 0 Then
@@ -25,7 +25,7 @@ Namespace Items.Medicine
 
                 Core.SetScreen(selScreen)
             Else
-                Screen.TextBox.Show("You don't have any Pokémon.", {}, False, False)
+                Screen.TextBox.Show(Localization.GetString("item_cannot_use_NoPokemon", "You don't have any Pokémon."), {}, False, False)
             End If
         End Sub
 
@@ -34,7 +34,7 @@ Namespace Items.Medicine
 
             If Pokemon.Status = P3D.Pokemon.StatusProblems.Fainted Then
                 Screen.TextBox.reDelay = 0.0F
-                Screen.TextBox.Show(Pokemon.GetDisplayName() & "~is fainted!", {})
+                Screen.TextBox.Show(Localization.GetString("item_cannot_use_IsFainted", "[POKEMONNAME]~is fainted!").Replace("[POKEMONNAME]", Pokemon.GetDisplayName()), {})
 
                 Return False
             Else

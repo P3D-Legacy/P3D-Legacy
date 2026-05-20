@@ -262,6 +262,32 @@ Donation screen:
 donation_screen_donators,Aukotojai
 donation_screen_backadvice,Paspauskite e, kad uždaryti
 ---
+Move Tutor Screen:
+move_tutor_screen_CurrentMoves,Pokémon's moves
+move_tutor_screen_TutorMoves,Tutor moves
+move_tutor_screen_CannotLearnNewMove,The Pokémon cannot learn~a new move here.
+---
+Learning & Choosing Moves:
+learn_move_PokemonForgotMove,1... 2... 3... and...*Ta-da!*[POKEMONNAME] forgot~[MOVENAME] and...
+learn_move_PokemonLearnedMove,[POKEMONNAME] learned~[MOVENAME]!
+learn_move_PokemonLearnedMove_WithDots,... [POKEMONNAME] learned~[MOVENAME]!
+learn_move_GiveUpOnLearning,Give up on learning "[MOVENAME]"?
+learn_move_DidNotLearnMove,[POKEMONNAME] didn't~learn [MOVENAME]!
+learn_move_ForgetMoveToLearn,Forget "[OLDMOVENAME]" to learn "[NEWMOVENAME]"?
+learn_move_CannotForgetMove,Cannot forget the move "[MOVENAME]" because~it's a Hidden Machine move.
+learn_move_AlreadyKnowsFourMoves1,wants to learn "[MOVENAME]". But [POKEMONNAME] can only learn 4 moves.
+learn_move_AlreadyKnowsFourMoves2,Do you want [POKEMONNAME] to forget a move to learn "[MOVENAME]"?
+learn_move_AlreadyKnowsTheMove,[POKEMONNAME] already~knows [MOVENAME].
+learn_move_EggCannotLearn,Egg cannot learn~[MOVENAME]!
+learn_move_PokemonCannotLearn,[POKEMONNAME] cannot learn~[MOVENAME]!
+choose_move_CannotChooseHMMove,Cannot choose HM move.
+---
+Leveling Up & evolving
+level_up_PokemonReachedLevel,[POKEMONNAME] reached~level [LEVELNUMBER]!
+evolution_PokemonIsEvolving,What?*[POKEMONNAME] is evolving!
+evolution_PokemonStoppedEvolving,Huh? [POKEMONNAME]~stopped evolving!
+evolution_PokemonEvolvedInto,Congratulations!*Your [POKEMONNAME]~evolved into [EVOLUTIONNAME]!
+---
 Blackout Screen:
 black_out_screen_line1,Jūsų visi Pokemonai jau be samonės.
 black_out_screen_line2,Jūs būsite nuveštas

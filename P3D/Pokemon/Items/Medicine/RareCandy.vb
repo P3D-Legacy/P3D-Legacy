@@ -22,7 +22,7 @@ Namespace Items.Medicine
 
                 Core.SetScreen(selScreen)
             Else
-                Screen.TextBox.Show("You don't have any Pokémon.", {}, False, False)
+                Screen.TextBox.Show(Localization.GetString("item_cannot_use_NoPokemon", "You don't have any Pokémon."), {}, False, False)
             End If
         End Sub
 
@@ -37,7 +37,7 @@ Namespace Items.Medicine
                 Dim s As String =
                     "version=2" & Environment.NewLine &
                     "@sound.play(success_small,1)" & Environment.NewLine &
-                    "@text.show(" & Pokemon.GetDisplayName() & " reached~level " & Pokemon.Level & "!)" & Environment.NewLine
+                    "@text.show(" & Localization.GetString("level_up_PokemonReachedLevel", "[POKEMONNAME] reached~level [LEVELNUMBER]!").Replace("[POKEMONNAME]", Pokemon.GetDisplayName()).Replace("[LEVELNUMBER]", Pokemon.Level.ToString) & ")" & Environment.NewLine
 
                 Dim removedItem As Boolean = False
 
@@ -57,7 +57,7 @@ Namespace Items.Medicine
                                 Pokemon.Attacks.Add(aList(a))
 
                                 s &= "@sound.play(success_small,1)" & Environment.NewLine &
-                                     "@text.show(" & Pokemon.GetDisplayName() & " learned~" & aList(a).Name & "!" & Me.RemoveItem() & ")" & Environment.NewLine
+                                     "@text.show(" & Localization.GetString("learn_move_PokemonLearnedMove", "[POKEMONNAME] learned~[MOVENAME]!").Replace("[POKEMONNAME]", Pokemon.GetDisplayName()).Replace("[MOVENAME]", aList(a).Name) & Me.RemoveItem() & ")" & Environment.NewLine
                                 removedItem = True
                                 PlayerStatistics.Track("Moves learned", 1)
                             End If

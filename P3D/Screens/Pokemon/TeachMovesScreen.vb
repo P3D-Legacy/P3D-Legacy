@@ -117,7 +117,7 @@
         Me.PreScreen.Draw()
         Canvas.DrawRectangle(Core.windowSize, New Color(0, 0, 0, 150))
         If Me.MovesList.Count > 0 Then
-            Canvas.DrawImageBorder(TextureManager.GetTexture(mainTexture, New Rectangle(0, 0, 48, 48)), 2, New Rectangle(60, 100, 864 + 320, 480))
+            Canvas.DrawImageBorder(TextureManager.GetTexture(mainTexture, New Rectangle(0, 0, 48, 48)), 2, New Rectangle(60, 100, 864 + 320 + 64, 480))
 
             Dim A As BattleSystem.Attack = MovesList(Me.index)
 
@@ -134,18 +134,18 @@
                     acc = "-"
                 End If
 
-                .DrawString(FontManager.MainFont, "Power: " & power & Environment.NewLine & "Accuracy: " & acc & Environment.NewLine & Environment.NewLine & Description, New Vector2(CInt(60 + 864 + 48), 128), Color.Black)
-                .Draw(A.GetDamageCategoryImage(), New Rectangle(CInt(60 + 864 + 320 - 16 - 56), 128, 56, 28), Color.White)
+                .DrawString(FontManager.MainFont, Localization.GetString("property_Power", "Power") & ": " & power & Environment.NewLine & Localization.GetString("property_Accuracy", "Accuracy") & ": " & acc & Environment.NewLine & Environment.NewLine & Description, New Vector2(CInt(60 + 864 + 48 + 64), 128), Color.Black)
+                .Draw(A.GetDamageCategoryImage(), New Rectangle(CInt(60 + 864 + 320 + 64 - 16 - 56), 128, 56, 28), Color.White)
             End With
 
         End If
-        Canvas.DrawImageBorder(TextureManager.GetTexture(mainTexture, New Rectangle(0, 0, 48, 48)), 2, New Rectangle(60, 100, 864, 480))
+        Canvas.DrawImageBorder(TextureManager.GetTexture(mainTexture, New Rectangle(0, 0, 48, 48)), 2, New Rectangle(60, 100, 864 + 64, 480))
 
         Core.SpriteBatch.Draw(Pokemon.GetTexture(True), New Rectangle(176 - MathHelper.Min(CInt(Pokemon.GetTexture(True).Width), 128), 208 - MathHelper.Min(CInt(Pokemon.GetTexture(True).Height), 128), MathHelper.Min(CInt(Pokemon.GetTexture(True).Width * 2), 256), MathHelper.Min(CInt(Pokemon.GetTexture(True).Height * 2), 256)), Color.White)
 
-        Core.SpriteBatch.DrawString(FontManager.MainFont, Pokemon.GetDisplayName() & Environment.NewLine & "Level: " & Pokemon.Level, New Vector2(80, 304), Color.Black)
+        Core.SpriteBatch.DrawString(FontManager.MainFont, Pokemon.GetDisplayName() & Environment.NewLine & Localization.GetString("property_Level", "Level") & ": " & Pokemon.Level, New Vector2(80, 304), Color.Black)
 
-        Core.SpriteBatch.DrawString(FontManager.MainFont, "Pokémon's moves:", New Vector2(312, 128), Color.Black)
+        Core.SpriteBatch.DrawString(FontManager.MainFont, Localization.GetString("move_tutor_screen_CurrentMoves", "Pokémon's moves") & ":", New Vector2(312, 128), Color.Black)
         For i = 0 To Pokemon.Attacks.Count - 1
             If i <= Pokemon.Attacks.Count - 1 Then
                 DrawAttack(312, i, Pokemon.Attacks(i), False)
@@ -153,13 +153,13 @@
         Next
 
         If Me.MovesList.Count = 0 Then
-            Core.SpriteBatch.DrawString(FontManager.MainFont, "The Pokémon cannot learn" & Environment.NewLine & "a new move here.", New Vector2(580, 128), Color.Black)
+            Core.SpriteBatch.DrawString(FontManager.MainFont, Localization.GetString("move_tutor_screen_CannotLearnNewMove", "The Pokémon cannot learn~a new move here.").Replace("~", Environment.NewLine).Replace("*", Environment.NewLine), New Vector2(588 + 32, 128), Color.Black)
         Else
-            Core.SpriteBatch.DrawString(FontManager.MainFont, "Tutor moves (" & MovesList.Count & "):", New Vector2(644, 128), Color.Black)
+            Core.SpriteBatch.DrawString(FontManager.MainFont, Localization.GetString("move_tutor_screen_TutorMoves", "Tutor moves") & " (" & MovesList.Count & "):", New Vector2(644 + 32, 128), Color.Black)
 
             For i = scrollIndex To scrollIndex + 3
                 If i <= MovesList.Count - 1 Then
-                    DrawAttack(644, i, MovesList(i), True)
+                    DrawAttack(644 + 32, i, MovesList(i), True)
                 End If
             Next
         End If
@@ -186,7 +186,7 @@
             FontColor = Color.White
         End If
 
-        Canvas.DrawImageBorder(CanvasTexture, 2, New Rectangle(CInt(p.X - 18), CInt(p.Y), 256, 64))
+        Canvas.DrawImageBorder(CanvasTexture, 2, New Rectangle(CInt(p.X - 18), CInt(p.Y), 256 + 32, 64))
 
         With Core.SpriteBatch
             If FontColor <> Color.Black Then
@@ -250,7 +250,7 @@
         If Pokemon.Attacks.Count < 4 Then
             LearnedMove = True
             Pokemon.Attacks.Add(BattleSystem.Attack.GetAttackByID(a.ID))
-            TextBox.Show("... " & Pokemon.GetDisplayName() & " learned~" & a.Name & "!")
+            TextBox.Show(Localization.GetString("learn_move_PokemonLearnedMove_WithDots", "... [POKEMONNAME] learned~[MOVENAME]!").Replace("[POKEMONNAME]", Pokemon.GetDisplayName()).Replace("[MOVENAME]", a.Name))
             SoundManager.PlaySound("success_small", False)
             Core.SetScreen(Me.PreScreen)
         Else

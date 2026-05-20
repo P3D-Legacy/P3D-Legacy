@@ -981,6 +981,32 @@ pvp_screen_Team,Team
 pvp_screen_GameVersionsMismatch,Game versions don't match.
 
 ---
+Move Tutor Screen:
+move_tutor_screen_CurrentMoves,Pokémon's moves
+move_tutor_screen_TutorMoves,Tutor moves
+move_tutor_screen_CannotLearnNewMove,The Pokémon cannot learn~a new move here.
+---
+Learning & Choosing Moves:
+learn_move_PokemonForgotMove,1... 2... 3... and...*Ta-da!*[POKEMONNAME] forgot~[MOVENAME] and...
+learn_move_PokemonLearnedMove,[POKEMONNAME] learned~[MOVENAME]!
+learn_move_PokemonLearnedMove_WithDots,... [POKEMONNAME] learned~[MOVENAME]!
+learn_move_GiveUpOnLearning,Give up on learning "[MOVENAME]"?
+learn_move_DidNotLearnMove,[POKEMONNAME] didn't~learn [MOVENAME]!
+learn_move_ForgetMoveToLearn,Forget "[OLDMOVENAME]" to learn "[NEWMOVENAME]"?
+learn_move_CannotForgetMove,Cannot forget the move "[MOVENAME]" because~it's a Hidden Machine move.
+learn_move_AlreadyKnowsFourMoves1,wants to learn "[MOVENAME]". But [POKEMONNAME] can only learn 4 moves.
+learn_move_AlreadyKnowsFourMoves2,Do you want [POKEMONNAME] to forget a move to learn "[MOVENAME]"?
+learn_move_AlreadyKnowsTheMove,[POKEMONNAME] already~knows [MOVENAME].
+learn_move_EggCannotLearn,Egg cannot learn~[MOVENAME]!
+learn_move_PokemonCannotLearn,[POKEMONNAME] cannot learn~[MOVENAME]!
+choose_move_CannotChooseHMMove,Cannot choose HM move.
+---
+Leveling Up & evolving
+level_up_PokemonReachedLevel,[POKEMONNAME] reached~level [LEVELNUMBER]!
+evolution_PokemonIsEvolving,What?*[POKEMONNAME] is evolving!
+evolution_PokemonStoppedEvolving,Huh? [POKEMONNAME]~stopped evolving!
+evolution_PokemonEvolvedInto,Congratulations!*Your [POKEMONNAME]~evolved into [EVOLUTIONNAME]!
+---
 Blackout Screen:
 black_out_screen_line1,Tu n'as plus de POKéMON en Forme!
 black_out_screen_line2,Tu sera transporter 
@@ -3048,7 +3074,31 @@ item_name_675,Steel Memory
 item_name_676,Water Memory
 
 Item Use Text:
+item_UsedLastItem,There are no~[ITEMPLURALNAME] left.
+item_cannot_use_NoPokemon,You don't have any Pokémon.
 item_cannot_use,Ce n'est pas le moment~d'utiliser ceci.
+item_cannot_use_IsFainted,[POKEMONNAME]~is fainted!
+item_cannot_use_HealingItems,Cannot use healing items.
+item_cannot_use_OnPokemon_Single,Cannot use [ITEMNAME]~on [POKEMONNAME].
+item_cannot_use_OnPokemon_Both,Cannot use [ITEMNAME]~on [OWNPOKEMONNAME]~or [OPPPOKEMONNAME].
+item_cannot_use_FullHP_Single,[POKEMONNAME] has full~HP already.
+item_cannot_use_FullHP_Both,[OWNPOKEMONNAME] and~[OPPPOKEMONNAME] have full~HP already.
+item_cannot_use_NotPoisoned_Single,[POKEMONNAME] is not~poisoned.
+item_cannot_use_NotPoisoned_Both,[OWNPOKEMONNAME] and~[OPPPOKEMONNAME] are not~poisoned.
+
+item_use_HealItem_Own,Restored [POKEMONNAME]'s~HP by [HPAMOUNT].
+item_use_HealItem_Opponent,Restored [POKEMONNAME]'s~HP.
+item_use_HealItem_Both,Restored [OWNPOKEMONNAME] and~[OPPPOKEMONNAME]'s HP.
+item_use_HealAndCureItem_Heal_Single,Healed [POKEMONNAME]!
+item_use_HealAndCureItem_Heal_Both,Healed [OWNPOKEMONNAME] and~[OPPPOKEMONNAME]!
+item_use_HealAndCureItem_Cure_Single,Cured [POKEMONNAME]!
+item_use_HealAndCureItem_Cure_Both,Cured [OWNPOKEMONNAME] and~[OPPPOKEMONNAME]!
+item_use_HealAndCureItem_HealAndCure_Single,Healed and cured~[POKEMONNAME]!
+item_use_HealAndCureItem_HealAndCure_Both,Healed and cured~[OWNPOKEMONNAME] and~[OPPPOKEMONNAME]!
+item_use_CurePoison_Single,Cured the poison~of [POKEMONNAME].
+item_use_CurePoison_Both,Cured the poison~of [OWNPOKEMONNAME] and~[OPPPOKEMONNAME].
+item_use_RevivalItem,[POKEMONNAME]~is revitalized.
+
 item_6_cannot_walk,Tu ne peux pas marcher ici!
 item_6_missingskin,You can't use this item~without a bicycle skin.*Its name should be the~same as your current one,~but with "_bike" at the end.
 item_6_only_custom_gamemodes,Cet objet ne peut être~utilisé dans ce mode de jeu.
@@ -3069,6 +3119,7 @@ item_use_55_Found_Down,It's pointing downwards.
 item_use_55_Found_Up,It's pointing upwards.
 item_use_55_Found_Here,It's pointing to where I'm~standing.
 item_use_55_Found_InFrontOfMe,It's right in front of me!
+item_use_501,The Pokémon sparkled.
 item_use_658_disable,The Exp. All was turned off.
 item_use_658_enable,The Exp. All was turned on.
 

@@ -74,7 +74,7 @@
         Dim p As Vector2 = New Vector2(96, 96)
 
         If Pokemon.Attacks.Count > 0 Then
-            Canvas.DrawImageBorder(CanvasTexture, 2, New Rectangle(CInt(p.X), CInt(p.Y), 640, 416))
+            Canvas.DrawImageBorder(CanvasTexture, 2, New Rectangle(CInt(p.X), CInt(p.Y), 672, 416))
 
             Dim A As BattleSystem.Attack = Pokemon.Attacks(AttackIndex)
 
@@ -91,11 +91,11 @@
                     acc = "-"
                 End If
 
-                .DrawString(FontManager.MainFont, "Power: " & power & Environment.NewLine & "Accuracy: " & acc & Environment.NewLine & Environment.NewLine & Description, New Vector2(CInt(p.X + 320 + 48), p.Y + 48), Color.Black)
-                .Draw(A.GetDamageCategoryImage(), New Rectangle(CInt(p.X + 640 - 16 - 56), CInt(p.Y + 48), 56, 28), Color.White)
+                .DrawString(FontManager.MainFont, Localization.GetString("property_Power", "Power") & ": " & power & Environment.NewLine & Localization.GetString("property_Accuracy", "Accuracy") & ": " & acc & Environment.NewLine & Environment.NewLine & Description, New Vector2(CInt(p.X + 352 + 48), p.Y + 48), Color.Black)
+                .Draw(A.GetDamageCategoryImage(), New Rectangle(CInt(p.X + 672 - 16 - 56), CInt(p.Y + 48), 56, 28), Color.White)
             End With
 
-            Canvas.DrawImageBorder(CanvasTexture, 2, New Rectangle(CInt(p.X), CInt(p.Y), 320, 416))
+            Canvas.DrawImageBorder(CanvasTexture, 2, New Rectangle(CInt(p.X), CInt(p.Y), 352, 416))
 
             For i = 0 To Me.Pokemon.Attacks.Count - 1
                 DrawAttack(p, i, Me.Pokemon.Attacks(i))
@@ -117,7 +117,7 @@
             FontColor = Color.White
         End If
 
-        Canvas.DrawImageBorder(CanvasTexture, 2, New Rectangle(CInt(p.X) + 16, CInt(p.Y), 256, 64))
+        Canvas.DrawImageBorder(CanvasTexture, 2, New Rectangle(CInt(p.X) + 16, CInt(p.Y), 288, 64))
 
         With Core.SpriteBatch
             If FontColor <> Color.Black Then
@@ -148,7 +148,7 @@
             Dim A As BattleSystem.Attack = Pokemon.Attacks(AttackIndex)
             If A.IsHMMove = True Then
                 valid = False
-                TextBox.Show("Cannot choose HM move.", {}, False, False)
+                TextBox.Show(Localization.GetString("choose_move_CannotChooseHMMove", "Cannot choose HM move."), {}, False, False)
             End If
         End If
         If valid = True Then

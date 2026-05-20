@@ -22,7 +22,7 @@ Namespace Items.Medicine
 
                 Core.SetScreen(selScreen)
             Else
-                Screen.TextBox.Show("You don't have any Pokémon.", {}, False, False)
+                Screen.TextBox.Show(Localization.GetString("item_cannot_use_NoPokemon", "You don't have any Pokémon."), {}, False, False)
             End If
         End Sub
 
@@ -33,12 +33,12 @@ Namespace Items.Medicine
                 p.IsShiny = True
 
                 SoundManager.PlaySound("Use_Item", False)
-                Screen.TextBox.Show("The Pokémon sparkled." & RemoveItem())
+                Screen.TextBox.Show(Localization.GetString("item_use_501", "The Pokémon sparkled.") & RemoveItem())
                 PlayerStatistics.Track("[17]Medicine Items used", 1)
 
                 Return True
             Else
-                Screen.TextBox.Show("Cannot use shiny candy~on this Pokémon.", {}, False, False)
+                Screen.TextBox.Show(Localization.GetString("item_cannot_use_OnPokemon_Single", "Cannot use [ITEMNAME]~on [POKEMONNAME].").Replace("[ITEMNAME]", Me.Name).Replace("[POKEMONNAME]", p.GetDisplayName()), {}, False, False)
 
                 Return False
             End If

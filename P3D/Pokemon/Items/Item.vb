@@ -372,7 +372,7 @@ Public MustInherit Class Item
         End If
 
         If Core.Player.Inventory.GetItemAmount(ItemID) <= 0 Then
-            Return "*There are no~" & Me.OneLinePluralName() & " left."
+            Return "*" & Localization.GetString("item_UsedLastItem", "There are no~[ITEMPLURALNAME] left.").Replace("[ITEMPLURALNAME]", Me.OneLinePluralName())
         End If
 
         Return ""

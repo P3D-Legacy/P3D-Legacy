@@ -194,7 +194,7 @@
 
         If evolutionStarted = False Then
             SoundManager.PlayPokemonCry(currentPokemon.Number, PokemonForms.GetCrySuffix(currentPokemon))
-            TextBox.Show("What?*" & currentPokemon.GetDisplayName() & " is evolving!", {}, False, False)
+            TextBox.Show(Localization.GetString("evolution_PokemonIsEvolving", "What?*[POKEMONNAME] is evolving!").Replace("[POKEMONNAME]", currentPokemon.GetDisplayName()), {}, False, False)
             evolutionStarted = True
             For i = 0 To Core.Random.Next(200, 250)
                 Sparks.Add(New Spark())
@@ -225,7 +225,7 @@
                             Sparks.Clear()
                             evolutionReady = True
                             brokeEvolution = True
-                            TextBox.Show("Huh? " & currentPokemon.GetDisplayName() & "~stopped evolving!", {}, False, False)
+                            TextBox.Show(Localization.GetString("evolution_PokemonStoppedEvolving", "Huh? [POKEMONNAME]~stopped evolving!").Replace("[POKEMONNAME]", currentPokemon.GetDisplayName()), {}, False, False)
                         End If
                     End If
                 Else
@@ -261,7 +261,7 @@
                         SoundManager.PlaySound("success", True)
 
                         evolutionReady = True
-                        Dim t As String = "Congratulations!*Your " & currentPokemon.GetDisplayName() & "~evolved into " & evolvedPokemon.GetName() & "!"
+                        Dim t As String = Localization.GetString("evolution_PokemonEvolvedInto", "Congratulations!*Your [POKEMONNAME]~evolved into [EVOLUTIONNAME]!").Replace("[POKEMONNAME]", currentPokemon.GetDisplayName()).Replace("[EVOLUTIONNAME]", evolvedPokemon.GetName())
                         If evolvedPokemon.AttackLearns.ContainsKey(evolvedPokemon.Level) = True Then
                             Dim aList As List(Of BattleSystem.Attack) = evolvedPokemon.AttackLearns(evolvedPokemon.Level)
                             For a = 0 To aList.Count - 1
@@ -271,7 +271,7 @@
                                     Else
                                         evolvedPokemon.Attacks.Add(aList(a))
 
-                                        t &= "*" & evolvedPokemon.GetDisplayName() & " learned~" & aList(a).Name & "!"
+                                        t &= "*" & Localization.GetString("learn_move_PokemonLearnedMove", "[POKEMONNAME] learned~[MOVENAME]!").Replace("[POKEMONNAME]", evolvedPokemon.GetDisplayName()).Replace("[MOVENAME]", aList(a).Name)
                                         PlayerStatistics.Track("Moves learned", 1)
                                         CanEnd = True
                                     End If

@@ -26,7 +26,7 @@ Namespace Items.Berries
 
                 Core.SetScreen(selScreen)
             Else
-                Screen.TextBox.Show("You don't have any Pokémon.", {}, False, False)
+                Screen.TextBox.Show(Localization.GetString("item_cannot_use_NoPokemon", "You don't have any Pokémon."), {}, False, False)
             End If
         End Sub
 
@@ -35,7 +35,7 @@ Namespace Items.Berries
 
             If Pokemon.Status = P3D.Pokemon.StatusProblems.Fainted Then
                 Screen.TextBox.reDelay = 0.0F
-                Screen.TextBox.Show(Pokemon.GetDisplayName() & "~is fainted!", {})
+                Screen.TextBox.Show(Localization.GetString("item_cannot_use_IsFainted", "[POKEMONNAME]~is fainted!").Replace("[POKEMONNAME]", Pokemon.GetDisplayName()), {})
 
                 Return False
             Else

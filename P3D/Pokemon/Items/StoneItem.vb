@@ -15,7 +15,7 @@ Namespace Items
                 Core.SetScreen(selScreen)
                 CType(CurrentScreen, PartyScreen).EvolutionItemID = Me.ID.ToString
             Else
-                Screen.TextBox.Show("You don't have any Pokémon.", {}, False, False)
+                Screen.TextBox.Show(Localization.GetString("item_cannot_use_NoPokemon", "You don't have any Pokémon."), {}, False, False)
             End If
 
         End Sub
@@ -40,7 +40,7 @@ Namespace Items
 
                 Return True
             Else
-                Screen.TextBox.Show("Cannot use on~" & p.GetDisplayName(), {}, False, False)
+                Screen.TextBox.Show(Localization.GetString("item_cannot_use_OnPokemon_Single", "Cannot use [ITEMNAME]~on [POKEMONNAME].").Replace("[ITEMNAME]", Me.Name).Replace("[POKEMONNAME]", p.GetDisplayName()), {}, False, False)
 
                 Return False
             End If

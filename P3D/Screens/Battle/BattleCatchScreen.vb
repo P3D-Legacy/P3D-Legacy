@@ -638,7 +638,7 @@ nextIndex:
 
                         Core.Player.Pokemons(PokeIndex).hasLeveledUp = True
                         Battlescreen.BattleQuery.Add(New BattleSystem.PlaySoundQueryObject("Battle\exp_max", False))
-                        Battlescreen.BattleQuery.Add(New BattleSystem.TextQueryObject(Core.Player.Pokemons(PokeIndex).GetDisplayName() & " reached level " & moveLevel & "!"))
+                        Battlescreen.BattleQuery.Add(New BattleSystem.TextQueryObject(Localization.GetString("level_up_PokemonReachedLevel", "[POKEMONNAME] reached~level [LEVELNUMBER]!").Replace("[POKEMONNAME]", Core.Player.Pokemons(PokeIndex).GetDisplayName()).Replace("[LEVELNUMBER]", moveLevel.ToString)))
                         Battlescreen.BattleQuery.Add(New BattleSystem.DisplayLevelUpQueryObject(Core.Player.Pokemons(PokeIndex), oldStats))
 
                     End If

@@ -27,13 +27,13 @@ Namespace Items
 
             If Pokemon.Status = P3D.Pokemon.StatusProblems.Fainted Then
                 Screen.TextBox.reDelay = 0.0F
-                Screen.TextBox.Show(Pokemon.GetDisplayName() & "~is fainted!", {})
+                Screen.TextBox.Show(Localization.GetString("item_cannot_use_IsFainted", "[POKEMONNAME]~is fainted!").Replace("[POKEMONNAME]", Pokemon.GetDisplayName()), {})
 
                 Return False
             Else
                 If Pokemon.HP = Pokemon.MaxHP Then
                     Screen.TextBox.reDelay = 0.0F
-                    Screen.TextBox.Show(Pokemon.GetDisplayName() & " has full~HP already.", {})
+                    Screen.TextBox.Show(Localization.GetString("item_cannot_use_FullHP_Single","[POKEMONNAME] has full~HP already.").Replace("[POKEMONNAME]", Pokemon.GetDisplayName()), {})
 
                     Return False
                 Else
@@ -52,7 +52,7 @@ Namespace Items
 
                     Screen.TextBox.reDelay = 0.0F
 
-                    Dim t As String = "Restored " & Pokemon.GetDisplayName() & "'s~HP by " & diff & "."
+                    Dim t As String =Localization.GetString("item_use_HealItem_Own", "Restored [POKEMONNAME]'s~HP by [HPAMOUNT].").Replace("[POKEMONNAME]",Pokemon.GetDisplayName()).Replace("[HPAMOUNT]",diff.ToString)
                     t &= RemoveItem()
 
                     SoundManager.PlaySound("Use_Item", False)
@@ -77,7 +77,7 @@ Namespace Items
 
             If Pokemon.Status = P3D.Pokemon.StatusProblems.Fainted Then
                 Screen.TextBox.reDelay = 0.0F
-                Screen.TextBox.Show(Pokemon.GetDisplayName() & "~is fainted!", {})
+                Screen.TextBox.Show(Localization.GetString("item_cannot_use_IsFainted", "[POKEMONNAME]~is fainted!").Replace("[POKEMONNAME]", Pokemon.GetDisplayName()), {})
 
                 Return False
             ElseIf Pokemon.Status = P3D.Pokemon.StatusProblems.Poison Or Pokemon.Status = P3D.Pokemon.StatusProblems.BadPoison Then
@@ -93,7 +93,7 @@ Namespace Items
 
                 Screen.TextBox.reDelay = 0.0F
 
-                Dim t As String = "Cured the poison~of " & Pokemon.GetDisplayName() & "."
+                Dim t As String = Localization.GetString("item_use_CurePoison_Single", "Cured the poison~of [POKEMONNAME].").Replace("[POKEMONNAME]", Pokemon.GetDisplayName())
                 t &= RemoveItem()
                 PlayerStatistics.Track("[17]Medicine Items used", 1)
 
@@ -103,7 +103,7 @@ Namespace Items
                 Return True
             Else
                 Screen.TextBox.reDelay = 0.0F
-                Screen.TextBox.Show(Pokemon.GetDisplayName() & " is not~poisoned.", {})
+                Screen.TextBox.Show(Localization.GetString("item_cannot_use_NotPoisoned_Single", "[POKEMONNAME] is not~poisoned.").Replace("[POKEMONNAME]", Pokemon.GetDisplayName()), {})
 
                 Return False
             End If
@@ -122,7 +122,7 @@ Namespace Items
 
             If Pokemon.Status = P3D.Pokemon.StatusProblems.Fainted Then
                 Screen.TextBox.reDelay = 0.0F
-                Screen.TextBox.Show(Pokemon.GetDisplayName() & "~is fainted!", {})
+                Screen.TextBox.Show(Localization.GetString("item_cannot_use_IsFainted", "[POKEMONNAME]~is fainted!").Replace("[POKEMONNAME]", Pokemon.GetDisplayName()), {})
 
                 Return False
             ElseIf Pokemon.Status = P3D.Pokemon.StatusProblems.Sleep Then
@@ -167,7 +167,7 @@ Namespace Items
 
             If Pokemon.Status = P3D.Pokemon.StatusProblems.Fainted Then
                 Screen.TextBox.reDelay = 0.0F
-                Screen.TextBox.Show(Pokemon.GetDisplayName() & "~is fainted!", {})
+                Screen.TextBox.Show(Localization.GetString("item_cannot_use_IsFainted", "[POKEMONNAME]~is fainted!").Replace("[POKEMONNAME]", Pokemon.GetDisplayName()), {})
 
                 Return False
             ElseIf Pokemon.Status = P3D.Pokemon.StatusProblems.Burn Then
@@ -212,7 +212,7 @@ Namespace Items
 
             If Pokemon.Status = P3D.Pokemon.StatusProblems.Fainted Then
                 Screen.TextBox.reDelay = 0.0F
-                Screen.TextBox.Show(Pokemon.GetDisplayName() & "~is fainted!", {})
+                Screen.TextBox.Show(Localization.GetString("item_cannot_use_IsFainted", "[POKEMONNAME]~is fainted!").Replace("[POKEMONNAME]", Pokemon.GetDisplayName()), {})
 
                 Return False
             ElseIf Pokemon.Status = P3D.Pokemon.StatusProblems.Freeze Then
@@ -257,7 +257,7 @@ Namespace Items
 
             If Pokemon.Status = P3D.Pokemon.StatusProblems.Fainted Then
                 Screen.TextBox.reDelay = 0.0F
-                Screen.TextBox.Show(Pokemon.GetDisplayName() & "~is fainted!", {})
+                Screen.TextBox.Show(Localization.GetString("item_cannot_use_IsFainted", "[POKEMONNAME]~is fainted!").Replace("[POKEMONNAME]", Pokemon.GetDisplayName()), {})
 
                 Return False
             ElseIf Pokemon.Status = P3D.Pokemon.StatusProblems.Paralyzed Then

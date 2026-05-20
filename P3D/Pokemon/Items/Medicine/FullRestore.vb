@@ -15,7 +15,7 @@ Namespace Items.Medicine
 
         Public Overrides Sub Use()
             If CBool(GameModeManager.GetGameRuleValue("CanUseHealItems", "1")) = False Then
-                Screen.TextBox.Show("Cannot use heal items.", {}, False, False)
+                Screen.TextBox.Show(Localization.GetString("item_cannot_use_HealingItems", "Cannot use healing items."), {}, False, False)
                 Exit Sub
             End If
             If Core.Player.Pokemons.Count > 0 Then
@@ -24,7 +24,7 @@ Namespace Items.Medicine
 
                 Core.SetScreen(selScreen)
             Else
-                Screen.TextBox.Show("You don't have any Pokémon.", {}, False, False)
+                Screen.TextBox.Show(Localization.GetString("item_cannot_use_NoPokemon", "You don't have any Pokémon."), {}, False, False)
             End If
         End Sub
 
@@ -42,7 +42,7 @@ Namespace Items.Medicine
                 p.Status = Pokemon.StatusProblems.None
                 v2 = True
                 If v1 = False Then
-                    Dim t As String = "Healed " & p.GetDisplayName() & "!"
+                    Dim t As String = Localization.GetString("item_use_HealAndCureItem_Heal_Single", "Healed [POKEMONNAME]!").Replace("[POKEMONNAME]", p.GetDisplayName())
                     t &= RemoveItem()
 
                     SoundManager.PlaySound("Use_Item", False)

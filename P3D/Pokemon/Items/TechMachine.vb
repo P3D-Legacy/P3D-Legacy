@@ -99,7 +99,7 @@
                 Core.SetScreen(selScreen)
                 CType(CurrentScreen, PartyScreen).SetupLearnAttack(Attack, 1, Me)
             Else
-                Screen.TextBox.Show("You don't have any Pokémon.", {}, False, False)
+                Screen.TextBox.Show(Localization.GetString("item_cannot_use_NoPokemon", "You don't have any Pokémon."), {}, False, False)
             End If
 
         End Sub
@@ -115,13 +115,14 @@
 
                     Return True
                 Else
+                    Dim lastItemText As String = ""
                     If IsTM = True AndAlso CBool(GameModeManager.GetGameRuleValue("SingleUseTM", "0")) = True Then
-                        Core.Player.Inventory.RemoveItem(ID.ToString, 1)
+                        lastItemText = "*" & Me.RemoveItem()
                     End If
                     p.Attacks.Add(BattleSystem.Attack.GetAttackByID(a.ID))
 
                     SoundManager.PlaySound("success_small", False)
-                    Screen.TextBox.Show(p.GetDisplayName() & " learned~" & a.Name & "!", {}, False, False)
+                    Screen.TextBox.Show(Localization.GetString("learn_move_PokemonLearnedMove", "[POKEMONNAME] learned~[MOVENAME]!").Replace("[POKEMONNAME]", p.GetDisplayName()).Replace("[MOVENAME]", a.Name) & lastItemText, {}, False, False)
                     PlayerStatistics.Track("TMs/HMs used", 1)
 
                     Return True
@@ -135,12 +136,12 @@
 
         Public Function CanTeach(ByVal p As Pokemon) As String
             If p.IsEgg() = True Then
-                Return "Egg cannot learn~" & Attack.Name & "!"
+                Return Localization.GetString("learn_move_EggCannotLearn", "Egg cannot learn~[MOVENAME]!").Replace("[MOVENAME]", Attack.Name)
             End If
 
             For Each knowAttack As BattleSystem.Attack In p.Attacks
                 If knowAttack.ID = Attack.ID Then
-                    Return p.GetDisplayName() & " already~knows " & Attack.Name & "."
+                    Return Localization.GetString("learn_move_AlreadyKnowsTheMove", "[POKEMONNAME] already~knows [MOVENAME].").Replace("[POKEMONNAME]", p.GetDisplayName()).Replace("[MOVENAME]", Attack.Name)
                 End If
             Next
 
@@ -178,7 +179,7 @@
                 Return ""
             End If
 
-            Return p.GetDisplayName() & " cannot learn~" & Attack.Name & "!"
+            Return Localization.GetString("learn_move_PokemonCannotLearn", "[POKEMONNAME] cannot learn~[MOVENAME]!").Replace("[POKEMONNAME]", p.GetDisplayName()).Replace("[MOVENAME]", Attack.Name)
         End Function
 
     End Class

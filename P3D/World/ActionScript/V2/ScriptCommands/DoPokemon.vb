@@ -854,7 +854,7 @@
                         Dim s As String = "version=2" & Environment.NewLine
 
                         If amount > 0 Then
-                            s &= "@text.show(" & p.GetDisplayName() & " reached~level " & p.Level & "!)" & Environment.NewLine
+                            s &= "@text.show(" & Localization.GetString("level_up_PokemonReachedLevel", "[POKEMONNAME] reached~level [LEVELNUMBER]!").Replace("[POKEMONNAME]", p.GetDisplayName()).Replace("[LEVELNUMBER]", p.Level.ToString) & ")" & Environment.NewLine
                         End If
 
                         Dim currentMaxHP As Integer = p.MaxHP
@@ -874,7 +874,7 @@
                         If AttackLearnList.Count > 0 Then
                             For i = 0 To AttackLearnList.Count - 1
                                 If p.Attacks.Count < 4 Then
-                                    s &= "@text.show(" & p.GetDisplayName() & " learned~" & AttackLearnList(i).Name & "!)" & Environment.NewLine
+                                    s &= "@text.show(" & Localization.GetString("learn_move_PokemonLearnedMove", "[POKEMONNAME] learned~[MOVENAME]!").Replace("[POKEMONNAME]", p.GetDisplayName()).Replace("[MOVENAME]", AttackLearnList(i).Name) & ")" & Environment.NewLine
                                     p.Attacks.Add(AttackLearnList(i))
                                     PlayerStatistics.Track("Moves learned", 1)
                                 Else

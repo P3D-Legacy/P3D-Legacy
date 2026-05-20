@@ -132,11 +132,10 @@
             End If
         Else
 
-
             Dim p As Vector2 = New Vector2(96, 96)
 
             If Pokemon.Attacks.Count > 0 Then
-                Canvas.DrawImageBorder(CanvasTexture, 2, New Rectangle(CInt(p.X), CInt(p.Y), 640, 416))
+                Canvas.DrawImageBorder(CanvasTexture, 2, New Rectangle(CInt(p.X), CInt(p.Y), 672, 416))
 
                 Dim A As BattleSystem.Attack
                 If AttackIndex = 4 Then
@@ -158,12 +157,12 @@
                         acc = "-"
                     End If
 
-                    .DrawString(FontManager.MainFont, "Power: " & power & Environment.NewLine & "Accuracy: " & acc & Environment.NewLine & Environment.NewLine & Description, New Vector2(CInt(p.X + 320 + 48), p.Y + 48), Color.Black)
-                    .Draw(A.GetDamageCategoryImage(), New Rectangle(CInt(p.X + 640 - 16 - 56), CInt(p.Y + 48), 56, 28), Color.White)
+                    .DrawString(FontManager.MainFont, Localization.GetString("property_Power", "Power") & ": " & power & Environment.NewLine & Localization.GetString("property_Accuracy", "Accuracy") & ": " & acc & Environment.NewLine & Environment.NewLine & Description, New Vector2(CInt(p.X + 352 + 48), p.Y + 48), Color.Black)
+                    .Draw(A.GetDamageCategoryImage(), New Rectangle(CInt(p.X + 672 - 16 - 56), CInt(p.Y + 48), 56, 28), Color.White)
                 End With
 
-                Canvas.DrawImageBorder(CanvasTexture, 2, New Rectangle(CInt(p.X), CInt(p.Y), 320, 416))
-                Canvas.DrawImageBorder(CanvasTexture, 2, New Rectangle(CInt(p.X), CInt(p.Y + 416 + 48), 320, 128))
+                Canvas.DrawImageBorder(CanvasTexture, 2, New Rectangle(CInt(p.X), CInt(p.Y), 352, 416))
+                Canvas.DrawImageBorder(CanvasTexture, 2, New Rectangle(CInt(p.X), CInt(p.Y + 416 + 48), 352, 128))
 
                 For i = 0 To Me.Pokemon.Attacks.Count - 1
                     DrawAttack(p, i, Me.Pokemon.Attacks(i))
@@ -178,11 +177,11 @@
 
                 Dim drawText As String = ""
                 If AttackIndex = 4 Then
-                    drawText = "Give up on learning """ & newAttacks(0).Name & """?"
+                    drawText = Localization.GetString("learn_move_GiveUpOnLearning", "Give up on learning ""[MOVENAME]""").Replace("[MOVENAME]", newAttacks(0).Name)
                 Else
-                    drawText = "Forget """ & Pokemon.Attacks(AttackIndex).Name & """ to learn """ & newAttacks(0).Name & """?"
+                    drawText = Localization.GetString("learn_move_ForgetMoveToLearn", "Forget ""[OLDMOVENAME]"" to learn ""[NEWMOVENAME]""?").Replace("[OLDMOVENAME]", Pokemon.Attacks(AttackIndex).Name).Replace("[NEWMOVENAME]", newAttacks(0).Name)
                     If canForget = False Then
-                        drawText = "Cannot forget the move " & Pokemon.Attacks(AttackIndex).Name & " because" & Environment.NewLine & "it's a Hidden Machine move."
+                        drawText = Localization.GetString("learn_move_CannotForgetMove", "Cannot forget the move ""[MOVENAME]"" because~it's a Hidden Machine move.").Replace("[MOVENAME]", Pokemon.Attacks(AttackIndex).Name).Replace("~", Environment.NewLine).Replace("*", Environment.NewLine)
                     End If
                 End If
 
@@ -195,13 +194,13 @@
 
                 For i = 0 To endIndex
                     Dim FontColor As Color = Color.Black
-                    Dim Text As String = "Learn"
+                    Dim Text As String = Localization.GetString("global_learn", "Learn")
                     If AttackIndex = 4 Then
-                        Text = "OK"
+                        Text = Localization.GetString("global_ok", "OK")
                     End If
 
                     If i = 0 Then
-                        Text = "Cancel"
+                        Text = Localization.GetString("global_cancel", "Cancel")
                     End If
 
                     If i = index Then
@@ -237,16 +236,17 @@
             Core.SpriteBatch.Draw(pokeTexture, New Rectangle(CInt(FontManager.MainFont.MeasureString(Pokemon.GetDisplayName()).X + 120 + CInt(FontManager.MainFont.MeasureString(" ").X / 2)), 12, CInt(pokeTexture.Width * pokeTextureScale.X), CInt(pokeTexture.Height * pokeTextureScale.Y)), Color.White)
         End If
         If currentCharIndex > (Pokemon.GetDisplayName() & " ").Length + 1 Then
+            Dim t As String = " " & (Localization.GetString("learn_move_AlreadyKnowsFourMoves1", "wants to learn ""[MOVENAME]"". But [POKEMONNAME] can only learn 4 moves.") & Environment.NewLine & " " & Localization.GetString("learn_move_AlreadyKnowsFourMoves2", "Do you want [POKEMONNAME] to forget a move to learn ""[MOVENAME]""?")).Replace("[MOVENAME]", newAttacks(0).Name).Replace("[POKEMONNAME]", Pokemon.GetDisplayName())
             If currentCharIndex < GetText().Length Then
-                Core.SpriteBatch.DrawString(FontManager.MainFont, (" " & "wants to learn """ & newAttacks(0).Name & """. But " & Pokemon.GetDisplayName() & " can only learn 4 attacks." & Environment.NewLine & " " & "Do you want " & Pokemon.GetDisplayName() & " to forget an attack to learn """ & newAttacks(0).Name & """?").Remove(currentCharIndex - (Pokemon.GetDisplayName() & " ").Length), New Vector2(FontManager.MainFont.MeasureString(Pokemon.GetDisplayName()).X + 152, 20), Color.White)
+                Core.SpriteBatch.DrawString(FontManager.MainFont, t.Remove(currentCharIndex - (Pokemon.GetDisplayName() & " ").Length), New Vector2(FontManager.MainFont.MeasureString(Pokemon.GetDisplayName()).X + 152, 20), Color.White)
             Else
-                Core.SpriteBatch.DrawString(FontManager.MainFont, " " & "wants to learn """ & newAttacks(0).Name & """. But " & Pokemon.GetDisplayName() & " can only learn 4 attacks." & Environment.NewLine & " " & "Do you want " & Pokemon.GetDisplayName() & " to forget an attack to learn """ & newAttacks(0).Name & """?", New Vector2(FontManager.MainFont.MeasureString(Pokemon.GetDisplayName()).X + 152, 20), Color.White)
+                Core.SpriteBatch.DrawString(FontManager.MainFont, t, New Vector2(FontManager.MainFont.MeasureString(Pokemon.GetDisplayName()).X + 152, 20), Color.White)
             End If
         End If
     End Sub
 
     Private Function GetText() As String
-        Return Pokemon.GetDisplayName() & " wants to learn """ & newAttacks(0).Name & """. But " & Pokemon.GetDisplayName() & " can only learn 4 attacks." & Environment.NewLine & "Do you want " & Pokemon.GetDisplayName() & " to forget an attack to learn """ & newAttacks(0).Name & """?"
+        Return Pokemon.GetDisplayName() & " " & (Localization.GetString("learn_move_AlreadyKnowsFourMoves1", "wants to learn ""[MOVENAME]"". But [POKEMONNAME] can only learn 4 moves.") & Environment.NewLine & " " & Localization.GetString("learn_move_AlreadyKnowsFourMoves2", "Do you want [POKEMONNAME] to forget a move to learn ""[MOVENAME]""?")).Replace("[MOVENAME]", newAttacks(0).Name).Replace("[POKEMONNAME]", Pokemon.GetDisplayName())
     End Function
 
     Private Sub DrawAttack(ByVal StartPosition As Vector2, ByVal i As Integer, ByVal A As BattleSystem.Attack)
@@ -263,7 +263,7 @@
             FontColor = Color.White
         End If
 
-        Canvas.DrawImageBorder(CanvasTexture, 2, New Rectangle(CInt(p.X) + 16, CInt(p.Y), 256, 64))
+        Canvas.DrawImageBorder(CanvasTexture, 2, New Rectangle(CInt(p.X) + 16, CInt(p.Y), 288, 64))
 
         With Core.SpriteBatch
             If FontColor <> Color.Black Then
@@ -291,11 +291,11 @@
 
     Private Sub ClickYes()
         If canForget = True Then
-            Dim Text As String = Pokemon.GetDisplayName() & " didn't~learn " & newAttacks(0).Name & "!"
+            Dim Text As String = Localization.GetString("learn_move_DidNotLearnMove", "[POKEMONNAME] didn't~learn [MOVENAME]!").Replace("[POKEMONNAME]", Pokemon.GetDisplayName()).Replace("[MOVENAME]", newAttacks(0).Name)
 
             If AttackIndex <> 4 Then
                 TeachMovesScreen.LearnedMove = True
-                Text = "1... 2... 3... and...*Ta-da!*" & Pokemon.GetDisplayName() & " forgot~" & Pokemon.Attacks(AttackIndex).Name & " and..."
+                Text = Localization.GetString("learn_move_PokemonForgotMove", "1... 2... 3... and...*Ta-da!*[POKEMONNAME] forgot~[OLDMOVENAME] and...".Replace("[POKEMONNAME]", Pokemon.GetDisplayName()).Replace("[OLDMOVENAME]", Pokemon.Attacks(AttackIndex).Name)
                 Pokemon.Attacks.RemoveAt(AttackIndex)
                 Pokemon.Attacks.Insert(AttackIndex, newAttacks(0))
 
@@ -338,7 +338,7 @@
     End Sub
 
     Private Sub FollowUpText()
-        TextBox.Show("... " & Pokemon.GetDisplayName() & " learned~" & newAttacks(0).Name & "!")
+        TextBox.Show(Localization.GetString("learn_move_PokemonLearnedMove_WithDots", "... [POKEMONNAME] learned~[MOVENAME]!").Replace("[POKEMONNAME]", Pokemon.GetDisplayName()).Replace("[MOVENAME]", newAttacks(0).Name))
         SoundManager.PlaySound("success_small", True)
     End Sub
 
