@@ -5,7 +5,7 @@ Namespace Items.KeyItems
 
         Inherits KeyItem
 
-        Public Overrides ReadOnly Property Description As String = "A shiny charm said to increase the chance of finding a Shiny Pokémon in the wild."
+        Public Overrides ReadOnly Property Description As String = "A shiny charm said to increase the chance of encountering Shiny Pokémon."
 
         Public Sub New()
             _textureRectangle = New Rectangle(120, 264, 24, 24)

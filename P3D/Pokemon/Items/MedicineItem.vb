@@ -138,7 +138,7 @@ Namespace Items
 
                 Screen.TextBox.reDelay = 0.0F
 
-                Dim t As String = "Cured the sleep~of " & Pokemon.GetDisplayName() & "."
+                Dim t As String = Localization.GetString("item_use_CureSleep_Single", "Cured the sleep~of [POKEMONNAME].").Replace("[POKEMONNAME]", Pokemon.GetDisplayName())
                 t &= RemoveItem()
 
                 SoundManager.PlaySound("Use_Item", False)
@@ -148,7 +148,7 @@ Namespace Items
                 Return True
             Else
                 Screen.TextBox.reDelay = 0.0F
-                Screen.TextBox.Show(Pokemon.GetDisplayName() & " is not~asleep.", {})
+                Screen.TextBox.Show(Localization.GetString("item_cannot_use_NotAsleep_Single", "[POKEMONNAME] is not~asleep.").Replace("[POKEMONNAME]", Pokemon.GetDisplayName()), {})
 
                 Return False
             End If
@@ -183,7 +183,7 @@ Namespace Items
 
                 Screen.TextBox.reDelay = 0.0F
 
-                Dim t As String = "Cured the burn~of " & Pokemon.GetDisplayName() & "."
+                Dim t As String = Localization.GetString("item_use_CureBurn_Single", "Cured the burn~of [POKEMONNAME].").Replace("[POKEMONNAME]", Pokemon.GetDisplayName())
                 t &= RemoveItem()
 
                 SoundManager.PlaySound("Use_Item", False)
@@ -193,7 +193,7 @@ Namespace Items
                 Return True
             Else
                 Screen.TextBox.reDelay = 0.0F
-                Screen.TextBox.Show(Pokemon.GetDisplayName() & " is not~burned.", {})
+                Screen.TextBox.Show(Localization.GetString("item_cannot_use_NotBurned_Single", "[POKEMONNAME] is not~burned.").Replace("[POKEMONNAME]", Pokemon.GetDisplayName()), {})
 
                 Return False
             End If
@@ -228,7 +228,7 @@ Namespace Items
 
                 Screen.TextBox.reDelay = 0.0F
 
-                Dim t As String = "Cured the ice~of " & Pokemon.GetDisplayName() & "."
+                Dim t As String = Localization.GetString("item_use_CureIce_Single", "Cured the ice~of [POKEMONNAME].").Replace("[POKEMONNAME]", Pokemon.GetDisplayName())
                 t &= RemoveItem()
 
                 SoundManager.PlaySound("Use_Item", False)
@@ -238,7 +238,7 @@ Namespace Items
                 Return True
             Else
                 Screen.TextBox.reDelay = 0.0F
-                Screen.TextBox.Show(Pokemon.GetDisplayName() & " is not~frozen.", {})
+                Screen.TextBox.Show(Localization.GetString("item_cannot_use_NotFrozen_Single", "[POKEMONNAME] is not~frozen.").Replace("[POKEMONNAME]", Pokemon.GetDisplayName()), {})
 
                 Return False
             End If
@@ -273,7 +273,7 @@ Namespace Items
 
                 Screen.TextBox.reDelay = 0.0F
 
-                Dim t As String = "Cured the paralysis~of " & Pokemon.GetDisplayName() & "."
+                Dim t As String = Localization.GetString("item_use_CureParalysis_Single", "Cured the paralysis~of [POKEMONNAME].").Replace("[POKEMONNAME]", Pokemon.GetDisplayName())
                 t &= RemoveItem()
 
                 SoundManager.PlaySound("Use_Item", False)
@@ -283,7 +283,7 @@ Namespace Items
                 Return True
             Else
                 Screen.TextBox.reDelay = 0.0F
-                Screen.TextBox.Show(Pokemon.GetDisplayName() & " is not~paralyzed.", {})
+                Screen.TextBox.Show(Localization.GetString("item_cannot_use_NotParalyzed_Single", "[POKEMONNAME] is not~paralyzed.").Replace("[POKEMONNAME]", Pokemon.GetDisplayName()), {})
 
                 Return False
             End If

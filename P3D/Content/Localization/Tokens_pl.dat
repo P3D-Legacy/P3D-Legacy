@@ -3087,6 +3087,16 @@ item_cannot_use_FullHP_Single,[POKEMONNAME] has full~HP already.
 item_cannot_use_FullHP_Both,[OWNPOKEMONNAME] and~[OPPPOKEMONNAME] have full~HP already.
 item_cannot_use_NotPoisoned_Single,[POKEMONNAME] is not~poisoned.
 item_cannot_use_NotPoisoned_Both,[OWNPOKEMONNAME] and~[OPPPOKEMONNAME] are not~poisoned.
+item_cannot_use_NotConfused_Single,[POKEMONNAME] is not~confused.
+item_cannot_use_NotConfused_Both,[OWNPOKEMONNAME] and~[OPPPOKEMONNAME] are not~confused.
+item_cannot_use_NotAsleep_Single,[POKEMONNAME] is not~asleep.
+item_cannot_use_NotAsleep_Both,[OWNPOKEMONNAME] and~[OPPPOKEMONNAME] are not~asleep.
+item_cannot_use_NotBurned_Single,[POKEMONNAME] is not~burned.
+item_cannot_use_NotBurned_Both,[OWNPOKEMONNAME] and~[OPPPOKEMONNAME] are not~burned.
+item_cannot_use_NotFrozen_Single,[POKEMONNAME] is not~frozen.
+item_cannot_use_NotFrozen_Both,[OWNPOKEMONNAME] and~[OPPPOKEMONNAME] are not~frozen.
+item_cannot_use_NotParalyzed_Single,[POKEMONNAME] is not~paralyzed.
+item_cannot_use_NotParalyzed_Both,[OWNPOKEMONNAME] and~[OPPPOKEMONNAME] are not~paralyzed.
 
 item_use_HealItem_Own,Restored [POKEMONNAME]'s~HP by [HPAMOUNT].
 item_use_HealItem_Opponent,Restored [POKEMONNAME]'s~HP.
@@ -3099,7 +3109,17 @@ item_use_HealAndCureItem_HealAndCure_Single,Healed and cured~[POKEMONNAME]!
 item_use_HealAndCureItem_HealAndCure_Both,Healed and cured~[OWNPOKEMONNAME] and~[OPPPOKEMONNAME]!
 item_use_CurePoison_Single,Cured the poison~of [POKEMONNAME].
 item_use_CurePoison_Both,Cured the poison~of [OWNPOKEMONNAME] and~[OPPPOKEMONNAME].
-item_use_RevivalItem,[POKEMONNAME]~is revitalized.
+item_use_CureConfusion_Single,[POKEMONNAME]~is no longer confused.
+item_use_CureConfusion_Both,[OWNPOKEMONNAME] and~[OPPPOKEMONNAME]~are no longer confused.
+item_use_CureSleep_Single,Cured the sleep~of [POKEMONNAME].
+item_use_CureSleep_Both,Cured the sleep~of [OWNPOKEMONNAME] and~[OPPPOKEMONNAME].
+item_use_CureBurn_Single,Cured the burn~of [POKEMONNAME].
+item_use_CureBurn_Both,Cured the burn~of [OWNPOKEMONNAME] and~[OPPPOKEMONNAME].
+item_use_CureIce_Single,Cured the ice~of [POKEMONNAME].
+item_use_CureIce_Both,Cured the ice~of [OWNPOKEMONNAME] and~[OPPPOKEMONNAME].
+item_use_CureParalysis_Single,Cured the paralysis~of [POKEMONNAME].
+item_use_CureParalysis_Both,Cured the paralysis~of [OWNPOKEMONNAME] and~[OPPPOKEMONNAME].
+item_use_RevivalItem,[POKEMONNAME]~is revitalized.,[POKEMONNAME]~is revitalized.
 
 item_6_cannot_walk,You cannot walk here!
 item_6_missingskin,You can't use this item~without a bicycle skin.*Its name should be the~same as your current one,~but with "_bike" at the end.

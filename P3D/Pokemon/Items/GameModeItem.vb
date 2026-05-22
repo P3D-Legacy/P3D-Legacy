@@ -1179,15 +1179,15 @@ Public Class GameModeItem
                 If cScreen.Identification = Identifications.BattleScreen Then
                     If gmUseOnOppEffects IsNot Nothing AndAlso gmUseOnOppEffects.Contains("psn") Then
                         If UseOppSuccess = True AndAlso p Is Nothing Then
-                            t = Pokemon.GetDisplayName() & " and~" & CType(cScreen, BattleSystem.BattleScreen).OppPokemon.GetDisplayName() & "~are no longer confused."
+                            t = Localization.GetString("item_use_CureConfusion_Both", "[OWNPOKEMONNAME] and~[OPPPOKEMONNAME]~are no longer confused.").Replace("[OWNPOKEMONNAME]", Pokemon.GetDisplayName()).Replace("[OPPPOKEMONNAME]", CType(cScreen, BattleSystem.BattleScreen).OppPokemon.GetDisplayName())
                         Else
-                            t = Pokemon.GetDisplayName() & "~is no longer confused."
+                            t = Localization.GetString("item_use_CureConfusion_Single", "[POKEMONNAME]~is no longer confused.").Replace("[POKEMONNAME]", Pokemon.GetDisplayName())
                         End If
                     Else
-                        t = Pokemon.GetDisplayName() & "~is no longer confused."
+                        t = Localization.GetString("item_use_CureConfusion_Single", "[POKEMONNAME]~is no longer confused.").Replace("[POKEMONNAME]", Pokemon.GetDisplayName())
                     End If
                 Else
-                    t = Pokemon.GetDisplayName() & "~is no longer confused."
+                    t = Localization.GetString("item_use_CureConfusion_Single", "[POKEMONNAME]~is no longer confused.").Replace("[POKEMONNAME]", Pokemon.GetDisplayName())
                 End If
 
 
@@ -1219,17 +1219,17 @@ Public Class GameModeItem
                             Else
                                 SoundManager.PlaySound("Use_Item", False)
                             End If
-                            t = CType(cScreen, BattleSystem.BattleScreen).OppPokemon.GetDisplayName() & "~is no longer confused."
+                            t = Localization.GetString("item_use_CureConfusion_Single", "[POKEMONNAME]~is no longer confused.").Replace("[POKEMONNAME]", CType(cScreen, BattleSystem.BattleScreen).OppPokemon.GetDisplayName())
                             PlayerStatistics.Track("[17]Medicine Items used", 1)
                             Return True
                         Else
-                            t = Pokemon.GetDisplayName() & " and~" & CType(cScreen, BattleSystem.BattleScreen).OppPokemon.GetDisplayName() & "~are not confused."
+                            t = Localization.GetString("item_cannot_use_NotConfused_Both", "[OWNPOKEMONNAME] and~[OPPPOKEMONNAME] are not~confused.").Replace("[OWNPOKEMONNAME]", Pokemon.GetDisplayName()).Replace("[OPPPOKEMONNAME]", CType(cScreen, BattleSystem.BattleScreen).OppPokemon.GetDisplayName())
                         End If
                     Else
-                        t = Pokemon.GetDisplayName() & " is not~confused."
+                        t = Localization.GetString("item_cannot_use_NotConfused_Single", "[POKEMONNAME] is not~confused.").Replace("[POKEMONNAME]", Pokemon.GetDisplayName())
                     End If
                 Else
-                    t = Pokemon.GetDisplayName() & " is not~confused."
+                    t = Localization.GetString("item_cannot_use_NotConfused_Single", "[POKEMONNAME] is not~confused.").Replace("[POKEMONNAME]", Pokemon.GetDisplayName())
                 End If
                 Screen.TextBox.Show(t, {}, False, False)
             End If
@@ -1272,15 +1272,15 @@ Public Class GameModeItem
                 If cScreen.Identification = Identifications.BattleScreen Then
                     If gmUseOnOppEffects IsNot Nothing AndAlso gmUseOnOppEffects.Contains("slp") Then
                         If UseOppSuccess = True AndAlso p Is Nothing Then
-                            t = "Cured the sleep~of " & Pokemon.GetDisplayName() & " and~" & CType(cScreen, BattleSystem.BattleScreen).OppPokemon.GetDisplayName() & "."
+                            t = Localization.GetString("item_use_CureSleep_Both", "Cured the sleep~of [OWNPOKEMONNAME] and~[OPPPOKEMONNAME].").Replace("[OWNPOKEMONNAME]", Pokemon.GetDisplayName()).Replace("[OPPPOKEMONNAME]", CType(cScreen, BattleSystem.BattleScreen).OppPokemon.GetDisplayName())
                         Else
-                            t = "Cured the sleep~of " & Pokemon.GetDisplayName() & "."
+                            t = Localization.GetString("item_use_CureSleep_Single", "Cured the sleep~of [POKEMONNAME].").Replace("[POKEMONNAME]", Pokemon.GetDisplayName())
                         End If
                     Else
-                        t = "Cured the sleep~of " & Pokemon.GetDisplayName() & "."
+                        t = Localization.GetString("item_use_CureSleep_Single", "Cured the sleep~of [POKEMONNAME].").Replace("[POKEMONNAME]", Pokemon.GetDisplayName())
                     End If
                 Else
-                    t = "Cured the sleep~of " & Pokemon.GetDisplayName() & "."
+                    t = Localization.GetString("item_use_CureSleep_Single", "Cured the sleep~of [POKEMONNAME].").Replace("[POKEMONNAME]", Pokemon.GetDisplayName())
                 End If
 
                 If Me.gmItemType <> ItemTypes.KeyItems Then
@@ -1315,17 +1315,17 @@ Public Class GameModeItem
                         Else
                             SoundManager.PlaySound("Use_Item", False)
                         End If
-                        t = "Cured the sleep~of " & CType(cScreen, BattleSystem.BattleScreen).OppPokemon.GetDisplayName() & "."
+                        t = Localization.GetString("item_use_CureSleep_Single", "Cured the sleep~of [POKEMONNAME].").Replace("[POKEMONNAME]", CType(cScreen, BattleSystem.BattleScreen).OppPokemon.GetDisplayName())
                         PlayerStatistics.Track("[17]Medicine Items used", 1)
                         Return True
                     Else
-                        t = Pokemon.GetDisplayName() & " and~" & CType(cScreen, BattleSystem.BattleScreen).OppPokemon.GetDisplayName() & "~are not asleep."
+                        t = Localization.GetString("item_cannot_use_NotAsleep_Both", "[OWNPOKEMONNAME] and~[OPPPOKEMONNAME] are not~asleep.").Replace("[OWNPOKEMONNAME]", Pokemon.GetDisplayName()).Replace("[OPPPOKEMONNAME]", CType(cScreen, BattleSystem.BattleScreen).OppPokemon.GetDisplayName())
                     End If
                 Else
-                    t = Pokemon.GetDisplayName() & " is not~asleep."
+                    t = Localization.GetString("item_cannot_use_NotAsleep_Single", "[POKEMONNAME] is not~asleep.").Replace("[POKEMONNAME]", Pokemon.GetDisplayName())
                 End If
             Else
-                t = Pokemon.GetDisplayName() & " is not~asleep."
+                t = Localization.GetString("item_cannot_use_NotAsleep_Single", "[POKEMONNAME] is not~asleep.").Replace("[POKEMONNAME]", Pokemon.GetDisplayName())
             End If
 
             Screen.TextBox.Show(t, {})
@@ -1368,15 +1368,15 @@ Public Class GameModeItem
                 If cScreen.Identification = Identifications.BattleScreen Then
                     If gmUseOnOppEffects IsNot Nothing AndAlso gmUseOnOppEffects.Contains("brn") Then
                         If UseOppSuccess = True AndAlso p Is Nothing Then
-                            t = "Cured the burn~of " & Pokemon.GetDisplayName() & " and~" & CType(cScreen, BattleSystem.BattleScreen).OppPokemon.GetDisplayName() & "."
+                            t = Localization.GetString("item_use_CureBurn_Both", "Cured the burn~of [OWNPOKEMONNAME] and~[OPPPOKEMONNAME].").Replace("[OWNPOKEMONNAME]", Pokemon.GetDisplayName()).Replace("[OPPPOKEMONNAME]", CType(cScreen, BattleSystem.BattleScreen).OppPokemon.GetDisplayName())
                         Else
-                            t = "Cured the burn~of " & Pokemon.GetDisplayName() & "."
+                            t = Localization.GetString("item_use_CureBurn_Single", "Cured the burn~of [POKEMONNAME].").Replace("[POKEMONNAME]", Pokemon.GetDisplayName())
                         End If
                     Else
-                        t = "Cured the burn~of " & Pokemon.GetDisplayName() & "."
+                        t = Localization.GetString("item_use_CureBurn_Single", "Cured the burn~of [POKEMONNAME].").Replace("[POKEMONNAME]", Pokemon.GetDisplayName())
                     End If
                 Else
-                    t = "Cured the burn~of " & Pokemon.GetDisplayName() & "."
+                    t = Localization.GetString("item_use_CureBurn_Single", "Cured the burn~of [POKEMONNAME].").Replace("[POKEMONNAME]", Pokemon.GetDisplayName())
                 End If
                 If Me.gmItemType <> ItemTypes.KeyItems Then
                     If p Is Nothing OrElse Me.gmUseOnOwnEffects Is Nothing Then
@@ -1408,17 +1408,17 @@ Public Class GameModeItem
                         Else
                             SoundManager.PlaySound("Use_Item", False)
                         End If
-                        t = "Cured the burn~of " & CType(cScreen, BattleSystem.BattleScreen).OppPokemon.GetDisplayName() & "."
+                        t = Localization.GetString("item_use_CureBurn_Single", "Cured the burn~of [POKEMONNAME].").Replace("[POKEMONNAME]", CType(cScreen, BattleSystem.BattleScreen).OppPokemon.GetDisplayName())
                         PlayerStatistics.Track("[17]Medicine Items used", 1)
                         Return True
                     Else
-                        t = Pokemon.GetDisplayName() & " and~" & CType(cScreen, BattleSystem.BattleScreen).OppPokemon.GetDisplayName() & "~are not burned."
+                        t = Localization.GetString("item_cannot_use_NotBurned_Both", "[OWNPOKEMONNAME] and~[OPPPOKEMONNAME] are not~burned.").Replace("[OWNPOKEMONNAME]", Pokemon.GetDisplayName()).Replace("[OPPPOKEMONNAME]", CType(cScreen, BattleSystem.BattleScreen).OppPokemon.GetDisplayName())
                     End If
                 Else
-                    t = Pokemon.GetDisplayName() & " is not~burned."
+                    t = Localization.GetString("item_cannot_use_NotBurned_Single", "[POKEMONNAME] is not~burned.").Replace("[POKEMONNAME]", Pokemon.GetDisplayName())
                 End If
             Else
-                t = Pokemon.GetDisplayName() & " is not~burned."
+                t = Localization.GetString("item_cannot_use_NotBurned_Single", "[POKEMONNAME] is not~burned.").Replace("[POKEMONNAME]", Pokemon.GetDisplayName())
             End If
 
             Screen.TextBox.Show(t, {})
@@ -1460,15 +1460,15 @@ Public Class GameModeItem
                 If cScreen.Identification = Identifications.BattleScreen Then
                     If gmUseOnOppEffects IsNot Nothing AndAlso gmUseOnOppEffects.Contains("frz") Then
                         If UseOppSuccess = True AndAlso p Is Nothing Then
-                            t = "Cured the ice~of " & Pokemon.GetDisplayName() & " and~" & CType(cScreen, BattleSystem.BattleScreen).OppPokemon.GetDisplayName() & "."
+                            t = Localization.GetString("item_use_CureIce_Both", "Cured the ice~of [OWNPOKEMONNAME] and~[OPPPOKEMONNAME].").Replace("[OWNPOKEMONNAME]", Pokemon.GetDisplayName()).Replace("[OPPPOKEMONNAME]", CType(cScreen, BattleSystem.BattleScreen).OppPokemon.GetDisplayName())
                         Else
-                            t = "Cured the ice~of " & Pokemon.GetDisplayName() & "."
+                            t = Localization.GetString("item_use_CureIce_Single", "Cured the ice~of [POKEMONNAME].").Replace("[POKEMONNAME]", Pokemon.GetDisplayName())
                         End If
                     Else
-                        t = "Cured the ice~of " & Pokemon.GetDisplayName() & "."
+                        t = Localization.GetString("item_use_CureIce_Single", "Cured the ice~of [POKEMONNAME].").Replace("[POKEMONNAME]", Pokemon.GetDisplayName())
                     End If
                 Else
-                    t = "Cured the ice~of " & Pokemon.GetDisplayName() & "."
+                    t = Localization.GetString("item_use_CureIce_Single", "Cured the ice~of [POKEMONNAME].").Replace("[POKEMONNAME]", Pokemon.GetDisplayName())
                 End If
 
                 If Me.gmItemType <> ItemTypes.KeyItems Then
@@ -1501,17 +1501,17 @@ Public Class GameModeItem
                         Else
                             SoundManager.PlaySound("Use_Item", False)
                         End If
-                        t = "Cured the ice~of " & CType(cScreen, BattleSystem.BattleScreen).OppPokemon.GetDisplayName() & "."
+                        t = Localization.GetString("item_use_CureIce_Single", "Cured the ice~of [POKEMONNAME].").Replace("[POKEMONNAME]", CType(cScreen, BattleSystem.BattleScreen).OppPokemon.GetDisplayName())
                         PlayerStatistics.Track("[17]Medicine Items used", 1)
                         Return True
                     Else
-                        t = Pokemon.GetDisplayName() & " and~" & CType(cScreen, BattleSystem.BattleScreen).OppPokemon.GetDisplayName() & "~are not frozen."
+                        t = Localization.GetString("item_cannot_use_NotFrozen_Both", "[OWNPOKEMONNAME] and~[OPPPOKEMONNAME] are not~frozen.").Replace("[OWNPOKEMONNAME]", Pokemon.GetDisplayName()).Replace("[OPPPOKEMONNAME]", CType(cScreen, BattleSystem.BattleScreen).OppPokemon.GetDisplayName())
                     End If
                 Else
-                    t = Pokemon.GetDisplayName() & " is not~frozen."
+                    t = Localization.GetString("item_cannot_use_NotFrozen_Single", "[POKEMONNAME] is not~frozen.").Replace("[POKEMONNAME]", Pokemon.GetDisplayName())
                 End If
             Else
-                t = Pokemon.GetDisplayName() & " is not~frozen."
+                t = Localization.GetString("item_cannot_use_NotFrozen_Single", "[POKEMONNAME] is not~frozen.").Replace("[POKEMONNAME]", Pokemon.GetDisplayName())
             End If
 
             Screen.TextBox.Show(t, {})
@@ -1556,15 +1556,15 @@ Public Class GameModeItem
                 If cScreen.Identification = Identifications.BattleScreen Then
                     If gmUseOnOppEffects IsNot Nothing AndAlso gmUseOnOppEffects.Contains("prz") Then
                         If UseOppSuccess = True AndAlso p Is Nothing Then
-                            t = "Cured the paralysis~of " & Pokemon.GetDisplayName() & " and~" & CType(cScreen, BattleSystem.BattleScreen).OppPokemon.GetDisplayName() & "."
+                            t = Localization.GetString("item_use_CureParalysis_Both", "Cured the paralysis~of [OWNPOKEMONNAME] and~[OPPPOKEMONNAME].").Replace("[OWNPOKEMONNAME]", Pokemon.GetDisplayName()).Replace("[OPPPOKEMONNAME]", CType(cScreen, BattleSystem.BattleScreen).OppPokemon.GetDisplayName())
                         Else
-                            t = "Cured the paralysis~of " & Pokemon.GetDisplayName() & "."
+                            t = Localization.GetString("item_use_CureParalysis_Single", "Cured the paralysis~of [POKEMONNAME].").Replace("[POKEMONNAME]", Pokemon.GetDisplayName())
                         End If
                     Else
-                        t = "Cured the paralysis~of " & Pokemon.GetDisplayName() & "."
+                        t = Localization.GetString("item_use_CureParalysis_Single", "Cured the paralysis~of [POKEMONNAME].").Replace("[POKEMONNAME]", Pokemon.GetDisplayName())
                     End If
                 Else
-                    t = "Cured the paralysis~of " & Pokemon.GetDisplayName() & "."
+                    t = Localization.GetString("item_use_CureParalysis_Single", "Cured the paralysis~of [POKEMONNAME].").Replace("[POKEMONNAME]", Pokemon.GetDisplayName())
                 End If
 
                 If Me.gmItemType <> ItemTypes.KeyItems Then
@@ -1597,17 +1597,17 @@ Public Class GameModeItem
                         Else
                             SoundManager.PlaySound("Use_Item", False)
                         End If
-                        t = "Cured the paralysis~of " & CType(cScreen, BattleSystem.BattleScreen).OppPokemon.GetDisplayName() & "."
+                        t = Localization.GetString("item_use_CureParalysis_Single", "Cured the paralysis~of [POKEMONNAME].").Replace("[POKEMONNAME]", CType(cScreen, BattleSystem.BattleScreen).OppPokemon.GetDisplayName())
                         PlayerStatistics.Track("[17]Medicine Items used", 1)
                         Return True
                     Else
-                        t = Pokemon.GetDisplayName() & " and~" & CType(cScreen, BattleSystem.BattleScreen).OppPokemon.GetDisplayName() & "~are not paralyzed."
+                        t = Localization.GetString("item_cannot_use_NotParalyzed_Both", "[OWNPOKEMONNAME] and~[OPPPOKEMONNAME] are not~paralyzed.").Replace("[OWNPOKEMONNAME]", Pokemon.GetDisplayName()).Replace("[OPPPOKEMONNAME]", CType(cScreen, BattleSystem.BattleScreen).OppPokemon.GetDisplayName())
                     End If
                 Else
-                    t = Pokemon.GetDisplayName() & " is not~paralyzed."
+                    t = Localization.GetString("item_cannot_use_NotParalyzed_Single", "[POKEMONNAME] is not~paralyzed.").Replace("[POKEMONNAME]", Pokemon.GetDisplayName())
                 End If
             Else
-                t = Pokemon.GetDisplayName() & " is not~paralyzed."
+                t = Localization.GetString("item_cannot_use_NotParalyzed_Single", "[POKEMONNAME] is not~paralyzed.").Replace("[POKEMONNAME]", Pokemon.GetDisplayName())
             End If
 
             Screen.TextBox.Show(t, {})
