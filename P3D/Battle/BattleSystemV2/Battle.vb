@@ -6,6 +6,7 @@ Namespace BattleSystem
         Public Shared Fled As Boolean = False
         Public Shared Caught As Boolean = False
 
+        Public SkipTurn As Boolean = False
         Public IsAfterFaint As Boolean = False
         Public WildHasEscaped As Boolean = False
 #Region "StartRound"
@@ -725,7 +726,14 @@ Namespace BattleSystem
             BattleScreen.IsMegaEvolvingOpp = False
         End Sub
 
-
+        Public Sub DoSkipTurn(ByVal BattleScreen As BattleScreen)
+            Dim cq1 As ScreenFadeQueryObject = New ScreenFadeQueryObject(ScreenFadeQueryObject.FadeTypes.Vertical, Color.Black, True, 16)
+            Dim cq2 As ScreenFadeQueryObject = New ScreenFadeQueryObject(ScreenFadeQueryObject.FadeTypes.Vertical, Color.Black, False, 16)
+            cq2.PassThis = True
+            SkipTurn = False
+            BattleScreen.BattleQuery.AddRange({cq1, cq2})
+            BattleScreen.Battle.StartRound(BattleScreen)
+        End Sub
 
         Public Sub InitializeRound(ByVal BattleScreen As BattleScreen, ByVal OwnStep As RoundConst)
             If BattleHasEnded(BattleScreen) Then
@@ -764,13 +772,21 @@ Namespace BattleSystem
                 If first Then
                     DoAttackRound(BattleScreen, first, ownMove)
                     EndRound(BattleScreen, 1)
-                    DoAttackRound(BattleScreen, Not first, oppMove)
-                    EndRound(BattleScreen, 2)
+                    If SkipTurn = False Then
+                        DoAttackRound(BattleScreen, Not first, oppMove)
+                        EndRound(BattleScreen, 2)
+                    Else
+                        DoSkipTurn(BattleScreen)
+                    End If
                 Else
                     DoAttackRound(BattleScreen, first, oppMove)
                     EndRound(BattleScreen, 2)
-                    DoAttackRound(BattleScreen, Not first, ownMove)
-                    EndRound(BattleScreen, 1)
+                    If SkipTurn = False Then
+                        DoAttackRound(BattleScreen, Not first, ownMove)
+                        EndRound(BattleScreen, 1)
+                    Else
+                        DoSkipTurn(BattleScreen)
+                    End If
                 End If
             End If
 

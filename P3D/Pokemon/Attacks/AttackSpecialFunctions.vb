@@ -469,11 +469,7 @@
                     Else
                         Select Case f.ToLower()
                             Case "endround"
-                                Dim cq1 As ScreenFadeQueryObject = New ScreenFadeQueryObject(ScreenFadeQueryObject.FadeTypes.Vertical, Color.Black, True, 16)
-                                Dim cq2 As ScreenFadeQueryObject = New ScreenFadeQueryObject(ScreenFadeQueryObject.FadeTypes.Vertical, Color.Black, False, 16)
-                                cq2.PassThis = True
-                                BattleScreen.BattleQuery.AddRange({cq1, cq2})
-                                BattleScreen.Battle.StartRound(BattleScreen)
+                                BattleScreen.Battle.SkipTurn = True
                             Case "freeze"
                                 fSub = "15"
                             Case "poison"
