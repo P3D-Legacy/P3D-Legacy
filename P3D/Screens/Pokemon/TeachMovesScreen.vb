@@ -135,7 +135,7 @@
                 End If
 
                 .DrawString(FontManager.MainFont, Localization.GetString("property_Power", "Power") & ": " & power & Environment.NewLine & Localization.GetString("property_Accuracy", "Accuracy") & ": " & acc & Environment.NewLine & Environment.NewLine & Description, New Vector2(CInt(60 + 864 + 48 + 64), 128), Color.Black)
-                .Draw(A.GetDamageCategoryImage(), New Rectangle(CInt(60 + 864 + 320 + 64 - 16 - 56), 128, 56, 28), Color.White)
+                .Draw(A.GetDamageCategoryImage(), New Rectangle(CInt(60 + 864 + 320 + 64 - 16 - 56), 124, 56, 28), Color.White)
             End With
 
         End If
@@ -145,7 +145,7 @@
 
         Core.SpriteBatch.DrawString(FontManager.MainFont, Pokemon.GetDisplayName() & Environment.NewLine & Localization.GetString("property_Level", "Level") & ": " & Pokemon.Level, New Vector2(80, 304), Color.Black)
 
-        Core.SpriteBatch.DrawString(FontManager.MainFont, Localization.GetString("move_tutor_screen_CurrentMoves", "Pokémon's moves") & ":", New Vector2(312, 128), Color.Black)
+        Core.SpriteBatch.DrawString(FontManager.MainFont, Localization.GetString("move_tutor_screen_CurrentMoves", "Pokémon's moves") & ":", New Vector2(312 - 16, 128), Color.Black)
         For i = 0 To Pokemon.Attacks.Count - 1
             If i <= Pokemon.Attacks.Count - 1 Then
                 DrawAttack(312, i, Pokemon.Attacks(i), False)
@@ -155,7 +155,7 @@
         If Me.MovesList.Count = 0 Then
             Core.SpriteBatch.DrawString(FontManager.MainFont, Localization.GetString("move_tutor_screen_CannotLearnNewMove", "The Pokémon cannot learn~a new move here.").Replace("~", Environment.NewLine).Replace("*", Environment.NewLine), New Vector2(588 + 32, 128), Color.Black)
         Else
-            Core.SpriteBatch.DrawString(FontManager.MainFont, Localization.GetString("move_tutor_screen_TutorMoves", "Tutor moves") & " (" & MovesList.Count & "):", New Vector2(644 + 32, 128), Color.Black)
+            Core.SpriteBatch.DrawString(FontManager.MainFont, Localization.GetString("move_tutor_screen_TutorMoves", "Tutor moves") & " (" & MovesList.Count & "):", New Vector2(644 + 32 - 16, 128), Color.Black)
 
             For i = scrollIndex To scrollIndex + 3
                 If i <= MovesList.Count - 1 Then
