@@ -5,7 +5,7 @@ Namespace Abilities
         Inherits Ability
 
         Public Sub New()
-            MyBase.New(142, "Overcoat", "Protects the Pokémon from damage from weather.")
+            MyBase.New(142, "Overcoat", "Prevents damage from weather and the effects of spores and powders.")
         End Sub
 
     End Class

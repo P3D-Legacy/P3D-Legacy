@@ -2226,6 +2226,11 @@ Namespace BattleSystem
                     End If
                 End If
 
+                If op.Ability.Name.ToLower() = "overcoat" AndAlso moveUsed.IsPowderMove = True Then
+                    moveWorks = False
+                    BattleScreen.BattleQuery.Add(New TextQueryObject(op.GetDisplayName() & " is not affected by " & moveUsed.Name & "!"))
+                End If
+
                 If op.Type1.Type = Element.Types.Grass Or op.Type2.Type = Element.Types.Grass Then
                     If moveUsed.IsPowderMove = True Then
                         moveWorks = False
@@ -2696,7 +2701,7 @@ Namespace BattleSystem
                                             End If
                                         End If
                                     Case "effect spore"
-                                        If moveUsed.MakesContact = True AndAlso p.Status = Pokemon.StatusProblems.None Then
+                                        If moveUsed.MakesContact = True AndAlso p.Status = Pokemon.StatusProblems.None AndAlso p.Ability.Name.ToLower <> "overcoat" Then
                                             Dim R As Integer = Core.Random.Next(0, 100)
                                             If R < 30 Then
                                                 If R < 9 Then
