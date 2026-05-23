@@ -512,7 +512,10 @@ Public Class OverworldCamera
                 Speed = 0.04F
             End If
         End If
-        Screen.Level.OverworldPokemon.MoveSpeed = Speed
+        If Screen.Level.OverworldPokemon IsNot Nothing Then
+            Screen.Level.OverworldPokemon.MoveSpeed = Speed
+        End If
+
     End Sub
 
     Private Function CreateRay() As Ray

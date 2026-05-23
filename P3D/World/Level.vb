@@ -864,6 +864,7 @@ Public Class Level
         Else
             Logger.Debug("Don't attempt to load a levelfile.")
         End If
+        Screen.Camera.Update()
 
         ' Create own player entity and OverworldPokémon entity and add them to the entity enumeration:
         OwnPlayer = New OwnPlayer(Screen.Camera.Position.X, Screen.Camera.Position.Y - 0.1F, Screen.Camera.Position.Z, {TextureManager.DefaultTexture}, Core.Player.Skin, 0, 0, "", "Gold", 0)
@@ -871,6 +872,7 @@ Public Class Level
         OverworldPokemon = New OverworldPokemon(Screen.Camera.Position.X, Screen.Camera.Position.Y, Screen.Camera.Position.Z + 1)
         OverworldPokemon.ChangeRotation()
         Entities.AddRange({OwnPlayer, OverworldPokemon})
+        Screen.Camera.Update()
 
         Me.Surfing = Core.Player.startSurfing
         If Me.Surfing = True And OwnPlayer.SkinName.StartsWith("[POKEMON|") = False Then
