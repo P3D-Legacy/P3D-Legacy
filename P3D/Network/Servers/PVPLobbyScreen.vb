@@ -181,12 +181,12 @@
         'Menu:
         If ReceivedBattleOffer = True Then
             Dim s As String = Localization.GetString("pvp_screen_status_AcceptBattle_OtherPlayer", "Your opponent wants to~battle with this setup.").Replace("~", Environment.NewLine).Replace("*", Environment.NewLine)
-            Canvas.DrawRectangle(New Rectangle(CInt(Core.windowSize.Width / 2 - (64 * 5) / 2), 100, 64 * 5, 64), New Color(255, 255, 255, 150))
+            Canvas.DrawRectangle(New Rectangle(CInt(Core.windowSize.Width / 2 - CInt(FontManager.MainFont.MeasureString(s).X + 32) / 2), 100, CInt(FontManager.MainFont.MeasureString(s).X + 32), 64), New Color(255, 255, 255, 150))
             Core.SpriteBatch.DrawString(FontManager.MainFont, s, New Vector2(CInt(Core.windowSize.Width / 2 - FontManager.MainFont.MeasureString(s).X / 2), 104), Color.Black)
         Else
             If SentBattleOffer = True Then
                 Dim s As String = Localization.GetString("pvp_screen_status_AcceptBattle_ThisPlayer", "You want to battle~with this setup.").Replace("~", Environment.NewLine).Replace("*", Environment.NewLine)
-                Canvas.DrawRectangle(New Rectangle(CInt(Core.windowSize.Width / 2 - (64 * 5) / 2), 100, 64 * 5, 64), New Color(255, 255, 255, 150))
+                Canvas.DrawRectangle(New Rectangle(CInt(Core.windowSize.Width / 2 - CInt(FontManager.MainFont.MeasureString(s).X + 32) / 2), 100, CInt(FontManager.MainFont.MeasureString(s).X + 32), 64), New Color(255, 255, 255, 150))
                 Core.SpriteBatch.DrawString(FontManager.MainFont, s, New Vector2(CInt(Core.windowSize.Width / 2 - FontManager.MainFont.MeasureString(s).X / 2), 104), Color.Black)
             End If
         End If

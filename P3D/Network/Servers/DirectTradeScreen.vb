@@ -146,12 +146,14 @@
 
         'Menu:
         If ReceivedTradeOffer = True Then
-            Canvas.DrawRectangle(New Rectangle(CInt(Core.windowSize.Width / 2 - (64 * 4) / 2), 100, 64 * 4, 64), New Color(255, 255, 255, 150))
-            Core.SpriteBatch.DrawString(FontManager.MainFont, Localization.GetString("trade_screen_status_AcceptTrade_OtherPlayer", "Your trade partner~accepts this trade.").Replace("~", Environment.NewLine).Replace("*", Environment.NewLine), New Vector2(CInt(Core.windowSize.Width / 2 - (64 * 4) / 2) + 4, 104), Color.Black)
+            Dim s As String = Localization.GetString("trade_screen_status_AcceptTrade_OtherPlayer", "Your trade partner~accepts this trade.").Replace("~", Environment.NewLine).Replace("*", Environment.NewLine)
+            Canvas.DrawRectangle(New Rectangle(CInt(Core.windowSize.Width / 2 - CInt(FontManager.MainFont.MeasureString(s).X + 32) / 2), 100, CInt(FontManager.MainFont.MeasureString(s).X + 32), 64), New Color(255, 255, 255, 150))
+            Core.SpriteBatch.DrawString(FontManager.MainFont, s, New Vector2(CInt(Core.windowSize.Width / 2 - (64 * 4) / 2) + 4, 104), Color.Black)
         Else
             If SentTradeOffer = True Then
-                Canvas.DrawRectangle(New Rectangle(CInt(Core.windowSize.Width / 2 - (64 * 4) / 2), 100, 64 * 4, 64), New Color(255, 255, 255, 150))
-                Core.SpriteBatch.DrawString(FontManager.MainFont, Localization.GetString("trade_screen_status_AcceptTrade_ThisPlayer", "You accepted~this trade.").Replace("~", Environment.NewLine).Replace("*", Environment.NewLine), New Vector2(CInt(Core.windowSize.Width / 2 - (64 * 4) / 2) + 4, 104), Color.Black)
+                Dim s As String = Localization.GetString("trade_screen_status_AcceptTrade_ThisPlayer", "You accepted~this trade.").Replace("~", Environment.NewLine).Replace("*", Environment.NewLine)
+                Canvas.DrawRectangle(New Rectangle(CInt(Core.windowSize.Width / 2 - CInt(FontManager.MainFont.MeasureString(s).X + 32) / 2), 100, CInt(FontManager.MainFont.MeasureString(s).X + 32), 64), New Color(255, 255, 255, 150))
+                Core.SpriteBatch.DrawString(FontManager.MainFont, s, New Vector2(CInt(Core.windowSize.Width / 2 - (64 * 4) / 2) + 4, 104), Color.Black)
             End If
         End If
 
