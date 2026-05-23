@@ -5854,7 +5854,9 @@ Namespace BattleSystem
                 q.ReplacePVP = True
 
                 If AddPVP = True Then
-                    BattleScreen.TempPVPBattleQuery.Add(BattleScreen.BattleQuery.Count - 1, q)
+                    If BattleScreen.TempPVPBattleQuery.ContainsKey(BattleScreen.BattleQuery.Count - 1) = False Then
+                        BattleScreen.TempPVPBattleQuery.Add(BattleScreen.BattleQuery.Count - 1, q)
+                    End If
                 Else
                     BattleScreen.BattleQuery.Add(q)
                 End If
