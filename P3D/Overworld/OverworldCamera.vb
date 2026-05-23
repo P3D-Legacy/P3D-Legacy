@@ -156,9 +156,12 @@ Public Class OverworldCamera
 
         Position = Core.Player.startPosition
         _thirdPerson = Core.Player.startThirdPerson
+        Yaw = Core.Player.startRotation
+        If _thirdPerson = True Then
+            _playerFacing = GetFacingDirection()
+        End If
         RotationSpeed = CSng(Core.Player.startRotationSpeed / 10000)
         FOV = Core.Player.startFOV
-        Yaw = Core.Player.startRotation
         _freeCameraMode = Core.Player.startFreeCameraMode
 
         Pitch = 0.0F
