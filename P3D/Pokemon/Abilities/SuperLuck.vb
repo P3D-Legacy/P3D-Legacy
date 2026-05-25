@@ -5,7 +5,7 @@ Namespace Abilities
         Inherits Ability
 
         Public Sub New()
-            MyBase.New(105, "Super Luck", "Heightens the critical- hit ratios of moves.")
+            MyBase.New(105, "Super Luck", "Heightens the critical-hit ratios of moves.")
         End Sub
 
     End Class
