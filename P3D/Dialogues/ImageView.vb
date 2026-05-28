@@ -63,16 +63,17 @@
                 End While
             End If
 
-            Dim p As Vector2 = Core.GetMiddlePosition(New Size(FrameSize.Width + 64, FrameSize.Height + 64))
-            Dim pImage As Vector2 = Core.GetMiddlePosition(New Size(ImageSize.Width + 64, ImageSize.Height + 64))
+            Dim p As Vector2 = Core.GetMiddleInterfacePosition(New Size(FrameSize.Width + 64, FrameSize.Height + 64))
+            Dim pImage As Vector2 = Core.GetMiddleInterfacePosition(New Size(ImageSize.Width + 64, ImageSize.Height + 64))
 
-            Canvas.DrawImageBorder(TextureManager.GetTexture("GUI\Menus\Menu", New Rectangle(0, 0, 48, 48), ""), 2, New Rectangle(CInt(p.X - 32), CInt(p.Y - 32), FrameSize.Width + 64, FrameSize.Height + 64))
-
-            Core.SpriteBatch.Draw(Me.Texture, New Rectangle(CInt(pImage.X + 16), CInt(pImage.Y + 16), ImageSize.Width, ImageSize.Height), Color.White)
+            Canvas.DrawImageBorder(TextureManager.GetTexture("GUI\Menus\Menu", New Rectangle(0, 0, 48, 48), ""), 2, New Rectangle(CInt(p.X - 32), CInt(p.Y - 32), FrameSize.Width + 64, FrameSize.Height + 64), True)
 
             If Me.Delay = 0.0F Then
-                Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Overworld\TextBox"), New Rectangle(CInt(p.X - 32) + FrameSize.Width + 64 - 16, CInt(p.Y - 32) + FrameSize.Height + 64 + 16, 16, 16), New Rectangle(0, 48, 16, 16), Color.White)
+                Core.SpriteBatch.DrawInterface(TextureManager.GetTexture("GUI\Overworld\ImageView"), New Rectangle(CInt(p.X - 32) + FrameSize.Width + 64, CInt(p.Y - 32) + FrameSize.Height + 64 + 16, 16, 16), New Rectangle(0, 0, 16, 16), Color.White)
             End If
+
+            Core.SpriteBatch.DrawInterface(Me.Texture, New Rectangle(CInt(pImage.X + 16), CInt(pImage.Y + 16), ImageSize.Width, ImageSize.Height), Color.White)
+
         End If
     End Sub
 

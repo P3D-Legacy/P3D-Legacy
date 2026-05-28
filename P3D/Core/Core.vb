@@ -260,6 +260,12 @@
         Return v
     End Function
 
+    Public Function GetMiddleInterfacePosition(ByVal OffsetFull As Size) As Vector2
+        Dim v As New Vector2(CSng(Core.ScreenSize.Width / 2) - CSng(OffsetFull.Width / 2), CSng(Core.ScreenSize.Height / 2) - CSng(OffsetFull.Height / 2))
+
+        Return v
+    End Function
+
     Public Sub StartThreadedSub(ByVal s As System.Threading.ParameterizedThreadStart)
         Dim t As New Threading.Thread(s)
         t.IsBackground = True
