@@ -4,7 +4,6 @@ Version=2
 @level.update
 
 @music.play(gameintro)
-@screen.fadein
 
 @storage.set(integer,levelWait,0)
 :while:<storage.get(integer,levelWait)><100
