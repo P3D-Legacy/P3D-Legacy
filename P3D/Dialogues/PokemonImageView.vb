@@ -6,8 +6,18 @@
     Dim Texture As Texture2D
     Dim front As Boolean = True
 
-    Public Sub Show(ByVal ID As Integer, ByVal shiny As Boolean, ByVal front As Boolean)
-        Dim p As Pokemon = Pokemon.GetPokemonByID(ID)
+    Public Sub Show(ByVal ID As String, ByVal shiny As Boolean, ByVal front As Boolean)
+        Dim PokemonID As String = ID.GetSplit(0)
+        Dim PokemonAddition As String = "xXx"
+        If PokemonID.Contains("_") Then
+            PokemonAddition = PokemonForms.GetAdditionalValueFromDataFile(ID.GetSplit(0))
+            PokemonID = ID.GetSplit(0).GetSplit(0, "_")
+        End If
+        If PokemonID.Contains(";") Then
+            PokemonAddition = ID.GetSplit(0).GetSplit(1, ";")
+            PokemonID = ID.GetSplit(0).GetSplit(0, ";")
+        End If
+        Dim p As Pokemon = Pokemon.GetPokemonByID(CInt(PokemonID), PokemonAddition, True)
         p.PlayCry()
 
         Me.Delay = 8.0F
@@ -56,11 +66,12 @@
 
             Canvas.DrawImageBorder(TextureManager.GetTexture("GUI\Menus\Menu", New Rectangle(0, 0, 48, 48), ""), 2, New Rectangle(CInt(p.X), CInt(p.Y), 320, 320))
 
+            If Me.Delay = 0.0F Then
+                Core.SpriteBatch.DrawInterface(TextureManager.GetTexture("GUI\Overworld\ImageView"), New Rectangle(CInt(p.X) + 144 + 160 + 16, CInt(p.Y) + 144 + 160 + 32, 16, 16), New Rectangle(0, 0, 16, 16), Color.White)
+            End If
+
             Core.SpriteBatch.Draw(Me.Texture, New Rectangle(CInt(p.X + 160 + 16 - MathHelper.Min(Me.Texture.Width * 3, 288) / 2), CInt(p.Y + 160 + 16 - MathHelper.Min(Me.Texture.Height * 3, 288) / 2), MathHelper.Min(Me.Texture.Width * 3, 288), MathHelper.Min(Me.Texture.Height * 3, 288)), Color.White)
 
-            If Me.Delay = 0.0F Then
-                Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Overworld\TextBox"), New Rectangle(CInt(p.X) + 144 + 160, CInt(p.Y) + 144 + 160 + 32, 16, 16), New Rectangle(0, 48, 16, 16), Color.White)
-            End If
         End If
     End Sub
 

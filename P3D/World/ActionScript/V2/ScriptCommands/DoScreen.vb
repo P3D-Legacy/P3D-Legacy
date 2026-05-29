@@ -143,7 +143,7 @@
                     OverworldScreen.FadeValue = int(argument).Clamp(0, 255)
                     IsReady = True
                 Case "showpokemon"
-                    Dim PokemonID As Integer = int(argument.GetSplit(0))
+                    Dim PokemonID As String = argument.GetSplit(0)
                     Dim Shiny As Boolean = CBool(argument.GetSplit(1))
                     Dim Front As Boolean = CBool(argument.GetSplit(2))
 
