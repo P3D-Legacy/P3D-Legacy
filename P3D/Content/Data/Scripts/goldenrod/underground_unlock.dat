@@ -3,7 +3,7 @@ version=2
 :if:<register.registered(underground_dooropen)>=true
 	@entity.warp(10,16,0,5)
 :endif
-@text.show(a)
+
 :select:<environment.day>
 	:when:Monday
 		:if:<environment.daytimeid>=1
