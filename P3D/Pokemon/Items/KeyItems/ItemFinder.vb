@@ -1,7 +1,7 @@
 Namespace Items.KeyItems
 
     <Item(55, "Itemfinder")>
-    Public Class ItemFinder
+    Public Class Itemfinder
 
         Inherits KeyItem
 
