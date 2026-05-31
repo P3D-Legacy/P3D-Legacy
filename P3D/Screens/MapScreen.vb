@@ -963,35 +963,41 @@ Public Class MapScreen
         Dim sizeY = 1 * MapScreen.RasterSize
 
         For Each City As City In Me.cities
-            If City.ContainFiles.Contains(Level.LevelFile.ToLower()) = True Then
-                If City.PlayerPositionX <> -1 AndAlso City.PlayerPositionY <> -1 Then
-                    v = City.getPlayerPosition()
-                    r = New Rectangle(CInt(City.getPlayerPosition().X + mapOffset.X), CInt(City.getPosition().Y + mapOffset.Y), sizeX, sizeY)
-                Else
-                    v = City.getPosition()
-                    r = City.getRectangle(mapOffset)
+            If City.Visible <> VisibleMode.Register OrElse ActionScript.IsRegistered(City.Register) = True Then
+                If City.ContainFiles.Contains(Level.LevelFile.ToLower()) = True Then
+                    If City.PlayerPositionX <> -1 AndAlso City.PlayerPositionY <> -1 Then
+                        v = City.getPlayerPosition()
+                        r = New Rectangle(CInt(City.getPlayerPosition().X + mapOffset.X), CInt(City.getPosition().Y + mapOffset.Y), sizeX, sizeY)
+                    Else
+                        v = City.getPosition()
+                        r = City.getRectangle(mapOffset)
+                    End If
                 End If
             End If
         Next
         For Each Place As Place In Me.places
-            If Place.ContainFiles.Contains(Level.LevelFile.ToLower()) = True Then
-                If Place.PlayerPositionX <> -1 AndAlso Place.PlayerPositionY <> -1 Then
-                    v = Place.getPlayerPosition()
-                    r = New Rectangle(CInt(Place.getPlayerPosition().X + mapOffset.X), CInt(Place.getPosition().Y + mapOffset.Y), sizeX, sizeY)
-                Else
-                    v = Place.getPosition()
-                    r = Place.getRectangle(mapOffset)
+            If Place.Visible <> VisibleMode.Register OrElse ActionScript.IsRegistered(Place.Register) = True Then
+                If Place.ContainFiles.Contains(Level.LevelFile.ToLower()) = True Then
+                    If Place.PlayerPositionX <> -1 AndAlso Place.PlayerPositionY <> -1 Then
+                        v = Place.getPlayerPosition()
+                        r = New Rectangle(CInt(Place.getPlayerPosition().X + mapOffset.X), CInt(Place.getPosition().Y + mapOffset.Y), sizeX, sizeY)
+                    Else
+                        v = Place.getPosition()
+                        r = Place.getRectangle(mapOffset)
+                    End If
                 End If
             End If
         Next
         For Each Route As Route In Me.routes
-            If Route.ContainFiles.Contains(Level.LevelFile.ToLower()) = True Then
-                If Route.PlayerPositionX <> -1 AndAlso Route.PlayerPositionY <> -1 Then
-                    v = Route.getPlayerPosition()
-                    r = New Rectangle(CInt(Route.getPlayerPosition().X + mapOffset.X), CInt(Route.getPosition().Y + mapOffset.Y), sizeX, sizeY)
-                Else
-                    v = Route.getPosition()
-                    r = Route.getRectangle(mapOffset)
+            If Route.Visible <> VisibleMode.Register OrElse ActionScript.IsRegistered(Route.Register) = True Then
+                If Route.ContainFiles.Contains(Level.LevelFile.ToLower()) = True Then
+                    If Route.PlayerPositionX <> -1 AndAlso Route.PlayerPositionY <> -1 Then
+                        v = Route.getPlayerPosition()
+                        r = New Rectangle(CInt(Route.getPlayerPosition().X + mapOffset.X), CInt(Route.getPosition().Y + mapOffset.Y), sizeX, sizeY)
+                    Else
+                        v = Route.getPosition()
+                        r = Route.getRectangle(mapOffset)
+                    End If
                 End If
             End If
         Next
