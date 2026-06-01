@@ -862,7 +862,6 @@ Public Class OverworldCamera
 
     Private Sub MoveForward()
         If _moved <= 0F Then
-            _didWalkAgainst = True
             If CheckCollision(GetForwardMovedPosition()) = False Then
                 Screen.Level.OwnPlayer.Opacity = 1.0F
 
@@ -870,9 +869,13 @@ Public Class OverworldCamera
                 Screen.Level.OwnPlayer.DoAnimation = (walkSteps <= 1)
 
                 Move(walkSteps)
+                _didWalkAgainst = True
             Else
                 'Walked against something, set player transparent
-                If Screen.Level.Surfing = False AndAlso IsPushingStrengthRock = False Then
+                If Screen.Level.Surfing = False Then
+                    _didWalkAgainst = True
+                End If
+                If IsPushingStrengthRock = False Then
                     If _thirdPerson = True Then
                         If _didWalkAgainst = True Then
                             Screen.Level.OwnPlayer.Opacity = 0.5F
@@ -922,6 +925,9 @@ Public Class OverworldCamera
                         If Entity.Collision = True Then
                             If Entity.WalkAgainstFunction() = True Then
                                 cannotWalk = True
+                                If Screen.Level.Surfing = True Then
+                                    _didWalkAgainst = True
+                                End If
                             End If
                         Else
                             If Entity.WalkIntoFunction() = True Then
@@ -942,6 +948,9 @@ Public Class OverworldCamera
                     If Entity.boundingBox.Contains(Position2D) = ContainmentType.Contains Then
                         If Entity.Collision = True Then
                             Entity.WalkAgainstFunction()
+                            If Not (Entity.EntityID = "AnimatedBlock" OrElse Entity.EntityID = "Water") Then
+                                _didWalkAgainst = True
+                            End If
                         Else
                             Entity.WalkIntoFunction()
                         End If

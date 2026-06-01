@@ -101,7 +101,7 @@
     End Function
 
     Public Overrides Sub WalkOntoFunction()
-        If Screen.Level.Surfing = True Then
+        If Screen.Level.Surfing = True AndAlso Me.ActionValue = 0 Then
             Dim canSurf As Boolean = False
 
             For Each Entity As Entity In Screen.Level.Entities
@@ -120,9 +120,21 @@
             If canSurf = True Then
                 If CType(Screen.Camera, OverworldCamera)._debugWalk = False Then
                     Screen.Camera.Move(1)
+                    CType(Screen.Camera, OverworldCamera).DidWalkAgainst = False
                 End If
-
-                Screen.Level.PokemonEncounter.TryEncounterWildPokemon(Me.Position, Spawner.EncounterMethods.Surfing, "")
+                Dim newPosition As Vector3 = Screen.Camera.GetForwardMovedPosition()
+                Dim Position2D As Vector3 = New Vector3(newPosition.X, CSng(Math.Floor(newPosition.Y)), newPosition.Z)
+                Dim EncounterWild As Boolean = True
+                For Each Floor As Entity In Screen.Level.Floors
+                    If Floor.boundingBox.Contains(Position2D) = ContainmentType.Contains Then
+                        EncounterWild = False
+                    End If
+                Next
+                If EncounterWild = True Then
+                    Screen.Level.PokemonEncounter.TryEncounterWildPokemon(Me.Position, Spawner.EncounterMethods.Surfing, "")
+                End If
+            Else
+                CType(Screen.Camera, OverworldCamera).DidWalkAgainst = True
             End If
         End If
     End Sub

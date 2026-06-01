@@ -129,12 +129,23 @@
             Next
 
             If canSurf = True Then
-                Screen.Level.PokemonEncounter.TryEncounterWildPokemon(Me.Position, Spawner.EncounterMethods.Surfing, "")
-
                 If CType(Screen.Camera, OverworldCamera)._debugWalk = False Then
                     Screen.Camera.Move(1)
+                    CType(Screen.Camera, OverworldCamera).DidWalkAgainst = False
                 End If
-
+                Dim newPosition As Vector3 = Screen.Camera.GetForwardMovedPosition()
+                Dim Position2D As Vector3 = New Vector3(newPosition.X, CSng(Math.Floor(newPosition.Y)), newPosition.Z)
+                Dim EncounterWild As Boolean = True
+                For Each Floor As Entity In Screen.Level.Floors
+                    If Floor.boundingBox.Contains(Position2D) = ContainmentType.Contains Then
+                        EncounterWild = False
+                    End If
+                Next
+                If EncounterWild = True Then
+                    Screen.Level.PokemonEncounter.TryEncounterWildPokemon(Me.Position, Spawner.EncounterMethods.Surfing, "")
+                End If
+            Else
+                CType(Screen.Camera, OverworldCamera).DidWalkAgainst = True
             End If
         End If
     End Sub
