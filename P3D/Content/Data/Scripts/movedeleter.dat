@@ -18,7 +18,7 @@ version=2
 	@options.show(Yes,No)
 	:when:Yes
 		@text.Show(Which Pokémon should~forget one of its moves?)
-		@pokemon.select(1)
+		@pokemon.select(1,1,0)
 		:if:<pokemon.selected>>-1
 			:if:<pokemon.countattacks(<pokemon.selected>)>=1
 				@text.Show(Your <pokemon.name(<pokemon.selected>)> can't~forget its only move...)

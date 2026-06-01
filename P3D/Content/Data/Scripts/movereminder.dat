@@ -18,7 +18,7 @@ version=2
 	@options.show(Yes,No)
 	:when:Yes
 		@text.show(Which Pokémon should~remember a forgotten move?)
-		@pokemon.select(1)
+		@pokemon.select(1,1,0)
 			:if:<pokemon.selected>>-1
 				@text.show(Which move should your~<pokemon.name(<pokemon.selected>)> remember?)
 				@screen.teachmoves(<pokemon.selected>)
