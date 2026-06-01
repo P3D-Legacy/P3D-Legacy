@@ -3,7 +3,7 @@
     Inherits Screen
 
     Private _menuOptions As New List(Of String)
-    Private _menuIndex As Integer = 0
+    Public _menuIndex As Integer = 0
 
     Private _texture As Texture2D
 
@@ -15,7 +15,7 @@
 
     'cursor animation:
     Private _cursorPosition As Vector2 = New Vector2(0, 0)
-    Private _cursorDestPosition As Vector2 = New Vector2(0, 0)
+    Public _cursorDestPosition As Vector2 = New Vector2(0, 0)
 
     Private _preScreenTexture As RenderTarget2D
     Private _preScreenTarget As RenderTarget2D
@@ -196,7 +196,11 @@
         _cursorDestPosition = cPosition
     End Sub
 
-    Private Function GetButtonPosition(ByVal index As Integer) As Vector2
+    Public Sub Minimized()
+        SetCursorPosition(_menuIndex)
+        _cursorPosition = _cursorDestPosition
+    End Sub
+    Public Function GetButtonPosition(ByVal index As Integer) As Vector2
         'button size: 384x64
         'space between buttons horizontally: 150
         'space between buttons vertically: 80

@@ -23,7 +23,7 @@ Public Class PartyScreen
     Private _enrollY As Single = 0F
     Private _interfaceFade As Single = 0F
     Private _cursorPosition As New Vector2
-    Private _cursorDest As New Vector2
+    Public _cursorDest As New Vector2
 
     'Pokémon animation:
     Private Class PokemonAnimation
@@ -473,7 +473,7 @@ Public Class PartyScreen
         End If
     End Function
 
-    Private Function GetBoxPosition(ByVal index As Integer) As Vector2
+    Public Function GetBoxPosition(ByVal index As Integer) As Vector2
         Dim position As New Vector2
 
         '292 x 76
@@ -491,7 +491,15 @@ Public Class PartyScreen
         Return position
     End Function
 
+    Public Sub Minimized()
+        _cursorDest = GetBoxPosition(_index)
+        _cursorPosition = _cursorDest
+    End Sub
     Public Overrides Sub Update()
+        If _cursorDest <> GetBoxPosition(_index) Then
+            Minimized()
+        End If
+
         If _pokemonAnimations.Count > 0 Then
             Dim animation As PokemonAnimation = _pokemonAnimations(_index)
             If animation._shakeLeft Then

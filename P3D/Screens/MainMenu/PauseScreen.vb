@@ -1,4 +1,6 @@
-﻿Public Class PauseScreen
+﻿Imports NAudio.Gui
+
+Public Class PauseScreen
 
     Inherits Screen
 
@@ -89,6 +91,17 @@
         ElseIf PreScreen.Identification = Identifications.VoltorbFlipScreen Then
             If VoltorbFlip.VoltorbFlipScreen.GameOrigin.X <> CInt(windowSize.Width / 2 - VoltorbFlip.VoltorbFlipScreen.GameSize.Width / 2 - 32) Or VoltorbFlip.VoltorbFlipScreen.GameOrigin.Y <> CInt(windowSize.Height / 2 - CType(PreScreen, VoltorbFlip.VoltorbFlipScreen)._screenTransitionY) Then
                 CType(PreScreen, VoltorbFlip.VoltorbFlipScreen).Minimized()
+            End If
+        ElseIf PreScreen.Identification = Identifications.PartyScreen Then
+            If CType(PreScreen, PartyScreen)._cursorDest <> CType(PreScreen, PartyScreen).GetBoxPosition(CType(PreScreen, PartyScreen)._index) Then
+                CType(PreScreen, PartyScreen).Minimized()
+            End If
+        ElseIf PreScreen.Identification = Identifications.MenuScreen Then
+            Dim menuscr As NewMenuScreen = CType(PreScreen, NewMenuScreen)
+            Dim ButtonPos As Vector2 = menuscr.GetButtonPosition(menuscr._menuIndex)
+            Dim CursorPos As Vector2 = New Vector2(CInt(ButtonPos.X + 180), CInt(ButtonPos.Y - 42))
+            If menuscr._cursorDestPosition <> CursorPos Then
+                CType(PreScreen, NewMenuScreen).Minimized()
             End If
         End If
 
