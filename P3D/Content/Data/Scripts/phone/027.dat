@@ -34,6 +34,6 @@ version=2
 	:when:1
 		@Text.Show(Hi, <player.name>!*I am getting bored.*Want to battle me?*I will be waiting~on Route 43.)
 	:when:2
-		@text.show(I bought some Moon Stones~at the Goldenrod Department~Store for my Clefairy.*I got too many,~so I'll give you one!*Come collect it on~Route 43)
+		@text.show(I bought some Moon Stones~at the Goldenrod Department~Store for my Clefairy.*I got too many,~so I'll give you one!*Come collect it on~Route 43.)
 :endwhen
 :end
