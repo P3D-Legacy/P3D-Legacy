@@ -527,20 +527,20 @@ Namespace BattleSystem
             'TODO: Reset rage counters
 
             If own = True Then
-                If BattleScreen.FieldEffects.OwnUsedRandomMove = True AndAlso (move.Name.ToLower() <> "metronome" OrElse move.IsGameModeMove = True AndAlso move.gmUseRandomMove = False) Then
+                If BattleScreen.FieldEffects.OwnUsedRandomMove = True AndAlso (move.Name.ToLower() <> Localization.GetString("move_name_118", "Metronome").ToLower OrElse move.IsGameModeMove = True AndAlso move.gmUseRandomMove = False) Then
                     BattleScreen.FieldEffects.OwnUsedRandomMove = False
                     BattleScreen.FieldEffects.OppUsedRandomMoveAttack = Nothing
                 End If
-                If BattleScreen.FieldEffects.OwnUsedMirrorMove = True AndAlso (move.Name.ToLower() <> "mirror move") Then
+                If BattleScreen.FieldEffects.OwnUsedMirrorMove = True AndAlso (move.Name.ToLower() <> Localization.GetString("move_name_119", "Mirror Move").ToLower) Then
                     BattleScreen.FieldEffects.OwnUsedMirrorMove = False
                     BattleScreen.FieldEffects.OppUsedMirrorMoveAttack = Nothing
                 End If
             Else
-                If BattleScreen.FieldEffects.OppUsedRandomMove = True AndAlso (move.Name.ToLower() <> "metronome" OrElse move.IsGameModeMove = True AndAlso move.gmUseRandomMove = False) Then
+                If BattleScreen.FieldEffects.OppUsedRandomMove = True AndAlso (move.Name.ToLower() <> Localization.GetString("move_name_118", "Metronome").ToLower OrElse move.IsGameModeMove = True AndAlso move.gmUseRandomMove = False) Then
                     BattleScreen.FieldEffects.OppUsedRandomMove = False
                     BattleScreen.FieldEffects.OppUsedRandomMoveAttack = Nothing
                 End If
-                If BattleScreen.FieldEffects.OppUsedMirrorMove = True AndAlso (move.Name.ToLower() <> "mirror move") Then
+                If BattleScreen.FieldEffects.OppUsedMirrorMove = True AndAlso (move.Name.ToLower() <> Localization.GetString("move_name_119", "Mirror Move").ToLower) Then
                     BattleScreen.FieldEffects.OppUsedMirrorMove = False
                     BattleScreen.FieldEffects.OppUsedMirrorMoveAttack = Nothing
                 End If
@@ -560,7 +560,7 @@ Namespace BattleSystem
                 Return New RoundConst() With {.StepType = RoundConst.StepTypes.Move, .Argument = move.GetRandomAttack()}
             Else
                 Select Case move.Name.ToLower()
-                    Case "metronome"
+                    Case Localization.GetString("move_name_118", "Metronome").ToLower
                         If move.CurrentPP > 0 Then
                             move.CurrentPP -= 1
                         End If
@@ -572,7 +572,7 @@ Namespace BattleSystem
                             BattleScreen.FieldEffects.OppUsedRandomMoveAttack = move
                         End If
                         Return New RoundConst() With {.StepType = RoundConst.StepTypes.Move, .Argument = Moves.Normal.Metronome.GetMetronomeMove()}
-                    Case "mirror move"
+                    Case Localization.GetString("move_name_119", "Mirror Move").ToLower
                         If move.CurrentPP > 0 Then
                             move.CurrentPP -= 1
                         End If
@@ -1257,59 +1257,59 @@ Namespace BattleSystem
                 Return False
             End If
             Select Case moveUsed.Name.ToLower
-                Case "fly"
+                Case Localization.GetString("move_name_19", "Fly").ToLower()
                     If fly = 0 Then
                         Return True
                     End If
-                Case "bounce"
+                Case Localization.GetString("move_name_340", "Bounce").ToLower()
                     If bounce = 0 Then
                         Return True
                     End If
-                Case "dig"
+                Case Localization.GetString("move_name_91", "Dig").ToLower()
                     If dig = 0 Then
                         Return True
                     End If
-                Case "dive"
+                Case Localization.GetString("move_name_291", "Dive").ToLower()
                     If dive = 0 Then
                         Return True
                     End If
-                Case "sky drop"
+                Case Localization.GetString("move_name_507", "Sky Drop").ToLower()
                     If skyDrop = 0 Then
                         Return True
                     End If
-                Case "geomancy"
+                Case Localization.GetString("move_name_601", "Geomancy").ToLower()
                     If geomancy = 0 Then
                         Return True
                     End If
-                Case "shadow force"
+                Case Localization.GetString("move_name_467", "Shadow Force").ToLower()
                     If shadowForce = 0 Then
                         Return True
                     End If
-                Case "phantom force"
+                Case Localization.GetString("move_name_566", "Phantom Force").ToLower()
                     If phantomForce = 0 Then
                         Return True
                     End If
-                Case "skull bash"
+                Case Localization.GetString("move_name_130", "Skull Bash").ToLower()
                     If skullBash = 0 Then
                         Return True
                     End If
-                Case "sky attack"
+                Case Localization.GetString("move_name_143", "Sky Attack").ToLower()
                     If skyAttack = 0 Then
                         Return True
                     End If
-                Case "solar beam"
+                Case Localization.GetString("move_name_76", "Solar Beam").ToLower()
                     If solarBeam = 0 And BattleScreen.FieldEffects.Weather <> BattleWeather.WeatherTypes.Sunny Then
                         Return True
                     End If
-                Case "solar blade"
+                Case Localization.GetString("move_name_669", "Solar Blade").ToLower()
                     If solarBlade = 0 And BattleScreen.FieldEffects.Weather <> BattleWeather.WeatherTypes.Sunny Then
                         Return True
                     End If
-                Case "razor wind"
+                Case Localization.GetString("move_name_13", "Razor Wind").ToLower()
                     If razorWind = 0 Then
                         Return True
                     End If
-                Case "bide"
+                Case Localization.GetString("move_name_117", "Bide").ToLower()
                     If bide = 0 Or bide = 1 Then
                         Return True
                     End If
@@ -1936,7 +1936,21 @@ Namespace BattleSystem
                 NoTargetCheck = False
                 'Moves that target other pokemon and can go through protect.
                 Select Case moveUsed.Name.ToLower
-                    Case "acupressure", "confide", "feint", "hold hands", "hyperspace fury", "hyperspace hole", "phantom force", "psych up", "play nice", "roar", "role play", "shadow force", "sketch", "transform", "whirlwind"
+                    Case Localization.GetString("move_name_367", "Acupressure").ToLower(),
+                        Localization.GetString("move_name_590", "Confide").ToLower(),
+                        Localization.GetString("move_name_364", "Feint").ToLower(),
+                        Localization.GetString("move_name_607", "Hold Hands").ToLower(),
+                        Localization.GetString("move_name_621", "Hyperspace Fury").ToLower(),
+                        Localization.GetString("move_name_593", "Hyperspace Hole").ToLower(),
+                        Localization.GetString("move_name_566", "Phantom Force").ToLower(),
+                        Localization.GetString("move_name_244", "Psych Up").ToLower(),
+                        Localization.GetString("move_name_589", "Play Nice").ToLower(),
+                        Localization.GetString("move_name_46", "Roar").ToLower(),
+                        Localization.GetString("move_name_272", "Role Play").ToLower(),
+                        Localization.GetString("move_name_467", "Shadow Force").ToLower(),
+                        Localization.GetString("move_name_166", "Sketch").ToLower(),
+                        Localization.GetString("move_name_144", "Transform").ToLower(),
+                        Localization.GetString("move_name_18", "Whirlwind").ToLower()
                         NoTargetCheck = True
                 End Select
             End If
@@ -1985,14 +1999,14 @@ Namespace BattleSystem
                 minimize = BattleScreen.FieldEffects.OwnMinimize
             End If
 
-            Dim MinimizeMoveList As String() = {"body slam",
-                                                "stomp",
-                                                "dragon rush",
-                                                "shadow force",
-                                                "steam roller",
-                                                "heat crash",
-                                                "phantom force",
-                                                "flying press"
+            Dim MinimizeMoveList As String() = {Localization.GetString("move_name_34", "Body Slam").ToLower(),
+                                                Localization.GetString("move_name_23", "Stomp").ToLower(),
+                                                Localization.GetString("move_name_407", "Dragon Rush").ToLower(),
+                                                Localization.GetString("move_name_467", "Shadow Force").ToLower(),
+                                                Localization.GetString("move_name_537", "Steam Roller").ToLower(),
+                                                Localization.GetString("move_name_535", "Heat Crash").ToLower(),
+                                                Localization.GetString("move_name_566", "Phantom Force").ToLower(),
+                                                Localization.GetString("move_name_9999", "Flying Press").ToLower()
                                                }
 
             If minimize > 0 AndAlso MinimizeMoveList.Contains(moveUsed.Name.ToLower) Then
@@ -2005,7 +2019,21 @@ Namespace BattleSystem
                 UseTwoTurnCheck = False
                 'Moves that target other pokemon and can go through protect.
                 Select Case moveUsed.Name.ToLower
-                    Case "acupressure", "confide", "feint", "hold hands", "hyperspace fury", "hyperspace hole", "phantom force", "psych up", "play nice", "roar", "role play", "shadow force", "sketch", "transform", "whirlwind"
+                    Case Localization.GetString("move_name_367", "Acupressure").ToLower(),
+                        Localization.GetString("move_name_590", "Confide").ToLower(),
+                        Localization.GetString("move_name_364", "Feint").ToLower(),
+                        Localization.GetString("move_name_607", "Hold Hands").ToLower(),
+                        Localization.GetString("move_name_621", "Hyperspace Fury").ToLower(),
+                        Localization.GetString("move_name_593", "Hyperspace Hole").ToLower(),
+                        Localization.GetString("move_name_566", "Phantom Force").ToLower(),
+                        Localization.GetString("move_name_244", "Psych Up").ToLower(),
+                        Localization.GetString("move_name_589", "Play Nice").ToLower(),
+                        Localization.GetString("move_name_46", "Roar").ToLower(),
+                        Localization.GetString("move_name_272", "Role Play").ToLower(),
+                        Localization.GetString("move_name_467", "Shadow Force").ToLower(),
+                        Localization.GetString("move_name_166", "Sketch").ToLower(),
+                        Localization.GetString("move_name_144", "Transform").ToLower(),
+                        Localization.GetString("move_name_18", "Whirlwind").ToLower()
                         UseTwoTurnCheck = True
                 End Select
             End If
@@ -2114,7 +2142,7 @@ Namespace BattleSystem
                 If moveUsed.MoveFailBeforeAttack(own, BattleScreen) = True Then
                     moveWorks = False
                 End If
-                If moveUsed.Name.ToLower = "sucker punch" Then
+                If moveUsed.Name.ToLower = Localization.GetString("move_name_389", "Sucker Punch").ToLower Then
                     If own Then
                         If OppStep.StepType <> RoundConst.StepTypes.Move OrElse CType(OppStep.Argument, Attack).Category = Attack.Categories.Status Then
                             moveWorks = False
@@ -2259,7 +2287,14 @@ Namespace BattleSystem
 
                 If op.Ability.Name.ToLower() = "armor tail" Then
                     Dim exceptionAbilities As String() = {"mold breaker", "turboblaze", "teravolt"}
-                    Dim exceptionAttacks As String() = {"perish song", "assist", "copycat", "me first", "nature power", "sleep talk", "snatch"}
+                    Dim exceptionAttacks As String() = {Localization.GetString("move_name_195", "Perish Song").ToLower(),
+                                                        Localization.GetString("move_name_274", "Assist").ToLower(),
+                                                        Localization.GetString("move_name_383", "Copycat").ToLower(),
+                                                        Localization.GetString("move_name_382", "Me First").ToLower(),
+                                                        Localization.GetString("move_name_267", "Nature Power").ToLower(),
+                                                        Localization.GetString("move_name_214", "Sleep Talk").ToLower(),
+                                                        Localization.GetString("move_name_289", "Snatch").ToLower()
+                                                        }
 
                     If moveUsed.Priority > 0 AndAlso exceptionAttacks.Contains(moveUsed.Name.ToLower) = False AndAlso
                     moveUsed.Target <> Attack.Targets.All AndAlso moveUsed.Target <> Attack.Targets.AllFoes AndAlso
@@ -2374,28 +2409,28 @@ Namespace BattleSystem
 
                         Dim useParentalBond As Boolean = False
                         If TimesToAttack = 1 AndAlso p.Ability IsNot Nothing AndAlso p.Ability.Name.ToLower = "parental bond" Then
-                            Dim moveList As String() = {"endeavor",
-                                                        "fling",
-                                                        "explosion",
-                                                        "self-destruct",
-                                                        "final gambit",
-                                                        "bounce",
-                                                        "dig",
-                                                        "dive",
-                                                        "fly",
-                                                        "freeze shock",
-                                                        "geomancy",
-                                                        "ice burn",
-                                                        "phantom force",
-                                                        "razor wind",
-                                                        "shadow force",
-                                                        "skull bash",
-                                                        "sky attack",
-                                                        "sky drop",
-                                                        "solar beam",
-                                                        "solar blade",
-                                                        "bide",
-                                                        "struggle"
+                            Dim moveList As String() = {Localization.GetString("move_name_283", "Endeavor").ToLower(),
+                                                        Localization.GetString("move_name_374", "Fling").ToLower(),
+                                                        Localization.GetString("move_name_153", "Explosion").ToLower(),
+                                                        Localization.GetString("move_name_120", "Self-Destruct").ToLower(),
+                                                        Localization.GetString("move_name_515", "Final Gambit").ToLower(),
+                                                        Localization.GetString("move_name_340", "Bounce").ToLower(),
+                                                        Localization.GetString("move_name_91", "Dig").ToLower(),
+                                                        Localization.GetString("move_name_291", "Dive").ToLower(),
+                                                        Localization.GetString("move_name_19", "Fly").ToLower(),
+                                                        Localization.GetString("move_name_553", "Freeze Shock").ToLower(),
+                                                        Localization.GetString("move_name_601", "Geomancy").ToLower(),
+                                                        Localization.GetString("move_name_554", "Ice Burn").ToLower(),
+                                                        Localization.GetString("move_name_566", "Phantom Force").ToLower(),
+                                                        Localization.GetString("move_name_13", "Razor Wind").ToLower(),
+                                                        Localization.GetString("move_name_467", "Shadow Force").ToLower(),
+                                                        Localization.GetString("move_name_130", "Skull Bash").ToLower(),
+                                                        Localization.GetString("move_name_143", "Sky Attack").ToLower(),
+                                                        Localization.GetString("move_name_507", "Sky Drop").ToLower(),
+                                                        Localization.GetString("move_name_76", "Solar Beam").ToLower(),
+                                                        Localization.GetString("move_name_669", "Solar Blade").ToLower(),
+                                                        Localization.GetString("move_name_117", "Bide").ToLower(),
+                                                        Localization.GetString("move_name_165", "Struggle").ToLower()
                                                        }
                             If Not moveList.Contains(moveUsed.Name.ToLower) Then
                                 useParentalBond = True
@@ -2607,16 +2642,16 @@ Namespace BattleSystem
 
                                 'Moves that only use secondary effects on the second turn of parental bond
                                 If useParentalBond Then
-                                    Dim PBmoveList As String() = {"secret power",
-                                                                  "bug bite",
-                                                                  "pluck",
-                                                                  "smelling salts",
-                                                                  "wake-up slap",
-                                                                  "knock off",
-                                                                  "relic song",
-                                                                  "circle throw",
-                                                                  "dragon tail"
-                                                                    }
+                                    Dim PBmoveList As String() = {Localization.GetString("move_name_290", "Secret Power").ToLower(),
+                                                                  Localization.GetString("move_name_450", "Bug Bite").ToLower(),
+                                                                  Localization.GetString("move_name_365", "Pluck").ToLower(),
+                                                                  Localization.GetString("move_name_265", "Smelling Salts").ToLower(),
+                                                                  Localization.GetString("move_name_358", "Wake-Up Slap").ToLower(),
+                                                                  Localization.GetString("move_name_282", "Knock Off").ToLower(),
+                                                                  Localization.GetString("move_name_547", "Relic Song").ToLower(),
+                                                                  Localization.GetString("move_name_509", "Circle Throw").ToLower(),
+                                                                  Localization.GetString("move_name_525", "Dragon Tail").ToLower()
+                                                                  }
                                     If PBmoveList.Contains(moveUsed.Name.ToLower) Then
                                         multiUseEffect = False
                                     End If
