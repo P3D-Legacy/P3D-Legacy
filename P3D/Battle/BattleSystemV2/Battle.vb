@@ -1909,6 +1909,19 @@ Namespace BattleSystem
                 MoveUsedText = p.GetDisplayName() & " is thrashing about!"
             End If
 
+            Dim RandomMoveText As String = ""
+            If own = True Then
+                If BattleScreen.FieldEffects.OwnUsedRandomMove = True AndAlso BattleScreen.FieldEffects.OwnUsedRandomMoveAttack IsNot Nothing Then
+                    RandomMoveText = p.GetDisplayName() & " used " & BattleScreen.FieldEffects.OwnUsedRandomMoveAttack.Name & "!"
+                End If
+            Else
+                If BattleScreen.FieldEffects.OppUsedRandomMove = True AndAlso BattleScreen.FieldEffects.OppUsedRandomMoveAttack IsNot Nothing Then
+                    RandomMoveText = p.GetDisplayName() & " used " & BattleScreen.FieldEffects.OppUsedRandomMoveAttack.Name & "!"
+                End If
+            End If
+            If RandomMoveText <> "" Then
+                BattleScreen.BattleQuery.Add(New TextQueryObject(RandomMoveText))
+            End If
             BattleScreen.BattleQuery.Add(New TextQueryObject(MoveUsedText))
 
             If moveUsed.DeductPP(own, BattleScreen) = True Then
