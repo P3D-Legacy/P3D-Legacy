@@ -66,13 +66,13 @@
                 If LastMove.Name.ToLower <> "struggle" AndAlso LastMove.Disabled = 0 Then
                     Dim HasDisabledMove = False
                     Dim TargetMoveIndex As Integer = -1
-                    For Each a As BattleSystem.Attack In Target.Attacks
-                        If a.Disabled > 0 Then
+                    For a = 0 To Target.Attacks.Count - 1
+                        If Target.Attacks(a).Disabled > 0 Then
                             HasDisabledMove = True
                             Exit For
                         End If
-                        If a.ID = LastMove.ID Then
-                            TargetMoveIndex = a.ID
+                        If Target.Attacks(a).ID = LastMove.ID Then
+                            TargetMoveIndex = a
                         End If
                     Next
                     If TargetMoveIndex <> -1 And HasDisabledMove = False Then
