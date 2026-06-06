@@ -1004,6 +1004,7 @@ choose_move_CannotChooseHMMove,Kan geen VM-techniek kiezen.
 ---
 Leveling Up & evolving
 level_up_PokemonReachedLevel,[POKEMONNAME] bereikte~niveau [LEVELNUMBER]!
+level_up_StatBoost,[POKEMONNAME] attributenboost is [TOTALNUMBER]!
 evolution_PokemonIsEvolving,Wat?*[POKEMONNAME] is aan het evolueren!
 evolution_PokemonStoppedEvolving,Huh? [POKEMONNAME]~stopte met evolueren!
 evolution_PokemonEvolvedInto,Gefeliciteerd!*Jouw [POKEMONNAME]~evolueerde in een [EVOLUTIONNAME]!

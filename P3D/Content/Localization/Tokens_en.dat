@@ -1005,6 +1005,7 @@ choose_move_CannotChooseHMMove,Cannot choose HM move.
 ---
 Leveling Up & evolving
 level_up_PokemonReachedLevel,[POKEMONNAME] reached~level [LEVELNUMBER]!
+level_up_StatBoost,[POKEMONNAME] got a boost of [TOTALNUMBER]!
 evolution_PokemonIsEvolving,What?*[POKEMONNAME] is evolving!
 evolution_PokemonStoppedEvolving,Huh? [POKEMONNAME]~stopped evolving!
 evolution_PokemonEvolvedInto,Congratulations!*Your [POKEMONNAME]~evolved into [EVOLUTIONNAME]!

@@ -45,7 +45,7 @@
         Dim pokeTextureScale As Vector2 = New Vector2(CSng(32 / pokeTexture.Width) * 2, CSng(32 / pokeTexture.Height) * 2)
         Core.SpriteBatch.Draw(pokeTexture, New Rectangle(CInt(p.X + 20), CInt(p.Y + 20), CInt(pokeTexture.Width * pokeTextureScale.X), CInt(pokeTexture.Height * pokeTextureScale.Y)), Color.White)
         Core.SpriteBatch.DrawString(FontManager.InGameFont, Pokemon.GetDisplayName(), New Vector2(p.X + 90, p.Y + 32), Color.Black)
-        Core.SpriteBatch.DrawString(FontManager.InGameFont, Localization.GetString("level_up_PokemonReachedLevel", "[POKEMONNAME] reached~level [LEVELNUMBER]!").Replace("[POKEMONNAME]", "").Replace("[LEVELNUMBER]", Pokemon.Level.ToString), New Vector2(p.X + 90 + FontManager.InGameFont.MeasureString(Pokemon.GetDisplayName()).X, p.Y + 32), Color.Black)
+        Core.SpriteBatch.DrawString(FontManager.InGameFont, Localization.GetString("level_up_PokemonReachedLevel", "[POKEMONNAME] reached~level [LEVELNUMBER]!").Replace("[POKEMONNAME]", "").Replace("[LEVELNUMBER]", Pokemon.Level.ToString).Replace("~", " "), New Vector2(p.X + 90 + FontManager.InGameFont.MeasureString(Pokemon.GetDisplayName()).X, p.Y + 32), Color.Black)
 
         Dim OldOffset As Integer = 192
 
@@ -98,7 +98,7 @@
             Dim newStat As Integer = 0
             newStat = newAttack + newDefense + newSpAttack + newMaxHP + newSpDefense + newSpeed
 
-            Core.SpriteBatch.DrawString(FontManager.InGameFont, Pokemon.GetDisplayName() & " got a boost of " & newStat.ToString() & "!", New Vector2(p.X + 32, p.Y + 320), Color.DarkRed)
+            Core.SpriteBatch.DrawString(FontManager.InGameFont, Localization.GetString("level_up_StatBoost", "[POKEMONNAME] got a boost of [TOTALNUMBER]!").Replace("[POKEMONNAME]", Pokemon.GetDisplayName()).Replace("[TOTALNUMBER]", newStat.ToString()), New Vector2(p.X + 32, p.Y + 320), Color.DarkRed)
         End If
     End Sub
 
