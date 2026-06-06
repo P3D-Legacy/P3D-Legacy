@@ -17,7 +17,7 @@ Namespace Items.Medicine
 
         Public Overrides Sub Use()
             If Core.Player.Pokemons.Count > 0 Then
-                Dim selScreen = New PartyScreen(Core.CurrentScreen, Me, AddressOf Me.UseOnPokemon, Localization.GetString("global_use", "Use") & " " & Me.OneLineName(), True) With {.Mode = Screens.UI.ISelectionScreen.ScreenMode.Selection, .CanExit = True}
+                Dim selScreen = New PartyScreen(Core.CurrentScreen, Me, AddressOf Me.UseOnPokemon, Localization.GetString("global_use", "Use") & " " & Me.OneLineName(), True) With {.Mode = Screens.UI.ISelectionScreen.ScreenMode.Selection, .CanExit = True, .CanChooseEgg = False}
                 AddHandler selScreen.SelectedObject, AddressOf UseItemhandler
 
                 Core.SetScreen(selScreen)
@@ -31,6 +31,7 @@ Namespace Items.Medicine
 
             If Not p.IsShiny Then
                 p.IsShiny = True
+                p.ClearTextures()
 
                 SoundManager.PlaySound("Use_Item", False)
                 Screen.TextBox.Show(Localization.GetString("item_use_501", "The Pokémon sparkled.") & RemoveItem())
