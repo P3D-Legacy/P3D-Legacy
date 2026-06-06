@@ -833,10 +833,10 @@ Namespace BattleSystem
                     Me.DoAttackRound(BattleScreen, True, ownMove)
                     EndRound(BattleScreen, 1)
 
-                    SwitchOutOpp(BattleScreen, CInt(OppStep.Argument), "", True)
+                    SwitchOutOpp(BattleScreen, CInt(OppStep.Argument), "", True, False)
                     EndRound(BattleScreen, 2)
                 Else
-                    SwitchOutOpp(BattleScreen, CInt(OppStep.Argument), "", True)
+                    SwitchOutOpp(BattleScreen, CInt(OppStep.Argument), "", True, False)
                     EndRound(BattleScreen, 2)
 
                     BattleScreen.FieldEffects.OwnUsedMoves.Add(CType(OwnStep.Argument, Attack).ID)
@@ -918,7 +918,7 @@ Namespace BattleSystem
                 EndRound(BattleScreen, 1)
 
                 ChangeCameraAngle(2, True, BattleScreen)
-                SwitchOutOpp(BattleScreen, CInt(OppStep.Argument), "", True)
+                SwitchOutOpp(BattleScreen, CInt(OppStep.Argument), "", True, False)
                 EndRound(BattleScreen, 2)
             End If
 
@@ -1026,14 +1026,14 @@ Namespace BattleSystem
                     EndRound(BattleScreen, 1)
 
                     ChangeCameraAngle(2, True, BattleScreen)
-                    SwitchOutOpp(BattleScreen, CInt(OppStep.Argument), "", True)
+                    SwitchOutOpp(BattleScreen, CInt(OppStep.Argument), "", True, False)
                     EndRound(BattleScreen, 2)
                 Else
                     ChangeCameraAngle(0, True, BattleScreen)
                     BattleScreen.BattleQuery.Add(New TextQueryObject(BattleScreen.OwnPokemon.GetDisplayName() & " is trapped!"))
 
                     ChangeCameraAngle(2, True, BattleScreen)
-                    SwitchOutOpp(BattleScreen, CInt(OppStep.Argument), "", True)
+                    SwitchOutOpp(BattleScreen, CInt(OppStep.Argument), "", True, False)
                     EndRound(BattleScreen, 2)
                 End If
             End If
@@ -1096,7 +1096,7 @@ Namespace BattleSystem
                 EndRound(BattleScreen, 1)
 
                 ChangeCameraAngle(2, True, BattleScreen)
-                SwitchOutOpp(BattleScreen, CInt(OppStep.Argument))
+                SwitchOutOpp(BattleScreen, CInt(OppStep.Argument), "", True, False)
                 EndRound(BattleScreen, 2)
             End If
 
@@ -8680,177 +8680,177 @@ Namespace BattleSystem
 
                 'Switch BattleStyle
 
-                If BattleScreen.FieldEffects.OwnDigCounter = 0 AndAlso BattleScreen.FieldEffects.OwnFlyCounter = 0 AndAlso BattleScreen.FieldEffects.OwnDiveCounter = 0 Then
-                    If Core.Player.BattleStyle <> 1 AndAlso OppStep.StepType <> RoundConst.StepTypes.Switch AndAlso BattleScreen.IsPVPBattle = False AndAlso CanAddSwitchPokemonQuery = True Then
-                        AddSwitch = True
-                        BattleScreen.BattleQuery.Add(New SwitchPokemonQueryObject(BattleScreen, BattleScreen.OppPokemon))
+                If BattleScreen.FieldEffects.OwnDigCounter = 0 AndAlso BattleScreen.FieldEffects.OwnFlyCounter = 0 AndAlso BattleScreen.FieldEffects.OwnDiveCounter = 0 AndAlso
+                    Core.Player.BattleStyle <> 1 AndAlso OppStep.StepType <> RoundConst.StepTypes.Switch AndAlso BattleScreen.IsPVPBattle = False AndAlso CanAddSwitchPokemonQuery = True Then
+                    AddSwitch = True
+                    BattleScreen.BattleQuery.Add(New SwitchPokemonQueryObject(BattleScreen, BattleScreen.OppPokemon))
+                    BattleScreen.Battle.ChangeCameraAngle(1, False, BattleScreen)
+                Else
+
+                    Dim oppModel As String = BattleScreen.GetModelName(False)
+
+                    If oppModel = "" Then
+                        BattleScreen.BattleQuery.Add(New ToggleEntityQueryObject(True, ToggleEntityQueryObject.BattleEntities.OppPokemon, PokemonForms.GetOverworldSpriteName(BattleScreen.OppPokemon, True), -1, -1, 0, 1))
+                    Else
+                        BattleScreen.BattleQuery.Add(New ToggleEntityQueryObject(False, oppModel, -1, -1, 1, 0))
+                    End If
+
+                    Dim SendBallPositionOffsetY As Single = 0.0F
+                    Dim SendPokemonPositionOffsetY As Single = 0.0F
+                    If BattleScreen.OppPokemonNPC.Model IsNot Nothing Then
+                        SendBallPositionOffsetY = 0.5
+                        SendPokemonPositionOffsetY = -0.5
+                    End If
+
+                    BattleScreen.BattleQuery.Add(New ToggleEntityQueryObject(True, ToggleEntityQueryObject.BattleEntities.OppPokemon, 1, -1, -1, -1, -1))
+                    If Core.Player.ShowBattleAnimations = 0 OrElse BattleScreen.IsPVPBattle = True Then
+                        BattleScreen.BattleQuery.Add(New PlaySoundQueryObject(BattleScreen.OppPokemon.Number.ToString(), True))
+                    End If
+                    BattleScreen.BattleQuery.Add(New TextQueryObject(BattleScreen.Trainer.Name & ": ""Go, " & BattleScreen.OppPokemon.GetDisplayName() & "!"""))
+
+                    Dim BallThrow As AnimationQueryObject = New AnimationQueryObject(BattleScreen.OppPokemonNPC, False)
+
+                    If Core.Player.ShowBattleAnimations <> 0 AndAlso BattleScreen.IsPVPBattle = False Then
+                        ' Ball is thrown
+
+                        BallThrow.AnimationPlaySound("Battle\Pokeball\Throw", 0, 0)
+                        Dim BallThrowEntity = BallThrow.SpawnEntity(New Vector3(2, -0.15, 0), BattleScreen.OppPokemon.CatchBall.Texture, New Vector3(0.3F), 1.0F)
+                        BallThrow.AnimationMove(BallThrowEntity, True, 0, 0.35F + SendBallPositionOffsetY, 0, 0.1, False, True, 0F, 0.5F,, 0.3, 0.025F)
+
+                        ' Ball opens
+                        BallThrow.AnimationPlaySound("Battle\Pokeball\Open", 3, 0)
+                        Dim SmokeSpawned As Integer = 0
+                        Do
+                            Dim SmokePosition = New Vector3(0, 0.35F + SendBallPositionOffsetY, 0)
+                            Dim SmokeDestination = New Vector3(CSng(Random.Next(-10, 10) / 10), CSng(Random.Next(-10, 10) / 10) + SendBallPositionOffsetY, CSng(Random.Next(-10, 10) / 10))
+
+                            Dim SmokeTexture As Texture2D = TextureManager.GetTexture("Textures\Battle\Smoke")
+
+                            Dim SmokeScale = New Vector3(CSng(Random.Next(2, 6) / 10))
+                            Dim SmokeSpeed = CSng(Random.Next(1, 3) / 20.0F)
+                            Dim SmokeEntity = BallThrow.SpawnEntity(SmokePosition, SmokeTexture, SmokeScale, 1, 3)
+
+                            BallThrow.AnimationMove(SmokeEntity, True, SmokeDestination.X, SmokeDestination.Y, SmokeDestination.Z, SmokeSpeed, False, False, 3.0F, 0.0F)
+                            Threading.Interlocked.Increment(SmokeSpawned)
+                        Loop While SmokeSpawned <= 38
+                    Else
                         BattleScreen.Battle.ChangeCameraAngle(1, False, BattleScreen)
                     End If
-                End If
-
-                Dim oppModel As String = BattleScreen.GetModelName(False)
-
-                If oppModel = "" Then
-                    BattleScreen.BattleQuery.Add(New ToggleEntityQueryObject(True, ToggleEntityQueryObject.BattleEntities.OppPokemon, PokemonForms.GetOverworldSpriteName(BattleScreen.OppPokemon, True), -1, -1, 0, 1))
-                Else
-                    BattleScreen.BattleQuery.Add(New ToggleEntityQueryObject(False, oppModel, -1, -1, 1, 0))
-                End If
-
-                Dim SendBallPositionOffsetY As Single = 0.0F
-                Dim SendPokemonPositionOffsetY As Single = 0.0F
-                If BattleScreen.OppPokemonNPC.Model IsNot Nothing Then
-                    SendBallPositionOffsetY = 0.5
-                    SendPokemonPositionOffsetY = -0.5
-                End If
-
-                BattleScreen.BattleQuery.Add(New ToggleEntityQueryObject(True, ToggleEntityQueryObject.BattleEntities.OppPokemon, 1, -1, -1, -1, -1))
-                If Core.Player.ShowBattleAnimations = 0 OrElse BattleScreen.IsPVPBattle = True Then
-                    BattleScreen.BattleQuery.Add(New PlaySoundQueryObject(BattleScreen.OppPokemon.Number.ToString(), True))
-                End If
-                BattleScreen.BattleQuery.Add(New TextQueryObject(BattleScreen.Trainer.Name & ": ""Go, " & BattleScreen.OppPokemon.GetDisplayName() & "!"""))
-
-                Dim BallThrow As AnimationQueryObject = New AnimationQueryObject(BattleScreen.OppPokemonNPC, False)
-
-                If Core.Player.ShowBattleAnimations <> 0 AndAlso BattleScreen.IsPVPBattle = False Then
-                    ' Ball is thrown
-
-                    BallThrow.AnimationPlaySound("Battle\Pokeball\Throw", 0, 0)
-                    Dim BallThrowEntity = BallThrow.SpawnEntity(New Vector3(2, -0.15, 0), BattleScreen.OppPokemon.CatchBall.Texture, New Vector3(0.3F), 1.0F)
-                    BallThrow.AnimationMove(BallThrowEntity, True, 0, 0.35F + SendBallPositionOffsetY, 0, 0.1, False, True, 0F, 0.5F,, 0.3, 0.025F)
-
-                    ' Ball opens
-                    BallThrow.AnimationPlaySound("Battle\Pokeball\Open", 3, 0)
-                    Dim SmokeSpawned As Integer = 0
-                    Do
-                        Dim SmokePosition = New Vector3(0, 0.35F + SendBallPositionOffsetY, 0)
-                        Dim SmokeDestination = New Vector3(CSng(Random.Next(-10, 10) / 10), CSng(Random.Next(-10, 10) / 10) + SendBallPositionOffsetY, CSng(Random.Next(-10, 10) / 10))
-
-                        Dim SmokeTexture As Texture2D = TextureManager.GetTexture("Textures\Battle\Smoke")
-
-                        Dim SmokeScale = New Vector3(CSng(Random.Next(2, 6) / 10))
-                        Dim SmokeSpeed = CSng(Random.Next(1, 3) / 20.0F)
-                        Dim SmokeEntity = BallThrow.SpawnEntity(SmokePosition, SmokeTexture, SmokeScale, 1, 3)
-
-                        BallThrow.AnimationMove(SmokeEntity, True, SmokeDestination.X, SmokeDestination.Y, SmokeDestination.Z, SmokeSpeed, False, False, 3.0F, 0.0F)
-                        Threading.Interlocked.Increment(SmokeSpawned)
-                    Loop While SmokeSpawned <= 38
-                Else
-                    BattleScreen.Battle.ChangeCameraAngle(1, False, BattleScreen)
-                End If
-                Dim crySuffixOpp As String = PokemonForms.GetCrySuffix(BattleScreen.OppPokemon)
-                If Core.Player.ShowBattleAnimations <> 0 AndAlso BattleScreen.IsPVPBattle = False Then
-                    ' Pokemon appears
-                    BallThrow.AnimationSetPosition(Nothing, False, 15, CSng(0.5), 13, 0, 0)
-                    BallThrow.AnimationFade(Nothing, False, 1, 1, 3, 0)
-                    BallThrow.AnimationPlaySound(CStr(BattleScreen.OppPokemon.Number), 4, 0,, True, crySuffixOpp)
-                    '  Pokémon falls down
-                    BallThrow.AnimationMove(Nothing, False, 0, -0.5F + SendPokemonPositionOffsetY, 0, 0.05F, False, False, 5, 0,,,, 3)
-                    BattleScreen.BattleQuery.Add(BallThrow)
-                End If
-            End If
-            If AddSwitch = False Then
-                With BattleScreen
-                    Dim p As Pokemon = .OppPokemon
-                    Dim op As Pokemon = .OwnPokemon
-
-                    Dim spikeAffected As Boolean = True
-                    Dim rockAffected As Boolean = True
-
-                    spikeAffected = BattleScreen.FieldEffects.IsGrounded(False, BattleScreen)
-
-                    If spikeAffected = True Then
-                        If .FieldEffects.OwnSpikes > 0 And p.Ability.Name.ToLower() <> "magic guard" Then
-                            Dim spikeDamage As Double = 1D
-                            Select Case .FieldEffects.OwnSpikes
-                                Case 1
-                                    spikeDamage = (p.MaxHP / 100) * 12.5D
-                                Case 2
-                                    spikeDamage = (p.MaxHP / 100) * 16.7D
-                                Case 3
-                                    spikeDamage = (p.MaxHP / 100) * 25D
-                            End Select
-                            ReduceHP(CInt(spikeDamage), False, True, BattleScreen, "The Spikes hurt " & p.GetDisplayName() & "!", "spikes")
-                        End If
+                    Dim crySuffixOpp As String = PokemonForms.GetCrySuffix(BattleScreen.OppPokemon)
+                    If Core.Player.ShowBattleAnimations <> 0 AndAlso BattleScreen.IsPVPBattle = False Then
+                        ' Pokemon appears
+                        BallThrow.AnimationSetPosition(Nothing, False, 15, CSng(0.5), 13, 0, 0)
+                        BallThrow.AnimationFade(Nothing, False, 1, 1, 3, 0)
+                        BallThrow.AnimationPlaySound(CStr(BattleScreen.OppPokemon.Number), 4, 0,, True, crySuffixOpp)
+                        '  Pokémon falls down
+                        BallThrow.AnimationMove(Nothing, False, 0, -0.5F + SendPokemonPositionOffsetY, 0, 0.05F, False, False, 5, 0,,,, 3)
+                        BattleScreen.BattleQuery.Add(BallThrow)
                     End If
-                    'Sticky Web
-                    If spikeAffected = True Then
-                        If .FieldEffects.OwnStickyWeb > 0 Then
-                            LowerStat(False, False, BattleScreen, "Speed", 1, "The opposing Pokémon was caught in a Sticky Web!", "stickyweb")
-                        End If
-                    End If
-                    If spikeAffected = True Then
-                        If .FieldEffects.OwnToxicSpikes > 0 And p.Status = Pokemon.StatusProblems.None And p.Type1.Type <> Element.Types.Poison And (p.Type2 IsNot Nothing AndAlso p.Type2.Type <> Element.Types.Poison) Then
-                            Select Case .FieldEffects.OwnToxicSpikes
-                                Case 1
-                                    InflictPoison(False, True, BattleScreen, False, "The Toxic Spikes hurt " & p.GetDisplayName() & "!", "toxicspikes")
-                                Case 2
-                                    InflictPoison(False, True, BattleScreen, True, "The Toxic Spikes hurt " & p.GetDisplayName() & "!", "toxicspikes")
-                            End Select
-                        End If
-                        If .FieldEffects.OwnToxicSpikes > 0 Then
-                            If p.Type1.Type = Element.Types.Poison Or p.Type2.Type = Element.Types.Poison Then
-                                .BattleQuery.Add(New TextQueryObject(p.GetDisplayName() & " removed the Toxic Spikes!"))
-                                .FieldEffects.OwnToxicSpikes = 0
+                End If
+                If AddSwitch = False Then
+                    With BattleScreen
+                        Dim p As Pokemon = .OppPokemon
+                        Dim op As Pokemon = .OwnPokemon
+
+                        Dim spikeAffected As Boolean = True
+                        Dim rockAffected As Boolean = True
+
+                        spikeAffected = BattleScreen.FieldEffects.IsGrounded(False, BattleScreen)
+
+                        If spikeAffected = True Then
+                            If .FieldEffects.OwnSpikes > 0 And p.Ability.Name.ToLower() <> "magic guard" Then
+                                Dim spikeDamage As Double = 1D
+                                Select Case .FieldEffects.OwnSpikes
+                                    Case 1
+                                        spikeDamage = (p.MaxHP / 100) * 12.5D
+                                    Case 2
+                                        spikeDamage = (p.MaxHP / 100) * 16.7D
+                                    Case 3
+                                        spikeDamage = (p.MaxHP / 100) * 25D
+                                End Select
+                                ReduceHP(CInt(spikeDamage), False, True, BattleScreen, "The Spikes hurt " & p.GetDisplayName() & "!", "spikes")
                             End If
                         End If
-                    End If
-
-                    If rockAffected = True Then
-                        If .FieldEffects.OwnStealthRock > 0 And p.Ability.Name.ToLower() <> "magic guard" Then
-                            Dim rocksDamage As Double = 1D
-
-                            Dim effectiveness As Single = BattleCalculation.ReverseTypeEffectiveness(Element.GetElementMultiplier(New Element(Element.Types.Rock), p.Type1)) * BattleCalculation.ReverseTypeEffectiveness(Element.GetElementMultiplier(New Element(Element.Types.Rock), p.Type2))
-                            Select Case effectiveness
-                                Case 0.25F
-                                    rocksDamage = (p.MaxHP / 100) * 3.125D
-                                Case 0.5F
-                                    rocksDamage = (p.MaxHP / 100) * 6.25D
-                                Case 1.0F
-                                    rocksDamage = (p.MaxHP / 100) * 12.5D
-                                Case 2.0F
-                                    rocksDamage = (p.MaxHP / 100) * 25D
-                                Case 4.0F
-                                    rocksDamage = (p.MaxHP / 100) * 50D
-                            End Select
-
-                            ReduceHP(CInt(rocksDamage), False, True, BattleScreen, "The Stealth Rocks hurt " & p.GetDisplayName() & "!", "stealthrocks")
+                        'Sticky Web
+                        If spikeAffected = True Then
+                            If .FieldEffects.OwnStickyWeb > 0 Then
+                                LowerStat(False, False, BattleScreen, "Speed", 1, "The opposing Pokémon was caught in a Sticky Web!", "stickyweb")
+                            End If
                         End If
-                    End If
-
-                    TriggerAbilityEffect(BattleScreen, False)
-                    TriggerItemEffect(BattleScreen, False)
-
-                    If .OppPokemon.Status = Pokemon.StatusProblems.Sleep Then
-                        .FieldEffects.OppSleepTurns = Core.Random.Next(1, 4)
-                    End If
-
-                    If BattleScreen.FieldEffects.OppHealingWish = True Then
-                        BattleScreen.FieldEffects.OppHealingWish = False
-
-                        If .OppPokemon.HP < .OppPokemon.MaxHP Or .OppPokemon.Status <> Pokemon.StatusProblems.None Then
-                            GainHP(.OppPokemon.MaxHP - .OppPokemon.HP, False, False, BattleScreen, "The Healing Wish came true for " & .OppPokemon.GetDisplayName() & "!", "move:healingwish")
-                            CureStatusProblem(False, False, BattleScreen, "", "move:healingwish")
+                        If spikeAffected = True Then
+                            If .FieldEffects.OwnToxicSpikes > 0 And p.Status = Pokemon.StatusProblems.None And p.Type1.Type <> Element.Types.Poison And (p.Type2 IsNot Nothing AndAlso p.Type2.Type <> Element.Types.Poison) Then
+                                Select Case .FieldEffects.OwnToxicSpikes
+                                    Case 1
+                                        InflictPoison(False, True, BattleScreen, False, "The Toxic Spikes hurt " & p.GetDisplayName() & "!", "toxicspikes")
+                                    Case 2
+                                        InflictPoison(False, True, BattleScreen, True, "The Toxic Spikes hurt " & p.GetDisplayName() & "!", "toxicspikes")
+                                End Select
+                            End If
+                            If .FieldEffects.OwnToxicSpikes > 0 Then
+                                If p.Type1.Type = Element.Types.Poison Or p.Type2.Type = Element.Types.Poison Then
+                                    .BattleQuery.Add(New TextQueryObject(p.GetDisplayName() & " removed the Toxic Spikes!"))
+                                    .FieldEffects.OwnToxicSpikes = 0
+                                End If
+                            End If
                         End If
-                    End If
 
-                    If Core.Player.BattleStyle = 1 OrElse BattleScreen.IsPVPBattle = True Then
-                        BattleScreen.HasSwitchedOwn = False
-                    End If
-                End With
-            End If
-            If FirstTime = False AndAlso Core.Player.BattleStyle = 1 Then
-                BattleScreen.TrainerSendOutOpp += 1
-                If BattleScreen.Trainer.CountUseablePokemon > 1 Then
-                    If BattleScreen.Trainer.SendOutXOppMessage.ContainsKey(BattleScreen.TrainerSendOutOpp) Then
-                        Dim s1 As QueryObject = BattleScreen.FocusOppPlayer()
-                        Dim s2 As TextQueryObject = New TextQueryObject(ScriptVersion2.ScriptCommander.Parse(BattleScreen.Trainer.SendOutXOppMessage(BattleScreen.TrainerSendOutOpp)).ToString)
-                        BattleScreen.BattleQuery.AddRange({s1, s2})
-                    End If
-                Else
-                    If BattleScreen.Trainer.SendOutLastOppMessage <> "" Then
-                        Dim s1 As QueryObject = BattleScreen.FocusOppPlayer()
-                        Dim s2 As TextQueryObject = New TextQueryObject(ScriptVersion2.ScriptCommander.Parse(BattleScreen.Trainer.SendOutLastOppMessage).ToString)
-                        BattleScreen.BattleQuery.AddRange({s1, s2})
+                        If rockAffected = True Then
+                            If .FieldEffects.OwnStealthRock > 0 And p.Ability.Name.ToLower() <> "magic guard" Then
+                                Dim rocksDamage As Double = 1D
+
+                                Dim effectiveness As Single = BattleCalculation.ReverseTypeEffectiveness(Element.GetElementMultiplier(New Element(Element.Types.Rock), p.Type1)) * BattleCalculation.ReverseTypeEffectiveness(Element.GetElementMultiplier(New Element(Element.Types.Rock), p.Type2))
+                                Select Case effectiveness
+                                    Case 0.25F
+                                        rocksDamage = (p.MaxHP / 100) * 3.125D
+                                    Case 0.5F
+                                        rocksDamage = (p.MaxHP / 100) * 6.25D
+                                    Case 1.0F
+                                        rocksDamage = (p.MaxHP / 100) * 12.5D
+                                    Case 2.0F
+                                        rocksDamage = (p.MaxHP / 100) * 25D
+                                    Case 4.0F
+                                        rocksDamage = (p.MaxHP / 100) * 50D
+                                End Select
+
+                                ReduceHP(CInt(rocksDamage), False, True, BattleScreen, "The Stealth Rocks hurt " & p.GetDisplayName() & "!", "stealthrocks")
+                            End If
+                        End If
+
+                        TriggerAbilityEffect(BattleScreen, False)
+                        TriggerItemEffect(BattleScreen, False)
+
+                        If .OppPokemon.Status = Pokemon.StatusProblems.Sleep Then
+                            .FieldEffects.OppSleepTurns = Core.Random.Next(1, 4)
+                        End If
+
+                        If BattleScreen.FieldEffects.OppHealingWish = True Then
+                            BattleScreen.FieldEffects.OppHealingWish = False
+
+                            If .OppPokemon.HP < .OppPokemon.MaxHP Or .OppPokemon.Status <> Pokemon.StatusProblems.None Then
+                                GainHP(.OppPokemon.MaxHP - .OppPokemon.HP, False, False, BattleScreen, "The Healing Wish came true for " & .OppPokemon.GetDisplayName() & "!", "move:healingwish")
+                                CureStatusProblem(False, False, BattleScreen, "", "move:healingwish")
+                            End If
+                        End If
+
+                        If Core.Player.BattleStyle = 1 OrElse BattleScreen.IsPVPBattle = True Then
+                            BattleScreen.HasSwitchedOwn = False
+                        End If
+                    End With
+                End If
+                If FirstTime = False AndAlso Core.Player.BattleStyle = 1 Then
+                    BattleScreen.TrainerSendOutOpp += 1
+                    If BattleScreen.Trainer.CountUseablePokemon > 1 Then
+                        If BattleScreen.Trainer.SendOutXOppMessage.ContainsKey(BattleScreen.TrainerSendOutOpp) Then
+                            Dim s1 As QueryObject = BattleScreen.FocusOppPlayer()
+                            Dim s2 As TextQueryObject = New TextQueryObject(ScriptVersion2.ScriptCommander.Parse(BattleScreen.Trainer.SendOutXOppMessage(BattleScreen.TrainerSendOutOpp)).ToString)
+                            BattleScreen.BattleQuery.AddRange({s1, s2})
+                        End If
+                    Else
+                        If BattleScreen.Trainer.SendOutLastOppMessage <> "" Then
+                            Dim s1 As QueryObject = BattleScreen.FocusOppPlayer()
+                            Dim s2 As TextQueryObject = New TextQueryObject(ScriptVersion2.ScriptCommander.Parse(BattleScreen.Trainer.SendOutLastOppMessage).ToString)
+                            BattleScreen.BattleQuery.AddRange({s1, s2})
+                        End If
                     End If
                 End If
             End If
