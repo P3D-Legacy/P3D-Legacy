@@ -598,7 +598,7 @@ nextIndex:
 
         Dim PokemonCount As Integer = Core.Player.Pokemons.Count - 1
         If BattleCatchScreen.sentToBox = False Then
-            PokemonCount -= Core.Player.Pokemons.Count - 2
+            PokemonCount = Core.Player.Pokemons.Count - 2
         End If
         For i = 0 To PokemonCount
             If Core.Player.Inventory.GetItemAmount(658.ToString) > 0 And Core.Player.EnableExpAll = True Then
