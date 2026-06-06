@@ -1,7 +1,7 @@
 version=2
 @text.show(A vending machine!~Here's the menu.)
-@options.show(Fresh Water$200,Soda Pop      $300,Lemonade     $350,Cancel)
-	:when:Fresh Water$200
+@options.show(Fresh Water  $200,Soda Pop      $300,Lemonade     $350,Cancel)
+	:when:Fresh Water  $200
 		:if:<player.money>>200
 			@text.show(CLANG!*Fresh Water popped out.)
 			@player.money(-200)
