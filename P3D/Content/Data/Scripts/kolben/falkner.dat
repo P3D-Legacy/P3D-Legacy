@@ -45,7 +45,7 @@ version=2
 					@text.show(Ever heard of Mega Evolution?*Apparently it exists in~these regions as well~and allows for some birds~to display their true potential.*I really need to get~my hands on one~of those stones...)
 			:endwhen:
 			
-			@text.show(Please have this beautiful~feather as a personal keepsake.)
+			@text.show(Please have this beautiful~feather as a personal~keepsake.)
 			@item.give(260,1)
 			@Item.messagegive(260,1)
 			:end
@@ -56,6 +56,6 @@ version=2
 	:endwhen
 
 :else
-	@text.show(Groan... someone managed~to get trapped in a wall again.*Darkfire is gonna kill me...)
+	@text.show(Groan... someone managed~to get trapped in a wall~again.*Darkfire is gonna kill me...)
 :endif
 :end
