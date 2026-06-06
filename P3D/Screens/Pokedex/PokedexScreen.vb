@@ -203,7 +203,7 @@ Public Class PokedexHabitatScreen
                         Exit For
                     End If
                 Next
-                If exists = False AndAlso Core.Player.PokeFiles.Contains(fileName.ToLower) = True Then
+                If exists = False AndAlso Core.Player.PokeFiles.Contains(fileName.ToLower) = True AndAlso DexInclude = True Then
                     HabitatList.Add(newHabitat)
                 End If
             End If
@@ -1704,7 +1704,7 @@ Public Class PokedexViewScreen
                         Exit For
                     End If
                 Next
-                If exists = False AndAlso Core.Player.PokeFiles.Contains(fileName.ToLower) = True Then
+                If exists = False AndAlso Core.Player.PokeFiles.Contains(fileName.ToLower) = True AndAlso DexInclude = True Then
                     HabitatList.Add(newHabitat)
                 End If
             End If
