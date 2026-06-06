@@ -72,35 +72,35 @@ Public MustInherit Class Item
         Get
             If IsGameModeItem = True Then
                 If Localization.TokenExists("item_name_" & gmID) = True Then
-                    Return Localization.GetString("item_name_" & gmID)
+                    Return Localization.GetString("item_name_" & gmID).Replace("*", "~")
                 Else
-                    Return gmName
+                    Return gmName.Replace("*", "~")
                 End If
             Else
                 If Localization.TokenExists("item_name_" & GetAttribute().Id) = True Then
-                    Return Localization.GetString("item_name_" & GetAttribute().Id)
+                    Return Localization.GetString("item_name_" & GetAttribute().Id).Replace("*", "~")
                 Else
-                    Return GetAttribute().Name
+                    Return GetAttribute().Name.Replace("*", "~")
                 End If
             End If
         End Get
     End Property
 
     Public Function OneLineName() As String
-        Return Name.Replace("~", "")
+        Return Name.Replace("~", " ").Replace("*", "")
     End Function
     Public Function OneLinePluralName() As String
         If IsGameModeItem = True Then
             If Localization.TokenExists("item_pluralname_" & gmID) = True Then
-                Return Localization.GetString("item_pluralname_" & gmID).Replace("~", " ")
+                Return Localization.GetString("item_pluralname_" & gmID).Replace("~", " ").Replace("*", "")
             Else
-                Return gmPluralName.Replace("~", " ")
+                Return gmPluralName.Replace("~", " ").Replace("*", "")
             End If
         Else
             If Localization.TokenExists("item_pluralname_" & Me.ID) = True Then
-                Return Localization.GetString("item_pluralname_" & Me.ID).Replace("~", " ")
+                Return Localization.GetString("item_pluralname_" & Me.ID).Replace("~", " ").Replace("*", "")
             Else
-                Return PluralName.Replace("~", " ")
+                Return PluralName.Replace("~", " ").Replace("*", "")
             End If
         End If
     End Function
