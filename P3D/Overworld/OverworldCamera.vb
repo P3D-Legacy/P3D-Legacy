@@ -903,8 +903,8 @@ Public Class OverworldCamera
             End If
         Next
         Dim PlayerBoundingBox As New BoundingBox(
-                    newPosition + New Vector3(-0.465F),
-                    newPosition + New Vector3(0.465F))
+                    newPosition + New Vector3(-0.465F, -0.5F, -0.465F),
+                    newPosition + New Vector3(0.465F, 0.5F, 0.465F))
 
         If cannotWalk = False Then
             For Each Entity As Entity In Screen.Level.Entities
