@@ -60,5 +60,5 @@ tv:
 
 NPCs:
 {"NPC"{NPC[{"Position"{sngArr[2,-2,2]}}{"TextureID"{str[33]}}{"ID"{int[0]}}{"Name"{str[Bill]}}{"Action"{int[1]}}{"AdditionalValue"{str[goldenrod\bill_eevee]}}{"Rotation"{int[3]}}{"Movement"{str[Still]}}{"MoveRectangles"{recArr[]}}]}}
-{"NPC"{NPC[{"Position"{sngArr[5,0,2]}}{"TextureID"{str[1]}}{"ID"{int[1]}}{"Name"{str[Lady]}}{"Action"{int[1]}}{"AdditionalValue"{str[goldenrod\bill_sister]}}{"Rotation"{int[2]}}{"Movement"{str[Still]}}{"MoveRectangles"{recArr[]}}]}}
-{"NPC"{NPC[{"Position"{sngArr[5,0,3]}}{"TextureID"{str[littlegirl]}}{"ID"{int[2]}}{"Name"{str[Girl]}}{"Action"{int[0]}}{"AdditionalValue"{str[Are you a trainer?*I've got a useful~phone number for~you.*My big brother~Bill made the PC*Pokémon storage~system.]}}{"Rotation"{int[0]}}{"Movement"{str[Walk]}}{"MoveRectangles"{recArr[[5,2,2,3]]}}]}}
+{"NPC"{NPC[{"Position"{sngArr[5,0,2]}}{"TextureID"{str[1]}}{"ID"{int[1]}}{"Name"{str[Lady]}}{"Action"{int[1]}}{"AdditionalValue"{str[goldenrod\bill_mom]}}{"Rotation"{int[2]}}{"Movement"{str[Still]}}{"MoveRectangles"{recArr[]}}]}}
+{"NPC"{NPC[{"Position"{sngArr[5,0,3]}}{"TextureID"{str[littlegirl]}}{"ID"{int[2]}}{"Name"{str[Girl]}}{"Action"{int[0]}}{"AdditionalValue"{str[Are you a trainer?*My big brother~Bill made the PC*Pokémon storage~system.]}}{"Rotation"{int[0]}}{"Movement"{str[Walk]}}{"MoveRectangles"{recArr[[5,2,2,3]]}}]}}
