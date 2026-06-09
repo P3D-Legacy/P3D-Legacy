@@ -327,7 +327,8 @@ Namespace ScriptVersion2
         Private Shared Sub DoScreen()
             ' Commands:
             r(New ScriptCommand("screen", "storagesystem", "Opens the storage system."))
-            r(New ScriptCommand("screen", "apricornkurt", "Opens the Apricorn Screen."))
+            r(New ScriptCommand("screen", "apricorn", {New ScriptArgument("WorkshopOwner", ScriptArgument.ArgumentTypes.Str, True, "Kurt")}.ToList, "Opens the Apricorn Screen and sets the name of the Workshop Owner to the given value."))
+            r(New ScriptCommand("screen", "apricornkurt", "Opens the Apricorn Screen and sets the name of the Workshop Owner to ""Kurt"". (Outdated, use @Screen.Apricorn instead.)"))
             r(New ScriptCommand("screen", "trade", {New ScriptArgument("tradeItems", ScriptArgument.ArgumentTypes.ItemCollection),
                                                 New ScriptArgument("canBuy", ScriptArgument.ArgumentTypes.Bool),
                                                 New ScriptArgument("canSell", ScriptArgument.ArgumentTypes.Bool),

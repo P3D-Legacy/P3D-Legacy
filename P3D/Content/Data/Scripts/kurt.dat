@@ -1,8 +1,0 @@
-version=2
-@Text.show(Hm?~Who are you?~<player.name>, eh?*You want me to~make some Balls?)
-@Options.show(Yes,No)
-:when:Yes
-@screen.ApricornKurt
-:when:No
-:endwhen
-:end

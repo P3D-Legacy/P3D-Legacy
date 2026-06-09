@@ -39,6 +39,15 @@
                     IsReady = True
 
                     CanContinue = False
+                Case "apricorn"
+                    Dim WorkshopOwnerName As String = "Kurt"
+                    If argument <> "" Then
+                        WorkshopOwnerName = argument
+                    End If
+                    Core.SetScreen(New ApricornScreen(Core.CurrentScreen, WorkshopOwnerName))
+                    IsReady = True
+
+                    CanContinue = False
                 Case "trade"
                     Dim storeData As String = CStr(argument.GetSplit(0))    ' e.g. Item ID
                     Dim canBuy As Boolean = CBool(argument.GetSplit(1))     ' 

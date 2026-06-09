@@ -6,7 +6,7 @@ version=2
 @item.messagegive(160,1)
 @Text.show(Kurt: I make Balls~from Apricorns.*Collect them from~trees and bring~'em to me.*I'll make Balls~out of them.)
 @Text.show(Kurt: You have an~Apricorn for me?*Fine! I'll turn it~into a Ball.)
-@screen.ApricornKurt
+@Screen.Apricorn(Kurt)
 @NPC.register(azalea\kurt.dat|2|remove|1)
 @NPC.register(azalea\kurt.dat|0|position|14,0,3)
 @Register.register(thanks_kurt)
@@ -16,7 +16,7 @@ version=2
 @Text.show(Hm?~Who are you?~<player.name>, eh?*You want me to~make some Balls?)
 @Options.show(Yes,No)
 :when:Yes
-@screen.ApricornKurt
+@screen.Apricorn(Kurt)
 :when:No
 :endwhen
 :end
