@@ -15,7 +15,6 @@ Public Class ApricornScreen
     Dim State As States = States.Wait
 
     Dim Apricorns As New List(Of Integer)
-    Dim ApricornsMax As New List(Of Integer)
 
     Dim Buttons As New List(Of ButtonIcon)
     Dim Labels As New List(Of Label)
@@ -68,61 +67,6 @@ Public Class ApricornScreen
             Dim Delta_X As Integer = halfWidth - 400
             Dim Delta_Y As Integer = halfHeight - 200
 
-            If ApricornsMax.Count = 0 Then
-                Dim MaxRedApricorn As Integer
-                Dim MaxBlueApricorn As Integer
-                Dim MaxYellowApricorn As Integer
-                Dim MaxGreenApricorn As Integer
-                Dim MaxWhiteApricorn As Integer
-                Dim MaxBlackApricorn As Integer
-                Dim MaxPinkApricorn As Integer
-
-                If Core.Player.Inventory.GetItemAmount(159.ToString) + Core.Player.Inventory.GetItemAmount(85.ToString) <= Item.GetItemByID(159.ToString).MaxStack Then
-                    MaxRedApricorn = Core.Player.Inventory.GetItemAmount(85.ToString)
-                Else
-                    MaxRedApricorn = Item.GetItemByID(159.ToString).MaxStack - Core.Player.Inventory.GetItemAmount(159.ToString)
-                End If
-
-                If Core.Player.Inventory.GetItemAmount(160.ToString) + Core.Player.Inventory.GetItemAmount(89.ToString) <= Item.GetItemByID(160.ToString).MaxStack Then
-                    MaxBlueApricorn = Core.Player.Inventory.GetItemAmount(89.ToString)
-                Else
-                    MaxBlueApricorn = Item.GetItemByID(160.ToString).MaxStack - Core.Player.Inventory.GetItemAmount(160.ToString)
-                End If
-
-                If Core.Player.Inventory.GetItemAmount(165.ToString) + Core.Player.Inventory.GetItemAmount(92.ToString) <= Item.GetItemByID(165.ToString).MaxStack Then
-                    MaxYellowApricorn = Core.Player.Inventory.GetItemAmount(92.ToString)
-                Else
-                    MaxYellowApricorn = Item.GetItemByID(165.ToString).MaxStack - Core.Player.Inventory.GetItemAmount(165.ToString)
-                End If
-
-                If Core.Player.Inventory.GetItemAmount(164.ToString) + Core.Player.Inventory.GetItemAmount(93.ToString) <= Item.GetItemByID(164.ToString).MaxStack Then
-                    MaxGreenApricorn = Core.Player.Inventory.GetItemAmount(93.ToString)
-                Else
-                    MaxGreenApricorn = Item.GetItemByID(164.ToString).MaxStack - Core.Player.Inventory.GetItemAmount(164.ToString)
-                End If
-
-                If Core.Player.Inventory.GetItemAmount(161.ToString) + Core.Player.Inventory.GetItemAmount(97.ToString) <= Item.GetItemByID(161.ToString).MaxStack Then
-                    MaxWhiteApricorn = Core.Player.Inventory.GetItemAmount(97.ToString)
-                Else
-                    MaxWhiteApricorn = Item.GetItemByID(161.ToString).MaxStack - Core.Player.Inventory.GetItemAmount(161.ToString)
-                End If
-
-                If Core.Player.Inventory.GetItemAmount(157.ToString) + Core.Player.Inventory.GetItemAmount(99.ToString) <= Item.GetItemByID(157.ToString).MaxStack Then
-                    MaxBlackApricorn = Core.Player.Inventory.GetItemAmount(99.ToString)
-                Else
-                    MaxBlackApricorn = Item.GetItemByID(157.ToString).MaxStack - Core.Player.Inventory.GetItemAmount(157.ToString)
-                End If
-
-                If Core.Player.Inventory.GetItemAmount(166.ToString) + Core.Player.Inventory.GetItemAmount(101.ToString) <= Item.GetItemByID(166.ToString).MaxStack Then
-                    MaxPinkApricorn = Core.Player.Inventory.GetItemAmount(101.ToString)
-                Else
-                    MaxPinkApricorn = Item.GetItemByID(166.ToString).MaxStack - Core.Player.Inventory.GetItemAmount(166.ToString)
-                End If
-
-                ApricornsMax.AddRange({MaxRedApricorn, MaxBlueApricorn, MaxYellowApricorn, MaxGreenApricorn, MaxWhiteApricorn, MaxBlackApricorn, MaxPinkApricorn})
-
-            End If
-
             Select Case Me.State
                 Case States.Wait
                     Me.Labels.Add(New Label(Localization.GetString("apricorn_screen_producing").Replace("~", Environment.NewLine), New Vector2(Delta_X + 56, Delta_Y + 48), FontManager.MainFont))
@@ -131,13 +75,13 @@ Public Class ApricornScreen
                     Dim T As Texture2D = TextureManager.GetTexture("Items\ItemSheet")
 
                     Me.Labels.Add(New Label(Localization.GetString("apricorn_screen_choose_apricorns").Replace("~", Environment.NewLine), New Vector2(Delta_X + 48, Delta_Y + 48), FontManager.MainFont))
-                    Dim RedApricorn As ButtonIcon = New ButtonIcon(AddressOf Me.GiveApricorn, "0 / " & ApricornsMax(0), FontManager.MainFont, T, New Rectangle(240, 72, 24, 24), New Vector2(Delta_X + 128, Delta_Y + 16 + 104), New Size(48, 48), "85")
-                    Dim BlueApricorn As ButtonIcon = New ButtonIcon(AddressOf Me.GiveApricorn, "0 / " & ApricornsMax(1), FontManager.MainFont, T, New Rectangle(336, 72, 24, 24), New Vector2(Delta_X + 128 * 2, Delta_Y + 16 + 104), New Size(48, 48), "89")
-                    Dim YellowApricorn As ButtonIcon = New ButtonIcon(AddressOf Me.GiveApricorn, "0 / " & ApricornsMax(2), FontManager.MainFont, T, New Rectangle(384, 72, 24, 24), New Vector2(Delta_X + 128 * 3, Delta_Y + 16 + 104), New Size(48, 48), "92")
-                    Dim GreenApricorn As ButtonIcon = New ButtonIcon(AddressOf Me.GiveApricorn, "0 / " & ApricornsMax(3), FontManager.MainFont, T, New Rectangle(408, 72, 24, 24), New Vector2(Delta_X + 128 * 4, Delta_Y + 16 + 104), New Size(48, 48), "93")
-                    Dim WhiteApricorn As ButtonIcon = New ButtonIcon(AddressOf Me.GiveApricorn, "0 / " & ApricornsMax(4), FontManager.MainFont, T, New Rectangle(0, 96, 24, 24), New Vector2(Delta_X + 128 * 5, Delta_Y + 16 + 104), New Size(48, 48), "97")
-                    Dim BlackApricorn As ButtonIcon = New ButtonIcon(AddressOf Me.GiveApricorn, "0 / " & ApricornsMax(5), FontManager.MainFont, T, New Rectangle(48, 96, 24, 24), New Vector2(Delta_X + 128, Delta_Y + 16 + 104 * 2), New Size(48, 48), "99")
-                    Dim PinkApricorn As ButtonIcon = New ButtonIcon(AddressOf Me.GiveApricorn, "0 / " & ApricornsMax(6), FontManager.MainFont, T, New Rectangle(72, 96, 24, 24), New Vector2(Delta_X + 128 * 2, Delta_Y + 16 + 104 * 2), New Size(48, 48), "101")
+                    Dim RedApricorn As ButtonIcon = New ButtonIcon(AddressOf Me.GiveApricorn, "0 / " & Core.Player.Inventory.GetItemAmount(85.ToString), FontManager.MainFont, T, New Rectangle(240, 72, 24, 24), New Vector2(Delta_X + 128, Delta_Y + 16 + 104), New Size(48, 48), "85")
+                    Dim BlueApricorn As ButtonIcon = New ButtonIcon(AddressOf Me.GiveApricorn, "0 / " & Core.Player.Inventory.GetItemAmount(89.ToString), FontManager.MainFont, T, New Rectangle(336, 72, 24, 24), New Vector2(Delta_X + 128 * 2, Delta_Y + 16 + 104), New Size(48, 48), "89")
+                    Dim YellowApricorn As ButtonIcon = New ButtonIcon(AddressOf Me.GiveApricorn, "0 / " & Core.Player.Inventory.GetItemAmount(92.ToString), FontManager.MainFont, T, New Rectangle(384, 72, 24, 24), New Vector2(Delta_X + 128 * 3, Delta_Y + 16 + 104), New Size(48, 48), "92")
+                    Dim GreenApricorn As ButtonIcon = New ButtonIcon(AddressOf Me.GiveApricorn, "0 / " & Core.Player.Inventory.GetItemAmount(93.ToString), FontManager.MainFont, T, New Rectangle(408, 72, 24, 24), New Vector2(Delta_X + 128 * 4, Delta_Y + 16 + 104), New Size(48, 48), "93")
+                    Dim WhiteApricorn As ButtonIcon = New ButtonIcon(AddressOf Me.GiveApricorn, "0 / " & Core.Player.Inventory.GetItemAmount(97.ToString), FontManager.MainFont, T, New Rectangle(0, 96, 24, 24), New Vector2(Delta_X + 128 * 5, Delta_Y + 16 + 104), New Size(48, 48), "97")
+                    Dim BlackApricorn As ButtonIcon = New ButtonIcon(AddressOf Me.GiveApricorn, "0 / " & Core.Player.Inventory.GetItemAmount(99.ToString), FontManager.MainFont, T, New Rectangle(48, 96, 24, 24), New Vector2(Delta_X + 128, Delta_Y + 16 + 104 * 2), New Size(48, 48), "99")
+                    Dim PinkApricorn As ButtonIcon = New ButtonIcon(AddressOf Me.GiveApricorn, "0 / " & Core.Player.Inventory.GetItemAmount(101.ToString), FontManager.MainFont, T, New Rectangle(72, 96, 24, 24), New Vector2(Delta_X + 128 * 2, Delta_Y + 16 + 104 * 2), New Size(48, 48), "101")
 
                     Dim AddAllButton As ButtonIcon = New ButtonIcon(AddressOf Me.AddAllApricorns, Localization.GetString("apricorn_screen_all"), FontManager.MainFont, buttonTexture, New Rectangle(64, 160, 16, 16), New Vector2(Delta_X + 128 * 3, Delta_Y + 16 + 104 * 2), New Size(48, 48), "Clear")
 
@@ -420,8 +364,8 @@ Public Class ApricornScreen
                 apricornID = 6
         End Select
 
-        If Me.ApricornsMax(apricornID) > CInt(Me.Apricorns(apricornID)) Then
-            Me.Apricorns(apricornID) = CStr(CInt(Me.Apricorns(apricornID)) + 1)
+        If Core.Player.Inventory.GetItemAmount(b.AdditionalValue) > CInt(Me.Apricorns(apricornID)) Then
+            Me.Apricorns(apricornID) = CInt(Me.Apricorns(apricornID)) + 1
 
             If HasApricorns() = True Then
                 For Each Button As ButtonIcon In Me.Buttons
@@ -475,7 +419,7 @@ Public Class ApricornScreen
     End Sub
 
     Private Sub AddAllApricorns()
-        Me.Apricorns = {ApricornsMax(0), ApricornsMax(1), ApricornsMax(2), ApricornsMax(3), ApricornsMax(4), ApricornsMax(5), ApricornsMax(6)}.ToList()
+        Me.Apricorns = {CInt(Core.Player.Inventory.GetItemAmount(85.ToString)), CInt(Core.Player.Inventory.GetItemAmount(89.ToString)), CInt(Core.Player.Inventory.GetItemAmount(92.ToString)), CInt(Core.Player.Inventory.GetItemAmount(93.ToString)), CInt(Core.Player.Inventory.GetItemAmount(97.ToString)), CInt(Core.Player.Inventory.GetItemAmount(99.ToString)), CInt(Core.Player.Inventory.GetItemAmount(101.ToString))}.ToList()
 
         If HasApricorns() = True Then
             For Each Button As ButtonIcon In Me.Buttons
