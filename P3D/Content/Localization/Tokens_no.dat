@@ -257,6 +257,7 @@ network_screen_join_join,Bli med
 network_screen_host_header,Vert for et spill:~Du er i ferd med å åpne spillet ditt for andre spillere i nettverket ditt.
 network_screen_host_cancel,Avbryt
 network_screen_host_host,Sett opp
+apricorn_screen_received_money,and received $[AMOUNT]~for the balls that exceeded~the maximum amount.
 ---
 Donation screen:
 donation_screen_donators,Donasjoner

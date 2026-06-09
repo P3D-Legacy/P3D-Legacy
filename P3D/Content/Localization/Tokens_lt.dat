@@ -257,6 +257,7 @@ network_screen_join_join,Prisijungti
 network_screen_host_header,Host a game:~You are about to open your~game for other players in your network.
 network_screen_host_cancel,Atšaukti
 network_screen_host_host,Pakurti
+apricorn_screen_received_money,and received $[AMOUNT]~for the balls that exceeded~the maximum amount.
 ---
 Donation screen:
 donation_screen_donators,Aukotojai

@@ -187,12 +187,25 @@ Public Class ItemObject
             If Me.LevelName = "" Then
                 Me.LevelName = Screen.Level.LevelFile.ToLower()
             End If
-            RemoveItem(Me, Me.LevelName)
+
+            Dim MoreThanMax As Boolean = False
 
             Screen.TextBox.TextColor = TextBox.PlayerColor
             Dim foundString As String = ""
 
             If Me.PickupType = PickupTypes.Item Then
+                Dim ItemID As String
+                If Me.Item.IsGameModeItem Then
+                    ItemID = Me.Item.gmID
+                Else
+                    ItemID = Me.Item.ID.ToString
+                End If
+                If Item.MaxStack < Core.Player.Inventory.GetItemAmount(ItemID) + 1 Then
+                    MoreThanMax = True
+                Else
+                    RemoveItem(Me, Me.LevelName)
+                End If
+
                 foundString = Localization.GetString("item_found", "<player.name> found~").Replace("<player.name>", Core.Player.Name) & Me.Item.OneLineName()
                 If Me.Item.OriginalName.Contains("HM") Then
                     SoundManager.PlaySound("Receive_HM", True)
@@ -209,19 +222,21 @@ Public Class ItemObject
                 Else
                     foundString &= "!*"
                 End If
-
-                Screen.TextBox.Show(foundString & Core.Player.Inventory.GetMessageReceive(Item, 1), {Me})
-                Dim ItemID As String
-                If Me.Item.IsGameModeItem Then
-                    ItemID = Me.Item.gmID
+                If MoreThanMax = False Then
+                    Core.Player.Inventory.AddItem(ItemID, 1)
+                    foundString &= Core.Player.Inventory.GetMessageReceive(Item, 1)
                 Else
-                    ItemID = Me.Item.ID.ToString
+                    foundString &= Localization.GetString("item_found_MoreThanMax_Single", "However, <Player.Name> is~already carrying the~maximum amount!*<Player.Name> put it back.")
                 End If
-                Core.Player.Inventory.AddItem(ItemID, 1)
-                Core.Player.CheckItemCountScriptDelay(ItemID)
-                PlayerStatistics.Track("Items found", 1)
 
-                Core.Player.AddPoints(1, "Found an item.")
+                Screen.TextBox.Show(foundString, {Me})
+
+                If MoreThanMax = False Then
+                    Core.Player.CheckItemCountScriptDelay(ItemID)
+                    PlayerStatistics.Track("Items found", 1)
+
+                    Core.Player.AddPoints(1, "Found an item.")
+                End If
             Else
                 Select Case PickupType
                     Case PickupTypes.Money
@@ -239,10 +254,18 @@ Public Class ItemObject
                             coins = CInt(GameModeManager.GetGameRuleValue("CoinCaseCap", "0")) - Core.Player.Coins
                         End If
 
-                        Core.Player.Coins += Math.Max(1, PickupAmount)
+                        Core.Player.Coins += Math.Max(0, coins)
 
                         If coins > 0 Then
                             PlayerStatistics.Track("Obtained Coins", coins)
+                        Else
+                            MoreThanMax = True
+                            If PickupAmount = 1 Then
+                                foundString &= "*" & Localization.GetString("item_found_MoreThanMax_Single", "However, <Player.Name> is~already carrying the~maximum amount!*<Player.Name> put it back.")
+                            Else
+                                foundString &= "*" & Localization.GetString("item_found_MoreThanMax_Multiple", "However, <Player.Name> has~already carrying the~maximum amount!*<Player.Name> put them~back.")
+                            End If
+
                         End If
                     Case PickupTypes.BattlePoints
                         If PickupAmount <= 1 Then
@@ -258,6 +281,9 @@ Public Class ItemObject
                             PlayerStatistics.Track("Obtained BP", bp)
                         End If
                 End Select
+                If MoreThanMax = False Then
+                    RemoveItem(Me, Me.LevelName)
+                End If
                 SoundManager.PlaySound("Receive_Item", True)
                 Screen.TextBox.Show(foundString)
 

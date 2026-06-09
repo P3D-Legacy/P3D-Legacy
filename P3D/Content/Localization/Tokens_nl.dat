@@ -582,6 +582,7 @@ apricorn_screen_clear,Wis
 apricorn_screen_take,Neem
 apricorn_screen_ready,Ik heb de PokéBallen voor je gemaakt.~Hier is het resultaat van mijn werk:
 apricorn_screen_obtain,ontving
+apricorn_screen_received_money,en ontving $[AMOUNT]~voor de PokéBallen die het~maximum aantal overschreden.
 ---
 Donation screen:
 donation_screen_donators,Donateurs
@@ -1124,6 +1125,8 @@ Receiving Items:
 item_received_single,Ontving een~
 item_received_multiple,Ontving
 item_found,<Player.Name> vond~
+item_found_MoreThanMax_Single,Maar <Player.Name> heeft er~al teveel van!*<Player.Name> legde het~terug.
+item_found_MoreThanMax_Multiple,Maar <Player.Name> heeft er~al teveel van!*<Player.Name> legde ze~terug.
 currency_found_money,<Player.Name> vond~$[AMOUNT]!
 currency_found_coins_single,<Player.Name> vond~een Munt!
 currency_found_coins_multiple,<Player.Name> vond~[AMOUNT] Munten!

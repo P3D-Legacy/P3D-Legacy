@@ -210,6 +210,7 @@ network_screen_join_join,Katil
 network_screen_host_header,Oyun yarat:~Agindaki diger kisilerin oyununa katilmasi için~oyun yaratmak üzeresin.
 network_screen_host_cancel,Iptal
 network_screen_host_host,Yarat
+apricorn_screen_received_money,and received $[AMOUNT]~for the balls that exceeded~the maximum amount.
 ---
 Donation screen:
 donation_screen_donators,Donators

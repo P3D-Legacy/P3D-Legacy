@@ -583,6 +583,7 @@ apricorn_screen_all,All
 apricorn_screen_take,Ambil
 apricorn_screen_ready,Aku siap membuat Pokéballs.~Ini hasil dari kerjaku:
 apricorn_screen_obtain,didapatkan
+apricorn_screen_received_money,and received $[AMOUNT]~for the balls that exceeded~the maximum amount.
 ---
 Donation screen:
 donation_screen_donators,Donatur
@@ -1125,6 +1126,8 @@ Receiving and Handing Over Items:
 item_received_single,Received the~
 item_received_multiple,Received
 item_found,<Player.Name> found~
+item_found_MoreThanMax_Single,However, <Player.Name> has~already carrying the~maximum amount!*<Player.Name> put it back.
+item_found_MoreThanMax_Multiple,However, <Player.Name> has~already carrying the~maximum amount!*<Player.Name> put them~back.
 currency_found_money,<Player.Name> found~$[AMOUNT]!
 currency_found_coins_single,<Player.Name> found~a coin!
 currency_found_coins_multiple,<Player.Name> found~[AMOUNT] coins!

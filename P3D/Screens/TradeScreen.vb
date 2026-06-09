@@ -676,7 +676,7 @@ Public Class TradeScreen
             Core.Player.Inventory.AddItem(tradeItem.ItemID, Me.BuyItemsAmount)
 
             ' Add a Premier Ball (ID=3) if the player bought 10 or more Poké Balls (ID=5):
-            If tradeItem.ItemID = 5.ToString And Me.BuyItemsAmount >= 10 Then
+            If tradeItem.ItemID = 5.ToString AndAlso Me.BuyItemsAmount >= 10 AndAlso Core.Player.Inventory.GetItemAmount(3.ToString) + 1 <= Item.GetItemByID(3.ToString).MaxStack Then
                 Core.Player.Inventory.AddItem(3.ToString, 1)
             End If
 

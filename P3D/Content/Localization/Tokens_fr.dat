@@ -581,6 +581,7 @@ apricorn_screen_all,Tous
 apricorn_screen_take,Prendre
 apricorn_screen_ready,J'ai fini. Voici le résultat de mon travail:
 apricorn_screen_obtain,obtient
+apricorn_screen_received_money,and received $[AMOUNT]~for the balls that exceeded~the maximum amount.
 ---
 Donation screen:
 donation_screen_donators,Donateurs
@@ -1123,6 +1124,8 @@ Receiving Items:
 item_received_single,Reçois~
 item_received_multiple,Reçois
 item_found,<Player.Name> trouve:
+item_found_MoreThanMax_Single,However, <Player.Name> has~already carrying the~maximum amount!*<Player.Name> put it back.
+item_found_MoreThanMax_Multiple,However, <Player.Name> has~already carrying the~maximum amount!*<Player.Name> put them~back.
 currency_found_money,<Player.Name> found~$[AMOUNT]!
 currency_found_coins_single,<Player.Name> found~a coin!
 currency_found_coins_multiple,<Player.Name> found~[AMOUNT] coins!

@@ -582,6 +582,7 @@ apricorn_screen_all,Alle
 apricorn_screen_take,Nehmen
 apricorn_screen_ready,Ich habe die Pokébälle produziert.~Hier ist das Ergebnis:
 apricorn_screen_obtain,erhält
+apricorn_screen_received_money,and received $[AMOUNT]~for the balls that exceeded~the maximum amount.
 ---
 Donation screen:
 donation_screen_donators,Spender
@@ -1124,6 +1125,8 @@ Receiving Items:
 item_received_single,<Player.Name> erhält~
 item_received_multiple,<Player.Name> erhält~
 item_found,<Player.Name> findet~
+item_found_MoreThanMax_Single,However, <Player.Name> has~already carrying the~maximum amount!*<Player.Name> put it back.
+item_found_MoreThanMax_Multiple,However, <Player.Name> has~already carrying the~maximum amount!*<Player.Name> put them~back.
 currency_found_money,<Player.Name> found~$[AMOUNT]!
 currency_found_coins_single,<Player.Name> found~a coin!
 currency_found_coins_multiple,<Player.Name> found~[AMOUNT] coins!
