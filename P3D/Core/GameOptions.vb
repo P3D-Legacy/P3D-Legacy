@@ -9,7 +9,7 @@
     Public ViewBobbing As Boolean = True
     Public LightingEnabled As Boolean = True
     Public GamePadEnabled As Boolean = True
-    Public GamePadInvertRightStick As New Vector2(0, 0)
+    Public InvertCamera As New Vector2(0, 0)
     Public StartedOfflineGame As Boolean = False
     Public WindowSize As New Vector2(1200, 680)
     Public MaxOffsetLevel As Integer = 0
@@ -94,8 +94,8 @@
                         Me.LightingEnabled = CBool(value)
                     Case "gamepadenabled"
                         Me.GamePadEnabled = CBool(value)
-                    Case "gamepadinvertrightstick"
-                        Me.GamePadInvertRightStick = New Vector2(Math.Abs(CInt(value.GetSplit(0, ",")).Clamp(0, 1)), Math.Abs(CInt(value.GetSplit(1, ",")).Clamp(0, 1)))
+                    Case "invertcamera", "gamepadinvertrightstick"
+                        Me.InvertCamera = New Vector2(Math.Abs(CInt(value.GetSplit(0, ",")).Clamp(0, 1)), Math.Abs(CInt(value.GetSplit(1, ",")).Clamp(0, 1)))
                     Case "startedofflinegame"
                         Me.StartedOfflineGame = CBool(value)
                     Case "prefermultisampling"
@@ -162,7 +162,7 @@
                 "Language|" & Localization.LanguageSuffix & Environment.NewLine &
                 "ViewBobbing|" & Me.ViewBobbing.ToNumberString() & Environment.NewLine &
                 "GamePadEnabled|" & Me.GamePadEnabled.ToNumberString() & Environment.NewLine &
-                "GamePadInvertRightStick|" & Me.GamePadInvertRightStick.X & "," & Me.GamePadInvertRightStick.Y & Environment.NewLine &
+                "InvertCamera|" & Me.InvertCamera.X & "," & Me.InvertCamera.Y & Environment.NewLine &
                 "LightingEnabled|" & Me.LightingEnabled.ToNumberString() & Environment.NewLine &
                 "StartedOfflineGame|" & Me.StartedOfflineGame.ToNumberString() & Environment.NewLine &
                 "PreferMultiSampling|" & Core.GraphicsManager.PreferMultiSampling.ToNumberString() & Environment.NewLine &
@@ -194,7 +194,7 @@
             "Language|en" & Environment.NewLine &
             "ViewBobbing|1" & Environment.NewLine &
             "GamePadEnabled|1" & Environment.NewLine &
-            "GamePadInvertRightStick|0,0" & Environment.NewLine &
+            "InvertCamera|0,0" & Environment.NewLine &
             "LightingEnabled|1" & Environment.NewLine &
             "StartedOfflineGame|0" & Environment.NewLine &
             "PreferMultiSampling|1" & Environment.NewLine &

@@ -336,6 +336,8 @@ option_screen_battle_battlestyle_set,Fisso
 
 option_screen_controls,Controls
 option_screen_controls_xboxgamepad,Xbox Gamepad
+option_screen_controls_invertcamera_x,Invert Camera X
+option_screen_controls_invertcamera_y,Invert Camera Y
 option_screen_controls_resetkeybindings,Reset Key Bindings
 option_screen_controls_cameraspeed,Sensibilità della Fotocamera
 option_screen_controls_cameraspeed_slow,...Slow...
@@ -1446,6 +1448,8 @@ game_message_free_camera_on,Telecamera libera on
 game_message_free_camera_off,Telecamera libera off
 game_message_sandbox_mode_on,Sandbox mode on
 game_message_sandbox_mode_off,Sandbox mode off
+game_message_gamepad_support_on,Enabled XBOX 360 GamePad support
+game_message_gamepad_support_off,Disabled XBOX 360 GamePad support
 game_message_audio_on,Audio on
 game_message_audio_off,Audio off
 game_message_continue_autosave,Ripresa partita:
@@ -4329,7 +4333,8 @@ ability_desc_90,Restores HP if the Pokémon is poisoned.
 ability_desc_91,Powers up moves of the same type.
 ability_desc_92,Increases the frequency of multi-strike moves.
 ability_desc_93,Heals status problems if it is raining.
-ability_desc_94,In sunshine boosted but HP decreases.
+
+ability_desc_94,In sunshine boosted attack but HP decreases.
 ability_desc_95,Boosts Speed if there is a status problem.
 ability_desc_96,All the Pokémon's moves become the Normal type.
 ability_desc_97,Powers up moves if they become critical hits.
@@ -4340,7 +4345,7 @@ ability_desc_101,Powers up the Pokémon's weaker moves.
 ability_desc_102,Prevents problems with status in sunny weather.
 ability_desc_103,The Pokémon can't use any held items.
 ability_desc_104,Moves can be used regardless of Abilities.
-ability_desc_105,Heightens the critical- hit ratios of moves.
+ability_desc_105,Heightens the critical-hit ratios of moves.
 ability_desc_106,Damages the attacker landing the finishing hit.
 ability_desc_107,Senses a foe's dangerous moves.
 ability_desc_108,Determines what moves a foe has.
@@ -4377,7 +4382,7 @@ ability_desc_138,Powers up special attacks when burned.
 ability_desc_139,May create another Berry after one is used.
 ability_desc_140,Anticipates an ally's attack and dodges it.
 ability_desc_141,Raises one stat and lowers another.
-ability_desc_142,Protects the Pokémon from damage from weather.
+ability_desc_142,Prevents damage from weather and the effects of spores and powders.
 ability_desc_143,May poison targets when a Pokémon makes contact.
 ability_desc_144,Restores a little HP when withdrawn from battle.
 ability_desc_145,Protects the Pokémon from Defense-lowering attacks.
