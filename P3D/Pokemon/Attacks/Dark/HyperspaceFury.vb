@@ -64,7 +64,7 @@
             If Own = False Then
                 p = BattleScreen.OppPokemon
             End If
-            If p.Number = 720 And p.AdditionalData = "unbound" Then
+            If p.OriginalName.ToLower.Contains("hoopa") And p.AdditionalData.ToLower() = "unbound" Then
                 Return False
             Else
                 BattleScreen.BattleQuery.Add(New TextQueryObject("But " & p.GetDisplayName() & " can't use the move!"))

@@ -256,7 +256,7 @@
                     End If
                 End If
 
-                If p.OriginalName = "Ditto" Then
+                If p.OriginalName.ToLower.Contains("ditto") Then
                     If Not p.Item Is Nothing And BattleScreen.FieldEffects.CanUseItem(own) = True Then
                         If p.Item.OriginalName = "Quick Powder" Then
                             speed *= 2
@@ -344,14 +344,14 @@
                 If p.Item.OriginalName = "Choice Band" Then
                     attack = CInt(attack * 1.5F)
                 End If
-                If p.OriginalName = "Pikachu" Then
+                If p.OriginalName.ToLower.Contains("pikachu") Then
                     If Not p.Item Is Nothing And BattleScreen.FieldEffects.CanUseItem(own) = True Then
                         If p.Item.OriginalName = "Light Ball" Then
                             attack *= 2
                         End If
                     End If
                 End If
-                If p.OriginalName = "Cubone" OrElse p.OriginalName.ToLower = "Marowak" Then
+                If p.OriginalName.ToLower.Contains("cubone") OrElse p.OriginalName.ToLower.Contains("marowak") Then
                     If Not p.Item Is Nothing And BattleScreen.FieldEffects.CanUseItem(own) = True Then
                         If p.Item.OriginalName = "Thick Club" Then
                             attack *= 2
@@ -635,11 +635,11 @@
             If Not p.Item Is Nothing And BattleScreen.FieldEffects.CanUseItem(own) = True Then
                 Select Case p.Item.OriginalName.ToLower()
                     Case "lucky punch"
-                        If p.OriginalName = "Eevee" Then
+                        If p.OriginalName.ToLower.Contains("eevee") Then
                             C += 2
                         End If
                     Case "leek"
-                        If p.OriginalName = "Farfetch'd" Then
+                        If p.OriginalName.ToLower.Contains("farfetch'd") Then
                             C += 2
                         End If
                     Case "scope lens"
@@ -1273,25 +1273,25 @@
                             IT = 1.1F
                         End If
                     Case "adamant orb"
-                        If p.OriginalName = "Dialga" Then
+                        If p.OriginalName.ToLower.Contains("dialga") Then
                             If Attack.Type.Type = Element.Types.Dragon Or Attack.Type.Type = Element.Types.Steel Then
                                 IT = 1.2F
                             End If
                         End If
                     Case "lustrous orb"
-                        If p.OriginalName = "Palkia" Then
+                        If p.OriginalName.ToLower.Contains("palkia") Then
                             If Attack.Type.Type = Element.Types.Dragon Or Attack.Type.Type = Element.Types.Water Then
                                 IT = 1.2F
                             End If
                         End If
                     Case "griseous orb"
-                        If p.OriginalName = "Giratina" Then
+                        If p.OriginalName.ToLower.Contains("giratina") Then
                             If Attack.Type.Type = Element.Types.Dragon Or Attack.Type.Type = Element.Types.Ghost Then
                                 IT = 1.2F
                             End If
                         End If
                     Case "soul dew"
-                        If p.OriginalName = "Latias" OrElse p.OriginalName = "Latios" Then
+                        If p.OriginalName.ToLower.Contains("latias") OrElse p.OriginalName.ToLower.Contains("latios") Then
                             If Attack.Type.Type = Element.Types.Dragon Or Attack.Type.Type = Element.Types.Psychic Then
                                 IT = 1.2F
                             End If
@@ -1379,8 +1379,8 @@
                             If Attack.Type.Type = Element.Types.Fighting Then
                                 If BattleScreen.Battle.RemoveHeldItem(Own, Own, BattleScreen, "-1", "item:fighting gem") = True Then
                                     BattleScreen.BattleQuery.Add(New TextQueryObject("The Fighting Gem boosted " & p.GetDisplayName() & "'s " & Attack.Name & "!"))
-                            IT = 1.3F
-                        End If
+                                    IT = 1.3F
+                                End If
                             End If
                         Case 644 'Dark Gem
                             If Attack.Type.Type = Element.Types.Dark Then
@@ -1733,11 +1733,11 @@
                         Case "choice band"
                             IM = 1.5F
                         Case "light ball"
-                            If p.OriginalName = "Pikachu" Then
+                            If p.OriginalName.ToLower.Contains("pikachu") Then
                                 IM = 2.0F
                             End If
                         Case "thick club"
-                            If p.OriginalName = "Cubone" OrElse p.OriginalName = "Marowak" Then
+                            If p.OriginalName.ToLower.Contains("cubone") OrElse p.OriginalName.ToLower.Contains("marowak") Then
                                 IM = 2.0F
                             End If
                         Case Else
@@ -1778,11 +1778,11 @@
                         Case "choice specs"
                             IM = 1.5F
                         Case "light ball"
-                            If p.OriginalName = "Pikachu" Then
+                            If p.OriginalName.ToLower.Contains("pikachu") Then
                                 IM = 2.0F
                             End If
                         Case "deepseatooth"
-                            If p.OriginalName = "Clamperl" Then
+                            If p.OriginalName.ToLower.Contains("clamperl") Then
                                 IM = 2.0F
                             End If
                         Case "metronome"
@@ -1859,7 +1859,7 @@
                 If Not Op.Item Is Nothing And BattleScreen.FieldEffects.CanUseItem(Not Own) = True And BattleScreen.FieldEffects.CanUseOwnItem(Not Own, BattleScreen) = True Then
                     Select Case Op.Item.OriginalName.ToLower()
                         Case "metal powder"
-                            If Op.OriginalName = "Ditto" Then
+                            If Op.OriginalName.ToLower.Contains("ditto") Then
                                 DMod = 1.5F
                             End If
                         Case "eviolite"
@@ -1902,11 +1902,11 @@
                 If Not Op.Item Is Nothing And BattleScreen.FieldEffects.CanUseItem(Not Own) = True And BattleScreen.FieldEffects.CanUseOwnItem(Not Own, BattleScreen) = True Then
                     Select Case Op.Item.OriginalName.ToLower()
                         Case "metal powder"
-                            If Op.OriginalName = "Ditto" Then
+                            If Op.OriginalName.ToLower.Contains("ditto") Then
                                 DMod = 1.5F
                             End If
                         Case "deepseascale"
-                            If Op.OriginalName = "Clamperl" Then
+                            If Op.OriginalName.ToLower.Contains("clamperl") Then
                                 DMod = 2.0F
                             End If
                         Case "assault vest"

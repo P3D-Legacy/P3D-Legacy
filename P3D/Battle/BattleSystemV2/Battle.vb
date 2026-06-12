@@ -1359,7 +1359,7 @@ Namespace BattleSystem
             TriggerItemEffect(BattleScreen, False)
 
             'Transform Aegislash with Stance Change ability.
-            If p.Ability.Name.ToLower() = "stance change" AndAlso p.Number = 681 Then
+            If p.Ability.Name.ToLower() = "stance change" AndAlso p.OriginalName.ToLower.Contains("Aegislash") Then
                 If p.AdditionalData = "" Then
                     If moveUsed.IsDamagingMove Then
                         p.AdditionalData = "blade"
@@ -2848,10 +2848,10 @@ Namespace BattleSystem
                                                 If p.Ability.Name.ToLower() = "multitype" AndAlso p.Item.OriginalName.ToLower().EndsWith(" plate") Then
                                                     canSteal = False
                                                 End If
-                                                If p.Item.OriginalName.ToLower() = "griseous orb" And p.Number = 487 Then
+                                                If p.Item.OriginalName.ToLower() = "griseous orb" And p.OriginalName.ToLower.Contains("giratina") Then
                                                     canSteal = False
                                                 End If
-                                                If p.Item.OriginalName.ToLower().EndsWith(" drive") = True AndAlso p.Number = 649 Then
+                                                If p.Item.OriginalName.ToLower().EndsWith(" drive") = True AndAlso p.OriginalName.ToLower.Contains("genesect") Then
                                                     canSteal = False
                                                 End If
                                                 If canSteal Then
@@ -2926,10 +2926,10 @@ Namespace BattleSystem
                                             If op.Ability.Name.ToLower() = "multitype" AndAlso op.Item.OriginalName.ToLower().EndsWith(" plate") Then
                                                 canSteal = False
                                             End If
-                                            If op.Item.OriginalName.ToLower() = "griseous orb" AndAlso op.Number = 487 Then
+                                            If op.Item.OriginalName.ToLower() = "griseous orb" AndAlso op.OriginalName.ToLower.Contains("giratina") Then
                                                 canSteal = False
                                             End If
-                                            If op.Item.OriginalName.ToLower().EndsWith(" drive") = True AndAlso op.Number = 649 Then
+                                            If op.Item.OriginalName.ToLower().EndsWith(" drive") = True AndAlso op.OriginalName.ToLower.Contains("genesect") Then
                                                 canSteal = False
                                             End If
                                             If canSteal Then

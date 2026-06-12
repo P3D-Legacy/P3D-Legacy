@@ -69,28 +69,28 @@ Namespace BattleSystem.Moves.Dark
             If BattleScreen.FieldEffects.CanUseAbility(Not own, BattleScreen) AndAlso op.Ability.Name.ToLower() = "sticky hold" Then
                 CanSwitchItems = False
             End If
-            If Not p.Item Is Nothing AndAlso p.Item.OriginalName.ToLower() = "griseous orb" AndAlso p.Number = 487 Then
+            If Not p.Item Is Nothing AndAlso p.Item.OriginalName.ToLower() = "griseous orb" AndAlso p.OriginalName.ToLower.Contains("giratina") Then
                 CanSwitchItems = False
             End If
-            If Not op.Item Is Nothing AndAlso op.Item.OriginalName.ToLower() = "griseous orb" AndAlso op.Number = 487 Then
+            If Not op.Item Is Nothing AndAlso op.Item.OriginalName.ToLower() = "griseous orb" AndAlso op.OriginalName.ToLower.Contains("giratina") Then
                 CanSwitchItems = False
             End If
-            If Not p.Item Is Nothing AndAlso p.Item.OriginalName.ToLower().EndsWith(" drive") = True AndAlso p.Number = 649 Then
+            If Not p.Item Is Nothing AndAlso p.Item.OriginalName.ToLower().EndsWith(" drive") = True AndAlso p.OriginalName.ToLower.Contains("genesect") Then
                 CanSwitchItems = False
             End If
-            If Not op.Item Is Nothing AndAlso op.Item.OriginalName.ToLower().EndsWith(" drive") = True AndAlso op.Number = 649 Then
+            If Not op.Item Is Nothing AndAlso op.Item.OriginalName.ToLower().EndsWith(" drive") = True AndAlso op.OriginalName.ToLower.Contains("genesect") Then
                 CanSwitchItems = False
             End If
-            If Not p.Item Is Nothing AndAlso p.Item.OriginalName.ToLower().EndsWith(" plate") = True AndAlso p.Number = 493 Then
+            If Not p.Item Is Nothing AndAlso p.Item.OriginalName.ToLower().EndsWith(" plate") = True AndAlso p.OriginalName.ToLower.Contains("arceus") Then
                 CanSwitchItems = False
             End If
-            If Not op.Item Is Nothing AndAlso op.Item.OriginalName.ToLower().EndsWith(" plate") = True AndAlso op.Number = 493 Then
+            If Not op.Item Is Nothing AndAlso op.Item.OriginalName.ToLower().EndsWith(" plate") = True AndAlso op.OriginalName.ToLower.Contains("arceus") Then
                 CanSwitchItems = False
             End If
-            If Not p.Item Is Nothing AndAlso p.Item.OriginalName.ToLower().EndsWith(" memory") = True AndAlso p.Number = 773 Then
+            If Not p.Item Is Nothing AndAlso p.Item.OriginalName.ToLower().EndsWith(" memory") = True AndAlso p.OriginalName.ToLower.Contains("silvally") Then
                 CanSwitchItems = False
             End If
-            If Not op.Item Is Nothing AndAlso op.Item.OriginalName.ToLower().EndsWith(" memory") = True AndAlso op.Number = 773 Then
+            If Not op.Item Is Nothing AndAlso op.Item.OriginalName.ToLower().EndsWith(" memory") = True AndAlso op.OriginalName.ToLower.Contains("silvally") Then
                 CanSwitchItems = False
             End If
             If Not p.Item Is Nothing AndAlso p.Item.IsMail = True Then

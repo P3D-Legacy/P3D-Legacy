@@ -60,7 +60,7 @@
             If Own = False Then
                 p = BattleScreen.OppPokemon
             End If
-            If p.Number = 491 Then
+            If p.OriginalName.ToLower.Contains("darkrai") Then
                 Return False
             Else
                 BattleScreen.BattleQuery.Add(New TextQueryObject("But " & p.GetDisplayName() & " can't use the move!"))

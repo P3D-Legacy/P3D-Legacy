@@ -76,10 +76,10 @@ Namespace BattleSystem.Moves.Normal
             If op.Ability.Name.ToLower() = "rks system" AndAlso op.Item.OriginalName.ToLower().EndsWith(" memory") Then
                 Exit Sub
             End If
-            If op.Item.OriginalName.ToLower() = "griseous orb" And op.Number = 487 Then
+            If op.Item.OriginalName.ToLower() = "griseous orb" And op.OriginalName.ToLower.Contains("giratina") Then
                 Exit Sub
             End If
-            If op.Item.OriginalName.ToLower().EndsWith(" drive") = True AndAlso op.Number = 649 Then
+            If op.Item.OriginalName.ToLower().EndsWith(" drive") = True AndAlso op.OriginalName.ToLower.Contains("genesect") Then
                 Exit Sub
             End If
             If op.Item.IsMail = True Then

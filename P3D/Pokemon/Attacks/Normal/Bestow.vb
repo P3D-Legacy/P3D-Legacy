@@ -79,11 +79,11 @@
                     b = True
                 End If
                 'Giratina
-                If p.Item.OriginalName.ToLower() = "griseous orb" And p.Number = 487 Then
+                If p.Item.OriginalName.ToLower() = "griseous orb" And p.OriginalName.ToLower.Contains("giratina") Then
                     b = True
                 End If
                 'Genesect
-                If p.Item.OriginalName.ToLower().EndsWith(" drive") = True AndAlso p.Number = 649 Then
+                If p.Item.OriginalName.ToLower().EndsWith(" drive") = True AndAlso p.OriginalName.ToLower.Contains("genesect") Then
                     b = True
                 End If
                 If p.Item.IsMail = True Then

@@ -1687,7 +1687,7 @@ nextIndex:
                 End If
 
                 For Each p As Pokemon In Core.Player.Pokemons
-                    If p.Number = 213 Then
+                    If p.OriginalName.ToLower.Contains("shuckle") Then
                         If Not p.Item Is Nothing Then
                             If p.Item.IsBerry = True Then
                                 If Core.Random.Next(0, 3) = 0 Then
