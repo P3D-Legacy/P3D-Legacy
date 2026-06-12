@@ -5,7 +5,7 @@ Namespace Items.Standard
 
         Inherits Item
 
-        Public Overrides ReadOnly Property Description As String = "A rare bone that is extremely valuable for the study of Pokémon archeology. It can be sold for a high price to shops."
+        Public Overrides ReadOnly Property Description As String = "An item to be held by Cubone or Marowak. It is a hard bone of some sort that boosts the Attack stat."
         Public Overrides ReadOnly Property PokeDollarPrice As Integer = 500
         Public Overrides ReadOnly Property FlingDamage As Integer = 90
         Public Overrides ReadOnly Property CanBeUsedInBattle As Boolean = False
