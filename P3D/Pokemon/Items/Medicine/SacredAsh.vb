@@ -8,6 +8,7 @@ Namespace Items.Medicine
         Public Overrides ReadOnly Property Description As String = "It revives all fainted Pokémon. In doing so, it also fully restores their HP."
         Public Overrides ReadOnly Property PokeDollarPrice As Integer = 200
         Public Overrides ReadOnly Property PluralName As String = "Sacred Ashes"
+        Public Overrides ReadOnly Property CanBeUsedInBattle As Boolean = False
 
         Public Sub New()
             _textureRectangle = New Rectangle(24, 144, 24, 24)
