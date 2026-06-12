@@ -3125,7 +3125,7 @@ item_use_CureIce_Single,Cured the ice~of [POKEMONNAME].
 item_use_CureIce_Both,Cured the ice~of [OWNPOKEMONNAME] and~[OPPPOKEMONNAME].
 item_use_CureParalysis_Single,Cured the paralysis~of [POKEMONNAME].
 item_use_CureParalysis_Both,Cured the paralysis~of [OWNPOKEMONNAME] and~[OPPPOKEMONNAME].
-item_use_RevivalItem,[POKEMONNAME]~is revitalized.,[POKEMONNAME]~is revitalized.
+item_use_RevivalItem,[POKEMONNAME]~is revitalized.
 
 item_6_cannot_walk,You cannot walk here!
 item_6_missingskin,You can't use this item~without a bicycle skin.*Its name should be the~same as your current one,~but with "_bike" at the end.
