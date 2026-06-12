@@ -140,12 +140,12 @@
 
                 Dim Tail As Integer = 0 'Uses effect of Lagging Tail
                 If Not ownPokemon.Item Is Nothing And BattleScreen.FieldEffects.CanUseItem(True) = True And BattleScreen.FieldEffects.CanUseOwnItem(True, BattleScreen) = True Then
-                    If ownPokemon.Item.Name = "Lagging Tail" Then
+                    If ownPokemon.Item.OriginalName = "Lagging Tail" Then
                         Tail += 1
                     End If
                 End If
                 If Not oppPokemon.Item Is Nothing And BattleScreen.FieldEffects.CanUseItem(False) = True And BattleScreen.FieldEffects.CanUseOwnItem(False, BattleScreen) = True Then
-                    If oppPokemon.Item.Name = "Lagging Tail" Then
+                    If oppPokemon.Item.OriginalName = "Lagging Tail" Then
                         Tail += 10
                     End If
                 End If
@@ -164,12 +164,12 @@
 
                 Dim Full As Integer = 0 'Uses effect of Full Incense
                 If Not ownPokemon.Item Is Nothing And BattleScreen.FieldEffects.CanUseItem(True) = True And BattleScreen.FieldEffects.CanUseOwnItem(True, BattleScreen) = True Then
-                    If ownPokemon.Item.Name = "Full Incense" Then
+                    If ownPokemon.Item.OriginalName = "Full Incense" Then
                         Full += 1
                     End If
                 End If
                 If Not oppPokemon.Item Is Nothing And BattleScreen.FieldEffects.CanUseItem(False) = True And BattleScreen.FieldEffects.CanUseOwnItem(False, BattleScreen) = True Then
-                    If oppPokemon.Item.Name = "Full Incense" Then
+                    If oppPokemon.Item.OriginalName = "Full Incense" Then
                         Full += 10
                     End If
                 End If
@@ -237,7 +237,7 @@
             End If
 
             If Not p.Item Is Nothing Then
-                If p.Item.Name = "Choice Scarf" Then
+                If p.Item.OriginalName = "Choice Scarf" Then
                     speed = CInt(speed * 1.5F)
                 End If
 
@@ -256,9 +256,9 @@
                     End If
                 End If
 
-                If p.Number = 132 Then
+                If p.OriginalName = "Ditto" Then
                     If Not p.Item Is Nothing And BattleScreen.FieldEffects.CanUseItem(own) = True Then
-                        If p.Item.Name = "Quick Powder" Then
+                        If p.Item.OriginalName = "Quick Powder" Then
                             speed *= 2
                         End If
                     End If
@@ -341,19 +341,19 @@
             End If
 
             If Not p.Item Is Nothing Then
-                If p.Item.Name = "Choice Band" Then
+                If p.Item.OriginalName = "Choice Band" Then
                     attack = CInt(attack * 1.5F)
                 End If
-                If p.Number = 25 Then
+                If p.OriginalName = "Pikachu" Then
                     If Not p.Item Is Nothing And BattleScreen.FieldEffects.CanUseItem(own) = True Then
-                        If p.Item.Name = "Light Ball" Then
+                        If p.Item.OriginalName = "Light Ball" Then
                             attack *= 2
                         End If
                     End If
                 End If
-                If p.Number = 104 OrElse p.Number = 105 Then
+                If p.OriginalName = "Cubone" OrElse p.OriginalName.ToLower = "Marowak" Then
                     If Not p.Item Is Nothing And BattleScreen.FieldEffects.CanUseItem(own) = True Then
-                        If p.Item.Name = "Thick Club" Then
+                        If p.Item.OriginalName = "Thick Club" Then
                             attack *= 2
                         End If
                     End If
@@ -426,7 +426,7 @@
 
                     Dim outcome As Integer = 0
 
-                    If UsedAttack.Name.ToLower() = "snore" Or UsedAttack.Name.ToLower() = "sleep talk" Then
+                    If UsedAttack.Name.ToLower() = Localization.GetString("move_name_" & 173, "Snore").ToLower Or UsedAttack.Name.ToLower() = Localization.GetString("move_name_" & 214, "Sleep Talk").ToLower Then
                         Return 1
                     Else
                         r = Core.Random.Next(0, 256)
@@ -635,11 +635,11 @@
             If Not p.Item Is Nothing And BattleScreen.FieldEffects.CanUseItem(own) = True Then
                 Select Case p.Item.OriginalName.ToLower()
                     Case "lucky punch"
-                        If p.Number = 113 Then
+                        If p.OriginalName = "Eevee" Then
                             C += 2
                         End If
                     Case "leek"
-                        If p.Number = 83 Then
+                        If p.OriginalName = "Farfetch'd" Then
                             C += 2
                         End If
                     Case "scope lens"
@@ -1273,25 +1273,25 @@
                             IT = 1.1F
                         End If
                     Case "adamant orb"
-                        If p.Number = 483 Then
+                        If p.OriginalName = "Dialga" Then
                             If Attack.Type.Type = Element.Types.Dragon Or Attack.Type.Type = Element.Types.Steel Then
                                 IT = 1.2F
                             End If
                         End If
                     Case "lustrous orb"
-                        If p.Number = 484 Then
+                        If p.OriginalName = "Palkia" Then
                             If Attack.Type.Type = Element.Types.Dragon Or Attack.Type.Type = Element.Types.Water Then
                                 IT = 1.2F
                             End If
                         End If
                     Case "griseous orb"
-                        If p.Number = 487 Then
+                        If p.OriginalName = "Giratina" Then
                             If Attack.Type.Type = Element.Types.Dragon Or Attack.Type.Type = Element.Types.Ghost Then
                                 IT = 1.2F
                             End If
                         End If
                     Case "soul dew"
-                        If p.Number = 380 OrElse p.Number = 381 Then
+                        If p.OriginalName = "Latias" OrElse p.OriginalName = "Latios" Then
                             If Attack.Type.Type = Element.Types.Dragon Or Attack.Type.Type = Element.Types.Psychic Then
                                 IT = 1.2F
                             End If
@@ -1379,8 +1379,8 @@
                             If Attack.Type.Type = Element.Types.Fighting Then
                                 If BattleScreen.Battle.RemoveHeldItem(Own, Own, BattleScreen, "-1", "item:fighting gem") = True Then
                                     BattleScreen.BattleQuery.Add(New TextQueryObject("The Fighting Gem boosted " & p.GetDisplayName() & "'s " & Attack.Name & "!"))
-                                    IT = 1.3F
-                                End If
+                            IT = 1.3F
+                        End If
                             End If
                         Case 644 'Dark Gem
                             If Attack.Type.Type = Element.Types.Dark Then
@@ -1733,11 +1733,11 @@
                         Case "choice band"
                             IM = 1.5F
                         Case "light ball"
-                            If p.Number = 25 Then
+                            If p.OriginalName = "Pikachu" Then
                                 IM = 2.0F
                             End If
                         Case "thick club"
-                            If p.Number = 104 Or p.Number = 105 Then
+                            If p.OriginalName = "Cubone" OrElse p.OriginalName = "Marowak" Then
                                 IM = 2.0F
                             End If
                         Case Else
@@ -1778,11 +1778,11 @@
                         Case "choice specs"
                             IM = 1.5F
                         Case "light ball"
-                            If p.Number = 25 Then
+                            If p.OriginalName = "Pikachu" Then
                                 IM = 2.0F
                             End If
                         Case "deepseatooth"
-                            If p.Number = 366 Then
+                            If p.OriginalName = "Clamperl" Then
                                 IM = 2.0F
                             End If
                         Case "metronome"
@@ -1852,14 +1852,14 @@
                     DSM = 1.0F
                 End If
 
-                If Attack.Name.ToLower() = "self-destruct" Or Attack.Name.ToLower() = "explosion" Then
+                If Attack.Name.ToLower() = Localization.GetString("move_name_" & 120, "Self-Destruct").ToLower Or Attack.Name.ToLower() = Localization.GetString("move_name_" & 153, "Explosion").ToLower Then
                     SX = 1.0F
                 End If
 
                 If Not Op.Item Is Nothing And BattleScreen.FieldEffects.CanUseItem(Not Own) = True And BattleScreen.FieldEffects.CanUseOwnItem(Not Own, BattleScreen) = True Then
                     Select Case Op.Item.OriginalName.ToLower()
                         Case "metal powder"
-                            If Op.Number = 132 Then
+                            If Op.OriginalName = "Ditto" Then
                                 DMod = 1.5F
                             End If
                         Case "eviolite"
@@ -1902,11 +1902,11 @@
                 If Not Op.Item Is Nothing And BattleScreen.FieldEffects.CanUseItem(Not Own) = True And BattleScreen.FieldEffects.CanUseOwnItem(Not Own, BattleScreen) = True Then
                     Select Case Op.Item.OriginalName.ToLower()
                         Case "metal powder"
-                            If Op.Number = 132 Then
+                            If Op.OriginalName = "Ditto" Then
                                 DMod = 1.5F
                             End If
                         Case "deepseascale"
-                            If Op.Number = 366 Then
+                            If Op.OriginalName = "Clamperl" Then
                                 DMod = 2.0F
                             End If
                         Case "assault vest"
@@ -2069,7 +2069,7 @@
                     Mod2 = 1.3F
                 End If
             End If
-            If Attack.Name.ToLower() = "me first" Then
+            If Attack.Name.ToLower() = Localization.GetString("move_name_" & 382, "Me First").ToLower Then
                 Mod2 = 1.5F
             End If
 
