@@ -1800,7 +1800,7 @@
 
                             If haveItemLeft = True Then
                                 s = "version=2" & Environment.NewLine &
-                                    "@Text.Show(" & Localization.GetString("step_event_RepelRanOut_MoreLeft", "Your repel effect wore off.*Do you want to use~another [REPELNAME]?").Replace("[REPELNAME]", "<inventory.name(" & Temp.LastUsedRepel & ")>)") & Environment.NewLine &
+                                    "@Text.Show(" & Localization.GetString("step_event_RepelRanOut_MoreLeft", "Your repel effect wore off.*Do you want to use~another [REPELNAME]?").Replace("[REPELNAME]", "<inventory.name(" & Temp.LastUsedRepel & ")>)") & ")" & Environment.NewLine &
                                     "@Options.Show(<system.token(global_yes)>,<system.token(global_no)>)" & Environment.NewLine &
                                     ":when:<system.token(global_yes)>" & Environment.NewLine &
                                     "@sound.play(Use_Repel)" & Environment.NewLine &
