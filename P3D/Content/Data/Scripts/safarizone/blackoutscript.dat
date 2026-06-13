@@ -4,4 +4,5 @@ version=2
 @item.clearitem(181)
 :endif
 
+@screen.blackout
 :end
