@@ -204,14 +204,16 @@ Public Class NotificationPopup
             Core.SpriteBatch.DrawString(FontManager.TextFont, TextHeader.CropStringToWidth(FontManager.TextFont, CInt(_scale * 2), CInt((_size.Width * (FrameSizeBack / 3) - FrameSizeBack / 3 * 4) * _scale)), New Vector2(TextOffset, CInt(Me._positionY + FrameSizeBack / 3)), Color.Black, 0.0F, Vector2.Zero, CSng(_scale * 2), SpriteEffects.None, 0.0F)
         End If
 
-        Dim InteractText As String = "[" & Localization.GetString("game_notification_dismiss") & "]"
-        If Me._scriptFile <> "" OrElse _waitForInput = True Then
-            InteractText = "[" & Localization.GetString("game_notification_accept") & "]"
-        End If
-        Dim InteractOffset As Vector2 = New Vector2(CInt(BackGroundOffsetX + (_size.Width * (FrameSizeBack / 3 * _scale)) - FontManager.TextFont.MeasureString(InteractText).X * _scale), CInt(Me._positionY + ((CInt(_size.Height) * (FrameSizeBack / 3 * _scale)) + (5 * _scale))))
+        If _forceAccept = False Then
+            Dim InteractText As String = "[" & Localization.GetString("game_notification_dismiss") & "]"
+            If Me._scriptFile <> "" OrElse _waitForInput = True Then
+                InteractText = "[" & Localization.GetString("game_notification_accept") & "]"
+            End If
+            Dim InteractOffset As Vector2 = New Vector2(CInt(BackGroundOffsetX + (_size.Width * (FrameSizeBack / 3 * _scale)) - FontManager.TextFont.MeasureString(InteractText).X * _scale), CInt(Me._positionY + ((CInt(_size.Height) * (FrameSizeBack / 3 * _scale)) + (5 * _scale))))
 
-        Core.SpriteBatch.Draw(_background, New Rectangle(CInt(InteractOffset.X), CInt(InteractOffset.Y), CInt(FontManager.TextFont.MeasureString(InteractText).X * _scale), CInt(FontManager.TextFont.MeasureString(InteractText).Y * _scale)), New Rectangle(CInt(FrameSizeBack / 3), CInt(FrameSizeBack / 3), CInt(FrameSizeBack / 3), CInt(FrameSizeBack / 3)), Color.White)
-        Core.SpriteBatch.DrawString(FontManager.TextFont, InteractText, New Vector2(CInt(InteractOffset.X), CInt(InteractOffset.Y)), Color.Black, 0.0F, Vector2.Zero, CSng(_scale), SpriteEffects.None, 0.0F)
+            Core.SpriteBatch.Draw(_background, New Rectangle(CInt(InteractOffset.X), CInt(InteractOffset.Y), CInt(FontManager.TextFont.MeasureString(InteractText).X * _scale), CInt(FontManager.TextFont.MeasureString(InteractText).Y * _scale)), New Rectangle(CInt(FrameSizeBack / 3), CInt(FrameSizeBack / 3), CInt(FrameSizeBack / 3), CInt(FrameSizeBack / 3)), Color.White)
+            Core.SpriteBatch.DrawString(FontManager.TextFont, InteractText, New Vector2(CInt(InteractOffset.X), CInt(InteractOffset.Y)), Color.Black, 0.0F, Vector2.Zero, CSng(_scale), SpriteEffects.None, 0.0F)
+        End If
     End Sub
 
 End Class
