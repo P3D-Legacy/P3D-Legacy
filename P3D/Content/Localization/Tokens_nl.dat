@@ -150,6 +150,21 @@ keyboard_key_PageDown,Page Down
 keyboard_key_LeftShift,L Shift
 keyboard_key_RightShift,R Shift
 ---
+GamePad Buttons:
+
+gamepad_button_start,Start-knop
+gamepad_button_back,Terug-knop
+gamepad_button_shoulder_left,Schouderknop L
+gamepad_button_shoulder_right,Schouderknop R
+gamepad_button_trigger_left,Trigger L
+gamepad_button_trigger_right,Trigger R
+gamepad_button_stick_left,Joystick L
+gamepad_button_stick_right,Joystick R
+gamepad_button_dpad_up,Richtingtoets ↑
+gamepad_button_dpad_down,Richtingtoets ↓
+gamepad_button_dpad_left,Richtingtoets ←
+gamepad_button_dpad_right,Richtingtoets →
+---
 FieldMoves:
 
 fieldmove_cut_1,Zo te zien kan deze boom~omgehakt worden!
@@ -226,9 +241,12 @@ game_interaction_edit,Bewerk
 game_interaction_clear,Leegmaken
 game_interaction_delete,Verwijderen
 game_interaction_learn,Leer
+game_interaction_filter,Filter
+game_interaction_previousbox,Vorige Opslag
+game_interaction_nextbox,Volgende Opslag
 game_interaction_notification,Notificatie
-game_notification_accept,<system.button(special)> om te reageren.
-game_notification_dismiss,<system.button(special)> om weg te halen.
+game_notification_accept,[BUTTON] om te reageren.
+game_notification_dismiss,[BUTTON] om weg te halen.
 ---
 PressStartScreen:
 start_screen_press,Druk op
@@ -492,7 +510,7 @@ storage_screen_pokemon_summary_SpDEF,SP. WEERSTAND
 storage_screen_pokemon_summary_SPEED,SNELHEID
 storage_screen_pokemon_summary_ITEM,VOORWERP
 
-storage_screen_filter_Hint,Druk [<system.button(special)>] op het toetsenbord om te filteren.
+storage_screen_filter_Hint,Druk op [<system.button(special)>] of <system.gamepadbutton(back)> om te filteren.
 storage_screen_filter_Title,Configureer de filters:
 storage_screen_filter_Results,Resultaten:
 storage_screen_filter_Filters,Filters:
@@ -614,7 +632,7 @@ shop_screen_sell_confirmation,Wil je [AMOUNT] [ITEM]~verkopen?
 shop_screen_buysell_PricePerItem,Per Voorwerp:
 shop_screen_buysell_PriceTotal,Totaal:
 shop_screen_buysell_InInventory,In Inventaris:
-shop_screen_buysell_DescriptionHint,Druk op [<system.button(special)>] of Select om de beschrijving van het voorwerp te bekijken.
+shop_screen_buysell_DescriptionHint,Druk op [<system.button(special)>] of <system.gamepadbutton(back)> om de beschrijving van het voorwerp te bekijken.
 shop_screen_buysell_CurrentBalance,Huidig Saldo:
 shop_screen_currency_BattlePoints,Strijdpunten
 shop_screen_currency_Coins,Munten
@@ -1108,7 +1126,7 @@ pokedex_filter_none,Geen
 pokedex_filter_name,Naam
 pokedex_filter_type1,Type 1
 pokedex_filter_type2,Type 2
-pokedex_search_hint,Druk op [<system.button(special)>] of Select om te zoeken.
+pokedex_search_hint,Druk op [<system.button(special)>] of <system.gamepadbutton(back)> om te zoeken.
 pokedex_search_no_results,Geen zoekresultaten
 pokedex_data_species,SOORT
 pokedex_data_type,TYPE

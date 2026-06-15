@@ -153,4 +153,41 @@
         Return False
     End Function
 
+    Public Shared Function GetButtonName(ByVal Button As Microsoft.Xna.Framework.Input.Buttons) As String
+        Select Case Button
+            Case Buttons.A
+                Return "A"
+            Case Buttons.B
+                Return "B"
+            Case Buttons.X
+                Return "X"
+            Case Buttons.Y
+                Return "Y"
+            Case Buttons.Start
+                Return Localization.GetString("gamepad_button_start", "Start")
+            Case Buttons.Back
+                Return Localization.GetString("gamepad_button_back", "Back")
+            Case Buttons.LeftShoulder
+                Return Localization.GetString("gamepad_button_shoulder_left", "Left Shoulder")
+            Case Buttons.RightShoulder
+                Return Localization.GetString("gamepad_button_shoulder_right", "Right Shoulder")
+            Case Buttons.LeftTrigger
+                Return Localization.GetString("gamepad_button_trigger_left", "Left Trigger")
+            Case Buttons.RightTrigger
+                Return Localization.GetString("gamepad_button_trigger_right", "Right Trigger")
+            Case Buttons.LeftStick
+                Return Localization.GetString("gamepad_button_stick_left", "Left Stick")
+            Case Buttons.RightStick
+                Return Localization.GetString("gamepad_button_stick_right", "Right Stick")
+            Case Buttons.DPadUp
+                Return Localization.GetString("gamepad_button_dpad_up", "D-Pad Up")
+            Case Buttons.DPadDown
+                Return Localization.GetString("gamepad_button_dpad_down", "D-Pad Down")
+            Case Buttons.DPadLeft
+                Return Localization.GetString("gamepad_button_dpad_left", "D-Pad Left")
+            Case Buttons.DPadRight
+                Return Localization.GetString("gamepad_button_dpad_right", "D-Pad Right")
+        End Select
+        Return ""
+    End Function
 End Class

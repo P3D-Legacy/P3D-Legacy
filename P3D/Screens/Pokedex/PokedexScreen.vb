@@ -682,7 +682,7 @@ Public Class PokedexScreen
             Next
         End If
         Dim OrderFilterTitleWidth As Integer = CInt(FontManager.MainFont.MeasureString(Localization.GetString("pokedex_order", "Order") & ":" & Environment.NewLine & Localization.GetString("pokedex_filter", "Filter") & ":").X)
-        Core.SpriteBatch.DrawString(FontManager.MainFont, Localization.GetString("pokedex_order", "Order") & ":" & Environment.NewLine & Localization.GetString("pokedex_filter", "Filter") & ":" & Environment.NewLine & Localization.GetString("pokedex_search_hint", "Press [<system.button(special)>] or Select to search."), New Vector2(685, 45), Color.White)
+        Core.SpriteBatch.DrawString(FontManager.MainFont, Localization.GetString("pokedex_order", "Order") & ":" & Environment.NewLine & Localization.GetString("pokedex_filter", "Filter") & ":" & Environment.NewLine & Localization.GetString("pokedex_search_hint", "Press [<system.button(special)>] or <system.gamepadbutton(back)> to search."), New Vector2(685, 45), Color.White)
         Core.SpriteBatch.DrawString(FontManager.MainFont, orderText & Environment.NewLine & filterText, New Vector2(685 + OrderFilterTitleWidth + CInt(FontManager.MainFont.MeasureString(" ").X), 45), Color.Black)
 
         If menu.Visible = True Then

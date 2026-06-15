@@ -14,6 +14,47 @@
                 Case "token"
                     Dim tokenName As String = Localization.GetString(argument)
                     Return tokenName
+                Case "gamepadbutton"
+                    Dim button As Buttons = Nothing
+                    Dim buttonName As String = argument
+                    Select Case buttonName.ToLower()
+                        Case "a"
+                            button = Buttons.A
+                        Case "b"
+                            button = Buttons.B
+                        Case "x"
+                            button = Buttons.X
+                        Case "y"
+                            button = Buttons.Y
+                        Case "start"
+                            button = Buttons.Start
+                        Case "back"
+                            button = Buttons.Back
+                        Case "leftshoulder"
+                            button = Buttons.LeftShoulder
+                        Case "rightshoulder"
+                            button = Buttons.RightShoulder
+                        Case "lefttrigger"
+                            button = Buttons.LeftTrigger
+                        Case "righttrigger"
+                            button = Buttons.RightTrigger
+                        Case "leftstick"
+                            button = Buttons.LeftStick
+                        Case "rightstick"
+                            button = Buttons.RightStick
+                        Case "dpadup"
+                            button = Buttons.DPadUp
+                        Case "dpaddown"
+                            button = Buttons.DPadDown
+                        Case "dpadleft"
+                            button = Buttons.DPadLeft
+                        Case "dpadright"
+                            button = Buttons.DPadRight
+                    End Select
+                    If button <> Nothing Then
+                        buttonName = Localization.GetString("gamepad_button_" & ControllerHandler.GetButtonName(button).ToLower, ControllerHandler.GetButtonName(button))
+                    End If
+                    Return buttonName
                 Case "button"
                     Dim key As Keys = Nothing
                     Dim buttonName As String = argument

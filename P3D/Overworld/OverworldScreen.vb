@@ -405,7 +405,7 @@ Public Class OverworldScreen
             Dim d As New Dictionary(Of Buttons, String)
 
             If NotificationPopupList.Count > 0 Then
-                d.Add(Buttons.A, Localization.GetString("game_interaction_notification", "Notification"))
+                d.Add(Buttons.Back, Localization.GetString("game_interaction_notification", "Notification"))
             Else
                 d.Add(Buttons.A, Localization.GetString("game_interaction_interact", "Interact"))
             End If

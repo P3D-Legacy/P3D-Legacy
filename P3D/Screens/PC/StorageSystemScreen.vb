@@ -959,11 +959,18 @@ Public Class StorageSystemScreen
                     Me.DrawPokemonIcon(area, wrapper.pokemon, True)
                 Next
             Next
-            Dim text = Localization.GetString("storage_screen_filter_Hint", "Press <system.button(special)> on the keyboard to filter.")
+            Dim text = Localization.GetString("storage_screen_filter_Hint", "Press [<system.button(special)>] or <system.gamepadbutton(back)> to filter.")
             Dim textPosition = New Vector2(44, 200 + 5 * 84)
             Dim shadowPosition = textPosition + New Vector2(2)
             Core.SpriteBatch.DrawString(FontManager.MainFont, text, shadowPosition, Color.Black)
             Core.SpriteBatch.DrawString(FontManager.MainFont, text, textPosition, Color.White)
+
+            Dim d As New Dictionary(Of Buttons, String)
+            d.Add(Input.Buttons.Back, Localization.GetString("game_interaction_filter", "Filter"))
+            d.Add(Input.Buttons.LeftTrigger, Localization.GetString("game_interaction_previousbox", "Previous Box"))
+            d.Add(Input.Buttons.RightTrigger, Localization.GetString("game_interaction_nextbox", "Next Box"))
+
+            DrawGamePadControls(d)
         End If
     End Sub
 

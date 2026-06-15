@@ -149,6 +149,21 @@ keyboard_key_PageDown,Page Down
 keyboard_key_LeftShift,Left Shift
 keyboard_key_RightShift,Right Shift
 ---
+GamePad Buttons:
+
+gamepad_button_start,Start Button
+gamepad_button_back,Back Button
+gamepad_button_shoulder_left,Left Shoulder
+gamepad_button_shoulder_right,Right Shoulder
+gamepad_button_trigger_left,Left Trigger
+gamepad_button_trigger_right,Right Trigger
+gamepad_button_stick_left,Left Stick
+gamepad_button_stick_right,Right Stick
+gamepad_button_dpad_up,D-Pad Up
+gamepad_button_dpad_down,D-Pad Down
+gamepad_button_dpad_left,D-Pad Left
+gamepad_button_dpad_right,D-Pad Right
+---
 FieldMoves:
 
 fieldmove_cut_1,Dieser Busch sieht aus, als ob~man ihn zerschneiden könnte!
@@ -225,9 +240,12 @@ game_interaction_edit,Edit
 game_interaction_clear,Clear
 game_interaction_delete,Delete
 game_interaction_learn,Learn
+game_interaction_filter,Filter
+game_interaction_previousbox,Previous Box
+game_interaction_nextbox,Next Box
 game_interaction_notification,Nachrichten
-game_notification_accept,Press [<system.button(special)>] to accept.
-game_notification_dismiss,Press [<system.button(special)>] to dismiss.
+game_notification_accept,Press [BUTTON] to accept.
+game_notification_dismiss,Press [BUTTON] to dismiss.
 ---
 PressStartScreen:
 start_screen_press,Drücke
@@ -491,7 +509,7 @@ storage_screen_pokemon_summary_SpDEF,SP. DEF
 storage_screen_pokemon_summary_SPEED,SPEED
 storage_screen_pokemon_summary_ITEM,ITEM
 
-storage_screen_filter_Hint,Press [<system.button(special)>] on the keyboard to filter.
+storage_screen_filter_Hint,Press [<system.button(special)>] or <system.gamepadbutton(back)> to filter.
 storage_screen_filter_Title,Configure the filters:
 storage_screen_filter_Results,Results:
 storage_screen_filter_Filters,Filters:
@@ -614,7 +632,7 @@ shop_screen_sell_confirmation,Do you want to sell~[AMOUNT] [ITEM]?
 shop_screen_buysell_PricePerItem,Per Item:
 shop_screen_buysell_PriceTotal,Total:
 shop_screen_buysell_InInventory,In Inventory:
-shop_screen_buysell_DescriptionHint,Press [<system.button(special)>] or Select to view the item's description.
+shop_screen_buysell_DescriptionHint,Press [<system.button(special)>] or <system.gamepadbutton(back)> to view the item's description.
 shop_screen_buysell_CurrentBalance,Current Balance:
 shop_screen_currency_BattlePoints,Battle Points
 shop_screen_currency_Coins,Coins
@@ -1108,7 +1126,7 @@ pokedex_filter_none,-
 pokedex_filter_name,Name
 pokedex_filter_type1,Typ 1
 pokedex_filter_type2,Typ 2
-pokedex_search_hint,Suche: [<system.button(special)>] oder SELECT
+pokedex_search_hint,Suche: [<system.button(special)>] oder [<system.gamepadbutton(back)>]
 pokedex_search_no_results,Keine Ergebnisse.
 pokedex_data_species,Spezies
 pokedex_data_type,Typ

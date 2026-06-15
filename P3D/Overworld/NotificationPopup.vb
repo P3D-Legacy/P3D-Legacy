@@ -209,6 +209,11 @@ Public Class NotificationPopup
             If Me._scriptFile <> "" OrElse _waitForInput = True Then
                 InteractText = "[" & Localization.GetString("game_notification_accept") & "]"
             End If
+            If Core.GameOptions.GamePadEnabled = False Then
+                InteractText = InteractText.Replace("[BUTTON]", "[" & Localization.GetString("keyboard_key_" & KeyBindings.GetKeyName(KeyBindings.SpecialKey), KeyBindings.GetKeyName(KeyBindings.SpecialKey)) & "]")
+            Else
+                InteractText = InteractText.Replace("[BUTTON]", ControllerHandler.GetButtonName(Buttons.Back))
+            End If
             Dim InteractOffset As Vector2 = New Vector2(CInt(BackGroundOffsetX + (_size.Width * (FrameSizeBack / 3 * _scale)) - FontManager.TextFont.MeasureString(InteractText).X * _scale), CInt(Me._positionY + ((CInt(_size.Height) * (FrameSizeBack / 3 * _scale)) + (5 * _scale))))
 
             Core.SpriteBatch.Draw(_background, New Rectangle(CInt(InteractOffset.X), CInt(InteractOffset.Y), CInt(FontManager.TextFont.MeasureString(InteractText).X * _scale), CInt(FontManager.TextFont.MeasureString(InteractText).Y * _scale)), New Rectangle(CInt(FrameSizeBack / 3), CInt(FrameSizeBack / 3), CInt(FrameSizeBack / 3), CInt(FrameSizeBack / 3)), Color.White)

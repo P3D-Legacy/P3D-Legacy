@@ -148,6 +148,21 @@ keyboard_key_PageDown,Page Down
 keyboard_key_LeftShift,Left Shift
 keyboard_key_RightShift,Right Shift
 ---
+GamePad Buttons:
+
+gamepad_button_start,Start Button
+gamepad_button_back,Back Button
+gamepad_button_shoulder_left,Left Shoulder
+gamepad_button_shoulder_right,Right Shoulder
+gamepad_button_trigger_left,Left Trigger
+gamepad_button_trigger_right,Right Trigger
+gamepad_button_stick_left,Left Stick
+gamepad_button_stick_right,Right Stick
+gamepad_button_dpad_up,D-Pad Up
+gamepad_button_dpad_down,D-Pad Down
+gamepad_button_dpad_left,D-Pad Left
+gamepad_button_dpad_right,D-Pad Right
+---
 FieldMoves:
 
 fieldmove_cut_1,Esta árvore parece que~pode ser cortada!
@@ -224,9 +239,12 @@ game_interaction_edit,Editar
 game_interaction_clear,Limpar
 game_interaction_delete,Deletar
 game_interaction_learn,Aprender
+game_interaction_filter,Filter
+game_interaction_previousbox,Previous Box
+game_interaction_nextbox,Next Box
 game_interaction_notification,Notificação
-game_notification_accept,Pressione [<system.button(special)>] para aceitar.
-game_notification_dismiss,Pressione [<system.button(special)>] para recusar.
+game_notification_accept,Pressione [BUTTON] para aceitar.
+game_notification_dismiss,Pressione [BUTTON] para recusar.
 ---
 PressStartScreen:
 start_screen_press,Aperte
@@ -614,7 +632,7 @@ shop_screen_sell_confirmation,Você quer vender~[AMOUNT] [ITEM]?
 shop_screen_buysell_PricePerItem,Por Item:
 shop_screen_buysell_PriceTotal,Total:
 shop_screen_buysell_InInventory,No Inventório:
-shop_screen_buysell_DescriptionHint,Pressione [<system.button(special)>] ou Select para ver a descrição do item.
+shop_screen_buysell_DescriptionHint,Pressione [<system.button(special)>] ou <system.gamepadbutton(back)> para ver a descrição do item.
 shop_screen_buysell_CurrentBalance,Saldo Atual:
 shop_screen_currency_BattlePoints,Pontos de Batalha
 shop_screen_currency_Coins,Moedas
@@ -1108,7 +1126,7 @@ pokedex_filter_none,Nenhum
 pokedex_filter_name,Nome
 pokedex_filter_type1,Tipo 1
 pokedex_filter_type2,Tipo 2
-pokedex_search_hint,Pressione [<system.button(special)>] ou Select para Pesquisar.
+pokedex_search_hint,Pressione [<system.button(special)>] ou <system.gamepadbutton(back)> para Pesquisar.
 pokedex_search_no_results,Sem Resultados.
 pokedex_data_species,ESPÉCIES
 pokedex_data_type,TIPO
