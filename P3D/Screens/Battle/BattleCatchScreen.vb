@@ -335,7 +335,7 @@ nextIndex:
                         Core.SetScreen(Me.PreScreen)
                         BattleSystem.Battle.Won = True
 
-                        If CBool(GameModeManager.GetGameRuleValue("GainExpAfterCatch", "0")) = True AndAlso BattleSystem.BattleScreen.CanReceiveEXP = True Then
+                        If CBool(GameModeManager.GetGameRuleValue("GainExpAfterCatch", "0")) = True AndAlso BattleSystem.BattleScreen.CanReceiveEXP = True AndAlso CType(Core.CurrentScreen, BattleSystem.BattleScreen).BattleMode <> BattleSystem.BattleScreen.BattleModes.Safari Then
                             CType(Core.CurrentScreen, BattleSystem.BattleScreen).BattleQuery.Clear()
                             If CType(Camera, BattleSystem.BattleCamera).TargetMode = True Then
                                 Camera.Position = New Vector3(BattleScreen.OppPokemonNPC.Position.X - 2.5F, BattleScreen.OppPokemonNPC.Position.Y + 0.25F + ModelOffsetY, BattleScreen.OppPokemonNPC.Position.Z + 0.5F) - BattleSystem.BattleScreen.BattleMapOffset
