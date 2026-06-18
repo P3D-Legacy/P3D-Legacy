@@ -734,10 +734,6 @@ Public Class OverworldCamera
             End If
         End If
 
-        If Screen.Level.Surfing = True Then
-            Screen.Level.OwnPlayer.Opacity = 1.0F
-        End If
-
         If _bumpSoundDelay > 0 Then
             _bumpSoundDelay -= 1
         End If
@@ -910,10 +906,13 @@ Public Class OverworldCamera
         If cannotWalk = False Then
             For Each Entity As Entity In Screen.Level.Entities
                 If Entity.EntityID.ToLower = "npc" Then
-                    If Entity.ViewBox.Contains(PlayerBoundingBox) = ContainmentType.Intersects Then
+                    If Entity.ViewBox.Contains(PlayerBoundingBox) = ContainmentType.Intersects OrElse Entity.ViewBox.Contains(PlayerBoundingBox) = ContainmentType.Contains Then
                         If Entity.Collision = True Then
                             If Entity.WalkAgainstFunction() = True Then
                                 cannotWalk = True
+                                If Screen.Level.Surfing = True Then
+                                    _didWalkAgainst = True
+                                End If
                             End If
                         Else
                             If Entity.WalkIntoFunction() = True Then
