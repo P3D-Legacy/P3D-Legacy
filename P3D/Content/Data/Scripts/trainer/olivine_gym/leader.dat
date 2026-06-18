@@ -10,7 +10,7 @@ version=2
 :if:<register.registered(mineralbadge_obtain)>=False
     @register.register(mineralbadge_obtain)
     @player.GetBadge(14)
-    @Text.show(Mineralbadge~raises Pokémon's~Defense.*...Um... Please take~this too...)
+    @Text.show(Mineral Badge~raises Pokémon's~Defense.*...Um... Please take~this too...)
     @item.give(213,1)
     @item.messagegive(213,1)
     @Text.show(...You could use~that TM to teach~Iron Tail.)
