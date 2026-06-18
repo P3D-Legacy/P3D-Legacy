@@ -11,7 +11,7 @@ version=2
 			@Text.Show(You'll need more~money than that.)
 		:else
 			@Text.Show(Which Pokémon~should I work on?)
-			@Pokemon.Select
+			@Pokemon.Select(1,1,0)
 			:if:<pokemon.selected>=-1
 				@text.show(Come again soon!)
 				:end

@@ -10,13 +10,13 @@ version=2
 		:if:<player.money><300
 			@Text.Show(You're a little~short on funds.)
 		:else
-@Text.Show(OK, which Pokémon~should I do?)
-			@Pokemon.Select
+			@Text.Show(OK, which Pokémon~should I do?)
+			@Pokemon.Select(1,1,0)
 			:if:<pokemon.selected>=-1
 				@text.show(Come again soon!)
 				:end
 			:endif
-@Text.Show(OK! I'll make it~look cool!)
+			@Text.Show(OK! I'll make it~look cool!)
 			@Sound.Play(Heal_Party)
 			@Level.Wait(70)
 			@text.show(There we go!~All done!)
