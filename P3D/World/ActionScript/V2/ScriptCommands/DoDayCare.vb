@@ -11,6 +11,8 @@
             Dim argument As String = ScriptComparer.GetSubClassArgumentPair(subClass).Argument
 
             Select Case command.ToLower()
+                Case "createegg"
+                    Daycare.ObtainEgg()
                 Case "takeegg"
                     Dim newData As String = ""
                     Dim dayCareID As Integer = int(argument)

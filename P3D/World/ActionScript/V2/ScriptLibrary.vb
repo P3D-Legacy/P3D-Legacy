@@ -719,6 +719,7 @@ Namespace ScriptVersion2
                                                                   New ScriptArgument("PartyIndex", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Removes a Pokémon from the player's party and fills the given Daycare's slot with that Pokémon."))
             r(New ScriptCommand("Daycare", "RemoveEgg", {New ScriptArgument("DaycareID", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Removes the egg from the given Daycare permanently."))
             r(New ScriptCommand("Daycare", "TakeEgg", {New ScriptArgument("DaycareID", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Removes the Egg from the Daycare and adds it to the player's party."))
+            r(New ScriptCommand("Daycare", "CreateEgg", "Causes any Daycare with Pokémon that can create an egg together to create an egg and trigger the phone call."))
             r(New ScriptCommand("Daycare", "TakePokémon", {New ScriptArgument("DaycareID", ScriptArgument.ArgumentTypes.Int),
                                                                  New ScriptArgument("DaycareSlot", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Takes the given Pokémon from the given Daycare to the player's party."))
             r(New ScriptCommand("Daycare", "Call", {New ScriptArgument("DaycareID", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Initializes a call with the Daycare. This checks if the Daycare is registered in the Pokégear."))
