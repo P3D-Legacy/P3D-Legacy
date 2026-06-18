@@ -420,13 +420,8 @@
                 p.IsShiny = False
             End If
 
-            If p.Item IsNot Nothing Then
-                p.Item = Nothing
-            End If
-
-            If p.HP <> p.MaxHP Then
-                p.HP = p.MaxHP
-            End If
+            p.Item = Nothing
+            p.HP = p.MaxHP
 
             Return p
         End If

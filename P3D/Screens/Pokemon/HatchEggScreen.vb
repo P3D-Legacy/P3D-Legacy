@@ -24,6 +24,10 @@
 
         Me.cPokemon = Me.Pokemons(0)
         cPokemon.EggSteps = 0
+
+        cPokemon.Item = Nothing
+        cPokemon.HP = cPokemon.MaxHP
+
         Core.Player.Pokemons.Add(cPokemon)
 
         Me.CanRename = CanRename
