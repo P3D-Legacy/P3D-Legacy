@@ -711,7 +711,7 @@ Grass:
 {"EntityField"{ENT[{"SeasonTexture"{str[Grass]}}{"Size"{intArr[6,1]}}{"EntityID"{str[Step]}}{"Position"{sngArr[14,4,43]}}{"TexturePath"{str[Routes]}}{"Textures"{recArr[[96,16,16,16][144,16,16,16]]}}{"TextureIndex"{intArr[1,1,1,1,0,0]}}{"Collision"{bool[1]}}{"ModelID"{int[7]}}{"Action"{int[0]}}{"AdditionalValue"{str[]}}{"Rotation"{int[0]}}]}}
 
 Sand:
-{"EntityField"{ENT[{"SeasonTexture"{str[Grass]}}{"Size"{intArr[1,2]}}{"EntityID"{str[Step]}}{"Position"{sngArr[18,2,60]}}{"TexturePath"{str[Routes]}}{"Textures"{recArr[[112,16,16,16][144,16,16,16]]}}{"TextureIndex"{intArr[1,1,1,1,0,0]}}{"Collision"{bool[1]}}{"ModelID"{int[7]}}{"Action"{int[0]}}{"AdditionalValue"{str[]}}{"Rotation"{int[3]}}]}}
+{"EntityField"{ENT[{"SeasonTexture"{str[Grass]}}{"Size"{intArr[1,2]}}{"EntityID"{str[Step]}}{"Position"{sngArr[18,2,59.999]}}{"TexturePath"{str[Routes]}}{"Textures"{recArr[[112,16,16,16][144,16,16,16]]}}{"TextureIndex"{intArr[1,1,1,1,0,0]}}{"Collision"{bool[1]}}{"ModelID"{int[7]}}{"Action"{int[0]}}{"AdditionalValue"{str[]}}{"Rotation"{int[3]}}]}}
 
 Bridges:
 {"Floor"{ENT[{"SeasonTexture"{str[Grass]}}{"Size"{intArr[3,1]}}{"Position"{intArr[15,2,47]}}{"Visible"{bool[0]}}{"TexturePath"{str[BarkTown]}}{"Texture"{rec[112,0,16,16]}}]}}

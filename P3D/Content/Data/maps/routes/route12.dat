@@ -44,6 +44,7 @@ BridgeFloors:
 {"Floor"{ENT[{"Size"{intArr[2,2]}}{"Position"{intArr[12,0,8]}}{"TexturePath"{str[Kanto0]}}{"Texture"{rec[16,48,16,16]}}]}}
 {"Floor"{ENT[{"Size"{intArr[2,2]}}{"Position"{intArr[10,0,26]}}{"TexturePath"{str[Kanto0]}}{"Texture"{rec[16,48,16,16]}}]}}
 {"Floor"{ENT[{"Size"{intArr[10,4]}}{"Position"{intArr[6,0,32]}}{"TexturePath"{str[Kanto0]}}{"Texture"{rec[48,0,16,16]}}]}}
+{"Floor"{ENT[{"Size"{intArr[4,1]}}{"Position"{intArr[10,0,32]}}{"TexturePath"{str[Kanto0]}}{"hasSnow"{bool[0]}}{"Texture"{rec[48,0,16,16]}}]}}
 
 Warps:
 	Floor:

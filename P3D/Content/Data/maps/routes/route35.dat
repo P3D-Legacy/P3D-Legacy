@@ -8,6 +8,7 @@ Grass:
 {"Floor"{ENT[{"SeasonTexture"{str[Grass]}}{"Size"{intArr[4,8]}}{"Position"{intArr[0,0,24]}}{"TexturePath"{str[Routes]}}{"Texture"{rec[96,16,16,16]}}]}}
 {"Floor"{ENT[{"SeasonTexture"{str[Grass]}}{"Size"{intArr[2,36]}}{"Position"{intArr[-2,0,0]}}{"TexturePath"{str[Routes]}}{"Texture"{rec[96,16,16,16]}}]}}
 {"Floor"{ENT[{"SeasonTexture"{str[Grass]}}{"Size"{intArr[10,6]}}{"Position"{intArr[20,0,30]}}{"TexturePath"{str[Routes]}}{"Texture"{rec[96,16,16,16]}}]}}
+{"Floor"{ENT[{"SeasonTexture"{str[Grass]}}{"Size"{intArr[1,1]}}{"Position"{intArr[2,0,4]}}{"TexturePath"{str[Routes]}}{"hasSnow"{bool[0]}}{"Texture"{rec[96,16,16,16]}}]}}
 
 Sand:
 {"Floor"{ENT[{"Size"{intArr[4,4]}}{"Position"{intArr[2,0,6]}}{"TexturePath"{str[Routes]}}{"Texture"{rec[112,16,16,16]}}]}}

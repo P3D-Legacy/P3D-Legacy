@@ -6,7 +6,7 @@ Grassfloor:
 {"Floor"{ENT[{"SeasonTexture"{str[Grass]}}{"Size"{intArr[14,4]}}{"Position"{intArr[0,0,6]}}{"TexturePath"{str[Cherrygrove]}}{"Texture"{rec[0,16,16,16]}}]}}
 {"Floor"{ENT[{"SeasonTexture"{str[Grass]}}{"Size"{intArr[6,10]}}{"Position"{intArr[8,0,10]}}{"TexturePath"{str[Cherrygrove]}}{"Texture"{rec[0,16,16,16]}}]}}
 {"Floor"{ENT[{"SeasonTexture"{str[Grass]}}{"Size"{intArr[8,2]}}{"Position"{intArr[14,0,18]}}{"TexturePath"{str[Cherrygrove]}}{"Texture"{rec[0,16,16,16]}}]}}
-{"Floor"{ENT[{"SeasonTexture"{str[Grass]}}{"Size"{intArr[6,2]}}{"Position"{intArr[16,0,16]}}{"TexturePath"{str[Cherrygrove]}}{"Texture"{rec[0,16,16,16]}}]}}
+{"Floor"{ENT[{"SeasonTexture"{str[Grass]}}{"Size"{intArr[4,2]}}{"Position"{intArr[18,0,16]}}{"TexturePath"{str[Cherrygrove]}}{"Texture"{rec[0,16,16,16]}}]}}
 {"Floor"{ENT[{"SeasonTexture"{str[Grass]}}{"Size"{intArr[36,2]}}{"Position"{intArr[10,0,0]}}{"TexturePath"{str[Cherrygrove]}}{"Texture"{rec[0,16,16,16]}}]}}
 {"Floor"{ENT[{"SeasonTexture"{str[Grass]}}{"Size"{intArr[4,14]}}{"Position"{intArr[18,0,2]}}{"TexturePath"{str[Cherrygrove]}}{"Texture"{rec[0,16,16,16]}}]}}
 {"Floor"{ENT[{"SeasonTexture"{str[Grass]}}{"Size"{intArr[4,1]}}{"Position"{intArr[22,0,2]}}{"TexturePath"{str[Cherrygrove]}}{"Texture"{rec[0,16,16,16]}}]}}

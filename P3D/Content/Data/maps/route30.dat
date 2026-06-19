@@ -21,6 +21,7 @@ Sand:
 {"Floor"{ENT[{"Size"{intArr[2,2]}}{"Position"{intArr[12,0,44]}}{"TexturePath"{str[Routes]}}{"Texture"{rec[112,16,16,16]}}]}}
 {"Floor"{ENT[{"Size"{intArr[2,10]}}{"Position"{intArr[8,0,46]}}{"TexturePath"{str[Routes]}}{"Texture"{rec[112,16,16,16]}}]}}
 {"Floor"{ENT[{"Size"{intArr[4,2]}}{"Position"{intArr[10,0,46]}}{"TexturePath"{str[Routes]}}{"Texture"{rec[112,16,16,16]}}]}}
+{"Floor"{ENT[{"Size"{intArr[1,1]}}{"Position"{intArr[8,0,41]}}{"hasSnow"{bool[0]}}{"TexturePath"{str[Routes]}}{"Texture"{rec[112,16,16,16]}}]}}
 
 Flowers:
 {"EntityField"{ENT[{"SeasonTexture"{str[Flowers]}}{"Size"{intArr[2,2]}}{"EntityID"{str[WallBill]}}{"Position"{sngArr[20,0,8]}}{"TexturePath"{str[Routes]}}{"Textures"{recArr[[0,48,16,16]]}}{"TextureIndex"{intArr[0,0]}}{"Collision"{bool[0]}}{"ModelID"{int[3]}}{"Action"{int[0]}}{"AdditionalValue"{str[]}}{"Rotation"{int[0]}}]}}

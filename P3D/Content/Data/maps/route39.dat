@@ -19,6 +19,7 @@ Grass:
 {"Floor"{ENT[{"SeasonTexture"{str[Grass]}}{"Size"{intArr[6,4]}}{"Position"{intArr[14,0,32]}}{"TexturePath"{str[Routes]}}{"Texture"{rec[96,16,16,16]}}]}}
 {"Floor"{ENT[{"SeasonTexture"{str[Grass]}}{"Size"{intArr[4,36]}}{"Position"{intArr[-4,0,0]}}{"TexturePath"{str[Routes]}}{"Texture"{rec[96,16,16,16]}}]}}
 {"Floor"{ENT[{"SeasonTexture"{str[Grass]}}{"Size"{intArr[22,4]}}{"Position"{intArr[-2,0,-4]}}{"TexturePath"{str[Routes]}}{"Texture"{rec[96,16,16,16]}}]}}
+{"Floor"{ENT[{"SeasonTexture"{str[Grass]}}{"Size"{intArr[1,2]}}{"Position"{intArr[7,0,2]}}{"TexturePath"{str[Routes]}}{"hasSnow"{bool[0]}}{"Texture"{rec[96,16,16,16]}}]}}
 
 LoamySoil:
 {"Floor"{ENT[{"SeasonTexture"{str[Grass]}}{"Size"{intArr[1,1]}}{"Position"{intArr[8,0,2]}}{"TexturePath"{str[Routes]}}{"Texture"{rec[160,48,16,16]}}{"hasSnow"{bool[0]}}]}}

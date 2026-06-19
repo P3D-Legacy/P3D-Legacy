@@ -2,8 +2,10 @@
 {"Actions"{LEV[{"CanTeleport"{bool[1]}}{"CanDig"{bool[0]}}{"CanFly"{bool[1]}}{"EnvironmentType"{int[0]}}{"Weather"{int[0]}}{"Lighting"{int[0]}}]}}
 
 Floor:
-{"Floor"{ENT[{"SeasonTexture"{str[Grass]}}{"Size"{intArr[15,13]}}{"Position"{intArr[3,1,-1]}}{"TexturePath"{str[Cherrygrove]}}{"Texture"{rec[0,16,16,16]}}]}}
-{"Floor"{ENT[{"SeasonTexture"{str[Grass]}}{"Size"{intArr[3,2]}}{"Position"{intArr[7,1,12]}}{"TexturePath"{str[Cherrygrove]}}{"Texture"{rec[0,16,16,16]}}]}}
+{"Floor"{ENT[{"SeasonTexture"{str[Grass]}}{"Size"{intArr[4,2]}}{"Position"{intArr[3,1,10]}}{"TexturePath"{str[Cherrygrove]}}{"Texture"{rec[0,16,16,16]}}]}}
+{"Floor"{ENT[{"SeasonTexture"{str[Grass]}}{"Size"{intArr[8,9]}}{"Position"{intArr[10,1,3]}}{"TexturePath"{str[Cherrygrove]}}{"Texture"{rec[0,16,16,16]}}]}}
+{"Floor"{ENT[{"SeasonTexture"{str[Grass]}}{"Size"{intArr[3,15]}}{"Position"{intArr[7,1,-1]}}{"TexturePath"{str[Cherrygrove]}}{"Texture"{rec[0,16,16,16]}}]}}
+{"Floor"{ENT[{"SeasonTexture"{str[Grass]}}{"Size"{intArr[1,1]}}{"Position"{intArr[4,1,9]}}{"TexturePath"{str[Cherrygrove]}}{"Texture"{rec[0,16,16,16]}}]}}
 
 Mountain:
 {"Floor"{ENT[{"Size"{intArr[9,2]}}{"Position"{intArr[15,2,0]}}{"TexturePath"{str[Routes]}}{"Texture"{rec[64,16,16,16]}}]}}

@@ -10,11 +10,13 @@ Floors:
 {"Floor"{ENT[{"SeasonTexture"{str[Grass]}}{"TexturePath"{str[cherrygrove]}}{"EntityID"{str[Floor]}}{"Texture"{rec[0,16,16,16]}}{"Size"{intArr[8,2]}}{"Position"{intArr[32,0,14]}}]}}
 {"Floor"{ENT[{"TexturePath"{str[olivine]}}{"EntityID"{str[Floor]}}{"Texture"{rec[0,16,16,16]}}{"Size"{intArr[6,6]}}{"Position"{intArr[26,0,24]}}]}}
 {"Floor"{ENT[{"TexturePath"{str[olivine]}}{"EntityID"{str[Floor]}}{"Texture"{rec[0,16,16,16]}}{"Size"{intArr[8,6]}}{"Position"{intArr[24,0,8]}}]}}
-{"Floor"{ENT[{"TexturePath"{str[olivine]}}{"EntityID"{str[Floor]}}{"Texture"{rec[0,16,16,16]}}{"Size"{intArr[4,8]}}{"Position"{intArr[18,0,24]}}]}}
+{"Floor"{ENT[{"TexturePath"{str[olivine]}}{"EntityID"{str[Floor]}}{"Texture"{rec[0,16,16,16]}}{"Size"{intArr[4,4]}}{"Position"{intArr[18,0,24]}}]}}
+{"Floor"{ENT[{"TexturePath"{str[olivine]}}{"EntityID"{str[Floor]}}{"Texture"{rec[0,16,16,16]}}{"Size"{intArr[2,1]}}{"Position"{intArr[19,0,28]}}]}}
 {"Floor"{ENT[{"SeasonTexture"{str[Grass]}}{"TexturePath"{str[cherrygrove]}}{"EntityID"{str[Floor]}}{"Texture"{rec[0,16,16,16]}}{"Size"{intArr[12,2]}}{"Position"{intArr[6,0,10]}}]}}
 {"Floor"{ENT[{"SeasonTexture"{str[Grass]}}{"TexturePath"{str[cherrygrove]}}{"EntityID"{str[Floor]}}{"Texture"{rec[0,16,16,16]}}{"Size"{intArr[4,4]}}{"Position"{intArr[32,0,16]}}]}}
 {"Floor"{ENT[{"SeasonTexture"{str[Grass]}}{"TexturePath"{str[cherrygrove]}}{"EntityID"{str[Floor]}}{"Texture"{rec[0,16,16,16]}}{"Size"{intArr[2,2]}}{"Position"{intArr[6,0,12]}}]}}
 {"Floor"{ENT[{"TexturePath"{str[olivine]}}{"EntityID"{str[Floor]}}{"Texture"{rec[0,16,16,16]}}{"Size"{intArr[10,2]}}{"Position"{intArr[0,0,24]}}]}}
+{"Floor"{ENT[{"TexturePath"{str[olivine]}}{"EntityID"{str[Floor]}}{"Texture"{rec[0,16,16,16]}}{"Size"{intArr[1,4]}}{"hasSnow"{bool[0]}}{"Position"{intArr[31,0,24]}}]}}
 
 Trees:
 {"EntityField"{ENT[{"SeasonTexture"{str[PlantColoring]}}{"EntityID"{str[WallBill]}}{"Scale"{sngArr[1,2,1]}}{"TexturePath"{str[Routes]}}{"Textures"{recArr[[112,64,16,32]]}}{"TextureIndex"{intArr[0,0]}}{"Collision"{bool[1]}}{"ModelID"{int[3]}}{"Action"{int[0]}}{"AdditionalValue"{str[]}}{"Rotation"{int[0]}}{"Position"{sngArr[0,0.3,0]}}{"Size"{intArr[4,20]}}]}}
