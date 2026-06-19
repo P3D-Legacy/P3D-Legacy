@@ -863,6 +863,15 @@ Public Class OverworldCamera
                 Screen.Level.OwnPlayer.Opacity = 1.0F
 
                 Dim walkSteps As Integer = GetIceSteps(GetForwardMovedPosition())
+                If IsSliding = True AndAlso walkSteps > 1 Then
+                    For s = 2 To walkSteps
+                        If CheckCollision(Position + (GetMoveDirection() * s)) = True Then
+                            walkSteps = s - 1
+                            Exit For
+                        End If
+                    Next
+
+                End If
                 Screen.Level.OwnPlayer.DoAnimation = (walkSteps <= 1)
 
                 Move(walkSteps)
