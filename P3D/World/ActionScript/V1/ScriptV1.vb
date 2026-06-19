@@ -1547,7 +1547,7 @@
 #End Region
 
     Private Sub ViewPokemonImage()
-        Dim PokemonID As Integer = CInt(Me.Value.GetSplit(0))
+        Dim PokemonID As String = Me.Value.GetSplit(0)
         Dim Shiny As Boolean = CBool(Me.Value.GetSplit(1))
         Dim Front As Boolean = CBool(Me.Value.GetSplit(2))
 
