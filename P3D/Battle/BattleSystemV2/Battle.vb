@@ -8090,7 +8090,7 @@ Namespace BattleSystem
                     BattleScreen.AddToQuery(InsertIndex, New ToggleEntityQueryObject(True, ToggleEntityQueryObject.BattleEntities.OwnPokemon, 2, -1, -1, -1, -1))
                 End If
 
-                If Core.Player.CountFightablePokemon > 0 Then
+                If BattleScreen.BattleMode <> BattleScreen.BattleModes.BugContest AndAlso Core.Player.CountFightablePokemon > 0 Then
                     If BattleScreen.OwnFaint Then
                         'Next pokemon sent by the player is decided via menu.
                     Else

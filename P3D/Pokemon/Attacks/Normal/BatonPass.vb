@@ -59,13 +59,14 @@
         Public Overrides Sub MoveHits(own As Boolean, BattleScreen As BattleScreen)
             If own = True Then
                 If BattleScreen.OwnPokemon.Status <> Pokemon.StatusProblems.Fainted Then
-                    If Core.Player.CountFightablePokemon > 1 AndAlso BattleScreen.FieldEffects.OwnBatonPassIndex <> BattleScreen.OwnPokemonIndex AndAlso BattleScreen.FieldEffects.OwnBatonPassIndex <> -1 Then
+                    If Core.Player.CountFightablePokemon > 1 AndAlso BattleScreen.FieldEffects.OwnBatonPassIndex <> BattleScreen.OwnPokemonIndex AndAlso BattleScreen.FieldEffects.OwnBatonPassIndex <> -1 AndAlso BattleScreen.BattleMode <> BattleScreen.BattleModes.BugContest Then
                         BattleScreen.FieldEffects.OwnUsedBatonPass = True
 
                         BattleScreen.Battle.SwitchOutOwn(BattleScreen, BattleScreen.FieldEffects.OwnBatonPassIndex, -1)
                         BattleScreen.FieldEffects.OwnBatonPassIndex = -1
                     Else
                         BattleScreen.BattleQuery.Add(New TextQueryObject(Me.Name & " failed!"))
+                        BattleScreen.FieldEffects.OwnBatonPassIndex = -1
                     End If
                 Else
                     BattleScreen.FieldEffects.OwnBatonPassIndex = -1
@@ -82,6 +83,7 @@
                                 BattleScreen.FieldEffects.OppBatonPassIndex = -1
                             Else
                                 BattleScreen.BattleQuery.Add(New TextQueryObject(Me.Name & " failed!"))
+                                BattleScreen.FieldEffects.OppBatonPassIndex = -1
                             End If
                         Else
                             BattleScreen.FieldEffects.OppBatonPassIndex = -1
@@ -93,10 +95,12 @@
                             BattleScreen.Battle.SwitchOutOpp(BattleScreen, GetPokemonIndex(BattleScreen, own))
                         Else
                             BattleScreen.BattleQuery.Add(New TextQueryObject(Me.Name & " failed!"))
+                            BattleScreen.FieldEffects.OppBatonPassIndex = -1
                         End If
                     End If
                 Else
                     BattleScreen.BattleQuery.Add(New TextQueryObject(Me.Name & " failed!"))
+                    BattleScreen.FieldEffects.OppBatonPassIndex = -1
                 End If
             End If
         End Sub

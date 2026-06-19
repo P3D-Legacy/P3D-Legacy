@@ -56,7 +56,7 @@
         Public Overrides Sub MoveSwitch(own As Boolean, BattleScreen As BattleScreen)
             If own = True Then
                 If BattleScreen.OwnPokemon.Status <> Pokemon.StatusProblems.Fainted Then
-                    If Core.Player.CountFightablePokemon > 1 AndAlso BattleScreen.FieldEffects.OwnSwapIndex <> BattleScreen.OwnPokemonIndex AndAlso BattleScreen.FieldEffects.OwnSwapIndex <> -1 Then
+                    If Core.Player.CountFightablePokemon > 1 AndAlso BattleScreen.FieldEffects.OwnSwapIndex <> BattleScreen.OwnPokemonIndex AndAlso BattleScreen.FieldEffects.OwnSwapIndex <> -1 AndAlso BattleScreen.BattleMode <> BattleScreen.BattleModes.BugContest Then
                         BattleScreen.Battle.SwitchOutOwn(BattleScreen, BattleScreen.FieldEffects.OwnSwapIndex, -1)
                         BattleScreen.FieldEffects.OwnSwapIndex = -1
                     Else

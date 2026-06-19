@@ -694,8 +694,7 @@ Namespace BattleSystem
                         sportBallText = Localization.GetString("battle_NoSportBalls", "No Sport Balls.")
                     End If
                     _mainMenuItemList.Add(New MainMenuItem(4, sportBallText, 1, AddressOf MainMenuUseSportBall))
-                    _mainMenuItemList.Add(New MainMenuItem(1, "Pokémon", 2, AddressOf MainMenuOpenPokemon))
-                    _mainMenuItemList.Add(New MainMenuItem(3, Localization.GetString("battle_action_Run", "Run"), 3, AddressOf MainMenuRun))
+                    _mainMenuItemList.Add(New MainMenuItem(3, Localization.GetString("battle_action_Run", "Run"), 2, AddressOf MainMenuRun))
 
                 Case BattleSystem.BattleScreen.BattleModes.Standard
                     If BattleScreen.OwnFaint Then
