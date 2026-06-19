@@ -108,6 +108,7 @@
                 Next
 
                 p.Ability = Ability.GetAbilityByID(op.Ability.ID)
+                p.AbilitySlot = op.Ability.ID.ToString
 
                 p.IsTransformed = True
 
