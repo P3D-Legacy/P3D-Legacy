@@ -872,6 +872,7 @@ Public Class Level
         OverworldPokemon = New OverworldPokemon(Screen.Camera.Position.X, Screen.Camera.Position.Y, Screen.Camera.Position.Z + 1)
         OverworldPokemon.ChangeRotation()
         Entities.AddRange({OwnPlayer, OverworldPokemon})
+        Lighting.UpdateLighting(Screen.Effect)
         Screen.Camera.Update()
 
         Me.Surfing = Core.Player.startSurfing
@@ -1163,6 +1164,7 @@ Public Class Level
             OverworldPokemon.Visible = False
             OverworldPokemon.warped = True
             Entities.AddRange({OwnPlayer, OverworldPokemon})
+            Lighting.UpdateLighting(Screen.Effect)
 
             ' Set Ride skin, if needed:
             If Riding = True And CanRide() = False Then
