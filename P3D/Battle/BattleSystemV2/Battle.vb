@@ -6490,86 +6490,93 @@ Namespace BattleSystem
                             End If
                         End If
                     Else
-                        If .OwnPokemon.Ability.Name.ToLower() <> "magic guard" Then
-                            If .OwnPokemon.Status = Pokemon.StatusProblems.Poison Then 'Own Poison
-                                ChangeCameraAngle(1, True, BattleScreen)
-                                'Poison animation
-                                If Core.Player.ShowBattleAnimations <> 0 AndAlso BattleScreen.IsPVPBattle = False Then
-                                    Dim PoisonAnimation As AnimationQueryObject = New AnimationQueryObject(BattleScreen.OwnPokemonNPC, True)
 
-                                    PoisonAnimation.AnimationPlaySound("Battle\Effects\Poisoned", 0, 0)
-                                    Dim BubbleEntity1 As Entity = PoisonAnimation.SpawnEntity(New Vector3(0, -0.25, 0), TextureManager.GetTexture("Textures\Battle\StatusEffect\Poisoned", New Rectangle(0, 0, 32, 32), ""), New Vector3(0.5F), 1, 0, 1)
+                        If BattleScreen.BattleMode <> BattleScreen.BattleModes.Safari Then
 
-                                    PoisonAnimation.AnimationChangeTexture(BubbleEntity1, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Poisoned", New Rectangle(0, 32, 32, 32), ""), 1, 1)
-                                    PoisonAnimation.AnimationChangeTexture(BubbleEntity1, True, TextureManager.GetTexture("Textures\Battle\StatusEffect\Poisoned", New Rectangle(0, 64, 32, 32), ""), 2, 1)
+                            If .OwnPokemon.Ability.Name.ToLower() <> "magic guard" Then
+                                If .OwnPokemon.Status = Pokemon.StatusProblems.Poison Then 'Own Poison
+                                    ChangeCameraAngle(1, True, BattleScreen)
+                                    'Poison animation
+                                    If Core.Player.ShowBattleAnimations <> 0 AndAlso BattleScreen.IsPVPBattle = False Then
+                                        Dim PoisonAnimation As AnimationQueryObject = New AnimationQueryObject(BattleScreen.OwnPokemonNPC, True)
 
-                                    BattleScreen.BattleQuery.Add(PoisonAnimation)
-                                Else
-                                    BattleScreen.BattleQuery.Add(New PlaySoundQueryObject("Battle\Effects\Poisoned", False))
+                                        PoisonAnimation.AnimationPlaySound("Battle\Effects\Poisoned", 0, 0)
+                                        Dim BubbleEntity1 As Entity = PoisonAnimation.SpawnEntity(New Vector3(0, -0.25, 0), TextureManager.GetTexture("Textures\Battle\StatusEffect\Poisoned", New Rectangle(0, 0, 32, 32), ""), New Vector3(0.5F), 1, 0, 1)
+
+                                        PoisonAnimation.AnimationChangeTexture(BubbleEntity1, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Poisoned", New Rectangle(0, 32, 32, 32), ""), 1, 1)
+                                        PoisonAnimation.AnimationChangeTexture(BubbleEntity1, True, TextureManager.GetTexture("Textures\Battle\StatusEffect\Poisoned", New Rectangle(0, 64, 32, 32), ""), 2, 1)
+
+                                        BattleScreen.BattleQuery.Add(PoisonAnimation)
+                                    Else
+                                        BattleScreen.BattleQuery.Add(New PlaySoundQueryObject("Battle\Effects\Poisoned", False))
+                                    End If
+                                    'Actual damage
+                                    ReduceHP(CInt(.OwnPokemon.MaxHP / 8), True, True, BattleScreen, "The poison hurt " & .OwnPokemon.GetDisplayName() & ".", "poison")
                                 End If
-                                'Actual damage
-                                ReduceHP(CInt(.OwnPokemon.MaxHP / 8), True, True, BattleScreen, "The poison hurt " & .OwnPokemon.GetDisplayName() & ".", "poison")
-                            End If
 
-                            If .OwnPokemon.Status = Pokemon.StatusProblems.BadPoison Then 'Own Toxic
-                                .FieldEffects.OwnPoisonCounter += 1
-                                Dim multiplier As Double = (.FieldEffects.OwnPoisonCounter / 16)
+                                If .OwnPokemon.Status = Pokemon.StatusProblems.BadPoison Then 'Own Toxic
+                                    .FieldEffects.OwnPoisonCounter += 1
+                                    Dim multiplier As Double = (.FieldEffects.OwnPoisonCounter / 16)
 
-                                ChangeCameraAngle(1, True, BattleScreen)
-                                'Poison animation
-                                If Core.Player.ShowBattleAnimations <> 0 AndAlso BattleScreen.IsPVPBattle = False Then
-                                    Dim PoisonAnimation As AnimationQueryObject = New AnimationQueryObject(BattleScreen.OwnPokemonNPC, True)
+                                    ChangeCameraAngle(1, True, BattleScreen)
+                                    'Poison animation
+                                    If Core.Player.ShowBattleAnimations <> 0 AndAlso BattleScreen.IsPVPBattle = False Then
+                                        Dim PoisonAnimation As AnimationQueryObject = New AnimationQueryObject(BattleScreen.OwnPokemonNPC, True)
 
-                                    PoisonAnimation.AnimationPlaySound("Battle\Effects\Poisoned", 0, 0)
-                                    Dim BubbleEntity1 As Entity = PoisonAnimation.SpawnEntity(New Vector3(-0.25, -0.25, -0.25), TextureManager.GetTexture("Textures\Battle\StatusEffect\Poisoned", New Rectangle(0, 0, 32, 32), ""), New Vector3(0.5F), 1, 0, 1)
+                                        PoisonAnimation.AnimationPlaySound("Battle\Effects\Poisoned", 0, 0)
+                                        Dim BubbleEntity1 As Entity = PoisonAnimation.SpawnEntity(New Vector3(-0.25, -0.25, -0.25), TextureManager.GetTexture("Textures\Battle\StatusEffect\Poisoned", New Rectangle(0, 0, 32, 32), ""), New Vector3(0.5F), 1, 0, 1)
 
-                                    PoisonAnimation.AnimationChangeTexture(BubbleEntity1, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Poisoned", New Rectangle(0, 32, 32, 32), ""), 1, 1)
-                                    Dim BubbleEntity2 As Entity = PoisonAnimation.SpawnEntity(New Vector3(0, -0.25, 0), TextureManager.GetTexture("Textures\Battle\StatusEffect\Poisoned", New Rectangle(0, 0, 32, 32), ""), New Vector3(0.5F), 1, 1, 1)
+                                        PoisonAnimation.AnimationChangeTexture(BubbleEntity1, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Poisoned", New Rectangle(0, 32, 32, 32), ""), 1, 1)
+                                        Dim BubbleEntity2 As Entity = PoisonAnimation.SpawnEntity(New Vector3(0, -0.25, 0), TextureManager.GetTexture("Textures\Battle\StatusEffect\Poisoned", New Rectangle(0, 0, 32, 32), ""), New Vector3(0.5F), 1, 1, 1)
 
-                                    PoisonAnimation.AnimationChangeTexture(BubbleEntity1, True, TextureManager.GetTexture("Textures\Battle\StatusEffect\Poisoned", New Rectangle(0, 64, 32, 32), ""), 2, 1)
-                                    PoisonAnimation.AnimationChangeTexture(BubbleEntity2, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Poisoned", New Rectangle(0, 32, 32, 32), ""), 2, 1)
-                                    Dim BubbleEntity3 As Entity = PoisonAnimation.SpawnEntity(New Vector3(0.25, -0.25, 0.25), TextureManager.GetTexture("Textures\Battle\StatusEffect\Poisoned", New Rectangle(0, 0, 32, 32), ""), New Vector3(0.5F), 1, 2, 1)
+                                        PoisonAnimation.AnimationChangeTexture(BubbleEntity1, True, TextureManager.GetTexture("Textures\Battle\StatusEffect\Poisoned", New Rectangle(0, 64, 32, 32), ""), 2, 1)
+                                        PoisonAnimation.AnimationChangeTexture(BubbleEntity2, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Poisoned", New Rectangle(0, 32, 32, 32), ""), 2, 1)
+                                        Dim BubbleEntity3 As Entity = PoisonAnimation.SpawnEntity(New Vector3(0.25, -0.25, 0.25), TextureManager.GetTexture("Textures\Battle\StatusEffect\Poisoned", New Rectangle(0, 0, 32, 32), ""), New Vector3(0.5F), 1, 2, 1)
 
-                                    PoisonAnimation.AnimationChangeTexture(BubbleEntity2, True, TextureManager.GetTexture("Textures\Battle\StatusEffect\Poisoned", New Rectangle(0, 64, 32, 32), ""), 3, 1)
-                                    PoisonAnimation.AnimationChangeTexture(BubbleEntity3, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Poisoned", New Rectangle(0, 32, 32, 32), ""), 3, 1)
+                                        PoisonAnimation.AnimationChangeTexture(BubbleEntity2, True, TextureManager.GetTexture("Textures\Battle\StatusEffect\Poisoned", New Rectangle(0, 64, 32, 32), ""), 3, 1)
+                                        PoisonAnimation.AnimationChangeTexture(BubbleEntity3, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Poisoned", New Rectangle(0, 32, 32, 32), ""), 3, 1)
 
-                                    PoisonAnimation.AnimationChangeTexture(BubbleEntity3, True, TextureManager.GetTexture("Textures\Battle\StatusEffect\Poisoned", New Rectangle(0, 64, 32, 32), ""), 4, 1)
+                                        PoisonAnimation.AnimationChangeTexture(BubbleEntity3, True, TextureManager.GetTexture("Textures\Battle\StatusEffect\Poisoned", New Rectangle(0, 64, 32, 32), ""), 4, 1)
 
-                                    BattleScreen.BattleQuery.Add(PoisonAnimation)
-                                Else
-                                    BattleScreen.BattleQuery.Add(New PlaySoundQueryObject("Battle\Effects\Poisoned", False))
+                                        BattleScreen.BattleQuery.Add(PoisonAnimation)
+                                    Else
+                                        BattleScreen.BattleQuery.Add(New PlaySoundQueryObject("Battle\Effects\Poisoned", False))
+                                    End If
+                                    'Actual damage
+                                    ReduceHP(CInt(.OwnPokemon.MaxHP * multiplier), True, True, BattleScreen, "The toxic hurt " & .OwnPokemon.GetDisplayName() & ".", "badpoison")
                                 End If
-                                'Actual damage
-                                ReduceHP(CInt(.OwnPokemon.MaxHP * multiplier), True, True, BattleScreen, "The toxic hurt " & .OwnPokemon.GetDisplayName() & ".", "badpoison")
                             End If
                         End If
                     End If
                 End If
 
-                If .OwnPokemon.HP > 0 Then 'Burn
-                    If .OwnPokemon.Status = Pokemon.StatusProblems.Burn Then
-                        If .OwnPokemon.Ability.Name.ToLower() <> "water veil" And .OwnPokemon.Ability.Name.ToLower() <> "magic guard" Then
-                            Dim reduceAmount As Integer = CInt(.OwnPokemon.MaxHP / 16)
-                            If .OwnPokemon.Ability.Name.ToLower() = "heatproof" Then
-                                reduceAmount = CInt(.OwnPokemon.MaxHP / 32)
-                            End If
-                            ChangeCameraAngle(1, True, BattleScreen)
-                            'Burn animation
-                            If Core.Player.ShowBattleAnimations <> 0 AndAlso BattleScreen.IsPVPBattle = False Then
-                                Dim BurnAnimation As AnimationQueryObject = New AnimationQueryObject(BattleScreen.OwnPokemonNPC, True)
-                                BurnAnimation.AnimationPlaySound("Battle\Effects\Burned", 0, 0)
 
-                                Dim FlameEntity As Entity = BurnAnimation.SpawnEntity(New Vector3(0, -0.25F, 0), TextureManager.GetTexture("Textures\Battle\StatusEffect\Burned", New Rectangle(0, 0, 32, 32), ""), New Vector3(0.5, 0.5, 0.5), 1.0F)
-                                BurnAnimation.AnimationChangeTexture(FlameEntity, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Burned", New Rectangle(0, 32, 32, 32), ""), 0.75, 0)
-                                BurnAnimation.AnimationChangeTexture(FlameEntity, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Burned", New Rectangle(0, 64, 32, 32), ""), 1.5, 0)
-                                BurnAnimation.AnimationChangeTexture(FlameEntity, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Burned", New Rectangle(0, 96, 32, 32), ""), 2.25, 0)
-                                BurnAnimation.AnimationChangeTexture(FlameEntity, True, TextureManager.GetTexture("Textures\Battle\StatusEffect\Burned", New Rectangle(0, 128, 32, 32), ""), 3, 0)
-                                BattleScreen.BattleQuery.Add(BurnAnimation)
-                            Else
-                                BattleScreen.BattleQuery.Add(New PlaySoundQueryObject("Battle\Effects\Burned", False))
+                If BattleScreen.BattleMode <> BattleScreen.BattleModes.Safari Then
+                    If .OwnPokemon.HP > 0 Then 'Burn
+                        If .OwnPokemon.Status = Pokemon.StatusProblems.Burn Then
+                            If .OwnPokemon.Ability.Name.ToLower() <> "water veil" And .OwnPokemon.Ability.Name.ToLower() <> "magic guard" Then
+                                Dim reduceAmount As Integer = CInt(.OwnPokemon.MaxHP / 16)
+                                If .OwnPokemon.Ability.Name.ToLower() = "heatproof" Then
+                                    reduceAmount = CInt(.OwnPokemon.MaxHP / 32)
+                                End If
+                                ChangeCameraAngle(1, True, BattleScreen)
+                                'Burn animation
+                                If Core.Player.ShowBattleAnimations <> 0 AndAlso BattleScreen.IsPVPBattle = False Then
+                                    Dim BurnAnimation As AnimationQueryObject = New AnimationQueryObject(BattleScreen.OwnPokemonNPC, True)
+                                    BurnAnimation.AnimationPlaySound("Battle\Effects\Burned", 0, 0)
+
+                                    Dim FlameEntity As Entity = BurnAnimation.SpawnEntity(New Vector3(0, -0.25F, 0), TextureManager.GetTexture("Textures\Battle\StatusEffect\Burned", New Rectangle(0, 0, 32, 32), ""), New Vector3(0.5, 0.5, 0.5), 1.0F)
+                                    BurnAnimation.AnimationChangeTexture(FlameEntity, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Burned", New Rectangle(0, 32, 32, 32), ""), 0.75, 0)
+                                    BurnAnimation.AnimationChangeTexture(FlameEntity, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Burned", New Rectangle(0, 64, 32, 32), ""), 1.5, 0)
+                                    BurnAnimation.AnimationChangeTexture(FlameEntity, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Burned", New Rectangle(0, 96, 32, 32), ""), 2.25, 0)
+                                    BurnAnimation.AnimationChangeTexture(FlameEntity, True, TextureManager.GetTexture("Textures\Battle\StatusEffect\Burned", New Rectangle(0, 128, 32, 32), ""), 3, 0)
+                                    BattleScreen.BattleQuery.Add(BurnAnimation)
+                                Else
+                                    BattleScreen.BattleQuery.Add(New PlaySoundQueryObject("Battle\Effects\Burned", False))
+                                End If
+                                'Actual damage
+                                ReduceHP(reduceAmount, True, True, BattleScreen, .OwnPokemon.GetDisplayName() & " is hurt by the burn.", "burn")
                             End If
-                            'Actual damage
-                            ReduceHP(reduceAmount, True, True, BattleScreen, .OwnPokemon.GetDisplayName() & " is hurt by the burn.", "burn")
                         End If
                     End If
                 End If
@@ -7211,34 +7218,36 @@ Namespace BattleSystem
                         End If
                     End If
                 End If
+                If BattleScreen.BattleMode <> BattleScreen.BattleModes.Safari Then
 
-                'Weather
-                'Sandstorm
-                If .FieldEffects.Weather = BattleWeather.WeatherTypes.Sandstorm Then
-                    If .OppPokemon.Type1.Type <> Element.Types.Ground And .OppPokemon.Type2.Type <> Element.Types.Ground And .OppPokemon.Type1.Type <> Element.Types.Steel And .OppPokemon.Type2.Type <> Element.Types.Steel And .OppPokemon.Type1.Type <> Element.Types.Rock And .OppPokemon.Type2.Type <> Element.Types.Rock Then
-                        Dim sandAbilities() As String = {"sand veil", "sand rush", "sand force", "overcoat", "magic guard", "cloud nine"}
-                        If sandAbilities.Contains(.OppPokemon.Ability.Name.ToLower()) = False Then
-                            If .OppPokemon.HP > 0 Then
-                                Dim sandHP As Integer = CInt(.OppPokemon.MaxHP / 16)
-                                ReduceHP(sandHP, False, True, BattleScreen, .OppPokemon.GetDisplayName() & " took damage from the sandstorm!", "sandstorm")
+                    'Weather
+                    'Sandstorm
+                    If .FieldEffects.Weather = BattleWeather.WeatherTypes.Sandstorm Then
+                        If .OppPokemon.Type1.Type <> Element.Types.Ground And .OppPokemon.Type2.Type <> Element.Types.Ground And .OppPokemon.Type1.Type <> Element.Types.Steel And .OppPokemon.Type2.Type <> Element.Types.Steel And .OppPokemon.Type1.Type <> Element.Types.Rock And .OppPokemon.Type2.Type <> Element.Types.Rock Then
+                            Dim sandAbilities() As String = {"sand veil", "sand rush", "sand force", "overcoat", "magic guard", "cloud nine"}
+                            If sandAbilities.Contains(.OppPokemon.Ability.Name.ToLower()) = False Then
+                                If .OppPokemon.HP > 0 Then
+                                    Dim sandHP As Integer = CInt(.OppPokemon.MaxHP / 16)
+                                    ReduceHP(sandHP, False, True, BattleScreen, .OppPokemon.GetDisplayName() & " took damage from the sandstorm!", "sandstorm")
+                                End If
                             End If
                         End If
                     End If
-                End If
 
-                'Hailstorm
-                If .FieldEffects.Weather = BattleWeather.WeatherTypes.Hailstorm Then
-                    If .OppPokemon.Type1.Type <> Element.Types.Ice And .OppPokemon.Type2.Type <> Element.Types.Ice Then
-                        Dim hailAbilities() As String = {"ice body", "snow cloak", "overcoat", "magic guard", "cloud nine"}
-                        If hailAbilities.Contains(.OppPokemon.Ability.Name.ToLower()) = False Then
-                            If .OppPokemon.HP > 0 Then
-                                Dim hailHP As Integer = CInt(.OppPokemon.MaxHP / 16)
-                                ReduceHP(hailHP, False, True, BattleScreen, .OppPokemon.GetDisplayName() & " took damage from the hailstorm!", "sandstorm")
+                    'Hailstorm
+                    If .FieldEffects.Weather = BattleWeather.WeatherTypes.Hailstorm Then
+                        If .OppPokemon.Type1.Type <> Element.Types.Ice And .OppPokemon.Type2.Type <> Element.Types.Ice Then
+                            Dim hailAbilities() As String = {"ice body", "snow cloak", "overcoat", "magic guard", "cloud nine"}
+                            If hailAbilities.Contains(.OppPokemon.Ability.Name.ToLower()) = False Then
+                                If .OppPokemon.HP > 0 Then
+                                    Dim hailHP As Integer = CInt(.OppPokemon.MaxHP / 16)
+                                    ReduceHP(hailHP, False, True, BattleScreen, .OppPokemon.GetDisplayName() & " took damage from the hailstorm!", "sandstorm")
+                                End If
                             End If
                         End If
                     End If
-                End If
 
+                End If
                 'Grassy Terrain
                 If .FieldEffects.GrassyTerrain > 0 And BattleScreen.FieldEffects.IsGrounded(False, BattleScreen) = True Then
                     If .OppPokemon.HP > 0 Then
@@ -7397,90 +7406,95 @@ Namespace BattleSystem
                             End If
                         End If
                     Else
-                        If .OppPokemon.Ability.Name.ToLower() <> "magic guard" Then
-                            If .OppPokemon.Status = Pokemon.StatusProblems.Poison Then 'Opp Poison
-                                ChangeCameraAngle(1, False, BattleScreen)
-                                'Poison animation
-                                If Core.Player.ShowBattleAnimations <> 0 AndAlso BattleScreen.IsPVPBattle = False Then
-                                    Dim PoisonAnimation As AnimationQueryObject = New AnimationQueryObject(BattleScreen.OppPokemonNPC, False)
 
-                                    PoisonAnimation.AnimationPlaySound("Battle\Effects\Poisoned", 0, 0)
-                                    Dim BubbleEntity1 As Entity = PoisonAnimation.SpawnEntity(New Vector3(0, -0.25, 0), TextureManager.GetTexture("Textures\Battle\StatusEffect\Poisoned", New Rectangle(0, 0, 32, 32), ""), New Vector3(0.5F), 1, 0, 1)
+                        If BattleScreen.BattleMode <> BattleScreen.BattleModes.Safari Then
 
-                                    PoisonAnimation.AnimationChangeTexture(BubbleEntity1, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Poisoned", New Rectangle(0, 32, 32, 32), ""), 1, 1)
-                                    PoisonAnimation.AnimationChangeTexture(BubbleEntity1, True, TextureManager.GetTexture("Textures\Battle\StatusEffect\Poisoned", New Rectangle(0, 64, 32, 32), ""), 2, 1)
-
-                                    BattleScreen.BattleQuery.Add(PoisonAnimation)
-                                Else
-                                    BattleScreen.BattleQuery.Add(New PlaySoundQueryObject("Battle\Effects\Poisoned", False))
-                                End If
-                                'Actual damage
-                                ReduceHP(CInt(.OppPokemon.MaxHP / 8), False, False, BattleScreen, "The poison hurt " & .OppPokemon.GetDisplayName() & ".", "poison")
-                            End If
-
-                            If .OppPokemon.Status = Pokemon.StatusProblems.BadPoison Then 'Opp Toxic
-                                .FieldEffects.OppPoisonCounter += 1
-                                Dim multiplier As Double = (.FieldEffects.OppPoisonCounter / 16)
-                                ChangeCameraAngle(1, False, BattleScreen)
-                                If Core.Player.ShowBattleAnimations <> 0 AndAlso BattleScreen.IsPVPBattle = False Then
+                            If .OppPokemon.Ability.Name.ToLower() <> "magic guard" Then
+                                If .OppPokemon.Status = Pokemon.StatusProblems.Poison Then 'Opp Poison
+                                    ChangeCameraAngle(1, False, BattleScreen)
                                     'Poison animation
-                                    Dim PoisonAnimation As AnimationQueryObject = New AnimationQueryObject(BattleScreen.OppPokemonNPC, False)
+                                    If Core.Player.ShowBattleAnimations <> 0 AndAlso BattleScreen.IsPVPBattle = False Then
+                                        Dim PoisonAnimation As AnimationQueryObject = New AnimationQueryObject(BattleScreen.OppPokemonNPC, False)
 
-                                    PoisonAnimation.AnimationPlaySound("Battle\Effects\Poisoned", 0, 0)
-                                    Dim BubbleEntity1 As Entity = PoisonAnimation.SpawnEntity(New Vector3(-0.25, -0.25, -0.25), TextureManager.GetTexture("Textures\Battle\StatusEffect\Poisoned", New Rectangle(0, 0, 32, 32), ""), New Vector3(0.5F), 1, 0, 1)
+                                        PoisonAnimation.AnimationPlaySound("Battle\Effects\Poisoned", 0, 0)
+                                        Dim BubbleEntity1 As Entity = PoisonAnimation.SpawnEntity(New Vector3(0, -0.25, 0), TextureManager.GetTexture("Textures\Battle\StatusEffect\Poisoned", New Rectangle(0, 0, 32, 32), ""), New Vector3(0.5F), 1, 0, 1)
 
-                                    PoisonAnimation.AnimationChangeTexture(BubbleEntity1, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Poisoned", New Rectangle(0, 32, 32, 32), ""), 1, 1)
-                                    Dim BubbleEntity2 As Entity = PoisonAnimation.SpawnEntity(New Vector3(0, -0.25, 0), TextureManager.GetTexture("Textures\Battle\StatusEffect\Poisoned", New Rectangle(0, 0, 32, 32), ""), New Vector3(0.5F), 1, 1, 1)
+                                        PoisonAnimation.AnimationChangeTexture(BubbleEntity1, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Poisoned", New Rectangle(0, 32, 32, 32), ""), 1, 1)
+                                        PoisonAnimation.AnimationChangeTexture(BubbleEntity1, True, TextureManager.GetTexture("Textures\Battle\StatusEffect\Poisoned", New Rectangle(0, 64, 32, 32), ""), 2, 1)
 
-                                    PoisonAnimation.AnimationChangeTexture(BubbleEntity1, True, TextureManager.GetTexture("Textures\Battle\StatusEffect\Poisoned", New Rectangle(0, 64, 32, 32), ""), 2, 1)
-                                    PoisonAnimation.AnimationChangeTexture(BubbleEntity2, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Poisoned", New Rectangle(0, 32, 32, 32), ""), 2, 1)
-                                    Dim BubbleEntity3 As Entity = PoisonAnimation.SpawnEntity(New Vector3(0.25, -0.25, 0.25), TextureManager.GetTexture("Textures\Battle\StatusEffect\Poisoned", New Rectangle(0, 0, 32, 32), ""), New Vector3(0.5F), 1, 2, 1)
+                                        BattleScreen.BattleQuery.Add(PoisonAnimation)
+                                    Else
+                                        BattleScreen.BattleQuery.Add(New PlaySoundQueryObject("Battle\Effects\Poisoned", False))
+                                    End If
+                                    'Actual damage
+                                    ReduceHP(CInt(.OppPokemon.MaxHP / 8), False, False, BattleScreen, "The poison hurt " & .OppPokemon.GetDisplayName() & ".", "poison")
+                                End If
 
-                                    PoisonAnimation.AnimationChangeTexture(BubbleEntity2, True, TextureManager.GetTexture("Textures\Battle\StatusEffect\Poisoned", New Rectangle(0, 64, 32, 32), ""), 3, 1)
-                                    PoisonAnimation.AnimationChangeTexture(BubbleEntity3, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Poisoned", New Rectangle(0, 32, 32, 32), ""), 3, 1)
+                                If .OppPokemon.Status = Pokemon.StatusProblems.BadPoison Then 'Opp Toxic
+                                    .FieldEffects.OppPoisonCounter += 1
+                                    Dim multiplier As Double = (.FieldEffects.OppPoisonCounter / 16)
+                                    ChangeCameraAngle(1, False, BattleScreen)
+                                    If Core.Player.ShowBattleAnimations <> 0 AndAlso BattleScreen.IsPVPBattle = False Then
+                                        'Poison animation
+                                        Dim PoisonAnimation As AnimationQueryObject = New AnimationQueryObject(BattleScreen.OppPokemonNPC, False)
 
-                                    PoisonAnimation.AnimationChangeTexture(BubbleEntity3, True, TextureManager.GetTexture("Textures\Battle\StatusEffect\Poisoned", New Rectangle(0, 64, 32, 32), ""), 4, 1)
+                                        PoisonAnimation.AnimationPlaySound("Battle\Effects\Poisoned", 0, 0)
+                                        Dim BubbleEntity1 As Entity = PoisonAnimation.SpawnEntity(New Vector3(-0.25, -0.25, -0.25), TextureManager.GetTexture("Textures\Battle\StatusEffect\Poisoned", New Rectangle(0, 0, 32, 32), ""), New Vector3(0.5F), 1, 0, 1)
 
-                                    BattleScreen.BattleQuery.Add(PoisonAnimation)
+                                        PoisonAnimation.AnimationChangeTexture(BubbleEntity1, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Poisoned", New Rectangle(0, 32, 32, 32), ""), 1, 1)
+                                        Dim BubbleEntity2 As Entity = PoisonAnimation.SpawnEntity(New Vector3(0, -0.25, 0), TextureManager.GetTexture("Textures\Battle\StatusEffect\Poisoned", New Rectangle(0, 0, 32, 32), ""), New Vector3(0.5F), 1, 1, 1)
+
+                                        PoisonAnimation.AnimationChangeTexture(BubbleEntity1, True, TextureManager.GetTexture("Textures\Battle\StatusEffect\Poisoned", New Rectangle(0, 64, 32, 32), ""), 2, 1)
+                                        PoisonAnimation.AnimationChangeTexture(BubbleEntity2, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Poisoned", New Rectangle(0, 32, 32, 32), ""), 2, 1)
+                                        Dim BubbleEntity3 As Entity = PoisonAnimation.SpawnEntity(New Vector3(0.25, -0.25, 0.25), TextureManager.GetTexture("Textures\Battle\StatusEffect\Poisoned", New Rectangle(0, 0, 32, 32), ""), New Vector3(0.5F), 1, 2, 1)
+
+                                        PoisonAnimation.AnimationChangeTexture(BubbleEntity2, True, TextureManager.GetTexture("Textures\Battle\StatusEffect\Poisoned", New Rectangle(0, 64, 32, 32), ""), 3, 1)
+                                        PoisonAnimation.AnimationChangeTexture(BubbleEntity3, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Poisoned", New Rectangle(0, 32, 32, 32), ""), 3, 1)
+
+                                        PoisonAnimation.AnimationChangeTexture(BubbleEntity3, True, TextureManager.GetTexture("Textures\Battle\StatusEffect\Poisoned", New Rectangle(0, 64, 32, 32), ""), 4, 1)
+
+                                        BattleScreen.BattleQuery.Add(PoisonAnimation)
+                                    Else
+                                        BattleScreen.BattleQuery.Add(New PlaySoundQueryObject("Battle\Effects\Poisoned", False))
+                                    End If
+                                    'Actual damage
+                                    ReduceHP(CInt(.OppPokemon.MaxHP * multiplier), False, False, BattleScreen, "The toxic hurt " & .OppPokemon.GetDisplayName() & ".", "badpoison")
+
+                                End If
+                            End If
+                        End If
+                    End If
+                End If
+
+                If BattleScreen.BattleMode <> BattleScreen.BattleModes.Safari Then
+                    If .OppPokemon.HP > 0 Then 'Burn
+                        If .OppPokemon.Status = Pokemon.StatusProblems.Burn Then
+                            If .OppPokemon.Ability.Name.ToLower() <> "water veil" And .OppPokemon.Ability.Name.ToLower() <> "magic guard" Then
+                                Dim reduceAmount As Integer = CInt(.OppPokemon.MaxHP / 8)
+                                If .OppPokemon.Ability.Name.ToLower() = "heatproof" Then
+                                    reduceAmount = CInt(.OppPokemon.MaxHP / 16)
+                                End If
+                                ChangeCameraAngle(1, False, BattleScreen)
+                                'Burn animation
+                                If Core.Player.ShowBattleAnimations <> 0 AndAlso BattleScreen.IsPVPBattle = False Then
+                                    Dim BurnAnimation As AnimationQueryObject = New AnimationQueryObject(BattleScreen.OppPokemonNPC, False)
+                                    BurnAnimation.AnimationPlaySound("Battle\Effects\Burned", 0, 0)
+
+                                    Dim FlameEntity As Entity = BurnAnimation.SpawnEntity(New Vector3(0, -0.25, 0), TextureManager.GetTexture("Textures\Battle\StatusEffect\Burned", New Rectangle(0, 0, 32, 32), ""), New Vector3(0.5, 0.5, 0.5), 1.0F)
+                                    BurnAnimation.AnimationChangeTexture(FlameEntity, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Burned", New Rectangle(0, 32, 32, 32), ""), 0.75, 0)
+                                    BurnAnimation.AnimationChangeTexture(FlameEntity, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Burned", New Rectangle(0, 64, 32, 32), ""), 1.5, 0)
+                                    BurnAnimation.AnimationChangeTexture(FlameEntity, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Burned", New Rectangle(0, 96, 32, 32), ""), 2.25, 0)
+                                    BurnAnimation.AnimationChangeTexture(FlameEntity, True, TextureManager.GetTexture("Textures\Battle\StatusEffect\Burned", New Rectangle(0, 128, 32, 32), ""), 3, 0)
+                                    BattleScreen.BattleQuery.Add(BurnAnimation)
                                 Else
-                                    BattleScreen.BattleQuery.Add(New PlaySoundQueryObject("Battle\Effects\Poisoned", False))
+                                    BattleScreen.BattleQuery.Add(New PlaySoundQueryObject("Battle\Effects\Burned", False))
                                 End If
                                 'Actual damage
-                                ReduceHP(CInt(.OppPokemon.MaxHP * multiplier), False, False, BattleScreen, "The toxic hurt " & .OppPokemon.GetDisplayName() & ".", "badpoison")
-
+                                ReduceHP(reduceAmount, False, False, BattleScreen, .OppPokemon.GetDisplayName() & " is hurt by the burn.", "burn")
                             End If
                         End If
                     End If
                 End If
-
-                If .OppPokemon.HP > 0 Then 'Burn
-                    If .OppPokemon.Status = Pokemon.StatusProblems.Burn Then
-                        If .OppPokemon.Ability.Name.ToLower() <> "water veil" And .OppPokemon.Ability.Name.ToLower() <> "magic guard" Then
-                            Dim reduceAmount As Integer = CInt(.OppPokemon.MaxHP / 8)
-                            If .OppPokemon.Ability.Name.ToLower() = "heatproof" Then
-                                reduceAmount = CInt(.OppPokemon.MaxHP / 16)
-                            End If
-                            ChangeCameraAngle(1, False, BattleScreen)
-                            'Burn animation
-                            If Core.Player.ShowBattleAnimations <> 0 AndAlso BattleScreen.IsPVPBattle = False Then
-                                Dim BurnAnimation As AnimationQueryObject = New AnimationQueryObject(BattleScreen.OppPokemonNPC, False)
-                                BurnAnimation.AnimationPlaySound("Battle\Effects\Burned", 0, 0)
-
-                                Dim FlameEntity As Entity = BurnAnimation.SpawnEntity(New Vector3(0, -0.25, 0), TextureManager.GetTexture("Textures\Battle\StatusEffect\Burned", New Rectangle(0, 0, 32, 32), ""), New Vector3(0.5, 0.5, 0.5), 1.0F)
-                                BurnAnimation.AnimationChangeTexture(FlameEntity, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Burned", New Rectangle(0, 32, 32, 32), ""), 0.75, 0)
-                                BurnAnimation.AnimationChangeTexture(FlameEntity, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Burned", New Rectangle(0, 64, 32, 32), ""), 1.5, 0)
-                                BurnAnimation.AnimationChangeTexture(FlameEntity, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Burned", New Rectangle(0, 96, 32, 32), ""), 2.25, 0)
-                                BurnAnimation.AnimationChangeTexture(FlameEntity, True, TextureManager.GetTexture("Textures\Battle\StatusEffect\Burned", New Rectangle(0, 128, 32, 32), ""), 3, 0)
-                                BattleScreen.BattleQuery.Add(BurnAnimation)
-                            Else
-                                BattleScreen.BattleQuery.Add(New PlaySoundQueryObject("Battle\Effects\Burned", False))
-                            End If
-                            'Actual damage
-                            ReduceHP(reduceAmount, False, False, BattleScreen, .OppPokemon.GetDisplayName() & " is hurt by the burn.", "burn")
-                        End If
-                    End If
-                End If
-
                 If .FieldEffects.OppNightmare > 0 Then 'Nightmare
                     If .OppPokemon.Status = Pokemon.StatusProblems.Sleep And .OppPokemon.HP > 0 Then
                         ReduceHP(CInt(.OppPokemon.MaxHP / 4), False, True, BattleScreen, "The nightmare haunted " & .OppPokemon.GetDisplayName() & "!", "nightmare")
