@@ -23,6 +23,7 @@ version=2
 			:if:<pokemon.freeplaceinparty>=True
 				@text.show(Oh, thank you!*Take good care of~it, please!)
 				@Pokemon.add(213,15,A gift,5,at Cianwood City,0,Marvin)
+				@pokemon.setnickname(<pokemon.count>-1,Shuckie)
 				@sound.play(success_small,1)
 				@text.show(<player.name> received~Shuckle!)
 				@pokemon.Rename(last)
