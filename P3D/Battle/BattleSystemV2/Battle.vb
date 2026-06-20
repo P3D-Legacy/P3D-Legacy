@@ -6302,33 +6302,36 @@ Namespace BattleSystem
                     End If
                 End If
 
-                'Weather
-                'Sandstorm
-                If .FieldEffects.Weather = BattleWeather.WeatherTypes.Sandstorm Then
-                    If .OwnPokemon.Type1.Type <> Element.Types.Ground And .OwnPokemon.Type2.Type <> Element.Types.Ground And .OwnPokemon.Type1.Type <> Element.Types.Steel And .OwnPokemon.Type2.Type <> Element.Types.Steel And .OwnPokemon.Type1.Type <> Element.Types.Rock And .OwnPokemon.Type2.Type <> Element.Types.Rock Then
-                        Dim sandAbilities() As String = {"sand veil", "sand rush", "sand force", "overcoat", "magic guard", "cloud nine"}
-                        If sandAbilities.Contains(.OwnPokemon.Ability.Name.ToLower()) = False Then
-                            If .OwnPokemon.HP > 0 Then
-                                Dim sandHP As Integer = CInt(.OwnPokemon.MaxHP / 16)
-                                ReduceHP(sandHP, True, False, BattleScreen, .OwnPokemon.GetDisplayName() & " took damage from the sandstorm!", "sandstorm")
+                If BattleScreen.BattleMode <> BattleScreen.BattleModes.Safari Then
+
+                    'Weather
+                    'Sandstorm
+                    If .FieldEffects.Weather = BattleWeather.WeatherTypes.Sandstorm Then
+                        If .OwnPokemon.Type1.Type <> Element.Types.Ground And .OwnPokemon.Type2.Type <> Element.Types.Ground And .OwnPokemon.Type1.Type <> Element.Types.Steel And .OwnPokemon.Type2.Type <> Element.Types.Steel And .OwnPokemon.Type1.Type <> Element.Types.Rock And .OwnPokemon.Type2.Type <> Element.Types.Rock Then
+                            Dim sandAbilities() As String = {"sand veil", "sand rush", "sand force", "overcoat", "magic guard", "cloud nine"}
+                            If sandAbilities.Contains(.OwnPokemon.Ability.Name.ToLower()) = False Then
+                                If .OwnPokemon.HP > 0 Then
+                                    Dim sandHP As Integer = CInt(.OwnPokemon.MaxHP / 16)
+                                    ReduceHP(sandHP, True, False, BattleScreen, .OwnPokemon.GetDisplayName() & " took damage from the sandstorm!", "sandstorm")
+                                End If
                             End If
                         End If
                     End If
-                End If
 
-                'Hailstorm
-                If .FieldEffects.Weather = BattleWeather.WeatherTypes.Hailstorm Then
-                    If .OwnPokemon.Type1.Type <> Element.Types.Ice And .OwnPokemon.Type2.Type <> Element.Types.Ice Then
-                        Dim hailAbilities() As String = {"ice body", "snow cloak", "overcoat", "magic guard", "cloud nine"}
-                        If hailAbilities.Contains(.OwnPokemon.Ability.Name.ToLower()) = False Then
-                            If .OwnPokemon.HP > 0 Then
-                                Dim hailHP As Integer = CInt(.OwnPokemon.MaxHP / 16)
-                                ReduceHP(hailHP, True, False, BattleScreen, .OwnPokemon.GetDisplayName() & " took damage from the hailstorm!", "hail")
+                    'Hailstorm
+                    If .FieldEffects.Weather = BattleWeather.WeatherTypes.Hailstorm Then
+                        If .OwnPokemon.Type1.Type <> Element.Types.Ice And .OwnPokemon.Type2.Type <> Element.Types.Ice Then
+                            Dim hailAbilities() As String = {"ice body", "snow cloak", "overcoat", "magic guard", "cloud nine"}
+                            If hailAbilities.Contains(.OwnPokemon.Ability.Name.ToLower()) = False Then
+                                If .OwnPokemon.HP > 0 Then
+                                    Dim hailHP As Integer = CInt(.OwnPokemon.MaxHP / 16)
+                                    ReduceHP(hailHP, True, False, BattleScreen, .OwnPokemon.GetDisplayName() & " took damage from the hailstorm!", "hail")
+                                End If
                             End If
                         End If
                     End If
-                End If
 
+                End If
                 'Grassy Terrain
                 If .FieldEffects.GrassyTerrain > 0 And BattleScreen.FieldEffects.IsGrounded(True, BattleScreen) = True Then
                     If .OwnPokemon.HP > 0 Then
