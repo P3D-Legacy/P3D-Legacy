@@ -17,7 +17,7 @@ version=2
 :endif
 
 :if:<register.registered(Shuckle)>=False
-	@text.show(I, I'm in shock!*A guy about your~age with piercing*eyes and long hair~came in.*He scared me into~giving him my~prized Pokémon!*I still have one~left, but what if~he comes back?*You look strong.~Could you look*after my Pokémon~for a while?)
+	@text.show(I-I'm in shock!*A guy about your~age with piercing*eyes and long hair~came in.*He scared me into~giving him my~prized Pokémon!*I still have one~left, but what if~he comes back?*You look strong.~Could you look*after my Pokémon~for a while?)
 	@options.show(Yes,No)
 		:when:Yes
 			:if:<pokemon.freeplaceinparty>=True
