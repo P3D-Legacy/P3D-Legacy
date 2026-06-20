@@ -346,9 +346,9 @@ option_screen_graphics_multisampling,Multi Amostras
 option_screen_battle,Battle
 option_screen_battle_3dmodels,Modelos 3D
 option_screen_battle_animations,Animações
-option_screen_battle_battlestyle,Modo de Batalha
-option_screen_battle_battlestyle_shift,Com Trocas
-option_screen_battle_battlestyle_set,Direto
+option_screen_battle_Battlestyle,Modo de Batalha
+option_screen_battle_Battlestyle_shift,Com Trocas
+option_screen_battle_Battlestyle_set,Direto
 
 option_screen_controls,Controles
 option_screen_controls_xboxgamepad,Xbox Gamepad
@@ -1177,12 +1177,12 @@ battle_MoveDisabled,Disabled!
 battle_NoMoreRoomInPC,There's no more room for~Pokémon in the PC!
 battle_NoSafariBalls,No Safari Balls.
 battle_NoSportBalls,No Sport Balls.
-battle_ThrowMud,Throw Mud
-battle_ThrowBait,Throw Bait
-battle_Run,Run
-battle_Battle,Battle
-battle_Bag,Bag
-battle_Surrender,Surrender
+battle_action_ThrowMud,Throw Mud
+battle_action_ThrowBait,Throw Bait
+battle_action_Run,Run
+battle_action_Battle,Battle
+battle_action_Bag,Bag
+battle_action_Surrender,Surrender
 battle_action_MegaEvolve,Mega Evolve!
 ----
 Step Events:
