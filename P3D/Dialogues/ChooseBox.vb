@@ -34,6 +34,10 @@
         Me.DoDelegate = True
         Me.TextFont = FontManager.GetFontContainer("textfont")
 
+        If CancelIndex = -1 Then
+            CancelIndex = Me.Options.Count - 1
+        End If
+
         SetupOptions()
     End Sub
 
@@ -46,6 +50,10 @@
         Me.ActionScript = ActionScript
         Me.DoDelegate = False
         Me.TextFont = FontManager.GetFontContainer("textfont")
+
+        If CancelIndex = -1 Then
+            CancelIndex = Me.Options.Count - 1
+        End If
 
         SetupOptions()
     End Sub
@@ -60,6 +68,10 @@
         Me.ActionScript = False
         Me.DoDelegate = False
         Me.TextFont = FontManager.GetFontContainer("textfont")
+
+        If CancelIndex = -1 Then
+            CancelIndex = Me.Options.Count - 1
+        End If
 
         SetupOptions()
     End Sub
