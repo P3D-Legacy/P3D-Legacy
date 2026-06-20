@@ -346,9 +346,9 @@ option_screen_graphics_multisampling,Multi Amostras
 option_screen_battle,Battle
 option_screen_battle_3dmodels,Modelos 3D
 option_screen_battle_animations,Animações
-option_screen_battle_Battlestyle,Modo de Batalha
-option_screen_battle_Battlestyle_shift,Com Trocas
-option_screen_battle_Battlestyle_set,Direto
+option_screen_battle_battlestyle,Modo de Batalha
+option_screen_battle_battlestyle_shift,Com Trocas
+option_screen_battle_battlestyle_set,Direto
 
 option_screen_controls,Controles
 option_screen_controls_xboxgamepad,Xbox Gamepad

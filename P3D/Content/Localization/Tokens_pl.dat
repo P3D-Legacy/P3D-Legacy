@@ -348,9 +348,9 @@ option_screen_graphics_multisampling,Multi Sampling
 option_screen_battle,Walki
 option_screen_battle_3dmodels,Modele 3D
 option_screen_battle_animations,Animacje
-option_screen_battle_Battlestyle,Styl walki
-option_screen_battle_Battlestyle_shift,Shift
-option_screen_battle_Battlestyle_set,Set
+option_screen_battle_battlestyle,Styl walki
+option_screen_battle_battlestyle_shift,Shift
+option_screen_battle_battlestyle_set,Set
 
 option_screen_controls,Kontrole
 option_screen_controls_xboxgamepad,Xbox Gamepad
