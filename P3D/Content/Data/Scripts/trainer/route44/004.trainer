@@ -4,7 +4,7 @@ TrainerClass|<system.token(TrainerClass_AceTrainer)>
 Money|1296
 IntroMessage|I can tell you're~a good trainer by~looking at you.*I'm good at Pokémon,~and I can see~that you are too.
 OutroMessage|Tch! It's a total~loss on my part.
-DefeatMessage|Wow. You have a~lot of Badges.*No wonder you're~so tough.*I wonder if~Ecruteak Gym's*Morty is still in~training?He really hammered me.
+DefeatMessage|Wow. You have a~lot of Badges.*No wonder you're~so tough.*I wonder if~Ecruteak Gym's*Morty is still in~training?*He really hammered me.
 TextureID|13
 Region|Johto
 IniMusic|Johto_trainer_intro
