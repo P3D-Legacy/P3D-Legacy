@@ -117,7 +117,7 @@
 
         For Each Entity As Entity In Screen.Level.Entities
             If Entity.boundingBox.Contains(newPosition) = ContainmentType.Contains Then
-                If Entity.Collision = True OrElse Entity.EntityID.ToLower = "scriptblock" AndAlso Entity.ActionValue = 0 Then
+                If Entity.Collision = True OrElse Entity.EntityID.ToLower = "scriptblock" AndAlso Entity.ActionValue = 5 Then
                     Return False
                 End If
             End If

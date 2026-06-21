@@ -62,16 +62,17 @@
             Dim WarpPosition As New Vector3(CSng(Me.AdditionalValue.GetSplit(1)), CSng(Me.AdditionalValue.GetSplit(2).Replace(".", GameController.DecSeparator)), CSng(Me.AdditionalValue.GetSplit(3)))
             Dim DropDistance As Single = CSng(Me.AdditionalValue.GetSplit(4))
             Dim WarpTurns As Integer = CInt(Me.AdditionalValue.GetSplit(5))
-            Dim FallSpeed As String = "2.25"
+
+            Dim CameraFollows As Boolean = False
             If Me.AdditionalValue.Split(",").Count >= 7 Then
                 If Me.AdditionalValue.GetSplit(6) <> "" Then
-                    FallSpeed = Me.AdditionalValue.GetSplit(6)
+                    CameraFollows = CBool(Me.AdditionalValue.GetSplit(6))
                 End If
             End If
-            Dim CameraFollows As Boolean = False
+            Dim FallSpeed As String = "2.25"
             If Me.AdditionalValue.Split(",").Count >= 8 Then
                 If Me.AdditionalValue.GetSplit(7) <> "" Then
-                    CameraFollows = CBool(Me.AdditionalValue.GetSplit(7))
+                    FallSpeed = Me.AdditionalValue.GetSplit(7)
                 End If
             End If
 

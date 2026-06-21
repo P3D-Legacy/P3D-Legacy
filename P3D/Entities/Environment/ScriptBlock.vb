@@ -34,7 +34,7 @@
     End Sub
 
     Public Overrides Function WalkIntoFunction() As Boolean
-        If Me.TriggerID = 0 Or Me.TriggerID = 4 Then
+        If Me.TriggerID = 0 Or Me.TriggerID = 4 Or Me.TriggerID = 5 Then
             ActivateScript = True
             TriggeredScriptBlock = True
             If ActionScript.TempInputDirection = -1 Then
@@ -113,7 +113,7 @@
     Public Function GetActivationID() As Integer
         Dim activationID As Integer = 0
         Select Case Me.TriggerID
-            Case 0, 1, 4
+            Case 0, 1, 4, 5
                 activationID = 0
             Case 2
                 activationID = 1
