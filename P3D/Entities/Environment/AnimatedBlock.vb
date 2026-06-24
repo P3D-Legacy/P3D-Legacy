@@ -241,7 +241,7 @@
 
             With Screen.Level.OwnPlayer
                 Core.Player.TempSurfSkin = .SkinName
-
+                .Opacity = 1.0F
                 Dim pokemonNumber As Integer = Core.Player.Pokemons(Core.Player.SurfPokemon).Number
                 Dim SkinName As String = "[POKEMON|N]" & pokemonNumber & PokemonForms.GetOverworldAddition(Core.Player.Pokemons(Core.Player.SurfPokemon))
                 If Core.Player.Pokemons(Core.Player.SurfPokemon).IsShiny = True Then
