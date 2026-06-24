@@ -295,7 +295,7 @@
 
             If AttackIndex <> 4 Then
                 TeachMovesScreen.LearnedMove = True
-                Text = Localization.GetString("learn_move_PokemonForgotMove", "1... 2... 3... and...*Ta-da!*[POKEMONNAME] forgot~[OLDMOVENAME] and...").Replace("[POKEMONNAME]", Pokemon.GetDisplayName()).Replace("[OLDMOVENAME]", Pokemon.Attacks(AttackIndex).Name)
+                Text = Localization.GetString("learn_move_PokemonForgotMove", "1... 2... 3... and...*Ta-da!*[POKEMONNAME] forgot~[MOVENAME] and...").Replace("[POKEMONNAME]", Pokemon.GetDisplayName()).Replace("[MOVENAME]", Pokemon.Attacks(AttackIndex).Name)
                 Pokemon.Attacks.RemoveAt(AttackIndex)
                 Pokemon.Attacks.Insert(AttackIndex, newAttacks(0))
 
