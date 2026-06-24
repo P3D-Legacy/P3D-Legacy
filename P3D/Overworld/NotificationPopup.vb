@@ -209,7 +209,7 @@ Public Class NotificationPopup
             If Me._scriptFile <> "" OrElse _waitForInput = True Then
                 InteractText = "[" & Localization.GetString("game_notification_accept") & "]"
             End If
-            If Core.GameOptions.GamePadEnabled = False Then
+            If ControllerHandler.IsConnected = False Then
                 InteractText = InteractText.Replace("[BUTTON]", "[" & Localization.GetString("keyboard_key_" & KeyBindings.GetKeyName(KeyBindings.SpecialKey), KeyBindings.GetKeyName(KeyBindings.SpecialKey)) & "]")
             Else
                 InteractText = InteractText.Replace("[BUTTON]", ControllerHandler.GetButtonName(Buttons.Back))

@@ -407,13 +407,13 @@ Public Class OverworldScreen
             If NotificationPopupList.Count > 0 Then
                 d.Add(Buttons.Back, Localization.GetString("game_interaction_notification", "Notification"))
             Else
+                If Core.Player.HasPokegear = True Then
+                    d.Add(Buttons.Back, Localization.GetString("game_interaction_pokegear", "Pokégear"))
+                End If
                 d.Add(Buttons.A, Localization.GetString("game_interaction_interact", "Interact"))
             End If
 
             d.Add(Buttons.X, Localization.GetString("game_interaction_gamemenu", "Game Menu"))
-            If Core.Player.HasPokegear = True Then
-                d.Add(Buttons.Back, Localization.GetString("game_interaction_pokegear", "Pokégear"))
-            End If
             d.Add(Buttons.Start, Localization.GetString("game_interaction_pausemenu", "Game Menu"))
 
             DrawGamePadControls(d)
