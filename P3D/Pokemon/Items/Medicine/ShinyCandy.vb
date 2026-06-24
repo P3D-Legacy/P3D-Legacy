@@ -33,6 +33,32 @@ Namespace Items.Medicine
             If Not p.IsShiny Then
                 p.IsShiny = True
                 p.ClearTextures()
+                With Screen.Level.OwnPlayer
+                    If Screen.Level.Surfing = True AndAlso Core.Player.SurfPokemon = PokeIndex Then
+                        Dim pokemonNumber As Integer = p.Number
+                        Dim SkinName As String = "[POKEMON|S]" & pokemonNumber & PokemonForms.GetOverworldAddition(p)
+
+                        .SetTexture(SkinName, False)
+
+                        .UpdateEntity()
+                    ElseIf Screen.Level.Riding = True AndAlso Core.Player.Skin.Contains(p.Number & PokemonForms.GetOverworldAddition(p)) Then
+                        Dim pIsRidePokemon As Boolean = False
+                        For Each a As BattleSystem.Attack In p.Attacks
+                            If a.Name.ToLower = BattleSystem.Attack.GetAttackByID(560).Name.ToLower Or Core.Player.SandBoxMode = True Then
+                                pIsRidePokemon = True
+                                Exit For
+                            End If
+                        Next
+                        If pIsRidePokemon = True Then
+                            Dim pokemonNumber As Integer = p.Number
+                            Dim SkinName As String = "[POKEMON|S]" & pokemonNumber & PokemonForms.GetOverworldAddition(p)
+
+                            .SetTexture(SkinName, False)
+
+                            .UpdateEntity()
+                        End If
+                    End If
+                End With
 
                 SoundManager.PlaySound("Use_Item", False)
                 Screen.TextBox.Show(Localization.GetString("item_use_501", "The Pokémon sparkled.") & RemoveItem())
