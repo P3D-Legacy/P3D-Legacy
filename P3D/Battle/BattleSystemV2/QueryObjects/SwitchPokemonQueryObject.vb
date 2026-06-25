@@ -203,10 +203,10 @@
                         If BattleCalculation.CanSwitch(TempScreen, True) = False Then
                             Screen.TextBox.Show(Localization.GetString("battle_cannot_switch", "Cannot switch out."), {}, True, False)
                         Else
-                            Dim TempQuery = TempScreen.BattleQuery.ToArray
                             If TempScreen.OwnPokemonIndex <> PokeIndex Then
-                                TempScreen.ParticipatedPokemon.Clear()
-                                TempScreen.ParticipatedPokemon.Add(PokeIndex)
+                                If TempScreen.ParticipatedPokemon.Contains(PokeIndex) = False Then
+                                    TempScreen.ParticipatedPokemon.Add(PokeIndex)
+                                End If
                                 If TempScreen.IsRemoteBattle = True And TempScreen.IsHost = False Then
                                     TempScreen.OppFaint = False
                                     TempScreen.OwnStatistics.Switches += 1
@@ -266,7 +266,9 @@
             Dim oppModel As String = BattleScreen.GetModelName(False)
 
             If oppModel = "" Then
-                BattleScreen.BattleQuery.Add(New ToggleEntityQueryObject(True, ToggleEntityQueryObject.BattleEntities.OppPokemon, PokemonForms.GetOverworldSpriteName(BattleScreen.OppPokemon, True), -1, -1, 0, 1))
+                ''Workaround for the issue where the first ToggleEntityQueryObject is skipped by adding it twice.
+                Dim ToggleTextureQuery As New ToggleEntityQueryObject(True, ToggleEntityQueryObject.BattleEntities.OppPokemon, PokemonForms.GetOverworldSpriteName(BattleScreen.OppPokemon, True), -1, -1, 0, 1)
+                BattleScreen.BattleQuery.AddRange({ToggleTextureQuery, ToggleTextureQuery})
             Else
                 BattleScreen.BattleQuery.Add(New ToggleEntityQueryObject(False, oppModel, -1, -1, 1, 0))
             End If
