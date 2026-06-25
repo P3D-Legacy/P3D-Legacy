@@ -1178,7 +1178,7 @@
                 Case 450
                     returnMove = New Moves.Bug.BugBite()
                 Case 451
-                    returnMove = New Moves.Electric.Chargebeam()
+                    returnMove = New Moves.Electric.ChargeBeam()
                 Case 452
                     returnMove = New Moves.Grass.WoodHammer()
                 Case 453

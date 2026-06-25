@@ -31930,7 +31930,7 @@
     <Compile Include="Pokemon\Attacks\Dragon\Twister.vb" />
     <Compile Include="Pokemon\Attacks\Electric\BoltStrike.vb" />
     <Compile Include="Pokemon\Attacks\Electric\Charge.vb" />
-    <Compile Include="Pokemon\Attacks\Electric\Chargebeam.vb" />
+    <Compile Include="Pokemon\Attacks\Electric\ChargeBeam.vb" />
     <Compile Include="Pokemon\Attacks\Electric\Discharge.vb" />
     <Compile Include="Pokemon\Attacks\Electric\EerieImpulse.vb" />
     <Compile Include="Pokemon\Attacks\Electric\ElectroBall.vb" />

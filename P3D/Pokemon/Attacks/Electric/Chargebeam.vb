@@ -1,6 +1,6 @@
 ﻿Namespace BattleSystem.Moves.Electric
 
-    Public Class Chargebeam
+    Public Class ChargeBeam
 
         Inherits Attack
 
@@ -15,7 +15,7 @@
             Me.Accuracy = 90
             Me.Category = Categories.Special
             Me.ContestCategory = ContestCategories.Beauty
-            Me.Name = Localization.GetString("move_name_" & Me.ID,"Charge Beam")
+            Me.Name = Localization.GetString("move_name_" & Me.ID, "Charge Beam")
             Me.Description = "The user attacks with an electric charge. The user may use any remaining electricity to raise its Sp. Atk. stat."
             Me.CriticalChance = 1
             Me.IsHMMove = False

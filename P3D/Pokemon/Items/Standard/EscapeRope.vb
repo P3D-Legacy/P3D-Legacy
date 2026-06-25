@@ -19,8 +19,13 @@ Namespace Items.Standard
                 While Core.CurrentScreen.Identification <> Screen.Identifications.OverworldScreen
                     Core.SetScreen(Core.CurrentScreen.PreScreen)
                 End While
-
-                Dim t As String = Core.Player.Name & " used~an Escape Rope!" & RemoveItem()
+                Dim CorrectTokenName As String = "item_use_RegularItem_A"
+                Dim CorrectTokenContent As String = "<Player.Name> used~a [ITEMNAME]."
+                If "aoeiu".Contains(Name(0)) Then
+                    CorrectTokenName = "item_use_RegularItem_An"
+                    CorrectTokenContent = "<Player.Name> used~an [ITEMNAME]."
+                End If
+                Dim t As String = Localization.GetString(CorrectTokenName, CorrectTokenContent).Replace("[ITEMNAME]", Name) & RemoveItem()
 
                 Dim setToFirstPerson As Boolean = Not CType(Screen.Camera, OverworldCamera).ThirdPerson
 
@@ -62,7 +67,7 @@ Namespace Items.Standard
                     Screen.Level.OverworldPokemon.Visible = False
                 End If
             Else
-                Screen.TextBox.Show("Cannot use the Escape~Rope here!", {}, True, True)
+                Screen.TextBox.Show(Localization.GetString("item_cannot_use_EscapeRope", "Cannot use the~Escape Rope here!"), {}, True, True)
             End If
         End Sub
 

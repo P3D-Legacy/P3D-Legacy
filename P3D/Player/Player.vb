@@ -1798,13 +1798,20 @@
                         If Temp.LastUsedRepel > -1 Then
                             Dim haveItemLeft As Boolean = Inventory.GetItemAmount(Temp.LastUsedRepel.ToString) > 0
 
+                            Dim CorrectTokenName As String = "item_use_RegularItem_A"
+                            Dim CorrectTokenContent As String = "<Player.Name> used~a [ITEMNAME]."
+                            If "aoeiu".Contains(Item.GetItemByID(Temp.LastUsedRepel.ToString).Name(0)) Then
+                                CorrectTokenName = "item_use_RegularItem_An"
+                                CorrectTokenContent = "<Player.Name> used~an [ITEMNAME]."
+                            End If
+
                             If haveItemLeft = True Then
                                 s = "version=2" & Environment.NewLine &
-                                    "@Text.Show(" & Localization.GetString("step_event_RepelRanOut_MoreLeft", "Your repel effect wore off.*Do you want to use~another [REPELNAME]?").Replace("[REPELNAME]", "<inventory.name(" & Temp.LastUsedRepel & ")>)") & ")" & Environment.NewLine &
+                                    "@Text.Show(" & Localization.GetString("step_event_RepelRanOut_MoreLeft", "Your repel effect wore off.*Do you want to use~another [REPELNAME]?").Replace("[REPELNAME]", "<inventory.name(" & Temp.LastUsedRepel & ")>") & ")" & Environment.NewLine &
                                     "@Options.Show(<system.token(global_yes)>,<system.token(global_no)>)" & Environment.NewLine &
                                     ":when:<system.token(global_yes)>" & Environment.NewLine &
                                     "@sound.play(Use_Repel)" & Environment.NewLine &
-                                    "@Text.Show(" & Localization.GetString("step_event_RepelUsed", "<player.name> used~a [REPELNAME].").Replace("[REPELNAME]", "<inventory.name(" & Temp.LastUsedRepel & ")>)") & Environment.NewLine &
+                                    "@Text.Show(" & Localization.GetString(CorrectTokenName, CorrectTokenContent).Replace("[ITEMNAME]", "<inventory.name(" & Temp.LastUsedRepel & ")>") & ")" & Environment.NewLine &
                                     "@item.repel(" & Temp.LastUsedRepel & ")" & Environment.NewLine &
                                     "@item.remove(" & Temp.LastUsedRepel & ",1,0)" & Environment.NewLine &
                                     ":endwhen" & Environment.NewLine &

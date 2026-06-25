@@ -1191,7 +1191,6 @@ battle_action_MegaEvolve,Mega Evolve!
 Step Events:
 step_event_RepelRanOut_NoneLeft,Your repel effect wore off.
 step_event_RepelRanOut_MoreLeft,Your repel effect wore off.*Do you want to use~another [REPELNAME]?
-step_event_RepelUsed,<player.name> used~a [REPELNAME].
 step_event_PoisonCured,[POKEMONNAME] was cured~of Poison.
 step_event_PoisonFainted,[POKEMONNAME] fainted.
 ----
@@ -3121,6 +3120,8 @@ item_cannot_use_NotFrozen_Single,[POKEMONNAME] is not~frozen.
 item_cannot_use_NotFrozen_Both,[OWNPOKEMONNAME] and~[OPPPOKEMONNAME] are not~frozen.
 item_cannot_use_NotParalyzed_Single,[POKEMONNAME] is not~paralyzed.
 item_cannot_use_NotParalyzed_Both,[OWNPOKEMONNAME] and~[OPPPOKEMONNAME] are not~paralyzed.
+item_cannot_use_RepelItem,The Repel is still~in effect.
+item_cannot_use_EscapeRope,Cannot use the~Escape Rope here!
 
 item_use_HealItem_Own,Restored [POKEMONNAME]'s~HP by [HPAMOUNT].
 item_use_HealItem_Opponent,Restored [POKEMONNAME]'s~HP.
@@ -3144,6 +3145,8 @@ item_use_CureIce_Both,Cured the ice~of [OWNPOKEMONNAME] and~[OPPPOKEMONNAME].
 item_use_CureParalysis_Single,Cured the paralysis~of [POKEMONNAME].
 item_use_CureParalysis_Both,Cured the paralysis~of [OWNPOKEMONNAME] and~[OPPPOKEMONNAME].
 item_use_RevivalItem,[POKEMONNAME]~is revitalized.
+item_use_RegularItem_A,<Player.Name> used~a [ITEMNAME].
+item_use_RegularItem_An,<Player.Name> used~an [ITEMNAME].
 
 item_6_cannot_walk,You cannot walk here!
 item_6_missingskin,You can't use this item~without a bicycle skin.*Its name should be the~same as your current one,~but with "_bike" at the end.
