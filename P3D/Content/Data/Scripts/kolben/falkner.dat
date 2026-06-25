@@ -1,7 +1,7 @@
 version=2
 
 :if:<register.registered(Birdfact)>=false
-	@text.show(Oh hello there,~welcome to Kolben tower!*We may have met already,~either in Violet city or on~the discord server.~The name is Falkner~and I am known around~these parts as quite the~flying type connoisseur.)
+	@text.show(Oh hello there,~welcome to Kolben Tower!*We may have met already,~either in Violet City or on~the Discord server.~The name is Falkner~and I am known around~these parts as quite the~flying type connoisseur.)
 	@text.show(Say, while you are here~would you like to hear about~one of my amazing bird facts?)
 	@options.show(Yes,No)
 		:when:Yes
