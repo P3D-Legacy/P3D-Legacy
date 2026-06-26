@@ -1144,8 +1144,8 @@ Public Class StorageSystemScreen
     Private Sub DrawMenuEntries()
         If Me.MenuHeader <> "" Then
             Dim font = FontManager.MainFont
-            Canvas.DrawRectangle(New Rectangle(Core.windowSize.Width - 370, 100, 356, 64), New Color(0, 0, 0, 180))
-            Core.SpriteBatch.DrawString(font, MenuHeader, New Vector2(Core.windowSize.Width - 192 - font.MeasureString(MenuHeader).X / 2, 120), Color.White)
+            Canvas.DrawRectangle(New Rectangle(CInt(Core.windowSize.Width - 48 - font.MeasureString(MenuHeader).X), 100, CInt(32 + font.MeasureString(MenuHeader).X), 64), New Color(0, 0, 0, 180))
+            Core.SpriteBatch.DrawString(font, MenuHeader, New Vector2(Core.windowSize.Width - 32 - font.MeasureString(MenuHeader).X, 120), Color.White)
         End If
 
         Me.MenuEntries.ForEach(Sub(x) x.Draw(Me.MenuCursor, GetCursorTexture()))
