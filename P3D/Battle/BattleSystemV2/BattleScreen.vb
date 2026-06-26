@@ -859,7 +859,7 @@ Namespace BattleSystem
             Dim q31 As New PlaySoundQueryObject(OwnPokemon.Number.ToString(), True, 3.0F, crySuffixOwn)
             Dim q4 As TextQueryObject = New TextQueryObject("Go, " & Me.OwnPokemon.GetDisplayName() & "!")
 
-            Me.BattleQuery.AddRange({cq, q1, q, q2, q22, q3, q4})
+            Me.BattleQuery.AddRange({cq, q1, q, q2, q22, q3, q31, q4})
 
             Dim q5 As ToggleMenuQueryObject = New ToggleMenuQueryObject(Me.BattleMenu.Visible)
 
