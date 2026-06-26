@@ -84,6 +84,8 @@ global_pokemon_move_milkdrink,Melkdrank
 global_pokemon_move_softboiled,Zachtgekookt
 global_used,Gebruikt
 global_none,Niets
+global_steps_left,Overgebleven stappen:
+global_safari_balls_remaining,SafariBallen x
 ---
 Pokémon & Attack Properties:
 

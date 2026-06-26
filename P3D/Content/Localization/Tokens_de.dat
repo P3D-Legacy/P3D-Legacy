@@ -84,6 +84,8 @@ global_pokemon_move_milkdrink,Milchgetränk
 global_pokemon_move_softboiled,Weichei
 global_used,Benutzt
 global_none,-
+global_steps_left,Steps left:
+global_safari_balls_remaining,Safari Balls x
 ---
 Pokémon & Attack Properties:
 property_HP,KP
@@ -1175,8 +1177,8 @@ battle_cannot_run,Failed to run away.
 battle_cannot_run_ability,Failed to run away because of~
 battle_MoveDisabled,Disabled!
 battle_NoMoreRoomInPC,There's no more room for~Pokémon in the PC!
-battle_NoSafariBalls,No Safari Balls.
-battle_NoSportBalls,No Sport Balls.
+battle_NoSafariBalls,No Safari Balls
+battle_NoSportBalls,No Sport Balls
 battle_action_ThrowMud,Throw Mud
 battle_action_ThrowBait,Throw Bait
 battle_action_Run,Flucht

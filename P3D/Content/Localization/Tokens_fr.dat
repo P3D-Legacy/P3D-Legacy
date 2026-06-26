@@ -82,6 +82,8 @@ global_pokemon_move_sweetscent,Doux Parfum
 global_pokemon_move_milkdrink,Lait A Boire
 global_pokemon_move_softboiled,E-Coque
 global_used,Utilisé
+global_steps_left,Steps left:
+global_safari_balls_remaining,Safari Balls x
 ---
 Pokémon & Attack Properties:
 
@@ -1174,8 +1176,8 @@ battle_cannot_run,N'a pas réussi à s'enfuir.
 battle_cannot_run_ability,N'a pas réussi a s'enfuir à cause de~
 battle_MoveDisabled,Disabled!
 battle_NoMoreRoomInPC,There's no more room for~Pokémon in the PC!
-battle_NoSafariBalls,No Safari Balls.
-battle_NoSportBalls,No Sport Balls.
+battle_NoSafariBalls,No Safari Balls
+battle_NoSportBalls,No Sport Balls
 battle_action_ThrowMud,Throw Mud
 battle_action_ThrowBait,Throw Bait
 battle_action_Run,Run
