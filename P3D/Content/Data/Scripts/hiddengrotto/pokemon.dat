@@ -11,6 +11,6 @@ version=2
 @register.unregister(grottoshiny<level.filename>,str)
 @register.unregister(grottoactive<level.filename>,str)
 @register.unregister(grottolevel<level.filename>,int)
-@register.unregister(grottopokemongenderroute31<level.filename>,int)
+@register.unregister(grottopokemongender<level.filename>,int)
 @npc.remove(0)
 :end
