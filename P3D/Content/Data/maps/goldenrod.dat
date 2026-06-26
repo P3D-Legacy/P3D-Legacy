@@ -5,6 +5,7 @@ sand:
 {"Floor"{ENT[{"Size"{intArr[14,8]}}{"Position"{intArr[4,0,0]}}{"TexturePath"{str[Goldenrod]}}{"Texture"{rec[0,80,16,16]}}]}}
 {"Floor"{ENT[{"Size"{intArr[4,2]}}{"Position"{intArr[4,0,8]}}{"TexturePath"{str[Goldenrod]}}{"Texture"{rec[0,80,16,16]}}]}}
 {"Floor"{ENT[{"Size"{intArr[14,2]}}{"Position"{intArr[4,0,10]}}{"TexturePath"{str[Goldenrod]}}{"Texture"{rec[0,80,16,16]}}]}}
+{"Floor"{ENT[{"Size"{intArr[10,2]}}{"Position"{intArr[4,0,12]}}{"TexturePath"{str[Goldenrod]}}{"Texture"{rec[0,80,16,16]}}]}}
 {"Floor"{ENT[{"Size"{intArr[16,6]}}{"Position"{intArr[2,0,14]}}{"TexturePath"{str[Goldenrod]}}{"Texture"{rec[0,80,16,16]}}]}}
 {"Floor"{ENT[{"Size"{intArr[10,4]}}{"Position"{intArr[8,0,20]}}{"TexturePath"{str[Goldenrod]}}{"Texture"{rec[0,80,16,16]}}]}}
 {"Floor"{ENT[{"Size"{intArr[16,4]}}{"Position"{intArr[2,0,24]}}{"TexturePath"{str[Goldenrod]}}{"Texture"{rec[0,80,16,16]}}]}}
