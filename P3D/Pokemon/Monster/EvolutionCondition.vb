@@ -277,7 +277,7 @@ Public Class EvolutionCondition
                                 End If
                             End If
                         Case ConditionTypes.Weather
-                            If World.GetCurrentRegionWeather().ToString.ToLower <> c.Argument.ToLower Then
+                            If World.GetWeatherFromWeatherType(Screen.Level.WeatherType).ToString.ToLower <> c.Argument.ToLower Then
                                 canEvolve = False
                             End If
                         Case ConditionTypes.Region
