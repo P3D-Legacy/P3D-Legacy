@@ -1,6 +1,6 @@
 version=2
 :if:<register.registered(badgecheck6-14)>=False
-	@player.turnto(0)
+	@player.turn(1)
 	@script.start(league\badgecheck\6keeper)
 :endif
 :end
