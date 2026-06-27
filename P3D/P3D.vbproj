@@ -29079,7 +29079,7 @@
     <Compile Include="Pokemon\Items\Standard\BurnDrive.vb" />
     <Compile Include="Pokemon\Items\Standard\ExpertBelt.vb" />
     <Compile Include="Pokemon\Items\Stones\IceStone.vb" />
-    <Compile Include="Pokemon\Items\Stones\BlackAurugite.vb" />
+    <Compile Include="Pokemon\Items\Stones\BlackAugurite.vb" />
     <Compile Include="Pokemon\Monster\GameModeElementLoader.vb" />
     <Compile Include="Resources\Blur\BlurHandler.vb" />
     <Content Include="Content\Data\Scripts\faraway\mewtwonite_y.dat">
