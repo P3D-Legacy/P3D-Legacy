@@ -1,5 +1,6 @@
 version=2
 :if:<register.registered(badgecheck5-13)>=False
+	@camera.SetToPlayerFacing
 	@player.turn(1)
 	@script.start(league\badgecheck\5keeper)
 :endif
