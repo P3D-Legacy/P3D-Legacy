@@ -146,9 +146,13 @@
                     End If
                     RemainingText &= Localization.GetString("global_safari_balls_remaining", "Safari Balls x") & " " & Core.Player.Inventory.GetItemAmount(181.ToString)
                 End If
-                Core.SpriteBatch.DrawString(FontManager.MainFont, RemainingText, New Vector2(CInt(Core.windowSize.Width / 2 - FontManager.MainFont.MeasureString(RemainingText).X) + 4, CInt(Core.windowSize.Height / 2 - 272 - FontManager.MainFont.MeasureString(RemainingText).Y) + 4), Color.Black, 0.0F, Vector2.Zero, 2.0F, SpriteEffects.None, 0.0F)
-                Core.SpriteBatch.DrawString(FontManager.MainFont, RemainingText, New Vector2(CInt(Core.windowSize.Width / 2 - FontManager.MainFont.MeasureString(RemainingText).X), CInt(Core.windowSize.Height / 2 - 272 - FontManager.MainFont.MeasureString(RemainingText).Y)), Color.White, 0.0F, Vector2.Zero, 2.0F, SpriteEffects.None, 0.0F)
-
+                If Core.windowSize.Height >= 888 Then
+                    Core.SpriteBatch.DrawString(FontManager.MainFont, RemainingText, New Vector2(CInt(Core.windowSize.Width / 2 - FontManager.MainFont.MeasureString(RemainingText).X) + 4, CInt(Core.windowSize.Height / 2 - 272 - FontManager.MainFont.MeasureString(RemainingText).Y) + 4), Color.Black, 0.0F, Vector2.Zero, 2.0F, SpriteEffects.None, 0.0F)
+                    Core.SpriteBatch.DrawString(FontManager.MainFont, RemainingText, New Vector2(CInt(Core.windowSize.Width / 2 - FontManager.MainFont.MeasureString(RemainingText).X), CInt(Core.windowSize.Height / 2 - 272 - FontManager.MainFont.MeasureString(RemainingText).Y)), Color.White, 0.0F, Vector2.Zero, 2.0F, SpriteEffects.None, 0.0F)
+                Else
+                    Core.SpriteBatch.DrawString(FontManager.MainFont, RemainingText, New Vector2(CInt(Core.windowSize.Width / 2 - FontManager.MainFont.MeasureString(RemainingText).X) + 4, CInt(Core.windowSize.Height / 2 + 272 - FontManager.MainFont.MeasureString(RemainingText).Y) + 4), Color.Black, 0.0F, Vector2.Zero, 2.0F, SpriteEffects.None, 0.0F)
+                    Core.SpriteBatch.DrawString(FontManager.MainFont, RemainingText, New Vector2(CInt(Core.windowSize.Width / 2 - FontManager.MainFont.MeasureString(RemainingText).X), CInt(Core.windowSize.Height / 2 + 272 - FontManager.MainFont.MeasureString(RemainingText).Y)), Color.White, 0.0F, Vector2.Zero, 2.0F, SpriteEffects.None, 0.0F)
+                End If
 
                 For i = 0 To _menuOptions.Count - 1
                     Dim text As String = _menuOptions(i).Replace("|||", "")
