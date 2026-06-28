@@ -130,12 +130,16 @@
     End Sub
 
     Public Overrides Sub ClickFunction()
-        Dim text As String = "There are no apricorns~on this tree.*Better come back later..."
+        Dim text As String = Localization.GetString("apricorn_NoneOnThisTree", "There are no apricorns~on this tree.*Better come back later...")
 
         If hasApricorn = True Then
             Dim Item As Item = GetItem()
 
-            text = "There is a " & Item.OneLineName() & "~on this tree.*Do you want to pick it?%Yes|No%"
+            text = Localization.GetString("apricorn_WantToPick_A", "There is a [APRICORNNAME]~on this tree.*Do you want to pick it?").Replace("[APRICORNNAME]", Item.OneLineName()) & "%Yes|No%"
+
+            If "aoeiu".Contains(Item.OneLineName()(0)) Then
+                text = Localization.GetString("apricorn_WantToPick_An", "There is an [APRICORNNAME]~on this tree.*Do you want to pick it?").Replace("[APRICORNNAME]", Item.OneLineName()) & "%Yes|No%"
+            End If
         End If
 
         Screen.TextBox.Show(text, {Me})
@@ -155,7 +159,7 @@
             PlayerStatistics.Track("[85]Apricorns picked", 1)
             SoundManager.PlaySound("Receive_Item", True)
             Screen.TextBox.TextColor = TextBox.PlayerColor
-            Screen.TextBox.Show(Core.Player.Name & " picked the~" & Item.OneLineName() & ".*" & Core.Player.Inventory.GetMessageReceive(Item, 1), {Me})
+            Screen.TextBox.Show(Localization.GetString("apricorn_Picked", "<Player.Name> picked the~[APRICORNNAME].").Replace("[APRICORNNAME]", Item.OneLineName()) & "*" & Core.Player.Inventory.GetMessageReceive(Item, 1), {Me})
             AddApriconSave()
             hasApricorn = False
             ChangeTexture()

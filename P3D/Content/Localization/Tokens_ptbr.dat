@@ -1159,11 +1159,26 @@ item_stored_in_pocket_multiple_end,.
 item_handed_over_single,<Player.Name> entregou um(a)~
 item_handed_over_multiple,<Player.Name> entregou os(as)~
 
+Apricorns:
+apricorn_NoneOnThisTree,There are no apricorns~on this tree.*Better come back later...
+apricorn_WantToPick_A,There is a [APRICORNNAME]~on this tree.*Do you want to pick it?
+apricorn_WantToPick_An,There is an [APRICORNNAME]~on this tree.*Do you want to pick it?
+apricorn_Picked,<Player.Name> picked the~[APRICORNNAME].
+
 Berries:
-berry_picked_single_start,<Player.Name> pegou uma 
-berry_picked_single_end,Berry.
-berry_picked_multiple_start,<Player.Name> pegou 
-berry_picked_multiple_end,Berries.
+berry_plant_Question,Do you want to plant a~berry here?
+berry_plant_Planted,You planted a~[BERRYNAME] Berry here.
+berry_pick_Question_Single,There is a~[BERRYNAME] Berry!*Do you want to pick~it?
+berry_pick_Question_Multiple,There are [BERRYNUMBER]~[BERRYNAME] Berries!*Do you want to pick~them?
+berry_pick_Picked_Single,<Player.Name> pegou uma~[BERRYNAME] Berry.
+berry_pick_Picked_Multiple,<Player.Name> pegou~[BERRYNAME] Berries.
+berry_water_Question,Do you want to~water it?
+berry_water_Watered_Berry,<Player.Name> watered~the [BERRYNAME] Berry.
+berry_water_Watered_Plant,<Player.Name> watered~the [BERRYNAME] plant.
+berry_water_Phase0,One [BERRYNAME] Berry was~planted here.
+berry_water_Phase1,The [BERRYNAME] Berry~has sprouted.
+berry_water_Phase2,This [BERRYNAME] plant is~growing taller.
+berry_water_Phase3,These [BERRYNAME] flowers~are blooming.
 ----
 Battle:
 battle_trainer_about_to_send_out_1,está prestes a mandar

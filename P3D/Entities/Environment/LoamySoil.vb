@@ -21,7 +21,7 @@
             End If
         Next
         If hasBerry = False Then
-            Screen.TextBox.Show("Do you want to plant a~berry here?%Yes|No%", {Me})
+            Screen.TextBox.Show(Localization.GetString("berry_plant_Question", "Do you want to plant a~berry here?") & "%Yes|No%", {Me})
             SoundManager.PlaySound("select")
         End If
     End Sub
@@ -48,7 +48,7 @@
 
             BerryPlant.AddBerryPlant(Screen.Level.LevelFile, Me.Position, Berry.BerryIndex)
             Screen.TextBox.reDelay = 0.0F
-            Screen.TextBox.Show("You planted a~" & Berry.Name & " Berry here.", {})
+            Screen.TextBox.Show(Localization.GetString("berry_plant_Planted", "You planted a~[BERRYNAME] Berry here.").Replace("[BERRYNAME]", Berry.Name), {})
         End If
     End Sub
 

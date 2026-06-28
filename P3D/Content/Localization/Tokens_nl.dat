@@ -1159,11 +1159,26 @@ item_stored_in_pocket_multiple_end,~vakje.
 item_handed_over_single,<Player.Name> overhandigde~een
 item_handed_over_multiple,<Player.Name> overhandigde~de
 
+Apricorns:
+apricorn_NoneOnThisTree,Er hangen geen apricorns~aan deze boom.*Het is beter om later~terug te komen...
+apricorn_WantToPick_A,Er hangt een [APRICORNNAME]~aan deze boom.*Wil je hem plukken?
+apricorn_WantToPick_An,Er hangt een [APRICORNNAME]~aan deze boom.*Wil je hem plukken?
+apricorn_Picked,<Player.Name> plukte de~[APRICORNNAME].
+
 Berries:
-berry_picked_single_start,<Player.Name> plukte de~
-berry_picked_single_end,Bes.
-berry_picked_multiple_start,<Player.Name> plukte de~
-berry_picked_multiple_end,Bessen.
+berry_plant_Question,Wil je hier een bes planten?
+berry_plant_Planted,Je hebt hier een~[BERRYNAME]-Bes geplant.
+berry_pick_Question_Single,Er hangt een~[BERRYNAME]-Bes!*Wil je hem plukken?
+berry_pick_Question_Multiple,Er hangen [BERRYNUMBER]~[BERRYNAME]-Bessen!*Wil je ze plukken?
+berry_pick_Picked_Single,<Player.Name> plukte de~[BERRYNAME]-Bes.
+berry_pick_Picked_Multiple,<Player.Name> plukte de~[BERRYNAME]-Bessen.
+berry_water_Question,Wil je hem water geven?
+berry_water_Watered_Berry,<Player.Name> gaf de~[BERRYNAME]-Bes water.
+berry_water_Watered_Plant,<Player.Name> gaf de~[BERRYNAME]-plant water.
+berry_water_Phase0,Er is hier een~[BERRYNAME]-Bes geplant.
+berry_water_Phase1,De [BERRYNAME]-Bes is~ontkiemd.
+berry_water_Phase2,Deze [BERRYNAME]-plant~wordt steeds groter.
+berry_water_Phase3,Deze [BERRYNAME]-bloemen~zijn aan het bloeien.
 ----
 Battle:
 battle_trainer_about_to_send_out_1,staat op het punt om

@@ -138,37 +138,37 @@
             Case 0
                 Me.ResultIndex = 1
                 If hasBottle = True Then
-                    text = "One " & Me.Berry.Name & " Berry was~planted here.*Do you want to~water it?%Yes|No%"
+                    text = Localization.GetString("berry_water_Phase0", "One [BERRYNAME] Berry was~planted here.").Replace("[BERRYNAME]", Me.Berry.Name) & "*" & Localization.GetString("berry_water_Question", "Do you want to~water it?") & "%Yes|No%"
                 Else
-                    text = "One " & Me.Berry.Name & " Berry was~planted here."
+                    text = Localization.GetString("berry_water_Phase0", "One [BERRYNAME] Berry was~planted here.").Replace("[BERRYNAME]", Me.Berry.Name)
                 End If
             Case 1
                 Me.ResultIndex = 1
                 If hasBottle = True Then
-                    text = Berry.Name & " has sprouted.*Do you want to~water it?%Yes|No%"
+                    text = Localization.GetString("berry_water_Phase1", "The [BERRYNAME] Berry~has sprouted.").Replace("[BERRYNAME]", Me.Berry.Name) & "*" & Localization.GetString("berry_water_Question", "Do you want to~water it?") & "%Yes|No%"
                 Else
-                    text = Berry.Name & " has sprouted."
+                    text = Localization.GetString("berry_water_Phase1", "The [BERRYNAME] Berry~has sprouted.").Replace("[BERRYNAME]", Me.Berry.Name)
                 End If
             Case 2
                 Me.ResultIndex = 1
                 If hasBottle = True Then
-                    text = "This " & Berry.Name & " plant is~growing taller.*Do you want to~water it?%Yes|No%"
+                    text = Localization.GetString("berry_water_Phase2", "This [BERRYNAME] plant is~growing taller.").Replace("[BERRYNAME]", Me.Berry.Name) & "*" & Localization.GetString("berry_water_Question", "Do you want to~water it?") & "%Yes|No%"
                 Else
-                    text = "This " & Berry.Name & " plant is~growing taller."
+                    text = Localization.GetString("berry_water_Phase2", "This [BERRYNAME] plant is~growing taller.").Replace("[BERRYNAME]", Me.Berry.Name)
                 End If
             Case 3
                 Me.ResultIndex = 1
                 If hasBottle = True Then
-                    text = "These " & Berry.Name & " flowers~are blooming.*Do you want to~water it?%Yes|No%"
+                    text = Localization.GetString("berry_water_Phase3", "These [BERRYNAME] flowers~are blooming.").Replace("[BERRYNAME]", Me.Berry.Name) & "*" & Localization.GetString("berry_water_Question", "Do you want to~water it?") & "%Yes|No%"
                 Else
-                    text = "These " & Berry.Name & " flowers~are blooming."
+                    text = Localization.GetString("berry_water_Phase3", "These [BERRYNAME] flowers~are blooming.").Replace("[BERRYNAME]", Me.Berry.Name)
                 End If
             Case 4
                 Me.ResultIndex = 0
                 If Me.Berries = 1 Then
-                    text = "There is a~" & Berry.Name & " Berry!*Do you want to pick~it?%Yes|No%"
+                    text = Localization.GetString("berry_pick_Question_Single", "There is a~[BERRYNAME] Berry!*Do you want to pick~it?").Replace("[BERRYNAME]", Me.Berry.Name) & "%Yes|No%"
                 Else
-                    text = "There are " & Berries & "~" & Berry.Name & " Berries!*Do you want to pick~them?%Yes|No%"
+                    text = Localization.GetString("berry_pick_Question_Multiple", "There are [BERRYNUMBER]~[BERRYNAME] Berries!*Do you want to pick~them?").Replace("[BERRYNUMBER]", Berries.ToString).Replace("[BERRYNAME]", Me.Berry.Name) & "%Yes|No%"
                 End If
         End Select
 
@@ -183,9 +183,9 @@
                     Core.Player.Inventory.AddItem(Me.Berry.ID.ToString, Me.Berries)
                     Dim Text As String = ""
                     If Me.Berries = 1 Then
-                        Text = Localization.GetString("berry_picked_single_start", "<player.name> picked the~").Replace("<player.name>", Core.Player.Name) & Berry.OneLineName() & " " & Localization.GetString("berry_picked_single_end", "Berry.") & "*" & Core.Player.Inventory.GetMessageReceive(Berry, Me.Berries)
+                        Text = Localization.GetString("berry_pick_Picked_Single", "<Player.Name> picked the~[BERRYNAME] Berry.").Replace("[BERRYNAME]", Berry.OneLineName()) & "*" & Core.Player.Inventory.GetMessageReceive(Berry, Me.Berries)
                     Else
-                        Text = Localization.GetString("berry_picked_multiple_start", "<player.name> picked the~").Replace("<player.name>", Core.Player.Name) & Berries & " " & Berry.OneLineName() & " " & Localization.GetString("berry_picked_multiple_end", "Berries.") & "*" & Core.Player.Inventory.GetMessageReceive(Berry, Me.Berries)
+                        Text = Localization.GetString("berry_pick_Picked_Multiple", "<Player.Name> picked the~[BERRYNAME] Berry.").Replace("[BERRYNAME]", Berry.OneLineName()) & "*" & Core.Player.Inventory.GetMessageReceive(Berry, Me.Berries)
                     End If
 
                     Core.Player.AddPoints(2, "Picked berries.")
@@ -198,7 +198,10 @@
                     Screen.Level.Entities.Remove(Me)
                 Case 1
                     WaterBerry()
-                    Dim Text As String = Core.Player.Name & " watered~the " & Berry.Name & "."
+                    Dim Text As String = Localization.GetString("berry_water_Watered_Berry", "<Player.Name> watered~the [BERRYNAME] Berry.").Replace("[BERRYNAME]", Berry.Name)
+                    If Me.Phase > 1 Then
+                        Text = Localization.GetString("berry_water_Watered_Plant", "<Player.Name> watered~the [BERRYNAME] plant.").Replace("[BERRYNAME]", Berry.Name)
+                    End If
                     Screen.TextBox.Show(Text, {Me})
             End Select
         End If
