@@ -36,7 +36,7 @@ Public Class OverworldScreen
     ''' <summary>
     ''' The delay until the XBOX buttons get shown since the player last pressed a button.
     ''' </summary>
-    Private ShowControlsDelay As Single = 4.0F
+    Private ShowControlsDelay As Single = 1.0F
     Public AfterRoamingBattleScript As String = ""
 
 #End Region
@@ -340,7 +340,7 @@ Public Class OverworldScreen
         End If
         If Screen.Camera.IsMoving() = True Or Camera.Turning = True Or ActionScript.IsReady = False Or TextBox.Showing = True Or ChooseBox.Showing = True Then
             'If any input is received, reset the delay:
-            ShowControlsDelay = 8.0F
+            ShowControlsDelay = 1.0F
         End If
     End Sub
 
