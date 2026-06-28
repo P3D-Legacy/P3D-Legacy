@@ -369,7 +369,7 @@ Public Class ApricornScreen
 
             If HasApricorns() = True Then
                 For Each Button As ButtonIcon In Me.Buttons
-                    If Button.AdditionalValue = Localization.GetString("apricorn_screen_ok") Then
+                    If Button.AdditionalValue = "OK" Then
                         Button.Enabled = True
                     End If
                 Next
@@ -408,7 +408,7 @@ Public Class ApricornScreen
 
     Private Sub ClearApricorns()
         For Each Button As ButtonIcon In Me.Buttons
-            If Button.AdditionalValue = Localization.GetString("apricorn_screen_ok") Then
+            If Button.AdditionalValue = "OK" Then
                 Button.Enabled = False
             End If
         Next
@@ -423,7 +423,7 @@ Public Class ApricornScreen
 
         If HasApricorns() = True Then
             For Each Button As ButtonIcon In Me.Buttons
-                If Button.AdditionalValue = Localization.GetString("apricorn_screen_ok") Then
+                If Button.AdditionalValue = "OK" Then
                     Button.Enabled = True
                 End If
             Next
@@ -470,67 +470,102 @@ Public Class ApricornScreen
         Dim LeftOverBallMoney As Integer = 0
 
         If Core.Player.Inventory.GetItemAmount(159.ToString) + CInt(Apricorns(0)) > Item.GetItemByID(159.ToString).MaxStack Then
-            LeftOverBallMoney += 150 * CInt(Item.GetItemByID(159.ToString).MaxStack - CInt(Apricorns(0)))
-            Apricorns(0) -= Item.GetItemByID(159.ToString).MaxStack - CInt(Apricorns(0))
+            LeftOverBallMoney += 150 * Core.Player.Inventory.GetItemAmount(159.ToString) + CInt(Apricorns(0)) - CInt(Item.GetItemByID(159.ToString).MaxStack)
+            Apricorns(0) -= Core.Player.Inventory.GetItemAmount(159.ToString) + CInt(Apricorns(0)) - CInt(Item.GetItemByID(159.ToString).MaxStack)
         End If
 
         If Core.Player.Inventory.GetItemAmount(160.ToString) + CInt(Apricorns(1)) > Item.GetItemByID(160.ToString).MaxStack Then
-            LeftOverBallMoney += 150 * CInt(Item.GetItemByID(160.ToString).MaxStack - CInt(Apricorns(0)))
-            Apricorns(1) -= Item.GetItemByID(160.ToString).MaxStack - CInt(Apricorns(1))
+            LeftOverBallMoney += 150 * Core.Player.Inventory.GetItemAmount(160.ToString) + CInt(Apricorns(1)) - CInt(Item.GetItemByID(160.ToString).MaxStack)
+            Apricorns(1) -= Core.Player.Inventory.GetItemAmount(160.ToString) + CInt(Apricorns(1)) - CInt(Item.GetItemByID(160.ToString).MaxStack)
         End If
 
         If Core.Player.Inventory.GetItemAmount(165.ToString) + CInt(Me.Apricorns(2)) > Item.GetItemByID(165.ToString).MaxStack Then
-            LeftOverBallMoney = 150 * CInt(Item.GetItemByID(165.ToString).MaxStack - CInt(Apricorns(2)))
-            Apricorns(2) -= Item.GetItemByID(165.ToString).MaxStack - CInt(Apricorns(2))
+            LeftOverBallMoney = 150 * Core.Player.Inventory.GetItemAmount(165.ToString) + CInt(Apricorns(2)) - CInt(Item.GetItemByID(165.ToString).MaxStack)
+            Apricorns(2) -= Core.Player.Inventory.GetItemAmount(165.ToString) + CInt(Apricorns(2)) - CInt(Item.GetItemByID(165.ToString).MaxStack)
         End If
 
         If Core.Player.Inventory.GetItemAmount(164.ToString) + CInt(Me.Apricorns(3)) > Item.GetItemByID(164.ToString).MaxStack Then
-            LeftOverBallMoney = 150 * CInt(Item.GetItemByID(164.ToString).MaxStack - CInt(Apricorns(3)))
-            Apricorns(3) -= Item.GetItemByID(164.ToString).MaxStack - CInt(Apricorns(3))
+            LeftOverBallMoney = 150 * Core.Player.Inventory.GetItemAmount(164.ToString) + CInt(Apricorns(3)) - CInt(Item.GetItemByID(164.ToString).MaxStack)
+            Apricorns(3) -= Core.Player.Inventory.GetItemAmount(164.ToString) + CInt(Apricorns(3)) - CInt(Item.GetItemByID(164.ToString).MaxStack)
         End If
 
         If Core.Player.Inventory.GetItemAmount(161.ToString) + CInt(Me.Apricorns(4)) > Item.GetItemByID(161.ToString).MaxStack Then
-            LeftOverBallMoney = 150 * CInt(Item.GetItemByID(161.ToString).MaxStack - CInt(Apricorns(4)))
-            Apricorns(4) -= Item.GetItemByID(161.ToString).MaxStack - CInt(Apricorns(4))
+            LeftOverBallMoney = 150 * Core.Player.Inventory.GetItemAmount(161.ToString) + CInt(Apricorns(4)) - CInt(Item.GetItemByID(161.ToString).MaxStack)
+            Apricorns(4) -= Core.Player.Inventory.GetItemAmount(161.ToString) + CInt(Apricorns(4)) - CInt(Item.GetItemByID(161.ToString).MaxStack)
         End If
 
         If Core.Player.Inventory.GetItemAmount(157.ToString) + CInt(Me.Apricorns(5)) > Item.GetItemByID(157.ToString).MaxStack Then
-            LeftOverBallMoney = 150 * CInt(Item.GetItemByID(157.ToString).MaxStack - CInt(Apricorns(5)))
-            Apricorns(5) -= Item.GetItemByID(157.ToString).MaxStack - CInt(Apricorns(5))
+            LeftOverBallMoney = 150 * Core.Player.Inventory.GetItemAmount(157.ToString) + CInt(Apricorns(5)) - CInt(Item.GetItemByID(157.ToString).MaxStack)
+            Apricorns(5) -= Core.Player.Inventory.GetItemAmount(157.ToString) + CInt(Apricorns(5)) - CInt(Item.GetItemByID(157.ToString).MaxStack)
         End If
 
         If Core.Player.Inventory.GetItemAmount(166.ToString) + CInt(Me.Apricorns(6)) > Item.GetItemByID(166.ToString).MaxStack Then
-            LeftOverBallMoney = 150 * CInt(Item.GetItemByID(166.ToString).MaxStack - CInt(Apricorns(6)))
-            Apricorns(6) -= Item.GetItemByID(166.ToString).MaxStack - CInt(Apricorns(6))
+            LeftOverBallMoney = 150 * Core.Player.Inventory.GetItemAmount(166.ToString) + CInt(Apricorns(6)) - CInt(Item.GetItemByID(166.ToString).MaxStack)
+            Apricorns(6) -= Core.Player.Inventory.GetItemAmount(166.ToString) + CInt(Apricorns(6)) - CInt(Item.GetItemByID(166.ToString).MaxStack)
         End If
 
         If CInt(Apricorns(0)) > 0 Then
             Core.Player.Inventory.AddItem(159.ToString, CInt(Apricorns(0)))
-            text &= "~" & Apricorns(0) & "  " & Item.GetItemByID(159.ToString).Name
+            If CInt(Apricorns(0)) = 1 Then
+                text &= "~" & Apricorns(0) & "  " & Item.GetItemByID(159.ToString).OneLineName()
+            Else
+                text &= "~" & Apricorns(0) & "  " & Item.GetItemByID(159.ToString).OneLinePluralName()
+            End If
+
         End If
         If CInt(Apricorns(1)) > 0 Then
             Core.Player.Inventory.AddItem(160.ToString, CInt(Apricorns(1)))
-            text &= ",~" & Apricorns(1) & "  " & Item.GetItemByID(160.ToString).Name
+
+            If CInt(Apricorns(1)) = 1 Then
+                text &= ",~" & Apricorns(1) & "  " & Item.GetItemByID(160.ToString).OneLineName()
+            Else
+                text &= ",~" & Apricorns(1) & "  " & Item.GetItemByID(160.ToString).OneLinePluralName()
+            End If
         End If
         If CInt(Apricorns(2)) > 0 Then
             Core.Player.Inventory.AddItem(165.ToString, CInt(Apricorns(2)))
-            text &= ",~" & Apricorns(2) & "  " & Item.GetItemByID(165.ToString).Name
+
+            If CInt(Apricorns(2)) = 1 Then
+                text &= ",~" & Apricorns(2) & "  " & Item.GetItemByID(165.ToString).OneLineName()
+            Else
+                text &= ",~" & Apricorns(2) & "  " & Item.GetItemByID(165.ToString).OneLinePluralName()
+            End If
         End If
         If CInt(Apricorns(3)) > 0 Then
             Core.Player.Inventory.AddItem(164.ToString, CInt(Apricorns(3)))
-            text &= ",~" & Apricorns(3) & "  " & Item.GetItemByID(164.ToString).Name
+
+            If CInt(Apricorns(3)) = 1 Then
+                text &= ",~" & Apricorns(3) & "  " & Item.GetItemByID(164.ToString).OneLineName()
+            Else
+                text &= ",~" & Apricorns(3) & "  " & Item.GetItemByID(164.ToString).OneLinePluralName()
+            End If
         End If
         If CInt(Apricorns(4)) > 0 Then
             Core.Player.Inventory.AddItem(161.ToString, CInt(Apricorns(4)))
-            text &= ",~" & Apricorns(4) & "  " & Item.GetItemByID(161.ToString).Name
+
+            If CInt(Apricorns(4)) = 1 Then
+                text &= ",~" & Apricorns(4) & "  " & Item.GetItemByID(161.ToString).OneLineName()
+            Else
+                text &= ",~" & Apricorns(4) & "  " & Item.GetItemByID(161.ToString).OneLinePluralName()
+            End If
         End If
         If CInt(Apricorns(5)) > 0 Then
             Core.Player.Inventory.AddItem(157.ToString, CInt(Apricorns(5)))
-            text &= ",~" & Apricorns(5) & "  " & Item.GetItemByID(157.ToString).Name
+
+            If CInt(Apricorns(5)) = 1 Then
+                text &= ",~" & Apricorns(5) & "  " & Item.GetItemByID(157.ToString).OneLineName()
+            Else
+                text &= ",~" & Apricorns(5) & "  " & Item.GetItemByID(157.ToString).OneLinePluralName()
+            End If
         End If
         If CInt(Apricorns(6)) > 0 Then
             Core.Player.Inventory.AddItem(166.ToString, CInt(Apricorns(6)))
-            text &= ",~" & Apricorns(6) & "  " & Item.GetItemByID(166.ToString).Name
+
+            If CInt(Apricorns(6)) = 1 Then
+                text &= ",~" & Apricorns(6) & "  " & Item.GetItemByID(166.ToString).OneLineName()
+            Else
+                text &= ",~" & Apricorns(6) & "  " & Item.GetItemByID(166.ToString).OneLinePluralName()
+            End If
         End If
 
         If LeftOverBallMoney > 0 Then
@@ -586,7 +621,7 @@ Public Class ApricornScreen
                     If ApricornData(0) = Me.owner Then
                         Dim AmountList As List(Of String) = ApricornData(1).Split(CChar(",")).ToList()
                         For a = 0 To AmountList.Count - 1
-                            Me.Apricorns.Add(CInt(AmountList(a)))
+                            Me.Apricorns(a) = CInt(AmountList(a))
                         Next
 
                     End If
