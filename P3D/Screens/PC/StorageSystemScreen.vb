@@ -836,6 +836,13 @@ Public Class StorageSystemScreen
         DrawTopBar()
         DrawTeamWindow()
 
+        Dim d As New Dictionary(Of Buttons, String)
+        d.Add(Input.Buttons.Back, Localization.GetString("game_interaction_filter", "Filter"))
+        d.Add(Input.Buttons.LeftTrigger, Localization.GetString("game_interaction_previousbox", "Previous Box"))
+        d.Add(Input.Buttons.RightTrigger, Localization.GetString("game_interaction_nextbox", "Next Box"))
+
+        DrawGamePadControls(d)
+
         Dim Draw = If(Me.MenuVisible, CType(AddressOf Me.DrawMenuEntries, Action), AddressOf Me.DrawCursor)
         Draw()
         TextBox.Draw()
@@ -964,13 +971,6 @@ Public Class StorageSystemScreen
             Dim shadowPosition = textPosition + New Vector2(2)
             Core.SpriteBatch.DrawString(FontManager.MainFont, text, shadowPosition, Color.Black)
             Core.SpriteBatch.DrawString(FontManager.MainFont, text, textPosition, Color.White)
-
-            Dim d As New Dictionary(Of Buttons, String)
-            d.Add(Input.Buttons.Back, Localization.GetString("game_interaction_filter", "Filter"))
-            d.Add(Input.Buttons.LeftTrigger, Localization.GetString("game_interaction_previousbox", "Previous Box"))
-            d.Add(Input.Buttons.RightTrigger, Localization.GetString("game_interaction_nextbox", "Next Box"))
-
-            DrawGamePadControls(d)
         End If
     End Sub
 
