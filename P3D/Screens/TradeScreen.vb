@@ -824,7 +824,7 @@ Public Class TradeScreen
                 Me.DrawButton(New Vector2(664 + 32, 484 + 64 + 22), 1, Localization.GetString("shop_screen_button_buy", "Buy"), 64)
 
                 If ControllerHandler.IsConnected() = True Then
-                    Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\GamePad\xboxControllerButtonA"), New Rectangle(664 + 48, 484 + 64 + 34, 40, 40), Color.White)
+                    Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\GamePad\xboxControllerButtonA"), New Rectangle(664 + 48 + 4, 484 + 64 + 34 + 4, 32, 32), Color.White)
                 End If
             End If
         End If
