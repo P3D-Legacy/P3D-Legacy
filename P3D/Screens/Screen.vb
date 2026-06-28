@@ -386,7 +386,7 @@ Public MustInherit Class Screen
                 x += width + 4
 
                 'Draw the button description (again, with a shadow):
-                SpriteBatch.DrawInterfaceString(FontManager.MainFont, Descriptions.Values(i), New Vector2(x + 3, y + 7), Color.Black)
+                SpriteBatch.DrawInterfaceString(FontManager.MainFont, Descriptions.Values(i), New Vector2(x + 2, y + 6), Color.Black)
                 SpriteBatch.DrawInterfaceString(FontManager.MainFont, Descriptions.Values(i), New Vector2(x, y + 4), Color.White)
 
                 'Add the text width and the offset for the next button description to the drawing position:
