@@ -339,7 +339,7 @@ Public MustInherit Class Screen
     ''' <param name="Position">The position to draw the buttons.</param>
     Public Sub DrawGamePadControls(ByVal Descriptions As Dictionary(Of Buttons, String), ByVal Position As Vector2)
         'Only if a Gamepad is connected and the screen is active, render the buttons:
-        If GamePad.GetState(PlayerIndex.One).IsConnected = True And Core.GameOptions.GamePadEnabled = True And IsCurrentScreen() = True Then
+        If GamePad.GetState(PlayerIndex.One).IsConnected = True And Core.GameOptions.GamePadEnabled = True And IsCurrentScreen() = True AndAlso Core.GameOptions.ShowGUI = True Then
             'Transform the position to integers and store the current drawing position:
             Dim x As Integer = CInt(Position.X)
             Dim y As Integer = CInt(Position.Y)
