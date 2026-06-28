@@ -3,7 +3,7 @@ Name|Lea,Pia
 TrainerClass|<system.token(TrainerClass_Twins)>,
 Money|700
 IntroMessage|Who are you?
-OutroMessage|Meanie.
+OutroMessage|Meanie.|Meanie.
 DefeatMessage|We'll tell on you.*Master will be~angry with you.
 TextureID|littlegirl,littlegirl
 Region|Johto
