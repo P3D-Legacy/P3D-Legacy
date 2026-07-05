@@ -438,16 +438,16 @@ Public Class Level
     ''' <summary>
     ''' The menus that the player can't access in the overworld
     ''' </summary>
-    ''' <remarks>Possible Values: PokeGear, Pokedex, Pokemon, Bag, TrainerCard, Options, Save, StartMenus, All, None</remarks>
+    ''' <remarks>Possible Values: PokeGear, Pokedex, Pokemon, GiveTakeItem, Bag, TrainerCard, Options, Save, StartMenus, All, None</remarks>
     Public Property DisabledMenus As String
         Get
             Return Me._disabledMenus.ToLower
         End Get
         Set(value As String)
             If value.ToLower = "all" Then
-                Me._disabledMenus = "PokeGear,Pokedex,Pokemon,Bag,TrainerCard,Options,Save,All"
+                Me._disabledMenus = "PokeGear,Pokedex,Pokemon,GiveTakeItem,Bag,TrainerCard,Options,Save,All"
             ElseIf value.ToLower = "startmenus" Then
-                Me._disabledMenus = "Pokedex,Pokemon,Bag,TrainerCard,Options,Save,StartMenus"
+                Me._disabledMenus = "Pokedex,Pokemon,GiveTakeItem,Bag,TrainerCard,Options,Save,StartMenus"
             ElseIf value = "" Then
                 Me._disabledMenus = "None"
             Else

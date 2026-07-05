@@ -715,7 +715,7 @@ Public Class PartyScreen
             items.Add(Localization.GetString("global_switch", "Switch"))
         End If
 
-        If p.IsEgg() = False Then
+        If p.IsEgg() = False AndAlso Screen.Level.DisabledMenus.Contains("givetakeitem") = False Then
             items.Add(Localization.GetString("global_item", "Item"))
         End If
 
