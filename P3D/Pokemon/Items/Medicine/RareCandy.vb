@@ -50,7 +50,7 @@ Namespace Items.Medicine
 
                                 Dim t As String = Me.RemoveItem()
                                 If t <> "" Then
-                                    s &= "@text.show(" & t & ")" & Environment.NewLine
+                                    s &= "@text.show(" & t.Remove(0, 1) & ")" & Environment.NewLine
                                 End If
                                 removedItem = True
                             Else
