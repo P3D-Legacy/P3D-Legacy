@@ -114,7 +114,7 @@ version=2
 				:endwhen
 				:end
 			:else
-				:if:<register.registered(Protonchrono)>=True
+				:if:<register.registered(protonchrono)>=True
 					@text.show(This is the dock for the~Sea Gallop High-Speed~ferries to the Sevii Islands.*We are currently providing~assistance to the victims~of the recent eruption of the~Cinnabar Island Volcano and~are not accepting customers.*We apologize for~the inconvenience.)
 				:else
 					:if:<register.registered(seviiboatfirsttalk)>=False
