@@ -17,7 +17,7 @@ Public Class RoamingPokemon
         Me.LevelFile = data(4)
         Me.MusicLoop = data(5)
 
-        If data.Length = 10 Then
+        If data.Length = 9 Then
             ScriptPath = data(8)
         End If
     End Sub
