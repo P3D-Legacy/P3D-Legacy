@@ -10,79 +10,77 @@ version=2
 	#reset Snorlax
 		@register.unregister(snorlaxawake_respawn)
 #Static Legends
-	:if:<register.registered(caughtarticuno)>=false
+	:if:<register.registered(caughtarticuno)>=false <and> <register.registered(battlearticuno)>=true
 		@register.unregister(battlearticuno)
 		@npc.unregister(seafoam\bf4.dat|0|remove|0)
 		@register.unregister(shinyarticuno,bool)
 	:endif
-	:if:<register.registered(caughtzapdos)>=false
+	:if:<register.registered(caughtzapdos)>=false <and> <register.registered(battlezapdos)>=true
 		@register.unregister(battlezapdos)
 		@npc.register(routes\route10.dat|3|position|2,0,10)
 		@register.unregister(shinyzapdos,bool)
 	:endif
-	:if:<register.registered(caughtmoltres)>=false
+	:if:<register.registered(caughtmoltres)>=false <and> <register.registered(battlemoltres)>=true
 		@register.unregister(battlemoltres)
 		@npc.unregister(mtsilver\moltres.dat|0|remove|0)
 		@register.unregister(shinymoltres,bool)
 	:endif
-	:if:<register.registered(caughtmewtwo)>=false
+	:if:<register.registered(caughtmewtwo)>=false <and> <register.registered(battlemewtwo)>=true
 		@register.unregister(battlemewtwo)
 		@npc.unregister(ceruleancave\b1f.dat|0|remove|0)
 		@register.unregister(shinymewtwo,bool)
 	:endif
-	:if:<register.registered(caughtmew)>=false
+	:if:<register.registered(caughtmew)>=false <and> <register.registered(battlemew)>=true
 		@register.unregister(battlemew)
 		@npc.unregister(faraway\interior.dat|0|remove|0)
 		@register.unregister(shinymew,bool)
 	:endif
-	:if:<register.registered(caughtsuicune)>=false
+	:if:<register.registered(caughtsuicune)>=false <and> <register.registered(battlesuicune)>=true
 		@register.unregister(battlesuicune)
 		@npc.register(routes\route25.dat|0|position|58,2,3)
 	:endif
-	:if:<register.registered(caughtlugia)>=false
+	:if:<register.registered(caughtlugia)>=false <and> <register.registered(battlelugia)>=true
 		@register.unregister(battlelugia)
 		@register.unregister(shinylugia,bool)
 	:endif
-	:if:<register.registered(caughthooh)>=false
-		@register.unregister(battlemoltres)
-		@npc.register(ecruteak\tintower10f.dat|0|position|4,0.75,4)
+	:if:<register.registered(caughthooh)>=false <and> <register.registered(battle_hooh_tintower)>=true
 		@npc.register(ecruteak\tintower10f.dat|0|position|4,0.45,4)
 		@register.unregister(shinyhooh,bool)
 	:endif
-	:if:<register.registered(caughtjirachi)>=false
+	:if:<register.registered(caughtjirachi)>=false <and> <register.registered(battlejirachi)>=true
 		@register.unregister(battlejirachi)
 		@npc.unregister(dungeon\2\outside.dat|0|remove|0)
 		@register.unregister(shinyjirachi,bool)
 	:endif
-	:if:<register.registered(caughtvictini)>=false
+	:if:<register.registered(caughtvictini)>=false <and> <register.registered(battlevictini)>=true
 		@register.unregister(battlevictini)
 		@npc.unregister(liberty\room.dat|0|remove|0)
 		@register.unregister(shinyvictini,bool)
 	:endif
-	:if:<register.registered(caughtzekrom)>=false <and> <register.registered(zekready)>=true
+	:if:<register.registered(caughtzekrom)>=false <and> <register.registered(zekready)>=true <and> <register.registered(battlezekrom)>=true
 		@register.unregister(battlezekrom)
 		@register.unregister(shinyzekrom,bool)
 	:endif
-	:if:<register.registered(caughtreshiram)>=false <and> <register.registered(reshready)>=true
+	:if:<register.registered(caughtreshiram)>=false <and> <register.registered(reshready)>=true <and> <register.registered(battlereshiram)>=true
 		@register.unregister(battlereshiram)
 		@register.unregister(shinyreshiram,bool)
 	:endif
-	:if:<register.registered(caughtkyurem)>=false <and> <register.registered(taotriocomplete)>=true
+	:if:<register.registered(caughtkyurem)>=false <and> <register.registered(taotriocomplete)>=true <and> <register.registered(battlekyurem)>=true
 		@register.unregister(battlekyurem)
 		@register.unregister(shinykyurem,bool)
 	:endif
-	:if:<register.registered(caughtdiancie)>=false
+	:if:<register.registered(caughtdiancie)>=false <and> <register.registered(battlediancie)>=true
 		@register.unregister(battlediancie)
 		@npc.unregister(diamonddive\exterior\end.dat|0|remove|0)
 		@register.unregister(shinydiancie,bool)
 	:endif
-	:if:<register.registered(caughtvolcanion)>=false
+	:if:<register.registered(caughtvolcanion)>=false <and> <register.registered(volcanionbattle)>=true
 		@register.unregister(volcanionbattle)
 		@npc.unregister(mtember\peak.dat|1|remove|0)
 		@register.unregister(shinyvolcanion,bool)
 	:endif
-#roamers
-	:if:<register.registered(caughtraikou)>=false
+#roamers 
+	:if:<register.registered(caughtraikou)>=false <and> <register.registered(burnttower_encounter_roaming)>=true
 		:if:<pokemon.isroaming(raikouburned)>=false
 			:if:<register.value(shinysuicune)>=true
 				@pokemon.newroaming(raikouburned,243,40,0,route38.dat,raikou_battle,1,eusine\raikoubattle)
@@ -91,7 +89,7 @@ version=2
 			:endif
 		:endif
 	:endif
-	:if:<register.registered(caughtentei)>=false
+	:if:<register.registered(caughtentei)>=false <and> <register.registered(burnttower_encounter_roaming)>=true
 		:if:<pokemon.isroaming(enteiburned)>=false
 			:if:<register.value(shinysuicune)>=true
 				@pokemon.newroaming(enteiburned,244,40,0,routes\route42.dat,entei_battle,1,eusine\enteibattle)

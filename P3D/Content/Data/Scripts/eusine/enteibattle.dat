@@ -1,5 +1,5 @@
 version=2
 :if:<battle.caught>=true
-	@register.register(enteibattle)
+	@register.register(caughtentei)
 :endif
 :end
