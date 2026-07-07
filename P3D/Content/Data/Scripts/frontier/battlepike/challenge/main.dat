@@ -67,6 +67,10 @@ version=2
 			@script.start(frontier\battlepike\randwild)
 			@register.unregister(pikelucynext)
 
+			@register.register(temp_pike_challenge_poke1,STR,<pokemon.data(0)>)
+			@register.register(temp_pike_challenge_poke2,STR,<pokemon.data(1)>)
+			@register.register(temp_pike_challenge_poke3,STR,<pokemon.data(2)>)
+			
 			@Pokemon.changelevel(0,<register.value(pike_level)>)
 			@Pokemon.changelevel(1,<register.value(pike_level)>)
 			@Pokemon.changelevel(2,<register.value(pike_level)>)

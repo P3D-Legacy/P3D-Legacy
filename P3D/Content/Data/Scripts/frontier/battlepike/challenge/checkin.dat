@@ -20,6 +20,14 @@ version=2
 						@screen.fadein
 						@text.show(Your challenge has ended...*I shall record your results...*We look forward to seeing~you on another occasion...)
 
+						@pokemon.add(<register.value(temp_pike_challenge_poke1)>)
+						@pokemon.add(<register.value(temp_pike_challenge_poke2)>)
+						@pokemon.add(<register.value(temp_pike_challenge_poke3)>)
+
+						@register.unregister(temp_pike_challenge_poke1,str)
+						@register.unregister(temp_pike_challenge_poke2,str)
+						@register.unregister(temp_pike_challenge_poke3,str)
+
 						@pokemon.changelevel(0,<register.value(pike_challenge_level_0)>)
 						@pokemon.changelevel(1,<register.value(pike_challenge_level_1)>)
 						@pokemon.changelevel(2,<register.value(pike_challenge_level_2)>)

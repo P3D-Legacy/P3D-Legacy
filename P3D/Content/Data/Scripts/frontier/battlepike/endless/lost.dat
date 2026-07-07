@@ -6,9 +6,13 @@ version=2
 @screen.fadein
 @text.show(Your challenge has ended...)
 
-@pokemon.changelevel(0,<register.value(pike_endless_level_0)>)
-@pokemon.changelevel(1,<register.value(pike_endless_level_1)>)
-@pokemon.changelevel(2,<register.value(pike_endless_level_2)>)
+@pokemon.add(<register.value(temp_pike_endless_poke1)>)
+@pokemon.add(<register.value(temp_pike_endless_poke2)>)
+@pokemon.add(<register.value(temp_pike_endless_poke3)>)
+
+@register.unregister(temp_pike_endless_poke1,str)
+@register.unregister(temp_pike_endless_poke2,str)
+@register.unregister(temp_pike_endless_poke3,str)
 
 @pokemon.calcstats(0)
 @pokemon.calcstats(1)

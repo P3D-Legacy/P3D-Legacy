@@ -21,9 +21,13 @@ version=2
 	@player.addbp(<storage.get(integer,get_bp)>)
 	@text.show(<player.name> got <storage.get(integer,get_bp)> BP!*You now have <player.bp> BP.)
 	
-	@pokemon.changelevel(0,<register.value(pike_challenge_level_0)>)
-	@pokemon.changelevel(1,<register.value(pike_challenge_level_1)>)
-	@pokemon.changelevel(2,<register.value(pike_challenge_level_2)>)
+	@pokemon.add(<register.value(temp_pike_challenge_poke1)>)
+	@pokemon.add(<register.value(temp_pike_challenge_poke2)>)
+	@pokemon.add(<register.value(temp_pike_challenge_poke3)>)
+
+	@register.unregister(temp_pike_challenge_poke1,str)
+	@register.unregister(temp_pike_challenge_poke2,str)
+	@register.unregister(temp_pike_challenge_poke3,str)
 
 	@pokemon.calcstats(0)
 	@pokemon.calcstats(1)
