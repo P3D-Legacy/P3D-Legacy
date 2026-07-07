@@ -579,6 +579,9 @@ trainer_screen_title,Kartu Pelatih
 trainer_screen_collected_badges,Koleksi lencana
 trainer_screen_badge, Lencana
 trainer_screen_empty_badge,???
+trainer_screen_rank,Rank
+trainer_screen_NeedPoint,Need [NUMBER] point
+trainer_screen_NeedPoints,Need [NUMBER] points
 ---
 Save Screen:
 save_screen_question1,Kau ingin menyimpan

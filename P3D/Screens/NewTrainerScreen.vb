@@ -109,10 +109,10 @@
         _charBatch.Draw(_charTexture, New Rectangle(70, 36 + _paperClipTexture.Height, 128, 128), Color.White)
 
         If Core.Player.IsGameJoltSave Then
+            Dim emblemName = Localization.GetString("emblem_achievement_name_" & GameJoltSave.Emblem, GameJoltSave.Emblem)
             _spriteBatch.Draw(GameJolt.Emblem.GetEmblemBackgroundTexture(GameJoltSave.Emblem), New Rectangle(-10, 290, 256, 64), Nothing, Color.White, 0F, Vector2.Zero, SpriteEffects.None, 0F)
-            Canvas.DrawRectangle(_textBatch, New Rectangle(-10, 300, 190, 30), New Color(0, 0, 0, 150))
+            Canvas.DrawRectangle(_textBatch, New Rectangle(-10, 300, 45 + CInt(FontManager.MainFont.MeasureString(emblemName(0).ToString().ToUpper() & emblemName.Substring(1, emblemName.Length - 1)).X), 32), New Color(0, 0, 0, 150))
 
-            Dim emblemName = GameJoltSave.Emblem
             _textBatch.DrawString(FontManager.MainFont, emblemName(0).ToString().ToUpper() & emblemName.Substring(1, emblemName.Length - 1), New Vector2(15, 305), Color.White)
 
             DrawLevelProgress()
@@ -225,14 +225,14 @@
         If currentLevel = 100 Then
             nxtLvl = 100
         End If
-        Dim rankStr = "Rank: " & nxtLvl
+        Dim rankStr = Localization.GetString("trainer_screen_rank", "Rank") & ": " & nxtLvl
 
-        _textBatch.DrawString(FontManager.MainFont, rankStr, New Vector2(600 - FontManager.MainFont.MeasureString(rankStr).X.ToInteger(), 290), Color.Black)
+        _textBatch.DrawString(FontManager.MainFont, rankStr, New Vector2(602 - FontManager.MainFont.MeasureString(rankStr).X.ToInteger(), 290), Color.Black)
 
         If needPoints = 1 Then
-            _textBatch.DrawString(FontManager.MainFont, "Need " & needPoints & " point", New Vector2(280, 312), Color.Black)
+            _textBatch.DrawString(FontManager.MainFont, Localization.GetString("trainer_screen_NeedPoint", "Need [NUMBER] point").Replace("[NUMBER]", needPoints.ToString), New Vector2(280, 312), Color.Black)
         Else
-            _textBatch.DrawString(FontManager.MainFont, "Need " & needPoints & " points", New Vector2(280, 312), Color.Black)
+            _textBatch.DrawString(FontManager.MainFont, Localization.GetString("trainer_screen_NeedPoints", "Need [NUMBER] points").Replace("[NUMBER]", needPoints.ToString), New Vector2(280, 312), Color.Black)
         End If
 
         'If totalNeedPoints > 0 Then
