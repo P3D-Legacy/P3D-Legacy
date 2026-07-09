@@ -1922,6 +1922,21 @@ Namespace BattleSystem
             If RandomMoveText <> "" Then
                 BattleScreen.BattleQuery.Add(New TextQueryObject(RandomMoveText))
             End If
+
+            Dim MirrorMoveText As String = ""
+            If own = True Then
+                If BattleScreen.FieldEffects.OwnUsedMirrorMove = True AndAlso BattleScreen.FieldEffects.OwnUsedMirrorMoveAttack IsNot Nothing Then
+                    MirrorMoveText = p.GetDisplayName() & " used " & BattleScreen.FieldEffects.OwnUsedMirrorMoveAttack.Name & "!"
+                End If
+            Else
+                If BattleScreen.FieldEffects.OppUsedMirrorMove = True AndAlso BattleScreen.FieldEffects.OppUsedMirrorMoveAttack IsNot Nothing Then
+                    MirrorMoveText = p.GetDisplayName() & " used " & BattleScreen.FieldEffects.OppUsedMirrorMoveAttack.Name & "!"
+                End If
+            End If
+            If MirrorMoveText <> "" Then
+                BattleScreen.BattleQuery.Add(New TextQueryObject(MirrorMoveText))
+            End If
+
             BattleScreen.BattleQuery.Add(New TextQueryObject(MoveUsedText))
 
             If moveUsed.DeductPP(own, BattleScreen) = True Then
