@@ -411,8 +411,8 @@
             Canvas.DrawRectangle(New Rectangle(DeltaX + 344, DeltaY + 362 - 64, 380, 32), New Color(0, 0, 0, CInt(100 * _interfaceFade * _pageFade)))
             Canvas.DrawRectangle(New Rectangle(DeltaX + 344, DeltaY + 394 - 64, 380, 64 + 12 + 16), New Color(0, 0, 0, CInt(70 * _interfaceFade * _pageFade)))
 
-            SpriteBatch.DrawString(FontManager.MainFont, Localization.GetString("property_Ability", "Ability"), New Vector2(DeltaX + 344 + 8, DeltaY + 366 - 64), New Color(255, 255, 255, CInt(220 * _interfaceFade * _pageFade)))
-            SpriteBatch.DrawString(FontManager.MainFont, Localization.GetString("ability_name_" & .Ability.ID.ToString, .Ability.Name), New Vector2(DeltaX + 344 + 8 + FontManager.MainFont.MeasureString(Localization.GetString("property_Ability", "Ability")).X + 8, DeltaY + 366 - 64), New Color(255, 255, 255, CInt(220 * _fadeIn * _pageFade)))
+            SpriteBatch.DrawString(FontManager.MainFont, Localization.GetString("property_Ability", "Ability") & ":", New Vector2(DeltaX + 344 + 8, DeltaY + 366 - 64), New Color(255, 255, 255, CInt(220 * _interfaceFade * _pageFade)))
+            SpriteBatch.DrawString(FontManager.MainFont, Localization.GetString("ability_name_" & .Ability.ID.ToString, .Ability.Name), New Vector2(DeltaX + 344 + 8 + FontManager.MainFont.MeasureString(Localization.GetString("property_Ability", "Ability") & ":").X + 8, DeltaY + 366 - 64), New Color(255, 255, 255, CInt(220 * _fadeIn * _pageFade)))
             SpriteBatch.DrawString(FontManager.MainFont, Localization.GetString("ability_desc_" & .Ability.ID.ToString, .Ability.Description).CropStringToWidth(FontManager.MainFont, 1.0F, 380 - 32), New Vector2(DeltaX + 344 + 8, DeltaY + 338), New Color(255, 255, 255, CInt(220 * _fadeIn * _pageFade)))
 
             'Catch Method:
@@ -438,9 +438,11 @@
 
             SpriteBatch.DrawString(FontManager.MainFont, Localization.GetString("summary_EVsIVs", "EVs (white) / IVs (blue)"), New Vector2(CInt(DeltaX + 350 + 380 + 16 + 8), DeltaY + 366 - 64), New Color(255, 255, 255, CInt(220 * _interfaceFade * _pageFade)))
 
+            Dim IVLineColor As New Color(Screens.UI.ColorProvider.ExtraColor.R, Screens.UI.ColorProvider.ExtraColor.G, Screens.UI.ColorProvider.ExtraColor.B, CInt(255 * _interfaceFade * _pageFade))
+
             For i = 0 To 5
                 SpriteBatch.DrawString(FontManager.MainFont, evStats(i).ToString, New Vector2(CInt(DeltaX + 350 + 380 + 16 + (348 / 2 - 2.5 * 56) + i * 56 - CInt(FontManager.MainFont.MeasureString(evStats(i).ToString).X * 0.5)), DeltaY + 338), New Color(255, 255, 255, CInt(220 * _interfaceFade * _pageFade)))
-                SpriteBatch.DrawString(FontManager.MainFont, ivStats(i).ToString, New Vector2(CInt(DeltaX + 350 + 380 + 16 + (348 / 2 - 2.5 * 56) + i * 56 - CInt(FontManager.MainFont.MeasureString(ivStats(i).ToString).X * 0.5)), DeltaY + 338 + 32 + 8), New Color(84, 198, 216, CInt(255 * _interfaceFade * _pageFade)))
+                SpriteBatch.DrawString(FontManager.MainFont, ivStats(i).ToString, New Vector2(CInt(DeltaX + 350 + 380 + 16 + (348 / 2 - 2.5 * 56) + i * 56 - CInt(FontManager.MainFont.MeasureString(ivStats(i).ToString).X * 0.5)), DeltaY + 338 + 32 + 8), IVLineColor)
             Next
 
             'EXP:
@@ -491,18 +493,18 @@
                 'Axis:
                 Dim c As Color = colors(i)
 
-                Canvas.DrawLine(New Color(c.R, c.G, c.B, CInt(220 * _interfaceFade * _pageFade)), New Vector2(CInt(DeltaX + 350 + 380 + 16 + (348 / 2) - (298 / 2) + 7) + i * 56, DeltaY + 268), New Vector2(CInt(DeltaX + 350 + 380 + 16 + (348 / 2) - (298 / 2) + 7) + i * 56, DeltaY + 268 - (224 * _fadeIn)), 3D)
+                Canvas.DrawLine(New Color(c.R, c.G, c.B, CInt(220 * _interfaceFade * _pageFade)), New Vector2(CInt(DeltaX + 350 + 380 + 16 + (348 / 2) - (298 / 2) + 7) + i * 56, DeltaY + 268), New Vector2(CInt(DeltaX + 350 + 380 + 16 + (348 / 2) - (298 / 2) + 7) + i * 56, CInt(DeltaY + 268 - (224 * _fadeIn))), 3D)
 
                 If i < 5 Then
                     Dim EVcurrentPointM As Double = evStats(i) / 256
                     Dim EVnextPointM As Double = evStats(i + 1) / 256
 
-                    Canvas.DrawLine(New Color(255, 255, 255, CInt(255 * _interfaceFade * _pageFade)), New Vector2(CInt(DeltaX + 350 + 380 + 16 + (348 / 2) - (298 / 2) + 8) + i * 56, DeltaY + 268 - CSng((224 * _fadeIn) * EVcurrentPointM)), New Vector2(CInt(DeltaX + 350 + 380 + 16 + (348 / 2) - (298 / 2) + 8) + (i + 1) * 56, DeltaY + 268 - CSng((224 * _fadeIn) * EVnextPointM)), 2D)
+                    Canvas.DrawLine(New Color(255, 255, 255, CInt(255 * _interfaceFade * _pageFade)), New Vector2(CInt(DeltaX + 350 + 380 + 16 + (348 / 2) - (298 / 2) + 8) + i * 56, CInt(DeltaY + 268 - CSng(224 * _fadeIn * EVcurrentPointM))), New Vector2(CInt(DeltaX + 350 + 380 + 16 + (348 / 2) - (298 / 2) + 8) + (i + 1) * 56, CInt(DeltaY + 268 - CSng((224 * _fadeIn) * EVnextPointM))), 2D)
 
                     Dim IVcurrentPointM As Double = ivStats(i) / 31
                     Dim IVnextPointM As Double = ivStats(i + 1) / 31
 
-                    Canvas.DrawLine(New Color(84, 198, 216, CInt(255 * _interfaceFade * _pageFade)), New Vector2(CInt(DeltaX + 350 + 380 + 16 + (348 / 2) - (298 / 2) + 8) + i * 56, DeltaY + 268 - CSng((224 * _fadeIn) * IVcurrentPointM)), New Vector2(CInt(DeltaX + 350 + 380 + 16 + (348 / 2) - (298 / 2) + 8) + (i + 1) * 56, DeltaY + 268 - CSng((224 * _fadeIn) * IVnextPointM)), 2D)
+                    Canvas.DrawLine(IVLineColor, New Vector2(CInt(DeltaX + 350 + 380 + 16 + (348 / 2) - (298 / 2) + 8) + i * 56, CInt(DeltaY + 268 - CSng((224 * _fadeIn) * IVcurrentPointM))), New Vector2(CInt(DeltaX + 350 + 380 + 16 + (348 / 2) - (298 / 2) + 8) + (i + 1) * 56, CInt(DeltaY + 268 - CSng((224 * _fadeIn) * IVnextPointM))), 2D)
                 End If
             Next
 

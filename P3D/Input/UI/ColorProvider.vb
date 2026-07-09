@@ -66,6 +66,12 @@
             End Get
         End Property
 
+        Public Shared ReadOnly Property ExtraColor() As Color
+            Get
+                Return GetInterfaceColor(4, False)
+            End Get
+        End Property
+
         Private Shared ReadOnly _lightColor As Color = New Color(111, 249, 255)
         Private Shared ReadOnly _gameJolt_lightColor As Color = New Color(70, 70, 70)
 
