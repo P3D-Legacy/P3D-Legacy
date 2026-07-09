@@ -16,7 +16,7 @@
             Me.Category = Categories.Status
             Me.ContestCategory = ContestCategories.Cool
             Me.Name = Localization.GetString("move_name_" & Me.ID,"Leer")
-            Me.Description = "The user gains an intimidating leer with sharp eyes. The opposing team’s Defense stats are reduced."
+            Me.Description = "The user gains an intimidating leer with sharp eyes. The opposing team's Defense stats are reduced."
             Me.CriticalChance = 0
             Me.IsHMMove = False
             Me.Target = Targets.AllAdjacentFoes

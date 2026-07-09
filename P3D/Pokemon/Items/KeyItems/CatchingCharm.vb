@@ -5,7 +5,7 @@ Namespace Items.KeyItems
 
         Inherits KeyItem
 
-        Public Overrides ReadOnly Property Description As String = "Having one of these mysterious, unshakable charms makes it more likely you’ll get a critical catch."
+        Public Overrides ReadOnly Property Description As String = "Having one of these mysterious, unshakable charms makes it more likely you'll get a critical catch."
 
         Public Sub New()
             _textureRectangle = New Rectangle(480, 408, 24, 24)

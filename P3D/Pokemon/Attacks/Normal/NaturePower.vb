@@ -16,7 +16,7 @@
             Me.Category = Categories.Status
             Me.ContestCategory = ContestCategories.Beauty
             Me.Name = Localization.GetString("move_name_" & Me.ID,"Nature Power")
-            Me.Description = "An attack that makes use of nature’s power. Its effects vary depending on the user’s environment."
+            Me.Description = "An attack that makes use of nature's power. Its effects vary depending on the user's environment."
             Me.CriticalChance = 0
             Me.IsHMMove = False
             Me.Target = Targets.OneAdjacentTarget

@@ -16,7 +16,7 @@
             Me.Category = Categories.Status
             Me.ContestCategory = ContestCategories.Cute
             Me.Name = Localization.GetString("move_name_" & Me.ID,"Substitute")
-            Me.Description = "The user makes a copy of itself using some of its HP. The copy serves as the user’s decoy."
+            Me.Description = "The user makes a copy of itself using some of its HP. The copy serves as the user's decoy."
             Me.CriticalChance = 0
             Me.IsHMMove = False
             Me.Target = Targets.Self

@@ -16,7 +16,7 @@
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Cool
             Me.Name = Localization.GetString("move_name_" & Me.ID, "Psyshield Bash")
-            Me.Description = "Cloaking itself in psychic energy, the user slams into the target. This also boosts the user’s Defense stat."
+            Me.Description = "Cloaking itself in psychic energy, the user slams into the target. This also boosts the user's Defense stat."
             Me.CriticalChance = 1
             Me.IsHMMove = False
             Me.Target = Targets.OneAdjacentTarget
