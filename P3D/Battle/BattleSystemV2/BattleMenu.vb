@@ -1254,7 +1254,7 @@ Namespace BattleSystem
             End If
             If UseOnOwn = True Or UseOnOpp = True Then
                 Dim CudChewBerries As String() = {"oran", "sitrus", "figy", "wiki", "mago", "aguav", "iapapa", "liechi", "ganlon", "salac", "petaya", "apicot", "lansat", "starf", "lum", "rawst", "aspear", "cheri", "chesto"}
-                If Core.Player.Pokemons(PokeIndex).Ability.Name.ToLower() = "cud chew" AndAlso Item.IsBerry = True AndAlso CudChewBerries.Contains(Item.Name.ToLower) Then
+                If Core.Player.Pokemons(PokeIndex).Ability.Name.ToLower() = "cud chew" AndAlso Item.IsBerry = True AndAlso CudChewBerries.Contains(Item.OriginalName.ToLower) Then
                     TempBattleScreen.FieldEffects.OwnCudChewBerry = Item
                     TempBattleScreen.FieldEffects.OwnCudChewIndex = PokeIndex
                 End If
