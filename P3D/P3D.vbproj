@@ -28906,6 +28906,7 @@
     <Compile Include="Overworld\RouteSign.vb" />
     <Compile Include="Pokemon\Abilities\ArmorTail.vb" />
     <Compile Include="Pokemon\Abilities\CudChew.vb" />
+    <Compile Include="Pokemon\Abilities\None.vb" />
     <Compile Include="Pokemon\Abilities\SteamEngine.vb" />
     <Compile Include="Pokemon\Abilities\Aerilate.vb" />
     <Compile Include="Pokemon\Abilities\PsychicSurge.vb" />

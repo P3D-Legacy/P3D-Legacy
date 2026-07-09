@@ -4074,6 +4074,7 @@ move_desc_790,The user attacks the target by emitting steam. This may also confu
 move_desc_889,The user converts its rage into energy to attack. The more times the user has been hit by attacks, the greater the move's power.
 -------------------
 Ability Names:
+ability_name_0,None
 ability_name_1,Stench
 ability_name_2,Drizzle
 ability_name_3,Speed Boost
@@ -4282,6 +4283,7 @@ ability_name_243,Steam Engine
 ability_name_291,Cud Chew
 -------------------
 Ability Descriptions:
+ability_desc_0,The Pokémon doesn't have an ability.
 ability_desc_1,The stench may cause the target to flinch.
 ability_desc_2,The Pokémon makes it rain if it appears in battle.
 ability_desc_3,Its Speed stat is gradually boosted.

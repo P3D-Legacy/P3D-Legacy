@@ -1169,7 +1169,7 @@ Public Class Pokemon
     End Sub
 
     'Just use these subs when doing/reverting mega evolutions.
-    Public NormalAbility As Ability = New Abilities.Stench
+    Public NormalAbility As Ability = New Abilities.None
     Public NormalAbilitySlot As String = "A"
     Public Sub LoadAltAbility()
         NormalAbility = OriginalAbility
@@ -1662,6 +1662,15 @@ Public Class Pokemon
             End Select
         Next
 
+        If CBool(GameModeManager.GetGameRuleValue("DisableAbilities", "0")) = True Then
+            Me.NewAbilities.Clear()
+            Me.HiddenAbility = Nothing
+        End If
+
+        If NewAbilities.Count = 0 Then
+            Me.NewAbilities.Add(P3D.Ability.GetAbilityByID(0)) 'no ability
+        End If
+
         If Me.EggPokemon = "" Then
             Me.EggPokemon = Me.Number.ToString
         End If
@@ -1772,75 +1781,82 @@ Public Class Pokemon
                 Case "ability"
                     Dim argument As String = ScriptVersion2.ScriptCommander.Parse(tagValue).ToString
                     Dim success As Boolean = False
-                    If StringHelper.IsNumeric(argument) Then
-                        Me.Ability = P3D.Ability.GetAbilityByID(CInt(argument))
-                        If Me.HiddenAbility IsNot Nothing AndAlso IsUsingHiddenAbility() = True Then
-                            Me.AbilitySlot = "H"
-                        Else
-                            For a = 0 To NewAbilities.Count - 1
-                                If Me.Ability.ID = NewAbilities(a).ID Then
-                                    If a = 0 Then
-                                        Me.AbilitySlot = "A"
-                                    ElseIf a = 1 Then
-                                        Me.AbilitySlot = "B"
-                                    ElseIf a = 2 Then
-                                        Me.AbilitySlot = "C"
-                                    Else
-                                        Me.AbilitySlot = Me.Ability.ID.ToString
-                                    End If
-                                    Exit For
-                                End If
-                            Next
-                            If Me.AbilitySlot = Nothing AndAlso Me.Ability IsNot Nothing Then
-                                Me.AbilitySlot = Me.Ability.ID.ToString
-                            End If
-                        End If
-                        If Me.AbilitySlot IsNot Nothing Then
-                            success = True
-                        End If
+
+                    If CBool(GameModeManager.GetGameRuleValue("DisableAbilities", "0")) = True Then
+                        Me.Ability = Ability.GetAbilityByID(0)
+                        Me.AbilitySlot = "0"
+                        success = True
                     Else
-                        If argument.ToLower = "a" Then
-                            Me.Ability = Me.NewAbilities(0)
-                            Me.AbilitySlot = "A"
-                            success = True
-                        ElseIf argument.ToLower = "b" Then
-                            If Me.NewAbilities.Count > 1 AndAlso Me.NewAbilities(1) IsNot Nothing Then
-                                Me.Ability = Me.NewAbilities(1)
+                        If StringHelper.IsNumeric(argument) Then
+                            Me.Ability = P3D.Ability.GetAbilityByID(CInt(argument))
+                            If Me.HiddenAbility IsNot Nothing AndAlso IsUsingHiddenAbility() = True Then
+                                Me.AbilitySlot = "H"
                             Else
-                                Me.Ability = Me.NewAbilities(0)
+                                For a = 0 To NewAbilities.Count - 1
+                                    If Me.Ability.ID = NewAbilities(a).ID Then
+                                        If a = 0 Then
+                                            Me.AbilitySlot = "A"
+                                        ElseIf a = 1 Then
+                                            Me.AbilitySlot = "B"
+                                        ElseIf a = 2 Then
+                                            Me.AbilitySlot = "C"
+                                        Else
+                                            Me.AbilitySlot = Me.Ability.ID.ToString
+                                        End If
+                                        Exit For
+                                    End If
+                                Next
+                                If Me.AbilitySlot = Nothing AndAlso Me.Ability IsNot Nothing Then
+                                    Me.AbilitySlot = Me.Ability.ID.ToString
+                                End If
                             End If
-                            Me.AbilitySlot = "B"
-                            success = True
-                        ElseIf argument.ToLower = "c" Then
-                            If Me.NewAbilities.Count > 2 AndAlso Me.NewAbilities(2) IsNot Nothing Then
-                                Me.Ability = Me.NewAbilities(2)
-                            Else
-                                Me.Ability = Me.NewAbilities(0)
+                            If Me.AbilitySlot IsNot Nothing Then
+                                success = True
                             End If
-                            Me.AbilitySlot = "C"
-                            success = True
-                        ElseIf argument.ToLower = "h" Then
-                            If Me.HasHiddenAbility = True Then
-                                Me.Ability = Me.HiddenAbility
-                            Else
-                                Me.Ability = Me.NewAbilities(0)
-                            End If
-                            Me.AbilitySlot = "H"
-                            success = True
                         Else
-                            Dim NewAbilityIndex As Integer = Core.Random.Next(0, 2)
-                            If NewAbilityIndex = 0 Then
+                            If argument.ToLower = "a" Then
                                 Me.Ability = Me.NewAbilities(0)
                                 Me.AbilitySlot = "A"
-                            ElseIf NewAbilityIndex = 1 Then
+                                success = True
+                            ElseIf argument.ToLower = "b" Then
                                 If Me.NewAbilities.Count > 1 AndAlso Me.NewAbilities(1) IsNot Nothing Then
                                     Me.Ability = Me.NewAbilities(1)
                                 Else
                                     Me.Ability = Me.NewAbilities(0)
                                 End If
                                 Me.AbilitySlot = "B"
+                                success = True
+                            ElseIf argument.ToLower = "c" Then
+                                If Me.NewAbilities.Count > 2 AndAlso Me.NewAbilities(2) IsNot Nothing Then
+                                    Me.Ability = Me.NewAbilities(2)
+                                Else
+                                    Me.Ability = Me.NewAbilities(0)
+                                End If
+                                Me.AbilitySlot = "C"
+                                success = True
+                            ElseIf argument.ToLower = "h" Then
+                                If Me.HasHiddenAbility = True Then
+                                    Me.Ability = Me.HiddenAbility
+                                Else
+                                    Me.Ability = Me.NewAbilities(0)
+                                End If
+                                Me.AbilitySlot = "H"
+                                success = True
+                            Else
+                                Dim NewAbilityIndex As Integer = Core.Random.Next(0, 2)
+                                If NewAbilityIndex = 0 Then
+                                    Me.Ability = Me.NewAbilities(0)
+                                    Me.AbilitySlot = "A"
+                                ElseIf NewAbilityIndex = 1 Then
+                                    If Me.NewAbilities.Count > 1 AndAlso Me.NewAbilities(1) IsNot Nothing Then
+                                        Me.Ability = Me.NewAbilities(1)
+                                    Else
+                                        Me.Ability = Me.NewAbilities(0)
+                                    End If
+                                    Me.AbilitySlot = "B"
+                                End If
+                                success = True
                             End If
-                            success = True
                         End If
                     End If
                     'is this relevant for the client in PvP?

@@ -39,6 +39,8 @@
 
     Public Shared Function GetAbilityByID(ByVal ID As Integer) As Ability
         Select Case ID
+            Case 0
+                Return New Abilities.None 'No Ability
             Case 1
                 Return New Abilities.Stench
             Case 2
@@ -660,7 +662,7 @@
                 'Case 310
                 'Poison Puppeteer
             Case Else
-                Return New Abilities.Stench
+                Return New Abilities.None 'No Ability
         End Select
     End Function
 

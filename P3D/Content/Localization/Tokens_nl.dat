@@ -4472,6 +4472,7 @@ move_desc_790,De gebruiker valt het doelwit aan door stoom uit te stoten. Dit ka
 move_desc_889,De gebruiker zet zijn woede om in energie om aan te vallen. Hoe vaker de gebruiker is geraakt door aanvallen, hoe krachtiger de techniek.
 -------------------
 Ability Names:
+ability_name_0,Niets
 ability_name_1,Stank
 ability_name_2,Motregen
 ability_name_3,Snelheidsboost
@@ -4681,6 +4682,7 @@ ability_name_291,Herkauwer
 
 -------------------
 Ability Descriptions:
+ability_desc_0,De Pokémon heeft geen Vaardigheid.
 ability_desc_1,De stank kan het doelwit laten terugdeinzen.
 ability_desc_2,De Pokémon laat het regenen wanneer hij het gevecht betreedt.
 ability_desc_3,Het Snelheid-attribuut wordt geleidelijk verhoogd.
