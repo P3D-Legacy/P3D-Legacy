@@ -6,6 +6,8 @@ version=2
 @screen.fadein
 @text.show(Your challenge has ended...)
 
+@pokemon.clear
+
 @pokemon.add(<register.value(temp_pike_endless_poke1)>)
 @pokemon.add(<register.value(temp_pike_endless_poke2)>)
 @pokemon.add(<register.value(temp_pike_endless_poke3)>)

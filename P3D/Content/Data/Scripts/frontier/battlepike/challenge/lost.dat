@@ -9,6 +9,8 @@ version=2
 @register.change(battlepike_challenge_<register.value(pike_level)>_previous_streak,0)
 @register.change(battlepike_challenge_<register.value(pike_level)>_class,0)
 
+@pokemon.clear
+
 @pokemon.add(<register.value(temp_pike_challenge_poke1)>)
 @pokemon.add(<register.value(temp_pike_challenge_poke2)>)
 @pokemon.add(<register.value(temp_pike_challenge_poke3)>)

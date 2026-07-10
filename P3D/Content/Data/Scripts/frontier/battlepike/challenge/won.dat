@@ -21,6 +21,8 @@ version=2
 	@player.addbp(<storage.get(integer,get_bp)>)
 	@text.show(<player.name> got <storage.get(integer,get_bp)> BP!*You now have <player.bp> BP.)
 	
+	@pokemon.clear
+
 	@pokemon.add(<register.value(temp_pike_challenge_poke1)>)
 	@pokemon.add(<register.value(temp_pike_challenge_poke2)>)
 	@pokemon.add(<register.value(temp_pike_challenge_poke3)>)
