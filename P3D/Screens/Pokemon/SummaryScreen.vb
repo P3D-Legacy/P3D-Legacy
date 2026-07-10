@@ -1,4 +1,6 @@
-﻿Public Class SummaryScreen
+﻿Imports System.Reflection
+
+Public Class SummaryScreen
 
     Inherits Screen
 
@@ -89,10 +91,10 @@
         Return DeltaY + 76 + moveIndex * 96
     End Function
 
-    Dim MenuWidth As Integer = 1104
-    Dim MenuHeight As Integer = 576
-    Dim DeltaX As Integer = CInt((Core.windowSize.Width - MenuWidth) / 2)
-    Dim DeltaY As Integer = CInt((Core.windowSize.Height - MenuHeight) / 2)
+    Public MenuWidth As Integer = 1104
+    Public MenuHeight As Integer = 576
+    Public DeltaX As Integer = CInt((Core.windowSize.Width - MenuWidth) / 2)
+    Public DeltaY As Integer = CInt((Core.windowSize.Height - MenuHeight) / 2)
 
     Public Overrides Sub Draw()
         PreScreen.Draw()
@@ -187,7 +189,7 @@
         If _pageIndex = 1 And _moveSelected = True Then
             Canvas.DrawRectangle(New Rectangle(DeltaX, DeltaY, CInt(Math.Ceiling((MenuWidth) / 16) * 16), CInt(Math.Ceiling((MenuHeight) / 16) * 16) + 1), New Color(0, 0, 0, CInt(40 * _moveFade)))
             If _partyIndex > -1 Then
-                SpriteBatch.Draw(t, New Rectangle(CInt(_pointerPos), DeltaY-16, 32, 16), New Rectangle(0, 16, 32, 16), New Color(0, 0, 0, CInt(40 * _moveFade)))
+                SpriteBatch.Draw(t, New Rectangle(CInt(_pointerPos), DeltaY - 16, 32, 16), New Rectangle(0, 16, 32, 16), New Color(0, 0, 0, CInt(40 * _moveFade)))
             End If
         End If
 
@@ -369,7 +371,7 @@
                 End If
                 SpriteBatch.DrawString(FontManager.MainFont, statValues(y), New Vector2(CInt(DeltaX + 344 + (380 / 2) + (264 / 2) - 128) + xOffset, DeltaY + 48 + y * 32 + yOffset), multiColor)
             Next
-            Dim pokeInfoTexture As texture2d
+            Dim pokeInfoTexture As Texture2D
             If TextureManager.TextureExist("GUI\Menus\PokemonInfo_" & Localization.LanguageSuffix) Then
                 pokeInfoTexture = TextureManager.GetTexture("GUI\Menus\PokemonInfo_" & Localization.LanguageSuffix)
             Else
@@ -626,8 +628,17 @@
             End If
         Next
     End Sub
-
+    Public Sub Minimized()
+        _pointerDest = GetPointerDest(_partyIndex)
+        _pointerPos = _pointerDest
+        DeltaX = CInt((Core.windowSize.Width - MenuWidth) / 2)
+        DeltaY = CInt((Core.windowSize.Height - MenuHeight) / 2)
+    End Sub
     Public Overrides Sub Update()
+        If DeltaX <> CInt((Core.windowSize.Width - MenuWidth) / 2) Or DeltaY <> CInt((Core.windowSize.Height - MenuHeight) / 2) Then
+            Minimized()
+        End If
+
         If _closing = True Then
             If _fadeIn > 0F Then
                 _fadeIn = MathHelper.Lerp(0, _fadeIn, 0.8F)

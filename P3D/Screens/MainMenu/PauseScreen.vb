@@ -96,6 +96,11 @@ Public Class PauseScreen
             If CType(PreScreen, PartyScreen)._cursorDest <> CType(PreScreen, PartyScreen).GetBoxPosition(CType(PreScreen, PartyScreen)._index) Then
                 CType(PreScreen, PartyScreen).Minimized()
             End If
+        ElseIf PreScreen.Identification = Identifications.SummaryScreen Then
+            If CType(PreScreen, SummaryScreen).DeltaX <> CInt((Core.windowSize.Width - CType(PreScreen, SummaryScreen).MenuWidth) / 2) Or
+                CType(PreScreen, SummaryScreen).DeltaY <> CInt((Core.windowSize.Height - CType(PreScreen, SummaryScreen).MenuHeight) / 2) Then
+                CType(PreScreen, SummaryScreen).Minimized()
+            End If
         ElseIf PreScreen.Identification = Identifications.MenuScreen Then
             Dim menuscr As NewMenuScreen = CType(PreScreen, NewMenuScreen)
             Dim ButtonPos As Vector2 = menuscr.GetButtonPosition(menuscr._menuIndex)
