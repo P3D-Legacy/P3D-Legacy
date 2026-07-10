@@ -871,6 +871,7 @@ Public Class Level
         OwnPlayer.UpdateEntity()
         OverworldPokemon = New OverworldPokemon(Screen.Camera.Position.X, Screen.Camera.Position.Y, Screen.Camera.Position.Z + 1)
         OverworldPokemon.ChangeRotation()
+        OverworldPokemon.Visible = False
         Entities.AddRange({OwnPlayer, OverworldPokemon})
         Lighting.UpdateLighting(Screen.Effect)
         Screen.Camera.Update()
