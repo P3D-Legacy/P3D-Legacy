@@ -422,7 +422,7 @@ Namespace BattleSystem
             Public Sub Update(ByVal BattleScreen As BattleScreen, ByVal AllExtended As Integer, ByVal isSelected As Boolean)
                 Me.Activate(BattleScreen, AllExtended, isSelected)
                 If isSelected = False Then
-                    If MouseHandler.IsInRectangle(New Rectangle(Core.windowSize.Width - (AllExtended) + 28, 132 + Index * 96, 48, 48)) = True Then
+                    If MouseHandler.IsInRectangle(New Rectangle(Core.windowSize.Width - (AllExtended + 300) + 28, 132 + Index * 96, 48, 48)) = True Then
                         If IconFading < 255 Then
                             IconFading += 15
                             If IconFading > 255 Then
@@ -449,7 +449,7 @@ Namespace BattleSystem
                         Me.ClickAction(BattleScreen)
                     End If
                     If Controls.Accept(True, False, False) = True Then
-                        If MouseHandler.IsInRectangle(New Rectangle(Core.windowSize.Width - 295, 116 + Index * 96, 295, 80)) = True Then
+                        If MouseHandler.IsInRectangle(New Rectangle(Core.windowSize.Width - (AllExtended + 300), 116 + Index * 96, (AllExtended + 300), 80)) = True Then
                             If isSelected = True Then
                                 SoundManager.PlaySound("select")
                                 Me.ClickAction(BattleScreen)
@@ -542,7 +542,7 @@ Namespace BattleSystem
                             End If
                         End If
                         If Controls.Accept(True, False, False) = True Then
-                            If MouseHandler.IsInRectangle(New Rectangle(Core.windowSize.Width - 295, 116 + Index * 96, 295, 80)) = True Then
+                            If MouseHandler.IsInRectangle(New Rectangle(Core.windowSize.Width - (AllExtended + 300), 116 + Index * 96, (AllExtended + 300), 80)) = True Then
                                 If isSelected = True Then
                                     SoundManager.PlaySound("select")
                                     If Me.Move.Disabled = 0 AndAlso BattleScreen.FieldEffects.OwnEncore = 0 OrElse BattleScreen.FieldEffects.OwnEncoreMove IsNot Nothing AndAlso BattleScreen.FieldEffects.OwnEncoreMove.ID = Move.ID Then
