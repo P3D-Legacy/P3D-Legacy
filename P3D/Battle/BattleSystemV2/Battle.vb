@@ -591,8 +591,10 @@ Namespace BattleSystem
                         If id <> -1 Then
                             If own = True Then
                                 BattleScreen.FieldEffects.OwnUsedMirrorMove = True
+                                BattleScreen.FieldEffects.OwnUsedMirrorMoveAttack = move
                             Else
                                 BattleScreen.FieldEffects.OppUsedMirrorMove = True
+                                BattleScreen.FieldEffects.OppUsedMirrorMoveAttack = move
                             End If
                             Return New RoundConst() With {.StepType = RoundConst.StepTypes.Move, .Argument = Attack.GetAttackByID(id)}
                         Else
