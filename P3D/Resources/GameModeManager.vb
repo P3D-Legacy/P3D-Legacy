@@ -680,7 +680,6 @@ Public Class GameMode
         gameRules.Add(New GameRule("GainExpAfterCatch", "1"))
         gameRules.Add(New GameRule("ShinyRate", "4096"))
         gameRules.Add(New GameRule("LevelMultiplier", "1.0"))
-        gameRules.Add(New GameRule("DisableAbilities", "0"))
 
         gameMode._gameRules = gameRules
 

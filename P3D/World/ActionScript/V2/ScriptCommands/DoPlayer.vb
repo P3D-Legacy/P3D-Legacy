@@ -474,6 +474,9 @@
                 Case "setdifficulty"
                     Core.Player.DifficultyMode = CInt(argument).Clamp(0, 2)
                     IsReady = True
+                Case "disableabilities"
+                    Core.Player.DisableAbilities = CBool(argument)
+                    IsReady = True
                 Case "setgender"
                     Select Case argument
                         Case "0", "Male", "male"

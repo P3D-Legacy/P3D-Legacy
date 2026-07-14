@@ -402,6 +402,7 @@
     Public DiagonalMovement As Boolean = False
 
     Public DifficultyMode As Integer = 0
+    Public DisableAbilities As Boolean = False
     Public BattleStyle As Integer = 0
     Public ShowModelsInBattle As Boolean = True
     Public TempSurfSkin As String = "Hilbert"
@@ -775,6 +776,8 @@
                         LastSavePlacePosition = Value
                     Case "difficulty"
                         DifficultyMode = CInt(Value)
+                    Case "disableabilities"
+                        DisableAbilities = CBool(Value)
                     Case "battlestyle"
                         BattleStyle = CInt(Value)
                     Case "savecreated"
@@ -1283,6 +1286,7 @@
             "LastSavePlace|" & LastSavePlace & Environment.NewLine &
             "LastSavePlacePosition|" & LastSavePlacePosition & Environment.NewLine &
             "Difficulty|" & DifficultyMode.ToString() & Environment.NewLine &
+            "DisableAbilities|" & DisableAbilities.ToNumberString() & Environment.NewLine &
             "BattleStyle|" & BattleStyle.ToString() & Environment.NewLine &
             "SaveCreated|" & SaveCreated & Environment.NewLine &
             "LastPokemonPosition|" & lastPokemonPosition & Environment.NewLine &
@@ -2227,6 +2231,7 @@
         DiagonalMovement = False
         RepelSteps = 0
         DifficultyMode = 0
+        DisableAbilities = False
         BattleStyle = 0
         ShowModelsInBattle = True
         SaveCreated = "Pre 0.21"

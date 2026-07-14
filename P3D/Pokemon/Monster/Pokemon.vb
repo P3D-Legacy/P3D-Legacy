@@ -1662,7 +1662,7 @@ Public Class Pokemon
             End Select
         Next
 
-        If CBool(GameModeManager.GetGameRuleValue("DisableAbilities", "0")) = True Then
+        If CBool(Core.Player.DisableAbilities) = True Then
             Me.NewAbilities.Clear()
             Me.HiddenAbility = Nothing
         End If
@@ -1782,7 +1782,7 @@ Public Class Pokemon
                     Dim argument As String = ScriptVersion2.ScriptCommander.Parse(tagValue).ToString
                     Dim success As Boolean = False
 
-                    If CBool(GameModeManager.GetGameRuleValue("DisableAbilities", "0")) = True Then
+                    If CBool(Core.Player.DisableAbilities) = True Then
                         Me.Ability = Ability.GetAbilityByID(0)
                         Me.AbilitySlot = "0"
                         success = True
