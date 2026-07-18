@@ -388,6 +388,7 @@
 
                                 Dim canReach As Boolean = True
                                 If TrainerCheckCollision = True Then
+                                    ' Check if anything is in the way
                                     Select Case faceRotation
                                         Case 0
                                             For i = CInt(Me.Position.Z - distance) To CInt(Me.Position.Z - 1)
@@ -418,7 +419,38 @@
                                                 End If
                                             Next
                                     End Select
-
+                                Else
+                                    ' Only check if an NPC is in the way
+                                    Select Case faceRotation
+                                        Case 0
+                                            For i = CInt(Me.Position.Z - distance) To CInt(Me.Position.Z - 1)
+                                                If CheckBlockedByPlayerOrNPC(New Vector3(Me.Position.X, Me.Position.Y, i), False, True) = True Then
+                                                    canReach = False
+                                                    Exit For
+                                                End If
+                                            Next
+                                        Case 2
+                                            For i = CInt(Me.Position.Z + 1) To CInt(Me.Position.Z + distance)
+                                                If CheckBlockedByPlayerOrNPC(New Vector3(Me.Position.X, Me.Position.Y, i), False, True) = True Then
+                                                    canReach = False
+                                                    Exit For
+                                                End If
+                                            Next
+                                        Case 1
+                                            For i = CInt(Me.Position.X - distance) To CInt(Me.Position.X - 1)
+                                                If CheckBlockedByPlayerOrNPC(New Vector3(i, Me.Position.Y, Me.Position.Z), False, True) = True Then
+                                                    canReach = False
+                                                    Exit For
+                                                End If
+                                            Next
+                                        Case 3
+                                            For i = CInt(Me.Position.X + 1) To CInt(Me.Position.X + distance)
+                                                If CheckBlockedByPlayerOrNPC(New Vector3(i, Me.Position.Y, Me.Position.Z), False, True) = True Then
+                                                    canReach = False
+                                                    Exit For
+                                                End If
+                                            Next
+                                    End Select
                                 End If
                                 If canReach = True Then
 
@@ -924,49 +956,63 @@
 
         Return True
     End Function
-    Private Function CheckBlockedByPlayerOrNPC(ByVal newPosition As Vector3) As Boolean
+    Private Function CheckBlockedByPlayerOrNPC(ByVal newPosition As Vector3, Optional checkPlayers As Boolean = True, Optional checkNPCs As Boolean = False) As Boolean
         newPosition = New Vector3(CInt(newPosition.X), CInt(newPosition.Y), CInt(newPosition.Z))
 
         Dim blocked As Boolean = False
+        If checkPlayers = True Then
 
-        '' check if player or a following Pokémon is not in the way
-        If Screen.Camera.IsMoving() = False Then
-            If CInt(Screen.Camera.Position.X) = newPosition.X And CInt(Screen.Camera.Position.Y) = newPosition.Y And CInt(Screen.Camera.Position.Z) = newPosition.Z Then
-                blocked = True
-            End If
-            If Screen.Level.OverworldPokemon.IsVisible = True Then
-                If CInt(Screen.Level.OverworldPokemon.Position.X) = newPosition.X And CInt(Screen.Level.OverworldPokemon.Position.Y) = newPosition.Y And CInt(Screen.Level.OverworldPokemon.Position.Z) = newPosition.Z Then
+            '' check if player or a following Pokémon is not in the way
+            If Screen.Camera.IsMoving() = False Then
+                If CInt(Screen.Camera.Position.X) = newPosition.X And CInt(Screen.Camera.Position.Y) = newPosition.Y And CInt(Screen.Camera.Position.Z) = newPosition.Z Then
                     blocked = True
                 End If
-            End If
-        Else
-            Dim cameraNewPosition As Vector3 = CType(Screen.Camera, OverworldCamera).LastStepPosition + Screen.Camera.PlannedMovement()
-            Dim cameraOldPosition As Vector3 = CType(Screen.Camera, OverworldCamera).LastStepPosition
+                If Screen.Level.OverworldPokemon.IsVisible = True Then
+                    If CInt(Screen.Level.OverworldPokemon.Position.X) = newPosition.X And CInt(Screen.Level.OverworldPokemon.Position.Y) = newPosition.Y And CInt(Screen.Level.OverworldPokemon.Position.Z) = newPosition.Z Then
+                        blocked = True
+                    End If
+                End If
+            Else
+                Dim cameraNewPosition As Vector3 = CType(Screen.Camera, OverworldCamera).LastStepPosition + Screen.Camera.PlannedMovement()
+                Dim cameraOldPosition As Vector3 = CType(Screen.Camera, OverworldCamera).LastStepPosition
 
-            If CInt(cameraNewPosition.X) = newPosition.X And CInt(cameraNewPosition.Y) = newPosition.Y And CInt(cameraNewPosition.Z) = newPosition.Z Then
-                blocked = True
-            End If
-            If Screen.Level.OverworldPokemon.IsVisible = True Then
-                If CInt(Screen.Level.OverworldPokemon.Position.X) = newPosition.X And CInt(Screen.Level.OverworldPokemon.Position.Y) = newPosition.Y And CInt(Screen.Level.OverworldPokemon.Position.Z) = newPosition.Z OrElse
-                CInt(cameraOldPosition.X) = newPosition.X And CInt(cameraOldPosition.Y) = newPosition.Y And CInt(cameraOldPosition.Z) = newPosition.Z Then
+                If CInt(cameraNewPosition.X) = newPosition.X And CInt(cameraNewPosition.Y) = newPosition.Y And CInt(cameraNewPosition.Z) = newPosition.Z Then
                     blocked = True
                 End If
+                If Screen.Level.OverworldPokemon.IsVisible = True Then
+                    If CInt(Screen.Level.OverworldPokemon.Position.X) = newPosition.X And CInt(Screen.Level.OverworldPokemon.Position.Y) = newPosition.Y And CInt(Screen.Level.OverworldPokemon.Position.Z) = newPosition.Z OrElse
+                  CInt(cameraOldPosition.X) = newPosition.X And CInt(cameraOldPosition.Y) = newPosition.Y And CInt(cameraOldPosition.Z) = newPosition.Z Then
+                        blocked = True
+                    End If
+                End If
             End If
+            '' check if a NetworkPlayer is not in the way
+            For Each Player As NetworkPlayer In Screen.Level.NetworkPlayers
+                If CInt(Player.Position.X) = newPosition.X And CInt(Player.Position.Y) = newPosition.Y And CInt(Player.Position.Z) = newPosition.Z Then
+                    blocked = True
+                    Exit For
+                End If
+            Next
+            '' check if a NetworkPokémon is not in the way
+            For Each Pokemon As NetworkPokemon In Screen.Level.NetworkPokemon
+                If CInt(Pokemon.Position.X) = newPosition.X And CInt(Pokemon.Position.Y) = newPosition.Y And CInt(Pokemon.Position.Z) = newPosition.Z Then
+                    blocked = True
+                    Exit For
+                End If
+            Next
+
         End If
-        '' check if a NetworkPlayer is not in the way
-        For Each Player As NetworkPlayer In Screen.Level.NetworkPlayers
-            If CInt(Player.Position.X) = newPosition.X And CInt(Player.Position.Y) = newPosition.Y And CInt(Player.Position.Z) = newPosition.Z Then
-                blocked = True
-                Exit For
-            End If
-        Next
-        '' check if a NetworkPokémon is not in the way
-        For Each Pokemon As NetworkPokemon In Screen.Level.NetworkPokemon
-            If CInt(Pokemon.Position.X) = newPosition.X And CInt(Pokemon.Position.Y) = newPosition.Y And CInt(Pokemon.Position.Z) = newPosition.Z Then
-                blocked = True
-                Exit For
-            End If
-        Next
+
+        If checkNPCs = True Then
+            '' check if an NPC is not in the way
+            For Each NPC As NPC In Screen.Level.GetNPCs()
+                If CInt(NPC.Position.X) = newPosition.X And CInt(NPC.Position.Y) = newPosition.Y And CInt(NPC.Position.Z) = newPosition.Z And NPC.NPCID <> Me.NPCID Then
+                    blocked = True
+                    Exit For
+                End If
+            Next
+        End If
+
         Return blocked
     End Function
 
