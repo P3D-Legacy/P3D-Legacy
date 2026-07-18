@@ -90,7 +90,7 @@ global_safari_balls_remaining,SafariBallen x
 Pokémon & Attack Properties:
 
 property_HP,LP
-property_PP,AP
+property_PP,KP
 property_No.,Nr.
 property_Lv.,Nv.
 property_Level,Niveau
@@ -2714,7 +2714,7 @@ item_name_40,Max-Opwekker
 item_name_46,Vers Water
 item_name_47,Frisdrank
 item_name_48,Limonade
-item_name_62,AP-Plus
+item_name_62,KP-Plus
 item_name_63,Ether
 item_name_64,Max-Ether
 item_name_65,Elixer
@@ -2729,7 +2729,7 @@ item_name_152,Pewter~Krokantjes
 item_name_156,Heilige As
 item_name_266,Fanta
 item_name_501,Schitterend~Snoepje
-item_name_502,AP-Max
+item_name_502,KP-Max
 
 Medicine (Plural):
 item_pluralname_7,Lavakoekjes
@@ -2751,7 +2751,7 @@ item_pluralname_40,Max-Opwekkers
 item_pluralname_46,Vers~Watertjes
 item_pluralname_47,Frisdranken
 item_pluralname_48,Limonades
-item_pluralname_62,AP-Plussen
+item_pluralname_62,KP-Plussen
 item_pluralname_63,Ethers
 item_pluralname_64,Max-Ethers
 item_pluralname_65,Elixers
@@ -2766,7 +2766,7 @@ item_pluralname_152,Pewter~Krokantjes
 item_pluralname_156,Heilige Assen
 item_pluralname_266,Fantas
 item_pluralname_501,Schitterende~Snoepjes
-item_pluralname_502,AP-Maxen
+item_pluralname_502,KP-Maxen
 
 Berries:
 item_name_2000,Cheri
@@ -4374,7 +4374,7 @@ move_desc_161,De gebruiker slaat toe met een gelijktijdige aanval met drie stral
 move_desc_162,De gebruiker beukt hard op het doelwit met zijn scherpe voortanden. Het halveert de LP van het doelwit.
 move_desc_163,Het doelwit wordt aangevallen met een slag van klauwen of messen. Kritieke treffers komen gemakkelijker aan.
 move_desc_164,De gebruiker maakt een kopie van zichzelf met behulp van een deel van zijn LP. De kopie dient als afleiding voor de gebruiker.
-move_desc_165,Een wanhoopsaanval die alleen wordt gebruikt als de gebruiker geen AP heeft. Het doet de gebruiker ook een beetje pijn.
+move_desc_165,Een wanhoopsaanval die alleen wordt gebruikt als de gebruiker geen KP heeft. Het doet de gebruiker ook een beetje pijn.
 
 move_desc_167,Een opeenvolgende aanval met drie schoppen die krachtiger wordt bij elke opeenvolgende treffer.
 
@@ -4728,7 +4728,7 @@ ability_desc_42,Voorkomt dat Staal-Pokémon kunnen ontsnappen.
 ability_desc_43,Geeft volledige immuniteit tegen geluid-gebaseerde aanvallen.
 ability_desc_44,De Pokémon herstelt geleidelijk LP in regen.
 ability_desc_45,De Pokémon roept een zandstorm op tijdens het gevecht.
-ability_desc_46,De Pokémon verhoogt het AP-verbruik van de tegenstander.
+ability_desc_46,De Pokémon verhoogt het KP-verbruik van de tegenstander.
 ability_desc_47,Verhoogt weerstand tegen Vuur- en IJs-aanvallen.
 ability_desc_48,De Pokémon wordt snel wakker wanneer hij in slaap is.
 ability_desc_49,Contact met de Pokémon kan de aanvaller verbranden.
