@@ -6,8 +6,8 @@ Type1|Fighting
 Type2|Flying
 CatchRate|100
 BaseFriendship|70
-EggGroup1|HumanLike
-EggGroup2|None
+EggGroup1|Flying
+EggGroup2|HumanLike
 BaseEggSteps|5355
 EggPokemon|701
 IsGenderLess|0

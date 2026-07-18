@@ -6,8 +6,8 @@ Type1|Psychic
 Type2|Fairy
 CatchRate|235
 BaseFriendship|35
-EggGroup1|Amorphous
-EggGroup2|None
+EggGroup1|HumanLike
+EggGroup2|Amorphous
 BaseEggSteps|5355
 EggPokemon|280
 IsGenderLess|0
