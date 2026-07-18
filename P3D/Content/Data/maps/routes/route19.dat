@@ -120,8 +120,8 @@ NPC:
 {"NPC"{NPC[{"Position"{sngArr[11,0,0]}}{"TextureID"{str[84]}}{"ID"{int[2]}}{"Name"{str[SellMan]}}{"Action"{int[0]}}{"AdditionalValue"{str[Who knows how long~it will take to~move these bolders.]}}{"Rotation"{int[3]}}{"Movement"{str[Walk]}}{"MoveRectangles"{recArr[[10,0,2,1][11,1,2,1]]}}]}}
 
 Tainers:
-{"NPC"{NPC[{"Position"{sngArr[7,-0.24,22]}}{"TextureID"{str[35]}}{"ID"{int[3]}}{"Name"{str[Swimmer2]}}{"Action"{int[2]}}{"AdditionalValue"{str[3|trainer\route19\003|0]}}{"Rotation"{int[1]}}{"Movement"{str[Looking]}}{"MoveRectangles"{recArr[]}}]}}
-{"NPC"{NPC[{"Position"{sngArr[6,-0.24,22]}}{"TextureID"{str[34]}}{"ID"{int[4]}}{"Name"{str[Swimmer2]}}{"Action"{int[2]}}{"AdditionalValue"{str[1|trainer\route19\002|0]}}{"Rotation"{int[0]}}{"Movement"{str[Looking]}}{"MoveRectangles"{recArr[]}}]}}
+{"NPC"{NPC[{"Position"{sngArr[7,-0.24,22]}}{"TextureID"{str[35]}}{"ID"{int[3]}}{"Name"{str[Swimmer2]}}{"Action"{int[2]}}{"AdditionalValue"{str[3|trainer\route19\003|0]}}{"Rotation"{int[1]}}{"Movement"{str[Still]}}{"MoveRectangles"{recArr[]}}]}}
+{"NPC"{NPC[{"Position"{sngArr[6,-0.24,22]}}{"TextureID"{str[34]}}{"ID"{int[4]}}{"Name"{str[Swimmer2]}}{"Action"{int[2]}}{"AdditionalValue"{str[1|trainer\route19\002|0]}}{"Rotation"{int[0]}}{"Movement"{str[Still]}}{"MoveRectangles"{recArr[]}}]}}
 {"NPC"{NPC[{"Position"{sngArr[11,-0.24,14]}}{"TextureID"{str[34]}}{"ID"{int[5]}}{"Name"{str[Swimmer2]}}{"Action"{int[2]}}{"AdditionalValue"{str[3|trainer\route19\004|0]}}{"Rotation"{int[2]}}{"Movement"{str[Looking]}}{"MoveRectangles"{recArr[]}}]}}
 {"NPC"{NPC[{"Position"{sngArr[13,-0.24,26]}}{"TextureID"{str[34]}}{"ID"{int[6]}}{"Name"{str[Swimmer2]}}{"Action"{int[2]}}{"AdditionalValue"{str[3|trainer\route19\001|0]}}{"Rotation"{int[2]}}{"Movement"{str[Looking]}}{"MoveRectangles"{recArr[]}}]}}
 
