@@ -765,16 +765,33 @@ Namespace BattleSystem
                 Dim ownMove As Attack = CType(OwnStep.Argument, Attack)
                 Dim oppMove As Attack = CType(OppStep.Argument, Attack)
 
-                If SelectedMoveOwn = True Then ownMove.MoveSelected(True, BattleScreen)
-                If SelectedMoveOpp = True Then oppMove.MoveSelected(False, BattleScreen)
-
                 Dim first As Boolean = BattleCalculation.AttackFirst(ownMove, oppMove, BattleScreen)
+
+				Dim ReassignMirroredMove As Boolean = False
+                If first = True Then
+                    If BattleScreen.FieldEffects.OppUsedMirrorMove = True AndAlso BattleScreen.FieldEffects.OppUsedMirrorMoveAttack IsNot Nothing Then
+                        ReassignMirroredMove = True
+                    Else
+                        If SelectedMoveOpp = True Then oppMove.MoveSelected(False, BattleScreen)
+                    End If
+                Else
+                    If BattleScreen.FieldEffects.OwnUsedMirrorMove = True AndAlso BattleScreen.FieldEffects.OwnUsedMirrorMoveAttack IsNot Nothing Then
+                        ReassignMirroredMove = True
+                    Else
+                        If SelectedMoveOwn = True Then ownMove.MoveSelected(True, BattleScreen)
+                    End If
+                End If
+
                 MegaEvolCheck(BattleScreen)
 
                 If first Then
                     DoAttackRound(BattleScreen, first, ownMove)
                     EndRound(BattleScreen, 1)
                     If SkipTurn = False Then
+                        If ReassignMirroredMove Then
+                            oppMove = CType(GetAttack(BattleScreen, False, BattleScreen.FieldEffects.OppUsedMirrorMoveAttack).Argument, Attack)
+                            If SelectedMoveOpp = True Then oppMove.MoveSelected(False, BattleScreen)
+                        End If
                         DoAttackRound(BattleScreen, Not first, oppMove)
                         EndRound(BattleScreen, 2)
                     Else
@@ -784,6 +801,10 @@ Namespace BattleSystem
                     DoAttackRound(BattleScreen, first, oppMove)
                     EndRound(BattleScreen, 2)
                     If SkipTurn = False Then
+                        If ReassignMirroredMove Then
+                            ownMove = CType(GetAttack(BattleScreen, True, BattleScreen.FieldEffects.OwnUsedMirrorMoveAttack).Argument, Attack)
+                            If SelectedMoveOwn = True Then ownMove.MoveSelected(True, BattleScreen)
+                        End If
                         DoAttackRound(BattleScreen, Not first, ownMove)
                         EndRound(BattleScreen, 1)
                     Else
