@@ -47,8 +47,6 @@ version=2
 		:select:<register.value(grottopokemon<level.filename>)
 			:when:113;115;629
 				@register.register(grottopokemongender<level.filename>,int,1)
-			:when:122
-				@register.register(grottopokemongender<level.filename>,int,0)
 			:when:437
 				@register.register(grottopokemongender<level.filename>,int,2)
 		:endwhen
