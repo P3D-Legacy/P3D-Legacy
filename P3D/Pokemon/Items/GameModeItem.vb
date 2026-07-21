@@ -60,7 +60,11 @@ Public Class GameModeItem
             If Localization.TokenExists("item_pluralname_" & gmID) = True Then
                 Return Localization.GetString("item_pluralname_" & gmID)
             Else
-                Return gmPluralName
+                If gmPluralName <> "" Then
+                    Return gmPluralName
+                Else
+                    Return gmName & "s"
+                End If
             End If
         End Get
     End Property
