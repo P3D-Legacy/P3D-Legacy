@@ -980,8 +980,8 @@ Namespace ScriptVersion2
             r(New ScriptCommand("Pokemon", "canevolve", {New ScriptArgument("PokémonIndex", ScriptArgument.ArgumentTypes.Int),
                                                   New ScriptArgument("evolutionTrigger", ScriptArgument.ArgumentTypes.Str, {"level", "none", "item", "trade"}, True, "level"),
                                                   New ScriptArgument("evolutionArgument", ScriptArgument.ArgumentTypes.Str, True, "")}.ToList(), "Returns if the Pokémon can be evolved via the given evolution method.", ",", True))
-            r(New ScriptCommand("Pokemon", "type1", "str", {New ScriptArgument("PokémonIndex", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Returns the first type of a Pokémon in the player's party.", ",", True))
-            r(New ScriptCommand("Pokemon", "type2", "str", {New ScriptArgument("PokémonIndex", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Returns the second type of a Pokémon in the player's party.", ",", True))
+            r(New ScriptCommand("Pokemon", "type1", "str", {New ScriptArgument("PokémonIndex", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Returns the name of the first type of a Pokémon in the player's party (in lowercase).", ",", True))
+            r(New ScriptCommand("Pokemon", "type2", "str", {New ScriptArgument("PokémonIndex", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Returns the name of the second type of a Pokémon in the player's party (in lowercase).", ",", True))
             r(New ScriptCommand("Pokemon", "istype", "bool", {New ScriptArgument("PokémonIndex", ScriptArgument.ArgumentTypes.Int),
                                                           New ScriptArgument("type", ScriptArgument.ArgumentTypes.Str)}.ToList(), "Checks if a Pokémon in the player's party has a specific type.", ",", True))
             r(New ScriptCommand("Pokemon", "isroaming", "bool", {New ScriptArgument("roamerID", ScriptArgument.ArgumentTypes.Str)}.ToList(), "Checks if the given roaming Pokémon is still active.", ",", True))
