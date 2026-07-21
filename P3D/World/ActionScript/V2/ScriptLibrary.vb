@@ -676,6 +676,7 @@ Namespace ScriptVersion2
             r(New ScriptCommand("pokedex", "shiny", "int", "Returns the amount of Pokémon registered as Shiny by the player.", "", True))
             r(New ScriptCommand("pokedex", "dexcaught", "int", {New ScriptArgument("dexIndex", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Returns the amount of Pokémon registered as caught by the player for a specific Pokédex.", "", True))
             r(New ScriptCommand("pokedex", "dexseen", "int", {New ScriptArgument("dexIndex", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Returns the amount of Pokémon registered as seen by the player for a specific Pokédex.", "", True))
+            r(New ScriptCommand("pokedex", "getgenderchance", "int", {New ScriptArgument("PokémonID", ScriptArgument.ArgumentTypes.Str)}.ToList(), "Returns the Male/Female chance (1-100) of a Pokémon as defined by its Data file.", ",", True))
             r(New ScriptCommand("pokedex", "getheight", "sng", {New ScriptArgument("ID", ScriptArgument.ArgumentTypes.Str)}.ToList(), "Returns the height of the Pokémon.", "", True))
             r(New ScriptCommand("pokedex", "getweight", "sng", {New ScriptArgument("ID", ScriptArgument.ArgumentTypes.Str)}.ToList(), "Returns the weight of the Pokémon.", "", True))
             r(New ScriptCommand("pokedex", "getentry", "str", {New ScriptArgument("ID", ScriptArgument.ArgumentTypes.Str)}.ToList(), "Returns the description of the Pokémon.", "", True))
@@ -899,7 +900,6 @@ Namespace ScriptVersion2
             r(New ScriptCommand("Pokemon", "number", "int", {New ScriptArgument("PokémonIndex", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Returns the ID of a Pokémon in the player's party.", ",", True))
             r(New ScriptCommand("Pokemon", "data", "PokémonData", {New ScriptArgument("PokémonIndex", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Returns the save data for a Pokémon in the player's party.", ",", True))
             r(New ScriptCommand("Pokemon", "gender", "int", {New ScriptArgument("PokémonIndex", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Returns the gender for a Pokémon in the player's party.", ",", True))
-            r(New ScriptCommand("Pokemon", "genderchance", "int", {New ScriptArgument("PokémonID", ScriptArgument.ArgumentTypes.Str)}.ToList(), "Returns the Male/Female chance (1-100) of a Pokémon as defined by its Data file.", ",", True))
             r(New ScriptCommand("Pokemon", "level", "int", {New ScriptArgument("PokémonIndex", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Returns the level of a Pokémon in the player's party.", ",", True))
             r(New ScriptCommand("Pokemon", "hasfullhp", "bool", {New ScriptArgument("PokémonIndex", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Returns if a Pokémon in the player's party has a full Hit Point count.", ",", True))
             r(New ScriptCommand("Pokemon", "hp", "int", {New ScriptArgument("PokémonIndex", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Returns the Hit Points of a Pokémon in the player's party.", ",", True))
@@ -980,8 +980,8 @@ Namespace ScriptVersion2
             r(New ScriptCommand("Pokemon", "canevolve", {New ScriptArgument("PokémonIndex", ScriptArgument.ArgumentTypes.Int),
                                                   New ScriptArgument("evolutionTrigger", ScriptArgument.ArgumentTypes.Str, {"level", "none", "item", "trade"}, True, "level"),
                                                   New ScriptArgument("evolutionArgument", ScriptArgument.ArgumentTypes.Str, True, "")}.ToList(), "Returns if the Pokémon can be evolved via the given evolution method.", ",", True))
-            r(New ScriptCommand("Pokemon", "type1", "str", {New ScriptArgument("PokémonIndex", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Returns the first type of a Pokémon in the player's party.", ",", True))
-            r(New ScriptCommand("Pokemon", "type2", "str", {New ScriptArgument("PokémonIndex", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Returns the second type of a Pokémon in the player's party.", ",", True))
+            r(New ScriptCommand("Pokemon", "type1", "str", {New ScriptArgument("PokémonIndex", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Returns the name of the first type of a Pokémon in the player's party (in lowercase).", ",", True))
+            r(New ScriptCommand("Pokemon", "type2", "str", {New ScriptArgument("PokémonIndex", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Returns the name of the second type of a Pokémon in the player's party (in lowercase).", ",", True))
             r(New ScriptCommand("Pokemon", "istype", "bool", {New ScriptArgument("PokémonIndex", ScriptArgument.ArgumentTypes.Int),
                                                           New ScriptArgument("type", ScriptArgument.ArgumentTypes.Str)}.ToList(), "Checks if a Pokémon in the player's party has a specific type.", ",", True))
             r(New ScriptCommand("Pokemon", "isroaming", "bool", {New ScriptArgument("roamerID", ScriptArgument.ArgumentTypes.Str)}.ToList(), "Checks if the given roaming Pokémon is still active.", ",", True))

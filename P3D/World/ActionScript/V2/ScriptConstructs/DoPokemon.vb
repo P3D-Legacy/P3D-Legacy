@@ -20,16 +20,6 @@
                 Case "gender"
                     Dim index As Integer = int(argument.GetSplit(0))
                     Return Core.Player.Pokemons(index).Gender
-                Case "genderchance"
-                    Dim dexID As String = argument.GetSplit(0)
-                    Dim dexAD As String = ""
-                    If dexID.Contains("_") = True Then
-                        dexAD = PokemonForms.GetAdditionalValueFromDataFile(dexID)
-                        dexID = dexID.GetSplit(0, "_")
-                    End If
-                    Dim p As Pokemon = Pokemon.GetPokemonByID(CInt(dexID), dexAD)
-
-                    Return p.IsMale
                 Case "level"
                     Dim index As Integer = int(argument.GetSplit(0))
                     Return Core.Player.Pokemons(index).Level
@@ -490,16 +480,16 @@
                 Case "type1"
                     Dim p As Pokemon = Core.Player.Pokemons(int(argument))
                     If p.Type1.IsGameModeElement = False Then
-                        Return p.Type1.Type.ToString
+                        Return p.Type1.ToString.ToLower()
                     Else
-                        Return p.Type1.gmOriginalName
+                        Return p.Type1.gmOriginalName.ToLower()
                     End If
                 Case "type2"
                     Dim p As Pokemon = Core.Player.Pokemons(int(argument))
                     If p.Type2.IsGameModeElement = False Then
-                        Return p.Type2.Type.ToString
+                        Return p.Type2.ToString.ToLower()
                     Else
-                        Return p.Type2.gmOriginalName
+                        Return p.Type2.gmOriginalName.ToLower()
                     End If
                 Case "istype"
                     Dim args() As String = argument.Split(CChar(","))

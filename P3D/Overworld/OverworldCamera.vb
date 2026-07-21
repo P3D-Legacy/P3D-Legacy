@@ -878,9 +878,6 @@ Public Class OverworldCamera
                 _didWalkAgainst = True
             Else
                 'Walked against something, set player transparent
-                If Screen.Level.Surfing = False Then
-                    _didWalkAgainst = True
-                End If
                 If IsPushingStrengthRock = False Then
                     If _thirdPerson = True Then
                         If _didWalkAgainst = True Then

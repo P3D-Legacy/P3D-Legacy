@@ -12,7 +12,7 @@ Public MustInherit Class Item
     'GameMode Items
     Public gmID As String = ""
     Public gmName As String = ""
-    Public gmPluralName As String = gmName & "s"
+    Public gmPluralName As String = ""
     Public gmDescription As String = ""
     Public gmTextureSource As String = "Items\GameModeItems"
     Public gmTextureRectangle As Rectangle
@@ -94,7 +94,11 @@ Public MustInherit Class Item
             If Localization.TokenExists("item_pluralname_" & gmID) = True Then
                 Return Localization.GetString("item_pluralname_" & gmID).Replace("~", " ").Replace("*", "")
             Else
-                Return gmPluralName.Replace("~", " ").Replace("*", "")
+                If gmPluralName <> "" Then
+                    Return gmPluralName.Replace("~", " ").Replace("*", "")
+                Else
+                    Return gmName.Replace("~", " ").Replace("*", "") & "s"
+                End If
             End If
         Else
             If Localization.TokenExists("item_pluralname_" & Me.ID) = True Then

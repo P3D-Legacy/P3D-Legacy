@@ -23,6 +23,21 @@
                 Case "dexseen"
                     Dim dexIndex As Integer = int(argument)
                     Return Core.Player.Pokedexes(dexIndex).Seen + Core.Player.Pokedexes(dexIndex).Obtained
+                Case "getgenderchance"
+                    Dim dexID As String = argument.GetSplit(0)
+                    Dim dexAD As String = ""
+                    If argument.Contains(";") Then
+                        If Pokemon.PokemonDataExists(argument) = False Then
+                            dexID = argument.GetSplit(0, ";")
+                        End If
+                        dexAD = argument.GetSplit(1, ";")
+                    ElseIf dexID.Contains("_") = True Then
+                        dexAD = PokemonForms.GetAdditionalValueFromDataFile(dexID)
+                        dexID = dexID.GetSplit(0, "_")
+                    End If
+                    Dim p As Pokemon = Pokemon.GetPokemonByID(CInt(dexID), dexAD)
+
+                    Return p.IsMale
                 Case "getheight"
                     Dim id As Integer = CInt(argument.GetSplit(0, ",").GetSplit(0, "_").GetSplit(0, ";"))
                     Dim ad As String = ""

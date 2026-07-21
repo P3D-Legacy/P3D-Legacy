@@ -1,4 +1,4 @@
-﻿Public Class PokedexSelectScreen
+Public Class PokedexSelectScreen
 
     Inherits Screen
 
@@ -1053,7 +1053,7 @@ Public Class PokedexScreen
                 Me.menu = New SelectMenu({Localization.GetString("pokedex_order_numeric", "Numeric"), Localization.GetString("pokedex_order_alphabetically", "A-Z"), Localization.GetString("pokedex_order_weight", "Weight"), Localization.GetString("pokedex_order_height", "Height"), Localization.GetString("global_back", "Back")}.ToList(), OrderIndexType, AddressOf SelectMenuOrderType, 4, "ordertype")
             Case Localization.GetString("pokedex_order_reverse", "Reverse").ToLower & ": " & ReverseString.ToLower()
                 Me.ReverseOrder = Not Me.ReverseOrder
-                Me.menu = New SelectMenu({Localization.GetString("pokedex_order_type", "Type"), Localization.GetString("pokedex_order_reverse", "Reverse") & ": " & ReverseString.ToLower(), Localization.GetString("global_back", "Back")}.ToList(), OrderIndexMain, AddressOf SelectMenuOrder, 2, "ordermain")
+                Me.menu = New SelectMenu({Localization.GetString("pokedex_order_type", "Type"), Localization.GetString("pokedex_order_reverse", "Reverse") & ": " & ReverseString, Localization.GetString("global_back", "Back")}.ToList(), OrderIndexMain, AddressOf SelectMenuOrder, 2, "ordermain")
                 Me.SetList()
             Case Localization.GetString("global_back", "Back").ToLower
                 Me.menu = New SelectMenu({Localization.GetString("pokedex_order", "Order"), Localization.GetString("pokedex_filter", "Filter"), Localization.GetString("global_reset", "Reset"), "Back"}.ToList(), SelectIndexMain, AddressOf SelectMenu1, 3, "selectmain")

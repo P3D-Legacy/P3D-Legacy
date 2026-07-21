@@ -1966,7 +1966,7 @@
                     Temp.LastCall += 1
                 Else
                     If Random.Next(0, 700) = 0 Then
-                        If Screen.Level.DisabledMenus.Contains("pokegear") = False Then
+                        If Screen.Level.DisabledMenus.Contains("pokegear") = False AndAlso Screen.TextBox.Showing = False AndAlso Screen.ChooseBox.Showing = False Then
                             GameJolt.PokegearScreen.RandomCall()
                         End If
                         Temp.LastCall = 0

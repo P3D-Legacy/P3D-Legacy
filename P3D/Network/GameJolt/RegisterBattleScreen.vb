@@ -659,6 +659,20 @@
                     p.FullRestore()
                 Next
 
+                For ownp = 0 To Core.Player.Pokemons.Count - 1
+                    If Core.Player.Pokemons(ownp).IsEgg = False Then
+                        BattleSystem.BattleScreen.OwnLeadIndex = ownp
+                        Exit For
+                    End If
+                Next
+
+                For opp = 0 To OppTeam.Count - 1
+                    If OppTeam(opp).IsEgg = False Then
+                        BattleSystem.BattleScreen.OppLeadIndex = opp
+                        Exit For
+                    End If
+                Next
+
                 Dim b As New BattleSystem.BattleScreen(t, Core.CurrentScreen, 0)
                 b.IsPVPBattle = True
                 b.PVPGameJoltID = OppEmblem.GameJoltID
