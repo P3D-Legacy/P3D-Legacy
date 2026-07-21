@@ -470,37 +470,37 @@ Public Class ApricornScreen
         Dim LeftOverBallMoney As Integer = 0
 
         If Core.Player.Inventory.GetItemAmount(159.ToString) + CInt(Apricorns(0)) > Item.GetItemByID(159.ToString).MaxStack Then
-            LeftOverBallMoney += 150 * Core.Player.Inventory.GetItemAmount(159.ToString) + CInt(Apricorns(0)) - CInt(Item.GetItemByID(159.ToString).MaxStack)
+            LeftOverBallMoney += 150 * (Core.Player.Inventory.GetItemAmount(159.ToString) + CInt(Apricorns(0)) - CInt(Item.GetItemByID(159.ToString).MaxStack))
             Apricorns(0) -= Core.Player.Inventory.GetItemAmount(159.ToString) + CInt(Apricorns(0)) - CInt(Item.GetItemByID(159.ToString).MaxStack)
         End If
 
         If Core.Player.Inventory.GetItemAmount(160.ToString) + CInt(Apricorns(1)) > Item.GetItemByID(160.ToString).MaxStack Then
-            LeftOverBallMoney += 150 * Core.Player.Inventory.GetItemAmount(160.ToString) + CInt(Apricorns(1)) - CInt(Item.GetItemByID(160.ToString).MaxStack)
+            LeftOverBallMoney += 150 * (Core.Player.Inventory.GetItemAmount(160.ToString) + CInt(Apricorns(1)) - CInt(Item.GetItemByID(160.ToString).MaxStack))
             Apricorns(1) -= Core.Player.Inventory.GetItemAmount(160.ToString) + CInt(Apricorns(1)) - CInt(Item.GetItemByID(160.ToString).MaxStack)
         End If
 
         If Core.Player.Inventory.GetItemAmount(165.ToString) + CInt(Me.Apricorns(2)) > Item.GetItemByID(165.ToString).MaxStack Then
-            LeftOverBallMoney = 150 * Core.Player.Inventory.GetItemAmount(165.ToString) + CInt(Apricorns(2)) - CInt(Item.GetItemByID(165.ToString).MaxStack)
+            LeftOverBallMoney = 150 * (Core.Player.Inventory.GetItemAmount(165.ToString) + CInt(Apricorns(2)) - CInt(Item.GetItemByID(165.ToString).MaxStack))
             Apricorns(2) -= Core.Player.Inventory.GetItemAmount(165.ToString) + CInt(Apricorns(2)) - CInt(Item.GetItemByID(165.ToString).MaxStack)
         End If
 
         If Core.Player.Inventory.GetItemAmount(164.ToString) + CInt(Me.Apricorns(3)) > Item.GetItemByID(164.ToString).MaxStack Then
-            LeftOverBallMoney = 150 * Core.Player.Inventory.GetItemAmount(164.ToString) + CInt(Apricorns(3)) - CInt(Item.GetItemByID(164.ToString).MaxStack)
+            LeftOverBallMoney = 150 * (Core.Player.Inventory.GetItemAmount(164.ToString) + CInt(Apricorns(3)) - CInt(Item.GetItemByID(164.ToString).MaxStack))
             Apricorns(3) -= Core.Player.Inventory.GetItemAmount(164.ToString) + CInt(Apricorns(3)) - CInt(Item.GetItemByID(164.ToString).MaxStack)
         End If
 
         If Core.Player.Inventory.GetItemAmount(161.ToString) + CInt(Me.Apricorns(4)) > Item.GetItemByID(161.ToString).MaxStack Then
-            LeftOverBallMoney = 150 * Core.Player.Inventory.GetItemAmount(161.ToString) + CInt(Apricorns(4)) - CInt(Item.GetItemByID(161.ToString).MaxStack)
+            LeftOverBallMoney = 150 * (Core.Player.Inventory.GetItemAmount(161.ToString) + CInt(Apricorns(4)) - CInt(Item.GetItemByID(161.ToString).MaxStack))
             Apricorns(4) -= Core.Player.Inventory.GetItemAmount(161.ToString) + CInt(Apricorns(4)) - CInt(Item.GetItemByID(161.ToString).MaxStack)
         End If
 
         If Core.Player.Inventory.GetItemAmount(157.ToString) + CInt(Me.Apricorns(5)) > Item.GetItemByID(157.ToString).MaxStack Then
-            LeftOverBallMoney = 150 * Core.Player.Inventory.GetItemAmount(157.ToString) + CInt(Apricorns(5)) - CInt(Item.GetItemByID(157.ToString).MaxStack)
+            LeftOverBallMoney = 150 * (Core.Player.Inventory.GetItemAmount(157.ToString) + CInt(Apricorns(5)) - CInt(Item.GetItemByID(157.ToString).MaxStack))
             Apricorns(5) -= Core.Player.Inventory.GetItemAmount(157.ToString) + CInt(Apricorns(5)) - CInt(Item.GetItemByID(157.ToString).MaxStack)
         End If
 
         If Core.Player.Inventory.GetItemAmount(166.ToString) + CInt(Me.Apricorns(6)) > Item.GetItemByID(166.ToString).MaxStack Then
-            LeftOverBallMoney = 150 * Core.Player.Inventory.GetItemAmount(166.ToString) + CInt(Apricorns(6)) - CInt(Item.GetItemByID(166.ToString).MaxStack)
+            LeftOverBallMoney = 150 * (Core.Player.Inventory.GetItemAmount(166.ToString) + CInt(Apricorns(6)) - CInt(Item.GetItemByID(166.ToString).MaxStack))
             Apricorns(6) -= Core.Player.Inventory.GetItemAmount(166.ToString) + CInt(Apricorns(6)) - CInt(Item.GetItemByID(166.ToString).MaxStack)
         End If
 
