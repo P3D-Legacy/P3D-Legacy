@@ -44,7 +44,7 @@ version=2
 		:if:<storage.get(integer,random2)><41 <and> <storage.get(integer,random2)>>39
 			@register.register(grottopokemon<level.filename>,str,<storage.get(string,grottopokemon1)>)
 		:endif
-		:select:<register.value(grottopokemon<level.filename>)
+		:select:<register.value(grottopokemon<level.filename>)>
 			:when:113;115;629
 				@register.register(grottopokemongender<level.filename>,int,1)
 			:when:437
