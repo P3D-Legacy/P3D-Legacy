@@ -228,6 +228,7 @@ apricorn_screen_apricorns,Apricorns
 apricorn_screen_producing,Jeg produserer Pokéballene for øyeblikket.~Kom tilbake senere.
 apricorn_screen_backadvice,Trykk på [<system.button(Back1)>] eller <system.gamepadbutton(back)> for å gå tilbake.
 apricorn_screen_choose_apricorns,Vennligst velg Apricorn jeg skal bruke~for å produsere Pokéballer.
+apricorn_screen_all,All
 apricorn_screen_ok,OK
 apricorn_screen_clear,Tøm
 apricorn_screen_take,Ta

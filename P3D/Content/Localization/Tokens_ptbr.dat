@@ -599,6 +599,7 @@ apricorn_screen_apricorns,Bolotas
 apricorn_screen_producing,Estou trabalhando nas pokébolas no momento.~Volte mais tarde.
 apricorn_screen_backadvice,Pressione [<system.button(Back1)>] ou <system.gamepadbutton(back)> para voltar.
 apricorn_screen_choose_apricorns,Escolha as Bolotas para fabricar pokébolas.
+apricorn_screen_all,All
 apricorn_screen_ok,OK
 apricorn_screen_clear,Limpar
 apricorn_screen_all,Todas

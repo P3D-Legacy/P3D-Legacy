@@ -615,6 +615,7 @@ apricorn_screen_apricorns,Apricorns
 apricorn_screen_producing,I am producing the Balls at the moment.~Come back later.
 apricorn_screen_backadvice,Press [<system.button(Back1)>] or <system.gamepadbutton(back)> to go back.
 apricorn_screen_choose_apricorns,Please choose the Apricorns I should take~to produce Poké Balls.
+apricorn_screen_all,All
 apricorn_screen_ok,OK
 apricorn_screen_clear,Clear
 apricorn_screen_all,All

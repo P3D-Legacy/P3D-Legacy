@@ -600,6 +600,7 @@ apricorn_screen_apricorns,Apricorn
 apricorn_screen_producing,Sedang membuat Apricorn.~Datang lagi nanti.
 apricorn_screen_backadvice,Tekan [<system.button(Back1)>] atau <system.gamepadbutton(back)> untuk kembali.
 apricorn_screen_choose_apricorns,Tolong pilih untuk dibuatkan Pokéballs.
+apricorn_screen_all,All
 apricorn_screen_ok,Oke
 apricorn_screen_clear,Clear
 apricorn_screen_all,All

@@ -598,6 +598,7 @@ apricorn_screen_apricorns,Noigrumes
 apricorn_screen_producing,Je fabrique des Balls en ce moment.~Reviens plus tard.
 apricorn_screen_backadvice,Appuie sur [<system.button(Back1)>] ou <system.gamepadbutton(back)> pour sortir.
 apricorn_screen_choose_apricorns,Choisis les Noigrumes que tu veux~transformer en Balls.
+apricorn_screen_all,All
 apricorn_screen_ok,OK
 apricorn_screen_clear,Tout enlever
 apricorn_screen_all,Tous

@@ -599,6 +599,7 @@ apricorn_screen_apricorns,Aprikokos
 apricorn_screen_producing,Ich verarbeite die Aprikokos gerade.~Komm doch später wieder.
 apricorn_screen_backadvice,[<system.button(Back1)>] oder <system.gamepadbutton(back)>: Zurück
 apricorn_screen_choose_apricorns,Bitte wähle Aprikokos aus,~um Pokébälle herzustellen:
+apricorn_screen_all,All
 apricorn_screen_ok,OK
 apricorn_screen_clear,Leeren
 apricorn_screen_all,Alle

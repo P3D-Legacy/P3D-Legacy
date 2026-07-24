@@ -598,6 +598,7 @@ apricorn_screen_apricorns,Apricorns
 apricorn_screen_producing,Jag producerar Pokébollarna för tillfället.~Kom tillbaka senare.
 apricorn_screen_backadvice,Tryck på [<system.button(Back1)>] eller <system.gamepadbutton(back)> för att gå tillbaka.
 apricorn_screen_choose_apricorns,Var god välj Apricorns som jag kan ta för~att göra Pokébollar.
+apricorn_screen_all,All
 apricorn_screen_ok,OK
 apricorn_screen_clear,Töm
 apricorn_screen_all,Kaikki

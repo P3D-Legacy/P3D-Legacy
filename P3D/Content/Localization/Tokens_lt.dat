@@ -228,6 +228,7 @@ apricorn_screen_apricorns,Aprikornai
 apricorn_screen_producing,Aš šiuo momentu gaminu rutulius.~Grįžkite vėliau.
 apricorn_screen_backadvice,Paspauskite [<system.button(Back1)>] arba <system.gamepadbutton(back)>, kad grįžtumėte atgal.
 apricorn_screen_choose_apricorns,Pasirinkite Aprikornus iš kūrių norite,~kad pagaminčiau Poke rutulių
+apricorn_screen_all,All
 apricorn_screen_ok,GERAI
 apricorn_screen_clear,Išvalyti
 apricorn_screen_take,Paimti

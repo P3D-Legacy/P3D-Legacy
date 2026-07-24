@@ -194,6 +194,7 @@ apricorn_screen_apricorns,Apricorn'lar
 apricorn_screen_producing,Su anda is üzerinde çalisiyorum.~Daha sonra gel.
 apricorn_screen_backadvice,Geri dönmek için [<system.button(Back1)>] tuşuna veya <system.gamepadbutton(back)> düğmesine basın.
 apricorn_screen_choose_apricorns,Lütfen Pokéball yaparken kullanmami istedigin~Apricorn'lari seç.
+apricorn_screen_all,All
 apricorn_screen_ok,Tamam
 apricorn_screen_clear,Temizle
 apricorn_screen_take,Al
