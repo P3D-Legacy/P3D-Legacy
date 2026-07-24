@@ -682,8 +682,8 @@ Public Class PokedexScreen
             Next
         End If
         Dim OrderFilterTitleWidth As Integer = CInt(FontManager.MainFont.MeasureString(Localization.GetString("pokedex_order", "Order") & ":" & Environment.NewLine & Localization.GetString("pokedex_filter", "Filter") & ":").X)
-        Core.SpriteBatch.DrawString(FontManager.MainFont, Localization.GetString("pokedex_order", "Order") & ":" & Environment.NewLine & Localization.GetString("pokedex_filter", "Filter") & ":" & Environment.NewLine & Localization.GetString("pokedex_search_hint", "Press [<system.button(special)>] or <system.gamepadbutton(back)> to search."), New Vector2(685, 45), Color.White)
-        Core.SpriteBatch.DrawString(FontManager.MainFont, orderText & Environment.NewLine & filterText, New Vector2(685 + OrderFilterTitleWidth + CInt(FontManager.MainFont.MeasureString(" ").X), 45), Color.Black)
+        Core.SpriteBatch.DrawString(FontManager.MainFont, Localization.GetString("pokedex_order", "Order") & ":" & Environment.NewLine & Localization.GetString("pokedex_filter", "Filter") & ":" & Environment.NewLine & Localization.GetString("pokedex_search_hint", "Press [<system.button(special)>] or <system.gamepadbutton(back)> to search."), New Vector2(678, 45), Color.White)
+        Core.SpriteBatch.DrawString(FontManager.MainFont, orderText & Environment.NewLine & filterText, New Vector2(678 + OrderFilterTitleWidth + CInt(FontManager.MainFont.MeasureString(" ").X), 45), Color.Black)
 
         If menu.Visible = True Then
             menu.Draw()
@@ -1053,6 +1053,11 @@ Public Class PokedexScreen
                 Me.menu = New SelectMenu({Localization.GetString("pokedex_order_numeric", "Numeric"), Localization.GetString("pokedex_order_alphabetically", "A-Z"), Localization.GetString("pokedex_order_weight", "Weight"), Localization.GetString("pokedex_order_height", "Height"), Localization.GetString("global_back", "Back")}.ToList(), OrderIndexType, AddressOf SelectMenuOrderType, 4, "ordertype")
             Case Localization.GetString("pokedex_order_reverse", "Reverse").ToLower & ": " & ReverseString.ToLower()
                 Me.ReverseOrder = Not Me.ReverseOrder
+                If Me.ReverseOrder = False Then
+                    ReverseString = Localization.GetString("global_no", "No")
+                Else
+                    ReverseString = Localization.GetString("global_yes", "Yes")
+                End If
                 Me.menu = New SelectMenu({Localization.GetString("pokedex_order_type", "Type"), Localization.GetString("pokedex_order_reverse", "Reverse") & ": " & ReverseString, Localization.GetString("global_back", "Back")}.ToList(), OrderIndexMain, AddressOf SelectMenuOrder, 2, "ordermain")
                 Me.SetList()
             Case Localization.GetString("global_back", "Back").ToLower

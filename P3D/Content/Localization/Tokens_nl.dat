@@ -154,8 +154,8 @@ keyboard_key_RightShift,R Shift
 ---
 GamePad Buttons:
 
-gamepad_button_start,Start-knop
-gamepad_button_back,Terug-knop
+gamepad_button_start,Start
+gamepad_button_back,Terug
 gamepad_button_shoulder_left,Schouderknop L
 gamepad_button_shoulder_right,Schouderknop R
 gamepad_button_trigger_left,Trigger L
@@ -598,7 +598,7 @@ save_screen_to_continue,om door te gaan.
 Apricorn Screen:
 apricorn_screen_apricorns,Apricorns
 apricorn_screen_producing,Ik ben bezig met het maken van de PokéBallen.~Kom later terug.
-apricorn_screen_backadvice,Druk op [<system.button(Back1)>] of <system.gamepadbutton(back)> om terug te gaan.
+apricorn_screen_backadvice,Druk op [<system.button(Back1)>] of de <system.gamepadbutton(back)>-knop om terug te gaan.
 apricorn_screen_choose_apricorns,Kies de Apricorns waarvan ik~PokéBallen moet maken.
 apricorn_screen_ok,Oké
 apricorn_screen_clear,Wis
@@ -609,7 +609,7 @@ apricorn_screen_received_money,en ontving $[AMOUNT]~voor de PokéBallen die het~
 ---
 Donation screen:
 donation_screen_donators,Donateurs
-donation_screen_backadvice,Druk op [<system.button(Back1)>] of <system.gamepadbutton(back)> om te sluiten
+donation_screen_backadvice,Druk op [<system.button(Back1)>] of de <system.gamepadbutton(back)>-knop om te sluiten
 ---
 Rename Screen:
 rename_screen_title_Question,Hernoem [NAME]?
