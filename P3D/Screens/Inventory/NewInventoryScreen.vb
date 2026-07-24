@@ -1,4 +1,5 @@
 ﻿Imports P3D.Screens.UI
+Imports SharpDX.MediaFoundation
 
 ''' <summary>
 ''' Displays the inventory and gives the player options to choose and use items.
@@ -461,6 +462,17 @@ Public Class NewInventoryScreen
             If _infoSize > 0 Then
                 DrawInfo(itemBatch, target_1)
             End If
+            'If there are more pages to the left, draw Left Arrow
+            If PageIndex > 0 Then
+                itemBatch.Draw(_texture, New Rectangle(16 + ComputeXOffset(0), 200 - 24, 32, 32), New Rectangle(0, 16, 16, 16), New Color(255, 255, 255, itemPanelAlpha),
+                                        0.0F, Vector2.Zero, SpriteEffects.None, 0F)
+            End If
+            'If there are more pages to the right, draw Right Arrow
+            If ItemIndex + 2 + (PageIndex * 10) < _items.Length Then
+                itemBatch.Draw(_texture, New Rectangle(CInt(800 - 16 + ComputeXOffset(4)), 200 - 24, 32, 32), New Rectangle(0, 48, 16, 16), New Color(255, 255, 255, itemPanelAlpha),
+                                        0.0F, Vector2.Zero, SpriteEffects.None, 0F)
+            End If
+
 
             itemBatch.EndBatch()
 
@@ -495,16 +507,20 @@ Public Class NewInventoryScreen
         infoBatch.BeginBatch()
         Dim alpha = CInt(CSng(_infoSize) / 500 * 255)
 
-        For y = 0 To 368 Step 16
-            For x = 0 To _infoSize + 16 Step 16
-                If x < _infoSize - 16 Then
-                    infoBatch.Draw(_menuTexture, New Rectangle(x, y, 16, 16), New Rectangle(0, 0, 4, 4), New Color(128, 128, 128, alpha))
-                End If
-            Next
-        Next
+        'For y = 0 To 368 Step 16
+        '    For x = 0 To _infoSize + 16 Step 16
+        '        If x < _infoSize - 16 Then
+        '            infoBatch.Draw(_menuTexture, New Rectangle(x, y, 16, 16), New Rectangle(0, 0, 4, 4), New Color(128, 128, 128, alpha))
+        '        End If
+        '    Next
+        'Next
+        Canvas.DrawRectangle(infoBatch, New Rectangle(_infoPosition - 80 + 100, 0, _infoSize - 200, 368), New Color(0, 0, 0, CInt(alpha * 0.8)))
 
-        Canvas.DrawGradient(infoBatch, New Rectangle(0, 0, 100, 368), New Color(0, 0, 0, alpha), New Color(0, 0, 0, 0), True, -1)
-        Canvas.DrawGradient(infoBatch, New Rectangle(_infoSize - 100, 0, 100, 368), New Color(0, 0, 0, 0), New Color(0, 0, 0, alpha), True, -1)
+        Canvas.DrawGradient(infoBatch, New Rectangle(0, 0, 40, 368), New Color(0, 0, 0, alpha), New Color(0, 0, 0, CInt(alpha * 0.9)), True, -1)
+        Canvas.DrawGradient(infoBatch, New Rectangle(40, 0, 60, 368), New Color(0, 0, 0, CInt(alpha * 0.9)), New Color(0, 0, 0, CInt(alpha * 0.85)), True, -1)
+
+        Canvas.DrawGradient(infoBatch, New Rectangle(_infoSize - 100, 0, 60, 368), New Color(0, 0, 0, CInt(alpha * 0.85)), New Color(0, 0, 0, CInt(alpha * 0.9)), True, -1)
+        Canvas.DrawGradient(infoBatch, New Rectangle(_infoSize - 40, 0, 40, 368), New Color(0, 0, 0, CInt(alpha * 0.9)), New Color(0, 0, 0, alpha), True, -1)
 
         'Get item and gets its display texts based on the item category:
         Dim getIndex As Integer = ItemIndex + PageIndex * 10
