@@ -162,10 +162,10 @@ gamepad_button_trigger_left,Trigger L
 gamepad_button_trigger_right,Trigger R
 gamepad_button_stick_left,Joystick L
 gamepad_button_stick_right,Joystick R
-gamepad_button_dpad_up,Richtingtoets ↑
-gamepad_button_dpad_down,Richtingtoets ↓
-gamepad_button_dpad_left,Richtingtoets ←
-gamepad_button_dpad_right,Richtingtoets →
+gamepad_button_dpad_up,Richting Op
+gamepad_button_dpad_down,Richting Neer
+gamepad_button_dpad_left,Richting Links
+gamepad_button_dpad_right,Richting Rechts
 ---
 FieldMoves:
 

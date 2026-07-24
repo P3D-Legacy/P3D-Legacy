@@ -1,7 +1,9 @@
 version=2
-@Text.show(It's a note on the~wall about the controls.*Do you want to read it?)
-@Options.show(Yes,No)
-	:when:Yes
-		@Text.show(The controls in Pokemon:~Move: [<system.button(moveforward)>]~Watch: [<system.button(moveleft)>][<system.button(movebackward)>][<system.button(moveright)>]~Open menu: [<system.button(openmenu)>]~Toggle first person: [<system.button(perspectiveswitch)>]~Mute music: [<system.button(muteaudio)>]~Hide GUI: [<system.button(hidegui)>]~Take screenshot: [<system.button(screenshot)>]~Toggle camera lock: [<system.button(cameralock)>])
+@Text.show(It's a note on the~wall about the controls.*What part do you want to~read?)
+@Options.show(Keyboard,Gamepad,Cancel)
+	:when:Keyboard
+		@Text.show(The controls in Pokemon:~Move: [<system.button(moveforward)>]~Look: [<system.button(moveleft)>][<system.button(moveright)>]~Open menu: [<system.button(openmenu)>]~Run: [<system.button(run)>]~Toggle first person: [<system.button(perspectiveswitch)>]~Mute music: [<system.button(muteaudio)>]~Hide GUI: [<system.button(hidegui)>]~Take screenshot: [<system.button(screenshot)>]~Toggle camera lock: [<system.button(cameralock)>])
+	:when:Gamepad
+		@Text.show(The controls in Pokemon:~Move: Joystick/D-Pad Up*Look: Joystick/D-Pad Left &~Right~Open menu: X~Run: B*Toggle first person:~Left Shoulder~Mute music [Keyboard]:~[<system.button(muteaudio)>]*Hide GUI [Keyboard]:~[<system.button(hidegui)>]*Take screenshot [Keyboard]:~[<system.button(screenshot)>]*Toggle camera lock:~Right Joystick Button)
 :endwhen
 :end

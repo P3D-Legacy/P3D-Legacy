@@ -17,7 +17,7 @@
                 Case "gamepadbutton"
                     Dim button As Buttons = Nothing
                     Dim buttonName As String = argument
-                    Select Case buttonName.ToLower()
+                    Select Case argument.ToLower()
                         Case "a"
                             button = Buttons.A
                         Case "b"
@@ -53,6 +53,10 @@
                     End Select
                     If button <> Nothing Then
                         buttonName = Localization.GetString("gamepad_button_" & ControllerHandler.GetButtonName(button).ToLower, ControllerHandler.GetButtonName(button))
+                    Else
+                        If Localization.TokenExists("gamepad_button_" & argument) = True Then
+                            buttonName = Localization.GetString("gamepad_button_" & argument)
+                        End If
                     End If
                     Return buttonName
                 Case "button"
