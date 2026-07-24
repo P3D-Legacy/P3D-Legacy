@@ -281,7 +281,7 @@ Public Class KeyBindings
                 "[MoveBackward]=" & GetKeyName(BackwardMoveKey) & Environment.NewLine &
                 "[MoveRight]=" & GetKeyName(RightMoveKey) & Environment.NewLine &
                 "[Run]=" & GetKeyName(RunKey) & Environment.NewLine &
-                "[Inventory]=" & GetKeyName(OpenInventoryKey) & Environment.NewLine &
+                "[OpenMenu]=" & GetKeyName(OpenInventoryKey) & Environment.NewLine &
                 "[Chat]=" & GetKeyName(ChatKey) & Environment.NewLine &
                 "[Special]=" & GetKeyName(SpecialKey) & Environment.NewLine &
                 "[MuteAudio]=" & GetKeyName(MuteAudioKey) & Environment.NewLine &
