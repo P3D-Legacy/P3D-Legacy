@@ -154,8 +154,8 @@ keyboard_key_RightShift,Right Shift
 ---
 GamePad Buttons:
 
-gamepad_button_start,Start Button
-gamepad_button_back,Back Button
+gamepad_button_start,Start
+gamepad_button_back,Back
 gamepad_button_shoulder_left,Left Shoulder
 gamepad_button_shoulder_right,Right Shoulder
 gamepad_button_trigger_left,Left Trigger
@@ -169,8 +169,8 @@ gamepad_button_dpad_right,D-Pad Right
 ---
 GamePad Buttons:
 
-gamepad_button_start,Start Button
-gamepad_button_back,Back Button
+gamepad_button_start,Start
+gamepad_button_back,Back
 gamepad_button_shoulder_left,Left Shoulder
 gamepad_button_shoulder_right,Right Shoulder
 gamepad_button_trigger_left,Left Trigger
