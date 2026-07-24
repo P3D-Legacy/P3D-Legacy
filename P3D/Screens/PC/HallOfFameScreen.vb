@@ -207,7 +207,7 @@
             Next
 
             Core.SpriteBatch.DrawString(FontManager.MainFont, Localization.GetString("hall_of_fame_screen_entries", "Entries:") & " ", New Vector2(90 + 64 * 11, 119), New Color(255, 255, 255, alpha))
-            Core.SpriteBatch.DrawString(FontManager.MainFont, AmountOfEntries.ToString(), New Vector2(190 + 64 * 11, 119), New Color(255, 255, 255, alpha))
+            Core.SpriteBatch.DrawString(FontManager.MainFont, AmountOfEntries.ToString(), New Vector2(90 + 64 * 11 + CInt(FontManager.MainFont.MeasureString(Localization.GetString("hall_of_fame_screen_entries", "Entries:") & " ").X), 119), New Color(255, 255, 255, alpha))
 
             DrawCursor()
         End If
@@ -247,20 +247,27 @@
                 id = 5
         End Select
 
+        Dim pos As New Vector2(CInt(Core.windowSize.Width - 500), 50)
+        Dim boxwidth As Integer = 500
+        Dim p As Pokemon = Nothing
+
         If id = -1 Then
-            Canvas.DrawRectangle(New Rectangle(CInt(Core.windowSize.Width - 500), 50, 450, 192), New Color(0, 0, 0, 150))
+            boxwidth = CInt(Math.Max(500, FontManager.MainFont.MeasureString(Localization.GetString("global_player_name", "Player Name") & " " & SelectedEntry.Name).X * 1.5) + 16)
+            pos.X = CInt(Core.windowSize.Width - Math.Max(500, boxwidth))
+            Canvas.DrawRectangle(New Rectangle(CInt(pos.X), CInt(pos.Y), boxwidth, 192), New Color(0, 0, 0, 150))
         Else
-            Canvas.DrawRectangle(New Rectangle(CInt(Core.windowSize.Width - 500), 50, 450, 216), New Color(0, 0, 0, 150))
+            p = SelectedEntry.PokemonList(id).GetPokemon()
+            boxwidth = CInt(Math.Max(500, CInt(FontManager.MainFont.MeasureString(p.OT & " / " & p.CatchTrainerName).X + 124 + 10)))
+            pos.X = CInt(Core.windowSize.Width - Math.Max(500, boxwidth))
+            Canvas.DrawRectangle(New Rectangle(CInt(pos.X), CInt(pos.Y), boxwidth, 216), New Color(0, 0, 0, 150))
         End If
 
-        Dim pos As New Vector2(CInt(Core.windowSize.Width - 500), 50)
 
         If id = -1 Then
             Core.SpriteBatch.DrawString(FontManager.MainFont, Localization.GetString("global_player_name", "Player Name") & " " & SelectedEntry.Name, New Vector2(pos.X + 4, pos.Y + 4), Color.White, 0.0F, Vector2.Zero, 1.5F, SpriteEffects.None, 0.0F)
             Core.SpriteBatch.DrawString(FontManager.MainFont, Localization.GetString("global_play_time", "Play Time") & Environment.NewLine & Environment.NewLine & Localization.GetString("global_IDNo.", "ID No.") & Environment.NewLine & Environment.NewLine & Localization.GetString("global_points", "Points"), New Vector2(pos.X + 10, pos.Y + 54), Color.White, 0.0F, Vector2.Zero, 1.0F, SpriteEffects.None, 0.0F)
             Core.SpriteBatch.DrawString(FontManager.MainFont, SelectedEntry.PlayTime & Environment.NewLine & Environment.NewLine & SelectedEntry.OT & Environment.NewLine & Environment.NewLine & SelectedEntry.Points, New Vector2(pos.X + 124, pos.Y + 55), New Color(173, 216, 230), 0.0F, Vector2.Zero, 1.0F, SpriteEffects.None, 0.0F)
         Else
-            Dim p As Pokemon = SelectedEntry.PokemonList(id).GetPokemon()
             Dim pokeTexture = p.GetMenuTexture()
             Dim pokeTextureScale As Vector2 = New Vector2(CSng(32 / pokeTexture.Width), CSng(32 / pokeTexture.Height))
             Core.SpriteBatch.Draw(pokeTexture, New Rectangle(CInt(pos.X + 4) - CInt((pokeTexture.Width - 32) / 2), CInt(pos.Y + 6), CInt(pokeTexture.Width * pokeTextureScale.X), CInt(pokeTexture.Height * pokeTextureScale.Y)), Color.White)
