@@ -162,7 +162,7 @@
                 If DrawBox Then
                     Dim MaxWidth = 0
                     For i = 0 To Options.Count - 1
-                        While Me.TextFont.SpriteFont.MeasureString(Options(i).Replace("[POKE]", "Poké")).X - 16 > MaxWidth
+                        While Me.TextFont.SpriteFont.MeasureString(Options(i).Replace("[POKE]", "Poké")).X - 8 > MaxWidth
                             MaxWidth += 16
                         End While
                         If MaxWidth < 48 Then
