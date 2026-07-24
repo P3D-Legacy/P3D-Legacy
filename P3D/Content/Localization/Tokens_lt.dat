@@ -226,7 +226,7 @@ item_detail_screen_give_item,Duoti
 Apricorn Screen:
 apricorn_screen_apricorns,Aprikornai
 apricorn_screen_producing,Aš šiuo momentu gaminu rutulius.~Grįžkite vėliau.
-apricorn_screen_backadvice,PASPAUDE E GRĮŠITE ATGAL
+apricorn_screen_backadvice,Paspauskite [<system.button(Back1)>] arba <system.gamepadbutton(back)>, kad grįžtumėte atgal.
 apricorn_screen_choose_apricorns,Pasirinkite Aprikornus iš kūrių norite,~kad pagaminčiau Poke rutulių
 apricorn_screen_ok,GERAI
 apricorn_screen_clear,Išvalyti
@@ -264,7 +264,7 @@ apricorn_screen_received_money,and received $[AMOUNT]~for the balls that exceede
 ---
 Donation screen:
 donation_screen_donators,Aukotojai
-donation_screen_backadvice,Paspauskite e, kad uždaryti
+donation_screen_backadvice,Paspauskite [<system.button(Back1)>] arba <system.gamepadbutton(back)>, kad uždarytumėte
 ---
 Move Tutor Screen:
 move_tutor_screen_CurrentMoves,Pokémon's moves

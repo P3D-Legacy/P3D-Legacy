@@ -596,7 +596,7 @@ save_screen_to_continue,to continue.
 Apricorn Screen:
 apricorn_screen_apricorns,Apricorns
 apricorn_screen_producing,Jag producerar Pokébollarna för tillfället.~Kom tillbaka senare.
-apricorn_screen_backadvice,TRYCK [<system.button(OpenMenu)>] ÖR ATT GÅ TILLBAKA
+apricorn_screen_backadvice,Tryck på [<system.button(Back1)>] eller <system.gamepadbutton(back)> för att gå tillbaka.
 apricorn_screen_choose_apricorns,Var god välj Apricorns som jag kan ta för~att göra Pokébollar.
 apricorn_screen_ok,OK
 apricorn_screen_clear,Töm
@@ -608,7 +608,7 @@ apricorn_screen_received_money,and received $[AMOUNT]~for the balls that exceede
 ---
 Donation screen:
 donation_screen_donators,Donatorer
-donation_screen_backadvice,Tryck [<system.button(OpenMenu)>] för att stänga
+donation_screen_backadvice,Tryck på [<system.button(Back1)>] eller <system.gamepadbutton(back)> för att stänga
 ---
 Rename Screen:
 rename_screen_title_Question,Rename [NAME]?

@@ -613,7 +613,7 @@ save_screen_to_continue,to continue.
 Apricorn Screen:
 apricorn_screen_apricorns,Apricorns
 apricorn_screen_producing,I am producing the Balls at the moment.~Come back later.
-apricorn_screen_backadvice,PRESS [<system.button(OpenMenu)>] TO GO BACK
+apricorn_screen_backadvice,Press [<system.button(Back1)>] or <system.gamepadbutton(back)> to go back.
 apricorn_screen_choose_apricorns,Please choose the Apricorns I should take~to produce Poké Balls.
 apricorn_screen_ok,OK
 apricorn_screen_clear,Clear
@@ -625,7 +625,7 @@ apricorn_screen_received_money,and received $[AMOUNT]~for the balls that exceede
 ---
 Donation screen:
 donation_screen_donators,Donators
-donation_screen_backadvice,Press [<system.button(OpenMenu)>] to close
+donation_screen_backadvice,Press [<system.button(Back1)>] or <system.gamepadbutton(back)> to close
 ---
 Rename Screen:
 rename_screen_title_Question,Rename [NAME]?

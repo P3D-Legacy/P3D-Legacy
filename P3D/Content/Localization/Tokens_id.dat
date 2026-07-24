@@ -598,7 +598,7 @@ save_screen_to_continue,to continue.
 Apricorn Screen:
 apricorn_screen_apricorns,Apricorn
 apricorn_screen_producing,Sedang membuat Apricorn.~Datang lagi nanti.
-apricorn_screen_backadvice,TEKAN [<system.button(OpenMenu)>] UNTUK KEMBALI
+apricorn_screen_backadvice,Tekan [<system.button(Back1)>] atau <system.gamepadbutton(back)> untuk kembali.
 apricorn_screen_choose_apricorns,Tolong pilih untuk dibuatkan Pokéballs.
 apricorn_screen_ok,Oke
 apricorn_screen_clear,Clear
@@ -610,7 +610,7 @@ apricorn_screen_received_money,and received $[AMOUNT]~for the balls that exceede
 ---
 Donation screen:
 donation_screen_donators,Donatur
-donation_screen_backadvice,Tekan [<system.button(OpenMenu)>] Untuk Kembali
+donation_screen_backadvice,Tekan [<system.button(Back1)>] atau <system.gamepadbutton(back)> untuk kembali
 ---
 Rename Screen:
 rename_screen_title_Question,Rename [NAME]?

@@ -598,7 +598,7 @@ save_screen_to_continue,, aby kontynuować.
 Apricorn Screen:
 apricorn_screen_apricorns,Apricorny
 apricorn_screen_producing,I am producing the Balls at the moment.~Come back later.
-apricorn_screen_backadvice,WCIŚNIJ [<system.button(OpenMenu)>], ABY WRÓCIĆ
+apricorn_screen_backadvice,Wciśnij [<system.button(Back1)>] lub <system.gamepadbutton(back)>, aby wrócić.
 apricorn_screen_choose_apricorns,Please choose the Apricorns I should take~to produce Poké Balls.
 apricorn_screen_ok,OK
 apricorn_screen_clear,Clear

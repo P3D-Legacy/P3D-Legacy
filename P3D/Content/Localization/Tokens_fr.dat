@@ -596,7 +596,7 @@ save_screen_to_continue,to continue.
 Apricorn Screen:
 apricorn_screen_apricorns,Noigrumes
 apricorn_screen_producing,Je fabrique des Balls en ce moment.~Reviens plus tard.
-apricorn_screen_backadvice,APPUIE SUR [<system.button(OpenMenu)>] POUR SORTIR
+apricorn_screen_backadvice,Appuie sur [<system.button(Back1)>] ou <system.gamepadbutton(back)> pour sortir.
 apricorn_screen_choose_apricorns,Choisis les Noigrumes que tu veux~transformer en Balls.
 apricorn_screen_ok,OK
 apricorn_screen_clear,Tout enlever
@@ -608,7 +608,7 @@ apricorn_screen_received_money,and received $[AMOUNT]~for the balls that exceede
 ---
 Donation screen:
 donation_screen_donators,Donateurs
-donation_screen_backadvice,Appuie sur [<system.button(OpenMenu)>] pour fermer
+donation_screen_backadvice,Appuie sur [<system.button(Back1)>] ou <system.gamepadbutton(back)> pour fermer
 ---
 Rename Screen:
 rename_screen_title_Question,Rename [NAME]?

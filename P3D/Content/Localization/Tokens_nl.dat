@@ -598,8 +598,8 @@ save_screen_to_continue,om door te gaan.
 Apricorn Screen:
 apricorn_screen_apricorns,Apricorns
 apricorn_screen_producing,Ik ben bezig met het maken van de PokéBallen.~Kom later terug.
-apricorn_screen_backadvice,DRUK OP [<system.button(OpenMenu)>] OM TERUG TE GAAN
-apricorn_screen_choose_apricorns,Selecteer de Apricorns waarvan ik~PokéBallen moet maken.
+apricorn_screen_backadvice,Druk op [<system.button(Back1)>] of <system.gamepadbutton(back)> om terug te gaan.
+apricorn_screen_choose_apricorns,Kies de Apricorns waarvan ik~PokéBallen moet maken.
 apricorn_screen_ok,Oké
 apricorn_screen_clear,Wis
 apricorn_screen_take,Neem
@@ -609,7 +609,7 @@ apricorn_screen_received_money,en ontving $[AMOUNT]~voor de PokéBallen die het~
 ---
 Donation screen:
 donation_screen_donators,Donateurs
-donation_screen_backadvice,Druk op <system.button(OpenMenu)> om te sluiten
+donation_screen_backadvice,Druk op [<system.button(Back1)>] of <system.gamepadbutton(back)> om te sluiten
 ---
 Rename Screen:
 rename_screen_title_Question,Hernoem [NAME]?

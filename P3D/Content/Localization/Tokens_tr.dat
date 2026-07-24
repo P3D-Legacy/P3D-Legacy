@@ -38,7 +38,7 @@ game_menu_exit,Menüye dön
 ---
 InventoryScreen:
 inventory_menu_bag,Çanta
-inventory_menu_backadvice,GERI DÖNMEK IÇIN E'YE BAS
+inventory_menu_backadvice,Geri dönmek için [<system.button(Back1)>] tuşuna veya <system.gamepadbutton(back)> düğmesine basın
 inventory_menu_items,Esyalar
 inventory_menu_description,Tanimlama
 ---
@@ -67,11 +67,11 @@ PokedexScreen:
 pokedex_screen_seen,Görüldü
 pokedex_screen_obtained,Elde edildi
 pokedex_screen_rare,Nadir
-pokedex_screen_backadvice,GERI DÖNMEK IÇIN E'YE BAS
+pokedex_screen_backadvice,Geri dönmek için [<system.button(Back1)>] tuşuna veya <system.gamepadbutton(back)> düğmesine basın
 ---
 PokemonScreen:
 pokemon_screen_choose_a_pokemon,Pokémon seç
-pokemon_screen_backadvice,GERI DÖNMEK IÇIN E'YE BAS
+pokemon_screen_backadvice,Geri dönmek için [<system.button(Back1)>] tuşuna veya <system.gamepadbutton(back)> düğmesine basın
 pokemon_screen_item_give,Ver
 pokemon_screen_item_take,Geri al
 pokemon_screen_item_back,Geri
@@ -94,7 +94,7 @@ pokemon_screen_EMPTY,BOs
 Pokemon Status Screen:
 All pages:
 poke_status_screen_nature,Huy
-poke_status_screen_backadvice,GERI DÖNMEK IÇIN E'YE BAS
+poke_status_screen_backadvice,Geri dönmek için [<system.button(Back1)>] tuşuna veya <system.gamepadbutton(back)> düğmesine basın
 poke_status_screen_closeadvice,KAPATMAK IÇIN E'YE BAS
 poke_status_screen_number,# 
 Page 1:
@@ -121,7 +121,7 @@ trainer_screen_pokedex,Pokédex
 trainer_screen_time,Zaman
 trainer_screen_collected_badges,Toplanan rozetler
 trainer_screen_badge,rozet
-trainer_screen_backadvice,GERI DÖNMEK IÇIN E'YE BAS
+trainer_screen_backadvice,Geri dönmek için [<system.button(Back1)>] tuşuna veya <system.gamepadbutton(back)> düğmesine basın
 trainer_screen_empty_badge,???
 trainer_screen_rank,Rank
 trainer_screen_NeedPoint,Need [NUMBER] point
@@ -140,7 +140,7 @@ save_screen_success,Oyun kaydedildi.
 Options Screen:
 option_screen_title,Seçenekler
 option_screen_warning,Degisiklikler kaydedilmedi, asagiya bakip "seçenekleri kaydet." i seçin
-option_screen_backadvice,GERI DÖNMEK IÇIN E'YE BAS
+option_screen_backadvice,Geri dönmek için [<system.button(Back1)>] tuşuna veya <system.gamepadbutton(back)> düğmesine basın
 option_screen_description,Bilgiler
 option_screen_textspeed,Yazi hizi
 option_screen_textspeed_description,Yazi kutucugunun belirmesi~ve yazilarin gösterilmesi hizi
@@ -192,7 +192,7 @@ item_detail_screen_give_item,Esya ver
 Apricorn Screen:
 apricorn_screen_apricorns,Apricorn'lar
 apricorn_screen_producing,Su anda is üzerinde çalisiyorum.~Daha sonra gel.
-apricorn_screen_backadvice,GERI DÖNMEK IÇIN E'YE BAS
+apricorn_screen_backadvice,Geri dönmek için [<system.button(Back1)>] tuşuna veya <system.gamepadbutton(back)> düğmesine basın.
 apricorn_screen_choose_apricorns,Lütfen Pokéball yaparken kullanmami istedigin~Apricorn'lari seç.
 apricorn_screen_ok,Tamam
 apricorn_screen_clear,Temizle
@@ -201,7 +201,7 @@ apricorn_screen_ready,Pokéball üretmeye hazirim. iste çalismamin ürünü:
 apricorn_screen_obtain, Alindi
 ---
 Network Screen:
-network_screen_isonline,Suan zaten bir co-op Baglantiniz mevcut!~Yeni oyun açmak yada yeniden baglanmak için mevcut baglantinizi kesin!~~~GERI DÖNMEK IÇIN E'YE BASIN!
+network_screen_isonline,Suan zaten bir co-op Baglantiniz mevcut!~Yeni oyun açmak yada yeniden baglanmak için mevcut baglantinizi kesin!~~~Geri dönmek için [<system.button(Back1)>] tuşuna veya <system.gamepadbutton(back)> düğmesine basın!
 network_screen_header,Co-Op Oyun
 network_screen_main_header,Yeni bir Co-OP oyun yaratabilir yada~yaratilmis bir oyuna katilabilirsin.
 network_screen_main_join,Katil
@@ -217,7 +217,7 @@ apricorn_screen_received_money,and received $[AMOUNT]~for the balls that exceede
 ---
 Donation screen:
 donation_screen_donators,Donators
-donation_screen_backadvice,Press E to close
+donation_screen_backadvice,Press [<system.button(Back1)>] or <system.gamepadbutton(back)> to close
 ---
 Move Tutor Screen:
 move_tutor_screen_CurrentMoves,Pokémon's moves

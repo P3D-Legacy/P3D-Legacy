@@ -597,7 +597,7 @@ save_screen_to_continue,to continue.
 Apricorn Screen:
 apricorn_screen_apricorns,Aprikokos
 apricorn_screen_producing,Ich verarbeite die Aprikokos gerade.~Komm doch später wieder.
-apricorn_screen_backadvice,[<system.button(OpenMenu)>]: Zurück
+apricorn_screen_backadvice,[<system.button(Back1)>] oder <system.gamepadbutton(back)>: Zurück
 apricorn_screen_choose_apricorns,Bitte wähle Aprikokos aus,~um Pokébälle herzustellen:
 apricorn_screen_ok,OK
 apricorn_screen_clear,Leeren
@@ -609,7 +609,7 @@ apricorn_screen_received_money,and received $[AMOUNT]~for the balls that exceede
 ---
 Donation screen:
 donation_screen_donators,Spender
-donation_screen_backadvice,[<system.button(OpenMenu)>]: Zurück
+donation_screen_backadvice,[<system.button(Back1)>] oder <system.gamepadbutton(back)>: Zurück
 ---
 Rename Screen:
 rename_screen_title_Question,Rename [NAME]?
