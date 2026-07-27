@@ -47,7 +47,9 @@
                         foundSteps = False
                     End If
                 Else
-                    If b IsNot Nothing Then
+                    checkBlockedPosition.Y -= 1
+                    b = GetEntity(Screen.Level.Entities, checkBlockedPosition, True, {GetType(NPC), GetType(StrengthRock)})
+                    If b IsNot Nothing AndAlso CType(Screen.Camera, OverworldCamera)._debugWalk = False Then
                         If b.Collision = True Then
                             EndCollision = True
                         End If
@@ -167,7 +169,7 @@
                         foundSteps = False
                     End If
                 Else
-                    If b IsNot Nothing Then
+                    If b IsNot Nothing AndAlso CType(Screen.Camera, OverworldCamera)._debugWalk = False Then
                         If b.Collision = True Then
                             EndCollision = True
                         End If
