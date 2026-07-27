@@ -514,7 +514,7 @@ Public Class NewInventoryScreen
         '        End If
         '    Next
         'Next
-        Canvas.DrawRectangle(infoBatch, New Rectangle(_infoPosition - 80 + 100, 0, _infoSize - 200, 368), New Color(0, 0, 0, CInt(alpha * 0.8)))
+        Canvas.DrawRectangle(infoBatch, New Rectangle(100, 0, _infoSize - 200, 368), New Color(0, 0, 0, CInt(alpha * 0.85)))
 
         Canvas.DrawGradient(infoBatch, New Rectangle(0, 0, 40, 368), New Color(0, 0, 0, alpha), New Color(0, 0, 0, CInt(alpha * 0.9)), True, -1)
         Canvas.DrawGradient(infoBatch, New Rectangle(40, 0, 60, 368), New Color(0, 0, 0, CInt(alpha * 0.9)), New Color(0, 0, 0, CInt(alpha * 0.85)), True, -1)
