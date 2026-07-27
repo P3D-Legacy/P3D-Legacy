@@ -42,7 +42,7 @@ Public Class NameObjectScreen
         Me.CanBePaused = False
         Me._canChooseNo = True
         Me._pokemon = Pokemon
-        Me._defaultName = Pokemon.GetDisplayName()
+        Me._defaultName = Pokemon.GetDisplayName(False)
         Me._renamePokemon = True
         Me._maxLength = 12
 

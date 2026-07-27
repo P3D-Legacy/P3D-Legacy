@@ -630,7 +630,7 @@ Public Class StorageSystemScreen
             If p.Item IsNot Nothing Then entries.Add(New MenuEntry(5, Localization.GetString("storage_screen_menu_pokemon_TakeItem", "Take Item"), False, Sub() TakeItemPokemon()))
             entries.Add(New MenuEntry(5 + itemOffset, Localization.GetString("storage_screen_menu_pokemon_Release", "Release"), False, AddressOf ReleasePokemon))
             entries.Add(New MenuEntry(6 + itemOffset, Localization.GetString("global_cancel", "Cancel"), True, Nothing))
-            SetupMenu(entries.ToArray(), Localization.GetString("storage_screen_menu_pokemon_IsSelected", "[POKEMONNAME] is selected.").Replace("[POKEMONNAME]", p.GetDisplayName()))
+            SetupMenu(entries.ToArray(), Localization.GetString("storage_screen_menu_pokemon_IsSelected", "[POKEMONNAME] is selected.").Replace("[POKEMONNAME]", p.GetDisplayName(False)))
         End If
     End Sub
 
@@ -1043,7 +1043,7 @@ Public Class StorageSystemScreen
             TextureManager.GetTexture(texturePath, New Rectangle(0, 0, 1, 1), "").GetData(cArr, 0, 1)
 
             Dim overviewArea = New Rectangle(660, 200, 256, 256)
-            Dim detailsArea = New Rectangle(660, 472, 320, 240)
+            Dim detailsArea = New Rectangle(660, 472, 336, 240)
             Dim backgroundColor = If(BoxChooseMode, New Color(84, 198, 216, 150), New Color(cArr(0).R, cArr(0).G, cArr(0).B, 150))
 
             Canvas.DrawRectangle(overviewArea, backgroundColor)
@@ -1068,7 +1068,7 @@ Public Class StorageSystemScreen
             Else
                 Dim itemString = If(p.Item Is Nothing, Localization.GetString("global_none", "None"), p.Item.OneLineName)
 
-                Dim nameString = If(p.NickName = "", p.GetDisplayName(), $"{p.GetDisplayName()}/{p.GetName}")
+                Dim nameString = If(p.NickName = "", p.GetDisplayName(False), $"{p.GetDisplayName(False)}/{p.GetName}")
 
                 text = $"{nameString}{Environment.NewLine}"
                 text &= Localization.GetString("storage_screen_pokemon_summary_DexNo", "DEX NO.") & $"  {p.Number}{Environment.NewLine}"

@@ -328,7 +328,7 @@ Public Class PartyScreen
                              _pokemonAnimations(index)._shakeV * shakeMulti, New Vector2(CInt(pokeTexture.Width / 2), CInt(pokeTexture.Width / 4 * 3)), SpriteEffects.None, 0F)
 
             'name:
-            GetFontRenderer().DrawString(FontManager.MainFont, p.GetDisplayName(), New Vector2(position.X + 156, position.Y + 27), New Color(255, 255, 255, CInt(255 * _interfaceFade)))
+            GetFontRenderer().DrawString(FontManager.MainFont, p.GetDisplayName(False), New Vector2(position.X + 156, position.Y + 27), New Color(255, 255, 255, CInt(255 * _interfaceFade)))
         Else
             Dim shakeMulti As Single = CSng((p.HP / p.MaxHP).Clamp(0.2F, 1.0F))
 
@@ -343,14 +343,14 @@ Public Class PartyScreen
             End If
 
             'name:
-            GetFontRenderer().DrawString(FontManager.MainFont, p.GetDisplayName(), New Vector2(position.X + 78, position.Y + 5), New Color(255, 255, 255, CInt(255 * _interfaceFade)))
+            GetFontRenderer().DrawString(FontManager.MainFont, p.GetDisplayName(False), New Vector2(position.X + 78, position.Y + 5), New Color(255, 255, 255, CInt(255 * _interfaceFade)))
 
             'Gender symbol:
             Select Case p.Gender
                 Case Pokemon.Genders.Male
-                    SpriteBatch.Draw(_menuTexture, New Rectangle(CInt(position.X + FontManager.MainFont.MeasureString(p.GetDisplayName()).X + 86), CInt(position.Y + 9), 7, 13), New Rectangle(25, 0, 7, 13), New Color(255, 255, 255, CInt(255 * _interfaceFade)))
+                    SpriteBatch.Draw(_menuTexture, New Rectangle(CInt(position.X + FontManager.MainFont.MeasureString(p.GetDisplayName(False)).X + 86), CInt(position.Y + 9), 7, 13), New Rectangle(25, 0, 7, 13), New Color(255, 255, 255, CInt(255 * _interfaceFade)))
                 Case Pokemon.Genders.Female
-                    SpriteBatch.Draw(_menuTexture, New Rectangle(CInt(position.X + FontManager.MainFont.MeasureString(p.GetDisplayName()).X + 85), CInt(position.Y + 9), 9, 13), New Rectangle(32, 0, 9, 13), New Color(255, 255, 255, CInt(255 * _interfaceFade)))
+                    SpriteBatch.Draw(_menuTexture, New Rectangle(CInt(position.X + FontManager.MainFont.MeasureString(p.GetDisplayName(False)).X + 85), CInt(position.Y + 9), 9, 13), New Rectangle(32, 0, 9, 13), New Color(255, 255, 255, CInt(255 * _interfaceFade)))
             End Select
 
             'Level:
