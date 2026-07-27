@@ -872,9 +872,6 @@ Public Class Level
         OverworldPokemon = New OverworldPokemon(Screen.Camera.Position.X, Screen.Camera.Position.Y, Screen.Camera.Position.Z + 1)
         OverworldPokemon.ChangeRotation()
         OverworldPokemon.Visible = False
-        Entities.AddRange({OwnPlayer, OverworldPokemon})
-        Lighting.UpdateLighting(Screen.Effect)
-        Screen.Camera.Update()
 
         Me.Surfing = Core.Player.startSurfing
         If Me.Surfing = True And OwnPlayer.SkinName.StartsWith("[POKEMON|") = False Then
@@ -896,6 +893,11 @@ Public Class Level
                 End If
             End With
         End If
+
+        Entities.AddRange({OwnPlayer, OverworldPokemon})
+        Lighting.UpdateLighting(Screen.Effect)
+        Screen.Camera.Update()
+
         Me.StartOffsetMapUpdate()
     End Sub
 
@@ -1253,6 +1255,7 @@ Public Class Level
             ' Disable the warp check:
             Me.WarpData.DoWarpInNextTick = False
             WarpData.IsWarpBlock = False
+            CType(Screen.Camera, OverworldCamera).IsWarping = False
 
             If Core.ServersManager.ServerConnection.Connected = True Then
                 ' Update network players:

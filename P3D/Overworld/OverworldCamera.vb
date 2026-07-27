@@ -38,6 +38,8 @@ Public Class OverworldCamera
     Public IsSliding As Boolean = False
     Public IsPushingStrengthRock As Boolean = False
 
+    Public IsWarping As Boolean = False
+
     'Debug variables
     Public oldDate As Date = Date.Now
 
@@ -900,7 +902,7 @@ Public Class OverworldCamera
         Dim setSurfFalse As Boolean = False
         Dim Position2D As Vector3 = New Vector3(newPosition.X, CSng(Math.Floor(newPosition.Y)), newPosition.Z)
         For Each Floor As Entity In Screen.Level.Floors
-            If Floor.boundingBox.Contains(Position2D) = ContainmentType.Contains Then
+            If Floor.boundingBox.Contains(Position2D) = ContainmentType.Contains AndAlso Me.IsWarping = False Then
                 cannotWalk = False
                 setSurfFalse = True
             End If
@@ -954,7 +956,7 @@ Public Class OverworldCamera
                     If Entity.boundingBox.Contains(Position2D) = ContainmentType.Contains Then
                         If Entity.Collision = True Then
                             Entity.WalkAgainstFunction()
-                            If Not (Entity.EntityID = "AnimatedBlock" OrElse Entity.EntityID = "Water") Then
+                            If Not (Entity.EntityID = "AnimatedBlock" OrElse Entity.EntityID = "Water" OrElse Entity.EntityID = "WarpBlock" OrElse Entity.EntityID = "ScriptBlock") Then
                                 _didWalkAgainst = True
                             End If
                         Else

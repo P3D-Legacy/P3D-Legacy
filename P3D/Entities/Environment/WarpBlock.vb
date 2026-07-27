@@ -1,7 +1,11 @@
 ﻿Public Class WarpBlock
 
     Inherits Entity
+    Public Overrides Sub Initialize()
+        MyBase.Initialize()
 
+        EntityID = "WarpBlock"
+    End Sub
     Public Overrides Sub Render()
         If Me.Model Is Nothing Then
             Me.Draw(Me.BaseModel, Textures, False)
@@ -72,6 +76,8 @@
                     End If
                     Logger.Debug("Lock Camera")
                     CType(Screen.Camera, OverworldCamera).YawLocked = True
+                    CType(Screen.Camera, OverworldCamera).DidWalkAgainst = False
+                    CType(Screen.Camera, OverworldCamera).IsWarping = True
                 Else
                     Screen.Level = New Level()
                     Screen.Level.Load(Me.AdditionalValue.GetSplit(0))
