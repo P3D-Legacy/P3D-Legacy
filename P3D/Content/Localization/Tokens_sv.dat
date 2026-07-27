@@ -616,6 +616,22 @@ rename_screen_title_Question,Rename [NAME]?
 rename_screen_title_EnterName,Enter name for [NAME]:
 rename_screen_button_Rename,Rename
 ---
+Name Rater:
+name_rater_CannotRename_TradedPokemon,I cannot rename this~Pokémon because the~OT is different!*Did you receive it in~a trade or something?
+name_rater_CannotRename_Egg,I cannot rename~this egg...
+---
+Effort Value Reader:
+ev_reader_intro,Hm... I see your~[POKEMONNAME]
+ev_reader_reading_SpecificEV,~is very stable with~
+ev_reader_reading_Balanced,~is very well balanced.
+ev_reader_reading_Attack,performing physical moves.
+ev_reader_reading_Defense,taking hits.
+ev_reader_reading_HP,taking damage.
+ev_reader_reading_SpecialAttack,performing complex strategies.
+ev_reader_reading_SpecialDefense,breaking strategies.
+ev_reader_reading_Speed,speeding the others out.
+ev_reader_outro,*...~...*What that means?~I am not sure...
+---
 Input Screen:
 input_screen_button_Shift,Shift
 input_screen_button_Default,Default

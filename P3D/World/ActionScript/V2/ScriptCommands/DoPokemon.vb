@@ -307,45 +307,45 @@
                         If canRename = True Then
                             Core.SetScreen(New NameObjectScreen(Core.CurrentScreen, Core.Player.Pokemons(PokemonIndex)))
                         Else
-                            Screen.TextBox.Show("I cannot rename this~Pokémon because the~OT is different!*Did you receive it in~a trade or something?")
+                            Screen.TextBox.Show(Localization.GetString("name_rater_CannotRename_TradedPokemon", "I cannot rename this~Pokémon because the~OT is different!*Did you receive it in~a trade or something?"))
                         End If
                     Else
-                        Screen.TextBox.Show("I cannot rename~this egg...")
+                        Screen.TextBox.Show(Localization.GetString("name_rater_CannotRename_Egg", "I cannot rename~this egg..."))
                     End If
 
                     CanContinue = False
                 Case "read"
                     Dim p As Pokemon = Core.Player.Pokemons(int(argument))
 
-                    Dim message As String = "Hm... I see your~" & p.GetDisplayName()
-                    Dim addmessage As String = "~is very stable with~"
+                    Dim message As String = Localization.GetString("ev_reader_intro", "Hm... I see your~[POKEMONNAME]").Replace("[POKEMONNAME]", p.GetDisplayName())
+                    Dim addmessage As String = Localization.GetString("ev_reader_reading_SpecificEV", "~is very stable with~")
 
                     If p.EVAttack > p.EVDefense And p.EVAttack > p.EVHP And p.EVAttack > p.EVSpAttack And p.EVAttack > p.EVSpDefense And p.EVAttack > p.EVSpeed Then
-                        addmessage &= "performing physical moves."
+                        addmessage &= Localization.GetString("ev_reader_reading_Attack", "performing physical moves.")
                     End If
                     If p.EVDefense > p.EVAttack And p.EVDefense > p.EVHP And p.EVDefense > p.EVSpAttack And p.EVDefense > p.EVSpDefense And p.EVDefense > p.EVSpeed Then
-                        addmessage &= "taking hits."
+                        addmessage &= Localization.GetString("ev_reader_reading_Defense", "taking hits.")
                     End If
                     If p.EVHP > p.EVAttack And p.EVHP > p.EVDefense And p.EVHP > p.EVSpAttack And p.EVHP > p.EVSpDefense And p.EVHP > p.EVSpeed Then
-                        addmessage &= "taking damage."
+                        addmessage &= Localization.GetString("ev_reader_reading_HP", "taking damage.")
                     End If
                     If p.EVSpAttack > p.EVAttack And p.EVSpAttack > p.EVDefense And p.EVSpAttack > p.EVHP And p.EVSpAttack > p.EVSpDefense And p.EVSpAttack > p.EVSpeed Then
-                        addmessage &= "performing complex strategies."
+                        addmessage &= Localization.GetString("ev_reader_reading_SpecialAttack", "performing complex strategies.")
                     End If
                     If p.EVSpDefense > p.EVAttack And p.EVSpDefense > p.EVDefense And p.EVSpDefense > p.EVHP And p.EVSpDefense > p.EVSpAttack And p.EVSpDefense > p.EVSpeed Then
-                        addmessage &= "breaking strategies."
+                        addmessage &= Localization.GetString("ev_reader_reading_SpecialDefense", "breaking strategies.")
                     End If
                     If p.EVSpeed > p.EVAttack And p.EVSpeed > p.EVDefense And p.EVSpeed > p.EVHP And p.EVSpeed > p.EVSpAttack And p.EVSpeed > p.EVSpDefense Then
-                        addmessage &= "speeding the others out."
+                        addmessage &= Localization.GetString("ev_reader_reading_Speed", "speeding the others out.")
                     End If
 
-                    If addmessage = "~is very stable with~" Then
-                        addmessage = "~is very well balanced."
+                    If addmessage = Localization.GetString("ev_reader_reading_SpecificEV", "~is very stable with~") Then
+                        addmessage = Localization.GetString("ev_reader_reading_Balanced", "~is very well balanced.")
                     End If
 
                     message &= addmessage
 
-                    message &= "*...~...*What that means?~I am not sure..."
+                    message &= Localization.GetString("ev_reader_outro", "*...~...*What that means?~I am not sure...")
 
                     Screen.TextBox.Show(message, {}, False, False)
 

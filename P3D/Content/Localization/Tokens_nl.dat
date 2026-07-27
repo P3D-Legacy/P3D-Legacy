@@ -617,6 +617,22 @@ rename_screen_title_Question,Hernoem [NAME]?
 rename_screen_title_EnterName,Voer naam in voor [NAME]:
 rename_screen_button_Rename,Hernoem
 ---
+Name Rater:
+name_rater_CannotRename_TradedPokemon,Ik kan deze Pokémon niet~hernoemen omdat zijn OT~niet dezelfde als die van~jou is!*Heb je hem in een ruil~ontvangen of zo?
+name_rater_CannotRename_Egg,Ik kan dit ei niet hernoemen...
+---
+Effort Value Reader:
+ev_reader_intro,Hm... Ik zie dat jouw~[POKEMONNAME]
+ev_reader_reading_SpecificEV,~erg goed is in~
+ev_reader_reading_Balanced,~erg goed gebalanceerd is.
+ev_reader_reading_Attack,het uitvoeren van fysieke~aanvallen.
+ev_reader_reading_Defense,het opvangen van klappen.
+ev_reader_reading_HP,het ontvangen van schade.
+ev_reader_reading_SpecialAttack,het uitvoeren van ingewikkelde~strategieën.
+ev_reader_reading_SpecialDefense,het dwarsbomen van~strategieën.
+ev_reader_reading_Speed,sneller zijn dan de rest.
+ev_reader_outro,*...~...*Wat dat betekent?~Dat weet ik niet zeker...
+---
 Input Screen:
 input_screen_button_Shift,Shift
 input_screen_button_Default,Standaard
