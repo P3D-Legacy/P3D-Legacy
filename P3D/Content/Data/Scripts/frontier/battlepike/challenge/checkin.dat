@@ -40,6 +40,7 @@ version=2
 
 						@pokemon.heal
 
+						@register.unregister(piketype,str)
 						@register.unregister(pike_level,int)
 						@register.unregister(pike_class,int)
 						@register.unregister(wildlevel,INT)
