@@ -52,7 +52,7 @@ Mats:
 {"Floor"{ENT[{"Size"{intArr[1,1]}}{"Position"{intArr[5,0,7]}}{"TexturePath"{str[battlepike]}}{"Texture"{rec[176,32,16,16]}}]}}
 
 NPC:
-{"NPC"{NPC[{"Position"{sngArr[3,0,6]}}{"TextureID"{str[96]}}{"ID"{int[0]}}{"Name"{str[Guide]}}{"Action"{int[1]}}{"AdditionalValue"{str[frontier\battlepike\challenge\checkin]}}{"Rotation"{int[3]}}{"Movement"{str[Still]}}{"MoveRectangles"{recArr[]}}]}}
+{"NPC"{NPC[{"Position"{sngArr[3,0,6]}}{"TextureID"{str[96]}}{"ID"{int[0]}}{"Name"{str[Guide]}}{"Action"{int[1]}}{"AdditionalValue"{str[frontier\battlepike\<register.value(piketype)>\checkin]}}{"Rotation"{int[3]}}{"Movement"{str[Still]}}{"MoveRectangles"{recArr[]}}]}}
 {"NPC"{NPC[{"Position"{sngArr[6,0,1]}}{"TextureID"{str[96]}}{"ID"{int[1]}}{"Name"{str[Hint]}}{"Action"{int[1]}}{"AdditionalValue"{str[frontier\battlepike\hint]}}{"Rotation"{int[2]}}{"Movement"{str[Still]}}{"MoveRectangles"{recArr[]}}]}}
 
 Warps:
