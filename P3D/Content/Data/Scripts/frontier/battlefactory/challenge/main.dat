@@ -4,6 +4,7 @@ version=2
 	@Options.Show(Yes,No)
 	:when:Yes
 		@player.save
+		@level.waitforsave
 		@sound.play(Save)
 		@text.show(<player.name>~saved the game.)
 		@storage.set(boolean,thirdperson,<player.thirdperson>)

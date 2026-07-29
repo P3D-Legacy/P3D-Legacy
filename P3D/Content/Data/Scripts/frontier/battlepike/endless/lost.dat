@@ -59,6 +59,7 @@ version=2
 
 	@text.show(I shall record your results.~Please wait...)
 	@player.save
+	@level.waitforsave
 	
 	@text.show(We look forward to seeing~you on another occasion...)
 	@storage.clear

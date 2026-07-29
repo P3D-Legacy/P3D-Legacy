@@ -3,6 +3,7 @@ version=2
 	@register.unregister(savinginpike)
 	@register.register(resumedinpike,int,<register.value(pike_room_count_temp)>)
 	@player.save
+	@level.waitforsave
 :else
 	:if:<register.value(resumedinpike)>=<register.value(pike_room_count_temp)>
 		@text.show(Please do not exit the~game mid challenge...*You will now be sent back~to the front desk...)

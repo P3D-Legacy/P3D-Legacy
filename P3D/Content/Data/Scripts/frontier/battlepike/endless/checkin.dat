@@ -8,6 +8,8 @@ version=2
 				@register.unregister(resumedinpike,int)
 				@register.register(savinginpike)
 				@player.save
+				@level.waitforsave
+				@sound.play(Save)
 				@player.quitgame(true)
 			:when:No
 				@text.show(So you want to quit~your challenge entirely?)
