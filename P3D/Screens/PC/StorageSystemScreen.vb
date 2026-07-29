@@ -1068,7 +1068,7 @@ Public Class StorageSystemScreen
             Else
                 Dim itemString = If(p.Item Is Nothing, Localization.GetString("global_none", "None"), p.Item.OneLineName)
 
-                Dim nameString = If(p.NickName = "", p.GetDisplayName(False), $"{p.GetDisplayName(False)}/{p.GetName}")
+                Dim nameString = If(p.NickName = "", p.GetDisplayName(False), $"{p.GetDisplayName(False)}/{p.GetName(False)}")
 
                 text = $"{nameString}{Environment.NewLine}"
                 text &= Localization.GetString("storage_screen_pokemon_summary_DexNo", "DEX NO.") & $"  {p.Number}{Environment.NewLine}"
@@ -1170,7 +1170,7 @@ Public Class StorageSystemScreen
         criteria.Add(FilterTypes.Ability, Function(f) Localization.GetString("ability_name_" & p.Ability.ID).ToLower() = f.FilterValue.ToLower())
         criteria.Add(FilterTypes.Gender, Function(f) Localization.GetString("global_" & p.Gender.ToString().ToLower()).ToLower() = f.FilterValue.ToLower())
         criteria.Add(FilterTypes.Nature, Function(f) Localization.GetString("nature_name_" & p.Nature.ToString()).ToLower() = f.FilterValue.ToLower())
-        criteria.Add(FilterTypes.Pokémon, Function(f) p.GetName().ToLower() = f.FilterValue.ToLower())
+        criteria.Add(FilterTypes.Pokémon, Function(f) p.GetName(False).ToLower() = f.FilterValue.ToLower())
         criteria.Add(FilterTypes.Move, Function(f) p.Attacks.Any(Function(a) a.Name.ToLower() = f.FilterValue.ToLower()))
         criteria.Add(FilterTypes.Type1, Function(f) p.Type1.ToString.ToLower() = f.FilterValue.ToLower())
         criteria.Add(FilterTypes.Type2, Function(f) p.Type2.ToString.ToLower() = f.FilterValue.ToLower())
