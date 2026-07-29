@@ -2484,6 +2484,9 @@ item_name_576,Méga-Bracelet
 item_name_651,Galet blanc
 item_name_652,Galet noir
 item_name_653,Obsidienne
+item_name_655,Sea Plane Ticket
+item_name_656,Exp. Charm
+item_name_657,Catching Charm
 item_name_658,Multi Exp
 
 Technical Machines:
@@ -2921,6 +2924,7 @@ item_name_648,Poké Toy
 item_name_649,Fluffy Tail
 item_name_650,Bright Powder
 item_name_654,Peat Block
+item_name_677,Destiny Knot
 item_name_1996,Burn Drive
 item_name_1997,Chill Drive
 item_name_1998,Douse Drive

@@ -2512,6 +2512,9 @@ item_name_576,Mega-Armband
 item_name_651,Lichtsteen
 item_name_652,Duistersteen
 item_name_653,Zwart Auguriet
+item_name_655,Watervliegtuig-*kaartje
+item_name_656,Ervaringsbedel
+item_name_657,Vangbedel
 item_name_658,Team-ervarings*deler
 
 Technical Machines:
@@ -2911,7 +2914,7 @@ item_name_100,Magmariseerder
 item_name_102,Zwarte Bril
 item_name_103,Slowpoke*staart
 item_name_104,Roze Strik
-item_name_105,Stok
+item_name_105,Prei
 item_name_106,Rookbal
 item_name_107,Smeltnooit-IJs
 item_name_108,Magneet
@@ -3000,6 +3003,7 @@ item_name_648,Poké-Speelgoed
 item_name_649,Pluizige~Staart
 item_name_650,Fel Poeder
 item_name_654,Turfblok
+item_name_677,Lotknoop
 item_name_1996,Brandschijf
 item_name_1997,Kalmteschijf
 item_name_1998,Blusschijf
@@ -3034,7 +3038,7 @@ item_pluralname_100,Magmariseerders
 item_pluralname_102,Zwarte Brillen
 item_pluralname_103,Slowpokestaart
 item_pluralname_104,Roze Strikken
-item_pluralname_105,Stokken
+item_pluralname_105,Preien
 item_pluralname_106,Rookballen
 item_pluralname_107,Smeltnooit-Ijs
 item_pluralname_108,Magneten
@@ -3497,15 +3501,15 @@ item_name_660,Insect-*~Herinnering
 item_name_661,Duister-*~Herinnering
 item_name_662,Draak-*~Herinnering
 item_name_663,Elektrische~Herinnering
-item_name_664,Feeherinnering
+item_name_664,Fee-Herinnering
 item_name_665,Vecht-*~Herinnering
 item_name_666,Vuur-*~Herinnering
 item_name_667,Vlieg-*~Herinnering
 item_name_668,Geest-*~Herinnering
 item_name_669,Gras-*~Herinnering
 item_name_670,Grond-*~Herinnering
-item_name_671,IJsherinnering
-item_name_672,Gifherinnering
+item_name_671,IJs-Herinnering
+item_name_672,Gif-Herinnering
 item_name_673,Psychische~Herinnering
 item_name_674,Rots-*~Herinnering
 item_name_675,Staal-*~Herinnering
@@ -3516,15 +3520,15 @@ item_pluralname_660,Insect-Herinneringen
 item_pluralname_661,Duister-Herinneringen
 item_pluralname_662,Draak-Herinneringen
 item_pluralname_663,Elektrische Herinneringen
-item_pluralname_664,Feeherinnering
+item_pluralname_664,Fee-Herinneringen
 item_pluralname_665,Vecht-Herinneringen
 item_pluralname_666,Vuur-Herinneringen
 item_pluralname_667,Vlieg-Herinneringen
 item_pluralname_668,Geest-Herinneringen
 item_pluralname_669,Gras-Herinneringen
 item_pluralname_670,Grond-Herinneringen
-item_pluralname_671,IJsherinnering
-item_pluralname_672,Gifherinnering
+item_pluralname_671,IJs-Herinneringen
+item_pluralname_672,Gif-Herinneringen
 item_pluralname_673,Psychische Herinneringen
 item_pluralname_674,Rots-Herinneringen
 item_pluralname_675,Staal-Herinneringen
