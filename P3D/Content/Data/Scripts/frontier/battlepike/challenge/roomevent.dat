@@ -246,6 +246,7 @@ version=2
 		@player.move(0)
 		@text.show(Welcome...*Here, we will have you battle~a somewhat-tough trainer...)
 		@npc.move(51,2)
+		@text.show(<battle.intromessage(frontier\battletower\<storage.get(integer,trainer_id)>)>)
 		@battle.setvar(cangainlosemoney,0)
 		@battle.setvar(canreceiveexp,0)
 		@battle.setvar(canuseitems,0)
