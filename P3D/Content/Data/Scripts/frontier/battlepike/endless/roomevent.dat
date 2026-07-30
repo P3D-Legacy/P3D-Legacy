@@ -1,4 +1,7 @@
 version=2
+:if:<math.int(<register.value(pike_room_count_temp)>m100)>=0 <and> 2><register.value(pike_class)>
+	@register.change(pike_class,<register.value(pike_class)>+1)
+:endif
 @register.change(pike_room_count_temp,<register.value(pike_room_count_temp)>+1)
 :select:<register.value(pikeroom<level.filename>)>
 	:when:0

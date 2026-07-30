@@ -38,19 +38,19 @@ version=2
 			@options.show(Lv. 50,Lv. 100,Cancel)
 			:when:Lv. 50
 				@register.register(pike_level,int,50)
-				@register.register(pike_class,int,<register.value(battlepike_endless_50_class)>)
+				@register.register(pike_class,int,0)
 				@register.register(wildlevel,INT,46)
 				@register.register(pike_room_count_temp,INT,<register.value(battlepike_endless_50_previous_streak)>)
 			:when:Lv. 100
 				@register.register(pike_level,int,100)
-				@register.register(pike_class,int,<register.value(battlepike_endless_100_class)>)
+				@register.register(pike_class,int,0)
 				@register.register(wildlevel,INT,96)
 				@register.register(pike_room_count_temp,INT,<register.value(battlepike_endless_100_previous_streak)>)
 			:when:Cancel
 				@Text.Show(We look forward to seeing~you on another occasion...)
 				:endscript
 			:endwhen
-			
+
 			@pokemon.heal
 			@register.register(pike_endless_level_0,int,<pokemon.level(0)>)
 			@register.register(pike_endless_level_1,int,<pokemon.level(1)>)
