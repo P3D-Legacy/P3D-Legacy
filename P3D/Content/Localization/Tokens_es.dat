@@ -3161,7 +3161,8 @@ item_cannot_use_NotFrozen_Single,[POKEMONNAME] is not~frozen.
 item_cannot_use_NotFrozen_Both,[OWNPOKEMONNAME] and~[OPPPOKEMONNAME] are not~frozen.
 item_cannot_use_NotParalyzed_Single,[POKEMONNAME] is not~paralyzed.
 item_cannot_use_NotParalyzed_Both,[OWNPOKEMONNAME] and~[OPPPOKEMONNAME] are not~paralyzed.
-item_cannot_use_RepelItem,The Repel is still~in effect.
+item_cannot_use_RepelItem_NotHere,Cannot use a repel here!
+item_cannot_use_RepelItem_StillInEffect,The Repel is still~in effect.
 item_cannot_use_EscapeRope,Cannot use the~Escape Rope here!
 
 item_use_HealItem_Own,Restored [POKEMONNAME]'s~HP by [HPAMOUNT].

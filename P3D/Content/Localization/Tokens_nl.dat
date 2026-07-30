@@ -3556,7 +3556,8 @@ item_cannot_use_NotFrozen_Single,POKEMONNAME] is niet~bevroren.
 item_cannot_use_NotFrozen_Both,[OWNPOKEMONNAME] en~[OPPPOKEMONNAME] zijn niet~bevroren.
 item_cannot_use_NotParalyzed_Single,POKEMONNAME] is niet~verlamd.
 item_cannot_use_NotParalyzed_Both,[OWNPOKEMONNAME] en~[OPPPOKEMONNAME] zijn niet~verlamd.
-item_cannot_use_RepelItem,Het afwerende effect is nog~actief.
+item_cannot_use_RepelItem_NotHere,Kan hier geen afweerder~gebruiken!
+item_cannot_use_RepelItem_StillInEffect,Het afwerende effect is nog~actief.
 item_cannot_use_EscapeRope,Kan het Ontsnappingstouw~hier niet gebruiken!
 
 item_use_HealItem_Own,[POKEMONNAME]'s LP zijn~met [HPAMOUNT] hersteld.

@@ -1045,6 +1045,12 @@
             Screen.Level.BattleVariables = ""
         End If
 
+        If TagExists(Tags, "BypassRepels") = True Then
+            Screen.Level.BypassRepels = CBool(GetTag(Tags, "BypassRepels"))
+        Else
+            Screen.Level.BypassRepels = False
+        End If
+
         If TagExists(Tags, "BlackOutScript") = True Then
             Screen.Level.BlackOutScript = ScriptVersion2.ScriptCommander.Parse(CStr(GetTag(Tags, "BlackOutScript"))).ToString
         Else

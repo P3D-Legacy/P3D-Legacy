@@ -141,7 +141,7 @@ Public Class PokemonEncounter
                         Screen.Level.RouteSign.Hide() ' When a battle starts, hide the Route sign.
 
                         ' If the player has a Repel going and the first Pokémon in the party's level is greater than the wild Pokémon's level, don't start the battle:
-                        If Core.Player.RepelSteps > 0 Then
+                        If Core.Player.RepelSteps > 0 AndAlso Screen.Level.BypassRepels = False Then
                             Dim p As Pokemon = Core.Player.GetWalkPokemon()
                             If Not p Is Nothing Then
                                 If p.Level >= Pokemon.Level Then

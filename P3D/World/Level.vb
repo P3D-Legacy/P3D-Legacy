@@ -459,6 +459,9 @@ Public Class Level
             End If
         End Set
     End Property
+
+    Public Property BypassRepels As Boolean = False
+
     ''' <summary>
     ''' The environment type for this map.
     ''' </summary>

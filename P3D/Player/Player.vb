@@ -1725,7 +1725,9 @@
 
             StepEventCheckTrainers()
             StepEventCheckEggHatching(stepAmount)
-            StepEventCheckRepel(stepAmount)
+            If Screen.Level.BypassRepels = False Then
+                StepEventCheckRepel(stepAmount)
+            End If
             StepEventCheckScript(stepAmount)
             StepEventWildPokemon()
             StepEventPokegearCall()
