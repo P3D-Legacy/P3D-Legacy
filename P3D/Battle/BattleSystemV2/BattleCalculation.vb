@@ -706,6 +706,16 @@
                 End If
             End If
 
+            If own = True Then
+                If BattleScreen.FieldEffects.OwnTrappedCounter > 0 Then
+                    Return False
+                End If
+            Else
+                If BattleScreen.FieldEffects.OppTrappedCounter > 0 Then
+                    Return False
+                End If
+            End If
+
             If op.Ability.Name.ToLower() = "shadow tag" And p.Ability.Name.ToLower() <> "shadow tag" And op.HP > 0 Then
                 Return False
             End If
