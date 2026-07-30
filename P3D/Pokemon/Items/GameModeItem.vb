@@ -28,6 +28,8 @@ Public Class GameModeItem
 
     Public gmSortValue As Integer = 0
 
+    Public gmRepelSteps As Integer = 0
+
     'Medicine Item
     Public gmIsHealingItem As Boolean = False
     Public gmHealHPAmount As Integer = 0
@@ -327,7 +329,29 @@ Public Class GameModeItem
                 Else
                     Screen.TextBox.Show(Localization.GetString("item_cannot_use_NoPokemon", "You don't have any Pokémon."), {}, False, False)
                 End If
+            ElseIf gmRepelSteps > 0 Then
+                If Screen.Level.BypassRepels = False Then
+                    If Core.Player.RepelSteps <= 0 Then
+                        Player.Temp.LastUsedRepel = ID
+                        SoundManager.PlaySound("Use_Repel", False)
+                        Core.Player.RepelSteps = gmRepelSteps
+                        PlayerStatistics.Track("[42]Repels used", 1)
+                        Dim CorrectTokenName As String = "item_use_RegularItem_A"
+                        Dim CorrectTokenContent As String = "<Player.Name> used~a [ITEMNAME]."
+                        If "aoeiu".Contains(Name(0)) Then
+                            CorrectTokenName = "item_use_RegularItem_An"
+                            CorrectTokenContent = "<Player.Name> used~an [ITEMNAME]."
+                        End If
+                        Dim t As String = Localization.GetString(CorrectTokenName, CorrectTokenContent).Replace("[ITEMNAME]", Name)
+                        t &= RemoveItem()
+                        Screen.TextBox.Show(t, {}, True, True)
+                    Else
+                        Screen.TextBox.Show(Localization.GetString("item_cannot_use_RepelItem", "The Repel is still~in effect."), {}, True, True)
+                End If
+            Else
+                Screen.TextBox.Show(Localization.GetString("item_cannot_use_RepelItem_NotHere", "Cannot use a repel here!"), {}, True, True)
             End If
+        End If
             If gmUseOnOppEffects IsNot Nothing AndAlso gmUseOnOppEffects.Count > 0 Then
                 If cScreen.Identification = Identifications.BattleScreen AndAlso Me.CanBeUsedInBattle = True Then
                     UseOnOppPokemon(CType(cScreen, BattleSystem.BattleScreen))

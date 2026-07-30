@@ -144,16 +144,29 @@
                         CanContinue = False
                     End If
                 Case "repel"
-                    Dim itemID As Integer = int(argument)
+                    Dim itemID As String = ""
+                    If argument.GetSplit(0, ",").ToLower = "item" Then
+                        itemID = argument.GetSplit(1, ",")
+                    End If
                     Dim steps As Integer = 0
-                    Select Case itemID
-                        Case 20
-                            steps = 100
-                        Case 42
-                            steps = 200
-                        Case 43
-                            steps = 250
-                    End Select
+                    If itemID <> "" Then
+                        Select Case itemID
+                            Case "20"
+                                steps = 100
+                            Case "42"
+                                steps = 200
+                            Case "43"
+                                steps = 250
+                            Case Else
+                                Dim item As Item = GameModeItemLoader.GetItemByID(itemID)
+                                If item.IsGameModeItem = True Then
+                                    steps = CType(item, GameModeItem).gmRepelSteps
+                                End If
+                        End Select
+                    Else
+                        steps = CInt(argument.GetSplit(0, ","))
+                    End If
+
                     Core.Player.RepelSteps += steps
                 Case "use"
                     Dim itemID As String = argument

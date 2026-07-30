@@ -108,7 +108,6 @@ Public Class GameModeItemLoader
                             Else
                                 item.gmBattleUseSound = value
                             End If
-
                         Case "canbetossed"
                             item.gmCanBeTossed = CBool(value)
                         Case "canbeheld"
@@ -182,6 +181,8 @@ Public Class GameModeItemLoader
                             Else
                                 item.gmEvolutionPokemon.AddRange(PokemonList)
                             End If
+                        Case "repelsteps"
+                            item.gmRepelSteps = CInt(value)
                         Case "script"
                             item.gmScriptPath = value
                         Case "ishm"
