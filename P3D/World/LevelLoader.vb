@@ -650,7 +650,7 @@
         Dim TextureID As String = CStr(GetTag(Tags, "TextureID"))
         Dim Rotation As Integer = CInt(GetTag(Tags, "Rotation"))
         Dim ActionValue As Integer = CInt(GetTag(Tags, "Action"))
-        Dim AdditionalValue As String = CStr(GetTag(Tags, "AdditionalValue"))
+        Dim AdditionalValue As String = P3D.ScriptVersion2.ScriptCommander.Parse(CStr(GetTag(Tags, "AdditionalValue"))).ToString
         Dim Name As String = CStr(GetTag(Tags, "Name"))
         Dim ID As Integer = CInt(GetTag(Tags, "ID"))
         Dim ModelPath As String = ""
