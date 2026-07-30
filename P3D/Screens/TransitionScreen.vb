@@ -23,6 +23,10 @@
         Me.NewScreen = NewScreen
         Me.CanChat = False
 
+        If OldScreen.Identification = Identifications.OverworldScreen Then
+            Screen.Level.World = New World(Screen.Level.EnvironmentType, Screen.Level.WeatherType)
+        End If
+
         Me.Color = Color
         Me.noStuff = True
         Me.Speed = Speed
