@@ -458,7 +458,7 @@
     Public startPosition As Vector3 = New Vector3(14, 0.1, 10)
     Public startRotation As Single = 0
     Public startFreeCameraMode As Boolean = False
-    Public startMap As String = "barktown.dat"
+    Public startMap As String = "newgame\intro0.dat"
     Public startFOV As Single = 60.0F
     Public startRotationSpeed As Integer = 12
     Public startThirdPerson As Boolean = False
@@ -2249,7 +2249,7 @@
         startPosition = New Vector3(14, 0.1, 10)
         startRotation = 0
         startFreeCameraMode = False
-        startMap = "barktown.dat"
+        startMap = "newgame\intro0.dat"
         startFOV = 60.0F
         startRotationSpeed = 12
         startThirdPerson = False
