@@ -77,6 +77,7 @@
     End Sub
 
     Private Sub SetupOptions()
+        NVDA.Speak(Options(index))
         For i = 0 To Options.Count - 1
             Options(i) = Options(i).Replace("<playername>", Core.Player.Name).Replace("<player.name>", Core.Player.Name)
         Next
@@ -100,11 +101,14 @@
 
     Public Sub Update(ByVal RaiseClickEvent As Boolean)
         If Me.Showing = True Then
+            Dim indexChanged As Boolean = False
             If Controls.Down(True, True, True) Then
                 Me.index += 1
+                indexChanged = True
             End If
             If Controls.Up(True, True, True) Then
                 Me.index -= 1
+                indexChanged = True
             End If
 
             If Me.index < 0 Then
@@ -113,6 +117,11 @@
             If Me.index = Me.Options.Count Then
                 Me.index = 0
             End If
+
+            If indexChanged = True Then
+                NVDA.Speak(Options(index))
+            End If
+
             If RaiseClickEvent = True Then
                 If Controls.Accept() = True Then
                     Me.PlayClickSound()
@@ -121,6 +130,7 @@
                 End If
                 If Controls.Dismiss() = True And CancelIndex > -1 Then
                     Me.PlayClickSound()
+                    NVDA.Speak(Options(CancelIndex))
                     Me.result = CancelIndex
                     Me.HandleResult()
                 End If

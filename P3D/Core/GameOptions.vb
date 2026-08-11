@@ -16,6 +16,20 @@
     Public UpdateDisabled As Boolean = False
     Public Extras As New List(Of String)
     Private _interfaceScale As Integer = 0
+    Private _blindMode As Boolean = False
+
+    Public Property BlindMode As Boolean
+        Get
+            If NVDA.IsRunning = True Then
+                Return _blindMode
+            Else
+                Return False
+            End If
+        End Get
+        Set(value As Boolean)
+            _blindMode = CBool(value)
+        End Set
+    End Property
 
     Public Property InterfaceScale As Integer
         Get
@@ -38,6 +52,7 @@
         Dim Data() As String = File.ReadAllText(GameController.GamePath & "\Save\options.dat").SplitAtNewline()
 
         Dim LanguageFound As Boolean = False
+        Dim BlindModeFound As Boolean = False
 
         For Each line As String In Data
             If line <> "" Then
@@ -120,9 +135,17 @@
                         UpdateDisabled = CBool(value)
                     Case "interfacescale"
                         InterfaceScale = CInt(value)
+                    Case "blindmode"
+                        BlindMode = CBool(value)
+                        BlindModeFound = True
                 End Select
             End If
         Next
+        If BlindModeFound = False Then
+            If BlindMode = False AndAlso NVDA.IsRunning = True Then
+                BlindMode = True
+            End If
+        End If
 
         If LanguageFound = False Then
             Localization.Load("en")
@@ -171,6 +194,7 @@
                 "MaxOffsetLevel|" & Me.MaxOffsetLevel.ToString() & Environment.NewLine &
                 "UpdateDisabled|" & Me.UpdateDisabled.ToNumberString() & Environment.NewLine &
                 "InterfaceScale|" & Me.InterfaceScale.ToString() & Environment.NewLine &
+                "BlindMode|" & Me.BlindMode.ToNumberString() & Environment.NewLine &
                 "Extras|" & String.Join(";", Me.Extras)
 
             File.WriteAllText(GameController.GamePath & "\Save\options.dat", Data)
@@ -203,6 +227,7 @@
             "MaxOffsetLevel|0" & Environment.NewLine &
             "UpdateDisabled|0" & Environment.NewLine &
             "InterfaceScale|0" & Environment.NewLine &
+            "BlindMode|0" & Environment.NewLine &
             "Extras|"
 
         File.WriteAllText(GameController.GamePath & "\Save\options.dat", s)

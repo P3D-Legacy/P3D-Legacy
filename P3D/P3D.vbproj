@@ -187,6 +187,7 @@
     <Import Include="NAudio" />
     <Import Include="NAudio.Utils" />
     <Import Include="NAudio.Vorbis" />
+    <Import Include="NVAccess.NVDA" />
     <Import Include="System.Collections.Generic" />
     <Import Include="System.Diagnostics" />
     <Import Include="System.Linq" />
@@ -28880,6 +28881,9 @@
     <Content Include="Content\Textures\switch.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="nvdaControllerClient.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Pokemon3D.ico" />
     <Content Include="credits.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -33198,6 +33202,10 @@
     <ProjectReference Include="..\lib\game-dev-common\src\GameDevCommon\GameDevCommon.csproj">
       <Project>{087378ee-7591-47ce-979f-6824fc0606ef}</Project>
       <Name>GameDevCommon</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\lib\nvda\NVAccess.NVDA.csproj">
+      <Project>{951fb281-da24-32d2-5979-8c9ba4966607}</Project>
+      <Name>NVAccess.NVDA</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

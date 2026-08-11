@@ -34,7 +34,11 @@
     Public Sub Show(ByVal Text As String, ByVal ResultFunction As ChooseBox.DoAnswer, ByVal doReDelay As Boolean, ByVal CheckDelay As Boolean, ByVal TextColor As Color)
         If reDelay = 0.0F Or CheckDelay = False Then
             If Me.Showing = False Then
-                PositionY = Core.windowSize.Height
+                If Core.GameOptions.BlindMode = True Then
+                    PositionY = Core.windowSize.Height - CSng(160.0F * Math.Ceiling(Core.SpriteBatch.InterfaceScale))
+                Else
+                    PositionY = Core.windowSize.Height
+                End If
                 Showing = True
             End If
             Me.doReDelay = doReDelay
@@ -56,7 +60,11 @@
     Public Sub Show(ByVal Text As String, ByVal Entities() As Entity, ByVal doReDelay As Boolean, ByVal CheckDelay As Boolean, ByVal TextColor As Color)
         If reDelay = 0.0F Or CheckDelay = False Then
             If Me.Showing = False Then
-                PositionY = Core.windowSize.Height
+                If Core.GameOptions.BlindMode = True Then
+                    PositionY = Core.windowSize.Height - CSng(160.0F * Math.Ceiling(Core.SpriteBatch.InterfaceScale))
+                Else
+                    PositionY = Core.windowSize.Height
+                End If
                 Showing = True
             End If
             Me.doReDelay = doReDelay
@@ -120,35 +128,151 @@
                 If through = False Then
                     If Text.Count > currentChar Then
                         If Delay <= 0.0F Then
-                            If Text(currentChar).ToString() = "\" Then
-                                If Text.Count > currentChar + 1 Then
-                                    showText(currentLine) &= Text(currentChar + 1)
+                            If Core.GameOptions.BlindMode = True Then
+                                Dim line As String = Text.Remove(0, currentChar)
+                                Dim line1 As String = ""
+                                Dim line2 As String = ""
 
-                                    currentChar += 2
-                                Else
-                                    currentChar += 1
+                                Dim specialSymbolIndex As Integer = -1
+                                Dim softLineBreakIndex As Integer = -1
+                                If line.StartsWith("~") OrElse line.StartsWith("*") OrElse line.StartsWith("%") = True Then
+                                    line = line.Remove(0, 1)
                                 End If
-                            Else
-                                Select Case Text(currentChar)
-                                    Case CChar("~")
-                                        If currentLine = 1 Then
-                                            through = True
-                                        Else
-                                            currentLine += 1
+
+                                If line.Contains(CChar("~")) Then
+                                    softLineBreakIndex = line.IndexOf(CChar("~"))
+                                End If
+                                If line.Contains(CChar("*")) Then
+                                    specialSymbolIndex = line.IndexOf(CChar("*"))
+                                End If
+                                If line.Contains(CChar("%")) Then
+                                    specialSymbolIndex = line.IndexOf(CChar("%"))
+                                End If
+
+                                If softLineBreakIndex <> -1 Then
+                                    If specialSymbolIndex <> -1 Then
+                                        If softLineBreakIndex < specialSymbolIndex Then
+                                            line2 = line.Remove(0, line.IndexOf("~") + 1)
+                                            line1 = line.Remove(line.IndexOf("~"))
                                         End If
-                                    Case CChar("*")
+                                    Else
+                                        line2 = line.Remove(0, line.IndexOf("~") + 1)
+                                        line1 = line.Remove(line.IndexOf("~"))
+                                    End If
+                                End If
+
+                                If specialSymbolIndex <> -1 Then
+                                    Select Case line(specialSymbolIndex)
+                                        Case CChar("*")
+                                            If line2 <> "" Then
+                                                line2 = line2.Remove(line2.IndexOf(CChar("*")))
+
+                                                If line2.Contains(CChar("~")) AndAlso line2.IndexOf(CChar("~")) < specialSymbolIndex Then
+                                                    specialSymbolIndex += line2.IndexOf(CChar("~")) + 1
+                                                    line2 = line2.Remove(line2.IndexOf(CChar("~")))
+                                                End If
+                                                line = line1 & " " & line2
+                                                showText(0) = line1
+                                                showText(1) = line2
+                                            Else
+                                                specialSymbolIndex = line.IndexOf(CChar("*"))
+                                                line = line.Remove(line.IndexOf(CChar("*")))
+                                                showText(0) = line
+                                                showText(1) = ""
+                                            End If
+
+                                            NVDA.Speak(line)
+
+                                            currentChar += specialSymbolIndex + 1
+                                            currentLine = 0
+                                            clearNextLine = True
+                                            through = True
+                                        Case CChar("%")
+                                            If line2 <> "" Then
+                                                line2 = line2.Remove(line2.IndexOf(CChar("%")))
+
+                                                If line2.Contains(CChar("~")) AndAlso line2.IndexOf(CChar("~")) < specialSymbolIndex Then
+                                                    specialSymbolIndex += line2.IndexOf(CChar("~")) + 1
+                                                    line2 = line2.Remove(line2.IndexOf(CChar("~")))
+                                                End If
+                                                line = line1 & " " & line2
+                                                showText(0) = line1
+                                                showText(1) = line2
+
+                                                NVDA.Speak(line)
+                                                currentChar += specialSymbolIndex + 1
+                                                currentLine = 0
+                                                clearNextLine = True
+                                                through = True
+                                            Else
+                                                specialSymbolIndex = line.IndexOf(CChar("%"))
+                                                line = line.Remove(line.IndexOf(CChar("%")))
+                                                showText(0) = line
+                                                showText(1) = ""
+
+                                                NVDA.Speak(line)
+                                                currentChar += specialSymbolIndex + 1
+                                                ProcessChooseBox()
+                                            End If
+                                    End Select
+
+                                Else
+                                    Dim addChar As Integer = 0
+                                    If line2 <> "" Then
+                                        If line2.Contains(CChar("~")) Then
+                                            addChar = 1
+                                            line2 = line2.Remove(line2.IndexOf(CChar("~")))
+                                        End If
+
+                                        line = line1 & " " & line2
+                                        showText(0) = line1
+                                        showText(1) = line2
+                                    Else
+                                        showText(0) = line
+                                        showText(1) = ""
+                                    End If
+                                    NVDA.Speak(line)
+                                    If addChar > 0 Then
+
+                                        currentChar += line.Length + addChar
                                         currentLine = 0
                                         clearNextLine = True
                                         through = True
-                                    Case CChar("%")
-                                        ProcessChooseBox()
-                                    Case Else
-                                        showText(currentLine) &= Text(currentChar)
-                                End Select
+                                    Else
 
-                                currentChar += 1
+                                        currentChar += line.Length + addChar
+                                    End If
+                                End If
+                            Else
+                                If Text(currentChar).ToString() = "\" Then
+                                    If Text.Count > currentChar + 1 Then
+                                        showText(currentLine) &= Text(currentChar + 1)
+
+                                        currentChar += 2
+                                    Else
+                                        currentChar += 1
+                                    End If
+                                Else
+                                    Select Case Text(currentChar)
+                                        Case CChar("~")
+                                            If currentLine = 1 Then
+                                                through = True
+                                            Else
+                                                currentLine += 1
+                                            End If
+                                        Case CChar("*")
+                                            currentLine = 0
+                                            clearNextLine = True
+                                            through = True
+                                        Case CChar("%")
+                                            ProcessChooseBox()
+                                        Case Else
+                                            showText(currentLine) &= Text(currentChar)
+                                    End Select
+
+                                    currentChar += 1
+                                End If
                             End If
-
                             If KeyBoardHandler.KeyDown(KeyBindings.EnterKey1) Or KeyBoardHandler.KeyDown(KeyBindings.EnterKey2) Or MouseHandler.ButtonDown(MouseHandler.MouseButtons.LeftButton) = True Or ControllerHandler.ButtonDown(Buttons.A) = True Or ControllerHandler.ButtonDown(Buttons.B) = True Then
                                 Delay = 0.0F
                             Else
@@ -180,19 +304,27 @@
                                 End If
                             End If
                         Else
-                            If clearNextLine = True Then
+                            If Core.GameOptions.BlindMode = True Then
                                 showText(0) = ""
+                                showText(1) = ""
+                                NVDA.CancelSpeech()
                             Else
-                                showText(0) = showText(1)
+                                If clearNextLine = True Then
+                                    showText(0) = ""
+                                Else
+                                    showText(0) = showText(1)
+                                End If
+                                showText(1) = ""
                             End If
-                            showText(1) = ""
                             through = False
                             clearNextLine = False
                         End If
                     End If
                 End If
             Else
-                Me.PositionY -= CSng(8.0F * Core.SpriteBatch.InterfaceScale)
+                If Core.GameOptions.BlindMode = False Then
+                    Me.PositionY -= CSng(8.0F * Core.SpriteBatch.InterfaceScale)
+                End If
             End If
         Else
             If reDelay > 0.0F Then

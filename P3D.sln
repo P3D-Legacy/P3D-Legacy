@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.27130.2036
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.37328.6 d17.14
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "P3D", "P3D\P3D.vbproj", "{2AAF65BE-C81D-4663-ABF4-E2E09B16E12F}"
 EndProject
@@ -20,6 +20,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TearDown", "lib\tools\TearDown\TearDown.csproj", "{0AE314A4-6005-48C7-BCD4-33E4C5057CFD}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameDevCommon", "lib\game-dev-common\src\GameDevCommon\GameDevCommon.csproj", "{087378EE-7591-47CE-979F-6824FC0606EF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NVAccess.NVDA", "lib\nvda\NVAccess.NVDA.csproj", "{951FB281-DA24-32D2-5979-8C9BA4966607}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -85,6 +87,14 @@ Global
 		{087378EE-7591-47CE-979F-6824FC0606EF}.Release|Any CPU.Build.0 = Release|Any CPU
 		{087378EE-7591-47CE-979F-6824FC0606EF}.ReleaseNoContent|Any CPU.ActiveCfg = Release|Any CPU
 		{087378EE-7591-47CE-979F-6824FC0606EF}.ReleaseNoContent|Any CPU.Build.0 = Release|Any CPU
+		{951FB281-DA24-32D2-5979-8C9BA4966607}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{951FB281-DA24-32D2-5979-8C9BA4966607}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{951FB281-DA24-32D2-5979-8C9BA4966607}.DebugNoContent|Any CPU.ActiveCfg = Debug|Any CPU
+		{951FB281-DA24-32D2-5979-8C9BA4966607}.DebugNoContent|Any CPU.Build.0 = Debug|Any CPU
+		{951FB281-DA24-32D2-5979-8C9BA4966607}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{951FB281-DA24-32D2-5979-8C9BA4966607}.Release|Any CPU.Build.0 = Release|Any CPU
+		{951FB281-DA24-32D2-5979-8C9BA4966607}.ReleaseNoContent|Any CPU.ActiveCfg = Release|Any CPU
+		{951FB281-DA24-32D2-5979-8C9BA4966607}.ReleaseNoContent|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -97,6 +107,7 @@ Global
 		{417FEA8A-9334-4938-9370-519EF1551B05} = {7877D883-AA51-4C27-ADA5-C4F85F86F4EE}
 		{0AE314A4-6005-48C7-BCD4-33E4C5057CFD} = {7877D883-AA51-4C27-ADA5-C4F85F86F4EE}
 		{087378EE-7591-47CE-979F-6824FC0606EF} = {3CE8099E-129D-40F9-8D23-005DFF32E2A2}
+		{951FB281-DA24-32D2-5979-8C9BA4966607} = {3CE8099E-129D-40F9-8D23-005DFF32E2A2}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {8FE3951F-DE18-41FF-A035-32DF597A91F2}
