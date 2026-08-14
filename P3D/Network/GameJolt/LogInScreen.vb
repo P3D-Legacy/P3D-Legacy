@@ -27,6 +27,8 @@ Namespace GameJolt
         Dim TimeOut As Integer = 0
         Const TimeOutVar As Integer = 500
 
+        Public LastSpokenText As String = ""
+
         Dim DownloadedBanList As Boolean = False
 
         Dim _tempCloseScreen As Boolean = False 'To prevent the screen closing and so mouse visibility change from a different thread than main.
@@ -122,6 +124,12 @@ Namespace GameJolt
 
                 If WaitingForResponse = True Then
                     Dim textSize As Vector2 = FontManager.MainFont.MeasureString(WaitingMessage)
+                    If Core.GameOptions.BlindMode = True Then
+                        If LastSpokenText <> WaitingMessage Then
+                            NVDA.Speak(WaitingMessage)
+                            LastSpokenText = WaitingMessage
+                        End If
+                    End If
 
                     Core.SpriteBatch.DrawInterfaceString(FontManager.MainFont, WaitingMessage, New Vector2(CSng(Core.ScreenSize.Width / 2 - textSize.X / 2), 310 - textSize.Y / 2), Color.White)
 
@@ -129,6 +137,22 @@ Namespace GameJolt
                         OkButton.Draw()
                     End If
                 Else
+                    If Core.GameOptions.BlindMode = True Then
+                        If (LastSpokenText = Localization.GetString("global_please_wait", "Please wait") OrElse LastSpokenText = "") Then
+                            If UserName.IsActive = True Then
+                                NVDA.Speak("Username: " & UserName.Text)
+                                LastSpokenText = "Username: " & UserName.Text
+                            ElseIf Token.IsActive = True Then
+                                If Token.Text <> "" Then
+                                    NVDA.Speak("Token: Entered")
+                                    LastSpokenText = "Token: Entered"
+                                Else
+                                    NVDA.Speak("Token: Empty")
+                                    LastSpokenText = "Token: Empty"
+                                End If
+                            End If
+                        End If
+                    End If
                     Core.SpriteBatch.DrawInterfaceString(FontManager.MiniFont, "Username:", New Vector2(CSng(Core.ScreenSize.Width / 2) - 200, 195), Color.White)
                     Core.SpriteBatch.DrawInterfaceString(FontManager.MiniFont, "Token:", New Vector2(CSng(Core.ScreenSize.Width / 2) - 200, 275), Color.White)
 
@@ -140,6 +164,12 @@ Namespace GameJolt
                 End If
             Else
                 Core.SpriteBatch.DrawInterfaceString(FontManager.MiniFont, Localization.GetString("global_please_wait", "Please wait") & LoadingDots.Dots, New Vector2(CSng(Core.ScreenSize.Width / 2) - 200, 195), Color.White)
+                If Core.GameOptions.BlindMode = True Then
+                    If LastSpokenText <> Localization.GetString("global_please_wait", "Please wait") Then
+                        NVDA.Speak(Localization.GetString("global_please_wait", "Please wait"))
+                        LastSpokenText = Localization.GetString("global_please_wait", "Please wait")
+                    End If
+                End If
             End If
         End Sub
 
@@ -274,6 +304,25 @@ Namespace GameJolt
                             activateIndex = l.Length - 1
                         End If
                         l(activateIndex).IsActive = True
+                        If Core.GameOptions.BlindMode = True Then
+                            Dim text As String = ""
+                            Select Case activateIndex
+                                Case 0
+                                    text = "Username: " & UserName.Text
+                                Case 1
+                                    text = "Token: " & Token.Text
+                                Case 2
+                                    text = Localization.GetString("global_login", "Log in")
+                                Case 3
+                                    text = "Create Account"
+                                Case 4
+                                    text = Localization.GetString("global_close", "Close")
+                            End Select
+                            If LastSpokenText <> text Then
+                                NVDA.Speak(text)
+                                LastSpokenText = text
+                            End If
+                        End If
                         Exit For
                     End If
                 Next

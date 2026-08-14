@@ -19,6 +19,8 @@
     Dim MaxChars As Integer = 100
     Dim ButtonSelector As Vector2 = New Vector2(0, 0)
 
+    Dim LastSpokenText As String = ""
+
     Public PasswordMode As Boolean = False
 
     Public Delegate Sub ConfirmInput(ByVal input As String)
@@ -298,6 +300,10 @@
             Me.ConfirmSub(LastInput)
         End If
 
+        If Me.PreScreen.Identification = Identifications.GameJoltLoginScreen Then
+            CType(Me.PreScreen, GameJolt.LogInScreen).LastSpokenText = ""
+        End If
+
         Core.SetScreen(Me.PreScreen)
     End Sub
 
@@ -408,6 +414,41 @@
                 End If
             End If
 
+            If Selector = Me.RelPosition And enterKey = False Then
+                If Core.GameOptions.BlindMode = True Then
+                    If Me.ButtonMode = ButtonModes.Enter Then
+                        Dim confirmText As String = "Confirm: " & s.CurrentText
+                        If s.LastSpokenText <> confirmText Then
+                            NVDA.Speak(confirmText)
+                            s.LastSpokenText = confirmText
+                        End If
+                    Else
+                        If Core.GameOptions.BlindMode = True Then
+
+                            Dim buttonText As String = Me.DisplayText
+                            Select Case Me.DisplayText
+                                Case "?"
+                                    buttonText = "Question mark"
+                                Case "!"
+                                    buttonText = "Exclamation mark"
+                                Case ","
+                                    buttonText = "Comma"
+                                Case "_"
+                                    buttonText = "Underscore"
+                                Case "-"
+                                    buttonText = "Dash"
+                                Case "'"
+                                    buttonText = "Apostrophe"
+                            End Select
+                            If s.LastSpokenText <> buttonText AndAlso Me.DisplayText <> " " Then
+                                NVDA.Speak(buttonText)
+                                s.LastSpokenText = buttonText
+                            End If
+                        End If
+                    End If
+                End If
+            End If
+
             If enterKey = True Then
                 Select Case Me.ButtonMode
                     Case ButtonModes.Key
@@ -424,6 +465,14 @@
 
                             If CapsLock = True Then
                                 CapsLock = False
+                            End If
+                        Else
+                            If Core.GameOptions.BlindMode = True Then
+                                Dim maxCharsText As String = "Maximum characters reached"
+                                If s.LastSpokenText <> maxCharsText Then
+                                    NVDA.Speak(maxCharsText)
+                                    s.LastSpokenText = maxCharsText
+                                End If
                             End If
                         End If
                     Case ButtonModes.Delete

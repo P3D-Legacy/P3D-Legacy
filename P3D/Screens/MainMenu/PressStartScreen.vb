@@ -134,6 +134,16 @@ Public Class PressStartScreen
                 If _fadeInMain > 0.0F Then
                     _fadeInMain = MathHelper.Lerp(0.0F, _fadeInMain, 0.93F)
                     If _fadeInMain - 0.01F <= 0.0F Then
+                        If Core.GameOptions.BlindMode = True Then
+                            Dim blindText As String
+                            If ControllerHandler.IsConnected() Then
+                                blindText = Localization.GetString("start_screen_press", "Press") & " A " & Localization.GetString("start_screen_tostart", "to start.")
+                            Else
+                                blindText = Localization.GetString("start_screen_press", "Press") & " " & KeyBindings.EnterKey1.ToString().ToUpper & " " & Localization.GetString("start_screen_tostart", "to start.")
+                                'text = "Press " & KeyBindings.EnterKey1.ToString() & ", " & KeyBindings.EnterKey2.ToString() & ", or primary mouse button to start."
+                            End If
+                            NVDA.Speak(blindText)
+                        End If
                         _fadeInMain = 0.0F
                     End If
                 End If
@@ -291,6 +301,8 @@ Public Class NewMainMenuScreen
 
     Public GameModeSplash As Texture2D
 
+    Private HasSpokenCurrentButton As Boolean = False
+
     Private _messageBox As UI.MessageBox
 
     Public Sub New(ByVal currentScreen As Screen)
@@ -399,6 +411,9 @@ Public Class NewMainMenuScreen
                                                 _oldMenuTexture = TextureManager.GetTexture("GUI\Menus\Menu")
 
                                             End If
+                                            If Core.GameOptions.BlindMode = True Then
+                                                HasSpokenCurrentButton = False
+                                            End If
                                             Exit For
                                         End If
                                     End If
@@ -453,6 +468,10 @@ Public Class NewMainMenuScreen
                                         Localization.ReloadGameModeTokens()
                                         _menuTexture = TextureManager.GetTexture("GUI\Menus\MainMenu")
                                         _oldMenuTexture = TextureManager.GetTexture("GUI\Menus\Menu")
+
+                                        If Core.GameOptions.BlindMode = True Then
+                                            HasSpokenCurrentButton = False
+                                        End If
                                     End If
                                 Next
                                 For x = 0 To _OptionsProfiles.Count - 1
@@ -469,6 +488,9 @@ Public Class NewMainMenuScreen
                                                 Dim diff As Integer = x - _selectedProfile
                                                 _optionsOffsetTarget.X -= diff * 180
                                                 _selectedProfile = x
+                                            End If
+                                            If Core.GameOptions.BlindMode = True Then
+                                                HasSpokenCurrentButton = False
                                             End If
                                             Exit For
                                         End If
@@ -512,6 +534,9 @@ Public Class NewMainMenuScreen
 
                                                 _selectedProfile = x
                                             End If
+                                            If Core.GameOptions.BlindMode = True Then
+                                                HasSpokenCurrentButton = False
+                                            End If
                                             Exit For
                                         End If
                                     End If
@@ -522,6 +547,9 @@ Public Class NewMainMenuScreen
                         Select Case _menuIndex
                             Case 0
                                 If Controls.Right(True) And _selectedProfile < _MainProfiles.Count - 1 Then
+                                    If Core.GameOptions.BlindMode = True Then
+                                        HasSpokenCurrentButton = False
+                                    End If
                                     _selectedProfile += 1
                                     _screenOffsetTarget.X -= 180
                                     _GameJoltButtonIndex = 0
@@ -530,10 +558,14 @@ Public Class NewMainMenuScreen
                                         GameModeManager.SetGameModePointer(_MainProfiles(_selectedProfile)._gameMode)
                                     End If
                                     Localization.ReloadGameModeTokens()
+
                                     _menuTexture = TextureManager.GetTexture("GUI\Menus\MainMenu")
                                     _oldMenuTexture = TextureManager.GetTexture("GUI\Menus\Menu")
                                 End If
                                 If Controls.Left(True) And _selectedProfile > 0 Then
+                                    If Core.GameOptions.BlindMode = True Then
+                                        HasSpokenCurrentButton = False
+                                    End If
                                     _selectedProfile -= 1
                                     _screenOffsetTarget.X += 180
                                     _GameJoltButtonIndex = 0
@@ -547,18 +579,24 @@ Public Class NewMainMenuScreen
                                 End If
                             Case 1
                                 If Controls.Right(True) And _selectedProfile < _GameJoltProfiles.Count - 1 Then
+                                    If Core.GameOptions.BlindMode = True Then
+                                        HasSpokenCurrentButton = False
+                                    End If
                                     _selectedProfile += 1
                                     _gameJoltOffsetTarget.X -= 180
                                     _GameJoltButtonIndex = 0
                                     GameModeSplash = Nothing
-                                    If _MainProfiles(_selectedProfile)._gameModeExists Then
-                                        GameModeManager.SetGameModePointer(_MainProfiles(_selectedProfile)._gameMode)
+                                    If _GameJoltProfiles(_selectedProfile)._gameModeExists Then
+                                        GameModeManager.SetGameModePointer(_GameJoltProfiles(_selectedProfile)._gameMode)
                                     End If
                                     Localization.ReloadGameModeTokens()
                                     _menuTexture = TextureManager.GetTexture("GUI\Menus\MainMenu")
                                     _oldMenuTexture = TextureManager.GetTexture("GUI\Menus\Menu")
                                 End If
                                 If Controls.Left(True) And _selectedProfile > 0 Then
+                                    If Core.GameOptions.BlindMode = True Then
+                                        HasSpokenCurrentButton = False
+                                    End If
                                     _selectedProfile -= 1
                                     _gameJoltOffsetTarget.X += 180
                                     _GameJoltButtonIndex = 0
@@ -572,10 +610,16 @@ Public Class NewMainMenuScreen
                                 End If
                             Case 2, 3
                                 If Controls.Right(True) And _selectedProfile < _OptionsProfiles.Count - 1 Then
+                                    If Core.GameOptions.BlindMode = True Then
+                                        HasSpokenCurrentButton = False
+                                    End If
                                     _selectedProfile += 1
                                     _optionsOffsetTarget.X -= 180
                                 End If
                                 If Controls.Left(True) And _selectedProfile > 0 Then
+                                    If Core.GameOptions.BlindMode = True Then
+                                        HasSpokenCurrentButton = False
+                                    End If
                                     _selectedProfile -= 1
                                     _optionsOffsetTarget.X += 180
                                 End If
@@ -585,9 +629,15 @@ Public Class NewMainMenuScreen
                         If _MainProfiles(_selectedProfile).IsGameJolt AndAlso _MainProfiles(_selectedProfile).Loaded Then
                             If Controls.Down(True, True, False) Then
                                 _GameJoltButtonIndex += 1
+                                If Core.GameOptions.BlindMode = True Then
+                                    HasSpokenCurrentButton = False
+                                End If
                             End If
                             If Controls.Up(True, True, False) Then
                                 _GameJoltButtonIndex -= 1
+                                If Core.GameOptions.BlindMode = True Then
+                                    HasSpokenCurrentButton = False
+                                End If
                             End If
                             _GameJoltButtonIndex = Clamp(_GameJoltButtonIndex, 0, 4)
                         End If
@@ -607,6 +657,10 @@ Public Class NewMainMenuScreen
                             Select Case _GameJoltButtonIndex
                                 Case 0
                                     SoundManager.PlaySound("select")
+                                    If Core.GameOptions.BlindMode = True AndAlso ((_menuIndex = 0 AndAlso _MainProfiles(_selectedProfile).IsOptionsMenuButton = True) OrElse (_menuIndex = 1 AndAlso _GameJoltProfiles(_selectedProfile).IsOptionsMenuButton = True)) Then
+                                        HasSpokenCurrentButton = False
+                                    End If
+
                                     ClickedProfile()
                                 Case 1
                                     SoundManager.PlaySound("select")
@@ -660,11 +714,17 @@ Public Class NewMainMenuScreen
                                 _menuIndex = 0
                                 _selectedProfile = _selectedProfileTemp
                                 _sliderTarget = GetSliderTarget(_selectedProfile)
+                                If Core.GameOptions.BlindMode = True Then
+                                    HasSpokenCurrentButton = False
+                                End If
                                 SoundManager.PlaySound("select")
                             Case 3
                                 _menuIndex = 1
                                 _selectedProfile = _selectedProfileTemp
                                 _sliderTarget = GetSliderTarget(_selectedProfile)
+                                If Core.GameOptions.BlindMode = True Then
+                                    HasSpokenCurrentButton = False
+                                End If
                                 SoundManager.PlaySound("select")
                         End Select
                     End If
@@ -674,11 +734,17 @@ Public Class NewMainMenuScreen
                                 _menuIndex = 0
                                 _selectedProfile = _selectedProfileTemp
                                 _sliderTarget = GetSliderTarget(_selectedProfile)
+                                If Core.GameOptions.BlindMode = True Then
+                                    HasSpokenCurrentButton = False
+                                End If
                                 SoundManager.PlaySound("select")
                             Case 3
                                 _menuIndex = 1
                                 _selectedProfile = _selectedProfileTemp
                                 _sliderTarget = GetSliderTarget(_selectedProfile)
+                                If Core.GameOptions.BlindMode = True Then
+                                    HasSpokenCurrentButton = False
+                                End If
                                 SoundManager.PlaySound("select")
                         End Select
                     End If
@@ -703,6 +769,123 @@ Public Class NewMainMenuScreen
                 End If
                 UpdateScreenOffset()
                 UpdateOptionsOffset()
+
+                If Core.GameOptions.BlindMode = True Then
+                    If HasSpokenCurrentButton = False Then
+                        Select Case _menuIndex
+                            Case 0
+                                If _MainProfiles(_selectedProfile).IsGameJolt = True Then
+                                    If _MainProfiles(_selectedProfile).Loaded = False Then
+                                        Dim text As String = "Log in to Game Jolt."
+                                        If _MainProfiles(_selectedProfile).IsLoading Then
+                                            text = "Loading save."
+                                        End If
+                                        NVDA.Speak(text)
+                                    Else
+                                        Select Case _GameJoltButtonIndex
+                                            Case 0
+                                                If HasSpokenCurrentButton = False Then
+                                                    NVDA.Speak(_MainProfiles(_selectedProfile).Name.Replace("...", "dot dot dot"))
+                                                    HasSpokenCurrentButton = True
+                                                End If
+                                            Case 1
+                                                If HasSpokenCurrentButton = False Then
+                                                    NVDA.Speak(Localization.GetString("main_menu_gamejolt_ChangeToMale", "Change to male"))
+                                                    HasSpokenCurrentButton = True
+                                                End If
+                                            Case 2
+                                                If HasSpokenCurrentButton = False Then
+                                                    NVDA.Speak(Localization.GetString("main_menu_gamejolt_ChangeToFemale", "Change to female"))
+                                                    HasSpokenCurrentButton = True
+                                                End If
+                                            Case 3
+                                                If HasSpokenCurrentButton = False Then
+                                                    NVDA.Speak(Localization.GetString("main_menu_gamejolt_ChangeToGenderless", "Change to genderless"))
+                                                    HasSpokenCurrentButton = True
+                                                End If
+                                            Case 4
+                                                If HasSpokenCurrentButton = False Then
+                                                    NVDA.Speak(Localization.GetString("main_menu_gamejolt_ResetSave", "Reset save"))
+                                                    HasSpokenCurrentButton = True
+                                                End If
+                                        End Select
+                                    End If
+                                    HasSpokenCurrentButton = True
+                                ElseIf _MainProfiles(_selectedProfile).IsNewGameButton = True Then
+                                    NVDA.Speak("New game")
+                                    HasSpokenCurrentButton = True
+                                ElseIf _MainProfiles(_selectedProfile).IsOptionsMenuButton = True Then
+                                    NVDA.Speak("Options")
+                                    HasSpokenCurrentButton = True
+                                Else
+                                    NVDA.Speak(_MainProfiles(_selectedProfile).Name.Replace("...", "dot dot dot"))
+                                    HasSpokenCurrentButton = True
+                                End If
+                            Case 1
+                                If _GameJoltProfiles(_selectedProfile).IsGameJolt = True Then
+                                    If _GameJoltProfiles(_selectedProfile).Loaded = False Then
+                                        Dim text As String = "Log in to Game Jolt."
+                                        If _GameJoltProfiles(_selectedProfile).IsLoading Then
+                                            text = "Loading save."
+                                        End If
+                                        NVDA.Speak(text)
+                                    Else
+                                        Select Case _GameJoltButtonIndex
+                                            Case 0
+                                                If HasSpokenCurrentButton = False Then
+                                                    NVDA.Speak(_GameJoltProfiles(_selectedProfile).Name)
+                                                    HasSpokenCurrentButton = True
+                                                End If
+                                            Case 1
+                                                If HasSpokenCurrentButton = False Then
+                                                    NVDA.Speak(Localization.GetString("main_menu_gamejolt_ChangeToMale", "Change to male"))
+                                                    HasSpokenCurrentButton = True
+                                                End If
+                                            Case 2
+                                                If HasSpokenCurrentButton = False Then
+                                                    NVDA.Speak(Localization.GetString("main_menu_gamejolt_ChangeToFemale", "Change to female"))
+                                                    HasSpokenCurrentButton = True
+                                                End If
+                                            Case 3
+                                                If HasSpokenCurrentButton = False Then
+                                                    NVDA.Speak(Localization.GetString("main_menu_gamejolt_ChangeToGenderless", "Change to genderless"))
+                                                    HasSpokenCurrentButton = True
+                                                End If
+                                            Case 4
+                                                If HasSpokenCurrentButton = False Then
+                                                    NVDA.Speak(Localization.GetString("main_menu_gamejolt_ResetSave", "Reset save"))
+                                                    HasSpokenCurrentButton = True
+                                                End If
+                                        End Select
+                                    End If
+                                    HasSpokenCurrentButton = True
+                                ElseIf _GameJoltProfiles(_selectedProfile).IsNewGameButton = True Then
+                                    NVDA.Speak("New game")
+                                    HasSpokenCurrentButton = True
+                                ElseIf _GameJoltProfiles(_selectedProfile).IsOptionsMenuButton = True Then
+                                    NVDA.Speak("Options")
+                                    HasSpokenCurrentButton = True
+                                End If
+                            Case 2, 3
+                                Dim buttonName As String = ""
+                                Select Case _OptionsProfiles(_selectedProfile)._OptionsMenuIndex
+                                    Case 0
+                                        buttonName = Localization.GetString("main_menu_options_language", "Language")
+                                    Case 1
+                                        buttonName = Localization.GetString("main_menu_options_audio", "Audio")
+                                    Case 2
+                                        buttonName = Localization.GetString("main_menu_options_controls", "Controls")
+                                    Case 3
+                                        buttonName = Localization.GetString("main_menu_options_contentpacks_line1", "Content") & " " & Localization.GetString("main_menu_options_contentpacks_line2", "Packs")
+                                End Select
+                                If HasSpokenCurrentButton = False Then
+                                    NVDA.Speak(buttonName)
+                                    HasSpokenCurrentButton = True
+                                End If
+                        End Select
+
+                    End If
+                End If
 
                 If (_menuIndex = 0 OrElse _menuIndex = 1) AndAlso _MainProfiles(_selectedProfile).GameMode <> "Kolben" Then
                     If GameModeSplash Is Nothing Then
@@ -770,6 +953,9 @@ Public Class NewMainMenuScreen
     End Sub
 
     Private Sub DismissProfile()
+        If Core.GameOptions.BlindMode = True Then
+            HasSpokenCurrentButton = False
+        End If
         If _menuIndex = 0 Then
             _MainProfiles(_selectedProfile).UnSelectProfile()
         End If
@@ -1065,6 +1251,24 @@ Public Class NewMainMenuScreen
         End If
         If _OptionsProfiles.Count = 0 Then
             LoadOptionProfiles()
+        End If
+        If Core.GameOptions.BlindMode = True Then
+            If _menuIndex = 0 Then
+                If _MainProfiles(_selectedProfile).IsGameJolt = True Then
+                    If HasSpokenCurrentButton = False Then
+                        If _MainProfiles(_selectedProfile).Loaded = False Then
+                            Dim text As String = "Log in to Game Jolt."
+                            If _MainProfiles(_selectedProfile).IsLoading Then
+                                text = "Loading save game."
+                            End If
+                            NVDA.Speak(text)
+                        Else
+                            NVDA.Speak(_MainProfiles(_selectedProfile).Name.Replace("...", "dot dot dot"))
+                        End If
+                        HasSpokenCurrentButton = True
+                    End If
+                End If
+            End If
         End If
     End Sub
 
@@ -1539,6 +1743,10 @@ Public Class NewMainMenuScreen
 
                         LoadFromPlayerData(GameJoltSave.Player)
                         LoadContent(GameJoltSave.Party)
+
+                        If Core.GameOptions.BlindMode = True Then
+                            NVDA.Speak(_name)
+                        End If
                     Else
                         If GameJoltSave.DownloadFailed Then
                             _loaded = True
@@ -1546,6 +1754,10 @@ Public Class NewMainMenuScreen
                             _failedGameJoltLoading = True
 
                             _sprite = TextureManager.GetTexture("GUI\unknownSprite")
+
+                            If Core.GameOptions.BlindMode = True Then
+                                NVDA.Speak("Download failed, try again later.")
+                            End If
                         End If
                     End If
                 End If

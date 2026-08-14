@@ -43,6 +43,9 @@
         Public Sub Show(ByVal text As String, Optional backColor As Color = Nothing, Optional textColor As Color = Nothing, Optional shadowColor As Color = Nothing)
             _fadeIn = 0F
             _text = text
+            If Core.GameOptions.BlindMode = True Then
+                NVDA.Speak(_text)
+            End If
             _closing = False
             If Not backColor = Nothing Then
                 _backColor = backColor
@@ -97,6 +100,7 @@
                 If _fadeIn > 0.75F Then
                     If Controls.Dismiss(True, True, True) Or Controls.Accept(True, True, True) Then
                         _closing = True
+                        NVDA.CancelSpeech()
                     End If
                 End If
             End If
