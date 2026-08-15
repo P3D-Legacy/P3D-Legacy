@@ -35,9 +35,14 @@
 
                     Return Item.GetItemByID(ItemID).Name
                 Case "id"
-                    Dim item As Item = Item.GetItemByName(argument)
-                    If Not item Is Nothing Then
-                        Return item.ID
+                    Dim gmItem As GameModeItem = GameModeItemLoader.GetItemByName(argument)
+                    If gmItem IsNot Nothing Then
+                        Return gmItem.gmID
+                    Else
+                        Dim item As Item = Item.GetItemByName(argument)
+                        If Not item Is Nothing Then
+                            Return item.ID
+                        End If
                     End If
                     Return 0
                 Case "juicecolor"
