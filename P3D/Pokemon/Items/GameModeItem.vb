@@ -332,7 +332,7 @@ Public Class GameModeItem
             ElseIf gmRepelSteps > 0 Then
                 If Screen.Level.BypassRepels = False Then
                     If Core.Player.RepelSteps <= 0 Then
-                        Player.Temp.LastUsedRepel = ID
+                        Player.Temp.LastUsedRepel = gmID
                         SoundManager.PlaySound("Use_Repel", False)
                         Core.Player.RepelSteps = gmRepelSteps
                         PlayerStatistics.Track("[42]Repels used", 1)

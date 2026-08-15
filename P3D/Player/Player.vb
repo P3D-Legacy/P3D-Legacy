@@ -501,7 +501,7 @@
         Public Shared PokedexHabitatIndex As Integer = 0
         Public Shared PokegearPage As Integer = 0
         Public Shared LastCall As Integer = 32
-        Public Shared LastUsedRepel As Integer = -1
+        Public Shared LastUsedRepel As String = "-1"
         Public Shared MapSteps As Integer = 0
         Public Shared HallOfFameIndex As Integer = 0
         Public Shared PCBoxChooseMode As Boolean = False
@@ -529,7 +529,7 @@
         Temp.PokedexHabitatIndex = 0
         Temp.PokegearPage = 0
         Temp.LastCall = 32
-        Temp.LastUsedRepel = -1
+        Temp.LastUsedRepel = "-1"
         Temp.MapSteps = 0
         Temp.HallOfFameIndex = 0
         Temp.PCBoxChooseMode = False
@@ -1801,7 +1801,7 @@
                                         "@Text.Show(" & Localization.GetString("step_event_RepelRanOut_NoneLeft", "Your repel effect wore off.") & ")" & Environment.NewLine &
                                         ":end"
 
-                        If Temp.LastUsedRepel > -1 Then
+                        If Temp.LastUsedRepel <> "-1" Then
                             Dim haveItemLeft As Boolean = Inventory.GetItemAmount(Temp.LastUsedRepel.ToString) > 0
 
                             Dim CorrectTokenName As String = "item_use_RegularItem_A"
@@ -1818,7 +1818,7 @@
                                     ":when:<system.token(global_yes)>" & Environment.NewLine &
                                     "@sound.play(Use_Repel)" & Environment.NewLine &
                                     "@Text.Show(" & Localization.GetString(CorrectTokenName, CorrectTokenContent).Replace("[ITEMNAME]", "<inventory.name(" & Temp.LastUsedRepel & ")>") & ")" & Environment.NewLine &
-                                    "@item.repel(" & Temp.LastUsedRepel & ")" & Environment.NewLine &
+                                    "@item.repel(item," & Temp.LastUsedRepel & ")" & Environment.NewLine &
                                     "@item.remove(" & Temp.LastUsedRepel & ",1,0)" & Environment.NewLine &
                                     ":endwhen" & Environment.NewLine &
                                     ":end"

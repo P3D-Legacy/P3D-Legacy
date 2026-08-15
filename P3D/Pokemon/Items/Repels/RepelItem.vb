@@ -11,7 +11,7 @@
         Public Overrides Sub Use()
             If Screen.Level.BypassRepels = False Then
                 If Core.Player.RepelSteps <= 0 Then
-                    Player.Temp.LastUsedRepel = ID
+                    Player.Temp.LastUsedRepel = ID.ToString
                     SoundManager.PlaySound("Use_Repel", False)
                     Core.Player.RepelSteps = RepelSteps
                     PlayerStatistics.Track("[42]Repels used", 1)
