@@ -322,6 +322,11 @@ option_screen_title,Options
 
 option_screen_game,Jeu
 option_screen_game_textspeed,Vitesse du texte
+option_screen_game_textspeed_slow,Slow
+option_screen_game_textspeed_normal,Normal
+option_screen_game_textspeed_fast,Fast
+option_screen_game_textspeed_faster,Faster
+option_screen_game_textspeed_instant,INSTANT
 option_screen_game_difficulty,Difficulté
 option_screen_game_difficulty_easy,Facile
 option_screen_game_difficulty_hard,Difficile

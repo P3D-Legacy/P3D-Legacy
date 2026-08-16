@@ -77,7 +77,10 @@
     End Sub
 
     Private Sub SetupOptions()
-        NVDA.Speak(Options(index))
+        If Core.GameOptions.BlindMode = True Then
+            NVDA.Speak(Options(index))
+        End If
+
         For i = 0 To Options.Count - 1
             Options(i) = Options(i).Replace("<playername>", Core.Player.Name).Replace("<player.name>", Core.Player.Name)
         Next
@@ -119,7 +122,9 @@
             End If
 
             If indexChanged = True Then
-                NVDA.Speak(Options(index))
+                If Core.GameOptions.BlindMode = True Then
+                    NVDA.Speak(Options(index))
+                End If
             End If
 
             If RaiseClickEvent = True Then
@@ -130,7 +135,6 @@
                 End If
                 If Controls.Dismiss() = True And CancelIndex > -1 Then
                     Me.PlayClickSound()
-                    NVDA.Speak(Options(CancelIndex))
                     Me.result = CancelIndex
                     Me.HandleResult()
                 End If

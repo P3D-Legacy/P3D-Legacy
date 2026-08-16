@@ -1,4 +1,4 @@
-﻿Imports P3D.Screens.UI
+Imports P3D.Screens.UI
 
 Public Class NewOptionScreen
 
@@ -954,7 +954,15 @@ Public Class NewOptionScreen
 
 			Case 1 ' "Game" from the Options menu.
 				Dim txtspeedD As New Dictionary(Of Integer, String)
-				Me.ControlList.Add(New ScrollBar(New Vector2(Delta_X + 100, Delta_Y + 60), 400, Localization.GetString("option_screen_game_textspeed", "Text Speed"), Me.TextSpeed, 1, 4, AddressOf ChangeTextspeed, 1))
+
+				Dim ts As New Dictionary(Of Integer, String)
+				ts.Add(1, Localization.GetString("option_screen_game_textspeed_slow", "Slow"))
+				ts.Add(2, Localization.GetString("option_screen_game_textspeed_normal", "Normal"))
+				ts.Add(3, Localization.GetString("option_screen_game_textspeed_fast", "Fast"))
+				ts.Add(4, Localization.GetString("option_screen_game_textspeed_faster", "Faster"))
+				ts.Add(5, Localization.GetString("option_screen_game_textspeed_instant", "INSTANT"))
+
+				Me.ControlList.Add(New ScrollBar(New Vector2(Delta_X + 100, Delta_Y + 60), 400, Localization.GetString("option_screen_game_textspeed", "Text Speed"), Me.TextSpeed, 1, 5, AddressOf ChangeTextspeed, ts, 1))
 				If CBool(GameModeManager.GetGameRuleValue("LockDifficulty", "0")) = False Then
 					Dim d As New Dictionary(Of Integer, String)
 					d.Add(0, Localization.GetString("option_screen_game_difficulty_easy", "Easy"))
