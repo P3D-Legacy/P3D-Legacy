@@ -59,8 +59,9 @@
                 op = BattleScreen.OwnPokemon
             End If
             Dim bannedAbilities() As String = {"simple", "truant", "multitype", "stance change", "schooling", "comatose", "shields down", "disguise", "rks system", "battle bond"}
-            If bannedAbilities.Contains(op.Ability.Name.ToLower()) = False Then
+            If bannedAbilities.Contains(op.Ability.Name.ToLower()) = False AndAlso Core.Player.DisableAbilities = False Then
                 op.Ability = Ability.GetAbilityByID(86)
+                op.AbilitySlot = 86.ToString
                 BattleScreen.BattleQuery.Add(New TextQueryObject(op.GetDisplayName() & " acquired Simple!"))
             Else
                 BattleScreen.BattleQuery.Add(New TextQueryObject(Me.Name & " failed!"))

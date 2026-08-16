@@ -2842,10 +2842,13 @@ Namespace BattleSystem
                                         End If
                                     Case "mummy"
                                         If moveUsed.MakesContact = True Then
-                                            If p.Ability.Name.ToLower() <> "multitype" And p.Ability.Name.ToLower() <> "mummy" Then
-                                                p.Ability = Ability.GetAbilityByID(152)
-                                                ChangeCameraAngle(1, own, BattleScreen)
-                                                BattleScreen.BattleQuery.Add(New TextQueryObject(p.GetDisplayName() & "'s ability changed to Mummy!"))
+                                            If Core.Player.DisableAbilities = False Then
+                                                If p.Ability.Name.ToLower() <> "multitype" And p.Ability.Name.ToLower() <> "mummy" Then
+                                                    p.Ability = Ability.GetAbilityByID(152)
+                                                    p.AbilitySlot = 152.ToString
+                                                    ChangeCameraAngle(1, own, BattleScreen)
+                                                    BattleScreen.BattleQuery.Add(New TextQueryObject(p.GetDisplayName() & "'s ability changed to Mummy!"))
+                                                End If
                                             End If
                                         End If
                                     Case "justified"
@@ -5574,6 +5577,7 @@ Namespace BattleSystem
                         Case "trace"
                             If op.Ability.Name.ToLower() <> "multitype" And op.Ability.Name.ToLower() <> "illusion" Then
                                 p.Ability = op.Ability
+                                p.AbilitySlot = op.Ability.ID.ToString
                                 .BattleQuery.Add(New TextQueryObject(p.GetDisplayName() & " copied the ability " & op.Ability.Name & " from " & op.GetDisplayName() & "!"))
                             End If
                         Case "sand stream"
@@ -5761,9 +5765,9 @@ Namespace BattleSystem
                                 Next
 
                                 p.Ability = Ability.GetAbilityByID(op.Ability.ID)
+                                p.AbilitySlot = op.Ability.ID.ToString
 
                                 p.IsTransformed = True
-
                                 'Apply new image to sprite:
                                 BattleScreen.BattleQuery.Add(New ToggleEntityQueryObject(own, ToggleEntityQueryObject.BattleEntities.OwnPokemon, PokemonForms.GetOverworldSpriteName(p, True), 0, 1, -1, -1))
                                 BattleScreen.BattleQuery.Add(New TextQueryObject(p.GetDisplayName() & " transformed into " & op.GetName & "!"))

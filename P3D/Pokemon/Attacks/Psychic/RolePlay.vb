@@ -63,10 +63,14 @@ Namespace BattleSystem.Moves.Psychic
                 op = BattleScreen.OwnPokemon
             End If
 
-            p.Ability = New Ability(op.Ability.ID, op.Ability.Name, op.Ability.Description)
-            p.AbilitySlot = op.Ability.ID.ToString
+            If Core.Player.DisableAbilities = False Then
+                p.Ability = New Ability(op.Ability.ID, op.Ability.Name, op.Ability.Description)
+                p.AbilitySlot = op.Ability.ID.ToString
 
-            BattleScreen.BattleQuery.Add(New TextQueryObject(p.GetDisplayName() & " copies " & Localization.GetString("ability_name_" & op.Ability.ID.ToString, op.Ability.Name) & " from " & op.GetDisplayName() & "."))
+                BattleScreen.BattleQuery.Add(New TextQueryObject(p.GetDisplayName() & " copies " & Localization.GetString("ability_name_" & op.Ability.ID.ToString, op.Ability.Name) & " from " & op.GetDisplayName() & "."))
+            Else
+                BattleScreen.BattleQuery.Add(New TextQueryObject(Me.Name & " failed!"))
+            End If
         End Sub
 
     End Class

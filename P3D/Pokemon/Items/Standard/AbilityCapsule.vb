@@ -28,7 +28,7 @@ Namespace Items.Standard
 
             Dim p As Pokemon = Core.Player.Pokemons(PokeIndex)
 
-            If p.NewAbilities.Count = 1 Then
+            If p.NewAbilities.Count = 1 OrElse Core.Player.DisableAbilities = True Then
                 Screen.TextBox.Show("You cannot use this on~" & p.GetDisplayName() & ".")
                 Return False
             End If
