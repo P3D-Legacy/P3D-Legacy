@@ -1431,7 +1431,7 @@
         End If
     End Sub
 
-    Private Sub SaveOptions()
+    Public Sub SaveOptions()
         Dim Data As String = GetOptionsData()
 
         If IsGameJoltSave = True Then

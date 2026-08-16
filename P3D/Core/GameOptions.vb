@@ -200,6 +200,10 @@
             File.WriteAllText(GameController.GamePath & "\Save\options.dat", Data)
             KeyBindings.SaveKeys()
 
+            If Core.Player.loadedSave = True Then
+                Core.Player.SaveOptions()
+            End If
+
             Logger.Debug("---Options saved---")
         End If
     End Sub
