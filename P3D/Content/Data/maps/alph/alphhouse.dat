@@ -44,7 +44,7 @@ Generators:
 	{"EntityField"{ENT[{"Size"{intArr[4,1]}}{"Scale"{sngArr[1,1.5,1]}}{"EntityID"{str[WallBlock]}}{"Position"{sngArr[0,0.25,0]}}{"TexturePath"{str[House2]}}{"Textures"{recArr[[80,23,16,25][96,23,16,25]]}}{"TextureIndex"{intArr[0,0,1,1,1,1,1,1,1,1,1,1]}}{"Collision"{bool[1]}}{"ModelID"{int[1]}}{"Action"{int[0]}}{"AdditionalValue"{str[]}}{"Rotation"{int[0]}}]}}
 
 Data Machine:
-	{"EntityField"{ENT[{"Size"{intArr[1,1]}}{"EntityID"{str[ScriptBlock]}}{"Position"{sngArr[7,0,0]}}{"TexturePath"{str[rocketbase]}}{"Textures"{recArr[[24,48,16,16][24,32,16,16]]}}{"TextureIndex"{intArr[0,0,0,0,0,0,0,0,1,1]}}{"Collision"{bool[1]}}{"ModelID"{int[1]}}{"Action"{int[1]}}{"AdditionalValue"{str[rocketbase\generator]}}{"Rotation"{int[0]}}]}}
+	{"EntityField"{ENT[{"Size"{intArr[1,1]}}{"EntityID"{str[ScriptBlock]}}{"Position"{sngArr[7,0,0]}}{"TexturePath"{str[rocketbase]}}{"Textures"{recArr[[24,48,16,16][24,32,16,16]]}}{"TextureIndex"{intArr[0,0,0,0,0,0,0,0,1,1]}}{"Collision"{bool[1]}}{"ModelID"{int[1]}}{"Action"{int[1]}}{"AdditionalValue"{str[This server computer must~be where they store the~research data.]}}{"Rotation"{int[0]}}]}}
 
 Plants:
 	{"Entity"{ENT[{"Scale"{sngArr[0.6,0.6,0.6]}}{"EntityID"{str[WallBill]}}{"Position"{sngArr[0,-0.25,6]}}{"TexturePath"{str[House2]}}{"Textures"{recArr[[0,32,16,16]]}}{"TextureIndex"{intArr[0,0]}}{"Collision"{bool[1]}}{"ModelID"{int[3]}}{"Action"{int[0]}}{"AdditionalValue"{str[]}}{"Rotation"{int[0]}}]}}
@@ -55,5 +55,5 @@ Plants:
 
 NPC:
 	{"NPC"{NPC[{"Position"{sngArr[2,0,4]}}{"TextureID"{str[61]}}{"ID"{int[0]}}{"Name"{str[scientist]}}{"Action"{int[1]}}{"AdditionalValue"{str[alph\AlphHouse_UnownDexScientist]}}{"Rotation"{int[2]}}{"Movement"{str[Looking]}}{"MoveRectangles"{recArr[]}}]}}
-	{"NPC"{NPC[{"Position"{sngArr[4,0,0]}}{"TextureID"{str[61]}}{"ID"{int[1]}}{"Name"{str[scientist]}}{"Action"{int[0]}}{"AdditionalValue"{str[The Ruins are~about 1500 years~old.*But it's not known~why they were~built--or by whom.]}}{"Rotation"{int[1]}}{"Movement"{str[Still]}}{"MoveRectangles"{recArr[]}}]}}
+	{"NPC"{NPC[{"Position"{sngArr[4,0,0]}}{"TextureID"{str[61]}}{"ID"{int[1]}}{"Name"{str[scientist]}}{"Action"{int[0]}}{"AdditionalValue"{str[The Ruins are about~1500 years old.*But it's not known~why they were~built--or by whom.]}}{"Rotation"{int[1]}}{"Movement"{str[Still]}}{"MoveRectangles"{recArr[]}}]}}
 	{"NPC"{NPC[{"Position"{sngArr[5,0,5]}}{"TextureID"{str[61]}}{"ID"{int[2]}}{"Name"{str[scientist]}}{"Action"{int[0]}}{"AdditionalValue"{str[There are odd patterns~drawn on the walls~of the Ruins.*They must be the~keys for unraveling~the mystery of the Ruins.]}}{"Rotation"{int[0]}}{"Movement"{str[Looking]}}{"MoveRectangles"{recArr[]}}]}}
