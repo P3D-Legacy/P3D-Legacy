@@ -150,11 +150,13 @@
                                     specialSymbolIndex = line.IndexOf(CChar("*"))
                                 End If
                                 If line.Contains(CChar("%")) Then
-                                    specialSymbolIndex = line.IndexOf(CChar("%"))
+                                    If specialSymbolIndex = -1 OrElse line.IndexOf(CChar("%")) < specialSymbolIndex Then
+                                        specialSymbolIndex = line.IndexOf(CChar("%"))
+                                    End If
                                 End If
 
 
-                                If Core.GameOptions.BlindMode = True Then
+                                    If Core.GameOptions.BlindMode = True Then
                                     If softLineBreakIndex <> -1 Then
                                         If specialSymbolIndex <> -1 Then
                                             If softLineBreakIndex < specialSymbolIndex Then
@@ -173,7 +175,10 @@
                                                 If softLineBreakIndex < specialSymbolIndex Then
                                                     line1 = showText(0)
                                                     line2 = line.Remove(line.IndexOf("~") + 1)
-                                                    line = line2
+                                                    specialSymbolIndex = -1
+                                                Else
+                                                    line1 = showText(0)
+                                                    line2 = line
                                                 End If
                                             Else
                                                 line1 = showText(0)
@@ -232,6 +237,8 @@
                                             If FoundSoftLineBreak = False Then
                                                 currentLine = 0
                                                 clearNextLine = True
+                                            Else
+                                                currentLine += 1
                                             End If
                                             through = True
                                         Case CChar("%")
@@ -268,6 +275,8 @@
                                                     If Core.GameOptions.BlindMode = True Then
                                                         currentLine = 0
                                                         clearNextLine = True
+                                                    Else
+                                                        currentLine += 1
                                                     End If
                                                     through = True
                                                 End If
@@ -315,7 +324,11 @@
                                             clearNextLine = True
                                             through = True
                                         Else
-                                            currentChar += line.Length + addChar
+                                            If currentLine = 0 Then
+                                                currentChar += line.Length + addChar
+                                            Else
+                                                currentChar += line2.Length + addChar
+                                            End If
                                             currentLine += 1
                                             through = True
                                         End If
