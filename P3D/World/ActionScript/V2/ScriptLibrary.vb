@@ -462,6 +462,7 @@ Namespace ScriptVersion2
             r(New ScriptCommand("system", "scriptlevel", "int", "Returns the current script level (call depth).", ",", True))
             r(New ScriptCommand("system", "language", "str", "Returns the current game language suffix.", ",", True))
             r(New ScriptCommand("system", "fileexists", "bool", {New ScriptArgument("filePath", ScriptArgument.ArgumentTypes.Str)}.ToList(), "Returns if the specified file (including extension) exists (relative to the GameMode's ContentPath).", ",", True))
+            r(New ScriptCommand("system", "blindmode", "bool", "Returns if Blind Mode is currently enabled.", ",", True))
         End Sub
 
         Private Shared Sub DoEnvironment()

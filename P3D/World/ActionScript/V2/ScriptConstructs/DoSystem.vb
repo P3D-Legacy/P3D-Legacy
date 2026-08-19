@@ -239,6 +239,8 @@
                     Return Localization.LanguageSuffix
                 Case "fileexists"
                     Return ReturnBoolean(GameModeManager.ContentFileExists(argument))
+                Case "blindmode"
+                    Return ReturnBoolean(Core.GameOptions.BlindMode)
             End Select
 
             Return DefaultNull
