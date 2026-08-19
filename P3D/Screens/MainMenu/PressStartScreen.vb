@@ -1853,6 +1853,9 @@ Public Class GameModeSelectionScreen
     Private Const HEIGHT = 64
     Private Const GAP = 32
 
+    Private HasReadIntro As Boolean = False
+    Private DoReadGameModeDescription As Boolean = False
+
     Public Sub New(ByVal currentScreen As Screen)
         Me.Identification = Identifications.GameModeSelectionScreen
         CanBePaused = False
@@ -1941,6 +1944,22 @@ Public Class GameModeSelectionScreen
                 Localization.GetString("gamemode_menu_version") & ": " & dispVersion & Environment.NewLine &
                 Localization.GetString("gamemode_menu_author") & ": " & dispAuthor & Environment.NewLine &
                 Localization.GetString("gamemode_menu_description") & ": " & dispDescription
+
+            If Core.GameOptions.BlindMode = True AndAlso HasReadIntro = False Then
+                Dim pressButton As String = Localization.GetString("keyboard_key_" & KeyBindings.GetKeyName(KeyBindings.SpecialKey), KeyBindings.GetKeyName(KeyBindings.SpecialKey))
+                If ControllerHandler.IsConnected() = True Then
+                    pressButton = "the X button"
+                End If
+                NVDA.Speak("Select a GameMode. Press " & pressButton & " for description. " & dispName & " " & dispVersion)
+                HasReadIntro = True
+            Else
+                NVDA.Speak(dispName & " " & dispVersion)
+            End If
+        End If
+
+        If DoReadGameModeDescription = True Then
+            NVDA.Speak(GameModeManager.GetGameMode(_gameModes(_index).DirectoryName).Description.Replace("~", " ").Replace("*", " "))
+            DoReadGameModeDescription = False
         End If
 
         tempGameModesDisplay = tempGameModesDisplay.CropStringToWidth(FontManager.InGameFont, 400)
@@ -2038,6 +2057,11 @@ Public Class GameModeSelectionScreen
             End If
         End If
 
+        If Core.GameOptions.BlindMode = True Then
+            If KeyBoardHandler.KeyPressed(KeyBindings.SpecialKey) = True OrElse ControllerHandler.ButtonPressed(Buttons.X) = True Then
+                DoReadGameModeDescription = True
+            End If
+        End If
         If GameModeSplash Is Nothing Then
             Try
                 Dim fileName As String = GameController.GamePath & "\GameModes\" & _gameModes(_index).DirectoryName & "\GameMode.png"
