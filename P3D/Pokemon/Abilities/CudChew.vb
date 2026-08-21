@@ -5,7 +5,7 @@ Namespace Abilities
         Inherits Ability
 
         Public Sub New()
-            MyBase.New(291, "Cud Chew", "When the Pokémon eats a Berry, it will regurgitate that Berry at the end of the next turn and eat it one more time.")
+            MyBase.New(291, "Cud Chew", "If the Pokémon eats a Berry, it will regurgitate and eat it after the next turn.")
         End Sub
 
     End Class
