@@ -75,6 +75,16 @@
                 End If
             End If
 
+            If own = True Then
+                If BattleScreen.FieldEffects.OwnSubstitute > 0 Then
+                    fails = True
+                End If
+            Else
+                If BattleScreen.FieldEffects.OppSubstitute > 0 Then
+                    fails = True
+                End If
+            End If
+
             If fails = False Then
                 BattleScreen.Battle.ReduceHP(looseHP, own, own, BattleScreen, p.GetDisplayName() & " put in a substitute!", "move:substitute")
                 If own = True Then
