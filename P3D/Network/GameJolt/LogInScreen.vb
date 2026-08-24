@@ -1,4 +1,4 @@
-Imports Microsoft.Xna.Framework.Input
+﻿Imports Microsoft.Xna.Framework.Input
 Imports Microsoft.Xna.Framework
 Imports System.Runtime.InteropServices
 
@@ -286,11 +286,38 @@ Namespace GameJolt
         Private Sub PressTab()
             Dim direction As Integer = 0
 
-            If KeyBoardHandler.KeyPressed(Keys.Tab) = True Or Controls.Down(True, True, True, False, True, True) = True Then
-                direction = 1
-            End If
-            If Controls.Up(True, True, True, False, True, True) = True Then
-                direction = -1
+            If LogInButton.IsActive = True Then
+                If Controls.Right(True, True, False) = True Then
+                    direction = 1
+                End If
+
+                If Controls.Up(True, True, True, False, True, True) = True Then
+                    direction = -1
+                End If
+            ElseIf CreateAccountButton.IsActive Then
+                If Controls.Right(True, True, False) = True Then
+                    direction = 1
+                End If
+                If Controls.Left(True, True, False) = True Then
+                    direction = -1
+                End If
+                If Controls.Up(True, True, True, False, True, True) = True Then
+                    direction = -2
+                End If
+            ElseIf CloseButton.IsActive = True Then
+                If Controls.Left(True, True, False) = True Then
+                    direction = -1
+                End If
+                If Controls.Up(True, True, True, False, True, True) = True Then
+                    direction = -3
+                End If
+            Else
+                If KeyBoardHandler.KeyPressed(Keys.Tab) = True Or Controls.Down(True, True, True, False, True, True) = True Then
+                    direction = 1
+                End If
+                If Controls.Up(True, True, True, False, True, True) = True Then
+                    direction = -1
+                End If
             End If
 
             If direction <> 0 Then
