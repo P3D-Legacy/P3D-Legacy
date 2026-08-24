@@ -20,6 +20,7 @@
     Dim ButtonSelector As Vector2 = New Vector2(0, 0)
 
     Dim LastSpokenText As String = ""
+    Dim HasSpokenDefaultName As Boolean = False
 
     Public PasswordMode As Boolean = False
 
@@ -424,7 +425,6 @@
                         End If
                     Else
                         If Core.GameOptions.BlindMode = True Then
-
                             Dim buttonText As String = Me.DisplayText
                             Select Case Me.DisplayText
                                 Case "?"
@@ -440,12 +440,15 @@
                                 Case "'"
                                     buttonText = "Apostrophe"
                             End Select
+                            If s.HasSpokenDefaultName = False Then
+                                buttonText = s.DefaultName & ". Currently selected: " & buttonText
+                            End If
                             If s.LastSpokenText <> buttonText AndAlso Me.DisplayText <> " " Then
                                 NVDA.Speak(buttonText)
                                 s.LastSpokenText = buttonText
+                                End If
                             End If
                         End If
-                    End If
                 End If
             End If
 
