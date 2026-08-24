@@ -159,6 +159,7 @@ Public Class OverworldCamera
         Position = Core.Player.startPosition
         If Core.GameOptions.BlindMode = True Then
             Yaw = 0F
+            Pitch = -0.015
             _thirdPerson = True
             _freeCameraMode = False
             _canToggleThirdPerson = False
@@ -166,6 +167,7 @@ Public Class OverworldCamera
             _thirdPerson = Core.Player.startThirdPerson
             Yaw = Core.Player.startRotation
             _freeCameraMode = Core.Player.startFreeCameraMode
+            Pitch = 0.0F
         End If
         If _thirdPerson = True Then
             _playerFacing = GetFacingDirection()
@@ -173,7 +175,6 @@ Public Class OverworldCamera
         RotationSpeed = CSng(Core.Player.startRotationSpeed / 10000)
         FOV = Core.Player.startFOV
 
-        Pitch = 0.0F
 
         CreateProjectionMatrix()
         UpdateViewMatrix()
@@ -324,7 +325,8 @@ Public Class OverworldCamera
                             Yaw = MathHelper.Pi * 1.5
                     End Select
                     If Core.GameOptions.BlindMode = True And _freeCameraMode = True Then
-                        Yaw = 0
+                        Yaw = 0F
+                        Pitch = -0.015F
                     End If
                     _freeCameraMode = Not _freeCameraMode
 
