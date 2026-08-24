@@ -32,6 +32,14 @@
         If NewServer = False Then
             Me.Address = EditServer.GetAddressString()
             Me.IdentifyName = EditServer.IdentifierName
+
+            If Core.GameOptions.BlindMode = True Then
+                NVDA.Speak("Add server. Press the X button to edit name and address. Name: " & Me.IdentifyName & ". Done button selected.")
+            End If
+        Else
+            If Core.GameOptions.BlindMode = True Then
+                NVDA.Speak("Add server. Press the X button to edit name and address. Done button selected.")
+            End If
         End If
     End Sub
 
@@ -136,19 +144,56 @@
                 Me.Index = 1
             End If
         End If
+        Dim InputBoxChanged As Boolean = False
+        Dim ButtonChanged As Boolean = False
         If Controls.Up(True, True, False, False, True, True) = True Then
+            If Me.Index <> 0 Then
+                InputBoxChanged = True
+            End If
             Me.Index = 0
         End If
         If Controls.Down(True, True, False, False, True, True) = True Then
+            If Me.Index <> 1 Then
+                InputBoxChanged = True
+            End If
             Me.Index = 1
         End If
         If Controls.Left(True, True, True, False, True, True) = True Then
             Me.ButtonIndex = 0
+            If Me.ButtonIndex <> 0 Then
+                ButtonChanged = True
+            End If
         End If
         If Controls.Right(True, True, True, False, True, True) = True Then
             Me.ButtonIndex = 1
+            If Me.ButtonIndex <> 1 Then
+                ButtonChanged = True
+            End If
         End If
 
+        If Core.GameOptions.BlindMode = True Then
+            If InputBoxChanged = True Then
+                Dim Text As String = ""
+                Select Case Me.Index
+                    Case 0
+                        Text = Localization.GetString("add_server_screen_name", "Name:") & " " & Me.IdentifyName
+                    Case 1
+                        Text = Localization.GetString("add_server_screen_address", "Address:") & " " & Me.Address.Replace(".", " dot ")
+                End Select
+
+                NVDA.Speak(Text)
+            End If
+            If ButtonChanged = True Then
+                Dim Text As String = ""
+                Select Case Me.ButtonIndex
+                    Case 0
+                        Text = Localization.GetString("global_done", "Done")
+                    Case 1
+                        Text = Localization.GetString("global_back", "Back")
+                End Select
+                NVDA.Speak(Text)
+            End If
+        End If
         If Controls.Accept(True, False, False) = True Then
             If New Rectangle(CInt(Core.windowSize.Width / 2 - 300), 170, 600, 40).Contains(MouseHandler.MousePosition) Then
                 Index = 0
@@ -219,10 +264,16 @@
 
     Private Sub AcceptName(ByVal input As String)
         Me.IdentifyName = input
+        If Core.GameOptions.BlindMode = True Then
+            NVDA.Speak(Localization.GetString("add_server_screen_name", "Name:") & " " & Me.IdentifyName)
+        End If
     End Sub
 
     Private Sub AcceptAddress(ByVal input As String)
         Me.Address = input
+        If Core.GameOptions.BlindMode = True Then
+            NVDA.Speak(Localization.GetString("add_server_screen_address", "Address:") & " " & Me.Address.Replace(".", " dot "))
+        End If
     End Sub
 
     Private Function IsValid() As String
@@ -240,11 +291,16 @@
     End Function
 
     Private Sub ButtonDone()
+        Dim IsValidString As String = IsValid()
         If IsValid() = "" Then
             Dim data As List(Of String) = System.IO.File.ReadAllLines(GameController.GamePath & "\Save\server_list.dat").ToList()
             data.Add(Me.IdentifyName & "," & Me.Address)
             System.IO.File.WriteAllLines(GameController.GamePath & "\Save\server_list.dat", data.ToArray())
             Core.SetScreen(Me.PreScreen)
+        Else
+            If Core.GameOptions.BlindMode = True Then
+                NVDA.Speak(IsValidString)
+            End If
         End If
     End Sub
 

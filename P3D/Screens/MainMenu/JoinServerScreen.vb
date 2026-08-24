@@ -35,6 +35,9 @@ Public Class JoinServerScreen
         Me.MouseVisible = True
         Me.CanBePaused = False
         Me.CanChat = False
+        If Core.GameOptions.BlindMode = True Then
+            NVDA.Speak("Select server. Local. Play.")
+        End If
     End Sub
 
     Private Sub LoadServers()
@@ -181,24 +184,59 @@ Public Class JoinServerScreen
 
         Dim ServersToDisplay As Integer = GetServersToDisplay()
 
+        Dim ChangedServer As Boolean = False
+
         If Controls.Up(True, True, True) = True Then
             selectIndex -= 1
             If selectIndex - scrollIndex < 0 Then
                 scrollIndex -= 1
             End If
+            ChangedServer = True
         End If
         If Controls.Down(True, True, True) = True Then
             selectIndex += 1
             If selectIndex + scrollIndex > ServersToDisplay - 1 Then
                 scrollIndex += 1
             End If
+            ChangedServer = True
+        End If
+
+        If Core.GameOptions.BlindMode = True And ChangedServer = True Then
+            NVDA.Speak(ServerList(selectIndex + scrollIndex).GetName & ". " & ServerList(selectIndex + scrollIndex).ServerMessage)
         End If
 
         If Core.GameInstance.IsMouseVisible = True Then
             For i = 0 To 5
                 If Core.ScaleScreenRec(New Rectangle(CInt(Core.ScreenSize.Width / 2) - 560 + i * 192, Core.ScreenSize.Height - 138, 128 + 32, 64 + 32)).Contains(MouseHandler.MousePosition) = True Then
-                    Me.buttonIndex = i
+                    If i <> Me.buttonIndex Then
+                        Me.buttonIndex = i
+                        If Core.GameOptions.BlindMode = True Then
+                            Dim Text As String = ""
+                            Select Case Me.buttonIndex
+                                Case 0
+                                    Dim s As Server = ServerList(selectIndex)
 
+                                    If s.IsLocal = True Then
+                                        Text = Localization.GetString("join_server_screen_button_play", "Play")
+                                    Else
+                                        Text = Localization.GetString("join_server_screen_button_join", "Join")
+                                    End If
+                                Case 1
+                                    Text = Localization.GetString("join_server_screen_button_refresh", "Refresh")
+                                Case 2
+                                    Text = Localization.GetString("join_server_screen_button_add", "Add")
+                                Case 3
+                                    Text = Localization.GetString("join_server_screen_button_edit", "Edit")
+                                Case 4
+                                    Text = Localization.GetString("join_server_screen_button_remove", "Remove")
+                                Case 5
+                                    Text = Localization.GetString("global_back", "Back")
+                            End Select
+                            If Text <> "" Then
+                                NVDA.Speak(Text)
+                            End If
+                        End If
+                    End If
                     If MouseHandler.ButtonPressed(MouseHandler.MouseButtons.LeftButton) = True AndAlso MouseHandler.ButtonPressed(MouseHandler.MouseButtons.RightButton) = False Then
                         Select Case Me.buttonIndex
                             Case 0
@@ -233,15 +271,45 @@ Public Class JoinServerScreen
             End If
         Next
 
+        Dim ChangedButton As Boolean = False
+
         If Controls.Right(True, True, False) = True Then
             Me.buttonIndex += 1
+            ChangedButton = True
         End If
         If Controls.Left(True, True, False) = True Then
             Me.buttonIndex -= 1
+            ChangedButton = True
         End If
 
         Me.buttonIndex = CInt(MathHelper.Clamp(Me.buttonIndex, 0, 5))
 
+        If Core.GameOptions.BlindMode = True AndAlso ChangedButton = True Then
+            Dim Text As String = ""
+            Select Case Me.buttonIndex
+                Case 0
+                    Dim s As Server = ServerList(selectIndex)
+
+                    If s.IsLocal = True Then
+                        Text = Localization.GetString("join_server_screen_button_play", "Play")
+                    Else
+                        Text = Localization.GetString("join_server_screen_button_join", "Join")
+                    End If
+                Case 1
+                    Text = Localization.GetString("join_server_screen_button_refresh", "Refresh")
+                Case 2
+                    Text = Localization.GetString("join_server_screen_button_add", "Add")
+                Case 3
+                    Text = Localization.GetString("join_server_screen_button_edit", "Edit")
+                Case 4
+                    Text = Localization.GetString("join_server_screen_button_remove", "Remove")
+                Case 5
+                    Text = Localization.GetString("global_back", "Back")
+            End Select
+            If Text <> "" Then
+                NVDA.Speak(Text)
+            End If
+        End If
         If Controls.Accept(False, True) = True Then
             Select Case Me.buttonIndex
                 Case 0
@@ -310,6 +378,10 @@ Public Class JoinServerScreen
             ServerList.RemoveAt(selectIndex)
             SaveServerlist()
             Core.SetScreen(New AddServerScreen(Me, Me.ServerList, False, s))
+        Else
+            If Core.GameOptions.BlindMode = True Then
+                NVDA.Speak("Cannot edit local server.")
+            End If
         End If
     End Sub
 
@@ -320,6 +392,10 @@ Public Class JoinServerScreen
             ServerList.RemoveAt(selectIndex)
             SaveServerlist()
             LoadServers()
+        Else
+            If Core.GameOptions.BlindMode = True Then
+                NVDA.Speak("Cannot remove local server.")
+            End If
         End If
     End Sub
 

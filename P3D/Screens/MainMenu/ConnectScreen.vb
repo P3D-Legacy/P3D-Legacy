@@ -23,6 +23,9 @@
         Me.PreScreen = currentScreen
         Me.MouseVisible = True
 
+        If Core.GameOptions.BlindMode = True Then
+            NVDA.Speak(message)
+        End If
         If Not currentScreen Is Nothing Then
             Dim s As Screen = Me.PreScreen
             While Not s.PreScreen Is Nothing And s.Identification <> Identifications.OverworldScreen
@@ -77,16 +80,19 @@
                 Else
                     Core.SetScreen(Me.PreScreen)
                 End If
+                NVDA.CancelSpeech()
             End If
         Else
             If Core.ServersManager.PlayerManager.ReceivedIniData() = True Then
                 Connected = True
                 Core.SetScreen(New OverworldScreen())
+                NVDA.CancelSpeech()
             End If
             If Controls.Dismiss() = True Then
                 Connected = False
                 Core.ServersManager.ServerConnection.Disconnect()
                 Core.SetScreen(New PressStartScreen())
+                NVDA.CancelSpeech()
             End If
         End If
     End Sub
