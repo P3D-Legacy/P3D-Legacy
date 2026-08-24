@@ -276,6 +276,9 @@ Public Class GameMessage
         Me._TextColor = TextColor
         Me._Duration = Duration
         Me.Visible = True
+        If Core.GameOptions.BlindMode = True Then
+            NVDA.Speak(Text)
+        End If
 
         Me._alpha = 0
     End Sub

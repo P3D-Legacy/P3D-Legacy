@@ -91,6 +91,26 @@ Public Class NotificationPopup
         _soundEffect = SoundEffect
 
         _forceAccept = ForceAccept
+
+        If Core.GameOptions.BlindMode = True Then
+            Dim TextHeader As String = _text.GetSplit(0, "*").Replace(CChar("~"), " ")
+            Dim TextBody As String = _text.GetSplit(1, "*").Replace(CChar("~"), " ")
+            Dim SpeakText As String = TextHeader & " " & TextBody
+
+            If _forceAccept = False Then
+                Dim InteractText As String = Localization.GetString("game_notification_dismiss")
+                If Me._scriptFile <> "" OrElse _waitForInput = True Then
+                    InteractText = Localization.GetString("game_notification_accept")
+                End If
+                If ControllerHandler.IsConnected = False Then
+                    InteractText = InteractText.Replace("[BUTTON]", Localization.GetString("keyboard_key_" & KeyBindings.GetKeyName(KeyBindings.SpecialKey), KeyBindings.GetKeyName(KeyBindings.SpecialKey)))
+                Else
+                    InteractText = InteractText.Replace("[BUTTON]", ControllerHandler.GetButtonName(Buttons.Back))
+                End If
+                SpeakText &= " " & InteractText
+            End If
+            NVDA.Speak(SpeakText)
+        End If
     End Sub
 
     ''' <summary>
