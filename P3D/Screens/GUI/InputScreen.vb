@@ -437,11 +437,13 @@
                                     buttonText = "Underscore"
                                 Case "-"
                                     buttonText = "Dash"
+                                Case "."
+                                    buttonText = "Dot"
                                 Case "'"
                                     buttonText = "Apostrophe"
                             End Select
                             If s.HasSpokenDefaultName = False Then
-                                buttonText = s.DefaultName & ". Currently selected: " & buttonText
+                                buttonText = s.DefaultName & ", " & buttonText & " selected."
                             End If
                             If s.LastSpokenText <> buttonText AndAlso Me.DisplayText <> " " Then
                                 NVDA.Speak(buttonText)

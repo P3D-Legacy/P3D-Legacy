@@ -1,4 +1,4 @@
-﻿Imports Microsoft.Xna.Framework.Input
+Imports Microsoft.Xna.Framework.Input
 Imports Microsoft.Xna.Framework
 Imports System.Runtime.InteropServices
 
@@ -150,6 +150,9 @@ Namespace GameJolt
                                     NVDA.Speak("Token: Empty")
                                     LastSpokenText = "Token: Empty"
                                 End If
+                            ElseIf LogInButton.IsActive = True Then
+                                NVDA.Speak("Log in")
+                                LastSpokenText = "Log in"
                             End If
                         End If
                     End If
@@ -310,7 +313,11 @@ Namespace GameJolt
                                 Case 0
                                     text = "Username: " & UserName.Text
                                 Case 1
-                                    text = "Token: " & Token.Text
+                                    If Token.Text <> "" Then
+                                        text = "Token: Entered"
+                                    Else
+                                        text = "Token: Empty"
+                                    End If
                                 Case 2
                                     text = Localization.GetString("global_login", "Log in")
                                 Case 3

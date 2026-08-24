@@ -34,11 +34,11 @@
             Me.IdentifyName = EditServer.IdentifierName
 
             If Core.GameOptions.BlindMode = True Then
-                NVDA.Speak("Add server. Press the X button to edit name and address. Name: " & Me.IdentifyName & ". Done button selected.")
+                NVDA.Speak("Add server, Press the X button to edit name and address, Name: " & Me.IdentifyName & ", Done button selected.")
             End If
         Else
             If Core.GameOptions.BlindMode = True Then
-                NVDA.Speak("Add server. Press the X button to edit name and address. Done button selected.")
+                NVDA.Speak("Add server, Press the X button to edit name and address, Done button selected.")
             End If
         End If
     End Sub
@@ -159,16 +159,16 @@
             Me.Index = 1
         End If
         If Controls.Left(True, True, True, False, True, True) = True Then
-            Me.ButtonIndex = 0
             If Me.ButtonIndex <> 0 Then
                 ButtonChanged = True
             End If
+            Me.ButtonIndex = 0
         End If
         If Controls.Right(True, True, True, False, True, True) = True Then
-            Me.ButtonIndex = 1
             If Me.ButtonIndex <> 1 Then
                 ButtonChanged = True
             End If
+            Me.ButtonIndex = 1
         End If
 
         If Core.GameOptions.BlindMode = True Then

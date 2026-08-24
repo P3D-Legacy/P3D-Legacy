@@ -323,7 +323,7 @@ Public Class OverworldCamera
                         Case 3
                             Yaw = MathHelper.Pi * 1.5
                     End Select
-                    If Core.GameOptions.BlindMode = True And _freeCameraMode = False Then
+                    If Core.GameOptions.BlindMode = True And _freeCameraMode = True Then
                         Yaw = 0
                     End If
                     _freeCameraMode = Not _freeCameraMode

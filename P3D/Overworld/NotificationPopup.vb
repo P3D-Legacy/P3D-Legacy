@@ -107,6 +107,10 @@ Public Class NotificationPopup
                 Else
                     InteractText = InteractText.Replace("[BUTTON]", ControllerHandler.GetButtonName(Buttons.Back))
                 End If
+                If SpeakText.EndsWith(".") = True Then
+                    SpeakText = SpeakText.Remove(SpeakText.Length - 1)
+                    SpeakText &= ","
+                End If
                 SpeakText &= " " & InteractText
             End If
             NVDA.Speak(SpeakText)

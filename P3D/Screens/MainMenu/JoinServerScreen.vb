@@ -36,7 +36,7 @@ Public Class JoinServerScreen
         Me.CanBePaused = False
         Me.CanChat = False
         If Core.GameOptions.BlindMode = True Then
-            NVDA.Speak("Select server. Local. Play.")
+            NVDA.Speak("Select server, Local, Play.")
         End If
     End Sub
 
@@ -201,9 +201,6 @@ Public Class JoinServerScreen
             ChangedServer = True
         End If
 
-        If Core.GameOptions.BlindMode = True And ChangedServer = True Then
-            NVDA.Speak(ServerList(selectIndex + scrollIndex).GetName & ". " & ServerList(selectIndex + scrollIndex).ServerMessage)
-        End If
 
         If Core.GameInstance.IsMouseVisible = True Then
             For i = 0 To 5
@@ -267,6 +264,7 @@ Public Class JoinServerScreen
             If Core.ScaleScreenRec(New Rectangle(CInt(Core.ScreenSize.Width / 2) - 354, i * 100 + 100, 500, 80)).Contains(MouseHandler.MousePosition) = True Then
                 If MouseHandler.ButtonPressed(MouseHandler.MouseButtons.LeftButton) = True Then
                     Me.selectIndex = i + scrollIndex
+                    ChangedServer = True
                 End If
             End If
         Next
@@ -347,6 +345,15 @@ Public Class JoinServerScreen
 
         selectIndex = CInt(MathHelper.Clamp(selectIndex, 0, ServerList.Count - 1))
         scrollIndex = CInt(MathHelper.Clamp(scrollIndex, 0, ServerList.Count - ServersToDisplay))
+
+        If Core.GameOptions.BlindMode = True And ChangedServer = True Then
+            If ServerList(selectIndex + scrollIndex).IsLocal = False Then
+                NVDA.Speak(ServerList(selectIndex + scrollIndex).GetName & ", " & ServerList(selectIndex + scrollIndex).ServerMessage & ", " & ServerList(selectIndex + scrollIndex).GetServerStatus)
+            Else
+                NVDA.Speak(ServerList(selectIndex + scrollIndex).GetName & ", " & ServerList(selectIndex + scrollIndex).ServerMessage)
+            End If
+
+        End If
     End Sub
 
 #Region "Buttons"

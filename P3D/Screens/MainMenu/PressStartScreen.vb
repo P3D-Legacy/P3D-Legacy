@@ -391,8 +391,8 @@ Public Class NewMainMenuScreen
                                     If New Rectangle(CInt(xOffset), CInt(_screenOrigin.Y + _screenOffset.Y), 160, 160).Contains(MouseHandler.MousePosition) Then
                                         If _selectedProfile = x Then
                                             If CurrentScreen.Identification = Identifications.MainMenuScreen Then
-                                                ClickedProfile()
                                                 SoundManager.PlaySound("select")
+                                                ClickedProfile()
                                             End If
                                         Else
                                             GameModeSplash = Nothing
@@ -441,8 +441,8 @@ Public Class NewMainMenuScreen
 
                                         If New Rectangle(CInt(xOffset), CInt(_screenOrigin.Y + _screenOffset.Y), 160, 160).Contains(MouseHandler.MousePosition) Then
                                             If _selectedProfile = x Then
-                                                SoundManager.PlaySound("select")
                                                 DismissProfile()
+                                                SoundManager.PlaySound("select")
                                             End If
                                             Exit For
                                         End If
