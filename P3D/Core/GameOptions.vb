@@ -1,4 +1,4 @@
-Public Class GameOptions
+﻿Public Class GameOptions
 
     Public RenderDistance As Integer = 3
     Public ShowDebug As Integer = 0
@@ -186,7 +186,7 @@ Public Class GameOptions
             File.WriteAllText(GameController.GamePath & "\Save\options.dat", Data)
             KeyBindings.SaveKeys()
 
-            If Core.Player.loadedSave = True Then
+            If Core.Player.loadedSave = True AndAlso CurrentScreen.Identification = Screen.Identifications.OptionScreen Then
                 Core.Player.SaveOptions()
             End If
 
