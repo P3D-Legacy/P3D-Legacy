@@ -157,14 +157,21 @@ Public Class OverworldCamera
         MyBase.New("Overworld")
 
         Position = Core.Player.startPosition
-        _thirdPerson = Core.Player.startThirdPerson
-        Yaw = Core.Player.startRotation
+        If Core.GameOptions.BlindMode = True Then
+            Yaw = 0F
+            _thirdPerson = True
+            _freeCameraMode = False
+            _canToggleThirdPerson = False
+        Else
+            _thirdPerson = Core.Player.startThirdPerson
+            Yaw = Core.Player.startRotation
+            _freeCameraMode = Core.Player.startFreeCameraMode
+        End If
         If _thirdPerson = True Then
             _playerFacing = GetFacingDirection()
         End If
         RotationSpeed = CSng(Core.Player.startRotationSpeed / 10000)
         FOV = Core.Player.startFOV
-        _freeCameraMode = Core.Player.startFreeCameraMode
 
         Pitch = 0.0F
 
@@ -272,7 +279,7 @@ Public Class OverworldCamera
             CameraD.Y *= -1
         End If
 
-        If _isFixed = False AndAlso (CameraD.X <> 0 OrElse CameraD.Y <> 0) Then
+        If _isFixed = False AndAlso (Core.GameOptions.BlindMode = False OrElse _freeCameraMode = True) AndAlso (CameraD.X <> 0 OrElse CameraD.Y <> 0) Then
             If CurrentScreen.Identification = Screen.Identifications.OverworldScreen Then
                 Dim OS As OverworldScreen = CType(CurrentScreen, OverworldScreen)
 
@@ -316,7 +323,9 @@ Public Class OverworldCamera
                         Case 3
                             Yaw = MathHelper.Pi * 1.5
                     End Select
-
+                    If Core.GameOptions.BlindMode = True And _freeCameraMode = False Then
+                        Yaw = 0
+                    End If
                     _freeCameraMode = Not _freeCameraMode
 
                     If _freeCameraMode = False Then
