@@ -1945,15 +1945,18 @@ Public Class GameModeSelectionScreen
                 Localization.GetString("gamemode_menu_author") & ": " & dispAuthor & Environment.NewLine &
                 Localization.GetString("gamemode_menu_description") & ": " & dispDescription
 
-            If Core.GameOptions.BlindMode = True AndAlso HasReadIntro = False Then
-                Dim pressButton As String = Localization.GetString("keyboard_key_" & KeyBindings.GetKeyName(KeyBindings.SpecialKey), KeyBindings.GetKeyName(KeyBindings.SpecialKey))
-                If ControllerHandler.IsConnected() = True Then
-                    pressButton = "the X button"
+            If Core.GameOptions.BlindMode = True Then
+                If HasReadIntro = False Then
+                    Dim pressButton As String = Localization.GetString("keyboard_key_" & KeyBindings.GetKeyName(KeyBindings.SpecialKey), KeyBindings.GetKeyName(KeyBindings.SpecialKey))
+                    If ControllerHandler.IsConnected() = True Then
+                        pressButton = "the X button"
+                    End If
+                    NVDA.Speak("Select a GameMode. Press " & pressButton & " for description. " & dispName & " " & dispVersion)
+                    HasReadIntro = True
+                Else
+                    NVDA.Speak(dispName & " " & dispVersion)
+
                 End If
-                NVDA.Speak("Select a GameMode. Press " & pressButton & " for description. " & dispName & " " & dispVersion)
-                HasReadIntro = True
-            Else
-                NVDA.Speak(dispName & " " & dispVersion)
             End If
         End If
 
