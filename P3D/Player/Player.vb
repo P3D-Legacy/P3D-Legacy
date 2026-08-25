@@ -1186,7 +1186,7 @@
         Return Data
     End Function
 
-    Public Function GetPlayerData(ByVal IsAutosave As Boolean) As String
+    Public Function GetPlayerData(ByVal IsAutosave As Boolean, Optional ByVal NewGame As Boolean = False) As String
         Dim GenderString As String = ""
         If Gender = "Male" Then
             GenderString = "Male"
@@ -1212,6 +1212,9 @@
 
         Dim c As OverworldCamera = GetOverworldCamera()
         Dim freeCameraString As String = c.FreeCameraMode.ToNumberString()
+        If NewGame = True Then
+            freeCameraString = Core.Player.startFreeCameraMode.ToNumberString()
+        End If
 
         Dim diff As TimeSpan = (Date.Now - GameStart)
         Dim p As TimeSpan = PlayTime + diff
@@ -1254,10 +1257,30 @@
             runToggle = False
         End If
 
+        Dim MapFileString As String = Screen.Level.LevelFile
+        If NewGame = True Then
+            MapFileString = Core.Player.startMap
+        End If
+
+        Dim RotationString As String = c.Yaw.ToString.Replace(GameController.DecSeparator, ".")
+        If NewGame = True Then
+            RotationString = startRotation.ToString.Replace(GameController.DecSeparator, ".")
+        End If
+
+        Dim PositionString As String = c.Position.X.ToString().Replace(GameController.DecSeparator, ".") & "," & c.Position.Y.ToString.Replace(GameController.DecSeparator, ".") & "," & c.Position.Z.ToString().Replace(GameController.DecSeparator, ".")
+        If NewGame = True Then
+            PositionString = startPosition.X.ToString().Replace(GameController.DecSeparator, ".") & "," & startPosition.Y.ToString.Replace(GameController.DecSeparator, ".") & "," & startPosition.Z.ToString().Replace(GameController.DecSeparator, ".")
+        End If
+
+        Dim LocationString As String = Screen.Level.MapName
+        If NewGame = True Then
+            LocationString = GameModeManager.ActiveGameMode.StartLocationName
+        End If
+
         Dim Data As String = "Name|" & Name & Environment.NewLine &
-            "Position|" & c.Position.X.ToString().Replace(GameController.DecSeparator, ".") & "," & c.Position.Y.ToString.Replace(GameController.DecSeparator, ".") & "," & c.Position.Z.ToString().Replace(GameController.DecSeparator, ".") & Environment.NewLine &
-            "MapFile|" & Screen.Level.LevelFile & Environment.NewLine &
-            "Rotation|" & c.Yaw.ToString.Replace(GameController.DecSeparator, ".") & Environment.NewLine &
+            "Position|" & PositionString & Environment.NewLine &
+            "MapFile|" & MapFileString & Environment.NewLine &
+            "Rotation|" & RotationString & Environment.NewLine &
             "RivalName|" & RivalName & Environment.NewLine &
             "RivalSkin|" & RivalSkin & Environment.NewLine &
             "Money|" & Money & Environment.NewLine &
@@ -1271,7 +1294,7 @@
             "FreeCamera|" & freeCameraString & Environment.NewLine &
             "ThirdPerson|" & c.ThirdPerson.ToNumberString() & Environment.NewLine &
             "Skin|" & skin & Environment.NewLine &
-            "Location|" & Screen.Level.MapName & Environment.NewLine &
+            "Location|" & LocationString & Environment.NewLine &
             "BattleAnimations|" & ShowBattleAnimations.ToString() & Environment.NewLine &
             "RunMode|" & RunMode.ToNumberString() & Environment.NewLine &
             "RunToggled|" & runToggle.ToNumberString & Environment.NewLine &

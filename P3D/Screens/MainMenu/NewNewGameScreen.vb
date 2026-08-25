@@ -184,7 +184,7 @@
 
             System.IO.Directory.CreateDirectory(savePath & folderPath)
 
-            System.IO.File.WriteAllText(savePath & folderPath & "\Player.dat", Core.Player.GetPlayerData(False))
+            System.IO.File.WriteAllText(savePath & folderPath & "\Player.dat", Core.Player.GetPlayerData(False, True))
             System.IO.File.WriteAllText(savePath & folderPath & "\Pokedex.dat", "")
             System.IO.File.WriteAllText(savePath & folderPath & "\Items.dat", "")
             System.IO.File.WriteAllText(savePath & folderPath & "\Register.dat", "")
