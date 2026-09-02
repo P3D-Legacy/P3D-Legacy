@@ -30,7 +30,7 @@ version=2
 					@Text.Show(<player.name> registered~Tiffany's number.)
 					@sound.play(Receive_PhoneNumber,1)
 					@Register.register(phone_contact_027)
-					@Text.Show(Isn't my Clefairy super-adorable?)
+					@Text.Show(Isn't my Clefairy super-~adorable?)
 				:when:No
 					@text.show(Aww...~Oh well.*Look for me if you want~to talk about Clefairy.)
 			:endwhen
