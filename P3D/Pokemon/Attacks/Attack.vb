@@ -1,4 +1,4 @@
-﻿Namespace BattleSystem
+Namespace BattleSystem
 
     ''' <summary>
     ''' Represents a Pokémon's move.
@@ -1983,16 +1983,7 @@
             If Me.IsGameModeMove = False Then
                 Return Me.Power
             Else
-                If gmCopyMove <> -1 Then
-                    Dim _attack As Attack = GetAttackByID(gmCopyMove)
-                    If _attack.IsGameModeMove = False Then
-                        Return _attack.GetBasePower(own, BattleScreen)
-                    Else
-                        Return AttackSpecialBasePower.GetGameModeBasePower(_attack, own, BattleScreen)
-                    End If
-                Else
-                    Return AttackSpecialBasePower.GetGameModeBasePower(Me, own, BattleScreen)
-                End If
+                Return AttackSpecialBasePower.GetGameModeBasePower(Me, own, BattleScreen)
             End If
         End Function
 
@@ -2002,16 +1993,7 @@
         ''' <param name="Own">If the own Pokémon used the move.</param>
         ''' <param name="BattleScreen">Reference to the BattleScreen.</param>
         Public Overridable Function GetDamage(ByVal Critical As Boolean, ByVal Own As Boolean, ByVal targetPokemon As Boolean, ByVal BattleScreen As BattleScreen, Optional ByVal ExtraParameter As String = "", Optional TypeEffectivenessAttack As Attack = Nothing) As Integer
-            If gmCopyMove <> -1 Then
-                Dim _attack As Attack = GetAttackByID(gmCopyMove)
-                If _attack.IsGameModeMove = False Then
-                    Return _attack.GetDamage(Critical, Own, targetPokemon, BattleScreen, ExtraParameter, Me)
-                Else
-                    Return BattleCalculation.CalculateDamage(_attack, Critical, Own, targetPokemon, BattleScreen, ExtraParameter, Me)
-                End If
-            Else
-                Return BattleCalculation.CalculateDamage(Me, Critical, Own, targetPokemon, BattleScreen, ExtraParameter, TypeEffectivenessAttack)
-            End If
+            Return BattleCalculation.CalculateDamage(Me, Critical, Own, targetPokemon, BattleScreen, ExtraParameter, TypeEffectivenessAttack)
         End Function
 
         ''' <summary>
@@ -2023,7 +2005,7 @@
             If Me.IsGameModeMove = False Then
                 Return Me.TimesToAttack
             Else
-                If gmCopyMove <> -1 Then
+                If gmCopyMove <> -1 AndAlso gmTimesToAttack = "1" Then
                     Dim _attack As Attack = GetAttackByID(gmCopyMove)
                     If _attack.IsGameModeMove = False Then
                         Return _attack.GetTimesToAttack(own, BattleScreen)
@@ -2051,7 +2033,7 @@
         ''' <param name="BattleScreen">Reference to the BattleScreen.</param>
         Public Overridable Sub MoveHits(ByVal own As Boolean, ByVal BattleScreen As BattleScreen)
             If Me.IsGameModeMove = True Then
-                If gmCopyMove <> -1 Then
+                If gmCopyMove <> -1 AndAlso Me.GameModeFunction = "" Then
                     Dim _attack As Attack = GetAttackByID(gmCopyMove)
                     If _attack.IsGameModeMove = False Then
                         _attack.MoveHits(own, BattleScreen)
