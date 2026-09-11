@@ -18,8 +18,8 @@ Namespace Items.KeyItems
 						Screen.TextBox.Show(Localization.GetString("item_6_cannot_walk", "You cannot walk here!"), {}, True, False)
 					Else
 						Screen.Level.Riding = False
-						Screen.Level.OwnPlayer.SetTexture(Core.Player.TempRideSkin, True)
-						Core.Player.Skin = Core.Player.TempRideSkin
+						Screen.Level.OwnPlayer.SetTexture(Core.Player.TempBikeSkin, True)
+						Core.Player.Skin = Core.Player.TempBikeSkin
 
 						Screen.TextBox.Show(Localization.GetString("item_use_6", "<player.name> stepped~off the Bicycle."))
 						While Core.CurrentScreen.Identification <> Screen.Identifications.OverworldScreen
@@ -29,14 +29,26 @@ Namespace Items.KeyItems
 						If Screen.Level.IsRadioOn = False OrElse GameJolt.PokegearScreen.StationCanPlay(Screen.Level.SelectedRadioStation) = False Then
 							MusicManager.Play(Screen.Level.MusicLoop)
 						End If
+
+						Core.Player.TempBikeSkin = ""
 					End If
 				Else
 					If Screen.Level.Surfing = False AndAlso Screen.Level.Riding = False AndAlso Screen.Camera.IsMoving() = False AndAlso Screen.Camera.Turning = False And Screen.Level.CanRide() = True Then
-						Dim BikeSkin As String = Core.Player.Skin & "_Bike"
+						Dim BikeSkin As String = Core.Player.BikeSkin
 
-						If File.Exists(GameController.GamePath & GameModeManager.ActiveGameMode.ContentPath & "Textures\NPC\" & BikeSkin & ".png") = True Then
+						Dim textureID As String = Core.Player.BikeSkin
+						Dim texturePath As String = "Textures\NPC\"
+						If textureID.StartsWith("[POKEMON|N]") Or textureID.StartsWith("[Pokémon|N]") Then
+							textureID = BikeSkin.Remove(0, 11)
+							texturePath = "Pokemon\Overworld\Normal\"
+						ElseIf textureID.StartsWith("[POKEMON|S]") Or textureID.StartsWith("[Pokémon|S]") Then
+							textureID = BikeSkin.Remove(0, 11)
+							texturePath = "Pokemon\Overworld\Shiny\"
+						End If
 
-							Core.Player.TempRideSkin = Core.Player.Skin
+						If File.Exists(GameController.GamePath & GameModeManager.ActiveGameMode.ContentPath & texturePath & textureID & ".png") = True Then
+
+							Core.Player.TempBikeSkin = Core.Player.Skin
 							Screen.Level.Riding = True
 
 							Screen.Level.OwnPlayer.SetTexture(BikeSkin, False)

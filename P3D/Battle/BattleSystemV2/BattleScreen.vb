@@ -289,7 +289,11 @@ Namespace BattleSystem
                 ownSkin = Core.Player.TempSurfSkin
             End If
             If SavedOverworld.Level.Riding = True Then
-                ownSkin = Core.Player.TempRideSkin
+                If Core.Player.TempBikeSkin <> "" Then
+                    ownSkin = Core.Player.TempBikeSkin
+                Else
+                    ownSkin = Core.Player.TempRideSkin
+                End If
             End If
 
             OwnTrainerNPC = CType(Entity.GetNewEntity("NPC", New Vector3(10, 0, 13) + BattleMapOffset, {Nothing}, {0, 0}, False, New Vector3(0), New Vector3(1), BaseModel.BillModel, 0, "", True, New Vector3(1), 0, "", "", New Vector3(0), {ownSkin, 3, "Player", 2, False, "Still", New List(Of Rectangle)}), NPC)
@@ -450,7 +454,11 @@ Namespace BattleSystem
                 ownSkin = Core.Player.TempSurfSkin
             End If
             If SavedOverworld.Level.Riding = True Then
-                ownSkin = Core.Player.TempRideSkin
+                If Core.Player.TempBikeSkin <> "" Then
+                    ownSkin = Core.Player.TempBikeSkin
+                Else
+                    ownSkin = Core.Player.TempRideSkin
+                End If
             End If
 
             OwnTrainerNPC = CType(Entity.GetNewEntity("NPC", New Vector3(10, 0, 13) + BattleMapOffset, {Nothing}, {0, 0}, False, New Vector3(0), New Vector3(1), BaseModel.BillModel, 0, "", True, New Vector3(1), 0, "", "", New Vector3(0), {ownSkin, 3, "Player", 2, False, "Still", New List(Of Rectangle)}), NPC)
@@ -709,7 +717,11 @@ Namespace BattleSystem
                 ownSkin = Core.Player.TempSurfSkin
             End If
             If SavedOverworld.Level.Riding = True Then
-                ownSkin = Core.Player.TempRideSkin
+                If Core.Player.TempBikeSkin <> "" Then
+                    ownSkin = Core.Player.TempBikeSkin
+                Else
+                    ownSkin = Core.Player.TempRideSkin
+                End If
             End If
 
             OwnTrainerNPC = CType(Entity.GetNewEntity("NPC", New Vector3(10, 0, 13) + BattleMapOffset, {Nothing}, {0, 0}, False, New Vector3(0), New Vector3(1), BaseModel.BillModel, 0, "", True, New Vector3(1), 0, "", "", New Vector3(0), {ownSkin, 3, "Player", 2, False, "Still", New List(Of Rectangle)}), NPC)
@@ -834,7 +846,11 @@ Namespace BattleSystem
                 ownSkin = Core.Player.TempSurfSkin
             End If
             If SavedOverworld.Level.Riding = True Then
-                ownSkin = Core.Player.TempRideSkin
+                If Core.Player.TempBikeSkin <> "" Then
+                    ownSkin = Core.Player.TempBikeSkin
+                Else
+                    ownSkin = Core.Player.TempRideSkin
+                End If
             End If
 
             OwnTrainerNPC = CType(Entity.GetNewEntity("NPC", New Vector3(10, 0, 13) + BattleMapOffset, {Nothing}, {0, 0}, False, New Vector3(0), New Vector3(1), BaseModel.BillModel, 0, "", True, New Vector3(1), 0, "", "", New Vector3(0), {ownSkin, 3, "Player", 2, False, "Still", New List(Of Rectangle)}), NPC)

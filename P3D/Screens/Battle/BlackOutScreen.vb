@@ -175,10 +175,17 @@
     End Sub
 
     Private Sub ChangeFromSurfRideTexture()
-        If Screen.Level.Riding = True AndAlso Core.Player.TempRideSkin <> "" Then
-            Screen.Level.Riding = False
-            Screen.Level.OwnPlayer.SetTexture(Core.Player.TempRideSkin, True)
-            Core.Player.Skin = Core.Player.TempRideSkin
+        If Screen.Level.Riding = True Then
+            Dim tempSkin As String = Core.Player.TempRideSkin
+            If Core.Player.TempBikeSkin <> "" Then
+                tempSkin = Core.Player.TempBikeSkin
+                Core.Player.TempBikeSkin = ""
+            End If
+            If tempSkin <> "" Then
+                Screen.Level.Riding = False
+                Screen.Level.OwnPlayer.SetTexture(tempSkin, True)
+                Core.Player.Skin = tempSkin
+            End If
         End If
         If Screen.Level.Surfing = True AndAlso Core.Player.TempSurfSkin <> "" Then
             Screen.Level.Surfing = False

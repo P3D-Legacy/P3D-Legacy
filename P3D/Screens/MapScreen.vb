@@ -54,7 +54,11 @@ Public Class MapScreen
             If Screen.Level.Surfing = True Then
                 PlayerSkinTexture = TextureManager.GetTexture("Textures\NPC\" & Core.Player.TempSurfSkin)
             ElseIf Screen.Level.Riding = True Then
-                PlayerSkinTexture = TextureManager.GetTexture("Textures\NPC\" & Core.Player.TempRideSkin)
+                If Core.Player.TempBikeSkin <> "" Then
+                    PlayerSkinTexture = TextureManager.GetTexture("Textures\NPC\" & Core.Player.TempBikeSkin)
+                Else
+                    PlayerSkinTexture = TextureManager.GetTexture("Textures\NPC\" & Core.Player.TempRideSkin)
+                End If
             Else
                 PlayerSkinTexture = TextureManager.GetTexture("Textures\NPC\" & Core.Player.Skin)
             End If

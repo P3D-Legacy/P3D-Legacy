@@ -1,4 +1,4 @@
-﻿Public Class Player
+Public Class Player
 
     Inherits Security.HashSecureBase
 
@@ -220,6 +220,19 @@
         End Set
     End Property
 
+    Public Property BikeSkin() As String
+        Get
+            If _bikeskin <> "" Then
+                Return _bikeskin
+            Else
+                Return Skin() & "_Bike"
+            End If
+        End Get
+        Set(value As String)
+            _bikeskin = value
+        End Set
+    End Property
+
     Public Property VisitedMaps() As String
         Get
             Return _visitedMaps
@@ -436,6 +449,7 @@
     Private _poisonSteps As Integer = 0
     Private _gameMode As String = "Kolben"
     Private _skin As String = "Hilbert"
+    Private _bikeskin As String = ""
     Private _visitedMaps As String = ""
     Private _GTSStars As Integer = 8
     Private _sandBoxMode As Boolean = False
@@ -744,6 +758,12 @@
                         startThirdPerson = CBool(Value)
                     Case "skin"
                         Skin = Value
+                    Case "bikeskin"
+                        If Value <> "" Then
+                            BikeSkin = Value
+                        Else
+                            BikeSkin = ""
+                        End If
                     Case "battleanimations"
                         ShowBattleAnimations = CInt(Value)
                     Case "runmode"
@@ -821,6 +841,8 @@
                         End If
                     Case "expall"
                         EnableExpAll = CBool(Value)
+                    Case "tempsurfskin"
+                        TempSurfSkin = Value
                 End Select
             Else
                 Logger.Log(Logger.LogTypes.Warning, "Player.vb: The line """ & Line & """ is either empty or does not conform the player.dat file rules.")
@@ -1294,6 +1316,7 @@
             "FreeCamera|" & freeCameraString & Environment.NewLine &
             "ThirdPerson|" & c.ThirdPerson.ToNumberString() & Environment.NewLine &
             "Skin|" & skin & Environment.NewLine &
+            "BikeSkin|" & BikeSkin & Environment.NewLine &
             "Location|" & LocationString & Environment.NewLine &
             "BattleAnimations|" & ShowBattleAnimations.ToString() & Environment.NewLine &
             "RunMode|" & RunMode.ToNumberString() & Environment.NewLine &
@@ -1325,7 +1348,9 @@
             "ShowModels|" & ShowModelsInBattle.ToNumberString() & Environment.NewLine &
             "GTSStars|" & GTSStars & Environment.NewLine &
             "SandBoxMode|" & SandBoxMode.ToNumberString() & Environment.NewLine &
-            "EarnedAchievements|" & EarnedAchievementsString
+            "EarnedAchievements|" & EarnedAchievementsString &
+            "TempSurfSkin|" & TempSurfSkin & Environment.NewLine &
+            "TempBikeSkin|" & TempBikeSkin & Environment.NewLine
 
         If IsAutosave = True Then
             Data &= Environment.NewLine & "AutoSave|" & newFilePrefix
@@ -2266,6 +2291,7 @@
         VisitedMaps = ""
         TempSurfSkin = "Hilbert"
         TempRideSkin = ""
+        TempBikeSkin = ""
         GTSStars = 8
         SandBoxMode = False
         Statistics = ""
