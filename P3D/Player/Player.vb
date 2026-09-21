@@ -420,6 +420,7 @@ Public Class Player
     Public ShowModelsInBattle As Boolean = True
     Public TempSurfSkin As String = "Hilbert"
     Public TempRideSkin As String = ""
+    Public TempBikeSkin As String = ""
     Public Statistics As String = ""
     Public CheckForTrainersLater As Boolean = False
     Public UsedItemsToCheckScriptDelayFor As New List(Of String)
@@ -821,10 +822,10 @@ Public Class Player
                         End If
                     Case "visitedmaps"
                         VisitedMaps = Value
-                    Case "tempsurfskin"
-                        TempSurfSkin = Value
                     Case "surfing"
                         startSurfing = CBool(Value)
+                    Case "riding"
+                        startRiding = CBool(Value)
                     Case "bp"
                         BP = CInt(Value)
                     Case "coins"
@@ -843,6 +844,10 @@ Public Class Player
                         EnableExpAll = CBool(Value)
                     Case "tempsurfskin"
                         TempSurfSkin = Value
+                    Case "temprideskin"
+                        TempRideSkin = Value
+                    Case "tempbikeskin"
+                        TempBikeSkin = Value
                 End Select
             Else
                 Logger.Log(Logger.LogTypes.Warning, "Player.vb: The line """ & Line & """ is either empty or does not conform the player.dat file rules.")
@@ -1271,7 +1276,11 @@ Public Class Player
 
         Dim skin As String = Screen.Level.OwnPlayer.SkinName
         If Screen.Level.Riding = True Then
-            skin = TempRideSkin
+            If TempBikeSkin <> "" Then
+                skin = TempBikeSkin
+            Else
+                skin = TempRideSkin
+            End If
         End If
 
         Dim runToggle As Boolean = RunToggled
@@ -1340,8 +1349,8 @@ Public Class Player
             "GameMode|" & GameMode & Environment.NewLine &
             "PokeFiles|" & PokeFilesString & Environment.NewLine &
             "VisitedMaps|" & VisitedMaps & Environment.NewLine &
-            "TempSurfSkin|" & TempSurfSkin & Environment.NewLine &
             "Surfing|" & Screen.Level.Surfing.ToNumberString() & Environment.NewLine &
+            "Riding|" & Screen.Level.Riding.ToNumberString() & Environment.NewLine &
             "BP|" & BP & Environment.NewLine &
             "Coins|" & Coins & Environment.NewLine &
             "ExpAll|" & EnableExpAll & Environment.NewLine &
@@ -1350,6 +1359,7 @@ Public Class Player
             "SandBoxMode|" & SandBoxMode.ToNumberString() & Environment.NewLine &
             "EarnedAchievements|" & EarnedAchievementsString &
             "TempSurfSkin|" & TempSurfSkin & Environment.NewLine &
+            "TempRideSkin|" & TempRideSkin & Environment.NewLine &
             "TempBikeSkin|" & TempBikeSkin & Environment.NewLine
 
         If IsAutosave = True Then
@@ -1660,6 +1670,27 @@ Public Class Player
                 If p.IsEgg() = False Then
                     For Each a As BattleSystem.Attack In p.Attacks
                         If a.Name = Localization.GetString("move_name_57", "Surf") Then
+                            Return i
+                        End If
+                    Next
+                End If
+            Next
+            If GameController.IS_DEBUG_ACTIVE = True Or Core.Player.SandBoxMode = True Then
+                Return 0
+            Else
+                Return -1
+            End If
+        End Get
+    End Property
+
+    Public ReadOnly Property RidePokemon() As Integer
+        Get
+            For i = 0 To Pokemons.Count - 1
+                Dim p As Pokemon = Pokemons(i)
+
+                If p.IsEgg() = False Then
+                    For Each a As BattleSystem.Attack In p.Attacks
+                        If a.Name = Localization.GetString("move_name_560", "Ride") Then
                             Return i
                         End If
                     Next

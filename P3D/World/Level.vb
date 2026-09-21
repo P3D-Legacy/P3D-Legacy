@@ -897,6 +897,68 @@ Public Class Level
             End With
         End If
 
+        Me.Riding = Core.Player.startRiding
+        If Me.Riding = True AndAlso Me.Surfing = False AndAlso Screen.Level.CanRide = True Then
+            If (Core.Player.Inventory.GetItemAmount(6.ToString) > 0 OrElse Core.Player.SandBoxMode = True) AndAlso Core.Player.TempBikeSkin <> "" AndAlso OwnPlayer.SkinName <> Core.Player.BikeSkin Then
+                With Screen.Level.OwnPlayer
+                    Core.Player.TempBikeSkin = .SkinName
+
+                    .SetTexture(Core.Player.BikeSkin, False)
+
+                    .UpdateEntity()
+
+                    If GameModeManager.ContentFileExists("Sounds\Bicycle.wav") OrElse GameModeManager.ContentFileExists("Sounds\Bicycle.xnb") Then
+                        SoundManager.PlaySound("Bicycle")
+                    End If
+
+                    Dim RideMusicPath As String = "Songs\" & "Ride_" & Screen.Level.CurrentRegion
+                    Dim RideSong As String = "Ride_" & Screen.Level.CurrentRegion
+
+                    If GameModeManager.ContentFileExists(RideMusicPath & ".ogg") = False AndAlso GameModeManager.ContentFileExists(RideMusicPath & ".mp3") = False AndAlso GameModeManager.ContentFileExists(RideMusicPath & ".wma") = False Then
+                        RideSong = "Ride"
+                    End If
+
+                    If MusicManager.CurrentSong.Name.ToLower <> RideSong AndAlso (Screen.Level.IsRadioOn = False OrElse GameJolt.PokegearScreen.StationCanPlay(Screen.Level.SelectedRadioStation) = False) Then
+                        MusicManager.Play(RideSong, True)
+                    End If
+                End With
+            ElseIf OwnPlayer.SkinName.StartsWith("[POKEMON|") = False Then
+                With Screen.Level.OwnPlayer
+                    Core.Player.TempRideSkin = .SkinName
+
+                    Dim pokemonNumber As Integer = Core.Player.Pokemons(Core.Player.RidePokemon).Number
+                    Dim SkinName As String = "[POKEMON|N]" & pokemonNumber & PokemonForms.GetOverworldAddition(Core.Player.Pokemons(Core.Player.RidePokemon))
+                    If Core.Player.Pokemons(Core.Player.RidePokemon).IsShiny = True Then
+                        SkinName = "[POKEMON|S]" & pokemonNumber & PokemonForms.GetOverworldAddition(Core.Player.Pokemons(Core.Player.RidePokemon))
+                    End If
+
+                    .SetTexture(SkinName, False)
+
+                    .UpdateEntity()
+
+                    Dim RideMusicPath As String = "Songs\" & "Ride_" & Screen.Level.CurrentRegion
+                    Dim RideSong As String = "Ride_" & Screen.Level.CurrentRegion
+
+                    If GameModeManager.ContentFileExists(RideMusicPath & ".ogg") = False AndAlso GameModeManager.ContentFileExists(RideMusicPath & ".mp3") = False AndAlso GameModeManager.ContentFileExists(RideMusicPath & ".wma") = False Then
+                        RideSong = "Ride"
+                    End If
+
+                    If MusicManager.CurrentSong.Name.ToLower <> RideSong AndAlso (Screen.Level.IsRadioOn = False OrElse GameJolt.PokegearScreen.StationCanPlay(Screen.Level.SelectedRadioStation) = False) Then
+                        MusicManager.Play(RideSong, True)
+                    End If
+                End With
+            End If
+        Else
+            Core.Player.startRiding = False
+            Me.Riding = False
+            If Core.Player.TempBikeSkin <> "" Then
+                Core.Player.Skin = Core.Player.TempBikeSkin
+                Core.Player.TempBikeSkin = ""
+            ElseIf Core.Player.TempRideSkin <> "" Then
+                Core.Player.Skin = Core.Player.TempRideSkin
+                Core.Player.TempRideSkin = ""
+            End If
+        End If
         Entities.AddRange({OwnPlayer, OverworldPokemon})
         Lighting.UpdateLighting(Screen.Effect)
         Screen.Camera.Update()
