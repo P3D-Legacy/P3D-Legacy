@@ -78,17 +78,33 @@
             End If
 
             If Not lastMove Is Nothing Then
-                If own = True Then
-                    BattleScreen.FieldEffects.OppEncoreMove = lastMove
+                Dim HasMove As Boolean = False
+                Dim forbiddenIDs As List(Of Integer) = {165, 144, 102, 166, 119, 227}.ToList()
+                For Each a As Attack In op.Attacks
+                    If a.ID = lastMove.ID AndAlso forbiddenIDs.Contains(a.ID) = False Then
+                        If a.CurrentPP > 0 Then
+                            a.CurrentPP -= 1
+                            HasMove = True
+                            Exit For
+                        End If
+                    End If
+                Next
+                If HasMove = True Then
+                    If own = True Then
+                        BattleScreen.FieldEffects.OppEncoreMove = lastMove
+                    Else
+                        BattleScreen.FieldEffects.OwnEncoreMove = lastMove
+                    End If
+                    If own = True Then
+                        BattleScreen.FieldEffects.OppEncore = 3
+                    Else
+                        BattleScreen.FieldEffects.OwnEncore = 3
+                    End If
+                    BattleScreen.BattleQuery.Add(New TextQueryObject(op.GetDisplayName & " received an encore!"))
                 Else
-                    BattleScreen.FieldEffects.OwnEncoreMove = lastMove
+                    BattleScreen.BattleQuery.Add(New TextQueryObject(Me.Name & " failed!"))
                 End If
-                If own = True Then
-                    BattleScreen.FieldEffects.OppEncore = 3
-                Else
-                    BattleScreen.FieldEffects.OwnEncore = 3
-                End If
-                BattleScreen.BattleQuery.Add(New TextQueryObject(op.GetDisplayName & " received an encore!"))
+
             Else
                 BattleScreen.BattleQuery.Add(New TextQueryObject(Me.Name & " failed!"))
             End If

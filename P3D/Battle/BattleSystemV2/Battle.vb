@@ -1581,10 +1581,16 @@ Namespace BattleSystem
                 End If
             End If
 
+            Dim encore As Integer = BattleScreen.FieldEffects.OwnEncore
+            If own = False Then
+                encore = BattleScreen.FieldEffects.OppEncore
+            End If
+
             Dim imprisoned As Integer = BattleScreen.FieldEffects.OwnImprison
             If own = False Then
                 imprisoned = BattleScreen.FieldEffects.OppImprison
             End If
+            Dim isImprisoned As Boolean = False
             If imprisoned > 0 Then
                 Dim hasMove As Boolean = False
                 For Each a As BattleSystem.Attack In op.Attacks
@@ -1595,7 +1601,11 @@ Namespace BattleSystem
                 Next
                 If hasMove = True Then
                     BattleScreen.BattleQuery.Add(New TextQueryObject(p.GetDisplayName() & "'s move is sealed by " & op.GetDisplayName() & "!"))
-                    Exit Sub
+                    If encore = 0 Then
+                        Exit Sub
+                    Else
+                        isImprisoned = True
+                    End If
                 End If
             End If
 
@@ -1606,7 +1616,9 @@ Namespace BattleSystem
             If healBlock > 0 Then
                 If moveUsed.IsHealingMove = True Then
                     BattleScreen.BattleQuery.Add(New TextQueryObject(p.GetDisplayName() & " was prevented from healing!"))
-                    Exit Sub
+                    If encore = 0 Then
+                        Exit Sub
+                    End If
                 End If
             End If
 
@@ -1631,6 +1643,61 @@ Namespace BattleSystem
                     BattleScreen.BattleQuery.Add(New TextQueryObject("Sturdy prevented any damage from the 1-Hit-KO move."))
                     Exit Sub
                 End If
+            End If
+
+            Dim taunt As Integer = BattleScreen.FieldEffects.OwnTaunt
+            If own = False Then
+                taunt = BattleScreen.FieldEffects.OppTaunt
+            End If
+            Dim isTaunted As Boolean = False
+            If taunt > 0 Then
+                If moveUsed.Category = Attack.Categories.Status Then
+                    BattleScreen.BattleQuery.Add(New TextQueryObject(p.GetDisplayName() & "'s move was prevented due to Taunt!"))
+                    If encore = 0 Then
+                        Exit Sub
+                    End If
+                End If
+            End If
+
+            Dim gravity As Integer = BattleScreen.FieldEffects.Gravity
+            If gravity > 0 Then
+                If moveUsed.DisabledWhileGravity = True Then
+                    Dim fly As Integer = BattleScreen.FieldEffects.OwnFlyCounter
+                    If own = False Then
+                        fly = BattleScreen.FieldEffects.OppFlyCounter
+                    End If
+
+                    If fly > 0 Then
+                        moveUsed.MoveMisses(own, BattleScreen)
+
+                        If own = True Then
+                            BattleScreen.FieldEffects.OwnLastMoveFailed = True
+                        Else
+                            BattleScreen.FieldEffects.OppLastMoveFailed = True
+                        End If
+                    End If
+                    BattleScreen.BattleQuery.Add(New TextQueryObject(p.GetDisplayName() & "'s move was prevented due to Gravity!"))
+                    If encore = 0 Then
+                        Exit Sub
+                    End If
+                End If
+            End If
+
+            Dim encoreTorment As Integer = BattleScreen.FieldEffects.OwnTorment
+            Dim encoreTormentMove As Attack = BattleScreen.FieldEffects.OwnTormentMove
+            If own = False Then
+                encoreTorment = BattleScreen.FieldEffects.OppTorment
+                encoreTormentMove = BattleScreen.FieldEffects.OppTormentMove
+            End If
+
+            If encore > 0 AndAlso (moveUsed.Disabled > 0 OrElse
+                (gravity > 0 AndAlso moveUsed.DisabledWhileGravity = True) OrElse
+                (healBlock > 0 AndAlso moveUsed.IsHealingMove = True) OrElse
+                isImprisoned = True OrElse
+                (taunt > 0 AndAlso moveUsed.Category = Attack.Categories.Status) OrElse
+                encoreTorment > 0 AndAlso moveUsed.ID = encoreTormentMove.ID) Then
+                moveUsed = Attack.GetAttackByID(165)
+                BattleScreen.BattleQuery.Add(New TextQueryObject(p.GetDisplayName() & " used " & moveUsed.Name & " because of Encore!"))
             End If
 
             If p.HasVolatileStatus(Pokemon.VolatileStatus.Confusion) = True Then
@@ -1721,39 +1788,6 @@ Namespace BattleSystem
                     RaiseStat(own, Not own, BattleScreen, "Speed", 1, "", "steadfast")
                 End If
                 Exit Sub
-            End If
-
-            Dim taunt As Integer = BattleScreen.FieldEffects.OwnTaunt
-            If own = False Then
-                taunt = BattleScreen.FieldEffects.OppTaunt
-            End If
-            If taunt > 0 Then
-                If moveUsed.Category = Attack.Categories.Status Then
-                    BattleScreen.BattleQuery.Add(New TextQueryObject(p.GetDisplayName() & "'s move was prevented due to Taunt!"))
-                    Exit Sub
-                End If
-            End If
-
-            Dim gravity As Integer = BattleScreen.FieldEffects.Gravity
-            If gravity > 0 Then
-                If moveUsed.DisabledWhileGravity = True Then
-                    Dim fly As Integer = BattleScreen.FieldEffects.OwnFlyCounter
-                    If own = False Then
-                        fly = BattleScreen.FieldEffects.OppFlyCounter
-                    End If
-
-                    If fly > 0 Then
-                        moveUsed.MoveMisses(own, BattleScreen)
-
-                        If own = True Then
-                            BattleScreen.FieldEffects.OwnLastMoveFailed = True
-                        Else
-                            BattleScreen.FieldEffects.OppLastMoveFailed = True
-                        End If
-                    End If
-                    BattleScreen.BattleQuery.Add(New TextQueryObject(p.GetDisplayName() & "'s move was prevented due to Gravity!"))
-                    Exit Sub
-                End If
             End If
 
             If op.HP > 0 And op.Status <> Pokemon.StatusProblems.Fainted Then
