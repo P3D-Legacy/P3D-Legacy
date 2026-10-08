@@ -80,19 +80,25 @@
                 Else
                     Core.SetScreen(Me.PreScreen)
                 End If
-                NVDA.CancelSpeech()
+                If Core.GameOptions.BlindMode = True Then
+                    NVDA.CancelSpeech()
+                End If
             End If
-        Else
+            Else
             If Core.ServersManager.PlayerManager.ReceivedIniData() = True Then
                 Connected = True
                 Core.SetScreen(New OverworldScreen())
-                NVDA.CancelSpeech()
+                If Core.GameOptions.BlindMode = True Then
+                    NVDA.CancelSpeech()
+                End If
             End If
             If Controls.Dismiss() = True Then
                 Connected = False
                 Core.ServersManager.ServerConnection.Disconnect()
                 Core.SetScreen(New PressStartScreen())
-                NVDA.CancelSpeech()
+                If Core.GameOptions.BlindMode = True Then
+                    NVDA.CancelSpeech()
+                End If
             End If
         End If
     End Sub
