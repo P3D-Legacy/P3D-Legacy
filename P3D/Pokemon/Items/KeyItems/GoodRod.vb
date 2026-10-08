@@ -77,14 +77,14 @@ Namespace Items.KeyItems
                             "@battle.wild(" & p.GetSaveData() & ")" & Environment.NewLine &
                             ":end"
                     Else
-                        s &= Environment.NewLine & "@player.showrod(2)" & Environment.NewLine &
+                        s &= Environment.NewLine & "@player.showrod(1)" & Environment.NewLine &
                             "@text.show(. . . . . . . . . .)" & Environment.NewLine &
                             "@text.show(Not even a nibble...)" & Environment.NewLine &
                             "@player.hiderod" & Environment.NewLine &
                             ":end"
                     End If
                 Else
-                    s &= Environment.NewLine & "@player.showrod(2)" & Environment.NewLine &
+                    s &= Environment.NewLine & "@player.showrod(1)" & Environment.NewLine &
                         "@text.show(. . . . . . . . . .)" & Environment.NewLine &
                         "@text.show(No, there's nothing here...)" & Environment.NewLine &
                         "@player.hiderod" & Environment.NewLine &
