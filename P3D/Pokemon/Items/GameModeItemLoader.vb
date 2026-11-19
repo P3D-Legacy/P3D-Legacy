@@ -133,6 +133,32 @@ Public Class GameModeItemLoader
                             item.gmIsMail = CBool(value)
                         Case "healhpamount"
                             item.gmHealHPAmount = CInt(value)
+                        Case "preventeffectsif"
+                            Dim PreventEffectsIfList As New List(Of String)
+                            Dim valueSplit As String() = value.Split(",")
+                            For i = 0 To valueSplit.Count - 1
+                                If valueSplit(i).Split(";").Count > 1 Then
+                                    Select Case valueSplit(i).ToLower.GetSplit(0, ";")
+                                        Case "ability"
+                                            Dim AbilitySplit As String() = valueSplit(i).ToLower.Split(";")
+                                            For a = 1 To AbilitySplit.Count - 1
+                                                If StringHelper.IsNumeric(AbilitySplit(a)) = True Then
+                                                    PreventEffectsIfList.Add("ability," & AbilitySplit(a).ToString)
+                                                End If
+                                            Next
+                                        Case "type"
+                                            Dim TypeSplit As String() = valueSplit(i).ToLower.Split(";")
+                                            For t = 1 To TypeSplit.Count - 1
+                                                PreventEffectsIfList.Add("type," & BattleSystem.GameModeElementLoader.GetElementByName(TypeSplit(t)).ToString)
+                                            Next
+                                    End Select
+                                End If
+                            Next
+                            If item.gmPreventEffectsIf Is Nothing Then
+                                item.gmPreventEffectsIf = PreventEffectsIfList
+                            Else
+                                item.gmPreventEffectsIf.AddRange(PreventEffectsIfList)
+                            End If
                         Case "curestatus", "owneffects"
                             Dim EffectList As New List(Of String)
                             Dim valueSplit As String() = value.Split(",")

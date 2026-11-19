@@ -1231,25 +1231,34 @@ Namespace BattleSystem
         Private Shared Sub UseItem(ByVal PokeIndex As Integer)
             Dim Item As Item = Item.GetItemByID(TempItemID)
 
-            Dim UseOnOwn As Boolean = False
-            Dim UseOnOpp As Boolean = False
 
             Dim cScreen As Screen = Core.CurrentScreen
             While Not cScreen.PreScreen Is Nothing And cScreen.Identification <> Identifications.BattleScreen
                 cScreen = cScreen.PreScreen
             End While
 
+            Dim PreventOwn As Boolean = False
+            Dim PreventOpp As Boolean = False
+
+            If Item.IsGameModeItem Then
+                Dim gmItem As GameModeItem = CType(Item, GameModeItem)
+                PreventOwn = gmItem.PreventOwnEffects(PokeIndex)
+                PreventOpp = gmItem.PreventOppEffects()
+            End If
+
+            Dim UseOnOwn As Boolean = False
+            Dim UseOnOpp As Boolean = False
+
             If cScreen.Identification = Identifications.BattleScreen Then
                 If Item.IsGameModeItem Then
                     Dim gmItem As GameModeItem = CType(Item, GameModeItem)
-                    If gmItem.gmUseOnOwnEffects IsNot Nothing Then
+                    If gmItem.gmUseOnOwnEffects IsNot Nothing AndAlso (PreventOwn = False OrElse Item.BattleSelectPokemon = False) Then
                         UseOnOwn = gmItem.UseOnPokemon(PokeIndex)
                     End If
-                    If gmItem.gmUseOnOppEffects IsNot Nothing AndAlso gmItem.gmUseOnOwnEffects Is Nothing Then
+                    If gmItem.gmUseOnOppEffects IsNot Nothing AndAlso gmItem.gmUseOnOwnEffects Is Nothing AndAlso PreventOpp = False Then
                         UseOnOpp = gmItem.UseOnOppPokemon(CType(cScreen, BattleSystem.BattleScreen))
                     End If
                 Else
-
                     UseOnOwn = Item.UseOnPokemon(PokeIndex)
                 End If
             End If

@@ -3233,6 +3233,8 @@ item_cannot_use,Agora não é o momento certo~para usar isso.
 item_cannot_use_NoPokemon,You don't have any Pokémon.
 item_cannot_use_IsFainted,[POKEMONNAME]~is fainted!
 item_cannot_use_HealingItems,Cannot use healing items.
+item_cannot_use_NoEffect_Single,[ITEMNAME] had no effect~on [POKEMONNAME].
+item_cannot_use_NoEffect_Both,[ITEMNAME] had no effect.
 item_cannot_use_OnPokemon_Single,Cannot use [ITEMNAME]~on [POKEMONNAME].
 item_cannot_use_OnPokemon_Both,Cannot use [ITEMNAME]~on [OWNPOKEMONNAME]~or [OPPPOKEMONNAME].
 item_cannot_use_FullHP_Single,[POKEMONNAME] has full~HP already.

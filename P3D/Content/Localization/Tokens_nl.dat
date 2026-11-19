@@ -3545,6 +3545,8 @@ item_cannot_use,<Player.Name>: Hmm... Ik denk niet~dat ik dit nu kan gebruiken.
 item_cannot_use_NoPokemon,Je hebt geen Pokémon.
 item_cannot_use_IsFainted,[POKEMONNAME]~is uitgeschakeld!
 item_cannot_use_HealingItems,Kan geen herstellende~voorwerpen gebruiken.
+item_cannot_use_NoEffect_Single,[ITEMNAME] had geen~effect op [POKEMONNAME].
+item_cannot_use_NoEffect_Both,[ITEMNAME] had geen effect.
 item_cannot_use_OnPokemon_Single,Kan [ITEMNAME] niet~gebruiken op [POKEMONNAME].
 item_cannot_use_OnPokemon_Both,Kan [ITEMNAME] niet~gebruiken op [OWNPOKEMONNAME]~of [OPPPOKEMONNAME].
 item_cannot_use_FullHP_Single,[POKEMONNAME]'s LP zijn al~volledig aangevuld.
