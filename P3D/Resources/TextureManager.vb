@@ -111,7 +111,9 @@ Public Class TextureManager
                     t = cContent.Load(Of Texture2D)(tSource.TexturePath)
                 End If
 
-                TextureList.Add(cContent.RootDirectory & "\" & tSource.TexturePath, ApplyEffect(t.Copy()))
+                If TextureList.ContainsKey(cContent.RootDirectory & "\" & tSource.TexturePath) = False Then
+                    TextureList.Add(cContent.RootDirectory & "\" & tSource.TexturePath, ApplyEffect(t.Copy()))
+                End If
             End If
 
             If doApplyEffect = True Then
