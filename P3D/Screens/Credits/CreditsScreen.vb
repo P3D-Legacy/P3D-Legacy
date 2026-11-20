@@ -233,6 +233,7 @@ Public Class CreditsScreen
             If Date.Now >= WaitAfterSkipping Then
                 If Controls.Accept(True, True) = True Then
                     SoundManager.PlaySound("select")
+                    LevelLoader.MapScript = "" 'Reset the MapScript.
                     Core.SetScreen(New TransitionScreen(Me, SavedOverworld.OverworldScreen, Color.Black, False, AddressOf ChangeSavedScreen))
                 End If
             End If
