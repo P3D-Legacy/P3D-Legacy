@@ -901,6 +901,8 @@ Namespace BattleSystem
                 BattleScreen.BattleQuery.Insert(0, New ToggleMenuQueryObject(True))
                 Core.SetScreen(New BattleCatchScreen(BattleScreen, Item.GetItemByID(177.ToString)))
 
+                Core.Player.UsedItemsToCheckScriptDelayFor.Add("177")
+
                 Dim sportBallText As String = "Sport Ball x" & Core.Player.Inventory.GetItemAmount(177.ToString).ToString()
                 If Core.Player.Inventory.GetItemAmount(177.ToString) = 0 Then
                     sportBallText = "No Sport Balls."
@@ -1180,7 +1182,12 @@ Namespace BattleSystem
                 If Item.IsBall = True Then
                     If Core.Player.CanCatchPokemon = False AndAlso TempBattleScreen.IsTrainerBattle = False Then
                         Screen.TextBox.Show(Localization.GetString("battle_NoMoreRoomInPC", "There's no more room for~Pokémon in the PC!"), {}, True, True)
+                    Else
+                        If Item.IsGameModeItem = False Then
+                            Core.Player.UsedItemsToCheckScriptDelayFor.Add(Item.ID.ToString)
                         Else
+                            Core.Player.UsedItemsToCheckScriptDelayFor.Add(CType(Item, GameModeItem).gmID.ToString)
+                        End If
                         Core.Player.Inventory.RemoveItem(itemID.ToString, 1)
                         If TempBattleScreen.IsTrainerBattle = False Then
                             If BattleScreen.CanCatch = True Or CBool(GameModeManager.GetGameRuleValue("OnlyCaptureFirst", "0")) = True And Core.Player.PokeFiles.Contains(BattleScreen.TempPokeFile) = False Then
@@ -1231,11 +1238,16 @@ Namespace BattleSystem
         Private Shared Sub UseItem(ByVal PokeIndex As Integer)
             Dim Item As Item = Item.GetItemByID(TempItemID)
 
-
             Dim cScreen As Screen = Core.CurrentScreen
             While Not cScreen.PreScreen Is Nothing And cScreen.Identification <> Identifications.BattleScreen
                 cScreen = cScreen.PreScreen
             End While
+
+            If Item.IsGameModeItem = False Then
+                Core.Player.UsedItemsToCheckScriptDelayFor.Add(Item.ID.ToString)
+            Else
+                Core.Player.UsedItemsToCheckScriptDelayFor.Add(CType(Item, GameModeItem).gmID.ToString)
+            End If
 
             Dim PreventOwn As Boolean = False
             Dim PreventOpp As Boolean = False

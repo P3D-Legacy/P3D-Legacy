@@ -20,7 +20,7 @@
                         ItemID = argument.GetSplit(0)
                     End If
 
-                    If ScriptConversion.IsArithmeticExpression(ItemID) = False AndAlso ItemID.StartsWith("gm") = False Then
+                    If ItemID.StartsWith("gm") = False AndAlso ScriptConversion.IsArithmeticExpression(ItemID) = False Then
                         item = Item.GetItemByName(ItemID)
                     Else
                         item = Item.GetItemByID(ItemID)
