@@ -8762,10 +8762,6 @@ Namespace BattleSystem
                 BattleScreen.SendInNewTrainerPokemon(index)
                 Me.ApplyOppBatonPass(BattleScreen)
 
-                If BattleScreen.ParticipatedPokemon.Contains(BattleScreen.OwnPokemonIndex) = False Then
-                    BattleScreen.ParticipatedPokemon.Add(BattleScreen.OwnPokemonIndex)
-                End If
-
                 Dim oppShiny As String = "N"
                 If BattleScreen.OppPokemon.IsShiny = True Then
                     oppShiny = "S"
