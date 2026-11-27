@@ -1,9 +1,9 @@
 {"Level"{LEV[{"Name"{str[Intro Map]}}{"MusicLoop"{str[RouteMusic1]}}]}}
 {"Actions"{LEV[{"CanTeleport"{bool[1]}}{"CanDig"{bool[1]}}{"CanFly"{bool[1]}}{"EnvironmentType"{int[1]}}{"Weather"{int[1]}}{"Lighting"{int[1]}}]}}
 
-{"Floor"{ENT[{"Size"{intArr[50,40]}}{"Position"{intArr[0,0,0]}}{"TexturePath"{str[intro]}}{"Texture"{rec[0,0,16,16]}}]}}
+{"Floor"{ENT[{"Size"{intArr[55,40]}}{"Position"{intArr[-5,0,0]}}{"TexturePath"{str[intro]}}{"Texture"{rec[0,0,16,16]}}]}}
 
-{"EntityField"{ENT[{"Size"{intArr[50,10,1]}}{"EntityID"{str[WallBlock]}}{"Position"{sngArr[0,0,-1]}}{"TexturePath"{str[intro]}}{"Textures"{recArr[[0,0,16,16]]}}{"TextureIndex"{intArr[0,0,-1,-1,-1,-1,-1,-1,-1,-1]}}{"Collision"{bool[1]}}{"ModelID"{int[1]}}{"Action"{int[0]}}{"AdditionalValue"{str[]}}{"Rotation"{int[0]}}]}}
+{"EntityField"{ENT[{"Size"{intArr[55,10,1]}}{"EntityID"{str[WallBlock]}}{"Position"{sngArr[-5,0,-1]}}{"TexturePath"{str[intro]}}{"Textures"{recArr[[0,0,16,16]]}}{"TextureIndex"{intArr[0,0,-1,-1,-1,-1,-1,-1,-1,-1]}}{"Collision"{bool[1]}}{"ModelID"{int[1]}}{"Action"{int[0]}}{"AdditionalValue"{str[]}}{"Rotation"{int[0]}}]}}
 
 9,9=starting position
 

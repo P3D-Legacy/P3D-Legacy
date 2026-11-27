@@ -42,7 +42,7 @@ Version=2
     @screen.setfade(<storage.get(integer,screenFade)>)
 :endwhile
 
-@camera.set(40,1.1,11,0,0)
+@camera.set(44,1.1,11,0,0)
 @camera.update
 @level.update
 
@@ -82,7 +82,7 @@ Version=2
 
 @sound.play(destroy)
 
-:while:<npc.position(3,x)>>35
+:while:<npc.position(3,x)>>39
     @npc.warp(3,~-0.05,~,~)
     @camera.update
 :endwhile
