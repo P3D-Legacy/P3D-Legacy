@@ -468,7 +468,7 @@ Public Class NewInventoryScreen
                                         0.0F, Vector2.Zero, SpriteEffects.None, 0F)
             End If
             'If there are more pages to the right, draw Right Arrow
-            If ItemIndex + 2 + (PageIndex * 10) < _items.Length Then
+            If ItemIndex + 1 + (PageIndex * 10) < _items.Length Then
                 itemBatch.Draw(_texture, New Rectangle(CInt(800 - 16 + ComputeXOffset(4)), 200 - 24, 32, 32), New Rectangle(0, 48, 16, 16), New Color(255, 255, 255, itemPanelAlpha),
                                         0.0F, Vector2.Zero, SpriteEffects.None, 0F)
             End If
@@ -893,6 +893,14 @@ Public Class NewInventoryScreen
         If Controls.Right(True, True, False, True, True, True) Then
             If ItemIndex + 2 + (PageIndex * 10) < _items.Length Then
                 ItemIndex += 2
+                If ItemIndex > 9 Then
+                    ItemIndex -= 10
+                    PageIndex += 1
+                    _itemIntro = 0F
+                    ResetAnimation()
+                End If
+            ElseIf ItemIndex + 1 + (PageIndex * 10) < _items.Length Then
+                ItemIndex += 1
                 If ItemIndex > 9 Then
                     ItemIndex -= 10
                     PageIndex += 1
