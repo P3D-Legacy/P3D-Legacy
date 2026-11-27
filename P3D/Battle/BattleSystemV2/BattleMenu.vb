@@ -116,25 +116,29 @@ Namespace BattleSystem
 
             'Draw large stats:
             If largeStatsDisplay = True Then
+                Dim newPos As Vector2 = pos
+                While CInt(newPos.X + 6 + 12 + FontManager.MainFont.MeasureString(p.GetDisplayName() & " " & Localization.GetString("property_Lv.", "Lv.") & " " & p.Level.ToString()).X) >= Core.windowSize.Width
+                    newPos.X -= 12
+                End While
                 'Background
-                Core.SpriteBatch.DrawInterface(TextureManager.GetTexture(BattleInterfaceTexture), New Rectangle(CInt(pos.X) + 14, CInt(pos.Y) + 14, 182, 42), New Rectangle(0, 0, 91, 21), shinyHue)
+                Core.SpriteBatch.DrawInterface(TextureManager.GetTexture(BattleInterfaceTexture), New Rectangle(CInt(newPos.X) + 14, CInt(newPos.Y) + 14, 182, 42), New Rectangle(0, 0, 91, 21), shinyHue)
 
                 'Name:
                 Dim nameInformation As String = p.GetDisplayName() & " " & Localization.GetString("property_Lv.", "Lv.") & " " & p.Level.ToString()
 
-                Core.SpriteBatch.DrawInterfaceString(FontManager.MainFont, nameInformation, New Vector2(pos.X + 2, pos.Y + 2), New Color(0, 0, 0, _moveMenuAlpha))
-                Core.SpriteBatch.DrawInterfaceString(FontManager.MainFont, nameInformation, New Vector2(pos.X, pos.Y), shinyHue)
+                Core.SpriteBatch.DrawInterfaceString(FontManager.MainFont, nameInformation, New Vector2(newPos.X + 2, newPos.Y + 2), New Color(0, 0, 0, _moveMenuAlpha))
+                Core.SpriteBatch.DrawInterfaceString(FontManager.MainFont, nameInformation, New Vector2(newPos.X, newPos.Y), shinyHue)
 
                 'Gender:
                 If p.Gender = Pokemon.Genders.Male Then
-                    Core.SpriteBatch.DrawInterface(TextureManager.GetTexture(BattleInterfaceTexture), New Rectangle(CInt(pos.X + 6 + FontManager.MainFont.MeasureString(nameInformation).X), CInt(pos.Y), 12, 20), New Rectangle(0, 104, 6, 10), New Color(255, 255, 255, _moveMenuAlpha))
+                    Core.SpriteBatch.DrawInterface(TextureManager.GetTexture(BattleInterfaceTexture), New Rectangle(CInt(newPos.X + 6 + FontManager.MainFont.MeasureString(nameInformation).X), CInt(newPos.Y), 12, 20), New Rectangle(0, 104, 6, 10), New Color(255, 255, 255, _moveMenuAlpha))
                 ElseIf p.Gender = Pokemon.Genders.Female Then
-                    Core.SpriteBatch.DrawInterface(TextureManager.GetTexture(BattleInterfaceTexture), New Rectangle(CInt(pos.X + 6 + FontManager.MainFont.MeasureString(nameInformation).X), CInt(pos.Y), 12, 20), New Rectangle(6, 104, 6, 10), New Color(255, 255, 255, _moveMenuAlpha))
+                    Core.SpriteBatch.DrawInterface(TextureManager.GetTexture(BattleInterfaceTexture), New Rectangle(CInt(newPos.X + 6 + FontManager.MainFont.MeasureString(nameInformation).X), CInt(newPos.Y), 12, 20), New Rectangle(6, 104, 6, 10), New Color(255, 255, 255, _moveMenuAlpha))
                 End If
 
                 'HP indicator:
-                Core.SpriteBatch.DrawInterfaceString(FontManager.MainFont, p.HP & "/" & p.MaxHP, New Vector2(pos.X + 102, pos.Y + 37 + 3), New Color(0, 0, 0, _moveMenuAlpha))
-                Core.SpriteBatch.DrawInterfaceString(FontManager.MainFont, p.HP & "/" & p.MaxHP, New Vector2(pos.X + 100, pos.Y + 35 + 3), shinyHue)
+                Core.SpriteBatch.DrawInterfaceString(FontManager.MainFont, p.HP & "/" & p.MaxHP, New Vector2(newPos.X + 102, newPos.Y + 37 + 3), New Color(0, 0, 0, _moveMenuAlpha))
+                Core.SpriteBatch.DrawInterfaceString(FontManager.MainFont, p.HP & "/" & p.MaxHP, New Vector2(newPos.X + 100, newPos.Y + 35 + 3), shinyHue)
 
                 'EXP Bar:
                 If BattleScreen.CanReceiveEXP = True Then
@@ -167,7 +171,7 @@ Namespace BattleSystem
 
                             Dim t = TextureManager.GetTexture(BattleInterfaceTexture)
                             For dX As Integer = 0 To EXPlength Step 4
-                                Core.SpriteBatch.DrawInterface(t, New Rectangle(CInt(pos.X) + 50 + dX, CInt(pos.Y) + 64, 4, 6), New Rectangle(0, 43, 2, 3), New Color(255, 255, 255, _moveMenuAlpha))
+                                Core.SpriteBatch.DrawInterface(t, New Rectangle(CInt(newPos.X) + 50 + dX, CInt(newPos.Y) + 64, 4, 6), New Rectangle(0, 43, 2, 3), New Color(255, 255, 255, _moveMenuAlpha))
                             Next
                         End If
                     End If
