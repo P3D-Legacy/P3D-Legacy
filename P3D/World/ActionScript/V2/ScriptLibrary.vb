@@ -224,6 +224,7 @@ Namespace ScriptVersion2
             ' Constructs:
             r(New ScriptCommand("level", "mapfile", "str", "Returns the mapfile of the currently loaded map.", ",", True))
             r(New ScriptCommand("level", "levelfile", "str", "Returns the mapfile of the currently loaded map.", ",", True))
+            r(New ScriptCommand("level", "region", "str", "Returns the region name of the currently loaded map.", ",", True))
             r(New ScriptCommand("level", "filename", "str", "Returns only the name of the current map file, without path and extension.", ",", True))
             r(New ScriptCommand("level", "riding", "bool", "Returns if the player is Riding a Pokémon right now.", ",", True))
             r(New ScriptCommand("level", "surfing", "bool", "Returns if the player is Suring on a Pokémon right now.", ",", True))
@@ -335,7 +336,7 @@ Namespace ScriptVersion2
                                                 New ScriptArgument("canSell", ScriptArgument.ArgumentTypes.Bool),
                                                 New ScriptArgument("Currency", ScriptArgument.ArgumentTypes.Str, {"P", "BP", "C"}, True, "P"),
                                                 New ScriptArgument("shopIdentifier", ScriptArgument.ArgumentTypes.Str, {}, True, "")}.ToList(), "Opens a new trade screen with the given items in stock. tradeItems: {itemID|amount|price}{...}..., amount and price are default for -1. Currency defaults to ""P"" and shopIdentifier is optional.", ","))
-            r(New ScriptCommand("screen", "townmap", {New ScriptArgument("regionList", ScriptArgument.ArgumentTypes.StrArr)}.ToList(), "Opens the map screen with the given regions."))
+            r(New ScriptCommand("screen", "townmap", {New ScriptArgument("regionList", ScriptArgument.ArgumentTypes.StrArr, True, "")}.ToList(), "Opens the town/world map screen with the given region(s). If no argument is given, it defaults to the current map's region."))
             r(New ScriptCommand("screen", "donation", "Opens the donation screen."))
             r(New ScriptCommand("screen", "blackout", "Opens the blackout screen and warps the player back to the last restplace."))
             r(New ScriptCommand("screen", "fadein", {New ScriptArgument("fadeSpeed", ScriptArgument.ArgumentTypes.Int, True, "5")}.ToList(), "Fades the screen back in."))

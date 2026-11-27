@@ -13,6 +13,8 @@
             Select Case command.ToLower()
                 Case "mapfile", "levelfile"
                     Return Screen.Level.LevelFile
+                Case "region", "currentregion"
+                    Return Screen.Level.CurrentRegion
                 Case "filename"
                     Dim filename As String = System.IO.Path.GetFileNameWithoutExtension(Screen.Level.LevelFile)
                     Return filename

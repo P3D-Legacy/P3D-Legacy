@@ -76,6 +76,9 @@
                         Core.SetScreen(New TransitionScreen(Core.CurrentScreen, New MapScreen(Core.CurrentScreen, regions, 0, {"view"}), Color.Black, False))
                     Else
                         Dim startRegion As String = argument
+                        If startRegion = "" Then
+                            startRegion = Screen.Level.CurrentRegion
+                        End If
                         Core.SetScreen(New TransitionScreen(Core.CurrentScreen, New MapScreen(Core.CurrentScreen, startRegion, {"view"}), Color.Black, False))
                     End If
 
